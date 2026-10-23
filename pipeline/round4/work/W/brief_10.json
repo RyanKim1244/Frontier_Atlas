@@ -1,0 +1,214 @@
+[
+ {
+  "id": "moment-generating",
+  "title": "Probability and moment generating functions",
+  "short": "Generating functions in probability",
+  "area": "Probability",
+  "fields": [
+   "probability"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "random-variables",
+    "title": "Random variables and expectation"
+   },
+   {
+    "id": "generating-functions",
+    "title": "Generating functions and recurrences"
+   },
+   {
+    "id": "power-series",
+    "title": "Power series"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Cambridge International AS & A Level Further Mathematics 9231 / Further Probability & Statistics (Paper 4) / 4.5 Probability generating functions",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3B: Further Statistics 1 / 7 Probability generating functions",
+   "Ross, A First Course in Probability, 10th ed. / 7 Properties of Expectation / 7.7 Moment Generating Functions"
+  ]
+ },
+ {
+  "id": "monte-carlo",
+  "title": "Simulation and Monte Carlo methods",
+  "short": "Monte Carlo",
+  "area": "Probability",
+  "fields": [
+   "probability",
+   "computer-science"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "random-variables",
+    "title": "Random variables and expectation"
+   },
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "AP Statistics / Unit 2: Probability, Random Variables, and Probability Distributions / Estimating probabilities using simulation",
+   "Ross, A First Course in Probability, 10th ed. / 10 Simulation / 10.2 General Techniques for Simulating Continuous Random Variables",
+   "Ross, A First Course in Probability, 10th ed. / 10 Simulation / 10.3 Simulating from Discrete Distributions",
+   "Ross, A First Course in Probability, 10th ed. / 10 Simulation / 10.4 Variance Reduction Techniques"
+  ]
+ },
+ {
+  "id": "entropy",
+  "title": "Entropy and information",
+  "short": "Entropy",
+  "area": "Probability",
+  "fields": [
+   "probability",
+   "computer-science",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "random-variables",
+    "title": "Random variables and expectation"
+   },
+   {
+    "id": "exp-log",
+    "title": "Exponentials and logarithms"
+   },
+   {
+    "id": "convexity",
+    "title": "Convexity, Jensen and majorization"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Ross, A First Course in Probability, 10th ed. / 9 Additional Topics in Probability / 9.3 Surprise, Uncertainty, and Entropy",
+   "Ross, A First Course in Probability, 10th ed. / 9 Additional Topics in Probability / 9.4 Coding Theory and Entropy"
+  ]
+ },
+ {
+  "id": "martingales",
+  "title": "Conditional expectation and martingales",
+  "short": "Martingales",
+  "area": "Probability",
+  "fields": [
+   "probability"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "joint-distributions",
+    "title": "Joint distributions, covariance and conditional expectation"
+   },
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "brownian-motion",
+    "title": "Random walks and Brownian motion"
+   }
+  ],
+  "curriculum_sources": [
+   "Durrett, ch. 4"
+  ]
+ },
+ {
+  "id": "brownian-motion",
+  "title": "Random walks and Brownian motion",
+  "short": "Brownian motion",
+  "area": "Probability",
+  "fields": [
+   "probability",
+   "physics",
+   "pde"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   },
+   {
+    "id": "martingales",
+    "title": "Conditional expectation and martingales"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Durrett, ch. 7, 9",
+   "Folland, ch. 10"
+  ]
+ },
+ {
+  "id": "descriptive-statistics",
+  "title": "Describing data: summaries and displays",
+  "short": "Describing data",
+  "area": "Statistics",
+  "fields": [
+   "statistics"
+  ],
+  "stage": "school",
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "sampling-design",
+    "title": "Sampling, surveys and experiments"
+   },
+   {
+    "id": "linear-regression",
+    "title": "Correlation and linear regression"
+   }
+  ],
+  "curriculum_sources": [
+   "수학 1 (중1) / 자료와 가능성",
+   "수학 3 (중3) / 자료와 가능성",
+   "실용 통계 / 자료의 수집과 정리",
+   "실용 통계 / 통계와 통계적 문제",
+   "직무 수학 / 자료와 가능성",
+   "Common Core State Standards for Mathematics - High School / Statistics and Probability: Interpreting Categorical and Quantitative Data (S-ID) / Summarize, represent, and interpret data on a single count or measurement variable",
+   "Common Core State Standards for Mathematics - High School / Statistics and Probability: Interpreting Categorical and Quantitative Data (S-ID) / Summarize, represent, and interpret data on two categorical and quantitative variables",
+   "AP Statistics / Unit 1: Exploring One-Variable Data and Collecting Data / Variables"
+  ]
+ },
+ {
+  "id": "sampling-design",
+  "title": "Sampling, surveys and experiments",
+  "short": "Sampling & experiments",
+  "area": "Statistics",
+  "fields": [
+   "statistics"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "descriptive-statistics",
+    "title": "Describing data: summaries and displays"
+   },
+   {
+    "id": "probability-basics",
+    "title": "Probability spaces and conditional probability"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "confidence-intervals",
+    "title": "Sampling distributions and confidence intervals"
+   }
+  ],
+  "curriculum_sources": [
+   "Common Core State Standards for Mathematics - High School / Statistics and Probability: Making Inferences and Justifying Conclusions (S-IC) / Understand and evaluate random processes underlying statistical experiments",
+   "Common Core State Standards for Mathematics - High School / Statistics and Probability: Making Inferences and Justifying Conclusions (S-IC) / Make inferences and justify conclusions from sample surveys, experiments and observational studies",
+   "AP Statistics / Unit 1: Exploring One-Variable Data and Collecting Data / Data collection",
+   "AP Statistics / Unit 1: Exploring One-Variable Data and Collecting Data / Random sampling",
+   "AP Statistics / Unit 1: Exploring One-Variable Data and Collecting Data / Experimental design",
+   "Pearson Edexcel A level Mathematics 9MA0 / Paper 3 Section A: Statistics / 1 Statistical sampling",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 1 Introduction to Data / 1.3 Sampling principles and strategies",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 1 Introduction to Data / 1.4 Experiments"
+  ]
+ }
+]

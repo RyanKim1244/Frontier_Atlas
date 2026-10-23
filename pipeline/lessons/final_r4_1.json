@@ -1,0 +1,964 @@
+[
+ {
+  "id": "series",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "What should $1 + \\tfrac12 + \\tfrac14 + \\tfrac18 + \\cdots$ mean? Nobody can add infinitely many numbers, but we can add the first $N$ of them and ask what happens as $N$ grows. Here the running totals are $1, 1.5, 1.75, 1.875, \\ldots$, creeping up to $2$, and it is reasonable to call $2$ the sum. For $1 + \\tfrac12 + \\tfrac13 + \\tfrac14 + \\cdots$ the running totals grow without bound, even though the terms shrink to zero.\n\nThis lesson makes that idea precise and gives the basic tools for deciding which series converge and how quickly. The central example is the family $\\sum 1/n^s$: it converges for $s > 1$ and diverges for $s \\le 1$. The function of $s$ defined by this sum is the Riemann zeta function, and the boundary value $s = 1$, where convergence just fails, is where its story begins."
+   },
+   {
+    "type": "definition",
+    "title": "Convergent series",
+    "body": "Given numbers $a_1, a_2, a_3, \\ldots$, form the partial sums $S_N = a_1 + a_2 + \\cdots + a_N$. The series $\\sum_{n \\ge 1} a_n$ converges, with sum $S$, if the sequence $(S_N)$ converges to $S$ in the sense of [[seq-limits]]; we then write $\\sum_{n\\ge1} a_n = S$. Otherwise the series diverges.\n\nSo a series is nothing new: it is a sequence (of partial sums) in disguise, and every question about it is a question about limits of sequences."
+   },
+   {
+    "type": "section",
+    "title": "Terms must shrink, but that is not enough",
+    "body": "If $\\sum a_n$ converges to $S$, then $a_N = S_N - S_{N-1} \\to S - S = 0$. So the terms of a convergent series must tend to zero. This is a quick test for divergence: $\\sum (-1)^n$ and $\\sum \\tfrac{n}{n+1}$ diverge because their terms do not go to $0$.\n\nThe converse is false, and the harmonic series is the standard warning. Group its terms in blocks that end at powers of two: $$1 + \\tfrac12 + \\left(\\tfrac13 + \\tfrac14\\right) + \\left(\\tfrac15 + \\cdots + \\tfrac18\\right) + \\left(\\tfrac19 + \\cdots + \\tfrac1{16}\\right) + \\cdots$$ The block from $2^{k-1}+1$ to $2^k$ has $2^{k-1}$ terms, each at least $1/2^k$, so it adds at least $\\tfrac12$. Hence $S_{2^K} \\ge 1 + K/2$, and the partial sums are unbounded. They grow very slowly, roughly like $\\log N$: you need more than $12000$ terms before the total passes $10$.\n\nThe model convergent series is the geometric one, whose partial sums have a closed form."
+   },
+   {
+    "type": "theorem",
+    "title": "Geometric series",
+    "body": "For a real (or complex) number $r$, $$\\sum_{n \\ge 0} r^n = \\frac{1}{1-r} \\quad \\text{if } |r| < 1,$$ and the series diverges if $|r| \\ge 1$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For $r \\ne 1$, multiplying $S_N = 1 + r + \\cdots + r^N$ by $1 - r$ makes everything cancel except two terms, so $S_N = \\dfrac{1 - r^{N+1}}{1-r}$. If $|r| < 1$ then $r^{N+1} \\to 0$, so $S_N \\to 1/(1-r)$. If $|r| \\ge 1$ the terms $r^n$ do not tend to $0$, so the series diverges."
+   },
+   {
+    "type": "section",
+    "title": "Series with non-negative terms",
+    "body": "When every $a_n \\ge 0$ the partial sums can only increase. A non-decreasing sequence converges exactly when it is bounded above (the monotone convergence theorem from [[seq-limits]]). So for series of non-negative terms there are only two possibilities: the sum is finite, or the partial sums go to $+\\infty$. This gives the comparison test.\n\nComparison test. If $0 \\le a_n \\le b_n$ for all $n$ and $\\sum b_n$ converges, then $\\sum a_n$ converges (its partial sums are bounded by $\\sum b_n$). If $\\sum a_n$ diverges, so does $\\sum b_n$.\n\nComparing with a geometric series gives the ratio test: if $a_n > 0$ and $a_{n+1}/a_n \\to L$ with $L < 1$, then $\\sum a_n$ converges. Indeed, pick $q$ with $L < q < 1$; from some index $m$ on we have $a_{n+1} \\le q\\, a_n$, so $a_{m+k} \\le a_m q^k$, and the tail is dominated by a convergent geometric series. If $L > 1$ the terms grow and the series diverges. If $L = 1$ the test says nothing, and this is exactly the case of $\\sum 1/n^s$, where $a_{n+1}/a_n = (n/(n+1))^s \\to 1$ for every $s$."
+   },
+   {
+    "type": "theorem",
+    "title": "The p-series test",
+    "body": "For real $s$, $$\\sum_{n \\ge 1} \\frac{1}{n^s} < \\infty \\iff s > 1.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof of the p-series test",
+    "body": "Suppose $s > 1$. Split the positive integers into dyadic blocks $2^k \\le n < 2^{k+1}$ for $k = 0, 1, 2, \\ldots$. Block $k$ contains $2^k$ integers, and each term in it is at most $1/2^{ks}$. So block $k$ contributes at most $2^k \\cdot 2^{-ks} = (2^{1-s})^k$. Since $s > 1$, the ratio $q = 2^{1-s}$ is less than $1$, and every partial sum is at most $$\\sum_{k \\ge 0} q^k = \\frac{1}{1 - 2^{1-s}}.$$ Bounded partial sums of non-negative terms converge.\n\nSuppose $s \\le 1$. Then $n^s \\le n$, so $1/n^s \\ge 1/n$ for every $n \\ge 1$, and the series diverges by comparison with the harmonic series."
+   },
+   {
+    "type": "section",
+    "title": "How fast? Estimating the tail",
+    "body": "Knowing that a series converges is often not enough; we want to know how close $S_N$ is to the sum. For decreasing positive terms the cleanest tool is comparison with an integral. If $f$ is positive and decreasing, then on $[n-1, n]$ we have $f(t) \\ge f(n)$, and on $[n, n+1]$ we have $f(t) \\le f(n)$. Summing, $$\\int_{N+1}^{\\infty} f(t)\\,dt \\;\\le\\; \\sum_{n > N} f(n) \\;\\le\\; \\int_{N}^{\\infty} f(t)\\,dt.$$ For $f(t) = t^{-s}$ with $s > 1$ the integrals are $(N+1)^{1-s}/(s-1)$ and $N^{1-s}/(s-1)$.\n\nSo for $s = 2$ the tail after $N$ terms lies between $\\tfrac{1}{N+1}$ and $\\tfrac{1}{N}$. Euler showed in 1735 that $\\sum 1/n^2 = \\pi^2/6 \\approx 1.644934$ (the Basel problem). Adding a thousand terms gives about $1.643935$, still wrong in the third decimal place, exactly as the tail estimate predicts. The closer $s$ is to $1$, the slower the convergence: the tail is of size $N^{1-s}/(s-1)$, which for $s = 1.1$ is still about $2.5$ after a million terms.\n\nThe same comparison applied to $\\sum 1/n$ shows $\\log(N+1) \\le 1 + \\tfrac12 + \\cdots + \\tfrac1N \\le 1 + \\log N$. The precise rate is the subject of [[asymptotics]]."
+   },
+   {
+    "type": "section",
+    "title": "Absolute and conditional convergence",
+    "body": "When terms have mixed signs, cancellation can help. A series converges absolutely if $\\sum |a_n|$ converges.\n\nAbsolute convergence implies convergence. The reason is the Cauchy criterion: a sequence converges if and only if it is Cauchy. For $N > M$, $$|S_N - S_M| = \\left|\\sum_{n=M+1}^{N} a_n\\right| \\le \\sum_{n=M+1}^{N} |a_n|,$$ and the right side is small for large $M$ because $\\sum |a_n|$ converges.\n\nA series can converge without converging absolutely. If $b_1 \\ge b_2 \\ge \\cdots \\ge 0$ and $b_n \\to 0$, then the alternating series $b_1 - b_2 + b_3 - \\cdots$ converges: the even partial sums increase, the odd ones decrease, every odd partial sum exceeds every even one, and consecutive partial sums differ by $b_n \\to 0$. Thus $1 - \\tfrac12 + \\tfrac13 - \\tfrac14 + \\cdots$ converges (its sum is $\\log 2$), although the harmonic series diverges. Such series are called conditionally convergent, and they are fragile: reordering their terms can change the sum (see the pitfalls below).\n\nComplex terms work the same way. For complex $s = \\sigma + it$, one has $|n^{-s}| = n^{-\\sigma}$ (see [[complex-numbers]]), so by the p-series test $\\sum n^{-s}$ converges absolutely whenever $\\sigma > 1$. That half-plane is where the series definition of the zeta function $\\zeta(s) = \\sum_{n\\ge1} n^{-s}$ makes sense."
+   },
+   {
+    "type": "example",
+    "title": "A telescoping sum",
+    "body": "Find $\\sum_{n \\ge 1} \\dfrac{1}{n(n+1)}$, and deduce that $\\sum_{n\\ge1} \\dfrac{1}{n^2} < 2$.",
+    "solution": "Since $\\dfrac{1}{n(n+1)} = \\dfrac1n - \\dfrac1{n+1}$, the partial sum collapses: $$S_N = \\left(1 - \\tfrac12\\right) + \\left(\\tfrac12 - \\tfrac13\\right) + \\cdots + \\left(\\tfrac1N - \\tfrac1{N+1}\\right) = 1 - \\frac{1}{N+1} \\to 1.$$ So the sum is $1$.\n\nFor $n \\ge 2$ we have $n^2 > n(n-1)$, so $\\dfrac1{n^2} < \\dfrac{1}{(n-1)n}$. Therefore $$\\sum_{n \\ge 1}\\frac1{n^2} < 1 + \\sum_{n \\ge 2}\\frac{1}{(n-1)n} = 1 + \\sum_{m\\ge1}\\frac{1}{m(m+1)} = 2.$$ This is consistent with the true value $\\pi^2/6 \\approx 1.645$."
+   },
+   {
+    "type": "example",
+    "title": "Just beyond the p-series",
+    "body": "Decide whether $\\sum_{n \\ge 2} \\dfrac{1}{n \\log n}$ and $\\sum_{n \\ge 2} \\dfrac{1}{n (\\log n)^2}$ converge.",
+    "solution": "Use dyadic blocks $2^k < n \\le 2^{k+1}$, $k \\ge 1$, as in the proof of the p-series test. In block $k$ there are $2^k$ terms and $k \\log 2 < \\log n \\le (k+1)\\log 2$.\n\nFirst series: each term in block $k$ is at least $\\dfrac{1}{2^{k+1}(k+1)\\log 2}$, so the block contributes at least $\\dfrac{1}{2(k+1)\\log 2}$. Summing over $k$ gives a multiple of the harmonic series, so the first series diverges.\n\nSecond series: each term in block $k$ is at most $\\dfrac{1}{2^k (k \\log 2)^2}$, so the block contributes at most $\\dfrac{1}{k^2 (\\log 2)^2}$. The term $n = 2$ is not in any block; adding it, the partial sums are bounded by $\\dfrac{1}{2(\\log 2)^2} + \\dfrac{1}{(\\log 2)^2}\\sum_{k\\ge1} \\dfrac1{k^2}$, so the second series converges.\n\nThe moral: $\\sum 1/n$ diverges so slowly that an extra factor of $\\log n$ does not rescue it, but an extra $(\\log n)^2$ does."
+   },
+   {
+    "type": "example",
+    "title": "Deleting a digit",
+    "body": "Let $T$ be the set of positive integers whose decimal representation contains no digit $9$. Prove that $\\sum_{n \\in T} \\dfrac1n$ converges, and in fact is less than $80$.",
+    "solution": "Count the members of $T$ with exactly $k$ digits. The leading digit can be any of $1, \\ldots, 8$ and each of the other $k-1$ digits any of $0, \\ldots, 8$, so there are $8 \\cdot 9^{k-1}$ of them. Each is at least $10^{k-1}$, so their reciprocals add up to at most $$\\frac{8 \\cdot 9^{k-1}}{10^{k-1}} = 8 \\left(\\frac{9}{10}\\right)^{k-1}.$$ Summing over $k \\ge 1$, every partial sum is at most $8 \\sum_{k\\ge0} (9/10)^k = 80$. Bounded partial sums of positive terms converge, so the series converges and its sum is at most $80$ (in fact strictly less, since already the one-digit block contributes $1 + \\tfrac12 + \\cdots + \\tfrac18 < 8$).\n\nThis is surprising at first: the harmonic series diverges, but throwing away the integers that contain a $9$ makes it converge. The reason is that almost all large integers contain a $9$: among $k$-digit integers the fraction without a $9$ is $(8/9)(9/10)^{k-1}$, which tends to $0$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Terms tending to zero does not imply convergence. The harmonic series is the counterexample to remember.\n- The ratio test is silent when the limit ratio is $1$. It cannot decide any p-series.\n- Rearranging a conditionally convergent series can change its sum. For example, $1 - \\tfrac12 + \\tfrac13 - \\tfrac14 + \\cdots = \\log 2$, but taking one positive term followed by two negative ones, $1 - \\tfrac12 - \\tfrac14 + \\tfrac13 - \\tfrac16 - \\tfrac18 + \\tfrac15 - \\cdots$, gives $\\tfrac12 \\log 2$. Absolutely convergent series can be rearranged freely.\n- The p-series test is about real $s$. For complex $s = \\sigma + it$ the series $\\sum n^{-s}$ converges absolutely exactly when $\\sigma > 1$, because $|n^{-s}| = n^{-\\sigma}$. In fact it diverges at every $s$ with $\\sigma \\le 1$: for $\\sigma \\le 0$ the terms do not even tend to zero, and for $0 < \\sigma \\le 1$ it takes a little more work (see [[partial-summation]])."
+   },
+   {
+    "type": "connection",
+    "body": "Series are the raw material of most of analysis. Making the estimates above precise with explicit error terms is the language of [[asymptotics]]. Allowing the terms to depend on a variable leads to [[power-series]] and to the question of when a limit of functions keeps their good properties, which is [[uniform-convergence]]. Power series in a complex variable are the local form of [[holomorphic]] functions. Series of the form $\\sum a_n n^{-s}$ are [[dirichlet-series]], whose region of convergence is a half-plane; the simplest one is the [[zeta]] function. Series also define the [[gamma]] function and [[generating-functions]], and the interplay between a series and its Fourier transform is [[fourier-poisson]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Decide whether each converges: $\\sum \\dfrac{n}{n^3+1}$, $\\sum \\dfrac{1}{\\sqrt{n(n+1)}}$, $\\sum \\dfrac{2^n}{n!}$, $\\sum \\dfrac{n!}{n^n}$.\n2. Using the integral comparison, show that $\\dfrac{1}{s-1} < \\sum_{n\\ge1} n^{-s} < \\dfrac{s}{s-1}$ for every real $s > 1$.\n3. Give a decreasing sequence of positive numbers $a_n$ such that $\\sum a_n$ diverges but $\\sum a_n^2$ converges.\n4. Show that if $\\sum a_n$ converges absolutely, then so does $\\sum a_n^2$. Is the same true if $\\sum a_n$ only converges conditionally?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Stein & Shakarchi, Complex Analysis",
+    "where": "Chapter 6"
+   },
+   {
+    "ref": "Rudin, Principles of Mathematical Analysis",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Abbott, Understanding Analysis",
+    "where": "Chapter 2"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "The harmonic partial sum first exceeds 10 after more than 12000 terms (at N = 12367).",
+    "python": "from fractions import Fraction\nimport math\ns=0.0; N=0\nwhile s<=10:\n    N+=1; s+=1/N\nassert N==12367 and N>12000"
+   },
+   {
+    "claim": "Partial sums of sum 1/n^2 up to N=1000 are about 1.643935, and pi^2/6 - S_1000 lies between 1/1001 and 1/1000.",
+    "python": "import math\nS=math.fsum(1/n**2 for n in range(1,1001))\ntail=math.pi**2/6-S\nassert abs(S-1.643935)<5e-7 and 1/1001<tail<1/1000"
+   },
+   {
+    "claim": "For s = 1.1 the tail after a million terms, between (N+1)^(1-s)/(s-1) and N^(1-s)/(s-1), is about 2.5.",
+    "python": "import math\nN=10**6; s=1.1\nlo=(N+1)**(1-s)/(s-1); hi=N**(1-s)/(s-1)\nassert 2.5<lo<hi<2.52\nt=math.fsum(n**-s for n in range(N+1,10**7+1))\nassert t<hi"
+   },
+   {
+    "claim": "Dyadic bound: partial sums of sum n^{-s} never exceed 1/(1-2^{1-s}); spot-check at s = 1.5, 2, 3.",
+    "python": "import math\nfor s in (1.5,2,3):\n    S=math.fsum(n**-s for n in range(1,200001))\n    assert S < 1/(1-2**(1-s))"
+   },
+   {
+    "claim": "log(N+1) <= H_N <= 1 + log N for N = 1..2000.",
+    "python": "import math\nH=0.0\nfor N in range(1,2001):\n    H+=1/N\n    assert math.log(N+1) <= H + 1e-12 and H <= 1+math.log(N)+1e-12"
+   },
+   {
+    "claim": "Sum of 1/(n(n+1)) telescopes: S_N = 1 - 1/(N+1) exactly.",
+    "python": "from fractions import Fraction\nS=Fraction(0)\nfor n in range(1,301):\n    S+=Fraction(1,n*(n+1))\n    assert S==1-Fraction(1,n+1)"
+   },
+   {
+    "claim": "There are 8*9^(k-1) k-digit numbers with no digit 9 (k = 1..6); the one-digit block sums to less than 8; sum of 1/n over n < 10^6 without a 9 is below 80.",
+    "python": "cnt={}\ntot=0.0\nfor n in range(1,10**6):\n    if '9' not in str(n):\n        k=len(str(n)); cnt[k]=cnt.get(k,0)+1; tot+=1/n\nassert all(cnt[k]==8*9**(k-1) for k in range(1,7))\nassert sum(1/n for n in range(1,9))<8 and tot<80"
+   },
+   {
+    "claim": "Alternating harmonic series -> log 2, and the rearrangement (one positive, two negative) -> (1/2) log 2; Euler: zeta(2) = pi^2/6.",
+    "python": "import math, mpmath\nS=math.fsum((-1)**(n-1)/n for n in range(1,10**6+1))\nassert abs(S-math.log(2))<1e-5\nR=0.0\nfor k in range(1,200001):\n    R+=1/(2*k-1)-1/(4*k-2)-1/(4*k)\nassert abs(R-0.5*math.log(2))<1e-5\nassert abs(mpmath.zeta(2)-mpmath.pi**2/6)<1e-20"
+   },
+   {
+    "claim": "Fresh: H_12366 < 10 < H_12367 (exact rational arithmetic).",
+    "python": "from fractions import Fraction\nH=Fraction(0)\nfor n in range(1,12367):\n    H+=Fraction(1,n)\nassert H<10 and H+Fraction(1,12367)>10"
+   },
+   {
+    "claim": "Fresh: pi^2/6 ~ 1.644934, S_1000 ~ 1.643935 (third decimals differ), tail after 10^6 terms for s=1.1 is ~2.512 (Hurwitz zeta).",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nS=mp.zeta(2)-mp.zeta(2,1001)\nassert abs(mp.pi**2/6-mp.mpf('1.644934'))<5e-7 and abs(S-mp.mpf('1.643935'))<5e-7\nassert int(S*1000)!=int(mp.pi**2/6*1000)\nt=mp.zeta(mp.mpf('1.1'),10**6+1)\nassert abs(t-2.512)<0.001 and (10**6+1)**(-0.1)/0.1<t<(10**6)**(-0.1)/0.1"
+   },
+   {
+    "claim": "Fresh: exercise 2 bounds 1/(s-1) < zeta(s) < s/(s-1) at several real s > 1; the 1/(n log n) block bound and (log n)^2 series bounded by 1/(2 log^2 2) + pi^2/(6 log^2 2).",
+    "python": "import mpmath as mp\nfor s in (1.01,1.5,2,3,7):\n    z=mp.zeta(s)\n    assert 1/(s-1)<z<s/(s-1)\nimport math\nS=math.fsum(1/(n*math.log(n)**2) for n in range(2,10**6))\nassert S<1/(2*math.log(2)**2)+math.pi**2/(6*math.log(2)**2)"
+   }
+  ]
+ },
+ {
+  "id": "asymptotics",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "\"There are about $x/\\log x$ primes up to $x$.\" \"The harmonic sum up to $x$ is $\\log x$ plus a constant, with an error at most a constant over $x$.\" Statements like these are the backbone of analytic number theory, and they need a vocabulary that says exactly how much \"about\" is allowed to hide.\n\nAsymptotic notation is that vocabulary. It lets us write an equation like $\\sum_{n \\le x} 1/n = \\log x + \\gamma + O(1/x)$ and mean something completely precise by it, while ignoring constants that do not matter for the question at hand. Learning to read such statements, and to manipulate them without fooling yourself, is most of the practical skill of the subject."
+   },
+   {
+    "type": "definition",
+    "title": "Big O, little o and asymptotic equivalence",
+    "body": "Let $f$ and $g$ be functions defined for large real $x$ (or for all $x$ in some stated range), with $g(x) \\ge 0$.\n\n1. $f(x) = O(g(x))$, also written $f(x) \\ll g(x)$, means there is a constant $C$ such that $|f(x)| \\le C g(x)$ for all sufficiently large $x$ (or for all $x$ in the stated range). We write $f \\gg g$ for $g \\ll f$, and $f \\asymp g$ when both $f \\ll g$ and $g \\ll f$.\n2. $f(x) = o(g(x))$ means $f(x)/g(x) \\to 0$ as $x \\to \\infty$.\n3. $f(x) \\sim g(x)$ means $f(x)/g(x) \\to 1$ as $x \\to \\infty$.\n\nIn words: $O$ says \"at most a constant times\", $o$ says \"negligible compared with\", and $\\sim$ says \"the same to first order, in ratio\"."
+   },
+   {
+    "type": "section",
+    "title": "How to read and use the notation",
+    "body": "The equals sign in $f = O(g)$ is a convention, not an equation: read $O(g)$ as \"some function whose absolute value is at most a constant times $g$\". So $x = O(x^2)$ is true and $x^2 = O(x)$ is false; the statement only goes from left to right. A formula such as $$f(x) = g(x) + O(h(x))$$ means $|f(x) - g(x)| \\le C h(x)$: $g$ is the main term and $O(h)$ is the error term. A good asymptotic formula has an error term that is genuinely smaller than the main term.\n\nA few rules follow at once from the definition. Sums: $O(g_1) + O(g_2) = O(g_1 + g_2)$. Products: $O(g_1) \\cdot O(g_2) = O(g_1 g_2)$. Constants are absorbed: $5\\,O(g) = O(g)$. If a constant depends on a parameter, we record it, as in $\\log x = O_\\varepsilon(x^\\varepsilon)$: for each $\\varepsilon > 0$ there is a constant, but it gets worse as $\\varepsilon \\to 0$.\n\nThe standard scale of growth, from slow to fast, is $$1 \\ll \\log\\log x \\ll \\log x \\ll (\\log x)^A \\ll x^{\\varepsilon} \\ll x \\ll x \\log x \\ll x^{1+\\varepsilon} \\ll e^{x},$$ where each step is in fact $o$ of the next for every fixed $A > 1$ and $0 < \\varepsilon < 1$. (The condition $A > 1$ matters only for the step $\\log x \\ll (\\log x)^A$; for $0 < A \\le 1$ that step goes the other way.) For instance $(\\log x)^A / x^{\\varepsilon} \\to 0$: substituting $x = e^u$ turns this into $u^A/e^{\\varepsilon u} \\to 0$, which is the familiar fact that exponentials beat powers.\n\nThe relations fit together: $f \\sim g$ is the same as $f = g + o(g)$, and $f = o(g)$ implies $f = O(g)$. But $\\sim$ only controls the ratio. The difference can be enormous: $x^2 + x \\sim x^2$ although the difference $x$ tends to infinity."
+   },
+   {
+    "type": "theorem",
+    "title": "The harmonic sum",
+    "body": "For all real $x \\ge 1$, $$\\sum_{n \\le x} \\frac{1}{n} = \\log x + \\gamma + O\\!\\left(\\frac{1}{x}\\right),$$ where $\\gamma = 0.5772\\ldots$ is Euler's constant. In fact the absolute value of the error is at most $2/x$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For each $n \\ge 1$ let $$d_n = \\frac1n - \\log\\!\\left(1 + \\frac1n\\right) = \\frac1n - \\int_n^{n+1}\\frac{dt}{t}.$$ Since $1/t$ is decreasing, $\\frac{1}{n+1} \\le \\int_n^{n+1} \\frac{dt}{t} \\le \\frac1n$, so $0 \\le d_n \\le \\frac1n - \\frac1{n+1}$. The upper bounds telescope, so $\\sum_n d_n$ converges; call its sum $\\gamma$ (this is the definition of Euler's constant). Its tail satisfies $$0 \\le \\sum_{n > N} d_n \\le \\sum_{n>N}\\left(\\frac1n - \\frac1{n+1}\\right) = \\frac{1}{N+1}.$$\n\nNow let $N = \\lfloor x \\rfloor$, so the sum in the theorem is $H_N = 1 + \\frac12 + \\cdots + \\frac1N$. Adding up $d_1, \\ldots, d_N$ and using $\\log(1 + 1/n) = \\log(n+1) - \\log n$, $$H_N - \\log(N+1) = \\sum_{n \\le N} d_n = \\gamma - \\sum_{n > N} d_n.$$ Hence $$H_N - \\log x - \\gamma = -\\sum_{n>N} d_n + \\bigl(\\log(N+1) - \\log x\\bigr).$$ The first term lies in $[-\\frac1{N+1}, 0]$. For the second, $N \\le x < N+1$ gives $0 < \\log(N+1) - \\log x \\le \\log(1 + \\frac1N) \\le \\frac1N$. So $|H_N - \\log x - \\gamma| \\le \\frac1N$, and since $N = \\lfloor x \\rfloor \\ge x/2$ for $x \\ge 1$, this is at most $2/x$."
+   },
+   {
+    "type": "section",
+    "title": "Main terms and error terms: the primes",
+    "body": "The prime number theorem (Hadamard and de la Vallée Poussin, 1896) says $$\\pi(x) \\sim \\frac{x}{\\log x},$$ where $\\pi(x)$ is the number of primes up to $x$. Its proof is far from elementary; see [[pnt]]. Here we only look at what the statement says and what it does not.\n\nConcretely, at $x = 10^6$ there are $78498$ primes, while $x/\\log x \\approx 72382$. The ratio is about $1.084$: it does tend to $1$, but slowly, like $1 + 1/\\log x$. The absolute difference, about $6116$, is growing, and that is perfectly consistent with $\\sim$. A much better approximation is the logarithmic integral $\\mathrm{li}(x) = \\int_0^x dt/\\log t$ (the integrand blows up at $t = 1$, so the integral is taken as a Cauchy principal value there; equivalently $\\mathrm{li}(x) = \\int_2^x dt/\\log t + 1.045\\ldots$), which at $10^6$ is about $78627.5$, off by only about $130$. Both $x/\\log x$ and $\\mathrm{li}(x)$ are asymptotic to $\\pi(x)$, so the statement $\\pi(x) \\sim x/\\log x$ cannot tell them apart. The real content of modern results is in the error term: the classical proofs give $\\pi(x) = \\mathrm{li}(x) + O\\!\\left(x e^{-c\\sqrt{\\log x}}\\right)$ for some $c > 0$, while the Riemann hypothesis is equivalent to $\\pi(x) = \\mathrm{li}(x) + O(\\sqrt{x}\\log x)$ (von Koch, 1901); see [[rh]].\n\nThis is the typical shape of a theorem in the subject: a main term, an error term, and a constant that is usually not worth computing. Comparing error terms, $O(x/\\log x)$ against $O(x e^{-c\\sqrt{\\log x}})$ against $O(x^{1/2+\\varepsilon})$, is how one judges the strength of a result."
+   },
+   {
+    "type": "example",
+    "title": "Warm-up",
+    "body": "Show that $(x+1)^3 = x^3 + O(x^2)$ for $x \\ge 1$, with an explicit constant, and that $(x+1)^3 \\sim x^3$.",
+    "solution": "$(x+1)^3 - x^3 = 3x^2 + 3x + 1$. For $x \\ge 1$ we have $x \\le x^2$ and $1 \\le x^2$, so $0 < 3x^2 + 3x + 1 \\le 7x^2$. Thus $(x+1)^3 = x^3 + O(x^2)$ with constant $7$ valid for all $x \\ge 1$. Dividing, $(x+1)^3/x^3 = 1 + O(1/x) \\to 1$, so $(x+1)^3 \\sim x^3$."
+   },
+   {
+    "type": "example",
+    "title": "An integer part",
+    "body": "Let $N = 10^6$. Find the integer part of $\\displaystyle\\sum_{n=1}^{N} \\frac{1}{\\sqrt n}$.",
+    "solution": "Compare $1/\\sqrt n$ with differences of $2\\sqrt{n}$. For $n \\ge 1$, $$2(\\sqrt{n+1} - \\sqrt n) = \\frac{2}{\\sqrt{n+1} + \\sqrt n} < \\frac{2}{2\\sqrt n} = \\frac{1}{\\sqrt n},$$ and similarly $\\dfrac1{\\sqrt n} < \\dfrac{2}{\\sqrt n + \\sqrt{n-1}} = 2(\\sqrt n - \\sqrt{n-1})$.\n\nSumming the first inequality over $1 \\le n \\le N$ telescopes to $\\sum_{n \\le N} 1/\\sqrt n > 2\\sqrt{N+1} - 2$. For the upper bound keep the term $n = 1$ apart and sum the second inequality over $2 \\le n \\le N$: $\\sum_{n\\le N} 1/\\sqrt n < 1 + 2(\\sqrt N - 1) = 2\\sqrt N - 1$.\n\nWith $N = 10^6$, $\\sqrt N = 1000$ and $\\sqrt{N+1} > 1000$, so $$1998 < \\sum_{n=1}^{10^6} \\frac1{\\sqrt n} < 1999.$$ The integer part is $1998$. In asymptotic language we have shown $\\sum_{n \\le N} n^{-1/2} = 2\\sqrt N + O(1)$; the true value is about $1998.54$."
+   },
+   {
+    "type": "example",
+    "title": "The average number of divisors",
+    "body": "Let $\\tau(n)$ be the number of positive divisors of $n$ (see [[arithmetic-functions]]). Show that $$\\sum_{n \\le x} \\tau(n) = x \\log x + O(x) \\qquad (x \\ge 1).$$",
+    "solution": "Write $\\tau(n) = \\sum_{d \\mid n} 1$ and swap the order of summation: each $d \\le x$ divides exactly $\\lfloor x/d \\rfloor$ integers $n \\le x$. So $$\\sum_{n\\le x}\\tau(n) = \\sum_{d \\le x} \\left\\lfloor \\frac{x}{d} \\right\\rfloor.$$ Now $\\lfloor x/d \\rfloor = x/d + O(1)$, with the $O(1)$ between $-1$ and $0$. There are at most $x$ values of $d$, so the errors add up to $O(x)$: $$\\sum_{n\\le x}\\tau(n) = x\\sum_{d\\le x}\\frac1d + O(x) = x\\bigl(\\log x + \\gamma + O(1/x)\\bigr) + O(x) = x\\log x + O(x).$$ So a typical integer up to $x$ has about $\\log x$ divisors on average. (A finer argument, Dirichlet's hyperbola method, sharpens the error to $(2\\gamma - 1)x + O(\\sqrt x)$; numerically, at $x = 10^6$ the quantity $\\bigl(\\sum_{n \\le x}\\tau(n) - x\\log x\\bigr)/x$ is about $0.1545$, close to $2\\gamma - 1 \\approx 0.1544$.)"
+   },
+   {
+    "type": "pitfall",
+    "body": "- $f = O(g)$ is not symmetric, and \"$O(g) = f$\" is meaningless. Read the equals sign as \"is\".\n- An implied constant can be huge. A bound $O(x^{1/2})$ with constant $10^{100}$ is useless at any $x$ you can compute with. Statements with explicit constants are a separate (and harder) business.\n- $f \\sim g$ does not mean $f - g \\to 0$. It does not even mean $f - g$ is bounded.\n- Asymptotic equivalence does not survive exponentiation: $x + 1 \\sim x$ but $e^{x+1} \\not\\sim e^x$. It does survive taking logarithms when $g \\to \\infty$: if $f \\sim g$ and $g \\to \\infty$, then $\\log f = \\log g + o(1)$, so $\\log f \\sim \\log g$.\n- An $O$-term inside a sum must be uniform. Writing $\\lfloor x/d \\rfloor = x/d + O(1)$ and summing over $d \\le x$ is fine because the constant does not depend on $d$; an error whose constant grows with $d$ cannot be summed this way."
+   },
+   {
+    "type": "connection",
+    "body": "Almost every result in analytic number theory is an asymptotic formula, from [[chebyshev]] bounds and [[mertens]] estimates to the [[pnt]] and beyond. The main technical tool for producing such formulas from simpler ones is [[partial-summation]], which converts a known asymptotic for $\\sum_{n\\le x} a_n$ into one for $\\sum_{n\\le x} a_n f(n)$. Counting special integers, such as squarefree or smooth numbers, is a direct application; see [[smooth-powerful]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\log(x^2 + 1) = 2\\log x + O(1/x^2)$ for $x \\ge 1$.\n2. True or false, with reasons: (a) if $f = O(g)$ and $g = O(h)$ then $f = O(h)$; (b) if $f \\sim g$ then $f^2 \\sim g^2$; (c) if $f = o(g)$ then $e^f = o(e^g)$.\n3. Show that $\\sum_{n \\le x} \\log n = x \\log x - x + O(\\log x)$ for $x \\ge 2$.\n4. Show that the number of lattice points $(a, b)$ with $a, b \\ge 1$ and $ab \\le x$ is $x \\log x + O(x)$, and explain why this is the same as the third example."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 9"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "|H(x) - log x - gamma| <= 2/x for many x in [1, 1000].",
+    "python": "import math\ng=0.5772156649015329\nxs=[1+k*0.0937 for k in range(10000)]\nH=0.0; n=0\nfor x in xs:\n    while n+1<=x:\n        n+=1; H+=1/n\n    assert abs(H-math.log(x)-g)<=2/x"
+   },
+   {
+    "claim": "0 <= d_n <= 1/n - 1/(n+1) and sum of d_n converges to Euler's gamma.",
+    "python": "import math, mpmath\nfor n in range(1,5000):\n    d=1/n-math.log1p(1/n)\n    assert 0<=d<=1/n-1/(n+1)+1e-15\ns=mpmath.nsum(lambda n: 1/n-mpmath.log(1+1/n),[1,mpmath.inf])\nassert abs(s-mpmath.euler)<1e-12"
+   },
+   {
+    "claim": "pi(10^6) = 78498, 10^6/log(10^6) ~ 72382, ratio ~ 1.084, difference ~ 6116; li(10^6) ~ 78627.5, off by ~ 130.",
+    "python": "import sympy, mpmath, math\nx=10**6\np=int(sympy.primepi(x)); a=x/math.log(x); L=float(mpmath.li(x))\nassert p==78498 and round(a)==72382 and abs(p/a-1.084)<0.001\nassert abs((p-a)-6116)<1 and abs(L-78627.5)<0.1 and round(L-p)==130"
+   },
+   {
+    "claim": "(x+1)^3 - x^3 = 3x^2+3x+1 <= 7x^2 for x >= 1.",
+    "python": "import sympy\nx=sympy.symbols('x')\nassert sympy.expand((x+1)**3-x**3)==3*x**2+3*x+1\nassert all(3*t*t+3*t+1<=7*t*t for t in [1+k*0.01 for k in range(100000)])"
+   },
+   {
+    "claim": "1998 < sum_{n<=10^6} 1/sqrt(n) < 1999, value about 1998.54; and the bounds 2sqrt(N+1)-2 < S_N < 2sqrt(N)-1 for N=2..3000.",
+    "python": "import math\nS=math.fsum(1/math.sqrt(n) for n in range(1,10**6+1))\nassert 1998<S<1999 and abs(S-1998.54)<0.005\ns=1.0\nfor N in range(2,3001):\n    s+=1/math.sqrt(N)\n    assert 2*math.sqrt(N+1)-2<s<2*math.sqrt(N)-1"
+   },
+   {
+    "claim": "sum_{n<=x} tau(n) = sum_{d<=x} floor(x/d); at x=10^6, (D(x)-x log x)/x ~ 0.1545 vs 2gamma-1 ~ 0.1544.",
+    "python": "import math, sympy\nfor x in (10,57,200):\n    assert sum(sympy.divisor_count(n) for n in range(1,x+1))==sum(x//d for d in range(1,x+1))\nx=10**6\nD=sum(x//d for d in range(1,x+1))\nv=(D-x*math.log(x))/x\nassert abs(v-0.1545)<0.0001 and abs(2*0.5772156649015329-1-0.1544)<0.0001"
+   },
+   {
+    "claim": "(log x)^A / x^eps -> 0 eventually even for A=10, eps=0.1 (checked at x = e^2000), though it is large at x = 10^10.",
+    "python": "import math\nu=2000.0\nassert 10*math.log(u)-0.1*u < -100\nu=10*math.log(10)\nassert 10*math.log(u)-0.1*u > 0"
+   },
+   {
+    "claim": "Fresh: li(x) is the principal value: li(10^6) - int_2^{10^6} dt/log t = li(2) ~ 1.045; pi(10^6) = 78498 by an independent sieve; li(10^6) - pi(10^6) ~ 129.5.",
+    "python": "import mpmath as mp, math\nmp.mp.dps=25\nx=10**6\nI=mp.quad(lambda t: 1/mp.log(t),[2,10,100,1000,10**4,10**5,x])\nassert abs(mp.li(x)-I-mp.li(2))<1e-10 and abs(mp.li(2)-1.045)<0.001\nsv=bytearray([1])*(x+1); sv[0]=sv[1]=0\nfor p in range(2,int(x**0.5)+1):\n    if sv[p]: sv[p*p::p]=bytearray(len(range(p*p,x+1,p)))\npi=sum(sv)\nassert pi==78498 and abs(mp.li(x)-pi-129.55)<0.01\nassert abs(pi/(x/math.log(x))-1.0845)<0.0001 and abs(pi-x/math.log(x)-6115.6)<0.1"
+   },
+   {
+    "claim": "Fresh: (log x)^A/log x -> infinity for A=2 but -> 0 for A=1/2 (scale needs A>1); H_N - log x - gamma lies in [-1/(N+1), 1/N] for sample x.",
+    "python": "import mpmath as mp\nfor u in (10,100,1000):\n    assert u**2/u==u and u**0.5/u<1\nmp.mp.dps=30\nfor x in (1,1.5,2.999,7.2,50.5,1000.01):\n    N=int(mp.floor(x)); e=mp.harmonic(N)-mp.log(x)-mp.euler\n    assert -1/mp.mpf(N+1)<=e<=1/mp.mpf(N) and abs(e)<=2/mp.mpf(x)"
+   },
+   {
+    "claim": "Fresh: sum_{n<=10^6} n^{-1/2} = zeta(1/2) + ... ~ 1998.540 via Hurwitz zeta; D(10^6) = 13970034.",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nS=mp.zeta(0.5)-mp.zeta(0.5,10**6+1)\nassert abs(S-1998.540)<0.001 and int(S)==1998\nx=10**6\nassert sum(x//d for d in range(1,x+1))==13970034"
+   }
+  ]
+ },
+ {
+  "id": "partial-summation",
+  "minutes": 24,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Many sums in number theory have the shape $\\sum_{n \\le x} a_n f(n)$, where $a_n$ is irregular but its running total is understood, and $f$ is a smooth weight. For example, $a_n$ might be $1$ when $n$ is prime and $0$ otherwise, and we might want $\\sum_{p \\le x} \\log p$ or $\\sum_{p \\le x} 1/p$ knowing something about the prime-counting function $\\pi(x)$. The trick that handles all of these is a discrete version of integration by parts, usually called Abel summation or partial summation.\n\nA close relative, the Euler–Maclaurin formula, answers the question: how far is $\\sum_{n} f(n)$ from $\\int f(t)\\,dt$? It gives explicit error terms and produces constants such as Euler's $\\gamma$ and the constant in Stirling's formula."
+   },
+   {
+    "type": "section",
+    "title": "Summation by parts",
+    "body": "Write $A_n = a_1 + \\cdots + a_n$ and $A_0 = 0$, so that $a_n = A_n - A_{n-1}$. Then for any numbers $b_1, \\ldots, b_N$, $$\\sum_{n=1}^{N} a_n b_n = \\sum_{n=1}^{N} A_n b_n - \\sum_{n=1}^{N} A_{n-1} b_n = A_N b_N - \\sum_{n=1}^{N-1} A_n\\,(b_{n+1} - b_n).$$ (In the second sum, shift the index $n-1 \\to n$ and combine.) This is summation by parts. Compare it with $\\int u\\,dv = uv - \\int v\\,du$: the partial sums $A_n$ play the role of the antiderivative of $a_n$, and the differences $b_{n+1} - b_n$ play the role of the derivative of $b$.\n\nWhy is this useful? Because the right side involves $a_n$ only through $A_n$. If the $a_n$ oscillate, their partial sums may stay small even though $\\sum |a_n|$ is large, and if $b_n$ varies slowly the differences $b_{n+1} - b_n$ are small. Both effects make the right side easy to bound."
+   },
+   {
+    "type": "theorem",
+    "title": "Abel summation formula",
+    "body": "Let $a_1, a_2, \\ldots$ be complex numbers, let $A(t) = \\sum_{n \\le t} a_n$ (so $A(t) = 0$ for $t < 1$), let $x \\ge 1$, and let $f$ be continuously differentiable on $[1, x]$. Then $$\\sum_{n \\le x} a_n f(n) = A(x) f(x) - \\int_1^x A(t)\\, f'(t)\\, dt.$$ More generally, for $1 \\le y < x$ and $f$ continuously differentiable on $[y, x]$, $$\\sum_{y < n \\le x} a_n f(n) = A(x) f(x) - A(y) f(y) - \\int_y^x A(t)\\, f'(t)\\, dt.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For each integer $n$ with $1 \\le n \\le x$, the fundamental theorem of calculus gives $f(n) = f(x) - \\int_n^x f'(t)\\,dt$. Multiply by $a_n$ and add over $n \\le x$: $$\\sum_{n\\le x} a_n f(n) = A(x) f(x) - \\sum_{n \\le x} a_n \\int_n^x f'(t)\\,dt.$$ In the last sum, $\\int_n^x f'(t)\\,dt = \\int_1^x \\mathbf{1}[t \\ge n]\\, f'(t)\\,dt$. Since the sum over $n$ is finite we may move it inside the integral, and $\\sum_{n \\le x} a_n \\mathbf{1}[t \\ge n] = \\sum_{n \\le t} a_n = A(t)$ for $1 \\le t \\le x$. This gives the first formula.\n\nThe second formula is proved the same way, without using values of $f$ below $y$ (so it applies to $f(t) = 1/\\log t$, which is undefined at $1$). For $y < n \\le x$ write $f(n) = f(x) - \\int_n^x f'(t)\\,dt$, multiply by $a_n$ and add: $$\\sum_{y < n \\le x} a_n f(n) = \\bigl(A(x) - A(y)\\bigr) f(x) - \\int_y^x \\bigl(A(t) - A(y)\\bigr) f'(t)\\,dt,$$ because for $y \\le t \\le x$ the sum of $a_n$ over $y < n \\le t$ is $A(t) - A(y)$. Since $\\int_y^x A(y) f'(t)\\,dt = A(y)\\bigl(f(x) - f(y)\\bigr)$, the right side equals $A(x) f(x) - A(y) f(y) - \\int_y^x A(t) f'(t)\\,dt$."
+   },
+   {
+    "type": "section",
+    "title": "First application: the harmonic sum again",
+    "body": "Take $a_n = 1$ for all $n$, so $A(t) = \\lfloor t \\rfloor$, and $f(t) = 1/t$. Abel summation gives $$\\sum_{n \\le x}\\frac1n = \\frac{\\lfloor x \\rfloor}{x} + \\int_1^x \\frac{\\lfloor t \\rfloor}{t^2}\\,dt.$$ Write $\\lfloor t \\rfloor = t - \\{t\\}$, where $\\{t\\} \\in [0, 1)$ is the fractional part. The integral becomes $\\log x - \\int_1^x \\{t\\} t^{-2}\\,dt$, and the integral $\\int_1^\\infty \\{t\\} t^{-2}\\,dt$ converges because the integrand is at most $t^{-2}$. Collecting terms, $$\\sum_{n \\le x}\\frac1n = \\log x + \\left(1 - \\int_1^\\infty \\frac{\\{t\\}}{t^2}\\,dt\\right) - \\frac{\\{x\\}}{x} + \\int_x^\\infty \\frac{\\{t\\}}{t^2}\\,dt.$$ The last two terms each lie between $0$ and $1/x$ in absolute value, and they have opposite signs, so together they are less than $1/x$ in absolute value. This recovers the formula $\\sum_{n\\le x} 1/n = \\log x + \\gamma + O(1/x)$ from [[asymptotics]], together with an integral formula for Euler's constant: $$\\gamma = 1 - \\int_1^\\infty \\frac{\\{t\\}}{t^2}\\,dt.$$ The pattern is typical: a sum with a smooth weight equals an integral (main term), plus a constant that collects the convergent part of the error, plus a small tail."
+   },
+   {
+    "type": "section",
+    "title": "Second application: counting primes with and without weights",
+    "body": "Let $\\pi(x)$ count primes up to $x$ and let $\\theta(x) = \\sum_{p \\le x}\\log p$ be Chebyshev's weighted count. Abel summation with $a_n = \\log n$ when $n$ is prime ($0$ otherwise), so that $A = \\theta$, and $f(t) = 1/\\log t$, applied on $(3/2, x]$ (where $f$ is smooth and $\\theta(3/2) = 0$), gives $$\\pi(x) = \\frac{\\theta(x)}{\\log x} + \\int_2^x \\frac{\\theta(t)}{t \\log^2 t}\\,dt.$$ (The integrand vanishes for $t < 2$.) Suppose we know Chebyshev's bound $\\theta(t) \\le Ct$ (proved in [[chebyshev]]). Then the integral is at most $C\\int_2^x dt/\\log^2 t$. Split at $\\sqrt x$: on $[2, \\sqrt x]$ the integrand is at most $1/(\\log 2)^2$, and on $[\\sqrt x, x]$ it is at most $4/\\log^2 x$. So the integral is $O(\\sqrt x + x/\\log^2 x) = O(x/\\log^2 x)$, and $$\\pi(x) = \\frac{\\theta(x)}{\\log x} + O\\!\\left(\\frac{x}{\\log^2 x}\\right).$$ Multiplying by $(\\log x)/x$ shows that $\\pi(x)\\log x/x$ and $\\theta(x)/x$ differ by $O(1/\\log x)$. So the prime number theorem in the form $\\pi(x) \\sim x/\\log x$ is equivalent to $\\theta(x) \\sim x$. This is the sense in which partial summation moves information between counting primes and weighting them by $\\log p$: the weighted version is the one that analysis handles naturally, and the unweighted one is recovered at no cost."
+   },
+   {
+    "type": "section",
+    "title": "From Abel to Euler–Maclaurin",
+    "body": "Abel summation with $a_n = 1$ compares $\\sum f(n)$ with $\\int f$. Doing the bookkeeping carefully gives a symmetric formula. Let $\\psi(t) = \\{t\\} - \\tfrac12$, the sawtooth function: periodic with period $1$, of average $0$ over each period, and bounded by $\\tfrac12$."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler–Maclaurin formula, first order",
+    "body": "Let $a < b$ be integers and let $f$ be continuously differentiable on $[a, b]$. Then $$\\sum_{n=a}^{b} f(n) = \\int_a^b f(t)\\,dt + \\frac{f(a) + f(b)}{2} + \\int_a^b \\psi(t)\\, f'(t)\\,dt, \\qquad \\psi(t) = \\{t\\} - \\tfrac12.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Both sides of the formula change in the same way if $f(t)$ is replaced by $f(t + c)$ for an integer $c$ (because $\\psi$ has period $1$), so we may assume $a \\ge 1$. Apply the second form of Abel summation on $(a, b]$ with $a_n = 1$; then $A(t) = \\lfloor t \\rfloor$ and $$\\sum_{a < n \\le b} f(n) = b f(b) - a f(a) - \\int_a^b \\lfloor t \\rfloor f'(t)\\,dt.$$ Substitute $\\lfloor t \\rfloor = t - \\tfrac12 - \\psi(t)$. Integration by parts gives $\\int_a^b t f'(t)\\,dt = b f(b) - a f(a) - \\int_a^b f(t)\\,dt$, and $\\int_a^b \\tfrac12 f'(t)\\,dt = \\tfrac12(f(b) - f(a))$. Hence $$\\sum_{a < n \\le b} f(n) = \\int_a^b f(t)\\,dt + \\frac{f(b) - f(a)}{2} + \\int_a^b \\psi(t) f'(t)\\,dt.$$ Adding $f(a)$ to both sides gives the stated formula."
+   },
+   {
+    "type": "section",
+    "title": "Higher order",
+    "body": "The first two terms on the right are the trapezoidal rule, and the last term is its error. Because $\\psi$ has average zero, this error is usually much smaller than the crude bound $\\tfrac12\\int|f'|$. One can integrate by parts again and again, each time replacing $\\psi$ by a periodic antiderivative; the periodic functions that appear are the Bernoulli polynomials made periodic, and the constants are the Bernoulli numbers $B_2 = \\tfrac16$, $B_4 = -\\tfrac1{30}$, $B_6 = \\tfrac1{42}, \\ldots$. The result, whose proof we omit, is: for integers $a < b$, $m \\ge 1$, and $f$ with $2m$ continuous derivatives, $$\\sum_{n=a}^{b} f(n) = \\int_a^b f + \\frac{f(a)+f(b)}{2} + \\sum_{k=1}^{m}\\frac{B_{2k}}{(2k)!}\\Bigl(f^{(2k-1)}(b) - f^{(2k-1)}(a)\\Bigr) + R_m,$$ $$|R_m| \\le \\frac{2\\,\\zeta(2m)}{(2\\pi)^{2m}} \\int_a^b \\bigl|f^{(2m)}(t)\\bigr|\\,dt.$$ For $f(t) = 1/t$ this gives the expansion $$1 + \\frac12 + \\cdots + \\frac1n = \\log n + \\gamma + \\frac{1}{2n} - \\frac{1}{12n^2} + \\frac{1}{120n^4} - \\frac{1}{252 n^6} + \\cdots,$$ which is astonishingly accurate: at $n = 10$, the terms shown up to $1/(120n^4)$ already give $H_{10}$ with an error of about $4 \\cdot 10^{-9}$, that is, to eight decimal places. The full series in $k$ does not converge (the Bernoulli numbers grow factorially), so one always stops at a fixed $m$. This is an asymptotic expansion, not a convergent one."
+   },
+   {
+    "type": "example",
+    "title": "Stirling's formula, up to the constant",
+    "body": "Show that $$\\log N! = N\\log N - N + \\tfrac12 \\log N + C + O\\!\\left(\\frac1N\\right)$$ for some constant $C$.",
+    "solution": "Apply the first-order Euler–Maclaurin formula to $f(t) = \\log t$ on $[1, N]$. Since $\\int_1^N \\log t\\,dt = N\\log N - N + 1$ and $f(1) = 0$, $$\\log N! = N\\log N - N + 1 + \\tfrac12\\log N + \\int_1^N \\frac{\\psi(t)}{t}\\,dt.$$ The integrand is not absolutely integrable on $[1, \\infty)$, but $\\psi$ has average zero, so we integrate by parts once more. Let $\\Psi(t) = \\tfrac12(\\{t\\}^2 - \\{t\\})$. It is periodic, continuous, vanishes at integers, satisfies $|\\Psi| \\le \\tfrac18$, and $\\Psi' = \\psi$ away from integers. Then $$\\int_1^N \\frac{\\psi(t)}{t}\\,dt = \\left[\\frac{\\Psi(t)}{t}\\right]_1^N + \\int_1^N \\frac{\\Psi(t)}{t^2}\\,dt = \\int_1^N \\frac{\\Psi(t)}{t^2}\\,dt.$$ This converges absolutely as $N \\to \\infty$, and the tail $\\int_N^\\infty \\Psi(t)t^{-2}\\,dt$ is at most $\\frac{1}{8N}$ in absolute value. So the formula holds with $C = 1 + \\int_1^\\infty \\Psi(t)t^{-2}\\,dt$.\n\nIdentifying $C = \\tfrac12\\log(2\\pi) \\approx 0.9189$ needs one more input, such as Wallis's product, and we do not do it here. Exponentiating gives Stirling's formula $N! \\sim \\sqrt{2\\pi N}\\,(N/e)^N$."
+   },
+   {
+    "type": "example",
+    "title": "Abel's inequality",
+    "body": "Let $a_1 \\ge a_2 \\ge \\cdots \\ge a_n \\ge 0$, and let $b_1, \\ldots, b_n$ be real numbers whose partial sums $B_k = b_1 + \\cdots + b_k$ all satisfy $m \\le B_k \\le M$. Prove that $$m\\,a_1 \\le \\sum_{k=1}^{n} a_k b_k \\le M\\,a_1.$$ Deduce that $\\left|\\sum_{k=1}^{n} \\dfrac{\\sin k}{k}\\right| < 2.1$ for every $n$.",
+    "solution": "Summation by parts, with the roles of the two sequences swapped (here the $b_k$ are summed and the $a_k$ differenced), gives $$\\sum_{k=1}^{n} a_k b_k = \\sum_{k=1}^{n-1} B_k\\,(a_k - a_{k+1}) + B_n a_n.$$ The weights $a_k - a_{k+1}$ (for $k < n$) and $a_n$ are all non-negative and add up to $a_1$. So the right side is a weighted combination of numbers in $[m, M]$ with total weight $a_1$, and lies between $m a_1$ and $M a_1$.\n\nFor the application take $a_k = 1/k$ and $b_k = \\sin k$. The product formula $2\\sin\\tfrac12 \\sin k = \\cos(k - \\tfrac12) - \\cos(k + \\tfrac12)$ makes the partial sums telescope: $$B_K = \\sum_{k=1}^{K}\\sin k = \\frac{\\cos\\frac12 - \\cos(K + \\frac12)}{2\\sin\\frac12},$$ so $|B_K| \\le \\dfrac{1}{\\sin\\frac12} \\approx 2.0858$. Abel's inequality with $a_1 = 1$ gives $\\left|\\sum_{k\\le n} \\frac{\\sin k}{k}\\right| \\le 1/\\sin\\tfrac12 < 2.1$.\n\nThe same argument shows the series converges (apply the inequality to the tail $\\sum_{k=N}^{n}$, where $a_N = 1/N$ is small). Its sum is in fact $(\\pi - 1)/2 \\approx 1.0708$, but that needs Fourier series."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Mind the boundary term $A(x) f(x)$. It is often the main term, not an afterthought.\n- The sum is over $n \\le x$, including $n = x$ when $x$ is an integer, because $A$ is defined with $\\le$. With the convention $A(t) = \\sum_{n < t} a_n$ the formula changes at integer $x$.\n- In the general form, the lower limit matters: if $f$ is not defined at $1$ (for example $f(t) = 1/\\log t$), start at some $y$ in $(1, 2)$ and keep the $A(y) f(y)$ term, which is zero when $a_1 = 0$.\n- Euler–Maclaurin is not \"sum equals integral\". The difference involves $f(a)$, $f(b)$ and derivatives at the endpoints, and is small only when $f$ varies slowly.\n- The Euler–Maclaurin expansion diverges if continued indefinitely. Use it with a fixed number of terms and the remainder bound."
+   },
+   {
+    "type": "connection",
+    "body": "Partial summation is the bridge between the various ways of counting primes in [[chebyshev]], and it is how [[mertens]] deduces $\\sum_{p\\le x} 1/p = \\log\\log x + M + o(1)$ from an estimate for $\\sum_{p\\le x} (\\log p)/p$. Applied to a [[dirichlet-series]] it gives $\\sum a_n n^{-s} = s\\int_1^\\infty A(t)\\, t^{-s-1}\\,dt$ whenever $A(t) = O(t^c)$ and $\\mathrm{Re}\\, s > c$, which shows that the half-plane of convergence is controlled by the growth of $A(t)$. With $a_n = 1$ it yields $\\zeta(s) = \\frac{s}{s-1} - s\\int_1^\\infty \\{t\\} t^{-s-1}\\,dt$, which extends the [[zeta]] function to $\\mathrm{Re}\\, s > 0$ (see [[continuation]]). It is also a standard tool in the proof of the [[pnt]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use Abel summation with $a_n = 1$ and $f(t) = \\log t$ to show $\\sum_{n \\le x}\\log n = x\\log x - x + O(\\log x)$ for $x \\ge 2$.\n2. Show that if the partial sums $A(x) = \\sum_{n \\le x} a_n$ are bounded, then $\\sum_{n\\ge1} a_n/n$ converges.\n3. Assuming $\\sum_{p \\le x} \\frac{\\log p}{p} = \\log x + O(1)$, use Abel summation with $f(t) = 1/\\log t$ to show that $\\sum_{p\\le x}\\frac1p = \\log\\log x + M + O\\!\\left(\\frac{1}{\\log x}\\right)$ for some constant $M$.\n4. Use the Euler–Maclaurin formula with $m = 1$ to estimate $\\sum_{n=1}^{100}\\sqrt n$, and bound your error."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Chapters 3 and 4"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 9"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Summation by parts identity holds for random integer sequences.",
+    "python": "import random\nrandom.seed(1)\nfor _ in range(200):\n    N=random.randint(1,30)\n    a=[random.randint(-9,9) for _ in range(N)]; b=[random.randint(-9,9) for _ in range(N)]\n    A=[sum(a[:k+1]) for k in range(N)]\n    lhs=sum(a[k]*b[k] for k in range(N))\n    rhs=A[N-1]*b[N-1]-sum(A[k]*(b[k+1]-b[k]) for k in range(N-1))\n    assert lhs==rhs"
+   },
+   {
+    "claim": "Abel summation formula numerically: a_n = (-1)^n n, f(t) = sqrt(t), x = 37.5.",
+    "python": "import mpmath as mp\nx=mp.mpf('37.5')\na=lambda n: (-1)**n*n\nA=lambda t: sum(a(n) for n in range(1,int(mp.floor(t))+1))\nf=lambda t: mp.sqrt(t); fp=lambda t: 1/(2*mp.sqrt(t))\nlhs=sum(a(n)*f(n) for n in range(1,38))\npts=[1]+list(range(2,38))+[x]\ninteg=sum(A(pts[i])*(f(pts[i+1])-f(pts[i])) for i in range(len(pts)-1))\nrhs=A(x)*f(x)-integ\nassert abs(lhs-rhs)<1e-20"
+   },
+   {
+    "claim": "gamma = 1 - int_1^inf {t}/t^2 dt (pieces: log(1+1/n) - 1/(n+1)).",
+    "python": "import mpmath as mp\nI=mp.nsum(lambda n: mp.log(1+1/n)-1/(n+1),[1,mp.inf])\nassert abs((1-I)-mp.euler)<1e-12"
+   },
+   {
+    "claim": "pi(x) = theta(x)/log x + int_2^x theta(t)/(t log^2 t) dt exactly at x = 1000 (and x = 5000.5).",
+    "python": "import sympy, math\nfor x in (1000,5000.5):\n    ps=list(sympy.primerange(2,int(x)+1))\n    th=0.0; integ=0.0\n    for i,p in enumerate(ps):\n        th+=math.log(p)\n        nxt=ps[i+1] if i+1<len(ps) else x\n        integ+=th*(1/math.log(p)-1/math.log(nxt))\n    val=th/math.log(x)+integ\n    assert abs(val-len(ps))<1e-8"
+   },
+   {
+    "claim": "First-order Euler-Maclaurin holds for f(t)=t^3 and f(t)=1/t on [1,20] (psi integral computed numerically).",
+    "python": "import mpmath as mp\ndef em(f,fp,a,b):\n    I=mp.quad(f,[a,b])\n    J=sum(mp.quad(lambda t: (t-n-mp.mpf(1)/2)*fp(t),[n,n+1]) for n in range(a,b))\n    return I+(f(a)+f(b))/2+J\nfor f,fp in ((lambda t:t**3,lambda t:3*t**2),(lambda t:1/t,lambda t:-1/t**2)):\n    assert abs(em(f,fp,1,20)-sum(f(mp.mpf(n)) for n in range(1,21)))<1e-15"
+   },
+   {
+    "claim": "H_10 = log 10 + gamma + 1/20 - 1/1200 + 1/1200000 to about nine decimals (error < 5e-9); B2=1/6, B4=-1/30, B6=1/42.",
+    "python": "import mpmath as mp, sympy\nH=sum(mp.mpf(1)/n for n in range(1,11))\nn=10\napprox=mp.log(n)+mp.euler+mp.mpf(1)/(2*n)-mp.mpf(1)/(12*n**2)+mp.mpf(1)/(120*n**4)\nassert abs(H-approx)<5e-9 and abs(H-approx-(-mp.mpf(1)/(252*n**6)))<1e-10\nassert sympy.bernoulli(2)==sympy.Rational(1,6) and sympy.bernoulli(4)==sympy.Rational(-1,30) and sympy.bernoulli(6)==sympy.Rational(1,42)"
+   },
+   {
+    "claim": "log N! - (N log N - N + (1/2) log N) -> (1/2) log(2 pi) ~ 0.9189 with error ~ 1/(12N); |Psi| <= 1/8.",
+    "python": "import mpmath as mp\nmp.mp.dps=40\nfor N in (10,100,10**5):\n    d=mp.loggamma(N+1)-(N*mp.log(N)-N+mp.log(N)/2)-mp.log(2*mp.pi)/2\n    assert 0<d<1/(8*mp.mpf(N)) and abs(d-1/(12*mp.mpf(N)))<1/mp.mpf(N)**2\nassert abs(mp.log(2*mp.pi)/2-0.9189)<1e-4\nassert max(abs((u*u-u)/2) for u in [k/1000 for k in range(1001)])==0.125"
+   },
+   {
+    "claim": "Partial sums of sin k: closed form, |B_K| <= 1/sin(1/2) ~ 2.0858 < 2.1; |sum sin k/k| < 2.1 and the series sum is (pi-1)/2 ~ 1.0708.",
+    "python": "import math\nB=0.0; S=0.0; c=1/math.sin(0.5)\nassert abs(c-2.0858)<1e-4\nfor k in range(1,200001):\n    B+=math.sin(k); S+=math.sin(k)/k\n    if k<2000:\n        assert abs(B-(math.cos(0.5)-math.cos(k+0.5))/(2*math.sin(0.5)))<1e-9\n    assert abs(B)<=c+1e-9 and abs(S)<2.1\nassert abs(S-(math.pi-1)/2)<1e-4 and abs((math.pi-1)/2-1.0708)<1e-4"
+   },
+   {
+    "claim": "Fresh: H_10 minus the expansion through 1/(120 n^4) is about -3.93e-9 (8 correct decimals, not 9), close to -1/(252 n^6).",
+    "python": "import mpmath as mp\nmp.mp.dps=40\nn=mp.mpf(10)\ne=mp.harmonic(10)-(mp.log(n)+mp.euler+1/(2*n)-1/(12*n**2)+1/(120*n**4))\nassert -4e-9<e<-3.9e-9 and abs(e+1/(252*n**6))<1e-10"
+   },
+   {
+    "claim": "Fresh: second form of Abel summation with f(t)=1/log t on (3/2, x], a_n = log n at primes, at x = 777.7 (pi(x) recovered).",
+    "python": "import mpmath as mp, sympy as sp\nmp.mp.dps=30\nx=mp.mpf('777.7'); ps=list(sp.primerange(2,778))\ntheta=lambda t: mp.fsum(mp.log(p) for p in ps if p<=t)\ncuts=[mp.mpf(1.5)]+[mp.mpf(p) for p in ps]+[x]\nI=mp.fsum(theta(cuts[i])*(1/mp.log(cuts[i+1])-1/mp.log(cuts[i])) for i in range(len(cuts)-1))\nrhs=theta(x)/mp.log(x)-0-I\nassert abs(rhs-len(ps))<1e-20"
+   },
+   {
+    "claim": "Fresh: first-order Euler-Maclaurin holds on [-3,4] for f(t)=e^{t/3} (negative a allowed by shifting).",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nf=lambda t: mp.exp(mp.mpf(t)/3); fp=lambda t: mp.exp(mp.mpf(t)/3)/3\na,b=-3,4\nJ=mp.fsum(mp.quad(lambda t:(t-n-mp.mpf(1)/2)*fp(t),[n,n+1]) for n in range(a,b))\nrhs=mp.quad(f,[a,b])+(f(a)+f(b))/2+J\nassert abs(rhs-mp.fsum(f(n) for n in range(a,b+1)))<1e-20"
+   },
+   {
+    "claim": "Fresh: Euler-Maclaurin remainder bound |R_2| <= 2 zeta(4)/(2pi)^4 int|f''''| for f=1/t on [1,10].",
+    "python": "import mpmath as mp\nmp.mp.dps=30\na,b=1,10\nf=lambda t:1/mp.mpf(t)\nd1=lambda t:-1/mp.mpf(t)**2; d3=lambda t:-6/mp.mpf(t)**4\nS=mp.fsum(f(n) for n in range(a,b+1))\nmain=mp.log(b)+(f(a)+f(b))/2+mp.mpf(1)/12*(d1(b)-d1(a))-mp.mpf(1)/720*(d3(b)-d3(a))\nR=S-main\nbound=2*mp.zeta(4)/(2*mp.pi)**4*mp.quad(lambda t:24/t**5,[a,b])\nassert abs(R)<=bound and abs(2*mp.zeta(4)/(2*mp.pi)**4-mp.mpf(1)/720)<1e-25"
+   }
+  ]
+ },
+ {
+  "id": "complex-numbers",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The equation $x^2 = -1$ has no real solution. Complex numbers add one, called $i$, and then insist that the usual rules of algebra keep working. What comes out is far more than a formal trick: complex numbers are points of the plane, and multiplying by a complex number rotates and scales the plane. Trigonometry becomes algebra, and the formula $e^{i\\theta} = \\cos\\theta + i\\sin\\theta$ ties the exponential function to circles.\n\nIn number theory the most famous function, the Riemann zeta function, takes a complex variable written $s = \\sigma + it$. Its real part $\\sigma$ controls size and its imaginary part $t$ controls oscillation, and the main conjectures about primes are statements about where in this plane the function vanishes."
+   },
+   {
+    "type": "definition",
+    "title": "Complex number",
+    "body": "A complex number is an expression $z = a + bi$ with $a, b$ real, added and multiplied by the usual rules of algebra together with $i^2 = -1$: $$(a + bi) + (c + di) = (a+c) + (b+d)i, \\qquad (a+bi)(c+di) = (ac - bd) + (ad + bc)i.$$ The real part is $\\mathrm{Re}\\, z = a$, the imaginary part is $\\mathrm{Im}\\, z = b$, the conjugate is $\\bar z = a - bi$, and the modulus is $|z| = \\sqrt{a^2 + b^2}$. We picture $z$ as the point $(a, b)$ of the plane.\n\nThe modulus is the distance from $0$ to $z$, and $|z - w|$ is the distance between $z$ and $w$."
+   },
+   {
+    "type": "section",
+    "title": "Arithmetic and the conjugate",
+    "body": "The conjugate does most of the routine work. A direct computation gives $z\\bar z = a^2 + b^2 = |z|^2$, which is real and positive unless $z = 0$. So every nonzero $z$ has an inverse, $1/z = \\bar z / |z|^2$, and division is done by multiplying top and bottom by the conjugate of the bottom: $$\\frac{2 + 3i}{1 - i} = \\frac{(2+3i)(1+i)}{(1-i)(1+i)} = \\frac{2 + 2i + 3i - 3}{2} = \\frac{-1 + 5i}{2}.$$ Conjugation respects both operations: $\\overline{z + w} = \\bar z + \\bar w$ and $\\overline{zw} = \\bar z\\, \\bar w$. Taking moduli, $|zw|^2 = zw\\overline{zw} = z\\bar z\\, w \\bar w$, so $|zw| = |z|\\,|w|$. Two further facts are used constantly: $\\mathrm{Re}\\, z = (z + \\bar z)/2$, and the triangle inequality $|z + w| \\le |z| + |w|$, which says a side of a triangle is at most the sum of the other two."
+   },
+   {
+    "type": "section",
+    "title": "Polar form: multiplication is rotation and scaling",
+    "body": "A point of the plane at distance $r$ from the origin and at angle $\\theta$ from the positive real axis is $z = r(\\cos\\theta + i\\sin\\theta)$. Here $r = |z|$ and $\\theta$ is an argument of $z$, defined only up to adding multiples of $2\\pi$. Now multiply two numbers in this form. Using the angle addition formulas from [[trig]], $$\\begin{aligned} (\\cos\\alpha + i\\sin\\alpha)(\\cos\\beta + i\\sin\\beta) &= (\\cos\\alpha\\cos\\beta - \\sin\\alpha\\sin\\beta) + i(\\sin\\alpha\\cos\\beta + \\cos\\alpha\\sin\\beta)\\\\ &= \\cos(\\alpha+\\beta) + i\\sin(\\alpha+\\beta). \\end{aligned}$$ So multiplication multiplies the moduli and adds the arguments. Geometrically, multiplying every point of the plane by $w = \\rho(\\cos\\varphi + i\\sin\\varphi)$ rotates the plane by $\\varphi$ and scales it by $\\rho$. Multiplying by $i$ is a quarter turn, and $i^2 = -1$ is a half turn; that is the whole mystery of $\\sqrt{-1}$.\n\nRepeating the multiplication rule gives de Moivre's formula: for every integer $n \\ge 1$, $$(\\cos\\theta + i\\sin\\theta)^n = \\cos n\\theta + i\\sin n\\theta,$$ by induction on $n$."
+   },
+   {
+    "type": "definition",
+    "title": "The complex exponential",
+    "body": "For real $\\theta$, define $$e^{i\\theta} = \\cos\\theta + i\\sin\\theta,$$ and for $z = x + iy$ define $e^{z} = e^{x} e^{iy}$.\n\nThe point $e^{i\\theta}$ goes once around the unit circle as $\\theta$ runs from $0$ to $2\\pi$; and the rule from the previous section says exactly that $e^{i\\alpha} e^{i\\beta} = e^{i(\\alpha+\\beta)}$, the law of exponents."
+   },
+   {
+    "type": "section",
+    "title": "Why the exponential, and roots of unity",
+    "body": "Why call $\\cos\\theta + i\\sin\\theta$ an exponential? First, it obeys the law of exponents, as just shown. Second, it has the right derivative: differentiating in $\\theta$ gives $-\\sin\\theta + i\\cos\\theta = i(\\cos\\theta + i\\sin\\theta)$, just as $\\frac{d}{d\\theta} e^{c\\theta} = c\\, e^{c\\theta}$ with $c = i$. Third, if you know the power series of $e^x$, $\\cos x$ and $\\sin x$, substituting $x = i\\theta$ into $\\sum x^n/n!$ and separating even and odd powers gives exactly $\\cos\\theta + i\\sin\\theta$. All three viewpoints agree, which is why this definition is the only sensible one.\n\nEvery nonzero complex number can now be written $z = re^{i\\theta}$, and products become $re^{i\\theta}\\cdot\\rho e^{i\\varphi} = r\\rho\\, e^{i(\\theta+\\varphi)}$. Setting $\\theta = \\pi$ gives $e^{i\\pi} = -1$.\n\nThe solutions of $z^n = 1$ are the $n$ numbers $\\omega^k = e^{2\\pi i k/n}$, $k = 0, 1, \\ldots, n-1$, where $\\omega = e^{2\\pi i/n}$: the vertices of a regular $n$-gon inscribed in the unit circle. For $n \\ge 2$ they add up to zero, since $\\omega \\ne 1$ and $$1 + \\omega + \\cdots + \\omega^{n-1} = \\frac{\\omega^n - 1}{\\omega - 1} = 0.$$ These roots of unity, and their sums, are behind a great many olympiad identities."
+   },
+   {
+    "type": "section",
+    "title": "Functions of a complex variable, and n to the power s",
+    "body": "A complex function assigns a complex number to each complex number (or to each point of some region). Since input and output are both points of the plane, we cannot draw the graph, but we can watch what the function does to shapes. For example, $z \\mapsto z^2$ squares moduli and doubles arguments, so it wraps the upper half-plane once around the origin; $z \\mapsto e^z$ sends the vertical line $\\mathrm{Re}\\, z = x$ to the circle of radius $e^x$, wrapping around infinitely often.\n\nFor a positive real number $n$ and a complex exponent $s = \\sigma + it$, define $n^{s} = e^{s\\log n}$, using the ordinary real logarithm of $n$. Then $$n^{-s} = e^{-\\sigma\\log n}\\, e^{-it\\log n} = n^{-\\sigma}\\, e^{-it\\log n}, \\qquad |n^{-s}| = n^{-\\sigma}.$$ The real part $\\sigma$ decides how big the term is; the imaginary part $t$ only spins it around a circle, at angular speed $\\log n$. This is why the series $\\zeta(s) = \\sum_{n\\ge1} n^{-s}$ converges absolutely exactly when $\\sigma > 1$: its absolute values are those of the real series $\\sum n^{-\\sigma}$. For $\\sigma \\le 1$ the series stops converging; the zeta function still makes sense there, as a [[continuation]] of the series, and its behaviour is governed by how the rotating terms $e^{-it\\log n}$ cancel. The Riemann hypothesis is the assertion that all the zeros of $\\zeta$ in the strip $0 < \\sigma < 1$ lie on the line $\\sigma = \\tfrac12$."
+   },
+   {
+    "type": "example",
+    "title": "Using polar form",
+    "body": "Compute $(1 + i)^{10}$ and $\\left(\\dfrac{2+3i}{1-i}\\right)\\overline{\\left(\\dfrac{2+3i}{1-i}\\right)}$.",
+    "solution": "$1 + i$ has modulus $\\sqrt 2$ and argument $\\pi/4$, so $1 + i = \\sqrt 2\\, e^{i\\pi/4}$. Then $$(1+i)^{10} = (\\sqrt2)^{10} e^{10 i\\pi/4} = 32\\, e^{5\\pi i/2} = 32\\, e^{i\\pi/2} = 32i.$$ (Check: $(1+i)^2 = 2i$, so $(1+i)^{10} = (2i)^5 = 32 i^5 = 32i$.)\n\nFor the second, $w\\bar w = |w|^2$. With $w = (-1 + 5i)/2$ computed above, $|w|^2 = (1 + 25)/4 = 13/2$. Alternatively $|w| = |2+3i|/|1-i| = \\sqrt{13}/\\sqrt{2}$, which avoids computing $w$ at all."
+   },
+   {
+    "type": "example",
+    "title": "Multiple-angle formulas",
+    "body": "Express $\\cos 3\\theta$ and $\\sin 3\\theta$ as polynomials in $\\cos\\theta$ and $\\sin\\theta$.",
+    "solution": "Write $c = \\cos\\theta$ and $s = \\sin\\theta$. By de Moivre, $\\cos 3\\theta + i\\sin 3\\theta = (c + is)^3$. Expanding with the binomial theorem and $i^2 = -1$, $i^3 = -i$: $$(c + is)^3 = c^3 + 3c^2(is) + 3c(is)^2 + (is)^3 = (c^3 - 3cs^2) + i(3c^2 s - s^3).$$ Comparing real and imaginary parts, $\\cos 3\\theta = c^3 - 3cs^2$ and $\\sin 3\\theta = 3c^2 s - s^3$. Using $s^2 = 1 - c^2$ and $c^2 = 1 - s^2$, $$\\cos 3\\theta = 4\\cos^3\\theta - 3\\cos\\theta, \\qquad \\sin 3\\theta = 3\\sin\\theta - 4\\sin^3\\theta.$$"
+   },
+   {
+    "type": "example",
+    "title": "A product of sines",
+    "body": "Prove that for every integer $n \\ge 2$, $$\\prod_{k=1}^{n-1} \\sin\\frac{k\\pi}{n} = \\frac{n}{2^{n-1}}.$$",
+    "solution": "Let $\\omega = e^{2\\pi i/n}$. The roots of $z^n - 1$ are $1, \\omega, \\ldots, \\omega^{n-1}$, so $$z^n - 1 = (z-1)\\prod_{k=1}^{n-1}(z - \\omega^k), \\qquad\\text{hence}\\qquad \\prod_{k=1}^{n-1}(z - \\omega^k) = 1 + z + \\cdots + z^{n-1}$$ for $z \\ne 1$, and therefore for all $z$ (two polynomials that agree at infinitely many points are equal). Put $z = 1$: $\\prod_{k=1}^{n-1}(1 - \\omega^k) = n$. Take moduli.\n\nFor real $\\varphi$, $1 - e^{i\\varphi} = e^{i\\varphi/2}\\left(e^{-i\\varphi/2} - e^{i\\varphi/2}\\right) = -2i\\, e^{i\\varphi/2}\\sin(\\varphi/2)$, so $|1 - e^{i\\varphi}| = 2|\\sin(\\varphi/2)|$. With $\\varphi = 2\\pi k/n$ and $1 \\le k \\le n-1$, the angle $\\varphi/2 = k\\pi/n$ lies in $(0, \\pi)$, where sine is positive. Hence $$\\prod_{k=1}^{n-1} 2\\sin\\frac{k\\pi}{n} = n,$$ which is the claim. For $n = 3$: $\\sin 60^\\circ \\cdot \\sin 120^\\circ = \\tfrac34 = 3/2^2$."
+   },
+   {
+    "type": "example",
+    "title": "A seventh-root-of-unity identity",
+    "body": "Prove that $\\cos\\dfrac{2\\pi}{7} + \\cos\\dfrac{4\\pi}{7} + \\cos\\dfrac{6\\pi}{7} = -\\dfrac12$.",
+    "solution": "Let $\\omega = e^{2\\pi i/7}$. The seven roots of unity add up to zero: $1 + \\omega + \\omega^2 + \\cdots + \\omega^6 = 0$. Take real parts. Since $\\mathrm{Re}\\,\\omega^k = \\cos(2\\pi k/7)$ and $\\cos(2\\pi(7-k)/7) = \\cos(2\\pi k/7)$, the terms pair up: $$1 + 2\\left(\\cos\\frac{2\\pi}{7} + \\cos\\frac{4\\pi}{7} + \\cos\\frac{6\\pi}{7}\\right) = 0.$$ Solving gives the identity. The same argument shows $\\sum_{k=1}^{n-1}\\cos(2\\pi k/n) = -1$ for every $n \\ge 2$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The rule $\\sqrt{ab} = \\sqrt a\\sqrt b$ fails for negative numbers: $\\sqrt{-1}\\cdot\\sqrt{-1} = i\\cdot i = -1$, not $\\sqrt{(-1)(-1)} = 1$. Square roots of complex numbers come in pairs, and there is no choice of one that respects multiplication everywhere.\n- The argument is only defined up to multiples of $2\\pi$, so \"$\\arg(zw) = \\arg z + \\arg w$\" holds only modulo $2\\pi$.\n- There is no ordering of complex numbers compatible with arithmetic: \"$z < w$\" has no meaning unless both are real. Compare moduli instead.\n- $|z + w|$ is usually smaller than $|z| + |w|$; equality holds only when one of $z, w$ is a non-negative real multiple of the other (they point in the same direction, or one of them is $0$).\n- For a base $b$ that is not a positive real number, $b^s$ needs a choice of logarithm and is in general multi-valued. In $n^{-s}$ the base $n$ is a positive integer and the real logarithm is used, so there is no ambiguity."
+   },
+   {
+    "type": "connection",
+    "body": "Complex numbers are the setting for [[holomorphic]] functions, which are the main tool for studying the zeta function and its relatives. Writing sound waves and periodic functions as sums of $e^{2\\pi i n x}$ is [[fourier-poisson]]. The characteristic equation of a linear differential equation often has complex roots, and $e^{(a + bi)x}$ explains the oscillating solutions; see [[ode-linear]]. In plane geometry, complex coordinates turn rotations and similarities into multiplication; see [[analytic-geometry]]. At the far end, the [[hodge]] conjecture is a question about shapes defined by polynomial equations in complex variables."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Write $(1 - \\sqrt3\\, i)^6$ in the form $a + bi$.\n2. Find all complex $z$ with $z^3 = 8i$, and plot them.\n3. Show that if $|z| = 1$ then $\\bar z = 1/z$, and deduce that $z + 1/z$ is real.\n4. Express $\\cos 4\\theta$ as a polynomial in $\\cos\\theta$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ahlfors, Complex Analysis",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Needham, Visual Complex Analysis"
+   },
+   {
+    "ref": "Andreescu & Andrica, Complex Numbers from A to ... Z"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "(2+3i)/(1-i) = (-1+5i)/2 and its squared modulus is 13/2.",
+    "python": "import sympy as sp\nI=sp.I\nw=sp.simplify((2+3*I)/(1-I))\nassert sp.simplify(w-(-1+5*I)/2)==0 and sp.simplify(w*sp.conjugate(w)-sp.Rational(13,2))==0"
+   },
+   {
+    "claim": "(1+i)^10 = 32i and (1+i)^2 = 2i.",
+    "python": "import sympy as sp\nassert sp.expand((1+sp.I)**10)==32*sp.I and sp.expand((1+sp.I)**2)==2*sp.I"
+   },
+   {
+    "claim": "cos 3t = 4cos^3 t - 3cos t, sin 3t = 3 sin t - 4 sin^3 t, and the expansion of (c+is)^3.",
+    "python": "import sympy as sp\nt,c,s=sp.symbols('t c s',real=True)\nassert sp.simplify(sp.expand_trig(sp.cos(3*t))-(4*sp.cos(t)**3-3*sp.cos(t)))==0\nassert sp.simplify(sp.expand_trig(sp.sin(3*t))-(3*sp.sin(t)-4*sp.sin(t)**3))==0\ne=sp.expand((c+sp.I*s)**3)\nassert sp.re(e)==c**3-3*c*s**2 and sp.im(e)==3*c**2*s-s**3"
+   },
+   {
+    "claim": "prod_{k=1}^{n-1} sin(k pi/n) = n/2^(n-1) for n = 2..40; n=3 gives 3/4.",
+    "python": "import math\nfor n in range(2,41):\n    p=1.0\n    for k in range(1,n): p*=math.sin(k*math.pi/n)\n    assert abs(p-n/2**(n-1))<1e-12*max(1,n/2**(n-1))\nassert abs(math.sin(math.pi/3)*math.sin(2*math.pi/3)-0.75)<1e-15"
+   },
+   {
+    "claim": "cos(2pi/7)+cos(4pi/7)+cos(6pi/7) = -1/2, and sum_{k=1}^{n-1} cos(2 pi k/n) = -1 for n=2..30.",
+    "python": "import math\nassert abs(sum(math.cos(2*math.pi*k/7) for k in (1,2,3))+0.5)<1e-14\nfor n in range(2,31):\n    assert abs(sum(math.cos(2*math.pi*k/n) for k in range(1,n))+1)<1e-12"
+   },
+   {
+    "claim": "|n^{-s}| = n^{-sigma} and arg n^{-s} = -t log n (mod 2pi) for s = 1/2 + 14i, n = 2..10; e^{i pi} = -1.",
+    "python": "import cmath, math\ns=0.5+14j\nfor n in range(2,11):\n    z=n**(-s)\n    assert abs(abs(z)-n**-0.5)<1e-14\n    assert abs(cmath.exp(1j*(-14*math.log(n)))*n**-0.5-z)<1e-13\nassert abs(cmath.exp(1j*math.pi)+1)<1e-15"
+   },
+   {
+    "claim": "The n-th roots of unity e^{2 pi i k/n} satisfy z^n = 1 and sum to 0 (n = 2..20).",
+    "python": "import cmath, math\nfor n in range(2,21):\n    r=[cmath.exp(2j*math.pi*k/n) for k in range(n)]\n    assert all(abs(z**n-1)<1e-12 for z in r) and abs(sum(r))<1e-12"
+   },
+   {
+    "claim": "Fresh: triangle-inequality equality |z+w|=|z|+|w| for w=2z and for w=0, strict for z=1, w=i; (-1)^(1/2) principal value is i and i*i=-1.",
+    "python": "z=3+4j\nassert abs(abs(z+2*z)-(abs(z)+abs(2*z)))<1e-12 and abs(z+0)==abs(z)+0\nassert abs(1+1j)<abs(1)+abs(1j)\nimport cmath\nr=cmath.sqrt(-1)\nassert abs(r-1j)<1e-15 and abs(r*r+1)<1e-15"
+   },
+   {
+    "claim": "Fresh: exact product of sines via sympy for n=5 and n=6, and the seventh-root cosine sum exactly -1/2.",
+    "python": "import sympy as sp\nfor n in (5,6):\n    p=sp.prod([sp.sin(k*sp.pi/n) for k in range(1,n)])\n    assert abs(sp.N(p-sp.Rational(n,2**(n-1)),40))<1e-35\ns=sum(sp.cos(2*k*sp.pi/7) for k in (1,2,3))\nassert abs(sp.N(s+sp.Rational(1,2),50))<1e-45"
+   }
+  ]
+ },
+ {
+  "id": "holomorphic",
+  "minutes": 30,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "For real functions, being differentiable once says little: a function can have a first derivative and no second, and knowing it on an interval says nothing about it elsewhere. For functions of a complex variable the situation is completely different. If $f$ has a complex derivative at every point of an open set, then it has derivatives of all orders, it is given locally by a convergent power series, and its values inside a circle are determined by its values on the circle.\n\nThis rigidity is the engine of analytic number theory. It is why the zeta function, once defined on a half-plane, has at most one extension to a larger region, and why integrals of it around contours can be evaluated exactly. This lesson builds the central results, Cauchy's theorem and Cauchy's integral formula, from the definition, with proofs."
+   },
+   {
+    "type": "definition",
+    "title": "Holomorphic function",
+    "body": "Let $U \\subseteq \\mathbb{C}$ be open. A function $f : U \\to \\mathbb{C}$ is holomorphic on $U$ if for every $z_0 \\in U$ the limit $$f'(z_0) = \\lim_{h \\to 0} \\frac{f(z_0 + h) - f(z_0)}{h}$$ exists, where $h$ tends to $0$ through complex values. A function holomorphic on all of $\\mathbb{C}$ is called entire.\n\nThe formula is the same as in [[derivative]], but $h$ may approach $0$ from every direction in the plane, and the limit must be the same for all of them. That single requirement is very restrictive."
+   },
+   {
+    "type": "section",
+    "title": "What the definition demands",
+    "body": "Write $z = x + iy$ and $f = u + iv$ with $u, v$ real. Letting $h$ be real gives $f' = u_x + i v_x$; letting $h = ik$ with $k$ real gives $f' = \\frac{1}{i}(u_y + i v_y) = v_y - i u_y$. Equating the two, $$u_x = v_y, \\qquad u_y = -v_x,$$ the Cauchy–Riemann equations. They are necessary for complex differentiability.\n\nSums, products, quotients (where the denominator is nonzero) and compositions of holomorphic functions are holomorphic, by the same proofs as in [[diff-rules]]. So polynomials are entire and rational functions are holomorphic away from the zeros of their denominators. The exponential $e^z = e^x(\\cos y + i\\sin y)$ satisfies the Cauchy–Riemann equations, and indeed $(e^z)' = e^z$.\n\nBy contrast, $f(z) = \\bar z$ is holomorphic nowhere: its difference quotient is $\\bar h / h$, which equals $1$ for real $h$ and $-1$ for imaginary $h$. Geometrically, a holomorphic function with $f'(z_0) \\ne 0$ acts near $z_0$ like multiplication by $f'(z_0)$, that is, a rotation and scaling (see [[complex-numbers]]); a reflection like $\\bar z$ is not of that form."
+   },
+   {
+    "type": "section",
+    "title": "Integrating along paths",
+    "body": "A path is a continuous, piecewise continuously differentiable map $\\gamma : [a, b] \\to \\mathbb{C}$; it is closed if $\\gamma(a) = \\gamma(b)$. For $f$ continuous on the image of $\\gamma$, $$\\int_\\gamma f(z)\\,dz = \\int_a^b f(\\gamma(t))\\,\\gamma'(t)\\,dt.$$ Two facts do most of the work.\n\n1. The ML-estimate: if $|f| \\le M$ on $\\gamma$ and $\\gamma$ has length $L$, then $\\left|\\int_\\gamma f\\,dz\\right| \\le ML$.\n2. Primitives: if $f = F'$ for some holomorphic $F$ on an open set containing $\\gamma$, then $\\int_\\gamma f\\,dz = F(\\gamma(b)) - F(\\gamma(a))$, because $\\frac{d}{dt}F(\\gamma(t)) = F'(\\gamma(t))\\gamma'(t)$. In particular the integral of $f$ around any closed path is $0$.\n\nNow the basic computation. Let $C$ be the circle $|z - a| = r$ traversed once counterclockwise, $\\gamma(t) = a + re^{it}$ for $0 \\le t \\le 2\\pi$. For any integer $n$, $$\\oint_C (z-a)^n\\,dz = \\int_0^{2\\pi} r^n e^{int}\\cdot ire^{it}\\,dt = i r^{n+1}\\int_0^{2\\pi} e^{i(n+1)t}\\,dt = \\begin{cases} 2\\pi i, & n = -1,\\\\ 0, & n \\ne -1.\\end{cases}$$ For $n \\ne -1$ this also follows from fact 2, since $(z-a)^{n+1}/(n+1)$ is a primitive on $\\mathbb{C}\\setminus\\{a\\}$. For $n = -1$ the answer is not zero, so $1/(z-a)$ has no primitive on $\\mathbb{C}\\setminus\\{a\\}$. Keep this example in mind: the whole theory is about when integrals around closed paths vanish, and this is the basic case where they do not."
+   },
+   {
+    "type": "theorem",
+    "title": "Cauchy's theorem (for a disc)",
+    "body": "Let $D$ be an open disc and let $f$ be holomorphic on $D$. Then $$\\oint_\\gamma f(z)\\,dz = 0$$ for every closed path $\\gamma$ in $D$.\n\nMore generally the same conclusion holds on any simply connected open set (one with no holes); we prove only the disc case. On a set with holes it can fail: $1/z$ is holomorphic on $\\mathbb{C}\\setminus\\{0\\}$, but its integral around the unit circle is $2\\pi i$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Step 1 (Goursat: triangles). Let $T \\subset D$ be a closed solid triangle with boundary $\\partial T$ and perimeter $p$, and let $I = \\left|\\oint_{\\partial T} f\\,dz\\right|$. Joining the midpoints of the sides cuts $T$ into four triangles, each of perimeter $p/2$. The integrals over their boundaries add up to the integral over $\\partial T$, because each inner edge is traversed twice in opposite directions. So at least one of them, call it $T_1$, has $\\left|\\oint_{\\partial T_1} f\\right| \\ge I/4$. Repeating, we get nested triangles $T \\supset T_1 \\supset T_2 \\supset \\cdots$ with perimeter $p_k = p/2^k$ and $\\left|\\oint_{\\partial T_k} f\\right| \\ge I/4^k$. The nested closed triangles have a common point $z_0 \\in D$.\n\nSince $f$ is differentiable at $z_0$, we can write $f(z) = f(z_0) + f'(z_0)(z - z_0) + \\varepsilon(z)(z - z_0)$ with $\\varepsilon(z) \\to 0$ as $z \\to z_0$. The linear part has a primitive, so its integral around $\\partial T_k$ is $0$. On $\\partial T_k$ we have $|z - z_0| \\le p_k$, so the ML-estimate gives $$\\frac{I}{4^k} \\le \\left|\\oint_{\\partial T_k} \\varepsilon(z)(z-z_0)\\,dz\\right| \\le p_k \\cdot p_k \\cdot \\max_{T_k}|\\varepsilon| = \\frac{p^2}{4^k}\\max_{T_k}|\\varepsilon|.$$ Thus $I \\le p^2 \\max_{T_k}|\\varepsilon|$ for every $k$, and the right side tends to $0$. So $I = 0$.\n\nStep 2 (a primitive). Let $c$ be the centre of $D$ and define $F(z) = \\int_{[c, z]} f(w)\\,dw$, the integral along the segment from $c$ to $z$. For $z$ and $z + h$ in $D$, the triangle with vertices $c, z, z+h$ lies in $D$ (a disc is convex), so by Step 1, $F(z+h) - F(z) = \\int_{[z, z+h]} f(w)\\,dw$. Since $\\int_{[z,z+h]} dw = h$, $$\\left|\\frac{F(z+h) - F(z)}{h} - f(z)\\right| = \\left|\\frac1h\\int_{[z,z+h]} \\bigl(f(w) - f(z)\\bigr)\\,dw\\right| \\le \\max_{w \\in [z, z+h]}|f(w) - f(z)|,$$ which tends to $0$ as $h \\to 0$ because $f$ is continuous. So $F' = f$ on $D$.\n\nStep 3. By fact 2 about primitives, $\\oint_\\gamma f = 0$ for every closed path $\\gamma$ in $D$."
+   },
+   {
+    "type": "section",
+    "title": "Two technical points",
+    "body": "We will need one strengthening. Suppose $f$ is continuous on $D$ and holomorphic on $D$ except at one point $q$. Then Step 1 still holds. If $q \\notin T$, nothing changes. If $q$ is a vertex of $T$, cut off a tiny triangle at $q$ of perimeter $\\delta$; the rest of $T$ splits into triangles not containing $q$, whose integrals vanish, so $\\left|\\oint_{\\partial T} f\\right| \\le \\delta \\max_T |f|$ for every $\\delta > 0$, hence it is $0$. If $q$ lies elsewhere in $T$, split $T$ into two or three triangles having $q$ as a vertex. Steps 2 and 3 then go through unchanged, so Cauchy's theorem holds for such $f$ as well.\n\nWe also need the integral of $1/(z - a)$ around a circle $C : |z - c| = r$ when $a$ is inside but not at the centre. For $z$ on $C$, with $q = |a - c|/r < 1$, $$\\frac{1}{z - a} = \\frac{1}{(z - c) - (a - c)} = \\sum_{n \\ge 0} \\frac{(a-c)^n}{(z-c)^{n+1}},$$ a geometric series whose $n$-th term has absolute value $q^n/r$. The terms with $n > N$ add up to at most $q^{N+1}/((1-q)r)$ in absolute value on all of $C$, so by the ML-estimate we may integrate term by term. Only the term $n = 0$ survives, and $\\oint_C \\frac{dz}{z-a} = 2\\pi i$."
+   },
+   {
+    "type": "theorem",
+    "title": "Cauchy's integral formula",
+    "body": "Let $f$ be holomorphic on an open set containing the closed disc $|z - c| \\le r$, and let $C$ be its boundary circle, traversed counterclockwise. Then for every $a$ with $|a - c| < r$, $$f(a) = \\frac{1}{2\\pi i}\\oint_C \\frac{f(z)}{z - a}\\,dz,$$ and $f$ has derivatives of all orders, given by $$f^{(n)}(a) = \\frac{n!}{2\\pi i}\\oint_C \\frac{f(z)}{(z-a)^{n+1}}\\,dz.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "An open set containing the closed disc contains a slightly larger open disc $D'$ with the same centre (the closed disc is compact). Fix $a$ inside $C$ and define $g(z) = \\dfrac{f(z) - f(a)}{z - a}$ for $z \\ne a$ and $g(a) = f'(a)$. Then $g$ is continuous on $D'$ and holomorphic except possibly at $a$, so by the strengthened Cauchy theorem $\\oint_C g = 0$. That is, $$\\oint_C \\frac{f(z)}{z-a}\\,dz = f(a)\\oint_C \\frac{dz}{z-a} = 2\\pi i\\, f(a),$$ using the second technical point. This is the formula for $f(a)$.\n\nFor the derivatives, first take the expansion point to be the centre. Substitute the geometric series for $1/(z - a)$ from the second technical point into the formula just proved and integrate term by term (justified the same way, since $f$ is bounded on $C$): $$f(a) = \\sum_{n\\ge0} c_n (a - c)^n, \\qquad c_n = \\frac{1}{2\\pi i}\\oint_C \\frac{f(z)}{(z-c)^{n+1}}\\,dz.$$ So $f$ equals a convergent power series on the disc $|a - c| < r$. A convergent power series can be differentiated term by term any number of times ([[power-series]]), so $f$ has derivatives of all orders and $f^{(n)}(c) = n!\\,c_n$, which is the derivative formula at $a = c$. For a general point $a$ inside $C$, differentiating the formula for $f(a)$ $n$ times under the integral sign gives the stated formula; we omit the routine justification."
+   },
+   {
+    "type": "section",
+    "title": "Consequences: power series, Liouville, and the mean value property",
+    "body": "The proof shows more than the statement. If $f$ is holomorphic on an open set $U$ and $c \\in U$, then the Taylor series of $f$ at $c$ converges to $f$ on every disc centred at $c$ that lies in $U$. Holomorphic functions are locally power series, and $f'$ is again holomorphic.\n\nSeveral famous consequences follow in a line or two.\n\n1. Cauchy's estimates. If $|f| \\le M$ on the circle $|z - c| = r$, the ML-estimate applied to the derivative formula gives $|f^{(n)}(c)| \\le n!\\,M/r^n$.\n2. Liouville's theorem. A bounded entire function is constant: with $|f| \\le M$ everywhere, $|f'(c)| \\le M/r$ for every $r$, so $f' \\equiv 0$.\n3. The fundamental theorem of algebra. If a non-constant polynomial $P$ had no root, $1/P$ would be entire, and bounded because $|P(z)| \\to \\infty$ as $|z| \\to \\infty$; by Liouville it would be constant, a contradiction.\n4. The mean value property. Putting $z = c + re^{i\\theta}$ in the integral formula at $a = c$ gives $f(c) = \\dfrac{1}{2\\pi}\\displaystyle\\int_0^{2\\pi} f(c + re^{i\\theta})\\,d\\theta$: the value at the centre is the average over the circle."
+   },
+   {
+    "type": "example",
+    "title": "Using the integral formula",
+    "body": "Let $C$ be the circle $|z| = 2$, traversed counterclockwise. Compute $\\displaystyle\\oint_C \\frac{e^z}{z - 1}\\,dz$ and $\\displaystyle\\oint_C \\frac{e^z}{(z-1)^3}\\,dz$.",
+    "solution": "The function $f(z) = e^z$ is entire, and $a = 1$ is inside $C$. The integral formula gives $$\\oint_C \\frac{e^z}{z-1}\\,dz = 2\\pi i\\, f(1) = 2\\pi i e.$$ For the second, use the derivative formula with $n = 2$: $\\oint_C \\frac{f(z)}{(z-1)^3}\\,dz = \\frac{2\\pi i}{2!} f''(1) = \\pi i e$."
+   },
+   {
+    "type": "example",
+    "title": "Differentiable at one point",
+    "body": "Show that $f(z) = |z|^2$ has a complex derivative at $z = 0$ and nowhere else. Is it holomorphic anywhere?",
+    "solution": "Here $u = x^2 + y^2$ and $v = 0$. The Cauchy–Riemann equations read $2x = 0$ and $2y = 0$, so they hold only at the origin, and $f$ is not complex-differentiable at any $z \\ne 0$. At $0$ the difference quotient is $|h|^2/h = \\bar h$, which tends to $0$, so $f'(0) = 0$ exists.\n\nHolomorphic means differentiable at every point of an open set. No open set consists of the single point $0$, so $f$ is holomorphic nowhere."
+   },
+   {
+    "type": "example",
+    "title": "A real integral from the mean value property",
+    "body": "Evaluate $\\displaystyle\\int_0^{2\\pi} e^{\\cos\\theta}\\cos(\\sin\\theta)\\,d\\theta$.",
+    "solution": "Apply the mean value property to the entire function $e^z$ on the unit circle around $0$: $$1 = e^0 = \\frac{1}{2\\pi}\\int_0^{2\\pi} e^{e^{i\\theta}}\\,d\\theta.$$ Now $e^{e^{i\\theta}} = e^{\\cos\\theta + i\\sin\\theta} = e^{\\cos\\theta}\\bigl(\\cos(\\sin\\theta) + i\\sin(\\sin\\theta)\\bigr)$. Taking real parts, $$\\int_0^{2\\pi} e^{\\cos\\theta}\\cos(\\sin\\theta)\\,d\\theta = 2\\pi.$$ Taking imaginary parts shows also that $\\int_0^{2\\pi} e^{\\cos\\theta}\\sin(\\sin\\theta)\\,d\\theta = 0$, which is clear anyway because the integrand is odd about $\\theta = \\pi$."
+   },
+   {
+    "type": "example",
+    "title": "Growth forces a polynomial",
+    "body": "Let $f$ be entire with $|f(z)| \\le 1 + |z|^{3/2}$ for all $z$. Prove that $f(z) = \\alpha z + \\beta$ for some constants $\\alpha, \\beta$.",
+    "solution": "Fix $a \\in \\mathbb{C}$ and $R > 0$. On the circle $|z - a| = R$ we have $|z| \\le |a| + R$, so Cauchy's estimate with $n = 2$ gives $$|f''(a)| \\le \\frac{2!\\,\\bigl(1 + (|a| + R)^{3/2}\\bigr)}{R^2}.$$ As $R \\to \\infty$ the right side behaves like $2R^{-1/2} \\to 0$. Hence $f''(a) = 0$ for every $a$. So $f'$ has zero derivative on $\\mathbb{C}$ and is constant, say $f' = \\alpha$; then $(f(z) - \\alpha z)' = 0$, so $f(z) - \\alpha z$ is a constant $\\beta$. The same argument shows that an entire function with $|f(z)| \\le A + B|z|^k$ is a polynomial of degree at most $k$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Real differentiability of $u$ and $v$ is not enough. $\\bar z$ has perfectly smooth real and imaginary parts and is holomorphic nowhere.\n- Cauchy's theorem needs the region to have no holes inside the path. $\\oint_{|z|=1} dz/z = 2\\pi i$ even though $1/z$ is holomorphic on and near the circle.\n- Orientation matters: traversing the circle clockwise changes the sign of every integral.\n- The integral formula needs $a$ inside the circle. For $a$ outside, $f(z)/(z-a)$ is holomorphic on a disc containing the closed disc, so the integral is $0$.\n- The Taylor series of a holomorphic function at $c$ converges (to the function) on the largest disc centred at $c$ that fits in the domain. It may converge on a bigger disc if the function extends beyond the domain, so the domain alone does not determine the radius; what limits it is the nearest point where no holomorphic extension is possible. The real function $1/(1+x^2)$ is smooth on all of $\\mathbb{R}$, yet its Taylor series at $0$ has radius $1$: the complex function $1/(1+z^2)$ has poles at $\\pm i$, at distance $1$ from $0$."
+   },
+   {
+    "type": "connection",
+    "body": "Cauchy's 1825 memoir on integrals in the complex domain started this theory, and the calculus of residues followed. Applying the integral formula to functions with isolated singularities gives the residue theorem and the argument principle ([[residues]]), which count zeros and evaluate integrals. The power series expansion and the fact that zeros of a non-zero holomorphic function are isolated give uniqueness of [[continuation]]. These two lessons are the gateway to the [[zeta]] function, the [[gamma]] function and the theory of [[l-functions]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Verify the Cauchy–Riemann equations for $e^z = e^x\\cos y + ie^x\\sin y$ and for $z^3$.\n2. Using partial fractions, compute $\\oint_{|z|=3}\\dfrac{dz}{z^2+1}$.\n3. Let $f$ be entire with $\\mathrm{Re}\\, f(z) \\le 0$ for all $z$. Show that $f$ is constant. (Consider $e^{f}$.)\n4. Let $f$ be holomorphic on the open unit disc with $|f| \\le 1$ there. Show that $|f'(0)| \\le 1$, and more generally $|f^{(n)}(0)| \\le n!$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ahlfors, Complex Analysis",
+    "where": "Chapter 4"
+   },
+   {
+    "ref": "Stein & Shakarchi, Complex Analysis",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Needham, Visual Complex Analysis"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Contour integral of (z-a)^n around |z-a|=r is 2 pi i for n=-1 and 0 otherwise (n=-4..3).",
+    "python": "import mpmath as mp\na=mp.mpc(0.3,-0.2); r=mp.mpf(1.7)\nfor n in range(-4,4):\n    val=mp.quad(lambda t: (r*mp.e**(1j*t))**n*1j*r*mp.e**(1j*t),[0,2*mp.pi])\n    target=2j*mp.pi if n==-1 else 0\n    assert abs(val-target)<1e-12"
+   },
+   {
+    "claim": "Off-centre: integral of dz/(z-a) over |z - c| = r is 2 pi i when |a-c| < r and 0 when |a-c| > r.",
+    "python": "import mpmath as mp\nc=mp.mpc(1,1); r=2\ng=lambda a: mp.quad(lambda t: 1j*r*mp.e**(1j*t)/(c+r*mp.e**(1j*t)-a),[0,mp.pi,2*mp.pi])\nassert abs(g(mp.mpc(2.5,1.8))-2j*mp.pi)<1e-10\nassert abs(g(mp.mpc(4,0)))<1e-10"
+   },
+   {
+    "claim": "Cauchy-Riemann holds for e^z and z^3, fails for conj(z); |z|^2 satisfies CR only at 0.",
+    "python": "import sympy as sp\nx,y=sp.symbols('x y',real=True)\nfor f in (sp.exp(x)*(sp.cos(y)+sp.I*sp.sin(y)), sp.expand((x+sp.I*y)**3)):\n    u,v=sp.re(f),sp.im(f)\n    assert sp.simplify(sp.diff(u,x)-sp.diff(v,y))==0 and sp.simplify(sp.diff(u,y)+sp.diff(v,x))==0\nu,v=x,-y\nassert sp.diff(u,x)-sp.diff(v,y)!=0\nu,v=x**2+y**2,0\nassert sp.solve([sp.diff(u,x)-sp.diff(v,y),sp.diff(u,y)+sp.diff(v,x)],[x,y])=={x:0,y:0}"
+   },
+   {
+    "claim": "oint_{|z|=2} e^z/(z-1) dz = 2 pi i e and oint e^z/(z-1)^3 dz = pi i e.",
+    "python": "import mpmath as mp\nI1=mp.quad(lambda t: mp.e**(2*mp.e**(1j*t))/(2*mp.e**(1j*t)-1)*2j*mp.e**(1j*t),[0,mp.pi,2*mp.pi])\nI2=mp.quad(lambda t: mp.e**(2*mp.e**(1j*t))/(2*mp.e**(1j*t)-1)**3*2j*mp.e**(1j*t),[0,mp.pi,2*mp.pi])\nassert abs(I1-2j*mp.pi*mp.e)<1e-10 and abs(I2-1j*mp.pi*mp.e)<1e-10"
+   },
+   {
+    "claim": "int_0^{2pi} e^{cos t} cos(sin t) dt = 2 pi and int e^{cos t} sin(sin t) dt = 0.",
+    "python": "import mpmath as mp\nassert abs(mp.quad(lambda t: mp.e**mp.cos(t)*mp.cos(mp.sin(t)),[0,2*mp.pi])-2*mp.pi)<1e-12\nassert abs(mp.quad(lambda t: mp.e**mp.cos(t)*mp.sin(mp.sin(t)),[0,2*mp.pi]))<1e-12"
+   },
+   {
+    "claim": "Cauchy coefficients c_n = (1/2 pi i) oint f(z)/(z-c)^{n+1} reproduce Taylor coefficients of e^z at c=0.5 (n=0..6).",
+    "python": "import mpmath as mp\nc=mp.mpf(0.5); r=1\nfor n in range(7):\n    cn=mp.quad(lambda t: mp.e**(c+r*mp.e**(1j*t))/(r*mp.e**(1j*t))**(n+1)*1j*r*mp.e**(1j*t),[0,2*mp.pi])/(2j*mp.pi)\n    assert abs(cn-mp.e**c/mp.factorial(n))<1e-12"
+   },
+   {
+    "claim": "Taylor series of 1/(1+x^2) at 0 has radius 1 (coefficients (-1)^k on x^{2k}).",
+    "python": "import sympy as sp\nx=sp.symbols('x')\ns=sp.series(1/(1+x**2),x,0,20).removeO()\nassert all(s.coeff(x,2*k)==(-1)**k for k in range(10))"
+   },
+   {
+    "claim": "Fresh: Taylor series of e^z at c=0.5 (e^z restricted to the unit disc around 0.5) converges at z=5, far outside that domain; the series of 1/(1+z^2) at 0 has radius exactly 1 (coefficient root test).",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nc=mp.mpf(0.5); z=5\ns=mp.fsum(mp.e**c*(z-c)**n/mp.factorial(n) for n in range(120))\nassert abs(s-mp.e**z)<1e-20\nimport sympy as sp\nx=sp.symbols('x')\nco=sp.Poly(sp.series(1/(1+x**2),x,0,41).removeO(),x).all_coeffs()[::-1]\nassert all(abs(co[2*k])==1 and co[2*k+1]==0 for k in range(20))"
+   },
+   {
+    "claim": "Fresh: off-centre geometric expansion of 1/(z-a) on |z-c|=r: partial sum through n=N differs by at most q^{N+1}/((1-q) r).",
+    "python": "import cmath, math\nc=1+1j; r=2.0; a=1.8+0.5j; q=abs(a-c)/r\nfor k in range(50):\n    z=c+r*cmath.exp(2j*math.pi*k/50)\n    for N in (3,10,25):\n        ps=sum((a-c)**n/(z-c)**(n+1) for n in range(N+1))\n        assert abs(1/(z-a)-ps)<=q**(N+1)/((1-q)*r)+1e-12"
+   },
+   {
+    "claim": "Fresh: Cauchy-estimate example: 2(1+(|a|+R)^{3/2})/R^2 -> 0 as R grows (a=3), and CR equations give f' = u_x + i v_x = v_y - i u_y for f=z^3 at a sample point.",
+    "python": "import sympy as sp\nR=sp.symbols('R',positive=True)\nassert sp.limit(2*(1+(3+R)**sp.Rational(3,2))/R**2,R,sp.oo)==0\nx,y=sp.symbols('x y',real=True)\nf=sp.expand((x+sp.I*y)**3); u,v=sp.re(f),sp.im(f)\npt={x:sp.Rational(1,3),y:-2}\nd1=(sp.diff(u,x)+sp.I*sp.diff(v,x)).subs(pt); d2=(sp.diff(v,y)-sp.I*sp.diff(u,y)).subs(pt)\nassert sp.simplify(d1-d2)==0 and sp.simplify(d1-3*(sp.Rational(1,3)-2*sp.I)**2)==0"
+   }
+  ]
+ },
+ {
+  "id": "residues",
+  "minutes": 28,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Cauchy's theorem says that integrating a holomorphic function around a closed path gives zero. What if the function has a few bad points inside the path, places where it blows up? The answer is remarkably simple: each bad point contributes $2\\pi i$ times a single number, its residue, and nothing else about the function matters.\n\nThis turns contour integration into bookkeeping. It evaluates real integrals that resist every calculus trick, sums series such as $\\sum 1/n^2$, and, through the argument principle, counts the zeros of a function inside a region. Counting the zeros of the Riemann zeta function, and Perron's formula that links Dirichlet series to sums of their coefficients, are both residue computations."
+   },
+   {
+    "type": "section",
+    "title": "Isolated singularities and poles",
+    "body": "Let $f$ be holomorphic on a punctured disc $0 < |z - a| < \\rho$. We say $a$ is an isolated singularity of $f$. There are three possibilities.\n\n1. Removable: $f$ extends to a holomorphic function on the whole disc. Example: $\\sin z / z$ at $0$.\n2. A pole of order $m \\ge 1$: $f(z) = \\dfrac{g(z)}{(z-a)^m}$ with $g$ holomorphic on the whole disc and $g(a) \\ne 0$. Example: $1/z^2$ at $0$, of order $2$.\n3. Essential: neither of these. Example: $e^{1/z}$ at $0$.\n\nAt a pole, expand $g$ in its power series $g(z) = \\sum_{k\\ge0} g_k (z - a)^k$ (possible by [[holomorphic]] functions being locally power series) and divide by $(z-a)^m$: $$f(z) = \\frac{c_{-m}}{(z-a)^m} + \\cdots + \\frac{c_{-1}}{z - a} + c_0 + c_1(z-a) + \\cdots,$$ with $c_{j} = g_{j+m}$. The finite part with negative powers is the principal part of $f$ at $a$; subtracting it leaves a holomorphic function near $a$. A function that is holomorphic on an open set except for poles is called meromorphic. (At an essential singularity there is still such an expansion, the Laurent series, but with infinitely many negative powers; for example $e^{1/z} = \\sum_{k\\ge0} z^{-k}/k!$. We do not need its general theory here.)"
+   },
+   {
+    "type": "definition",
+    "title": "Residue",
+    "body": "If $f$ has a pole (or more generally an isolated singularity with a Laurent expansion) at $a$, its residue there is the coefficient of $(z-a)^{-1}$: $$\\mathrm{Res}(f, a) = c_{-1}.$$ For a small circle $C$ around $a$, $\\frac{1}{2\\pi i}\\oint_C f\\,dz = c_{-1}$: every other power $(z-a)^n$ integrates to zero, as computed in [[holomorphic]]."
+   },
+   {
+    "type": "section",
+    "title": "Computing residues",
+    "body": "In practice residues are rarely found by writing out the whole expansion.\n\n1. Simple pole ($m = 1$): $\\mathrm{Res}(f, a) = \\lim_{z \\to a}(z-a)f(z)$.\n2. Quotient: if $f = g/h$ with $g, h$ holomorphic near $a$, $h(a) = 0$ and $h'(a) \\ne 0$, then $\\mathrm{Res}(f, a) = g(a)/h'(a)$. (Because $(z-a)/h(z) \\to 1/h'(a)$.)\n3. Pole of order $m$: $\\mathrm{Res}(f,a) = \\dfrac{1}{(m-1)!}\\lim_{z \\to a}\\dfrac{d^{m-1}}{dz^{m-1}}\\bigl[(z-a)^m f(z)\\bigr]$. (Here $(z-a)^m f(z) = g(z)$, and $c_{-1} = g_{m-1} = g^{(m-1)}(a)/(m-1)!$.)\n\nFor example, $\\pi\\cot(\\pi z) = \\pi\\cos(\\pi z)/\\sin(\\pi z)$ has a simple pole at each integer $n$, with residue $\\pi\\cos(\\pi n)/(\\pi\\cos(\\pi n)) = 1$ by rule 2. Near $0$ its expansion is $$\\pi\\cot(\\pi z) = \\frac1z - \\frac{\\pi^2}{3}z - \\frac{\\pi^4}{45}z^3 - \\cdots,$$ which we will use below."
+   },
+   {
+    "type": "theorem",
+    "title": "The residue theorem",
+    "body": "Let $f$ be meromorphic on an open set containing the closed disc $|z - c| \\le r$, with no poles on the boundary circle $C$, and let $a_1, \\ldots, a_k$ be its poles inside $C$. Then, with $C$ traversed counterclockwise, $$\\oint_C f(z)\\,dz = 2\\pi i\\sum_{j=1}^{k}\\mathrm{Res}(f, a_j).$$ The same holds, with the same proof once the general form of Cauchy's theorem is available, for any positively oriented simple closed path, such as the boundary of a rectangle or of a half-disc, with the $a_j$ the poles enclosed by it."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "First, there are only finitely many poles inside $C$: poles are isolated points, and infinitely many of them in the closed disc would accumulate at some point of it, which would then be neither a point where $f$ is holomorphic nor an isolated singularity.\n\nLet $P_j$ be the principal part of $f$ at $a_j$. Each $P_j$ is a finite sum of terms $c(z - a_j)^{-n}$ with $n \\ge 1$, holomorphic everywhere except at $a_j$. The function $h = f - \\sum_j P_j$ is holomorphic near each $a_j$ (there $f - P_j$ is holomorphic, and the other $P_i$ are holomorphic), and holomorphic wherever $f$ is. So $h$ is holomorphic on a neighbourhood of the closed disc. Since no pole lies on $C$ and poles cannot accumulate, this neighbourhood can be taken to be a slightly larger concentric disc, and by Cauchy's theorem $\\oint_C h = 0$.\n\nIt remains to integrate the principal parts. For $n \\ge 2$, $(z - a_j)^{-n}$ has the primitive $-(z-a_j)^{1-n}/(n-1)$ on $\\mathbb{C}\\setminus\\{a_j\\}$, so its integral around $C$ is $0$. For $n = 1$, $\\oint_C dz/(z - a_j) = 2\\pi i$ since $a_j$ is inside $C$ (shown in [[holomorphic]]). Hence $\\oint_C P_j = 2\\pi i\\,\\mathrm{Res}(f, a_j)$, and adding up gives the theorem."
+   },
+   {
+    "type": "example",
+    "title": "Real integrals by closing the contour",
+    "body": "Show that $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{1+x^2} = \\pi$ and $\\displaystyle\\int_{-\\infty}^{\\infty}\\frac{dx}{1+x^4} = \\frac{\\pi}{\\sqrt2}$.",
+    "solution": "For $R > 1$, let $\\Gamma_R$ be the segment $[-R, R]$ followed by the upper semicircle $|z| = R$, $\\mathrm{Im}\\, z \\ge 0$, traversed counterclockwise.\n\nFirst integral. $f(z) = 1/(1 + z^2) = 1/((z-i)(z+i))$ has one pole inside $\\Gamma_R$, at $i$, with residue $1/(2i)$. So $\\oint_{\\Gamma_R} f = 2\\pi i\\cdot\\frac{1}{2i} = \\pi$. On the arc, $|1 + z^2| \\ge |z|^2 - 1 = R^2 - 1$, and the arc has length $\\pi R$, so the arc integral is at most $\\pi R/(R^2 - 1) \\to 0$. Letting $R \\to \\infty$ gives $\\int_{-\\infty}^\\infty dx/(1+x^2) = \\pi$, which agrees with $\\arctan$.\n\nSecond integral. The poles of $1/(1+z^4)$ are the fourth roots of $-1$; those in the upper half-plane are $a = e^{i\\pi/4}$ and $b = e^{3i\\pi/4}$. By the quotient rule the residue at a root $w$ is $1/(4w^3) = w/(4w^4) = -w/4$. The sum of the two residues is $$-\\frac{e^{i\\pi/4} + e^{3i\\pi/4}}{4} = -\\frac{1}{4}\\left(\\frac{1+i}{\\sqrt2} + \\frac{-1+i}{\\sqrt2}\\right) = -\\frac{i\\sqrt2}{4}.$$ So $\\oint_{\\Gamma_R} = 2\\pi i\\cdot\\left(-\\frac{i\\sqrt2}{4}\\right) = \\frac{\\pi\\sqrt2}{2} = \\frac{\\pi}{\\sqrt2}$. The arc integral is at most $\\pi R/(R^4 - 1) \\to 0$, which gives the result."
+   },
+   {
+    "type": "example",
+    "title": "Summing a series with residues",
+    "body": "Prove Euler's evaluation $\\displaystyle\\sum_{n\\ge1}\\frac{1}{n^2} = \\frac{\\pi^2}{6}$ using residues of $F(z) = \\dfrac{\\pi\\cot(\\pi z)}{z^2}$.",
+    "solution": "Let $C_N$ be the boundary of the square with vertices $(N + \\tfrac12)(\\pm1 \\pm i)$, traversed counterclockwise; it passes between the integers and encloses $-N, \\ldots, N$.\n\nResidues. At an integer $n \\ne 0$, $\\pi\\cot(\\pi z)$ has residue $1$ and $1/z^2$ is holomorphic, so $\\mathrm{Res}(F, n) = 1/n^2$. At $0$, using the expansion of $\\pi\\cot(\\pi z)$, $$F(z) = \\frac{1}{z^3} - \\frac{\\pi^2}{3z} - \\frac{\\pi^4}{45}z - \\cdots,$$ so $\\mathrm{Res}(F, 0) = -\\pi^2/3$. By the residue theorem (for the square), $$\\oint_{C_N} F\\,dz = 2\\pi i\\left(2\\sum_{n=1}^{N}\\frac{1}{n^2} - \\frac{\\pi^2}{3}\\right).$$\n\nThe integral tends to $0$. Write $\\pi z = u + iv$. One checks $|\\cos(u+iv)|^2 = \\cos^2 u + \\sinh^2 v \\le \\cosh^2 v$ and $|\\sin(u+iv)|^2 = \\sin^2 u + \\sinh^2 v \\ge \\sinh^2 v$, so $|\\cot(u + iv)| \\le \\coth|v|$. On the horizontal sides $|v| = \\pi(N + \\tfrac12) \\ge \\pi/2$, so $|\\cot\\pi z| \\le \\coth(\\pi/2) < 1.1$. On the vertical sides $u = \\pm\\pi(N+\\tfrac12)$, where $\\cot(u + iv) = -\\tan(iv) = -i\\tanh v$, of modulus at most $1$. So on $C_N$ we have $|F| \\le 1.1\\pi/(N + \\tfrac12)^2$, while the length of $C_N$ is $8(N + \\tfrac12)$. The ML-estimate bounds the integral by $8.8\\pi/(N + \\tfrac12) \\to 0$.\n\nLetting $N \\to \\infty$: $2\\sum_{n\\ge1} 1/n^2 = \\pi^2/3$, which is the Basel sum."
+   },
+   {
+    "type": "section",
+    "title": "Counting zeros",
+    "body": "Suppose $f$ is meromorphic near a point $a$ and not identically zero. If $f$ has a zero of order $m$ at $a$, then $f(z) = (z - a)^m g(z)$ with $g(a) \\ne 0$, and $$\\frac{f'(z)}{f(z)} = \\frac{m}{z - a} + \\frac{g'(z)}{g(z)},$$ where $g'/g$ is holomorphic near $a$. So $f'/f$ has a simple pole with residue $m$. At a pole of order $m$, $f(z) = (z-a)^{-m}g(z)$ and the same computation gives residue $-m$. At all other points $f'/f$ is holomorphic. The residue theorem therefore gives the next result."
+   },
+   {
+    "type": "theorem",
+    "title": "The argument principle",
+    "body": "Let $f$ be meromorphic on an open set containing the closed disc bounded by a circle $C$ (or the region enclosed by a simple closed path $C$), not identically zero, with no zeros or poles on $C$, and let $C$ be traversed once counterclockwise. Then $$\\frac{1}{2\\pi i}\\oint_C \\frac{f'(z)}{f(z)}\\,dz = Z - P,$$ where $Z$ and $P$ are the numbers of zeros and poles of $f$ inside $C$, each counted with multiplicity."
+   },
+   {
+    "type": "section",
+    "title": "Why it is called the argument principle",
+    "body": "Why \"argument\"? Along the path, $f'/f$ is the derivative of $\\log f$, and $\\log f = \\log|f| + i\\arg f$. The real part $\\log|f|$ returns to its starting value after a closed loop, so the integral measures $i$ times the total change in $\\arg f(z)$. In other words, $Z - P$ is the number of times the image curve $f(C)$ winds around $0$. This makes the argument principle a practical counting tool: one tracks how the argument of $f$ changes along the boundary.\n\nA consequence that is often easier to apply directly is Rouché's theorem."
+   },
+   {
+    "type": "theorem",
+    "title": "Rouché's theorem",
+    "body": "Let $f$ and $g$ be holomorphic on an open set containing a closed disc with boundary circle $C$ (or a region bounded by a simple closed path $C$), and suppose $|g(z)| < |f(z)|$ for every $z$ on $C$. Then $f$ and $f + g$ have the same number of zeros inside $C$, counted with multiplicity."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For $0 \\le t \\le 1$ let $f_t = f + tg$. On $C$, $|f_t| \\ge |f| - |g| > 0$; since $C$ is compact, $|f| - |g| \\ge \\delta$ there for some $\\delta > 0$. So no $f_t$ vanishes on $C$, and by the argument principle the number of zeros of $f_t$ inside $C$ is $$N(t) = \\frac{1}{2\\pi i}\\oint_C \\frac{f'(z) + t g'(z)}{f(z) + t g(z)}\\,dz.$$ The integrand is a continuous function of $(z, t)$ on the compact set $C \\times [0, 1]$ (its denominator is at least $\\delta$ in absolute value), so $N(t)$ depends continuously on $t$. But $N(t)$ is an integer. A continuous integer-valued function on $[0, 1]$ is constant, so $N(0) = N(1)$."
+   },
+   {
+    "type": "example",
+    "title": "Locating zeros with Rouché",
+    "body": "How many zeros does $p(z) = z^5 + 3z + 1$ have in the disc $|z| < 1$, and how many in the annulus $1 \\le |z| < 2$?",
+    "solution": "On $|z| = 1$ take $f(z) = 3z$ and $g(z) = z^5 + 1$. Then $|g| \\le 2 < 3 = |f|$, so $p = f + g$ has as many zeros in $|z| < 1$ as $3z$, namely one.\n\nOn $|z| = 2$ take $f(z) = z^5$ and $g(z) = 3z + 1$. Then $|g| \\le 7 < 32 = |f|$, so $p$ has all five of its zeros in $|z| < 2$.\n\nThe strict inequality on $|z| = 1$ shows $p$ has no zero on that circle (there $|p| \\ge |f| - |g| > 0$). So exactly $5 - 1 = 4$ zeros lie in $1 < |z| < 2$, and hence in $1 \\le |z| < 2$."
+   },
+   {
+    "type": "section",
+    "title": "Counting the zeros of zeta",
+    "body": "Let $N(T)$ be the number of zeros $\\rho = \\beta + i\\gamma$ of the Riemann zeta function with $0 < \\beta < 1$ and $0 < \\gamma \\le T$, counted with multiplicity. Applying the argument principle to a suitable completed version of $\\zeta$ around the rectangle with corners $-1$, $2$, $2 + iT$, $-1 + iT$, and estimating the change in argument along the sides, gives the Riemann–von Mangoldt formula $$N(T) = \\frac{T}{2\\pi}\\log\\frac{T}{2\\pi} - \\frac{T}{2\\pi} + O(\\log T).$$ A finer version replaces $O(\\log T)$ by $\\tfrac78 + S(T) + O(1/T)$, where $S(T)$ is $\\frac1\\pi$ times the argument of $\\zeta(\\tfrac12 + iT)$, suitably defined, and is itself $O(\\log T)$. Numerically, $N(100) = 29$, while the first two terms give about $28.13$ and adding $\\tfrac78$ gives about $29.00$. See [[nontrivial-zeros]] for the details."
+   },
+   {
+    "type": "pitfall",
+    "body": "- At a pole of order $m \\ge 2$, $\\lim (z-a) f(z)$ does not exist; use the order-$m$ formula or the series.\n- The residue theorem requires no poles on the contour. If a pole sits on the path, the integral is not defined without extra conventions (principal values).\n- Closing a contour needs a reason for the extra piece to vanish. $1/(1 + x^2)$ decays like $1/R^2$, which beats the arc length $\\pi R$. For $1/x$ or for integrands like $e^{ix}/x$ this crude estimate fails, and a finer argument is needed.\n- The argument principle counts zeros minus poles, with multiplicity. For a polynomial there are no poles, but for $\\zeta$ the pole at $s = 1$ must be accounted for.\n- Rouché needs $|g| < |f|$ at every point of the contour, strictly. Checking it at a few points proves nothing."
+   },
+   {
+    "type": "connection",
+    "body": "Perron's formula, the gateway from a [[dirichlet-series]] to the partial sums of its coefficients, rests on the residue computation $\\frac{1}{2\\pi i}\\int_{c - i\\infty}^{c + i\\infty} y^s\\,\\frac{ds}{s} = 1$ for $y > 1$ and $0$ for $0 < y < 1$ (with $c > 0$); see [[mellin]]. Shifting such integrals to the left past the pole of $\\zeta$ at $s = 1$ produces the main term $x$ in the [[pnt]], and the residues at the zeros of $\\zeta$ produce the oscillating terms of the [[explicit-formula]]. Counting zeros by the argument principle is the starting point of [[nontrivial-zeros]] and of numerical verifications of the [[rh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the residues of $\\dfrac{e^z}{z^2(z-1)}$ at $0$ and at $1$.\n2. Evaluate $\\displaystyle\\int_0^{2\\pi}\\frac{d\\theta}{2 + \\cos\\theta}$ by substituting $z = e^{i\\theta}$ and computing a residue.\n3. Show that $z^4 - 6z + 3$ has exactly one zero in $|z| < 1$ and all four zeros in $|z| < 2$.\n4. Adapt the second example to prove $\\sum_{n\\ge1} 1/n^4 = \\pi^4/90$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ahlfors, Complex Analysis",
+    "where": "Chapter 4"
+   },
+   {
+    "ref": "Stein & Shakarchi, Complex Analysis",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Residues of pi cot(pi z) at integers are 1; Laurent expansion pi cot(pi z) = 1/z - pi^2 z/3 - pi^4 z^3/45 - ...; Res(pi cot(pi z)/z^2, 0) = -pi^2/3.",
+    "python": "import sympy as sp\nz=sp.symbols('z')\nf=sp.pi*sp.cot(sp.pi*z)\nfor n in (-2,1,3):\n    assert sp.simplify(sp.residue(f,z,n)-1)==0\ns=sp.series(f,z,0,5).removeO()\nassert sp.simplify(s-(1/z-sp.pi**2*z/3-sp.pi**4*z**3/45))==0\nassert sp.simplify(sp.residue(f/z**2,z,0)+sp.pi**2/3)==0"
+   },
+   {
+    "claim": "int dx/(1+x^2) = pi, int dx/(1+x^4) = pi/sqrt2; residue of 1/(1+z^4) at w is -w/4 and the upper residues sum to -i sqrt2/4.",
+    "python": "import sympy as sp, mpmath as mp\nz=sp.symbols('z')\nassert abs(mp.quad(lambda x: 1/(1+x**2),[-mp.inf,mp.inf])-mp.pi)<1e-12\nassert abs(mp.quad(lambda x: 1/(1+x**4),[-mp.inf,mp.inf])-mp.pi/mp.sqrt(2))<1e-12\na=sp.exp(sp.I*sp.pi/4); b=sp.exp(3*sp.I*sp.pi/4)\nra=sp.residue(1/(1+z**4),z,a); rb=sp.residue(1/(1+z**4),z,b)\nassert abs(complex(sp.N(ra+a/4,30)))<1e-25 and abs(complex(sp.N(ra+rb+sp.I*sp.sqrt(2)/4,30)))<1e-25"
+   },
+   {
+    "claim": "|cot(pi z)| <= coth(pi/2) < 1.1 on the squares C_N (N=1..6); coth(pi/2) ~ 1.0903.",
+    "python": "import mpmath as mp\nassert mp.coth(mp.pi/2)<1.1\nfor N in range(1,7):\n    L=N+mp.mpf(1)/2\n    pts=[]\n    for k in range(401):\n        s=-L+2*L*k/400\n        pts+= [mp.mpc(L,s),mp.mpc(-L,s),mp.mpc(s,L),mp.mpc(s,-L)]\n    assert max(abs(mp.cot(mp.pi*p)) for p in pts)<=mp.coth(mp.pi/2)+1e-12"
+   },
+   {
+    "claim": "The square-contour integral of pi cot(pi z)/z^2 equals 2 pi i (2 sum_{n<=N} 1/n^2 - pi^2/3) for N=3, and sum 1/n^2 = pi^2/6.",
+    "python": "import mpmath as mp\nN=3; L=mp.mpf(N)+0.5\nF=lambda z: mp.pi*mp.cot(mp.pi*z)/z**2\ncorners=[mp.mpc(L,-L),mp.mpc(L,L),mp.mpc(-L,L),mp.mpc(-L,-L),mp.mpc(L,-L)]\ntot=0\nfor i in range(4):\n    a,b=corners[i],corners[i+1]\n    tot+=mp.quad(lambda t: F(a+(b-a)*t)*(b-a),[0,1])\nassert abs(tot-2j*mp.pi*(2*sum(mp.mpf(1)/n**2 for n in range(1,N+1))-mp.pi**2/3))<1e-10\nassert abs(mp.zeta(2)-mp.pi**2/6)<1e-20"
+   },
+   {
+    "claim": "z^5+3z+1 has 1 zero in |z|<1 and the other 4 in 1<|z|<2; z^4-6z+3 has 1 zero in |z|<1, all 4 in |z|<2.",
+    "python": "import numpy as np\nr=np.abs(np.roots([1,0,0,0,3,1]))\nassert sum(r<1)==1 and sum((r>1)&(r<2))==4\nr=np.abs(np.roots([1,0,0,-6,3]))\nassert sum(r<1)==1 and all(r<2)"
+   },
+   {
+    "claim": "Argument principle numerically: (1/2 pi i) oint p'/p over |z|=1 and |z|=2 for p = z^5+3z+1 gives 1 and 5.",
+    "python": "import mpmath as mp\np=lambda z: z**5+3*z+1; dp=lambda z: 5*z**4+3\nfor R,cnt in ((1,1),(2,5)):\n    v=mp.quad(lambda t: dp(R*mp.e**(1j*t))/p(R*mp.e**(1j*t))*1j*R*mp.e**(1j*t),[0,mp.pi/2,mp.pi,3*mp.pi/2,2*mp.pi])/(2j*mp.pi)\n    assert abs(v-cnt)<1e-8"
+   },
+   {
+    "claim": "N(100) = 29; (T/2pi)log(T/2pi) - T/2pi ~ 28.13 and adding 7/8 gives ~ 29.00 at T = 100.",
+    "python": "import mpmath as mp\nT=100\nm=T/(2*mp.pi)*mp.log(T/(2*mp.pi))-T/(2*mp.pi)\nassert mp.nzeros(100)==29 and abs(m-28.13)<0.005 and abs(m+mp.mpf(7)/8-29.00)<0.005"
+   },
+   {
+    "claim": "Fresh: |cos(u+iv)|^2 = cos^2 u + sinh^2 v, |sin(u+iv)|^2 = sin^2 u + sinh^2 v, cot(pi/2+iv) = -i tanh v.",
+    "python": "import sympy as sp\nu,v=sp.symbols('u v',real=True)\nc=sp.expand_complex(sp.cos(u+sp.I*v)); s=sp.expand_complex(sp.sin(u+sp.I*v))\nassert sp.simplify(sp.re(c)**2+sp.im(c)**2-(sp.cos(u)**2+sp.sinh(v)**2))==0\nassert sp.simplify(sp.re(s)**2+sp.im(s)**2-(sp.sin(u)**2+sp.sinh(v)**2))==0\nimport mpmath as mp\nfor vv in (0.3,-1.7,4.0):\n    assert abs(mp.cot(mp.pi/2+1j*vv)+1j*mp.tanh(vv))<1e-14"
+   },
+   {
+    "claim": "Fresh: clockwise traversal flips the sign of (1/2 pi i) oint p'/p for p=z^5+3z+1 on |z|=1; Rouche bounds |z^5+1|<=2<3 on |z|=1 and |3z+1|<=7<32 on |z|=2 (sampled); roots by sympy.",
+    "python": "import mpmath as mp, sympy as sp\np=lambda z: z**5+3*z+1; dp=lambda z: 5*z**4+3\ncw=mp.quad(lambda t: dp(mp.e**(-1j*t))/p(mp.e**(-1j*t))*(-1j)*mp.e**(-1j*t),[0,mp.pi/2,mp.pi,3*mp.pi/2,2*mp.pi])/(2j*mp.pi)\nassert abs(cw+1)<1e-8\nfor k in range(720):\n    z=mp.e**(2j*mp.pi*k/720)\n    assert abs(z**5+1)<=2+1e-12 and abs(3*(2*z)+1)<=7+1e-12\nZ=sp.symbols('z')\nr=[abs(complex(t)) for t in sp.Poly(Z**5+3*Z+1).nroots()]\nassert sum(x<1 for x in r)==1 and sum(1<x<2 for x in r)==4"
+   },
+   {
+    "claim": "Fresh: Perron kernel: (1/2pi i) int_{2-iT}^{2+iT} y^s ds/s is near 1 for y=e and near 0 for y=1/e (T=400).",
+    "python": "import mpmath as mp\nmp.mp.dps=20\nc=2; T=400\ndef K(y):\n    g=lambda t: y**(c+1j*t)/(c+1j*t)\n    pts=[-T+k*T/200 for k in range(401)]\n    return mp.quad(g,pts)/(2*mp.pi)\nassert abs(K(mp.e)-1)<0.02 and abs(K(1/mp.e))<0.02"
+   },
+   {
+    "claim": "Fresh: 29 zeros of zeta with 0 < gamma <= 100 (29th at 98.83, 30th at 101.32); main terms 28.127 and +7/8 = 29.002.",
+    "python": "import mpmath as mp\nassert mp.zetazero(29).imag<100<mp.zetazero(30).imag\nT=mp.mpf(100); m=T/(2*mp.pi)*mp.log(T/(2*mp.pi))-T/(2*mp.pi)\nassert abs(m-28.1273)<1e-4 and abs(m+0.875-29.0023)<1e-4"
+   }
+  ]
+ },
+ {
+  "id": "continuation",
+  "minutes": 26,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The series $\\sum_{n\\ge1} n^{-s}$ converges only when $\\mathrm{Re}\\, s > 1$. Yet number theorists talk freely about $\\zeta(\\tfrac12 + 14.13i)$ and about $\\zeta(-1) = -\\tfrac1{12}$. What can those values mean, if the series that defines $\\zeta$ diverges there?\n\nThe answer is analytic continuation. A holomorphic function on a connected region is so rigid that its values on any small disc determine it everywhere. So if a function given on a small region extends holomorphically to a larger one at all, it does so in exactly one way, and the extension deserves the same name. This lesson proves that uniqueness, shows how continuations are built in practice, and does it for the zeta function."
+   },
+   {
+    "type": "theorem",
+    "title": "The identity theorem",
+    "body": "Let $U$ be a connected open set and let $f, g$ be holomorphic on $U$. If $f = g$ on a set of points that has an accumulation point in $U$ (for example on a small disc, or on a short segment), then $f = g$ on all of $U$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Let $h = f - g$, and let $S$ be the set of points $z \\in U$ at which $h$ and all its derivatives vanish.\n\n$S$ is open: if $z_0 \\in S$, the Taylor series of $h$ at $z_0$ is identically zero, and it converges to $h$ on a disc around $z_0$ ([[holomorphic]]), so $h \\equiv 0$ on that disc, and so do all its derivatives.\n\n$S$ is closed in $U$: it is the intersection of the sets $\\{h^{(n)} = 0\\}$, each closed because $h^{(n)}$ is continuous.\n\n$S$ is non-empty: let $z_0 \\in U$ be an accumulation point of zeros of $h$; then $h(z_0) = 0$ by continuity. If some derivative of $h$ were nonzero at $z_0$, let $m$ be the least such order. The power series then gives $h(z) = (z - z_0)^m k(z)$ with $k$ holomorphic near $z_0$ and $k(z_0) \\ne 0$. By continuity $k \\ne 0$ near $z_0$, so $h$ has no zeros in a small punctured disc around $z_0$, contradicting the choice of $z_0$. So $z_0 \\in S$.\n\nA connected set cannot be split into two disjoint non-empty open sets, so $S$, being open, closed and non-empty, is all of $U$. Hence $h \\equiv 0$."
+   },
+   {
+    "type": "definition",
+    "title": "Analytic continuation",
+    "body": "Let $f$ be holomorphic on an open set $U$, and let $V \\supseteq U$ be a connected open set. A holomorphic function $F$ on $V$ with $F = f$ on $U$ is an analytic continuation of $f$ to $V$. By the identity theorem there is at most one.\n\nContinuation is a statement about functions, not about formulas. The formula that defines $f$ on $U$ (a series, an integral) may make no sense on $V$; the continuation is whatever holomorphic function on $V$ agrees with it."
+   },
+   {
+    "type": "section",
+    "title": "The model example",
+    "body": "The geometric series $$\\sum_{n\\ge0} z^n = \\frac{1}{1-z} \\qquad (|z| < 1)$$ diverges for every $|z| \\ge 1$, since then its terms do not tend to $0$. But the right side is holomorphic on $\\mathbb{C}\\setminus\\{1\\}$, which is connected, so $1/(1-z)$ is the analytic continuation of the series to $\\mathbb{C}\\setminus\\{1\\}$. Its value at $z = 2$ is $-1$. Nobody claims that $1 + 2 + 4 + 8 + \\cdots$ converges to $-1$; the statement is that the function defined by the series near $0$ continues to a function whose value at $2$ is $-1$.\n\nWhen no closed formula is available, continuation can be done step by step. Re-expand around a new centre $a$ with $|a| < 1$: $$\\frac{1}{1-z} = \\frac{1}{(1-a) - (z-a)} = \\sum_{n\\ge0}\\frac{(z-a)^n}{(1-a)^{n+1}},$$ which converges for $|z - a| < |1 - a|$. For $a = -\\tfrac12$ the new disc has radius $\\tfrac32$ and pokes out of the unit disc on the left; it reaches $z = -1.2$, for example. Moving the centre again and again (Weierstrass's chain of discs) reaches every point except $1$. This procedure works for any power series, and it is how one decides in principle whether a continuation exists."
+   },
+   {
+    "type": "section",
+    "title": "Obstructions: natural boundaries and many-valuedness",
+    "body": "Not every function continues. The series $f(z) = \\sum_{n\\ge0} z^{2^n}$ converges on $|z| < 1$, but it cannot be continued across any arc of the unit circle. Indeed, if $\\zeta^{2^k} = 1$ then $\\zeta^{2^n} = 1$ for all $n \\ge k$, so for $0 < r < 1$ $$f(r\\zeta) = \\sum_{n< k}(r\\zeta)^{2^n} + \\sum_{n\\ge k} r^{2^n},$$ and the second sum tends to $+\\infty$ as $r \\to 1$. Such points $\\zeta$ are dense on the circle, so $f$ is unbounded near every arc, which a continuation across the arc would forbid. The unit circle is a natural boundary.\n\nContinuation can also be ambiguous in a different way: continuing along two different paths around a point can give different answers. Continuing $\\log z$ once around the origin returns $\\log z + 2\\pi i$. On a simply connected region this cannot happen (the monodromy theorem, whose proof we omit), so on such regions a function that can be continued along every path has a single-valued continuation."
+   },
+   {
+    "type": "section",
+    "title": "Continuing the zeta function",
+    "body": "For $\\mathrm{Re}\\, s > 1$ let $\\zeta(s) = \\sum_{n\\ge1}n^{-s}$; it is holomorphic there (each partial sum is entire, and the convergence is uniform on each half-plane $\\mathrm{Re}\\, s \\ge 1 + \\delta$; uniform limits of holomorphic functions are holomorphic, see [[uniform-convergence]]). Here is a continuation to $\\mathrm{Re}\\, s > 0$.\n\nFor an integer $N \\ge 1$, compute $s\\int_1^N \\lfloor t\\rfloor t^{-s-1}\\,dt$ by splitting at the integers: on $[n, n+1)$ the floor is $n$, and $s\\int_n^{n+1} t^{-s-1}\\,dt = n^{-s} - (n+1)^{-s}$. So $$s\\int_1^N \\lfloor t\\rfloor t^{-s-1}\\,dt = \\sum_{n=1}^{N-1} n\\bigl(n^{-s} - (n+1)^{-s}\\bigr) = \\sum_{n=1}^{N} n^{-s} - N^{1-s},$$ after rearranging the finite sum. Let $N \\to \\infty$ with $\\mathrm{Re}\\, s > 1$, so that $N^{1-s} \\to 0$, and write $\\lfloor t\\rfloor = t - \\{t\\}$: $$\\zeta(s) = s\\int_1^\\infty \\lfloor t\\rfloor t^{-s-1}\\,dt = \\frac{s}{s-1} - s\\int_1^\\infty \\{t\\}\\,t^{-s-1}\\,dt.$$ Now look at the right side. Since $0 \\le \\{t\\} < 1$, the last integral converges absolutely whenever $\\mathrm{Re}\\, s > 0$, uniformly on each half-plane $\\mathrm{Re}\\, s \\ge \\delta > 0$, and it defines a holomorphic function there (each truncation $\\int_1^N$ is entire in $s$). So the right side is holomorphic on $\\mathrm{Re}\\, s > 0$ except at $s = 1$, where $\\frac{s}{s-1} = 1 + \\frac{1}{s-1}$ has a simple pole with residue $1$. By the identity theorem this is the continuation of $\\zeta$ to $\\mathrm{Re}\\, s > 0$. For example it gives $\\zeta(\\tfrac12) \\approx -1.4604$, even though $\\sum n^{-1/2}$ diverges.\n\nTo go further, Riemann (1859) proved the functional equation $$\\zeta(s) = 2^s\\pi^{s-1}\\sin\\!\\left(\\frac{\\pi s}{2}\\right)\\Gamma(1-s)\\,\\zeta(1-s),$$ which expresses $\\zeta$ on $\\mathrm{Re}\\, s < 0$ in terms of its values on $\\mathrm{Re}\\, s > 1$, where the series converges. Together these continue $\\zeta$ to a function holomorphic on $\\mathbb{C}\\setminus\\{1\\}$. Its proof is in [[functional-equation]] and uses the [[gamma]] function."
+   },
+   {
+    "type": "example",
+    "title": "Continuing the gamma function",
+    "body": "The gamma function is defined for $\\mathrm{Re}\\, s > 0$ by $\\Gamma(s) = \\int_0^\\infty t^{s-1}e^{-t}\\,dt$, and it is holomorphic there. Use $\\Gamma(s+1) = s\\Gamma(s)$ to continue it to $\\mathbb{C}$ minus the non-positive integers, and find its residue at $s = -n$.",
+    "solution": "Integration by parts gives $\\Gamma(s+1) = s\\Gamma(s)$ for $\\mathrm{Re}\\, s > 0$. Iterating, for each integer $n \\ge 0$, $$\\Gamma(s) = \\frac{\\Gamma(s + n + 1)}{s(s+1)\\cdots(s+n)} \\qquad (\\mathrm{Re}\\, s > 0).$$ The right side makes sense and is holomorphic for $\\mathrm{Re}\\, s > -n-1$, except at $s = 0, -1, \\ldots, -n$. So it continues $\\Gamma$ to that larger region. The continuations for different $n$ agree where both are defined (they agree on $\\mathrm{Re}\\, s > 0$, and the region where both are defined is connected), so together they give a single function holomorphic on $\\mathbb{C}\\setminus\\{0, -1, -2, \\ldots\\}$.\n\nAt $s = -n$ the factor $s + n$ in the denominator vanishes and the numerator equals $\\Gamma(1) = 1$. So the pole is simple, and $$\\mathrm{Res}(\\Gamma, -n) = \\lim_{s\\to -n}(s+n)\\Gamma(s) = \\frac{1}{(-n)(-n+1)\\cdots(-1)} = \\frac{(-1)^n}{n!}.$$"
+   },
+   {
+    "type": "example",
+    "title": "Values at negative integers",
+    "body": "Use the functional equation to compute $\\zeta(-1)$, and explain the zeros of $\\zeta$ at $s = -2, -4, -6, \\ldots$.",
+    "solution": "Put $s = -1$: $\\zeta(-1) = 2^{-1}\\pi^{-2}\\sin(-\\pi/2)\\,\\Gamma(2)\\,\\zeta(2) = \\frac12\\cdot\\frac{1}{\\pi^2}\\cdot(-1)\\cdot 1\\cdot\\frac{\\pi^2}{6} = -\\frac{1}{12}$.\n\nAt $s = -2k$ with $k \\ge 1$, the factor $\\sin(\\pi s/2) = \\sin(-\\pi k) = 0$, while $\\Gamma(1 + 2k) = (2k)!$ and $\\zeta(1 + 2k)$ are finite and nonzero. So $\\zeta(-2k) = 0$: these are the trivial zeros. In general $\\zeta(-n) = -B_{n+1}/(n+1)$ for $n \\ge 1$, with $B_j$ the Bernoulli numbers; for instance $\\zeta(-3) = \\tfrac{1}{120}$. Also $\\zeta(0) = -\\tfrac12$ (here the functional equation must be read as a limit, since $\\sin(0) = 0$ meets the pole of $\\zeta(1-s)$).\n\nThe often-quoted \"$1 + 2 + 3 + \\cdots = -\\tfrac1{12}$\" is shorthand for $\\zeta(-1) = -\\tfrac1{12}$, a value of the continued function. The series itself diverges."
+   },
+   {
+    "type": "example",
+    "title": "Prescribed values on a sequence",
+    "body": "(a) Is there a function $f$, holomorphic on the open unit disc, with $f(1/n) = (-1)^n/n$ for every integer $n \\ge 2$?\n\n(b) Is there one with $f(1/n) = 1/(n+1)$ for every $n \\ge 2$? If so, is it unique?",
+    "solution": "(a) No. Suppose $f$ exists. On the points $1/(2k)$ we have $f(1/(2k)) = 1/(2k)$, so $f$ agrees with $g(z) = z$ on a set accumulating at $0$, which is inside the disc. By the identity theorem $f(z) = z$ everywhere. But then $f(1/3) = 1/3$, whereas it should be $-1/3$.\n\n(b) Yes: $f(z) = \\dfrac{z}{1+z}$ is holomorphic on the unit disc (its only pole is at $-1$, on the boundary) and $f(1/n) = \\dfrac{1/n}{1 + 1/n} = \\dfrac{1}{n+1}$. It is unique, because two such functions agree on $\\{1/n\\}$, which accumulates at $0$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Continuation does not sum a divergent series. It produces a function; a \"value\" of a divergent series is only meaningful relative to the family of functions you embed it in. For example $1 + 1 + 1 + \\cdots$ is $\\zeta(0) = -\\tfrac12$ if you view it as $\\sum n^{-s}$ at $s = 0$, but it sits at the pole of $\\sum z^n$ if you view it as that series at $z = 1$.\n- The accumulation point must lie inside the domain. $\\sin(\\pi/z)$ vanishes at every $z = 1/n$, but it is not identically zero on $\\mathbb{C}\\setminus\\{0\\}$: the zeros accumulate only at $0$, which is not in the domain.\n- Connectedness is essential. On the union of two disjoint discs, the function equal to $0$ on one and $1$ on the other is holomorphic.\n- Nothing like this holds for real smooth functions. The function equal to $e^{-1/x^2}$ for $x \\ne 0$ and $0$ at $0$ is infinitely differentiable, has all derivatives zero at $0$, and is not identically zero.\n- A continuation along a path can depend on the path when the region has holes, as $\\log z$ shows; uniqueness is only guaranteed on a fixed connected domain."
+   },
+   {
+    "type": "connection",
+    "body": "Riemann's 1859 paper continued $\\zeta$ to the whole plane, proved the [[functional-equation]], linked the zeros of $\\zeta$ to the distribution of primes and stated the Riemann hypothesis ([[rh]]). Continuation is the first step in the theory of the [[zeta]] function, of the [[gamma]] function, and of every [[dirichlet-series]] that matters in number theory: Dirichlet [[l-functions]], [[dedekind-zeta]] functions and [[hecke-l]] functions all have continuations and functional equations, and the hypotheses about their zeros are about the continued functions, in regions where the original series diverge. The zeros of the continued zeta function are the subject of [[nontrivial-zeros]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\sum_{n\\ge0}(-1)^n z^{2n}$ continues to $\\mathbb{C}\\setminus\\{i, -i\\}$, and find the radius of convergence of the Taylor series of the continuation about $z = 1$.\n2. Show that $(1 - 2^{1-s})\\zeta(s) = \\sum_{n\\ge1}(-1)^{n-1}n^{-s}$ for $\\mathrm{Re}\\, s > 1$.\n3. Using $\\zeta(s) = \\frac{s}{s-1} - s\\int_1^\\infty\\{t\\}t^{-s-1}\\,dt$ and the formula $\\gamma = 1 - \\int_1^\\infty \\{t\\}t^{-2}\\,dt$ (see [[partial-summation]]), show that $\\zeta(s) - \\frac{1}{s-1} \\to \\gamma$ as $s \\to 1$.\n4. Let $f$ be entire and real-valued on the real axis. Prove that $f(\\bar z) = \\overline{f(z)}$ for every $z$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ahlfors, Complex Analysis",
+    "where": "Chapter 8"
+   },
+   {
+    "ref": "Stein & Shakarchi, Complex Analysis",
+    "where": "Chapter 6"
+   },
+   {
+    "ref": "Edwards, Riemann's Zeta Function"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Re-expansion of 1/(1-z) about a=-1/2 converges at z=-1.2 (outside the unit disc) to 1/2.2; radius |1-a| = 3/2.",
+    "python": "a=-0.5; z=-1.2\ns=sum((z-a)**n/(1-a)**(n+1) for n in range(400))\nassert abs(s-1/(1-z))<1e-12 and abs(z-a)<abs(1-a)==1.5 and abs(z)>1"
+   },
+   {
+    "claim": "s int_1^N floor(t) t^{-s-1} dt = sum_{n<=N} n^{-s} - N^{1-s} (exact, s=3/2+2i, N=50).",
+    "python": "import mpmath as mp\ns=mp.mpc(1.5,2); N=50\nlhs=sum(n*(mp.mpf(n)**(-s)-mp.mpf(n+1)**(-s)) for n in range(1,N))\nrhs=sum(mp.mpf(n)**(-s) for n in range(1,N+1))-mp.mpf(N)**(1-s)\nassert abs(lhs-rhs)<1e-12"
+   },
+   {
+    "claim": "zeta(s) = s/(s-1) - s int_1^inf {t} t^{-s-1} dt at s=2 and s=1/2; zeta(1/2) ~ -1.4604.",
+    "python": "import math, mpmath\nN=10**6\nfor s in (2.0,0.5):\n    S=math.fsum(n**-s for n in range(1,N+1))\n    J=s*(N**(1-s)-1)/(1-s)-(S-N**(1-s))\n    J+=0.5*N**(-s)\n    val=s/(s-1)-J\n    assert abs(val-float(mpmath.zeta(s)))<1e-6\nassert abs(float(mpmath.zeta(0.5))+1.4604)<1e-4"
+   },
+   {
+    "claim": "Gamma residues at -n are (-1)^n/n! for n=0..5 (limit (s+n)Gamma(s)).",
+    "python": "import mpmath as mp\nmp.mp.dps=50\nfor n in range(6):\n    e=mp.mpf('1e-25')\n    v=e*mp.gamma(-n+e)\n    assert abs(v-(-1)**n/mp.factorial(n))<1e-9"
+   },
+   {
+    "claim": "Functional equation numerically at s=-1, -0.5+3i, 2.5; zeta(-1) = -1/12, zeta(-3) = 1/120 = -B4/4, zeta(-2)=zeta(-4)=0, zeta(0)=-1/2.",
+    "python": "import mpmath as mp, sympy as sp\nfe=lambda s: 2**s*mp.pi**(s-1)*mp.sin(mp.pi*s/2)*mp.gamma(1-s)*mp.zeta(1-s)\nfor s in (mp.mpf(-1),mp.mpc(-0.5,3),mp.mpf(2.5)):\n    assert abs(fe(s)-mp.zeta(s))<1e-12\nassert abs(mp.zeta(-1)+mp.mpf(1)/12)<1e-15 and abs(mp.zeta(-3)-mp.mpf(1)/120)<1e-15\nassert -sp.bernoulli(4)/4==sp.Rational(1,120) and -sp.bernoulli(2)/2==sp.Rational(-1,12)\nassert abs(mp.zeta(-2))<1e-15 and abs(mp.zeta(-4))<1e-15 and abs(mp.zeta(0)+0.5)<1e-15"
+   },
+   {
+    "claim": "f(z)=z/(1+z) has f(1/n)=1/(n+1); sin(pi/z) vanishes at z=1/n but not at z=2/3.",
+    "python": "from fractions import Fraction\nimport math\nfor n in range(2,100):\n    z=Fraction(1,n)\n    assert z/(1+z)==Fraction(1,n+1)\n    assert abs(math.sin(math.pi*n))<1e-12\nassert abs(math.sin(math.pi*1.5))>0.5"
+   },
+   {
+    "claim": "sum z^{2^n} blows up radially at 2^k-th roots of unity: |f(r zeta)| > 5 at r=0.9999 for zeta = -1, i.",
+    "python": "import cmath\ndef f(z):\n    s=0; n=0\n    while abs(z)**(2**n)>1e-18:\n        s+=z**(2**n); n+=1\n    return s\nr=0.9999\nfor zeta in (-1,1j):\n    assert abs(f(r*zeta))>5"
+   },
+   {
+    "claim": "zeta(s) - 1/(s-1) -> gamma as s -> 1.",
+    "python": "import mpmath as mp\nmp.mp.dps=40\ns=1+mp.mpf('1e-15')\nassert abs(mp.zeta(s)-1/(s-1)-mp.euler)<1e-8"
+   },
+   {
+    "claim": "Fresh: zeta(-n) = -B_{n+1}/(n+1) for n=1..8; Gamma residue (-1)^n/n! from the formula Gamma(s+n+1)/(s(s+1)...(s+n)).",
+    "python": "import mpmath as mp, sympy as sp\nmp.mp.dps=30\nfor n in range(1,9):\n    assert abs(mp.zeta(-n)-mp.mpf(sp.Rational(-sp.bernoulli(n+1),n+1)))<1e-25\nfor n in range(6):\n    den=sp.prod([sp.Integer(-n+j) for j in range(n)])\n    assert sp.Rational(1,1)/den==sp.Rational((-1)**n,sp.factorial(n))"
+   },
+   {
+    "claim": "Fresh: (1-2^{1-s}) zeta(s) = sum (-1)^{n-1} n^{-s} at s=2,3,1.5+2i; zeta(1/2) = -1.46035...; f(z)=z/(1+z) satisfies f(1/n)=1/(n+1).",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nfor s in (2,3,mp.mpc(1.5,2)):\n    assert abs((1-2**(1-s))*mp.zeta(s)-mp.altzeta(s))<1e-20\nassert abs(mp.zeta(0.5)+mp.mpf('1.46035'))<1e-5\nfrom fractions import Fraction\nassert all(Fraction(1,n)/(1+Fraction(1,n))==Fraction(1,n+1) for n in range(2,200))"
+   },
+   {
+    "claim": "Fresh: zeta(-1) from the functional equation with exact sympy values equals -1/12.",
+    "python": "import sympy as sp\ns=-1\nv=sp.Integer(2)**s*sp.pi**(s-1)*sp.sin(sp.pi*s/2)*sp.gamma(1-s)*sp.zeta(1-s)\nassert sp.simplify(v+sp.Rational(1,12))==0"
+   }
+  ]
+ }
+]

@@ -1,0 +1,52 @@
+[
+ {
+  "id": "series",
+  "field": "key_statements",
+  "problem": "The equivalence is stated without saying s is real; for complex s the notation '< infinity' is not meaningful and the correct condition is Re s > 1 (absolute convergence).",
+  "corrected": [
+   "\\sum_{n \\ge 1} \\frac{1}{n^s} < \\infty \\iff s > 1 \\quad (s \\in \\mathbb{R})"
+  ]
+ },
+ {
+  "id": "asymptotics",
+  "field": "summary",
+  "problem": "The O / << definition omits the range of validity of the inequality, and ~ and o omit the limit x -> infinity.",
+  "corrected": "$f = O(g)$ and $f \\ll g$ mean $|f| \\le Cg$ for some constant $C$ and all sufficiently large $x$ (or all $x$ in a stated range); $f \\sim g$ means $f/g \\to 1$ and $f = o(g)$ means $f/g \\to 0$, as $x \\to \\infty$. Number theory statements are mostly sharp asymptotics with error terms."
+ },
+ {
+  "id": "partial-summation",
+  "field": "key_statements",
+  "problem": "Abel's formula needs f continuously differentiable on [1, x] (and x >= 1); without it f' and the integral need not exist.",
+  "corrected": [
+   "\\sum_{n \\le x} a_n f(n) = A(x) f(x) - \\int_1^x A(t)\\, f'(t)\\, dt \\quad (x \\ge 1,\\ f \\in C^1[1,x])"
+  ]
+ },
+ {
+  "id": "holomorphic",
+  "field": "summary",
+  "problem": "'Zero integral around closed loops' is false on a general domain (1/z on the punctured plane has integral 2 pi i around the unit circle); the domain must be simply connected (or the loop null-homotopic).",
+  "corrected": "A complex-differentiable function on a simply connected domain has zero integral around closed loops, and Cauchy's integral formula recovers its values and all derivatives from boundary values. Holomorphic functions are locally power series."
+ },
+ {
+  "id": "holomorphic",
+  "field": "key_statements",
+  "problem": "The contour is unspecified; the formula holds for a positively oriented circle around a whose closed disc lies in the domain (not for an arbitrary loop).",
+  "corrected": [
+   "f^{(n)}(a) = \\frac{n!}{2\\pi i} \\oint_{|z-a|=r} \\frac{f(z)}{(z-a)^{n+1}}\\,dz \\quad (\\overline{D}(a,r) \\subset \\Omega)"
+  ]
+ },
+ {
+  "id": "residues",
+  "field": "summary",
+  "problem": "The residue theorem is stated with no hypotheses on the function or contour (needs f holomorphic except for isolated singularities, a positively oriented simple closed contour, no singularities on it).",
+  "corrected": "The integral of a meromorphic function around a positively oriented simple closed contour avoiding its poles equals $2\\pi i$ times the sum of the residues inside. The argument principle and Rouché's theorem count zeros inside a contour, which is how zeros of $\\zeta$ are counted."
+ },
+ {
+  "id": "residues",
+  "field": "key_statements",
+  "problem": "The argument principle needs f meromorphic on and inside a positively oriented simple closed contour C with no zeros or poles on C, and zeros and poles counted with multiplicity.",
+  "corrected": [
+   "\\frac{1}{2\\pi i}\\oint_C \\frac{f'(z)}{f(z)}\\,dz = \\#\\text{zeros} - \\#\\text{poles} \\quad (\\text{inside } C, \\text{ with multiplicity; } f \\text{ meromorphic, no zeros or poles on } C, C \\text{ positively oriented})"
+  ]
+ }
+]

@@ -1,0 +1,273 @@
+[
+ {
+  "id": "zero-density",
+  "title": "Zero-density estimates",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$N(\\sigma, T)$ counts zeros with real part at least $\\sigma$ and height at most $T$. Density theorems show $N(\\sigma,T) \\ll T^{A(1-\\sigma)+\\varepsilon}$: zeros off the line, if any, are rare.",
+  "key_statements": [
+   "N(\\sigma, T) \\ll T^{A(1-\\sigma)} (\\log T)^B"
+  ],
+  "why": "Density hypotheses give primes in short intervals almost as well as RH would.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory",
+   "Titchmarsh, The Theory of the Riemann Zeta-Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "zero-free-region",
+    "title": "Zero-free regions"
+   },
+   {
+    "id": "moments",
+    "title": "Moments, mollifiers and amplifiers"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "lindelof",
+  "title": "Lindelöf hypothesis and subconvexity",
+  "area": "Analytic number theory",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "Lindelöf (1908) conjectured $\\zeta(\\tfrac12+it) \\ll |t|^{\\varepsilon}$. The functional equation and convexity give exponent $\\tfrac14$; any improvement is called subconvexity.",
+  "key_statements": [
+   "\\zeta(\\tfrac12 + it) \\ll_\\varepsilon |t|^{\\varepsilon}"
+  ],
+  "why": "Implied by RH, and itself enough for many applications.",
+  "references": [
+   "Titchmarsh, The Theory of the Riemann Zeta-Function",
+   "Iwaniec & Kowalski, Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   },
+   {
+    "id": "exponential-sums",
+    "title": "Exponential sums and Weyl differencing"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1908",
+    "title": "The Lindelöf hypothesis",
+    "who": "Ernst Lindelöf",
+    "text": "Conjectured $\\zeta(\\tfrac12 + it) \\ll |t|^{\\varepsilon}$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "pair-correlation",
+  "title": "Pair correlation and random matrices",
+  "area": "Analytic number theory",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "Montgomery (1973) studied spacings between zeros and conjectured their pair correlation is $1 - \\left(\\frac{\\sin \\pi u}{\\pi u}\\right)^2$. Dyson recognised this as the eigenvalue statistics of large random Hermitian matrices.",
+  "key_statements": [
+   "1 - \\Bigl(\\frac{\\sin \\pi u}{\\pi u}\\Bigr)^2"
+  ],
+  "why": "Zeros behave like energy levels of a chaotic quantum system, a hint toward the Hilbert–Pólya idea.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1973",
+    "title": "Pair correlation of zeros",
+    "who": "Hugh Montgomery",
+    "text": "His conjectured spacing law matched random matrix statistics, as Freeman Dyson pointed out.",
+    "ai_claim": false
+   },
+   {
+    "date": "2000",
+    "title": "Moments from random matrices",
+    "who": "Jon Keating, Nina Snaith",
+    "text": "Predicted the moments of $\\zeta$ on the critical line from random matrix theory.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "diophantine-approx",
+  "title": "Diophantine approximation and irrationality",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "How well can a real number be approximated by $p/q$? Dirichlet gives $|\\alpha - p/q| < 1/q^2$ infinitely often; Roth (1955) shows algebraic irrationals cannot do much better. Irrationality proofs (Apéry's $\\zeta(3)$) are quantitative statements of this kind.",
+  "key_statements": [
+   "\\Big|\\alpha-\\frac pq\\Big| < \\frac{1}{q^{2+\\varepsilon}} \\ \\text{has finitely many solutions for algebraic } \\alpha \\ \\text{(Roth)}"
+  ],
+  "why": "Transcendence, the abc conjecture and the irrationality of zeta values all reduce to how small a linear form in numbers can be.",
+  "references": [
+   "Hardy & Wright, An Introduction to the Theory of Numbers",
+   "Bugeaud, Approximation by Algebraic Numbers"
+  ],
+  "prerequisites": [
+   {
+    "id": "continued-fractions",
+    "title": "Continued fractions"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1955",
+    "title": "Roth's approximation theorem",
+    "who": "Klaus Roth",
+    "text": "Algebraic irrationals have approximation exponent exactly $2$; Fields Medal 1958.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "smooth-powerful",
+  "title": "Smooth, powerful and squarefree numbers",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$n$ is $y$-smooth if all its prime factors are $\\le y$, powerful if $p\\mid n \\Rightarrow p^2 \\mid n$, squarefree if no $p^2$ divides it. Their counts are governed by Dickman's function, $\\zeta(3/2)/\\zeta(3)\\cdot\\sqrt x$ and $6x/\\pi^2$.",
+  "key_statements": [
+   "\\Psi(x, x^{1/u}) \\sim \\rho(u)\\,x",
+   "\\#\\{n\\le x \\text{ squarefree}\\} \\sim \\frac{6}{\\pi^2}x"
+  ],
+  "why": "Smooth numbers are the engine of the fastest factoring algorithms; powerful numbers are where the abc conjecture bites.",
+  "references": [
+   "Tenenbaum, Introduction to Analytic and Probabilistic Number Theory",
+   "Crandall & Pomerance, Prime Numbers: A Computational Perspective"
+  ],
+  "prerequisites": [
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   },
+   {
+    "id": "asymptotics",
+    "title": "Asymptotic notation"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "prime-patterns",
+  "title": "Primes in sequences and gaps",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Which sequences contain infinitely many primes, how large gaps between consecutive primes can be, and how often primes fall in short intervals. Most such questions are open; sieves and the circle method give the partial results.",
+  "key_statements": [
+   "\\limsup \\frac{p_{n+1}-p_n}{\\log p_n} = \\infty \\ \\text{(Westzynthius 1931)}",
+   "\\max_{p_n\\le x}(p_{n+1}-p_n) \\gg \\frac{\\log x\\,\\log\\log x\\,\\log\\log\\log\\log x}{\\log\\log\\log x}\\ \\text{(Ford–Green–Konyagin–Maynard–Tao)}"
+  ],
+  "why": "Large gaps are built by covering an interval with residue classes, so this topic shares a toolkit with covering systems.",
+  "references": [
+   "Guy, Unsolved Problems in Number Theory",
+   "Friedlander & Iwaniec, Opera de Cribro"
+  ],
+  "prerequisites": [
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bounded-gaps",
+    "title": "Bounded gaps between primes"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "2004",
+    "title": "The primes contain arbitrarily long progressions",
+    "who": "Ben Green, Terence Tao",
+    "text": "A relative Szemerédi theorem applied to a pseudorandom majorant of the primes.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "probabilistic-nt",
+  "title": "Probabilistic number theory",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "probability"
+  ],
+  "status": null,
+  "summary": "Arithmetic functions behave like sums of independent random variables. Erdős–Kac: $\\omega(n)$, the number of prime factors, is normally distributed with mean and variance $\\log\\log n$.",
+  "key_statements": [
+   "\\frac{1}{x}\\#\\Big\\{n\\le x : \\frac{\\omega(n)-\\log\\log n}{\\sqrt{\\log\\log n}} \\le t\\Big\\} \\to \\Phi(t)"
+  ],
+  "why": "It turned heuristics such as Cramér's model of the primes into theorems where it could, and tells you what to expect where it cannot.",
+  "references": [
+   "Tenenbaum, Introduction to Analytic and Probabilistic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "arithmetic-functions",
+    "title": "Arithmetic functions φ, σ, τ"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1940",
+    "title": "The Erdős–Kac theorem",
+    "who": "Paul Erdős, Mark Kac",
+    "text": "$\\omega(n)$ is asymptotically normal with mean and variance $\\log\\log n$.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

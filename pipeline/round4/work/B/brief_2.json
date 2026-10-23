@@ -1,0 +1,858 @@
+[
+ {
+  "id": "additive-combinatorics",
+  "title": "Sumsets and additive combinatorics",
+  "summary": "The study of $A+B = \\{a+b\\}$ for finite sets. Small doubling $|A+A| \\le K|A|$ forces structure (Freiman), and Fourier analysis on $\\mathbb Z/N$ measures how random a set is.",
+  "key_statements": [
+   "|A+B| \\ge \\min(p,\\ |A|+|B|-1) \\ \\text{in } \\mathbb Z/p",
+   "|A+A| \\le K|A| \\Rightarrow A \\subset \\text{a generalised progression of size } O_K(|A|)"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-331",
+    "title": "Erdős Problem #331",
+    "status": "solved",
+    "statement": "Let $A,B\\subseteq \\mathbb{N}$ such that for all large $N$$$\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert \\gg\nN^{1/2}$$and$$\\lvert B\\cap \\{1,\\ldots,N\\}\\rvert \\gg N^{1/2}.$$\nIs it true that there are infinitely many solutions to $a_1-a_2=b_1-b_2\\neq 0$ with $a_1,a_2\\in A$\nand $b_1,b_2\\in B$?"
+   },
+   {
+    "id": "ERDOS-138",
+    "title": "Erdős Problem #138",
+    "status": "claimed",
+    "statement": "In [Er80] Erdős asks whether\n$$ \\lim_{k \\to \\infty} (W(k))^{1/k} = \\infty $$"
+   },
+   {
+    "id": "ERDOS-36",
+    "title": "Erdős Problem #36",
+    "status": "open",
+    "statement": "Find the value of the limit of `MinOverlapQuotient`!"
+   },
+   {
+    "id": "ERDOS-1199",
+    "title": "Erdős Problem #1199",
+    "status": "open",
+    "statement": "Is it true that in any 2-colouring of $\\mathbb{N}$ there exists an infinite set $A$\nsuch that all elements of $A+A$ are the same colour?"
+   },
+   {
+    "id": "ERDOS-142",
+    "title": "Erdős Problem #142",
+    "status": "open",
+    "statement": "Prove an asymptotic formula for $r_k(N)$, the largest possible size of a subset\nof $\\{1, \\dots, N\\}$ that does not contain any non-trivial $k$-term arithmetic progression.\nThat is, find $f_k$ with $r_k(N) / f_k(N) \\to 1$ as $N \\to \\infty$."
+   },
+   {
+    "id": "ERDOS-763",
+    "title": "Erdős Problem #763",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$. Can there exist some constant $c>0$ such that\n$$\\sum_{n\\leq N} 1_A\\ast 1_A(n) = cN+O(1)?$$"
+   },
+   {
+    "id": "ERDOS-172",
+    "title": "Erdős Problem #172",
+    "status": "claimed",
+    "statement": "Is it true that in any finite colouring of $\\mathbb{N}$ there exist arbitrarily large finite $A$ such that all sums\nand products of distinct elements in $A$ are the same colour?"
+   },
+   {
+    "id": "ERDOS-867",
+    "title": "Erdős Problem #867",
+    "status": "solved",
+    "statement": "Is it true that if $A=\\{a_1<\\cdots <a_t\\}\\subseteq \\{1,\\ldots,N\\}$ has no solutions to\n$$a_i+a_{i+1}+\\cdots+a_j\\in A$$\nthen\n$$\\lvert A\\rvert \\leq \\frac{N}{2}+O(1)?$$"
+   },
+   {
+    "id": "ERDOS-840",
+    "title": "Erdős Problem #840",
+    "status": "open",
+    "statement": "Let $f(N)$ be the size of the largest quasi-Sidon subset $A\\subset\\{1,\\ldots,N\\}$, where we say\nthat $A$ is quasi-Sidon if\n$$\\lvert A+A\\rvert=(1+o(1))\\binom{\\lvert A\\rvert}{2}.$$\nHow does $f(N)$ grow?"
+   },
+   {
+    "id": "ERDOS-141",
+    "title": "Erdős Problem #141",
+    "status": "open",
+    "statement": "Let $k≥3$. Are there $k$ consecutive primes in arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-785",
+    "title": "Erdős Problem #785",
+    "status": "solved",
+    "statement": "Let $A,B\\subseteq \\mathbb{N}$ be infinite sets of positive integers such that $A+B$ contains all\nlarge integers. Let $A(x)=\\lvert A\\cap [1,x]\\rvert$ and similarly for $B(x)$. Is it true that if\n$A(x)B(x)\\sim x$ then\n$$A(x)B(x)-x\\to \\infty$$\nas $x\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-198",
+    "title": "Erdős Problem #198",
+    "status": "solved",
+    "statement": "The answer is no; Erdős and Graham report this was proved by Baumgartner, presumably referring to\nthe paper [Ba75], which does not state this exactly, but the following simple construction is\nimplicit in [Ba75]."
+   },
+   {
+    "id": "ERDOS-186",
+    "title": "Erdős Problem #186",
+    "status": "solved",
+    "statement": "Let $F(N)$ be the maximal size of $A\\subseteq \\{1,\\ldots,N\\}$ which is 'non-averaging', so that\nno $n\\in A$ is the arithmetic mean of at least two elements in $A$. What is the order of growth\nof $F(N)$?"
+   },
+   {
+    "id": "ERDOS-1097",
+    "title": "Erdős Problem #1097",
+    "status": "claimed",
+    "statement": "The main conjecture: for any finite set of integers $A$ with $|A| = n$, the number of distinct\ncommon differences in three-term arithmetic progressions is $O(n^{3/2})$."
+   },
+   {
+    "id": "ERDOS-864",
+    "title": "Erdős Problem #864",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\{1,\\ldots,N\\}$ be a set such that there exists at most one $n$ with more than one\nsolution to $n=a+b$ (with $a\\leq b\\in A$). Estimate the maximal possible size of $|A|$. In\nparticular, is it true that\n$$|A| \\leq (1+o(1))\\frac{2}{\\sqrt{3}} N^{1/2}?$$"
+   },
+   {
+    "id": "ERDOS-781",
+    "title": "Erdős Problem #781",
+    "status": "solved",
+    "statement": "(a) Let $f(k)$ be the minimal $n$ such that any $2$-colouring of $\\{1,\\ldots,n\\}$ contains a\nmonochromatic $k$-term descending wave: a sequence $x_1<\\cdots <x_k$ such that, for $1<j<k$,\n$$x_j \\geq \\frac{x_{j+1}+x_{j-1}}{2}.$$\nEstimate $f(k)$.\n\n(b) Is it true that $f(k)=k^2-k+1$ for all $k$?"
+   },
+   {
+    "id": "ERDOS-966",
+    "title": "Erdős Problem #966",
+    "status": "solved",
+    "statement": "Let $k,r\\geq 2$. Does there exist a set $A\\subseteq \\mathbb{N}$ that contains no non-trivial\narithmetic progression of length $k+1$, yet in any $r$-colouring of $A$ there must exist a\nmonochromatic non-trivial arithmetic progression of length $k$?"
+   },
+   {
+    "id": "ERDOS-1187",
+    "title": "Erdős Problem #1187",
+    "status": "solved",
+    "statement": "(a) Let $k\\geq 3$. Is it true that, in any finite colouring of the integers, there are monochromatic\narithmetic progressions of primes of length $k$?\n\n(b) Let $k\\geq 3$. In any finite colouring of the integers, are there monochromatic arithmetic\nprogressions of length $k$ whose common difference is a prime?"
+   },
+   {
+    "id": "ERDOS-328",
+    "title": "Erdős Problem #328",
+    "status": "solved",
+    "statement": "Suppose $A\\subseteq\\mathbb{N}$ and $C>0$ is such that $1_A\\ast 1_A(n)\\leq C$ for all\n$n\\in\\mathbb{N}$. Can $A$ be partitioned into $t$ many subsets $A_1,\\ldots,A_t$ (where\n$t=t(C)$ depends only on $C$) such that $1_{A_i}\\ast 1_{A_i}(n)<C$ for all $1\\leq i\\leq t$\nand $n\\in \\mathbb{N}$?"
+   },
+   {
+    "id": "ERDOS-53",
+    "title": "Erdős Problem #53",
+    "status": "solved",
+    "statement": "Let $A$ be a finite set of integers. Is it true that, for every $k$, if $\\lvert A\\rvert$ is\nsufficiently large depending on $k$, then there are least $\\lvert A\\rvert^k$ many integers which\nare either the sum or product of distinct elements of $A$?"
+   },
+   {
+    "id": "ERDOS-272",
+    "title": "Erdős Problem #272",
+    "status": "open",
+    "statement": "Let $N \\in\\mathbb{N}$. We say that $\\{A_1, ..., A_t\\}\\subseteq\n\\mathcal{P}(\\{1, \\dots, N\\})$ is an arithmetic intersection set if\n$A_i \\cap A_j$ is a non-empty arithmetic progression for each $i \\neq j$.\n\nFor each $N > 0$, let $t$ be the largest size of an arithmetic\nintersection set.\n\nLet $N\\geq 1$. What is the largest $t$ such that there are\n$A_1,\\ldots,A_t\\subseteq \\{1,\\ldots,N\\}$ with $A_i\\cap A_j$ a non-empty\narithmetic progression for all $i\\neq j$?"
+   },
+   {
+    "id": "ERDOS-245",
+    "title": "Erdős Problem #245",
+    "status": "solved",
+    "statement": "Let $A\\subseteq\\mathbb{N}$ be an infinite set such that $|A\\cap \\{1, ..., N\\}| = o(N)$.\nIs it true that\n$$\n\\limsup_{N\\to\\infty}\\frac{|(A + A)\\cap \\{1, ..., N\\}|}{|A \\cap \\{1, ..., N\\}|} \\geq 3?\n$$"
+   },
+   {
+    "id": "ERDOS-806",
+    "title": "Erdős Problem #806",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\{1,\\ldots,n\\}$ with $\\lvert A\\rvert \\leq n^{1/2}$. Must there exist some\n$B\\subset\\mathbb{Z}$ with $\\lvert B\\rvert=o(n^{1/2})$ such that $A\\subseteq B+B$?"
+   },
+   {
+    "id": "ERDOS-772",
+    "title": "Erdős Problem #772",
+    "status": "solved",
+    "statement": "(a) Let $k\\geq 1$ and $H_k(n)$ be the maximal $r$ such that if $A\\subset\\mathbb{N}$ has\n$\\lvert A\\rvert=n$ and $\\| 1_A\\ast 1_A\\|_\\infty \\leq k$ then $A$ contains a Sidon set of size at\nleast $r$.\n\nIs it true that $H_k(n)/n^{1/2}\\to \\infty$?\n\n(b) Is it true that $H_k(n) > n^{1/2+c}$ for some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-41",
+    "title": "Erdős Problem #41",
+    "status": "open",
+    "statement": "Let $A \\subset \\mathbb{N}$ be an infinite set such that the triple sums $a+b+c$ are all distinct\nfor $a,b,c \\in A$ (aside from the trivial coincidences). Is it true that\n$$\\liminf_{N \\to \\infty} \\frac{\\lvert A \\cap \\{1,\\ldots,N\\}\\rvert}{N^{1/3}}=0?$$"
+   },
+   {
+    "id": "ERDOS-865",
+    "title": "Erdős Problem #865",
+    "status": "solved",
+    "statement": "There exists a constant $C>0$ such that, for all large $N$, if $A\\subseteq \\{1,\\ldots,N\\}$ has\nsize at least $\\frac{5}{8}N+C$ then there are distinct $a,b,c\\in A$ such that $a+b,a+c,b+c\\in A$."
+   },
+   {
+    "id": "ERDOS-43",
+    "title": "Erdős Problem #43",
+    "status": "solved",
+    "statement": "Let $f(N)$ be the maximum possible size of a Sidon set in $\\{1,\\ldots,N\\}$.\n\n(a) If $A$ and $B$ are Sidon sets in $\\{1,\\ldots,N\\}$ with\n$(A-A)\\cap(B-B)=\\{0\\}$, is it true that\n$$\\binom{\\lvert A\\rvert}{2}+\\binom{\\lvert B\\rvert}{2}\\leq\\binom{f(N)}{2}+O(1)?$$\n\n(b) If $A$ and $B$ are equal-sized Sidon sets in $\\{1,\\ldots,N\\}$ with\n$(A-A)\\cap(B-B)=\\{0\\}$, can the bound be improved to\n$$\\binom{\\lvert A\\rvert}{2}+\\binom{\\lvert B\\rvert}{2}\n    \\leq (1-c+o(1))\\binom{f(N)}{2}$$\nfor some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-818",
+    "title": "Erdős Problem #818",
+    "status": "solved",
+    "statement": "Let $A$ be a finite set of integers such that $\\lvert A+A\\rvert \\ll \\lvert A\\rvert$. Is it true that\n$$\\lvert AA\\rvert \\gg \\frac{\\lvert A\\rvert^2}{(\\log \\lvert A\\rvert)^C}$$\nfor some constant $C>0$?"
+   },
+   {
+    "id": "ERDOS-707",
+    "title": "Erdős Problem #707",
+    "status": "solved",
+    "statement": "It is false that any finite Sidon set can be embedded in a perfect\ndifferent set modulo some $n$."
+   },
+   {
+    "id": "ERDOS-44",
+    "title": "Erdős Problem #44",
+    "status": "open",
+    "statement": "Let N ≥ 1 and `A ⊆ {1,…,N}` be a Sidon set. Is it true that, for any ε > 0,\nthere exist M = M(ε) and `B ⊆ {N+1,…,M}` such that `A ∪ B ⊆ {1,…,M}` is a Sidon set\nof size at least `(1−ε)M^{1/2}`?"
+   },
+   {
+    "id": "ERDOS-895",
+    "title": "Erdős Problem #895",
+    "status": "solved",
+    "statement": "Is it true that, for all sufficiently large $n$, if $G$ is a triangle-free graph on\n$\\{1,\\ldots,n\\}$ then there must exist three independent points $a,b,a+b$?"
+   },
+   {
+    "id": "ERDOS-1193",
+    "title": "Erdős Problem #1193",
+    "status": "solved",
+    "statement": "(a) Let $A\\subset \\mathbb{N}$ and let $g(n)$ be a non-decreasing function of $n$ which is always $>0$.\n\nIs the lower density of\n$$\\{ n : 1_A\\ast 1_A(n)=g(n)\\}$$\nalways $0$?\n\n(b) Let $A\\subset \\mathbb{N}$ and let $g(n)$ be a non-decreasing function of $n$ which is always $>0$.\n\nIs the upper density of\n$$\\{ n : 1_A\\ast 1_A(n)=g(n)\\}$$\nalways $<c$ for some constant $c<1$?"
+   },
+   {
+    "id": "ERDOS-139",
+    "title": "Erdős Problem #139",
+    "status": "solved",
+    "statement": "Let $r_k(N)$ be the size of the largest subset of ${1,...,N}$ which does not contain a non-trivial\n$k$-term arithmetic progression. Prove that $r_k(N) = o(N)$."
+   },
+   {
+    "id": "ERDOS-749",
+    "title": "Erdős Problem #749",
+    "status": "open",
+    "statement": "Let $\\epsilon>0$. Does there exist $A\\subseteq \\mathbb{N}$\nsuch that the lower density of $A+A$ is at least $1-\\epsilon$\nand yet $1_A\\ast 1_A(n) \\ll_\\epsilon 1$ for all $n$?"
+   },
+   {
+    "id": "ERDOS-350",
+    "title": "Erdős Problem #350",
+    "status": "solved",
+    "statement": "If `A ⊂ ℕ` is a finite set of integers all of whose subset sums are distinct then `∑ n ∈ A, 1/n < 2`.\nProved by Ryavec."
+   },
+   {
+    "id": "ERDOS-30",
+    "title": "Erdős Problem #30",
+    "status": "open",
+    "statement": "Let $h(N)$ be the maximum size of a Sidon set in $\\{1, \\dots, N\\}$.\n\nIs it true that, for every $\\varepsilon > 0$, $h(N) = \\sqrt N + O_{\\varepsilon}(N^\\varepsilon)$"
+   },
+   {
+    "id": "ERDOS-645",
+    "title": "Erdős Problem #645",
+    "status": "solved",
+    "statement": "If ℕ is $2$-coloured then there must exist a monochromatic three-term arithmetic progression\n$x,x+d,x+2d$ such that $d>x$."
+   },
+   {
+    "id": "ERDOS-1186",
+    "title": "Erdős Problem #1186",
+    "status": "open",
+    "statement": "Let $\\delta_k$ be such that in any $2$-colouring of $\\{1,\\ldots,n\\}$ there exist at least\n$(\\delta_k+o(1))n^2$ many monochromatic $k$-term arithmetic progressions. Give reasonable bounds\n(or even an asymptotic formula) for $\\delta_k$."
+   },
+   {
+    "id": "ERDOS-819",
+    "title": "Erdős Problem #819",
+    "status": "open",
+    "statement": "Let $f(N)$ be maximal such that there exists $A\\subseteq \\{1,\\ldots,N\\}$ with\n$\\lvert A\\rvert=\\lfloor N^{1/2}\\rfloor$ such that $\\lvert (A+A)\\cap [1,N]\\rvert=f(N)$.\nEstimate $f(N)$."
+   },
+   {
+    "id": "ERDOS-539",
+    "title": "Erdős Problem #539",
+    "status": "open",
+    "statement": "We say that $m$ is a cofactor lower bound for a given $n$ if, for every set $A$ of $n$\nnon-negative integers, there are at least $m$ cofactors $a / (a, b)$, where $a, b\\in A$.\n\nLet $h(n)$ be maximal such that, for any set $A\\subseteq \\mathbb{N}$ of size $n$, the\nset$$\\left\\{ \\frac{a}{(a,b)}: a,b\\in A\\right\\}$$has size at least $h(n)$. Estimate $h(n)$."
+   },
+   {
+    "id": "ERDOS-741",
+    "title": "Erdős Problem #741",
+    "status": "solved",
+    "statement": "(a) Let $A\\subseteq \\mathbb{N}$ be such that $A+A$ has positive upper density.\nCan one always decompose $A=A_1\\sqcup A_2$ such that $A_1+A_1$ and $A_2+A_2$\nboth have positive upper density?\n\n(b) Is there a basis $A$ of order $2$ such that if $A=A_1\\sqcup A_2$ then $A_1+A_1$ and $A_2+A_2$\ncannot both have bounded gaps?"
+   },
+   {
+    "id": "ERDOS-1",
+    "title": "Erdős Problem #1",
+    "status": "solved",
+    "statement": "A finite set of naturals $A$ is said to be a sum-distinct set for $N \\in \\mathbb{N}$ if\n$A\\subseteq\\{1, ..., N\\}$ and the sums $\\sum_{a\\in S}a$ are distinct for all $S\\subseteq A$\n\nIf $A\\subseteq\\{1, ..., N\\}$ with $|A| = n$ is such that the subset sums $\\sum_{a\\in S}a$ are\ndistinct for all $S\\subseteq A$ then\n$$\n  N \\gg 2 ^ n.\n$$"
+   },
+   {
+    "id": "ERDOS-847",
+    "title": "Erdős Problem #847",
+    "status": "solved",
+    "statement": "Let $A \\subset \\mathbb{N}$ be an infinite set for which there exists some $\\epsilon > 0$ such that\nin any subset of $A$ of size $n$ there is a subset of size at least $\\epsilon n$ which contains no\nthree-term arithmetic progression.\n\nIs it true that $A$ is the union of a finite number of sets which contain no three-term arithmetic\nprogression?"
+   },
+   {
+    "id": "ERDOS-764",
+    "title": "Erdős Problem #764",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$. Can there exist some constant $c>0$ such that\n$$\\sum_{n\\leq N} 1_A\\ast 1_A\\ast 1_A(n) = cN+O(1)?$$"
+   },
+   {
+    "id": "ERDOS-877",
+    "title": "Erdős Problem #877",
+    "status": "solved",
+    "statement": "Let $f_m(n)$ count the number of maximal sum-free subsets $A\\subseteq\\{1,\\ldots,n\\}$ - that is,\nthere are no solutions to $a=b+c$ in $A$ and $A$ is maximal with this property. Estimate $f(n)$\n- is it true that $f_m(n)=o(2^{n/2})$?"
+   },
+   {
+    "id": "ERDOS-789",
+    "title": "Erdős Problem #789",
+    "status": "open",
+    "statement": "Given a non-negative integer $n$, we say $m$ is a separating cardinality of\nsubset sums if, for any set $A$ of $n$ integers, there is some $B\\subseteq A$ of\nsize $\\geq m$ such that subset sums of $B$ can only ever coincide when the\nsubsets have the same cardinality.\n\nLet $h(n)$ be maximal such that if $A\\subseteq \\mathbb{Z}$ with $\\lvert A\\rvert=n$\nthen there is $B\\subseteq A$ with $\\lvert B\\rvert \\geq h(n)$ such that if\n$a_1+\\cdots+a_r=b_1+\\cdots+b_s$ with $a_i,b_i\\in B$ then $r=s$."
+   },
+   {
+    "id": "ERDOS-484",
+    "title": "Erdős Problem #484",
+    "status": "solved",
+    "statement": "Prove that there exists an absolute constant $c>0$ such that, whenever $\\{1,\\ldots,N\\}$ is\n$k$-coloured (and $N$ is large enough depending on $k$) then there are at least $cN$ many\nintegers in $\\{1,\\ldots,N\\}$ which are representable as a monochromatic sum (that is, $a+b$\nwhere $a,b\\in \\{1,\\ldots,N\\}$ are in the same colour class and $a\\neq b$)."
+   },
+   {
+    "id": "ERDOS-171",
+    "title": "Erdős Problem #171",
+    "status": "solved",
+    "statement": "Is it true that for every $\\epsilon>0$ and integer $t\\geq 1$, if $N$ is sufficiently large and\n$A$ is a subset of $[t]^N$ of size at least $\\epsilon t^N$ then $A$ must contain a combinatorial\nline $P$ (a set $P=\\{p_1,\\ldots,p_t\\}$ where for each coordinate $1\\leq j\\leq t$ the $j$th\ncoordinate of $p_i$ is either $i$ or constant)."
+   },
+   {
+    "id": "ERDOS-1145",
+    "title": "Erdős Problem #1145",
+    "status": "open",
+    "statement": "Let $A=\\{1\\leq a_1 < a_2 < \\cdots\\}$ and $B=\\{1\\leq b_1 < b_2 < \\cdots\\}$ be sets of integers with\n$a_n/b_n\\to 1$.\n\nIf $A+B$ contains all sufficiently large positive integers then is it true that\n$\\limsup 1_A\\ast 1_B(n)=\\infty$?\n\nFormalization note: There's some discussion in the comments of [erdosproblems.com/28] and\n[erdosproblems.com/1145] about whether or not $0$ should be included in $A$ or $B$ and has been\nleft purposely ambiguous. Problem 1145 was originally written as $A + B = \\mathbb{N}$, which\nwould imply that $0$ would need to exist in $A$ or $B$ to include $1$ in $A + B$. However, "
+   },
+   {
+    "id": "ERDOS-340",
+    "title": "Erdős Problem #340",
+    "status": "open",
+    "statement": "Let $A = \\{1, 2, 4, 8, 13, 21, 31, 45, 66, 81, 97, \\ldots\\}$ be the greedy Sidon sequence:\nwe begin with $1$ and iteratively include the next smallest integer that preserves the\nSidon property (i.e. there are no non-trivial solutions to $a + b = c + d$). What is the\norder of growth of $A$? Is it true that $|A \\cap \\{1, \\ldots, N\\}| \\gg N^{1/2 - \\varepsilon}$\nfor all $\\varepsilon > 0$ and large $N$?"
+   },
+   {
+    "id": "ERDOS-1179",
+    "title": "Erdős Problem #1179",
+    "status": "solved",
+    "statement": "Let $0<\\epsilon<1$ and let $g_\\epsilon(N)$ be the minimal $k$ such that if $G$ is an abelian\ngroup of size $N$ and $A\\subseteq G$ is a uniformly random subset of size $k$, and\n$$F_A(g) = \\#\\left\\{ S\\subseteq A : g = \\sum_{x\\in S}x\\right\\},$$\nthen, with probability $\\to 1$ as $N\\to \\infty$,\n$$\\left\\lvert F_A(g)-\\frac{2^k}{N}\\right\\rvert \\leq \\epsilon \\frac{2^k}{N}$$\nfor all $g\\in G$.\n\nEstimate $g_\\epsilon(N)$ - in particular, is it true that for all $\\epsilon>0$\n$$g_\\epsilon(N)=(1+o_\\epsilon(1))\\log_2N?$$"
+   },
+   {
+    "id": "ERDOS-476",
+    "title": "Erdős Problem #476",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{F}_p$. Let\n$$\nA\\hat{+}A = \\{ a+b : a\\neq b \\in A\\}.\n$$\nIs it true that\n$$\n\\lvert A\\hat{+}A\\rvert \\geq \\min(2\\lvert A\\rvert-3,p)?\n$$"
+   },
+   {
+    "id": "ERDOS-658",
+    "title": "Erdős Problem #658",
+    "status": "solved",
+    "statement": "Let $\\delta>0$ and $N$ be sufficiently large depending on $\\delta$. Is it true that if\n$A\\subseteq \\{1,\\ldots,N\\}^2$ has $\\lvert A\\rvert \\geq \\delta N^2$ then $A$ must contain the\nvertices of a square?"
+   },
+   {
+    "id": "ERDOS-52",
+    "title": "Erdős Problem #52",
+    "status": "open",
+    "statement": "Let $A$ be a finite set of integers. Is it true that for every $\\epsilon>0$\n$\\max( \\lvert A+A\\rvert,\\lvert AA\\rvert)\\gg_\\epsilon \\lvert A\\rvert^{2-\\epsilon}?$"
+   },
+   {
+    "id": "ERDOS-483",
+    "title": "Erdős Problem #483",
+    "status": "open",
+    "statement": "Let $f(k)$ be the minimal $N$ such that if $\\{1,\\ldots,N\\}$ is $k$-coloured then\nthere is a monochromatic solution to $a+b=c$. Estimate $f(k)$. In particular, is it true\nthat $f(k) < c^k$ for some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-787",
+    "title": "Erdős Problem #787",
+    "status": "open",
+    "statement": "Let $g(n)$ be maximal such that given any set $A\\subset \\mathbb{R}$ with $\\lvert A\\rvert=n$ there\nexists some $B\\subseteq A$ of size $\\lvert B\\rvert\\geq g(n)$ such that $b_1+b_2\\not\\in A$ for all\n$b_1\\neq b_2\\in B$."
+   },
+   {
+    "id": "ERDOS-109",
+    "title": "Erdős Problem #109",
+    "status": "solved",
+    "statement": "Any $A\\subseteq \\mathbb{N}$ of positive upper density contains a sumset $B+C$ where both $B$ and $C$\nare infinite."
+   },
+   {
+    "id": "ERDOS-185",
+    "title": "Erdős Problem #185",
+    "status": "solved",
+    "statement": "Let $f_3(n)$ be the maximal size of a subset of $\\{0,1,2\\}^n$ which contains no three points on\na line. Is it true that $f_3(n)=o(3^n)$?"
+   },
+   {
+    "id": "ERDOS-1198",
+    "title": "Erdős Problem #1198",
+    "status": "solved",
+    "statement": "If $\\mathbb{N}$ is $2$-coloured, must there exist an infinite set $A=\\{a_1<a_2<\\cdots\\}$ such that\nall expressions of the shape\n$$\\sum_{j=1}^{k}\\prod_{i\\in S_j}a_i,$$\nfor $k\\geq 1$ and pairwise disjoint nonempty finite sets of indices $S_1,\\ldots,S_k$ (excluding the\ntrivial expressions $a_i$, that is $k=1$ and $|S_1|=1$), have the same colour?"
+   },
+   {
+    "id": "ERDOS-1213",
+    "title": "Erdős Problem #1213",
+    "status": "solved",
+    "statement": "Let $a,K\\geq 1$. Does there exist $f(a,K)$ such that if $a=a_1<\\cdots <a_s$ is a sequence of\nintegers with $a_s> f(a,K)$ and with bounded gaps $a_{i+1}-a_i\\leq K$ then there are two distinct\nintervals $I$ and $J$ such that\n$$\\sum_{i\\in I}a_i=\\sum_{j\\in J}a_j?$$"
+   },
+   {
+    "id": "ERDOS-39",
+    "title": "Erdős Problem #39",
+    "status": "open",
+    "statement": "Is there an infinite Sidon set $A\\subset \\mathbb{N}$ such that\n$\\lvert A\\cap \\{1\\ldots,N\\}\\rvert \\gg_\\epsilon N^{1/2-\\epsilon}$\nfor all $\\varepsilon > 0$?"
+   },
+   {
+    "id": "ERDOS-337",
+    "title": "Erdős Problem #337",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be an additive basis (of any finite order) such that\n$\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert=o(N)$. Is it true that\n$$\n\\lim_{N\\to \\infty}\\frac{\\lvert (A+A)\\cap \\{1,\\ldots,N\\}\\rvert}\n{\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert}=\\infty?\n$$"
+   },
+   {
+    "id": "ERDOS-1192",
+    "title": "Erdős Problem #1192",
+    "status": "open",
+    "statement": "For $A\\subset \\mathbb{N}$ let $f_r(n)$ count the number of solutions to $n=a_1+\\cdots+a_r$\nwith $a_i\\in A$.\n\nDoes there exist, for all $r\\geq 2$, a basis $A$ of order $r$ (so that $f_r(n)>0$ for all\nlarge $n$) such that $$\\sum_{n\\leq x}f_r(n)^2 \\ll x$$ for all $x$?"
+   },
+   {
+    "id": "ERDOS-42",
+    "title": "Erdős Problem #42",
+    "status": "solved",
+    "statement": "Let M ≥ 1 and N be sufficiently large in terms of M. Is it true that for every\nmaximal Sidon set `A ⊆ {1,…,N}` there is another Sidon set `B ⊆ {1,…,N}` of size M such that\n`(A - A) ∩ (B - B) = {0}`?"
+   },
+   {
+    "id": "ERDOS-241",
+    "title": "Erdős Problem #241",
+    "status": "open",
+    "statement": "Let $f(N)$ be the maximum size of $A\\subseteq \\{1,\\ldots,N\\}$ such that the sums $a+b+c$ with\n$a,b,c\\in A$ are all distinct (aside from the trivial coincidences).\n\nFormalization note: this is generalized to allow for different $r$.\n\nIs it true that $f(N)\\sim N^{1/3}$?"
+   },
+   {
+    "id": "ERDOS-899",
+    "title": "Erdős Problem #899",
+    "status": "solved",
+    "statement": "Let $A\\subseteq\\mathbb{N}$ be an infinite set such that $|A\\cap \\{1, ..., N\\}| = o(N)$.\nIs it true that\n$$\n\\limsup_{N\\to\\infty}\\frac{|(A - A)\\cap \\{1, ..., N\\}|}{|A \\cap \\{1, ..., N\\}|} = \\infty?\n$$"
+   },
+   {
+    "id": "ERDOS-1191",
+    "title": "Erdős Problem #1191",
+    "status": "open",
+    "statement": "(a) Let $A\\subset\\mathbb{N}$ be an infinite Sidon set. Is it true that\n$$\\liminf_{x\\to \\infty} \\frac{\\lvert A\\cap [1,x]\\rvert}{x^{1/2}}(\\log x)^{1/2}=0?$$\n\n(b) Does there exist an infinite Sidon set $A$ such that\n$$\\liminf_{x\\to \\infty} \\frac{\\lvert A\\cap [1,x]\\rvert}{x^{1/2}}(\\log x)^c>0$$\nfor some $c>0$?"
+   },
+   {
+    "id": "ERDOS-14",
+    "title": "Erdős Problem #14",
+    "status": "open",
+    "statement": "(a) Let $A ⊆ \\mathbb{N}$. Let $B ⊆ \\mathbb{N}$ be the set of integers which are representable\nin exactly one way as the sum of two elements from $A$. Is it true that for all\n$\\epsilon > 0$ and large $N$, $|\\{1,\\ldots,N\\} \\setminus B| \\gg_\\epsilon N^{1/2 - \\epsilon}$?\n\n(b) Is it possible that $|\\{1,\\ldots,N\\} \\setminus B| = o(N^\\frac{1}{2})$?"
+   },
+   {
+    "id": "ERDOS-219",
+    "title": "Erdős Problem #219",
+    "status": "solved",
+    "statement": "Are there arbitrarily long arithmetic progressions of primes?\nSolution: yes.\nRef: Green, Ben and Tao, Terence, _The primes contain arbitrarily long arithmetic progressions_"
+   },
+   {
+    "id": "ERDOS-3",
+    "title": "Erdős Problem #3",
+    "status": "claimed",
+    "statement": "If $A \\subset \\mathbb{N}$ has $\\sum_{n \\in A}\\frac 1 n = \\infty$, then must $A$ contain arbitrarily\nlong arithmetic progressions?"
+   },
+   {
+    "id": "ERDOS-155",
+    "title": "Erdős Problem #155",
+    "status": "open",
+    "statement": "Let $F(N)$ be the size of the largest Sidon subset of $\\{1, \\dots, N\\}$.\n\nIs it true that for every $k \\geq 1$ we have\n$$\nF(N + k) \\leq F(N) + 1\n$$\nfor all sufficiently large $N$?"
+   },
+   {
+    "id": "ERDOS-168",
+    "title": "Erdős Problem #168",
+    "status": "open",
+    "statement": "(a) What is the limit $F(N)/N$ as $N \\to \\infty$?\n\n(b) Is the limit $F(N)/N$ as $N \\to \\infty$ irrational?"
+   },
+   {
+    "id": "GREEN-1",
+    "title": "Green's Problem 1",
+    "status": "solved",
+    "statement": "Let $A$ be a set of $n$ positive integers. Does $A$ contain a sum-free set\nof size at least $\\frac n 3 + Ω(n)$, where $Ω(n) → ∞$ as $n → ∞$?"
+   },
+   {
+    "id": "GREEN-2",
+    "title": "Green's Problem 2",
+    "status": "open",
+    "statement": "Let $A \\subset \\mathbb{Z}$ be a set of $n$ integers. Is there a set $S \\subset A$ of size\n$(\\log n)^{100}$ such that the restricted sumset$S \\hat{+} S$ is disjoint from $A$?"
+   },
+   {
+    "id": "GREEN-3",
+    "title": "Green's Problem 3",
+    "status": "solved",
+    "statement": "Suppose that $A \\subset [0,1]$ is open and has measure greater than $\\frac{1}{3}$. Is there a\nsolution to $xy = z$ with $x, y, z \\in A$?"
+   },
+   {
+    "id": "GREEN-16",
+    "title": "Green's Problem 16",
+    "status": "open",
+    "statement": "What is the largest subset of $[N]$ with no solution to $x + 3y = 2z + 2w$ in distinct integers $x, y, z, w$?"
+   },
+   {
+    "id": "GREEN-19",
+    "title": "Green's Problem 19",
+    "status": "solved",
+    "statement": "What is $C$, the infimum of all exponents $c$ for which the following is true, uniformly for\n$0 < \\alpha < 1$? Suppose that $A \\subset \\mathbb{F}_2^n \\times \\mathbb{F}_2^n$ is a set of density\n$\\alpha$. Write $N := 2^n$. Then there is some $d \\neq 0$ such that $A$ contains $\\gg \\alpha^c N^2$\ncorners $(x,y), (x,y+d), (x+d,y)$."
+   },
+   {
+    "id": "GREEN-24",
+    "title": "Green's Problem 24",
+    "status": "open",
+    "statement": "If $A$ is a set of $n$ integers, what is the maximum number of affine translates of the set\n$\\lbrace 0,1,3 \\rbrace$ that $A$ can contain?"
+   },
+   {
+    "id": "GREEN-25",
+    "title": "Green's Problem 25",
+    "status": "open",
+    "statement": "For which values of $k$ is the following true: whenever we partition $[N] = A_1 \\cup \\dots \\cup A_k$,\n$\\left|\\bigcup^k_{i=1} (A_i \\hat{+} A_i)\\right| \\geq \\frac{1}{10} N$?\n\nFor which values of $k$ is the following true: whenever we partition $[N] = A_1 \\cup \\dots \\cup A_k$,\n$\\left|\\bigcup^k_{i=1} (A_i \\hat{+} A_i)\\right| \\geq \\frac{1}{10} N$?"
+   },
+   {
+    "id": "GREEN-26",
+    "title": "Green's Problem 26",
+    "status": "solved",
+    "statement": "Let $A_1, \\dots, A_{100}$ be \"cubes\" in $\\mathbb{F}^n_3$.\nIs it true that $A_1 + \\dots + A_{100} = \\mathbb{F}^n_3$?"
+   },
+   {
+    "id": "GREEN-27",
+    "title": "Green's Problem 27",
+    "status": "open",
+    "statement": "What is the size of the smallest set $A \\subset \\mathbb{Z} / p\\mathbb{Z}$ (with at least two elements)\nfor which no element in the sumset $A + A$ has a unique representation?"
+   },
+   {
+    "id": "GREEN-28",
+    "title": "Green's Problem 28",
+    "status": "open",
+    "statement": "Suppose that $X, Y$ are two finitely-supported independent random variables taking integer values,\nand such that $X + Y$ is uniformly distributed on its range. Are $X$ and $Y$ themselves uniformly\ndistributed on their ranges?"
+   },
+   {
+    "id": "GREEN-33",
+    "title": "Green's Problem 33",
+    "status": "open",
+    "statement": "Are there infinitely many $q$ for which there is a set $A \\subset \\mathbb{Z}/q\\mathbb{Z}$,\n$|A| = (\\sqrt{2} + o(1))q^{1/2}$, with $A + A = \\mathbb{Z}/q\\mathbb{Z}$? [Gr24]"
+   },
+   {
+    "id": "GREEN-35",
+    "title": "Green's Problem 35",
+    "status": "open",
+    "statement": "Lower bound for $c(p)$ for $1 < p \\le \\infty$, improving the known value $\\sqrt{4/7}$ at\n$p = 2$ or the known value $0.64$ at $p = \\infty$."
+   },
+   {
+    "id": "GREEN-38",
+    "title": "Green's Problem 38",
+    "status": "solved",
+    "statement": "Can we improve the lower bound? The answer sequence must be eventually nonnegative, since\n`=O` compares norms."
+   },
+   {
+    "id": "GREEN-39",
+    "title": "Green's Problem 39",
+    "status": "open",
+    "statement": "If $A \\subset \\mathbb{Z}/p\\mathbb{Z}$ is random, $|A| = \\sqrt{p}$, can we almost surely cover\n$\\mathbb{Z}/p\\mathbb{Z}$ with $100\\sqrt{p}$ translates of $A$? [Gr24]"
+   },
+   {
+    "id": "GREEN-40",
+    "title": "Green's Problem 40",
+    "status": "open",
+    "statement": "Let $f(r)$ be the smallest constant such that there exists an infinite sequence of $n$'s together\nwith subspaces $V_n \\leq \\mathbb{F}_2^n$ with $V_n + H(r) = \\mathbb{F}_2^n$ and\n$|V_n| = \\left(f(r) + o(1)\\right) \\frac{2^n}{|H(r)|}$.\n\nDoes $f(r) \\to \\infty$? [Gr24]"
+   },
+   {
+    "id": "GREEN-41",
+    "title": "Green's Problem 41",
+    "status": "solved",
+    "statement": "[Ma15] proved that for any $\\varepsilon > 0$, finitely many rotations of the pyjama set of width\n$\\varepsilon$ cover the plane. This implies that the set we are taking the infimum over in `minCopies`\nis non-empty."
+   },
+   {
+    "id": "GREEN-42",
+    "title": "Green's Problem 42",
+    "status": "solved",
+    "statement": "Can the Cohn-Elkies scheme be used to prove the optimal bound for circle-packings in 2 dimensions?"
+   },
+   {
+    "id": "GREEN-47",
+    "title": "Green's Problem 47",
+    "status": "solved",
+    "statement": "Suppose that a large sieve process leaves a set of quadratic size. Is that set quadratic?"
+   },
+   {
+    "id": "GREEN-49",
+    "title": "Green's Problem 49",
+    "status": "solved",
+    "statement": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set with $|A + A| \\leq K|A|$. Is it true that $A$\nis covered by $K^{O(1)}$ translates of a subspace of size $\\leq |A|$?"
+   },
+   {
+    "id": "GREEN-50",
+    "title": "Green's Problem 50",
+    "status": "open",
+    "statement": "Let $A \\subset \\mathbb{F}_2^n$ be a set of density $\\alpha > 0$. Does $10A$ contain a coset\nof some subspace of dimension at least $n - O(\\log(1/\\alpha))$?"
+   },
+   {
+    "id": "GREEN-51",
+    "title": "Green's Problem 51",
+    "status": "open",
+    "statement": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set of density $\\alpha$. What is the largest size of coset\nguaranteed to be contained in $2A$?"
+   },
+   {
+    "id": "GREEN-52",
+    "title": "Green's Problem 52",
+    "status": "open",
+    "statement": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set with an additive complement of size $K$.\nDoes $2A$ contain a coset of codimension $O_K(1)$?"
+   },
+   {
+    "id": "GREEN-53",
+    "title": "Green's Problem 53",
+    "status": "open",
+    "statement": "Suppose that $\\mathbb{F}_2^n$ is partitioned in to sets $A_1, ..., A_K$.\nDoes $2A_i$ contain a coset of codimension $O_K(1)$ for some $i$?"
+   },
+   {
+    "id": "GREEN-54",
+    "title": "Green's Problem 54",
+    "status": "solved",
+    "statement": "Let $K \\subset \\mathbb{R}^{\\mathbb{N}}$ be a balanced compact set (that is, $\\lambda K \\subseteq K$\nwhenever $|\\lambda| \\leq 1$) and suppose that the normalised Gaussian measure\n$\\gamma_\\infty(K) \\geq 0.99$. Does the sumset $10K = K + \\cdots + K$ ($10$ times) contain a compact\nconvex set $C$ with $\\gamma_\\infty(C) \\geq 0.01$?"
+   },
+   {
+    "id": "GREEN-58",
+    "title": "Green's Problem 58",
+    "status": "open",
+    "statement": "Suppose $A, B ⊆ \\{1, \\dots, N\\}$ both have size at least $N^{0.49}$. Must the sumset $A + B$\ncontain a composite number?"
+   },
+   {
+    "id": "GREEN-60",
+    "title": "Green's Problem 60",
+    "status": "open",
+    "statement": "Is there an absolute constant $c > 0$ such that, whenever $A ⊆ \\mathbb{N}$ is a set of squares\nwith $|A| ≥ 2$, the sumset $A + A$ satisfies $|A + A| ≥ |A|^{1 + c}$?"
+   },
+   {
+    "id": "GREEN-61",
+    "title": "Green's Problem 61",
+    "status": "open",
+    "statement": "Suppose that $A + A$ contains the first $n$ squares. Is $|A| \\geq n^{1 - o(1)}$?"
+   },
+   {
+    "id": "GREEN-66",
+    "title": "Green's Problem 66",
+    "status": "open",
+    "statement": "Is there always a sum of two squares between $X - \\frac{1}{10}X^{1/4}$ and $X$?\nWe formalize this as an eventual statement for sufficiently large real $X$."
+   },
+   {
+    "id": "GREEN-72",
+    "title": "Green's Problem 72",
+    "status": "open",
+    "statement": "The **no-k-in-line problem**:\nFor which $k > 2$ does every $N \\times N$ grid with $N \\geq k$ contain a set of $(k - 1) N$ points\nwith no $k$ on a line, so that `AllowedSetSize k N` is the pigeonhole bound $(k - 1) N$?"
+   },
+   {
+    "id": "GREEN-77",
+    "title": "Green's Problem 77",
+    "status": "open",
+    "statement": "Given $n$ points in the unit disc, must there be a triangle of area at most $n^{-2+o(1)}$\ndetermined by them?"
+   },
+   {
+    "id": "GREEN-82",
+    "title": "Green's Problem 82",
+    "status": "open",
+    "statement": "Let $A \\subset \\mathbb{Z}$ be a set of size $n$. For how many $\\theta \\in \\mathbb{R}/\\mathbb{Z}$\nmust we have $\\sum_{a \\in A} \\cos(2\\pi a\\theta) = 0$? The answer is the function `minZeros`."
+   },
+   {
+    "id": "GREEN-85",
+    "title": "Green's Problem 85",
+    "status": "open",
+    "statement": "Suppose that $A$ is an open subset of $[0, 1]^2$ with measure $\\alpha$. Are there four points in\n$A$ determining an axis-parallel rectangle with area $\\gt c \\alpha^2$?"
+   },
+   {
+    "id": "GREEN-94",
+    "title": "Green's Problem 94",
+    "status": "solved",
+    "statement": "Let `A ⊂ R` be a set of positive outer measure. Does $A$ contain an affine copy of `{1, 1/2, 1/4, . . . }`?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-1992-B1",
+    "title": "Putnam 1992 · B1"
+   },
+   {
+    "id": "IMO-1994-P1",
+    "title": "IMO 1994 · Problem 1"
+   },
+   {
+    "id": "IMO-2003-P1",
+    "title": "IMO 2003 · Problem 1"
+   },
+   {
+    "id": "PUTNAM-2004-B6",
+    "title": "Putnam 2004 · B6"
+   },
+   {
+    "id": "USAMO-2009-P2",
+    "title": "USAMO 2009 · Problem 2"
+   }
+  ]
+ },
+ {
+  "id": "ramsey-arithmetic",
+  "title": "Arithmetic Ramsey theory",
+  "summary": "Colour the integers with finitely many colours; some colour class contains a given structure. Schur: a monochromatic $x+y=z$. Van der Waerden: arbitrarily long monochromatic progressions. Rado: exactly which linear systems are partition regular.",
+  "key_statements": [
+   "\\forall\\, r\\ \\exists\\, N:\\ [1,N] = C_1\\cup\\cdots\\cup C_r \\Rightarrow \\exists i,\\ x,y,z\\in C_i,\\ x+y=z"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-46",
+    "title": "Erdős Problem #46",
+    "status": "solved",
+    "statement": "Does every finite colouring of the integers have a monochromatic solution to\n$1=\\sum \\frac{1}{n_i}$ with $2\\leq n_1<\\cdots <n_k$?"
+   },
+   {
+    "id": "ERDOS-894",
+    "title": "Erdős Problem #894",
+    "status": "solved",
+    "statement": "Let $A=\\{n_1<n_2<\\cdots\\}\\subset \\mathbb{N}$ be a lacunary sequence (so there exists some\n$\\epsilon>0$ with $n_{k+1}\\geq (1+\\epsilon)n_k$ for all $k$). Is it true that there must exist a\nfinite colouring of $\\mathbb{N}$ with no monochromatic solutions to $a-b\\in A$?"
+   },
+   {
+    "id": "ERDOS-966",
+    "title": "Erdős Problem #966",
+    "status": "solved",
+    "statement": "Let $k,r\\geq 2$. Does there exist a set $A\\subseteq \\mathbb{N}$ that contains no non-trivial\narithmetic progression of length $k+1$, yet in any $r$-colouring of $A$ there must exist a\nmonochromatic non-trivial arithmetic progression of length $k$?"
+   },
+   {
+    "id": "ERDOS-645",
+    "title": "Erdős Problem #645",
+    "status": "solved",
+    "statement": "If ℕ is $2$-coloured then there must exist a monochromatic three-term arithmetic progression\n$x,x+d,x+2d$ such that $d>x$."
+   },
+   {
+    "id": "ERDOS-45",
+    "title": "Erdős Problem #45",
+    "status": "solved",
+    "statement": "Let $k\\geq 2$. Is there an integer $n_k$ such that, if $D=\\{ 1<d<n_k : d\\mid n_k\\}$, then for any\n$k$-colouring of $D$ there is a monochromatic subset $D'\\subseteq D$ such that\n$\\sum_{d\\in D'}\\frac{1}{d}=1$?"
+   },
+   {
+    "id": "ERDOS-484",
+    "title": "Erdős Problem #484",
+    "status": "solved",
+    "statement": "Prove that there exists an absolute constant $c>0$ such that, whenever $\\{1,\\ldots,N\\}$ is\n$k$-coloured (and $N$ is large enough depending on $k$) then there are at least $cN$ many\nintegers in $\\{1,\\ldots,N\\}$ which are representable as a monochromatic sum (that is, $a+b$\nwhere $a,b\\in \\{1,\\ldots,N\\}$ are in the same colour class and $a\\neq b$)."
+   },
+   {
+    "id": "ERDOS-948",
+    "title": "Erdős Problem #948",
+    "status": "solved",
+    "statement": "Is there a function $f(n)$ and a $k$ such that in any $k$-colouring of the integers there exists a\nsequence $a_1 < a_2 < \\cdots$ such that $a_n < f(n)$ for infinitely many $n$ and the set\n$$\\left\\{ \\sum_{i \\in S} a_i : \\textrm{finite nonempty } S \\right\\}$$\ndoes not contain all colours?"
+   },
+   {
+    "id": "ERDOS-483",
+    "title": "Erdős Problem #483",
+    "status": "open",
+    "statement": "Let $f(k)$ be the minimal $N$ such that if $\\{1,\\ldots,N\\}$ is $k$-coloured then\nthere is a monochromatic solution to $a+b=c$. Estimate $f(k)$. In particular, is it true\nthat $f(k) < c^k$ for some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-532",
+    "title": "Erdős Problem #532",
+    "status": "solved",
+    "statement": "If $\\mathbb{N}$ is 2-coloured then is there some infinite set $A\\subseteq \\mathbb{N}$ such that\nall finite subset sums$$ \\sum_{n\\in S}n$$(as $S$ ranges over all non-empty finite subsets of $A$)\nare monochromatic?"
+   },
+   {
+    "id": "GREEN-14",
+    "title": "Green's Problem 14",
+    "status": "solved",
+    "statement": "Is $W(k, r)$ a polynomial in $r$, for fixed $k$?"
+   },
+   {
+    "id": "GREEN-21",
+    "title": "Green's Problem 21",
+    "status": "open",
+    "statement": "Suppose that $a_1, \\dots, a_k$ are integers which do not satisfy Rado's condition: thus if\n$\\sum_{i \\in I} a_i = 0$ then $I = \\emptyset$. It then follows from Rado's theorem that the\nequation $a_1x_1 + \\cdots + a_kx_k = 0$ is not partition regular. Write $c(a_1, \\dots, a_k)$ for\nthe least number of colours required in order to colour $\\mathbb{N}$ so that there is no\nmonochromatic solution to $a_1x_1 + \\cdots + a_kx_k = 0$. Is $c(a_1, \\dots, a_k)$ bounded in\nterms of $k$ only?"
+   },
+   {
+    "id": "GREEN-22",
+    "title": "Green's Problem 22",
+    "status": "open",
+    "statement": "If $\\{1, \\ldots, N\\}$ is $r$-coloured then, for $N \\geqslant N_0(r)$, there are integers\n$x, y \\geqslant 3$ such that $x + y, xy$ have the same colour."
+   },
+   {
+    "id": "GREEN-23",
+    "title": "Green's Problem 23",
+    "status": "solved",
+    "statement": "Suppose that $\\mathbb{N}$ is finitely coloured. Are there $x,y$ of the same colour such that $x^2 +\n y^2$ is a square?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "IMO-1978-P6",
+    "title": "IMO 1978 · Problem 6"
+   },
+   {
+    "id": "IMO-1983-P5",
+    "title": "IMO 1983 · Problem 5"
+   },
+   {
+    "id": "Bulgaria-1998-P1",
+    "title": "Bulgaria 1998 · Problem 1"
+   }
+  ]
+ },
+ {
+  "id": "discrepancy",
+  "title": "Discrepancy",
+  "summary": "How evenly can a $\\pm1$ sequence be balanced on a family of sets? Erdős asked whether $\\sup_{n,d}|\\sum_{k\\le n} f(kd)|$ is unbounded for every $f:\\mathbb N\\to\\{\\pm1\\}$; Tao proved it in 2015.",
+  "key_statements": [
+   "\\sup_{n,d}\\Big|\\sum_{k=1}^{n} f(kd)\\Big| = \\infty \\ \\ \\text{(Tao 2015)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-178",
+    "title": "Erdős Problem #178",
+    "status": "solved",
+    "statement": "Let $A_1,A_2,\\ldots$ be an infinite collection of infinite sets of integers, say\n$A_i=\\{a_{i1}<a_{i2}<\\cdots\\}$. Does there exist some $f:\\mathbb{N}\\to\\{-1,1\\}$ such that\n$$\\max_{m, 1\\leq i\\leq d} \\left\\lvert \\sum_{1\\leq j\\leq m} f(a_{ij})\\right\\rvert \\ll_d 1$$\nfor all $d\\geq 1$?"
+   },
+   {
+    "id": "ERDOS-1028",
+    "title": "Erdős Problem #1028",
+    "status": "solved",
+    "statement": "Let\n$$H(n)=\\min_f \\max_{X\\subseteq \\{1,\\ldots,n\\}} \\left\\lvert \\sum_{x<y\\in X} f(x,y)\\right\\rvert,$$\nwhere $f$ ranges over all functions $f:\\{1,\\ldots,n\\}^2\\to \\{-1,1\\}$. Estimate $H(n)$."
+   },
+   {
+    "id": "ERDOS-997",
+    "title": "Erdős Problem #997",
+    "status": "solved",
+    "statement": "Is it true that, for every $\\alpha$, the sequence $\\{ \\alpha p_n\\}$ is not well-distributed,\nif $p_n$ is the sequence of primes?"
+   },
+   {
+    "id": "ERDOS-161",
+    "title": "Erdős Problem #161",
+    "status": "open",
+    "statement": "(a) Let $\\alpha\\in[0,1/2)$ and $n,t\\geq 1$. Let $F^{(t)}(n,\\alpha)$ be the smallest $m$ such that we can\n$2$-colour the edges of the complete $t$-uniform hypergraph on $n$ vertices such that if $X\\subseteq\n[n]$ with $\\lvert X\\rvert \\geq m$ then there are at least $\\alpha \\binom{\\lvert X\\rvert}{t}$ many\n$t$-subsets of $X$ of each colour. For fixed $n,t$ as we change $\\alpha$ from $0$ to $1/2$ does\n$F^{(t)}(n,\\alpha)$ increase continuously or are there jumps? Only one jump?\n\n(b) For fixed $t\\geq 3$, do all positive densities below $1/2$ give the same asymptotic order?"
+   },
+   {
+    "id": "ERDOS-162",
+    "title": "Erdős Problem #162",
+    "status": "open",
+    "statement": "Let $\\alpha > 0$ and $n \\geq 1$. Let $F(n,\\alpha)$ be the largest $k$ such that there exists some\n2-colouring of the edges of $K_n$ in which any induced subgraph $H$ on at least $k$ vertices\ncontains more than $\\alpha\\binom{|H|}{2}$ many edges of each colour."
+   },
+   {
+    "id": "ERDOS-987",
+    "title": "Erdős Problem #987",
+    "status": "solved",
+    "statement": "For an infinite sequence $x_1, x_2, \\ldots \\in (0, 1)$, define\n$$A_k = \\limsup_{n \\to \\infty} \\left\\lvert \\sum_{j \\le n} e(k x_j) \\right\\rvert,$$\nwhere $e(x) = e^{2\\pi i x}$.\n\n(a) Question 1:\n\nIs it true that $\\limsup_{k \\to \\infty} A_k = \\infty$?\n\n(b) **Question 2 (parts.ii)**: Is it possible for $A_k = o(k)$? Yes — there exists a sequence\n$(x_n) \\in (0, 1)$ and a bound $b(k) = o(k)$ with $A x k \\le b k$ eventually. A corollary of\n`sqrt_log_upper_bound` (which gives a $\\sqrt{k \\log k}$ bound) plus the asymptotic\n$\\sqrt{k \\log k} = o(k)$."
+   },
+   {
+    "id": "ERDOS-995",
+    "title": "Erdős Problem #995",
+    "status": "open",
+    "statement": "Erdős Problem 995:\n\nFor every lacunary sequence $(n_k)$ of integers and every $f \\in L^2([0,1])$ with\n$\\int_0^1 f = 0$, is it true that for almost all $\\alpha$,\n$$\\sum_{k < N} f(\\{\\alpha n_k\\}) = o\\!\\left(N \\sqrt{\\log\\log N}\\right)?$$"
+   },
+   {
+    "id": "ERDOS-67",
+    "title": "Erdős Problem #67",
+    "status": "solved",
+    "statement": ""
+   },
+   {
+    "id": "ERDOS-994",
+    "title": "Erdős Problem #994",
+    "status": "solved",
+    "statement": "Let $E\\subseteq (0,1)$ be a meaurable subset with Lebesgue measure $\\lambda(E)$. Is it true that,\nfor almost all $\\alpha$,\n$$\\lim_{n\\to \\infty}\\frac{1}{n}\\sum_{1\\leq k\\leq n}1_{\\{k\\alpha \\}\\in E}=\\lambda(E)$$\nfor all $E$?"
+   }
+  ],
+  "existing_easier_problems": []
+ }
+]

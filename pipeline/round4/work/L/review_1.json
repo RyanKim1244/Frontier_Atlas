@@ -1,0 +1,121 @@
+[
+ {
+  "id": "series",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'the line s = 1' for what is, for real s, a single boundary value (the line is Re s = 1 only in the complex setting).",
+    "fix": "Changed to 'the boundary value s = 1'."
+   }
+  ]
+ },
+ {
+  "id": "asymptotics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/How to read and use the notation",
+    "problem": "The growth scale 1 << loglog x << log x << (log x)^A << ... was said to be a chain of o-relations 'for every fixed A > 0'. For 0 < A <= 1 the step log x << (log x)^A is false (it goes the other way).",
+    "fix": "Require A > 1 and note why."
+   },
+   {
+    "severity": "error",
+    "where": "section/Main terms and error terms: the primes",
+    "problem": "li(x) defined as int_0^x dt/log t without comment; the integral diverges at t = 1 and only exists as a Cauchy principal value (which is what the value 78627.5 is).",
+    "fix": "Stated the principal value and the equivalent form int_2^x dt/log t + li(2), li(2) = 1.045...; added a check."
+   },
+   {
+    "severity": "style",
+    "where": "section/Main terms and error terms: the primes",
+    "problem": "'Comparing two error terms' followed by three error terms.",
+    "fix": "'Comparing error terms'."
+   }
+  ]
+ },
+ {
+  "id": "partial-summation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof/Abel summation formula",
+    "problem": "The second (general) form was derived by applying the first form at x and y and subtracting, which needs f to be C^1 on [1, x]; the theorem only assumes f is C^1 on [y, x], and the lesson then applies it to f = 1/log t, which is undefined at 1. The proof did not cover the stated theorem or its main application.",
+    "fix": "Gave a direct proof on (y, x] using f(n) = f(x) - int_n^x f' and the partial sums A(t) - A(y); added a numerical check with y = 3/2, f = 1/log t."
+   },
+   {
+    "severity": "error",
+    "where": "proof/Euler-Maclaurin formula, first order",
+    "problem": "The theorem is stated for all integers a < b, but the proof applies Abel summation (defined for sequences starting at n = 1, with A(t) = floor(t) only for t >= 0), so it does not cover negative a.",
+    "fix": "Added a reduction: the formula is invariant under f(t) -> f(t + c), c integer (psi has period 1), so one may assume a >= 1. Added a check on [-3, 4]."
+   },
+   {
+    "severity": "error",
+    "where": "section/Higher order",
+    "problem": "Claimed the expansion through 1/(120 n^4) gives H_10 'to about nine decimal places'; the actual error is -3.93e-9, i.e. eight correct decimals.",
+    "fix": "Stated the error (about 4e-9, eight decimal places); added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "Said Euler-Maclaurin 'produces' the sqrt(2 pi) in Stirling's formula, while the lesson itself (correctly) says identifying that constant needs Wallis's product.",
+    "fix": "Changed to 'the constant in Stirling's formula'."
+   }
+  ]
+ },
+ {
+  "id": "complex-numbers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "Equality case of the triangle inequality stated as 'only when z and w point in the same direction', omitting the case where one of them is 0.",
+    "fix": "Equality iff one is a non-negative real multiple of the other."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'For a non-positive base, b^s needs a choice of logarithm' omits non-real complex bases, which equally need a branch.",
+    "fix": "'For a base b that is not a positive real number ... in general multi-valued'."
+   }
+  ]
+ },
+ {
+  "id": "holomorphic",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'The Taylor series of a holomorphic function converges on the largest disc that fits in the domain, and no further' is false: the series can converge on a larger disc when the function extends (e.g. e^z on a small disc).",
+    "fix": "Rewrote: it converges at least on the largest disc centred at c in the domain; the radius is limited by obstructions to extension, not by the domain; kept the 1/(1+x^2) example. Added checks."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Two technical points",
+    "problem": "'The tail after N terms is at most q^{N+1}/((1-q)r)' is ambiguous about which terms are included.",
+    "fix": "'The terms with n > N add up to at most ...'; added a numerical check of the bound."
+   }
+  ]
+ },
+ {
+  "id": "residues",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem/The argument principle",
+    "problem": "No orientation stated; with clockwise traversal the integral equals P - Z, so the formula's sign depends on a missing hypothesis.",
+    "fix": "Added 'C traversed once counterclockwise'; added a check that clockwise traversal flips the sign."
+   }
+  ]
+ },
+ {
+  "id": "continuation",
+  "verdict": "ok",
+  "issues": []
+ }
+]

@@ -1,0 +1,397 @@
+[
+ {
+  "id": "hecke-l",
+  "title": "Hecke L-functions",
+  "area": "Algebraic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$L$-functions of Hecke characters (Größencharaktere) on ideals of a number field. Hecke (1918) proved their analytic continuation and functional equation. Over $\\mathbb Q$ they are Dirichlet $L$-functions.",
+  "key_statements": [
+   "L(s, \\xi) = \\sum_{\\mathfrak a} \\frac{\\xi(\\mathfrak a)}{N\\mathfrak a^{s}}"
+  ],
+  "why": "The 2026 manuscript proves its zero-free half-plane for finite-order Hecke L-functions over $\\mathbb Q(\\sqrt{-3})$ and transfers it to Dirichlet L-functions.",
+  "references": [
+   "Neukirch, Algebraic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "dedekind-zeta",
+    "title": "Dedekind zeta functions"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   },
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "quasi-rh",
+    "title": "The quasi-Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1918",
+    "title": "Hecke L-functions",
+    "who": "Erich Hecke",
+    "text": "Defined $L$-functions of Größencharaktere and proved their functional equations.",
+    "ai_claim": false
+   },
+   {
+    "date": "30 Sep 2026",
+    "title": "Quasi-RH manuscript (7/8)",
+    "who": "OpenAI internal model",
+    "text": "Claims every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation. Reported as Lean-verified.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "elliptic-curves",
+  "title": "Elliptic curves",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory",
+   "algebra",
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Curves $y^2 = x^3 + ax + b$ with a group law on their points. Hasse (1933) proved $|\\#E(\\mathbb F_p) - (p+1)| \\le 2\\sqrt p$. Wiles's 1995 proof of Fermat's Last Theorem went through elliptic curves.",
+  "key_statements": [
+   "\\bigl|\\#E(\\mathbb F_p) - (p + 1)\\bigr| \\le 2\\sqrt p"
+  ],
+  "why": "The birth of modern arithmetic geometry; the Birch–Swinnerton-Dyer conjecture is about them.",
+  "references": [
+   "Silverman & Tate, Rational Points on Elliptic Curves"
+  ],
+  "prerequisites": [
+   {
+    "id": "congruences",
+    "title": "Congruences and modular arithmetic"
+   },
+   {
+    "id": "quadratic-residues",
+    "title": "Quadratic residues and reciprocity"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bsd",
+    "title": "The Birch and Swinnerton-Dyer conjecture"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1933",
+    "title": "The Hasse bound",
+    "who": "Helmut Hasse",
+    "text": "$|\\#E(\\mathbb F_p) - p - 1| \\le 2\\sqrt p$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1995",
+    "title": "Fermat's Last Theorem",
+    "who": "Andrew Wiles (with Richard Taylor)",
+    "text": "Proved via modularity of semistable elliptic curves.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "combinatorial-nt",
+  "title": "Combinatorial number theory",
+  "area": "Combinatorial & additive",
+  "stage": "olympiad",
+  "fields": [
+   "number-theory",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Questions about sets of integers where the argument is a counting or extremal one: pigeonhole on residues or exponent vectors, double counting, and constructions.",
+  "key_statements": [
+   "\\text{among } n+1 \\text{ integers in } [1,2n],\\ \\text{one divides another}"
+  ],
+  "why": "This is the native language of Erdős, and most of his problems below are stated in it.",
+  "references": [
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory",
+   "Guy, Unsolved Problems in Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "divisibility",
+    "title": "Divisibility and the Euclidean algorithm"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   },
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   },
+   {
+    "id": "unit-fractions",
+    "title": "Egyptian fractions"
+   },
+   {
+    "id": "covering-systems",
+    "title": "Covering systems"
+   },
+   {
+    "id": "primitive-sets",
+    "title": "Primitive sets"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "additive-combinatorics",
+  "title": "Sumsets and additive combinatorics",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "number-theory",
+   "harmonic-analysis"
+  ],
+  "status": null,
+  "summary": "The study of $A+B = \\{a+b\\}$ for finite sets. Small doubling $|A+A| \\le K|A|$ forces structure (Freiman), and Fourier analysis on $\\mathbb Z/N$ measures how random a set is.",
+  "key_statements": [
+   "|A+B| \\ge \\min(p,\\ |A|+|B|-1) \\ \\text{in } \\mathbb Z/p",
+   "|A+A| \\le K|A| \\Rightarrow A \\subset \\text{a generalised progression of size } O_K(|A|)"
+  ],
+  "why": "It connected number theory to ergodic theory and theoretical computer science, and produced the Green–Tao theorem.",
+  "references": [
+   "Tao & Vu, Additive Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "arithmetic-progressions",
+    "title": "Arithmetic progressions in dense sets"
+   },
+   {
+    "id": "sidon-sets",
+    "title": "Sidon sets"
+   },
+   {
+    "id": "additive-bases",
+    "title": "Additive bases and complete sequences"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1953",
+    "title": "Roth's theorem on 3-term progressions",
+    "who": "Klaus Roth",
+    "text": "Dense sets contain $3$-term progressions, by Fourier analysis on $\\mathbb Z/N$.",
+    "ai_claim": false
+   },
+   {
+    "date": "8 Oct 2026",
+    "title": "23 Erdős problems in the OpenAI release",
+    "who": "Thomas Bloom (erdosproblems.com)",
+    "text": "Bloom listed the release's claims touching Erdős problems, including #3 via a 198-page quasipolynomial bound for Szemerédi's theorem whose Lean file proves only a weaker statement. He called it a summary of claims, not an endorsement.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "ramsey-arithmetic",
+  "title": "Arithmetic Ramsey theory",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Colour the integers with finitely many colours; some colour class contains a given structure. Schur: a monochromatic $x+y=z$. Van der Waerden: arbitrarily long monochromatic progressions. Rado: exactly which linear systems are partition regular.",
+  "key_statements": [
+   "\\forall\\, r\\ \\exists\\, N:\\ [1,N] = C_1\\cup\\cdots\\cup C_r \\Rightarrow \\exists i,\\ x,y,z\\in C_i,\\ x+y=z"
+  ],
+  "why": "Colouring statements are the qualitative form of density statements, and the gap between the two is where most of the difficulty lies.",
+  "references": [
+   "Graham, Rothschild & Spencer, Ramsey Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "arithmetic-progressions",
+    "title": "Arithmetic progressions in dense sets"
+   },
+   {
+    "id": "discrepancy",
+    "title": "Discrepancy"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1916",
+    "title": "Schur's theorem",
+    "who": "Issai Schur",
+    "text": "Every finite colouring of $\\mathbb N$ has a monochromatic solution of $x+y=z$, found while studying Fermat's equation modulo $p$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1927",
+    "title": "Van der Waerden's theorem",
+    "who": "B. L. van der Waerden",
+    "text": "Every finite colouring of $\\mathbb N$ contains arbitrarily long monochromatic arithmetic progressions.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "arithmetic-progressions",
+  "title": "Arithmetic progressions in dense sets",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "number-theory",
+   "dynamics"
+  ],
+  "status": null,
+  "summary": "Szemerédi (1975): a set of positive upper density contains arbitrarily long progressions. Quantitative bounds for $r_k(N)$, the largest progression-free subset of $[1,N]$, are the active question; Green and Tao found long progressions in the primes.",
+  "key_statements": [
+   "r_3(N) \\le N \\exp\\!\\big(-c(\\log N)^{1/12}\\big)\\ \\ \\text{(Kelley–Meka 2023)}",
+   "\\sum_{n\\in A} \\tfrac1n = \\infty \\overset{?}{\\Rightarrow} A \\text{ has arbitrarily long APs}"
+  ],
+  "why": "The Erdős–Turán problem (Erdős #3, a 5000-dollar prize) is the headline; an October 2026 AI-produced manuscript claims a bound strong enough to settle it.",
+  "references": [
+   "Tao & Vu, Additive Combinatorics",
+   "Graham, Rothschild & Spencer, Ramsey Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   },
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1927",
+    "title": "Van der Waerden's theorem",
+    "who": "B. L. van der Waerden",
+    "text": "Every finite colouring of $\\mathbb N$ contains arbitrarily long monochromatic arithmetic progressions.",
+    "ai_claim": false
+   },
+   {
+    "date": "1936",
+    "title": "Erdős and Turán on progressions",
+    "who": "Paul Erdős, Pál Turán",
+    "text": "Conjectured that dense sets contain long progressions, the problem Szemerédi solved and whose reciprocal-sum form is Erdős #3.",
+    "ai_claim": false
+   },
+   {
+    "date": "1953",
+    "title": "Roth's theorem on 3-term progressions",
+    "who": "Klaus Roth",
+    "text": "Dense sets contain $3$-term progressions, by Fourier analysis on $\\mathbb Z/N$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1975",
+    "title": "Szemerédi's theorem",
+    "who": "Endre Szemerédi",
+    "text": "Every set of positive density contains arbitrarily long progressions.",
+    "ai_claim": false
+   },
+   {
+    "date": "2004",
+    "title": "The primes contain arbitrarily long progressions",
+    "who": "Ben Green, Terence Tao",
+    "text": "A relative Szemerédi theorem applied to a pseudorandom majorant of the primes.",
+    "ai_claim": false
+   },
+   {
+    "date": "2023",
+    "title": "Strong bounds for 3-progressions",
+    "who": "Zander Kelley, Raghu Meka",
+    "text": "$r_3(N) \\le N\\exp(-c(\\log N)^{1/12})$, close to Behrend's construction.",
+    "ai_claim": false
+   },
+   {
+    "date": "8 Oct 2026",
+    "title": "23 Erdős problems in the OpenAI release",
+    "who": "Thomas Bloom (erdosproblems.com)",
+    "text": "Bloom listed the release's claims touching Erdős problems, including #3 via a 198-page quasipolynomial bound for Szemerédi's theorem whose Lean file proves only a weaker statement. He called it a summary of claims, not an endorsement.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "sidon-sets",
+  "title": "Sidon sets",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "A set where all pairwise sums $a+b$ ($a\\le b$) are distinct. In $[1,N]$ the maximum size is $\\sqrt N + O(N^{1/4})$; whether the error is $O_\\varepsilon(N^\\varepsilon)$ is Erdős problem #30, with a 1000-dollar prize.",
+  "key_statements": [
+   "\\sqrt N \\lesssim |A| \\le \\sqrt N + 0.998\\,N^{1/4} \\ \\text{(Balogh–Füredi–Roy)}"
+  ],
+  "why": "Sidon sets are the simplest structure whose extremal size is still not known to the right order of error.",
+  "references": [
+   "Tao & Vu, Additive Combinatorics",
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1932",
+    "title": "Sidon's question",
+    "who": "Simon Sidon",
+    "text": "Asked Erdős how dense a set with distinct pairwise sums can be, in work on Fourier series.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

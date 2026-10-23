@@ -1,0 +1,66 @@
+[
+ {
+  "id": "twin-primes",
+  "title": "The twin prime conjecture",
+  "summary": "There are infinitely many primes $p$ with $p + 2$ prime. Hardy and Littlewood conjectured the count up to $x$ is about $2C_2\\,x/(\\log x)^2$ with $C_2 \\approx 0.6602$. Bounded gaps (246) is the best unconditional result.",
+  "key_statements": [
+   "\\pi_2(x) \\sim 2 C_2 \\frac{x}{(\\log x)^2}, \\qquad C_2 = \\prod_{p > 2}\\Bigl(1 - \\frac{1}{(p-1)^2}\\Bigr)"
+  ],
+  "prerequisites": [
+   {
+    "id": "bounded-gaps",
+    "title": "Bounded gaps between primes"
+   }
+  ],
+  "research_problems": [],
+  "existing_easier_problems": []
+ },
+ {
+  "id": "goldbach",
+  "title": "Goldbach's conjecture",
+  "summary": "Every even integer greater than $2$ is a sum of two primes (Goldbach to Euler, 1742). Verified by computer far beyond $10^{18}$; the ternary version was proved by Helfgott in 2013.",
+  "key_statements": [
+   "2N = p + q"
+  ],
+  "prerequisites": [
+   {
+    "id": "ternary-goldbach",
+    "title": "Ternary Goldbach"
+   },
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   }
+  ],
+  "research_problems": [],
+  "existing_easier_problems": []
+ },
+ {
+  "id": "rh",
+  "title": "The Riemann hypothesis",
+  "summary": "Every nontrivial zero of $\\zeta$ has real part $\\tfrac12$. Stated by Riemann in 1859, one of Hilbert's 1900 problems and a Clay Millennium Problem since 2000. Open as of October 2026.",
+  "key_statements": [
+   "\\zeta(\\rho) = 0,\\ 0 < \\operatorname{Re}\\rho < 1 \\ \\Longrightarrow\\ \\operatorname{Re}\\rho = \\tfrac12",
+   "\\psi(x) = x + O(\\sqrt x \\log^2 x)"
+  ],
+  "prerequisites": [
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "CLAY-rh",
+    "title": "Millennium Prize · The Riemann hypothesis",
+    "status": "open",
+    "statement": "Prove that every non-trivial zero of the Riemann zeta function $\\zeta(s)$ has real part $\\tfrac12$."
+   }
+  ],
+  "existing_easier_problems": []
+ }
+]

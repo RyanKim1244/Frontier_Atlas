@@ -1,0 +1,399 @@
+[
+ {
+  "id": "mertens",
+  "title": "Mertens' theorems",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Mertens (1874) proved $\\sum_{p \\le x} \\frac{\\log p}{p} = \\log x + O(1)$, $\\sum_{p\\le x}\\frac1p = \\log\\log x + M + o(1)$, and $\\prod_{p \\le x}(1 - 1/p) \\sim e^{-\\gamma}/\\log x$, all without the prime number theorem.",
+  "key_statements": [
+   "\\prod_{p \\le x}\\Bigl(1 - \\frac1p\\Bigr) \\sim \\frac{e^{-\\gamma}}{\\log x}"
+  ],
+  "why": "These are the estimates sieve methods start from.",
+  "references": [
+   "Montgomery & Vaughan, Multiplicative Number Theory I",
+   "Apostol, Introduction to Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "chebyshev",
+    "title": "Chebyshev and von Mangoldt functions"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   },
+   {
+    "id": "primitive-sets",
+    "title": "Primitive sets"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1874",
+    "title": "Mertens' theorems",
+    "who": "Franz Mertens",
+    "text": "Asymptotics for $\\sum 1/p$ and $\\prod (1-1/p)$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "pnt",
+  "title": "The prime number theorem",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\pi(x) \\sim x/\\log x$, conjectured by Gauss and Legendre in the 1790s and proved in 1896 by Hadamard and de la Vallée Poussin. The key step is that $\\zeta(1+it) \\ne 0$.",
+  "key_statements": [
+   "\\pi(x) \\sim \\operatorname{li}(x) = \\int_2^x \\frac{dt}{\\log t}"
+  ],
+  "why": "The size of the error $\\pi(x) - \\operatorname{li}(x)$ is controlled by the zeros of $\\zeta$.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory",
+   "Davenport, Multiplicative Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "chebyshev",
+    "title": "Chebyshev and von Mangoldt functions"
+   },
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   },
+   {
+    "id": "residues",
+    "title": "Residues and the argument principle"
+   },
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "zero-free-region",
+    "title": "Zero-free regions"
+   },
+   {
+    "id": "prime-patterns",
+    "title": "Primes in sequences and gaps"
+   },
+   {
+    "id": "probabilistic-nt",
+    "title": "Probabilistic number theory"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1790s",
+    "title": "Conjecturing the prime number theorem",
+    "who": "Carl Friedrich Gauss, Adrien-Marie Legendre",
+    "text": "From tables, the density of primes near $x$ is about $1/\\log x$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1848–1850",
+    "title": "Chebyshev's estimates",
+    "who": "Pafnuty Chebyshev",
+    "text": "Showed $\\pi(x)\\log x / x$ stays between two constants.",
+    "ai_claim": false
+   },
+   {
+    "date": "1896",
+    "title": "The prime number theorem",
+    "who": "Jacques Hadamard, Charles-Jean de la Vallée Poussin",
+    "text": "Proved $\\zeta(1+it) \\ne 0$ and hence $\\pi(x) \\sim x/\\log x$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "nontrivial-zeros",
+  "title": "Nontrivial zeros and the Riemann–von Mangoldt formula",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Zeros in the critical strip $0 < \\operatorname{Re}s < 1$ are the nontrivial zeros. The number with $0 < \\operatorname{Im} s \\le T$ is $N(T) = \\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e} + O(\\log T)$. The first is $\\tfrac12 + 14.134725\\ldots\\,i$.",
+  "key_statements": [
+   "N(T) = \\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e} + \\frac78 + O(\\log T)"
+  ],
+  "why": "Hardy (1914) showed infinitely many lie on the critical line.",
+  "references": [
+   "Titchmarsh, The Theory of the Riemann Zeta-Function",
+   "Edwards, Riemann's Zeta Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   },
+   {
+    "id": "residues",
+    "title": "Residues and the argument principle"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   },
+   {
+    "id": "pair-correlation",
+    "title": "Pair correlation and random matrices"
+   },
+   {
+    "id": "rh",
+    "title": "The Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   },
+   {
+    "date": "1914",
+    "title": "Infinitely many zeros on the critical line",
+    "who": "G. H. Hardy",
+    "text": "Proved infinitely many zeros have real part $\\tfrac12$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "explicit-formula",
+  "title": "The explicit formula",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Riemann's formula, proved by von Mangoldt in 1895, writes $\\psi(x)$ exactly as a sum over the zeros $\\rho$. A zero $\\rho = \\beta + i\\gamma$ contributes a term of size $x^{\\beta}$.",
+  "key_statements": [
+   "\\psi(x) = x - \\sum_{\\rho} \\frac{x^{\\rho}}{\\rho} - \\log 2\\pi - \\tfrac12 \\log\\bigl(1 - x^{-2}\\bigr)"
+  ],
+  "why": "It is why every statement about zeros is a statement about primes.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Montgomery & Vaughan, Multiplicative Number Theory I"
+  ],
+  "prerequisites": [
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   },
+   {
+    "id": "chebyshev",
+    "title": "Chebyshev and von Mangoldt functions"
+   },
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "zero-free-region",
+    "title": "Zero-free regions"
+   },
+   {
+    "id": "siegel-walfisz",
+    "title": "The Siegel–Walfisz theorem"
+   },
+   {
+    "id": "moments",
+    "title": "Moments, mollifiers and amplifiers"
+   },
+   {
+    "id": "pair-correlation",
+    "title": "Pair correlation and random matrices"
+   },
+   {
+    "id": "rh",
+    "title": "The Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   },
+   {
+    "date": "1895",
+    "title": "Proof of the explicit formula",
+    "who": "Hans von Mangoldt",
+    "text": "Proved Riemann's formula for $\\psi(x)$ as a sum over zeros.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "zero-free-region",
+  "title": "Zero-free regions",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Regions near $\\operatorname{Re}s=1$ with no zeros. De la Vallée Poussin (1899) found $\\sigma > 1 - c/\\log|t|$, and Vinogradov and Korobov (1958) a wider region, but in all of them the width shrinks to $0$ as $|t| \\to \\infty$. The classical proof uses $3 + 4\\cos\\theta + \\cos 2\\theta \\ge 0$.",
+  "key_statements": [
+   "\\sigma > 1 - \\frac{c}{\\log |t|}",
+   "3 + 4\\cos\\theta + \\cos 2\\theta = 2(1+\\cos\\theta)^2 \\ge 0"
+  ],
+  "why": "The width of the zero-free region is exactly the strength of the prime number theorem's error term.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Montgomery & Vaughan, Multiplicative Number Theory I",
+   "Titchmarsh, The Theory of the Riemann Zeta-Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "siegel-zeros",
+    "title": "Siegel zeros and the Landau–Siegel problem"
+   },
+   {
+    "id": "zero-density",
+    "title": "Zero-density estimates"
+   },
+   {
+    "id": "quasi-rh",
+    "title": "The quasi-Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1899",
+    "title": "A zero-free region",
+    "who": "Charles-Jean de la Vallée Poussin",
+    "text": "No zeros in $\\sigma > 1 - c/\\log|t|$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1958",
+    "title": "Vinogradov–Korobov zero-free region",
+    "who": "I. M. Vinogradov, N. M. Korobov",
+    "text": "The widest known zero-free region; it still shrinks with height.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-characters",
+  "title": "Dirichlet characters",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Homomorphisms $\\chi: (\\mathbb Z/q\\mathbb Z)^\\times \\to \\mathbb C^\\times$, extended by $0$. There are $\\varphi(q)$ of them, and orthogonality isolates a residue class. A character is primitive if it is not induced from a smaller modulus.",
+  "key_statements": [
+   "\\frac{1}{\\varphi(q)}\\sum_{\\chi \\bmod q} \\overline{\\chi}(a)\\,\\chi(n) = \\begin{cases} 1 & n \\equiv a \\\\ 0 & \\text{otherwise}\\end{cases}"
+  ],
+  "why": "Characters are how one picks out primes in a single arithmetic progression.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "order-primroot",
+    "title": "Order and primitive roots"
+   },
+   {
+    "id": "arithmetic-functions",
+    "title": "Arithmetic functions φ, σ, τ"
+   },
+   {
+    "id": "crt",
+    "title": "Chinese remainder theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "gauss-sums",
+    "title": "Gauss sums"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1837",
+    "title": "Primes in arithmetic progressions",
+    "who": "Peter Gustav Lejeune Dirichlet",
+    "text": "Introduced characters and $L$-functions and proved $L(1,\\chi) \\ne 0$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "gauss-sums",
+  "title": "Gauss sums",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$g(\\chi) = \\sum_{a \\bmod q} \\chi(a) e^{2\\pi i a/q}$. For primitive $\\chi$, $|g(\\chi)| = \\sqrt q$. For the quadratic character modulo a prime, $g^2 = \\left(\\frac{-1}{p}\\right) p$, which gives a proof of quadratic reciprocity.",
+  "key_statements": [
+   "|g(\\chi)|^2 = q \\quad (\\chi \\text{ primitive mod } q)"
+  ],
+  "why": "Gauss sums connect multiplicative characters to additive ones and appear in every functional equation of an $L$-function.",
+  "references": [
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+   "Davenport, Multiplicative Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "dirichlet-characters",
+    "title": "Dirichlet characters"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "large-sieve",
+    "title": "The large sieve"
+   },
+   {
+    "id": "cubic-characters",
+    "title": "Cubic characters and cubic reciprocity"
+   }
+  ],
+  "timeline": []
+ }
+]

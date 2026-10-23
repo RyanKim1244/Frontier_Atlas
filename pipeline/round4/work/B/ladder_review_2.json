@@ -1,0 +1,242 @@
+[
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Sumsets of integers: the trivial bound and its equality case",
+  "verdict": "ok",
+  "checked": "Standard direct/inverse theorem (Nathanson, GTM 165, Ch. 1, Thms 1.3-1.4); proof checked by hand.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "The Cauchy–Davenport theorem",
+  "verdict": "ok",
+  "checked": "Davenport, J. London Math. Soc. 10 (1935) 30-32; Cauchy 1813; statement checked.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Ruzsa's triangle inequality",
+  "verdict": "ok",
+  "checked": "Proof checked by hand: fixing a representation d=b(d)-c(d) for each d in B-C, the map (a,d) -> (a-b(d), a-c(d)) from A x (B-C) to (A-B) x (A-C) is injective; the metric deduction follows by taking logarithms. Ruzsa 1978 (Keszthely colloquium) and Tao-Vu 2006 are standard sources.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Plünnecke–Ruzsa inequality",
+  "verdict": "ok",
+  "checked": "Petridis, arXiv:1101.3507 (https://ar5iv.arxiv.org/html/1101.3507): Theorem 1.2 (Ruzsa) states |kB-lB| <= K^{k+l}|A| given |A+B| <= K|A| in abelian groups; Combinatorica 32 (2012) 721-733.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Bogolyubov's lemma in the finite field model",
+  "verdict": "fixed",
+  "checked": "Green's survey arXiv:math/0409420 (https://arxiv.org/abs/math/0409420) §10: 'Using a Fourier-analytic technique of Bogolyubov one may show f(alpha) << alpha^{-2}' for 2A-2A (=4A in F_2^n). Exact constant 1 checked by hand: with S={gamma: |hat A(gamma)| >= alpha^{3/2}}, |S| <= alpha^{-2} and 4A contains S^perp.",
+  "problem": "Survey states the bound with an implied constant only.",
+  "fix": "Verified the exact bound alpha^{-2} by the Parseval argument; added section reference."
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "The Erdős–Heilbronn conjecture for restricted sums",
+  "verdict": "ok",
+  "checked": "Citations confirmed in Sun's survey arXiv:math/0410529 reference list (https://arxiv.org/pdf/math/0410529): Dias da Silva-Hamidoune, Bull. LMS 26 (1994) 140-146; Alon-Nathanson-Ruzsa, Amer. Math. Monthly 102 (1995) 250-255. erdosproblems ERDOS-476 statement matches.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Freiman's 3k−4 theorem",
+  "verdict": "ok",
+  "checked": "Freiman 1959; Nathanson GTM 165 Ch. 1 (Theorem 1.16) gives exactly: |2A| <= 3k-4 implies A lies in an AP of length <= |2A|-k+1.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Ruzsa's Freiman theorem in groups of exponent 2",
+  "verdict": "fixed",
+  "checked": "Ruzsa's paper on Numdam (https://www.numdam.org/item/AST_1999__258__323_0.pdf): G commutative with every element of order <= r, |A+A| <= a|A| (or |A+B| with |B|=|A|) gives A contained in a subgroup H with |H| <= a^2 r^{a^4}|A|. Also Even-Zohar-Lovett arXiv:1212.5738 abstract quotes r^{K^4}K^2|A|. Astérisque 258 (1999) 323-326, MR 1701207.",
+  "problem": "The paper proves containment in a subgroup, not merely a coset (rung stated the weaker coset form).",
+  "fix": "Restated as containment in a subspace, matching the paper; bound K^2 2^{K^4} confirmed."
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Sanders' quasi-polynomial Bogolyubov lemma",
+  "verdict": "fixed",
+  "checked": "arXiv:1011.0107 PDF (https://arxiv.org/pdf/1011.0107), Appendix A, Theorem A.1: for A in F_2^n of density alpha, 4A contains a subspace V with cod V = O(log^4 2alpha^{-1}). DOI 10.2140/apde.2012.5.627 (Analysis & PDE 5 (2012) 627-655).",
+  "problem": "Exponent 4 confirmed (Green's log^{4+o(1)} refers to other formulations). GREEN-51 is about 2A, where polylogarithmic codimension is impossible, so a 4A result is not its natural precursor.",
+  "fix": "Removed GREEN-51 from bridges_to; added page numbers."
+ },
+ {
+  "concept": "additive-combinatorics",
+  "rung": "Marton's conjecture (polynomial Freiman–Ruzsa) over F_2",
+  "verdict": "fixed",
+  "checked": "arXiv:2311.05762 (https://ar5iv.labs.arxiv.org/html/2311.05762): Conjecture 1.1 (2K^C cosets of a subgroup of size <= |A|) proved with C=12 (Theorem 1.2). Published Ann. of Math. 201 (2025) no. 2, 515-549 (https://annals.math.princeton.edu/2025/201-2/p05).",
+  "problem": "Journal venue missing.",
+  "fix": "Added Annals of Mathematics reference."
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Schur's theorem with an explicit bound",
+  "verdict": "ok",
+  "checked": "Checked by hand and Python: colouring pairs {i,j} of {0..N} by colour of |i-j|; R_k(3)-1 <= r_k with r_1=2, r_k=k r_{k-1}+1 = floor(e k!) (computed for k<=9), so N >= floor(e k!) forces a monochromatic triangle. Schur 1916; Graham-Rothschild-Spencer, Ramsey Theory.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "The Schur number S(3) = 13",
+  "verdict": "ok",
+  "checked": "Recomputed by exhaustive backtracking in Python: a good 3-colouring of [1,13] exists, none of [1,14]. Landman-Robertson, Ramsey Theory on the Integers (AMS SML 24, 2004).",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Exponential lower bound for Schur numbers",
+  "verdict": "ok",
+  "checked": "Standard Schur construction S(k+1) >= 3S(k)+1 with S(1)=1 gives (3^k-1)/2; checked by hand; in Graham-Rothschild-Spencer.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Colourings that defeat a non-regular linear equation",
+  "verdict": "ok",
+  "checked": "Proof checked by hand: minimal p-adic valuation v, the indices I attaining it give d*sum_{I}a_i = 0 mod p, so p | sum_I a_i, contradiction with 0<|sum_I a_i|<p. Rado 1933 (Math. Z. 36, 424-480); GRS.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Van der Waerden's theorem",
+  "verdict": "ok",
+  "checked": "van der Waerden, Nieuw Arch. Wisk. 15 (1927) 212-216; standard.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Folkman's finite sums theorem",
+  "verdict": "ok",
+  "checked": "Folkman-Rado-Sanders finite sums theorem; Graham-Rothschild-Spencer, Ramsey Theory, Ch. 3. Bridge to ERDOS-532 (Hindman) is natural.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Rado's theorem for a single equation",
+  "verdict": "ok",
+  "checked": "Rado, Math. Z. 36 (1933); columns condition for one equation is exactly the stated subset-sum condition.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Rado's boundedness conjecture for three variables",
+  "verdict": "ok",
+  "checked": "Fox's abstract at https://ow3.math.rutgers.edu/~bumby/nyntsem/ny061102.html: with Kleitman they 'showed that k(3) can be taken to be 24'; citation J. Combin. Theory Ser. A 113 (2006) 84-100 confirmed in arXiv:2310.18163 §11, which also says (1,3) is the only known nontrivial case.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Monochromatic x, x+y and xy",
+  "verdict": "fixed",
+  "checked": "Ann. of Math. 185 (2017), no. 3, 1069-1090 (https://annals.math.princeton.edu/2017/185-3/p10), arXiv:1605.01469; main theorem: {x, x+y, xy} monochromatic for any finite colouring of N.",
+  "problem": "Note claimed this was the 'first' such pattern and misdescribed Green's Problem 22 as about quantitative bounds.",
+  "fix": "Rewrote the note to describe Problem 22 correctly and dropped the priority claim."
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "rung": "Partition regularity of Pythagorean pairs",
+  "verdict": "fixed",
+  "checked": "Published PDF (Cambridge Core, doi:10.1017/fmp.2024.27): Forum of Mathematics, Pi (2025), Vol. 13:e5, 1-52; Theorem 1.1 (with a=b=c=1): distinct x,y of the same colour and z with x^2+y^2=z^2.",
+  "problem": "Venue missing (only arXiv given).",
+  "fix": "Added Forum Math. Pi 13 (2025) e5; year set to 2025 (publication); 'distinct' confirmed in Theorem 1.1."
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Discrepancy 1 survives exactly to length 11",
+  "verdict": "fixed",
+  "checked": "OEIS A237695 (https://oeis.org/A237695): data 0, 11, 1160; no Mathias reference there. Konev-Lisitsa arXiv:1402.2184 abstract confirms 1160. Recomputed by backtracking in Python: some f on [1,11] has D(f)=1, none on [1,12].",
+  "problem": "Attribution to Mathias 1993 could not be confirmed (not in OEIS A237695, not in Konev-Lisitsa abstract).",
+  "fix": "Dropped the Mathias attribution; cited OEIS plus own computation."
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Weyl equidistribution and the quantifier in Khinchin's question",
+  "verdict": "ok",
+  "checked": "Weyl, Math. Ann. 77 (1916) 313-352; Kuipers-Niederreiter 1974. Second part checked: E = (0,1) minus the countable set {k alpha mod 1} has measure 1.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Exponential sums of a sequence cannot all stay bounded",
+  "verdict": "fixed",
+  "checked": "https://www.erdosproblems.com/987: Erdős (1964) remarked it is 'easy to see' that limsup_k sup_n |sum_{j<=n} e(k x_j)| = infinity; Clunie 1967 proved A_k >> k^{1/2} infinitely often. Verified own proof: for each n, Dirichlet's simultaneous approximation gives infinitely many k with ||k x_j|| < 1/6 for all j<=n, so the real part of the n-th sum is >= n/2.",
+  "problem": "Rung stated the weaker sup_k form while the recorded remark is limsup_k; note asserted a specific proof method (Fejér kernel).",
+  "fix": "Strengthened to limsup_k to match Erdős's remark (still elementary, proof checked); neutral note."
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "A multiplicative sequence with logarithmic discrepancy",
+  "verdict": "fixed",
+  "checked": "arXiv:0809.1691 PDF (https://arxiv.org/pdf/0809.1691) §4: 'L_3(n) is equal to the number of 1's in the base 3 expansion of n'; Corollary 4: 0 <= L_3(n) <= [log_3 n]+1. TAMS 362 (2010) 6279-6291 (https://www.ams.org/journals/tran/2010-362-12/S0002-9947-2010-05235-3/). Recomputed partial sums in Python for n < 200000. erdosproblems.com/67 says Erdős conjectured growth >> log x.",
+  "problem": "Note said log N is 'the order Erdős conjectured to be the truth'; Erdős conjectured the lower bound >> log N.",
+  "fix": "Added pages and corollary number; reworded the note."
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Random colourings of pairs: the upper bound n^{3/2}",
+  "verdict": "ok",
+  "checked": "https://www.erdosproblems.com/1028: 'Erdős [Er63d] proved n/4 <= H(n) << n^{3/2}'. Union-bound computation checked: P(|f(X)|>t) <= 2exp(-t^2/n^2), and 2^{n+1}exp(-t^2/n^2)<1 for t = C n^{3/2}.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Roth's theorem on discrepancy in arithmetic progressions",
+  "verdict": "ok",
+  "checked": "Roth, Acta Arith. 9 (1964) 257-260; Matoušek-Spencer, J. Amer. Math. Soc. 9 (1996) 195-204 (https://www.ams.org/jams/1996-9-01/S0894-0347-96-00175-0/).",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Erdős–Spencer lower bound for imbalance of 2-colourings of pairs",
+  "verdict": "ok",
+  "checked": "Zentralblatt 248.05114 (https://emis.muni.cz/classics/Erdos/cit/24805114.htm): for n sufficiently large H_k(n) >= C_k n^{(k+1)/2}, k=2 gives n^{3/2}; small n handled by shrinking c (any X={x,y} gives |f(X)|=1). erdosproblems.com/1028 confirms [ErSp71].",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Spencer's six standard deviations",
+  "verdict": "ok",
+  "checked": "Spencer, Six standard deviations suffice, Trans. AMS 289 (1985) 679-706; Spencer's Erdős-100 slides (https://www.renyi.hu/conferences/erdos100/slides/spencer.pdf) state disc <= 6 sqrt(n) for n sets on n points with no 'n large' restriction. Rung asks only for an absolute constant, which is safe either way.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "Law of the iterated logarithm for lacunary exponential sums",
+  "verdict": "fixed",
+  "checked": "Erdős-Gál part I (https://static.renyi.hu/~p_erdos/1955-06.pdf): for n_{v+1}/n_v > q > 1, limsup |sum_{v<=N} exp(2 pi i n_v x)|/sqrt(N log log N) = 1 a.e.; citation (Indag. Math. 17 (1955) 65-76, 77-84) confirmed in Aistleitner's survey arXiv:1306.3315. The trigonometric-polynomial deduction was checked by hand: for each frequency h != 0, (|h| n_k) is lacunary with the same q, so apply the theorem to finitely many sequences and take the union of the null sets. Erdős's L^2 construction confirmed at https://www.erdosproblems.com/995.",
+  "problem": "First part is a published theorem (stated weaker, <= 1); the deduction is an immediate corollary not stated in the paper.",
+  "fix": "Kept: the deduction is a two-line verified consequence. Added pages; rephrased the note on Erdős's construction."
+ },
+ {
+  "concept": "discrepancy",
+  "rung": "The Erdős discrepancy problem, Hilbert-space form",
+  "verdict": "ok",
+  "checked": "Discrete Analysis 2016:1 (https://discreteanalysisjournal.com/article/609), doi:10.19086/da.609, arXiv:1509.05363; erdosproblems.com/67 confirms Tao also proved the unit-sphere (Hilbert space) version.",
+  "problem": "",
+  "fix": ""
+ }
+]

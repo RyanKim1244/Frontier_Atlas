@@ -1,0 +1,242 @@
+[
+ {
+  "concept": "sidon-sets",
+  "rung": "Distinct differences bound",
+  "verdict": "fixed",
+  "checked": "Verified the bound k(k-1)/2 <= N-1 implies k < sqrt(2N)+1 by hand. O'Bryant survey https://arxiv.org/abs/math/0407117. Could not confirm the Halberstam-Roth page.",
+  "problem": "Halberstam & Roth citation for this exact statement could not be confirmed.",
+  "fix": "Statement unchanged (true, elementary); source changed to elementary + O'Bryant survey with arXiv id."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "The greedy Sidon sequence grows at most cubically",
+  "verdict": "fixed",
+  "checked": "Computed the greedy sequence (first 60 terms) in Python: starts 1,2,4,8,13,21,31,45,66,81,97 and a_{n+1}<=4n^3, a_n<=(n-1)^3+1 hold. erdosproblems.com/340 ('It is trivial that this sequence grows at least like N^{1/3}'; only bound given). O'Bryant https://arxiv.org/abs/math/0407117 (Mian-Chowla 1944, Stohr bound a_n<=(n-1)^3+1). Cilleruelo https://arxiv.org/abs/1209.0326.",
+  "problem": "Halberstam & Roth not confirmed as a source for the greedy bound; 'all that is known' slightly loose.",
+  "fix": "Source replaced by Mian-Chowla 1944 / Stohr 1955 via O'Bryant and Cilleruelo; note reworded. Statement unchanged."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "The Erdős–Turán quadratic-residue construction",
+  "verdict": "ok",
+  "checked": "Python: A_p is Sidon and inside {0,...,2p^2-1} for all primes p<=31. Bibliographic data confirmed via Zbl 061.07301 https://emis.muni.cz/classics/Erdos/cit/06107301.htm and BFR reference list https://old.renyi.hu/~furedi/PUBS3/furedi_261_balogh_roy_sidon-sets.pdf.",
+  "problem": "",
+  "fix": "Added page numbers."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Lindström's upper bound",
+  "verdict": "ok",
+  "checked": "Reference entry confirmed in BFR's bibliography (https://old.renyi.hu/~furedi/PUBS3/furedi_261_balogh_roy_sidon-sets.pdf) and O'Bryant DS11 https://arxiv.org/abs/math/0407117; BFR Theorem 1 quotes S(n) < n^{1/2}+n^{1/4}+1 as Lindstrom's bound.",
+  "problem": "",
+  "fix": "Added pages."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Singer difference sets give asymptotically optimal Sidon sets",
+  "verdict": "fixed",
+  "checked": "Singer reference confirmed in BFR bibliography https://old.renyi.hu/~furedi/PUBS3/furedi_261_balogh_roy_sidon-sets.pdf. Checked q+1 = sqrt(q^2+q+1)+1/2-O(1/q).",
+  "problem": "The deduction h(N)=(1+o(1))sqrt N needs the upper bound as well; the statement asked to deduce it from the lower bound alone.",
+  "fix": "Added 'together with the upper bound of the previous problem'. Bridges GREEN-31 and ERDOS-707 kept (lower-bound improvement and perfect difference sets are the natural next steps)."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "B3 sets: counting bound and the Bose–Chowla construction",
+  "verdict": "fixed",
+  "checked": "IAS repository record https://repository.ias.ac.in/8578 (Comment. Math. Helv. 37 (1962) 141-147). O'Bryant https://arxiv.org/abs/math/0407117 (B_h set of q elements mod q^h-1; pigeonhole bound (h h!)^{1/h} = 18^{1/3} for h=3). Python: built Bose-Chowla sets for q=2,3,5,7, shifted by 1 into {1,...,q^3-1}, checked B3 property. Checked (a): C(k+2,3) <= 3N-2 and k^3/6 <= C(k+2,3).",
+  "problem": "Source lacked pages and a reference for part (a).",
+  "fix": "Added pages and O'Bryant for the counting bound. Statement unchanged."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Infinite Sidon sets cannot be dense at every scale",
+  "verdict": "fixed",
+  "checked": "erdosproblems.com/1191 (Erdos proved the liminf is at most a constant; cites [HaRo66]) https://www.erdosproblems.com/1191; O'Bryant DS11 https://arxiv.org/abs/math/0407117 (liminf A(n) sqrt(log n)/sqrt(n) << 1, Stohr 1955 J. Reine Angew. Math. 194, pp. 129-135, refining an unpublished result of Erdos).",
+  "problem": "No year/paper; ERDOS-39 is not the natural next step from an upper bound on the liminf (it asks for a dense construction, which is the Ruzsa rung's link).",
+  "fix": "Source now Stohr 1955 + Halberstam-Roth + erdosproblems; year 1955; removed ERDOS-39 from bridges_to."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Maximal Sidon sets: the cube-root bound and Ruzsa's construction",
+  "verdict": "fixed",
+  "checked": "erdosproblems.com/156 and its bibliography https://www.erdosproblems.com/latex/156 ([ESS94] J. Number Theory (1994) 329-347; [Ru98b] Ramanujan J. (1998) 55-58; lower bound >> N^{1/3} 'easy'). Verified (a): every x not in A is b+c-a or (b+c)/2, so N <= k^3+k^2+k.",
+  "problem": "Part (a) was called folklore 'see ESS94' without confirming ESS94 proves it.",
+  "fix": "Source reworded: (a) elementary (verified), ESS94 as origin of the question; pages added."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Ruzsa's dense infinite Sidon sequence",
+  "verdict": "fixed",
+  "checked": "Cilleruelo, Infinite Sidon sequences https://arxiv.org/abs/1209.0326 (Ruzsa J. Number Theory 68 (1998), counting function x^{sqrt2-1+o(1)}; AKS European J. Combin. 2 (1981) (x log x)^{1/3}); https://arxiv.org/abs/1103.5732.",
+  "problem": "ERDOS-340 concerns the greedy sequence specifically; Ruzsa's random construction is not a step toward it.",
+  "fix": "Removed ERDOS-340 from bridges_to; added pages 63-71 (confirmed in Ruzsa publication list https://www.ae-info.org/ae/User/Ruzsa_Imre_Z./Publications)."
+ },
+ {
+  "concept": "sidon-sets",
+  "rung": "Balogh–Füredi–Roy: improving the constant in the N^{1/4} term",
+  "verdict": "fixed",
+  "checked": "arXiv abstract https://arxiv.org/abs/2103.15850 (sqrt n + 0.998 n^{1/4} for large n); Crossref record for DOI 10.1080/00029890.2023.2176667 https://api.crossref.org/works/10.1080/00029890.2023.2176667 (Amer. Math. Monthly 130(5), 437-445, 2023); REAL record https://real.mtak.hu/164304.",
+  "problem": "Venue was uncertain; GREEN-31 asks to improve the lower bound sqrt N + O(1), which an upper bound does not lead to.",
+  "fix": "Venue confirmed and completed (vol. 130, no. 5, 437-445); removed GREEN-31 from bridges_to."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "The representation function is never eventually constant",
+  "verdict": "fixed",
+  "checked": "Nathanson survey https://arxiv.org/abs/0712.0408 (Theorem 1: unordered r_{A,2}(n), a1<=a2, not eventually constant; proof attributed to Dirac [J. London Math. Soc. 26 (1951) 312-313], via (G(z)^2+G(z^2))/2 and z -> -1). Zbl 070.04104 review of Erdos-Fuchs https://emis.dsd.sztaki.hu/classics/Erdos/cit/07004104.htm mentions the Dirac / Newman result.",
+  "problem": "With ordered pairs the statement is a one-line parity remark (r(n) is even for odd n and odd for n=2a, a in A), not Dirac's theorem; the Erdos-Turan 1941 and Erdos 1956 attributions could not be confirmed.",
+  "fix": "Changed r(n) to count pairs with a<=b (Dirac's setting); source now Dirac 1951 + Nathanson survey; year 1951; concepts congruences -> power-series."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "A basis of order two has at least square-root growth",
+  "verdict": "fixed",
+  "checked": "Verified: k elements of A in [0,N] give at most k(k+1)/2 sums a<=b, which must cover all n in [n0,N], so k(k+1)/2 >= N-n0+1 and liminf k/sqrt N >= sqrt 2. Nathanson, Cassels bases https://arxiv.org/abs/0905.3144 (A(x) >> x^{1/h}). Halberstam-Roth not confirmable.",
+  "problem": "Halberstam & Roth citation unconfirmed.",
+  "fix": "Source replaced (elementary + Nathanson). Added ERDOS-40 (counting function about sqrt N vs limsup r = infinity), a direct continuation."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "A thin basis from binary digits",
+  "verdict": "fixed",
+  "checked": "Nathanson, Cassels bases https://arxiv.org/abs/0905.3144 (A0 = sums of even powers of 2, A1 = sums of odd powers, A(x)/sqrt x < 2+sqrt2; Raikov Mat. Sb. 2 (1937), Stohr Math. Z. 42 (1937)). Python up to 2^20: A+A covers [0,2^16), max count/sqrt N = 2.596 <= 4; r(n) max on [0,2^{2k}) is 2^k+1, so unbounded as the note says.",
+  "problem": "Halberstam & Roth citation unconfirmed.",
+  "fix": "Source replaced by Raikov/Stohr via Nathanson; year 1937. Statement unchanged (verified)."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "Schnirelmann's inequality",
+  "verdict": "ok",
+  "checked": "Standard (Schnirelmann's sumset inequality and the finite-order corollary are the core of the Shnirel'man-Goldbach chapter of Nathanson GTM 164). Statement checked: both parts true with 0 in A, 0 in B; erdosproblems.com/35 uses the same density.",
+  "problem": "",
+  "fix": "Minor source wording."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "Erdős's covering-congruence obstruction for 2^k + p",
+  "verdict": "ok",
+  "checked": "Zbl 041.36808 listing https://emis.univie.ac.at/classics/Erdos/addnum.htm (Summa Brasil. Math. 2 (1950) 113-123). Python: the six classes cover all residues mod 24.",
+  "problem": "",
+  "fix": "Added pages. Bridges ERDOS-16 and ERDOS-9 kept (both are attacked by covering congruences)."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "Erdős's density increment for adding a basis",
+  "verdict": "ok",
+  "checked": "erdosproblems.com/35 https://www.erdosproblems.com/35 ('Erdos [Er36c] proved this is true with k replaced by 2k'; Plunnecke d_S(A+B) >= alpha^{1-1/k}); Zbl 013.15001 Acta Arith. 1 (1936) 197-200 via https://emis.univie.ac.at/classics/Erdos/addnum.htm. Checked alpha^{1-1/k} >= alpha + alpha(1-alpha)/k by calculus.",
+  "problem": "",
+  "fix": "Added pages; note now says why Plunnecke implies #35."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "A basis of order two with logarithmically many representations",
+  "verdict": "fixed",
+  "checked": "Zbl 073.03102 listing https://emis.dsd.sztaki.hu/classics/Erdos/1956.htm (Bruxelles colloque, pp. 127-137, 1956); Zbl 057.03901 review https://emis.dsd.sztaki.hu/classics/Erdos/cit/05703901.htm (1954 paper: 0 < f(n) < c log n); Wikipedia Erdos-Tetali theorem https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Tetali_theorem (Erdos 1956 Colloque 127-137 settles h=2; Erdos-Tetali RSA 1 (1990) 245-261).",
+  "problem": "Pages were uncertain; the 1954 paper (upper bound only) was not mentioned.",
+  "fix": "Pages confirmed; added the 1954 paper and the Erdos-Tetali title. Statement unchanged."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "Bases of order two have a representation count of at least 8 infinitely often",
+  "verdict": "ok",
+  "checked": "INTEGERS paper https://emis.univie.ac.at/journals/INTEGERS/papers/i30/i30.pdf (R(n) = #{(i,j): n=a_i+a_j}, basis means R(n)>0 for every n >= 0; GHHP limsup >= 6, BCC limsup >= 8; full references). Wikipedia https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Tur%C3%A1n_conjecture_on_additive_bases.",
+  "problem": "",
+  "fix": "Added pages and GHHP authors/title. Statement matches (ordered pairs, r(n)>=1 for all n>=0)."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "The Erdős–Fuchs theorem",
+  "verdict": "ok",
+  "checked": "Zbl 070.04104 review https://emis.dsd.sztaki.hu/classics/Erdos/cit/07004104.htm (r(n) = #solutions a_i+a_j <= n, cannot be cn + o(n^{1/4} log^{-1/2} n); answers Erdos-Turan's r(n)-cn=O(1)); Wikipedia https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Fuchs_theorem (ordered representations).",
+  "problem": "",
+  "fix": "Added pages."
+ },
+ {
+  "concept": "additive-bases",
+  "rung": "Gallagher: a prime plus boundedly many powers of 2",
+  "verdict": "fixed",
+  "checked": "erdosproblems.com/10 commentary and bibliography https://www.erdosproblems.com/latex/10 (Gallagher: for every eps there is k(eps) such that integers that are a prime plus at most k(eps) powers of 2 have lower density >= 1-eps; [Ga75] Invent. Math. (1975) 125-142).",
+  "problem": "ERDOS-9 (exactly two powers of 2, positive upper density of exceptions) is not the natural next step from a many-powers density result.",
+  "fix": "Removed ERDOS-9 from bridges_to (it stays linked from the covering-congruence rung); added pages."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Van der Waerden number W(3,2)",
+  "verdict": "ok",
+  "checked": "Python exhaustive search: all 2^9 colourings of [9] contain a monochromatic 3-AP; some colouring of [8] does not. Graham-Rothschild-Spencer, Ramsey Theory (2nd ed., Wiley 1990) is a standard textbook source.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Monotone 3-term progressions in permutations",
+  "verdict": "ok",
+  "checked": "IMPAN page https://www.impan.pl/en/publishing-house/journals-and-series/acta-arithmetica/all/34/1/101573/on-permutations-containing-no-long-arithmetic-progressions (Acta Arith. 34 (1977) 81-90); erdosproblems.com/196 (DEGS: every permutation of N has a monotone 3-AP, need not have a 5-term one); LeSaulnier-Vijay https://arxiv.org/abs/1004.1740 (DEGS proved M(n) >= 2^{n-1} permutations of [n] avoiding 3-APs, so part (a) is in DEGS).",
+  "problem": "",
+  "fix": "Added pages. Part (a) attribution confirmed."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "A progression-free set from ternary digits",
+  "verdict": "ok",
+  "checked": "Paper PDF https://www.renyi.hu/~p_erdos/1936-05.pdf (footnote: u+1 for u with no digit 2 in ternary is progression-free; Szekeres conjecture); Zbl 015.15203 https://emis.muni.cz/classics/Erdos/cit/01515203.htm. Python: set is 3-AP-free on a sample and count(N) >= N^{log2/log3}/2 for all N < 200000.",
+  "problem": "",
+  "fix": "Added pages."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Behrend's construction",
+  "verdict": "ok",
+  "checked": "Bloom survey https://arxiv.org/abs/2206.10037 (Behrend 1946: r_3(N) = Omega(N/exp(C sqrt(log N)))); Wikipedia Szemeredi's theorem references (PNAS 32 (12) 331-332).",
+  "problem": "",
+  "fix": "Added pages."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Roth's theorem",
+  "verdict": "ok",
+  "checked": "Bloom survey https://arxiv.org/abs/2206.10037 (Theorem 0.1, Roth 1953, O(N/log log N)); Wikipedia reference JLMS 28(1) 104-109.",
+  "problem": "",
+  "fix": "Added pages. Bridge ERDOS-139 kept (k=3 case)."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Szemerédi's theorem",
+  "verdict": "fixed",
+  "checked": "Standard (Acta Arith. 27 (1975) 199-245); erdosproblems ERDOS-139 statement in brief is exactly r_k(N)=o(N).",
+  "problem": "bridges_to listed ERDOS-139, which is this rung's statement verbatim, not a next step.",
+  "fix": "bridges_to -> ERDOS-3 (the density-to-harmonic-sum strengthening); note adjusted."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Gowers's quantitative Szemerédi theorem",
+  "verdict": "ok",
+  "checked": "Leng-Sah-Sawhney introduction https://arxiv.org/abs/2402.17995 quotes Gowers: r_k(N) < N(log log N)^{-2^{-2^{k+9}}}.",
+  "problem": "",
+  "fix": "Added pages."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Kelley–Meka bounds for 3-term progressions",
+  "verdict": "fixed",
+  "checked": "arXiv abstracts: https://arxiv.org/abs/2302.05537 (Kelley-Meka, beta>0 unspecified in abstract), https://arxiv.org/abs/2302.07211 (Bloom-Sisask exposition: exp(-c(log N)^{1/12})N; DOI 10.2140/ent.2023.2.15), https://arxiv.org/abs/2309.02353 (Bloom-Sisask: exponent 1/9). LSS intro https://arxiv.org/abs/2402.17995 attributes 1/12 to Kelley-Meka.",
+  "problem": "The 1/9 improvement was attributed to arXiv:2302.07211, which only proves 1/12; correct paper is arXiv:2309.02353. 'For all N>=2' is false (r_3(2)=2=N). The k=3 case of Erdos #3 was first proved by Bloom-Sisask 2020.",
+  "fix": "Source corrected; N>=2 -> N>=3; note credits Bloom-Sisask 2020 for the first proof of the k=3 case."
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "Leng–Sah–Sawhney bounds for long progressions",
+  "verdict": "ok",
+  "checked": "arXiv abstract https://arxiv.org/abs/2402.17995 (k>=5: r_k(N) << N exp(-(log log N)^{c_k})). The implied constant is absorbed by shrinking c_k for large N.",
+  "problem": "",
+  "fix": ""
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "rung": "The Green–Tao theorem",
+  "verdict": "fixed",
+  "checked": "Standard reference (Ann. of Math. (2) 167 (2008) 481-547); brief lists ERDOS-219 with this exact solution.",
+  "problem": "ERDOS-219 is this theorem itself, not a next step.",
+  "fix": "Removed ERDOS-219 from bridges_to; added pages."
+ }
+]

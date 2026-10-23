@@ -1,0 +1,158 @@
+[
+ {
+  "id": "groups",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example / Colouring the corners of a square",
+    "problem": "The closing count said 'exactly 3 colourings are chiral pairs'. What 24 = 21 + m counts is the D4-orbits that split into two rotation orbits, so there are 3 mirror-image pairs of rotation classes (6 rotation classes), not 3 colourings. The variable c also clashed with the cycle count c(g).",
+    "fix": "Rewrote it: if m of the 21 orbits split, 24 = 21 + m gives m = 3, so there are exactly 3 chiral pairs of rotation classes. Renamed the variable to m."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lagrange was paraphrased without saying the group is finite.",
+    "fix": "Now says 'a subgroup of a finite group'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The checks did not cover the D4 orbit and stabiliser of a corner, the cycle counts used in the square example, the cube's rotation cycle types, or Euler's theorem.",
+    "fix": "Added 4 independent checks."
+   }
+  ]
+ },
+ {
+  "id": "amgm",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section / How to use it: make the product constant",
+    "problem": "It said 'The next example shows a case where the naive split fails', but the next block is the power-mean definition. The intended example is Example 2.",
+    "fix": "Changed to 'Example 2 below'."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof / Proof of the chain",
+    "problem": "This page sends the general p < q case to the convexity page, but that page only proved 0 < p < q and waved at the other sign cases.",
+    "fix": "Completed the argument on the convexity page (see that entry), so this cross-reference is now accurate."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "There were no checks for the SOS identity behind the equality cases of (a+b)(b+c)(c+a) >= 8abc, the sum of the three weighted AM-GM steps, the semicircle relation PQ^2 = xy, or the limits of M_p and the harmonic mean.",
+    "fix": "Added 4 checks."
+   }
+  ]
+ },
+ {
+  "id": "cauchy-schwarz",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section / When to reach for the Engel form",
+    "problem": "Rewriting x_i/y_i as x_i^2/(x_i y_i) for the Engel form needs the denominators x_i y_i to be positive. The draft only required x_i > 0.",
+    "fix": "Now says 'when all x_i, y_i > 0'."
+   },
+   {
+    "severity": "style",
+    "where": "theorem / Hölder's inequality",
+    "problem": "'The case p = q = 2 is Cauchy–Schwarz' is literally true only for non-negative terms, since Hölder is stated for a_i, b_i >= 0.",
+    "fix": "Added: for numbers of any sign, apply it to |a_i| and |b_i|."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The checks did not cover the rearrangement swap identity, the cyclic-shift identity in the Chebyshev proof, Young's inequality, or the n = 2 sin^2 interpretation.",
+    "fix": "Added 3 checks."
+   }
+  ]
+ },
+ {
+  "id": "convexity",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section / AM–GM and power means as Jensen",
+    "problem": "Only 0 < p < q was proved; 'other sign patterns are handled the same way' was left unproved, although the AM–GM page cites this page for the full result. The case p < q < 0 needs the reversal under the power 1/q < 0, and the cases with order 0 go through AM–GM, not the same power trick.",
+    "fix": "Added the full argument: p < q < 0 by concavity of t^{q/p} and the reversal; M_0 <= M_q and M_p <= M_0 by AM–GM on x_i^q and x_i^p; p < 0 < q by chaining. Added a numerical check."
+   },
+   {
+    "severity": "style",
+    "where": "proof / Second derivative test",
+    "problem": "The proof treated only x < y with 0 < t < 1, but the definition quantifies over all x, y and t in [0,1].",
+    "fix": "Added one sentence: the cases x = y and t in {0,1} are trivial, and x > y is x < y with t replaced by 1 - t."
+   },
+   {
+    "severity": "style",
+    "where": "proof / Karamata",
+    "problem": "'The general case is the same argument with one-sided derivatives' overstated how direct the extension is (endpoint one-sided derivatives can be infinite).",
+    "fix": "Now says the general case needs a small modification, which is omitted."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The checks did not cover the three-chord lemma, the majorization examples, the negative-order power-mean steps, or the data in Exercise 1.",
+    "fix": "Added 4 checks."
+   }
+  ]
+ },
+ {
+  "id": "symmetric-ineq",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section / Why Schur is not a consequence of Muirhead",
+    "problem": "False general claim: 'Whenever an inequality has an equality case with a zero variable, AM–GM and Muirhead alone cannot prove it.' Counterexample: [2,1,0] >= [1,1,1] (sum_sym a^2b >= 6abc) is a Muirhead inequality with equality at (1,0,0).",
+    "fix": "Replaced it with the correct heuristic: check whether the AM–GM or Muirhead steps are also tight at that point; if not, they cannot prove the inequality."
+   },
+   {
+    "severity": "error",
+    "where": "section / Why Schur is not a consequence of Muirhead",
+    "problem": "The draft said Muirhead-type inequalities are strict at (1,1,0). That is false in general: [3,1,0] >= [2,2,0] has both sides equal to 2 at (1,1,0).",
+    "fix": "Restricted the claim to the three degree-3 Muirhead inequalities, with the bracket values 4, 2, 0 at (1,1,0), and turned it into a correct argument that no positive combination of them equals Schur. Verified with sympy (the coefficient system forces y = -1 - z < 0)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The checks did not cover the uvw reductions of Schur at c = 0 and b = c, the majorization chain in the exercises, the equality cases of Schur, Example 2 numerically, or the AM–GM product in Motzkin's example.",
+    "fix": "Added 5 checks."
+   }
+  ]
+ },
+ {
+  "id": "real-functional-eq",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The claim that wild additive involutions satisfy f(x + f(y)) = f(x) + y without being linear was not checked, nor was the uniqueness of the solution of the 2x2 system in Example 1.",
+    "fix": "Added a check with the coordinate swap on Q + Q·sqrt2 as a model of a non-linear additive involution, and a determinant/uniqueness check. No mathematical errors were found."
+   }
+  ]
+ },
+ {
+  "id": "polynomials-roots",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "The Hodge conjecture was described loosely ('Hodge classes ... come from algebraic subvarieties').",
+    "fix": "Made it precise: rational Hodge classes on smooth complex projective varieties should be rational combinations of classes of algebraic subvarieties."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "There were no checks for trace = sum of eigenvalues and det = product, quadratic Vieta, the number of terms of e_k, or the Lagrange basis property.",
+    "fix": "Added 2 checks. No mathematical errors were found."
+   }
+  ]
+ }
+]

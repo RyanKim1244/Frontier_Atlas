@@ -1,0 +1,2050 @@
+[
+ {
+  "id": "discrete-geometry",
+  "title": "Combinatorial geometry",
+  "summary": "Finite point sets in the plane: how many unit distances, how many distinct distances, when points must contain a convex $k$-gon, how lines and points can be incident.",
+  "key_statements": [
+   "\\#\\text{unit distances} \\le O(n^{4/3})\\ \\ \\text{(Spencer–Szemerédi–Trotter)}",
+   "\\#\\text{distinct distances} \\ge c\\,\\frac{n}{\\log n}\\ \\ \\text{(Guth–Katz)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   },
+   {
+    "id": "euclid-basics",
+    "title": "Angles, triangles and similarity"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-846",
+    "title": "Erdős Problem #846",
+    "status": "solved",
+    "statement": "Let `A ⊂ ℝ²` be an infinite set for which there exists some `ϵ>0` such that in any subset of `A`\nof size `n` there are always at least `ϵn` with no three on a line.\nIs it true that `A` is the union of a finite number of sets where no three are on a line?"
+   },
+   {
+    "id": "ERDOS-798",
+    "title": "Erdős Problem #798",
+    "status": "solved",
+    "statement": "Let $t(n)$ be the minimum number of points in $\\{1,\\ldots,n\\}^2$ such that the $\\binom{t}{2}$\nlines determined by these points cover all points in $\\{1,\\ldots,n\\}^2$.\n\nEstimate $t(n)$. In particular, is it true that $t(n)=o(n)$?"
+   },
+   {
+    "id": "ERDOS-503",
+    "title": "Erdős Problem #503",
+    "status": "open",
+    "statement": "What is the size of the largest $A \\subseteq \\mathbb{R}^n$ such that every three points from $A$\ndetermine an isosceles triangle? That is, for any three points $x$, $y$, $z$ from $A$, at least two\nof the distances $|x - y|$, $|y - z|$, $|x - z|$ are equal."
+   },
+   {
+    "id": "ERDOS-352",
+    "title": "Erdős Problem #352",
+    "status": "open",
+    "statement": "Is there some $c > 0$ such that every measurable $A \\subseteq \\mathbb{R}^2$ of measure $\\geq c$\n contains the vertices of a triangle of area 1?"
+   },
+   {
+    "id": "ERDOS-654",
+    "title": "Erdős Problem #654",
+    "status": "claimed",
+    "statement": "(a) Let $f(n)$ be such that, given any $x_1,\\ldots,x_n\\in \\mathbb{R}^2$ with no four points on a\ncircle, there exists some $x_i$ with at least $f(n)$ many distinct distances to the other $x_j$.\nIs it true that $f(n) > (1-o(1))n$?\n\n(b) Let $f(n)$ be as in `erdos_654.parts.i`. Is it true that $f(n) > (\\frac{1}{3}+c)n$ for some\nconstant $c>0$ and all large $n$?"
+   },
+   {
+    "id": "ERDOS-96",
+    "title": "Erdős Problem #96",
+    "status": "open",
+    "statement": "If $n$ points in $\\mathbb{R}^2$ form a convex polygon then there are $O(n)$ many pairs which are\ndistance $1$ apart."
+   },
+   {
+    "id": "ERDOS-214",
+    "title": "Erdős Problem #214",
+    "status": "solved",
+    "statement": "Let $S\\subset \\mathbb{R}^2$ be such that no two points in $S$ are distance $1$ apart. Must the\ncomplement of $S$ contain four points which form a unit square?"
+   },
+   {
+    "id": "ERDOS-91",
+    "title": "Erdős Problem #91",
+    "status": "open",
+    "statement": "Suppose $A\\subset \\mathbb{R}^2$ has $\\lvert A\\rvert=n$ and minimises the number of distinct\ndistances between points in $A$. Prove that for large $n$ there are at least two\n(and probably many) such $A$ which are non-similar."
+   },
+   {
+    "id": "ERDOS-1121",
+    "title": "Erdős Problem #1121",
+    "status": "solved",
+    "statement": "If $C_1,\\ldots,C_n$ are circles in $\\mathbb{R}^2$ with radii $r_1,\\ldots,r_n$ such that no line\ndisjoint from all the circles divides them into two non-empty sets then the circles can be\ncovered by a circle of radius $r=\\sum r_i$."
+   },
+   {
+    "id": "ERDOS-657",
+    "title": "Erdős Problem #657",
+    "status": "open",
+    "statement": "Is it true that if $A\\subset \\mathbb{R}^2$ is a set of $n$ points such that every subset of $3$\npoints determines $3$ distinct distances (that is, $A$ has no isosceles triangles, degenerate\nones included) then $A$ determines at least $f(n)n$ distinct distances, for some function $f$\nwith $f(n)\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-1207",
+    "title": "Erdős Problem #1207",
+    "status": "claimed",
+    "statement": "Let $P_d(n)$ be such that in any set of $n$ points in $\\mathbb{R}^d$ there exist at least $P_d(n)$ many points which do not contain an isosceles triangle. Estimate $P_d(n)$ - in particular, is it true that $$P_2(n)<n^{1-c}$$ for some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-1089",
+    "title": "Erdős Problem #1089",
+    "status": "solved",
+    "statement": "Let $g_d(n)$ be minimal such that every collection of $g_d(n)$ points in $\\mathbb{R}^d$ determines\nat least $n$ many distinct distances. Estimate $g_d(n)$. In particular, does\n$$\\lim_{d \\to \\infty} \\frac{g_d(n)}{d^{n-1}}$$\nexist?"
+   },
+   {
+    "id": "ERDOS-633",
+    "title": "Erdős Problem #633",
+    "status": "solved",
+    "statement": "Which triangles can only be decomposed into a square number of congruent triangles?"
+   },
+   {
+    "id": "ERDOS-1083",
+    "title": "Erdős Problem #1083",
+    "status": "claimed",
+    "statement": "Let $d\\geq 3$, and let $f_d(n)$ be the minimal $m$ such that every set of $n$ points in $\\mathbb{R}^d$ determines at least $m$ distinct distances. Estimate $f_d(n)$ - in particular, is it true that $$f_d(n)=n^{\\frac{2}{d}-o(1)}?$$"
+   },
+   {
+    "id": "ERDOS-670",
+    "title": "Erdős Problem #670",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\mathbb{R}^d$ be a set of $n$ points such that all pairwise distances differ by\nat least $1$. Is the diameter of $A$ at least $(1+o(1))n^2$?"
+   },
+   {
+    "id": "ERDOS-757",
+    "title": "Erdős Problem #757",
+    "status": "open",
+    "statement": "What is the supremum of the set of admissible numbers?"
+   },
+   {
+    "id": "ERDOS-353",
+    "title": "Erdős Problem #353",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{R}^2$ be a measurable set with infinite measure. Must $A$ contain the\nvertices of an isosceles trapezoid of area $1$? What about an isosceles triangle, or a\nright-angled triangle, or a cyclic quadrilateral, or a convex polygon with congruent sides?"
+   },
+   {
+    "id": "ERDOS-189",
+    "title": "Erdős Problem #189",
+    "status": "solved",
+    "statement": "If $\\mathbb{R}^2$ is finitely coloured then must there exist some colour class which contains the\nvertices of a rectangle of every area?"
+   },
+   {
+    "id": "ERDOS-95",
+    "title": "Erdős Problem #95",
+    "status": "solved",
+    "statement": "Let $x_1,\\ldots,x_n\\in\\mathbb{R}^2$ determine the set of distances $\\{u_1,\\ldots,u_t\\}$. Suppose\n$u_i$ appears as the distance between $f(u_i)$ many pairs of points. Then for all $\\epsilon>0$\n$$\\sum_i f(u_i)^2 \\ll_\\epsilon n^{3+\\epsilon}.$$"
+   },
+   {
+    "id": "ERDOS-1088",
+    "title": "Erdős Problem #1088",
+    "status": "open",
+    "statement": "Let $f_d(n)$ be the minimal $m$ such that any set of $m$ points in $\\mathbb{R}^d$ contains a set of\n$n$ points for which any two determined distances are distinct. Erdős Problem 1088 asks to\nestimate $f_d(n)$. In particular, is it true that, for every fixed $n \\geq 3$,\n$$\nf_d(n) = 2^{o(d)}\n$$\nas $d \\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-102",
+    "title": "Erdős Problem #102",
+    "status": "open",
+    "statement": "Let $c > 0$ and let $h_c(n)$ be such that for any $n$ points in $\\mathbb{R}^2$ with at least\n$cn^2$ lines that each contain more than three of the points, some line contains $h_c(n)$ of\nthe points. Is it true that, for fixed $c > 0$, $h_c(n) \\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-1087",
+    "title": "Erdős Problem #1087",
+    "status": "open",
+    "statement": "Let $f(n)$ be minimal such that every set of $n$ points in $\\mathbb{R}^2$ contains at most $f(n)$\nmany sets of four points which are 'degenerate' in the sense that some pair are the same distance\napart. Estimate $f(n)$ - in particular, is it true that $f(n)\\leq n^{3+o(1)}$?"
+   },
+   {
+    "id": "ERDOS-588",
+    "title": "Erdős Problem #588",
+    "status": "open",
+    "statement": "Let $f_k(n)$ be minimal such that if $n$ points in $\\mathbb{R}^2$ have no $k+1$ points on a line\nthen there must be at most $f_k(n)$ many lines containing at least $k$ points. Is it true that\n$$f_k(n) = o(n^2)$$\nfor $k \\geq 4$?"
+   },
+   {
+    "id": "ERDOS-505",
+    "title": "Erdős Problem #505",
+    "status": "solved",
+    "statement": "(disproved). Borsuk's conjecture is false for\nsufficiently large $n$: there exists a dimension $n$ and a bounded set\n$S \\subseteq \\mathbb{R}^n$ with at least two points that cannot be\ncovered by $n + 1$ subsets each of strictly smaller diameter."
+   },
+   {
+    "id": "ERDOS-224",
+    "title": "Erdős Problem #224",
+    "status": "solved",
+    "statement": "If $A\\subseteq \\mathbb{R}^d$ is any set of $2^d+1$ points then some three points in $A$ determine an obtuse angle."
+   },
+   {
+    "id": "ERDOS-1071",
+    "title": "Erdős Problem #1071",
+    "status": "solved",
+    "statement": "(a) Can a finite set of disjoint unit segments in a unit square be maximal?\nSolved affirmatively by [Da85], who gave an explicit construction.\n\n(b) Is there a region $R$ with a maximal set of disjoint unit line segments that is countably infinite?\nHere a unit line segment is a rotated and translated copy of the open interval $(0,1)$, and it is\nrequired to be contained in $R$.\nSolved affirmatively by [Fo99], who gave an explicit construction."
+   },
+   {
+    "id": "ERDOS-668",
+    "title": "Erdős Problem #668",
+    "status": "open",
+    "statement": "(a) Is it true that the number of incongruent sets of $n$ points in $\\mathbb{R}^2$ which maximise the\nnumber of unit distances tends to infinity as $n\\to\\infty$?\n\n(b) Is it always $>1$ for $n>3$?"
+   },
+   {
+    "id": "ERDOS-1086",
+    "title": "Erdős Problem #1086",
+    "status": "open",
+    "statement": "Let $g(n)$ be minimal such that any set of $n$ points in $\\mathbb{R}^2$ contains the vertices of\nat most $g(n)$ many triangles with the same area. Estimate $g(n)$."
+   },
+   {
+    "id": "ERDOS-103",
+    "title": "Erdős Problem #103",
+    "status": "open",
+    "statement": "Let $h(n)$ count the number of incongruent sets of $n$ points in $\\mathbb{R}^2$ which minimise\nthe diameter subject to the constraint that $d(x,y)\\geq 1$ for all points $x\\neq y$. Is it true\nthat $h(n)\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-504",
+    "title": "Erdős Problem #504",
+    "status": "solved",
+    "statement": "For $n \\ge 3$,\n$\\alpha_{2^n} = \\pi\\left(1 - \\frac{1}{n}\\right)$."
+   },
+   {
+    "id": "ERDOS-653",
+    "title": "Erdős Problem #653",
+    "status": "open",
+    "statement": "Let $x_1,\\ldots,x_n\\in \\mathbb{R}^2$ and let $R(x_i)=\\#\\{ \\lvert x_j-x_i\\rvert : j\\neq i\\}$,\nwhere the points are ordered such that\n$$R(x_1)\\leq \\cdots \\leq R(x_n).$$\nLet $g(n)$ be the maximum number of distinct values the $R(x_i)$ can take. Is it true that\n$g(n) \\geq (1-o(1))n$?"
+   },
+   {
+    "id": "ERDOS-211",
+    "title": "Erdős Problem #211",
+    "status": "solved",
+    "statement": "Let $1\\leq k<n$. Given $n$ points in $\\mathbb{R}^2$, at most $n-k$ on any line,\nthere are $\\gg kn$ many lines which contain at least two points.\nSolved by Beck [Be83] and Szemerédi and Trotter [SzTr83]."
+   },
+   {
+    "id": "ERDOS-97",
+    "title": "Erdős Problem #97",
+    "status": "open",
+    "statement": "Does every convex polygon have a vertex with no other 4 vertices equidistant from it?"
+   },
+   {
+    "id": "ERDOS-210",
+    "title": "Erdős Problem #210",
+    "status": "solved",
+    "statement": "(a) Let $f(n)$ be the sharp guarantee such that, for any $n$ points in $\\mathbb R^2$,\nnot all on a line, there are at least $f(n)$ lines which contain exactly two points\n(called ordinary lines). Does $f(n)\\to\\infty$?\nThat $f(n)\\to\\infty$ was proved by Motzkin [Mo51].\n\n(b) How fast does $f(n)$ tend to infinity? Kelly–Moser [KeMo58] and the near-pencil\nconstruction show that its growth is linear."
+   },
+   {
+    "id": "ERDOS-94",
+    "title": "Erdős Problem #94",
+    "status": "solved",
+    "statement": "Suppose $n$ points in $\\mathbb{R}^2$ determine a convex polygon and the set of distances between\nthem is $\\{u_1,\\ldots,u_t\\}$. Suppose $u_i$ appears as the distance between $f(u_i)$ many pairs of\npoints. Then\n$$\\sum_i f(u_i)^2 \\ll n^3.$$"
+   },
+   {
+    "id": "ERDOS-193",
+    "title": "Erdős Problem #193",
+    "status": "solved",
+    "statement": "Let $S \\subseteq \\mathbb{Z}^3$ be a finite set and let $A = \\lbrace a_1, a_2, \\ldots \\rbrace$ be\nan infinite $S$-walk, so that $a_{i+1} - a_i \\in S$ for all $i$. Must $A$ contain three collinear\npoints?"
+   },
+   {
+    "id": "ERDOS-704",
+    "title": "Erdős Problem #704",
+    "status": "claimed",
+    "statement": "(a) Does $\\chi(G_n)$ grow exponentially in $n$?\n\n(b) Let $G_n$ be the unit distance graph in $\\mathbb{R}^n$, with two vertices joined by an edge if\nand only if the distance between them is $1$. Does\n$$\\lim_{n\\to\\infty}\\chi(G_n)^{1/n}$$\nexist?"
+   },
+   {
+    "id": "ERDOS-188",
+    "title": "Erdős Problem #188",
+    "status": "open",
+    "statement": "What is the smallest $k$ such that $\\mathbb{R}^2$ can be red/blue coloured with no pair of red\npoints unit distance apart, and no $k$-term arithmetic progression of blue points with distance 1?"
+   },
+   {
+    "id": "ERDOS-652",
+    "title": "Erdős Problem #652",
+    "status": "solved",
+    "statement": "Let $x_1,\\ldots,x_n\\in \\mathbb{R}^2$ and let\n$R(x_i)=\\#\\{ \\lvert x_j-x_i\\rvert : j\\neq i\\}$, where the points are ordered such that\n$$R(x_1)\\leq \\cdots \\leq R(x_n).$$\nLet $\\alpha_k$ be minimal such that, for all large enough $n$, there exists a set of $n$ points\nwith $R(x_k)<\\alpha_kn^{1/2}$. Is it true that $\\alpha_k\\to \\infty$ as $k\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-1090",
+    "title": "Erdős Problem #1090",
+    "status": "solved",
+    "statement": "Let $k\\geq 3$. Does there exist a finite set $A\\subset \\mathbb{R}^2$ such that, in any $2$-colouring of $A$, there exists a line which contains at least $k$ points from $A$, and all the points of $A$ on the line have the same colour?"
+   },
+   {
+    "id": "ERDOS-769",
+    "title": "Erdős Problem #769",
+    "status": "claimed",
+    "statement": "Let $c(n)$ be minimal such that if $k\\geq c(n)$ then the $n$-dimensional unit\ncube can be decomposed into $k$ homothetic $n$-dimensional cubes. Give good\nbounds for $c(n)$ — in particular, is it true that $c(n)\\gg n^n$?"
+   },
+   {
+    "id": "ERDOS-105",
+    "title": "Erdős Problem #105",
+    "status": "solved",
+    "statement": "Let $A,B\\subset \\mathbb{R}^2$ be disjoint sets of size $n$ and $n-3$ respectively, with not all\nof $A$ contained on a single line. Is there a line which contains at least two points from $A$\nand no points from $B$?"
+   },
+   {
+    "id": "ERDOS-756",
+    "title": "Erdős Problem #756",
+    "status": "solved",
+    "statement": "Let $A\\subset \\mathbb{R}^2$ be a set of $n$ points. Can there be $\\gg n$ many distinct distances\neach of which occurs for more than $n$ many pairs from $A$?"
+   },
+   {
+    "id": "ERDOS-90",
+    "title": "Erdős Problem #90",
+    "status": "solved",
+    "statement": "Does every set of $n$ distinct points in $\\mathbb{R}^2$ contain at most\n$n^{1+O(\\frac{1}{\\log\\log n})}$ many pairs which are distance $1$ apart?"
+   },
+   {
+    "id": "ERDOS-101",
+    "title": "Erdős Problem #101",
+    "status": "open",
+    "statement": "Given $n$ points in $\\mathbb{R}^2$, no five of which are on a line, the number of\nlines containing four points is $o(n^2)$."
+   },
+   {
+    "id": "ERDOS-659",
+    "title": "Erdős Problem #659",
+    "status": "solved",
+    "statement": "Is there a set of $n$ points in $\\mathbb{R}^2$ such that every subset of $4$ points determines at\nleast $3$ distances, yet the total number of distinct distances is $\\ll \\frac{n}{\\sqrt{\\log n}}$?"
+   },
+   {
+    "id": "ERDOS-209",
+    "title": "Erdős Problem #209",
+    "status": "solved",
+    "statement": "Let $A$ be a finite collection of $d\\geq 4$ non-parallel lines in $\\mathbb{R}^2$ such that\nthere are no points where at least four lines from $A$ meet. Must there exist a 'Gallai\ntriangle' (or 'ordinary triangle'): three lines from $A$ which intersect in three points, and\neach of these intersection points only intersects two lines from $A$?"
+   },
+   {
+    "id": "ERDOS-212",
+    "title": "Erdős Problem #212",
+    "status": "open",
+    "statement": "Is there a dense subset of ℝ^2 such that all pairwise distances\nare rational?"
+   },
+   {
+    "id": "ERDOS-898",
+    "title": "Erdős Problem #898",
+    "status": "solved",
+    "statement": "If $A,B,C\\in \\mathbb{R}^2$ form a triangle and $P$ is a point in the interior then, if $N$ is\nwhere the perpendicular from $P$ to $AB$ meets the triangle, and similarly for $M$ and $L$,\n$$\n\\overline{PA}+\\overline{PB}+\\overline{PC}\\geq 2(\\overline{PM}+\\overline{PN}+\\overline{PL}).\n$$"
+   },
+   {
+    "id": "ERDOS-502",
+    "title": "Erdős Problem #502",
+    "status": "solved",
+    "statement": "What is the size of the largest $A\\subseteq \\mathbb{R}^n$ such that there are only two distinct\ndistances between elements of $A$? That is,\n$$\\# \\{ \\lvert x-y\\rvert : x\\neq y\\in A\\} = 2.$$"
+   },
+   {
+    "id": "ERDOS-959",
+    "title": "Erdős Problem #959",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\mathbb{R}^2$ be a set of size $n$ and let $\\{d_1,\\ldots,d_k\\}$ be\nthe set of distinct distances determined by $A$. Let $f(d)$ be the number of times\nthe distance $d$ is determined, ordered so that\n$f(d_1)\\geq f(d_2)\\geq \\cdots \\geq f(d_k)$. Estimate\n$$\\max (f(d_1)-f(d_2)),$$\nwhere the maximum is taken over all $A$ of size $n$ (this is `extremalGap n`)."
+   },
+   {
+    "id": "ERDOS-755",
+    "title": "Erdős Problem #755",
+    "status": "solved",
+    "statement": "Erdős asked whether every $n$-point set in\n$\\mathbb{R}^6$ spans at most $(1/27 + o(1)) n^3$ unit equilateral triangles."
+   },
+   {
+    "id": "ERDOS-655",
+    "title": "Erdős Problem #655",
+    "status": "claimed",
+    "statement": "Let $x_1,\\ldots,x_n\\in \\mathbb{R}^2$ be such that no circle whose centre is one\nof the $x_i$ contains three other points. Are there at least\n$$(1+c)\\frac{n}{2}$$\ndistinct distances determined between the $x_i$, for some constant $c>0$ and\nall $n$ sufficiently large?"
+   },
+   {
+    "id": "ERDOS-100",
+    "title": "Erdős Problem #100",
+    "status": "open",
+    "statement": "Is the diameter of $A$ at least $Cn$ for some constant $C > 0$?"
+   },
+   {
+    "id": "ERDOS-99",
+    "title": "Erdős Problem #99",
+    "status": "open",
+    "statement": "For sufficiently large n, is it the case that any set of n points with minimum distance $1$\nthat minimizes diameter must contain an equilateral triangle of side length 1?"
+   },
+   {
+    "id": "ERDOS-89",
+    "title": "Erdős Problem #89",
+    "status": "open",
+    "statement": "Erdős [Er46] asked whether every set of $n$ distinct points in $\\mathbb{R}^2$\ndetermines $\\gg \\frac{n}{\\sqrt{\\log n}}$ many distinct distances."
+   },
+   {
+    "id": "ERDOS-107",
+    "title": "Erdős Problem #107",
+    "status": "open",
+    "statement": "Let $f(n)$ be minimal such that any $f(n)$ points in $ℝ^2$, no three on a line,\ncontain $n$ points which form the vertices of a convex $n$-gon.\nProve that $f(n) = 2^{n-2} + 1$."
+   },
+   {
+    "id": "ERDOS-93",
+    "title": "Erdős Problem #93",
+    "status": "solved",
+    "statement": "If $n$ distinct points in $\\mathbb{R}^2$ form a convex polygon then they determine at least\n$\\lfloor \\frac{n}{2}\\rfloor$ distinct distances."
+   },
+   {
+    "id": "ERDOS-174",
+    "title": "Erdős Problem #174",
+    "status": "open",
+    "statement": "A finite set $A\\subset \\mathbb{R}^n$ is called Ramsey if, for any $k\\geq 1$, there exists some\n$d=d(A,k)$ such that in any $k$-colouring of $\\mathbb{R}^d$ there exists a monochromatic copy\nof $A$. Characterise the Ramsey sets in $\\mathbb{R}^n$."
+   },
+   {
+    "id": "ERDOS-958",
+    "title": "Erdős Problem #958",
+    "status": "solved",
+    "statement": "Let $A\\subset \\mathbb{R}^2$ be a finite set of size $n$, and let $\\{d_1,\\ldots,d_k\\}$ be the set of\ndistances determined by $A$. Let $f(d)$ be the multiplicity of $d$, that is, the number of\nunordered pairs from $A$ of distance $d$ apart.\n\nIs it true that $k=n-1$ and $\\{f(d_i)\\}=\\{n-1,\\ldots,1\\}$ if and only if $A$ is a set of\nequidistant points on a line or a circle?"
+   },
+   {
+    "id": "ERDOS-98",
+    "title": "Erdős Problem #98",
+    "status": "open",
+    "statement": "Let $h(n)$ be such that any $n$ points in $\\mathbb{R}^2$, with no three on a line\nand no four on a circle, determine at least $h(n)$ distinct distances. Does\n$h(n)/n\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-173",
+    "title": "Erdős Problem #173",
+    "status": "open",
+    "statement": "In any $2$-colouring of $\\mathbb{R}^2$, for all but at most one triangle $T$ (up to\ncongruence), there is a monochromatic congruent copy of $T$."
+   },
+   {
+    "id": "ERDOS-1069",
+    "title": "Erdős Problem #1069",
+    "status": "solved",
+    "statement": "Given any $n$ points in $\\mathbb{R}^2$, the number of $k$-rich lines (lines which contain\n$\\geq k$ of the points) is, provided $k\\leq n^{1/2}$,\n$$\\ll \\frac{n^2}{k^3}.$$"
+   },
+   {
+    "id": "ERDOS-604",
+    "title": "Erdős Problem #604",
+    "status": "claimed",
+    "statement": "Given $n$ distinct points $A\\subset\\mathbb{R}^2$, must there be a point $x\\in A$ such that\n$$\\#\\{ d(x,y) : y \\in A\\} \\gg n^{1-o(1)}?$$"
+   },
+   {
+    "id": "ERDOS-215",
+    "title": "Erdős Problem #215",
+    "status": "solved",
+    "statement": "Does there exist $S\\subseteq \\mathbb{R}^2$ such that every set congruent to $S$ (that is, $S$\nafter some translation and rotation) contains exactly one point from $\\mathbb{Z}^2$?"
+   },
+   {
+    "id": "ERDOS-661",
+    "title": "Erdős Problem #661",
+    "status": "open",
+    "statement": "Are there, for all large $n$, some points $x_1,\\ldots,x_n,y_1,\\ldots,y_n\\in \\mathbb{R}^2$ such that\nthe number of distinct distances $d(x_i,y_j)$ is\n$$o\\left(\\frac{n}{\\sqrt{\\log n}}\\right)?$$"
+   },
+   {
+    "id": "ERDOS-982",
+    "title": "Erdős Problem #982",
+    "status": "open",
+    "statement": "If $n$ distinct points in $\\mathbb{R}^2$ form a convex polygon then some vertex has at least\n$\\lfloor\\frac{n}{2}\\rfloor$ different distances to other vertices."
+   },
+   {
+    "id": "ERDOS-1082",
+    "title": "Erdős Problem #1082",
+    "status": "open",
+    "statement": "(a) Let $A\\subset \\mathbb{R}^2$ be a set of $n$ points with no three on a line.\nDoes $A$ determine at least $\\lfloor n/2\\rfloor$ distinct distances?\n\n(b) Let $A\\subset \\mathbb{R}^2$ be a set of $n$ points with no three on a line.\nMust there exist a single point from which there are at least $\\lfloor n/2\\rfloor$ distinct\ndistances?"
+   },
+   {
+    "id": "ERDOS-669",
+    "title": "Erdős Problem #669",
+    "status": "open",
+    "statement": "Let $F_k(n)$ be minimal such that for any $n$ points in $\\mathbb{R}^2$ there exist at most\n$F_k(n)$ many distinct lines passing through at least $k$ of the points, and $f_k(n)$ similarly\nbut with lines passing through exactly $k$ points."
+   },
+   {
+    "id": "ERDOS-213",
+    "title": "Erdős Problem #213",
+    "status": "open",
+    "statement": "Let $n \\geq 4$. Are there $n$ points in $\\mathbb{R}^2$, no three on a line and no four on a circle,\nsuch that all pairwise distances are integers?"
+   },
+   {
+    "id": "ERDOS-104",
+    "title": "Erdős Problem #104",
+    "status": "open",
+    "statement": "Given $n$ points in $\\mathbb{R}^2$ the number of distinct unit circles containing at least three points is $o(n^2)$."
+   },
+   {
+    "id": "ERDOS-827",
+    "title": "Erdős Problem #827",
+    "status": "open",
+    "statement": "Let $n_k$ be minimal such that if $n_k$ points in $\\mathbb{R}^2$ are in general position then\nthere exists a subset of $k$ points such that all $\\binom{k}{3}$ triples determine circles of\ndifferent radii."
+   },
+   {
+    "id": "ERDOS-660",
+    "title": "Erdős Problem #660",
+    "status": "open",
+    "statement": "Let $x_1, \\ldots, x_n \\in \\mathbb{R}^3$ be the vertices of a convex polyhedron. Are there at least\n$$(1 - o(1)) \\frac{n}{2}$$\nmany distinct distances between the $x_i$?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-1962-A1",
+    "title": "Putnam 1962 · A1"
+   },
+   {
+    "id": "PUTNAM-1963-B6",
+    "title": "Putnam 1963 · B6"
+   },
+   {
+    "id": "PUTNAM-1964-A1",
+    "title": "Putnam 1964 · A1"
+   },
+   {
+    "id": "PUTNAM-1964-B6",
+    "title": "Putnam 1964 · B6"
+   },
+   {
+    "id": "PUTNAM-1966-B5",
+    "title": "Putnam 1966 · B5"
+   },
+   {
+    "id": "PUTNAM-1967-A5",
+    "title": "Putnam 1967 · A5"
+   },
+   {
+    "id": "PUTNAM-1969-B4",
+    "title": "Putnam 1969 · B4"
+   },
+   {
+    "id": "IMO-1970-P6",
+    "title": "IMO 1970 · Problem 6"
+   },
+   {
+    "id": "IMO-1971-P5",
+    "title": "IMO 1971 · Problem 5"
+   },
+   {
+    "id": "PUTNAM-1973-A6",
+    "title": "Putnam 1973 · A6"
+   },
+   {
+    "id": "PUTNAM-1978-A6",
+    "title": "Putnam 1978 · A6"
+   },
+   {
+    "id": "PUTNAM-1979-A4",
+    "title": "Putnam 1979 · A4"
+   },
+   {
+    "id": "USAMO-1983-P3",
+    "title": "USAMO 1983 · Problem 3"
+   },
+   {
+    "id": "IMO-1984-P3",
+    "title": "IMO 1984 · Problem 3"
+   },
+   {
+    "id": "PUTNAM-1988-A4",
+    "title": "Putnam 1988 · A4"
+   },
+   {
+    "id": "IMO-1989-P3",
+    "title": "IMO 1989 · Problem 3"
+   },
+   {
+    "id": "PUTNAM-1990-A4",
+    "title": "Putnam 1990 · A4"
+   },
+   {
+    "id": "PUTNAM-1991-A4",
+    "title": "Putnam 1991 · A4"
+   },
+   {
+    "id": "IMO-1992-P5",
+    "title": "IMO 1992 · Problem 5"
+   },
+   {
+    "id": "PUTNAM-1998-A5",
+    "title": "Putnam 1998 · A5"
+   },
+   {
+    "id": "PUTNAM-2002-A2",
+    "title": "Putnam 2002 · A2"
+   },
+   {
+    "id": "PUTNAM-2006-B3",
+    "title": "Putnam 2006 · B3"
+   },
+   {
+    "id": "IMO-2007-P6",
+    "title": "IMO 2007 · Problem 6"
+   },
+   {
+    "id": "IMO-2013-P2",
+    "title": "IMO 2013 · Problem 2"
+   },
+   {
+    "id": "IMO-2014-P6",
+    "title": "IMO 2014 · Problem 6"
+   },
+   {
+    "id": "PUTNAM-2016-B3",
+    "title": "Putnam 2016 · B3"
+   },
+   {
+    "id": "USAMO-2017-P5",
+    "title": "USAMO 2017 · Problem 5"
+   },
+   {
+    "id": "IMO-2020-P6",
+    "title": "IMO 2020 · Problem 6"
+   },
+   {
+    "id": "USAMO-2020-P4",
+    "title": "USAMO 2020 · Problem 4"
+   },
+   {
+    "id": "IMO-2025-P1",
+    "title": "IMO 2025 · Problem 1"
+   },
+   {
+    "id": "PUTNAM-2025-B1",
+    "title": "Putnam 2025 · B1"
+   }
+  ]
+ },
+ {
+  "id": "infinite-combinatorics",
+  "title": "Infinite combinatorics and partition calculus",
+  "summary": "Ramsey theory for infinite sets and cardinals. The arrow notation $\\kappa \\to (\\lambda)^n_r$ asks whether every colouring of $n$-subsets of $\\kappa$ with $r$ colours has a homogeneous set of size $\\lambda$.",
+  "key_statements": [
+   "\\aleph_0 \\to (\\aleph_0)^n_r \\ \\ \\text{(infinite Ramsey)}",
+   "2^{\\aleph_0} \\not\\to (\\aleph_1)^2_2 \\ \\ \\text{(Sierpiński)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-596",
+    "title": "Erdős Problem #596",
+    "status": "open",
+    "statement": "(Erdős–Hajnal, [Er87]). For which graph pairs $(G_1, G_2)$ is it\ntrue that\n\n(1) for every $n \\geq 1$ there is a graph $H$ without a $G_1$ such that any\n      $n$-colouring of $H$'s edges contains a monochromatic $G_2$, and yet\n  (2) for every graph $H$ without a $G_1$ there is an $\\aleph_0$-colouring of $H$'s edges\n      with no monochromatic $G_2$?"
+   },
+   {
+    "id": "ERDOS-1176",
+    "title": "Erdős Problem #1176",
+    "status": "open",
+    "statement": "Let $G$ be a graph with chromatic number $\\aleph_1$. Is it true that there is a colouring of the\nedges with $\\aleph_1$ many colours such that, in any countable colouring of the vertices, there\nexists a vertex colour containing all edge colours?"
+   },
+   {
+    "id": "ERDOS-1219",
+    "title": "Erdős Problem #1219",
+    "status": "solved",
+    "statement": "Let $(n_k)$ be an increasing sequence of integers such that $2^{\\aleph_{n_k}}$ is strictly\nincreasing, and $2^{\\aleph_{n_0}} > \\aleph_\\omega$. Is it true that\n$$\\sum_k 2^{\\aleph_{n_k}} \\to (\\aleph_\\omega)^2?$$"
+   },
+   {
+    "id": "ERDOS-598",
+    "title": "Erdős Problem #598",
+    "status": "open",
+    "statement": "Let $\\kappa = (2^{\\aleph_0})^+$. This is the successor cardinal of the continuum.\n\n**Erdős Problem 598:**\nLet $m$ be an infinite cardinal and $\\kappa$ be the successor cardinal of $2^{\\aleph_0}$.\nCan one colour the countable subsets of $m$ using $\\kappa$ many colours so that every\n$X \\subseteq m$ with $|X| = \\kappa$ contains subsets of all possible colours?"
+   },
+   {
+    "id": "ERDOS-1119",
+    "title": "Erdős Problem #1119",
+    "status": "claimed",
+    "statement": "Let $\\mathfrak{m}$ be an infinite cardinal with $\\aleph_0 < \\mathfrak{m} < \\mathfrak{c} =\n2^{\\aleph_0}$. Let $\\{f_\\alpha\\}$ be a family of entire functions such that, for every\n$z_0 \\in \\mathbb{C}$, there are at most $\\mathfrak{m}$ distinct values of $f_\\alpha(z_0)$.\nMust $\\{f_\\alpha\\}$ have cardinality at most $\\mathfrak{m}$?"
+   },
+   {
+    "id": "ERDOS-593",
+    "title": "Erdős Problem #593",
+    "status": "open",
+    "statement": "Characterize those finite 3-uniform hypergraphs which appear\nin every 3-uniform hypergraph of chromatic number $> \\aleph_0$."
+   },
+   {
+    "id": "ERDOS-592",
+    "title": "Erdős Problem #592",
+    "status": "open",
+    "statement": "Determine which countable ordinals $β$ have the property that, if $α = \\omega^β$, then in any\nred/blue colouring of the edges of $K_α$ there is either a red $K_α$ or a blue $K_3$."
+   },
+   {
+    "id": "ERDOS-595",
+    "title": "Erdős Problem #595",
+    "status": "open",
+    "statement": "Is there an infinite graph $G$ which contains no $K_4$ and is\nnot the union of countably many triangle-free graphs?"
+   },
+   {
+    "id": "ERDOS-70",
+    "title": "Erdős Problem #70",
+    "status": "open",
+    "statement": "Let $\\mathfrak{c}$ be the order type of the real numbers,\nlet $\\beta$ be a countable ordinal, and let $2 \\le n < \\omega$.\nIs it true that $\\mathfrak{c} \\to (\\beta, n)^3_2$?"
+   },
+   {
+    "id": "ERDOS-623",
+    "title": "Erdős Problem #623",
+    "status": "open",
+    "statement": "Let $X$ be a set of cardinality $\\aleph_\\omega$ and $f$ be a function from the finite subsets of\n$X$ to $X$ such that $f(A)\\not\\in A$ for all $A$. Must there exist an infinite $Y\\subseteq X$\nthat is independent - that is, for all finite $B\\subset Y$ we have $f(B)\\not\\in Y$?"
+   },
+   {
+    "id": "ERDOS-1068",
+    "title": "Erdős Problem #1068",
+    "status": "open",
+    "statement": "Does every graph with chromatic number $\\aleph_1$ contain a countable subgraph which is\ninfinitely connected?"
+   },
+   {
+    "id": "ERDOS-590",
+    "title": "Erdős Problem #590",
+    "status": "solved",
+    "statement": "Let $α$ be the infinite ordinal $\\omega^{\\omega}$. It was proved by Chang [Ch72] that any red/blue\ncolouring of the edges of $K_α$ there is either a red $K_α$ or a blue $K_3$."
+   },
+   {
+    "id": "ERDOS-501",
+    "title": "Erdős Problem #501",
+    "status": "open",
+    "statement": "For every $x \\in \\mathbb{R}$ let $A_x \\subset \\mathbb{R}$ be a bounded set with outer measure\n$< 1$. Must there exist an infinite independent set, that is, some infinite $X \\subseteq\n\\mathbb{R}$ such that $x \\notin A_y$ for all $x \\neq y \\in X$?"
+   },
+   {
+    "id": "ERDOS-594",
+    "title": "Erdős Problem #594",
+    "status": "solved",
+    "statement": "(Erdős–Hajnal [ErHa66], [Er69b]):\n\nDoes every graph $G$ with chromatic number $\\geq \\aleph_1$ contain all sufficiently\nlarge odd cycles?"
+   },
+   {
+    "id": "ERDOS-1128",
+    "title": "Erdős Problem #1128",
+    "status": "solved",
+    "statement": "(disproved by Prikry–Mills, 1978):"
+   },
+   {
+    "id": "ERDOS-1175",
+    "title": "Erdős Problem #1175",
+    "status": "open",
+    "statement": "Let $\\kappa$ be an uncountable cardinal. Must there exist a cardinal $\\lambda$ such that every\ngraph with chromatic number $\\lambda$ contains a triangle-free subgraph with chromatic number\n$\\kappa$?"
+   },
+   {
+    "id": "ERDOS-602",
+    "title": "Erdős Problem #602",
+    "status": "open",
+    "statement": "Does every almost-disjoint family of countably infinite sets whose pairwise\nintersections all have size ≠ 1 have Property B?"
+   },
+   {
+    "id": "ERDOS-1067",
+    "title": "Erdős Problem #1067",
+    "status": "solved",
+    "statement": "Does every graph with chromatic number $\\aleph_1$ contain an infinitely connected subgraph with\nchromatic number $\\aleph_1$?"
+   },
+   {
+    "id": "ERDOS-591",
+    "title": "Erdős Problem #591",
+    "status": "solved",
+    "statement": "Let $α$ be the infinite ordinal $\\omega^{\\omega^2}$. Is it true that any red/blue colouring of the\nedges of $K_α$ there is either a red $K_α$ or a blue $K_3$?"
+   },
+   {
+    "id": "ERDOS-1177",
+    "title": "Erdős Problem #1177",
+    "status": "open",
+    "statement": "(a) Let $G$ be a finite $3$-uniform hypergraph, and let $F_G(\\kappa)$ denote the collection of\n$3$-uniform hypergraphs with chromatic number $\\kappa$ not containing $G$. If $F_G(\\aleph_1)$ is not\nempty then there exists $X\\in F_G(\\aleph_1)$ of cardinality at most $2^{2^{\\aleph_0}}$. If both\n$F_G(\\aleph_1)$ and $F_H(\\aleph_1)$ are non-empty then $F_G(\\aleph_1)\\cap F_H(\\aleph_1)$ is\nnon-empty. If $\\kappa,\\lambda$ are uncountable cardinals and $F_G(\\kappa)$ is non-empty then\n$F_G(\\lambda)$ is non-empty.\n\n(b) If both $F_G(\\aleph_1)$ and $F_H(\\aleph_1)$ are non-empty then\n$F_G(\\aleph_1)\\cap F_H(\\al"
+   },
+   {
+    "id": "ERDOS-599",
+    "title": "Erdős Problem #599",
+    "status": "solved",
+    "statement": "(the Erdős–Menger conjecture).\n\nLet $G$ be a (possibly infinite) graph and let $A, B$ be disjoint independent sets of\nvertices. Must there exist a family $P$ of pairwise vertex-disjoint paths from $A$ to $B$,\nand a set $S$ of vertices containing exactly one vertex from each path in $P$, such that\nevery path from $A$ to $B$ contains at least one vertex of $S$?"
+   },
+   {
+    "id": "ERDOS-603",
+    "title": "Erdős Problem #603",
+    "status": "solved",
+    "statement": "Let $(A_i)$ be a family of countably infinite sets such that $\\lvert A_i\\cap A_j\\rvert \\neq 2$ for\nall $i\\neq j$. Find the smallest cardinal $C$ such that $\\cup A_i$ can always be coloured with at\nmost $C$ colours so that no $A_i$ is monochromatic."
+   },
+   {
+    "id": "ERDOS-1174",
+    "title": "Erdős Problem #1174",
+    "status": "open",
+    "statement": "(a) **Erdős Problem 1174, part (i)** [Va99, 7.91]. A problem of Erdős and Hajnal:\ndoes there exist a graph $G$ with no $K_4$ such that every edge colouring of $G$\nwith countably many colours contains a monochromatic $K_3$?\n\n(b) **Erdős Problem 1174, part (ii)** [Va99, 7.91]. A problem of Erdős and Hajnal:\ndoes there exist a graph $G$ with no $K_{\\aleph_1}$ (that is, every clique of $G$\nis countable) such that every edge colouring of $G$ with countably many colours\ncontains a monochromatic $K_{\\aleph_0}$ (an infinite clique all of whose edges\nreceive the same colour)?"
+   },
+   {
+    "id": "ERDOS-1167",
+    "title": "Erdős Problem #1167",
+    "status": "open",
+    "statement": "Let $r \\geq 2$ be finite, $\\gamma \\geq 2$, and $\\lambda$ be an infinite\ncardinal. Let $\\kappa_\\alpha > r$ be cardinals for all $\\alpha < \\gamma$. Is it true\nthat\n$$2^\\lambda \\to (\\kappa_\\alpha + 1)_{\\alpha < \\gamma}^{r+1}$$\nimplies\n$$\\lambda \\to (\\kappa_\\alpha)_{\\alpha < \\gamma}^r?$$\nHere $+$ means cardinal addition, so that $\\kappa_\\alpha + 1 = \\kappa_\\alpha$\nif $\\kappa_\\alpha$ is infinite."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-1962-B2",
+    "title": "Putnam 1962 · B2"
+   },
+   {
+    "id": "PUTNAM-1989-B4",
+    "title": "Putnam 1989 · B4"
+   }
+  ]
+ },
+ {
+  "id": "combinatorial-nt",
+  "title": "Combinatorial number theory",
+  "summary": "Questions about sets of integers where the argument is a counting or extremal one: pigeonhole on residues or exponent vectors, double counting, and constructions.",
+  "key_statements": [
+   "\\text{among } n+1 \\text{ integers in } [1,2n],\\ \\text{one divides another}"
+  ],
+  "prerequisites": [
+   {
+    "id": "divisibility",
+    "title": "Divisibility and the Euclidean algorithm"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-674",
+    "title": "Erdős Problem #674",
+    "status": "solved",
+    "statement": "Are there any integer solutions to $x^xy^y=z^z$ with $x,y,z>1$?"
+   },
+   {
+    "id": "ERDOS-341",
+    "title": "Erdős Problem #341",
+    "status": "claimed",
+    "statement": "Let $A=\\{a_1 < \\cdots < a_k\\}$ be a finite set of integers and extend it to an infinite\nsequence $\\overline{A}=\\{a_1 < a_2 < \\cdots \\}$ by defining $a_{n+1}$ for $n \\geq k$ to be\nthe least integer exceeding $a_n$ which is not of the form $a_i + a_j$ with $i,j \\leq n$.\nIs it true that the sequence of differences $a_{m+1}-a_m$ is eventually periodic?"
+   },
+   {
+    "id": "ERDOS-542",
+    "title": "Erdős Problem #542",
+    "status": "solved",
+    "statement": "(a) Is it true that if $A\\subseteq\\{1,\\ldots,n\\}$ is a set such that $[a,b]>n$ for all $a\\neq b$,\nwhere $[a,b]$ is the least common multiple, then\n$$\\sum_{a\\in A}\\frac{1}{a}\\leq \\frac{31}{30}?$$\n\n(b) Is it true that if $A\\subseteq\\{2,\\ldots,n\\}$ is a set such that $[a,b]>n$ for all $a\\neq b$,\nthen there must be $\\gg n$ many $m\\leq n$ which are not divisible by any $a\\in A$?"
+   },
+   {
+    "id": "ERDOS-438",
+    "title": "Erdős Problem #438",
+    "status": "solved",
+    "statement": "How large can $A \\subseteq \\{1, \\ldots, N\\}$ be if $A + A$ contains no square numbers?"
+   },
+   {
+    "id": "ERDOS-931",
+    "title": "Erdős Problem #931",
+    "status": "open",
+    "statement": "Let $k_1 \\geq k_2 \\geq 3$. Are there only finitely many $n_2\\geq n_1 + k_1$\nsuch that\n$$\n  \\prod_{1\\leq i\\leq k_1}(n_1 + i)\\ \\text{and}\\ \\prod_{1\\leq j\\leq k_2} (n_2 + j)\n$$\nhave the same prime factors?"
+   },
+   {
+    "id": "ERDOS-205",
+    "title": "Erdős Problem #205",
+    "status": "solved",
+    "statement": "(a) Is it true that all sufficiently large $n$ can be written as $2^k+m$ for some $k\\geq 0$, where\n$\\Omega(m)<\\log\\log m$? (Here $\\Omega(m)$ is the number of prime divisors of $m$ counted with\nmultiplicity.)\n\n(b) Is it true that all sufficiently large $n$ can be written as $2^k+m$ for some $k\\geq 0$, where\n$\\Omega(m)<\\log\\log m$? (Here $\\Omega(m)$ is the number of prime divisors of $m$ counted with\nmultiplicity.) What about $<\\epsilon \\log\\log m$?\n\n(c) Is it true that all sufficiently large $n$ can be written as $2^k+m$ for some $k\\geq 0$, where\n$\\Omega(m)<\\log\\log m$? (Here $\\Omega(m)$ is the"
+   },
+   {
+    "id": "ERDOS-851",
+    "title": "Erdős Problem #851",
+    "status": "solved",
+    "statement": "Let $\\epsilon > 0$. Is there some $r \\ll_\\epsilon 1$ such that the density of integers of the\nform $2^k+n$, where $k \\geq 0$ and $n$ has at most $r$ prime divisors, is at least $1-\\epsilon$?"
+   },
+   {
+    "id": "ERDOS-440",
+    "title": "Erdős Problem #440",
+    "status": "solved",
+    "statement": "(a) Let $A=\\{a_1<a_2<\\cdots\\}\\subseteq \\mathbb{N}$ be infinite and let $A(x)$ count the number of\nindices for which $\\mathrm{lcm}(a_i,a_{i+1})\\leq x$. Is it true that $A(x) \\ll x^{1/2}$?\n\n(b) How large can\n$$\\liminf \\frac{A(x)}{x^{1/2}}$$\nbe?"
+   },
+   {
+    "id": "ERDOS-342",
+    "title": "Erdős Problem #342",
+    "status": "open",
+    "statement": "(a) Do infinitely many pairs $(a, a+2)$ occur in Ulam's sequence?\n\n(b) Does Ulam's sequence eventually have periodic differences? That is, is $a(n+1) - a(n)$ eventually periodic?\n\n(c) Part (iii), is the density of the sequence 0?"
+   },
+   {
+    "id": "ERDOS-145",
+    "title": "Erdős Problem #145",
+    "status": "open",
+    "statement": "Let $s_1 < s_2 < \\cdots$ be the sequence of squarefree numbers.\n\nLet $A(x)$ denote the set of indices $n$ for which $s_n \\leq x$.\n\nLet $s_1 < s_2 < \\cdots$ be the sequence of squarefree numbers. Is it true that, for any\n$\\alpha\\geq 0$,\n$$\n\\lim_{x\\to\\infty} \\frac{1}{x}\\sum_{s_n\\leq x}(s_{n+1}-s_n)^\\alpha\n$$\nexists?"
+   },
+   {
+    "id": "ERDOS-1203",
+    "title": "Erdős Problem #1203",
+    "status": "open",
+    "statement": "Prove that $F(n)\\to \\infty$ as $n\\to \\infty$."
+   },
+   {
+    "id": "ERDOS-385",
+    "title": "Erdős Problem #385",
+    "status": "open",
+    "statement": "Let $F(n) := \\max\\{m + p(m) \\mid  \\textrm{$m < n$ composite}\\}\\}$ where $p(m)$ is the least\nprime divisor of $m$.\n\n(a) Let $F(n) := \\max\\{m + p(m) \\mid  \\textrm{$m < n$ composite}\\}\\}$ where $p(m)$ is the least\nprime divisor of $m$. Is it true that $F(n)>n$ for all sufficiently large $n$?\n\n(b) Let $F(n) := \\max\\{m + p(m) \\mid  \\textrm{$m < n$ composite}\\}\\}$ where $p(m)$ is the least\nprime divisor of $m$. Does $F(n) - n \\to \\infty$ as $n\\to\\infty$?"
+   },
+   {
+    "id": "ERDOS-467",
+    "title": "Erdős Problem #467",
+    "status": "open",
+    "statement": "For every sufficiently large $x$, choose a congruence class $a_p\\pmod p$ for each prime $p\\leq x$.\nCan the primes be decomposed into two nonempty sets $A$ and $B$ such that every $n<x$ lies in a\nchosen class from $A$ and in a chosen class from $B$?"
+   },
+   {
+    "id": "ERDOS-1109",
+    "title": "Erdős Problem #1109",
+    "status": "open",
+    "statement": "Let $f(N)$ be the size of the largest subset $A\\subseteq \\{1,\\ldots,N\\}$ such that\nevery $n\\in A+A$ is squarefree. Estimate $f(N)$. In particular, is it true that\n$f(N)\\leq N^{o(1)}$, or even $f(N) \\leq (\\log N)^{O(1)}$?"
+   },
+   {
+    "id": "ERDOS-891",
+    "title": "Erdős Problem #891",
+    "status": "open",
+    "statement": "Let $2=p_1 < p_2 < \\cdots$ be the primes and $k\\geq 2$. Is it true that, for all sufficiently large\n$n$, there must exist an integer in $[n,n+p_1\\cdots p_k)$ with $>k$ many prime factors?"
+   },
+   {
+    "id": "ERDOS-357",
+    "title": "Erdős Problem #357",
+    "status": "open",
+    "statement": "Let $f(n)$ be the maximal $k$ such that there exist integers $1 \\le a_1 < \\dotsc < a_k \\le n$\nsuch that all sums of the shape $\\sum_{u \\le i \\le v} a_i$ are distinct.\n\n(a) Let $f(n)$ be the maximal $k$ such that there exist integers $1 \\le a_1 < \\dotsc < a_k \\le n$\nsuch that all sums of the shape $\\sum_{u \\le i \\le v} a_i$ are distinct. Is $f(n)=o(n)$?\n\n(b) Let $f(n)$ be the maximal $k$ such that there exist integers $1 \\le a_1 < \\dotsc < a_k \\le n$\nsuch that all sums of the shape $\\sum_{u \\le i \\le v} a_i$ are distinct.\nHow does $f(n)$ grow? Can we find a (good) explicit function $g$ such tha"
+   },
+   {
+    "id": "ERDOS-793",
+    "title": "Erdős Problem #793",
+    "status": "solved",
+    "statement": "Let $F(n)$ be the maximum possible size of a subset $A \\subseteq \\{1, \\ldots, n\\}$ such that\n$a \\nmid bc$ whenever $a, b, c \\in A$ with $a \\neq b$ and $a \\neq c$. Is there a constant $c$ such\nthat\n$$F(n) = \\pi(n) + (c + o(1)) n^{2/3} (\\log n)^{-2}?$$"
+   },
+   {
+    "id": "ERDOS-1101",
+    "title": "Erdős Problem #1101",
+    "status": "open",
+    "statement": "(a) 1. There is NO good sequence with polynomial growth.\n\n(b) 2. There is a good sequence with sub-exponential growth."
+   },
+   {
+    "id": "ERDOS-131",
+    "title": "Erdős Problem #131",
+    "status": "claimed",
+    "statement": "Let $F(N)$ be the maximal size of $A \\subseteq \\{1, \\dots, N\\}$ such that no $a \\in A$ divides\nthe sum of any distinct elements of $A \\setminus \\{a\\}$. Is it true that\n$F(N) > N^{1/2 - o(1)}$?"
+   },
+   {
+    "id": "ERDOS-678",
+    "title": "Erdős Problem #678",
+    "status": "solved",
+    "statement": "Write $M(n, k)$ be the least common multiple of $\\{n+1, \\dotsc, n+k\\}$.\nLet $k$ be sufficiently large. Are there infinitely many $m, n$ with $m \\geq n + k$ such that\n$$\nM(n, k) > M(m, k + 1)\n$$?\nThe answer is yes, as proved in a strong form by Cambie [Ca24].\n[Ca24] S. Cambie, Resolution of an Erdős' problem on least common multiples. arXiv:2410.09138 (2024)."
+   },
+   {
+    "id": "ERDOS-417",
+    "title": "Erdős Problem #417",
+    "status": "open",
+    "statement": "(a) Let$$V'(x)=\\#\\{\\phi(m) : 1\\leq m\\leq x\\}$$and$$V(x)=\\#\\{\\phi(m) \\leq x : 1\\leq m\\}.$$\nDoes $\\lim V(x)/V'(x)$ exist?\n\n(b) Is it $>1$?"
+   },
+   {
+    "id": "ERDOS-979",
+    "title": "Erdős Problem #979",
+    "status": "open",
+    "statement": "Let $k ≥ 2$, and let $f_k(n)$ count the number of solutions to $n = p_1^k + \\dots + p_k^k$,\nwhere the $p_i$ are prime numbers. Is it true that $\\limsup f_k(n) = \\infty$?"
+   },
+   {
+    "id": "ERDOS-961",
+    "title": "Erdős Problem #961",
+    "status": "open",
+    "statement": "For $k$, let $f(k)$ be the minimal $n$ such that every set of $n$ consecutive integers $>k$ contains\nan integer divisible by a prime $>k$, i.e. not $(k+1)$-smooth.\n\nIt is conjectured that $f(k) \\ll (\\log k)^O(1)$."
+   },
+   {
+    "id": "ERDOS-1140",
+    "title": "Erdős Problem #1140",
+    "status": "solved",
+    "statement": "Do there exist infinitely many $n$ such that $n-2x^2$ is prime for all $x$ with $2x^2<n$?"
+   },
+   {
+    "id": "ERDOS-407",
+    "title": "Erdős Problem #407",
+    "status": "solved",
+    "statement": "Let $w(n)$ count the number of solutions to\n$$n=2^a+3^b+2^c3^d$$\nwith $a,b,c,d\\geq 0$ integers. Is it true that $w(n)$ is bounded by some absolute constant?"
+   },
+   {
+    "id": "ERDOS-971",
+    "title": "Erdős Problem #971",
+    "status": "open",
+    "statement": "Let `p(a, d)` be the least prime congruent to `a (mod d)`.\nDoes there exist a constant `c > 0` such that for all large `d`,\n`p(a, d) > (1 + c) * φ(d) * log d` for `≫ φ(d)` many values of `a`?"
+   },
+   {
+    "id": "ERDOS-677",
+    "title": "Erdős Problem #677",
+    "status": "open",
+    "statement": "Denote by $M(n, k)$ the least common multiple of the finite set $\\{n+1, \\dotsc, n+k\\}$.\nIs it true that for all $m \\geq n + k$, we get $M(m, k) \\neq M(n, k)$?"
+   },
+   {
+    "id": "ERDOS-441",
+    "title": "Erdős Problem #441",
+    "status": "solved",
+    "statement": "Let $N\\geq 1$. What is the size of the largest $A\\subset \\{1,\\ldots,N\\}$ such that $[a,b]\\leq N$\nfor all $a,b\\in A$, where $[a,b]$ is the least common multiple of $a$ and $b$?"
+   },
+   {
+    "id": "ERDOS-1064",
+    "title": "Erdős Problem #1064",
+    "status": "solved",
+    "statement": "Let $ϕ(n)$ be the Euler's totient function, then the $n$ satisfies $ϕ(n)>ϕ(n - ϕ(n))$\nhave asymptotic density 1.\nReference: [LuPo02] Luca, Florian and Pomerance, Carl, On some problems of {M}\\polhk akowski-{S}chinzel and {E}rd\\H\nos concerning the arithmetical functions {$\\phi$} and\n{$\\sigma$}. Colloq. Math."
+   },
+   {
+    "id": "ERDOS-48",
+    "title": "Erdős Problem #48",
+    "status": "solved",
+    "statement": "Are there infinitely many integers $n, m$ such that $ϕ(n) = σ(m)$?"
+   },
+   {
+    "id": "ERDOS-443",
+    "title": "Erdős Problem #443",
+    "status": "solved",
+    "statement": "(a) Let $m,n\\geq 1$. What is\n$$\\# \\{ k(m-k) : 1\\leq k\\leq m/2\\} \\cap \\{ l(n-l) : 1\\leq l\\leq n/2\\}?$$\nCan it be arbitrarily large?\n\n(b) Let $m,n\\geq 1$. What is\n$$\\# \\{ k(m-k) : 1\\leq k\\leq m/2\\} \\cap \\{ l(n-l) : 1\\leq l\\leq n/2\\}?$$\nIs it $\\leq (mn)^{o(1)}$ for all sufficiently large $m,n$?"
+   },
+   {
+    "id": "ERDOS-1003",
+    "title": "Erdős Problem #1003",
+    "status": "open",
+    "statement": "Are there infinitely many solutions to $\\phi(n) = \\phi(n+1)$, where $\\phi$ is the Euler totient\nfunction?"
+   },
+   {
+    "id": "ERDOS-848",
+    "title": "Erdős Problem #848",
+    "status": "claimed",
+    "statement": "Is the maximum size of a set $A ⊆ \\{1, \\dots, N\\}$ such that $ab + 1$ is never squarefree\n(for all $a, b ∈ A$) achieved by taking those $n ≡ 7 \\pmod{25}$?"
+   },
+   {
+    "id": "ERDOS-930",
+    "title": "Erdős Problem #930",
+    "status": "open",
+    "statement": "Is it true that, for every $r$, there is a $k$ such that\nif $I_1,\\ldots,I_r$ are disjoint intervals of consecutive integers,\nall of length at least $k$, then\n$$\n  \\prod_{1\\leq i\\leq r}\\prod_{m\\in I_i}m\n$$\nis not a perfect power?"
+   },
+   {
+    "id": "ERDOS-1204",
+    "title": "Erdős Problem #1204",
+    "status": "open",
+    "statement": "(a) We call a sequence of integers $0\\leq a_1<\\cdots <a_k$ admissible if it is missing at least one\ncongruence class modulo every prime $p$. Let $A(k)=\\min a_k$. Estimate $A(k)$ - in particular, is\nit true that\n$$A(k)\\sim k\\log k?$$\n\n(b) We call a sequence of integers $0\\leq a_1<\\cdots <a_k$ admissible if it is missing at least one\ncongruence class modulo every prime $p$. Estimate\n$$B(k)=\\min \\frac{a_1+\\cdots+a_k}{k}.$$"
+   },
+   {
+    "id": "ERDOS-647",
+    "title": "Erdős Problem #647",
+    "status": "open",
+    "statement": "Let $\\tau(n)$ count the number of divisors of $n$. Is there some $n > 24$ such that\n$$\n  \\max_{m < n}(m + \\tau(m)) \\leq n + 2?\n$$"
+   },
+   {
+    "id": "ERDOS-980",
+    "title": "Erdős Problem #980",
+    "status": "solved",
+    "statement": "Let $k\\geq 2$ and $n_k(p)$ denote the least $k$th power nonresidue of $p$. Is it true that\n$$\\sum_{p<x} n_k(p)\\sim c_k \\frac{x}{\\log x}$$\nfor some constant $c_k>0$?"
+   },
+   {
+    "id": "ERDOS-796",
+    "title": "Erdős Problem #796",
+    "status": "claimed",
+    "statement": "Let $k\\geq 2$ and let $g_k(n)$ be the largest possible size of\n$A\\subseteq \\{1,\\ldots,n\\}$ such that every $m$ has $<k$ solutions to\n$m=a_1a_2$ with $a_1<a_2\\in A$. Is it true that\n$$g_3(n)=\\frac{\\log\\log n}{\\log n}n+(c+o(1))\\frac{n}{\\log n}$$\nfor some constant $c$?"
+   },
+   {
+    "id": "ERDOS-455",
+    "title": "Erdős Problem #455",
+    "status": "open",
+    "statement": "Let `q : ℕ → ℕ` be a strictly increasing sequence of primes such that\n`q (n + 2) - q (n + 1) ≥ q (n + 1) - q n`. Must `lim q n / (n ^ 2) = ∞`?"
+   },
+   {
+    "id": "ERDOS-977",
+    "title": "Erdős Problem #977",
+    "status": "solved",
+    "statement": "If $P(m)$ is the greatest prime divisor of $m$, then is it true that\n$$\\frac{P(2^n-1)}{n}\\to \\infty$$\nas $n\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-1096",
+    "title": "Erdős Problem #1096",
+    "status": "solved",
+    "statement": "Let $1<q<1+\\epsilon$ and consider the set of numbers of the shape\n$\\sum_{i\\in S}q^i$ (for all finite $S$), ordered by size as\n$0=x_1<x_2<\\cdots$.\n\nIs it true that, provided $\\epsilon>0$ is sufficiently small, $x_{k+1}-x_k \\to 0$?"
+   },
+   {
+    "id": "ERDOS-434",
+    "title": "Erdős Problem #434",
+    "status": "solved",
+    "statement": "(a) Let $k \\le n$. What choice of $A\\subseteq\\{1, \\dots, n\\}$ (with $\\text{gcd}(A) = 1$) of size $|A| = k$\nmaximises the number of integers not representable as the sum of finitely\nmany elements from $A$ (with repetitions allowed)?\nIs it $\\{n, n - 1, \\dots, n - k + 1\\}$?\n\n(b) For $2 \\le k \\le n$, the interval $A = \\{n, n - 1, \\dots, n - k + 1\\}$ maximises the number\nof integers not representable as the sum of finitely many elements from $A$ (with repetitions\nallowed), as proved by Kiss [Ki02]."
+   },
+   {
+    "id": "ERDOS-123",
+    "title": "Erdős Problem #123",
+    "status": "solved",
+    "statement": "A sequence is said to be $d$-complete if every large integer is the sum of distinct integers from the\nsequence, none of which divide any other. This particular case of $d$-completeness was conjectured by\nErdős and Lewin [ErLe96], who (among other related results) prove this when $a=3$, $b=5$, and $c=7$.\n\nLet $a, b, c$ be three integers which are pairwise coprime. Is every large integer\nthe sum of distinct integers of the form $a^k b^l c^m$ ($k, l, m ≥ 0$), none of which\ndivide any other?"
+   },
+   {
+    "id": "ERDOS-488",
+    "title": "Erdős Problem #488",
+    "status": "open",
+    "statement": "Let $A$ be a finite set and\n$$B=\\{ n \\geq 1 : a\\mid n\\textrm{ for some }a\\in A\\}.$$\nIs it true that, for every $m>n\\geq \\max(A)$,\n$$\\frac{\\lvert B\\cap [1,m]\\rvert }{m}< 2\\frac{\\lvert B\\cap [1,n]\\rvert}{n}?$$"
+   },
+   {
+    "id": "ERDOS-1134",
+    "title": "Erdős Problem #1134",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be the smallest set which contains $1$ and is closed under the\noperations\n$$x\\mapsto 2x+1,\\quad x\\mapsto 3x+1,\\quad x\\mapsto 6x+1.$$\nDoes $A$ have positive lower density?"
+   },
+   {
+    "id": "ERDOS-820",
+    "title": "Erdős Problem #820",
+    "status": "open",
+    "statement": "Let $H(n)$ be the smallest integer $l$ such that there exists $k < l$ with $(k^n-1, l^n-1) = 1$.\nIs it true that $H(n) = 3$ infinitely often? That is, is $(2^n-1, 3^n-1) = 1$ for infinitely\nmany $n$ (see `Erdos820.H_eq_three_iff`)?"
+   },
+   {
+    "id": "ERDOS-464",
+    "title": "Erdős Problem #464",
+    "status": "solved",
+    "statement": "Let $A=\\{n_1<n_2<\\cdots\\}\\subset \\mathbb{N}$ be a lacunary sequence (so there exists some\n$\\epsilon>0$ with $n_{k+1}\\geq (1+\\epsilon)n_k$ for all $k$). Must there exist an irrational\n$\\theta$ such that\n$$\\{ \\|\\theta n_k\\| : k\\geq 1\\}$$\nis not dense in $[0,1]$ (where $\\| x\\|$ is the distance to the nearest integer)?"
+   },
+   {
+    "id": "ERDOS-748",
+    "title": "Erdős Problem #748",
+    "status": "solved",
+    "statement": "Let $f(n)$ count the number of sum-free $A\\subseteq \\{1,\\ldots,n\\}$, i.e. $A$ contains no\nsolutions to $a=b+c$ with $a,b,c\\in A$. Is it true that\n$$f(n)=2^{(1+o(1))\\frac{n}{2}}?$$"
+   },
+   {
+    "id": "ERDOS-951",
+    "title": "Erdős Problem #951",
+    "status": "open",
+    "statement": "If `1 < a 0 < ...` has property `Erdos951Prop`, is it true that `#{a i ≤ x} ≤ π x`?"
+   },
+   {
+    "id": "ERDOS-12",
+    "title": "Erdős Problem #12",
+    "status": "claimed",
+    "statement": "(a) Let $A$ be an infinite set such that there are no distinct $a,b,c \\in A$\nsuch that $a \\mid (b+c)$ and $b,c > a$. Is there such an $A$ with\n$\\liminf \\frac{|A \\cap \\{1, \\dotsc, N\\}|}{N^{1/2}} > 0$ ?\n\n(b) Let $A$ be an infinite set such that there are no distinct $a,b,c \\in A$\nsuch that $a \\mid (b+c)$ and $b,c > a$. Does there exist some absolute constant $c > 0$\nsuch that there are always infinitely many $N$\nwith $|A \\cap \\{1, \\dotsc, N\\}| < N^{1−c}$?\n\n(c) Let $A$ be an infinite set such that there are no distinct $a,b,c \\in A$\nsuch that $a \\mid (b+c)$ and $b,c > a$. Is it true that $∑_{n \\i"
+   },
+   {
+    "id": "ERDOS-672",
+    "title": "Erdős Problem #672",
+    "status": "open",
+    "statement": "Can the product of an arithmetic progression of positive integers $n, n + d, ..., n + (k - 1)d$\nof length $k ≥ 4$, with $(n, d) = 1$, be a perfect power?"
+   },
+   {
+    "id": "ERDOS-235",
+    "title": "Erdős Problem #235",
+    "status": "solved",
+    "statement": "Let $N_k=2\\cdot 3\\cdots p_k$ and $\\{a_1<a_2<\\cdots <a_{\\phi(N_k)}\\}$ be the integers $<N_k$ which\nare relatively prime to $N_k$. Then, for any $c\\geq 0$, the limit\n$$\\frac{\\#\\{ a_i-a_{i-1}\\leq c \\frac{N_k}{\\phi(N_k)} : 2\\leq i\\leq \\phi(N_k)\\}}{\\phi(N_k)}$$\nexists and is a continuous function of $c$."
+   },
+   {
+    "id": "ERDOS-370",
+    "title": "Erdős Problem #370",
+    "status": "solved",
+    "statement": "Are there infinitely many $n$ such that the largest prime factor of $n$ is $< n^{\\frac{1}{2}}$ and\nthe largest prime factor of $n + 1$ is $< (n + 1)^{\\frac{1}{2}}$."
+   },
+   {
+    "id": "ERDOS-442",
+    "title": "Erdős Problem #442",
+    "status": "solved",
+    "statement": "Let $\\operatorname{Log} x := \\max\\{\\log x, 1\\}$,\n$\\operatorname{Log}_2x = \\operatorname{Log} (\\operatorname{Log} x)$, and\n$\\operatorname{Log}_3x = \\operatorname{Log}(\\operatorname{Log}(\\operatorname{Log} x)).$\nIs it true that if $A\\subseteq\\mathbb{N}$ is such that\n$$\n\\frac{1}{\\operatorname{Log}_2 x} \\sum_{n\\in A: n\\leq x} \\frac{1}{n}\\to\\infty\n$$\nthen\n$$\n\\left(\\sum_{n\\in A: n\\leq x} \\frac{1}{n}\\right)^2 \\sum_{n, m \\in A: n < m \\leq x}\n\\frac{1}{\\operatorname{lcm}(n, m)}\\to\\infty\n$$\nas $x\\to\\infty$?"
+   },
+   {
+    "id": "ERDOS-452",
+    "title": "Erdős Problem #452",
+    "status": "open",
+    "statement": "Determine the largest length of an interval in $[x,2x]$ on which\n$\\omega(n) > \\log\\log n$ everywhere."
+   },
+   {
+    "id": "ERDOS-433",
+    "title": "Erdős Problem #433",
+    "status": "solved",
+    "statement": "For every fixed $k \\geq 2$, Erdős and Graham conjectured that\n$$g(k,n) \\sim \\frac{n^2}{k-1}.$$\nThe conjecture was proved by Dixmier [Di90]."
+   },
+   {
+    "id": "ERDOS-841",
+    "title": "Erdős Problem #841",
+    "status": "solved",
+    "statement": "Let $t_n$ be minimal such that $\\{n+1,\\ldots,n+t_n\\}$ contains a subset whose product with $n$ is\na square number (and let $t_n=0$ if $n$ is itself square). Estimate $t_n$."
+   },
+   {
+    "id": "ERDOS-246",
+    "title": "Erdős Problem #246",
+    "status": "solved",
+    "statement": "Let $(a,b)=1$. The set $\\{a^kb^l: k,l\\geq 0\\}$ is complete - that is, every large integer is the sum of distinct integers of the form $a^kb^l$ with $k,l\\geq 0$."
+   },
+   {
+    "id": "ERDOS-332",
+    "title": "Erdős Problem #332",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ and $D(A)$ be the set of those numbers which occur infinitely often as\n$a_1 - a_2$ with $a_1, a_2\\in A$. What conditions on $A$ are sufficient to ensure $D(A)$ has bounded\ngaps?"
+   },
+   {
+    "id": "ERDOS-1106",
+    "title": "Erdős Problem #1106",
+    "status": "claimed",
+    "statement": "(a) Let $p(n)$ be the partition number of $n$ and $F(n)$ be the number of distinct prime factors of\n$\\prod_{i= 1} ^ {n} p(n)$, then $F(n)$ tends to infinity when $n$ tends to infinity.\n\n(b) Let $p(n)$ be the partition number of $n$ and $F(n)$ be the number of distinct prime factors of\n$\\prod_{i= 1} ^ {n} p(n)$, $F(n)>n$ for sufficiently large $n$."
+   },
+   {
+    "id": "ERDOS-695",
+    "title": "Erdős Problem #695",
+    "status": "open",
+    "statement": "Let $q_1 < q_2 < \\cdots$ be a sequence of primes such that $q_{i + 1} \\equiv 1 \\pmod{q_i}$. Is it\ntrue that\n$$\n\\lim_{k \\to \\infty} q_k^{1/k} = \\infty?\n$$"
+   },
+   {
+    "id": "ERDOS-254",
+    "title": "Erdős Problem #254",
+    "status": "claimed",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be such that $\\lvert A\\cap [1,2x]\\rvert -\\lvert A\\cap [1,x]\\rvert \\to\n\\infty\\textrm{ as }x\\to \\infty$ and $\\sum_{n\\in A} \\{ \\theta n\\}=\\infty$ for every $\\theta\\in\n(0,1)$, where $\\{x\\}$ is the distance of $x$ from the nearest integer. Then every sufficiently large\ninteger is the sum of distinct elements of $A$."
+   },
+   {
+    "id": "ERDOS-648",
+    "title": "Erdős Problem #648",
+    "status": "solved",
+    "statement": "Let $g(n)$ denote the largest $t$ such that there exist integers $2\\leq a_1<a_2<\\cdots <a_t <n$\nsuch that $$P(a_1)>P(a_2)>\\cdots >P(a_t)$$ where $P(m)$ is the greatest prime factor of $m$.\nEstimate $g(n)$."
+   },
+   {
+    "id": "ERDOS-1060",
+    "title": "Erdős Problem #1060",
+    "status": "open",
+    "statement": "(a) The conjecture is about the function $f(n)$ which counts the number of solutions to\n$k\\sigma(k)=n$, where $\\sigma(k)$ is the sum of divisors of $k$. The first bound is that $f(n)$ grows slower\nthan any power of $n^(\\frac{1}{\\log\\log n})$. The second bound is that $f(n)$ is at most a power of\n$\\log n$.\n\n(b) Part (ii) of Erdős Problem 1060: bound on the number of $k \\le n$ with $k \\sigma_1(k) = n$."
+   },
+   {
+    "id": "ERDOS-1180",
+    "title": "Erdős Problem #1180",
+    "status": "solved",
+    "statement": "Let $\\epsilon>0$. Does there exist a constant $C_\\epsilon$ such that, for all primes $p$, every\nresidue modulo $p$ is the sum of at most $C_\\epsilon$ many elements of\n$$\\{ n^{-1} : 1\\leq n\\leq p^\\epsilon\\}$$\nwhere $n^{-1}$ denotes the inverse of $n$ modulo $p$?"
+   },
+   {
+    "id": "ERDOS-913",
+    "title": "Erdős Problem #913",
+    "status": "open",
+    "statement": "Are there infinitely many $n$ such that if\n$$\n  n(n + 1) = \\prod_i p_i^{k_i}\n$$\nis the factorisation into distinct primes then all exponents $k_i$ are distinct?"
+   },
+   {
+    "id": "ERDOS-261",
+    "title": "Erdős Problem #261",
+    "status": "claimed",
+    "statement": "(a) Are there infinitely many positive integers $n$ such that there exist some $t \\ge 2$ and\ndistinct integers $a_1, \\ldots, a_t \\ge 1$ satisfying\n$$\\frac{n}{2^n} = \\sum_{1 \\le k \\le t} \\frac{a_k}{2^{a_k}}?$$\n\n(b) Do all positive integers $n$ have the required property?\n\n(c) Is there a rational number $x$ such that\n$$x = \\sum_{k=1}^{\\infty} \\frac{a_k}{2^{a_k}}$$\nhas at least $2^{\\aleph_0}$ representations by pairwise distinct positive integers $a_k$?"
+   },
+   {
+    "id": "ERDOS-541",
+    "title": "Erdős Problem #541",
+    "status": "solved",
+    "statement": "Let $a_1, \\dots, a_p$ be (not necessarily distinct) residues modulo a prime $p$, such that there\nexists some $r$ so that if $S \\subseteq [p]$ is non-empty and\n$$\\sum_{i \\in S} a_i \\equiv 0 \\pmod{p}$$\nthen $|S| = r$.\n\nMust there be at most two distinct residues amongst the $a_i$?"
+   },
+   {
+    "id": "ERDOS-663",
+    "title": "Erdős Problem #663",
+    "status": "open",
+    "statement": "Let $k \\geq 2$, and let $q(n,k)$ denote the least prime which does not divide\n$\\prod_{1 \\leq i \\leq k}(n+i)$. Is it true that, if $k$ is fixed and $n$ is sufficiently\nlarge, then $q(n,k) < (1+o(1))\\log n$?"
+   },
+   {
+    "id": "ERDOS-679",
+    "title": "Erdős Problem #679",
+    "status": "open",
+    "statement": "(a) Let $\\epsilon>0$ and $\\omega(n)$ count the number of distinct prime factors of $n$.\nAre there infinitely many values of $n$ such that\n$$\\omega(n-k) < (1+\\epsilon)\\frac{\\log k}{\\log\\log k}$$\nfor all $k<n$ which are sufficiently large depending on $\\epsilon$ only?\n\n(b) Can one show the stronger version with\n$$\\omega(n-k) < \\frac{\\log k}{\\log\\log k}+O(1)$$\nis false?"
+   },
+   {
+    "id": "ERDOS-34",
+    "title": "Erdős Problem #34",
+    "status": "solved",
+    "statement": "For any permutation $\\pi\\in S_n$ of $\\{1,\\ldots,n\\}$ let $S(\\pi)$ count the number of distinct consecutive sums, that is, sums of the shape $\\sum_{u\\leq i\\leq v}\\pi(i)$. Is it true that\n$$\nS(\\pi) = o(n^2)\n$$\nfor all $\\pi\\in S_n$?"
+   },
+   {
+    "id": "ERDOS-38",
+    "title": "Erdős Problem #38",
+    "status": "solved",
+    "statement": "Does there exist $B \\subset \\mathbb{N}$ which is not an additive basis,\nbut is such that for every set $A \\subseteq \\mathbb{N}$ of Schnirelmann density $\\alpha$\nand every $N$ there exists $b \\in B$ such that\n$$\n  \\lvert (A \\cup (A+b)) \\cap \\{1, \\ldots, N\\} \\rvert \\geq (\\alpha + f(\\alpha)) N\n$$\nwhere $f(\\alpha) > 0$ for $0 < \\alpha < 1$?"
+   },
+   {
+    "id": "ERDOS-424",
+    "title": "Erdős Problem #424",
+    "status": "claimed",
+    "statement": "Defines the set of new numbers generated from a set A by the operation\n$x y - 1$ for $x \\neq y$.\n\nLet $a_1 = 2$ and $a_2 = 3$ and continue the sequence by appending to $a_1, \\ldots, a_n$ all possible\nvalues of $a_i a_j - 1$ with $i \\neq j$.\nIs it true that the set of integers which eventually appear has positive density?"
+   },
+   {
+    "id": "ERDOS-1061",
+    "title": "Erdős Problem #1061",
+    "status": "open",
+    "statement": "How many (ordered) solutions are there to `σ(a) + σ(b) = σ(a + b)` with `a + b ≤ x`?\nIs it true that this number is asymptotic to `c * x` for some constant `c > 0`?"
+   },
+   {
+    "id": "ERDOS-821",
+    "title": "Erdős Problem #821",
+    "status": "claimed",
+    "statement": "Let $g(n)$ count the number of $m$ such that $\\phi(m)=n$.\n\nIs it true that, for every $\\epsilon>0$, there exist infinitely many $n$ such that\n$g(n) > n^{1-\\epsilon}$?"
+   },
+   {
+    "id": "ERDOS-897",
+    "title": "Erdős Problem #897",
+    "status": "solved",
+    "statement": "(a) Let $f(n)$ be an additive function (so that $f(ab)=f(a)+f(b)$\nif $(a,b)=1$ such that $\\limsup_{p,k} f(p^k) / \\log(p^k) = ∞$.\nIs it true that $\\limsup_n (f(n+1)−f(n))/ \\log n = ∞$?\n\n(b) Let $f(n)$ be an additive function (so that $f(ab)=f(a)+f(b)$\nif $(a,b)=1$) such that $\\limsup_{p,k} f(p^k) / \\log(p^k) = ∞$.\nIs it true that $\\limsup_n f(n+1)/ f(n) = ∞$?"
+   },
+   {
+    "id": "ERDOS-420",
+    "title": "Erdős Problem #420",
+    "status": "open",
+    "statement": "(a) If $\\tau(n)$ counts the number of divisors of $n$ then let\n$$F(f,n)=\\frac{\\tau((n+\\lfloor f(n)\\rfloor)!)}{\\tau(n!)}.$$\nIs it true that\n$$\\lim_{n\\to \\infty}F((\\log n)^C,n)=\\infty$$\nfor large $C$?\n\n(b) Is it true that $F(\\log n,n)$ is everywhere dense in $(1,\\infty)$?\n\n(c) More generally, if $f(n)\\leq \\log n$ is a monotonic function such that $f(n)\\to \\infty$ as\n$n\\to \\infty$, then is $F(f,n)$ everywhere dense?"
+   },
+   {
+    "id": "ERDOS-962",
+    "title": "Erdős Problem #962",
+    "status": "open",
+    "statement": "Let $k(n)$ be the maximal $k$ such that there exists $m \\le n$ with\n$m+1, \\ldots, m+k$ each divisible by a prime $> k$.\n\nMain conjecture:"
+   },
+   {
+    "id": "ERDOS-970",
+    "title": "Erdős Problem #970",
+    "status": "claimed",
+    "statement": "Let $h(k)$ be Jacobsthal's function, defined to as the minimal $m$ such that, if $n$ has at most $k$ prime factors, then in any set of $m$ consecutive integers there exists an integer coprime to $n$. Determine the order of magnitude of $h(k)$. In particular, is it true that $$h(k) \\ll k^2?$$"
+   },
+   {
+    "id": "ERDOS-50",
+    "title": "Erdős Problem #50",
+    "status": "open",
+    "statement": "Let $f$ be the asymptotic distribution function of $\\varphi(n)/n$, so that for each $c \\in [0,1]$,\n$f(c)$ is the natural density of $\\{n : \\varphi(n) < cn\\}$. Is it true that there is no $x$ such\nthat the derivative $f'(x)$ exists and is positive?"
+   },
+   {
+    "id": "ERDOS-952",
+    "title": "Erdős Problem #952",
+    "status": "claimed",
+    "statement": "Is there an infinite sequence of distinct Gaussian primes $x_1,x_2,\\ldots$\nsuch that $\\lvert x_{n+1}-x_n\\rvert \\ll 1$?"
+   },
+   {
+    "id": "ERDOS-1146",
+    "title": "Erdős Problem #1146",
+    "status": "open",
+    "statement": "We say that $A\\subset \\mathbb{N}$ is an essential component if $d_s(A \\oplus B)>d_s(B)$ for every\n$B\\subset \\mathbb{N}$ with $0<d_s(B)<1$ where $d_s$ is the Schnirelmann density.\nHere, the sumset is the appropriate one for Schnirelmann density, $A \\oplus B = \\{a+b \\mid a \\in A \\cup \\{0\\}, b \\in B \\cup \\{0\\}\\}$ (i.e. $(A \\cup \\{0\\}) + (B \\cup \\{0\\})$).\nThis avoids the trivial case where the sumset misses $1$ simply because neither $A$ nor $B$ contains $0$.\n\nIs $B=\\{2^m3^n : m,n\\geq 0\\}$ an essential component?"
+   },
+   {
+    "id": "ERDOS-472",
+    "title": "Erdős Problem #472",
+    "status": "open",
+    "statement": "Given a finite sequence of primes $q_1<\\cdots<q_m$, extend it by taking $q_{n+1}$ to be the\nsmallest prime of the form $q_n+q_i-1$ for $n\\geq m$. Is there an initial sequence for which\nthis process continues forever?"
+   },
+   {
+    "id": "ERDOS-537",
+    "title": "Erdős Problem #537",
+    "status": "solved",
+    "statement": "Let $\\epsilon>0$ and $N$ be sufficiently large. If $A\\subseteq \\{1,\\ldots,N\\}$ has\n$\\lvert A\\rvert \\geq \\epsilon N$ then must there exist $a_1,a_2,a_3\\in A$ and distinct primes\n$p_1,p_2,p_3$ such that\n$$a_1p_1=a_2p_2=a_3p_3?$$"
+   },
+   {
+    "id": "ERDOS-126",
+    "title": "Erdős Problem #126",
+    "status": "solved",
+    "statement": "Let $f(n)$ be maximal such that if $A\\subseteq\\mathbb{N}$ has $|A| = n$ then\n$\\prod_{a\\neq b\\in A}(a + b)$ has at least $f(n)$ distinct prime factors.\nIs it true that $\\frac{f(n)}{\\log n} \\to\\infty$?"
+   },
+   {
+    "id": "ERDOS-726",
+    "title": "Erdős Problem #726",
+    "status": "open",
+    "statement": "As $n\\to \\infty$ ranges over integers\n$\\sum_{p\\leq n}1_{n\\in (p/2,p)\\pmod{p}}\\frac{1}{p}\\sim \\frac{\\log\\log n}{2}$?"
+   },
+   {
+    "id": "ERDOS-394",
+    "title": "Erdős Problem #394",
+    "status": "claimed",
+    "statement": "Let $t_k(n)$ denote the least $m$ such that $n\\mid m(m+1)(m+2)\\cdots (m+k-1).$\n\n(a) Is it true that $\\sum_{n\\leq x}t_2(n)\\ll \\frac{x^2}{(\\log x)^c}$ for some $c>0$?\n\n(b) Is it true that, for $k\\geq 2$, $\\sum_{n\\leq x}t_{k+1}(n) =o\\left(\\sum_{n\\leq x}t_k(n)\\right)?$"
+   },
+   {
+    "id": "ERDOS-535",
+    "title": "Erdős Problem #535",
+    "status": "open",
+    "statement": "Let $r \\geq 3$, and let $f_r(N)$ denote the size of the largest subset of $\\{1,\\ldots,N\\}$\nsuch that no subset of size $r$ has the same pairwise greatest common divisor between all\nelements. Erdős [Er64] proved that $f_3(N) > N^{c/\\log\\log N}$ for some constant $c > 0$, and\nconjectured this should also be an upper bound; here we state the conjectural upper bound\nfor all $r \\geq 3$."
+   },
+   {
+    "id": "ERDOS-362",
+    "title": "Erdős Problem #362",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be a finite set of size $N$. Is it true that, for any fixed $t$,\nthere are\n$$\\ll \\frac{2^N}{N^{3/2}}$$\nmany $S\\subseteq A$ such that $\\sum_{n\\in S}n=t$?"
+   },
+   {
+    "id": "ERDOS-1122",
+    "title": "Erdős Problem #1122",
+    "status": "open",
+    "statement": "Let $f:\\mathbb{N}\\to \\mathbb{R}$ be an additive function (i.e. $f(ab)=f(a)+f(b)$ whenever\n$(a,b)=1$). Let\n$$A=\\{ n \\geq 1: f(n+1)< f(n)\\}.$$\nIf $\\lvert A\\cap [1,X]\\rvert =o(X)$ then must $f(n)=c\\log n$ for some $c\\in \\mathbb{R}$?"
+   },
+   {
+    "id": "ERDOS-25",
+    "title": "Erdős Problem #25",
+    "status": "open",
+    "statement": "Let $n_1 < n_2 < \\dots$ be an arbitrary sequence of integers, each with an associated residue class\n$a_i \\pmod{n_i}$. Let $A$ be the set of integers $n$ such that for every $i$ either $n < n_i$ or\n$n \\not\\equiv a_i \\pmod{n_i}$. Must the logarithmic density of $A$ exist?"
+   },
+   {
+    "id": "ERDOS-493",
+    "title": "Erdős Problem #493",
+    "status": "solved",
+    "statement": "Does there exist a $k$ such that every sufficiently large integer can be written in the form\n$$\\prod_{i=1}^k a_i - \\sum_{i=1}^k a_i$$\nfor some integers $a_i\\geq 2$?"
+   },
+   {
+    "id": "ERDOS-1110",
+    "title": "Erdős Problem #1110",
+    "status": "open",
+    "statement": "Let $p>q\\geq 2$ be two coprime integers. We call $n$ representable if it is the sum of\nintegers of the form $p^kq^l$, none of which divide each other.\n\nIf $\\{p,q\\}\\neq \\{2,3\\}$ then what can be said about the density of non-representable\nnumbers? Are there infinitely many coprime non-representable numbers, that is, an infinite\nfamily of pairwise coprime non-representable integers?"
+   },
+   {
+    "id": "ERDOS-363",
+    "title": "Erdős Problem #363",
+    "status": "solved",
+    "statement": "Is it true that, for each fixed $n$ and fixed sizes $k_1,\\ldots,k_n \\geq 4$, there are only finitely\nmany collections of disjoint intervals $I_1,\\ldots,I_n$ of size $\\lvert I_i\\rvert = k_i$ for\n$1\\leq i\\leq n$ such that$$\\prod_{1\\leq i\\leq n}\\prod_{m\\in I_i}m$$is a square?"
+   },
+   {
+    "id": "ERDOS-650",
+    "title": "Erdős Problem #650",
+    "status": "solved",
+    "statement": "(a) Let $f(m)$ be such that if $A\\subseteq \\{1,\\ldots,N\\}$ has $\\lvert A\\rvert=m$ then every interval\nin $[1,\\infty)$ of length $2N$ contains $\\geq f(m)$ many distinct integers $b_1,\\ldots,b_r$ where\neach $b_i$ is divisible by some $a_i\\in A$, where $a_1,\\ldots,a_r$ are distinct.\n\n(b) Let $f(m)$ be such that if $A\\subseteq \\{1,\\ldots,N\\}$ has $\\lvert A\\rvert=m$ then every interval\nin $[1,\\infty)$ of length $2N$ contains $\\geq f(m)$ many distinct integers $b_1,\\ldots,b_r$ where\neach $b_i$ is divisible by some $a_i\\in A$, where $a_1,\\ldots,a_r$ are distinct.\n\nIn particular is it true that $f(m)\\"
+   },
+   {
+    "id": "ERDOS-786",
+    "title": "Erdős Problem #786",
+    "status": "open",
+    "statement": "(a) Let $\\epsilon > 0$. Is there some set $A\\subset\\mathbb{N}$ of density $> 1 - \\epsilon$\nsuch that $a_1\\cdots a_r = b_1\\cdots b_s$ with $a_i, b_j\\in A$ can only hold when\n$r = s$?\n\n(b) Is there some set $A\\subset\\{1, ..., N\\}$ of size $\\geq (1 - o(1))N$ such that\n$a_1\\cdots a_r = b_1\\cdots b_s$ with $a_i, b_j\\in A$ can only hold when\n$r = s$?\n\n(c) An example of such a set with density $\\frac 1 4$ is given by the integers $\\equiv 2\\pmod{4}$\n\n(d) Let $\\epsilon > 0$ be given. Then, for a sufficiently large prime `p`, take the sequence of\nconsecutive primes $p_1 < \\cdots < p_k$ such that\n$$\n\\sum"
+   },
+   {
+    "id": "ERDOS-383",
+    "title": "Erdős Problem #383",
+    "status": "open",
+    "statement": "Is it true that for every $k$ there are infinitely many primes $p$ such that the largest prime\ndivisor of\n$$\n  \\prod_{i = 0}^k (p ^ 2 + i)\n$$\nis $p$?"
+   },
+   {
+    "id": "ERDOS-418",
+    "title": "Erdős Problem #418",
+    "status": "solved",
+    "statement": "Are there infinitely many integers not of the form $n - \\phi(n)$?"
+   },
+   {
+    "id": "ERDOS-482",
+    "title": "Erdős Problem #482",
+    "status": "solved",
+    "statement": "Define a sequence by $a_1=1$ and $$a_{n+1}=\\lfloor\\sqrt{2}(a_n+1/2)\\rfloor$$ for $n\\geq 1$.\nThe difference $a_{2n+1}-2a_{2n-1}$ is the $n$th digit in the binary expansion of $\\sqrt{2}$."
+   },
+   {
+    "id": "ERDOS-688",
+    "title": "Erdős Problem #688",
+    "status": "open",
+    "statement": "Define $\\epsilon_n$ to be maximal such that there exists some choice of congruence class $a_p$\nfor all primes $n^{\\epsilon_n} < p \\leq n$ such that every integer in $[1,n]$ satisfies at least\none of the congruences $\\equiv a_p \\pmod p$.\n\n(a) Estimate $\\epsilon_n$.\n\n(b) In particular, is it true that $\\epsilon_n = o(1)$?"
+   },
+   {
+    "id": "ERDOS-873",
+    "title": "Erdős Problem #873",
+    "status": "open",
+    "statement": "Let $a$ be some sequence of natural numbers. We set $F(A,X,k)$ to be the count of\nthe number of $i$ such that $[a_i,a_{i+1}, \\dots ,a_{i+k−1}] < X$,\nwhere the left-hand side is the least common multiple.\n\nLet $A = \\{a_1 < a_2 < \\dots\\} \\subseteq \\mathbb{N}$ and let $F(A,X,k)$ count the number of $i$\nsuch that $[a_i,a_{i+1}, \\dots ,a_{i+k−1}] < X$, where the left-hand side is the least common\nmultiple. Is it true that, for every $\\epsilon > 0$, there exists some $k$ such that\n$F(A,X,k) < X^\\epsilon$?"
+   },
+   {
+    "id": "ERDOS-1148",
+    "title": "Erdős Problem #1148",
+    "status": "solved",
+    "statement": "Can every large integer $n$ be written as $n=x^2+y^2-z^2$ with $\\max(x^2,y^2,z^2)\\leq n$?"
+   },
+   {
+    "id": "ERDOS-371",
+    "title": "Erdős Problem #371",
+    "status": "claimed",
+    "statement": "Let $P(n)$ denote the largest prime factor of $n$. Show that the set of $n$\nwith $P(n+1) > P(n)$ has density $\\frac{1}{2}$."
+   },
+   {
+    "id": "ERDOS-456",
+    "title": "Erdős Problem #456",
+    "status": "open",
+    "statement": "Let $p_n$ be the smallest prime $\\equiv 1\\pmod{n}$.\n\nLet $m_n$ be the smallest integer such that $n\\mid \\phi(m_n)$.\n\n(a) Is it true that $m_n<p_n$ for almost all $n$?\n\n(b) Does $p_n/m_n \\to \\infty$ for almost all $n$?\n\n(c) Are there infinitely many primes $p$ such that $p-1$ is the only $n$ for which $m_n=p$?"
+   },
+   {
+    "id": "ERDOS-690",
+    "title": "Erdős Problem #690",
+    "status": "solved",
+    "statement": "Let $d_k(p)$ be the density of those integers whose $k$th smallest prime factor is $p$ (i.e. if\n$p_1<p_2<\\cdots$ are the primes dividing $n$ then $p_k=p$)."
+   },
+   {
+    "id": "ERDOS-402",
+    "title": "Erdős Problem #402",
+    "status": "solved",
+    "statement": "Prove that, for any finite set $A\\subset\\mathbb{N}$, there exist $a, b\\in A$ such\nthat\n$$\n  \\gcd(a, b)\\leq a/|A|.\n$$"
+   },
+   {
+    "id": "ERDOS-430",
+    "title": "Erdős Problem #430",
+    "status": "open",
+    "statement": "Fix some integer $n$ and define a decreasing sequence in $[1,n)$ by $a_1=n-1$ and, for\n$k\\geq 2$, letting $a_k$ be the greatest integer in $[1,a_{k-1})$ such that all of the prime\nfactors of $a_k$ are $>n-a_k$.\n\nIs it true that, for sufficiently large $n$, not all of this sequence can be prime?"
+   },
+   {
+    "id": "ERDOS-968",
+    "title": "Erdős Problem #968",
+    "status": "claimed",
+    "statement": "Does the set `{n | u n < u (n+1)}` have positive lower density?"
+   },
+   {
+    "id": "ERDOS-423",
+    "title": "Erdős Problem #423",
+    "status": "open",
+    "statement": "Erdős Problem 423 [Er77c, p.71; ErGr80, p.83]:"
+   },
+   {
+    "id": "ERDOS-932",
+    "title": "Erdős Problem #932",
+    "status": "open",
+    "statement": "Let $p_k$ denote the $k$th prime. For infinitely many $r$ there are at least two\nintegers $p_r < n < p_{r+1}$ all of whose prime factors are $< p_{r + 1} - p_r$."
+   },
+   {
+    "id": "ERDOS-473",
+    "title": "Erdős Problem #473",
+    "status": "solved",
+    "statement": "Is there a permutation $a_1, a_2, \\ldots$ of the positive integers such that $a_k + a_{k+1}$ is\nalways prime?"
+   },
+   {
+    "id": "ERDOS-491",
+    "title": "Erdős Problem #491",
+    "status": "solved",
+    "statement": "Let $f : \\mathbb{N} \\to \\mathbb{R}$ be an additive function (so that $f(ab) = f(a) + f(b)$\nwhenever $(a, b) = 1$). If $|f(n+1) - f(n)| < c$ for some constant $c$ and all $n$, then must\nthere exist some $c'$ such that $f(n) = c' \\log n + O(1)$?"
+   },
+   {
+    "id": "ERDOS-1005",
+    "title": "Erdős Problem #1005",
+    "status": "solved",
+    "statement": "Let $\\frac{a_1}{b_1}, \\frac{a_2}{b_2}, \\ldots$ be the Farey fractions of order $n \\geq 4$. Let\n$f(n)$ be the largest integer such that if $1 \\leq k < l \\leq k + f(n)$ then $\\frac{a_k}{b_k}$ and\n$\\frac{a_l}{b_l}$ are similarly ordered, in other words $(a_k - a_l)(b_k - b_l) \\geq 0$. Estimate\n$f(n)$: in particular, is there a constant $c > 0$ such that $f(n) = (c + o(1)) n$ for all\nlarge $n$?"
+   },
+   {
+    "id": "ERDOS-372",
+    "title": "Erdős Problem #372",
+    "status": "solved",
+    "statement": "Let $P(n)$ denote the largest prime factor of $n$. There are infinitely many $n$ such that\n$P(n)>P(n+1)>P(n+2)$."
+   },
+   {
+    "id": "ERDOS-933",
+    "title": "Erdős Problem #933",
+    "status": "open",
+    "statement": "If $n(n+1)=2^k3^lm$, where $(m,6)=1$, then is it true that\n$\\limsup_{n\\to \\infty} \\frac{2^k3^l}{n\\log n}=\\infty$?"
+   },
+   {
+    "id": "ERDOS-359",
+    "title": "Erdős Problem #359",
+    "status": "open",
+    "statement": "(a) Let $a_1< a_2 < ⋯ $ be an infinite sequence of integers such that $a_1=1$ and $a_{i+1}$ is the\nleast integer which is not a sum of consecutive earlier $a_j$s. Show that $a_k / k \\to \\infty$.\n\n(b) Let $a_1< a_2 < ⋯ $ be an infinite sequence of integers such that $a_1=1$ and $a_{i+1}$ is the\nleast integer which is not a sum of consecutive earlier $a_j$s. Show that $a_k / k ^ {1 + c} \\to 0$\nfor any $c > 0$."
+   },
+   {
+    "id": "ERDOS-208",
+    "title": "Erdős Problem #208",
+    "status": "open",
+    "statement": "(a) Let $s_1 < s_2 < \\dots$ be the sequence of squarefree numbers. Is it true that\nfor any $\\epsilon > 0$ and large $n$, $s_{n+1} - s_n \\ll_\\epsilon s_n^\\epsilon$?\n\n(b) Let $s_1 < s_2 < \\dots$ be the sequence of squarefree numbers. Is it true that\n$s_{n + 1} - s_n \\le (1 + o(1)) \\cdot (\\pi^2 / 6) \\cdot \\log (s_n) / \\log (\\log (s_n))$?"
+   },
+   {
+    "id": "ERDOS-389",
+    "title": "Erdős Problem #389",
+    "status": "open",
+    "statement": "Is it true that for every $n \\geq 1$ there is a $k$ such that\n$$\n  n(n + 1) \\cdots (n + k - 1) \\mid (n + k) \\cdots (n + 2k - 1)?\n$$"
+   },
+   {
+    "id": "ERDOS-829",
+    "title": "Erdős Problem #829",
+    "status": "open",
+    "statement": "Let $A \\subseteq \\mathbb{N}$ be the set of perfect cubes.  Is\nit true that $(1_A \\ast 1_A)(n) \\ll (\\log n)^{O(1)}$?  That is, does there exist a natural\nnumber $C$ such that the number of representations of $n$ as a sum of two cubes is\n$O((\\log n)^C)$ as $n \\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-1074",
+    "title": "Erdős Problem #1074",
+    "status": "open",
+    "statement": "(a) Let $S$ be the set of all $m\\geq 1$ such that there exists a prime $p\\not\\equiv 1\\pmod{m}$ such\nthat $m! + 1 \\equiv 0\\pmod{p}$. Does\n$$\n  \\lim\\frac{|S\\cap[1, x]|}{x}\n$$\nexist?\n\n(b) Let $S$ be the set of all $m\\geq 1$ such that there exists a prime $p\\not\\equiv 1\\pmod{m}$ such\nthat $m! + 1 \\equiv 0\\pmod{p}$. What is\n$$\n  \\lim\\frac{|S\\cap[1, x]|}{x}?\n$$\n\n(c) Similarly, if $P$ is the set of all primes $p$ such that there exists an $m$ with\n$p\\not\\equiv 1\\pmod{m}$ such that $m! + 1 \\equiv 0\\pmod{p}$, then does\n$$\n  \\lim\\frac{|P\\cap[1, x]|}{\\pi(x)}\n$$\nexist?\n\n(d) Similarly, if $P$ is the set of"
+   },
+   {
+    "id": "ERDOS-1062",
+    "title": "Erdős Problem #1062",
+    "status": "open",
+    "statement": "Erdős asked whether the limiting density `f n / n` exists and, if so, whether it is\nirrational."
+   },
+   {
+    "id": "ERDOS-457",
+    "title": "Erdős Problem #457",
+    "status": "solved",
+    "statement": "Is there some $\\epsilon > 0$ such that there are infinitely\nmany $n$ where all primes $p \\le (2 + \\epsilon) \\log n$ divide\n$$\n  \\prod_{1 \\le i \\le \\log n} (n + i)?\n$$"
+   },
+   {
+    "id": "ERDOS-686",
+    "title": "Erdős Problem #686",
+    "status": "open",
+    "statement": "Can every integer $N≥2$ be written as\n$$N=\\frac{\\prod_{1\\leq i\\leq k}(m+i)}{\\prod_{1\\leq i\\leq k}(n+i)}$$\nfor some $k≥2$ and $m≥n+k$?"
+   },
+   {
+    "id": "ERDOS-453",
+    "title": "Erdős Problem #453",
+    "status": "solved",
+    "statement": "Is it true that, for all sufficiently large $n$, there exists some $i<n$ such that\n$$\np_n^2 < p_{n+i}p_{n-i},\n$$\nwhere $p_k$ is the $k$th prime?"
+   },
+   {
+    "id": "ERDOS-489",
+    "title": "Erdős Problem #489",
+    "status": "claimed",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be a set such that $\\lvert A\\cap [1,x]\\rvert=o(x^{1/2})$. Let\n$B=\\{ n\\geq 1 : a\\nmid n\\textrm{ for all }a\\in A\\}$.\nIf $B=\\{b_1 < b_2 < \\cdots\\}$ then is it true that\n$$\\lim_{x \\to \\infty} \\frac{1}{x}\\sum_{b_i < x}(b_{i+1}-b_i)^2$$\nexists (and is finite)?"
+   },
+   {
+    "id": "ERDOS-480",
+    "title": "Erdős Problem #480",
+    "status": "solved",
+    "statement": "Let $x_1,x_2,\\ldots\\in [0,1]$ be an infinite sequence.\nIs it true that\n$$\\inf_n \\liminf_{m\\to \\infty} n \\lvert x_{m+n}-x_m\\rvert\\leq 5^{-1/2}\\approx 0.447?$$\nA conjecture of Newman."
+   },
+   {
+    "id": "ERDOS-770",
+    "title": "Erdős Problem #770",
+    "status": "open",
+    "statement": "Let $h n$ be the minimal number such that $2 ^ n - 1, \\dots, h(n) ^ n - 1$\nare collectively coprime.\n\n(a) For every prime `p`, does the density of integers with `h n = p` exist?\n\n(b) Does `liminf h n = ∞`?\n\n(c) Is it true that if `p` is the greatest prime such that `p - 1 ∣ n` and `p > n ^ ε`, then\n`h n = p`?"
+   },
+   {
+    "id": "ERDOS-839",
+    "title": "Erdős Problem #839",
+    "status": "open",
+    "statement": "(a) Erdős Problem 839 (Part 1) [Er78f][Er92c]:\n\nLet $1 \\leq a_1 < a_2 < \\cdots$ be a strictly increasing sequence of positive integers\nsuch that no $a_i$ is the sum of consecutive $a_j$ for $j < i$.\nIs it true that $\\limsup a_n / n = \\infty$?\n\n(b) Erdős Problem 839 (Part 2, stronger) [Er78f][Er92c]:\n\nLet $1 \\leq a_1 < a_2 < \\cdots$ be a strictly increasing sequence of positive integers\nsuch that no $a_i$ is the sum of consecutive $a_j$ for $j < i$.\nIs it true that $\\lim_{x \\to \\infty} \\frac{1}{\\log x} \\sum_{a_n < x} \\frac{1}{a_n} = 0$?"
+   },
+   {
+    "id": "ERDOS-416",
+    "title": "Erdős Problem #416",
+    "status": "claimed",
+    "statement": "(a) Let `V(x)` count the number of `n≤x` such that `ϕ(m)=n` is solvable. Does `V(2x)/V(x)→2` ?\n\n(b) Let `V(x)` count the number of `n≤x` such that `ϕ(m)=n` is solvable.\nIs there an asymptotic formula for `V(x)`?"
+   },
+   {
+    "id": "ERDOS-536",
+    "title": "Erdős Problem #536",
+    "status": "open",
+    "statement": "Let $\\epsilon>0$ and $N$ be sufficiently large. Is it true that if $A\\subseteq \\{1,\\ldots,N\\}$ has\nsize at least $\\epsilon N$ then there must be distinct $a,b,c\\in A$ such that\n$$[a, b]=[b, c]=[a, c],$$\nwhere $[\\cdot, \\cdot]$ denotes the least common multiple?"
+   },
+   {
+    "id": "ERDOS-369",
+    "title": "Erdős Problem #369",
+    "status": "solved",
+    "statement": "Let $\\epsilon>0$ and $k\\geq 2$. Is it true that, for all sufficiently large $n$, there is a\nsequence of $k$ consecutive integers in $\\{1,\\ldots,n\\}$ all of which are $n^\\epsilon$-smooth?"
+   },
+   {
+    "id": "ERDOS-1057",
+    "title": "Erdős Problem #1057",
+    "status": "open",
+    "statement": "Let $C(x)$ count the number of Carmichael numbers in the interval $[1,x]$.\n\nIs it true that $C(x)=x^{1-o(1)}$?"
+   },
+   {
+    "id": "ERDOS-978",
+    "title": "Erdős Problem #978",
+    "status": "claimed",
+    "statement": "(a) Let `f ∈ ℤ[X]` be an irreducible polynomial with positive leading coefficient. Suppose that the\ndegree `k` of `f` is larger than `2`, is not equal to a power of `2`, and `f n` has no fixed\n`(k - 1)`-th power divisors other than `1`. Then the set of `n` such that `f n` is `(k - 1)`-th\npower free has positive density, and this is proved in [Ho67].\n\n(b) If $k>3$ (and $k \\neq 2^l$), and for all primes $p$ there exists $n$ such that $p^{k-2}\\nmid f(n)$,\nthen are there infinitely many $n$ for which $f(n)$ is $(k-2)$-power-free?\n\n(c) Does `n ^ 4 + 2` represent infinitely many squarefree numbers?"
+   },
+   {
+    "id": "ERDOS-540",
+    "title": "Erdős Problem #540",
+    "status": "solved",
+    "statement": "Is it true that if $A\\subseteq \\mathbb{Z}/N\\mathbb{Z}$ has size $\\gg N^{1/2}$ then there exists\nsome non-empty $S\\subseteq A$ such that $\\sum_{n\\in S}n\\equiv 0\\pmod{N}$?"
+   },
+   {
+    "id": "ERDOS-487",
+    "title": "Erdős Problem #487",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ have positive density. Must there exist distinct $a,b,c\\in A$ such\nthat $[a,b]=c$ (where $[a,b]$ is the least common multiple of $a$ and $b$)?"
+   },
+   {
+    "id": "ERDOS-479",
+    "title": "Erdős Problem #479",
+    "status": "open",
+    "statement": "Is it true that, for every integer $k\\neq 1$, there are infinitely many $n$ such that\n$2^n\\equiv k\\pmod{n}$?"
+   },
+   {
+    "id": "ERDOS-976",
+    "title": "Erdős Problem #976",
+    "status": "open",
+    "statement": "Let $f\\in \\mathbb{Z}[x]$ be an irreducible polynomial of degree $d\\geq 2$. Let $F_f(n)$ be maximal\nsuch that there exists $1\\leq m\\leq n$ with $f(m)$ is divisible by a prime $\\geq F_f(n)$.\nEquivalently, $F_f(n)$ is the greatest prime divisor of\n$$\\prod_{1\\leq m\\leq n}f(m).$$\nEstimate $F_f(n)$."
+   },
+   {
+    "id": "ERDOS-981",
+    "title": "Erdős Problem #981",
+    "status": "solved",
+    "statement": "Let $\\epsilon > 0$ and $f_\\epsilon(p)$ be the smallest integer $m$\nsuch that $\\sum_{n\\leq N} \\left(\\frac{n}{p}\\right)<\\epsilon N$ for all $N\\geq m$. Prove that\n$$\\sum_{p<x}f_\\epsilon(p)\\sim c_\\epsilon \\frac{x}{\\log x}$$\nfor some $c_\\epsilon > 0$."
+   },
+   {
+    "id": "ERDOS-774",
+    "title": "Erdős Problem #774",
+    "status": "open",
+    "statement": "We call $A\\subset \\mathbb{N}$ dissociated if $\\sum_{n\\in X}n\\neq \\sum_{m\\in Y}m$\nfor all finite $X,Y\\subset A$ with $X\\neq Y$.\n\nWe call $A$ proportionately dissociated if every finite $B\\subset A$\ncontains a dissociated set of size $\\gg \\lvert B\\rvert$.\n\nIn other words, there is a (global) $c > 0$ such that every finite $B \\subset A$\ncontains a dissociated set of size $\\geq c|B|$.\n\nIs every proportionately dissociated (infinite) set the union of a finite\nnumber of dissociated sets?"
+   },
+   {
+    "id": "ERDOS-538",
+    "title": "Erdős Problem #538",
+    "status": "open",
+    "statement": "Let $r\\geq 2$ and suppose that $A\\subseteq\\{1,\\ldots,N\\}$ is such that, for any\n$m$, there are at most $r$ solutions to $m=pa$ where $p$ is prime and $a\\in A$.\nGive the best possible upper bound for $\\sum_{n\\in A}\\frac{1}{n}$."
+   },
+   {
+    "id": "ERDOS-649",
+    "title": "Erdős Problem #649",
+    "status": "solved",
+    "statement": "Let $P(m)$ denote the greatest prime factor of $m$. Is it true that, for any two primes $p,q$,\nthere exists some integer $n$ such that $P(n)=p$ and $P(n+1)=q$?"
+   },
+   {
+    "id": "ERDOS-711",
+    "title": "Erdős Problem #711",
+    "status": "open",
+    "statement": "(a) Let $f(n,m)$ be minimal such that $(m,m+f(n,m))$ contains distinct integers\n$a_1,\\ldots,a_n$ with $k \\mid a_k$ for $1 \\leq k \\leq n$. Prove that\n$\\max_m f(n,m) \\leq n^{1+o(1)}$.\n\n(b) Prove that $\\max_m (f(n,m)-f(n,n)) \\to \\infty$."
+   },
+   {
+    "id": "ERDOS-691",
+    "title": "Erdős Problem #691",
+    "status": "open",
+    "statement": "Given $A \\subseteq \\mathbb{N}$, let\n$M_A = \\{n \\geq 1 : a \\mid n \\text{ for some } a \\in A\\}$. Find a necessary and sufficient\ncondition on $A$ for $M_A$ to have density $1$."
+   },
+   {
+    "id": "ERDOS-1058",
+    "title": "Erdős Problem #1058",
+    "status": "solved",
+    "statement": "Let $2=p_1<p_2<\\cdots$ be the sequence of prime numbers. Are there only finitely many $n$ such\nthat $n\\in [p_{k-1},p_k)$ and the only primes dividing $n!+1$ are $p_{k}$ and $p_{k+1}$?"
+   },
+   {
+    "id": "ERDOS-481",
+    "title": "Erdős Problem #481",
+    "status": "solved",
+    "statement": "Let $a_1,\\ldots,a_r,b_1,\\ldots,b_r\\in \\mathbb{N}$ such that $\\sum_{i}\\frac{1}{a_i}>1$. For any\nfinite sequence of $n$ (not necessarily distinct) integers $A=(x_1,\\ldots,x_n)$ let $T(A)$ denote\nthe sequence of length $rn$ given by\n$$(a_ix_j+b_i)_{1\\leq j\\leq n, 1\\leq i\\leq r}.$$\nProve that, if $A_1=(1)$ and $A_{i+1}=T(A_i)$, then there must be some $A_k$ with repeated\nelements."
+   },
+   {
+    "id": "ERDOS-824",
+    "title": "Erdős Problem #824",
+    "status": "claimed",
+    "statement": "Let $h(x)$ count the number of integers $1\\leq a<b<x$ such that $(a,b)=1$ and\n$\\sigma(a)=\\sigma(b)$, where $\\sigma$ is the sum of divisors function. Is it true that\n$h(x)>x^{2-o(1)}$?"
+   },
+   {
+    "id": "ERDOS-972",
+    "title": "Erdős Problem #972",
+    "status": "open",
+    "statement": "Let $\\alpha > 1$ be irrational. Are there infinitely many primes $p$\nsuch that $\\lfloor p\\alpha \\rfloor$ is also prime?"
+   },
+   {
+    "id": "ERDOS-676",
+    "title": "Erdős Problem #676",
+    "status": "open",
+    "statement": "Is every sufficiently large integer of the form $ap^2+b$ for some prime $p$ and integers\n$a \\geq 1$ and $0 \\leq b < p$?"
+   },
+   {
+    "id": "ERDOS-1052",
+    "title": "Erdős Problem #1052",
+    "status": "open",
+    "statement": "Are there only finitely many unitary perfect numbers?"
+   },
+   {
+    "id": "ERDOS-689",
+    "title": "Erdős Problem #689",
+    "status": "claimed",
+    "statement": "Let `n` be sufficiently large. Is there some choice of congruence class `a_p` for all primes\n`2 ≤ p ≤ n` such that every integer in `[1,n]` satisfies at least two of the congruences\n`≡ a_p (mod p)`?"
+   },
+   {
+    "id": "ERDOS-220",
+    "title": "Erdős Problem #220",
+    "status": "solved",
+    "statement": "Let $n \\geq 1$ and\n$$A = \\{a_1 < \\cdots < a_{\\phi(n)}\\} = \\{1 \\leq m < n : (m, n) = 1\\}.$$\nIs it true that\n$$\\sum_{1 \\leq k < \\phi(n)} (a_{k+1} - a_k)^2 \\ll \\frac{n^2}{\\phi(n)}?$$"
+   },
+   {
+    "id": "ERDOS-687",
+    "title": "Erdős Problem #687",
+    "status": "open",
+    "statement": "(a) Let $Y(x)$ be the maximal $y$ such that there exists a choice of congruence classes $a_p$ for\nall primes $p\\leq x$ such that every integer in $[1,y]$ is congruent to at least one of the\n$a_p\\pmod{p}$. Give good estimates for $Y(x)$.\n\n(b) In particular, can one prove that $Y(x)=o(x^2)$?\n\n(c) Or, even stronger, can one prove that $Y(x)\\ll x^{1+o(1)}$?"
+   },
+   {
+    "id": "ERDOS-268",
+    "title": "Erdős Problem #268",
+    "status": "solved",
+    "statement": "Let `X` be the set of points in `Fin d → ℝ` of the shape\n`fun i : Fin d => ∑' n : A, (1 : ℝ) / (n + i)` for some infinite subset `A ⊆ ℕ` such that\n`1 / n` is summable over `A`. `X` has nonempty interior. This is proved in [KoTa24].\n-"
+   },
+   {
+    "id": "ERDOS-1073",
+    "title": "Erdős Problem #1073",
+    "status": "open",
+    "statement": "Let $A(x)$ count the number of composite $u < x$ such that $n!+1 \\equiv 0 (\\mod u)$ for some $n$.\n\nIs it true that $A(x) \\le x^{o(1)}$?"
+   },
+   {
+    "id": "ERDOS-828",
+    "title": "Erdős Problem #828",
+    "status": "open",
+    "statement": "Is it true that, for any $a \\in \\mathbb{Z}$, there are infinitely many $n$ such that\n$$\\phi(n) | n + a$$?"
+   },
+   {
+    "id": "ERDOS-490",
+    "title": "Erdős Problem #490",
+    "status": "solved",
+    "statement": "Let $A,B\\subseteq \\{1,\\ldots,N\\}$ be such that all the products $ab$ with $a\\in A$ and $b\\in B$\nare distinct. Is it true that\n$$\\lvert A\\rvert \\lvert B\\rvert \\ll \\frac{N^2}{\\log N}?$$"
+   },
+   {
+    "id": "ERDOS-985",
+    "title": "Erdős Problem #985",
+    "status": "open",
+    "statement": "Is it true that, for every prime $p$, there is a prime $q \\leq p$ which is a primitive root modulo $p$?"
+   },
+   {
+    "id": "ERDOS-253",
+    "title": "Erdős Problem #253",
+    "status": "solved",
+    "statement": "Let $a_1 < a_2 < \\dotsc$ be an infinite sequence of positive integers such that\n$\\frac{a_{i+1}}{a_i} \\to 1$. If every arithmetic progression contains infinitely many\nintegers which are the sum of distinct $a_i$ then every sufficiently large integer is\nthe sum of distinct $a_i$."
+   },
+   {
+    "id": "ERDOS-361",
+    "title": "Erdős Problem #361",
+    "status": "open",
+    "statement": "For fixed $c$ and $n$, this is the size of the largest set\n$A \\subseteq \\{1, \\ldots, \\lfloor cn \\rfloor\\}$ such that no subset of $A$ sums to $n$.\n\nLet $c > 0$ and $n$ be some large integer. What is the size of the largest set\n$A \\subseteq \\{1, \\ldots, \\lfloor c n \\rfloor\\}$ such that $n$ is not a sum of a subset of $A$?\nDoes this depend on $n$ in an irregular way?"
+   },
+   {
+    "id": "ERDOS-830",
+    "title": "Erdős Problem #830",
+    "status": "open",
+    "statement": "Let $A(x)$ count the number of amicable pairs $1\\leq a\\leq b\\leq x$.\n\n(a) **Erdos Problem 830, Part 1**\nWe say that $a,b\\in \\mathbb{N}$ are an amicable pair if $\\sigma(a)=\\sigma(b)=a+b$. Are there\ninfinitely many amicable pairs?\n\n(b) **Erdos Problem 830, Part 2**\nWe say that $a,b\\in \\mathbb{N}$ are an amicable pair if $\\sigma(a)=\\sigma(b)=a+b$.\nIf $A(x)$ counts the number of amicable $1\\leq a\\leq b\\leq x$ then is it true that\n$$A(x) > x^{1-o(1)}?$$"
+   },
+   {
+    "id": "ERDOS-239",
+    "title": "Erdős Problem #239",
+    "status": "solved",
+    "statement": "Let $f:\\mathbb{N}\\to \\{-1,1\\}$ be a multiplicative function. Is it true that\n$$ \\lim_{N\\to \\infty}\\frac{1}{N}\\sum_{n\\leq N}f(n)$$ always exists?"
+   },
+   {
+    "id": "ERDOS-889",
+    "title": "Erdős Problem #889",
+    "status": "open",
+    "statement": "Let $v(n,k)$ count the prime factors of $n+k$ which\ndo not divide $n+i$ for $0\\leq i < k$. Is it true that\n$v_0(n)=\\max_{k\\geq 0}v(n,k)\\to \\infty$ as $n\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-429",
+    "title": "Erdős Problem #429",
+    "status": "solved",
+    "statement": "Is it true that, if $A\\subseteq \\mathbb{N}$ is sparse enough and does not cover all residue\nclasses modulo $p$ for any prime $p$, then there exists some $n\\in \\mathbb{Z}$ such that $n+a$ is\nprime for all $a\\in A$?"
+   },
+   {
+    "id": "ERDOS-422",
+    "title": "Erdős Problem #422",
+    "status": "open",
+    "statement": "Let $f(1) = f(2) = 1$ and for $n > 2$\n$$\nf(n) = f(n - f(n - 1)) + f(n - f(n - 2)).\n$$\nDoes $f(n)$ miss infinitely many integers?"
+   },
+   {
+    "id": "ERDOS-382",
+    "title": "Erdős Problem #382",
+    "status": "open",
+    "statement": "(a) Let $u \\leq v$ be such that the largest prime dividing $\\prod_{u \\leq m \\leq v} m$ appears with\nexponent at least $2$. Is it true that $v - u = v^{o(1)}$?\n\n(b) Let $u \\leq v$ be such that the largest prime dividing $\\prod_{u \\leq m \\leq v} m$ appears with\nexponent at least $2$. Can $v - u$ be arbitrarily large?"
+   },
+   {
+    "id": "ERDOS-51",
+    "title": "Erdős Problem #51",
+    "status": "open",
+    "statement": "Is there an infinite set $A \\subset \\mathbb{N}$ such that for every $a \\in A$,\nthere is an integer n such that $\\phi(n)=a$, and\nyet if $n_a$ is the smallest such integer, then $\\frac{n_a}{a} → \\infty$ as $a → ∞$?"
+   },
+   {
+    "id": "ERDOS-1004",
+    "title": "Erdős Problem #1004",
+    "status": "open",
+    "statement": "For any fixed c > 0, if x is sufficiently large then there exists n ≤ x such that\nthe values of φ(n+k) are all distinct for 1 ≤ k ≤ (log x)^c.\nThis is an open problem."
+   },
+   {
+    "id": "ERDOS-1136",
+    "title": "Erdős Problem #1136",
+    "status": "solved",
+    "statement": "Does there exist $A\\subset \\mathbb{N}$ with lower density $>1/3$ such that $a+b\\neq 2^k$ for\nany $a,b\\in A$ and $k\\geq 0$?"
+   },
+   {
+    "id": "ERDOS-1056",
+    "title": "Erdős Problem #1056",
+    "status": "open",
+    "statement": "Let $k ≥ 2$. Does there exist a prime $p$ and consecutive intervals $I_0,\\dots,I_k$\nsuch that $\\prod\\limits_{n{\\in}I_i}n \\equiv 1 \\mod n$ for all $1 \\le i \\le k$?"
+   },
+   {
+    "id": "ERDOS-1072",
+    "title": "Erdős Problem #1072",
+    "status": "open",
+    "statement": "For any prime $p$, let $f(p)$ be the least integer such that $f(p)! + 1 \\equiv 0 \\mod p$.\n\n(a) Is it true that there are infinitely many $p$ for which $f(p) = p − 1$?\n\n(b) Is it true that $f(p)/p \\to 0$ for $p \\to \\infty$ in a density 1 subset of the primes?"
+   },
+   {
+    "id": "ERDOS-421",
+    "title": "Erdős Problem #421",
+    "status": "solved",
+    "statement": "There exists a sequence $1 \\le d_1 < d_2 < \\dots$ with density 1 such that all products\n$\\prod_{u \\le i \\le v} d_i$ are distinct. This was solved affirmatively; see [Pratt26]."
+   },
+   {
+    "id": "ERDOS-694",
+    "title": "Erdős Problem #694",
+    "status": "solved",
+    "statement": "Let $f_\\max(n)$ be the largest $m$ such that $\\phi(m) = n$, and\n$f_\\min(n)$ be the smallest such $m$, where $\\phi$ is Euler's\ntotient function. Investigate\n$$\n  \\max_{n\\leq x}\\frac{f_\\max(n)}{f_\\min(n)}.\n$$"
+   },
+   {
+    "id": "ERDOS-1209",
+    "title": "Erdős Problem #1209",
+    "status": "claimed",
+    "statement": "(a) Let $A=\\{a_1<a_2<\\cdots\\}$ be a sequence of integers which tends to infinity sufficiently fast.\nIf there is an $n$ such that all $n+a_k$ are primes then must there exist infinitely many such $n$?\n\n(b) What if we ask for $n+a_k$ to be squarefree instead of prime?\n\n(c) Are there $n$ such that $n+2^{2^k}$ is always a prime?\n\n(d) Are there $n$ such that $n+2^{2^k}$ is always squarefree?\n\n(e) Are there $n$ such that $n+2^{2^k}$ is infinitely often a prime?\n\n(f) Are there $n$ such that $n+2^{2^k}$ is infinitely often squarefree?"
+   },
+   {
+    "id": "ERDOS-13",
+    "title": "Erdős Problem #13",
+    "status": "solved",
+    "statement": "If $A \\subseteq \\{1, ..., N\\}$ is a set with no $a, b, c \\in A$ such that $a | (b+c)$ and\n$a < \\min(b,c)$, then $|A| \\le N/3 + O(1)$. This has been solved by Bedert [Be23]."
+   },
+   {
+    "id": "ERDOS-1214",
+    "title": "Erdős Problem #1214",
+    "status": "solved",
+    "statement": "Let $x,y\\geq 1$ be integers such that, for all $n\\geq 1$, the set of primes dividing $x^{n}-1$ is\nequal to the set of primes dividing $y^n-1$. Must $x=y$?"
+   },
+   {
+    "id": "ERDOS-1149",
+    "title": "Erdős Problem #1149",
+    "status": "solved",
+    "statement": "Let $\\alpha>0$ be a real number, not an integer. The density of integers $n\\geq 1$ for which\n$(n,\\lfloor n^\\alpha\\rfloor)=1$ is $6/\\pi^2$."
+   },
+   {
+    "id": "ERDOS-826",
+    "title": "Erdős Problem #826",
+    "status": "open",
+    "statement": "Are there infinitely many $n$ such that, for all $k\\geq 1$\n$$\n  \\tau(n + k) \\ll k?\n$$"
+   },
+   {
+    "id": "ERDOS-822",
+    "title": "Erdős Problem #822",
+    "status": "solved",
+    "statement": "Does the set of integers of the form $n + \\varphi(n)$ have positive (lower) density?"
+   },
+   {
+    "id": "ERDOS-435",
+    "title": "Erdős Problem #435",
+    "status": "solved",
+    "statement": "Let $n\\in\\mathbb{N}$ with $n\\neq p^k$ for any prime $p$ and $k\\geq 0$. What is the largest\ninteger not of the form\n$$\\sum_{1\\leq i<n}c_i\\binom{n}{i}$$\nwhere the $c_i\\geq 0$ are integers?"
+   },
+   {
+    "id": "ERDOS-1065",
+    "title": "Erdős Problem #1065",
+    "status": "open",
+    "statement": "(a) Are there infinitely many primes $p$ such that $p = 2^k * q + 1$\nfor some prime $q$ and $k ≥ 0$?\n\n(b) Are there infinitely many primes $p$ such that $p = 2^k 3^l q + 1$\nfor some prime $q$ and $k ≥ 0$, $l ≥ 0$?"
+   },
+   {
+    "id": "ERDOS-437",
+    "title": "Erdős Problem #437",
+    "status": "solved",
+    "statement": "Let $1\\leq a_1<\\cdots<a_k\\leq x$. How many of the partial products\n$a_1,a_1a_2,\\ldots,a_1\\cdots a_k$ can be squares? Is it true that, for any $\\epsilon>0$, there can\nbe more than $x^{1-\\epsilon}$ squares?"
+   },
+   {
+    "id": "ERDOS-445",
+    "title": "Erdős Problem #445",
+    "status": "open",
+    "statement": "Is it true that, for any $c>1/2$, if $p$ is a sufficiently large prime then, for any\n$n\\geq 0$, there exist $a,b\\in(n,n+p^c)$ such that $ab\\equiv 1\\pmod{p}$?"
+   },
+   {
+    "id": "ERDOS-878",
+    "title": "Erdős Problem #878",
+    "status": "claimed",
+    "statement": "(a) Is it true that, for almost all $n$, $f(n)=o(n\\log\\log n)$ and\n$F(n)\\gg n\\log\\log n$?\n\n(b) Is it true that $\\max_{n\\le x}f(n)\\sim x\\log x/\\log\\log x$?\n\n(c) Is it true that, for all $x$, $\\max_{n\\le x}f(n)=\\max_{n\\le x}F(n)$?\nBarreto noted that this is false at $x=210$.\n\n(d) Is it true that, for all large $x$, $\\max_{n\\le x}f(n)=\\max_{n\\le x}F(n)$?\n\n(e) Find an asymptotic formula for the number of $n<x$ such that $f(n)=F(n)$.\n\n(f) Find an asymptotic formula for $H(x)=\\sum_{n<x}f(n)/n$.\n\n(g) Is it true that $H(x)\\ll x\\log\\log\\log\\log x$?"
+   },
+   {
+    "id": "ERDOS-955",
+    "title": "Erdős Problem #955",
+    "status": "open",
+    "statement": "Let $s(n)=\\sigma(n)-n=\\sum_{\\substack{d\\mid n\\\\ d<n}}d$ be the sum of proper divisors function.\n\nIf $A\\subset \\mathbb{N}$ has density $0$ then $s^{-1}(A)$ must also have density $0$."
+   },
+   {
+    "id": "ERDOS-845",
+    "title": "Erdős Problem #845",
+    "status": "solved",
+    "statement": "Let $C > 0$. Is it true that the set of integers of the form $n = b_1 + \\cdots + b_t$,\nwith $b_1 < \\cdots < b_t$, where $b_i = 2^{k_i}3^{l_i}$ for $1 \\leq i\\leq t$ and\n$b_t \\leq Cb_1$ has density $0$?"
+   },
+   {
+    "id": "ERDOS-710",
+    "title": "Erdős Problem #710",
+    "status": "open",
+    "statement": "Let $f(n)$ be minimal such that in $(n,n+f(n))$ there exist distinct integers $a_1,\\ldots,a_n$\nsuch that $k\\mid a_k$ for all $1\\leq k\\leq n$. Obtain an asymptotic formula for $f(n)$."
+   },
+   {
+    "id": "ERDOS-1210",
+    "title": "Erdős Problem #1210",
+    "status": "open",
+    "statement": "Let $A\\subseteq [1,n)$ be a set of integers such that $(a,b)=1$ for all distinct $a,b\\in A$.\nIs it true that $\\sum_{a\\in A}\\frac{1}{n-a}\\leq \\sum_{p < n}\\frac{1}{p}+O(1)$?"
+   },
+   {
+    "id": "ERDOS-675",
+    "title": "Erdős Problem #675",
+    "status": "open",
+    "statement": "(a) A set $A \\subseteq \\mathbb{N}$ has the translation property if, for every $n$, there is an\ninteger $t_n \\geq 1$ such that, for all $1 \\leq a \\leq n$, $a \\in A$ if and only if\n$a + t_n \\in A$. Does the set of sums of two squares $\\{x^2 + y^2 : x, y \\in \\mathbb{N}\\}$\nhave the translation property?\n\n(b) If we partition all primes into $P\\sqcup Q$, such that each set contains $\\gg x/\\log x$ many\nprimes $\\leq x$ for all large $x$, then can the set of integers only divisible by primes from\n$P$ have the translation property?\n\n(c) If $A$ is the set of squarefree numbers then how fast does the mini"
+   },
+   {
+    "id": "ERDOS-466",
+    "title": "Erdős Problem #466",
+    "status": "solved",
+    "statement": "Let $N(X,\\delta)$ denote the maximum number of points $P_1,\\ldots,P_n$ which can be chosen in a\ncircle of radius $X$ such that\n$$\\| \\lvert P_i-P_j\\rvert \\| \\geq \\delta$$\nfor all $1\\leq i<j\\leq n$. (Here $\\|x\\|$ is the distance from $x$ to the nearest integer.)\n\nIs there some $\\delta>0$ such that\n$$\\lim_{X\\to \\infty}N(X,\\delta)=\\infty?$$"
+   },
+   {
+    "id": "ERDOS-436",
+    "title": "Erdős Problem #436",
+    "status": "claimed",
+    "statement": "(a) If $p$ is a prime and $k, m \\geq 2$, let $r(k, m, p)$ be the minimal $r$ such that\n$r, r + 1, \\ldots, r + m - 1$ are all $k$th power residues modulo $p$, and let\n$\\Lambda(k, m) = \\limsup_{p \\to \\infty} r(k, m, p)$. Is $\\Lambda(k, 2)$ finite for all $k$?\n\n(b) Is $\\Lambda(k, 3)$ finite for all odd $k$?"
+   },
+   {
+    "id": "ERDOS-248",
+    "title": "Erdős Problem #248",
+    "status": "solved",
+    "statement": "Are there infinitely many $n$ such that $\\omega(n + k) \\ll k$ for all $k \\geq 1$?\nHere $\\omega(n)$ is the number of distinct prime divisors of $n$."
+   },
+   {
+    "id": "ERDOS-771",
+    "title": "Erdős Problem #771",
+    "status": "solved",
+    "statement": "Let $f(n)$ be maximal such that, for every $m\\geq 1$, there exists some\n$S\\subseteq \\{1,\\ldots,n\\}$ with $\\lvert S\\rvert=f(n)$ such that $m\\neq \\sum_{a\\in A}a$ for all\n$A\\subseteq S$.\n\nIs it true that\n$$f(n) = \\left(\\frac{1}{2}+o(1)\\right)\\frac{n}{\\log n}?$$"
+   },
+   {
+    "id": "ERDOS-709",
+    "title": "Erdős Problem #709",
+    "status": "open",
+    "statement": "Let $f(n)$ be minimal such that, for any $A=\\{a_1,\\ldots,a_n\\}\\subseteq [2,\\infty)\\cap\\mathbb{N}$\nof size $n$, in any interval $I$ of $f(n)\\max(A)$ consecutive integers there exist distinct\n$x_1,\\ldots,x_n\\in I$ such that $a_i\\mid x_i$."
+   },
+   {
+    "id": "ERDOS-1053",
+    "title": "Erdős Problem #1053",
+    "status": "open",
+    "statement": "Call a number $k$-perfect if $\\sigma(n)=kn$, where $\\sigma(n)$ is the sum of the divisors\nof $n$. Must $k=o(\\log\\log n)$?"
+   },
+   {
+    "id": "ERDOS-388",
+    "title": "Erdős Problem #388",
+    "status": "open",
+    "statement": "Are there only finitely many solutions of\n$$\\prod_{1\\leq i\\leq k_1}(m_1+i)=\\prod_{1\\leq j\\leq k_2}(m_2+j)$$\nwith $k_1,k_2>3$ and $m_1+k_1\\leq m_2$?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "IMO-1976-P4",
+    "title": "IMO 1976 · Problem 4"
+   },
+   {
+    "id": "IMO-1985-P4",
+    "title": "IMO 1985 · Problem 4"
+   },
+   {
+    "id": "IMO-1989-P1",
+    "title": "IMO 1989 · Problem 1"
+   },
+   {
+    "id": "IMO-1990-P5",
+    "title": "IMO 1990 · Problem 5"
+   },
+   {
+    "id": "USAMO-1990-P3",
+    "title": "USAMO 1990 · Problem 3"
+   },
+   {
+    "id": "IMO-1991-P3",
+    "title": "IMO 1991 · Problem 3"
+   },
+   {
+    "id": "IMO-1992-P6",
+    "title": "IMO 1992 · Problem 6"
+   },
+   {
+    "id": "PUTNAM-1992-A5",
+    "title": "Putnam 1992 · A5"
+   },
+   {
+    "id": "USAMO-1992-P3",
+    "title": "USAMO 1992 · Problem 3"
+   },
+   {
+    "id": "IMO-1994-P1",
+    "title": "IMO 1994 · Problem 1"
+   },
+   {
+    "id": "IMO-1994-P6",
+    "title": "IMO 1994 · Problem 6"
+   },
+   {
+    "id": "IMO-1995-P6",
+    "title": "IMO 1995 · Problem 6"
+   },
+   {
+    "id": "PUTNAM-1995-B6",
+    "title": "Putnam 1995 · B6"
+   },
+   {
+    "id": "IMO-1996-P6",
+    "title": "IMO 1996 · Problem 6"
+   },
+   {
+    "id": "USAMO-1996-P2",
+    "title": "USAMO 1996 · Problem 2"
+   },
+   {
+    "id": "IMO-2000-P4",
+    "title": "IMO 2000 · Problem 4"
+   },
+   {
+    "id": "PUTNAM-2003-A6",
+    "title": "Putnam 2003 · A6"
+   },
+   {
+    "id": "PUTNAM-2004-B6",
+    "title": "Putnam 2004 · B6"
+   },
+   {
+    "id": "PUTNAM-2005-A1",
+    "title": "Putnam 2005 · A1"
+   },
+   {
+    "id": "USAMO-2005-P6",
+    "title": "USAMO 2005 · Problem 6"
+   },
+   {
+    "id": "USAMO-2006-P2",
+    "title": "USAMO 2006 · Problem 2"
+   },
+   {
+    "id": "IMO-2009-P6",
+    "title": "IMO 2009 · Problem 6"
+   },
+   {
+    "id": "USAMO-2009-P2",
+    "title": "USAMO 2009 · Problem 2"
+   },
+   {
+    "id": "IMO-2021-P6",
+    "title": "IMO 2021 · Problem 6"
+   },
+   {
+    "id": "IMO-2026-P6",
+    "title": "IMO 2026 · Problem 6"
+   }
+  ]
+ }
+]

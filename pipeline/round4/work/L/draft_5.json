@@ -1,0 +1,796 @@
+[
+ {
+  "id": "bombieri-vinogradov",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "For a fixed modulus $q$, the prime number theorem for arithmetic progressions says the primes are shared out evenly among the $\\varphi(q)$ residue classes $a \\bmod q$ with $\\gcd(a,q)=1$. Many problems, sieve problems above all, need more than that. They need the even distribution to hold for a huge range of moduli at once, typically every $q$ up to a power of $x$. For one modulus at a time, the best unconditional result, the [[siegel-walfisz|Siegel–Walfisz theorem]], only reaches $q \\le (\\log x)^A$.\n\nThe Bombieri–Vinogradov theorem says that if a statement on average over $q$ is enough, you can go all the way to $q$ of size about $x^{1/2}$. The generalised Riemann hypothesis would give that range for each modulus separately. That is why the theorem is often described as GRH on average. Enrico Bombieri and A. I. Vinogradov proved it independently in 1965."
+   },
+   {
+    "type": "section",
+    "title": "Measuring the error",
+    "body": "Primes are weighted by the von Mangoldt function $\\Lambda$, because that makes the analysis cleanest. Put\n$$\\psi(x;q,a) = \\sum_{\\substack{n \\le x \\\\ n \\equiv a \\pmod q}} \\Lambda(n), \\qquad E(x;q) = \\max_{(a,q)=1} \\Bigl|\\psi(x;q,a) - \\frac{x}{\\varphi(q)}\\Bigr|.$$\nThe expected value of $\\psi(x;q,a)$ is $x/\\varphi(q)$: total weight about $x$ (the prime number theorem), shared among $\\varphi(q)$ classes. The few prime powers that divide $q$ live in the classes with $\\gcd(a,q)>1$ and are negligible.\n\nHow large can $E(x;q)$ be with no work at all? Each $n \\le x$ contributes at most $\\log x$, and a class mod $q$ has at most $x/q+1$ members up to $x$, so $\\psi(x;q,a) \\le (x/q+1)\\log x$. Hence $E(x;q) \\ll x\\log x/\\varphi(q)$ for $q \\le x$. Since $\\sum_{q \\le Q} 1/\\varphi(q) \\ll \\log Q$, the trivial bound is\n$$\\sum_{q \\le Q} E(x;q) \\ll x (\\log x)^2.$$\nTo say anything useful, a theorem has to beat this by more than a fixed power of $\\log x$. That is what Bombieri–Vinogradov does: it saves an arbitrary power of $\\log x$ for $Q$ almost as large as $\\sqrt x$."
+   },
+   {
+    "type": "definition",
+    "title": "Level of distribution",
+    "body": "The primes have level of distribution $\\theta$ if for every $A>0$ and every $\\varepsilon>0$,\n$$\\sum_{q \\le x^{\\theta-\\varepsilon}} E(x;q) \\ll_{A,\\varepsilon} \\frac{x}{(\\log x)^A}.$$\nSo $\\theta$ measures how far, as a power of $x$, the moduli can go while equidistribution still holds on average."
+   },
+   {
+    "type": "theorem",
+    "title": "Bombieri–Vinogradov theorem",
+    "body": "For every $A>0$ there is $B = B(A)>0$ such that, with $Q = x^{1/2}(\\log x)^{-B}$,\n$$\\sum_{q \\le Q}\\ \\max_{y \\le x}\\ \\max_{(a,q)=1} \\Bigl|\\psi(y;q,a) - \\frac{y}{\\varphi(q)}\\Bigr| \\ll_A \\frac{x}{(\\log x)^A}.$$\nDropping the maximum over $y$ gives the catalog statement\n$$\\sum_{q \\le Q}\\ \\max_{(a,q)=1} \\Bigl|\\psi(x;q,a) - \\frac{x}{\\varphi(q)}\\Bigr| \\ll_A \\frac{x}{(\\log x)^A}.$$\nIn particular the primes have level of distribution $1/2$. The implied constant is ineffective, because the proof uses the Siegel–Walfisz theorem."
+   },
+   {
+    "type": "section",
+    "title": "Step one: characters, and only primitive ones",
+    "body": "The full proof takes a chapter. We give its structure, prove the one inequality that drives it, and say plainly where details are left out.\n\nBy orthogonality of [[dirichlet-characters|Dirichlet characters]], for $\\gcd(a,q)=1$,\n$$\\psi(y;q,a) = \\frac{1}{\\varphi(q)} \\sum_{\\chi \\bmod q} \\overline{\\chi}(a)\\, \\psi(y,\\chi), \\qquad \\psi(y,\\chi) = \\sum_{n \\le y} \\chi(n)\\Lambda(n).$$\nThe principal character gives $\\psi(y,\\chi_0)/\\varphi(q)$, which is $y/\\varphi(q)$ up to the prime number theorem error and an error of $O((\\log qy)^2)$ from prime powers sharing a factor with $q$. The rest is at most $\\frac{1}{\\varphi(q)}\\sum_{\\chi \\ne \\chi_0} |\\psi(y,\\chi)|$.\n\nEvery character $\\chi$ mod $q$ is induced by a unique primitive character $\\chi^*$ mod some $r \\mid q$, and $\\psi(y,\\chi)$ differs from $\\psi(y,\\chi^*)$ only at prime powers dividing $q$, by $O((\\log qy)^2)$. A primitive $\\chi^*$ mod $r$ induces one character mod each multiple $q = rk$. Since $\\varphi(rk) \\ge \\varphi(r)\\varphi(k)$ and $\\sum_{k \\le Q} 1/\\varphi(k) \\ll \\log Q$, grouping the moduli this way costs only one factor of $\\log x$. After the small error terms are taken out, the theorem follows from\n$$\\sum_{1 < r \\le Q} \\frac{1}{\\varphi(r)} \\sum_{\\chi \\bmod r}^{*} \\max_{y \\le x} |\\psi(y,\\chi)| \\ll \\frac{x}{(\\log x)^{A+1}}, \\qquad (\\ast)$$\nwhere $\\sum^*$ runs over primitive characters only."
+   },
+   {
+    "type": "section",
+    "title": "Step two: small moduli and large moduli",
+    "body": "Small moduli, $r \\le (\\log x)^C$: here Siegel–Walfisz gives $\\psi(y,\\chi) \\ll x\\exp(-c\\sqrt{\\log x})$ for each non-principal $\\chi$. There are at most $(\\log x)^{2C}$ pairs $(r,\\chi)$, so their total is far below the target.\n\nLarge moduli: split $r$ into dyadic ranges $R < r \\le 2R$, where $1/\\varphi(r) \\le (r/\\varphi(r))/R$. Then break $\\Lambda$ up with a combinatorial identity (Vaughan's identity is the usual choice). It writes $\\psi(y,\\chi)$ as a few type I sums $\\sum_{m \\le U} a_m \\sum_{n \\le y/m} \\chi(mn)$, where the inner variable is smooth and long, and type II sums $\\sum\\sum a_m b_n \\chi(mn)$, where both $m$ and $n$ are longer than $U$. Here $U$ is a parameter, and the coefficients are bounded by divisor functions and logarithms.\n\nThe condition $mn \\le y$ ties the two variables together. A standard Fourier device (a truncated Perron formula) separates them at the cost of a power of $\\log x$. With $m$ running over $M$ consecutive integers, $n$ over $N$ consecutive integers and $MN \\asymp x$, the bilinear inequality below bounds the type II part of $(\\ast)$ in the range $r \\sim R$ by\n$$\\frac{(\\log x)^c}{R}\\,(M+R^2)^{1/2}(N+R^2)^{1/2}(MN)^{1/2} \\ll (\\log x)^c\\Bigl(\\frac{x}{R} + x^{1/2}(M^{1/2}+N^{1/2}) + R\\,x^{1/2}\\Bigr).$$\nThe first term is small because $R > (\\log x)^C$. The middle term is small because both variables are longer than $U$, so each is shorter than $x/U$. The last term is small exactly when $R \\le x^{1/2}(\\log x)^{-B}$. That term comes from the $Q^2$ in the large sieve, and it is the whole reason for the exponent $1/2$. The type I sums are handled in a similar way, and $U$ is chosen to balance the two kinds of sum. We omit that bookkeeping."
+   },
+   {
+    "type": "theorem",
+    "title": "Bilinear large sieve for characters",
+    "body": "Let $(a_m)$ be supported on $M$ consecutive integers and $(b_n)$ on $N$ consecutive integers. Then\n$$\\sum_{q \\le Q} \\frac{q}{\\varphi(q)} \\sum_{\\chi \\bmod q}^{*} \\Bigl|\\sum_m \\sum_n a_m b_n \\chi(mn)\\Bigr| \\le (M+Q^2)^{1/2}(N+Q^2)^{1/2}\\, \\|a\\|_2\\, \\|b\\|_2 .$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "We use the multiplicative [[large-sieve|large sieve inequality]]: for $(c_n)$ supported on $N$ consecutive integers,\n$$\\sum_{q \\le Q} \\frac{q}{\\varphi(q)} \\sum_{\\chi \\bmod q}^{*} \\Bigl|\\sum_n c_n\\chi(n)\\Bigr|^2 \\le (N+Q^2)\\sum_n |c_n|^2 .$$\nSince $\\chi$ is completely multiplicative, $\\chi(mn) = \\chi(m)\\chi(n)$, so the double sum factors as $A(\\chi)B(\\chi)$ with $A(\\chi) = \\sum_m a_m\\chi(m)$ and $B(\\chi) = \\sum_n b_n \\chi(n)$. Write $w_q = q/\\varphi(q)$. By the Cauchy–Schwarz inequality over all pairs $(q,\\chi)$,\n$$\\sum_{q,\\chi} w_q |A(\\chi)||B(\\chi)| \\le \\Bigl(\\sum_{q,\\chi} w_q |A(\\chi)|^2\\Bigr)^{1/2}\\Bigl(\\sum_{q,\\chi} w_q |B(\\chi)|^2\\Bigr)^{1/2}.$$\nApplying the large sieve to each factor gives $(M+Q^2)^{1/2}\\|a\\|_2 \\cdot (N+Q^2)^{1/2}\\|b\\|_2$. $\\square$\n\nThe point is that a bilinear sum over many characters can be bounded nontrivially even though nothing is known about any single character. The rest of the proof exists to put $\\Lambda$ into this bilinear shape."
+   },
+   {
+    "type": "example",
+    "title": "GRH on average",
+    "body": "GRH on average. Assume the generalised Riemann hypothesis in the following form. For every $q \\le x$, every non-principal $\\chi \\bmod q$ and $2 \\le y \\le x$, $|\\psi(y,\\chi)| \\le C y^{1/2}(\\log qy)^2$, and $|\\psi(y)-y| \\le C y^{1/2}(\\log y)^2$. Show that $\\sum_{q \\le Q} E(x;q) \\ll x(\\log x)^{2-B}$ for $Q = x^{1/2}(\\log x)^{-B}$.",
+    "solution": "Use the character expansion:\n$$\\psi(x;q,a) - \\frac{x}{\\varphi(q)} = \\frac{1}{\\varphi(q)}\\sum_{\\chi \\ne \\chi_0}\\overline{\\chi}(a)\\psi(x,\\chi) + \\frac{\\psi(x,\\chi_0)-x}{\\varphi(q)}.$$\nThe first term is an average of at most $\\varphi(q)-1$ terms, each at most $Cx^{1/2}(\\log x^2)^2 = 4Cx^{1/2}(\\log x)^2$ in absolute value (since $qx \\le x^2$), so it is at most $4Cx^{1/2}(\\log x)^2$. For the second, $\\psi(x,\\chi_0)$ differs from $\\psi(x)$ by the prime powers $p^k \\le x$ with $p \\mid q$. Their total weight is at most $\\omega(q)\\log x \\ll (\\log x)^2$, so the second term is $O(x^{1/2}(\\log x)^2)$. Hence $E(x;q) \\ll x^{1/2}(\\log x)^2$ uniformly for $q \\le x$, and\n$$\\sum_{q \\le Q} E(x;q) \\ll Q\\, x^{1/2}(\\log x)^2 = x(\\log x)^{2-B}.$$\nTaking $B = A+2$ gives the Bombieri–Vinogradov bound. The difference is that GRH gives the bound for every modulus separately, while Bombieri–Vinogradov gives it only on average, but with no hypothesis."
+   },
+   {
+    "type": "example",
+    "title": "Errors up to the square root",
+    "body": "A numerical look. Take $x = 10^5$ and $Q = 316 \\approx \\sqrt x$. Compute $\\sum_{q \\le Q} E(x;q)$ and compare it with the sum of the main terms $\\sum_{q\\le Q} x/\\varphi(q)$.",
+    "solution": "Computing $\\psi(10^5;q,a)$ for every $q \\le 316$ and every class gives\n$$\\sum_{q \\le 316} E(10^5;q) \\approx 0.395\\,x, \\qquad \\sum_{q \\le 316}\\frac{x}{\\varphi(q)} \\approx 11.13\\,x.$$\nSo the errors, each taken in the worst class, add up to about $3.5\\%$ of the main terms. A numerical experiment at this size cannot test an asymptotic statement with powers of $\\log x$ in it, since $\\log 10^5 \\approx 11.5$. But it shows what the theorem measures. The worst class for each modulus is still close to its fair share when you add up over all moduli up to $\\sqrt x$, even though nobody can prove this for any single large modulus."
+   },
+   {
+    "type": "example",
+    "title": "Exceptional moduli are rare",
+    "body": "Almost all moduli are good. Fix $C>0$. Deduce from the theorem that, with $Q = x^{1/2}(\\log x)^{-B(2C)}$, all but $O(Q(\\log x)^{-C})$ moduli $q \\le Q$ satisfy\n$$E(x;q) \\le \\frac{x}{\\varphi(q)(\\log x)^{C}}.$$",
+    "solution": "Let $\\mathcal{B}$ be the set of $q \\le Q$ for which the inequality fails. For $q \\in \\mathcal{B}$ we have $\\varphi(q) \\le q \\le Q$, so $E(x;q) > x/(Q(\\log x)^C)$. Apply the theorem with $A = 2C$:\n$$|\\mathcal{B}| \\cdot \\frac{x}{Q(\\log x)^C} < \\sum_{q \\in \\mathcal{B}} E(x;q) \\le \\sum_{q \\le Q} E(x;q) \\ll \\frac{x}{(\\log x)^{2C}}.$$\nHence $|\\mathcal{B}| \\ll Q(\\log x)^{-C}$. This is the usual way to read the theorem. The prime number theorem holds in every class with a power-of-log relative error for all moduli up to about $\\sqrt x$, apart from a sparse set of exceptions."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The theorem says nothing about any particular modulus. A sparse set of bad moduli, for example multiples of a modulus with a Siegel zero, is allowed.\n- The maximum over $a$ sits inside the sum over $q$. Averaging over both $q$ and $a$ in mean square is a different, easier statement (the Barban–Davenport–Halberstam theorem), and it reaches $Q$ close to $x$.\n- The exponent $1/2$ is a limit of the method (the $Q^2$ term in the large sieve), not a known truth about primes. The Elliott–Halberstam conjecture predicts level $\\theta$ for every $\\theta<1$. Going beyond $1/2$ is known only in restricted forms, for example for a fixed residue class with well-factorable weights (Bombieri, Friedlander and Iwaniec, 1986) or for smooth moduli (Zhang, 2013).\n- The $\\pi$ version, with $\\mathrm{li}(x)/\\varphi(q)$ as the main term, follows from the $\\psi$ version by partial summation. Do not mix the two normalisations in one formula."
+   },
+   {
+    "type": "connection",
+    "body": "Bombieri–Vinogradov is the standard input to sieve methods whenever the sequence being sifted is made from primes, such as $\\{p+2\\}$ or $\\{p-1\\}$: [[selberg-sieve]], [[sieve-basics]], Chen's theorem towards [[goldbach]], and the Titchmarsh divisor problem $\\sum_{p\\le x}\\tau(p-1)$. It sits on top of [[large-sieve]], [[siegel-walfisz]] and [[l-functions]], and it is the unconditional substitute for [[grh]] in many arguments.\n\nIts most famous use is in [[bounded-gaps]]. Goldston, Pintz and Yıldırım showed that any level of distribution $\\theta > 1/2$ would give bounded gaps between primes. Zhang (2013) proved a level slightly above $1/2$ for smooth moduli. Maynard's multidimensional sieve later needed only level $1/2$, so Bombieri–Vinogradov itself is enough. The [[twin-primes]] conjecture remains out of reach."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Prove the trivial bound $\\sum_{q\\le Q}E(x;q) \\ll x(\\log x)^2$ for $Q \\le x$, using $\\sum_{q \\le Q}1/\\varphi(q) \\ll \\log Q$.\n2. Show that $\\varphi(rk) \\ge \\varphi(r)\\varphi(k)$ for all positive integers $r,k$, with equality when $\\gcd(r,k)=1$.\n3. Deduce from the theorem a version for $\\pi(x;q,a)$ with main term $\\mathrm{li}(x)/\\varphi(q)$, using partial summation.\n4. In the sketch above, identify which term would stop you from taking $Q = x^{1/2}$ exactly, with no logarithmic loss."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Ch. 28"
+   },
+   {
+    "ref": "Iwaniec & Kowalski, Analytic Number Theory"
+   },
+   {
+    "ref": "E. Bombieri, On the large sieve, Mathematika 12 (1965)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "For x = 10^5 and q <= 316, the sum of E(x;q) is about 0.395x, and the sum of x/phi(q) is about 11.13x",
+    "python": "import math\nfrom sympy import primerange, totient\nx = 10**5\nLam = {}\nfor p in primerange(2, x+1):\n    pk = p\n    while pk <= x:\n        Lam[pk] = math.log(p); pk *= p\ntot = 0.0\nfor q in range(1, 317):\n    b = [0.0]*q\n    for n, l in Lam.items(): b[n % q] += l\n    ph = int(totient(q))\n    tot += max(abs(b[a] - x/ph) for a in range(q) if math.gcd(a, q) == 1)\nassert abs(tot/x - 0.395) < 0.005, tot/x\ns = sum(1/int(totient(q)) for q in range(1, 317))\nassert abs(s - 11.13) < 0.01, s\nassert abs(tot/(x*s) - 0.035) < 0.002"
+   },
+   {
+    "claim": "If Q = x^{1/2}(log x)^{-B}, then Q x^{1/2} (log x)^2 = x (log x)^{2-B}",
+    "python": "import sympy as sp\nx, B = sp.symbols('x B', positive=True)\nQ = sp.sqrt(x)*sp.log(x)**(-B)\nassert sp.simplify(Q*sp.sqrt(x)*sp.log(x)**2 - x*sp.log(x)**(2-B)) == 0"
+   },
+   {
+    "claim": "The multiplicative large sieve inequality holds numerically for Q = 10 with 40 consecutive integers and random coefficients",
+    "python": "import math, cmath\ndef chars(q):\n    if q == 1:\n        return [({0: 1}, True)]\n    U = [a for a in range(1, q) if math.gcd(a, q) == 1]\n    ph = len(U)\n    def closure(gs):\n        H = {1}; fr = [1]\n        while fr:\n            x = fr.pop()\n            for g in gs:\n                y = x * g % q\n                if y not in H: H.add(y); fr.append(y)\n        return H\n    gens = []; H = {1}\n    for a in U:\n        if a not in H:\n            gens.append(a); H = closure(gens)\n    out = []\n    import itertools\n    for es in itertools.product(range(ph), repeat=len(gens)):\n        val = {1: 0}; fr = [1]; ok = True\n        while fr and ok:\n            x = fr.pop()\n            for g, e in zip(gens, es):\n                y = x * g % q; v = (val[x] + e) % ph\n                if y in val:\n                    if val[y] != v: ok = False; break\n                else:\n                    val[y] = v; fr.append(y)\n        if ok and len(val) == ph:\n            chi = {u: cmath.exp(2j * cmath.pi * val[u] / ph) for u in U}\n            prim = True\n            for d in range(1, q):\n                if q % d == 0 and all(abs(chi[u] - 1) < 1e-9 for u in U if u % d == 1 % d):\n                    prim = False; break\n            out.append((chi, prim))\n    return out\ndef ev(chi, q, n):\n    if q == 1: return 1\n    r = n % q\n    return chi.get(r, 0) if math.gcd(r, q) == 1 else 0\n\nimport random\nrandom.seed(7)\nQ, M, N = 10, 17, 40\ncs = {n: complex(random.gauss(0,1), random.gauss(0,1)) for n in range(M+1, M+N+1)}\nlhs = 0.0\nfor q in range(1, Q+1):\n    w = q / sum(1 for a in range(1, q+1) if math.gcd(a, q) == 1)\n    for chi, prim in chars(q):\n        if prim:\n            lhs += w*abs(sum(c*ev(chi, q, n) for n, c in cs.items()))**2\nrhs = (N + Q*Q)*sum(abs(c)**2 for c in cs.values())\nassert lhs <= rhs, (lhs, rhs)"
+   },
+   {
+    "claim": "The character tables are right: mod q there are phi(q) characters, and the number of primitive ones is 0 for q=2, 1 for q=4, 2 for q=8 and q-2 for prime q",
+    "python": "import math, cmath\ndef chars(q):\n    if q == 1:\n        return [({0: 1}, True)]\n    U = [a for a in range(1, q) if math.gcd(a, q) == 1]\n    ph = len(U)\n    def closure(gs):\n        H = {1}; fr = [1]\n        while fr:\n            x = fr.pop()\n            for g in gs:\n                y = x * g % q\n                if y not in H: H.add(y); fr.append(y)\n        return H\n    gens = []; H = {1}\n    for a in U:\n        if a not in H:\n            gens.append(a); H = closure(gens)\n    out = []\n    import itertools\n    for es in itertools.product(range(ph), repeat=len(gens)):\n        val = {1: 0}; fr = [1]; ok = True\n        while fr and ok:\n            x = fr.pop()\n            for g, e in zip(gens, es):\n                y = x * g % q; v = (val[x] + e) % ph\n                if y in val:\n                    if val[y] != v: ok = False; break\n                else:\n                    val[y] = v; fr.append(y)\n        if ok and len(val) == ph:\n            chi = {u: cmath.exp(2j * cmath.pi * val[u] / ph) for u in U}\n            prim = True\n            for d in range(1, q):\n                if q % d == 0 and all(abs(chi[u] - 1) < 1e-9 for u in U if u % d == 1 % d):\n                    prim = False; break\n            out.append((chi, prim))\n    return out\ndef ev(chi, q, n):\n    if q == 1: return 1\n    r = n % q\n    return chi.get(r, 0) if math.gcd(r, q) == 1 else 0\n\nfrom sympy import totient, isprime\nfor q in range(2, 14):\n    cl = chars(q)\n    assert len(cl) == int(totient(q))\n    npr = sum(1 for c, p in cl if p)\n    if isprime(q): assert npr == q - 2\nassert sum(p for c, p in chars(2)) == 0\nassert sum(p for c, p in chars(4)) == 1\nassert sum(p for c, p in chars(8)) == 2"
+   },
+   {
+    "claim": "For a character chi, the double sum of a_m b_n chi(mn) equals the product of the two single sums",
+    "python": "import math, cmath\ndef chars(q):\n    if q == 1:\n        return [({0: 1}, True)]\n    U = [a for a in range(1, q) if math.gcd(a, q) == 1]\n    ph = len(U)\n    def closure(gs):\n        H = {1}; fr = [1]\n        while fr:\n            x = fr.pop()\n            for g in gs:\n                y = x * g % q\n                if y not in H: H.add(y); fr.append(y)\n        return H\n    gens = []; H = {1}\n    for a in U:\n        if a not in H:\n            gens.append(a); H = closure(gens)\n    out = []\n    import itertools\n    for es in itertools.product(range(ph), repeat=len(gens)):\n        val = {1: 0}; fr = [1]; ok = True\n        while fr and ok:\n            x = fr.pop()\n            for g, e in zip(gens, es):\n                y = x * g % q; v = (val[x] + e) % ph\n                if y in val:\n                    if val[y] != v: ok = False; break\n                else:\n                    val[y] = v; fr.append(y)\n        if ok and len(val) == ph:\n            chi = {u: cmath.exp(2j * cmath.pi * val[u] / ph) for u in U}\n            prim = True\n            for d in range(1, q):\n                if q % d == 0 and all(abs(chi[u] - 1) < 1e-9 for u in U if u % d == 1 % d):\n                    prim = False; break\n            out.append((chi, prim))\n    return out\ndef ev(chi, q, n):\n    if q == 1: return 1\n    r = n % q\n    return chi.get(r, 0) if math.gcd(r, q) == 1 else 0\n\nimport random\nrandom.seed(3)\nq = 7\nchi = [c for c, p in chars(q) if p][1]\na = {m: random.random() for m in range(5, 15)}\nb = {n: random.random() for n in range(20, 33)}\ndbl = sum(a[m]*b[n]*ev(chi, q, m*n) for m in a for n in b)\nprod = sum(a[m]*ev(chi, q, m) for m in a)*sum(b[n]*ev(chi, q, n) for n in b)\nassert abs(dbl - prod) < 1e-9"
+   },
+   {
+    "claim": "phi(rk) >= phi(r) phi(k) for r, k <= 60",
+    "python": "from sympy import totient\nassert all(totient(r*k) >= totient(r)*totient(k) for r in range(1, 61) for k in range(1, 61))"
+   }
+  ]
+ },
+ {
+  "id": "bounded-gaps",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "By the prime number theorem, the gap after a prime $p$ near $x$ is about $\\log x$ on average. The question is whether gaps far below average keep coming back, and in particular whether some fixed gap occurs infinitely often. The [[twin-primes|twin prime conjecture]] says the gap $2$ does. Until 2013 nobody could show that gaps below some fixed bound, even $10^{100}$, occur infinitely often.\n\nIn 2013 Yitang Zhang proved $\\liminf_{n\\to\\infty}(p_{n+1}-p_n) < 7\\times 10^7$. Within a year, James Maynard (and Terence Tao, independently) found a simpler and stronger sieve, and the Polymath8 project brought the bound down to\n$$\\liminf_{n\\to\\infty}(p_{n+1}-p_n) \\le 246.$$\nThis lesson explains the architecture: admissible tuples, a weighted count whose positivity forces two primes close together, and the role of the level of distribution from [[bombieri-vinogradov]]."
+   },
+   {
+    "type": "definition",
+    "title": "Admissible tuple",
+    "body": "A set $\\mathcal{H} = \\{h_1 < h_2 < \\dots < h_k\\}$ of integers is admissible if for every prime $p$ the numbers $h_1,\\dots,h_k$ miss at least one residue class mod $p$. Its diameter is $h_k - h_1$.\n\nAdmissibility is exactly the local condition that does not rule out all of $n+h_1,\\dots,n+h_k$ being prime. Only primes $p \\le k$ need checking, since $k$ numbers cannot cover more than $k$ classes."
+   },
+   {
+    "type": "section",
+    "title": "Why tuples, and what the condition means",
+    "body": "If $\\mathcal{H}$ is not admissible, some prime $p$ has every class mod $p$ hit by some $h_i$. Then for every $n$, one of $n+h_1,\\dots,n+h_k$ is divisible by $p$. So all of them can be prime only when that one equals $p$, which happens for finitely many $n$. For example $\\{0,2,4\\}$ covers all classes mod $3$, and $n, n+2, n+4$ are all prime only for $n=3$.\n\nThe Hardy–Littlewood prime $k$-tuples conjecture says that for every admissible $\\mathcal{H}$ there are infinitely many $n$ with all of $n+h_1,\\dots,n+h_k$ prime. It is wide open, even for $\\{0,2\\}$. The bounded gaps theorems prove a much weaker statement that is still enough.\n\nWeak tuples statement: for every admissible $\\mathcal{H}$ with $k$ large enough, there are infinitely many $n$ such that at least two of $n+h_1,\\dots,n+h_k$ are prime.\n\nIf two of them are prime, those two primes lie in an interval of length $h_k-h_1$, so some pair of consecutive primes differs by at most $h_k-h_1$. Bounded gaps then follows from two ingredients: a value of $k$ for which the weak statement is proved, and an admissible $k$-tuple of small diameter."
+   },
+   {
+    "type": "section",
+    "title": "The GPY weighted count",
+    "body": "Goldston, Pintz and Yıldırım (2005) found a way to detect two primes in a tuple. Take nonnegative weights $w(n)$ and look at\n$$S = \\sum_{N < n \\le 2N}\\Bigl(\\sum_{i=1}^{k}\\mathbf 1_{\\mathbb P}(n+h_i) - m\\Bigr) w(n),$$\nwhere $\\mathbf 1_{\\mathbb P}$ is the indicator of the primes. If $S>0$, some $n$ in $(N,2N]$ has at least $m+1$ primes among $n+h_1,\\dots,n+h_k$. The task is to choose $w$ so that $S$ can be computed asymptotically and turns out positive.\n\nWith $w(n)=1$ this fails badly. The sum of the indicators is about $kN/\\log N$, which is much smaller than $mN$. The weights have to concentrate on the $n$ for which $\\prod_i(n+h_i)$ has no small prime factors. That is what [[selberg-sieve]] weights do:\n$$w(n) = \\Bigl(\\sum_{d \\mid \\prod_i (n+h_i)} \\lambda_d\\Bigr)^2, \\qquad \\lambda_d = 0 \\text{ for } d > R.$$\nExpanding the square, $\\sum_n w(n)$ becomes a count of $n$ in residue classes modulo $[d,e] \\le R^2$, which is elementary. In the sum $\\sum_n \\mathbf 1_{\\mathbb P}(n+h_i)w(n)$ we have to count primes in residue classes modulo numbers up to $R^2$, with an error term summed over all those moduli. That is precisely a level of distribution statement. If the primes have level $\\theta$, one can take $R^2 = N^{\\theta-\\varepsilon}$, so Bombieri–Vinogradov allows $R = N^{1/4-\\varepsilon}$.\n\nGoldston, Pintz and Yıldırım used $\\lambda_d = \\mu(d)P(\\log(R/d)/\\log R)$ for a polynomial $P$. With $m=1$ they showed that any level $\\theta > 1/2$ makes $S>0$ for $k$ large. Assuming the Elliott–Halberstam conjecture, they got infinitely many gaps of at most $16$. With $\\theta = 1/2$, which is what is actually known, the method only just failed. It still gave $\\liminf (p_{n+1}-p_n)/\\log p_n = 0$."
+   },
+   {
+    "type": "section",
+    "title": "Zhang, Maynard and Polymath",
+    "body": "Zhang got past the barrier from the other side, by improving the level. He proved a Bombieri–Vinogradov type estimate with level $\\tfrac12 + \\tfrac{1}{584}$. It is restricted to squarefree moduli with no large prime factors, and to the particular residue classes the sieve produces. GPY weights can be truncated to such moduli at negligible cost. His proof uses deep bounds for exponential sums that come from Deligne's work. With $k = 3{,}500{,}000$ and an admissible tuple of that size, he obtained gaps below $7\\times10^7$. The first Polymath8 project optimised his argument down to $4680$.\n\nMaynard made the opposite move: keep level $1/2$ and improve the weights. He used a separate divisor for each shift:\n$$w(n) = \\Bigl(\\sum_{d_i \\mid n+h_i\\ (1\\le i\\le k)} \\lambda_{d_1,\\dots,d_k}\\Bigr)^2, \\qquad \\lambda_{d_1,\\dots,d_k} \\approx \\Bigl(\\prod_i \\mu(d_i)\\Bigr) F\\Bigl(\\frac{\\log d_1}{\\log R},\\dots,\\frac{\\log d_k}{\\log R}\\Bigr),$$\nwhere $F$ is a smooth function supported on the simplex $t_1+\\dots+t_k \\le 1$. The asymptotic evaluation of $S$ reduces to an optimisation problem for $F$. Let $M_k$ be the supremum, over admissible $F$, of\n$$\\frac{\\sum_{i=1}^k \\int \\bigl(\\int F\\, dt_i\\bigr)^2 \\, dt_1\\cdots \\widehat{dt_i}\\cdots dt_k}{\\int F^2\\, dt_1\\cdots dt_k}.$$\nMaynard's criterion: if the primes have level $\\theta$ and $M_k > 2m/\\theta$, then every admissible $k$-tuple has infinitely many translates containing at least $m+1$ primes. He showed $M_k$ grows like $\\log k$, so it eventually exceeds any bound. He also computed $M_{105} > 4$, which together with Bombieri–Vinogradov ($\\theta=1/2$, $m=1$) gives gaps of at most $600$.\n\nPolymath8b refined the variational problem, using a slightly larger support for $F$ and more careful error analysis. That made $k = 50$ enough, and an admissible $50$-tuple of diameter $246$ finished the job. On the Elliott–Halberstam conjecture the same project obtained $12$, and on a generalised form of it, $6$."
+   },
+   {
+    "type": "theorem",
+    "title": "Bounded gaps (Zhang; Maynard; Polymath8b)",
+    "body": "$$\\liminf_{n\\to\\infty}(p_{n+1}-p_n) \\le 246.$$\nMore generally (Maynard, Tao), for every $m \\ge 1$, $\\liminf_{n\\to\\infty}(p_{n+m}-p_n) < \\infty$. Maynard's bound is $\\ll m^3e^{4m}$."
+   },
+   {
+    "type": "section",
+    "title": "What remains, and a 2026 report",
+    "body": "Why not $2$? Sieve weights are built from divisor conditions, and they cannot tell numbers with an odd number of prime factors from those with an even number. This is Selberg's parity problem. Polymath8b explained why their method cannot give a bound below $6$, even assuming generalised Elliott–Halberstam. The twin prime conjecture needs a genuinely new idea.\n\nIn August 2026 Axiom Math reported that its system AxiomProver had automatically produced a formal verification of the proof of the $246$ bound, and described it as the first of its kind. This is a claim reported by the developers. We describe nothing beyond that report."
+   },
+   {
+    "type": "example",
+    "title": "Checking admissibility",
+    "body": "Which of $\\{0,2,6,8,12\\}$ and $\\{0,2,4,6\\}$ are admissible? Then find the smallest diameter of an admissible $k$-tuple for $k = 2,\\dots,7$.",
+    "solution": "Only primes $p \\le k$ need checking. For $\\{0,2,6,8,12\\}$: mod $2$ every element is even, so class $1$ is missed. Mod $3$ the residues are $0,2,0,2,0$, so $1$ is missed. Mod $5$ they are $0,2,1,3,2$, so $4$ is missed. The tuple is admissible.\n\nFor $\\{0,2,4,6\\}$: mod $3$ the residues are $0,2,1,0$, which covers every class. Not admissible.\n\nA computer search over tuples starting at $0$ gives minimal diameters $2, 6, 8, 12, 16, 20$ for $k=2,\\dots,7$, attained for instance by $\\{0,2\\}$, $\\{0,2,6\\}$, $\\{0,2,6,8\\}$, $\\{0,2,6,8,12\\}$, $\\{0,4,6,10,12,16\\}$ and $\\{0,2,6,8,12,18,20\\}$. The minimal diameter grows roughly like $k\\log k$, which is why the size of $k$ matters so much."
+   },
+   {
+    "type": "example",
+    "title": "A cheap admissible tuple",
+    "body": "Show that the first $k$ primes larger than $k$ form an admissible $k$-tuple. Compute the diameter this gives for $k=50$ and $k=105$, and compare with $246$ and $600$.",
+    "solution": "Let $\\mathcal{H}$ be the first $k$ primes greater than $k$. For a prime $p \\le k$, no element of $\\mathcal{H}$ is divisible by $p$, since each element is a prime larger than $p$. So the class $0$ is missed. For $p > k$, the $k$ elements cannot cover $p$ classes. Hence $\\mathcal{H}$ is admissible.\n\nFor $k=50$: $\\pi(50) = 15$, so $\\mathcal{H}$ runs from $p_{16} = 53$ to $p_{65} = 313$, and its diameter is $260$. For $k = 105$: $\\pi(105)=27$, so $\\mathcal H$ runs from $p_{28}=107$ to $p_{132}=743$, and its diameter is $636$. These are already close to the records $246$ and $600$. The records come from computer searches for denser admissible tuples."
+   },
+   {
+    "type": "example",
+    "title": "Why weights are needed",
+    "body": "The positivity trick. Suppose that for every large $N$ there are weights $w(n) \\ge 0$ with\n$$\\sum_{N<n\\le 2N}\\Bigl(\\sum_{i=1}^k \\mathbf 1_{\\mathbb P}(n+h_i) - m\\Bigr)w(n) > 0.$$\nShow that $\\liminf_{j\\to\\infty}(p_{j+m}-p_j) \\le h_k-h_1$. Then check numerically that $w \\equiv 1$ is useless for $\\mathcal H = \\{0,2,6,8,12\\}$, $m=1$, $N = 10^5$.",
+    "solution": "If every $n \\in (N,2N]$ had at most $m$ primes among $n+h_i$, each summand would be $\\le 0$, because $w(n)\\ge0$. So the sum would be $\\le 0$. Hence some $n_N \\in (N,2N]$ has at least $m+1$ primes in $[n_N+h_1, n_N+h_k]$. Listing them in order, the first and the $(m+1)$-st are primes $p_j < p_{j+m}$ with $p_{j+m}-p_j \\le h_k-h_1$. As $N \\to \\infty$ the $n_N$ are unbounded, which gives infinitely many such $j$.\n\nWith $w\\equiv1$, $m=1$ and $N = 10^5$, a direct count gives\n$$\\sum_{10^5 < n \\le 2\\cdot 10^5}\\Bigl(\\sum_{h\\in\\mathcal H}\\mathbf 1_{\\mathbb P}(n+h) - 1\\Bigr) = -58039 < 0.$$\nEach shift contributes only about $N/\\log N$ primes, so five shifts are far from enough. The sieve weights exist to make $w(n)$ large on the rare $n$ where the whole tuple is free of small prime factors."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Bounded gaps is not twin primes. The theorem gives some gap $\\le 246$ infinitely often, without saying which one.\n- The bound comes from the diameter of the tuple, not from $k$. The sieve says how large $k$ must be, and a separate combinatorial search supplies a tuple of small diameter.\n- Level $1/2$ was not enough for GPY's one-dimensional weights. Maynard's weights are what make Bombieri–Vinogradov sufficient. Zhang's level beyond $1/2$ is a different route to the same goal.\n- A liminf statement says such gaps occur infinitely often. On its own it says nothing about how often they occur."
+   },
+   {
+    "type": "connection",
+    "body": "The proof combines [[bombieri-vinogradov]] (level of distribution), [[selberg-sieve]] (the weights) and the combinatorics of [[prime-patterns|prime tuples]]. The obvious next target is the [[twin-primes|twin prime conjecture]], which is blocked by the parity problem of [[sieve-basics|sieve theory]]. Maynard's weights have since been used to find many primes in short intervals and to study large gaps between primes. The probabilistic view of primes in [[probabilistic-nt]] explains why the prime tuples conjecture should be true."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Decide whether $\\{0,2,6,8,12,18\\}$ is admissible.\n2. Show that for $k\\ge2$, every element of an admissible $k$-tuple has the same parity.\n3. Using Maynard's criterion with $\\theta = 1/2$, what lower bound on $M_k$ would show that infinitely often three primes lie in a tuple translate?\n4. Assuming level $\\theta$ for every $\\theta<1$ (Elliott–Halberstam), what inequality on $M_k$ is needed for $m=1$?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Friedlander & Iwaniec, Opera de Cribro"
+   },
+   {
+    "ref": "J. Maynard, Small gaps between primes, Annals of Mathematics 181 (2015)"
+   },
+   {
+    "ref": "D. H. J. Polymath, Variants of the Selberg sieve, and bounded intervals containing many primes, Research in the Mathematical Sciences 1 (2014)"
+   },
+   {
+    "ref": "Y. Zhang, Bounded gaps between primes, Annals of Mathematics 179 (2014)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "{0,2,6,8,12} is admissible and {0,2,4,6} and {0,2,4} are not",
+    "python": "from sympy import primerange\ndef admissible(H):\n    k = len(H)\n    return all(len({h % p for h in H}) < p for p in primerange(2, k+1))\n\nassert admissible([0,2,6,8,12])\nassert not admissible([0,2,4,6])\nassert not admissible([0,2,4])"
+   },
+   {
+    "claim": "Minimal diameters of admissible k-tuples for k = 2..7 are 2, 6, 8, 12, 16, 20, attained by the listed tuples",
+    "python": "from sympy import primerange\ndef admissible(H):\n    k = len(H)\n    return all(len({h % p for h in H}) < p for p in primerange(2, k+1))\n\nimport itertools\nres = []\nfor k in range(2, 8):\n    d = 1\n    while not any(admissible((0,)+mid+(d,)) for mid in itertools.combinations(range(1, d), k-2)):\n        d += 1\n    res.append(d)\nassert res == [2, 6, 8, 12, 16, 20], res\nfor H in ([0,2],[0,2,6],[0,2,6,8],[0,2,6,8,12],[0,4,6,10,12,16],[0,2,6,8,12,18,20]):\n    assert admissible(H)"
+   },
+   {
+    "claim": "The first k primes above k: for k=50 they run from 53 to 313 (diameter 260); for k=105 from 107 to 743 (diameter 636); both tuples are admissible",
+    "python": "from sympy import primerange\ndef admissible(H):\n    k = len(H)\n    return all(len({h % p for h in H}) < p for p in primerange(2, k+1))\n\nfrom sympy import primepi, prime\nfor k, lo, hi in ((50, 53, 313), (105, 107, 743)):\n    s = int(primepi(k))\n    H = [prime(s+i) for i in range(1, k+1)]\n    assert H[0] == lo and H[-1] == hi and hi - lo in (260, 636)\n    assert admissible(H)\nassert primepi(50) == 15 and primepi(105) == 27"
+   },
+   {
+    "claim": "With w = 1, the sum over 10^5 < n <= 2*10^5 of (number of primes among n+{0,2,6,8,12}) - 1 equals -58039",
+    "python": "from sympy import isprime\nH = [0,2,6,8,12]; N = 10**5\ns = sum(sum(1 for h in H if isprime(n+h)) - 1 for n in range(N+1, 2*N+1))\nassert s == -58039, s"
+   },
+   {
+    "claim": "Each shift contributes about N/log N primes: pi(2N) - pi(N) for N = 10^5 is 8392, within 4% of N/log N",
+    "python": "import math\nfrom sympy import primepi\nN = 10**5\nc = int(primepi(2*N) - primepi(N))\nassert c == 8392\nassert abs(c/(N/math.log(N)) - 1) < 0.04"
+   }
+  ]
+ },
+ {
+  "id": "exponential-sums",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Write $e(x) = e^{2\\pi i x}$. An exponential sum is a sum $\\sum_{n} e(f(n))$ over integers $n$ in some range, where $f$ is a real function, usually a polynomial. Each term has absolute value $1$, so a sum of $N$ terms is trivially at most $N$. Whenever $f(n)$ is spread out modulo $1$, the terms point in many directions and partly cancel. The amount of cancellation turns out to measure how random the numbers $f(n) \\bmod 1$ are.\n\nThis lesson covers the three basic facts: geometric sums for linear $f$, Weyl's differencing trick for polynomials (with his theorem that $n^2\\alpha$ is equidistributed for irrational $\\alpha$), and complete sums modulo $p$ such as the quadratic Gauss sum, whose absolute value is exactly $\\sqrt p$ for odd primes $p$."
+   },
+   {
+    "type": "section",
+    "title": "Linear phases: the geometric sum",
+    "body": "For real $\\alpha$ write $\\|\\alpha\\|$ for the distance from $\\alpha$ to the nearest integer. If $\\alpha \\notin \\mathbb Z$, summing the geometric series gives\n$$\\Bigl|\\sum_{n=1}^{N} e(n\\alpha)\\Bigr| = \\Bigl|\\frac{e(N\\alpha)-1}{e(\\alpha)-1}\\Bigr| \\le \\frac{2}{|e(\\alpha)-1|} = \\frac{1}{|\\sin \\pi\\alpha|} \\le \\frac{1}{2\\|\\alpha\\|},$$\nusing $|e(\\alpha)-1| = 2|\\sin\\pi\\alpha|$ and $|\\sin \\pi\\alpha| \\ge 2\\|\\alpha\\|$ (concavity of $\\sin$ on $[0,\\pi/2]$). Combined with the trivial bound,\n$$\\Bigl|\\sum_{n=1}^{N} e(n\\alpha)\\Bigr| \\le \\min\\Bigl(N, \\frac{1}{2\\|\\alpha\\|}\\Bigr).$$\nSo a linear phase cancels almost completely unless $\\alpha$ is very close to an integer. Every other method in this lesson tries to reduce to this case."
+   },
+   {
+    "type": "definition",
+    "title": "Equidistribution modulo 1",
+    "body": "A real sequence $(x_n)$ is equidistributed modulo $1$ if for all $0 \\le a < b \\le 1$,\n$$\\lim_{N\\to\\infty}\\frac{1}{N}\\#\\{1 \\le n \\le N : \\{x_n\\} \\in [a,b)\\} = b-a,$$\nwhere $\\{x\\}$ is the fractional part. In words, in the long run every subinterval gets its fair share of the points."
+   },
+   {
+    "type": "theorem",
+    "title": "Weyl's criterion",
+    "body": "$(x_n)$ is equidistributed modulo $1$ if and only if, for every integer $k \\ne 0$,\n$$\\lim_{N\\to\\infty}\\frac1N\\sum_{n=1}^N e(kx_n) = 0.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Sketch of proof",
+    "body": "If the sequence is equidistributed, then averages of Riemann-integrable $1$-periodic functions converge to their integrals. Apply this to $\\cos(2\\pi kx)$ and $\\sin(2\\pi kx)$, whose integrals over a period vanish for $k\\ne0$.\n\nConversely, the condition says the averages of every trigonometric polynomial converge to its integral, because the constant term is the integral. Given $[a,b)$ and $\\varepsilon>0$, there are continuous periodic functions $g_- \\le \\mathbf 1_{[a,b)} \\le g_+$ with integrals within $\\varepsilon$ of $b-a$. By Weierstrass's theorem, or Fejér's theorem from [[fourier-poisson]], each $g_\\pm$ can be approximated uniformly within $\\varepsilon$ by trigonometric polynomials. Squeezing the count between the two averages gives the limit $b-a$ up to $O(\\varepsilon)$. $\\square$\n\nFor $x_n = n\\alpha$ with $\\alpha$ irrational, $k\\alpha \\notin\\mathbb Z$ for every $k \\ne 0$. The geometric sum bound then gives $|\\sum_{n\\le N} e(kn\\alpha)| \\le 1/(2\\|k\\alpha\\|)$, which is bounded in $N$. So $n\\alpha$ is equidistributed (Weyl, also Bohl and Sierpiński)."
+   },
+   {
+    "type": "section",
+    "title": "Weyl differencing",
+    "body": "For $f(n) = \\alpha n^2$ the phases are not linear, but squaring the sum makes them linear. With $S = \\sum_{n=1}^N e(\\alpha n^2)$,\n$$|S|^2 = \\sum_{m,n=1}^{N} e\\bigl(\\alpha(n^2-m^2)\\bigr).$$\nSubstitute $n = m+h$, so $n^2 - m^2 = 2hm + h^2$. For fixed $h$, $m$ runs over an interval $I_h$ of $N-|h|$ integers:\n$$|S|^2 = \\sum_{|h|<N} e(\\alpha h^2)\\sum_{m \\in I_h} e(2h\\alpha m).$$\nThe inner sum is a geometric sum in $m$ with frequency $2h\\alpha$. By the bound above,\n$$|S|^2 \\le N + 2\\sum_{h=1}^{N-1}\\min\\Bigl(N, \\frac{1}{2\\|2h\\alpha\\|}\\Bigr).$$\nEach differencing step lowers the degree of the phase by one. A polynomial of degree $k$ needs $k-1$ steps, and then the linear case finishes the job. A flexible version allows shifts only up to a chosen $H \\le N$. For any complex numbers $a_1,\\dots,a_N$ (and $a_n = 0$ outside $[1,N]$), van der Corput's inequality says\n$$\\Bigl|\\sum_{n=1}^N a_n\\Bigr|^2 \\le \\frac{N+H-1}{H}\\sum_{|h|<H}\\Bigl(1-\\frac{|h|}{H}\\Bigr)\\sum_n a_{n+h}\\overline{a_n}.$$\nTo prove it, write $H\\sum_n a_n = \\sum_{m}\\sum_{r=0}^{H-1} a_{m+r}$, where $m$ takes $N+H-1$ values, then apply Cauchy–Schwarz over $m$ and expand. Iterating it gives Weyl's inequality: if $|\\alpha - a/q| \\le q^{-2}$ with $\\gcd(a,q)=1$, then for $k \\ge 2$\n$$\\Bigl|\\sum_{n\\le N} e(\\alpha n^k)\\Bigr| \\ll_{\\varepsilon,k} N^{1+\\varepsilon}\\Bigl(\\frac1q+\\frac1N+\\frac{q}{N^k}\\Bigr)^{2^{1-k}}.$$\nWe state this without proof. It is the minor-arc engine of the [[circle-method]]."
+   },
+   {
+    "type": "theorem",
+    "title": "Weyl's equidistribution theorem for squares",
+    "body": "If $\\alpha$ is irrational, then $(n^2\\alpha)$ is equidistributed modulo $1$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "By Weyl's criterion we must show $\\frac1N\\sum_{n\\le N}e(kn^2\\alpha) \\to 0$ for each integer $k\\ne0$. Put $\\beta = k\\alpha$, which is irrational, and $\\gamma = 2\\beta$. Dividing the differencing bound by $N^2$,\n$$\\frac{|S|^2}{N^2} \\le \\frac1N + \\frac{2}{N}\\sum_{h=1}^{N-1}\\min\\Bigl(1, \\frac{1}{2N\\|h\\gamma\\|}\\Bigr).$$\nFix $\\varepsilon \\in (0,1/2)$. For $h$ with $\\|h\\gamma\\| \\ge \\varepsilon$, the term is at most $1/(2N\\varepsilon)$. For the other $h$ the term is at most $1$. Since $\\gamma$ is irrational, $(h\\gamma)$ is equidistributed by the linear case, so the number of $h < N$ with $\\|h\\gamma\\| < \\varepsilon$ is $(2\\varepsilon + o(1))N$. Therefore\n$$\\limsup_{N\\to\\infty}\\frac{|S|^2}{N^2} \\le \\limsup_{N\\to\\infty}\\Bigl(\\frac1N + \\frac{1}{N\\varepsilon} + 2(2\\varepsilon + o(1))\\Bigr) = 4\\varepsilon.$$\nSince $\\varepsilon$ was arbitrary, $S/N \\to 0$. $\\square$\n\nThe same induction on the degree, with differencing at each step, shows that $(P(n))$ is equidistributed whenever the polynomial $P$ has at least one irrational coefficient other than the constant term. That is Weyl's 1916 theorem."
+   },
+   {
+    "type": "section",
+    "title": "Complete sums: Gauss sums",
+    "body": "When $f$ is a polynomial with rational coefficients of denominator $q$, the sequence $e(f(n))$ is periodic with period $q$. The natural object is then the complete sum over $n \\bmod q$. The basic case is the quadratic Gauss sum\n$$G(q) = \\sum_{n=0}^{q-1} e\\Bigl(\\frac{n^2}{q}\\Bigr).$$\nDifferencing works here with no error terms at all. Substituting $n = m+h$ and using that $m \\mapsto m+h$ permutes the residues,\n$$|G(q)|^2 = \\sum_{h \\bmod q} e\\Bigl(\\frac{h^2}{q}\\Bigr)\\sum_{m \\bmod q} e\\Bigl(\\frac{2hm}{q}\\Bigr) = q\\sum_{\\substack{h \\bmod q\\\\ q \\mid 2h}} e\\Bigl(\\frac{h^2}{q}\\Bigr),$$\nsince the inner sum is $q$ if $q \\mid 2h$ and $0$ otherwise. When $q = p$ is an odd prime, only $h = 0$ survives, which proves:"
+   },
+   {
+    "type": "theorem",
+    "title": "Size of the quadratic Gauss sum",
+    "body": "For every odd prime $p$,\n$$\\Bigl|\\sum_{n=0}^{p-1} e\\Bigl(\\frac{n^2}{p}\\Bigr)\\Bigr| = \\sqrt p .$$\nMore precisely the sum equals $\\sqrt p$ if $p\\equiv1 \\pmod 4$ and $i\\sqrt p$ if $p \\equiv 3\\pmod 4$ (Gauss). For $p \\nmid a$, the sum $\\sum_n e(an^2/p)$ equals $\\bigl(\\frac ap\\bigr)$ times this value, where $\\bigl(\\frac ap\\bigr)$ is the Legendre symbol. The hypothesis that $p$ is odd is needed: for $p=2$ the sum is $1 + e(1/2) = 0$."
+   },
+   {
+    "type": "section",
+    "title": "Why square root is the natural size",
+    "body": "If $N$ terms of absolute value $1$ had independent random directions, their sum would typically have size $\\sqrt N$. Gauss sums reach this exactly. Many other complete sums do too, up to a constant. The deepest example is the Kloosterman sum, where Weil (1948) proved\n$$\\Bigl|\\sum_{x=1}^{p-1} e\\Bigl(\\frac{ax + b\\bar x}{p}\\Bigr)\\Bigr| \\le 2\\sqrt p \\qquad (p \\nmid ab),$$\nwith $\\bar x$ the inverse of $x$ mod $p$. We do not prove this. Its proof uses the Riemann hypothesis for curves over [[finite-fields]].\n\nIncomplete sums, over a range shorter than the period, are harder. Completing them (expanding the range indicator into additive characters mod $q$) costs a factor of about $\\log q$. Saving even a small power beyond $\\sqrt q$ for short ranges is a research problem."
+   },
+   {
+    "type": "example",
+    "title": "Small Gauss sums",
+    "body": "Compute $\\sum_{n=0}^{p-1} e(n^2/p)$ for $p = 5, 7, 11, 13$, and check the formula $\\sqrt p$ or $i\\sqrt p$.",
+    "solution": "For $p=5$, the squares of $0,1,2,3,4$ are $0,1,4,4,1$ mod $5$. So the sum is $1 + 2e(1/5) + 2e(4/5) = 1 + 4\\cos(2\\pi/5)$. Since $\\cos(2\\pi/5) = (\\sqrt5-1)/4$, this is exactly $\\sqrt5$, as predicted for $p\\equiv1\\pmod4$.\n\nFor $p=7$, the nonzero squares are $1,2,4$, each hit twice, so the sum is $1 + 2(e(1/7)+e(2/7)+e(4/7))$. Its real part is $1 + 2(\\cos\\frac{2\\pi}{7}+\\cos\\frac{4\\pi}{7}+\\cos\\frac{8\\pi}{7}) = 1 + 2\\cdot(-\\tfrac12) = 0$, and its imaginary part is $2(\\sin\\frac{2\\pi}{7}+\\sin\\frac{4\\pi}{7}+\\sin\\frac{8\\pi}{7}) = \\sqrt7$, so the sum is $i\\sqrt 7$ ($7 \\equiv 3 \\pmod 4$). A numerical computation gives $i\\sqrt{11}$ for $p = 11$ and $\\sqrt{13}$ for $p = 13$."
+   },
+   {
+    "type": "example",
+    "title": "Bounded linear sums",
+    "body": "Show that $\\bigl|\\sum_{n=1}^N e(n\\sqrt2)\\bigr| < 1.21$ for every $N$.",
+    "solution": "Here $\\|\\sqrt 2\\| = \\sqrt2 - 1 \\approx 0.41421$. The geometric sum bound gives\n$$\\Bigl|\\sum_{n=1}^N e(n\\sqrt2)\\Bigr| \\le \\frac{1}{|\\sin(\\pi\\sqrt2)|} = \\frac{1}{\\sin(\\pi(\\sqrt2-1))} \\approx 1.0374,$$\nwhich is even better than the cruder $1/(2\\|\\sqrt2\\|) \\approx 1.2071$. A direct computation for $N \\le 10^4$ shows the partial sums never exceed this bound in absolute value, and that they come within $10^{-8}$ of it. The cancellation is total: the sum stays bounded while the trivial bound $N$ grows."
+   },
+   {
+    "type": "example",
+    "title": "Gauss sums to any modulus",
+    "body": "For every positive integer $q$, find $\\bigl|\\sum_{n=0}^{q-1} e(n^2/q)\\bigr|$.",
+    "solution": "From the differencing identity, $|G(q)|^2 = q\\sum_{h \\bmod q,\\ q\\mid 2h} e(h^2/q)$.\n\nIf $q$ is odd, $q \\mid 2h$ forces $h \\equiv 0$, so $|G(q)|^2 = q$ and $|G(q)| = \\sqrt q$.\n\nIf $q$ is even, the allowed $h$ are $0$ and $q/2$. Then $e((q/2)^2/q) = e(q/4)$, and\n$$|G(q)|^2 = q\\bigl(1 + e(q/4)\\bigr).$$\nIf $q \\equiv 2 \\pmod 4$, then $q/4$ is a half-integer and $e(q/4) = -1$, so $G(q) = 0$. If $4 \\mid q$, then $e(q/4) = 1$ and $|G(q)| = \\sqrt{2q}$.\n\nAnswer: $\\sqrt q$ for odd $q$, $0$ for $q \\equiv 2 \\pmod 4$, and $\\sqrt{2q}$ for $q \\equiv 0 \\pmod 4$. For example $G(4) = 1 + i + 1 + i = 2+2i$, which has absolute value $\\sqrt 8$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The catalog formula $|\\sum_{n=0}^{p-1}e(n^2/p)| = \\sqrt p$ needs $p$ odd. For $p=2$ the sum is $0$, and for composite moduli the answer depends on $q \\bmod 4$, as in the last example.\n- $n^2\\alpha$ is equidistributed only for irrational $\\alpha$. For rational $\\alpha = a/q$ the sequence is periodic mod $1$ and takes at most $q$ values. The Weyl sum with frequency $k = q$ is exactly $N$, so the criterion fails.\n- Weyl's criterion needs every nonzero frequency $k$, not just $k=1$. The sequence $x_n = n/2$ (alternating between the classes of $0$ and $1/2$) has $\\frac1N\\sum_{n \\le N} e(x_n) \\to 0$, but it is not equidistributed. The $k=2$ sum is $N$.\n- Differencing loses information. Each step squares the sum, so the savings shrink like $2^{1-k}$ in the exponent, which is why Weyl's inequality is weak for large $k$."
+   },
+   {
+    "type": "connection",
+    "body": "Cancellation in exponential sums is the basic currency of analytic number theory. The [[circle-method]] needs Weyl-type bounds on the minor arcs and Gauss-type complete sums on the major arcs. These feed into [[waring]] and [[ternary-goldbach]]. Bounds for sums $\\sum n^{-it}$, obtained by van der Corput's methods, give subconvexity for $\\zeta$ and lead to the [[lindelof|Lindelöf hypothesis and subconvexity]]. Gauss sums are the bridge between additive and multiplicative characters (see [[gauss-sums]] and [[quadratic-residues]]). Equidistribution connects to [[diophantine-approx]] and [[discrepancy]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Prove that $|\\sin\\pi x| \\ge 2\\|x\\|$ for all real $x$.\n2. Show that $(n^3\\alpha)$ is equidistributed modulo $1$ for irrational $\\alpha$ by differencing twice.\n3. Show that $\\sum_{n=0}^{p-1}e(an^2/p) = \\sum_{x=0}^{p-1}\\bigl(1+\\bigl(\\frac xp\\bigr)\\bigr)e(ax/p)$ for an odd prime $p$, and deduce that it equals $\\bigl(\\frac ap\\bigr)G(p)$ when $p\\nmid a$.\n4. Prove van der Corput's inequality as outlined in the text."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Iwaniec & Kowalski, Analytic Number Theory"
+   },
+   {
+    "ref": "Vaughan, The Hardy–Littlewood Method"
+   },
+   {
+    "ref": "Kuipers & Niederreiter, Uniform Distribution of Sequences"
+   },
+   {
+    "ref": "Graham & Kolesnik, Van der Corput's Method of Exponential Sums"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Gauss sums: G(5)=sqrt5, G(7)=i sqrt7, G(11)=i sqrt11, G(13)=sqrt13; G(2)=0",
+    "python": "import cmath, math\nG = lambda q: sum(cmath.exp(2j*math.pi*n*n/q) for n in range(q))\nassert abs(G(5) - math.sqrt(5)) < 1e-9\nassert abs(G(7) - 1j*math.sqrt(7)) < 1e-9\nassert abs(G(11) - 1j*math.sqrt(11)) < 1e-9\nassert abs(G(13) - math.sqrt(13)) < 1e-9\nassert abs(G(2)) < 1e-12\nassert abs(1 + 4*math.cos(2*math.pi/5) - math.sqrt(5)) < 1e-12\nassert abs(sum(math.cos(2*math.pi*k/7) for k in (1,2,4)) + 0.5) < 1e-12\nassert abs(2*sum(math.sin(2*math.pi*k/7) for k in (1,2,4)) - math.sqrt(7)) < 1e-12"
+   },
+   {
+    "claim": "|G(p)| = sqrt p for all odd primes p < 500, and sum e(a n^2/p) = (a/p) G(p)",
+    "python": "import cmath, math\nfrom sympy import primerange, legendre_symbol\nfor p in primerange(3, 500):\n    G = sum(cmath.exp(2j*math.pi*n*n/p) for n in range(p))\n    assert abs(abs(G) - math.sqrt(p)) < 1e-8\n    assert abs(G - (math.sqrt(p) if p % 4 == 1 else 1j*math.sqrt(p))) < 1e-8\n    for a in (2, 3, p-1):\n        if a % p == 0: continue\n        Ga = sum(cmath.exp(2j*math.pi*a*n*n/p) for n in range(p))\n        assert abs(Ga - legendre_symbol(a, p)*G) < 1e-8"
+   },
+   {
+    "claim": "|G(q)| = sqrt q (q odd), 0 (q = 2 mod 4), sqrt(2q) (4 | q) for q <= 200; G(4) = 2+2i",
+    "python": "import cmath, math\nG = lambda q: sum(cmath.exp(2j*math.pi*n*n/q) for n in range(q))\nfor q in range(1, 201):\n    t = math.sqrt(q) if q % 2 else (0.0 if q % 4 == 2 else math.sqrt(2*q))\n    assert abs(abs(G(q)) - t) < 1e-8, q\nassert abs(G(4) - (2+2j)) < 1e-9"
+   },
+   {
+    "claim": "Partial sums of e(n sqrt2) for N <= 10^4 stay below 1/sin(pi(sqrt2-1)) = 1.0374... and come within 1e-8 of it, and 1/(2||sqrt2||) = 1.2071...",
+    "python": "import cmath, math\na = math.sqrt(2)\nb = 1/math.sin(math.pi*(a-1))\nassert abs(b - 1.0374) < 1e-4 and abs(1/(2*(a-1)) - 1.2071) < 1e-4\ns = 0; mx = 0\nfor n in range(1, 10**4+1):\n    s += cmath.exp(2j*math.pi*n*a); mx = max(mx, abs(s))\nassert mx <= b + 1e-9 and mx < 1.21 and b - mx < 1e-8"
+   },
+   {
+    "claim": "Weyl differencing identity |S|^2 = sum_h e(alpha h^2) sum_{m in I_h} e(2 h alpha m), and the min-bound, for alpha = sqrt3, N = 40",
+    "python": "import cmath, math\nal = math.sqrt(3); N = 40\ne = lambda x: cmath.exp(2j*math.pi*x)\nS = sum(e(al*n*n) for n in range(1, N+1))\nR = 0\nfor h in range(-N+1, N):\n    R += e(al*h*h)*sum(e(2*h*al*m) for m in range(1, N+1) if 1 <= m+h <= N)\nassert abs(abs(S)**2 - R) < 1e-8\ndist = lambda x: abs(x - round(x))\nbound = N + 2*sum(min(N, 1/(2*dist(2*h*al))) for h in range(1, N))\nassert abs(S)**2 <= bound"
+   },
+   {
+    "claim": "van der Corput's inequality holds for random complex sequences (N=30, H=1..30)",
+    "python": "import random\nrandom.seed(5)\nfor trial in range(20):\n    N = 30; H = random.randint(1, 30)\n    a = [complex(random.gauss(0,1), random.gauss(0,1)) for _ in range(N)]\n    A = lambda n: a[n] if 0 <= n < N else 0\n    lhs = abs(sum(a))**2\n    R = sum((1-abs(h)/H)*sum(A(n+h)*A(n).conjugate() for n in range(N)) for h in range(-H+1, H))\n    assert lhs <= ((N+H-1)/H*R).real + 1e-9"
+   },
+   {
+    "claim": "|sin(pi x)| >= 2||x|| on a fine grid; x_n = n/2 has vanishing k=1 average but k=2 sum equals N",
+    "python": "import math, cmath\nfor i in range(0, 20001):\n    x = i/10000 - 1\n    assert abs(math.sin(math.pi*x)) >= 2*abs(x - round(x)) - 1e-12\nN = 1000\ns1 = sum(cmath.exp(2j*math.pi*n/2) for n in range(1, N+1))\ns2 = sum(cmath.exp(2j*math.pi*2*n/2) for n in range(1, N+1))\nassert abs(s1) < 1e-6 and abs(s2 - N) < 1e-6"
+   }
+  ]
+ },
+ {
+  "id": "circle-method",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "How many ways can $N$ be written as a sum of $s$ cubes, or of three primes? Questions like these ask for the number of solutions of an additive equation $n_1 + \\dots + n_k = N$ with every $n_i$ in a given set $\\mathcal A$. The Hardy–Littlewood circle method turns the count into an integral of an exponential sum. It then evaluates the integral by separating the points where the sum is large and structured from the points where it is small and random-looking.\n\nWhen the method works it gives more than existence. It gives an asymptotic formula, and the main term has a meaning: a product of local densities, one for each prime and one for the real numbers."
+   },
+   {
+    "type": "section",
+    "title": "Counting with orthogonality",
+    "body": "Everything rests on one identity: for an integer $m$,\n$$\\int_0^1 e(m\\alpha)\\,d\\alpha = \\begin{cases}1 & m = 0,\\\\ 0 & m \\ne 0,\\end{cases}\\qquad e(x) = e^{2\\pi i x}.$$\nLet $\\mathcal A$ be a set of positive integers and put $S(\\alpha) = \\sum_{n \\in \\mathcal A,\\ n \\le N} e(n\\alpha)$. Expanding $S(\\alpha)^k$ gives a sum of $e((n_1+\\dots+n_k)\\alpha)$ over $k$-tuples. Multiplying by $e(-N\\alpha)$ and integrating keeps exactly the tuples with $n_1+\\dots+n_k=N$:\n$$r(N) = \\#\\{(n_1,\\dots,n_k)\\in\\mathcal A^k : n_1+\\dots+n_k = N\\} = \\int_0^1 S(\\alpha)^k e(-N\\alpha)\\,d\\alpha.$$\nWith $\\mathcal A = \\mathbb Z_{>0}$ (the case written in the catalog's key statement) the count is the number of compositions of $N$ into $k$ positive parts, $\\binom{N-1}{k-1}$. That is a sanity check, not an application. The interesting cases are $\\mathcal A$ = the $j$-th powers (Waring's problem) and $\\mathcal A$ = the primes, usually weighted by $\\log p$ (Goldbach-type problems). Since $S(\\alpha)^k e(-N\\alpha)$ is a trigonometric polynomial, the integral can also be computed exactly as an average over $L > kN$ equally spaced points $\\alpha = j/L$. This is the finite Fourier transform from [[fourier-poisson]].\n\nThe name comes from the original 1918–1920 setting. Hardy and Ramanujan for partitions, and then Hardy and Littlewood for Waring's problem, used generating power series, such as $\\prod_{n\\ge1}(1-z^n)^{-1}$ or $\\sum_{n\\ge1} z^{n^j}$. They recovered the coefficients by Cauchy's integral formula on a circle $|z| = \\rho < 1$. Vinogradov later replaced the power series by finite sums, which gives the form above."
+   },
+   {
+    "type": "section",
+    "title": "Major arcs: where the sum is large",
+    "body": "Take $\\mathcal A$ to be the $j$-th powers up to $N$. Write $P = N^{1/j}$ and $S(\\alpha) = \\sum_{1\\le n \\le P} e(\\alpha n^j)$. At $\\alpha = 0$ the sum is $P$, the largest possible. At $\\alpha = a/q$ with $\\gcd(a,q)=1$ and $q$ small, split $n$ into classes mod $q$. Each class contributes about $P/q$ terms, all with the same phase $e(ar^j/q)$, so\n$$S\\Bigl(\\frac aq\\Bigr) \\approx \\frac{P}{q}\\,S(q,a), \\qquad S(q,a) = \\sum_{r=1}^{q} e\\Bigl(\\frac{ar^j}{q}\\Bigr).$$\nThis is a complete exponential sum of the kind studied in [[exponential-sums]]. In general $S(q,a) \\ll q^{1-1/j}$, and for prime $q$ it is at most $(j-1)\\sqrt q$. So $S$ is large near rationals with small denominator, and the relative height $|S(q,a)|/q$ of the peak at $a/q$ falls as $q$ grows. Near $a/q$, with $\\alpha = a/q + \\beta$, one gets $S(\\alpha) \\approx q^{-1}S(q,a)\\,v(\\beta)$, where $v(\\beta) = \\int_0^P e(\\beta t^j)\\,dt$.\n\nThe major arcs $\\mathfrak M$ are short intervals around $a/q$ for $q \\le Q$, a small power of $N$ (or a power of $\\log N$). On them the approximation can be integrated. Adding up over $a$ and $q$, the major arcs contribute\n$$\\mathfrak S(N)\\,J(N), \\qquad \\mathfrak S(N) = \\sum_{q=1}^{\\infty}\\ \\sum_{\\substack{a=1\\\\(a,q)=1}}^{q}\\Bigl(\\frac{S(q,a)}{q}\\Bigr)^{s} e\\Bigl(-\\frac{aN}{q}\\Bigr),$$\nfor $s$ summands. The singular series $\\mathfrak S(N)$ is a product over primes of $p$-adic densities of solutions, and it vanishes if there is a congruence obstruction. The singular integral $J(N) = \\int_{\\mathbb R} v(\\beta)^s e(-\\beta N)\\,d\\beta$ is the real density. It equals $\\frac{\\Gamma(1+1/j)^s}{\\Gamma(s/j)}N^{s/j-1}$, which is the rate at which the volume of $\\{t\\in\\mathbb R_{\\ge0}^s : \\sum t_i^j \\le X\\}$ grows at $X=N$."
+   },
+   {
+    "type": "section",
+    "title": "Minor arcs: where the sum must be small",
+    "body": "The minor arcs $\\mathfrak m = [0,1]\\setminus\\mathfrak M$ are everything else. There one needs a bound showing that their contribution is smaller than the main term. The standard tool is to pull out the supremum and use a mean value:\n$$\\Bigl|\\int_{\\mathfrak m} S(\\alpha)^s e(-N\\alpha)\\,d\\alpha\\Bigr| \\le \\sup_{\\alpha\\in\\mathfrak m}|S(\\alpha)|^{s-t}\\int_0^1|S(\\alpha)|^t\\,d\\alpha.$$\nFor powers, Weyl's inequality controls the supremum, and Hua's lemma bounds the mean value $\\int_0^1|S|^{2^i}$ for $1 \\le i \\le j$. This gives the asymptotic formula for sums of $s$ $j$-th powers once $s \\ge 2^j+1$. The Vinogradov mean value theorem, now proved in full, reduces the number of variables to order $j^2$.\n\nFor three primes, with $S(\\alpha) = \\sum_{p\\le N}(\\log p)e(p\\alpha)$, take $t=2$. By Parseval, $\\int_0^1|S|^2 = \\sum_{p\\le N}(\\log p)^2 \\le N\\log N$. So the minor arcs contribute at most $N\\log N\\cdot\\sup_{\\mathfrak m}|S|$, and Vinogradov's bound $\\sup_{\\mathfrak m}|S| \\ll N(\\log N)^{-A}$ beats the main term of order $N^2$. With only two primes there is no spare factor of $S$ to take the supremum of. The trivial bound $\\int_{\\mathfrak m}|S|^2 \\le N\\log N$ is larger than the expected main term $\\asymp N$. That, in one line, is why [[goldbach|binary Goldbach]] is out of reach of the method."
+   },
+   {
+    "type": "theorem",
+    "title": "Asymptotic formula for Waring's problem (Hardy–Littlewood; Hua)",
+    "body": "Let $j \\ge 2$ and $s \\ge 2^j + 1$. The number $R_{s,j}(N)$ of representations of $N$ as $x_1^j+\\dots+x_s^j$ with positive integers $x_i$ satisfies\n$$R_{s,j}(N) = \\frac{\\Gamma(1+1/j)^s}{\\Gamma(s/j)}\\,\\mathfrak S_{s,j}(N)\\,N^{s/j-1} + o\\bigl(N^{s/j-1}\\bigr),$$\nwhere $\\mathfrak S_{s,j}(N) \\ll 1$. When $s \\ge 4j$, also $\\mathfrak S_{s,j}(N) \\gg 1$, so $R_{s,j}(N) \\asymp N^{s/j-1}$. We omit the proof, which takes several chapters of Vaughan's book."
+   },
+   {
+    "type": "example",
+    "title": "Orthogonality at work",
+    "body": "Check the orthogonality formula in the trivial case $\\mathcal A = \\mathbb Z_{>0}$, $k=3$, $N=12$, using a finite Fourier sum instead of the integral.",
+    "solution": "$S(\\alpha)^3e(-12\\alpha)$ is a trigonometric polynomial with frequencies between $-12$ and $3\\cdot12-12 = 24$. Averaging $e(m\\alpha)$ over $\\alpha = j/L$, $0\\le j<L$, gives $1$ if $L \\mid m$ and $0$ otherwise. For $L = 37$ the only multiple of $L$ in $[-12,24]$ is $0$, so\n$$r(12) = \\frac{1}{37}\\sum_{j=0}^{36} S(j/37)^3\\,e(-12j/37).$$\nEvaluating numerically gives $55$, which matches $\\binom{11}{2} = 55$, the number of compositions of $12$ into three positive parts."
+   },
+   {
+    "type": "example",
+    "title": "Peaks at rationals",
+    "body": "Let $S(\\alpha) = \\sum_{n=1}^{1000} e(\\alpha n^2)$. Compute $S(1/5)$ and $S(1/4)$ exactly, and compare $|S(a/q)|/S(0)$ with $1/\\sqrt q$.",
+    "solution": "Since $q \\mid 1000$ in both cases, each residue class mod $q$ occurs exactly $1000/q$ times among $1,\\dots,1000$. So $S(1/q) = \\frac{1000}{q}\\sum_{r \\bmod q}e(r^2/q) = \\frac{1000}{q}G(q)$.\n\nFor $q=5$, $G(5) = \\sqrt5$, so $S(1/5) = 200\\sqrt5 \\approx 447.2$ and $|S|/S(0) = 1/\\sqrt5$.\n\nFor $q = 4$, $G(4) = 2+2i$, so $S(1/4) = 500+500i$ and $|S|/S(0) = \\sqrt8/4 = 1/\\sqrt2$.\n\nThe peak at $a/q$ has relative height about $q^{-1/2}$, so the peaks fade as the denominator grows. This is why only small $q$ give major arcs."
+   },
+   {
+    "type": "example",
+    "title": "Singular integral as a volume",
+    "body": "Volume heuristic for four squares. Let $r_4(n)$ count $(x_1,\\dots,x_4)\\in\\mathbb Z^4$ with $\\sum x_i^2 = n$. Use the volume of a ball to predict the average size of $r_4(n)$ near $X$, and compare with Jacobi's formula $r_4(n) = 8\\sum_{d\\mid n,\\ 4\\nmid d} d$ on average.",
+    "solution": "The number of lattice points in the $4$-dimensional ball of radius $\\sqrt X$ is about its volume, $\\frac{\\pi^2}{2}X^2$. So $\\sum_{n\\le X}r_4(n) \\approx \\frac{\\pi^2}{2}X^2$, and the derivative says $r_4(n)$ is about $\\pi^2 n$ on average. This is the singular integral: $\\Gamma(3/2)^4/\\Gamma(2) = \\pi^2/16$ for positive variables, times $2^4$ for signs.\n\nFrom Jacobi's formula,\n$$\\sum_{n\\le X}\\ \\sum_{d\\mid n,\\ 4\\nmid d} d = \\sum_{e \\le X}\\ \\sum_{\\substack{d \\le X/e\\\\ 4\\nmid d}} d \\approx \\sum_{e\\le X}\\frac34\\cdot\\frac{(X/e)^2}{2} \\approx \\frac38\\zeta(2)X^2 = \\frac{\\pi^2}{16}X^2,$$\nand multiplying by $8$ gives $\\frac{\\pi^2}{2}X^2$ again. So on average the singular series equals $1$. Its fluctuation, $\\mathfrak S(n) = 8\\sum_{d\\mid n, 4\\nmid d}d/(\\pi^2 n)$, records the local behaviour at each prime. For $X = 2000$, a direct count gives $\\sum_{n\\le X}r_4(n)$ within $0.1\\%$ of $\\frac{\\pi^2}{2}X^2$."
+   },
+   {
+    "type": "example",
+    "title": "Subset sums mod p",
+    "body": "A finite circle method. Let $p$ be an odd prime. Count the subsets of $\\{1,2,\\dots,p\\}$, including the empty set, whose sum is divisible by $p$.",
+    "solution": "Replace $\\int_0^1$ by an average over the $p$-th roots of unity $\\omega^j$, $\\omega = e(1/p)$. The number of subsets is\n$$\\frac1p\\sum_{j=0}^{p-1}\\prod_{n=1}^{p}\\bigl(1+\\omega^{jn}\\bigr).$$\nFor $j=0$ the product is $2^p$. For $j \\ne 0$, $n \\mapsto jn$ permutes the residues mod $p$, so the product is $2\\prod_{n=1}^{p-1}(1+\\omega^n)$. From $\\prod_{n=1}^{p-1}(x-\\omega^n) = 1+x+\\dots+x^{p-1}$ at $x=-1$ we get $\\prod(-1-\\omega^n) = 1$ ($p$ odd). Since there are $p-1$ factors, an even number, $\\prod(1+\\omega^n) = 1$. Hence the count is\n$$\\frac{2^p + 2(p-1)}{p} = 2 + \\frac{2^p-2}{p},$$\nan integer by Fermat's little theorem. For $p = 5$ this is $8$. The structure is the same as in the circle method: the frequency $j=0$ gives the main term $2^p/p$, and the other frequencies give a small correction."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The catalog formula with $S(\\alpha) = \\sum_{n\\le N}e(n\\alpha)$ counts sums of $k$ arbitrary positive integers, which is trivial. For a real problem, $S$ must run over the set $\\mathcal A$ of allowed summands (powers, primes).\n- Major arcs give the main term only if the minor arcs are genuinely smaller. A heuristic main term is not a theorem.\n- The singular series can vanish. Three odd primes cannot sum to an even number, and $\\mathfrak S(N) = 0$ for even $N$ in the ternary problem. Sums of three squares miss $n \\equiv 7 \\pmod 8$, which is a $2$-adic obstruction.\n- Two-variable problems (binary Goldbach, sums of two cubes) are usually beyond the method. The obstruction is the mean square bound explained above, not a lack of effort."
+   },
+   {
+    "type": "connection",
+    "body": "The method's two classical triumphs are [[waring]] and [[ternary-goldbach]]. Its inputs are [[exponential-sums]] (Weyl's inequality, Gauss sums, Vinogradov's prime sums) and [[fourier-poisson]] (orthogonality and Fourier analysis on $\\mathbb R/\\mathbb Z$). For primes, the major arcs need [[siegel-walfisz]]. The same split into large and small Fourier coefficients runs through [[additive-combinatorics]], for example in Roth's theorem on [[arithmetic-progressions]], and the generating-function point of view links back to [[generating-functions]] and [[sums-of-squares]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\int_0^1|S(\\alpha)|^2\\,d\\alpha = \\#\\{n\\in\\mathcal A: n\\le N\\}$ for $S(\\alpha) = \\sum_{n\\in\\mathcal A, n\\le N}e(n\\alpha)$.\n2. Express the number of solutions of $x+y = z$ with $x,y,z\\in\\mathcal A\\cap[1,N]$ as an integral of $S$.\n3. For $q$ odd and $\\gcd(a,q) = 1$, show that $\\bigl|\\sum_{n=1}^{qm}e(an^2/q)\\bigr| = m\\sqrt q$.\n4. Using a volume argument, predict the average number of representations of $n$ as $x^2+y^2$ with $(x,y)\\in\\mathbb Z^2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Vaughan, The Hardy–Littlewood Method"
+   },
+   {
+    "ref": "Davenport, Analytic Methods for Diophantine Equations and Diophantine Inequalities"
+   },
+   {
+    "ref": "Nathanson, Additive Number Theory: The Classical Bases"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Finite Fourier average with L = 37 recovers r(12) = C(11,2) = 55 for k = 3, A = positive integers",
+    "python": "import cmath, math\nN, k, L = 12, 3, 37\ne = lambda x: cmath.exp(2j*math.pi*x)\nS = lambda a: sum(e(n*a) for n in range(1, N+1))\nr = sum(S(j/L)**k*e(-N*j/L) for j in range(L))/L\nassert abs(r - 55) < 1e-7 and math.comb(11, 2) == 55"
+   },
+   {
+    "claim": "For S(a) = sum_{n<=1000} e(a n^2): S(1/5) = 200 sqrt5 and S(1/4) = 500+500i",
+    "python": "import cmath, math\nS = lambda a: sum(cmath.exp(2j*math.pi*a*n*n) for n in range(1, 1001))\nassert abs(S(1/5) - 200*math.sqrt(5)) < 1e-6\nassert abs(S(1/4) - (500+500j)) < 1e-6\nassert abs(abs(S(1/4))/1000 - 1/math.sqrt(2)) < 1e-9"
+   },
+   {
+    "claim": "Gamma(3/2)^4/Gamma(2) = pi^2/16; Gamma(1+1/j)^s/Gamma(s/j) is the derivative of the volume Gamma(1+1/j)^s X^{s/j}/Gamma(1+s/j)",
+    "python": "import sympy as sp\nX, s, j = sp.symbols('X s j', positive=True)\nassert sp.simplify(sp.gamma(sp.Rational(3,2))**4/sp.gamma(2) - sp.pi**2/16) == 0\nV = sp.gamma(1+1/j)**s*X**(s/j)/sp.gamma(1+s/j)\nd = sp.diff(V, X)\ntarget = sp.gamma(1+1/j)**s*X**(s/j-1)/sp.gamma(s/j)\nassert sp.simplify(sp.gammasimp(d/target)) == 1"
+   },
+   {
+    "claim": "Jacobi's r_4(n) = 8 * sum_{d|n, 4 not| d} d for n <= 200, and sum_{n<=2000} r_4(n) is within 0.1% of pi^2/2 * 2000^2",
+    "python": "import math\nfrom sympy import divisors\nM = 200\ncnt = [0]*(M+1)\nR = int(math.isqrt(M))\nfor a in range(-R, R+1):\n    for b in range(-R, R+1):\n        for c in range(-R, R+1):\n            t = a*a+b*b+c*c\n            if t > M: continue\n            r = int(math.isqrt(M - t))\n            for d in range(-r, r+1):\n                cnt[t+d*d] += 1\nfor n in range(1, M+1):\n    assert cnt[n] == 8*sum(d for d in divisors(n) if d % 4), n\nX = 2000\ntot = sum(8*sum(d for d in divisors(n) if d % 4) for n in range(1, X+1))\nassert abs(tot/(math.pi**2/2*X*X) - 1) < 1e-3, tot/(math.pi**2/2*X*X)"
+   },
+   {
+    "claim": "Number of subsets of {1..p} with sum divisible by p equals (2^p + 2(p-1))/p for p = 3,5,7,11,13; it is 8 for p = 5",
+    "python": "for p in (3, 5, 7, 11, 13):\n    cnt = [0]*p; cnt[0] = 1\n    for n in range(1, p+1):\n        cnt = [cnt[r] + cnt[(r-n) % p] for r in range(p)]\n    assert cnt[0]*p == 2**p + 2*(p-1)\n    if p == 5: assert cnt[0] == 8"
+   },
+   {
+    "claim": "For primes p < 200 and j = 2,3,4,5, |sum_{r mod p} e(a r^j/p)| <= (j-1) sqrt p",
+    "python": "import cmath, math\nfrom sympy import primerange\nfor p in primerange(2, 200):\n    for j in (2, 3, 4, 5):\n        for a in (1, 2):\n            if a % p == 0: continue\n            S = sum(cmath.exp(2j*math.pi*a*pow(r, j, p)/p) for r in range(p))\n            assert abs(S) <= (j-1)*math.sqrt(p) + 1e-9, (p, j, a)"
+   },
+   {
+    "claim": "Parseval: integral of |S|^2 over [0,1] equals |A cap [1,N]|, checked for A = primes up to 100 by a finite Fourier average",
+    "python": "import cmath, math\nfrom sympy import primerange\nA = list(primerange(2, 101)); L = 2*100+1\nS = lambda a: sum(cmath.exp(2j*math.pi*n*a) for n in A)\nv = sum(abs(S(j/L))**2 for j in range(L))/L\nassert abs(v - len(A)) < 1e-8"
+   }
+  ]
+ },
+ {
+  "id": "ternary-goldbach",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "In 1742 Goldbach and Euler corresponded about writing numbers as sums of primes. In modern form, the binary conjecture says every even number greater than $2$ is a sum of two primes. The ternary (or weak) conjecture says every odd number greater than $5$ is a sum of three primes:\n$$N = p_1+p_2+p_3 \\qquad (N > 5 \\text{ odd}).$$\nThe binary statement implies the ternary one. If $N \\ge 9$ is odd, then $N-3$ is even and at least $6$, so $N - 3 = p+p'$ and $N = 3+p+p'$. Together with $7 = 2+2+3$ this covers everything. The binary conjecture is still open. The ternary one was proved in two stages: Vinogradov (1937) for all sufficiently large odd $N$, and Helfgott (2013) for every odd $N>5$."
+   },
+   {
+    "type": "section",
+    "title": "Setting up the circle method",
+    "body": "Weight each prime by $\\log p$ and count\n$$R(N) = \\sum_{p_1+p_2+p_3=N}\\log p_1\\log p_2\\log p_3 = \\int_0^1 S(\\alpha)^3e(-N\\alpha)\\,d\\alpha, \\qquad S(\\alpha) = \\sum_{p\\le N}(\\log p)\\,e(p\\alpha).$$\nThis is the [[circle-method]] with $\\mathcal A$ = the primes. The plan is to show $R(N) \\sim \\mathfrak S(N)N^2/2$ with $\\mathfrak S(N)$ bounded below for odd $N$. Then $R(N) > 0$, so representations exist.\n\nNear a rational $a/q$, split the primes by residue class mod $q$. Only classes $r$ with $\\gcd(r,q)=1$ contain more than one prime. Each class carries about a $1/\\varphi(q)$ share of the weight, by the prime number theorem in progressions, and its primes all have phase $e(ar/q)$. So\n$$S\\Bigl(\\frac aq\\Bigr) \\approx \\frac{N}{\\varphi(q)}\\sum_{\\substack{r=1\\\\ (r,q)=1}}^{q}e\\Bigl(\\frac{ar}{q}\\Bigr) = \\frac{\\mu(q)}{\\varphi(q)}N .$$\nThe last step uses the Ramanujan sum evaluation below. For this approximation to hold uniformly for $q$ up to a power of $\\log N$, one needs the [[siegel-walfisz|Siegel–Walfisz theorem]]. That is the source of the ineffective constant in Vinogradov's theorem."
+   },
+   {
+    "type": "theorem",
+    "title": "Ramanujan sums at a unit",
+    "body": "For every $q\\ge1$ and every $a$ with $\\gcd(a,q)=1$,\n$$c_q(a) = \\sum_{\\substack{r=1\\\\ (r,q)=1}}^{q}e\\Bigl(\\frac{ar}{q}\\Bigr) = \\mu(q).$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Multiplying by $a$ permutes the residues prime to $q$, so $c_q(a) = c_q(1)$. Detect the condition $\\gcd(r,q)=1$ with $\\sum_{d\\mid \\gcd(r,q)}\\mu(d)$, as in [[mobius|Möbius inversion]]:\n$$c_q(1) = \\sum_{d\\mid q}\\mu(d)\\sum_{\\substack{r=1\\\\ d\\mid r}}^{q}e\\Bigl(\\frac rq\\Bigr) = \\sum_{d\\mid q}\\mu(d)\\sum_{s=1}^{q/d}e\\Bigl(\\frac{s}{q/d}\\Bigr).$$\nThe inner sum is a full sum of $(q/d)$-th roots of unity. It is $0$ unless $q/d = 1$, in which case it is $1$. Only $d = q$ survives, which leaves $\\mu(q)$. $\\square$"
+   },
+   {
+    "type": "section",
+    "title": "Major arcs: the singular series",
+    "body": "Integrating the approximation over the major arcs (short intervals around $a/q$ with $q \\le (\\log N)^B$) gives the main term\n$$\\mathfrak S(N)\\cdot\\frac{N^2}{2}, \\qquad \\mathfrak S(N) = \\sum_{q=1}^{\\infty}\\frac{\\mu(q)}{\\varphi(q)^3}\\,c_q(-N) .$$\nHere $\\mu(q)^3 = \\mu(q)$, and the $N^2/2$ comes from $\\binom{N-1}{2}$, the number of ways to write $N$ as a sum of three positive integers. The terms are multiplicative in $q$ and supported on squarefree $q$, so the series is an Euler product. At a prime, $c_p(-N) = p-1$ if $p\\mid N$ and $-1$ otherwise, so\n$$\\mathfrak S(N) = \\prod_{p\\mid N}\\Bigl(1-\\frac{1}{(p-1)^2}\\Bigr)\\prod_{p\\nmid N}\\Bigl(1+\\frac{1}{(p-1)^3}\\Bigr).$$\nThe factor at $p=2$ is $0$ when $N$ is even and $2$ when $N$ is odd. So for odd $N$,\n$$\\mathfrak S(N) \\ge 2\\prod_{p\\ge3}\\Bigl(1-\\frac{1}{(p-1)^2}\\Bigr) = 2C_2 \\approx 1.3203,$$\nwhere $C_2 \\approx 0.66016$ is the twin prime constant. The singular series sees the parity obstruction and nothing else."
+   },
+   {
+    "type": "section",
+    "title": "Minor arcs: Vinogradov's estimate",
+    "body": "On the rest of $[0,1]$, Dirichlet's approximation theorem gives every $\\alpha$ a rational $a/q$ with $|\\alpha-a/q| \\le q^{-2}$ and $(\\log N)^B < q \\le N(\\log N)^{-B}$. Vinogradov's key estimate, in the form later simplified using Vaughan's identity, is\n$$S(\\alpha) \\ll \\Bigl(\\frac{N}{\\sqrt q}+N^{4/5}+\\sqrt{Nq}\\Bigr)(\\log N)^4 \\qquad\\text{whenever } \\Bigl|\\alpha-\\frac aq\\Bigr|\\le\\frac1{q^2},\\ \\gcd(a,q)=1 .$$\nOn the minor arcs this gives $|S(\\alpha)| \\ll N(\\log N)^{4-B/2}$. With Parseval, $\\int_0^1|S|^2 = \\sum_{p\\le N}(\\log p)^2 \\le N\\log N$, so\n$$\\Bigl|\\int_{\\mathfrak m}S(\\alpha)^3e(-N\\alpha)\\,d\\alpha\\Bigr| \\le \\sup_{\\mathfrak m}|S|\\int_0^1|S|^2 \\ll N^2(\\log N)^{5-B/2},$$\nwhich is $o(N^2)$ once $B>10$. We do not prove the minor arc estimate. Its proof is a bilinear-form argument, close in spirit to the one behind [[bombieri-vinogradov]]."
+   },
+   {
+    "type": "theorem",
+    "title": "Vinogradov's three primes theorem (1937)",
+    "body": "For every $A > 0$,\n$$R(N) = \\mathfrak S(N)\\frac{N^2}{2} + O_A\\Bigl(\\frac{N^2}{(\\log N)^A}\\Bigr).$$\nHence every sufficiently large odd $N$ is a sum of three primes, and the number of ordered representations is asymptotic to $\\mathfrak S(N)N^2/(2(\\log N)^3)$."
+   },
+   {
+    "type": "section",
+    "title": "From sufficiently large to every N",
+    "body": "Siegel's theorem makes the constant in Siegel–Walfisz ineffective, so Vinogradov's original argument did not say how large $N$ must be. Later versions made it explicit, but the thresholds were astronomically large, far beyond any computer check. Two routes closed the gap.\n\n1. Conditionally: Hardy and Littlewood (1923) had already proved the result for large $N$ assuming the generalised Riemann hypothesis. Deshouillers, Effinger, te Riele and Zinoviev (1997) completed it for all odd $N>5$ under GRH, with a computation.\n2. Unconditionally: Helfgott (2013) sharpened both arcs dramatically, with explicit, carefully optimised estimates, and brought the threshold down to a size that could be checked. The remaining range was covered by rigorous computation. This included, with D. Platt, a verification of the ternary statement beyond $10^{30}$, and checks of zeros of Dirichlet $L$-functions of small modulus up to a finite height."
+   },
+   {
+    "type": "theorem",
+    "title": "Ternary Goldbach (Helfgott, 2013)",
+    "body": "Every odd integer $N>5$ can be written as $N = p_1+p_2+p_3$ with $p_1,p_2,p_3$ prime."
+   },
+   {
+    "type": "example",
+    "title": "Small cases",
+    "body": "Check the theorem for the first few odd numbers, and for all odd $N$ with $7\\le N\\le 10^4$.",
+    "solution": "$7 = 2+2+3$, $9 = 3+3+3$, $11 = 3+3+5$, $13 = 3+3+7$, $15 = 3+5+7$.\n\nFor odd $N$ with $9 \\le N \\le 10^4$ one can always take $p_1 = 3$, because $N-3$ is an even number between $6$ and $10^4$, and every such number is a sum of two primes (binary Goldbach has been checked by computer far beyond this range). A direct search confirms this. $N = 7$ is the only case that needs the prime $2$: three odd primes add up to at least $3+3+3 = 9$, so $7$ must use $2$, and $7 = 2+2+3$ is the only way."
+   },
+   {
+    "type": "example",
+    "title": "Four primes for even numbers",
+    "body": "Deduce from the theorem that every even integer $N\\ge8$ is a sum of four primes, and that every integer $N \\ge 2$ is a sum of at most four primes.",
+    "solution": "If $N \\ge 8$ is even, then $N-2$ is odd and at least $6$, hence at least $7$. By Helfgott's theorem $N-2 = p_1+p_2+p_3$, so $N = 2+p_1+p_2+p_3$.\n\nFor the second claim: $2,3,5$ are primes, $4 = 2+2$, $6 = 3+3$, odd $N\\ge7$ need three primes, and even $N \\ge 8$ need at most four. So four primes always suffice. Binary Goldbach would bring this down to three."
+   },
+   {
+    "type": "example",
+    "title": "Singular series in practice",
+    "body": "Evaluate $\\mathfrak S(N)$ for $N = 10001 = 73\\cdot137$, and compare the prediction $\\mathfrak S(N)N^2/2$ with the exact weighted count $R(N)$.",
+    "solution": "Since $N$ is odd, the factor at $2$ is $2$. The primes dividing $N$ are $73$ and $137$, with factors $1-1/72^2$ and $1-1/136^2$. Every other odd prime contributes $1+1/(p-1)^3$. Multiplying out (the product converges quickly), $\\mathfrak S(10001) \\approx 2.3004$. The prediction is $\\mathfrak S(N)N^2/2 \\approx 1.1504\\times10^8$.\n\nA direct enumeration of ordered triples of primes summing to $10001$ finds $255348$ triples, with total weight $R(10001) \\approx 0.960\\cdot\\mathfrak S(N)N^2/2$. The ratio approaches $1$ slowly, as the error term suggests.\n\nThe unweighted number of triples is not well predicted by $\\mathfrak S(N)N^2/(2(\\log N)^3) \\approx 1.47\\times10^5$ at this size. The weights $\\log p_i$ vary a lot over $[2,N]$, and replacing them by $\\log N$ is only accurate in the limit. This is why analytic number theorists prefer weighted counts."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Vinogradov's 1937 theorem is for sufficiently large $N$ only. Do not quote it as proving the full conjecture. That needed Helfgott's explicit work plus computation.\n- The singular series vanishes for even $N$, but $R(N)$ is not zero then: representations $2+2+p$ and $2+p+q$ exist. They are just of lower order than $N^2$.\n- The ternary method does not adapt to two primes. The minor arc argument needs a spare factor $S(\\alpha)$ for the supremum, and with two factors the trivial mean square is already as large as the main term.\n- The $\\log$-weighted count $R(N)$ and the plain count differ by roughly a factor $(\\log N)^3$ only asymptotically. Numerically the two can differ noticeably."
+   },
+   {
+    "type": "connection",
+    "body": "Ternary Goldbach is the showcase of the [[circle-method]] for primes. Its major arcs rest on [[siegel-walfisz]] and the minor arcs on [[exponential-sums]] over primes. The binary problem, [[goldbach]], remains open. The best results there are Chen's theorem, a sieve result that uses [[bombieri-vinogradov]], and the circle-method theorem that almost all even numbers are sums of two primes. The singular series here is a cousin of the constants in the Hardy–Littlewood conjectures on [[twin-primes]] and [[prime-patterns]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\mathfrak S(N) = \\sum_q \\mu(q)c_q(-N)/\\varphi(q)^3$ converges absolutely, using $|c_q(N)| \\le \\gcd(q,N)$ for squarefree $q$.\n2. Compute $c_{12}(5)$ and $c_{6}(3)$ directly from the definition.\n3. Show that the number of ordered triples of positive integers summing to $N$ is $\\binom{N-1}{2}$.\n4. Explain why the factor at $p=3$ in $\\mathfrak S(N)$ is smaller when $3\\mid N$ than when $3\\nmid N$, by counting solutions of $x+y+z\\equiv N \\pmod 3$ with $x,y,z \\not\\equiv 0$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Vaughan, The Hardy–Littlewood Method"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   },
+   {
+    "ref": "H. A. Helfgott, The ternary Goldbach problem (arXiv preprint)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Every odd N with 7 <= N <= 10^4 is a sum of three primes; 7 has no representation by three odd primes",
+    "python": "from sympy import primerange, isprime\nps = list(primerange(2, 10**4))\npset = set(ps)\nfor N in range(7, 10**4+1, 2):\n    ok = False\n    for p in ps:\n        if p > N: break\n        for q in ps:\n            if p + q >= N: break\n            if (N - p - q) in pset: ok = True; break\n        if ok: break\n    assert ok, N\nfor N in range(9, 10**4+1, 2):\n    assert any((N-3-p) in pset for p in ps if p <= N-5), N\nreps7 = sorted(tuple(sorted((a, b, 7-a-b))) for a in ps[:4] for b in ps[:4] if 7-a-b in pset)\nassert set(reps7) == {(2, 2, 3)}"
+   },
+   {
+    "claim": "Ramanujan sums: c_q(a) = mu(q) whenever gcd(a,q) = 1, for q <= 150",
+    "python": "import cmath, math\nfrom sympy import mobius\nfor q in range(1, 151):\n    for a in (1, 7, q+1, 2*q-1):\n        if math.gcd(a, q) != 1: continue\n        c = sum(cmath.exp(2j*math.pi*a*r/q) for r in range(1, q+1) if math.gcd(r, q) == 1)\n        assert abs(c - int(mobius(q))) < 1e-8, (q, a)"
+   },
+   {
+    "claim": "Euler product equals the series sum_q mu(q) c_q(-N)/phi(q)^3 (truncated) for N = 15 and N = 16; singular series vanishes for even N",
+    "python": "import cmath, math\nfrom sympy import mobius, totient, primerange\ndef c(q, n):\n    return sum(cmath.exp(2j*math.pi*n*r/q) for r in range(1, q+1) if math.gcd(r, q) == 1).real\ndef series(N, Q):\n    return sum(int(mobius(q))*c(q, -N)/int(totient(q))**3 for q in range(1, Q+1))\ndef prod(N):\n    s = 1.0\n    for p in primerange(2, 10**5):\n        s *= (1 - 1/(p-1)**2) if N % p == 0 else (1 + 1/(p-1)**3)\n    return s\nfor N in (15, 16):\n    assert abs(series(N, 400) - prod(N)) < 2e-3\nassert prod(16) == 0.0"
+   },
+   {
+    "claim": "Twin prime constant C2 = prod_{p>=3}(1-1/(p-1)^2) = 0.66016..., so 2*C2 = 1.3203...",
+    "python": "from sympy import primerange\nC = 1.0\nfor p in primerange(3, 10**6):\n    C *= 1 - 1/(p-1)**2\nassert abs(C - 0.660161815) < 1e-6\nassert abs(2*C - 1.3203) < 1e-4"
+   },
+   {
+    "claim": "For N = 10001: S(N) = 2.3004..., there are 255348 ordered prime triples, and R(N)/(S(N) N^2/2) = 0.960...; S(N)N^2/(2 log^3 N) is about 1.47e5",
+    "python": "import math\nfrom sympy import primerange\nN = 10001\ns = 1.0\nfor p in primerange(2, 10**6):\n    s *= (1 - 1/(p-1)**2) if N % p == 0 else (1 + 1/(p-1)**3)\nassert abs(s - 2.3004) < 1e-4\nassert 73*137 == N\nP_ = list(primerange(2, N+1)); ps = set(P_)\nR = 0.0; cnt = 0\nfor a in P_:\n    for b in P_:\n        c = N - a - b\n        if c < 2: break\n        if c in ps:\n            R += math.log(a)*math.log(b)*math.log(c); cnt += 1\nmain = s*N*N/2\nassert cnt == 255348\nassert abs(R/main - 0.960) < 0.001\nassert abs(main - 1.1504e8) < 0.001e8\nassert abs(main/math.log(N)**3 - 1.47e5) < 0.01e5"
+   },
+   {
+    "claim": "The number of ordered triples of positive integers summing to N is C(N-1,2) (N <= 60)",
+    "python": "import math\nfor N in range(3, 61):\n    cnt = sum(1 for a in range(1, N) for b in range(1, N) if N - a - b >= 1)\n    assert cnt == math.comb(N-1, 2)"
+   }
+  ]
+ },
+ {
+  "id": "waring",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Lagrange proved in 1770 that every positive integer is a sum of four squares. In the same year, in his Meditationes Algebraicae, Edward Waring asserted without proof that every positive integer is a sum of $9$ cubes, of $19$ fourth powers, \"and so on\". The claim is that for each $k$ a bounded number of $k$-th powers always suffices. Waring's problem asks for the least such number and, more ambitiously, for how many representations there are."
+   },
+   {
+    "type": "definition",
+    "title": "g(k) and G(k)",
+    "body": "For $k\\ge2$, $g(k)$ is the least $s$ such that every positive integer is a sum of $s$ $k$-th powers of nonnegative integers. $G(k)$ is the least $s$ such that every sufficiently large integer is such a sum.\n\nSo $g(k)$ is about all integers, including small awkward ones. $G(k)$ ignores finitely many exceptions and is the more natural quantity for analysis. Clearly $G(k)\\le g(k)$."
+   },
+   {
+    "type": "section",
+    "title": "What is known",
+    "body": "Hilbert proved in 1909 that $g(k)$ is finite for every $k$. His proof is an existence argument built on polynomial identities, and it gives poor bounds. The exact values in the catalog are\n$$g(2) = 4,\\qquad g(3) = 9,\\qquad g(4) = 19.$$\nThe first is Lagrange's theorem together with the example $7$. The value $g(3)=9$ is due to Wieferich and Kempner (1909–1912). The value $g(4) = 19$ was settled by Balasubramanian, Deshouillers and Dress in 1986. Further values follow the same pattern, for example $g(5) = 37$ and $g(6) = 73$.\n\nFor $G(k)$ much less is known exactly: $G(2) = 4$ and $G(4) = 16$ (Davenport, 1939), while for cubes only $4\\le G(3)\\le 7$ is known (the upper bound is Linnik's, 1943). In general $G(k)$ grows at most like $k\\log k$, by work of Vinogradov and later Wooley. The gap between $g$ and $G$ comes from a few small integers that are forced to use many $1$'s and $2^k$'s."
+   },
+   {
+    "type": "theorem",
+    "title": "Lower bound for g(k)",
+    "body": "For every $k\\ge2$,\n$$g(k) \\ge 2^k + \\Bigl\\lfloor\\bigl(\\tfrac32\\bigr)^k\\Bigr\\rfloor - 2 .$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Let $q = \\lfloor (3/2)^k\\rfloor$ and $n = q\\,2^k - 1$. Since $q \\le (3/2)^k$, we have $n < 2^k(3/2)^k = 3^k$. So the only $k$-th powers available are $1$ and $2^k$. A representation uses some number $a$ of copies of $2^k$ and $n - a2^k$ copies of $1$, where $a \\le q-1$ because $a2^k \\le n < q2^k$. The number of terms is\n$$a + (n - a2^k) = n - a(2^k-1),$$\nwhich is smallest when $a = q-1$. Then it equals $q2^k - 1 - (q-1)(2^k-1) = 2^k + q - 2$. So $n$ needs $2^k+q-2$ terms. $\\square$\n\nFor $k = 2,3,4,5,6$ this gives $4, 9, 19, 37, 73$, which are exactly the true values, witnessed by $n = 7, 23, 79, 223, 703$. The ideal Waring theorem says $g(k) = 2^k+\\lfloor(3/2)^k\\rfloor-2$ whenever\n$$2^k\\Bigl\\{\\bigl(\\tfrac32\\bigr)^k\\Bigr\\} + \\Bigl\\lfloor\\bigl(\\tfrac32\\bigr)^k\\Bigr\\rfloor \\le 2^k,$$\nwhere $\\{\\cdot\\}$ is the fractional part. No $k$ violating this condition is known. It has been checked by computer for an enormous range of $k$, and Mahler proved that at most finitely many $k$ can violate it, though his argument does not say which."
+   },
+   {
+    "type": "section",
+    "title": "Lower bounds for G(k): counting and congruences",
+    "body": "Two cheap arguments bound $G(k)$ from below.\n\nCounting. Sums of $k$ $k$-th powers up to $X$ use bases at most $X^{1/k}$. The number of unordered choices is at most $\\binom{X^{1/k}+k}{k}\\sim X/k!$. Since $k! \\ge 2$, at least about half of all integers up to $X$ are missed, so infinitely many integers need $k+1$ powers. Hence $G(k)\\ge k+1$.\n\nCongruences. If $k$-th powers take few values modulo some $m$, then integers in the wrong classes need many terms. Fourth powers are $0$ or $1$ mod $16$, and cubes are $0$ or $\\pm1$ mod $9$. These give $G(4)\\ge 16$ and $G(3)\\ge4$ (see the examples below). For $k=4$ the congruence bound is sharp."
+   },
+   {
+    "type": "section",
+    "title": "The circle method view",
+    "body": "Let $R_{s,k}(N)$ be the number of representations $N = x_1^k+\\dots+x_s^k$ in positive integers. The [[circle-method]] gives, for $s$ large enough in terms of $k$,\n$$R_{s,k}(N) = \\frac{\\Gamma(1+1/k)^s}{\\Gamma(s/k)}\\,\\mathfrak S_{s,k}(N)\\,N^{s/k-1} + o\\bigl(N^{s/k-1}\\bigr).$$\nThe Gamma factor is the real density. The number of points of $\\mathbb R_{\\ge0}^s$ with $\\sum t_i^k\\le X$ is $\\Gamma(1+1/k)^sX^{s/k}/\\Gamma(1+s/k)$ by volume, and differentiating in $X$ gives the factor above. The singular series $\\mathfrak S_{s,k}(N)$ collects the $p$-adic densities and vanishes exactly when a congruence obstruction blocks $N$. Hardy and Littlewood proved such a formula for large $s$. Hua's mean value lemma gives it for $s\\ge 2^k+1$, and the Vinogradov mean value theorem (Wooley for $k=3$, Bourgain–Demeter–Guth in general, around 2015) brings the requirement down to order $k^2$.\n\nThe asymptotic formula proves more than $G(k)\\le s$. It counts the representations, and that is the point the catalog makes. Getting all the way down to $G(k)$ needs other tools, such as smooth numbers, the diminishing ranges method and the iterative methods of Vaughan and Wooley."
+   },
+   {
+    "type": "example",
+    "title": "Hard numbers",
+    "body": "Verify by computation that $7$ needs four squares, $23$ needs nine cubes, $79$ needs nineteen fourth powers, and find all $n \\le 10^5$ that need nine cubes and all $n\\le10^4$ that need nineteen fourth powers.",
+    "solution": "A shortest-representation table is built by dynamic programming: $d(0) = 0$ and $d(n) = 1 + \\min_{x^k\\le n} d(n-x^k)$. It confirms the three examples: $7 = 4+1+1+1$, $23 = 2\\cdot8 + 7\\cdot1$ and $79 = 4\\cdot16 + 15\\cdot1$.\n\nUp to $10^5$, exactly two numbers need nine cubes: $23$ and $239$. Dickson (1939) proved these are the only ones overall, so every other positive integer is a sum of eight cubes. Up to $10^4$, the numbers needing nineteen fourth powers are\n$$79,\\ 159,\\ 239,\\ 319,\\ 399,\\ 479,\\ 559 .$$\nAll of them are $\\equiv 79 \\pmod{80}$. Fourth powers are $\\equiv 0, 1, 16$ or $65 \\pmod{80}$, which makes that class expensive to reach. Only finitely many integers need more than $16$ fourth powers (that is what $G(4) = 16$ says), and these seven are among them."
+   },
+   {
+    "type": "example",
+    "title": "A 2-adic obstruction",
+    "body": "Show that $31\\cdot16^m$ is not a sum of fewer than $16$ fourth powers for any $m\\ge0$, and deduce $G(4)\\ge16$.",
+    "solution": "First, $x^4 \\equiv 0 \\pmod{16}$ for even $x$, and $x^4\\equiv1\\pmod{16}$ for odd $x$, because $x^2 \\equiv 1 \\pmod 8$ implies $x^4 \\equiv 1 \\pmod{16}$.\n\nCase $m=0$: suppose $31 = \\sum_{i\\le s}x_i^4$ with $s \\le 15$. The number of odd $x_i$ is congruent to $31\\equiv15 \\pmod{16}$ and at most $15$, so it equals $15$ and $s = 15$. Every $x_i$ is then odd and at most $2$ (since $3^4 = 81 > 31$), so each $x_i = 1$ and the sum is $15\\ne31$. This is a contradiction.\n\nInduction: suppose $31\\cdot16^m = \\sum_{i \\le s}x_i^4$ with $s\\le15$ and $m\\ge1$. The number of odd $x_i$ is $\\equiv 0\\pmod{16}$ and at most $15$, so it is $0$. Then all $x_i$ are even, and dividing by $16$ represents $31\\cdot16^{m-1}$ with $s$ fourth powers, which contradicts the induction hypothesis.\n\nSo infinitely many integers need at least $16$ fourth powers, and $G(4)\\ge16$. Davenport's theorem $G(4) = 16$ shows that this simple obstruction is the only one."
+   },
+   {
+    "type": "example",
+    "title": "Cubes modulo 9",
+    "body": "Show that cubes are $\\equiv 0, \\pm1 \\pmod 9$, and deduce that no $n\\equiv\\pm4\\pmod9$ is a sum of three cubes of integers, so $G(3)\\ge4$.",
+    "solution": "If $3\\mid x$ then $9 \\mid x^3$. Otherwise $x \\equiv \\pm1,\\pm2,\\pm4 \\pmod 9$, and the cubes are $\\pm1$, $\\pm8\\equiv\\mp1$ and $\\pm64\\equiv\\pm1$. So every cube is $0$ or $\\pm1$ mod $9$. A sum of three such terms lies in $\\{-3,\\dots,3\\}$ mod $9$, which misses $4$ and $5\\equiv-4$. Hence every $n\\equiv\\pm4\\pmod9$ needs at least four cubes, even when negative cubes are allowed. This happens infinitely often, so $G(3)\\ge4$. Whether $G(3)$ is $4$ is open, and numerical evidence suggests it is."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $g(k)$ and $G(k)$ are different questions. $g(3) = 9$ is caused by just $23$ and $239$, while $G(3)$ is at most $7$ and believed to be $4$.\n- Waring's problem uses nonnegative $k$-th powers. With negative cubes allowed, as in the sums-of-three-cubes problem $x^3+y^3+z^3 = n$, the question changes completely.\n- Lagrange's four-square theorem is not a statement about three squares. Numbers $4^a(8b+7)$ are never sums of three squares (Legendre and Gauss), so even $G(2) = 4$.\n- Hilbert's theorem gives finiteness only. The asymptotic formula gives counts but needs many more variables than $G(k)$."
+   },
+   {
+    "type": "connection",
+    "body": "Waring's problem was the original target of the [[circle-method]], and much of the theory of [[exponential-sums]] (Weyl's inequality, Hua's lemma, Vinogradov's mean value theorem) was developed for it. The case $k=2$ is classical: see [[sums-of-squares]] for two squares and Lagrange's theorem. Waring's problem is also the prototype of additive bases, studied in [[additive-bases]], and the local obstructions in the singular series are computed with [[hensel|Hensel's lemma]] and [[congruences]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Check that the ideal Waring condition holds for $k = 2,\\dots,10$, and compute the predicted values of $g(k)$.\n2. Prove that $x^4\\equiv0$ or $1 \\pmod{16}$ for every integer $x$, and find all residues of fifth powers mod $11$.\n3. Show that $G(k)\\ge k+1$ by making the counting argument above precise.\n4. Explain why the asymptotic formula for $R_{s,k}(N)$ cannot hold with $s \\le k$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Vaughan, The Hardy–Littlewood Method"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Nathanson, Additive Number Theory: The Classical Bases"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "2^k + floor((3/2)^k) - 2 equals 4, 9, 19, 37, 73 for k = 2..6, with witnesses n = q 2^k - 1 = 7, 23, 79, 223, 703",
+    "python": "vals = [2**k + 3**k//2**k - 2 for k in range(2, 7)]\nassert vals == [4, 9, 19, 37, 73]\nwit = [(3**k//2**k)*2**k - 1 for k in range(2, 7)]\nassert wit == [7, 23, 79, 223, 703]"
+   },
+   {
+    "claim": "The witnesses need exactly 4, 9, 19, 37, 73 k-th powers (dynamic programming)",
+    "python": "def need(k, M):\n    pw = [i**k for i in range(1, M+1) if i**k <= M]\n    INF = 10**9\n    d = [0] + [INF]*M\n    for n in range(1, M+1):\n        b = INF\n        for p in pw:\n            if p > n: break\n            if d[n-p] < b: b = d[n-p]\n        d[n] = b + 1\n    return d\n\nfor k, n, s in ((2, 7, 4), (3, 23, 9), (4, 79, 19), (5, 223, 37), (6, 703, 73)):\n    assert need(k, n)[n] == s, (k, n)"
+   },
+   {
+    "claim": "Below 10^5 only 23 and 239 need nine cubes (and none needs more); below 10^4 exactly 79,159,239,319,399,479,559 need nineteen fourth powers; every n <= 1000 is a sum of four squares",
+    "python": "def need(k, M):\n    pw = [i**k for i in range(1, M+1) if i**k <= M]\n    INF = 10**9\n    d = [0] + [INF]*M\n    for n in range(1, M+1):\n        b = INF\n        for p in pw:\n            if p > n: break\n            if d[n-p] < b: b = d[n-p]\n        d[n] = b + 1\n    return d\n\nd3 = need(3, 10**5)\nassert [n for n in range(1, 10**5+1) if d3[n] == 9] == [23, 239]\nassert max(d3[1:]) == 9\nd4 = need(4, 10**4)\nL = [n for n in range(1, 10**4+1) if d4[n] == 19]\nassert L == [79, 159, 239, 319, 399, 479, 559] and max(d4[1:]) == 19\nassert all(n % 80 == 79 for n in L)\nd2 = need(2, 1000)\nassert max(d2[1:]) == 4 and d2[7] == 4"
+   },
+   {
+    "claim": "The ideal Waring condition 2^k{(3/2)^k} + floor((3/2)^k) <= 2^k holds for all 2 <= k <= 1000",
+    "python": "for k in range(2, 1001):\n    q, r = divmod(3**k, 2**k)\n    # 2^k * frac = r\n    assert r + q <= 2**k, k"
+   },
+   {
+    "claim": "Fourth powers mod 16 are {0,1} and mod 80 are {0,1,16,65}; cubes mod 9 are {0,1,8}; sums of three cubes mod 9 miss 4 and 5; 31*16^m needs 16 fourth powers for m = 0,1",
+    "python": "def need(k, M):\n    pw = [i**k for i in range(1, M+1) if i**k <= M]\n    INF = 10**9\n    d = [0] + [INF]*M\n    for n in range(1, M+1):\n        b = INF\n        for p in pw:\n            if p > n: break\n            if d[n-p] < b: b = d[n-p]\n        d[n] = b + 1\n    return d\n\nassert {x**4 % 16 for x in range(16)} == {0, 1}\nassert {x**4 % 80 for x in range(80)} == {0, 1, 16, 65}\nassert {x**3 % 9 for x in range(9)} == {0, 1, 8}\nthree = {(a+b+c) % 9 for a in (0,1,8) for b in (0,1,8) for c in (0,1,8)}\nassert 4 not in three and 5 not in three\nd = need(4, 31*16)\nassert d[31] == 16 and d[31*16] == 16"
+   },
+   {
+    "claim": "Real density: Gamma(1+1/k)^s/Gamma(s/k) equals d/dX of the volume Gamma(1+1/k)^s X^{s/k}/Gamma(1+s/k) at X = 1, checked numerically for several (s,k), and pi/4 for s=k=2",
+    "python": "import mpmath as mp\nfor s, k in ((2, 2), (5, 2), (9, 3), (17, 4)):\n    V = lambda X: mp.gamma(1+mp.mpf(1)/k)**s*X**(mp.mpf(s)/k)/mp.gamma(1+mp.mpf(s)/k)\n    assert abs(mp.diff(V, 1) - mp.gamma(1+mp.mpf(1)/k)**s/mp.gamma(mp.mpf(s)/k)) < 1e-10\nassert abs(mp.gamma(1.5)**2/mp.gamma(1) - mp.pi/4) < 1e-12"
+   },
+   {
+    "claim": "Counting bound: binom(X^{1/k}+k, k)/X tends to 1/k! (k=2,3 at X = 10^12)",
+    "python": "import math\nX = 10**12\nfor k in (2, 3):\n    B = round(X**(1/k))\n    assert abs(math.comb(B+k, k)/X*math.factorial(k) - 1) < 1e-3"
+   }
+  ]
+ },
+ {
+  "id": "moments",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "How large is $\\zeta(\\tfrac12+it)$ typically? Its value at a single point is hard to control, but averages are much easier. The moments\n$$I_k(T) = \\int_0^T|\\zeta(\\tfrac12+it)|^{2k}\\,dt$$\nrecord how often $\\zeta$ is large on the critical line, and the same idea applies to families of $L$-functions, for example $\\sum_{\\chi \\bmod q}|L(\\tfrac12,\\chi)|^{2k}$. Moments are not just statistics. Weighted versions, with a mollifier that damps $\\zeta$ or an amplifier that singles out one member of a family, are among the main tools for proving theorems about zeros and about individual $L$-values."
+   },
+   {
+    "type": "section",
+    "title": "The second moment and why it is T log T",
+    "body": "Hardy and Littlewood (1918) proved\n$$\\int_0^T|\\zeta(\\tfrac12+it)|^2\\,dt\\sim T\\log T .$$\nA more precise form, due to Ingham, is $T\\log\\frac{T}{2\\pi}+(2\\gamma-1)T+O(T^{1/2}\\log T)$, where $\\gamma$ is Euler's constant.\n\nHere is the heuristic. The approximate functional equation writes $\\zeta(\\tfrac12+it)$ as $\\sum_{n\\le x}n^{-1/2-it}$ plus a factor of absolute value $1$ times $\\sum_{n\\le y}n^{-1/2+it}$, where $xy = t/2\\pi$. Take $x = y \\approx\\sqrt{t/2\\pi}$. For a Dirichlet polynomial, the mean square over $[0,T]$ is $T$ times the sum of squared coefficients, as long as its length is small compared with $T$ (theorem below). Each piece then contributes about $T\\sum_{n\\le\\sqrt T}\\frac1n\\approx\\frac12T\\log T$. The cross terms oscillate and contribute less, so the total is $T\\log T$.\n\nIngham (1926) found the fourth moment, $I_2(T)\\sim\\frac{1}{2\\pi^2}T(\\log T)^4$. No higher moment is known asymptotically."
+   },
+   {
+    "type": "theorem",
+    "title": "Mean value theorem for Dirichlet polynomials (weak form)",
+    "body": "For complex numbers $a_1,\\dots,a_N$ and $T>0$,\n$$\\int_0^T\\Bigl|\\sum_{n\\le N}a_nn^{-it}\\Bigr|^2dt = T\\sum_{n\\le N}|a_n|^2 + E, \\qquad |E|\\le 4N(1+\\log N)\\sum_{n\\le N}|a_n|^2 .$$\n(Montgomery and Vaughan sharpened this to $\\sum_n|a_n|^2(T+O(n))$.)"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Expanding the square, the diagonal terms $m=n$ give $T\\sum|a_n|^2$. The off-diagonal terms give\n$$E = \\sum_{m\\ne n}a_m\\overline{a_n}\\int_0^T\\Bigl(\\frac nm\\Bigr)^{it}dt = \\sum_{m\\ne n}a_m\\overline{a_n}\\,\\frac{(n/m)^{iT}-1}{i\\log(n/m)},$$\nso $|E|\\le 2\\sum_{m\\ne n}|a_m||a_n|/|\\log(n/m)|$. For $m<n\\le N$ we have $\\log(n/m) = -\\log\\bigl(1-\\frac{n-m}{n}\\bigr)\\ge\\frac{n-m}{n}\\ge\\frac{n-m}{N}$. Hence\n$$|E|\\le 2N\\sum_{h\\ne0}\\frac{1}{|h|}\\sum_n|a_n||a_{n+h}| \\le 2N\\sum_{0<|h|<N}\\frac1{|h|}\\sum_n|a_n|^2,$$\nusing $|a_na_{n+h}|\\le\\frac12(|a_n|^2+|a_{n+h}|^2)$. Finally $\\sum_{0<|h|<N}1/|h|\\le 2(1+\\log N)$. $\\square$\n\nSo a Dirichlet polynomial of length $N$ behaves like a sum of $N$ orthogonal waves once $T$ is a bit larger than $N\\log N$. Everything about moments of $\\zeta$ comes down to how far this can be pushed when $N$ is comparable to $T$ or larger."
+   },
+   {
+    "type": "section",
+    "title": "Higher moments: conjectures",
+    "body": "For each $k$ one expects $I_k(T)\\sim c_kT(\\log T)^{k^2}$. Keating and Snaith (2000) modelled $\\zeta$ on the critical line by characteristic polynomials of random unitary matrices and predicted\n$$c_k = \\frac{a_k\\,g_k}{\\Gamma(k^2+1)},\\qquad g_k = \\Gamma(k^2+1)\\frac{G(k+1)^2}{G(2k+1)},\\qquad a_k = \\prod_p\\Bigl(1-\\frac1p\\Bigr)^{k^2}\\sum_{m\\ge0}\\frac{d_k(p^m)^2}{p^m},$$\nwhere $G$ is the Barnes $G$-function and $d_k(p^m)=\\binom{m+k-1}{k-1}$. The random matrix factor gives $g_1 = 1$, $g_2 = 2$, $g_3 = 42$, $g_4 = 24024$. The values $42$ and $24024$ had been conjectured earlier, by number-theoretic heuristics, by Conrey–Ghosh and Conrey–Gonek. The arithmetic factor $a_k$ is an Euler product. These formulas reproduce Hardy–Littlewood for $k = 1$ and Ingham for $k = 2$ (see the first example). For $k\\ge3$ they are conjectures.\n\nWhat is known is the order of magnitude, partly. Lower bounds of the conjectured order, $I_k(T)\\gg T(\\log T)^{k^2}$, are known for many $k$, for instance by work of Ramachandra and Heath-Brown. On RH, Soundararajan (2009) showed $I_k(T)\\ll T(\\log T)^{k^2+\\varepsilon}$, and Harper later removed the $\\varepsilon$. Hardy and Littlewood observed that the Lindelöf hypothesis is equivalent to $I_k(T)\\ll_{k,\\varepsilon}T^{1+\\varepsilon}$ for every $k$."
+   },
+   {
+    "type": "section",
+    "title": "Mollifiers",
+    "body": "Large values of $\\zeta$ dominate its moments, and they hide the information about zeros. A mollifier is a Dirichlet polynomial that imitates $1/\\zeta$:\n$$M(s) = \\sum_{n\\le y}\\frac{\\mu(n)}{n^s}P\\Bigl(\\frac{\\log(y/n)}{\\log y}\\Bigr),\\qquad y = T^\\theta,$$\nwith $P$ a polynomial, $P(0) = 0$, $P(1)=1$. Then $\\zeta M$ is close to $1$ on average, and the mollified moment $\\int_0^T|\\zeta M(\\tfrac12+it)|^2dt$ is of size $T$ rather than $T\\log T$. Its asymptotic evaluation is possible for $\\theta<\\tfrac12$, and with more work in some ranges beyond that.\n\nMollifiers are how one proves that many zeros lie on the critical line. Selberg (1942) obtained a positive proportion, Levinson (1974) more than one third, and Conrey (1989) more than two fifths, using a mollifier of length $T^{4/7}$. They are also how [[zero-density]] estimates are proved. At a zero $\\rho$, $1-\\zeta M(\\rho) = 1$. But $1-\\zeta M$ is approximated by a Dirichlet polynomial with no terms $n \\le y$, so that polynomial must be large at $\\rho$. Mean value theorems like the one above limit how often that can happen, and so limit the number of zeros.\n\nFarmer (1993) conjectured that the asymptotic formula for the mollified second moment persists for mollifiers of any length $T^\\theta$ (the \"$\\theta=\\infty$ conjecture\"). Bettin and Gonek (2017) showed that this conjecture implies the Riemann hypothesis. The intuition is that a mollifier that works too well leaves no room for zeros off the line."
+   },
+   {
+    "type": "section",
+    "title": "Amplifiers",
+    "body": "Moments average over a family. To bound one member, add positive weights that are large on it. For a family of Dirichlet characters mod $q$ and a fixed character $\\psi$, take\n$$A(\\chi) = \\sum_{\\ell\\le L}\\overline{\\psi}(\\ell)\\chi(\\ell).$$\nThen $A(\\psi) = \\#\\{\\ell\\le L:\\gcd(\\ell,q)=1\\}$ is as large as it can be. By positivity,\n$$|A(\\psi)|^2|L(\\tfrac12,\\psi)|^2\\le\\sum_{\\chi\\bmod q}|A(\\chi)|^2|L(\\tfrac12,\\chi)|^2 .$$\nIf the right side can be evaluated and shown to be about as large as its average suggests, roughly $\\varphi(q)L$ times the mean of $|L|^2$, then dividing by $|A(\\psi)|^2\\approx L^2$ gains a factor $L$ over what the plain moment gives. The whole difficulty is evaluating the amplified moment for $L$ as large as a power of $q$. In families such as modular forms, Duke, Friedlander and Iwaniec used this method to prove subconvexity bounds, which are progress towards the [[lindelof|Lindelöf hypothesis]].\n\nThe same idea fits the search for an exceptional zero. An amplifier tuned to one $L$-function, for instance one with a [[siegel-zeros|Siegel zero]], makes its contribution stand out in a family average. Positivity then gives either a contradiction or strong information about that one function.\n\nOctober 2026. An arXiv preprint (2610.15291), described as a follow-up to earlier work, claims to refine a [[quasi-rh|quasi-RH]] bound using amplified moments. As recorded in our timeline, it assumes the analytic inputs of an earlier manuscript and improves the resulting bound. This is a recent, unrefereed claim, and we report nothing beyond it."
+   },
+   {
+    "type": "example",
+    "title": "Recovering the known moments",
+    "body": "Check that the Keating–Snaith formula gives $c_1 = 1$ and $c_2 = \\frac{1}{2\\pi^2}$, matching Hardy–Littlewood and Ingham. Also verify $g_3 = 42$ and $g_4 = 24024$.",
+    "solution": "For $k=1$, $d_1(p^m) = 1$, so the Euler factor is $(1-\\frac1p)\\sum_m p^{-m} = 1$. Hence $a_1 = 1$. Also $g_1 = \\Gamma(2)G(2)^2/G(3) = 1$, because $G(1) = G(2) = G(3) = 1$. So $c_1 = 1$.\n\nFor $k=2$, $d_2(p^m) = m+1$, and $\\sum_{m\\ge0}(m+1)^2x^m = \\frac{1+x}{(1-x)^3}$. With $x = 1/p$ the Euler factor is\n$$\\Bigl(1-\\frac1p\\Bigr)^4\\frac{1+1/p}{(1-1/p)^3} = 1-\\frac1{p^2},$$\nso $a_2 = \\prod_p(1-p^{-2}) = 1/\\zeta(2) = 6/\\pi^2$. Since $G(n) = \\prod_{j=1}^{n-2}j!$ for integers $n \\ge 3$, $G(3) = 1$ and $G(5) = 1!\\,2!\\,3! = 12$, so $g_2 = 24\\cdot1/12 = 2$. Then $c_2 = \\frac{6}{\\pi^2}\\cdot\\frac{2}{24} = \\frac{1}{2\\pi^2}$.\n\nFor $k = 3$: $g_3 = 9!\\,G(4)^2/G(7) = 362880\\cdot 4/34560 = 42$. For $k=4$: $g_4 = 16!\\,G(5)^2/G(9) = 24024$."
+   },
+   {
+    "type": "example",
+    "title": "The second moment numerically",
+    "body": "Compute $\\int_0^{100}|\\zeta(\\tfrac12+it)|^2dt$ numerically and compare it with $T\\log T$ and with $T\\log\\frac{T}{2\\pi}+(2\\gamma-1)T$.",
+    "solution": "On the critical line $|\\zeta(\\tfrac12+it)| = |Z(t)|$, where $Z$ is Hardy's real-valued function. Simpson's rule with step $0.025$ applied to $Z(t)^2$ gives\n$$\\int_0^{100}|\\zeta(\\tfrac12+it)|^2dt\\approx 295.64 .$$\nFor comparison $T\\log T\\approx460.5$, while $T\\log\\frac{T}{2\\pi}+(2\\gamma-1)T\\approx292.17$. So the leading term alone is off by more than $50\\%$ at this height, while the two-term formula is within about $1.2\\%$. Asymptotic statements like $I_1(T)\\sim T\\log T$ are true but can be poor guides at small $T$. The lower-order terms matter in practice."
+   },
+   {
+    "type": "example",
+    "title": "An amplifier for characters",
+    "body": "Let $q = 101$, $L = 10$, and fix a non-principal character $\\psi$ mod $q$. With $A(\\chi) = \\sum_{\\ell\\le L}\\overline{\\psi}(\\ell)\\chi(\\ell)$, compute $A(\\psi)$ and $\\sum_{\\chi\\bmod q}|A(\\chi)|^2$.",
+    "solution": "Since $q$ is prime and $L<q$, every $\\ell\\le L$ is coprime to $q$, so $A(\\psi) = \\sum_{\\ell\\le10}|\\psi(\\ell)|^2 = 10$.\n\nFor the sum, expand and use orthogonality, $\\sum_{\\chi}\\chi(\\ell)\\overline{\\chi}(\\ell') = \\varphi(q)$ if $\\ell\\equiv\\ell'\\pmod q$ and $0$ otherwise:\n$$\\sum_\\chi|A(\\chi)|^2 = \\sum_{\\ell,\\ell'\\le L}\\overline{\\psi}(\\ell)\\psi(\\ell')\\sum_\\chi\\chi(\\ell)\\overline{\\chi}(\\ell') = \\varphi(q)\\cdot L = 1000,$$\nbecause for $\\ell,\\ell'\\le L<q$ the congruence forces $\\ell = \\ell'$. So the average of $|A(\\chi)|^2$ over the $100$ characters is $10$, while $|A(\\psi)|^2 = 100$. The amplifier boosts $\\psi$ by a factor $L$ relative to a typical member. This factor $L$ is exactly the gain in the final bound, provided the amplified moment behaves as expected."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $I_k(T)\\sim c_kT(\\log T)^{k^2}$ is proved only for $k = 1, 2$. The constants for $k\\ge3$ are conjectures, though strongly supported.\n- The arithmetic factor $a_k$ matters. Random matrix theory alone gives $g_k$ and misses $a_k$. Already for $k=2$, leaving it out gives the wrong constant.\n- A mollifier is not $1/\\zeta$. It is a short truncation of the Dirichlet series of $1/\\zeta$ with smoothing, and its length $T^\\theta$ is limited by what can be computed.\n- Amplification needs positivity. It works with $|L|^2$ or with nonnegative central values, not with quantities that can cancel."
+   },
+   {
+    "type": "connection",
+    "body": "Moments rest on [[l-functions]] and the [[explicit-formula]], and they feed directly into [[zero-density]] estimates. They are the main route to subconvexity and the [[lindelof|Lindelöf hypothesis]]. Mollifiers are central to the study of [[nontrivial-zeros]] on the critical line and, through Bettin–Gonek, to [[rh]]. The random-matrix predictions connect to [[pair-correlation]]. Amplifiers are the natural tool in the hunt for [[siegel-zeros]] and in the recent claims around [[quasi-rh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\sum_{m\\ge0}(m+1)^2x^m = (1+x)/(1-x)^3$ for $|x|<1$.\n2. Use the mean value theorem to show $\\int_0^T\\bigl|\\sum_{n\\le N}n^{-1/2-it}\\bigr|^2dt = T\\log N+O(T+N\\log^2N)$.\n3. Write down the Euler factor of $a_3$ at a prime $p$ as a rational function of $1/p$.\n4. Explain why a bound $\\sum_{\\chi\\bmod q}|A(\\chi)|^2|L(\\tfrac12,\\chi)|^2\\ll q^{1+\\varepsilon}L$ for some $L\\ge q^{1/2+\\delta}$ would beat the convexity bound $|L(\\tfrac12,\\psi)|\\ll q^{1/4+\\varepsilon}$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function"
+   },
+   {
+    "ref": "Iwaniec & Kowalski, Analytic Number Theory"
+   },
+   {
+    "ref": "J. P. Keating & N. C. Snaith, Random matrix theory and ζ(1/2+it), Communications in Mathematical Physics 214 (2000)"
+   },
+   {
+    "ref": "S. Bettin & S. M. Gonek, The θ = ∞ conjecture implies the Riemann hypothesis, Mathematika 63 (2017)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Barnes G values give g_1=1, g_2=2, g_3=42, g_4=24024; G(5)=12, G(7)=34560",
+    "python": "import mpmath as mp\ng = lambda k: mp.gamma(k*k+1)*mp.barnesg(k+1)**2/mp.barnesg(2*k+1)\nfor k, v in ((1, 1), (2, 2), (3, 42), (4, 24024)):\n    assert abs(g(k) - v) < 1e-6*v, (k, g(k))\nassert abs(mp.barnesg(5) - 12) < 1e-9 and abs(mp.barnesg(7) - 34560) < 1e-6"
+   },
+   {
+    "claim": "Euler factor for k=2 equals 1 - 1/p^2, so a_2 = 6/pi^2 and c_2 = 1/(2 pi^2); sum (m+1)^2 x^m = (1+x)/(1-x)^3",
+    "python": "import sympy as sp\nx, m = sp.symbols('x m')\np = sp.symbols('p', positive=True)\nassert sp.simplify((1-1/p)**4*(1+1/p)/(1-1/p)**3 - (1-1/p**2)) == 0\nser = sp.series((1+x)/(1-x)**3, x, 0, 12).removeO()\nassert all(ser.coeff(x, j) == (j+1)**2 for j in range(12))\na2 = 1/sp.zeta(2)\nassert sp.simplify(a2*2/sp.gamma(5) - 1/(2*sp.pi**2)) == 0"
+   },
+   {
+    "claim": "int_0^100 |zeta(1/2+it)|^2 dt = 295.64..., T log T = 460.5, T log(T/2pi)+(2 gamma-1)T = 292.17",
+    "python": "import mpmath as mp, math\nT = 100; n = 4000; h = T/n\nf = [float(mp.siegelz(i*h))**2 for i in range(n+1)]\nI = h/3*(f[0] + f[-1] + 4*sum(f[1:-1:2]) + 2*sum(f[2:-1:2]))\nmain = T*math.log(T/(2*math.pi)) + (2*0.5772156649015329 - 1)*T\nassert abs(I - 295.64) < 0.02, I\nassert abs(T*math.log(T) - 460.5) < 0.05 and abs(main - 292.17) < 0.01\nassert abs(I/main - 1) < 0.013\nassert abs(float(mp.siegelz(3))**2 - float(abs(mp.zeta(0.5+3j))**2)) < 1e-9"
+   },
+   {
+    "claim": "Weak mean value theorem: |integral - T sum|a_n|^2| <= 4N(1+log N) sum|a_n|^2 for random coefficients (exact off-diagonal formula)",
+    "python": "import random, math, cmath\nrandom.seed(11)\nfor trial in range(10):\n    N = random.randint(2, 40); T = random.uniform(1, 500)\n    a = [complex(random.gauss(0,1), random.gauss(0,1)) for _ in range(N)]\n    E = 0\n    for m in range(1, N+1):\n        for n in range(1, N+1):\n            if m != n:\n                l = math.log(n/m)\n                E += a[m-1]*a[n-1].conjugate()*(cmath.exp(1j*T*l) - 1)/(1j*l)\n    S2 = sum(abs(c)**2 for c in a)\n    assert abs(E) <= 4*N*(1+math.log(N))*S2\n    # cross-check one case against numerical integration\n    if trial == 0:\n        import mpmath as mp\n        N = 6; T = 60.0; a = a[:N]\n        S2 = sum(abs(c)**2 for c in a)\n        E = sum(a[m-1]*a[n-1].conjugate()*(cmath.exp(1j*T*math.log(n/m)) - 1)/(1j*math.log(n/m)) for m in range(1, N+1) for n in range(1, N+1) if m != n)\n        F = lambda t: abs(sum(a[k]*mp.e**(-1j*t*mp.log(k+1)) for k in range(N)))**2\n        I = mp.quad(F, mp.linspace(0, T, 61))\n        assert abs(I - (T*S2 + E.real)) < 1e-6*max(1, abs(I))"
+   },
+   {
+    "claim": "Amplifier mod 101 with L = 10: A(psi) = 10 and sum over all characters of |A(chi)|^2 = 1000",
+    "python": "import cmath, math\nfrom sympy import primitive_root\nq, L = 101, 10\ng = primitive_root(q)\nind = {pow(g, k, q): k for k in range(q-1)}\nchi = lambda j, n: cmath.exp(2j*math.pi*j*ind[n % q]/(q-1))\npsi = 3\nA = lambda j: sum(chi(psi, l).conjugate()*chi(j, l) for l in range(1, L+1))\nassert abs(A(psi) - 10) < 1e-9\ntot = sum(abs(A(j))**2 for j in range(q-1))\nassert abs(tot - 1000) < 1e-6"
+   }
+  ]
+ }
+]

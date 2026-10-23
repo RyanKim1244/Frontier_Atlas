@@ -1,0 +1,429 @@
+[
+ {
+  "id": "quasi-rh",
+  "title": "The quasi-Riemann hypothesis",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "claimed",
+  "summary": "There is a fixed $\\theta < 1$ with no zeros in $\\operatorname{Re}s > \\theta$. An OpenAI manuscript dated 30 September 2026 claims every Dirichlet $L$-function, $\\zeta$ included, is zero-free in $\\operatorname{Re}s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$ and cubic theta sums. The 7/8 version was reported as Lean-verified; a second proof gives $\\tfrac{11}{12}$. Community verification is ongoing.",
+  "key_statements": [
+   "L(s,\\chi) \\ne 0 \\quad \\text{for } \\operatorname{Re}s > \\tfrac78",
+   "\\tfrac18 \\le \\operatorname{Re}\\rho \\le \\tfrac78 \\ \\text{ for all nontrivial zeros}"
+  ],
+  "why": "A width that does not shrink with height changes the error term in the prime number theorem from $e^{-c\\sqrt{\\log x}}$-type savings to a power saving.",
+  "references": [],
+  "prerequisites": [
+   {
+    "id": "zero-free-region",
+    "title": "Zero-free regions"
+   },
+   {
+    "id": "hecke-l",
+    "title": "Hecke L-functions"
+   },
+   {
+    "id": "cubic-characters",
+    "title": "Cubic characters and cubic reciprocity"
+   },
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "30 Sep 2026",
+    "title": "Quasi-RH manuscript (7/8)",
+    "who": "OpenAI internal model",
+    "text": "Claims every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation. Reported as Lean-verified.",
+    "ai_claim": true
+   },
+   {
+    "date": "5 Oct 2026",
+    "title": "A second proof, with 11/12",
+    "who": "OpenAI internal model",
+    "text": "A different argument for $\\operatorname{Re}s > \\tfrac{11}{12}$, edited by people for readability.",
+    "ai_claim": true
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Improving the 7/8 half-plane",
+    "who": "arXiv 2610.12234",
+    "text": "Varies the parameters of the cubic theta argument to widen the zero-free half-plane.",
+    "ai_claim": true
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Amplified moments refine quasi-RH",
+    "who": "arXiv 2610.15291",
+    "text": "Assumes the manuscript's analytic inputs and improves the bound with amplified moments.",
+    "ai_claim": true
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Independent checks of a key claim",
+    "who": "Four independent mathematicians",
+    "text": "Reported verification within two weeks of the release; Terence Tao launched an AI-assisted math challenge.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "no-siegel",
+  "title": "Exclusion of Siegel zeros",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "claimed",
+  "summary": "A short paper in the 6 October 2026 release separately claims there are no exceptional zeros near $1$. The quasi-RH claim gives the same conclusion, so two independent routes were offered. Independent checking is under way.",
+  "key_statements": [
+   "L(\\beta, \\chi) \\ne 0 \\quad \\text{for } \\beta \\text{ near } 1,\\ \\chi \\text{ real}"
+  ],
+  "why": "If confirmed, ineffective constants in many theorems, Siegel–Walfisz included, become effective.",
+  "references": [],
+  "prerequisites": [
+   {
+    "id": "siegel-zeros",
+    "title": "Siegel zeros and the Landau–Siegel problem"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "6 Oct 2026",
+    "title": "372 proof claims released; Siegel zeros excluded",
+    "who": "OpenAI",
+    "text": "372 result families released on GitHub, including a short paper excluding Siegel zeros. Three manuscripts were withdrawn the next day over a sign error.",
+    "ai_claim": true
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Independent checks of a key claim",
+    "who": "Four independent mathematicians",
+    "text": "Reported verification within two weeks of the release; Terence Tao launched an AI-assisted math challenge.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "twin-primes",
+  "title": "The twin prime conjecture",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "There are infinitely many primes $p$ with $p + 2$ prime. Hardy and Littlewood conjectured the count up to $x$ is about $2C_2\\,x/(\\log x)^2$ with $C_2 \\approx 0.6602$. Bounded gaps (246) is the best unconditional result.",
+  "key_statements": [
+   "\\pi_2(x) \\sim 2 C_2 \\frac{x}{(\\log x)^2}, \\qquad C_2 = \\prod_{p > 2}\\Bigl(1 - \\frac{1}{(p-1)^2}\\Bigr)"
+  ],
+  "why": "Sieve theory's parity problem is the known barrier.",
+  "references": [
+   "Friedlander & Iwaniec, Opera de Cribro"
+  ],
+  "prerequisites": [
+   {
+    "id": "bounded-gaps",
+    "title": "Bounded gaps between primes"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1919",
+    "title": "Brun's theorem",
+    "who": "Viggo Brun",
+    "text": "The sum of reciprocals of twin primes converges.",
+    "ai_claim": false
+   },
+   {
+    "date": "2013–2014",
+    "title": "Multidimensional sieve and Polymath8",
+    "who": "James Maynard; Polymath8",
+    "text": "A new sieve for bounded gaps; the collaborative project lowered the bound to $246$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "goldbach",
+  "title": "Goldbach's conjecture",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "Every even integer greater than $2$ is a sum of two primes (Goldbach to Euler, 1742). Verified by computer far beyond $10^{18}$; the ternary version was proved by Helfgott in 2013.",
+  "key_statements": [
+   "2N = p + q"
+  ],
+  "why": "The circle method handles three primes; two primes falls on the wrong side of the minor-arc barrier.",
+  "references": [
+   "Vaughan, The Hardy–Littlewood Method"
+  ],
+  "prerequisites": [
+   {
+    "id": "ternary-goldbach",
+    "title": "Ternary Goldbach"
+   },
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1742",
+    "title": "Goldbach's letter to Euler",
+    "who": "Christian Goldbach",
+    "text": "Conjectured that every even number is a sum of two primes.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "bsd",
+  "title": "The Birch and Swinnerton-Dyer conjecture",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory",
+   "algebraic-geometry"
+  ],
+  "status": "open",
+  "summary": "The rank of the group of rational points of an elliptic curve $E/\\mathbb Q$ equals the order of vanishing of $L(E,s)$ at $s=1$. Known when that order is $0$ or $1$ (Gross–Zagier, Kolyvagin).",
+  "key_statements": [
+   "\\operatorname{rank} E(\\mathbb Q) = \\operatorname{ord}_{s=1} L(E,s)"
+  ],
+  "why": "It is one of the seven Millennium Prize Problems and would give an algorithm for deciding whether a cubic curve has infinitely many rational points.",
+  "references": [
+   "Silverman & Tate, Rational Points on Elliptic Curves",
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [
+   {
+    "id": "elliptic-curves",
+    "title": "Elliptic curves"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "p-vs-np",
+  "title": "P versus NP",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "computer-science",
+   "logic"
+  ],
+  "status": "open",
+  "summary": "Is every problem whose solutions can be checked in polynomial time also solvable in polynomial time? Most researchers expect $\\mathrm P \\ne \\mathrm{NP}$; known proof techniques (relativisation, natural proofs, algebrisation) provably cannot settle it.",
+  "key_statements": [
+   "\\mathrm P \\overset{?}{=} \\mathrm{NP}"
+  ],
+  "why": "A Millennium Prize Problem; modern cryptography assumes the answer is no.",
+  "references": [
+   "Sipser, Introduction to the Theory of Computation",
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1971",
+    "title": "NP-completeness",
+    "who": "Stephen Cook; Leonid Levin",
+    "text": "SAT is NP-complete, which makes P versus NP precise.",
+    "ai_claim": false
+   },
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "navier-stokes",
+  "title": "Navier–Stokes existence and smoothness",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "pde",
+   "physics"
+  ],
+  "status": "open",
+  "summary": "Do smooth initial data for the three-dimensional incompressible Navier–Stokes equations always give a smooth solution for all time? Leray (1934) constructed weak solutions; their uniqueness and regularity are open.",
+  "key_statements": [
+   "\\partial_t u + (u\\cdot\\nabla)u = \\nu\\Delta u - \\nabla p,\\qquad \\nabla\\cdot u = 0"
+  ],
+  "why": "A Millennium Prize Problem about the basic equations of fluid flow.",
+  "references": [
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   },
+   {
+    "id": "vector-calculus",
+    "title": "Line integrals and the theorems of Green, Stokes and Gauss"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "yang-mills",
+  "title": "Yang–Mills existence and mass gap",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "physics"
+  ],
+  "status": "open",
+  "summary": "Construct a quantum Yang–Mills theory on $\\mathbb R^4$ for any compact simple gauge group satisfying the standard axioms, and prove it has a mass gap $\\Delta > 0$.",
+  "key_statements": [
+   "\\operatorname{spec}(H) \\subset \\{0\\} \\cup [\\Delta, \\infty),\\quad \\Delta > 0"
+  ],
+  "why": "A Millennium Prize Problem; it asks for a mathematical foundation for the theory that describes the strong force.",
+  "references": [
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [
+   {
+    "id": "groups",
+    "title": "Groups and symmetry"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "hodge",
+  "title": "The Hodge conjecture",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "algebraic-geometry",
+   "topology"
+  ],
+  "status": "open",
+  "summary": "On a non-singular complex projective variety, every rational cohomology class of type $(p,p)$ is a rational combination of classes of algebraic subvarieties.",
+  "key_statements": [
+   "H^{2p}(X,\\mathbb Q)\\cap H^{p,p}(X) \\overset{?}{=} \\operatorname{span}_{\\mathbb Q}\\{[Z] : Z \\subset X \\text{ algebraic}\\}"
+  ],
+  "why": "A Millennium Prize Problem connecting topology, analysis and algebra on the same space.",
+  "references": [
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [
+   {
+    "id": "complex-numbers",
+    "title": "Complex numbers and functions"
+   },
+   {
+    "id": "polynomials-roots",
+    "title": "Polynomials, roots and Vieta's formulas"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "poincare",
+  "title": "The Poincaré conjecture",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "topology",
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Every simply connected closed $3$-manifold is homeomorphic to the $3$-sphere. Proved by Perelman (2002–03) using Ricci flow with surgery; the only Millennium Problem solved.",
+  "key_statements": [
+   "\\partial_t g = -2\\operatorname{Ric}(g)"
+  ],
+  "why": "Perelman declined both the Fields Medal (2006) and the Millennium Prize (2010).",
+  "references": [
+   "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+  ],
+  "prerequisites": [],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   },
+   {
+    "date": "2002–03",
+    "title": "Perelman proves Poincaré",
+    "who": "Grigori Perelman",
+    "text": "Ricci flow with surgery proves the Poincaré and geometrisation conjectures.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

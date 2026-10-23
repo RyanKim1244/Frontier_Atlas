@@ -1,0 +1,937 @@
+[
+ {
+  "id": "sequences",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A sequence is an infinite list of numbers $a_0, a_1, a_2, \\dots$. In problems it is usually given by a rule rather than a formula: each term is computed from the ones before it. The rule is short, but the questions it raises are real ones. Is there a closed formula for $a_n$? Does the sequence settle down to a limit, repeat itself, or blow up? Roughly how big is $a_{100}$?\n\nThis lesson covers the two standard toolkits. Linear recurrences, such as the Fibonacci rule, can be solved completely by the method of characteristic roots. Non-linear rules usually cannot be solved, but their behaviour can still be pinned down with monotonicity, bounds and well-chosen invariants."
+   },
+   {
+    "type": "section",
+    "title": "Recursive rules and a first trick",
+    "body": "Arithmetic and geometric progressions ([[ap-gp]]) are the simplest recursive rules: $a_{n+1} = a_n + d$ and $a_{n+1} = c\\,a_n$. Mixing the two already gives something new. Take $a_0 = 0$ and $a_{n+1} = 2a_n + 1$. The first terms are $0, 1, 3, 7, 15, 31$, which suggests $a_n = 2^n - 1$. To see why, add $1$ to both sides: $a_{n+1} + 1 = 2(a_n + 1)$. So $b_n = a_n + 1$ is geometric with ratio $2$ and $b_0 = 1$, which gives $b_n = 2^n$.\n\nThe same shift works for every rule $a_{n+1} = c\\,a_n + d$ with $c \\ne 1$. The number $L = d/(1-c)$ is the fixed point of the rule, meaning $L = cL + d$. Subtracting this from the recurrence gives $a_{n+1} - L = c\\,(a_n - L)$, so the distance from $L$ is geometric and\n$$a_n = L + c^n (a_0 - L).$$\nThe formula tells the whole long-run story: if $|c| < 1$ the terms converge to $L$ from any start; if $|c| > 1$ they run away from $L$ unless $a_0 = L$.\n\nRemember the method rather than the formula: find the fixed point, measure the distance from it, and watch how that distance evolves."
+   },
+   {
+    "type": "section",
+    "title": "Second-order linear recurrences",
+    "body": "Now let each term depend on the two before it: $a_{n+2} = p\\,a_{n+1} + q\\,a_n$, with constants $p, q$ and $q \\ne 0$. Two starting values $a_0, a_1$ determine everything else, so we expect a general solution with two free constants.\n\nGeometric progressions suggest trying $a_n = r^n$. Substituting and dividing by $r^n$ gives the characteristic equation\n$$r^2 = p\\,r + q.$$\nSo $r^n$ is a solution exactly when $r$ is a root. Moreover the recurrence is linear: if two sequences satisfy it, so does every combination $\\alpha x_n + \\beta y_n$. Two roots $r_1, r_2$ therefore give a two-parameter family $\\alpha r_1^n + \\beta r_2^n$, and the theorem below says that this family contains every solution. A repeated root needs a second solution of a different shape, and $n r^n$ turns out to work.\n\nThe roots may be complex even when $p$, $q$, $a_0$, $a_1$ are real (see [[complex-numbers]]). The formula still holds with complex $\\alpha, \\beta$. Writing the roots as $\\rho(\\cos\\theta \\pm i\\sin\\theta)$, the real solutions are $\\rho^n(A\\cos n\\theta + B\\sin n\\theta)$, which oscillate. This is where periodic behaviour of linear recurrences comes from."
+   },
+   {
+    "type": "theorem",
+    "title": "Solution of second-order linear recurrences",
+    "body": "Let $p, q$ be constants with $q \\ne 0$, and let $r_1, r_2$ be the roots of $x^2 - p x - q = 0$. Every sequence with $a_{n+2} = p\\,a_{n+1} + q\\,a_n$ for all $n \\ge 0$ has the form\n\n1. $a_n = \\alpha r_1^n + \\beta r_2^n$ if $r_1 \\ne r_2$,\n2. $a_n = (\\alpha + \\beta n)\\, r^n$ if $r_1 = r_2 = r$,\n\nwhere the constants $\\alpha, \\beta$ are uniquely determined by $a_0$ and $a_1$."
+   },
+   {
+    "type": "proof",
+    "body": "Distinct roots. We need $\\alpha + \\beta = a_0$ and $\\alpha r_1 + \\beta r_2 = a_1$. Since $r_1 \\ne r_2$, this linear system has exactly one solution,\n$$\\alpha = \\frac{r_2 a_0 - a_1}{r_2 - r_1}, \\qquad \\beta = \\frac{a_1 - r_1 a_0}{r_2 - r_1}.$$\nPut $b_n = \\alpha r_1^n + \\beta r_2^n$. Then\n$$b_{n+2} - p\\,b_{n+1} - q\\,b_n = \\alpha r_1^n (r_1^2 - p r_1 - q) + \\beta r_2^n (r_2^2 - p r_2 - q) = 0,$$\nso $b_n$ satisfies the same recurrence, and $b_0 = a_0$, $b_1 = a_1$ by the choice of $\\alpha, \\beta$. Now use induction: if $a_k = b_k$ for all $k \\le n+1$, then $a_{n+2} = p\\,a_{n+1} + q\\,a_n = p\\,b_{n+1} + q\\,b_n = b_{n+2}$. Hence $a_n = b_n$ for all $n$.\n\nRepeated root. Here $x^2 - px - q = (x-r)^2$, so $p = 2r$ and $q = -r^2$, and $r \\ne 0$ because $q \\ne 0$. The sequence $r^n$ is a solution as before. For $n r^n$,\n$$p\\,(n+1) r^{n+1} + q\\, n r^n = 2(n+1) r^{n+2} - n r^{n+2} = (n+2) r^{n+2},$$\nwhich is exactly the next term. By linearity every $(\\alpha + \\beta n) r^n$ is a solution. Matching $a_0 = \\alpha$ and $a_1 = (\\alpha + \\beta) r$ gives $\\alpha = a_0$ and $\\beta = a_1/r - a_0$, and the same induction finishes the proof."
+   },
+   {
+    "type": "example",
+    "title": "Binet's formula",
+    "body": "The Fibonacci numbers satisfy $F_0 = 0$, $F_1 = 1$, $F_{n+2} = F_{n+1} + F_n$. Find a closed formula, and show that $F_n$ is the integer nearest to $\\varphi^n/\\sqrt5$, where $\\varphi = (1+\\sqrt5)/2$.",
+    "solution": "The characteristic equation is $r^2 = r + 1$, with roots $\\varphi = \\frac{1+\\sqrt5}{2}$ and $\\psi = \\frac{1-\\sqrt5}{2}$. By the theorem, $F_n = \\alpha\\varphi^n + \\beta\\psi^n$ with $\\alpha + \\beta = 0$ and $\\alpha\\varphi + \\beta\\psi = 1$. Since $\\varphi - \\psi = \\sqrt5$, this gives $\\alpha = 1/\\sqrt5$ and $\\beta = -1/\\sqrt5$:\n$$F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt5}.$$\nNow $|\\psi| \\approx 0.618 < 1$, so $|\\psi^n/\\sqrt5| \\le 1/\\sqrt5 < 1/2$ for every $n \\ge 0$. Thus $\\varphi^n/\\sqrt5$ differs from the integer $F_n$ by less than $1/2$, which makes $F_n$ the nearest integer. For example $\\varphi^{10}/\\sqrt5 \\approx 55.0036$ and $F_{10} = 55$. The formula also shows that $F_{n+1}/F_n \\to \\varphi$, because the $\\psi^n$ terms die out."
+   },
+   {
+    "type": "example",
+    "title": "A hidden period",
+    "body": "Positive reals $x_0 = a$ and $x_1 = b$ are given, and $x_{n+2} = \\dfrac{1 + x_{n+1}}{x_n}$ for $n \\ge 0$. Find $x_{2026}$ in terms of $a$ and $b$.",
+    "solution": "This rule is not linear, so there is no characteristic equation. Instead, compute and look for structure. All terms are positive, so no division by zero occurs.\n$$x_2 = \\frac{1+b}{a}, \\qquad x_3 = \\frac{1 + x_2}{x_1} = \\frac{a+b+1}{ab}, \\qquad x_4 = \\frac{1+x_3}{x_2} = \\frac{(a+1)(b+1)}{ab}\\cdot\\frac{a}{b+1} = \\frac{a+1}{b}.$$\nContinuing,\n$$x_5 = \\frac{1 + x_4}{x_3} = \\frac{a+b+1}{b}\\cdot\\frac{ab}{a+b+1} = a, \\qquad x_6 = \\frac{1 + x_5}{x_4} = (1+a)\\cdot\\frac{b}{a+1} = b.$$\nSo $(x_5, x_6) = (x_0, x_1)$. Each term is determined by the two before it, so from here the whole sequence repeats: $x_{n+5} = x_n$ for all $n$. Since $2026 = 5\\cdot 405 + 1$, we get $x_{2026} = x_1 = b$.\n\nCompare the linear rule $a_{n+2} = a_{n+1} - a_n$. Its characteristic roots $\\frac{1 \\pm i\\sqrt3}{2}$ are sixth roots of unity, and indeed $a_{n+3} = a_{n+2} - a_{n+1} = -a_n$, so $a_{n+6} = a_n$. The key step is the same in both cases: once a pair of consecutive terms repeats, the sequence is periodic."
+   },
+   {
+    "type": "section",
+    "title": "Monotone and bounded sequences",
+    "body": "Most non-linear rules have no closed formula, so we need a way to prove convergence without one. Recall what convergence means: $a_n \\to L$ if for every $\\varepsilon > 0$ there is an $N$ with $|a_n - L| < \\varepsilon$ for all $n \\ge N$ (the full theory is in [[seq-limits]]). Checking this directly requires knowing $L$ in advance. The next theorem avoids that, and it is the most used convergence test in competition problems."
+   },
+   {
+    "type": "theorem",
+    "title": "Monotone convergence theorem",
+    "body": "If a sequence of real numbers is increasing ($a_{n+1} \\ge a_n$ for all $n$) and bounded above, then it converges, and its limit is the least upper bound of its terms. Likewise a decreasing sequence that is bounded below converges."
+   },
+   {
+    "type": "proof",
+    "body": "The real numbers have the completeness property ([[real-numbers]]): every non-empty set of reals that is bounded above has a least upper bound. Let $L$ be the least upper bound of the set of terms. Given $\\varepsilon > 0$, the number $L - \\varepsilon$ is not an upper bound, so some term satisfies $a_N > L - \\varepsilon$. For $n \\ge N$, monotonicity gives $a_n \\ge a_N > L - \\varepsilon$, and $a_n \\le L$ because $L$ is an upper bound. So $|a_n - L| < \\varepsilon$ for all $n \\ge N$. The decreasing case follows by applying this to $-a_n$.\n\nCompleteness is essential. In the rational numbers, the increasing bounded sequence $1, 1.4, 1.41, 1.414, \\dots$ of decimal truncations of $\\sqrt2$ has no limit."
+   },
+   {
+    "type": "example",
+    "title": "Nested square roots",
+    "body": "Let $a_1 = \\sqrt2$ and $a_{n+1} = \\sqrt{2 + a_n}$. Prove that the sequence converges and find its limit.",
+    "solution": "Bounded: $0 < a_n < 2$ for all $n$. This holds for $a_1 \\approx 1.414$, and if $0 < a_n < 2$ then $0 < a_{n+1} = \\sqrt{2 + a_n} < \\sqrt4 = 2$.\n\nIncreasing: for $0 < a_n < 2$,\n$$a_{n+1}^2 - a_n^2 = 2 + a_n - a_n^2 = (2 - a_n)(1 + a_n) > 0,$$\nso $a_{n+1} > a_n$.\n\nBy the monotone convergence theorem, $a_n \\to L$ for some $L$ with $\\sqrt2 \\le L \\le 2$. The square root is continuous, so letting $n \\to \\infty$ in $a_{n+1} = \\sqrt{2 + a_n}$ gives $L = \\sqrt{2+L}$. Hence $L^2 - L - 2 = (L-2)(L+1) = 0$, and $L = 2$.\n\nWe can also see the speed. From $4 - a_{n+1}^2 = 2 - a_n$ we get\n$$2 - a_{n+1} = \\frac{2 - a_n}{2 + a_{n+1}},$$\nso at each step the distance to $2$ is divided by a number close to $4$. In fact $a_n = 2\\cos\\frac{\\pi}{2^{n+1}}$, by the half-angle formula $2\\cos\\frac t2 = \\sqrt{2 + 2\\cos t}$ for $0 \\le t \\le \\pi$."
+   },
+   {
+    "type": "section",
+    "title": "Using the limit equation honestly",
+    "body": "The step \"let $n \\to \\infty$ in $a_{n+1} = f(a_n)$ to get $L = f(L)$\" is legitimate only after convergence has been proved. The equation lists the possible limits; it does not promise that there is one. Take $a_0 = 2$ and $a_{n+1} = a_n^2$. The equation $L = L^2$ offers $L = 0$ or $L = 1$, yet $a_n = 2^{2^n} \\to \\infty$. Or take $a_0 = 2$ and $a_{n+1} = 1/a_n$: the equation gives $L = \\pm 1$, but the sequence alternates $2, \\frac12, 2, \\frac12, \\dots$ and has no limit.\n\nA sound plan for a rule $a_{n+1} = f(a_n)$:\n\n1. Find an interval that $f$ maps into itself, so that all terms stay in it. This gives a bound.\n2. Decide whether the terms increase or decrease there, often by comparing $f(x)$ with $x$; or show that the distance to a candidate limit shrinks by a fixed factor at each step.\n3. Only then solve $L = f(L)$ to identify the limit.\n\nWhen a sequence grows without bound, the useful question becomes how fast. Here one looks for a quantity that changes by an almost constant amount at each step, as in the next example."
+   },
+   {
+    "type": "example",
+    "title": "Growth rate of a divergent sequence",
+    "body": "Let $a_1 = 1$ and $a_{n+1} = a_n + \\dfrac{1}{a_n}$. Find $\\lfloor a_{100} \\rfloor$, the integer part of $a_{100}$.",
+    "solution": "The terms increase, so all are at least $1$. Squaring the recurrence produces a quantity that grows by almost exactly $2$ per step:\n$$a_{n+1}^2 = a_n^2 + 2 + \\frac{1}{a_n^2}.$$\nAdding these equations for $n = 1, \\dots, 99$ gives\n$$a_{100}^2 = a_1^2 + 2\\cdot 99 + S = 199 + S, \\qquad S = \\sum_{k=1}^{99}\\frac1{a_k^2}.$$\nLower bound: $S \\ge 1/a_1^2 = 1$, so $a_{100}^2 \\ge 200 > 196 = 14^2$.\n\nUpper bound: the same telescoping with the small extra terms dropped gives $a_k^2 \\ge 1 + 2(k-1) = 2k - 1$. Therefore\n$$S \\le 1 + \\sum_{k=2}^{99}\\frac{1}{2k-1} < 1 + \\sum_{k=2}^{99}\\frac{1}{2k-2} = 1 + \\frac12\\sum_{j=1}^{98}\\frac1j.$$\nTo bound the harmonic sum, group it into blocks $\\frac11$, then $\\frac12 + \\frac13$, then $\\frac14 + \\dots + \\frac17$, and so on. The block starting at $\\frac{1}{2^i}$ has $2^i$ terms, each at most $\\frac1{2^i}$, so it sums to at most $1$. Seven blocks reach $\\frac1{127}$, so $\\sum_{j=1}^{98} \\frac1j \\le 7$. Hence $S < 1 + 3.5 = 4.5$ and $a_{100}^2 < 203.5 < 225 = 15^2$.\n\nSo $14 < a_{100} < 15$ and $\\lfloor a_{100}\\rfloor = 14$; numerically $a_{100} \\approx 14.214$. The general picture is $a_n \\approx \\sqrt{2n}$. Squaring turned an awkward rule into one that grows by an almost constant amount."
+   },
+   {
+    "type": "section",
+    "title": "When simple rules become hard",
+    "body": "The Collatz map sends a positive integer $n$ to $n/2$ if $n$ is even and to $3n + 1$ if $n$ is odd. Starting from $6$ one gets $6, 3, 10, 5, 16, 8, 4, 2, 1$. Starting from $27$ the sequence needs $111$ steps to reach $1$ and climbs as high as $9232$ on the way. The Collatz conjecture says that every starting value eventually reaches $1$. It has been checked by computer for an enormous range of starting values, but it is unproved.\n\nNone of the tools above applies: the rule is neither linear nor monotone, and no invariant is known that controls it. The methods of this lesson work because the rules they handle have structure, and spotting that structure is the real skill."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Solving $L = f(L)$ before proving convergence. The equation can have solutions when the sequence diverges.\n- Using $\\alpha r_1^n + \\beta r_2^n$ when the characteristic equation has a double root. That family then has only one free constant, and $(\\alpha + \\beta n) r^n$ is needed.\n- Fitting the constants to the wrong starting indices. If the sequence starts at $a_1$, match $a_1$ and $a_2$, or first extend it back to $a_0$ using the recurrence.\n- Treating bounded or monotone alone as enough. The sequence $(-1)^n$ is bounded but has no limit, and $a_n = n$ is increasing but diverges.\n- Guessing a formula from the first few terms and stopping there. A guessed formula must still be proved, by induction or by the theorem above."
+   },
+   {
+    "type": "connection",
+    "body": "Linear recurrences are the discrete counterpart of linear differential equations ([[ode-linear]]), and characteristic roots play the same role there. Writing the pair $(a_{n+1}, a_n)$ as a vector turns a second-order recurrence into repeated multiplication by a $2\\times 2$ matrix whose eigenvalues are the characteristic roots ([[eigen]], [[diagonalization]]); this explains the shape of the formula. [[generating-functions]] give a third way to solve linear recurrences. The convergents of [[continued-fractions]] and the solutions of [[pell]] equations satisfy recurrences of exactly this kind. Monotone quantities and conserved quantities belong to the general [[invariants]] toolkit, and rules with randomness lead to [[markov-chains]]. The rigorous theory of limits, with subsequences and the Cauchy criterion, is developed in [[seq-limits]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Solve $a_{n+2} = 5a_{n+1} - 6a_n$ with $a_0 = 1$ and $a_1 = 4$, and check your formula against $a_2$ and $a_3$.\n2. Let $a_0 = 2$ and $a_{n+1} = \\frac12\\left(a_n + \\frac{3}{a_n}\\right)$. Show that $a_n \\ge \\sqrt3$ for all $n$, that the sequence is decreasing, and find its limit.\n3. Let $0 < x_0 < 1$ and $x_{n+1} = x_n - x_n^2$. Prove that $x_n < \\frac{1}{n+1}$ for all $n \\ge 0$. (Compare $1/x_{n+1}$ with $1/x_n$.)\n4. For which real numbers $c$ is the sequence $a_0 = 0$, $a_{n+1} = a_n^2 + c$ bounded?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Abbott, Understanding Analysis",
+    "where": "§2.4"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "a_0=0, a_{n+1}=2a_n+1 gives a_n=2^n-1",
+    "python": "a=0\nfor n in range(60):\n    assert a==2**n-1\n    a=2*a+1"
+   },
+   {
+    "claim": "a_n = L + c^n(a_0-L) with L=d/(1-c) solves a_{n+1}=c a_n + d",
+    "python": "import sympy as sp\nc,d,a0,n=sp.symbols('c d a0 n')\nL=d/(1-c)\nf=lambda k: L+c**k*(a0-L)\nassert sp.simplify(sp.powsimp(sp.expand(f(n+1)-(c*f(n)+d)),force=True))==0\nfor k in range(12):\n    assert sp.simplify(f(k+1)-(c*f(k)+d))==0\nassert sp.simplify(f(0)-a0)==0\nassert sp.simplify(L-(c*L+d))==0"
+   },
+   {
+    "claim": "constants alpha, beta in the distinct-root case; (alpha+beta n) r^n solves the double-root recurrence with alpha=a0, beta=a1/r-a0",
+    "python": "import sympy as sp, random\nfrom fractions import Fraction\nr1,r2,a0,a1,n,r=sp.symbols('r1 r2 a0 a1 n r',nonzero=True)\nal=(r2*a0-a1)/(r2-r1); be=(a1-r1*a0)/(r2-r1)\nassert sp.simplify(al+be-a0)==0\nassert sp.simplify(al*r1+be*r2-a1)==0\np,q=2*r,-r**2\ne=(p*(n+1)*r**(n+1)+q*n*r**n-(n+2)*r**(n+2))/r**n\nassert sp.simplify(sp.powsimp(sp.expand(e)))==0\nfor _ in range(50):\n    rr=random.choice([-5,-4,-3,-2,-1,1,2,3,4,5])\n    x0,x1=random.randint(-9,9),random.randint(-9,9)\n    P,Q=2*rr,-rr*rr\n    seq=[x0,x1]\n    for k in range(30): seq.append(P*seq[-1]+Q*seq[-2])\n    A,B=Fraction(x0),Fraction(x1,rr)-x0\n    assert all(seq[k]==(A+B*k)*Fraction(rr)**k for k in range(32))"
+   },
+   {
+    "claim": "Binet: F_n=(phi^n-psi^n)/sqrt5, F_n is the nearest integer to phi^n/sqrt5, F_10=55, phi^10/sqrt5 ~ 55.0036",
+    "python": "from mpmath import mp,mpf,sqrt,nint\nmp.dps=80\nphi=(1+sqrt(5))/2; psi=(1-sqrt(5))/2\nF=[0,1]\nfor k in range(120): F.append(F[-1]+F[-2])\nassert F[10]==55\nfor n in range(120):\n    assert abs((phi**n-psi**n)/sqrt(5)-F[n])<mpf(10)**-50\n    assert int(nint(phi**n/sqrt(5)))==F[n]\n    assert abs(phi**n/sqrt(5)-F[n])<mpf(1)/2\nassert abs(phi**10/sqrt(5)-mpf('55.0036'))<mpf('0.00005')\nassert abs(psi)<mpf('0.6181') and 1/sqrt(5)<mpf(1)/2"
+   },
+   {
+    "claim": "x_{n+2}=(1+x_{n+1})/x_n has period 5 with the stated intermediate terms; 2026 = 5*405+1; a_{n+2}=a_{n+1}-a_n has a_{n+3}=-a_n and period 6",
+    "python": "import sympy as sp, random\na,b=sp.symbols('a b',positive=True)\nx=[a,b]\nfor k in range(8): x.append(sp.simplify((1+x[-1])/x[-2]))\nassert sp.simplify(x[2]-(1+b)/a)==0\nassert sp.simplify(x[3]-(a+b+1)/(a*b))==0\nassert sp.simplify(x[4]-(a+1)/b)==0\nassert sp.simplify(x[5]-a)==0 and sp.simplify(x[6]-b)==0\nassert 2026==5*405+1\nfor _ in range(20):\n    s=[random.randint(-50,50),random.randint(-50,50)]\n    for k in range(40): s.append(s[-1]-s[-2])\n    assert all(s[k+3]==-s[k] for k in range(38))\n    assert all(s[k+6]==s[k] for k in range(36))\nw=sp.Rational(1,2)+sp.I*sp.sqrt(3)/2\nassert sp.simplify(w**2-w+1)==0 and sp.simplify(sp.expand(w**6)-1)==0"
+   },
+   {
+    "claim": "a_1=sqrt2, a_{n+1}=sqrt(2+a_n): increasing, below 2, equals 2cos(pi/2^{n+1}), and 2-a_{n+1}=(2-a_n)/(2+a_{n+1})",
+    "python": "from mpmath import mp,mpf,sqrt,cos,pi\nmp.dps=60\na=sqrt(2); prev=mpf(0)\nfor n in range(1,60):\n    assert abs(a-2*cos(pi/2**(n+1)))<mpf(10)**-50\n    assert prev<a<2\n    nxt=sqrt(2+a)\n    assert abs((2-nxt)-(2-a)/(2+nxt))<mpf(10)**-50\n    prev=a; a=nxt"
+   },
+   {
+    "claim": "a_1=1, a_{n+1}=a_n+1/a_n: a_100 ~ 14.214, floor 14, 200 <= a_100^2 < 203.5, and the harmonic block bounds",
+    "python": "from mpmath import mp,mpf,floor\nfrom fractions import Fraction\nmp.dps=60\na=[None,mpf(1)]\nfor n in range(1,100): a.append(a[n]+1/a[n])\nA=a[100]\nassert floor(A)==14 and abs(A-mpf('14.214'))<mpf('0.0005')\nS=sum(1/a[k]**2 for k in range(1,100))\nassert abs(A**2-(199+S))<mpf(10)**-40\nassert all(a[k]**2>=2*k-1-mpf(10)**-40 for k in range(1,101))\nassert 200<=A**2<mpf('203.5')\nH98=sum(Fraction(1,j) for j in range(1,99))\nassert H98<=7\nfor i in range(7):\n    assert sum(Fraction(1,j) for j in range(2**i,2**(i+1)))<=1\nassert 2**7-1>=98\nassert 1+sum(Fraction(1,2*k-1) for k in range(2,100))<1+H98/2<=Fraction(9,2)"
+   },
+   {
+    "claim": "Collatz: 6 -> 3,10,5,16,8,4,2,1; 27 needs 111 steps and peaks at 9232",
+    "python": "def traj(n):\n    t=[n]\n    while n!=1:\n        n=n//2 if n%2==0 else 3*n+1\n        t.append(n)\n    return t\nassert traj(6)==[6,3,10,5,16,8,4,2,1]\nt=traj(27)\nassert len(t)-1==111 and max(t)==9232"
+   }
+  ]
+ },
+ {
+  "id": "floor-functions",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The floor of a real number $x$, written $\\lfloor x \\rfloor$, is $x$ rounded down to an integer, and the fractional part $\\{x\\} = x - \\lfloor x \\rfloor$ is the piece that was cut off. These look too simple to need a theory, but they appear whenever you count. The number of multiples of $7$ up to $1000$ is $\\lfloor 1000/7 \\rfloor = 142$; the number of lattice points under a line is a sum of floors; the exponent of a prime in $n!$ is a sum of floors.\n\nThis lesson gives the rules for manipulating floors, two classical identities (Hermite's identity and a lattice-point count), Beatty's theorem on splitting the positive integers into two sequences, and the behaviour of the fractional parts $\\{n\\alpha\\}$."
+   },
+   {
+    "type": "definition",
+    "title": "Floor and fractional part",
+    "body": "For a real number $x$, the floor $\\lfloor x\\rfloor$ is the unique integer $m$ with $m \\le x < m + 1$. The fractional part is $\\{x\\} = x - \\lfloor x \\rfloor$, so that $0 \\le \\{x\\} < 1$ and $x = \\lfloor x\\rfloor + \\{x\\}$. The ceiling $\\lceil x\\rceil$ is the least integer that is at least $x$.\n\nThe floor records which interval $[m, m+1)$ contains $x$, and the fractional part records where in that interval $x$ sits. Note that $\\lfloor -2.3\\rfloor = -3$ and $\\{-2.3\\} = 0.7$."
+   },
+   {
+    "type": "section",
+    "title": "Rules of calculation",
+    "body": "Almost every argument with floors goes back to the defining inequality, which is worth knowing in two forms: for an integer $m$,\n$$\\lfloor x \\rfloor = m \\iff m \\le x < m+1 \\iff x - 1 < m \\le x.$$\nThe everyday rules follow from it.\n\n- $\\lfloor x + k\\rfloor = \\lfloor x\\rfloor + k$ and $\\{x + k\\} = \\{x\\}$ for every integer $k$.\n- $\\lfloor x\\rfloor + \\lfloor y\\rfloor \\le \\lfloor x + y\\rfloor \\le \\lfloor x\\rfloor + \\lfloor y\\rfloor + 1$, with the larger value exactly when $\\{x\\} + \\{y\\} \\ge 1$. (Write $x + y = \\lfloor x\\rfloor + \\lfloor y\\rfloor + (\\{x\\} + \\{y\\})$, where the bracket lies in $[0, 2)$.)\n- $\\lfloor -x\\rfloor = -\\lfloor x\\rfloor$ if $x$ is an integer, and $\\lfloor -x\\rfloor = -\\lfloor x\\rfloor - 1$ otherwise.\n- For a positive integer $n$, $\\left\\lfloor \\lfloor x\\rfloor / n\\right\\rfloor = \\lfloor x/n\\rfloor$.\n\nTo prove the last rule, let $m = \\lfloor x\\rfloor$ and divide with remainder ([[divisibility]]): $m = qn + r$ with $0 \\le r \\le n-1$. Then $x = qn + r + \\{x\\}$, so $x/n = q + (r + \\{x\\})/n$ with $0 \\le (r + \\{x\\})/n < 1$. Hence $\\lfloor x/n\\rfloor = q = \\lfloor m/n\\rfloor$.\n\nThe link with division is direct. For positive integers $n$ and $d$, the quotient of $n$ by $d$ is $\\lfloor n/d\\rfloor$, the remainder is $n - d\\lfloor n/d\\rfloor$, and the number of multiples of $d$ in $\\{1, 2, \\dots, n\\}$ is $\\lfloor n/d\\rfloor$: these multiples are $d, 2d, \\dots, kd$ where $kd \\le n < (k+1)d$."
+   },
+   {
+    "type": "example",
+    "title": "Legendre's formula",
+    "body": "How many zeros does $100!$ end with?",
+    "solution": "The number of trailing zeros is the largest $e$ with $10^e \\mid 100!$, which is the smaller of the exponents of $2$ and of $5$ in $100!$. For a prime $p$, the exponent of $p$ in $n!$ is\n$$\\sum_{k \\ge 1}\\left\\lfloor \\frac{n}{p^k}\\right\\rfloor,$$\na formula due to Legendre. The reason: the exponent of $p$ in $n! = 1\\cdot 2\\cdots n$ is the sum, over $j \\le n$, of the exponent of $p$ in $j$. A number $j$ divisible by $p^e$ but not $p^{e+1}$ must be counted $e$ times, and it is: it is one of the $\\lfloor n/p^k\\rfloor$ multiples of $p^k$ up to $n$ exactly for $k = 1, \\dots, e$.\n\nFor $p = 5$: $\\lfloor 100/5\\rfloor + \\lfloor 100/25\\rfloor = 20 + 4 = 24$, and $125 > 100$. For $p = 2$: $50 + 25 + 12 + 6 + 3 + 1 = 97$. So $100!$ ends in exactly $24$ zeros.\n\nThere is a convenient way to compute the terms. By the last rule above, $\\lfloor n/p^{k+1}\\rfloor = \\lfloor \\lfloor n/p^k\\rfloor / p\\rfloor$, so one keeps dividing by $p$ and discarding remainders: $100 \\to 20 \\to 4 \\to 0$."
+   },
+   {
+    "type": "theorem",
+    "title": "Hermite's identity",
+    "body": "For every real $x$ and every positive integer $n$,\n$$\\sum_{k=0}^{n-1}\\Big\\lfloor x + \\frac kn\\Big\\rfloor = \\lfloor nx\\rfloor.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $g(x) = \\sum_{k=0}^{n-1}\\lfloor x + k/n\\rfloor - \\lfloor nx\\rfloor$.\n\nFirst, $g(x + 1/n) = g(x)$. Replacing $x$ by $x + 1/n$ shifts the terms of the sum: the term for $k$ becomes the old term for $k+1$, and the last term becomes $\\lfloor x + 1\\rfloor = \\lfloor x\\rfloor + 1$, which is the old first term plus one. So the sum grows by exactly $1$. Also $\\lfloor nx + 1\\rfloor = \\lfloor nx\\rfloor + 1$ grows by $1$. The difference is unchanged.\n\nSecond, $g(x) = 0$ for $0 \\le x < 1/n$. Then $0 \\le x + k/n < 1/n + (n-1)/n = 1$ for every $k$, so every term of the sum is $0$; and $0 \\le nx < 1$ gives $\\lfloor nx\\rfloor = 0$.\n\nEvery real $x$ can be written as $x_0 + j/n$ with $0 \\le x_0 < 1/n$ and $j$ an integer (take $j = \\lfloor nx\\rfloor$). Using the first fact $|j|$ times, forwards or backwards, $g(x) = g(x_0) = 0$.\n\nFor $n = 2$ the identity reads $\\lfloor x\\rfloor + \\lfloor x + \\frac12\\rfloor = \\lfloor 2x\\rfloor$. Since $\\lfloor x + \\frac12\\rfloor$ is $x$ rounded to the nearest integer (halves rounded up), this says that rounding $x$ down and rounding $x$ to the nearest integer add up to the floor of $2x$."
+   },
+   {
+    "type": "section",
+    "title": "Floor sums count lattice points",
+    "body": "A sum of floors usually counts something. If $f$ is a positive function, then $\\lfloor f(k)\\rfloor$ is the number of integers $y$ with $1 \\le y \\le f(k)$, so\n$$\\sum_{k=1}^{N}\\lfloor f(k)\\rfloor = \\#\\{(x, y) \\in \\mathbb Z^2 : 1 \\le x \\le N,\\ 1 \\le y \\le f(x)\\},$$\nthe number of lattice points in the region under the graph. Counting the same points in another order, or using a symmetry of the region, often evaluates the sum.\n\nA first instance: $\\sum_{d=1}^{n}\\lfloor n/d\\rfloor$ counts the pairs $(d, m)$ of positive integers with $dm \\le n$. Grouping the pairs by the product $k = dm$ instead, the same number is $\\sum_{k=1}^{n}\\tau(k)$, where $\\tau(k)$ is the number of divisors of $k$ ([[arithmetic-functions]]). For $n = 100$ both sides equal $482$. The standard second instance is the triangle under a line of rational slope."
+   },
+   {
+    "type": "example",
+    "title": "Lattice points under a line",
+    "body": "Let $p, q$ be coprime positive integers. Prove that\n$$\\sum_{k=1}^{q-1}\\left\\lfloor\\frac{kp}{q}\\right\\rfloor = \\frac{(p-1)(q-1)}{2}.$$",
+    "solution": "Since $\\gcd(p, q) = 1$ and $0 < k < q$, the number $q$ does not divide $kp$, so $kp/q$ is never an integer. Pair the term for $k$ with the term for $q - k$:\n$$\\frac{kp}{q} + \\frac{(q-k)p}{q} = p.$$\nIf $u + v$ is an integer and $u$ is not, then $\\{u\\} + \\{v\\} = 1$, so $\\lfloor u\\rfloor + \\lfloor v\\rfloor = u + v - 1$. Therefore $\\lfloor kp/q\\rfloor + \\lfloor (q-k)p/q\\rfloor = p - 1$. Summing over $k = 1, \\dots, q-1$ counts every term twice:\n$$2\\sum_{k=1}^{q-1}\\left\\lfloor\\frac{kp}{q}\\right\\rfloor = (q-1)(p-1).$$\nGeometrically: the open rectangle $0 < x < q$, $0 < y < p$ contains $(p-1)(q-1)$ lattice points. None of them lies on the diagonal from $(0,0)$ to $(q,p)$, which is what coprimality says, and the symmetry $(x, y) \\mapsto (q - x, p - y)$ swaps the two halves. The sum counts the half below the diagonal. For $p = 5$, $q = 8$ the terms are $0, 1, 1, 2, 3, 3, 4$, with sum $14 = \\frac{4 \\cdot 7}{2}$.\n\nEisenstein used a count of this kind, over the quarter rectangle $0 < x < q/2$, $0 < y < p/2$, in his proof of quadratic reciprocity ([[quadratic-residues]])."
+   },
+   {
+    "type": "example",
+    "title": "Squeezing out the integers",
+    "body": "Prove that $\\lfloor\\sqrt n + \\sqrt{n+1}\\rfloor = \\lfloor\\sqrt{4n+2}\\rfloor$ for every positive integer $n$.",
+    "solution": "Let $s = \\sqrt n + \\sqrt{n+1}$. Then $s^2 = 2n + 1 + 2\\sqrt{n^2 + n}$. Since $n^2 < n^2 + n < n^2 + n + \\frac14 = (n + \\frac12)^2$, we have $n < \\sqrt{n^2+n} < n + \\frac12$, and so\n$$4n + 1 < s^2 < 4n + 2.$$\nNow let $m = \\lfloor\\sqrt{4n+2}\\rfloor$, so that $m^2 \\le 4n + 2$. A square is $0$ or $1$ modulo $4$, never $2$, so $m^2 \\ne 4n + 2$; therefore $m^2 \\le 4n + 1 < s^2$ and $m < s$. On the other side, $s < \\sqrt{4n+2} < m + 1$. So $m \\le s < m + 1$, which means $\\lfloor s\\rfloor = m$.\n\nThe pattern is typical: squeeze the quantity between two simple expressions, then use an arithmetic fact to show that no integer can slip in between them."
+   },
+   {
+    "type": "section",
+    "title": "Beatty sequences",
+    "body": "For a real $\\alpha > 0$, the Beatty sequence of $\\alpha$ is $\\lfloor\\alpha\\rfloor, \\lfloor 2\\alpha\\rfloor, \\lfloor 3\\alpha\\rfloor, \\dots$. Write $B_\\alpha = \\{\\lfloor n\\alpha\\rfloor : n \\ge 1\\}$ for its set of values; here the braces denote a set, not a fractional part. Take $\\alpha = \\sqrt2$ and $\\beta = 2 + \\sqrt2$:\n$$B_{\\sqrt2} = \\{1, 2, 4, 5, 7, 8, 9, 11, 12, 14, \\dots\\}, \\qquad B_{2+\\sqrt2} = \\{3, 6, 10, 13, 17, 20, 23, 27, \\dots\\}.$$\nThe two lists fit together perfectly: every positive integer appears in exactly one of them. The reason is that $\\frac1{\\sqrt2} + \\frac1{2+\\sqrt2} = 1$. Heuristically, $B_\\alpha$ contains about a fraction $1/\\alpha$ of all positive integers, so two complementary sequences need densities adding up to $1$. Irrationality is what prevents collisions."
+   },
+   {
+    "type": "theorem",
+    "title": "Beatty's theorem",
+    "body": "Let $\\alpha, \\beta$ be positive irrational numbers with $\\frac1\\alpha + \\frac1\\beta = 1$. Then every positive integer occurs exactly once among the numbers $\\lfloor n\\alpha\\rfloor$ and $\\lfloor n\\beta\\rfloor$ ($n \\ge 1$). In other words $B_\\alpha \\sqcup B_\\beta = \\mathbb N_{>0}$, and neither sequence repeats a value."
+   },
+   {
+    "type": "proof",
+    "body": "From $\\frac1\\alpha + \\frac1\\beta = 1$ with both terms positive, $\\alpha > 1$ and $\\beta > 1$, so all the numbers $\\lfloor n\\alpha\\rfloor$ and $\\lfloor n\\beta\\rfloor$ with $n \\ge 1$ are positive integers.\n\nFix an integer $N \\ge 1$ and count the terms of both sequences that are at most $N - 1$, counting a term once for each index $n$ that produces it. We have $\\lfloor n\\alpha\\rfloor \\le N - 1$ if and only if $n\\alpha < N$, that is, $n < N/\\alpha$. Since $\\alpha$ is irrational, $N/\\alpha$ is not an integer, so the number of such $n \\ge 1$ is $\\lfloor N/\\alpha\\rfloor$. The same holds for $\\beta$. The total count is\n$$\\left\\lfloor\\frac N\\alpha\\right\\rfloor + \\left\\lfloor\\frac N\\beta\\right\\rfloor = N - 1,$$\nbecause $\\frac N\\alpha + \\frac N\\beta = N$ is an integer while neither summand is (the fact used in the lattice-point example).\n\nSo for every $N \\ge 1$, exactly $N - 1$ terms, counted with multiplicity, lie in $\\{1, \\dots, N-1\\}$. Comparing the counts for $N$ and $N + 1$, exactly $N - (N - 1) = 1$ term equals $N$. Hence every positive integer is hit exactly once by the two sequences together."
+   },
+   {
+    "type": "section",
+    "title": "Fractional parts of multiples",
+    "body": "Now look at the fractional parts $\\{\\alpha\\}, \\{2\\alpha\\}, \\{3\\alpha\\}, \\dots$ as points of the interval $[0, 1)$. If $\\alpha = a/b$ is rational in lowest terms, they take only the $b$ values $0, \\frac1b, \\dots, \\frac{b-1}b$ and repeat with period $b$. If $\\alpha$ is irrational, no two of them coincide, since $\\{m\\alpha\\} = \\{n\\alpha\\}$ with $m \\ne n$ would make $(m - n)\\alpha$ an integer.\n\nMore is true: the points come arbitrarily close to every number in $[0,1)$, and in the long run they visit every subinterval in proportion to its length."
+   },
+   {
+    "type": "theorem",
+    "title": "Distribution of the fractional parts of nα",
+    "body": "Let $\\alpha$ be irrational.\n\n1. (Density) Every subinterval of $[0, 1)$ of positive length contains $\\{n\\alpha\\}$ for some $n \\ge 1$.\n2. (Weyl's equidistribution theorem) For all $0 \\le a < b \\le 1$,\n$$\\lim_{N\\to\\infty}\\frac{\\#\\{1 \\le n \\le N : a \\le \\{n\\alpha\\} < b\\}}{N} = b - a.$$"
+   },
+   {
+    "type": "proof",
+    "body": "We prove part 1. The proof of part 2 is omitted here; the standard one goes through Weyl's criterion and the exponential sums $\\sum_{n \\le N} e^{2\\pi i h n\\alpha}$ ([[exponential-sums]]).\n\nLet $M$ be a positive integer. The $M + 1$ numbers $\\{0\\cdot\\alpha\\}, \\{1\\cdot\\alpha\\}, \\dots, \\{M\\alpha\\}$ lie in the $M$ intervals $[\\frac jM, \\frac{j+1}M)$, $j = 0, \\dots, M-1$. By the [[pigeonhole]] principle two of them, say $\\{i\\alpha\\}$ and $\\{j\\alpha\\}$ with $i < j$, lie in the same interval, so they differ by less than $\\frac1M$. Let $q = j - i$. Since $q\\alpha = (\\lfloor j\\alpha\\rfloor - \\lfloor i\\alpha\\rfloor) + (\\{j\\alpha\\} - \\{i\\alpha\\})$, the number $q\\alpha$ is within distance $\\delta < \\frac1M$ of an integer, and $\\delta > 0$ because $\\alpha$ is irrational. So either $\\{q\\alpha\\} = \\delta$ or $\\{q\\alpha\\} = 1 - \\delta$.\n\nIn the first case $\\{kq\\alpha\\} = k\\delta$ for $k = 1, 2, \\dots, \\lfloor 1/\\delta\\rfloor$. These points march across $[0,1)$ in steps of length $\\delta < \\frac1M$, so every interval of length $\\frac1M$ inside $[0, 1)$ contains one of them. In the second case $\\{kq\\alpha\\} = 1 - k\\delta$ and the points march the other way, with the same conclusion. Since $M$ was arbitrary and every interval of positive length contains an interval of length $\\frac1M$ for large $M$, part 1 follows.\n\nNumerically the equidistribution is striking: among $\\{n\\sqrt2\\}$ for $n = 1, \\dots, 1000$, exactly $100$ lie in $[0, 0.1)$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $\\lfloor x + y\\rfloor$ is not $\\lfloor x\\rfloor + \\lfloor y\\rfloor$ in general (take $x = y = 0.5$), and $\\lfloor xy\\rfloor$ is not $\\lfloor x\\rfloor\\lfloor y\\rfloor$ (take $x = y = 1.5$).\n- For negative numbers the floor moves away from zero: $\\lfloor -2.3\\rfloor = -3$, not $-2$, and $\\{-2.3\\} = 0.7$. So $\\lfloor -x\\rfloor \\ne -\\lfloor x\\rfloor$ unless $x$ is an integer.\n- Beatty's theorem needs irrationality. With $\\alpha = \\frac32$ and $\\beta = 3$ we still have $\\frac1\\alpha + \\frac1\\beta = 1$, but $3 = \\lfloor 2\\cdot\\frac32\\rfloor = \\lfloor 1\\cdot 3\\rfloor$ appears in both sequences.\n- Legendre's formula is for primes. For trailing zeros, compute it for $2$ and for $5$ and take the smaller value.\n- The braces $\\{\\cdot\\}$ mean both \"fractional part\" and \"set\". Say which one you mean."
+   },
+   {
+    "type": "connection",
+    "body": "Legendre's formula is the basis of [[p-adic-valuation]] computations and of divisibility properties of binomial coefficients ([[binomial-factorial]], [[lucas]]). Lattice-point counts with floors appear in Eisenstein's proof of [[quadratic-residues|quadratic reciprocity]] and in estimates of divisor sums ([[arithmetic-functions]]). The fractional parts $\\{n\\alpha\\}$ lead to [[diophantine-approx]] and [[continued-fractions]] (which find the $q$ with $\\{q\\alpha\\}$ closest to $0$), to [[discrepancy]] theory (how far the counts can stray from $(b - a)N$), and through Weyl's criterion to [[exponential-sums]]. Counting with floors and inclusion-exclusion is a basic technique of [[counting]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\lfloor x\\rfloor + \\lfloor -x\\rfloor$ is always $0$ or $-1$, and say exactly when each value occurs.\n2. How many integers in $\\{1, 2, \\dots, 1000\\}$ are divisible by $3$ or by $5$ but not by $7$?\n3. Find the largest $k$ such that $3^k$ divides $200!$.\n4. Let $\\varphi = \\frac{1+\\sqrt5}2$. Show that $\\frac1\\varphi + \\frac1{\\varphi^2} = 1$, and list the first ten terms of the sequences $\\lfloor n\\varphi\\rfloor$ and $\\lfloor n\\varphi^2\\rfloor$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Kuipers & Niederreiter, Uniform Distribution of Sequences"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Hermite's identity for random rational x and n up to 15",
+    "python": "import random, math\nfrom fractions import Fraction as Fr\nrandom.seed(1)\nfor _ in range(4000):\n    x=Fr(random.randint(-10**6,10**6),random.randint(1,1000))\n    n=random.randint(1,15)\n    assert sum(math.floor(x+Fr(k,n)) for k in range(n))==math.floor(n*x)"
+   },
+   {
+    "claim": "rules: floor(floor(x)/n)=floor(x/n); floor(x)+floor(y)<=floor(x+y)<=...+1 with +1 iff {x}+{y}>=1; floor(-x); floor(-2.3)=-3, {-2.3}=0.7; floor(1000/7)=142",
+    "python": "import random, math\nfrom fractions import Fraction as Fr\nf=math.floor\nrandom.seed(2)\nfor _ in range(4000):\n    x=Fr(random.randint(-10**5,10**5),random.randint(1,97)); y=Fr(random.randint(-10**5,10**5),random.randint(1,97))\n    n=random.randint(1,20)\n    assert f(Fr(f(x),n))==f(x/n)\n    assert f(x)+f(y)<=f(x+y)<=f(x)+f(y)+1\n    assert (f(x+y)==f(x)+f(y)+1)==((x-f(x))+(y-f(y))>=1)\n    assert f(-x)==(-f(x) if x.denominator==1 else -f(x)-1)\nz=Fr(-23,10)\nassert f(z)==-3 and z-f(z)==Fr(7,10)\nassert 1000//7==142\nassert f(Fr(1,2)+Fr(1,2))!=f(Fr(1,2))+f(Fr(1,2)) and f(Fr(3,2)**2)!=f(Fr(3,2))**2"
+   },
+   {
+    "claim": "Legendre: v_5(100!)=20+4=24, v_2(100!)=97, 100! ends in 24 zeros",
+    "python": "import math\ndef leg(n,p):\n    s=0; q=n\n    while q:\n        q//=p; s+=q\n    return s\nF=math.factorial(100)\ndef v(N,p):\n    e=0\n    while N%p==0:\n        N//=p; e+=1\n    return e\nassert leg(100,5)==24==v(F,5) and leg(100,2)==97==v(F,2)\ns=str(F); assert len(s)-len(s.rstrip('0'))==24\nassert [100//5,100//25]==[20,4] and [100//2**k for k in range(1,7)]==[50,25,12,6,3,1]\nassert 100//5**3==0"
+   },
+   {
+    "claim": "sum_{k=1}^{q-1} floor(kp/q)=(p-1)(q-1)/2 for coprime p,q; terms for p=5,q=8 are 0,1,1,2,3,3,4 with sum 14; Eisenstein's quarter-rectangle count",
+    "python": "from math import gcd\nfor p in range(1,45):\n    for q in range(1,45):\n        if gcd(p,q)==1:\n            assert 2*sum(k*p//q for k in range(1,q))==(p-1)*(q-1)\nassert [k*5//8 for k in range(1,8)]==[0,1,1,2,3,3,4] and sum(k*5//8 for k in range(1,8))==14==4*7//2\nfor p in range(3,45,2):\n    for q in range(3,45,2):\n        if gcd(p,q)==1:\n            assert 4*(sum(k*p//q for k in range(1,(q-1)//2+1))+sum(j*q//p for j in range(1,(p-1)//2+1)))==(p-1)*(q-1)"
+   },
+   {
+    "claim": "sum_{d<=n} floor(n/d) = sum_{k<=n} tau(k), equal to 482 for n=100",
+    "python": "def tau(k):\n    return sum(1 for d in range(1,k+1) if k%d==0)\nT=[0]\nfor k in range(1,201): T.append(T[-1]+tau(k))\nfor n in range(1,201):\n    assert sum(n//d for d in range(1,n+1))==T[n]\nassert sum(100//d for d in range(1,101))==482==T[100]"
+   },
+   {
+    "claim": "floor(sqrt n + sqrt(n+1)) = floor(sqrt(4n+2)) and 4n+1 < s^2 < 4n+2 for n up to 3000; squares are 0 or 1 mod 4",
+    "python": "from mpmath import mp,sqrt,floor\nfrom math import isqrt\nmp.dps=40\nfor n in range(1,3001):\n    s=sqrt(n)+sqrt(n+1)\n    assert int(floor(s))==isqrt(4*n+2)\n    assert 4*n+1<s*s<4*n+2\nassert all((m*m)%4 in (0,1) for m in range(2000))"
+   },
+   {
+    "claim": "Beatty for sqrt2 and 2+sqrt2: listed first terms, 1/sqrt2+1/(2+sqrt2)=1, exact partition of 1..N; the rational pair 3/2, 3 collides at 3",
+    "python": "from math import isqrt\nimport sympy as sp\nN=30000\nA=[isqrt(2*n*n) for n in range(1,N)]\nB=[2*n+isqrt(2*n*n) for n in range(1,N)]\nassert A[:10]==[1,2,4,5,7,8,9,11,12,14]\nassert B[:8]==[3,6,10,13,17,20,23,27]\nlim=min(A[-1],B[-1])\nvals=sorted([x for x in A+B if x<=lim])\nassert vals==list(range(1,lim+1))\nassert sp.simplify(1/sp.sqrt(2)+1/(2+sp.sqrt(2))-1)==0\nfrom fractions import Fraction as Fr\nimport math\nassert Fr(2,3)+Fr(1,3)==1 and math.floor(2*Fr(3,2))==3==math.floor(1*Fr(3))"
+   },
+   {
+    "claim": "exactly 100 of {n sqrt2}, n=1..1000, lie in [0,0.1)",
+    "python": "from mpmath import mp,mpf,sqrt,floor\nmp.dps=40\ns=sqrt(2)\nc=sum(1 for n in range(1,1001) if n*s-floor(n*s)<mpf(1)/10)\nassert c==100"
+   },
+   {
+    "claim": "1/phi + 1/phi^2 = 1 for the golden ratio",
+    "python": "import sympy as sp\nphi=(1+sp.sqrt(5))/2\nassert sp.simplify(1/phi+1/phi**2-1)==0"
+   }
+  ]
+ },
+ {
+  "id": "linear-algebra",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Here is a typical extremal question. A town has $n$ residents who form clubs. Every club has an odd number of members, and any two clubs share an even number of members. How many clubs can there be? Counting arguments struggle with conditions like this. Linear algebra settles it in a few lines: at most $n$.\n\nThe method always has the same shape. Attach to each member of the family a vector, or a polynomial, in a vector space whose dimension you know. Use the combinatorial hypothesis to prove that these vectors are linearly independent. Then the family is no larger than the dimension. This lesson develops the method through three results: the Oddtown theorem, Fisher's inequality and the Frankl–Wilson theorem."
+   },
+   {
+    "type": "section",
+    "title": "The dimension argument",
+    "body": "The one fact from linear algebra we need is the key statement of [[basis-dimension]]: in a vector space of dimension $n$ over a field $\\mathbb F$, a linearly independent list has at most $n$ vectors,\n$$v_1,\\dots,v_m \\in \\mathbb F^n \\text{ independent} \\Rightarrow m \\le n.$$\n\nTo use it on a family of subsets $A_1, \\dots, A_m$ of $[n] = \\{1, \\dots, n\\}$, represent each set by its characteristic vector $v_i \\in \\mathbb F^n$, whose $k$-th coordinate is $1$ if $k \\in A_i$ and $0$ otherwise. The point of this choice is that the dot product counts intersections:\n$$v_i \\cdot v_j = |A_i \\cap A_j|,$$\ncomputed in the integers or the reals, or reduced modulo $2$ if $\\mathbb F = \\mathbb F_2$ is the field with two elements ([[finite-fields]]).\n\nThe standard way to prove independence is through the Gram matrix $G = (v_i \\cdot v_j)_{i,j}$. Suppose $\\sum_i c_i v_i = 0$. Taking the dot product with $v_j$ gives $\\sum_i c_i\\,(v_i\\cdot v_j) = 0$ for each $j$, that is, $Gc = 0$. So if $G$ is invertible ([[determinants]]), then $c = 0$ and the vectors are independent. Only bilinearity of the dot product is used, so this works over any field, including $\\mathbb F_2$, where the dot product is not an inner product in the geometric sense: a non-zero vector can have $v \\cdot v = 0$."
+   },
+   {
+    "type": "theorem",
+    "title": "Oddtown theorem",
+    "body": "Let $A_1, \\dots, A_m \\subseteq [n]$ be such that $|A_i|$ is odd for every $i$ and $|A_i \\cap A_j|$ is even for all $i \\ne j$. Then $m \\le n$."
+   },
+   {
+    "type": "proof",
+    "body": "Work over $\\mathbb F_2$. The Gram matrix of the characteristic vectors has diagonal entries $|A_i| \\equiv 1$ and off-diagonal entries $|A_i \\cap A_j| \\equiv 0 \\pmod 2$, so it is the identity matrix. It is invertible, so $v_1, \\dots, v_m$ are independent in $\\mathbb F_2^n$, and $m \\le n$. (The sets are automatically distinct, since $A_i = A_j$ would give an odd intersection.) The $n$ singletons show that the bound is attained."
+   },
+   {
+    "type": "section",
+    "title": "Why the field and the hypothesis matter",
+    "body": "Swap the parity of the sizes. In Eventown every club has an even number of members and every two clubs share an even number. Now the Gram matrix over $\\mathbb F_2$ is zero and the argument collapses, rightly so. Pair up the residents as $\\{1,2\\}, \\{3,4\\}, \\dots$ and let the clubs be all unions of pairs. Sizes and intersections are even, and there are $2^{\\lfloor n/2\\rfloor}$ clubs, exponentially many.\n\nLinear algebra still gives the right answer for Eventown, by a different argument. All characteristic vectors satisfy $v_i\\cdot v_j = 0$, including $i = j$, so their span $W$ satisfies $W \\subseteq W^\\perp$, where $W^\\perp = \\{x : x\\cdot w = 0 \\text{ for all } w \\in W\\}$. If $W$ has dimension $d$, then $W^\\perp$ is the solution space of $d$ independent linear equations (one for each vector of a basis of $W$), so it has dimension $n - d$. From $W \\subseteq W^\\perp$ we get $d \\le n - d$, so $d \\le n/2$. The family lies inside $W$, which has $2^d$ elements, so $m \\le 2^{\\lfloor n/2\\rfloor}$, matching the construction.\n\nThe moral: the hypothesis must make a suitable matrix invertible, and the field must be chosen to fit the hypothesis. Parity conditions call for $\\mathbb F_2$. Exact equalities usually call for $\\mathbb R$, where positive definiteness is available, as in the next theorem."
+   },
+   {
+    "type": "theorem",
+    "title": "Fisher's inequality",
+    "body": "Let $\\lambda \\ge 1$ and let $A_1, \\dots, A_m$ be distinct subsets of $[n]$ with $|A_i \\cap A_j| = \\lambda$ for all $i \\ne j$. Then $m \\le n$."
+   },
+   {
+    "type": "proof",
+    "body": "Work over $\\mathbb R$. Suppose first that $|A_i| > \\lambda$ for every $i$, and put $d_i = |A_i| - \\lambda > 0$. The Gram matrix is $G = D + \\lambda J$, where $D$ is the diagonal matrix with entries $d_i$ and $J$ is the all-ones matrix. For any real vector $x \\ne 0$,\n$$x^{T} G x = \\sum_i d_i x_i^2 + \\lambda\\Big(\\sum_i x_i\\Big)^2 > 0,$$\nso $Gx \\ne 0$. Hence $G$ is invertible, the $v_i$ are independent in $\\mathbb R^n$, and $m \\le n$.\n\nNow suppose some set, say $A_1$, has exactly $\\lambda$ elements. Then $|A_1 \\cap A_j| = \\lambda = |A_1|$ forces $A_1 \\subseteq A_j$ for all $j$. For distinct $i, j \\ge 2$ the intersection $A_i \\cap A_j$ contains $A_1$ and has $\\lambda$ elements, so it equals $A_1$. Thus the sets $A_j \\setminus A_1$ for $j \\ge 2$ are pairwise disjoint, and they are non-empty because $A_j \\ne A_1$. They live in the $n - \\lambda$ elements outside $A_1$, so $m - 1 \\le n - \\lambda \\le n - 1$."
+   },
+   {
+    "type": "example",
+    "title": "Small towns",
+    "body": "For $n = 4$, find the largest Oddtown family and the largest Eventown family, and compare with the bounds above.",
+    "solution": "Oddtown: the bound is $4$, and the four singletons attain it. Another extremal family is $\\{1,2,3\\}, \\{1,2,4\\}, \\{1,3,4\\}, \\{2,3,4\\}$: each set has $3$ elements and any two share $2$.\n\nEventown: the bound is $2^{\\lfloor 4/2\\rfloor} = 4$, attained by $\\emptyset, \\{1,2\\}, \\{3,4\\}, \\{1,2,3,4\\}$. This family is closed under symmetric difference, so it is exactly a $2$-dimensional subspace of $\\mathbb F_2^4$, as the proof predicts for a family of the maximal size $2^d$. A computer search over all families of subsets of $[4]$ confirms that $4$ is the maximum in both cases."
+   },
+   {
+    "type": "example",
+    "title": "The Fano plane",
+    "body": "The Fano plane has points $1, \\dots, 7$ and seven lines $\\{1,2,3\\}$, $\\{1,4,5\\}$, $\\{1,6,7\\}$, $\\{2,4,6\\}$, $\\{2,5,7\\}$, $\\{3,4,7\\}$, $\\{3,5,6\\}$. Check that it attains equality in Fisher's inequality, and compute the determinant of its Gram matrix.",
+    "solution": "Each line has $3$ points and any two lines meet in exactly one point; for instance $\\{1,4,5\\} \\cap \\{2,5,7\\} = \\{5\\}$, and all $21$ pairs can be checked the same way. So $\\lambda = 1$ and $m = 7 = n$: Fisher's inequality is sharp.\n\nThe Gram matrix is $G = 2I + J$, with diagonal entries $3$ and all other entries $1$. The all-ones vector is an eigenvector with eigenvalue $2 + 7 = 9$, and every vector with coordinate sum $0$ is an eigenvector with eigenvalue $2$; these form a $6$-dimensional space. Hence\n$$\\det G = 2^6 \\cdot 9 = 576 \\ne 0,$$\nconfirming that the seven characteristic vectors are independent in $\\mathbb R^7$.\n\nFisher proved his inequality in 1940 for block designs, where it says that a design has at least as many blocks as points. The version proved above, with no condition on the sizes of the sets, is often called the non-uniform Fisher inequality."
+   },
+   {
+    "type": "example",
+    "title": "Equal unions",
+    "body": "Let $A_1, \\dots, A_{n+1}$ be non-empty subsets of $[n]$. Prove that there are disjoint non-empty sets of indices $I, J \\subseteq \\{1, \\dots, n+1\\}$ with\n$$\\bigcup_{i \\in I} A_i = \\bigcup_{j \\in J} A_j.$$",
+    "solution": "The $n+1$ characteristic vectors $v_1, \\dots, v_{n+1}$ lie in $\\mathbb R^n$, so they are linearly dependent: $\\sum_i c_i v_i = 0$ with real $c_i$ not all zero. Let $I = \\{i : c_i > 0\\}$ and $J = \\{j : c_j < 0\\}$; these are disjoint. Moving the negative terms to the other side,\n$$\\sum_{i\\in I} c_i v_i = \\sum_{j \\in J} (-c_j)\\, v_j.$$\nAll coefficients on both sides are positive and all vectors have non-negative entries. If $I$ were empty, the left side would be $0$; but a positive combination of non-zero $0/1$ vectors is non-zero unless it is empty, so $J$ would be empty too, contradicting that some $c_i \\ne 0$. By the same argument $J$ is non-empty.\n\nNow compare supports. Coordinate $k$ of the left side is positive exactly when $k \\in A_i$ for some $i \\in I$, because the coefficients are positive and the entries non-negative; similarly for the right side and $J$. Equal vectors have equal supports, so $\\bigcup_{i\\in I} A_i = \\bigcup_{j\\in J} A_j$.\n\nThis shows a second use of linear algebra: not bounding a family, but extracting structure from the dependence that a dimension count forces."
+   },
+   {
+    "type": "section",
+    "title": "Polynomials as vectors",
+    "body": "Vectors need not be lists of numbers. Functions form vector spaces too, and evaluating them at points is a flexible way to prove independence. Suppose functions $f_1, \\dots, f_m$ and points $u_1, \\dots, u_m$ satisfy $f_i(u_i) \\ne 0$ for all $i$ and $f_i(u_j) = 0$ whenever $j < i$. Then the $f_i$ are linearly independent. Indeed, if $\\sum_i c_i f_i = 0$, evaluating at $u_1$ kills every term except $c_1 f_1(u_1)$, so $c_1 = 0$; then evaluating at $u_2$ gives $c_2 = 0$, and so on.\n\nFor subsets of $[n]$ the relevant points are the vertices of the cube $\\{0,1\\}^n$, the characteristic vectors. On these points $x_k^2 = x_k$, so any polynomial can be replaced by a multilinear one, in which no variable appears with exponent above $1$, taking the same values on the cube and of no larger degree. The multilinear polynomials of degree at most $s$ in $n$ variables are spanned by the monomials $\\prod_{k \\in S} x_k$ with $|S| \\le s$, so they form a space of dimension $\\sum_{i=0}^{s}\\binom ni$."
+   },
+   {
+    "type": "theorem",
+    "title": "Frankl–Wilson theorem",
+    "body": "Let $L$ be a set of $s$ non-negative integers, and let $\\mathcal F$ be a family of subsets of $[n]$ such that $|A \\cap B| \\in L$ for all distinct $A, B \\in \\mathcal F$. Then\n$$|\\mathcal F| \\le \\sum_{i=0}^{s}\\binom ni.$$"
+   },
+   {
+    "type": "proof",
+    "body": "List the members of $\\mathcal F$ as $A_1, \\dots, A_m$ with $|A_1| \\le |A_2| \\le \\dots \\le |A_m|$, and let $v_1, \\dots, v_m \\in \\{0,1\\}^n$ be their characteristic vectors. For each $i$ define a polynomial in $x = (x_1, \\dots, x_n)$ by\n$$f_i(x) = \\prod_{\\ell \\in L,\\ \\ell < |A_i|} (v_i\\cdot x - \\ell).$$\nIt is a product of at most $s$ linear factors, so it has degree at most $s$.\n\nAt its own point, $f_i(v_i) = \\prod (|A_i| - \\ell)$ is a product of positive numbers, so $f_i(v_i) \\ne 0$. For $j < i$ we have $|A_j| \\le |A_i|$ and $A_j \\ne A_i$, so $A_i \\not\\subseteq A_j$ and therefore $\\ell_0 = |A_i \\cap A_j| < |A_i|$. Since $\\ell_0 \\in L$, the factor $v_i\\cdot x - \\ell_0$ occurs in $f_i$, and it vanishes at $x = v_j$. So $f_i(v_j) = 0$ for all $j < i$.\n\nBy the triangular criterion above, $f_1, \\dots, f_m$ are linearly independent as functions on $\\{0,1\\}^n$. Replace each $f_i$ by its multilinear reduction $\\tilde f_i$. These agree with the $f_i$ on the cube, so they are still independent, and they lie in the space of multilinear polynomials of degree at most $s$, which has dimension $\\sum_{i=0}^{s}\\binom ni$. Hence $m \\le \\sum_{i=0}^s \\binom ni$.\n\nThe bound is sharp. For $L = \\{0, 1, \\dots, s-1\\}$, the family of all subsets of $[n]$ with at most $s$ elements has exactly $\\sum_{i=0}^s\\binom ni$ members, and two distinct such sets meet in at most $s - 1$ elements. When all members of $\\mathcal F$ have the same size, the bound improves to $\\binom ns$; this uniform version is due to Ray-Chaudhuri and Wilson (1975). Frankl and Wilson (1981) also proved a modular version, in which the sizes and intersections are only controlled modulo a prime."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Choosing the wrong field. The parity hypotheses of Oddtown make the Gram matrix the identity only over $\\mathbb F_2$; over $\\mathbb R$ there is no such simplification.\n- Over $\\mathbb F_2$ a non-zero vector can be orthogonal to itself, so \"pairwise orthogonal non-zero vectors are independent\" is false there, as Eventown shows. The argument needs non-zero diagonal entries.\n- Forgetting the multilinear reduction. All polynomials of degree at most $s$ in $n$ variables form a space of dimension $\\binom{n+s}{s}$, which gives a weaker bound.\n- Dropping the ordering by size in the Frankl–Wilson proof. Without it, $f_i(v_j)$ need not vanish when $A_i \\subset A_j$.\n- Applying Fisher's inequality with $\\lambda = 0$. Pairwise disjoint sets can number $n + 1$: the $n$ singletons and the empty set."
+   },
+   {
+    "type": "connection",
+    "body": "These arguments are the core of the theory of [[set-systems]] and [[hypergraphs]] with restricted intersections. The modular Frankl–Wilson theorem gives explicit graphs for [[ramsey]] theory, where random constructions from the [[probabilistic-method]] are otherwise the main source; it also shows that the chromatic number of $\\mathbb R^n$ grows exponentially, and Kahn and Kalai used it in 1993 to disprove Borsuk's conjecture ([[discrete-geometry]]). Eigenvalues of matrices attached to graphs ([[eigen]], [[spectral-theorem]]) are the next layer of the same idea and give bounds in [[extremal-graphs]]. The polynomial form of the dimension argument reached additive combinatorics in 2016, when Croot, Lev and Pach, and then Ellenberg and Gijswijt, used it to show that subsets of $\\mathbb F_3^n$ without three-term arithmetic progressions have at most $c^n$ elements for some constant $c < 3$ ([[additive-combinatorics]], [[arithmetic-progressions]])."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Reverse Oddtown: suppose every $|A_i|$ is even and every $|A_i \\cap A_j|$ with $i \\ne j$ is odd. Prove that $m \\le n + 1$. (Compute $(J - I)^2$ over $\\mathbb F_2$.)\n2. Let $p$ be a prime. Suppose $p \\nmid |A_i|$ for every $i$ and $p \\mid |A_i \\cap A_j|$ for all $i \\ne j$. Prove that $m \\le n$.\n3. Prove that the multilinear polynomials of degree at most $s$ in $n$ variables form a space of dimension $\\sum_{i=0}^s\\binom ni$, and that a polynomial and its multilinear reduction agree on $\\{0,1\\}^n$.\n4. Bound the size of a family of subsets of $[n]$ in which every two distinct members share exactly $0$ or $2$ elements, and compare the bound with $n^2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Jukna, Extremal Combinatorics"
+   },
+   {
+    "ref": "Babai & Frankl, Linear Algebra Methods in Combinatorics"
+   },
+   {
+    "ref": "Matoušek, Thirty-three Miniatures: Mathematical and Algorithmic Applications of Linear Algebra"
+   },
+   {
+    "ref": "Artin, Algebra"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "n=4: largest Oddtown family has 4 sets, largest Eventown family has 4 sets; the listed families have the stated properties",
+    "python": "from itertools import combinations\nn=4\npc=lambda m: bin(m).count('1')\ndef best(sizepar, interpar):\n    cand=[m for m in range(1<<n) if pc(m)%2==sizepar]\n    b=0\n    for mask in range(1<<len(cand)):\n        fam=[cand[i] for i in range(len(cand)) if mask>>i&1]\n        if all(pc(x&y)%2==interpar for x,y in combinations(fam,2)):\n            b=max(b,len(fam))\n    return b\nassert best(1,0)==4\nassert best(0,0)==4==2**(n//2)\nodd2=[0b0111,0b1011,0b1101,0b1110]\nassert all(pc(x)==3 for x in odd2) and all(pc(x&y)==2 for x,y in combinations(odd2,2))\nev=[0,0b0011,0b1100,0b1111]\nassert all(pc(x)%2==0 for x in ev) and all(pc(x&y)%2==0 for x,y in combinations(ev,2))\nassert all((x^y) in ev for x in ev for y in ev)\nfam6=[a|b|c for a in (0,3) for b in (0,12) for c in (0,48)]\nassert len(set(fam6))==8 and all(pc(x)%2==0 for x in fam6) and all(pc(x&y)%2==0 for x,y in combinations(fam6,2))"
+   },
+   {
+    "claim": "Fano plane: 7 lines of size 3, pairwise intersections 1, Gram matrix 2I+J with eigenvalues 9 (once) and 2 (six times), determinant 576",
+    "python": "import sympy as sp\nfrom itertools import combinations\nL=[{1,2,3},{1,4,5},{1,6,7},{2,4,6},{2,5,7},{3,4,7},{3,5,6}]\nassert all(len(a)==3 for a in L) and all(len(a&b)==1 for a,b in combinations(L,2))\nassert len(list(combinations(L,2)))==21 and {1,4,5}&{2,5,7}=={5}\nV=sp.Matrix([[1 if k in A else 0 for k in range(1,8)] for A in L])\nG=V*V.T\nassert G==2*sp.eye(7)+sp.ones(7,7)\nassert G.det()==576==2**6*9\nassert V.rank()==7\nassert G.eigenvals()=={9:1,2:6}"
+   },
+   {
+    "claim": "n=4 brute force: families with pairwise intersections in {0,1} have at most 11 = 1+4+6 members (attained); exact-lambda families for lambda=1,2 have at most 4 = n; lambda=0 allows n+1=5",
+    "python": "n=4\npc=lambda m: bin(m).count('1')\nsubs=list(range(1<<n))\ndef maxfam(ok):\n    best=[0]\n    def ext(fam,start):\n        if len(fam)>best[0]: best[0]=len(fam)\n        for c in range(start,len(subs)):\n            if all(ok(pc(subs[c]&f)) for f in fam):\n                ext(fam+[subs[c]],c+1)\n    ext([],0)\n    return best[0]\nassert maxfam(lambda k: k in (0,1))==11==1+4+6\nassert maxfam(lambda k: k==1)==4\nassert maxfam(lambda k: k==2)==4\nassert maxfam(lambda k: k==0)==5"
+   },
+   {
+    "claim": "all subsets of size <= s of [6] (s=2): 22 sets, pairwise intersections <= s-1; multilinear monomial count equals sum of binomials and is at most binom(n+s,s)",
+    "python": "from itertools import combinations\nfrom math import comb\nn,s=6,2\nfam=[frozenset(c) for k in range(s+1) for c in combinations(range(n),k)]\nassert len(fam)==sum(comb(n,i) for i in range(s+1))==22\nassert all(len(a&b)<=s-1 for a,b in combinations(fam,2))\nfor t in range(n+1):\n    cnt=sum(1 for S in range(1<<n) if bin(S).count('1')<=t)\n    assert cnt==sum(comb(n,i) for i in range(t+1))<=comb(n+t,t)"
+   },
+   {
+    "claim": "equal-unions lemma: for n=3, every 4-tuple of non-empty subsets of [3] has disjoint non-empty index sets I, J with equal unions",
+    "python": "from itertools import product\nn=3\nidx=range(n+1)\ndef ok(fam):\n    for I in range(1,1<<(n+1)):\n        for J in range(1,1<<(n+1)):\n            if I&J: continue\n            u=0; v=0\n            for i in idx:\n                if I>>i&1: u|=fam[i]\n                if J>>i&1: v|=fam[i]\n            if u==v: return True\n    return False\nassert all(ok(f) for f in product(range(1,1<<n),repeat=n+1))"
+   },
+   {
+    "claim": "reverse Oddtown: (J-I)^2 = mJ+I mod 2, J-I invertible mod 2 iff m even; brute force for n=4,5 gives at most n+1 sets",
+    "python": "import sympy as sp\nfor m in range(1,12):\n    J=sp.ones(m,m); I=sp.eye(m)\n    assert ((J-I)**2).applyfunc(lambda x: x%2)==(m*J+I).applyfunc(lambda x: x%2)\n    assert ((J-I).det()%2==1)==(m%2==0)\npc=lambda x: bin(x).count('1')\nfor n in (4,5):\n    cand=[x for x in range(1<<n) if pc(x)%2==0]\n    best=[0]\n    def ext(fam,start):\n        best[0]=max(best[0],len(fam))\n        for c in range(start,len(cand)):\n            if all(pc(cand[c]&f)%2==1 for f in fam):\n                ext(fam+[cand[c]],c+1)\n    ext([],0)\n    assert best[0]<=n+1"
+   }
+  ]
+ },
+ {
+  "id": "euclid-basics",
+  "minutes": 19,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Almost every olympiad geometry solution, however clever, is assembled from a small stock of facts: the angles of a triangle add up to $180^\\circ$, parallel lines create equal angles, similar triangles have proportional sides, and the laws of sines and cosines convert between angles and lengths. This lesson collects that stock with proofs, so that you know not only the facts but also exactly when they apply.\n\nNotation used throughout: in triangle $ABC$ the side lengths are $a = BC$, $b = CA$, $c = AB$; the angles at $A, B, C$ are also called $A, B, C$; $R$ is the radius of the circumcircle (the circle through $A$, $B$, $C$); and $[ABC]$ denotes the area."
+   },
+   {
+    "type": "section",
+    "title": "Angles and parallel lines",
+    "body": "When two lines cross, opposite (vertical) angles are equal. When a line crosses two parallel lines, it makes equal angles with them in matching positions: corresponding angles are equal and alternate angles are equal. Conversely, equal alternate angles force the two lines to be parallel. The statement that parallel lines produce equal alternate angles is where Euclid's parallel postulate is used.\n\nThe angle sum of a triangle follows at once. Draw the line through $A$ parallel to $BC$. The two angles it makes with $AB$ and $AC$ are alternate to the angles $B$ and $C$, and together with the angle $A$ they fill a straight angle. So\n$$A + B + C = 180^\\circ.$$\nTwo consequences are used constantly. The exterior angle at a vertex equals the sum of the two interior angles at the other vertices, since both equal $180^\\circ$ minus the interior angle at that vertex. And a convex $n$-gon has angle sum $(n-2)\\cdot 180^\\circ$, as one sees by cutting it into $n - 2$ triangles from one vertex.\n\nAngle chasing means: name a few unknown angles, express every other angle in terms of them using these rules, and read off the relation you want. The other basic source of equal angles is the isosceles triangle: if $AB = AC$ then $B = C$, and conversely."
+   },
+   {
+    "type": "example",
+    "title": "An angle chase",
+    "body": "The bisectors of angles $B$ and $C$ of triangle $ABC$ meet at $I$. Express $\\angle BIC$ in terms of $A$.",
+    "solution": "In triangle $IBC$ the angles at $B$ and $C$ are $B/2$ and $C/2$. So\n$$\\angle BIC = 180^\\circ - \\frac{B + C}{2} = 180^\\circ - \\frac{180^\\circ - A}{2} = 90^\\circ + \\frac A2.$$\nFor example, if $A = 60^\\circ$ then $\\angle BIC = 120^\\circ$, whatever $B$ and $C$ are. The point $I$ is the incentre, and fixed angles like this one are a common first step in harder problems."
+   },
+   {
+    "type": "section",
+    "title": "Congruence and similarity",
+    "body": "Two triangles are congruent if one can be moved onto the other by a rigid motion, so that all corresponding sides and angles agree. Three pieces of data suffice, in the right combinations:\n\n- SSS: three pairs of equal sides.\n- SAS: two pairs of equal sides and equal angles between them.\n- ASA or AAS: one pair of equal sides and two pairs of equal angles (by the angle sum, the third angles then agree too).\n- RHS: right triangles with equal hypotenuses and one other pair of equal sides.\n\nTwo sides and an angle that is not between them (SSA) do not determine a triangle; see the pitfalls.\n\nTwo triangles are similar if their angles agree. Then their sides are proportional with a common ratio $k$, and their areas are in ratio $k^2$. The criteria are AA (two pairs of equal angles), SAS-similarity (two pairs of sides in the same ratio with equal angles between them) and SSS-similarity (all three pairs of sides in the same ratio). When writing $\\triangle ABC \\sim \\triangle DEF$, list the vertices in corresponding order; then $AB/DE = BC/EF = CA/FD$ can be read off directly.\n\nThe engine behind similarity is the intercept theorem: if a line parallel to $BC$ meets $AB$ at $D$ and $AC$ at $E$, then $AD/AB = AE/AC$. Here is a proof with areas. Triangles $BDE$ and $CDE$ have the same base $DE$ and, since $DE \\parallel BC$, the same height, so they have equal areas. Adding triangle $ADE$ to each gives $[ABE] = [ACD]$. Now triangles $ADE$ and $ABE$ share the vertex $E$ and have bases $AD$ and $AB$ on one line, so $[ADE]/[ABE] = AD/AB$. Likewise $[ADE]/[ACD] = AE/AC$. The two left-hand sides are equal, hence so are the right-hand sides."
+   },
+   {
+    "type": "section",
+    "title": "Area",
+    "body": "The basic formula is $[ABC] = \\frac12 a h_a$, where $h_a$ is the height from $A$ to line $BC$. Since $h_a = b\\sin C$, from the right triangle formed by $A$, $C$ and the foot of the height (also when $C$ is obtuse, because $\\sin(180^\\circ - C) = \\sin C$), we get\n$$[ABC] = \\tfrac12 ab\\sin C = \\tfrac12 bc\\sin A = \\tfrac12 ca\\sin B.$$\nHeron's formula gives the area from the sides alone: with $s = \\frac{a+b+c}2$,\n$$[ABC] = \\sqrt{s(s-a)(s-b)(s-c)}.$$\nIt can be derived by combining $\\frac12 ab\\sin C$ with the law of cosines below.\n\nThe most useful area fact in competitions is also the simplest: triangles with the same height have areas proportional to their bases. For $D$ on segment $BC$ it gives $\\dfrac{BD}{DC} = \\dfrac{[ABD]}{[ADC]}$, which converts length ratios into area ratios and back."
+   },
+   {
+    "type": "example",
+    "title": "The angle bisector theorem",
+    "body": "Prove the angle bisector theorem: if the bisector of angle $A$ meets $BC$ at $D$, then $BD/DC = AB/AC$. Then find $BD$ and $DC$ when $AB = 6$, $AC = 4$, $BC = 5$.",
+    "solution": "Compute the ratio $[ABD]/[ADC]$ in two ways. Both triangles have the same height from $A$, so the ratio is $BD/DC$. Also, using the formula $\\frac12 xy\\sin\\theta$ with the two sides at $A$,\n$$\\frac{[ABD]}{[ADC]} = \\frac{\\frac12\\, AB\\cdot AD\\sin\\frac A2}{\\frac12\\, AC\\cdot AD\\sin\\frac A2} = \\frac{AB}{AC}.$$\nHence $BD/DC = AB/AC$.\n\nWith the given numbers, $BD/DC = 6/4 = 3/2$ and $BD + DC = 5$, so $BD = 3$ and $DC = 2$."
+   },
+   {
+    "type": "theorem",
+    "title": "Central angle theorem",
+    "body": "Let $A$, $B$, $C$ be points on a circle with centre $O$. Then $\\angle BAC$ is half of the central angle that stands on the arc $BC$ not containing $A$. (This central angle exceeds $180^\\circ$ when $\\angle BAC$ is obtuse.)"
+   },
+   {
+    "type": "proof",
+    "body": "Let $A'$ be the point of the circle diametrically opposite $A$. Triangle $OAB$ is isosceles with $OA = OB$, so its angles at $A$ and $B$ are equal, and the exterior angle at $O$ is their sum: $\\angle BOA' = 2\\angle BAA'$. In the same way $\\angle COA' = 2\\angle CAA'$.\n\nIf the diameter $AA'$ lies inside the angle $BAC$, then $\\angle BAC = \\angle BAA' + \\angle A'AC$, and the arc $BC$ not containing $A$ is made up of the arcs $BA'$ and $A'C$, so its central angle is $\\angle BOA' + \\angle A'OC = 2\\angle BAC$. If $AA'$ lies outside the angle, say with ray $AB$ between rays $AA'$ and $AC$, then $\\angle BAC = \\angle A'AC - \\angle A'AB$ and the arc $BC$ is the arc $A'C$ minus the arc $A'B$, so again the central angle is $2\\angle BAC$. If $A'$ coincides with $B$ or $C$, one of the two pieces is zero and the same computation works.\n\nTwo consequences are used everywhere: angles standing on the same arc from the same side are equal, and an angle standing on a diameter is a right angle (Thales). The lesson [[circles]] develops these further."
+   },
+   {
+    "type": "theorem",
+    "title": "Law of sines",
+    "body": "In every triangle,\n$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R.$$"
+   },
+   {
+    "type": "proof",
+    "body": "The area formula gives $\\frac12 bc\\sin A = \\frac12 ca\\sin B = \\frac12 ab\\sin C$. Dividing by $\\frac12 abc$ yields $\\frac{\\sin A}{a} = \\frac{\\sin B}{b} = \\frac{\\sin C}{c}$, which is the first part.\n\nFor the common value, let $O$ be the circumcentre and $M$ the midpoint of $BC$. Since $OB = OC = R$, triangle $OBC$ is isosceles, so $OM \\perp BC$ and $OM$ bisects the angle $BOC$; hence $BM = R\\sin\\angle BOM$. By the central angle theorem:\n\n- if $A < 90^\\circ$, then $\\angle BOC = 2A$, so $\\angle BOM = A$;\n- if $A = 90^\\circ$, then $BC$ is a diameter and $a = 2R$ directly;\n- if $A > 90^\\circ$, the central angle on the arc not containing $A$ is $2A > 180^\\circ$, so the ordinary angle $\\angle BOC$ is $360^\\circ - 2A$ and $\\angle BOM = 180^\\circ - A$.\n\nIn the first and third cases $\\sin\\angle BOM = \\sin A$. So in every case $a = 2BM = 2R\\sin A$."
+   },
+   {
+    "type": "theorem",
+    "title": "Law of cosines",
+    "body": "In every triangle $c^2 = a^2 + b^2 - 2ab\\cos C$, and similarly for the other two sides."
+   },
+   {
+    "type": "proof",
+    "body": "Place $C$ at the origin and $B$ at $(a, 0)$. The point $A$ is at distance $b$ from $C$ in the direction making the angle $C$ with the positive $x$-axis, so $A = (b\\cos C, b\\sin C)$; this description is valid whether $C$ is acute, right or obtuse. Hence\n$$c^2 = AB^2 = (a - b\\cos C)^2 + (b\\sin C)^2 = a^2 - 2ab\\cos C + b^2(\\cos^2 C + \\sin^2 C) = a^2 + b^2 - 2ab\\cos C.$$\nFor $C = 90^\\circ$ this is Pythagoras' theorem. In general the sign of $a^2 + b^2 - c^2$ tells whether $C$ is acute, right or obtuse."
+   },
+   {
+    "type": "example",
+    "title": "Solving a triangle",
+    "body": "A triangle has sides $a = 7$, $b = 5$, $c = 3$. Find the angle $A$, the circumradius $R$ and the area, and check the area with Heron's formula.",
+    "solution": "By the law of cosines,\n$$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} = \\frac{25 + 9 - 49}{30} = -\\frac12,$$\nso $A = 120^\\circ$. By the law of sines, $R = \\dfrac{a}{2\\sin A} = \\dfrac{7}{2\\cdot\\frac{\\sqrt3}{2}} = \\dfrac{7}{\\sqrt3} = \\dfrac{7\\sqrt3}{3}$. The area is $\\frac12 bc\\sin A = \\frac12\\cdot 5\\cdot 3\\cdot\\frac{\\sqrt3}2 = \\frac{15\\sqrt3}{4}$.\n\nHeron: $s = \\frac{15}{2}$, and $s - a = \\frac12$, $s - b = \\frac52$, $s - c = \\frac92$, so\n$$s(s-a)(s-b)(s-c) = \\frac{15\\cdot 1\\cdot 5\\cdot 9}{16} = \\frac{675}{16}, \\qquad \\sqrt{\\frac{675}{16}} = \\frac{15\\sqrt3}{4},$$\nin agreement. A third route: substituting $\\sin C = c/(2R)$ into $\\frac12 ab\\sin C$ gives $[ABC] = \\dfrac{abc}{4R}$, here $\\dfrac{105}{4}\\cdot\\dfrac{\\sqrt3}{7} = \\dfrac{15\\sqrt3}{4}$."
+   },
+   {
+    "type": "example",
+    "title": "Perpendicular medians",
+    "body": "In triangle $ABC$ the medians from $A$ and from $B$ are perpendicular. Prove that $a^2 + b^2 = 5c^2$.",
+    "solution": "Step 1: the length of a median. Let $M$ be the midpoint of $BC$ and $m_a = AM$. Apply the law of cosines in triangles $AMB$ and $AMC$, which share the side $AM$ and have $BM = MC = a/2$:\n$$c^2 = m_a^2 + \\tfrac{a^2}{4} - a\\,m_a\\cos\\angle AMB, \\qquad b^2 = m_a^2 + \\tfrac{a^2}4 - a\\,m_a\\cos\\angle AMC.$$\nSince $\\angle AMB + \\angle AMC = 180^\\circ$, the two cosines are negatives of each other, and adding gives $b^2 + c^2 = 2m_a^2 + \\frac{a^2}2$. So\n$$m_a^2 = \\frac{2b^2 + 2c^2 - a^2}{4}, \\qquad\\text{and likewise}\\qquad m_b^2 = \\frac{2a^2 + 2c^2 - b^2}{4}.$$\n\nStep 2: the medians cut each other in ratio $2:1$. Let the medians $AM$ and $BN$ meet at $G$, where $N$ is the midpoint of $CA$. By SAS-similarity ($CM/CB = CN/CA = \\frac12$ with the common angle $C$), triangle $CMN$ is similar to $CBA$, so $MN \\parallel AB$ and $MN = \\frac12 AB$. Then triangles $GAB$ and $GMN$ have equal angles (alternate angles at the parallel lines), so they are similar with ratio $2$, and $AG = 2\\,GM$, $BG = 2\\,GN$. Hence $AG = \\frac23 m_a$ and $BG = \\frac23 m_b$.\n\nStep 3: Pythagoras in the right triangle $AGB$:\n$$c^2 = AG^2 + BG^2 = \\frac49\\left(m_a^2 + m_b^2\\right) = \\frac49\\cdot\\frac{a^2 + b^2 + 4c^2}{4} = \\frac{a^2 + b^2 + 4c^2}{9}.$$\nSo $9c^2 = a^2 + b^2 + 4c^2$, that is, $a^2 + b^2 = 5c^2$. Read backwards, using the converse of Pythagoras' theorem, the computation also shows that $a^2 + b^2 = 5c^2$ forces the two medians to be perpendicular."
+   },
+   {
+    "type": "section",
+    "title": "Euclid and the parallel postulate",
+    "body": "Euclid's Elements, written around 300 BC, organised the geometry of its time as deductions from a short list of postulates, and it served as the model of a rigorous theory for two thousand years. (Its Book IX also contains the proof that there are infinitely many primes; see [[fta]].) The fifth postulate, about parallel lines, looked less self-evident than the others, and for centuries mathematicians tried to derive it from them. Given the other axioms, it turns out to be equivalent to facts used above, such as the angle sum of every triangle being $180^\\circ$, or the existence of two similar triangles that are not congruent.\n\nIn the nineteenth century Bolyai and Lobachevsky (and Gauss, privately) showed that a consistent geometry exists in which the parallel postulate fails. In this hyperbolic geometry the angle sum of a triangle is less than $180^\\circ$, and similar triangles are automatically congruent. So the facts in this lesson are genuinely facts about flat space, not consequences of logic alone."
+   },
+   {
+    "type": "pitfall",
+    "body": "- SSA is not a congruence test. With $A = 30^\\circ$, $AC = 10$ and $BC = 6$ there are two different triangles: the distance from $C$ to the other side of the angle is $10\\sin 30^\\circ = 5$, and since $5 < 6 < 10$, the circle of radius $6$ about $C$ meets that side twice. The two possible values of $AB$ are $5\\sqrt3 \\pm \\sqrt{11}$.\n- The same ambiguity appears in the law of sines: $\\sin A = \\sin(180^\\circ - A)$, so knowing $\\sin A$ does not determine $A$.\n- Similar triangles with ratio $k$ have areas in ratio $k^2$, not $k$.\n- Writing similar triangles with the vertices in the wrong order produces wrong ratios.\n- Reading angles off a diagram can fail in another configuration, such as an obtuse triangle or a point on the other side of a line. Check whether your argument depends on the picture; the directed angles used in later lessons remove much of this risk."
+   },
+   {
+    "type": "connection",
+    "body": "Circles entered through the central angle theorem; [[circles]] develops inscribed angles, cyclic quadrilaterals and power of a point, and [[triangle-centres]] studies the incentre, circumcentre and their relatives. The sine and cosine used here are developed in [[trig]]. Coordinates, [[vectors-plane]] and complex numbers give algebraic routes to the same facts ([[analytic-geometry]]). Inequalities between $a$, $b$, $c$, $R$ and the area are the subject of [[geo-inequalities]], and configurations of many points and lines appear in [[discrete-geometry]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. In triangle $ABC$ with $AB = AC$ and $A = 36^\\circ$, the bisector of angle $B$ meets $AC$ at $D$. Show that $BC = BD = AD$, and deduce that $BC/AB = \\frac{\\sqrt5 - 1}{2}$.\n2. Prove that $a = b\\cos C + c\\cos B$ in every triangle.\n3. A triangle has sides $13$, $14$, $15$. Find its area, its circumradius and the length of the median to the side of length $14$.\n4. Prove that a triangle has a right angle if and only if $\\sin^2 A + \\sin^2 B + \\sin^2 C = 2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Coxeter & Greitzer, Geometry Revisited"
+   },
+   {
+    "ref": "Chen, Euclidean Geometry in Mathematical Olympiads",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Euclid, The Elements (translated by T. L. Heath)",
+    "where": "Book I"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "sides 7,5,3: cos A=-1/2, A=120 deg, R=7*sqrt3/3, area 15*sqrt3/4 = Heron = abc/(4R), s(s-a)(s-b)(s-c)=675/16",
+    "python": "import sympy as sp\na,b,c=7,5,3\ncosA=sp.Rational(b*b+c*c-a*a,2*b*c)\nassert cosA==sp.Rational(-1,2)\nA=sp.acos(cosA); assert sp.simplify(A-2*sp.pi/3)==0\nR=a/(2*sp.sin(A))\nassert sp.simplify(R-7*sp.sqrt(3)/3)==0 and sp.simplify(R-7/sp.sqrt(3))==0\narea=sp.Rational(1,2)*b*c*sp.sin(A)\nassert sp.simplify(area-15*sp.sqrt(3)/4)==0\ns=sp.Rational(a+b+c,2)\nassert (s,s-a,s-b,s-c)==(sp.Rational(15,2),sp.Rational(1,2),sp.Rational(5,2),sp.Rational(9,2))\nassert s*(s-a)*(s-b)*(s-c)==sp.Rational(675,16)\nassert sp.simplify(sp.sqrt(s*(s-a)*(s-b)*(s-c))-area)==0\nassert sp.simplify(sp.Rational(a*b*c)/(4*R)-area)==0\nassert sp.simplify(sp.Rational(105,4)*sp.sqrt(3)/7-area)==0"
+   },
+   {
+    "claim": "random triangles: angle sum, law of sines with 2R, law of cosines, Heron, abc/(4R), angle BIC = 90+A/2, median formula, projection formula, sin^2 identity",
+    "python": "import math, random\nrandom.seed(3)\ndef ang(P,Q,R):\n    u=(P[0]-Q[0],P[1]-Q[1]); v=(R[0]-Q[0],R[1]-Q[1])\n    return math.acos(max(-1,min(1,(u[0]*v[0]+u[1]*v[1])/math.hypot(*u)/math.hypot(*v))))\nn=0\nwhile n<500:\n    A,B,C=[(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(3)]\n    area=abs((B[0]-A[0])*(C[1]-A[1])-(B[1]-A[1])*(C[0]-A[0]))/2\n    if area<1: continue\n    n+=1\n    a=math.dist(B,C); b=math.dist(C,A); c=math.dist(A,B)\n    al,be,ga=ang(B,A,C),ang(A,B,C),ang(A,C,B)\n    assert abs(al+be+ga-math.pi)<1e-9\n    d=2*(A[0]*(B[1]-C[1])+B[0]*(C[1]-A[1])+C[0]*(A[1]-B[1]))\n    sq=lambda P:P[0]**2+P[1]**2\n    O=((sq(A)*(B[1]-C[1])+sq(B)*(C[1]-A[1])+sq(C)*(A[1]-B[1]))/d,(sq(A)*(C[0]-B[0])+sq(B)*(A[0]-C[0])+sq(C)*(B[0]-A[0]))/d)\n    R=math.dist(O,A)\n    for side,angle in ((a,al),(b,be),(c,ga)):\n        assert abs(side/math.sin(angle)-2*R)<1e-6*max(1,R)\n    assert abs(c*c-(a*a+b*b-2*a*b*math.cos(ga)))<1e-8\n    s=(a+b+c)/2\n    assert abs(area-math.sqrt(s*(s-a)*(s-b)*(s-c)))<1e-7\n    assert abs(area-a*b*c/(4*R))<1e-6\n    I=((a*A[0]+b*B[0]+c*C[0])/(a+b+c),(a*A[1]+b*B[1]+c*C[1])/(a+b+c))\n    assert abs(ang(B,I,C)-(math.pi/2+al/2))<1e-9\n    M=((B[0]+C[0])/2,(B[1]+C[1])/2)\n    assert abs(math.dist(A,M)**2-(2*b*b+2*c*c-a*a)/4)<1e-8\n    assert abs(a-(b*math.cos(ga)+c*math.cos(be)))<1e-8\n    assert abs(math.sin(al)**2+math.sin(be)**2+math.sin(ga)**2-(2+2*math.cos(al)*math.cos(be)*math.cos(ga)))<1e-9"
+   },
+   {
+    "claim": "central angle theorem: inscribed angle BAC equals half the arc BC not containing A, for random points on a circle",
+    "python": "import math, random\nrandom.seed(4)\ndef ang(P,Q,R):\n    u=(P[0]-Q[0],P[1]-Q[1]); v=(R[0]-Q[0],R[1]-Q[1])\n    return math.acos(max(-1,min(1,(u[0]*v[0]+u[1]*v[1])/math.hypot(*u)/math.hypot(*v))))\ncnt=0\nwhile cnt<2000:\n    tA,tB,tC=[random.uniform(0,2*math.pi) for _ in range(3)]\n    P=[(math.cos(t),math.sin(t)) for t in (tA,tB,tC)]\n    if min(math.dist(P[i],P[j]) for i in range(3) for j in range(i+1,3))<1e-2: continue\n    cnt+=1\n    ccw=(tC-tB)%(2*math.pi)\n    A_on_ccw=(tA-tB)%(2*math.pi)<ccw\n    arc=2*math.pi-ccw if A_on_ccw else ccw\n    assert abs(ang(P[1],P[0],P[2])-arc/2)<1e-6"
+   },
+   {
+    "claim": "angle bisector example AB=6, AC=4, BC=5 gives BD=3, DC=2 and AD bisects angle A",
+    "python": "import math\nB=(0.0,0.0); C=(5.0,0.0)\nx=(36-16+25)/10; y=math.sqrt(36-x*x)\nA=(x,y)\nassert abs(math.dist(A,B)-6)<1e-12 and abs(math.dist(A,C)-4)<1e-12\nD=(3.0,0.0)\ndef ang(P,Q,R):\n    u=(P[0]-Q[0],P[1]-Q[1]); v=(R[0]-Q[0],R[1]-Q[1])\n    return math.acos((u[0]*v[0]+u[1]*v[1])/math.hypot(*u)/math.hypot(*v))\nassert abs(ang(B,A,D)-ang(D,A,C))<1e-12\nassert math.dist(B,D)==3 and math.dist(D,C)==2"
+   },
+   {
+    "claim": "perpendicular medians imply a^2+b^2=5c^2 (family A=(2p,0), B=(0,2q), C=(-2p,-2q) with centroid at origin); medians meet in ratio 2:1",
+    "python": "import random\nrandom.seed(5)\nfor _ in range(500):\n    p=random.uniform(0.1,5); q=random.uniform(0.1,5)\n    A=(2*p,0.0); B=(0.0,2*q); C=(-2*p,-2*q)\n    M=((B[0]+C[0])/2,(B[1]+C[1])/2); N=((C[0]+A[0])/2,(C[1]+A[1])/2)\n    assert abs((M[0]-A[0])*(N[0]-B[0])+(M[1]-A[1])*(N[1]-B[1]))<1e-9\n    G=((A[0]+B[0]+C[0])/3,(A[1]+B[1]+C[1])/3)\n    assert abs(G[0])<1e-12 and abs(G[1])<1e-12\n    assert abs((A[0]-G[0])+2*(M[0]-G[0]))<1e-12 and abs((A[1]-G[1])+2*(M[1]-G[1]))<1e-12\n    d2=lambda P,Q:(P[0]-Q[0])**2+(P[1]-Q[1])**2\n    a2,b2,c2=d2(B,C),d2(C,A),d2(A,B)\n    assert abs(a2+b2-5*c2)<1e-8*max(1,c2)"
+   },
+   {
+    "claim": "SSA: A=30 deg, AC=10, BC=6 gives two triangles with AB = 5sqrt3 +- sqrt11; distance from C to the other ray is 5",
+    "python": "import math\nA=math.radians(30); b=10; a=6\ndisc=(b*math.cos(A))**2-(b*b-a*a)\nassert disc>0\nroots=[b*math.cos(A)+math.sqrt(disc), b*math.cos(A)-math.sqrt(disc)]\nassert abs(roots[0]-(5*math.sqrt(3)+math.sqrt(11)))<1e-12 and abs(roots[1]-(5*math.sqrt(3)-math.sqrt(11)))<1e-12\nCp=(10*math.cos(A),10*math.sin(A))\nfor c in roots:\n    assert c>0 and abs(math.dist((c,0),Cp)-6)<1e-9\nassert abs(b*math.sin(A)-5)<1e-12"
+   },
+   {
+    "claim": "golden triangle (exercise 1): with AB=AC=1 and A=36 deg, BC=AD=BD=(sqrt5-1)/2",
+    "python": "import math\nA=(0.0,0.0); C=(1.0,0.0); B=(math.cos(math.radians(36)),math.sin(math.radians(36)))\nBC=math.dist(B,C)\nassert abs(BC-(math.sqrt(5)-1)/2)<1e-12\nAD=1/(1+BC)\nD=(AD,0.0)\nassert abs(AD-BC)<1e-12 and abs(math.dist(B,D)-BC)<1e-12"
+   }
+  ]
+ },
+ {
+  "id": "circles",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A circle ties together distant parts of a figure. All points on one arc see a chord under the same angle; and if you draw any line through a fixed point $P$, the two pieces into which the circle cuts it have a constant product. These two facts, inscribed angles and the power of a point, are behind most problems involving circles, and they combine into the theory of radical axes for several circles at once.\n\nWe use the notation and basic facts of [[euclid-basics]]: angle sums, similar triangles and the law of sines. Throughout, $\\omega$ is a circle with centre $O$ and radius $r$."
+   },
+   {
+    "type": "section",
+    "title": "Inscribed angles",
+    "body": "A chord $BC$ splits $\\omega$ into two arcs. For a point $A$ of $\\omega$ other than $B$ and $C$, the angle $\\angle BAC$ is called an inscribed angle; it stands on the arc $BC$ that does not contain $A$. The central angle on that arc is the angle at $O$ that the arc subtends; it exceeds $180^\\circ$ if the arc is more than a semicircle. The basic theorem says that the inscribed angle depends only on the arc, not on where $A$ sits."
+   },
+   {
+    "type": "theorem",
+    "title": "Inscribed angle theorem",
+    "body": "An inscribed angle is half the central angle standing on the same arc. Consequently:\n\n1. All inscribed angles standing on the same arc are equal. In particular, if $A, B, C, D$ lie on $\\omega$ with $B$ and $C$ on the same side of line $AD$, then $\\angle ABD = \\angle ACD$.\n2. (Thales) An angle standing on a semicircle is a right angle.\n3. If $A$ and $C$ lie on different arcs determined by $B$ and $D$, then $\\angle BAD + \\angle BCD = 180^\\circ$."
+   },
+   {
+    "type": "proof",
+    "body": "First suppose that the centre $O$ lies on one arm of the angle, say on $AB$, so that $AB$ is a diameter. Triangle $OAC$ is isosceles with $OA = OC$, so $\\angle OCA = \\angle OAC$, and the exterior angle of this triangle at $O$ is $\\angle BOC = \\angle OAC + \\angle OCA = 2\\angle BAC$.\n\nIn general, draw the diameter $AA'$. Each of $\\angle BAA'$ and $\\angle A'AC$ has the centre on one arm, so the first case gives $\\angle BOA' = 2\\angle BAA'$ and $\\angle A'OC = 2\\angle A'AC$. If $O$ lies inside the angle $BAC$, add these: the arcs $BA'$ and $A'C$ together make up the arc $BC$ on which $\\angle BAC$ stands. If $O$ lies outside, say with ray $AB$ between rays $AA'$ and $AC$, subtract instead: $\\angle BAC = \\angle A'AC - \\angle A'AB$, and the arc $BC$ is the arc $A'C$ minus the arc $A'B$. Either way the central angle is twice the inscribed one.\n\nFor the consequences: in 1 both angles are half of the same central angle; in 2 the central angle is $180^\\circ$; in 3 the two arcs $BD$ make up the whole circle, so the two central angles add up to $360^\\circ$ and the two inscribed angles to $180^\\circ$."
+   },
+   {
+    "type": "theorem",
+    "title": "Cyclic quadrilaterals",
+    "body": "A convex quadrilateral $ABCD$ is cyclic (its four vertices lie on one circle) if and only if $\\angle A + \\angle C = 180^\\circ$. It is also cyclic if and only if $\\angle ABD = \\angle ACD$."
+   },
+   {
+    "type": "proof",
+    "body": "If $ABCD$ is convex and cyclic, the vertices occur around the circle in the order $A, B, C, D$, so $A$ and $C$ lie on different arcs determined by $B$ and $D$, and $\\angle A + \\angle C = 180^\\circ$ by part 3 of the inscribed angle theorem.\n\nConversely, suppose $\\angle A + \\angle C = 180^\\circ$, and let $\\omega$ be the circle through $A$, $B$, $D$. The diagonals of a convex quadrilateral cross, so segment $AC$ meets segment $BD$ at a point $E$ strictly between $B$ and $D$, and such a point lies inside $\\omega$. Hence the ray from $A$ through $E$ leaves $\\omega$ at a single point $C'$ beyond $E$. Now $ABC'D$ is a convex cyclic quadrilateral, so $\\angle BC'D = 180^\\circ - \\angle A = \\angle BCD$.\n\nBoth $C$ and $C'$ lie on the ray from $E$ pointing away from $A$. Suppose $C \\ne C'$, say $C$ lies strictly between $E$ and $C'$. The ray $CE$ splits the angle $BCD$, so $\\angle BCD = \\angle BCE + \\angle ECD$, and similarly $\\angle BC'D = \\angle BC'E + \\angle EC'D$. In triangle $BCC'$ the angle $\\angle BCE$ is the exterior angle at $C$, so it is larger than the interior angle $\\angle BC'C = \\angle BC'E$. Likewise $\\angle ECD > \\angle EC'D$. Adding, $\\angle BCD > \\angle BC'D$, a contradiction. If $C'$ lies between $E$ and $C$, the same argument with the roles exchanged gives $\\angle BC'D > \\angle BCD$. So $C = C'$, which lies on $\\omega$.\n\nThe criterion $\\angle ABD = \\angle ACD$ is proved in the same way, using part 1 of the inscribed angle theorem in place of part 3."
+   },
+   {
+    "type": "section",
+    "title": "Tangents",
+    "body": "A line through a point $T$ of $\\omega$ is tangent there exactly when it is perpendicular to the radius $OT$; it then meets $\\omega$ only at $T$. From a point $P$ outside $\\omega$ there are two tangents, touching at $T_1$ and $T_2$, and $PT_1 = PT_2$, because the right triangles $OPT_1$ and $OPT_2$ share the hypotenuse $OP$ and have $OT_1 = OT_2$ (RHS).\n\nA tangent behaves like a chord whose two endpoints have merged, and inscribed angles have a tangent version. Let $TB$ be a chord and $TS$ a ray along the tangent at $T$. Then the angle $\\angle STB$ equals the inscribed angle $\\angle TXB$ for every point $X$ of $\\omega$ on the other side of line $TB$ from $S$. To see it, let $TT'$ be a diameter and choose $S$ on the same side of line $TT'$ as $B$. Since $TS \\perp TT'$, we get $\\angle STB = 90^\\circ - \\angle BTT'$, and in triangle $TBT'$, which has a right angle at $B$ by Thales, this equals $\\angle TT'B$. That is an inscribed angle of the required kind, with $X = T'$, and all such inscribed angles are equal."
+   },
+   {
+    "type": "definition",
+    "title": "Power of a point",
+    "body": "The power of a point $P$ with respect to the circle $\\omega$ (centre $O$, radius $r$) is\n$$\\operatorname{pow}(P) = PO^2 - r^2.$$\nIt is positive for $P$ outside $\\omega$, zero on $\\omega$ and negative inside; for $P$ outside it is the square of the length of the tangent from $P$."
+   },
+   {
+    "type": "theorem",
+    "title": "Power of a point theorem",
+    "body": "Let a line through $P$ meet $\\omega$ at $A$ and $B$, with $A = B$ if the line is tangent. Then\n$$PA\\cdot PB = |PO^2 - r^2|.$$\nWith signed lengths along the line, counting the product as positive when $A$ and $B$ are on the same side of $P$ and negative when $P$ lies between them, $PA \\cdot PB = PO^2 - r^2$ exactly. In particular the product is the same for every line through $P$."
+   },
+   {
+    "type": "proof",
+    "body": "Let $M$ be the foot of the perpendicular from $O$ to the line. Since $OA = OB$, $M$ is the midpoint of $AB$. Put $h = OM$ and $t = MA = MB$. Pythagoras in triangles $OMA$ and $OMP$ gives $t^2 = r^2 - h^2$ and $PM^2 = PO^2 - h^2$.\n\nIf $P$ is on the line but outside the segment $AB$, the distances $PA$ and $PB$ are $PM - t$ and $PM + t$, so $PA\\cdot PB = PM^2 - t^2 = PO^2 - r^2$, which is then non-negative. If $P$ lies between $A$ and $B$, they are $t - PM$ and $t + PM$, so $PA\\cdot PB = t^2 - PM^2 = r^2 - PO^2$, and $P$ is inside $\\omega$. With the sign convention the signed product is $PO^2 - r^2$ in both cases. For a tangent, $t = 0$ and $A = B = M$, so $PA^2 = PO^2 - r^2$.\n\nThe familiar special cases are: two chords $AB$ and $CD$ crossing at $P$ give $PA\\cdot PB = PC\\cdot PD$; two secants from an outside point give the same equation; a tangent $PT$ and a secant give $PT^2 = PA\\cdot PB$.\n\nThe converse is also true and very useful: if lines $AB$ and $CD$ meet at $P$ and $PA\\cdot PB = PC\\cdot PD$ as signed products, then $A, B, C, D$ are concyclic. For crossing chords, say: the equation gives $PA/PD = PC/PB$, and the angles at $P$ are vertical angles, so triangles $PAC$ and $PDB$ are similar (SAS) and $\\angle BAC = \\angle BDC$. The points $A$ and $D$ lie on the same side of line $BC$, since $ACBD$ is a convex quadrilateral whose diagonals $AB$ and $CD$ cross at $P$, so the cyclic criterion applies."
+   },
+   {
+    "type": "example",
+    "title": "Computing with power",
+    "body": "(a) Chords $AB$ and $CD$ of a circle of radius $7$ meet at $P$, with $PA = 3$, $PB = 8$, $PC = 4$. Find $PD$ and the distance from $P$ to the centre.\n\n(b) A point $P$ is at distance $13$ from the centre of a circle of radius $5$. Find the length of the tangent from $P$, and check it on the secant through the centre.",
+    "solution": "(a) $PC\\cdot PD = PA\\cdot PB = 24$, so $PD = 6$. The power of $P$ is $-24$, so $PO^2 = r^2 - 24 = 49 - 24 = 25$ and $PO = 5$.\n\n(b) The power of $P$ is $13^2 - 5^2 = 144$, so the tangent has length $12$; the tangent, the radius to the point of contact and $OP$ form a $5$-$12$-$13$ right triangle. The secant through the centre meets the circle at distances $13 - 5 = 8$ and $13 + 5 = 18$ from $P$, and indeed $8 \\cdot 18 = 144 = 12^2$."
+   },
+   {
+    "type": "section",
+    "title": "Radical axis and radical centre",
+    "body": "Take two circles $\\omega_1, \\omega_2$ with different centres. Which points have the same power with respect to both? In coordinates, the circle with centre $(p, q)$ and radius $r$ gives\n$$\\operatorname{pow}(x, y) = (x - p)^2 + (y - q)^2 - r^2 = x^2 + y^2 - 2px - 2qy + (p^2 + q^2 - r^2).$$\nIn the difference $\\operatorname{pow}_1 - \\operatorname{pow}_2$ the terms $x^2 + y^2$ cancel, leaving $2(p_2 - p_1)x + 2(q_2 - q_1)y + \\text{const}$. Since the centres differ, this is a genuine linear expression, so the set where it vanishes is a line. Its normal vector $(p_2 - p_1, q_2 - q_1)$ shows that the line is perpendicular to the line of centres. This line is the radical axis of the two circles. If the circles meet at two points $X$ and $Y$, both points have power $0$ with respect to both circles, so the radical axis is the line $XY$.\n\nFor three circles whose centres are not collinear, the three radical axes pass through one point, the radical centre. Indeed, the axes of $\\omega_1, \\omega_2$ and of $\\omega_2, \\omega_3$ are perpendicular to the non-parallel lines $O_1O_2$ and $O_2O_3$, so they meet; their common point has equal power with respect to all three circles, so it lies on the third axis as well. This is often the quickest proof that three lines are concurrent: exhibit them as radical axes."
+   },
+   {
+    "type": "example",
+    "title": "A radical axis in coordinates",
+    "body": "Find the radical axis of the circles $x^2 + y^2 = 4$ and $(x - 4)^2 + y^2 = 1$, and check that the tangents from a point on it to the two circles have equal length.",
+    "solution": "Setting $x^2 + y^2 - 4 = (x-4)^2 + y^2 - 1$ gives $-4 = -8x + 15$, so the radical axis is the line $x = \\frac{19}{8}$, perpendicular to the line of centres (the $x$-axis). The circles do not meet, since $2 + 1 < 4$, but the axis still exists and lies between them.\n\nFrom the point $(\\frac{19}8, 0)$ the squared tangent lengths are\n$$\\left(\\tfrac{19}8\\right)^2 - 4 = \\tfrac{361 - 256}{64} = \\tfrac{105}{64} \\qquad\\text{and}\\qquad \\left(\\tfrac{19}{8} - 4\\right)^2 - 1 = \\tfrac{169}{64} - 1 = \\tfrac{105}{64},$$\nequal as expected."
+   },
+   {
+    "type": "example",
+    "title": "The radical axis bisects a common tangent",
+    "body": "Two circles meet at $X$ and $Y$. A common tangent touches the first circle at $S$ and the second at $T$. Prove that line $XY$ passes through the midpoint of $ST$.",
+    "solution": "Let $M$ be the midpoint of $ST$. The line $ST$ is tangent to the first circle at $S$, so the power of $M$ with respect to the first circle is $MS^2$. Likewise its power with respect to the second circle is $MT^2$. Since $MS = MT$, the point $M$ has equal powers, so it lies on the radical axis, which is the line $XY$.\n\nNotice what the argument avoided: we never had to show that line $XY$ meets $ST$, or to locate the intersection. The radical axis did that bookkeeping."
+   },
+   {
+    "type": "example",
+    "title": "Products along the altitudes",
+    "body": "In an acute triangle $ABC$ the altitudes $AD$, $BE$, $CF$ meet at $H$. Prove that $HA\\cdot HD = HB\\cdot HE = HC\\cdot HF$.",
+    "solution": "Since $\\angle ADB = \\angle AEB = 90^\\circ$, both $D$ and $E$ lie on the circle with diameter $AB$. (This is the converse of Thales: in a right triangle the midpoint of the hypotenuse is equidistant from all three vertices.) In this circle, $AD$ and $BE$ are chords, and they cross at $H$, which lies inside the acute triangle and hence strictly inside both chords. By the power of the point $H$, $HA\\cdot HD = HB\\cdot HE$. The same argument with the circle on diameter $BC$ gives $HB\\cdot HE = HC\\cdot HF$.\n\nThe common value is minus the power of $H$ with respect to each of the three circles on the sides as diameters, a first hint of how much structure the orthocentre carries; see [[triangle-centres]]."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The criterion $\\angle A + \\angle C = 180^\\circ$ is for a convex quadrilateral with vertices in the order $A, B, C, D$. If four concyclic points lie around the circle in the order $A, B, D, C$, then $ABCD$ is self-intersecting and the criterion fails; use $\\angle ABD = \\angle ACD$ instead.\n- Equal angles $\\angle ABD = \\angle ACD$ prove concyclicity only if $B$ and $C$ are on the same side of line $AD$.\n- $PA\\cdot PB = PO^2 - r^2$ holds with signed lengths. With ordinary lengths, a point inside the circle gives $r^2 - PO^2$.\n- The tangent-chord angle equals the inscribed angle from the other side of the chord, not from the same side.\n- Concentric circles have no radical axis, and for three circles with collinear centres the radical axes are parallel or coincide instead of meeting."
+   },
+   {
+    "type": "connection",
+    "body": "Power of a point is the bridge to [[geo-transformations]]: the inversion with centre $P$ and radius squared $\\operatorname{pow}(P)$ maps the circle onto itself, and many inversion arguments begin with a power computation. The circumcircle, the incircle and the nine-point circle of [[triangle-centres]] are handled with exactly these tools. With vectors, the signed product is the dot product $(A - P)\\cdot(B - P)$, which is how power appears in coordinate proofs ([[vectors-plane]], [[analytic-geometry]]). Chord lengths $2r\\sin\\theta$ connect circles with [[trig]], and extremal statements about cyclic figures, such as Ptolemy's inequality, belong to [[geo-inequalities]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Chords $AB$ and $CD$ of a circle meet at an interior point $P$, with $PA = 2$, $PB = 6$ and $CD = 7$. Find $PC$ and $PD$.\n2. The tangent at $A$ to the circumcircle of triangle $ABC$ (with $AB \\ne AC$) meets line $BC$ at $T$. Prove that $TB/TC = (AB/AC)^2$.\n3. Prove that if two circles are tangent at a point, their radical axis is the common tangent line at that point.\n4. A convex cyclic quadrilateral $ABCD$ has perpendicular diagonals meeting at $P$. Prove that the line through $P$ perpendicular to $AB$ passes through the midpoint of $CD$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Chen, Euclidean Geometry in Mathematical Olympiads",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Coxeter & Greitzer, Geometry Revisited",
+    "where": "Chapter 2"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "numeric examples: PD=6, PO=5; tangent 12 from distance 13 to radius 5, and 8*18=144; radical axis x=19/8 with both squared tangent lengths 105/64",
+    "python": "from fractions import Fraction as F\nassert 3*8==4*6==24 and 7**2-24==25==5**2\nassert 13**2-5**2==144==12**2 and (13-5)*(13+5)==144\nx=F(19,8)\nfor y in (F(0),F(3),F(-7,5)):\n    assert x*x+y*y-4==(x-4)**2+y*y-1\nassert x*x-4==F(105,64)==(x-4)**2-1 and F(361-256,64)==F(105,64)\nassert F(-4)==-8*x+15\nassert 2+1<4"
+   },
+   {
+    "claim": "signed power: for random circles, points and lines, the signed product of distances to the two intersection points equals PO^2-r^2, the unsigned one |PO^2-r^2|, and it equals (A-P).(B-P)",
+    "python": "import random, math\nrandom.seed(6)\nn=0\nwhile n<3000:\n    O=(random.uniform(-3,3),random.uniform(-3,3)); r=random.uniform(0.5,3)\n    P=(random.uniform(-6,6),random.uniform(-6,6))\n    th=random.uniform(0,math.pi); u=(math.cos(th),math.sin(th))\n    w=(P[0]-O[0],P[1]-O[1])\n    bq=2*(u[0]*w[0]+u[1]*w[1]); pw=w[0]**2+w[1]**2-r*r\n    disc=bq*bq-4*pw\n    if disc<=1e-6: continue\n    n+=1\n    t1=(-bq+math.sqrt(disc))/2; t2=(-bq-math.sqrt(disc))/2\n    A=(P[0]+t1*u[0],P[1]+t1*u[1]); B=(P[0]+t2*u[0],P[1]+t2*u[1])\n    assert abs(math.dist(A,O)-r)<1e-9 and abs(math.dist(B,O)-r)<1e-9\n    assert abs(t1*t2-pw)<1e-8\n    assert abs(math.dist(A,P)*math.dist(B,P)-abs(pw))<1e-8\n    assert abs((A[0]-P[0])*(B[0]-P[0])+(A[1]-P[1])*(B[1]-P[1])-pw)<1e-8"
+   },
+   {
+    "claim": "random convex cyclic quadrilaterals: opposite angles sum to 180 deg, angle ABD = angle ACD; inscribed angle = half central angle; tangent-chord angle equals the inscribed angle from the far arc",
+    "python": "import math, random\nrandom.seed(7)\ndef ang(P,Q,R):\n    u=(P[0]-Q[0],P[1]-Q[1]); v=(R[0]-Q[0],R[1]-Q[1])\n    return math.acos(max(-1,min(1,(u[0]*v[0]+u[1]*v[1])/math.hypot(*u)/math.hypot(*v))))\nfor _ in range(2000):\n    ts=sorted(random.uniform(0,2*math.pi) for _ in range(4))\n    if min(b-a for a,b in zip(ts,ts[1:]+[ts[0]+2*math.pi]))<0.05: continue\n    A,B,C,D=[(math.cos(t),math.sin(t)) for t in ts]\n    assert abs(ang(D,A,B)+ang(B,C,D)-math.pi)<1e-8\n    assert abs(ang(A,B,D)-ang(A,C,D))<1e-8\nfor _ in range(2000):\n    tT,tB=random.uniform(0,2*math.pi),random.uniform(0,2*math.pi)\n    T=(math.cos(tT),math.sin(tT)); B=(math.cos(tB),math.sin(tB))\n    if math.dist(T,B)<0.05 or math.dist(T,B)>1.99: continue\n    tang=(-T[1],T[0])\n    S1=(T[0]+tang[0],T[1]+tang[1]); S2=(T[0]-tang[0],T[1]-tang[1])\n    a1,a2=ang(S1,T,B),ang(S2,T,B)\n    assert abs(a1+a2-math.pi)<1e-9\n    d=(tB-tT)%(2*math.pi)\n    tX=tT+d+random.uniform(0.05,0.95)*(2*math.pi-d)\n    X=(math.cos(tX),math.sin(tX))\n    tY=tT+random.uniform(0.05,0.95)*d\n    Y=(math.cos(tY),math.sin(tY))\n    small=min(a1,a2)\n    side=lambda P:(B[0]-T[0])*(P[1]-T[1])-(B[1]-T[1])*(P[0]-T[0])\n    for S,a in ((S1,a1),(S2,a2)):\n        Z=X if side(S)*side(X)<0 else Y\n        assert side(S)*side(Z)<0\n        assert abs(ang(T,Z,B)-a)<1e-7"
+   },
+   {
+    "claim": "acute triangles: HA*HD = HB*HE = HC*HF",
+    "python": "import math, random\nrandom.seed(8)\ndef foot(P,Q,R):\n    dx,dy=R[0]-Q[0],R[1]-Q[1]\n    t=((P[0]-Q[0])*dx+(P[1]-Q[1])*dy)/(dx*dx+dy*dy)\n    return (Q[0]+t*dx,Q[1]+t*dy)\ndef inter(P1,P2,P3,P4):\n    x1,y1=P1;x2,y2=P2;x3,y3=P3;x4,y4=P4\n    den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)\n    px=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/den\n    py=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den\n    return (px,py)\nn=0\nwhile n<500:\n    A,B,C=[(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(3)]\n    a2,b2,c2=math.dist(B,C)**2,math.dist(C,A)**2,math.dist(A,B)**2\n    if not (a2<b2+c2-1 and b2<a2+c2-1 and c2<a2+b2-1): continue\n    n+=1\n    D,E,Fp=foot(A,B,C),foot(B,C,A),foot(C,A,B)\n    H=inter(A,D,B,E)\n    p1=math.dist(H,A)*math.dist(H,D); p2=math.dist(H,B)*math.dist(H,E); p3=math.dist(H,C)*math.dist(H,Fp)\n    assert abs(p1-p2)<1e-7*max(1,p1) and abs(p2-p3)<1e-7*max(1,p1)"
+   },
+   {
+    "claim": "two intersecting circles: the midpoint of a common tangent segment ST has equal powers and lies on line XY",
+    "python": "import math, random\nrandom.seed(9)\nn=0\nwhile n<500:\n    r1=random.uniform(0.5,3); r2=random.uniform(0.5,3); d=random.uniform(abs(r1-r2)+0.1,r1+r2-0.1)\n    if d<=0: continue\n    n+=1\n    cth=(r2-r1)/d; sth=math.sqrt(1-cth*cth)\n    nv=(cth,sth)\n    S=(-r1*nv[0],-r1*nv[1]); T=(d-r2*nv[0],-r2*nv[1])\n    assert abs(math.hypot(*S)-r1)<1e-9 and abs(math.dist(T,(d,0))-r2)<1e-9\n    assert abs((T[0]-S[0])*nv[0]+(T[1]-S[1])*nv[1])<1e-9\n    M=((S[0]+T[0])/2,(S[1]+T[1])/2)\n    p1=M[0]**2+M[1]**2-r1*r1; p2=(M[0]-d)**2+M[1]**2-r2*r2\n    assert abs(p1-p2)<1e-9\n    xr=(d*d+r1*r1-r2*r2)/(2*d)\n    assert abs(M[0]-xr)<1e-9"
+   },
+   {
+    "claim": "exercise 2: TB/TC = (AB/AC)^2 for the tangent at A meeting BC; exercise 4 (Brahmagupta): the perpendicular from P to AB bisects CD",
+    "python": "import math, random\nrandom.seed(10)\nn=0\nwhile n<500:\n    ts=[random.uniform(0,2*math.pi) for _ in range(3)]\n    A,B,C=[(math.cos(t),math.sin(t)) for t in ts]\n    if abs(math.dist(A,B)-math.dist(A,C))<0.1 or min(math.dist(A,B),math.dist(B,C),math.dist(C,A))<0.1: continue\n    n+=1\n    tdir=(-A[1],A[0])\n    den=tdir[0]*(C[1]-B[1])-tdir[1]*(C[0]-B[0])\n    s=((B[0]-A[0])*(C[1]-B[1])-(B[1]-A[1])*(C[0]-B[0]))/den\n    T=(A[0]+s*tdir[0],A[1]+s*tdir[1])\n    assert abs((T[0]-B[0])*(C[1]-B[1])-(T[1]-B[1])*(C[0]-B[0]))<1e-9\n    lhs=math.dist(T,B)/math.dist(T,C); rhs=(math.dist(A,B)/math.dist(A,C))**2\n    assert abs(lhs-rhs)<1e-6*max(1,rhs)\nfor _ in range(500):\n    h=random.uniform(-0.8,0.8); k=random.uniform(-0.8,0.8)\n    A=(-math.sqrt(1-h*h),h); C=(math.sqrt(1-h*h),h); B=(k,math.sqrt(1-k*k)); D=(k,-math.sqrt(1-k*k))\n    P=(k,h)\n    M=((C[0]+D[0])/2,(C[1]+D[1])/2)\n    assert abs((M[0]-P[0])*(B[0]-A[0])+(M[1]-P[1])*(B[1]-A[1]))<1e-12"
+   }
+  ]
+ },
+ {
+  "id": "triangle-centres",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A triangle has many special points, and they are not independent of each other. The circumcentre, the centroid and the orthocentre always lie on one line, at fixed ratios along it. Nine natural points always lie on one circle of half the circumradius. The distance between the circumcentre and the orthocentre is determined by $R$ and the side lengths. Olympiad problems are full of these points, often in disguise, and recognising the configuration is frequently most of the solution.\n\nThis lesson defines the classical centres, proves Ceva's and Menelaus's theorems (the standard tools for concurrence and collinearity), and then proves the Euler line, the nine-point circle and the formula $OH^2 = 9R^2 - (a^2 + b^2 + c^2)$ with vectors. Notation is as in [[euclid-basics]]; in addition $s = \\frac{a+b+c}2$ is the semiperimeter and $r$ the inradius."
+   },
+   {
+    "type": "definition",
+    "title": "The four classical centres",
+    "body": "- The centroid $G$ is the common point of the three medians, the segments from each vertex to the midpoint of the opposite side.\n- The circumcentre $O$ is the common point of the perpendicular bisectors of the sides; it is the centre of the circumcircle, of radius $R$.\n- The incentre $I$ is the common point of the internal angle bisectors; it is the centre of the incircle, which touches all three sides and has radius $r$.\n- The orthocentre $H$ is the common point of the three altitudes, the lines through each vertex perpendicular to the opposite side.\n\nEach definition claims that three lines pass through one point, and that claim has to be proved."
+   },
+   {
+    "type": "section",
+    "title": "Why the lines concur",
+    "body": "For $O$ and $I$ the reason is a locus. The perpendicular bisector of $AB$ is the set of points equidistant from $A$ and $B$. The point where two perpendicular bisectors meet is equidistant from all three vertices, so it lies on the third. Likewise the internal bisector of angle $A$ consists of the points inside the angle that are equidistant from lines $AB$ and $AC$, and the same argument gives $I$, at a common distance $r$ from all three sides.\n\nLet the incircle touch $BC$, $CA$, $AB$ at $D$, $E$, $F$. The two tangent segments from a point to a circle are equal ([[circles]]), so we may write $x = AE = AF$, $y = BF = BD$, $z = CD = CE$. Then $y + z = a$, $z + x = b$, $x + y = c$, and solving,\n$$x = s - a, \\qquad y = s - b, \\qquad z = s - c.$$\nSplitting the triangle into the three triangles $IBC$, $ICA$, $IAB$ with heights $r$ gives $[ABC] = \\frac12 r(a + b + c) = rs$. The excircle opposite $A$ touches side $BC$ and the extensions of $AB$ and $AC$; the same splitting, with one triangle subtracted, gives its radius $r_a = [ABC]/(s - a)$.\n\nFor $G$ and $H$ the cleanest proofs use Ceva's theorem or vectors, both below."
+   },
+   {
+    "type": "theorem",
+    "title": "Ceva's theorem",
+    "body": "Let $D$, $E$, $F$ be points in the interiors of the sides $BC$, $CA$, $AB$. The cevians $AD$, $BE$, $CF$ are concurrent if and only if\n$$\\frac{BD}{DC}\\cdot\\frac{CE}{EA}\\cdot\\frac{AF}{FB} = 1.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Suppose the cevians meet at $P$, necessarily inside the triangle. Triangles $ABD$ and $ADC$ have the same height from $A$, so $\\frac{BD}{DC} = \\frac{[ABD]}{[ADC]}$; for the same reason $\\frac{BD}{DC} = \\frac{[PBD]}{[PDC]}$. If $u = kv$ and $u' = kv'$ then $u - u' = k(v - v')$, so subtracting,\n$$\\frac{BD}{DC} = \\frac{[ABD] - [PBD]}{[ADC] - [PDC]} = \\frac{[ABP]}{[ACP]}.$$\nIn the same way $\\frac{CE}{EA} = \\frac{[BCP]}{[BAP]}$ and $\\frac{AF}{FB} = \\frac{[CAP]}{[CBP]}$. The product of the three right-hand sides is $1$.\n\nConversely, suppose the product is $1$. The cevians $AD$ and $BE$ meet at a point $P$ inside the triangle; let line $CP$ meet $AB$ at $F'$. By the first part, the product with $F'$ in place of $F$ is also $1$, so $AF'/F'B = AF/FB$. As $X$ moves from $A$ to $B$ along the side, $AX/XB$ increases strictly from $0$ to infinity, so it takes each value only once; hence $F' = F$.\n\nTwo quick applications: for the medians all three ratios are $1$, so the medians concur; for the angle bisectors the ratios are $\\frac cb$, $\\frac ac$, $\\frac ba$ by the angle bisector theorem, with product $1$."
+   },
+   {
+    "type": "theorem",
+    "title": "Menelaus's theorem",
+    "body": "Let a line that passes through no vertex of triangle $ABC$ meet the lines $BC$, $CA$, $AB$ at $D$, $E$, $F$. Then\n$$\\frac{BD}{DC}\\cdot\\frac{CE}{EA}\\cdot\\frac{AF}{FB} = 1.$$\nWith signed ratios, where $\\frac{BD}{DC}$ is positive if $D$ lies between $B$ and $C$ and negative otherwise, the product equals $-1$. Conversely, if points $D$, $E$, $F$ on the three side lines, different from the vertices, satisfy the signed equation, then they are collinear."
+   },
+   {
+    "type": "proof",
+    "body": "Let $\\ell$ be the line and $h_A, h_B, h_C > 0$ the distances from the vertices to $\\ell$. Since $D$ lies on $\\ell$ and on line $BC$, dropping perpendiculars from $B$ and $C$ to $\\ell$ gives two similar right triangles with a common vertex $D$, so $\\frac{BD}{DC} = \\frac{h_B}{h_C}$. Similarly $\\frac{CE}{EA} = \\frac{h_C}{h_A}$ and $\\frac{AF}{FB} = \\frac{h_A}{h_B}$, and the product is $1$.\n\nFor the sign: $D$ lies between $B$ and $C$ exactly when $B$ and $C$ are on opposite sides of $\\ell$. Either all three vertices are on one side of $\\ell$, and then no ratio is positive, or one vertex is separated from the other two, and then exactly two ratios are positive. In both cases an odd number of ratios is negative, so the signed product is $-1$.\n\nFor the converse, let line $DE$ meet line $AB$ at $F'$. (It does meet it: if $DE \\parallel AB$, the intercept theorem gives $\\frac{BD}{DC}\\cdot\\frac{CE}{EA} = 1$, which would force $\\frac{AF}{FB} = -1$, a value no point achieves.) By the first part the signed product with $F'$ is $-1$, so $F$ and $F'$ have the same signed ratio, and a point of line $AB$ is determined by its signed ratio. So $F = F'$ lies on line $DE$."
+   },
+   {
+    "type": "section",
+    "title": "Vectors from the circumcentre",
+    "body": "Place the origin at the circumcentre $O$ and write $A$, $B$, $C$ also for the position vectors of the vertices (see [[vectors-plane]]). Then $|A| = |B| = |C| = R$, and dot products encode the sides: from $c^2 = |A - B|^2 = 2R^2 - 2A\\cdot B$,\n$$A\\cdot B = R^2 - \\tfrac{c^2}{2}, \\qquad B\\cdot C = R^2 - \\tfrac{a^2}2, \\qquad C\\cdot A = R^2 - \\tfrac{b^2}2.$$\nThe point $\\frac{A + B + C}{3}$ equals $A + \\frac23\\left(\\frac{B+C}2 - A\\right)$, so it lies two thirds of the way along the median from $A$, and by symmetry on the other two medians as well. This proves at once that the medians concur, at $G = \\frac{A+B+C}{3}$, and that $G$ divides each median in the ratio $2 : 1$ from the vertex."
+   },
+   {
+    "type": "theorem",
+    "title": "The Euler line",
+    "body": "With the circumcentre $O$ as origin, the orthocentre is $H = A + B + C$. Hence $H = 3G$: the points $O$, $G$, $H$ are collinear, $G$ lies between $O$ and $H$, and $OG : GH = 1 : 2$ (all three points coincide when the triangle is equilateral). Moreover\n$$OH^2 = 9R^2 - (a^2 + b^2 + c^2).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $P = A + B + C$. Then\n$$(P - A)\\cdot(B - C) = (B + C)\\cdot(B - C) = |B|^2 - |C|^2 = R^2 - R^2 = 0,$$\nso $P - A$ is perpendicular to $BC$ or zero, which means that $P$ lies on the altitude from $A$. By symmetry $P$ lies on all three altitudes. So the altitudes concur, at $H = P = 3G$. If $H \\ne O$, the line through $O$ and $H$ contains $G = \\frac13 H$, with $OG = \\frac13 OH$ and $GH = \\frac23 OH$. If $H = O$ then $G = O$ as well, so the circumcentre lies on every median, every median is a perpendicular bisector, and the triangle is equilateral.\n\nFor the distance,\n$$OH^2 = |A + B + C|^2 = |A|^2 + |B|^2 + |C|^2 + 2(A\\cdot B + B\\cdot C + C\\cdot A) = 3R^2 + 2\\Big(3R^2 - \\frac{a^2 + b^2 + c^2}{2}\\Big) = 9R^2 - (a^2 + b^2 + c^2).$$\nAs a by-product, $a^2 + b^2 + c^2 \\le 9R^2$, with equality only for the equilateral triangle."
+   },
+   {
+    "type": "theorem",
+    "title": "The nine-point circle",
+    "body": "In every triangle, the midpoints of the three sides, the feet of the three altitudes, and the midpoints of $AH$, $BH$, $CH$ lie on one circle. Its centre $N$ is the midpoint of $OH$, and its radius is $R/2$."
+   },
+   {
+    "type": "proof",
+    "body": "Keep $O$ as the origin, so that $N = \\frac{A + B + C}{2}$. The midpoint of $BC$ is $M_a = \\frac{B + C}{2}$, and $N - M_a = \\frac A2$ has length $\\frac R2$. The midpoint of $AH$ is $K_a = \\frac{A + (A + B + C)}{2}$, and $K_a - N = \\frac A2$, again of length $\\frac R2$. By symmetry all six midpoints are at distance $\\frac R2$ from $N$. Note also that $N$ is the midpoint of $K_a M_a$, so $K_aM_a$ is a diameter of the circle with centre $N$ and radius $R/2$.\n\nNow let $D$ be the foot of the altitude from $A$. If $D$ coincides with $K_a$ or $M_a$, it is on the circle already. Otherwise, $D$ and $M_a$ lie on line $BC$, while $D$ and $K_a$ lie on the altitude from $A$ (which contains both $A$ and $H$), so $\\angle K_aDM_a = 90^\\circ$. By Thales, $D$ lies on the circle with diameter $K_aM_a$. The same holds for the other two feet."
+   },
+   {
+    "type": "example",
+    "title": "The 13-14-15 triangle",
+    "body": "For the triangle with $a = 14$, $b = 15$, $c = 13$, compute the area, $r$, $R$, the exradius $r_a$, the tangent lengths from the vertices to the incircle, and $OH$.",
+    "solution": "Here $s = 21$, so by Heron's formula $[ABC] = \\sqrt{21\\cdot 7\\cdot 6\\cdot 8} = \\sqrt{7056} = 84$. Then $r = 84/21 = 4$, $r_a = 84/(s - a) = 84/7 = 12$, and $R = \\dfrac{abc}{4[ABC]} = \\dfrac{2730}{336} = \\dfrac{65}{8}$.\n\nThe tangent lengths are $s - a = 7$ from $A$, $s - b = 6$ from $B$ and $s - c = 8$ from $C$; as a check, $BD + DC = 6 + 8 = 14 = a$.\n\nFinally\n$$OH^2 = 9\\cdot\\frac{4225}{64} - (196 + 225 + 169) = \\frac{38025 - 37760}{64} = \\frac{265}{64}, \\qquad OH = \\frac{\\sqrt{265}}{8} \\approx 2.03.$$\nThe triangle is acute ($15^2 < 13^2 + 14^2$), so $H$ is inside it, close to $O$. Everything can be confirmed in coordinates with $B = (0,0)$, $C = (14, 0)$, $A = (5, 12)$: then $O = (7, \\frac{33}{8})$, $H = (5, \\frac{15}{4})$ and $I = (6, 4)$.\n\nEuler also found that $OI^2 = R(R - 2r)$, which implies $R \\ge 2r$; we do not prove it here (a standard proof computes the power of $I$ with respect to the circumcircle). For this triangle $OI^2 = \\frac{65}{8}\\cdot\\frac18 = \\frac{65}{64}$, in agreement with the coordinates."
+   },
+   {
+    "type": "example",
+    "title": "The Gergonne point",
+    "body": "Show that the three lines joining each vertex to the point where the incircle touches the opposite side are concurrent.",
+    "solution": "With the tangent lengths found above, $BD = s - b$, $DC = s - c$, $CE = s - c$, $EA = s - a$, $AF = s - a$, $FB = s - b$. So\n$$\\frac{BD}{DC}\\cdot\\frac{CE}{EA}\\cdot\\frac{AF}{FB} = \\frac{s-b}{s-c}\\cdot\\frac{s-c}{s-a}\\cdot\\frac{s-a}{s-b} = 1,$$\nand Ceva's theorem gives concurrence. The common point is called the Gergonne point. It is in general different from all four classical centres."
+   },
+   {
+    "type": "example",
+    "title": "Menelaus in action",
+    "body": "In triangle $ABC$, the point $F$ lies on $AB$ with $AF : FB = 1 : 2$ and the point $E$ lies on $AC$ with $AE : EC = 3 : 1$. Line $FE$ meets line $BC$ at $D$. Find $BD : DC$.",
+    "solution": "By Menelaus's theorem with unsigned lengths, $\\frac{BD}{DC}\\cdot\\frac{CE}{EA}\\cdot\\frac{AF}{FB} = 1$, so $\\frac{BD}{DC}\\cdot\\frac13\\cdot\\frac12 = 1$ and $BD : DC = 6 : 1$. Since $E$ and $F$ are interior points of two sides, the signed ratios $\\frac{CE}{EA}$ and $\\frac{AF}{FB}$ are positive, and the signed product must be $-1$; so $\\frac{BD}{DC}$ is negative and $D$ lies on line $BC$ outside the segment, beyond $C$, with $BD = 6\\,DC$.\n\nA coordinate check: with $A = (0, 0)$, $B = (3, 0)$, $C = (0, 4)$ we get $F = (1, 0)$ and $E = (0, 3)$. Line $FE$ is $3x + y = 3$ and line $BC$ is $4x + 3y = 12$; they meet at $D = (-\\frac35, \\frac{24}5)$, beyond $C$, with $BD = 6$ and $DC = 1$."
+   },
+   {
+    "type": "example",
+    "title": "When is the Euler line parallel to a side?",
+    "body": "Let $ABC$ be an acute triangle that is not equilateral. Prove that its Euler line is parallel to $BC$ if and only if $\\tan B\\tan C = 3$.",
+    "solution": "Since the triangle is not equilateral, $O \\ne H$ and the Euler line $OH$ is defined. In an acute triangle both $O$ and $H$ lie inside, on the same side of $BC$ as $A$, so $OH \\parallel BC$ exactly when $O$ and $H$ are at the same distance from $BC$.\n\nDistance of $O$: with $M$ the midpoint of $BC$, the central angle theorem gives $\\angle BOM = A$, so $OM = R\\cos A$.\n\nDistance of $H$: let $D$ be the foot of the altitude from $A$. In the right triangle $ABD$, $BD = c\\cos B$. The altitude from $B$ is perpendicular to $AC$, so it makes the angle $90^\\circ - C$ with $BC$, and in the right triangle $BDH$ we get $HD = BD\\tan(90^\\circ - C) = c\\cos B\\,\\dfrac{\\cos C}{\\sin C}$. With $c = 2R\\sin C$ this is $HD = 2R\\cos B\\cos C$.\n\nSo the condition is $\\cos A = 2\\cos B\\cos C$. Since $\\cos A = -\\cos(B + C) = \\sin B\\sin C - \\cos B\\cos C$, it becomes $\\sin B\\sin C = 3\\cos B\\cos C$, that is $\\tan B\\tan C = 3$, dividing by the positive number $\\cos B\\cos C$.\n\nThe hypothesis \"not equilateral\" matters: the equilateral triangle has $\\tan B\\tan C = \\tan^2 60^\\circ = 3$ but no Euler line. A genuine example is $B = 50^\\circ$, $C = \\arctan(3/\\tan 50^\\circ) \\approx 68.3^\\circ$, $A \\approx 61.7^\\circ$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Ceva's condition as stated is for points inside the sides. If some of $D$, $E$, $F$ lie on extensions, use signed ratios: then the three lines are concurrent or all parallel exactly when the signed product is $+1$.\n- Menelaus's product is $-1$ with signed ratios and $1$ without; mixing the two conventions is the most common error. Some books write the ratios in another order, which changes the sign convention again.\n- The orthocentre lies outside the triangle when the triangle is obtuse, and at the vertex of the right angle when it is right. Arguments drawn for an acute triangle may need adjusting; the vector proofs above work in all cases.\n- $O$, $G$ and $H$ coincide for an equilateral triangle, so \"the Euler line\" is undefined there.\n- The incentre is not on the Euler line in general; it is only when the triangle is isosceles."
+   },
+   {
+    "type": "connection",
+    "body": "The homothety with centre $G$ and ratio $-\\frac12$ maps $A$, $B$, $C$ to the midpoints of the opposite sides; it maps $H$ to $O$ and the circumcircle to the nine-point circle. [[geo-transformations]] develops this point of view. Coordinates adapted to the triangle (barycentric coordinates) and complex numbers with the circumcircle as unit circle make vector computations like the ones above systematic ([[analytic-geometry]]). Euler's relation $OI^2 = R(R - 2r)$ gives the inequality $R \\ge 2r$, a starting point of [[geo-inequalities]]. Trigonometric versions of these results, such as the trigonometric form of Ceva's theorem, come from [[trig]], and many problems combine them with power of a point from [[circles]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use Ceva's theorem to show that the altitudes of an acute triangle are concurrent.\n2. Prove that the reflection of $H$ in the line $BC$ lies on the circumcircle.\n3. Prove that $AH^2 + BC^2 = 4R^2$. (With $O$ as origin, $H - A = B + C$.)\n4. Prove that the excircle opposite $A$ touches $BC$ at a point $D'$ with $BD' = s - c$, and deduce that $D'$ is the reflection of the incircle's point of contact $D$ in the midpoint of $BC$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Coxeter & Greitzer, Geometry Revisited",
+    "where": "Chapters 1 and 3"
+   },
+   {
+    "ref": "Chen, Euclidean Geometry in Mathematical Olympiads"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "random triangles with O at the origin: A+B+C lies on all three altitudes; OH^2 = 9R^2-(a^2+b^2+c^2); G=(A+B+C)/3 is 2/3 along each median; AH^2+BC^2=4R^2",
+    "python": "import math, random\nrandom.seed(11)\nn=0\nwhile n<1000:\n    ts=[random.uniform(0,2*math.pi) for _ in range(3)]\n    R=random.uniform(0.5,5)\n    A,B,C=[(R*math.cos(t),R*math.sin(t)) for t in ts]\n    a,b,c=math.dist(B,C),math.dist(C,A),math.dist(A,B)\n    if min(a,b,c)<0.05*R: continue\n    n+=1\n    H=(A[0]+B[0]+C[0],A[1]+B[1]+C[1])\n    dot=lambda u,v:u[0]*v[0]+u[1]*v[1]\n    sub=lambda P,Q:(P[0]-Q[0],P[1]-Q[1])\n    for P,Q,S in ((A,B,C),(B,C,A),(C,A,B)):\n        assert abs(dot(sub(H,P),sub(Q,S)))<1e-8*R*R\n    assert abs(dot(H,H)-(9*R*R-(a*a+b*b+c*c)))<1e-8*R*R\n    G=(H[0]/3,H[1]/3)\n    for P,Q,S in ((A,B,C),(B,C,A),(C,A,B)):\n        M=((Q[0]+S[0])/2,(Q[1]+S[1])/2)\n        X=(P[0]+2/3*(M[0]-P[0]),P[1]+2/3*(M[1]-P[1]))\n        assert math.dist(X,G)<1e-9*R\n    assert abs(math.dist(A,H)**2+a*a-4*R*R)<1e-8*R*R"
+   },
+   {
+    "claim": "nine-point circle: the three side midpoints, three altitude feet and midpoints of AH, BH, CH are all at distance R/2 from N=(O+H)/2, for random triangles",
+    "python": "import math, random\nrandom.seed(12)\ndef foot(P,Q,S):\n    dx,dy=S[0]-Q[0],S[1]-Q[1]\n    t=((P[0]-Q[0])*dx+(P[1]-Q[1])*dy)/(dx*dx+dy*dy)\n    return (Q[0]+t*dx,Q[1]+t*dy)\nn=0\nwhile n<1000:\n    ts=[random.uniform(0,2*math.pi) for _ in range(3)]\n    R=random.uniform(0.5,5)\n    A,B,C=[(R*math.cos(t),R*math.sin(t)) for t in ts]\n    if min(math.dist(A,B),math.dist(B,C),math.dist(C,A))<0.05*R: continue\n    n+=1\n    H=(A[0]+B[0]+C[0],A[1]+B[1]+C[1]); N=(H[0]/2,H[1]/2)\n    mid=lambda P,Q:((P[0]+Q[0])/2,(P[1]+Q[1])/2)\n    pts=[mid(B,C),mid(C,A),mid(A,B),foot(A,B,C),foot(B,C,A),foot(C,A,B),mid(A,H),mid(B,H),mid(C,H)]\n    for P in pts:\n        assert abs(math.dist(P,N)-R/2)<1e-8*R"
+   },
+   {
+    "claim": "13-14-15 triangle: area 84, r=4, r_a=12, R=65/8, tangent lengths 7,6,8, O=(7,33/8), H=(5,15/4), OH^2=265/64 (OH ~ 2.03), I=(6,4), OI^2=R(R-2r)=65/64; acute",
+    "python": "from fractions import Fraction as F\nimport math\na,b,c=14,15,13; s=F(a+b+c,2)\nassert s==21 and s*(s-a)*(s-b)*(s-c)==7056==84**2\nK=84\nassert F(K)/s==4 and F(K)/(s-a)==12 and F(a*b*c,4*K)==F(65,8) and a*b*c==2730 and 4*K==336\nassert (s-a,s-b,s-c)==(7,6,8)\nR=F(65,8)\nassert 9*R*R-(a*a+b*b+c*c)==F(265,64) and 9*4225==38025 and 64*590==37760\nBp=(F(0),F(0)); Cp=(F(14),F(0)); Ap=(F(5),F(12))\nd2=lambda P,Q:(P[0]-Q[0])**2+(P[1]-Q[1])**2\nassert d2(Ap,Bp)==169 and d2(Ap,Cp)==225 and d2(Bp,Cp)==196\nO=(F(7),F(33,8)); assert d2(O,Ap)==d2(O,Bp)==d2(O,Cp)==R*R\nH=(F(5),F(15,4))\ndot=lambda u,v:u[0]*v[0]+u[1]*v[1]\nsub=lambda P,Q:(P[0]-Q[0],P[1]-Q[1])\nassert dot(sub(H,Ap),sub(Bp,Cp))==0 and dot(sub(H,Bp),sub(Ap,Cp))==0 and dot(sub(H,Cp),sub(Ap,Bp))==0\nassert d2(O,H)==F(265,64) and abs(math.sqrt(265)/8-2.03)<0.005\nI=((a*Ap[0]+b*Bp[0]+c*Cp[0])/(a+b+c),(a*Ap[1]+b*Bp[1]+c*Cp[1])/(a+b+c))\nassert I==(6,4)\nassert d2(O,I)==R*(R-2*4)==F(65,64)\nassert 15**2<13**2+14**2"
+   },
+   {
+    "claim": "Ceva for random interior P; Gergonne lines concur (using tangent lengths s-a, s-b, s-c); excircle opposite A touches BC at distance s-c from B and has radius [ABC]/(s-a)",
+    "python": "import math, random\nrandom.seed(13)\ndef inter(P1,P2,P3,P4):\n    x1,y1=P1;x2,y2=P2;x3,y3=P3;x4,y4=P4\n    den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4)\n    return (((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/den,((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den)\ndef online(P,Q,S):\n    return abs((Q[0]-P[0])*(S[1]-P[1])-(Q[1]-P[1])*(S[0]-P[0]))\nn=0\nwhile n<500:\n    A,B,C=[(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(3)]\n    area=abs((B[0]-A[0])*(C[1]-A[1])-(B[1]-A[1])*(C[0]-A[0]))/2\n    if area<2: continue\n    n+=1\n    u,v=random.random(),random.random()\n    if u+v>1: u,v=1-u,1-v\n    w=1-u-v\n    if min(u,v,w)<0.02: continue\n    P=(u*A[0]+v*B[0]+w*C[0],u*A[1]+v*B[1]+w*C[1])\n    D=inter(A,P,B,C); E=inter(B,P,C,A); Fp=inter(C,P,A,B)\n    pr=math.dist(B,D)/math.dist(D,C)*math.dist(C,E)/math.dist(E,A)*math.dist(A,Fp)/math.dist(Fp,B)\n    assert abs(pr-1)<1e-7\n    a,b,c=math.dist(B,C),math.dist(C,A),math.dist(A,B); s=(a+b+c)/2\n    lerp=lambda P,Q,t:(P[0]+t*(Q[0]-P[0]),P[1]+t*(Q[1]-P[1]))\n    D=lerp(B,C,(s-b)/a); E=lerp(C,A,(s-c)/b); Fp=lerp(A,B,(s-a)/c)\n    I=((a*A[0]+b*B[0]+c*C[0])/(2*s),(a*A[1]+b*B[1]+c*C[1])/(2*s)); r=area/s\n    for T in (D,E,Fp): assert abs(math.dist(I,T)-r)<1e-8\n    X=inter(A,D,B,E)\n    assert online(C,Fp,X)<1e-7\n    Ia=((-a*A[0]+b*B[0]+c*C[0])/(-a+b+c),(-a*A[1]+b*B[1]+c*C[1])/(-a+b+c))\n    Dp=lerp(B,C,(s-c)/a)\n    ra=area/(s-a)\n    assert abs(math.dist(Ia,Dp)-ra)<1e-7*max(1,ra)\n    assert abs((Ia[0]-Dp[0])*(C[0]-B[0])+(Ia[1]-Dp[1])*(C[1]-B[1]))<1e-7*max(1,ra)\n    assert abs(math.dist(C,Dp)-(s-b))<1e-9"
+   },
+   {
+    "claim": "Menelaus example: A=(0,0), B=(3,0), C=(0,4), F=(1,0), E=(0,3); FE meets BC at D=(-3/5,24/5) with BD=6, DC=1",
+    "python": "from fractions import Fraction as F\nimport math\nA=(F(0),F(0)); B=(F(3),F(0)); C=(F(0),F(4)); Fp=(F(1),F(0)); E=(F(0),F(3))\nassert Fp[0]/(B[0]-Fp[0])==F(1,2) and E[1]/(C[1]-E[1])==3\nD=(F(-3,5),F(24,5))\nassert 3*D[0]+D[1]==3 and 4*D[0]+3*D[1]==12\nassert 3*Fp[0]+Fp[1]==3 and 3*E[0]+E[1]==3 and 4*B[0]+3*B[1]==12 and 4*C[0]+3*C[1]==12\nd2=lambda P,Q:(P[0]-Q[0])**2+(P[1]-Q[1])**2\nassert d2(B,D)==36 and d2(D,C)==1\nt=(D[1]-B[1])/(C[1]-B[1]); assert t>1\nassert F(6)*F(1,3)*F(1,2)==1"
+   },
+   {
+    "claim": "Euler line parallel to BC iff tan B tan C = 3: B=50 deg, C=arctan(3/tan50) ~ 68.3 deg gives O and H at the same height; OM=R cos A and HD=2R cos B cos C on random acute triangles",
+    "python": "import math, random\ndef tri(Bdeg,Cdeg):\n    Bt,Ct=math.radians(Bdeg),math.radians(Cdeg)\n    B=(0.0,0.0); C=(1.0,0.0)\n    c=math.sin(Ct)/math.sin(Bt+Ct)\n    A=(c*math.cos(Bt),c*math.sin(Bt))\n    return A,B,C\ndef OH(A,B,C):\n    d=2*(A[0]*(B[1]-C[1])+B[0]*(C[1]-A[1])+C[0]*(A[1]-B[1]))\n    sq=lambda P:P[0]**2+P[1]**2\n    O=((sq(A)*(B[1]-C[1])+sq(B)*(C[1]-A[1])+sq(C)*(A[1]-B[1]))/d,(sq(A)*(C[0]-B[0])+sq(B)*(A[0]-C[0])+sq(C)*(B[0]-A[0]))/d)\n    H=(A[0]+B[0]+C[0]-2*O[0],A[1]+B[1]+C[1]-2*O[1])\n    return O,H\nCdeg=math.degrees(math.atan(3/math.tan(math.radians(50))))\nassert abs(Cdeg-68.3)<0.05 and abs(180-50-Cdeg-61.7)<0.05\nO,H=OH(*tri(50,Cdeg))\nassert abs(O[1]-H[1])<1e-12 and math.dist(O,H)>1e-3\nrandom.seed(14)\nfor _ in range(1000):\n    Bd=random.uniform(5,85); Cd=random.uniform(5,85); Ad=180-Bd-Cd\n    if Ad>=89 or Ad<=1: continue\n    A,B,C=tri(Bd,Cd); O,H=OH(A,B,C)\n    R=math.dist(O,B)\n    Ar,Br,Cr=map(math.radians,(Ad,Bd,Cd))\n    assert abs(O[1]-R*math.cos(Ar))<1e-9 and abs(H[1]-2*R*math.cos(Br)*math.cos(Cr))<1e-9\n    assert (abs(O[1]-H[1])<1e-9)==(abs(math.tan(Br)*math.tan(Cr)-3)<1e-7) or abs(math.tan(Br)*math.tan(Cr)-3)<1e-4"
+   }
+  ]
+ },
+ {
+  "id": "geo-transformations",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Some configurations become simple once you look at them through the right map of the plane. Two circles tangent at a point are images of each other under a dilation centred there. Two similar triangles sharing a vertex are related by a rotation followed by a scaling. A tangle of circles through one point becomes a set of straight lines after an inversion. Solving the problem in the simpler picture and carrying the result back is often far easier than attacking the original.\n\nThis lesson covers the transformations used in olympiad geometry: isometries, homotheties, spiral similarities and inversion. It relies on angle facts and power of a point from [[circles]]."
+   },
+   {
+    "type": "section",
+    "title": "Isometries",
+    "body": "An isometry is a map of the plane that preserves distances. Every isometry of the plane is a translation, a rotation, a reflection in a line, or a glide reflection (a reflection followed by a translation along the mirror). Composing two reflections is worth knowing: if the mirrors meet at a point $X$ at angle $\\theta$, the result is the rotation about $X$ by $2\\theta$; if they are parallel at distance $d$, it is a translation by $2d$ perpendicular to them.\n\nRotations are the natural tool when a figure contains two equal segments with a common endpoint and a known angle between them, as squares and equilateral triangles do. Rotating one segment onto the other carries a whole piece of the figure to a new position, where it often fits together with the rest."
+   },
+   {
+    "type": "example",
+    "title": "Rotating a square",
+    "body": "A point $P$ inside the square $ABCD$ satisfies $PA = 1$, $PB = 2$, $PC = 3$. Find $\\angle APB$.",
+    "solution": "The three given lengths are scattered; a rotation gathers them into one triangle. Rotate the plane by $90^\\circ$ about $B$ in the direction that takes $A$ to $C$, which is possible because $BA = BC$ and $\\angle ABC = 90^\\circ$. Let $P'$ be the image of $P$. Then $BP' = BP = 2$ and $\\angle PBP' = 90^\\circ$, so triangle $PBP'$ is an isosceles right triangle with $PP' = 2\\sqrt2$ and $\\angle BP'P = 45^\\circ$. The rotation takes segment $AP$ to segment $CP'$, so $CP' = AP = 1$ and $\\angle BP'C = \\angle BPA$.\n\nIn triangle $PP'C$ we now have $PP'^2 + P'C^2 = 8 + 1 = 9 = PC^2$, so $\\angle PP'C = 90^\\circ$ by the converse of Pythagoras' theorem. Therefore\n$$\\angle APB = \\angle CP'B = \\angle CP'P + \\angle PP'B = 90^\\circ + 45^\\circ = 135^\\circ.$$\nThe addition of angles uses that ray $P'P$ lies inside the angle $CP'B$. This can be confirmed from the numbers: the law of cosines in triangle $APB$ gives the side of the square as $\\sqrt{5 + 2\\sqrt2} \\approx 2.80$, and then $P$ can be located in coordinates."
+   },
+   {
+    "type": "section",
+    "title": "Homothety",
+    "body": "The homothety with centre $X$ and ratio $k \\ne 0$ sends each point $P$ to the point $P'$ with $\\overrightarrow{XP'} = k\\,\\overrightarrow{XP}$. For $k > 0$ the image lies on ray $XP$; for $k < 0$ it lies on the opposite ray, and $k = -1$ is the half-turn about $X$. A homothety maps every line to a parallel line, multiplies all lengths by $|k|$, preserves angles, and maps the circle with centre $Q$ and radius $\\rho$ to the circle with centre $Q'$ and radius $|k|\\rho$.\n\nConversely, two circles with different radii are related by exactly two homotheties, one with positive ratio and one with negative ratio. Their centres, the external and internal centres of similitude, lie on the line of centres and divide the segment between the centres externally and internally in the ratio of the radii. When common tangents exist, the external tangents pass through the external centre and the internal tangents through the internal centre. If two circles are tangent, the point of tangency is one of the two centres of similitude. That is why tangent circles call for homotheties.\n\nIn a triangle, the homothety with centre $G$ and ratio $-\\frac12$ maps each vertex to the midpoint of the opposite side, the circumcircle to the nine-point circle, and the orthocentre to the circumcentre ([[triangle-centres]])."
+   },
+   {
+    "type": "example",
+    "title": "The incircle and the excircle",
+    "body": "The incircle of triangle $ABC$ touches $BC$ at $D$, and $D^*$ is the point of the incircle diametrically opposite $D$. The excircle opposite $A$ touches $BC$ at $E$. Prove that $A$, $D^*$, $E$ are collinear and that $BD = CE$.",
+    "solution": "Both circles are tangent to the lines $AB$ and $AC$ and lie inside the angle $BAC$, and their centres lie on the bisector of that angle. So the homothety $h$ with centre $A$ and positive ratio $r_a/r$ maps the incircle onto the excircle.\n\nThe tangent to the incircle at $D^*$ is parallel to $BC$, since both are perpendicular to the diameter $DD^*$, and it lies between $A$ and the incircle. Under $h$ it goes to a line parallel to $BC$ that is tangent to the excircle. The excircle has two tangents parallel to $BC$: the line $BC$ itself, which is the nearer one to $A$, and another one farther away. A homothety with centre $A$ and positive ratio multiplies distances from $A$ by the same factor, so it preserves which of two parallel tangents is nearer to $A$. The tangent at $D^*$ is the nearer of the incircle's two tangents parallel to $BC$, so its image is $BC$. Hence $h(D^*)$ is the point where $BC$ touches the excircle, namely $E$, and $E$ lies on ray $AD^*$.\n\nFor the second claim, the incircle gives $BD = s - b$ ([[triangle-centres]]). For the excircle, let $t$ be the common length of the two tangents from $A$, along the lines $AB$ and $AC$. The tangents from $B$ (and from $C$) are also equal, so $t = c + BE$ and $t = b + CE$. Adding and using $BE + CE = a$ gives $2t = a + b + c$, so $t = s$ and $CE = s - b$. Hence $BD = CE$: the points $D$ and $E$ are symmetric about the midpoint of $BC$.\n\nFor the $13$-$14$-$15$ triangle with $B = (0,0)$, $C = (14, 0)$, $A = (5, 12)$ one finds $I = (6, 4)$, $D = (6, 0)$, $D^* = (6, 8)$ and $E = (8, 0)$, and indeed $A$, $(6,8)$, $(8,0)$ lie on a line of slope $-4$."
+   },
+   {
+    "type": "section",
+    "title": "Spiral similarity",
+    "body": "A spiral similarity with centre $X$, angle $\\theta$ and ratio $k > 0$ is the rotation about $X$ by $\\theta$ followed by the homothety with centre $X$ and ratio $k$. It maps every triangle $XPQ$ to a similar triangle $XP'Q'$ with the same orientation. In coordinates, the rotation by $45^\\circ$ about the origin combined with ratio $\\sqrt2$ is $(x, y) \\mapsto (x - y,\\ x + y)$. In complex numbers every spiral similarity is a map $z \\mapsto az + b$ with $a \\ne 0, 1$ ([[complex-numbers]]).\n\nGiven points $A \\ne B$ and $C \\ne D$ with $\\overrightarrow{AB} \\ne \\overrightarrow{CD}$, there is exactly one spiral similarity taking $A$ to $C$ and $B$ to $D$; when the two vectors are equal, a translation does the job instead. Its centre can be located by a construction with two circles."
+   },
+   {
+    "type": "theorem",
+    "title": "Centre of a spiral similarity",
+    "body": "Let $A, B, C, D$ be points with $\\overrightarrow{AB} \\ne \\overrightarrow{CD}$, such that lines $AC$ and $BD$ meet at a point $X$ different from all four. If the circles $ABX$ and $CDX$ meet at a second point $S$, then $S$ is the centre of the spiral similarity taking $A$ to $C$ and $B$ to $D$."
+   },
+   {
+    "type": "proof",
+    "body": "It suffices to show that triangles $SAB$ and $SCD$ are similar with the same orientation: then the spiral similarity with centre $S$ that takes $A$ to $C$ (angle $\\angle ASC$, ratio $SC/SA$) also takes $B$ to $D$.\n\nTo avoid case distinctions, use directed angles $\\measuredangle(\\ell, m)$ between lines, measured modulo $180^\\circ$. In this language, four points $P, Q, U, V$ are concyclic exactly when $\\measuredangle(UP, UQ) = \\measuredangle(VP, VQ)$, whatever the order of the points on the circle.\n\nSince $S, A, B, X$ are concyclic, $\\measuredangle(AS, AB) = \\measuredangle(XS, XB)$. Since $X, B, D$ are collinear, $XB$ and $XD$ are the same line; and since $S, C, D, X$ are concyclic, $\\measuredangle(XS, XD) = \\measuredangle(CS, CD)$. Therefore $\\measuredangle(AS, AB) = \\measuredangle(CS, CD)$. In the same way, using that $A, C, X$ are collinear,\n$$\\measuredangle(BS, BA) = \\measuredangle(XS, XA) = \\measuredangle(XS, XC) = \\measuredangle(DS, DC).$$\nSo two directed angles of triangle $SAB$ equal the corresponding directed angles of triangle $SCD$, and the triangles are similar with the same orientation."
+   },
+   {
+    "type": "example",
+    "title": "A spiral similarity in coordinates",
+    "body": "Find the spiral similarity taking $A = (0,0)$ to $C = (1, 2)$ and $B = (2, 0)$ to $D = (3, 4)$, and check the two-circle construction of its centre.",
+    "solution": "The vector $\\overrightarrow{CD} = (2, 2)$ is $\\overrightarrow{AB} = (2, 0)$ rotated by $45^\\circ$ and scaled by $\\sqrt2$. So the map is $f(x, y) = (x - y,\\ x + y) + (1, 2)$, which sends $A$ to $C$ and $B$ to $(2, 2) + (1, 2) = D$. Its centre is its fixed point: $x = x - y + 1$ and $y = x + y + 2$ give $y = 1$ and $x = -2$. So $f$ is the rotation by $45^\\circ$ about $S = (-2, 1)$ combined with scaling by $\\sqrt2$ about the same point.\n\nThe construction: line $AC$ is $y = 2x$ and line $BD$ is $y = 4x - 8$, meeting at $X = (4, 8)$. The circle through $A$, $B$, $X$ is $x^2 + y^2 - 2x - 9y = 0$, and the circle through $C$, $D$, $X$ is $x^2 + y^2 + 5x - 15y + 20 = 0$. Substituting $(-2, 1)$ gives $4 + 1 + 4 - 9 = 0$ and $4 + 1 - 10 - 15 + 20 = 0$, so $S$ is indeed the second intersection point of the two circles."
+   },
+   {
+    "type": "definition",
+    "title": "Inversion",
+    "body": "Let $\\omega$ be a circle with centre $O$ and radius $r$. The inversion in $\\omega$ maps each point $P \\ne O$ to the point $P'$ on ray $OP$ with\n$$OP\\cdot OP' = r^2.$$\nPoints inside $\\omega$ go outside and vice versa, the points of $\\omega$ stay fixed, and inverting twice gives back $P$. The centre $O$ has no image; it is convenient to add a single \"point at infinity\" and declare that inversion swaps it with $O$."
+   },
+   {
+    "type": "theorem",
+    "title": "Inversion of lines and circles",
+    "body": "Under inversion with centre $O$ and radius $r$:\n\n1. a line through $O$ is mapped to itself;\n2. a line not through $O$ is mapped to a circle through $O$, and a circle through $O$ to a line not through $O$;\n3. a circle not through $O$ is mapped to a circle not through $O$.\n\nIn each case the point $O$ itself is left out. Moreover, for points $P, Q \\ne O$,\n$$P'Q' = \\frac{r^2\\,PQ}{OP\\cdot OQ}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Distance formula. From $OP\\cdot OP' = r^2 = OQ\\cdot OQ'$ we get $\\frac{OP}{OQ} = \\frac{OQ'}{OP'}$. If $O, P, Q$ are not collinear, triangles $OPQ$ and $OQ'P'$ share the angle at $O$, so they are similar (SAS) with ratio $\\frac{OQ'}{OP} = \\frac{r^2}{OP\\cdot OQ}$. Hence $P'Q' = \\frac{r^2}{OP\\cdot OQ}\\,PQ$, and also $\\angle OPQ = \\angle OQ'P'$. If $O, P, Q$ are collinear, the formula follows directly from $OP' = r^2/OP$ and $OQ' = r^2/OQ$.\n\nPart 1 is immediate from the definition.\n\nPart 2. Let $\\gamma$ be a circle through $O$, let $A$ be the point of $\\gamma$ diametrically opposite $O$, and let $A'$ be its image. For any other point $P \\ne O$ of $\\gamma$, the similarity just proved, with $Q = A$, gives $\\angle OA'P' = \\angle OPA = 90^\\circ$ by Thales. So $P'$ lies on the line $\\ell$ through $A'$ perpendicular to $OA$. Conversely, let $Y$ be any point of $\\ell$. The ray $OY$ points into the side of the tangent at $O$ on which $\\gamma$ lies, so it meets $\\gamma$ at a point $P \\ne O$; then $P'$ lies on ray $OY$ and on $\\ell$, so $P' = Y$. Thus $\\gamma$ without $O$ is mapped onto $\\ell$, and since inversion undoes itself, $\\ell$ is mapped onto $\\gamma$ without $O$. Every line not through $O$ arises in this way: let $A'$ be the foot of the perpendicular from $O$ to the line and take $\\gamma$ to be the circle with diameter $OA$, where $A$ is the image of $A'$. For example, inversion in the circle of radius $2$ about the origin sends the line $x = 1$ to the circle with diameter from $O$ to $(4, 0)$, that is $(x - 2)^2 + y^2 = 4$: the point $(1, t)$ goes to $\\frac{4}{1+t^2}(1, t)$, and this point satisfies $x^2 + y^2 = 4x$.\n\nPart 3. Let $\\gamma$ be a circle not through $O$ and let $p \\ne 0$ be the power of $O$ with respect to $\\gamma$. For $P$ on $\\gamma$, the line $OP$ meets $\\gamma$ again at $Q$ (with $Q = P$ for a tangent), and by the power of a point $OP\\cdot OQ = |p|$, with $P$ and $Q$ on the same side of $O$ if $p > 0$ and on opposite sides if $p < 0$. Then $OP' = r^2/OP = \\frac{r^2}{|p|}\\,OQ$, with $P'$ on ray $OP$. This says exactly that $P'$ is the image of $Q$ under the homothety with centre $O$ and ratio $r^2/p$, which is negative when $p < 0$. As $P$ runs over $\\gamma$, so does $Q$. Hence the image of $\\gamma$ under the inversion equals its image under this homothety, which is a circle not through $O$. In particular, when $p = r^2$ the ratio is $1$ and $\\gamma$ is mapped onto itself.\n\nInversion also preserves the angle between two curves at a common point, while reversing orientation; we omit the proof. A weaker consequence of the theorem is often enough. Inversion is a bijection away from $O$, so it preserves the number of common points of two curves. Hence two circles tangent at a point $T \\ne O$ are mapped to two circles, or a circle and a line, that touch at $T'$, and two circles tangent at $O$ itself become two parallel lines."
+   },
+   {
+    "type": "example",
+    "title": "Ptolemy by inversion",
+    "body": "Prove Ptolemy's inequality: for any four points $A, B, C, D$ in the plane,\n$$AB\\cdot CD + AD\\cdot BC \\ge AC\\cdot BD,$$\nwith equality when $ABCD$ is a convex cyclic quadrilateral.",
+    "solution": "We may assume $B, C, D$ are all different from $A$, since otherwise the inequality is trivial. Invert with centre $A$ and radius $1$, and write $B', C', D'$ for the images. By the distance formula,\n$$B'C' = \\frac{BC}{AB\\cdot AC}, \\qquad C'D' = \\frac{CD}{AC\\cdot AD}, \\qquad B'D' = \\frac{BD}{AB\\cdot AD}.$$\nThe triangle inequality $B'C' + C'D' \\ge B'D'$ becomes, after multiplying by $AB\\cdot AC\\cdot AD$,\n$$BC\\cdot AD + CD\\cdot AB \\ge BD\\cdot AC,$$\nwhich is Ptolemy's inequality. Equality holds exactly when $C'$ lies on the segment $B'D'$.\n\nIf $ABCD$ is a convex cyclic quadrilateral, its circle passes through the centre of inversion $A$, so it is mapped to a line containing $B'$, $C'$, $D'$. The circle without the point $A$ is mapped continuously and bijectively onto this line, so points keep their order; since $C$ lies on the arc $BD$ not containing $A$, the point $C'$ lies between $B'$ and $D'$. So equality holds, which is Ptolemy's theorem $AC\\cdot BD = AB\\cdot CD + AD\\cdot BC$ for cyclic quadrilaterals. Conversely, equality forces $B'$, $C'$, $D'$ to be collinear with $C'$ in the middle, so $A, B, C, D$ are either concyclic in this order or collinear."
+   },
+   {
+    "type": "section",
+    "title": "Choosing a transformation",
+    "body": "Some rules of thumb. Look for a homothety when the figure has parallel lines or tangent circles; for a rotation when it has equal segments meeting at a known angle, as with squares and equilateral triangles; for a spiral similarity when two similar triangles share a vertex, or when two circles meet and lines through their common points appear; and for inversion when many circles pass through one point, or when tangencies pile up.\n\nBehind these tricks is a general idea. In 1872 Felix Klein proposed, in what became known as his Erlangen programme, that a geometry is the study of those properties of figures that are invariant under a group of transformations ([[groups]], [[group-actions]]). Euclidean geometry studies what isometries preserve: lengths and angles. Similarity geometry also allows homotheties, and keeps angles and ratios of lengths. Inversive geometry allows inversions, which preserve neither lines nor lengths but do preserve the family of \"circles and lines\" and the angles between curves. Choosing a transformation in a problem is a small, practical version of this idea: you move to a picture in which the property you care about is unchanged but the figure is simpler."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Inversion does not map the centre of a circle to the centre of the image circle. In part 3 of the theorem the image is a homothetic copy of $\\gamma$, and its centre is the homothetic image of the centre of $\\gamma$, not the inverse of it.\n- Inversion is not an isometry. Lengths change by the factor $\\frac{r^2}{OP\\cdot OQ}$, which depends on position.\n- The centre of inversion has no image; anything involving $O$ needs separate care. In particular, circles through $O$ become lines.\n- A homothety with negative ratio sends the figure through the centre to the other side. Choosing the wrong sign puts the image tangent on the wrong side, as the incircle-excircle example shows.\n- Composing rotations about two different centres gives a rotation about a third centre, or a translation if the angles add up to a multiple of $360^\\circ$, not a rotation about either original centre."
+   },
+   {
+    "type": "connection",
+    "body": "Power of a point from [[circles]] is built into inversion: the inversion with centre $P$ and radius squared $\\operatorname{pow}(P)$ maps a circle onto itself. The homothety at the centroid organises the Euler line and the nine-point circle of [[triangle-centres]]. In complex coordinates spiral similarities are the maps $z \\mapsto az + b$ and inversion in the unit circle is $z \\mapsto 1/\\bar z$, which links this lesson to [[complex-numbers]] and [[analytic-geometry]]; compositions of inversions, reflections and similarities give the Möbius transformations $z \\mapsto \\frac{az + b}{cz + d}$ and their complex conjugates. Rotations and reflections about the origin are the simplest [[linear-maps]], and the symmetry groups of figures are examples of [[groups]]. Ptolemy's inequality is one of several results in [[geo-inequalities]] with a short proof by inversion."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the composition of two homotheties with different centres and ratios $k_1, k_2$ with $k_1k_2 \\ne 1$ is a homothety with ratio $k_1k_2$, and that its centre lies on the line through the two original centres.\n2. Under inversion with centre $O$ and radius $r$, what is the image of the circle with centre $O$ and radius $\\rho$? What is the image of a circle through $O$ with centre $Q$?\n3. Two circles are tangent internally at $T$, and a chord $AB$ of the larger circle touches the smaller circle at $P$. Prove that $TP$ bisects the angle $ATB$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Coxeter & Greitzer, Geometry Revisited",
+    "where": "Chapters 4 and 5"
+   },
+   {
+    "ref": "Chen, Euclidean Geometry in Mathematical Olympiads"
+   },
+   {
+    "ref": "Yaglom, Geometric Transformations"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "square with PA=1, PB=2, PC=3: side sqrt(5+2sqrt2) ~ 2.80, P inside, angle APB = 135 deg; rotation about B by 90 deg gives CP'=1, PP'=2sqrt2, angle PP'C = 90 deg",
+    "python": "import math\ns=math.sqrt(5+2*math.sqrt(2))\nassert abs(s-2.80)<0.005\nx=(s*s-5)/(2*s); y=(s*s+3)/(2*s)\nB=(0.0,0.0); A=(0.0,s); C=(s,0.0); P=(x,y)\nassert abs(math.dist(P,B)-2)<1e-12 and abs(math.dist(P,A)-1)<1e-12 and abs(math.dist(P,C)-3)<1e-12\nassert 0<x<s and 0<y<s\ndef ang(U,V,W):\n    u=(U[0]-V[0],U[1]-V[1]); w=(W[0]-V[0],W[1]-V[1])\n    return math.degrees(math.acos((u[0]*w[0]+u[1]*w[1])/(math.hypot(*u)*math.hypot(*w))))\nassert abs(ang(A,P,B)-135)<1e-9\nrot=lambda Q:(Q[1],-Q[0])\nassert rot(A)==C\nPp=rot(P)\nassert abs(math.dist(C,Pp)-1)<1e-12 and abs(math.dist(P,Pp)-2*math.sqrt(2))<1e-12\nassert abs(ang(P,Pp,C)-90)<1e-9 and abs(ang(B,Pp,P)-45)<1e-9 and abs(ang(C,Pp,B)-135)<1e-9\nassert abs(1+4-2*1*2*math.cos(math.radians(135))-s*s)<1e-12"
+   },
+   {
+    "claim": "incircle/excircle: for 13-14-15, I=(6,4), D=(6,0), D*=(6,8), E=(8,0), A, D*, E collinear with slope -4; for random triangles A, D*, E are collinear and BD = CE = s-b",
+    "python": "import math, random\nfrom fractions import Fraction as F\nA=(F(5),F(12)); Ds=(F(6),F(8)); E=(F(8),F(0))\nassert (Ds[1]-A[1])/(Ds[0]-A[0])==-4==(E[1]-Ds[1])/(E[0]-Ds[0])\nrandom.seed(15)\ndef foot(P,Q,S):\n    dx,dy=S[0]-Q[0],S[1]-Q[1]\n    t=((P[0]-Q[0])*dx+(P[1]-Q[1])*dy)/(dx*dx+dy*dy)\n    return (Q[0]+t*dx,Q[1]+t*dy)\ndef check(A,B,C):\n    a,b,c=math.dist(B,C),math.dist(C,A),math.dist(A,B); s=(a+b+c)/2\n    I=((a*A[0]+b*B[0]+c*C[0])/(2*s),(a*A[1]+b*B[1]+c*C[1])/(2*s))\n    Ia=((-a*A[0]+b*B[0]+c*C[0])/(-a+b+c),(-a*A[1]+b*B[1]+c*C[1])/(-a+b+c))\n    D=foot(I,B,C); E=foot(Ia,B,C); Ds=(2*I[0]-D[0],2*I[1]-D[1])\n    cr=(Ds[0]-A[0])*(E[1]-A[1])-(Ds[1]-A[1])*(E[0]-A[0])\n    assert abs(cr)<1e-7*max(1,a*a)\n    assert abs(math.dist(B,D)-(s-b))<1e-8 and abs(math.dist(C,E)-(s-b))<1e-8\n    return I,D,E\nI,D,E=check((5.0,12.0),(0.0,0.0),(14.0,0.0))\nassert max(abs(I[0]-6),abs(I[1]-4),abs(D[0]-6),abs(D[1]),abs(E[0]-8),abs(E[1]))<1e-9\nn=0\nwhile n<500:\n    P=[(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(3)]\n    area=abs((P[1][0]-P[0][0])*(P[2][1]-P[0][1])-(P[1][1]-P[0][1])*(P[2][0]-P[0][0]))/2\n    if area<2: continue\n    n+=1\n    check(*P)"
+   },
+   {
+    "claim": "spiral similarity example: f(x,y)=(x-y+1,x+y+2) maps A->C, B->D, fixes (-2,1), equals rotation 45 deg with ratio sqrt2 about S; X=(4,8); both circles pass through S",
+    "python": "import math, random\nf=lambda p:(p[0]-p[1]+1,p[0]+p[1]+2)\nassert f((0,0))==(1,2) and f((2,0))==(3,4) and f((-2,1))==(-2,1)\nc,s=math.cos(math.pi/4),math.sin(math.pi/4)\nfor _ in range(100):\n    p=(random.uniform(-9,9),random.uniform(-9,9))\n    q=(p[0]+2,p[1]-1)\n    g=(-2+math.sqrt(2)*(c*q[0]-s*q[1]),1+math.sqrt(2)*(s*q[0]+c*q[1]))\n    assert math.dist(f(p),g)<1e-9\nX=(4,8); assert X[1]==2*X[0] and X[1]==4*X[0]-8\nc1=lambda x,y:x*x+y*y-2*x-9*y\nc2=lambda x,y:x*x+y*y+5*x-15*y+20\nfor p in [(0,0),(2,0),(4,8),(-2,1)]: assert c1(*p)==0\nfor p in [(1,2),(3,4),(4,8),(-2,1)]: assert c2(*p)==0"
+   },
+   {
+    "claim": "spiral similarity centre theorem for random points: the fixed point of z->az+b lies on circles ABX and CDX",
+    "python": "import random, cmath\nrandom.seed(16)\ndef concyclic(p,q,r,t):\n    z=((p-r)*(q-t))/((q-r)*(p-t))\n    return abs(z.imag)<1e-6*max(1,abs(z))\nn=0\nwhile n<500:\n    A,B,C,D=[complex(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(4)]\n    a=(D-C)/(B-A)\n    if abs(a-1)<0.1: continue\n    b=C-a*A\n    S=b/(1-a)\n    u=C-A; v=D-B\n    den=(u.conjugate()*v).imag\n    if abs(den)<0.5: continue\n    t=((B-A).conjugate()*v).imag/den\n    X=A+t*u\n    if min(abs(X-P) for P in (A,B,C,D,S))<0.1: continue\n    assert abs(((X-B).conjugate()*(D-B)).imag)<1e-6*abs(X-B)*abs(D-B)\n    n+=1\n    assert abs(a*S+b-S)<1e-9\n    assert concyclic(A,B,X,S) and concyclic(C,D,X,S)"
+   },
+   {
+    "claim": "inversion in radius 2 maps (1,t) to a point of (x-2)^2+y^2=4 (exact), and 1*4=2^2",
+    "python": "from fractions import Fraction as F\nassert 1*4==2**2\nfor k in range(-50,51):\n    t=F(k,7)\n    x=F(4)/(1+t*t); y=4*t/(1+t*t)\n    assert (x-2)**2+y*y==4 and x*x+y*y==4*x"
+   },
+   {
+    "claim": "inversion distance formula P'Q' = r^2 PQ/(OP OQ); a circle not through O maps to the homothetic circle with ratio r^2/p (p = power of O); with p = r^2 the circle is invariant",
+    "python": "import math, random\nrandom.seed(17)\ninv=lambda P,r:(P[0]*r*r/(P[0]**2+P[1]**2),P[1]*r*r/(P[0]**2+P[1]**2))\nfor _ in range(1000):\n    r=random.uniform(0.5,3)\n    P=(random.uniform(-5,5),random.uniform(-5,5)); Q=(random.uniform(-5,5),random.uniform(-5,5))\n    if min(math.hypot(*P),math.hypot(*Q))<0.1: continue\n    lhs=math.dist(inv(P,r),inv(Q,r)); rhs=r*r*math.dist(P,Q)/(math.hypot(*P)*math.hypot(*Q))\n    assert abs(lhs-rhs)<1e-8*max(1,rhs)\nn=0\nwhile n<300:\n    r=random.uniform(0.5,3); c=(random.uniform(-4,4),random.uniform(-4,4)); rho=random.uniform(0.3,3)\n    p=c[0]**2+c[1]**2-rho*rho\n    if abs(p)<0.3: continue\n    n+=1\n    k=r*r/p\n    cc=(k*c[0],k*c[1]); rr=abs(k)*rho\n    for _ in range(20):\n        th=random.uniform(0,2*math.pi)\n        P=(c[0]+rho*math.cos(th),c[1]+rho*math.sin(th))\n        if math.hypot(*P)<1e-3: continue\n        assert abs(math.dist(inv(P,r),cc)-rr)<1e-7*max(1,rr)\n    ci=inv(c,r) if math.hypot(*c)>1e-9 else None\n    if ci is not None and rho>0.5: assert math.dist(ci,cc)>1e-6 or abs(p)<1e-9\nc=(3.0,0.0); r=2.0; rho=math.sqrt(9-4)\nfor th in [0.3,1.1,2.0,2.9,4.0,5.5]:\n    P=(c[0]+rho*math.cos(th),c[1]+rho*math.sin(th))\n    assert abs(math.dist(inv(P,r),c)-rho)<1e-9"
+   },
+   {
+    "claim": "Ptolemy: equality for random convex cyclic quadrilaterals, inequality AB*CD+AD*BC >= AC*BD for random quadruples",
+    "python": "import math, random\nrandom.seed(18)\nfor _ in range(2000):\n    ts=sorted(random.uniform(0,2*math.pi) for _ in range(4))\n    R=random.uniform(0.5,4)\n    A,B,C,D=[(R*math.cos(t),R*math.sin(t)) for t in ts]\n    d=math.dist\n    assert abs(d(A,B)*d(C,D)+d(A,D)*d(B,C)-d(A,C)*d(B,D))<1e-9*R*R\nfor _ in range(5000):\n    A,B,C,D=[(random.uniform(-5,5),random.uniform(-5,5)) for _ in range(4)]\n    d=math.dist\n    assert d(A,B)*d(C,D)+d(A,D)*d(B,C)>=d(A,C)*d(B,D)-1e-9"
+   },
+   {
+    "claim": "composition of reflections in lines through the origin at angles alpha, beta is rotation by 2(beta-alpha); composition of homotheties with k1*k2 != 1 is a homothety of ratio k1*k2 whose centre is collinear with the two centres",
+    "python": "import math, random\nrandom.seed(19)\ndef refl(al):\n    return [[math.cos(2*al),math.sin(2*al)],[math.sin(2*al),-math.cos(2*al)]]\ndef mul(M,N):\n    return [[sum(M[i][k]*N[k][j] for k in range(2)) for j in range(2)] for i in range(2)]\nfor _ in range(200):\n    al,be=random.uniform(0,math.pi),random.uniform(0,math.pi)\n    M=mul(refl(be),refl(al)); th=2*(be-al)\n    Rm=[[math.cos(th),-math.sin(th)],[math.sin(th),math.cos(th)]]\n    assert all(abs(M[i][j]-Rm[i][j])<1e-12 for i in range(2) for j in range(2))\nfor _ in range(500):\n    X1=(random.uniform(-5,5),random.uniform(-5,5)); X2=(random.uniform(-5,5),random.uniform(-5,5))\n    k1,k2=random.uniform(-3,3),random.uniform(-3,3)\n    if abs(k1*k2-1)<0.1 or abs(k1)<0.1 or abs(k2)<0.1: continue\n    h=lambda X,k,P:(X[0]+k*(P[0]-X[0]),X[1]+k*(P[1]-X[1]))\n    comp=lambda P:h(X2,k2,h(X1,k1,P))\n    k=k1*k2\n    o=comp((0.0,0.0))\n    Z=(o[0]/(1-k),o[1]/(1-k))\n    assert math.dist(comp(Z),Z)<1e-9\n    for _ in range(5):\n        P=(random.uniform(-5,5),random.uniform(-5,5))\n        assert math.dist(comp(P),h(Z,k,P))<1e-9\n    cr=(X2[0]-X1[0])*(Z[1]-X1[1])-(X2[1]-X1[1])*(Z[0]-X1[0])\n    assert abs(cr)<1e-7*max(1,math.dist(Z,X1)*math.dist(X2,X1))"
+   }
+  ]
+ }
+]

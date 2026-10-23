@@ -1,0 +1,778 @@
+[
+ {
+  "id": "prime-patterns",
+  "title": "Primes in sequences and gaps",
+  "summary": "Which sequences contain infinitely many primes, how large gaps between consecutive primes can be, and how often primes fall in short intervals. Most such questions are open; sieves and the circle method give the partial results.",
+  "key_statements": [
+   "\\limsup \\frac{p_{n+1}-p_n}{\\log p_n} = \\infty \\ \\text{(Westzynthius 1931)}",
+   "\\max_{p_n\\le x}(p_{n+1}-p_n) \\gg \\frac{\\log x\\,\\log\\log x\\,\\log\\log\\log\\log x}{\\log\\log\\log x}\\ \\text{(Ford–Green–Konyagin–Maynard–Tao)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-141",
+    "title": "Erdős Problem #141",
+    "status": "open",
+    "statement": "Let $k≥3$. Are there $k$ consecutive primes in arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-860",
+    "title": "Erdős Problem #860",
+    "status": "open",
+    "statement": "Let $h(n)$ be such that, for any $m\\geq 1$, in the interval $(m,m+h(n))$ there exist distinct\nintegers $a_i$ for $1\\leq i\\leq \\pi(n)$ such that $p_i\\mid a_i$, where $p_i$ denotes the $i$th\nprime."
+   },
+   {
+    "id": "ERDOS-997",
+    "title": "Erdős Problem #997",
+    "status": "solved",
+    "statement": "Is it true that, for every $\\alpha$, the sequence $\\{ \\alpha p_n\\}$ is not well-distributed,\nif $p_n$ is the sequence of primes?"
+   },
+   {
+    "id": "ERDOS-427",
+    "title": "Erdős Problem #427",
+    "status": "solved",
+    "statement": "is it true that, for every $n$ and $d$, there exists $k$ such that\n$$\n  d \\mid p_{n + 1} + \\cdots + p_{n + k},\n$$\nwhere $p_r$ denotes the $r$th prime?"
+   },
+   {
+    "id": "ERDOS-1212",
+    "title": "Erdős Problem #1212",
+    "status": "claimed",
+    "statement": "Let $G$ be the graph with vertex set those pairs $(x,y)\\in \\mathbb{N}^2$ with\n$\\mathrm{gcd}(x,y)=1$, in which we join two vertices if the differ in only one coordinate, and\nthere by $\\pm 1$.\n\nIs there a path going to infinity on $G$, say $P$, such that for all $(x,y)\\in P$ both\n$\\min(x,y)>1$ and at least one of $x$ or $y$ is composite?"
+   },
+   {
+    "id": "ERDOS-431",
+    "title": "Erdős Problem #431",
+    "status": "claimed",
+    "statement": "Are there two infinite sets $A$ and $B$ such that $A+B$ agrees with the primes up to finitely\nmany exceptions?"
+   },
+   {
+    "id": "ERDOS-233",
+    "title": "Erdős Problem #233",
+    "status": "open",
+    "statement": "A conjecture by Heath-Brown:\nThe sum of squares of the first $N$ gaps between consecutive primes behaves like $N * (log N)^2$."
+   },
+   {
+    "id": "ERDOS-850",
+    "title": "Erdős Problem #850",
+    "status": "open",
+    "statement": "Can there exist two distinct integers $x$ and $y$ such that $x,y$ have the same prime factors,\n$x+1,y+1$ have the same prime factors, and $x+2,y+2$ also have the same prime factors?"
+   },
+   {
+    "id": "ERDOS-9",
+    "title": "Erdős Problem #9",
+    "status": "open",
+    "statement": "Is the upper density of the set of odd numbers that cannot be expressed as a prime plus\ntwo powers of 2 positive?"
+   },
+   {
+    "id": "ERDOS-10",
+    "title": "Erdős Problem #10",
+    "status": "open",
+    "statement": "Is there some $k$ such that every large integer is the sum of a prime and at most $k$\npowers of $2$?"
+   },
+   {
+    "id": "ERDOS-203",
+    "title": "Erdős Problem #203",
+    "status": "open",
+    "statement": "Is there an integer $m$ with $(m, 6) = 1$ such that none of $2^k \\cdot 3^\\ell \\cdot m + 1$ are prime,\nfor any $k, \\ell \\ge 0$?"
+   },
+   {
+    "id": "ERDOS-1187",
+    "title": "Erdős Problem #1187",
+    "status": "solved",
+    "statement": "(a) Let $k\\geq 3$. Is it true that, in any finite colouring of the integers, there are monochromatic\narithmetic progressions of primes of length $k$?\n\n(b) Let $k\\geq 3$. In any finite colouring of the integers, are there monochromatic arithmetic\nprogressions of length $k$ whose common difference is a prime?"
+   },
+   {
+    "id": "ERDOS-852",
+    "title": "Erdős Problem #852",
+    "status": "open",
+    "statement": "(a) Let $d_n = p_{n+1} - p_n$, where $p_n$ is the $n$th prime. Let $h(x)$ be maximal such that for\nsome $n < x$ the numbers $d_n, d_{n+1}, \\ldots, d_{n+h(x)-1}$ are all distinct [Er85c]. Estimate\n$h(x)$. In particular, is it true that\n$$h(x) > (\\log x)^c$$\nfor some constant $c > 0$?\n\n(b) Let $d_n = p_{n+1} - p_n$, where $p_n$ is the $n$th prime. Let $h(x)$ be maximal such that for\nsome $n < x$ the numbers $d_n, d_{n+1}, \\ldots, d_{n+h(x)-1}$ are all distinct [Er85c]. Estimate\n$h(x)$. In particular, is it true that\n$$h(x) = o(\\log x)?$$"
+   },
+   {
+    "id": "ERDOS-461",
+    "title": "Erdős Problem #461",
+    "status": "open",
+    "statement": "Let $s_t(n)$ be the $t$-smooth component of $n$ - that is, the product of all primes $p$ (with\nmultiplicity) dividing $n$ such that $p<t$. Let $f(n,t)$ count the number of distinct possible\nvalues for $s_t(m)$ for $m\\in [n+1,n+t]$. Is it true that\n$$f(n,t)\\gg t$$\n(uniformly, for all $t$ and $n$)?"
+   },
+   {
+    "id": "ERDOS-454",
+    "title": "Erdős Problem #454",
+    "status": "open",
+    "statement": "Is it true that `limsup (fun n => (f n - 2 * n.nth Prime : ℕ∞)) atTop = ⊤`?"
+   },
+   {
+    "id": "ERDOS-244",
+    "title": "Erdős Problem #244",
+    "status": "open",
+    "statement": "Let $C > 1$. Does the set of integers of the form $p + \\lfloor C^k \\rfloor$,\nfor some prime $p$ and $k\\geq 0$, have density $>0$?"
+   },
+   {
+    "id": "ERDOS-1059",
+    "title": "Erdős Problem #1059",
+    "status": "open",
+    "statement": "Are there infinitely many primes $p$ such that $p - k!$ is composite for each $k$ such that $1 ≤ k! < p$?"
+   },
+   {
+    "id": "ERDOS-890",
+    "title": "Erdős Problem #890",
+    "status": "open",
+    "statement": "(a) If $\\omega_k(n)$ counts the number of distinct prime factors of $n$ which are $>k$, then is it true\nthat, for every $k\\geq 1$,\n$$\\liminf_{n\\to \\infty}\\sum_{0\\leq i < k}\\omega_k(n+i)\\leq k?$$\n\n(b) Is it true that\n$$\\limsup_{n\\to \\infty}\\left(\\sum_{0\\leq i < k}\\omega(n+i)\\right) \\frac{\\log\\log n}{\\log n}=1,$$\nwhere $\\omega$ counts the number of distinct prime factors without restriction?"
+   },
+   {
+    "id": "ERDOS-463",
+    "title": "Erdős Problem #463",
+    "status": "open",
+    "statement": "Is there a function $f$ with $f(n)\\to\\infty$ as $n\\to\\infty$ such that,\nfor all large $n$, there is a composite number $m$ such that\n$$\nn + f(n) < m < n + p(m)\n$$\nHere $p(m)$ is the least prime factor of $m$."
+   },
+   {
+    "id": "ERDOS-428",
+    "title": "Erdős Problem #428",
+    "status": "open",
+    "statement": "Is there a set $A\\subseteq \\mathbb{N}$ such that, for infinitely many $n$, all of $n-a$\nare prime for all $a\\in A$ with $0 < a < n$ and $$\\liminf\\frac{\\lvert A\\cap [1,x]\\rvert}{\\pi(x)}>0?$$"
+   },
+   {
+    "id": "ERDOS-5",
+    "title": "Erdős Problem #5",
+    "status": "open",
+    "statement": "Let $C\\geq 0$. Is there an infinite sequence of $n_i$ such that\n$$\\lim_{i\\to \\infty}\\frac{p_{n_i+1}-p_{n_i}}{\\log n_i}=C?$$"
+   },
+   {
+    "id": "ERDOS-682",
+    "title": "Erdős Problem #682",
+    "status": "solved",
+    "statement": "Is it true that for almost all $n$ there exists some $m\\in (p_n,p_{n+1})$ such that\n$$p(m) \\geq p_{n+1}-p_n,$$\nwhere $p(m)$ denotes the least prime factor of $m$?"
+   },
+   {
+    "id": "ERDOS-236",
+    "title": "Erdős Problem #236",
+    "status": "open",
+    "statement": "Let $f(n)$ count the number of solutions to $n=p+2^k$ for prime $p$ and $k\\geq 0$. Show that $f(n)=o(\\log n)$."
+   },
+   {
+    "id": "ERDOS-1139",
+    "title": "Erdős Problem #1139",
+    "status": "open",
+    "statement": "Let $1\\leq u_1 < u_2 < \\cdots$ be the sequence of integers with at most $2$ prime factors.\nIs it true that $$\\limsup_{k \\to \\infty} \\frac{u_{k+1}-u_k}{\\log k}=\\infty?$$"
+   },
+   {
+    "id": "ERDOS-950",
+    "title": "Erdős Problem #950",
+    "status": "open",
+    "statement": "Let $f(n) = \\sum_{p<n}\\frac{1}{n-p}$.\n\n(a) Is it true that $\\liminf f(n)=1$?\n\n(b) Is it true that $\\limsup f(n)=\\infty$?\n\n(c) Is it true that $f(n)=o(\\log\\log n)$ for all $n$?"
+   },
+   {
+    "id": "ERDOS-462",
+    "title": "Erdős Problem #462",
+    "status": "open",
+    "statement": "Let $p(n)$ denote the least prime factor of $n$. Is there a constant $C>0$ such that\n$$\\sum_{x\\leq n\\leq x+C\\sqrt{x}(\\log x)^2}\\frac{p(n)}{n}\\gg 1$$\nfor all sufficiently large $x$?"
+   },
+   {
+    "id": "ERDOS-16",
+    "title": "Erdős Problem #16",
+    "status": "solved",
+    "statement": "Is the set of odd integers not of the form $2^k+p$ the union of an infinite arithmetic progression\nand a set of density $0$?"
+   },
+   {
+    "id": "ERDOS-459",
+    "title": "Erdős Problem #459",
+    "status": "solved",
+    "statement": "Let $f(u)$ be the largest $v$ such that no $m\\in (u,v)$ is composed entirely of primes dividing\n$uv$. Estimate $f(u)$."
+   },
+   {
+    "id": "ERDOS-1141",
+    "title": "Erdős Problem #1141",
+    "status": "solved",
+    "statement": "Are there infinitely many $n$ such that $n-k^2$ is prime for all $k$ with $(n,k)=1$ and $k^2 < n$?"
+   },
+   {
+    "id": "ERDOS-238",
+    "title": "Erdős Problem #238",
+    "status": "open",
+    "statement": "Let `c₁, c₂ > 0`. Is it true that for any sufficiently large `x`, there exists more than\n`c₁ * log x` many consecutive primes `≤ x` such that the difference between any two is `> c₂`?"
+   },
+   {
+    "id": "ERDOS-1055",
+    "title": "Erdős Problem #1055",
+    "status": "open",
+    "statement": "A prime $p$ is in class $1$ if the only prime divisors of $p+1$ are\n$2$ or $3$. In general, a prime $p$ is in class $r$ if every prime factor\nof $p+1$ is in some class $\\leq r-1$, with equality for at least one prime factor.\nAre there infinitely many primes in each class?"
+   },
+   {
+    "id": "ERDOS-358",
+    "title": "Erdős Problem #358",
+    "status": "solved",
+    "statement": "(a) Let $A=\\{a_1 < \\cdots\\}$ be an infinite sequence of integers. Let $f(n)$ count the number of\nsolutions to $$n=\\sum_{u\\leq i\\leq v}a_i.$$\nIs there such an $A$ for which $f(n)\\to \\infty$ as $n\\to \\infty$?\n\n(b) Let $A=\\{a_1 < \\cdots\\}$ be an infinite sequence of integers. Let $f(n)$ count the number of\nsolutions to $$n=\\sum_{u\\leq i\\leq v}a_i.$$\nIs there an $A$ such that $f(n)\\geq 2$ for all large $n$?"
+   },
+   {
+    "id": "ERDOS-681",
+    "title": "Erdős Problem #681",
+    "status": "open",
+    "statement": "Is it true that for all large $n$ there exists $k$\nsuch that $n + k$ is composite and $p(n+k) > k^2$,\nwhere $p(m)$ is the least prime factor of $m$ ?"
+   },
+   {
+    "id": "ERDOS-1138",
+    "title": "Erdős Problem #1138",
+    "status": "solved",
+    "statement": "Given a pair $(x,y)$, this is the amount of primes in the interval above $y$, of length\nequalling the largest prime gap before $x$, scaled by a constant $C$.\n\n**Erdős Problem 1138.**\nLet $x/2 < y < x$ and $C > 1$. If $d = \\max_{p_n < x}(p_{n+1} - p_n)$,\nwhere $p_n$ denotes the $n$-th prime, then is it true that\n$$\\pi(y + Cd) - \\pi(y) \\sim \\frac{Cd}{\\log y}$$?"
+   },
+   {
+    "id": "ERDOS-375",
+    "title": "Erdős Problem #375",
+    "status": "open",
+    "statement": "Is `Erdos375Prop` true?"
+   },
+   {
+    "id": "ERDOS-458",
+    "title": "Erdős Problem #458",
+    "status": "open",
+    "statement": "Let $\\operatorname{lcm}(1, \\dots, n)$ denote the least common multiple of $\\{1, \\dots, n\\}$.\nLet $p_k$ be the $k$-th prime.\nIs it true that for all $k \\geq 1$, $\\operatorname{lcm}(1, \\dots, p_{k+1}-1) < p_k \\cdot \\operatorname{lcm}(1, \\dots, p_k)$?"
+   },
+   {
+    "id": "ERDOS-4",
+    "title": "Erdős Problem #4",
+    "status": "solved",
+    "statement": "Is it true that, for any $C > 0$, there infinitely many $n$ such that:\n$$\n  p_{n + 1} - p_n > C \\frac{\\log\\log n\\log\\log\\log\\log n}{(\\log\\log\\log n) ^ 2}\\log n\n$$"
+   },
+   {
+    "id": "ERDOS-49",
+    "title": "Erdős Problem #49",
+    "status": "solved",
+    "statement": "Let $A=\\{a_1<\\cdots<a_t\\}\\subseteq \\{1,\\ldots,N\\}$ be such that $\\phi(a_1)<\\cdots<\\phi(a_t)$.\nThe primes are such an example. Are they the largest possible? Can one show that\n$\\lvert A\\rvert<(1+o(1))\\pi(N)$ or even $\\lvert A\\rvert=o(N)$?"
+   },
+   {
+    "id": "ERDOS-17",
+    "title": "Erdős Problem #17",
+    "status": "open",
+    "statement": "Are there infinitely many cluster primes?"
+   },
+   {
+    "id": "ERDOS-853",
+    "title": "Erdős Problem #853",
+    "status": "open",
+    "statement": "(a) Let $d_n = p_{n+1} - p_n$, where $p_n$ is the $n$th prime. Let $r(x)$ be the smallest even\ninteger $t$ such that $d_n = t$ has no solutions for $n \\le x$.\n\nIs it true that $r(x) \\to \\infty$?\n\n(b) Let $d_n = p_{n+1} - p_n$, where $p_n$ is the $n$th prime. Let $r(x)$ be the smallest even\ninteger $t$ such that $d_n = t$ has no solutions for $n \\le x$.\n\nIs it true that $r(x) / \\log x \\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-683",
+    "title": "Erdős Problem #683",
+    "status": "open",
+    "statement": "Let $P(n, k)$ be the largest prime factor of $\\binom{n}{k}$.\n\nLet $P(n, k)$ be the largest prime factor of $\\binom{n}{k}$.\nThere exists $c > 0$ such that $P(n, k) \\ge \\min(n - k + 1, k^{1 + c})$ for all $0 < k \\le n/2$."
+   },
+   {
+    "id": "ERDOS-1202",
+    "title": "Erdős Problem #1202",
+    "status": "solved",
+    "statement": "Let $\\epsilon > 0$. Does there exist $k$ such that, for every $n$, any primes\n$p_1 < \\cdots < p_k < n^{1-\\epsilon}$ and any sets $A_i$ of $\\frac{p_i - 1}{2}$ residue classes\nmodulo $p_i$, the number of $m \\le n$ that avoid $A_i \\pmod{p_i}$ for every $i$ is at most\n$\\epsilon n$?"
+   },
+   {
+    "id": "ERDOS-6",
+    "title": "Erdős Problem #6",
+    "status": "solved",
+    "statement": "There are infinitely many $n$ such that $d_n < d_{n+1} < d_{n+2}$, where $d$\ndenotes the prime gap function."
+   },
+   {
+    "id": "ERDOS-1142",
+    "title": "Erdős Problem #1142",
+    "status": "open",
+    "statement": "Are there infinitely many $n > 2$ such that $n - 2^k$ is prime for all $k \\geq 1$ with $2^k < n$?"
+   },
+   {
+    "id": "ERDOS-234",
+    "title": "Erdős Problem #234",
+    "status": "open",
+    "statement": "Is it true that for all `c ≥ 0`, the density `f c` of integers for which\n`(p (n + 1) - p n) / log n < c` exists and is a continuous function of `c`?"
+   },
+   {
+    "id": "ERDOS-855",
+    "title": "Erdős Problem #855",
+    "status": "open",
+    "statement": "Erdős Problem 855 (Segal's conjecture): $\\pi(x + y) \\le \\pi(x) + \\pi(y)$\nfor all sufficiently large $x, y$, i.e. for all $x, y \\ge N$ for some $N$."
+   },
+   {
+    "id": "ERDOS-1201",
+    "title": "Erdős Problem #1201",
+    "status": "open",
+    "statement": "Is it true that for every $\\epsilon,\\eta>0$ there exists a $k$ such that the density of $n$\nfor which $P(n(n+1)\\cdots(n+k))>n^{1-\\epsilon}$ is at least $1-\\eta$ (where $P(m)$ is the greatest\nprime divisor of $m$)?"
+   },
+   {
+    "id": "ERDOS-680",
+    "title": "Erdős Problem #680",
+    "status": "open",
+    "statement": "(a) Is it true that, for all sufficiently large $n$, there exists some $k$ such that\n$$\np(n+k)>k^2+1,\n$$\nwhere $p(m)$ denotes the least prime factor of $m$?\n\n(b) Can one prove this is false if we replace $k^2+1$ by $e^{(1+\\epsilon)\\sqrt{k}}+C_\\epsilon$, for all\n$\\epsilon>0$, where $C_\\epsilon>0$ is some constant?"
+   },
+   {
+    "id": "ERDOS-685",
+    "title": "Erdős Problem #685",
+    "status": "open",
+    "statement": "(a) Let $\\epsilon > 0$ and let $n$ be large depending on $\\epsilon$. Is it true that for all\n$n^{\\epsilon} < k \\leq n^{1-\\epsilon}$ the number of distinct prime divisors of $\\binom{n}{k}$ is\n$$(1+o(1))\\, k \\sum_{k < p < n} \\frac{1}{p}?$$\n\n(b) Is it true that, for some constant $c > 0$, the number of distinct prime divisors of\n$\\binom{n}{k}$ is\n$$(1+o(1))\\, k \\sum_{k < p < n} \\frac{1}{p}$$\neven for all $(\\log n)^c \\leq k \\leq n^{1-\\epsilon}$?"
+   },
+   {
+    "id": "ERDOS-219",
+    "title": "Erdős Problem #219",
+    "status": "solved",
+    "statement": "Are there arbitrarily long arithmetic progressions of primes?\nSolution: yes.\nRef: Green, Ben and Tao, Terence, _The primes contain arbitrarily long arithmetic progressions_"
+   },
+   {
+    "id": "ERDOS-1137",
+    "title": "Erdős Problem #1137",
+    "status": "open",
+    "statement": "Let $d_n=p_{n+1}-p_n$, where $p_n$ denotes the $n$th prime. Is it true that\n$$\\frac{\\max_{n < x}d_{n}d_{n-1}}{(\\max_{n < x}d_n)^2}\\to 0$$ as $x\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-200",
+    "title": "Erdős Problem #200",
+    "status": "open",
+    "statement": "Does the longest arithmetic progression of primes in $\\{1,\\ldots,N\\}$ have length $o(\\log N)$?"
+   },
+   {
+    "id": "ERDOS-279",
+    "title": "Erdős Problem #279",
+    "status": "open",
+    "statement": "Let $k\\geq 3$. Is there a choice of congruence classes $a_p\\pmod{p}$ for every prime $p$\nsuch that all sufficiently large integers can be written as $a_p+tp$ for some prime $p$\nand integer $t\\geq k$?"
+   },
+   {
+    "id": "ERDOS-15",
+    "title": "Erdős Problem #15",
+    "status": "open",
+    "statement": "Is it true that $\\sum_{n=1}^\\infty(-1)^n\\frac{n}{p_n}$ converges,\nwhere $p_n$ is the sequence of primes?"
+   },
+   {
+    "id": "ERDOS-237",
+    "title": "Erdős Problem #237",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be a set such that $\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert \\gg \\log N$ for\nall large $N$. Let $f(n)$ count the number of solutions to $n=p+a$ for $p$ prime and $a\\in A$. Is\nit true that $\\limsup f(n)=\\infty$?"
+   },
+   {
+    "id": "GREEN-32",
+    "title": "Green's Problem 32",
+    "status": "open",
+    "statement": "Let $p$ be a prime and let $A \\subset \\mathbb{Z}/p\\mathbb{Z}$ be a set of size $\\lfloor \\sqrt{p} \\rfloor$.\nIs there a dilate of $A$ containing a gap of length $100\\sqrt{p}$?"
+   },
+   {
+    "id": "GREEN-44",
+    "title": "Green's Problem 44",
+    "status": "open",
+    "statement": "Sieve $[N]$ by removing half the residue classes mod $p_i$, for primes\n$2 \\leqslant p_1 < p_2 < \\dots < p_{1000} < N^{9/10}$. Does the remaining set have size at most\n$\\frac{1}{10} N$?"
+   },
+   {
+    "id": "GREEN-45",
+    "title": "Green's Problem 45",
+    "status": "open",
+    "statement": "Can we pick residue classes $a_p \\pmod{p}$, one for each prime $p \\leq N$, such that every\ninteger $\\leq N$ lies in at least $10$ of them?"
+   },
+   {
+    "id": "GREEN-46",
+    "title": "Green's Problem 46",
+    "status": "open",
+    "statement": "Given $x$ and $y$, can we cover the interval $[1, y]$ by residue classes $a_p \\pmod p$\nfor each prime $p \\le x$?\n\nWe conjecture that the best-known lower bound can be improved."
+   },
+   {
+    "id": "GREEN-62",
+    "title": "Green's Problem 62",
+    "status": "open",
+    "statement": "Let $p$ be a large prime, and let $A$ be the set of all primes less than $p$.\nIs every $x \\in \\{1, \\ldots, p-1\\}$ congruent to some product $a_1 a_2$ where $a_1, a_2 \\in A$?"
+   },
+   {
+    "id": "GREEN-64",
+    "title": "Green's Problem 64",
+    "status": "open",
+    "statement": "Do there exist infinitely many primes $p$ for which $p - 2$ has an odd number of prime factors,\ncounted with multiplicity (i.e. $\\Omega(p - 2)$ is odd)?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "IMO-2008-P3",
+    "title": "IMO 2008 · Problem 3"
+   },
+   {
+    "id": "USAMO-2024-P1",
+    "title": "USAMO 2024 · Problem 1"
+   }
+  ]
+ },
+ {
+  "id": "smooth-powerful",
+  "title": "Smooth, powerful and squarefree numbers",
+  "summary": "$n$ is $y$-smooth if all its prime factors are $\\le y$, powerful if $p\\mid n \\Rightarrow p^2 \\mid n$, squarefree if no $p^2$ divides it. Their counts are governed by Dickman's function, $\\zeta(3/2)/\\zeta(3)\\cdot\\sqrt x$ and $6x/\\pi^2$.",
+  "key_statements": [
+   "\\Psi(x, x^{1/u}) \\sim \\rho(u)\\,x",
+   "\\#\\{n\\le x \\text{ squarefree}\\} \\sim \\frac{6}{\\pi^2}x"
+  ],
+  "prerequisites": [
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   },
+   {
+    "id": "asymptotics",
+    "title": "Asymptotic notation"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-366",
+    "title": "Erdős Problem #366",
+    "status": "open",
+    "statement": "Are there any $2$-full $n$ such that $n+1$ is $3$-full?"
+   },
+   {
+    "id": "ERDOS-323",
+    "title": "Erdős Problem #323",
+    "status": "open",
+    "statement": "Let $1\\leq m\\leq k$ and $f_{k,m}(x)$ denote the number of integers $\\leq x$ which are the sum of\n$m$ many nonnegative $k$th powers.\n\n(a) Is it true that $f_{k,k}(x) \\gg_\\epsilon x^{1-\\epsilon}$ for all $\\epsilon>0$?\n\n(b) Is it true that if $m < k$ then $f_{k,m}(x) \\gg x^{m/k}$ for sufficiently large $x$?"
+   },
+   {
+    "id": "ERDOS-937",
+    "title": "Erdős Problem #937",
+    "status": "solved",
+    "statement": "Are there infinitely many four-term arithmetic progressions of coprime powerful numbers?\n(A number $n$ is *powerful* if $p \\mid n \\to p^2 \\mid n$; `Nat.Powerful`.)"
+   },
+   {
+    "id": "ERDOS-324",
+    "title": "Erdős Problem #324",
+    "status": "open",
+    "statement": "Does there exist a polynomial $f(x)\\in\\mathbb{Z}[x]$ such that all the sums $f(a)+f(b)$ with\n$a < b$ nonnegative integers are distinct?"
+   },
+   {
+    "id": "ERDOS-942",
+    "title": "Erdős Problem #942",
+    "status": "open",
+    "statement": "Let $h(n)$ count the number of powerful integers in $[n^2, (n + 1)^2)$.\n\nIs there some constant $c > 0$ such that $h(n) < (\\log n)^{c + o(1)}$ and, for infinitely many $n$,\n$h(n) > (\\log n)^{c - o(1)}$."
+   },
+   {
+    "id": "ERDOS-365",
+    "title": "Erdős Problem #365",
+    "status": "claimed",
+    "statement": "(a) Do all pairs of consecutive powerful numbers $n$ and $n+1$ come from solutions to Pell\nequations? In other words, must either $n$ or $n+1$ be a square?\n\n(b) Is the number of positive $n\\leq x$ such that $n$ and $n+1$ are both powerful bounded\nby $(\\log x)^{O(1)}$?"
+   },
+   {
+    "id": "ERDOS-943",
+    "title": "Erdős Problem #943",
+    "status": "open",
+    "statement": "Let $A$ be the set of powerful numbers. Is is true that $1_A\\ast 1_A(n)=n^{o(1)}$ for every $n$?"
+   },
+   {
+    "id": "ERDOS-773",
+    "title": "Erdős Problem #773",
+    "status": "open",
+    "statement": "What is the size of the largest Sidon subset $A\\subseteq\\{1,2^2,\\ldots,N^2\\}$? Is it $N^{1-o(1)}$?"
+   },
+   {
+    "id": "ERDOS-367",
+    "title": "Erdős Problem #367",
+    "status": "open",
+    "statement": "(a) Let $B_2(n)$ be the $2$-full part of $n$ (that is, $B_2(n)=n/n'$ where $n'$ is the product of all\nprimes that divide $n$ exactly once). Is it true that, for every fixed $k \\geq 1$,\n$\\prod_{n \\leq m < n+k} B_2(m) \\ll n^{2+o(1)}$?\n\n(b) Or perhaps even $\\prod_{n \\leq m < n+k} B_2(m) \\ll_k n^2$?"
+   },
+   {
+    "id": "ERDOS-888",
+    "title": "Erdős Problem #888",
+    "status": "solved",
+    "statement": "What is the size of the largest $A\\subseteq \\{1,\\ldots,n\\}$ such that if\n$a\\leq b\\leq c\\leq d\\in A$ are such that $abcd$ is a square then $ad=bc$?"
+   },
+   {
+    "id": "ERDOS-325",
+    "title": "Erdős Problem #325",
+    "status": "open",
+    "statement": "Writing $f_{k, 3}(x)$ for the number of integers $\\leq x$ which are the sum of three $k$th powers,\nis it true that $f_{k, 3}(x) \\gg x ^ (3 / k)$?"
+   },
+   {
+    "id": "ERDOS-939",
+    "title": "Erdős Problem #939",
+    "status": "open",
+    "statement": "If $r≥4$ then can the sum of $r-2$ coprime $r$-powerful numbers ever be itself $r$-powerful?"
+   },
+   {
+    "id": "ERDOS-938",
+    "title": "Erdős Problem #938",
+    "status": "open",
+    "statement": "Let $A=\\{n_1 < n_2 < \\cdots\\}$ be the sequence of powerful numbers (if $p\\mid n$ then $p^2\\mid n$).\nAre there only finitely many three-term progressions of consecutive terms $n_k,n_{k+1},n_{k+2}$?"
+   },
+   {
+    "id": "ERDOS-1107",
+    "title": "Erdős Problem #1107",
+    "status": "open",
+    "statement": "Let $r \\ge 2$. Is every large integer the sum of at most $r + 1$ many $r$-powerful numbers?"
+   },
+   {
+    "id": "ERDOS-1081",
+    "title": "Erdős Problem #1081",
+    "status": "solved",
+    "statement": "Let $A(x)$ count the number of $n\\leq x$ which are the sum of two squarefull numbers (a number\n$m$ is squarefull if $p\\mid m$ implies $p^2\\mid m$). Is it true that\n$$A(x) \\sim c \\frac{x}{\\sqrt{\\log x}}$$\nfor some $c>0$?"
+   },
+   {
+    "id": "ERDOS-940",
+    "title": "Erdős Problem #940",
+    "status": "open",
+    "statement": "Let $r \\ge 3$. Is it true that the set of integers which are the sum of at most $r$ $r$-powerful numbers\nhas density $0$?"
+   },
+   {
+    "id": "ERDOS-322",
+    "title": "Erdős Problem #322",
+    "status": "open",
+    "statement": "Let $k\\geq 3$ and $A\\subset \\mathbb{N}$ be the set of $k$th powers. What is the order of growth of $1_A^{(k)}(n)$, i.e. the number of representations of $n$ as the sum of $k$ many $k$th powers? Does there exist some $c>0$ and infinitely many $n$ such that $$1_A^{(k)}(n) >n^c?$$"
+   },
+   {
+    "id": "ERDOS-137",
+    "title": "Erdős Problem #137",
+    "status": "open",
+    "statement": "We say that $N$ is powerful if whenever $p\\mid N$ we also have $p^2\\mid N$.\n\nLet $k\\geq 3$. Can the product of any $k$ consecutive positive integers ever be powerful?"
+   },
+   {
+    "id": "ERDOS-121",
+    "title": "Erdős Problem #121",
+    "status": "solved",
+    "statement": "Let $F_{k}(N)$ be the size of the largest $A\\subseteq \\{1,\\ldots,N\\}$ such that the product of no\n$k$ many distinct elements of $A$ is a square. Is $F_5(N)=(1-o(1))N$?"
+   },
+   {
+    "id": "ERDOS-364",
+    "title": "Erdős Problem #364",
+    "status": "open",
+    "statement": "There is no consecutive triple of powerful numbers."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-2013-A2",
+    "title": "Putnam 2013 · A2"
+   }
+  ]
+ },
+ {
+  "id": "diophantine-approx",
+  "title": "Diophantine approximation and irrationality",
+  "summary": "How well can a real number be approximated by $p/q$? Dirichlet gives $|\\alpha - p/q| < 1/q^2$ infinitely often; Roth (1955) shows algebraic irrationals cannot do much better. Irrationality proofs (Apéry's $\\zeta(3)$) are quantitative statements of this kind.",
+  "key_statements": [
+   "\\Big|\\alpha-\\frac pq\\Big| < \\frac{1}{q^{2+\\varepsilon}} \\ \\text{has finitely many solutions for algebraic } \\alpha \\ \\text{(Roth)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "continued-fractions",
+    "title": "Continued fractions"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-267",
+    "title": "Erdős Problem #267",
+    "status": "claimed",
+    "statement": "Let $F_1=F_2=1$ and $F_{n+1} = F_n + F_{n-1}$ be the Fibonacci sequence.\nLet $n_1 < n_2 < \\dots$ be an infinite sequence with $\\frac{n_{k+1}}{n_k} \\ge c > 1$. Must\n$\\sum_k \\frac 1 {F_{n_k}}$ be irrational?"
+   },
+   {
+    "id": "ERDOS-1147",
+    "title": "Erdős Problem #1147",
+    "status": "solved",
+    "statement": "Let $\\alpha>0$ be an irrational number. Is the set\n$$A=\\left\\{ n\\geq 1: \\| \\alpha n^2\\| < \\frac{1}{\\log n}\\right\\},$$\nwhere $\\|\\cdot\\|$ denotes the distance to the nearest integer, an additive basis of order $2$?"
+   },
+   {
+    "id": "ERDOS-1002",
+    "title": "Erdős Problem #1002",
+    "status": "open",
+    "statement": "For any $0<\\alpha<1$, let $f(\\alpha,n)=\\frac{1}{\\log n}\\sum_{1\\leq k\\leq n}(\\tfrac{1}{2}-\n\\{ \\alpha k\\})$. Does $f(\\alpha,n)$ have an asymptotic distribution function?"
+   },
+   {
+    "id": "ERDOS-999",
+    "title": "Erdős Problem #999",
+    "status": "solved",
+    "statement": "For any function $f:\\mathbb{N}\\to \\mathbb{R}_{\\geq 0}$ the property that, for almost all\n$\\alpha$\n$$\\left\\lvert \\alpha-\\frac{p}{q}\\right\\rvert < \\frac{f(q)}{q}$$\nhas infinitely many solutions with $(p,q)=1$, is equivalent to\n$$\\sum_{q\\geq 1}\\phi(q)\\frac{f(q)}{q}=\\infty.$$"
+   },
+   {
+    "id": "ERDOS-257",
+    "title": "Erdős Problem #257",
+    "status": "open",
+    "statement": "Let $A\\subseteq\\mathbb{N}$ be an infinite set. Is\n$$\n\\sum_{n\\in A} \\frac{1}{2^n - 1}\n$$\nirrational?"
+   },
+   {
+    "id": "ERDOS-252",
+    "title": "Erdős Problem #252",
+    "status": "open",
+    "statement": "Erdős Problem 252: irrationality of the sum for a given $k$."
+   },
+   {
+    "id": "ERDOS-260",
+    "title": "Erdős Problem #260",
+    "status": "claimed",
+    "statement": "Let $a_1 < a_2 < \\cdots$ be an increasing sequence such that $\\frac{a_n}{n} \\to \\infty$.\nIs the sum $\\sum_{n}^{\\infty} \\frac{a_n}{2^{a_n}}$ irrational?"
+   },
+   {
+    "id": "ERDOS-1049",
+    "title": "Erdős Problem #1049",
+    "status": "open",
+    "statement": "Let $t>1$ be a rational number. Is\n$\\sum_{n=1}^\\infty\\frac{1}{t^n-1}=\\sum_{n=1}^\\infty \\frac{\\tau(n)}{t^n}$ irrational, where\n$\\tau(n)$ counts the divisors of $n$?"
+   },
+   {
+    "id": "ERDOS-1051",
+    "title": "Erdős Problem #1051",
+    "status": "solved",
+    "statement": "Is it true that if $a_0 < a_1 < a_2 < \\cdots$ is a strictly increasing sequence\nof integers with $\\liminf a_n^{1/2^n} > 1$, then the series\n$\\sum_{n=0}^\\infty \\frac{1}{a_n \\cdot a_{n+1}}$ is irrational?"
+   },
+   {
+    "id": "ERDOS-1050",
+    "title": "Erdős Problem #1050",
+    "status": "solved",
+    "statement": "The series $\\sum_{n=1}^\\infty \\frac{1}{2^n - 3}$ is irrational."
+   },
+   {
+    "id": "ERDOS-69",
+    "title": "Erdős Problem #69",
+    "status": "solved",
+    "statement": "Is\n$$\n\\sum_{n\\geq 2}\\frac{\\omega(n)}{2^n}\n$$\nirrational? (Here $\\omega(n)$ counts the number of distinct prime divisors of $n$.)"
+   },
+   {
+    "id": "ERDOS-495",
+    "title": "Erdős Problem #495",
+    "status": "open",
+    "statement": "Let $\\alpha,\\beta \\in \\mathbb{R}$. Is it true that$$\\liminf_{n\\to \\infty} n \\| n\\alpha \\|\n  \\| n\\beta\\| =0$$? This is also known as the Littlewood conjecture."
+   },
+   {
+    "id": "ERDOS-266",
+    "title": "Erdős Problem #266",
+    "status": "solved",
+    "statement": "Let $a_n$ be an infinite sequence of positive integers such that $\\sum \\frac{1}{a_n}$ converges.\nThere exists some integer $t \\ge 1$ such that $\\sum \\frac{1}{a_n + t}$ is irrational."
+   },
+   {
+    "id": "ERDOS-264",
+    "title": "Erdős Problem #264",
+    "status": "claimed",
+    "statement": "A sequence $a_n$ of integers is called an irrationality sequence if for every bounded sequence of integers $b_n$ with $a_n + b_n \\neq 0$ and\n$b_n \\neq 0$ for all $n$, the sum\n$$\n  \\sum \\frac{1}{a_n + b_n}\n$$\nis irrational.\n\nNote: there are other possible definitions of this concept. See\nFormalConjectures/ErdosProblems/263.lean for another possible definition.\n\n(a) Is $2^n$ an example of an irrationality sequence? Kovač and Tao proved that it is not [KoTa24]\n\n(b) Is $n!$ an example of an irrationality sequence?"
+   },
+   {
+    "id": "ERDOS-250",
+    "title": "Erdős Problem #250",
+    "status": "solved",
+    "statement": "Is\n$$\n  \\sum_{n=1}^\\infty \\frac{\\sigma(n)}{2^n}\n$$\nirrational? Here $\\sigma(n)$ is the sum of divisors function."
+   },
+   {
+    "id": "ERDOS-258",
+    "title": "Erdős Problem #258",
+    "status": "solved",
+    "statement": "Let $a_n \\to \\infty$ be a sequence of non-zero natural numbers. Is\n$\\sum_n \\frac{d(n)}{(a_1 ... a_n)}$ irrational, where $d(n)$ is the number of divisors of $n$?"
+   },
+   {
+    "id": "ERDOS-247",
+    "title": "Erdős Problem #247",
+    "status": "open",
+    "statement": "Let $n_1 < n_2 < \\cdots$ be a sequence of integers such that\n$$\n  \\limsup \\frac{n_k}{k} = \\infty.\n$$\nIs\n$$\n  \\sum_{k=1}^{\\infty} \\frac{1}{2^{n_k}}\n$$\ntranscendental?"
+   },
+   {
+    "id": "ERDOS-259",
+    "title": "Erdős Problem #259",
+    "status": "solved",
+    "statement": "Is $\\sum_{n} \\mu(n)^2\\frac{n}{2^n}$ irrational?"
+   },
+   {
+    "id": "ERDOS-249",
+    "title": "Erdős Problem #249",
+    "status": "open",
+    "statement": "Is\n$$\\sum_{n} \\frac{\\phi(n)}{2^n}$$\nirrational? Here $\\phi$ is the Euler totient function."
+   },
+   {
+    "id": "ERDOS-263",
+    "title": "Erdős Problem #263",
+    "status": "open",
+    "statement": "(a) Is $a_n = 2^{2^n}$ an irrationality sequence in the above sense?\n\n(b) Must every irrationality sequence $a_n$ in the above sense\nsatisfy $a_n^{1/n} \\to \\infty$ as $n \\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-243",
+    "title": "Erdős Problem #243",
+    "status": "open",
+    "statement": "Let $a_1 < a_2 < \\dots$ be a sequence of integers such that\n$\\lim_{n\\to\\infty} \\frac{a_n}{a_{n-1}^2} = 1$ and $\\sum \\frac{1}{a_n} \\in \\mathbb{Q}$."
+   },
+   {
+    "id": "ERDOS-1000",
+    "title": "Erdős Problem #1000",
+    "status": "solved",
+    "statement": "Let $A=\\{n_1<n_2<\\cdots\\}$ be an infinite sequence of positive integers, and let $\\phi_A(k)$\ncount the number of $1\\leq m\\leq n_k$ such that the fraction $\\frac{m}{n_k}$ cannot be written\nas $\\frac{b}{n_j}$ for any integer $b$ and any $j<k$; equivalently,\n$$\n\\frac{n_k}{(m,n_k)}\\nmid n_j\n$$\nfor all $1\\leq j<k$.\n\nIs there a sequence $A$ such that\n$$\n\\lim_{N\\to \\infty}\\frac{1}{N}\\sum_{k\\leq N}\\frac{\\phi_A(k)}{n_k}=0?\n$$"
+   },
+   {
+    "id": "ERDOS-68",
+    "title": "Erdős Problem #68",
+    "status": "open",
+    "statement": "Is\n$$\\sum_{n=2}^\\infty \\frac{1}{n!-1}$$\nirrational?"
+   },
+   {
+    "id": "ERDOS-270",
+    "title": "Erdős Problem #270",
+    "status": "solved",
+    "statement": "Let $f(n)\\to \\infty$ as $n\\to \\infty$. Is it true that\n$$\\sum_{n\\geq 1} \\frac{1}{(n+1)\\cdots (n+f(n))}$$\nis irrational?"
+   },
+   {
+    "id": "ERDOS-251",
+    "title": "Erdős Problem #251",
+    "status": "open",
+    "statement": "Is $\\sum_{n=1}^\\infty \\frac{p_n}{2^n}$ irrational? Here $p_n$ is the $n$-th prime ($p_1=2, p_2=3, \\dots$)."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-1963-B2",
+    "title": "Putnam 1963 · B2"
+   },
+   {
+    "id": "USAMO-1972-P4",
+    "title": "USAMO 1972 · Problem 4"
+   },
+   {
+    "id": "USAMO-1973-P5",
+    "title": "USAMO 1973 · Problem 5"
+   },
+   {
+    "id": "PUTNAM-1980-A4",
+    "title": "Putnam 1980 · A4"
+   },
+   {
+    "id": "PUTNAM-1982-A5",
+    "title": "Putnam 1982 · A5"
+   },
+   {
+    "id": "USAMO-1983-P5",
+    "title": "USAMO 1983 · Problem 5"
+   },
+   {
+    "id": "PUTNAM-1986-B4",
+    "title": "Putnam 1986 · B4"
+   },
+   {
+    "id": "PUTNAM-1988-B3",
+    "title": "Putnam 1988 · B3"
+   },
+   {
+    "id": "IMO-1991-P6",
+    "title": "IMO 1991 · Problem 6"
+   },
+   {
+    "id": "PUTNAM-1993-B1",
+    "title": "Putnam 1993 · B1"
+   },
+   {
+    "id": "USAMO-1997-P6",
+    "title": "USAMO 1997 · Problem 6"
+   },
+   {
+    "id": "PUTNAM-2006-B2",
+    "title": "Putnam 2006 · B2"
+   },
+   {
+    "id": "PUTNAM-2011-B1",
+    "title": "Putnam 2011 · B1"
+   },
+   {
+    "id": "PUTNAM-2014-B6",
+    "title": "Putnam 2014 · B6"
+   },
+   {
+    "id": "PUTNAM-2020-B6",
+    "title": "Putnam 2020 · B6"
+   },
+   {
+    "id": "PUTNAM-2023-A4",
+    "title": "Putnam 2023 · A4"
+   }
+  ]
+ }
+]

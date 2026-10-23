@@ -1,0 +1,447 @@
+[
+ {
+  "concept": "unit-fractions",
+  "ladder": [
+   {
+    "title": "The greedy Egyptian fraction algorithm terminates",
+    "kind": "classic",
+    "q": "Let $0<\\frac ab<1$ with $a,b$ positive integers. Let $n_1$ be the least positive integer with $\\frac1{n_1}\\le\\frac ab$, replace $\\frac ab$ by $\\frac ab-\\frac1{n_1}$, and repeat while the remainder is nonzero.\n\nProve that this process stops after at most $a$ steps, and that the denominators it produces are distinct, so that every rational number in $(0,1)$ is a finite sum of distinct unit fractions.",
+    "concepts": [
+     "unit-fractions",
+     "divisibility"
+    ],
+    "source": "Fibonacci (1202) and Sylvester (1880); see R. K. Guy, Unsolved Problems in Number Theory, 3rd ed., Section D11",
+    "bridges_to": [],
+    "note": "The basic existence statement behind every question on the concept: representations always exist, so the problems are about their length, size and location."
+   },
+   {
+    "title": "Prime powers are never the largest denominator",
+    "kind": "classic",
+    "q": "Suppose $1=\\frac1{m_1}+\\cdots+\\frac1{m_k}$ with integers $1\\le m_1<\\cdots<m_k$ and $k\\ge2$.\n\nProve that $m_k$ is not a prime power: if $p$ is a prime and $a\\ge1$, then $m_k\\neq p^a$.",
+    "concepts": [
+     "unit-fractions",
+     "p-adic-valuation",
+     "divisibility"
+    ],
+    "source": "Folklore; recorded as an easy remark at erdosproblems.com/292",
+    "bridges_to": [
+     "ERDOS-292"
+    ],
+    "note": "A p-adic valuation argument that already shows the set of possible largest denominators misses infinitely many integers; the research question asks how large that exceptional set is."
+   },
+   {
+    "title": "Erdős–Straus outside one residue class mod 24",
+    "kind": "classic",
+    "q": "Let $n>2$ be an integer with $n\\not\\equiv 1 \\pmod{24}$.\n\nProve that there exist integers $1\\le x<y<z$ with $$\\frac4n=\\frac1x+\\frac1y+\\frac1z.$$",
+    "concepts": [
+     "unit-fractions",
+     "congruences",
+     "divisibility"
+    ],
+    "source": "Standard parametric identities; see L. J. Mordell, Diophantine Equations (Academic Press, 1969), and R. K. Guy, Unsolved Problems in Number Theory, 3rd ed., Section D11",
+    "bridges_to": [
+     "ERDOS-242"
+    ],
+    "note": "Explicit identities settle all but one residue class mod 24; this is why the conjecture is really about primes $p\\equiv1 \\pmod{24}$."
+   },
+   {
+    "title": "A lower bound for the largest denominator in a representation of 1",
+    "kind": "classic",
+    "q": "For $k\\ge1$ let $f(k)$ be the least possible value of $n_k$ over all integers $1\\le n_1<\\cdots<n_k$ with $\\frac1{n_1}+\\cdots+\\frac1{n_k}=1$.\n\nProve that for every $\\varepsilon>0$ there is $k_0$ such that $f(k)\\ge\\left(\\frac{e}{e-1}-\\varepsilon\\right)k$ for all $k\\ge k_0$.",
+    "concepts": [
+     "unit-fractions",
+     "asymptotics",
+     "series"
+    ],
+    "source": "P. Erdős and R. L. Graham, Old and New Problems and Results in Combinatorial Number Theory, Monographie de L'Enseignement Mathématique 28 (1980); the bound is the trivial direction of Erdős Problem 285",
+    "bridges_to": [
+     "ERDOS-285",
+     "ERDOS-286"
+    ],
+    "note": "Comparing with $\\sum_{N/e<n\\le N}1/n\\approx1$ gives the lower bound; the research problems ask that it be sharp, i.e. that $k$ denominators can be packed into an interval of width $(e-1+o(1))k$."
+   },
+   {
+    "title": "A large set with no subset of reciprocal sum 1",
+    "kind": "classic",
+    "q": "Prove that for every $\\varepsilon>0$ and all sufficiently large $N$ there is a set $A\\subseteq\\{1,\\ldots,N\\}$ with $|A|\\ge\\left(1-\\frac1e-\\varepsilon\\right)N$ such that $\\sum_{n\\in S}\\frac1n\\neq1$ for every nonempty $S\\subseteq A$.",
+    "concepts": [
+     "unit-fractions",
+     "asymptotics",
+     "series"
+    ],
+    "source": "Folklore; stated as the trivial lower bound in Erdős Problem 300 and in Y. P. Liu and M. Sawhney, On further questions regarding unit fractions, arXiv:2404.07113 (2024)",
+    "bridges_to": [
+     "ERDOS-300"
+    ],
+    "note": "An interval of integers whose reciprocals sum to slightly less than 1 gives the extremal example; the hard direction (rung below) shows no denser set works."
+   },
+   {
+    "title": "Erdős–Straus holds for almost all n",
+    "kind": "theorem",
+    "q": "For $N\\ge2$ let $E(N)$ be the number of integers $2\\le n\\le N$ for which the equation $\\frac4n=\\frac1x+\\frac1y+\\frac1z$ has no solution in positive integers $x,y,z$.\n\nProve that there is an absolute constant $c>0$ such that $$E(N)\\ll N\\exp\\!\\left(-c(\\log N)^{2/3}\\right).$$",
+    "concepts": [
+     "unit-fractions",
+     "sieve-basics",
+     "congruences"
+    ],
+    "source": "R. C. Vaughan, On a problem of Erdős, Straus and Schinzel, Mathematika 17 (1970)",
+    "year": 1970,
+    "bridges_to": [
+     "ERDOS-242"
+    ],
+    "note": "Combining many parametric families with a sieve shows the exceptional set is very thin; the open problem asks that it be empty."
+   },
+   {
+    "title": "Almost every integer is the largest denominator of a representation of 1",
+    "kind": "theorem",
+    "q": "Let $A$ be the set of positive integers $n$ for which there exist integers $1\\le m_1<\\cdots<m_k=n$ with $\\sum_{i=1}^k\\frac1{m_i}=1$, and let $B=\\mathbb N\\setminus A$.\n\nProve that for all sufficiently large $x$ $$\\#\\{n\\le x: n\\in B\\}\\asymp\\frac{x\\log\\log x}{\\log x}.$$ In particular $A$ has natural density $1$.",
+    "concepts": [
+     "unit-fractions",
+     "asymptotics",
+     "smooth-powerful"
+    ],
+    "source": "G. Martin, Denser Egyptian fractions, Acta Arith. 95 (2000)",
+    "year": 2000,
+    "bridges_to": [
+     "ERDOS-292",
+     "ERDOS-285"
+    ],
+    "note": "Upgrades the prime-power obstruction rung to the true order of the exceptional set; the same paper determines the minimal largest denominator for $t$-term representations."
+   },
+   {
+    "title": "Croot's colouring theorem",
+    "kind": "theorem",
+    "q": "Prove that for every integer $r\\ge1$ there is an integer $N(r)$ with the following property: whenever $\\{2,3,\\ldots,N(r)\\}$ is coloured with $r$ colours, there is a set $S$ of integers, all of the same colour, with $$\\sum_{n\\in S}\\frac1n=1.$$",
+    "concepts": [
+     "unit-fractions",
+     "ramsey-arithmetic",
+     "combinatorial-nt"
+    ],
+    "source": "E. S. Croot III, On a coloring conjecture about unit fractions, Ann. of Math. (2) 157 (2003)",
+    "year": 2003,
+    "bridges_to": [
+     "ERDOS-46",
+     "ERDOS-298"
+    ],
+    "note": "Answers the Erdős–Graham colouring question; its method (finding many smooth denominators in one colour class) is the starting point for the density versions below."
+   },
+   {
+    "title": "Bloom's density theorem for unit fractions",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C>0$ such that, for all sufficiently large $N$, every $A\\subseteq\\{1,\\ldots,N\\}$ with $$\\sum_{n\\in A}\\frac1n\\ge C\\,\\frac{\\log\\log\\log N}{\\log\\log N}\\,\\log N$$ contains a finite $S\\subseteq A$ with $\\sum_{n\\in S}\\frac1n=1$.\n\nDeduce that every $A\\subseteq\\mathbb N$ of positive upper density contains a finite $S$ with $\\sum_{n\\in S}\\frac1n=1$.",
+    "concepts": [
+     "unit-fractions",
+     "exponential-sums",
+     "additive-combinatorics"
+    ],
+    "source": "T. F. Bloom, On a density conjecture about unit fractions, arXiv:2112.03726 (2021); J. Eur. Math. Soc. (with an appendix by T. F. Bloom and B. Mehta)",
+    "year": 2021,
+    "bridges_to": [
+     "ERDOS-47",
+     "ERDOS-298",
+     "ERDOS-299",
+     "ERDOS-296"
+    ],
+    "note": "Turns Croot's colouring result into a density result via a Fourier-analytic argument; a set with bounded gaps has positive density, and greedy use of the quantitative form gives $(1-o(1))\\log N$ disjoint representations."
+   },
+   {
+    "title": "Liu–Sawhney: the sharp density threshold 1 - 1/e",
+    "kind": "theorem",
+    "q": "(a) Prove that for every $\\varepsilon>0$ and all sufficiently large $N$, every $A\\subseteq\\{1,\\ldots,N\\}$ with $\\sum_{n\\in A}\\frac1n\\ge(\\log N)^{4/5+\\varepsilon}$ contains a subset $S$ with $\\sum_{n\\in S}\\frac1n=1$.\n\n(b) Prove that for every fixed $\\varepsilon\\in(0,\\frac12)$ and all sufficiently large $N$, every $A\\subseteq\\{1,\\ldots,N\\}$ with $|A|\\ge\\left(1-\\frac1e+\\varepsilon\\right)N$ contains a subset $S$ with $\\sum_{n\\in S}\\frac1n=1$.",
+    "concepts": [
+     "unit-fractions",
+     "exponential-sums",
+     "additive-combinatorics"
+    ],
+    "source": "Y. P. Liu and M. Sawhney, On further questions regarding unit fractions, arXiv:2404.07113 (2024), Theorems 1.1 and 1.3",
+    "year": 2024,
+    "bridges_to": [
+     "ERDOS-47",
+     "ERDOS-300",
+     "ERDOS-310",
+     "ERDOS-305",
+     "ERDOS-294"
+    ],
+    "note": "Part (b) matches the construction of the earlier rung, so the maximal size of a set with no subset of reciprocal sum 1 is $(1-1/e+o(1))N$; the same refined method gives the best known bounds for denominators of $a/b$ and for $t(N)$."
+   }
+  ]
+ },
+ {
+  "concept": "covering-systems",
+  "ladder": [
+   {
+    "title": "A covering system with distinct moduli",
+    "kind": "classic",
+    "q": "(a) Prove that every integer satisfies at least one of the congruences $$x\\equiv0\\pmod2,\\quad x\\equiv0\\pmod3,\\quad x\\equiv1\\pmod4,\\quad x\\equiv5\\pmod6,\\quad x\\equiv7\\pmod{12}.$$\n\n(b) Prove that if the congruences $x\\equiv a_i\\pmod{n_i}$, $1\\le i\\le k$, cover every integer, then $\\sum_{i=1}^k\\frac1{n_i}\\ge1$, with equality if and only if every integer satisfies exactly one of them.",
+    "concepts": [
+     "covering-systems",
+     "crt",
+     "congruences"
+    ],
+    "source": "P. Erdős, On integers of the form 2^k + p and some related problems, Summa Brasil. Math. 2 (1950); see also R. K. Guy, Unsolved Problems in Number Theory, 3rd ed., Section F13",
+    "bridges_to": [],
+    "note": "Erdős's original example and the density count used in every later argument about coverings."
+   },
+   {
+    "title": "Why 2^r consecutive integers are needed",
+    "kind": "classic",
+    "q": "Let $r\\ge1$. Show that the $r$ congruences $x\\equiv2^{i-1}\\pmod{2^i}$, $1\\le i\\le r$, cover each of the $2^r-1$ consecutive integers $1,2,\\ldots,2^r-1$ but do not cover all integers.",
+    "concepts": [
+     "covering-systems",
+     "congruences",
+     "p-adic-valuation"
+    ],
+    "source": "Folklore; given as the sharpness example in Erdős Problem 275",
+    "bridges_to": [
+     "ERDOS-275"
+    ],
+    "note": "Shows the threshold $2^r$ in the Crittenden–Vanden Eynden theorem cannot be lowered."
+   },
+   {
+    "title": "A Sierpiński number from a covering",
+    "kind": "classic",
+    "q": "(a) Prove that for every integer $n\\ge0$ the number $78557\\cdot2^n+1$ is divisible by at least one of the primes $3,5,7,13,19,37,73$, and hence is composite.\n\n(b) Deduce, using the Chinese remainder theorem, that there are infinitely many odd $k$ for which $k\\cdot2^n+1$ is composite for every $n\\ge0$.",
+    "concepts": [
+     "covering-systems",
+     "order-primroot",
+     "crt"
+    ],
+    "source": "W. Sierpiński, Sur un problème concernant les nombres k·2^n+1, Elem. Math. 15 (1960) (existence of such k); the example 78557 is due to J. Selfridge (1962)",
+    "bridges_to": [
+     "ERDOS-1113",
+     "ERDOS-203"
+    ],
+    "note": "Each prime $p$ in the set handles one residue class of $n$ modulo the order of 2 mod $p$, so a covering system becomes a covering set; the research problems ask whether every such phenomenon must come from a covering."
+   },
+   {
+    "title": "r congruences covering 2^r consecutive integers cover everything",
+    "kind": "theorem",
+    "q": "Let $x\\equiv a_i\\pmod{n_i}$, $1\\le i\\le r$, be $r$ congruences (the moduli need not be distinct). Prove that if every one of the integers $1,2,\\ldots,2^r$ satisfies at least one of them, then every integer satisfies at least one of them.",
+    "concepts": [
+     "covering-systems",
+     "congruences",
+     "combinatorial-nt"
+    ],
+    "source": "R. B. Crittenden and C. L. Vanden Eynden, Any n arithmetic progressions covering the first 2^n integers cover all integers, Proc. Amer. Math. Soc. 24 (1970), 475–481",
+    "year": 1970,
+    "bridges_to": [
+     "ERDOS-275"
+    ],
+    "note": "Together with the previous rung this settles Erdős Problem 275 exactly."
+   },
+   {
+    "title": "No exact covering with distinct moduli",
+    "kind": "classic",
+    "q": "Let $k\\ge2$ and let $x\\equiv a_i\\pmod{n_i}$, $1\\le i\\le k$, be congruences with $1<n_1<n_2<\\cdots<n_k$.\n\nProve that some integer satisfies none or at least two of these congruences; equivalently, in any partition of $\\mathbb Z$ into $k\\ge2$ residue classes, the largest modulus occurs at least twice.",
+    "concepts": [
+     "covering-systems",
+     "generating-functions",
+     "complex-numbers"
+    ],
+    "source": "Mirsky and Newman, and independently Davenport and Rado (c. 1950, unpublished); see R. K. Guy, Unsolved Problems in Number Theory, 3rd ed., Section F13",
+    "bridges_to": [
+     "ERDOS-947",
+     "ERDOS-274"
+    ],
+    "note": "The generating-function proof uses $\\sum_i z^{a_i}/(1-z^{n_i})=1/(1-z)$ and looks at a primitive $n_k$-th root of unity; this is the case $G=\\mathbb Z$ of the coset-partition question."
+   },
+   {
+    "title": "Hough: the minimum modulus is bounded",
+    "kind": "theorem",
+    "q": "Call a finite set of congruences $x\\equiv a_i\\pmod{n_i}$ with distinct moduli $1<n_1<\\cdots<n_k$ a distinct covering system if every integer satisfies at least one of them.\n\nProve that every distinct covering system has $n_1\\le10^{16}$.",
+    "concepts": [
+     "covering-systems",
+     "probabilistic-method",
+     "sieve-basics"
+    ],
+    "source": "R. Hough, Solution of the minimum modulus problem for covering systems, Ann. of Math. (2) 181 (2015)",
+    "year": 2015,
+    "bridges_to": [
+     "ERDOS-2"
+    ],
+    "note": "Answers Erdős's minimum modulus problem negatively using a probabilistic sieve with the Lovász local lemma."
+   },
+   {
+    "title": "The distortion method: Schinzel's question and a smaller minimum modulus",
+    "kind": "theorem",
+    "q": "(a) Prove that every distinct covering system has least modulus less than $10^6$.\n\n(b) Prove that in every finite covering of $\\mathbb Z$ by congruences $x\\equiv a_i\\pmod{n_i}$ with all $n_i>1$, there are $i\\neq j$ with $n_i\\mid n_j$.",
+    "concepts": [
+     "covering-systems",
+     "probabilistic-method",
+     "sieve-basics"
+    ],
+    "source": "P. Balister, B. Bollobás, R. Morris, J. Sahasrabudhe and M. Tiba, On the Erdős covering problem: the density of the uncovered set, Invent. Math. 228 (2022); arXiv:1811.03547",
+    "year": 2022,
+    "bridges_to": [
+     "ERDOS-2",
+     "ERDOS-586",
+     "ERDOS-7"
+    ],
+    "note": "A simpler sieve that tracks the density of the uncovered set; part (b) closes Selfridge's route to an odd covering via moduli none of which divides another."
+   },
+   {
+    "title": "Every distinct covering has a modulus divisible by 2 or 3",
+    "kind": "special-case",
+    "q": "Prove that in every distinct covering system (distinct moduli, all greater than 1, covering $\\mathbb Z$) at least one modulus is divisible by $2$ or by $3$.",
+    "concepts": [
+     "covering-systems",
+     "probabilistic-method",
+     "crt"
+    ],
+    "source": "R. D. Hough and P. P. Nielsen, Covering systems with restricted divisibility, Duke Math. J. 168 (2019); arXiv:1703.02133",
+    "year": 2019,
+    "bridges_to": [
+     "ERDOS-7"
+    ],
+    "note": "The strongest unconditional step towards the odd covering problem: an odd covering would need a modulus divisible by 3."
+   },
+   {
+    "title": "No odd square-free distinct covering",
+    "kind": "special-case",
+    "q": "Prove that if a finite set of congruences $x\\equiv a_i\\pmod{n_i}$ with distinct square-free moduli $n_i>1$ covers $\\mathbb Z$, then at least one $n_i$ is even.",
+    "concepts": [
+     "covering-systems",
+     "probabilistic-method",
+     "crt"
+    ],
+    "source": "P. Balister, B. Bollobás, R. Morris, J. Sahasrabudhe and M. Tiba, The Erdős–Selfridge problem with square-free moduli, Algebra Number Theory 15 (2021); arXiv:1901.11465",
+    "year": 2021,
+    "bridges_to": [
+     "ERDOS-7"
+    ],
+    "note": "Settles the square-free case of the Erdős–Selfridge odd covering problem; the general odd case remains open."
+   }
+  ]
+ },
+ {
+  "concept": "primitive-sets",
+  "ladder": [
+   {
+    "title": "Primitive subsets of {1, ..., 2n}",
+    "kind": "classic",
+    "q": "A set $A$ of positive integers is primitive if no element of $A$ divides another element of $A$.\n\nProve that for every $n\\ge1$ the largest primitive subset of $\\{1,2,\\ldots,2n\\}$ has exactly $n$ elements.",
+    "concepts": [
+     "primitive-sets",
+     "pigeonhole",
+     "divisibility"
+    ],
+    "source": "Folklore (Erdős); standard pigeonhole-principle exercise",
+    "bridges_to": [],
+    "note": "Grouping by odd part gives the upper bound and $\\{n+1,\\ldots,2n\\}$ the lower bound: counting alone cannot force primitive sets to be thin, which is why weighted sums are used."
+   },
+   {
+    "title": "Erdős's disjoint-multiples inequality",
+    "kind": "classic",
+    "q": "For an integer $a\\ge2$ let $P(a)$ be its largest prime factor and let $S_a$ be the set of integers $am$ with $m\\ge1$ and every prime factor of $m$ at least $P(a)$.\n\nLet $A\\subseteq\\{2,3,\\ldots\\}$ be primitive. Prove that the sets $S_a$ ($a\\in A$) are pairwise disjoint, that $S_a$ has natural density $\\frac1a\\prod_{p<P(a)}\\left(1-\\frac1p\\right)$ (product over primes), and deduce $$\\sum_{a\\in A}\\frac1a\\prod_{p<P(a)}\\left(1-\\frac1p\\right)\\le1.$$",
+    "concepts": [
+     "primitive-sets",
+     "divisibility",
+     "sieve-basics"
+    ],
+    "source": "P. Erdős, Note on sequences of integers no one of which is divisible by any other, J. London Math. Soc. 10 (1935), 126–128",
+    "bridges_to": [],
+    "note": "The key inequality in Erdős's 1935 argument; the rest is Mertens' theorem."
+   },
+   {
+    "title": "Erdős: the sum of 1/(a log a) is uniformly bounded",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C$ such that every primitive set $A\\subseteq\\{2,3,\\ldots\\}$ satisfies $$\\sum_{a\\in A}\\frac1{a\\log a}\\le C.$$\n\nDeduce that every primitive set has lower asymptotic density $0$.",
+    "concepts": [
+     "primitive-sets",
+     "mertens",
+     "partial-summation"
+    ],
+    "source": "P. Erdős, Note on sequences of integers no one of which is divisible by any other, J. London Math. Soc. 10 (1935), 126–128",
+    "year": 1935,
+    "bridges_to": [
+     "ERDOS-164",
+     "ERDOS-143"
+    ],
+    "note": "Mertens' estimate $\\prod_{p<y}(1-1/p)\\asymp1/\\log y$ applied to the previous rung; the primes show the sum can be about 1.6366, and the research problem asks whether that is the maximum."
+   },
+   {
+    "title": "Besicovitch: primitive sets can have positive upper density",
+    "kind": "theorem",
+    "q": "Prove that there exists a primitive set $A\\subseteq\\{2,3,\\ldots\\}$ with positive upper asymptotic density, i.e. $$\\limsup_{x\\to\\infty}\\frac{|A\\cap[1,x]|}{x}>0.$$",
+    "concepts": [
+     "primitive-sets",
+     "probabilistic-nt",
+     "asymptotics"
+    ],
+    "source": "A. S. Besicovitch, On the density of certain sequences of integers, Math. Ann. 110 (1934)",
+    "year": 1934,
+    "bridges_to": [
+     "ERDOS-486"
+    ],
+    "note": "Shows the previous rung cannot be upgraded to natural density zero; equivalently, sets of multiples need not have a natural density, which is why the Davenport–Erdős theory uses logarithmic density."
+   },
+   {
+    "title": "Davenport–Erdős: sets of multiples have logarithmic density",
+    "kind": "theorem",
+    "q": "Let $A$ be a set of positive integers and let $M(A)=\\{am: a\\in A,\\ m\\ge1\\}$ be its set of multiples.\n\nProve that $M(A)$ has a logarithmic density, i.e. $\\lim_{x\\to\\infty}\\frac1{\\log x}\\sum_{n\\in M(A),\\,n\\le x}\\frac1n$ exists, and that it equals the lower asymptotic density of $M(A)$.\n\nDeduce that if $A$ has positive upper logarithmic density, then $A$ contains an infinite sequence $a_1<a_2<\\cdots$ with $a_i\\mid a_{i+1}$ for all $i$.",
+    "concepts": [
+     "primitive-sets",
+     "dirichlet-series",
+     "partial-summation"
+    ],
+    "source": "H. Davenport and P. Erdős, On sequences of positive integers, Acta Arith. 2 (1936), 147–151",
+    "year": 1936,
+    "bridges_to": [
+     "ERDOS-486"
+    ],
+    "note": "The case $X_n=\\{0\\}$ of Erdős Problem 486; the open problem asks the same for an arbitrary choice of forbidden residues $X_n$."
+   },
+   {
+    "title": "Behrend's bound for reciprocal sums",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C$ such that for all $x\\ge3$ and every primitive set $A\\subseteq\\{2,\\ldots,\\lfloor x\\rfloor\\}$, $$\\sum_{a\\in A}\\frac1a\\le C\\frac{\\log x}{\\sqrt{\\log\\log x}}.$$",
+    "concepts": [
+     "primitive-sets",
+     "probabilistic-nt",
+     "asymptotics"
+    ],
+    "source": "F. Behrend, On sequences of numbers not divisible one by another, J. London Math. Soc. 10 (1935)",
+    "year": 1935,
+    "bridges_to": [
+     "ERDOS-143",
+     "ERDOS-858"
+    ],
+    "note": "In particular primitive sets have logarithmic density zero; the real-number analogue of this bound is part of Erdős Problem 143."
+   },
+   {
+    "title": "The e^gamma bound",
+    "kind": "theorem",
+    "q": "Prove that every primitive set $A\\subseteq\\{2,3,\\ldots\\}$ satisfies $$\\sum_{a\\in A}\\frac1{a\\log a}<e^{\\gamma}=1.78107\\ldots,$$ where $\\gamma$ is Euler's constant.",
+    "concepts": [
+     "primitive-sets",
+     "mertens",
+     "sieve-basics"
+    ],
+    "source": "J. D. Lichtman and C. Pomerance, The Erdős conjecture for primitive sets, Proc. Amer. Math. Soc. Ser. B 6 (2019); arXiv:1806.02250",
+    "year": 2019,
+    "bridges_to": [
+     "ERDOS-164"
+    ],
+    "note": "Brings the universal bound within about 9 percent of the conjectured extremal value $\\sum_p 1/(p\\log p)=1.6366\\ldots$."
+   },
+   {
+    "title": "Lichtman: the primes maximise the Erdős sum",
+    "kind": "theorem",
+    "q": "Prove that every primitive set $A\\subseteq\\{2,3,\\ldots\\}$ satisfies $$\\sum_{a\\in A}\\frac1{a\\log a}\\le\\sum_{p\\ \\mathrm{prime}}\\frac1{p\\log p}.$$",
+    "concepts": [
+     "primitive-sets",
+     "mertens",
+     "probabilistic-nt"
+    ],
+    "source": "J. D. Lichtman, A proof of the Erdős primitive set conjecture, Forum Math. Pi 11 (2023); arXiv:2202.02384",
+    "year": 2022,
+    "bridges_to": [
+     "ERDOS-164",
+     "ERDOS-1196",
+     "ERDOS-143"
+    ],
+    "note": "Resolves Erdős's conjecture; the translated version for primitive sets in $[x,\\infty)$ and the real-number analogue are the next questions."
+   }
+  ]
+ }
+]

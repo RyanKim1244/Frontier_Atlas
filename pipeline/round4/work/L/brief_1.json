@@ -1,0 +1,337 @@
+[
+ {
+  "id": "series",
+  "title": "Series and convergence",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "When an infinite series converges, and how fast. $\\sum 1/n^s$ converges for real $s>1$ and diverges at $s=1$; that boundary is where the zeta function's story begins.",
+  "key_statements": [
+   "\\sum_{n \\ge 1} \\frac{1}{n^s} < \\infty \\iff s > 1"
+  ],
+  "why": "Convergence questions decide where Dirichlet series define functions at all.",
+  "references": [
+   "Stein & Shakarchi, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "seq-limits",
+    "title": "Convergence of sequences"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "asymptotics",
+    "title": "Asymptotic notation"
+   },
+   {
+    "id": "holomorphic",
+    "title": "Holomorphic functions and Cauchy's theorem"
+   },
+   {
+    "id": "gamma",
+    "title": "The gamma function"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   },
+   {
+    "id": "dirichlet-series",
+    "title": "Dirichlet series and Euler products"
+   },
+   {
+    "id": "generating-functions",
+    "title": "Generating functions and recurrences"
+   },
+   {
+    "id": "power-series",
+    "title": "Power series"
+   },
+   {
+    "id": "uniform-convergence",
+    "title": "Uniform convergence"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1735",
+    "title": "The Basel problem: $\\zeta(2) = \\pi^2/6$",
+    "who": "Leonhard Euler",
+    "text": "Summed $\\sum 1/n^2$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "asymptotics",
+  "title": "Asymptotic notation",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "real-analysis",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$f = O(g)$ and $f \\ll g$ mean $|f| \\le Cg$ for some constant; $f \\sim g$ means $f/g \\to 1$; $f = o(g)$ means $f/g \\to 0$. Number theory statements are mostly sharp asymptotics with error terms.",
+  "key_statements": [
+   "\\pi(x) \\sim \\frac{x}{\\log x}, \\qquad \\sum_{n \\le x} \\frac1n = \\log x + \\gamma + O\\!\\left(\\frac1x\\right)"
+  ],
+  "why": "Reading and comparing error terms is most of the skill in analytic number theory.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory",
+   "Montgomery & Vaughan, Multiplicative Number Theory I"
+  ],
+  "prerequisites": [
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "limits",
+    "title": "Limits of functions"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "partial-summation",
+    "title": "Abel summation and Euler–Maclaurin"
+   },
+   {
+    "id": "smooth-powerful",
+    "title": "Smooth, powerful and squarefree numbers"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "partial-summation",
+  "title": "Abel summation and Euler–Maclaurin",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "real-analysis",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Abel summation converts a sum $\\sum a_n f(n)$ into an integral against the partial sums $A(t)=\\sum_{n\\le t} a_n$. Euler–Maclaurin compares $\\sum f(n)$ with $\\int f$ and gives constants such as Euler's $\\gamma$.",
+  "key_statements": [
+   "\\sum_{n \\le x} a_n f(n) = A(x) f(x) - \\int_1^x A(t)\\, f'(t)\\, dt"
+  ],
+  "why": "It moves information between counting primes and weighting them by $\\log p$.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "asymptotics",
+    "title": "Asymptotic notation"
+   },
+   {
+    "id": "riemann-integral",
+    "title": "The definite integral"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "chebyshev",
+    "title": "Chebyshev and von Mangoldt functions"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "complex-numbers",
+  "title": "Complex numbers and functions",
+  "area": "Analysis",
+  "stage": "school",
+  "fields": [
+   "complex-analysis",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "$e^{i\\theta} = \\cos\\theta + i\\sin\\theta$; multiplication rotates and scales the plane. The variable of the zeta function is complex, $s = \\sigma + it$, and its real part $\\sigma$ is what the main conjectures are about.",
+  "key_statements": [
+   "e^{i\\theta} = \\cos\\theta + i \\sin\\theta"
+  ],
+  "why": "Writing $n^{-s} = n^{-\\sigma} e^{-it\\log n}$ turns arithmetic into oscillation.",
+  "references": [
+   "Ahlfors, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "trig",
+    "title": "Trigonometric functions"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "holomorphic",
+    "title": "Holomorphic functions and Cauchy's theorem"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   },
+   {
+    "id": "ode-linear",
+    "title": "Linear differential equations"
+   },
+   {
+    "id": "analytic-geometry",
+    "title": "Coordinates, vectors and complex numbers"
+   },
+   {
+    "id": "hodge",
+    "title": "The Hodge conjecture"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "holomorphic",
+  "title": "Holomorphic functions and Cauchy's theorem",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "complex-analysis"
+  ],
+  "status": null,
+  "summary": "A complex-differentiable function on a domain has zero integral around closed loops, and Cauchy's integral formula recovers its values and all derivatives from boundary values. Holomorphic functions are locally power series.",
+  "key_statements": [
+   "f^{(n)}(a) = \\frac{n!}{2\\pi i} \\oint \\frac{f(z)}{(z-a)^{n+1}}\\,dz"
+  ],
+  "why": "Rigidity of holomorphic functions is why the zeta function's values on a line control it everywhere.",
+  "references": [
+   "Ahlfors, Complex Analysis",
+   "Stein & Shakarchi, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "complex-numbers",
+    "title": "Complex numbers and functions"
+   },
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "derivative",
+    "title": "The derivative"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "residues",
+    "title": "Residues and the argument principle"
+   },
+   {
+    "id": "continuation",
+    "title": "Analytic continuation"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1825",
+    "title": "Cauchy's integral theorem",
+    "who": "Augustin-Louis Cauchy",
+    "text": "Founded complex contour integration, followed by the calculus of residues.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "residues",
+  "title": "Residues and the argument principle",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "complex-analysis"
+  ],
+  "status": null,
+  "summary": "A contour integral equals $2\\pi i$ times the sum of residues inside. The argument principle and Rouché's theorem count zeros inside a contour, which is how zeros of $\\zeta$ are counted.",
+  "key_statements": [
+   "\\frac{1}{2\\pi i}\\oint \\frac{f'(z)}{f(z)}\\,dz = \\#\\text{zeros} - \\#\\text{poles}"
+  ],
+  "why": "Perron's formula and the explicit formula are residue computations.",
+  "references": [
+   "Ahlfors, Complex Analysis",
+   "Stein & Shakarchi, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "holomorphic",
+    "title": "Holomorphic functions and Cauchy's theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1825",
+    "title": "Cauchy's integral theorem",
+    "who": "Augustin-Louis Cauchy",
+    "text": "Founded complex contour integration, followed by the calculus of residues.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "continuation",
+  "title": "Analytic continuation",
+  "area": "Analysis",
+  "stage": "graduate",
+  "fields": [
+   "complex-analysis"
+  ],
+  "status": null,
+  "summary": "A holomorphic function is determined on a connected domain by its values on any small disc. $\\sum z^n$ converges only for $|z|<1$, but its sum $1/(1-z)$ continues to all $z \\ne 1$.",
+  "key_statements": [
+   "\\sum_{n\\ge0} z^n = \\frac{1}{1-z} \\quad (|z| < 1)"
+  ],
+  "why": "Values like $\\zeta(-1) = -\\tfrac1{12}$ come from continuation, not from summing the series.",
+  "references": [
+   "Ahlfors, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "holomorphic",
+    "title": "Holomorphic functions and Cauchy's theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "gamma",
+    "title": "The gamma function"
+   },
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

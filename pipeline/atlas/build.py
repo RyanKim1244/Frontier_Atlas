@@ -253,6 +253,14 @@ REVIEW = {}
 for f in glob.glob(os.path.join(HERE, "..", "lessons", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round2", "review_*.json")):
     for r in json.load(open(f)): REVIEW[r["id"]] = sum(1 for i in r.get("issues", []) if i.get("severity") == "error")
 
+# ---------- reviewed corrections to catalog entries (round 4 reviewers) ----------
+FIXKEY = {"summary": "sum", "key_statements": "key", "why": "why"}
+CBY = {c["id"]: c for c in cat.C}
+for f in sorted(glob.glob(os.path.join(HERE, "..", "round4", "entry_fixes_*.json"))):
+    for fx in json.load(open(f)):
+        c = CBY.get(fx["id"]); k = FIXKEY.get(fx["field"])
+        if c and k and fx.get("corrected") is not None: c[k] = fx["corrected"]
+
 # ---------- catalog ----------
 order = {b["id"]: i for i, b in enumerate(cat.BANDS)}
 concepts = sorted(cat.C, key=lambda c: order[c["band"]])

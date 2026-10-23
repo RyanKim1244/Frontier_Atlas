@@ -1,0 +1,267 @@
+[
+ {
+  "id": "invariants",
+  "title": "Invariants and monovariants",
+  "area": "Combinatorics",
+  "stage": "olympiad",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "For a process that repeats a move, find a quantity the move never changes (an invariant) or always changes in one direction (a monovariant). Invariants rule out end states; monovariants prove termination.",
+  "key_statements": [
+   "\\text{move } \\Rightarrow\\ \\Phi(\\text{state}) \\text{ unchanged, or } \\Phi \\text{ strictly decreases in } \\mathbb N"
+  ],
+  "why": "This is the olympiad form of conserved quantities in physics and of termination proofs in computer science.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "comb-games",
+    "title": "Combinatorial games and strategies"
+   },
+   {
+    "id": "grids-tilings",
+    "title": "Grids, tilings and board colourings"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "comb-games",
+  "title": "Combinatorial games and strategies",
+  "area": "Combinatorics",
+  "stage": "olympiad",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Two players alternate moves with full information. Positions split into winning and losing ones; strategy stealing, pairing strategies and the Sprague–Grundy theory of nim-values decide who wins.",
+  "key_statements": [
+   "\\mathcal G(P) = \\operatorname{mex}\\{\\mathcal G(Q) : P \\to Q\\}",
+   "\\mathcal G(P_1 + P_2) = \\mathcal G(P_1) \\oplus \\mathcal G(P_2)"
+  ],
+  "why": "Games are the cleanest place to practise quantifier alternation: a strategy is a proof object.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [
+   {
+    "id": "invariants",
+    "title": "Invariants and monovariants"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "generating-functions",
+  "title": "Generating functions and recurrences",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "Encode a sequence as $\\sum a_n x^n$; combinatorial constructions become algebraic operations, and recurrences become equations for the series.",
+  "key_statements": [
+   "\\sum_{n\\ge0} p(n) x^n = \\prod_{k\\ge1} \\frac{1}{1-x^k}",
+   "a_{n} = a_{n-1} + a_{n-2} \\iff \\sum a_n x^n = \\frac{a_0 + (a_1 - a_0)x}{1-x-x^2}"
+  ],
+  "why": "They connect counting to analysis: singularities of the series give asymptotics, as in the Hardy–Ramanujan partition formula.",
+  "references": [
+   "Stanley, Enumerative Combinatorics, Vol. 1"
+  ],
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   },
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "power-series",
+    "title": "Power series"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "graph-basics",
+  "title": "Graphs, trees and paths",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "A graph is a set of vertices with edges between pairs. Degrees, paths, connectivity, trees (connected graphs with no cycles) and Euler tours are the basic notions.",
+  "key_statements": [
+   "\\text{tree on } n \\text{ vertices} \\iff \\text{connected with } n-1 \\text{ edges}",
+   "\\text{Euler tour exists} \\iff \\text{connected and all degrees even}"
+  ],
+  "why": "Graphs model any pairwise relation, so most of combinatorics and much of computer science is written in this language.",
+  "references": [
+   "Diestel, Graph Theory",
+   "Bollobás, Modern Graph Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "cycles-matchings",
+    "title": "Cycles, matchings and Hamiltonicity"
+   },
+   {
+    "id": "graph-coloring",
+    "title": "Graph colouring"
+   },
+   {
+    "id": "extremal-graphs",
+    "title": "Extremal graph theory"
+   },
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   },
+   {
+    "id": "hypergraphs",
+    "title": "Hypergraphs"
+   },
+   {
+    "id": "p-vs-np",
+    "title": "P versus NP"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1736",
+    "title": "The bridges of Königsberg",
+    "who": "Leonhard Euler",
+    "text": "Shows no walk crosses each bridge once, the first theorem of graph theory.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "cycles-matchings",
+  "title": "Cycles, matchings and Hamiltonicity",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Hall's theorem characterises when a bipartite graph has a matching covering one side; Dirac's theorem gives a degree condition for a Hamiltonian cycle; Erdős–Gallai bounds edges without long cycles.",
+  "key_statements": [
+   "\\text{Hall: } |N(S)| \\ge |S|\\ \\ \\forall S\\subseteq X",
+   "\\delta(G) \\ge n/2 \\Rightarrow G \\text{ Hamiltonian (Dirac)}"
+  ],
+  "why": "Matchings are the prototype of a min–max theorem; Hamiltonicity is the prototype of an NP-complete property.",
+  "references": [
+   "Diestel, Graph Theory",
+   "Bollobás, Modern Graph Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1935",
+    "title": "Hall's marriage theorem",
+    "who": "Philip Hall",
+    "text": "A bipartite graph has a matching saturating one side iff every subset has enough neighbours.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "graph-coloring",
+  "title": "Graph colouring",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "A proper colouring gives adjacent vertices different colours; $\\chi(G)$ is the fewest colours needed. Brooks, the four colour theorem and Hadwiger's conjecture are the landmarks.",
+  "key_statements": [
+   "\\chi(G) \\le \\Delta(G) + 1",
+   "\\chi(G) \\ge \\frac{|V|}{\\alpha(G)}"
+  ],
+  "why": "Colouring is scheduling and register allocation; chromatic number problems for geometric graphs are among the oldest open questions.",
+  "references": [
+   "Diestel, Graph Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1976",
+    "title": "The four colour theorem",
+    "who": "Kenneth Appel, Wolfgang Haken",
+    "text": "Every planar map can be coloured with four colours; the first major computer-assisted proof.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "extremal-graphs",
+  "title": "Extremal graph theory",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "How many edges can a graph on $n$ vertices have without containing a fixed subgraph $H$? Turán answers it for cliques; Erdős–Stone for all non-bipartite $H$; bipartite $H$ remain largely open.",
+  "key_statements": [
+   "\\operatorname{ex}(n, K_{r+1}) = \\Big(1-\\frac1r\\Big)\\frac{n^2}{2}\\ \\ (\\text{Turán graph})",
+   "\\operatorname{ex}(n,H) = \\Big(1-\\frac{1}{\\chi(H)-1}+o(1)\\Big)\\binom n2"
+  ],
+  "why": "The bipartite case connects to Sidon sets and finite geometry, and is where algebraic constructions beat random ones.",
+  "references": [
+   "Bollobás, Modern Graph Theory",
+   "Jukna, Extremal Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1941",
+    "title": "Turán's theorem",
+    "who": "Pál Turán",
+    "text": "The densest graph with no $K_{r+1}$ is the balanced complete $r$-partite graph.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

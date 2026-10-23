@@ -1,0 +1,416 @@
+[
+ {
+  "id": "gamma",
+  "title": "The gamma function",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "special-functions",
+   "complex-analysis"
+  ],
+  "status": null,
+  "summary": "$\\Gamma(s) = \\int_0^\\infty x^{s-1}e^{-x}\\,dx$ extends the factorial, $\\Gamma(n) = (n-1)!$, to a meromorphic function with poles at $0, -1, -2, \\dots$. Euler introduced it in 1729.",
+  "key_statements": [
+   "\\Gamma(s+1) = s\\,\\Gamma(s), \\qquad \\Gamma(s)\\Gamma(1-s) = \\frac{\\pi}{\\sin \\pi s}"
+  ],
+  "why": "It is the factor that makes the zeta function's functional equation symmetric.",
+  "references": [
+   "Stein & Shakarchi, Complex Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "continuation",
+    "title": "Analytic continuation"
+   },
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "improper-integrals",
+    "title": "Improper integrals"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   },
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1729",
+    "title": "The gamma function",
+    "who": "Leonhard Euler",
+    "text": "Interpolated $n!$ to non-integers in letters to Goldbach.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "fourier-poisson",
+  "title": "Fourier analysis and Poisson summation",
+  "area": "Analysis",
+  "stage": "undergraduate",
+  "fields": [
+   "harmonic-analysis"
+  ],
+  "status": null,
+  "summary": "Poisson summation says $\\sum_n f(n) = \\sum_n \\hat f(n)$. Since $e^{-\\pi x^2}$ is its own Fourier transform, the theta function $\\theta(t) = \\sum_n e^{-\\pi n^2 t}$ satisfies $\\theta(1/t) = \\sqrt t\\,\\theta(t)$; Riemann built the functional equation from this.",
+  "key_statements": [
+   "\\sum_{n\\in\\mathbb Z} f(n) = \\sum_{n\\in\\mathbb Z} \\hat f(n), \\qquad \\theta(1/t) = \\sqrt t\\, \\theta(t)"
+  ],
+  "why": "Duality between a function and its transform reappears in the large sieve and the circle method.",
+  "references": [
+   "Stein & Shakarchi, Fourier Analysis"
+  ],
+  "prerequisites": [
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "complex-numbers",
+    "title": "Complex numbers and functions"
+   },
+   {
+    "id": "riemann-integral",
+    "title": "The definite integral"
+   },
+   {
+    "id": "trig",
+    "title": "Trigonometric functions"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   },
+   {
+    "id": "large-sieve",
+    "title": "The large sieve"
+   },
+   {
+    "id": "exponential-sums",
+    "title": "Exponential sums and Weyl differencing"
+   },
+   {
+    "id": "circle-method",
+    "title": "The Hardy–Littlewood circle method"
+   },
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   },
+   {
+    "id": "navier-stokes",
+    "title": "Navier–Stokes existence and smoothness"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1822",
+    "title": "Théorie analytique de la chaleur",
+    "who": "Joseph Fourier",
+    "text": "Expanded functions in trigonometric series to solve the heat equation.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "mellin",
+  "title": "The Mellin transform and Perron's formula",
+  "area": "Analysis",
+  "stage": "graduate",
+  "fields": [
+   "harmonic-analysis",
+   "complex-analysis"
+  ],
+  "status": null,
+  "summary": "The Mellin transform $\\int_0^\\infty f(x)\\,x^{s-1}\\,dx$ moves between functions of $x$ and Dirichlet-series-like functions of $s$. Perron's formula recovers partial sums $\\sum_{n \\le x} a_n$ from $\\sum a_n n^{-s}$ by a contour integral.",
+  "key_statements": [
+   "\\sum_{n \\le x} a_n = \\frac{1}{2\\pi i}\\int_{c - i\\infty}^{c+i\\infty} \\Bigl(\\sum_n \\frac{a_n}{n^s}\\Bigr) \\frac{x^s}{s}\\, ds"
+  ],
+  "why": "The 2026 quasi-RH manuscript lists a Mellin continuation as a key step.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory",
+   "Montgomery & Vaughan, Multiplicative Number Theory I"
+  ],
+  "prerequisites": [
+   {
+    "id": "gamma",
+    "title": "The gamma function"
+   },
+   {
+    "id": "residues",
+    "title": "Residues and the argument principle"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   },
+   {
+    "id": "quasi-rh",
+    "title": "The quasi-Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "30 Sep 2026",
+    "title": "Quasi-RH manuscript (7/8)",
+    "who": "OpenAI internal model",
+    "text": "Claims every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation. Reported as Lean-verified.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-series",
+  "title": "Dirichlet series and Euler products",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Series $\\sum a_n n^{-s}$. When $a_n$ is multiplicative the series factors over primes; for $a_n = 1$ this is Euler's 1737 product, an analytic restatement of unique factorization.",
+  "key_statements": [
+   "\\sum_{n \\ge 1}\\frac{1}{n^s} = \\prod_p \\frac{1}{1 - p^{-s}} \\qquad (\\operatorname{Re} s > 1)"
+  ],
+  "why": "The product shows $\\sum 1/p$ diverges and ties primes to the poles and zeros of a function.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   },
+   {
+    "id": "mobius",
+    "title": "Möbius inversion and Dirichlet convolution"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1737",
+    "title": "The Euler product",
+    "who": "Leonhard Euler",
+    "text": "$\\sum n^{-s} = \\prod_p (1-p^{-s})^{-1}$, and with it the divergence of $\\sum 1/p$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "zeta",
+  "title": "The Riemann zeta function",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\zeta(s) = \\sum n^{-s}$ for $\\operatorname{Re}s > 1$ continues to all of $\\mathbb C$ except a simple pole at $s = 1$. Euler found $\\zeta(2) = \\pi^2/6$ in 1735; Riemann's 1859 paper made $\\zeta$ a function of a complex variable.",
+  "key_statements": [
+   "\\zeta(2k) = \\frac{(-1)^{k+1} B_{2k} (2\\pi)^{2k}}{2\\,(2k)!}, \\qquad \\zeta(-n) = -\\frac{B_{n+1}}{n+1}"
+  ],
+  "why": "Its zeros encode the primes.",
+  "references": [
+   "Titchmarsh, The Theory of the Riemann Zeta-Function",
+   "Edwards, Riemann's Zeta Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "dirichlet-series",
+    "title": "Dirichlet series and Euler products"
+   },
+   {
+    "id": "continuation",
+    "title": "Analytic continuation"
+   },
+   {
+    "id": "gamma",
+    "title": "The gamma function"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "functional-equation",
+    "title": "Functional equation and trivial zeros"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   },
+   {
+    "id": "dedekind-zeta",
+    "title": "Dedekind zeta functions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1735",
+    "title": "The Basel problem: $\\zeta(2) = \\pi^2/6$",
+    "who": "Leonhard Euler",
+    "text": "Summed $\\sum 1/n^2$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "functional-equation",
+  "title": "Functional equation and trivial zeros",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "The completed function $\\xi(s) = \\tfrac12 s(s-1)\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ satisfies $\\xi(s) = \\xi(1-s)$. So nontrivial zeros are symmetric about $\\operatorname{Re}s = \\tfrac12$, and $\\zeta$ has trivial zeros at $-2, -4, -6, \\dots$.",
+  "key_statements": [
+   "\\xi(s) = \\xi(1-s)"
+  ],
+  "why": "Symmetry means any zero-free region near $\\operatorname{Re}s=1$ gives one near $\\operatorname{Re}s=0$.",
+  "references": [
+   "Titchmarsh, The Theory of the Riemann Zeta-Function",
+   "Davenport, Multiplicative Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   },
+   {
+    "id": "mellin",
+    "title": "The Mellin transform and Perron's formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   },
+   {
+    "id": "lindelof",
+    "title": "Lindelöf hypothesis and subconvexity"
+   },
+   {
+    "id": "hecke-l",
+    "title": "Hecke L-functions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "chebyshev",
+  "title": "Chebyshev and von Mangoldt functions",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\Lambda(n) = \\log p$ if $n = p^k$ and $0$ otherwise; $\\psi(x) = \\sum_{n \\le x} \\Lambda(n)$ counts primes with weight $\\log p$. Chebyshev (1848–1850) showed $\\psi(x) \\asymp x$.",
+  "key_statements": [
+   "\\psi(x) = \\sum_{n \\le x} \\Lambda(n) = \\log \\operatorname{lcm}(1, 2, \\dots, \\lfloor x \\rfloor)",
+   "-\\frac{\\zeta'(s)}{\\zeta(s)} = \\sum_{n \\ge 1} \\frac{\\Lambda(n)}{n^s}"
+  ],
+  "why": "$\\psi$ is the natural prime-counting function for analysis: the prime number theorem is $\\psi(x) \\sim x$.",
+  "references": [
+   "Apostol, Introduction to Analytic Number Theory",
+   "Davenport, Multiplicative Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "arithmetic-functions",
+    "title": "Arithmetic functions φ, σ, τ"
+   },
+   {
+    "id": "partial-summation",
+    "title": "Abel summation and Euler–Maclaurin"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "mertens",
+    "title": "Mertens' theorems"
+   },
+   {
+    "id": "pnt",
+    "title": "The prime number theorem"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1848–1850",
+    "title": "Chebyshev's estimates",
+    "who": "Pafnuty Chebyshev",
+    "text": "Showed $\\pi(x)\\log x / x$ stays between two constants.",
+    "ai_claim": false
+   },
+   {
+    "date": "1895",
+    "title": "Proof of the explicit formula",
+    "who": "Hans von Mangoldt",
+    "text": "Proved Riemann's formula for $\\psi(x)$ as a sum over zeros.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

@@ -1,0 +1,359 @@
+[
+ {
+  "id": "bombieri-vinogradov",
+  "title": "The Bombieri–Vinogradov theorem",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Primes are well distributed in residue classes on average over moduli $q \\le x^{1/2}/(\\log x)^B$, as strong as GRH would give on average. Proved by Bombieri and by A. I. Vinogradov in 1965.",
+  "key_statements": [
+   "\\sum_{q \\le Q}\\ \\max_{(a,q)=1} \\Bigl|\\psi(x;q,a) - \\frac{x}{\\varphi(q)}\\Bigr| \\ll_A \\frac{x}{(\\log x)^A}"
+  ],
+  "why": "Level of distribution $1/2$; Zhang's 2013 breakthrough went slightly past it for smooth moduli.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory",
+   "Davenport, Multiplicative Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "large-sieve",
+    "title": "The large sieve"
+   },
+   {
+    "id": "siegel-walfisz",
+    "title": "The Siegel–Walfisz theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bounded-gaps",
+    "title": "Bounded gaps between primes"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1965",
+    "title": "Bombieri–Vinogradov",
+    "who": "Enrico Bombieri, A. I. Vinogradov",
+    "text": "Primes in progressions on average over moduli up to $x^{1/2}$.",
+    "ai_claim": false
+   },
+   {
+    "date": "2013",
+    "title": "Bounded gaps between primes",
+    "who": "Yitang Zhang",
+    "text": "Infinitely many prime gaps below $7 \\times 10^7$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "bounded-gaps",
+  "title": "Bounded gaps between primes",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Zhang (2013) proved $\\liminf (p_{n+1} - p_n) < 7 \\times 10^7$. Maynard (late 2013) gave a simpler multidimensional sieve, and the Polymath8 project brought the bound to $246$.",
+  "key_statements": [
+   "\\liminf_{n\\to\\infty} (p_{n+1} - p_n) \\le 246"
+  ],
+  "why": "The twin prime conjecture asks for $2$.",
+  "references": [
+   "Friedlander & Iwaniec, Opera de Cribro"
+  ],
+  "prerequisites": [
+   {
+    "id": "bombieri-vinogradov",
+    "title": "The Bombieri–Vinogradov theorem"
+   },
+   {
+    "id": "selberg-sieve",
+    "title": "The Selberg sieve"
+   },
+   {
+    "id": "prime-patterns",
+    "title": "Primes in sequences and gaps"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "twin-primes",
+    "title": "The twin prime conjecture"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "2013",
+    "title": "Bounded gaps between primes",
+    "who": "Yitang Zhang",
+    "text": "Infinitely many prime gaps below $7 \\times 10^7$.",
+    "ai_claim": false
+   },
+   {
+    "date": "2013–2014",
+    "title": "Multidimensional sieve and Polymath8",
+    "who": "James Maynard; Polymath8",
+    "text": "A new sieve for bounded gaps; the collaborative project lowered the bound to $246$.",
+    "ai_claim": false
+   },
+   {
+    "date": "Aug 2026",
+    "title": "The 246 theorem formally verified",
+    "who": "Axiom Math (AxiomProver)",
+    "text": "Reported as the first automatic formal verification of the bounded-gaps proof.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "exponential-sums",
+  "title": "Exponential sums and Weyl differencing",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Sums $\\sum e(f(n))$ with $e(x) = e^{2\\pi i x}$. Weyl (1916) showed $n^2\\alpha$ is equidistributed modulo $1$ for irrational $\\alpha$ by squaring the sum (differencing). Complete sums such as $\\sum_{n \\bmod p} e(n^2/p)$ have size exactly $\\sqrt p$.",
+  "key_statements": [
+   "\\Bigl|\\sum_{n=0}^{p-1} e\\!\\left(\\frac{n^2}{p}\\right)\\Bigr| = \\sqrt p"
+  ],
+  "why": "Cancellation in exponential sums is the currency of the circle method and of subconvexity.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory",
+   "Vaughan, The Hardy–Littlewood Method"
+  ],
+  "prerequisites": [
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   },
+   {
+    "id": "congruences",
+    "title": "Congruences and modular arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "circle-method",
+    "title": "The Hardy–Littlewood circle method"
+   },
+   {
+    "id": "lindelof",
+    "title": "Lindelöf hypothesis and subconvexity"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1916",
+    "title": "Equidistribution",
+    "who": "Hermann Weyl",
+    "text": "Proved $n^2\\alpha$ is equidistributed modulo 1 by differencing exponential sums.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "circle-method",
+  "title": "The Hardy–Littlewood circle method",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Count solutions of additive equations by writing the count as $\\int_0^1 S(\\alpha)^k e(-N\\alpha)\\,d\\alpha$ and splitting $[0,1]$ into major arcs near rationals and minor arcs. Developed by Hardy and Littlewood from 1920.",
+  "key_statements": [
+   "r(N) = \\int_0^1 S(\\alpha)^k\\, e(-N\\alpha)\\, d\\alpha, \\qquad S(\\alpha) = \\sum_{n \\le N} e(n\\alpha)"
+  ],
+  "why": "It proves Waring's problem asymptotics and the ternary Goldbach theorem.",
+  "references": [
+   "Vaughan, The Hardy–Littlewood Method"
+  ],
+  "prerequisites": [
+   {
+    "id": "exponential-sums",
+    "title": "Exponential sums and Weyl differencing"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "ternary-goldbach",
+    "title": "Ternary Goldbach"
+   },
+   {
+    "id": "waring",
+    "title": "Waring's problem"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1920",
+    "title": "Partitio Numerorum",
+    "who": "G. H. Hardy, J. E. Littlewood",
+    "text": "Developed the circle method for Waring's problem and Goldbach.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "ternary-goldbach",
+  "title": "Ternary Goldbach",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Vinogradov (1937) proved every sufficiently large odd number is a sum of three primes. Helfgott (2013) lowered 'sufficiently large' to every odd number greater than $5$.",
+  "key_statements": [
+   "N = p_1 + p_2 + p_3 \\quad (N > 5 \\text{ odd})"
+  ],
+  "why": "The binary Goldbach conjecture for even numbers remains open.",
+  "references": [
+   "Vaughan, The Hardy–Littlewood Method"
+  ],
+  "prerequisites": [
+   {
+    "id": "circle-method",
+    "title": "The Hardy–Littlewood circle method"
+   },
+   {
+    "id": "siegel-walfisz",
+    "title": "The Siegel–Walfisz theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "goldbach",
+    "title": "Goldbach's conjecture"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1937",
+    "title": "Three primes",
+    "who": "I. M. Vinogradov",
+    "text": "Every sufficiently large odd number is a sum of three primes.",
+    "ai_claim": false
+   },
+   {
+    "date": "2013",
+    "title": "Ternary Goldbach proved",
+    "who": "Harald Helfgott",
+    "text": "Every odd number greater than $5$ is a sum of three primes.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "waring",
+  "title": "Waring's problem",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Waring (1770) asserted every positive integer is a sum of a bounded number $g(k)$ of $k$-th powers; Hilbert proved it in 1909. Lagrange's four-square theorem (1770) gives $g(2)=4$, and $g(3) = 9$, $g(4) = 19$.",
+  "key_statements": [
+   "g(2) = 4,\\quad g(3) = 9,\\quad g(4) = 19"
+  ],
+  "why": "The circle method computes how many representations there are, not just that one exists.",
+  "references": [
+   "Vaughan, The Hardy–Littlewood Method",
+   "Hardy & Wright, An Introduction to the Theory of Numbers"
+  ],
+  "prerequisites": [
+   {
+    "id": "circle-method",
+    "title": "The Hardy–Littlewood circle method"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1770",
+    "title": "Four squares; Waring's problem; Wilson's theorem",
+    "who": "Lagrange, Edward Waring",
+    "text": "Lagrange proved every integer is a sum of four squares. Waring's Meditationes Algebraicae stated the problem now named for him and published Wilson's theorem.",
+    "ai_claim": false
+   },
+   {
+    "date": "1909",
+    "title": "Waring's problem solved",
+    "who": "David Hilbert",
+    "text": "Proved that $g(k)$ is finite for every $k$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "moments",
+  "title": "Moments, mollifiers and amplifiers",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Averages of $|\\zeta|^{2k}$ or of $L$-values over families carry information about zeros. Bettin and Gonek (2017) showed a conjecture on mollified second moments implies the Riemann hypothesis. In October 2026 a follow-up paper used amplified moments to refine the quasi-RH bound.",
+  "key_statements": [
+   "\\int_0^T |\\zeta(\\tfrac12 + it)|^2\\, dt \\sim T \\log T"
+  ],
+  "why": "Amplifiers single out one member of a family, the natural tool for hunting an exceptional zero.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory",
+   "Titchmarsh, The Theory of the Riemann Zeta-Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "zero-density",
+    "title": "Zero-density estimates"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "2000",
+    "title": "Moments from random matrices",
+    "who": "Jon Keating, Nina Snaith",
+    "text": "Predicted the moments of $\\zeta$ on the critical line from random matrix theory.",
+    "ai_claim": false
+   },
+   {
+    "date": "2017",
+    "title": "Moments and the Riemann hypothesis",
+    "who": "Sandro Bettin, Steven Gonek",
+    "text": "A mollified second-moment conjecture implies RH.",
+    "ai_claim": false
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Amplified moments refine quasi-RH",
+    "who": "arXiv 2610.15291",
+    "text": "Assumes the manuscript's analytic inputs and improves the bound with amplified moments.",
+    "ai_claim": true
+   }
+  ]
+ }
+]

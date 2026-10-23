@@ -1,0 +1,216 @@
+[
+ {
+  "id": "bifurcations",
+  "title": "Bifurcations",
+  "short": "Bifurcations",
+  "area": "Dynamical systems",
+  "fields": [
+   "dynamics",
+   "differential-equations"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "phase-plane",
+    "title": "The phase plane, equilibria and stability"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "chaos",
+    "title": "Chaos and strange attractors"
+   }
+  ],
+  "curriculum_sources": [
+   "Strogatz, ch. 2-4, 6, 8"
+  ]
+ },
+ {
+  "id": "limit-cycles",
+  "title": "Limit cycles and the Poincaré–Bendixson theorem",
+  "short": "Limit cycles",
+  "area": "Dynamical systems",
+  "fields": [
+   "dynamics",
+   "differential-equations"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "phase-plane",
+    "title": "The phase plane, equilibria and stability"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "chaos",
+    "title": "Chaos and strange attractors"
+   }
+  ],
+  "curriculum_sources": [
+   "Strogatz, ch. 7-8"
+  ]
+ },
+ {
+  "id": "chaos",
+  "title": "Chaos and strange attractors",
+  "short": "Chaos",
+  "area": "Dynamical systems",
+  "fields": [
+   "dynamics",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "limit-cycles",
+    "title": "Limit cycles and the Poincaré–Bendixson theorem"
+   },
+   {
+    "id": "bifurcations",
+    "title": "Bifurcations"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Strogatz, ch. 9-12"
+  ]
+ },
+ {
+  "id": "fourier-series",
+  "title": "Fourier series",
+  "short": "Fourier series",
+  "area": "Fourier analysis",
+  "fields": [
+   "harmonic-analysis",
+   "calculus"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "riemann-integral",
+    "title": "The definite integral"
+   },
+   {
+    "id": "trig",
+    "title": "Trigonometric functions"
+   },
+   {
+    "id": "series",
+    "title": "Series and convergence"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "sturm-liouville",
+    "title": "Boundary value problems and Sturm–Liouville theory"
+   },
+   {
+    "id": "fourier-transform",
+    "title": "The Fourier transform"
+   },
+   {
+    "id": "heat-equation",
+    "title": "The heat equation"
+   },
+   {
+    "id": "wave-equation",
+    "title": "The wave equation"
+   },
+   {
+    "id": "laplace-equation",
+    "title": "Laplace's equation and harmonic functions"
+   }
+  ],
+  "curriculum_sources": []
+ },
+ {
+  "id": "fourier-transform",
+  "title": "The Fourier transform",
+  "short": "Fourier transform",
+  "area": "Fourier analysis",
+  "fields": [
+   "harmonic-analysis",
+   "pde",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "fourier-series",
+    "title": "Fourier series"
+   },
+   {
+    "id": "improper-integrals",
+    "title": "Improper integrals"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": []
+ },
+ {
+  "id": "heat-equation",
+  "title": "The heat equation",
+  "short": "Heat equation",
+  "area": "Partial differential equations",
+  "fields": [
+   "pde",
+   "physics",
+   "probability"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "partial-derivatives",
+    "title": "Partial derivatives and the gradient"
+   },
+   {
+    "id": "fourier-series",
+    "title": "Fourier series"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Evans, ch. 2",
+   "Stein & Shakarchi (Fourier), ch. 1, 4-6",
+   "Brezis, ch. 10",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.5 Separation of Variables; Heat Conduction in a Rod",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.6 Other Heat Conduction Problems",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.7 The Wave Equation: Vibrations of an Elastic String",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.8 Laplace's Equation",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 11 Boundary Value Problems and Sturm-Liouville Theory / 11.5 Separation of Variables: A Bessel Series Expansion"
+  ]
+ },
+ {
+  "id": "wave-equation",
+  "title": "The wave equation",
+  "short": "Wave equation",
+  "area": "Partial differential equations",
+  "fields": [
+   "pde",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "partial-derivatives",
+    "title": "Partial derivatives and the gradient"
+   },
+   {
+    "id": "fourier-series",
+    "title": "Fourier series"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Evans, ch. 2",
+   "Stein & Shakarchi (Fourier), ch. 1",
+   "Brezis, ch. 10",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.5 Separation of Variables; Heat Conduction in a Rod",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.6 Other Heat Conduction Problems",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.7 The Wave Equation: Vibrations of an Elastic String",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 10 Partial Differential Equations and Fourier Series / 10.8 Laplace's Equation",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 11 Boundary Value Problems and Sturm-Liouville Theory / 11.5 Separation of Variables: A Bessel Series Expansion"
+  ]
+ }
+]

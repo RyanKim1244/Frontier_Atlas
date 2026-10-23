@@ -1,0 +1,203 @@
+[
+ {
+  "id": "interpolation-quadrature",
+  "title": "Interpolation and numerical integration",
+  "short": "Interpolation & quadrature",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "numerical-analysis",
+   "real-analysis"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "taylor",
+    "title": "Taylor polynomials and Taylor's theorem"
+   },
+   {
+    "id": "riemann-integral",
+    "title": "The definite integral"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Süli & Mayers, ch. 6-11",
+   "Trefethen & Bau, Lecture 37"
+  ]
+ },
+ {
+  "id": "numerical-odes",
+  "title": "Numerical methods for differential equations",
+  "short": "Numerical ODEs",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "numerical-analysis",
+   "differential-equations"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "ode-first",
+    "title": "First-order differential equations"
+   },
+   {
+    "id": "taylor",
+    "title": "Taylor polynomials and Taylor's theorem"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Süli & Mayers, ch. 12-13",
+   "AP Calculus BC / Unit 7: Differential Equations / Euler's method",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3A: Further Pure Mathematics 1 / 6 Further numerical methods",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 9 Differential equations / 9.2 Direction fields and Euler's method",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 2 First-Order Differential Equations / 2.7 Numerical Approximations: Euler's Method",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 8 Numerical Methods of Solving First Order Equations / 8.1 The Euler or Tangent Line Method",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 8 Numerical Methods of Solving First Order Equations / 8.2 Improvements on the Euler Method",
+   "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems, 12th ed. International Adaptation / 8 Numerical Methods of Solving First Order Equations / 8.3 The Runge-Kutta Method"
+  ]
+ },
+ {
+  "id": "linear-programming",
+  "title": "Linear programming and duality",
+  "short": "Linear programming",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "optimisation",
+   "linear-algebra",
+   "computer-science"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "linear-systems",
+    "title": "Systems of linear equations and Gaussian elimination"
+   },
+   {
+    "id": "solving-inequalities",
+    "title": "Solving inequalities"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "경제 수학 / 함수와 경제",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3D: Decision Mathematics 1 / 5 Linear programming",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4D: Decision Mathematics 2 / 1 Transportation problems",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4D: Decision Mathematics 2 / 2 Allocation (assignment) problems",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 9 Linear Algebra in Optimization / 9.4 Linear Programming, Game Theory, and Duality"
+  ]
+ },
+ {
+  "id": "convex-optimisation",
+  "title": "Convex optimisation",
+  "short": "Convex optimisation",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "optimisation",
+   "real-analysis"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "convexity",
+    "title": "Convexity, Jensen and majorization"
+   },
+   {
+    "id": "lagrange-multipliers",
+    "title": "Constrained optimisation and Lagrange multipliers"
+   },
+   {
+    "id": "inner-products",
+    "title": "Inner products and orthogonality"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Boyd & Vandenberghe, ch. 4-5"
+  ]
+ },
+ {
+  "id": "gradient-descent",
+  "title": "Gradient descent and stochastic optimisation",
+  "short": "Gradient descent",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "optimisation",
+   "ai-research",
+   "calculus"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "partial-derivatives",
+    "title": "Partial derivatives and the gradient"
+   },
+   {
+    "id": "convexity",
+    "title": "Convexity, Jensen and majorization"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "인공지능 수학 / 예측과 최적화",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 9 Linear Algebra in Optimization / 9.1 Minimizing a Multivariable Function",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 9 Linear Algebra in Optimization / 9.2 Backpropagation and Stochastic Gradient Descent",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 10 Learning from Data / 10.1 Piecewise Linear Learning Functions",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 10 Learning from Data / 10.2 Creating and Experimenting",
+   "Boyd & Vandenberghe, ch. 9-11"
+  ]
+ },
+ {
+  "id": "partitions",
+  "title": "Partitions of integers and sets",
+  "short": "Partitions",
+  "area": "Combinatorics",
+  "fields": [
+   "combinatorics",
+   "number-theory"
+  ],
+  "stage": "olympiad",
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   },
+   {
+    "id": "generating-functions",
+    "title": "Generating functions and recurrences"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "이산 수학 / 선택과 배열"
+  ]
+ },
+ {
+  "id": "planar-graphs",
+  "title": "Planar graphs and Euler's formula",
+  "short": "Planar graphs",
+  "area": "Combinatorics",
+  "fields": [
+   "combinatorics",
+   "topology"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "classification-of-surfaces",
+    "title": "The classification of surfaces"
+   }
+  ],
+  "curriculum_sources": [
+   "이산 수학 / 그래프",
+   "Rosen, Discrete Mathematics and Its Applications, 6th ed. / 9 Graphs / 9.7 Planar Graphs",
+   "Diestel, ch. 4"
+  ]
+ }
+]

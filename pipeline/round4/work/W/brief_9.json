@@ -1,0 +1,226 @@
+[
+ {
+  "id": "differential-forms",
+  "title": "Differential forms and the general Stokes theorem",
+  "short": "Differential forms",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "calculus",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "tensor-products",
+    "title": "Tensor products and exterior algebra"
+   },
+   {
+    "id": "vector-calculus",
+    "title": "Line integrals and the theorems of Green, Stokes and Gauss"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Rudin, ch. 10",
+   "Lee, ch. 14-16"
+  ]
+ },
+ {
+  "id": "riemannian-geometry",
+  "title": "Riemannian metrics, geodesics and curvature",
+  "short": "Riemannian geometry",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "physics"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "smooth-manifolds",
+    "title": "Smooth manifolds and tangent spaces"
+   },
+   {
+    "id": "tensor-products",
+    "title": "Tensor products and exterior algebra"
+   },
+   {
+    "id": "surfaces-curvature",
+    "title": "Surfaces and Gaussian curvature"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Lee, ch. 12-13"
+  ]
+ },
+ {
+  "id": "normed-spaces",
+  "title": "Normed and Banach spaces",
+  "short": "Banach spaces",
+  "area": "Functional analysis",
+  "fields": [
+   "functional-analysis",
+   "real-analysis",
+   "linear-algebra"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "metric-spaces",
+    "title": "Metric spaces"
+   },
+   {
+    "id": "vector-spaces",
+    "title": "Vector spaces and subspaces"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "lp-spaces",
+    "title": "L^p spaces"
+   },
+   {
+    "id": "hilbert-spaces",
+    "title": "Hilbert spaces"
+   },
+   {
+    "id": "hahn-banach",
+    "title": "The Hahn–Banach theorem and dual spaces"
+   }
+  ],
+  "curriculum_sources": [
+   "Kreyszig, ch. 2",
+   "Folland, ch. 5"
+  ]
+ },
+ {
+  "id": "hilbert-spaces",
+  "title": "Hilbert spaces",
+  "short": "Hilbert spaces",
+  "area": "Functional analysis",
+  "fields": [
+   "functional-analysis",
+   "linear-algebra",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "normed-spaces",
+    "title": "Normed and Banach spaces"
+   },
+   {
+    "id": "inner-products",
+    "title": "Inner products and orthogonality"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "compact-operators",
+    "title": "Compact operators and the Fredholm alternative"
+   }
+  ],
+  "curriculum_sources": [
+   "Kreyszig, ch. 3",
+   "Brezis, ch. 5"
+  ]
+ },
+ {
+  "id": "hahn-banach",
+  "title": "The Hahn–Banach theorem and dual spaces",
+  "short": "Hahn–Banach",
+  "area": "Functional analysis",
+  "fields": [
+   "functional-analysis"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "normed-spaces",
+    "title": "Normed and Banach spaces"
+   },
+   {
+    "id": "dual-spaces",
+    "title": "Dual spaces and quotient spaces"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Brezis, ch. 1",
+   "Kreyszig, ch. 4",
+   "Folland, ch. 5"
+  ]
+ },
+ {
+  "id": "compact-operators",
+  "title": "Compact operators and the Fredholm alternative",
+  "short": "Compact operators",
+  "area": "Functional analysis",
+  "fields": [
+   "functional-analysis",
+   "pde"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "hilbert-spaces",
+    "title": "Hilbert spaces"
+   },
+   {
+    "id": "spectral-theorem",
+    "title": "The spectral theorem"
+   },
+   {
+    "id": "arzela-ascoli",
+    "title": "The Arzelà–Ascoli and Stone–Weierstrass theorems"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Brezis, ch. 6",
+   "Kreyszig, ch. 8"
+  ]
+ },
+ {
+  "id": "joint-distributions",
+  "title": "Joint distributions, covariance and conditional expectation",
+  "short": "Joint distributions",
+  "area": "Probability",
+  "fields": [
+   "probability"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "random-variables",
+    "title": "Random variables and expectation"
+   },
+   {
+    "id": "distributions",
+    "title": "Discrete and continuous distributions"
+   },
+   {
+    "id": "multiple-integrals",
+    "title": "Multiple integrals and change of variables"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "martingales",
+    "title": "Conditional expectation and martingales"
+   }
+  ],
+  "curriculum_sources": [
+   "Cambridge International AS & A Level Mathematics 9709 / Probability & Statistics 2 (Paper 6) / 6.2 Linear combinations of random variables",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 4 Combinations of random variables",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 10 Learning from Data / 10.3 Mean, Variance, and Covariance",
+   "Ross, A First Course in Probability, 10th ed. / 6 Jointly Distributed Random Variables / 6.1 Joint Distribution Functions",
+   "Ross, A First Course in Probability, 10th ed. / 6 Jointly Distributed Random Variables / 6.2 Independent Random Variables",
+   "Ross, A First Course in Probability, 10th ed. / 6 Jointly Distributed Random Variables / 6.3 Sums of Independent Random Variables",
+   "Ross, A First Course in Probability, 10th ed. / 6 Jointly Distributed Random Variables / 6.4 Conditional Distributions: Discrete Case",
+   "Ross, A First Course in Probability, 10th ed. / 6 Jointly Distributed Random Variables / 6.5 Conditional Distributions: Continuous Case"
+  ]
+ }
+]

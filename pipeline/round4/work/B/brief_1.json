@@ -1,0 +1,581 @@
+[
+ {
+  "id": "sidon-sets",
+  "title": "Sidon sets",
+  "summary": "A set where all pairwise sums $a+b$ ($a\\le b$) are distinct. In $[1,N]$ the maximum size is $\\sqrt N + O(N^{1/4})$; whether the error is $O_\\varepsilon(N^\\varepsilon)$ is Erdős problem #30, with a 1000-dollar prize.",
+  "key_statements": [
+   "\\sqrt N \\lesssim |A| \\le \\sqrt N + 0.998\\,N^{1/4} \\ \\text{(Balogh–Füredi–Roy)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-153",
+    "title": "Erdős Problem #153",
+    "status": "open",
+    "statement": "Define $f(n)$ to be the minimum of\n$\\frac{1}{t}\\sum_{1\\leq i<t}(s_{i+1}-s_i)^2$ as $A$ ranges over all Sidon sets of size $n$, where\n$A+A=\\{s_1<\\cdots<s_t\\}$.\n\nLet $A$ be a finite Sidon set and $A+A=\\{s_1<\\cdots<s_t\\}$. Is it true that\n$$\\frac{1}{t}\\sum_{1\\leq i<t}(s_{i+1}-s_i)^2 \\to \\infty$$\nas $\\lvert A\\rvert\\to \\infty$?"
+   },
+   {
+    "id": "ERDOS-840",
+    "title": "Erdős Problem #840",
+    "status": "open",
+    "statement": "Let $f(N)$ be the size of the largest quasi-Sidon subset $A\\subset\\{1,\\ldots,N\\}$, where we say\nthat $A$ is quasi-Sidon if\n$$\\lvert A+A\\rvert=(1+o(1))\\binom{\\lvert A\\rvert}{2}.$$\nHow does $f(N)$ grow?"
+   },
+   {
+    "id": "ERDOS-324",
+    "title": "Erdős Problem #324",
+    "status": "open",
+    "statement": "Does there exist a polynomial $f(x)\\in\\mathbb{Z}[x]$ such that all the sums $f(a)+f(b)$ with\n$a < b$ nonnegative integers are distinct?"
+   },
+   {
+    "id": "ERDOS-198",
+    "title": "Erdős Problem #198",
+    "status": "solved",
+    "statement": "The answer is no; Erdős and Graham report this was proved by Baumgartner, presumably referring to\nthe paper [Ba75], which does not state this exactly, but the following simple construction is\nimplicit in [Ba75]."
+   },
+   {
+    "id": "ERDOS-757",
+    "title": "Erdős Problem #757",
+    "status": "open",
+    "statement": "What is the supremum of the set of admissible numbers?"
+   },
+   {
+    "id": "ERDOS-154",
+    "title": "Erdős Problem #154",
+    "status": "solved",
+    "statement": "Let $A\\subset \\{1,\\ldots,N\\}$ be a Sidon set with $\\lvert A\\rvert\\sim N^{1/2}$. Must $A+A$ be\nwell-distributed over all small moduli? In particular, must about half the elements of $A+A$ be\neven and half odd?"
+   },
+   {
+    "id": "ERDOS-864",
+    "title": "Erdős Problem #864",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\{1,\\ldots,N\\}$ be a set such that there exists at most one $n$ with more than one\nsolution to $n=a+b$ (with $a\\leq b\\in A$). Estimate the maximal possible size of $|A|$. In\nparticular, is it true that\n$$|A| \\leq (1+o(1))\\frac{2}{\\sqrt{3}} N^{1/2}?$$"
+   },
+   {
+    "id": "ERDOS-158",
+    "title": "Erdős Problem #158",
+    "status": "open",
+    "statement": "Let `A` be an infinite `B₂[2]` set. Must `liminf |A ∩ {1, ..., N}| * N ^ (- 1 / 2) = 0`?"
+   },
+   {
+    "id": "ERDOS-862",
+    "title": "Erdős Problem #862",
+    "status": "solved",
+    "statement": "(a) Let $A_1(N)$ be the number of maximal Sidon subsets of $\\{1,\\ldots,N\\}$. Is it true that\n$$A_1(N) < 2^{o(N^{1/2})}?$$\n\n(b) Let $A_1(N)$ be the number of maximal Sidon subsets of $\\{1,\\ldots,N\\}$. Is it true that\n$$A_1(N) > 2^{N^c}$$\nfor some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-156",
+    "title": "Erdős Problem #156",
+    "status": "open",
+    "statement": "Does there exist a maximal Sidon set $A\\subset \\{1,\\ldots,N\\}$ of size $O(N^{1/3})$?"
+   },
+   {
+    "id": "ERDOS-772",
+    "title": "Erdős Problem #772",
+    "status": "solved",
+    "statement": "(a) Let $k\\geq 1$ and $H_k(n)$ be the maximal $r$ such that if $A\\subset\\mathbb{N}$ has\n$\\lvert A\\rvert=n$ and $\\| 1_A\\ast 1_A\\|_\\infty \\leq k$ then $A$ contains a Sidon set of size at\nleast $r$.\n\nIs it true that $H_k(n)/n^{1/2}\\to \\infty$?\n\n(b) Is it true that $H_k(n) > n^{1/2+c}$ for some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-41",
+    "title": "Erdős Problem #41",
+    "status": "open",
+    "statement": "Let $A \\subset \\mathbb{N}$ be an infinite set such that the triple sums $a+b+c$ are all distinct\nfor $a,b,c \\in A$ (aside from the trivial coincidences). Is it true that\n$$\\liminf_{N \\to \\infty} \\frac{\\lvert A \\cap \\{1,\\ldots,N\\}\\rvert}{N^{1/3}}=0?$$"
+   },
+   {
+    "id": "ERDOS-43",
+    "title": "Erdős Problem #43",
+    "status": "solved",
+    "statement": "Let $f(N)$ be the maximum possible size of a Sidon set in $\\{1,\\ldots,N\\}$.\n\n(a) If $A$ and $B$ are Sidon sets in $\\{1,\\ldots,N\\}$ with\n$(A-A)\\cap(B-B)=\\{0\\}$, is it true that\n$$\\binom{\\lvert A\\rvert}{2}+\\binom{\\lvert B\\rvert}{2}\\leq\\binom{f(N)}{2}+O(1)?$$\n\n(b) If $A$ and $B$ are equal-sized Sidon sets in $\\{1,\\ldots,N\\}$ with\n$(A-A)\\cap(B-B)=\\{0\\}$, can the bound be improved to\n$$\\binom{\\lvert A\\rvert}{2}+\\binom{\\lvert B\\rvert}{2}\n    \\leq (1-c+o(1))\\binom{f(N)}{2}$$\nfor some constant $c>0$?"
+   },
+   {
+    "id": "ERDOS-707",
+    "title": "Erdős Problem #707",
+    "status": "solved",
+    "statement": "It is false that any finite Sidon set can be embedded in a perfect\ndifferent set modulo some $n$."
+   },
+   {
+    "id": "ERDOS-44",
+    "title": "Erdős Problem #44",
+    "status": "open",
+    "statement": "Let N ≥ 1 and `A ⊆ {1,…,N}` be a Sidon set. Is it true that, for any ε > 0,\nthere exist M = M(ε) and `B ⊆ {N+1,…,M}` such that `A ∪ B ⊆ {1,…,M}` is a Sidon set\nof size at least `(1−ε)M^{1/2}`?"
+   },
+   {
+    "id": "ERDOS-30",
+    "title": "Erdős Problem #30",
+    "status": "open",
+    "statement": "Let $h(N)$ be the maximum size of a Sidon set in $\\{1, \\dots, N\\}$.\n\nIs it true that, for every $\\varepsilon > 0$, $h(N) = \\sqrt N + O_{\\varepsilon}(N^\\varepsilon)$"
+   },
+   {
+    "id": "ERDOS-773",
+    "title": "Erdős Problem #773",
+    "status": "open",
+    "statement": "What is the size of the largest Sidon subset $A\\subseteq\\{1,2^2,\\ldots,N^2\\}$? Is it $N^{1-o(1)}$?"
+   },
+   {
+    "id": "ERDOS-157",
+    "title": "Erdős Problem #157",
+    "status": "solved",
+    "statement": "Does there exist an infinite Sidon set which is an asymptotic basis of order $3$?"
+   },
+   {
+    "id": "ERDOS-340",
+    "title": "Erdős Problem #340",
+    "status": "open",
+    "statement": "Let $A = \\{1, 2, 4, 8, 13, 21, 31, 45, 66, 81, 97, \\ldots\\}$ be the greedy Sidon sequence:\nwe begin with $1$ and iteratively include the next smallest integer that preserves the\nSidon property (i.e. there are no non-trivial solutions to $a + b = c + d$). What is the\norder of growth of $A$? Is it true that $|A \\cap \\{1, \\ldots, N\\}| \\gg N^{1/2 - \\varepsilon}$\nfor all $\\varepsilon > 0$ and large $N$?"
+   },
+   {
+    "id": "ERDOS-152",
+    "title": "Erdős Problem #152",
+    "status": "solved",
+    "statement": "Must `lim f n = ∞`?"
+   },
+   {
+    "id": "ERDOS-477",
+    "title": "Erdős Problem #477",
+    "status": "solved",
+    "statement": "Is there a polynomial $f:\\mathbb{Z}\\to \\mathbb{Z}$ of degree at least $2$ and a set\n$A\\subset \\mathbb{Z}$ such that for any $n\\in \\mathbb{Z}$ there is exactly one $a\\in A$ and\n$b\\in \\{ f(k) : k\\in\\mathbb{Z}\\}$ such that $n=a+b$?"
+   },
+   {
+    "id": "ERDOS-39",
+    "title": "Erdős Problem #39",
+    "status": "open",
+    "statement": "Is there an infinite Sidon set $A\\subset \\mathbb{N}$ such that\n$\\lvert A\\cap \\{1\\ldots,N\\}\\rvert \\gg_\\epsilon N^{1/2-\\epsilon}$\nfor all $\\varepsilon > 0$?"
+   },
+   {
+    "id": "ERDOS-42",
+    "title": "Erdős Problem #42",
+    "status": "solved",
+    "statement": "Let M ≥ 1 and N be sufficiently large in terms of M. Is it true that for every\nmaximal Sidon set `A ⊆ {1,…,N}` there is another Sidon set `B ⊆ {1,…,N}` of size M such that\n`(A - A) ∩ (B - B) = {0}`?"
+   },
+   {
+    "id": "ERDOS-241",
+    "title": "Erdős Problem #241",
+    "status": "open",
+    "statement": "Let $f(N)$ be the maximum size of $A\\subseteq \\{1,\\ldots,N\\}$ such that the sums $a+b+c$ with\n$a,b,c\\in A$ are all distinct (aside from the trivial coincidences).\n\nFormalization note: this is generalized to allow for different $r$.\n\nIs it true that $f(N)\\sim N^{1/3}$?"
+   },
+   {
+    "id": "ERDOS-1191",
+    "title": "Erdős Problem #1191",
+    "status": "open",
+    "statement": "(a) Let $A\\subset\\mathbb{N}$ be an infinite Sidon set. Is it true that\n$$\\liminf_{x\\to \\infty} \\frac{\\lvert A\\cap [1,x]\\rvert}{x^{1/2}}(\\log x)^{1/2}=0?$$\n\n(b) Does there exist an infinite Sidon set $A$ such that\n$$\\liminf_{x\\to \\infty} \\frac{\\lvert A\\cap [1,x]\\rvert}{x^{1/2}}(\\log x)^c>0$$\nfor some $c>0$?"
+   },
+   {
+    "id": "ERDOS-14",
+    "title": "Erdős Problem #14",
+    "status": "open",
+    "statement": "(a) Let $A ⊆ \\mathbb{N}$. Let $B ⊆ \\mathbb{N}$ be the set of integers which are representable\nin exactly one way as the sum of two elements from $A$. Is it true that for all\n$\\epsilon > 0$ and large $N$, $|\\{1,\\ldots,N\\} \\setminus B| \\gg_\\epsilon N^{1/2 - \\epsilon}$?\n\n(b) Is it possible that $|\\{1,\\ldots,N\\} \\setminus B| = o(N^\\frac{1}{2})$?"
+   },
+   {
+    "id": "ERDOS-1206",
+    "title": "Erdős Problem #1206",
+    "status": "open",
+    "statement": "(a) Does $\\{1,2^3,\\ldots,N^3\\}$ contain a Sidon set of size $\\gg N$?\n\n(b) Is there an infinite set $A\\subset \\mathbb{N}$ of positive density such that $\\{a^3 : a\\in A\\}$ is a Sidon set?"
+   },
+   {
+    "id": "ERDOS-155",
+    "title": "Erdős Problem #155",
+    "status": "open",
+    "statement": "Let $F(N)$ be the size of the largest Sidon subset of $\\{1, \\dots, N\\}$.\n\nIs it true that for every $k \\geq 1$ we have\n$$\nF(N + k) \\leq F(N) + 1\n$$\nfor all sufficiently large $N$?"
+   },
+   {
+    "id": "ERDOS-329",
+    "title": "Erdős Problem #329",
+    "status": "open",
+    "statement": "Let `A ⊆ ℕ` be a Sidon set. How large can\n`lim sup_{N → ∞} |A ∩ {1,…,N}| / N^{1/2}`\nbe?"
+   },
+   {
+    "id": "GREEN-31",
+    "title": "Green's Problem 31",
+    "status": "open",
+    "statement": "Let $F(N)$ be the largest Sidon subset of $[N]$.\n\nCan we improve the lower bound $N^{1/2} + O(1)$, at least for infinitely many $N$?"
+   }
+  ],
+  "existing_easier_problems": []
+ },
+ {
+  "id": "additive-bases",
+  "title": "Additive bases and complete sequences",
+  "summary": "$A$ is a basis of order $h$ if every large integer is a sum of $h$ elements of $A$; $A$ is complete if every large integer is a sum of distinct elements. Lagrange, Waring and Goldbach are statements of this kind.",
+  "key_statements": [
+   "r_A(n) = \\#\\{(a,b)\\in A^2 : a+b=n\\}",
+   "\\text{Erdős–Turán: } r_A(n)\\ge1 \\ \\forall n \\Rightarrow \\limsup r_A(n) = \\infty\\ ?"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-28",
+    "title": "Erdős Problem #28",
+    "status": "open",
+    "statement": "If $A ⊆ \\mathbb{N}$ is such that $A + A$ contains all but finitely many integers then\n $\\limsup 1_A ∗ 1_A(n) = \\infty$."
+   },
+   {
+    "id": "ERDOS-1147",
+    "title": "Erdős Problem #1147",
+    "status": "solved",
+    "statement": "Let $\\alpha>0$ be an irrational number. Is the set\n$$A=\\left\\{ n\\geq 1: \\| \\alpha n^2\\| < \\frac{1}{\\log n}\\right\\},$$\nwhere $\\|\\cdot\\|$ denotes the distance to the nearest integer, an additive basis of order $2$?"
+   },
+   {
+    "id": "ERDOS-31",
+    "title": "Erdős Problem #31",
+    "status": "solved",
+    "statement": "Given any infinite set $A\\subset \\mathbb{N}$ there is a set $B$ of density $0$ such that $A+B$ contains all except finitely many integers."
+   },
+   {
+    "id": "ERDOS-354",
+    "title": "Erdős Problem #354",
+    "status": "open",
+    "statement": "(a) Let $\\alpha,\\beta\\in \\mathbb{R}_{>0}$ such that $\\alpha/\\beta$ is irrational. Is the multiset\n$$\\{ \\lfloor \\alpha\\rfloor,\\lfloor 2\\alpha\\rfloor,\\lfloor 4\\alpha\\rfloor,\\ldots\\}\\cup\n\\{ \\lfloor \\beta\\rfloor,\\lfloor 2\\beta\\rfloor,\\lfloor 4\\beta\\rfloor,\\ldots\\}$$ complete?\n\n(b) Let $\\alpha,\\beta\\in \\mathbb{R}_{>0}$ such that $\\alpha/\\beta$ is irrational. Is\n$$\\{ \\lfloor \\alpha\\rfloor,\\lfloor \\gamma\\alpha\\rfloor,\\lfloor \\gamma^2\\alpha\\rfloor,\\ldots\\}\\cup\n\\{ \\lfloor \\beta\\rfloor,\\lfloor \\gamma\\beta\\rfloor,\\lfloor \\gamma^2\\beta\\rfloor,\\ldots\\}$$ complete?"
+   },
+   {
+    "id": "ERDOS-40",
+    "title": "Erdős Problem #40",
+    "status": "open",
+    "statement": "For what functions $g(N) → \\infty$ is it true that\n$$\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert \\gg \\frac{N^{1/2}}{g(N)}$$\nimplies $\\limsup 1_A\\ast 1_A(n)=\\infty$?"
+   },
+   {
+    "id": "ERDOS-345",
+    "title": "Erdős Problem #345",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be a complete sequence, and define the threshold of completeness\n$T(A)$ to be the least integer $m$ such that all $n\\geq m$ are in\n$$P(A) = \\left\\{\\sum_{n\\in B}n : B\\subseteq A\\textrm{ finite }\\right\\}$$\n(the existence of $T(A)$ is guaranteed by completeness).\n\nIs it true that there are infinitely many $k$ such that $T(n^k)>T(n^{k+1})$?"
+   },
+   {
+    "id": "ERDOS-33",
+    "title": "Erdős Problem #33",
+    "status": "open",
+    "statement": "Let `A ⊆ ℕ` be a set such that every integer can be written as `n^2 + a`\nfor some `a` in `A` and `n ≥ 0`. What is the smallest possible value of\n`lim sup n → ∞ |A ∩ {1, …, N}| / N^(1/2)`?"
+   },
+   {
+    "id": "ERDOS-346",
+    "title": "Erdős Problem #346",
+    "status": "solved",
+    "statement": "Is it true that for every lacunary, strongly complete sequence `A` that is not complete whenever\ninfinitely many terms are removed from it, `lim A (n + 1) / A n = (1 + √5) / 2`?"
+   },
+   {
+    "id": "ERDOS-868",
+    "title": "Erdős Problem #868",
+    "status": "solved",
+    "statement": "(a) Let $A$ be an additive basis of order $2$, let $f(n)$ denote the number of ways in which\n$n$ can be written as the sum of two elements from $A$. If $f(n) \\to \\infty$ as $n \\to \\infty$, then\nmust $A$ contain a minimal additive basis of order $2$?\n\n(b) Let $A$ be an additive basis of order $2$, let $f(n)$ denote the number of ways in which\n$n$ can be written as the sum of two elements from $A$. If $f(n) > \\epsilon \\log n$ for large $n$\nand an arbitrary fixed $\\epsilon > 0$, then must $A$ contain a minimal additive\nbasis of order $2$?"
+   },
+   {
+    "id": "ERDOS-9",
+    "title": "Erdős Problem #9",
+    "status": "open",
+    "statement": "Is the upper density of the set of odd numbers that cannot be expressed as a prime plus\ntwo powers of 2 positive?"
+   },
+   {
+    "id": "ERDOS-10",
+    "title": "Erdős Problem #10",
+    "status": "open",
+    "statement": "Is there some $k$ such that every large integer is the sum of a prime and at most $k$\npowers of $2$?"
+   },
+   {
+    "id": "ERDOS-881",
+    "title": "Erdős Problem #881",
+    "status": "open",
+    "statement": "Let `A ⊂ ℕ` be an additive basis of order `k` which is minimal in the sense that\nif `B ⊂ A` is any infinite set, then `A \\ B` is not a basis of order `k`.\n\nMust there exist an infinite `B ⊂ A` such that `A \\ B`\nis an additive basis of order `k + 1`?"
+   },
+   {
+    "id": "ERDOS-32",
+    "title": "Erdős Problem #32",
+    "status": "open",
+    "statement": "Does there exist a set $A \\subseteq \\mathbb{N}$ such that $|A \\cap \\{1, \\ldots, N\\}| = o((\\log N)^2)$\nand every sufficiently large integer can be written as $p + a$ for some prime $p$ and $a \\in A$?"
+   },
+   {
+    "id": "ERDOS-871",
+    "title": "Erdős Problem #871",
+    "status": "solved",
+    "statement": "Let $A$ be an additive basis of order $2$, and suppose $1_A\\ast 1_A(n)\\to \\infty$ as $n\\to \\infty$. Can $A$ be partitioned into two disjoint additive bases of order $2$?"
+   },
+   {
+    "id": "ERDOS-344",
+    "title": "Erdős Problem #344",
+    "status": "solved",
+    "statement": "If $A\\subseteq \\mathbb{N}$ is a set of integers such that\n$$\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert\\gg N^{1/2}$$\nfor all $N$ then must $A$ be subcomplete? That is, must\n$$P(A) = \\left\\{\\sum_{n\\in B}n : B\\subseteq A\\textrm{ finite }\\right\\}$$\ncontain an infinite arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-347",
+    "title": "Erdős Problem #347",
+    "status": "solved",
+    "statement": "Is there a sequence $A=\\{a_1\\leq a_2\\leq \\cdots\\}$ of integers with\n$$\\lim \\frac{a_{n+1}}{a_n}=2$$\nsuch that\n$$P(A')= \\left\\{\\sum_{n\\in B}n : B\\subseteq A'\\textrm{ finite }\\right\\}$$\nhas density $1$ for every cofinite subsequence $A'$ of $A$?"
+   },
+   {
+    "id": "ERDOS-338",
+    "title": "Erdős Problem #338",
+    "status": "open",
+    "statement": "The restricted order of a basis $A$ is the least integer $t$ (if it exists) such that every large\ninteger is the sum of at most $t$ distinct summands from $A$. What are necessary and sufficient\nconditions that this exists?"
+   },
+   {
+    "id": "ERDOS-349",
+    "title": "Erdős Problem #349",
+    "status": "open",
+    "statement": "For what values of $t,\\alpha \\in (0,\\infty)$ is the sequence $\\lfloor t\\alpha^n\\rfloor$ complete\n(that is, all sufficiently large integers are the sum of distinct integers of the form $\\lfloor t\\alpha^n\\rfloor$)?"
+   },
+   {
+    "id": "ERDOS-16",
+    "title": "Erdős Problem #16",
+    "status": "solved",
+    "statement": "Is the set of odd integers not of the form $2^k+p$ the union of an infinite arithmetic progression\nand a set of density $0$?"
+   },
+   {
+    "id": "ERDOS-358",
+    "title": "Erdős Problem #358",
+    "status": "solved",
+    "statement": "(a) Let $A=\\{a_1 < \\cdots\\}$ be an infinite sequence of integers. Let $f(n)$ count the number of\nsolutions to $$n=\\sum_{u\\leq i\\leq v}a_i.$$\nIs there such an $A$ for which $f(n)\\to \\infty$ as $n\\to \\infty$?\n\n(b) Let $A=\\{a_1 < \\cdots\\}$ be an infinite sequence of integers. Let $f(n)$ count the number of\nsolutions to $$n=\\sum_{u\\leq i\\leq v}a_i.$$\nIs there an $A$ such that $f(n)\\geq 2$ for all large $n$?"
+   },
+   {
+    "id": "ERDOS-1145",
+    "title": "Erdős Problem #1145",
+    "status": "open",
+    "statement": "Let $A=\\{1\\leq a_1 < a_2 < \\cdots\\}$ and $B=\\{1\\leq b_1 < b_2 < \\cdots\\}$ be sets of integers with\n$a_n/b_n\\to 1$.\n\nIf $A+B$ contains all sufficiently large positive integers then is it true that\n$\\limsup 1_A\\ast 1_B(n)=\\infty$?\n\nFormalization note: There's some discussion in the comments of [erdosproblems.com/28] and\n[erdosproblems.com/1145] about whether or not $0$ should be included in $A$ or $B$ and has been\nleft purposely ambiguous. Problem 1145 was originally written as $A + B = \\mathbb{N}$, which\nwould imply that $0$ would need to exist in $A$ or $B$ to include $1$ in $A + B$. However, "
+   },
+   {
+    "id": "ERDOS-221",
+    "title": "Erdős Problem #221",
+    "status": "solved",
+    "statement": "Is there a set $A\\subset\\mathbb{N}$ such that, for all large $N$,\n$$\\lvert A\\cap\\{1,\\ldots,N\\}\\rvert \\ll N/\\log N$$\nand such that every large integer can be written as $2^k+a$ for some\n$k\\geq 0$ and $a\\in A$?"
+   },
+   {
+    "id": "ERDOS-66",
+    "title": "Erdős Problem #66",
+    "status": "open",
+    "statement": "Is there and $A \\subset \\mathbb{N}$ is such that\n$$\\lim_{n\\to \\infty}\\frac{1_A\\ast 1_A(n)}{\\log n}$$\nexists and is $\\ne 0$?"
+   },
+   {
+    "id": "ERDOS-337",
+    "title": "Erdős Problem #337",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be an additive basis (of any finite order) such that\n$\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert=o(N)$. Is it true that\n$$\n\\lim_{N\\to \\infty}\\frac{\\lvert (A+A)\\cap \\{1,\\ldots,N\\}\\rvert}\n{\\lvert A\\cap \\{1,\\ldots,N\\}\\rvert}=\\infty?\n$$"
+   },
+   {
+    "id": "ERDOS-1192",
+    "title": "Erdős Problem #1192",
+    "status": "open",
+    "statement": "For $A\\subset \\mathbb{N}$ let $f_r(n)$ count the number of solutions to $n=a_1+\\cdots+a_r$\nwith $a_i\\in A$.\n\nDoes there exist, for all $r\\geq 2$, a basis $A$ of order $r$ (so that $f_r(n)>0$ for all\nlarge $n$) such that $$\\sum_{n\\leq x}f_r(n)^2 \\ll x$$ for all $x$?"
+   },
+   {
+    "id": "ERDOS-348",
+    "title": "Erdős Problem #348",
+    "status": "claimed",
+    "statement": "For what values of $0 \\leq m < n$ is there a complete sequence\n$A = \\{a_1 \\leq a_2 \\leq \\cdots\\}$ of integers such that\n 1. $A$ remains complete after removing any $m$ elements, but\n 2. $A$ is not complete after removing any $n$ elements."
+   },
+   {
+    "id": "ERDOS-29",
+    "title": "Erdős Problem #29",
+    "status": "solved",
+    "statement": "Is there an explicit construction of a set $A\\subseteq \\mathbb{N}$ such that $A+A=\\mathbb{N}$ but\n$1_A\\ast 1_A(n)=o(n^\\epsilon)$ for every $\\epsilon>0$?"
+   },
+   {
+    "id": "ERDOS-11",
+    "title": "Erdős Problem #11",
+    "status": "open",
+    "statement": "Is every large odd integer $n$ the sum of a squarefree number and a power of 2?"
+   },
+   {
+    "id": "ERDOS-869",
+    "title": "Erdős Problem #869",
+    "status": "solved",
+    "statement": "If $A_1, A_2$ are disjoint additive bases of order $2$ (i.e. $A_i + A_i$ contains all large\nintegers) then must $A = A_1 \\cup A_2$ contain a minimal additive basis of order $2$ (one such that\ndeleting any element creates infinitely many $n \\notin A + A$)?"
+   },
+   {
+    "id": "ERDOS-333",
+    "title": "Erdős Problem #333",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be a set of density zero. Does there exist a $B$ such that\n$A\\subseteq B+B$ and\n$$\\lvert B\\cap \\{1,\\ldots,N\\}\\rvert =o(N^{1/2})$$\nfor all large $N$?"
+   },
+   {
+    "id": "ERDOS-351",
+    "title": "Erdős Problem #351",
+    "status": "solved",
+    "statement": "Let $p(x) \\in \\mathbb{Q}[x]$ be a non-constant rational polynomial with positive leading\ncoefficient. Is it true that $$A=\\{ p(n)+1/n : n \\in \\mathbb{N}\\}$$ is strongly complete,\nin the sense that, for any finite set $B$,\n$$\\left\\{\\sum_{a \\in X} a : X \\subseteq A \\setminus B, X \\textrm{ is finite}\\right\\}$$\ncontains all sufficiently large integers?"
+   },
+   {
+    "id": "ERDOS-35",
+    "title": "Erdős Problem #35",
+    "status": "solved",
+    "statement": "Let $B\\subseteq\\mathbb{N}$ be an additive basis of order $k$ with $0\\in B$. Is it true that for\nevery $A\\subseteq\\mathbb{N}$ we have\n$$d_s(A+B)\\geq \\alpha+\\frac{\\alpha(1-\\alpha)}{k},$$\nwhere $\\alpha=d_s(A)$ and\n$$d_s(A) = \\inf \\frac{\\lvert A\\cap\\{1,\\ldots,N\\}\\rvert}{N}$$\nis the Schnirelmann density?"
+   },
+   {
+    "id": "ERDOS-326",
+    "title": "Erdős Problem #326",
+    "status": "open",
+    "statement": "Does there exist $A = \\{a_1 < a_2 < \\cdots\\} \\subset \\mathbb{N}$ which is a minimal basis of\norder $2$ (i.e. every large integer is the sum of $2$ elements from $A$, and no proper subset of\n$A$ has this property), such that\n$$\\lim_{k\\to\\infty} \\frac{a_k}{k^2} = c$$\nfor some $c \\neq 0$?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "USAMO-1992-P3",
+    "title": "USAMO 1992 · Problem 3"
+   },
+   {
+    "id": "USAMO-1996-P6",
+    "title": "USAMO 1996 · Problem 6"
+   }
+  ]
+ },
+ {
+  "id": "arithmetic-progressions",
+  "title": "Arithmetic progressions in dense sets",
+  "summary": "Szemerédi (1975): a set of positive upper density contains arbitrarily long progressions. Quantitative bounds for $r_k(N)$, the largest progression-free subset of $[1,N]$, are the active question; Green and Tao found long progressions in the primes.",
+  "key_statements": [
+   "r_3(N) \\le N \\exp\\!\\big(-c(\\log N)^{1/12}\\big)\\ \\ \\text{(Kelley–Meka 2023)}",
+   "\\sum_{n\\in A} \\tfrac1n = \\infty \\overset{?}{\\Rightarrow} A \\text{ has arbitrarily long APs}"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   },
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-142",
+    "title": "Erdős Problem #142",
+    "status": "open",
+    "statement": "Prove an asymptotic formula for $r_k(N)$, the largest possible size of a subset\nof $\\{1, \\dots, N\\}$ that does not contain any non-trivial $k$-term arithmetic progression.\nThat is, find $f_k$ with $r_k(N) / f_k(N) \\to 1$ as $N \\to \\infty$."
+   },
+   {
+    "id": "ERDOS-141",
+    "title": "Erdős Problem #141",
+    "status": "open",
+    "statement": "Let $k≥3$. Are there $k$ consecutive primes in arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-198",
+    "title": "Erdős Problem #198",
+    "status": "solved",
+    "statement": "The answer is no; Erdős and Graham report this was proved by Baumgartner, presumably referring to\nthe paper [Ba75], which does not state this exactly, but the following simple construction is\nimplicit in [Ba75]."
+   },
+   {
+    "id": "ERDOS-1187",
+    "title": "Erdős Problem #1187",
+    "status": "solved",
+    "statement": "(a) Let $k\\geq 3$. Is it true that, in any finite colouring of the integers, there are monochromatic\narithmetic progressions of primes of length $k$?\n\n(b) Let $k\\geq 3$. In any finite colouring of the integers, are there monochromatic arithmetic\nprogressions of length $k$ whose common difference is a prime?"
+   },
+   {
+    "id": "ERDOS-272",
+    "title": "Erdős Problem #272",
+    "status": "open",
+    "statement": "Let $N \\in\\mathbb{N}$. We say that $\\{A_1, ..., A_t\\}\\subseteq\n\\mathcal{P}(\\{1, \\dots, N\\})$ is an arithmetic intersection set if\n$A_i \\cap A_j$ is a non-empty arithmetic progression for each $i \\neq j$.\n\nFor each $N > 0$, let $t$ be the largest size of an arithmetic\nintersection set.\n\nLet $N\\geq 1$. What is the largest $t$ such that there are\n$A_1,\\ldots,A_t\\subseteq \\{1,\\ldots,N\\}$ with $A_i\\cap A_j$ a non-empty\narithmetic progression for all $i\\neq j$?"
+   },
+   {
+    "id": "ERDOS-139",
+    "title": "Erdős Problem #139",
+    "status": "solved",
+    "statement": "Let $r_k(N)$ be the size of the largest subset of ${1,...,N}$ which does not contain a non-trivial\n$k$-term arithmetic progression. Prove that $r_k(N) = o(N)$."
+   },
+   {
+    "id": "ERDOS-645",
+    "title": "Erdős Problem #645",
+    "status": "solved",
+    "statement": "If ℕ is $2$-coloured then there must exist a monochromatic three-term arithmetic progression\n$x,x+d,x+2d$ such that $d>x$."
+   },
+   {
+    "id": "ERDOS-1186",
+    "title": "Erdős Problem #1186",
+    "status": "open",
+    "statement": "Let $\\delta_k$ be such that in any $2$-colouring of $\\{1,\\ldots,n\\}$ there exist at least\n$(\\delta_k+o(1))n^2$ many monochromatic $k$-term arithmetic progressions. Give reasonable bounds\n(or even an asymptotic formula) for $\\delta_k$."
+   },
+   {
+    "id": "ERDOS-195",
+    "title": "Erdős Problem #195",
+    "status": "open",
+    "statement": "What is the largest $k$ such that in any permutation of $\\mathbb{Z}$ there must exist a\nmonotone $k$-term arithmetic progression $x_1 < \\cdots < x_k$?"
+   },
+   {
+    "id": "ERDOS-199",
+    "title": "Erdős Problem #199",
+    "status": "solved",
+    "statement": "If $A\\subset \\mathbb{R}$ does not contain a 3-term arithmetic progression then must $\\mathbb{R}\\backslash A$ contain an infinite arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-197",
+    "title": "Erdős Problem #197",
+    "status": "open",
+    "statement": "Can $\\mathbb{N}$ be partitioned into two sets, each of which can be permuted to avoid monotone\n3-term arithmetic progressions?"
+   },
+   {
+    "id": "ERDOS-196",
+    "title": "Erdős Problem #196",
+    "status": "claimed",
+    "statement": "Must every permutation of $\\mathbb{N}$ contain a monotone 4-term arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-219",
+    "title": "Erdős Problem #219",
+    "status": "solved",
+    "statement": "Are there arbitrarily long arithmetic progressions of primes?\nSolution: yes.\nRef: Green, Ben and Tao, Terence, _The primes contain arbitrarily long arithmetic progressions_"
+   },
+   {
+    "id": "ERDOS-3",
+    "title": "Erdős Problem #3",
+    "status": "claimed",
+    "statement": "If $A \\subset \\mathbb{N}$ has $\\sum_{n \\in A}\\frac 1 n = \\infty$, then must $A$ contain arbitrarily\nlong arithmetic progressions?"
+   },
+   {
+    "id": "ERDOS-200",
+    "title": "Erdős Problem #200",
+    "status": "open",
+    "statement": "Does the longest arithmetic progression of primes in $\\{1,\\ldots,N\\}$ have length $o(\\log N)$?"
+   },
+   {
+    "id": "ERDOS-192",
+    "title": "Erdős Problem #192",
+    "status": "solved",
+    "statement": "Let $A=\\{a_1,a_2,\\ldots\\}\\subset \\mathbb{R}^d$ be an infinite sequence such that $a_{i+1}-a_i$\nis a positive unit vector (i.e. is of the form $(0,0,\\ldots,1,0,\\ldots,0)$). For which $d$ must\n$A$ contain a three-term arithmetic progression?"
+   },
+   {
+    "id": "ERDOS-194",
+    "title": "Erdős Problem #194",
+    "status": "solved",
+    "statement": "Let $k\\geq 3$. Must any ordering of $\\mathbb{R}$ contain a monotone $k$-term arithmetic progression,\nthat is, some $x_1 <\\cdots < x_k$ which forms an increasing or decreasing $k$-term arithmetic\nprogression?"
+   },
+   {
+    "id": "GREEN-9",
+    "title": "Green's Problem 9",
+    "status": "solved",
+    "statement": "Problem 9 (i): is $r_3(N) \\ll N(\\log N)^{-10}$?"
+   },
+   {
+    "id": "GREEN-14",
+    "title": "Green's Problem 14",
+    "status": "solved",
+    "statement": "Is $W(k, r)$ a polynomial in $r$, for fixed $k$?"
+   },
+   {
+    "id": "GREEN-15",
+    "title": "Green's Problem 15",
+    "status": "open",
+    "statement": "Does there exist a Lipschitz function $f : \\mathbb{N} \\to \\mathbb{Z}$ whose graph\n$\\Gamma = \\{(n, f(n)) : n \\in \\mathbb{N}\\} \\subseteq \\mathbb{Z}^2$ is free of 3-term progressions?"
+   },
+   {
+    "id": "GREEN-37",
+    "title": "Green's Problem 37",
+    "status": "open",
+    "statement": "Given a natural number `N`, what is the smallest size of a subset of `ℕ` that contains, for each `d = 1, …, N`,\nan arithmetic progression of length `k` with common difference `d`."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "USAMO-1995-P1",
+    "title": "USAMO 1995 · Problem 1"
+   },
+   {
+    "id": "Bulgaria-1998-P1",
+    "title": "Bulgaria 1998 · Problem 1"
+   }
+  ]
+ }
+]

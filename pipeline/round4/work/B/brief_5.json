@@ -1,0 +1,926 @@
+[
+ {
+  "id": "hypergraphs",
+  "title": "Hypergraphs",
+  "summary": "Edges with any number of vertices. Turán and Ramsey questions become much harder: the Turán density of the $3$-uniform $K_4^{(3)}$ is still unknown.",
+  "key_statements": [
+   "\\pi\\big(K_4^{(3)}\\big) \\overset{?}{=} \\tfrac59 \\ \\ \\text{(Turán's conjecture)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "set-systems",
+    "title": "Extremal set theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-563",
+    "title": "Erdős Problem #563",
+    "status": "open",
+    "statement": "Let $F(n,\\alpha)$ denote the smallest $m$ such that there exists a $2$-colouring of the edges of\n$K_n$ so that every $X\\subseteq [n]$ with $\\lvert X\\rvert\\geq m$ contains more than\n$\\alpha \\binom{\\lvert X\\rvert}{2}$ many edges of each colour."
+   },
+   {
+    "id": "ERDOS-716",
+    "title": "Erdős Problem #716",
+    "status": "solved",
+    "statement": "Let $\\mathcal{F}$ be the family of all $3$-uniform hypergraphs with $6$ vertices and $3$ $3$-edges.\nIs it true that\n$$\\mathrm{ex}_3(n,\\mathcal{F})=o(n^2)?$$"
+   },
+   {
+    "id": "ERDOS-1020",
+    "title": "Erdős Problem #1020",
+    "status": "open",
+    "statement": "Let $f(n;r,k)$ be the maximal number of edges in an $r$-uniform hypergraph which contains no set of $k$ many independent edges."
+   },
+   {
+    "id": "ERDOS-835",
+    "title": "Erdős Problem #835",
+    "status": "open",
+    "statement": "Does there exist a $k>2$ such that the $k$-sized subsets of {1,...,2k} can be coloured with\n$k+1$ colours such that for every $A\\subset \\{1,\\ldots,2k\\}$ with $\\lvert A\\rvert=k+1$ all $k+1$\ncolours appear among the $k$-sized subsets of $A$?"
+   },
+   {
+    "id": "ERDOS-834",
+    "title": "Erdős Problem #834",
+    "status": "solved",
+    "statement": "(a) Does there exist a $3$-critical $3$-uniform hypergraph in which every vertex has degree\n$\\geq 7$, where criticality means that the transversal number is $3$ and deleting any edge\nreduces it to $2$?\n\n(b) Does there exist a $3$-critical $3$-uniform hypergraph with minimum degree at least $7$,\nwhere criticality means that deleting any edge or vertex reduces chromatic number $3$ to $2$?"
+   },
+   {
+    "id": "ERDOS-775",
+    "title": "Erdős Problem #775",
+    "status": "solved",
+    "statement": "Is there a $3$-uniform hypergraph on $n$ vertices which contains at least $n-O(1)$ different\nsizes of cliques (maximal complete subgraphs)?"
+   },
+   {
+    "id": "ERDOS-643",
+    "title": "Erdős Problem #643",
+    "status": "open",
+    "statement": "(a) Let $f(n;t)$ be minimal such that if a $t$-uniform hypergraph on $n$ vertices contains at least\n$f(n;t)$ edges then there must be four edges $A,B,C,D$ such that\n$$A\\cup B= C\\cup D$$\nand\n$$A\\cap B=C\\cap D=\\emptyset.$$\nEstimate $f(n;t)$ - in particular, is it true that for $t\\geq 3$\n$$f(n;t)=(1+o(1))\\binom{n}{t-1}?$$\n\n(b) Is it true that $f(n;t)=(1+o(1))\\binom{n}{t-1}$ for $t\\geq 3$?"
+   },
+   {
+    "id": "ERDOS-562",
+    "title": "Erdős Problem #562",
+    "status": "open",
+    "statement": "Let $R_r(n)$ denote the $r$-uniform hypergraph Ramsey number: the minimal $m$ such that if we\n$2$-colour all edges of the complete $r$-uniform hypergraph on $m$ vertices then there must be some\nmonochromatic copy of the complete $r$-uniform hypergraph on $n$ vertices."
+   },
+   {
+    "id": "ERDOS-832",
+    "title": "Erdős Problem #832",
+    "status": "solved",
+    "statement": "Let $r\\geq 3$ and $k$ be sufficiently large in terms of $r$. Is it true that every $r$-uniform\nhypergraph with chromatic number $k$ has at least\n$$\\binom{(r-1)(k-1)+1}{r}$$\nedges, with equality only for the complete graph on $(r-1)(k-1)+1$ vertices?"
+   },
+   {
+    "id": "ERDOS-712",
+    "title": "Erdős Problem #712",
+    "status": "open",
+    "statement": "Determine, for any $k>r>2$, the limiting value as $n\\to\\infty$ of\n$$\\frac{\\mathrm{ex}_r(n,K_k^r)}{\\binom{n}{r}},$$\nwhere $\\mathrm{ex}_r(n,K_k^r)$ is the largest number of $r$-edges which can placed on $n$ vertices\nso that there exists no set of $k$ vertices which is covered by all $\\binom{k}{r}$ possible\n$r$-edges."
+   },
+   {
+    "id": "ERDOS-593",
+    "title": "Erdős Problem #593",
+    "status": "open",
+    "statement": "Characterize those finite 3-uniform hypergraphs which appear\nin every 3-uniform hypergraph of chromatic number $> \\aleph_0$."
+   },
+   {
+    "id": "ERDOS-747",
+    "title": "Erdős Problem #747",
+    "status": "solved",
+    "statement": "How large should $\\ell(n)$ be such that, almost surely, a random $3$-uniform hypergraph on $3n$\nvertices with $\\ell(n)$ edges must contain $n$ vertex-disjoint edges?"
+   },
+   {
+    "id": "ERDOS-161",
+    "title": "Erdős Problem #161",
+    "status": "open",
+    "statement": "(a) Let $\\alpha\\in[0,1/2)$ and $n,t\\geq 1$. Let $F^{(t)}(n,\\alpha)$ be the smallest $m$ such that we can\n$2$-colour the edges of the complete $t$-uniform hypergraph on $n$ vertices such that if $X\\subseteq\n[n]$ with $\\lvert X\\rvert \\geq m$ then there are at least $\\alpha \\binom{\\lvert X\\rvert}{t}$ many\n$t$-subsets of $X$ of each colour. For fixed $n,t$ as we change $\\alpha$ from $0$ to $1/2$ does\n$F^{(t)}(n,\\alpha)$ increase continuously or are there jumps? Only one jump?\n\n(b) For fixed $t\\geq 3$, do all positive densities below $1/2$ give the same asymptotic order?"
+   },
+   {
+    "id": "ERDOS-794",
+    "title": "Erdős Problem #794",
+    "status": "solved",
+    "statement": "Is it true that every $3$-uniform hypergraph on $3n$ vertices with at least $n^3+1$ edges must\ncontain either a subgraph on $4$ vertices with $3$ edges or a subgraph on $5$ vertices with $7$\nedges?"
+   },
+   {
+    "id": "ERDOS-1158",
+    "title": "Erdős Problem #1158",
+    "status": "open",
+    "statement": "Let $K_{t}(r)$ be the complete $t$-partite $t$-uniform hypergraph with $r$ vertices in each class.\nIs it true that\n$$\\mathrm{ex}_t(n,K_t(r)) \\geq n^{t-r^{1-t}-o(1)}$$\nfor all $t,r\\geq 2$? The restriction $r\\geq 2$ excludes forbidding a single edge."
+   },
+   {
+    "id": "ERDOS-1128",
+    "title": "Erdős Problem #1128",
+    "status": "solved",
+    "statement": "(disproved by Prikry–Mills, 1978):"
+   },
+   {
+    "id": "ERDOS-836",
+    "title": "Erdős Problem #836",
+    "status": "claimed",
+    "statement": "(a) Let $r\\geq 2$ and let $G$ be an intersecting $r$-uniform hypergraph with chromatic number\n$3$. Must $G$ contain $O(r^2)$ many vertices? Vertices are counted in the union of the edges,\nso isolated vertices are excluded.\n\n(b) In an intersecting $r$-uniform hypergraph with chromatic number $3$, must there be two\ndistinct edges which meet in $\\gg r$ many vertices?"
+   },
+   {
+    "id": "ERDOS-500",
+    "title": "Erdős Problem #500",
+    "status": "open",
+    "statement": "What is $\\mathrm{ex}_3(n,K_4^3)$? That is, the largest number of $3$-edges which can placed on $n$\nvertices so that there exists no $K_4^3$, a set of 4 vertices which is covered by all 4 possible\n$3$-edges."
+   },
+   {
+    "id": "ERDOS-780",
+    "title": "Erdős Problem #780",
+    "status": "solved",
+    "statement": "Suppose $n\\geq kr+(t-1)(k-1)$ and the edges of the complete $r$-uniform hypergraph on $n$\nvertices are $t$-coloured. Prove that some colour class must contain $k$ pairwise disjoint edges."
+   },
+   {
+    "id": "ERDOS-901",
+    "title": "Erdős Problem #901",
+    "status": "open",
+    "statement": "Let $m(n)$ be minimal such that there is an $n$-uniform hypergraph with $m(n)$ edges which is\n$3$-chromatic. Estimate $m(n)$."
+   },
+   {
+    "id": "ERDOS-207",
+    "title": "Erdős Problem #207",
+    "status": "solved",
+    "statement": "For any $g\\geq 2$, if $n$ is sufficiently large and $\\equiv 1,3\\pmod{6}$ then there exists a\n3-uniform hypergraph on $n$ vertices such that"
+   },
+   {
+    "id": "ERDOS-564",
+    "title": "Erdős Problem #564",
+    "status": "open",
+    "statement": "Let $R_3(n)$ be the minimal $m$ such that if the edges of the $3$-uniform hypergraph on $m$\nvertices are $2$-coloured then there is a monochromatic copy of the complete $3$-uniform\nhypergraph on $n$ vertices.\n\nIs there some constant $c>0$ such that\n$$ R_3(n) \\geq 2^{2^{cn}}? $$"
+   },
+   {
+    "id": "ERDOS-1024",
+    "title": "Erdős Problem #1024",
+    "status": "solved",
+    "statement": "Let $f(n)$ be such that every $3$-uniform linear hypergraph on $n$ vertices contains an independent\nset on $f(n)$ vertices. Estimate $f(n)$."
+   },
+   {
+    "id": "ERDOS-833",
+    "title": "Erdős Problem #833",
+    "status": "solved",
+    "statement": "Does there exist an absolute constant $c>0$ such that, for all $r\\geq 2$, in any $r$-uniform\nhypergraph with chromatic number $3$ there is a vertex contained in at least $(1+c)^r$ many edges?"
+   },
+   {
+    "id": "ERDOS-1177",
+    "title": "Erdős Problem #1177",
+    "status": "open",
+    "statement": "(a) Let $G$ be a finite $3$-uniform hypergraph, and let $F_G(\\kappa)$ denote the collection of\n$3$-uniform hypergraphs with chromatic number $\\kappa$ not containing $G$. If $F_G(\\aleph_1)$ is not\nempty then there exists $X\\in F_G(\\aleph_1)$ of cardinality at most $2^{2^{\\aleph_0}}$. If both\n$F_G(\\aleph_1)$ and $F_H(\\aleph_1)$ are non-empty then $F_G(\\aleph_1)\\cap F_H(\\aleph_1)$ is\nnon-empty. If $\\kappa,\\lambda$ are uncountable cardinals and $F_G(\\kappa)$ is non-empty then\n$F_G(\\lambda)$ is non-empty.\n\n(b) If both $F_G(\\aleph_1)$ and $F_H(\\aleph_1)$ are non-empty then\n$F_G(\\aleph_1)\\cap F_H(\\al"
+   },
+   {
+    "id": "ERDOS-837",
+    "title": "Erdős Problem #837",
+    "status": "open",
+    "statement": "Let $k\\geq 2$ and $A_k\\subseteq [0,1]$ be the set of $\\alpha$ such that there exists some\n$\\beta(\\alpha)>\\alpha$ with the property that, if $G_1,G_2,\\ldots$ is a sequence of $k$-uniform\nhypergraphs with\n$$\\liminf \\frac{e(G_n)}{\\binom{\\lvert G_n\\rvert}{k}} >\\alpha$$\nthen there exist subgraphs $H_n\\subseteq G_n$ such that $\\lvert H_n\\rvert \\to \\infty$ and\n$$\\liminf \\frac{e(H_n)}{\\binom{\\lvert H_n\\rvert}{k}} >\\beta,$$\nand further that this property does not necessarily hold if $>\\alpha$ is replaced by $\\geq \\alpha$.\nWhat is $A_3$?"
+   },
+   {
+    "id": "ERDOS-719",
+    "title": "Erdős Problem #719",
+    "status": "open",
+    "statement": "Let $r\\geq 2$, and let $\\mathrm{ex}_r(n;K_{r+1}^r)$ be the maximum number of $r$-edges that can\nbe placed on $n$ vertices without forming a $K_{r+1}^r$ (the $r$-uniform complete graph on\n$r+1$ vertices). Is every\n$r$-hypergraph $G$ on $n$ vertices the union of at most $\\mathrm{ex}_{r}(n;K_{r+1}^r)$ many copies\nof $K_r^r$ and $K_{r+1}^r$, no two of which share a $K_r^r$?"
+   },
+   {
+    "id": "ERDOS-1178",
+    "title": "Erdős Problem #1178",
+    "status": "open",
+    "statement": "For $r\\geq 3$ let $d_r(e)$ be the minimal $d$ such that\n$$\\mathrm{ex}_r(n,\\mathcal{F})=o(n^2),$$\nwhere $\\mathcal{F}$ is the family of $r$-uniform hypergraphs on $d$ vertices with $e$ edges. Prove\nthat\n$$d_r(e)=(r-2)e+3$$\nfor all $r,e\\geq 3$."
+   },
+   {
+    "id": "ERDOS-1022",
+    "title": "Erdős Problem #1022",
+    "status": "solved",
+    "statement": "Is there a constant $c_t$, where $c_t\\to \\infty$ as $t\\to \\infty$, such that if $\\mathcal{F}$\nis a finite family of finite sets, all of size at least $t$, and for every set $X$ there are\n$<c_t\\lvert X\\rvert$ many $A\\in \\mathcal{F}$ with $A\\subseteq X$, then $\\mathcal{F}$ has\nchromatic number $2$ (in other words, has property B)?"
+   },
+   {
+    "id": "ERDOS-1157",
+    "title": "Erdős Problem #1157",
+    "status": "open",
+    "statement": "Let $s,k,r\\geq 2$. Let $\\mathcal{F}$ be the family of all $r$-uniform hypergraphs with $k$ vertices\nand $s$ edges. Determine\n$$\\mathrm{ex}_r(n,\\mathcal{F}).$$"
+   },
+   {
+    "id": "ERDOS-1075",
+    "title": "Erdős Problem #1075",
+    "status": "open",
+    "statement": "Let $r\\geq 3$. There exists $c_r>r^{-r}$ such that, for any $\\epsilon>0$, if $n$ is sufficiently\nlarge, the following holds. Any $r$-uniform hypergraph on $n$ vertices with at least\n$(1+\\epsilon)(n/r)^r$ many edges contains a subgraph on $m$ vertices with at least $c_rm^r$ edges,\nwhere $m=m(n)\\to \\infty$ as $n\\to \\infty$."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "IMO-2014-P6",
+    "title": "IMO 2014 · Problem 6"
+   }
+  ]
+ },
+ {
+  "id": "extremal-graphs",
+  "title": "Extremal graph theory",
+  "summary": "How many edges can a graph on $n$ vertices have without containing a fixed subgraph $H$? Turán answers it for cliques; Erdős–Stone for all non-bipartite $H$; bipartite $H$ remain largely open.",
+  "key_statements": [
+   "\\operatorname{ex}(n, K_{r+1}) = \\Big(1-\\frac1r\\Big)\\frac{n^2}{2}\\ \\ (\\text{Turán graph})",
+   "\\operatorname{ex}(n,H) = \\Big(1-\\frac{1}{\\chi(H)-1}+o(1)\\Big)\\binom n2"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-147",
+    "title": "Erdős Problem #147",
+    "status": "solved",
+    "statement": "If $H$ is bipartite with minimum degree $r$ then there exists $\\epsilon=\\epsilon(H)>0$ such that\n$$\\mathrm{ex}(n;H) \\gg n^{2-\\frac{1}{r-1}+\\epsilon}.$$"
+   },
+   {
+    "id": "ERDOS-713",
+    "title": "Erdős Problem #713",
+    "status": "open",
+    "statement": "(a) Is it true that, for every bipartite graph $G$, there exists some $\\alpha\\in [1,2)$ and $c>0$ such that $$\\mathrm{ex}(n;G)\\sim cn^\\alpha?$$\n\n(b) Must $\\alpha$ be rational?"
+   },
+   {
+    "id": "ERDOS-1079",
+    "title": "Erdős Problem #1079",
+    "status": "solved",
+    "statement": "Let $r\\geq 4$. If $G$ is a graph on $n$ vertices with at least $\\mathrm{ex}(n;K_r)$ edges then\nmust $G$ contain a vertex with degree $d\\gg_r n$ whose neighbourhood contains at least\n$\\mathrm{ex}(d;K_{r-1})$ edges?"
+   },
+   {
+    "id": "ERDOS-579",
+    "title": "Erdős Problem #579",
+    "status": "open",
+    "statement": "Let $\\delta > 0$. If $n$ is sufficiently large and $G$ is a graph on $n$ vertices with no\n$K_{2,2,2}$ (the octahedron) and at least $\\delta n^2$ edges, must $G$ contain an independent\nset of size $\\gg_\\delta n$?"
+   },
+   {
+    "id": "ERDOS-146",
+    "title": "Erdős Problem #146",
+    "status": "solved",
+    "statement": "If $H$ is bipartite and is $r$-degenerate, that is, every induced subgraph of $H$ has minimum\ndegree $\\leq r$, then\n$$\\mathrm{ex}(n;H) \\ll n^{2-1/r}.$$"
+   },
+   {
+    "id": "ERDOS-766",
+    "title": "Erdős Problem #766",
+    "status": "open",
+    "statement": "(a) Let $f(n;k,l)=\\min \\mathrm{ex}(n;G)$, where $G$ ranges over all graphs with $k$ vertices and $l$\nedges.\n\n(b) For fixed $k$ and large $n$ is $f(n;k,l)$ a strictly monotone function of $l$?"
+   },
+   {
+    "id": "ERDOS-712",
+    "title": "Erdős Problem #712",
+    "status": "open",
+    "statement": "Determine, for any $k>r>2$, the limiting value as $n\\to\\infty$ of\n$$\\frac{\\mathrm{ex}_r(n,K_k^r)}{\\binom{n}{r}},$$\nwhere $\\mathrm{ex}_r(n,K_k^r)$ is the largest number of $r$-edges which can placed on $n$ vertices\nso that there exists no set of $k$ vertices which is covered by all $\\binom{k}{r}$ possible\n$r$-edges."
+   },
+   {
+    "id": "ERDOS-714",
+    "title": "Erdős Problem #714",
+    "status": "open",
+    "statement": "Is it true that $$\\mathrm{ex}(n; K_{r,r}) \\gg n^{2-1/r}?$$"
+   },
+   {
+    "id": "ERDOS-572",
+    "title": "Erdős Problem #572",
+    "status": "open",
+    "statement": "Show that for $k\\geq 3$\n$$\\mathrm{ex}(n;C_{2k})\\gg n^{1+\\frac{1}{k}}.$$"
+   },
+   {
+    "id": "ERDOS-180",
+    "title": "Erdős Problem #180",
+    "status": "solved",
+    "statement": "If $\\mathcal{F}$ is a finite set of finite graphs then $\\mathrm{ex}(n;\\mathcal{F})$ is the maximum\nnumber of edges a graph on $n$ vertices can have without containing any subgraphs from\n$\\mathcal{F}$. Note that it is trivial that $\\mathrm{ex}(n;\\mathcal{F})\\leq \\mathrm{ex}(n;G)$ for\nevery $G\\in\\mathcal{F}$. Is it true that, for every $\\mathcal{F}$, there exists $G\\in\\mathcal{F}$\nsuch that\n$$\\mathrm{ex}(n;G)\\ll_{\\mathcal{F}}\\mathrm{ex}(n;\\mathcal{F})?$$"
+   },
+   {
+    "id": "ERDOS-767",
+    "title": "Erdős Problem #767",
+    "status": "solved",
+    "statement": "Let $g_k(n)$ be the maximal number of edges possible on a graph with $n$ vertices which does not\ncontain a cycle with $k$ chords incident to a vertex on the cycle. Is it true that\n$$g_k(n)=(k+1)n-(k+1)^2$$\nfor $n$ sufficiently large?"
+   },
+   {
+    "id": "ERDOS-794",
+    "title": "Erdős Problem #794",
+    "status": "solved",
+    "statement": "Is it true that every $3$-uniform hypergraph on $3n$ vertices with at least $n^3+1$ edges must\ncontain either a subgraph on $4$ vertices with $3$ edges or a subgraph on $5$ vertices with $7$\nedges?"
+   },
+   {
+    "id": "ERDOS-113",
+    "title": "Erdős Problem #113",
+    "status": "solved",
+    "statement": "If $G$ is bipartite then $\\mathrm{ex}(n;G)\\ll n^{3/2}$ if and only $G$ is $2$-degenerate, that\nis, $G$ contains no induced subgraph with minimal degree at least 3."
+   },
+   {
+    "id": "ERDOS-1158",
+    "title": "Erdős Problem #1158",
+    "status": "open",
+    "statement": "Let $K_{t}(r)$ be the complete $t$-partite $t$-uniform hypergraph with $r$ vertices in each class.\nIs it true that\n$$\\mathrm{ex}_t(n,K_t(r)) \\geq n^{t-r^{1-t}-o(1)}$$\nfor all $t,r\\geq 2$? The restriction $r\\geq 2$ excludes forbidding a single edge."
+   },
+   {
+    "id": "ERDOS-500",
+    "title": "Erdős Problem #500",
+    "status": "open",
+    "statement": "What is $\\mathrm{ex}_3(n,K_4^3)$? That is, the largest number of $3$-edges which can placed on $n$\nvertices so that there exists no $K_4^3$, a set of 4 vertices which is covered by all 4 possible\n$3$-edges."
+   },
+   {
+    "id": "ERDOS-59",
+    "title": "Erdős Problem #59",
+    "status": "solved",
+    "statement": "Is it true that the number of graphs on $n$ vertices which do not contain $G$ is\n$$\\leq 2^{(1+o(1))\\mathrm{ex}(n;G)}?$$"
+   },
+   {
+    "id": "ERDOS-571",
+    "title": "Erdős Problem #571",
+    "status": "solved",
+    "statement": "Show that for any rational $\\alpha \\in [1,2)$ there exists a bipartite graph $G$ such that $$\\mathrm{ex}(n;G)\\asymp n^{\\alpha}.$$"
+   },
+   {
+    "id": "ERDOS-1157",
+    "title": "Erdős Problem #1157",
+    "status": "open",
+    "statement": "Let $s,k,r\\geq 2$. Let $\\mathcal{F}$ be the family of all $r$-uniform hypergraphs with $k$ vertices\nand $s$ edges. Determine\n$$\\mathrm{ex}_r(n,\\mathcal{F}).$$"
+   },
+   {
+    "id": "ERDOS-573",
+    "title": "Erdős Problem #573",
+    "status": "open",
+    "statement": "Is it true that\n$$\\mathrm{ex}(n;\\{C_3,C_4\\})\\sim (n/2)^{3/2}?$$"
+   },
+   {
+    "id": "ERDOS-765",
+    "title": "Erdős Problem #765",
+    "status": "solved",
+    "statement": "Give an asymptotic formula for $\\mathrm{ex}(n; C_4)$."
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "PUTNAM-1965-B5",
+    "title": "Putnam 1965 · B5"
+   },
+   {
+    "id": "PUTNAM-1978-A6",
+    "title": "Putnam 1978 · A6"
+   },
+   {
+    "id": "USAMO-1982-P1",
+    "title": "USAMO 1982 · Problem 1"
+   },
+   {
+    "id": "IMO-1992-P3",
+    "title": "IMO 1992 · Problem 3"
+   },
+   {
+    "id": "USAMO-1995-P5",
+    "title": "USAMO 1995 · Problem 5"
+   },
+   {
+    "id": "USAMO-2020-P4",
+    "title": "USAMO 2020 · Problem 4"
+   },
+   {
+    "id": "USAMO-2022-P6",
+    "title": "USAMO 2022 · Problem 6"
+   }
+  ]
+ },
+ {
+  "id": "ramsey",
+  "title": "Ramsey theory",
+  "summary": "Every $2$-colouring of the edges of a large complete graph contains a monochromatic $K_k$. The Ramsey number $R(k)$ is the threshold; $\\sqrt2^{\\,k} \\le R(k) \\le 4^k$, improved to $(4-\\varepsilon)^k$ in 2023.",
+  "key_statements": [
+   "R(k,\\ell) \\le \\binom{k+\\ell-2}{k-1}",
+   "R(k) \\le (4-\\varepsilon)^k \\ \\ \\text{(Campos–Griffiths–Morris–Sahasrabudhe 2023)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-596",
+    "title": "Erdős Problem #596",
+    "status": "open",
+    "statement": "(Erdős–Hajnal, [Er87]). For which graph pairs $(G_1, G_2)$ is it\ntrue that\n\n(1) for every $n \\geq 1$ there is a graph $H$ without a $G_1$ such that any\n      $n$-colouring of $H$'s edges contains a monochromatic $G_2$, and yet\n  (2) for every graph $H$ without a $G_1$ there is an $\\aleph_0$-colouring of $H$'s edges\n      with no monochromatic $G_2$?"
+   },
+   {
+    "id": "ERDOS-563",
+    "title": "Erdős Problem #563",
+    "status": "open",
+    "statement": "Let $F(n,\\alpha)$ denote the smallest $m$ such that there exists a $2$-colouring of the edges of\n$K_n$ so that every $X\\subseteq [n]$ with $\\lvert X\\rvert\\geq m$ contains more than\n$\\alpha \\binom{\\lvert X\\rvert}{2}$ many edges of each colour."
+   },
+   {
+    "id": "ERDOS-1105",
+    "title": "Erdős Problem #1105",
+    "status": "solved",
+    "statement": "(a) The anti-Ramsey number $\\mathrm{AR}(n,G)$ is the maximum possible number of colours in which the\nedges of $K_n$ can be coloured without creating a rainbow copy of $G$ (i.e. one in which all edges\nhave different colours).\n\nLet $C_k$ be the cycle on $k$ vertices. Is it true that\n$\\mathrm{AR}(n,C_k)=\\left(\\frac{k-2}{2}+\\frac{1}{k-1}\\right)n+O(1)$?\n\n(b) Let $P_k$ be the path on $k$ vertices and $\\ell=\\lfloor\\frac{k-1}{2}\\rfloor$. If $n\\geq k\\geq 5$\nthen is $\\mathrm{AR}(n,P_k)$ equal to $\\max\\left(\\binom{k-2}{2}+1,\n\\binom{\\ell-1}{2}+(\\ell-1)(n-\\ell+1)+\\epsilon\\right)$where $\\epsilon=1$ if $k$ i"
+   },
+   {
+    "id": "ERDOS-78",
+    "title": "Erdős Problem #78",
+    "status": "open",
+    "statement": "Let $R(k)$ be the Ramsey number for $K_k$. Give a constructive proof that $R(k) > C^k$ for some\nconstant $C > 1$."
+   },
+   {
+    "id": "ERDOS-1176",
+    "title": "Erdős Problem #1176",
+    "status": "open",
+    "statement": "Let $G$ be a graph with chromatic number $\\aleph_1$. Is it true that there is a colouring of the\nedges with $\\aleph_1$ many colours such that, in any countable colouring of the vertices, there\nexists a vertex colour containing all edge colours?"
+   },
+   {
+    "id": "ERDOS-551",
+    "title": "Erdős Problem #551",
+    "status": "claimed",
+    "statement": "Prove that\n$$R(C_k,K_n)=(k-1)(n-1)+1$$\nfor $k\\geq n\\geq 3$ (except when $n=k=3$)."
+   },
+   {
+    "id": "ERDOS-549",
+    "title": "Erdős Problem #549",
+    "status": "solved",
+    "statement": "If $T$ is a tree which is a bipartite graph with $k$ vertices in one class and $2k$ vertices\nin the other class then\n$$R(T)=4k-1.$$"
+   },
+   {
+    "id": "ERDOS-1199",
+    "title": "Erdős Problem #1199",
+    "status": "open",
+    "statement": "Is it true that in any 2-colouring of $\\mathbb{N}$ there exists an infinite set $A$\nsuch that all elements of $A+A$ are the same colour?"
+   },
+   {
+    "id": "ERDOS-163",
+    "title": "Erdős Problem #163",
+    "status": "solved",
+    "statement": "The Burr-Erdős conjecture: For any $d\\geq 1$ if $H$ is a graph such that every subgraph\ncontains a vertex of degree at most $d$ then\n$$R(H)\\ll_d n.$$"
+   },
+   {
+    "id": "ERDOS-172",
+    "title": "Erdős Problem #172",
+    "status": "claimed",
+    "statement": "Is it true that in any finite colouring of $\\mathbb{N}$ there exist arbitrarily large finite $A$ such that all sums\nand products of distinct elements in $A$ are the same colour?"
+   },
+   {
+    "id": "ERDOS-1219",
+    "title": "Erdős Problem #1219",
+    "status": "solved",
+    "statement": "Let $(n_k)$ be an increasing sequence of integers such that $2^{\\aleph_{n_k}}$ is strictly\nincreasing, and $2^{\\aleph_{n_0}} > \\aleph_\\omega$. Is it true that\n$$\\sum_k 2^{\\aleph_{n_k}} \\to (\\aleph_\\omega)^2?$$"
+   },
+   {
+    "id": "ERDOS-214",
+    "title": "Erdős Problem #214",
+    "status": "solved",
+    "statement": "Let $S\\subset \\mathbb{R}^2$ be such that no two points in $S$ are distance $1$ apart. Must the\ncomplement of $S$ contain four points which form a unit square?"
+   },
+   {
+    "id": "ERDOS-183",
+    "title": "Erdős Problem #183",
+    "status": "solved",
+    "statement": "Let $R(3;k)$ be the minimal $n$ such that if the edges of $K_n$ are coloured with $k$ colours\nthen there must exist a monochromatic triangle. Determine\n$$\\lim_{k\\to \\infty}R(3;k)^{1/k}.$$"
+   },
+   {
+    "id": "ERDOS-720",
+    "title": "Erdős Problem #720",
+    "status": "solved",
+    "statement": "(a) Let $\\hat{R}(G)$ denote the size Ramsey number, the minimal number of edges $m$ such that there\nis a graph $H$ with $m$ edges such that in any $2$-colouring of the edges of $H$ there is a\nmonochromatic copy of $G$.\n\nIs it true that, if $P_n$ is the path of length $n$, then $\\hat{R}(P_n)/n\\to \\infty$?\n\n(b) Is it true that, if $P_n$ is the path of length $n$, then $\\hat{R}(P_n)/n^2 \\to 0$?\n\n(c) Is it true that, if $C_n$ is the cycle with $n$ edges, then $\\hat{R}(C_n) =o(n^2)$?"
+   },
+   {
+    "id": "ERDOS-598",
+    "title": "Erdős Problem #598",
+    "status": "open",
+    "statement": "Let $\\kappa = (2^{\\aleph_0})^+$. This is the successor cardinal of the continuum.\n\n**Erdős Problem 598:**\nLet $m$ be an infinite cardinal and $\\kappa$ be the successor cardinal of $2^{\\aleph_0}$.\nCan one colour the countable subsets of $m$ using $\\kappa$ many colours so that every\n$X \\subseteq m$ with $|X| = \\kappa$ contains subsets of all possible colours?"
+   },
+   {
+    "id": "ERDOS-615",
+    "title": "Erdős Problem #615",
+    "status": "solved",
+    "statement": "Does there exist some constant $c > 0$ such that for all sufficiently large $n$, if $G$ is a\ngraph with $n$ vertices and at least $(1/8 - c)n^2$ edges then $G$ must contain either a $K_4$\nor an independent set on at least $n/\\log n$ vertices?"
+   },
+   {
+    "id": "ERDOS-569",
+    "title": "Erdős Problem #569",
+    "status": "open",
+    "statement": "Let $k\\geq 1$. What is the best possible $c_k$ such that\n$$R(C_{2k+1},H)\\leq c_k m$$\nfor any graph $H$ on $m$ edges without isolated vertices?"
+   },
+   {
+    "id": "ERDOS-570",
+    "title": "Erdős Problem #570",
+    "status": "solved",
+    "statement": "Let $k\\geq 3$. Is it true that, if $m$ is sufficiently large, for any graph $H$ on $m$ edges\nwithout isolated vertices,\n$$R(C_k,H) \\leq 2m+\\left\\lfloor\\frac{k-1}{2}\\right\\rfloor?$$"
+   },
+   {
+    "id": "ERDOS-1030",
+    "title": "Erdős Problem #1030",
+    "status": "open",
+    "statement": "Let $R(k,l)$ be the usual Ramsey number: the smallest $n$ such that if the edges of $K_n$ are\ncoloured red and blue then there exists either a red $K_k$ or a blue $K_l$."
+   },
+   {
+    "id": "ERDOS-189",
+    "title": "Erdős Problem #189",
+    "status": "solved",
+    "statement": "If $\\mathbb{R}^2$ is finitely coloured then must there exist some colour class which contains the\nvertices of a rectangle of every area?"
+   },
+   {
+    "id": "ERDOS-562",
+    "title": "Erdős Problem #562",
+    "status": "open",
+    "statement": "Let $R_r(n)$ denote the $r$-uniform hypergraph Ramsey number: the minimal $m$ such that if we\n$2$-colour all edges of the complete $r$-uniform hypergraph on $m$ vertices then there must be some\nmonochromatic copy of the complete $r$-uniform hypergraph on $n$ vertices."
+   },
+   {
+    "id": "ERDOS-544",
+    "title": "Erdős Problem #544",
+    "status": "open",
+    "statement": "(a) Show that\n$$R(3,k+1)-R(3,k)\\to\\infty$$\nas $k\\to \\infty$.\n\n(b) Similarly, prove or disprove that\n$$R(3,k+1)-R(3,k)=o(k).$$"
+   },
+   {
+    "id": "ERDOS-965",
+    "title": "Erdős Problem #965",
+    "status": "solved",
+    "statement": "Erdős asks in [Er75b] if for every 2-coloring of ℝ, there is an uncountable set $A ⊆ ℝ$ such that\nall sums $a + b$ for $a, b ∈ A, a ≠ b$ have the same colour."
+   },
+   {
+    "id": "ERDOS-639",
+    "title": "Erdős Problem #639",
+    "status": "solved",
+    "statement": "Is it true that if the edges of $K_n$ are 2-coloured then there are at most $n^2/4$ many edges\nwhich do not occur in a monochromatic triangle?"
+   },
+   {
+    "id": "ERDOS-159",
+    "title": "Erdős Problem #159",
+    "status": "open",
+    "statement": "There exists some constant $c>0$ such that\n$$R(C_4,K_n) \\ll n^{2-c}.$$"
+   },
+   {
+    "id": "ERDOS-667",
+    "title": "Erdős Problem #667",
+    "status": "open",
+    "statement": "Let $p, q \\geq 1$ be fixed integers. Define $H(n) = H(n; p, q)$ to be the largest $m$ such that any\ngraph on $n$ vertices where every set of $p$ vertices spans at least $q$ edges must contain a\ncomplete graph on $m$ vertices. Is\n$$ c(p, q) = \\liminf_{n \\to \\infty} \\frac{\\log H(n)}{\\log n} $$\na strictly increasing function of $q$ for $1 \\leq q \\leq \\binom{p-1}{2} + 1$?"
+   },
+   {
+    "id": "ERDOS-552",
+    "title": "Erdős Problem #552",
+    "status": "open",
+    "statement": "(a) Determine the Ramsey number\n$$R(C_4, S_n),$$\nwhere $S_n=K_{1,n}$ is the star on $n+1$ vertices.\n\n(b) In particular, is it true that, for any $c > 0$, there are infinitely many $n$ such that\n$$R(C_4, S_n) \\leq n + \\sqrt{n} - c?$$"
+   },
+   {
+    "id": "ERDOS-949",
+    "title": "Erdős Problem #949",
+    "status": "open",
+    "statement": "Let $S \\subseteq \\mathbb{R}$ be a set containing no solutions to $a + b = c$.\nMust there be a set $A \\subseteq \\mathbb{R} \\setminus S$ of cardinality continuum such that\n$A + A \\subseteq \\mathbb{R}\\setminus S$?"
+   },
+   {
+    "id": "ERDOS-592",
+    "title": "Erdős Problem #592",
+    "status": "open",
+    "statement": "Determine which countable ordinals $β$ have the property that, if $α = \\omega^β$, then in any\nred/blue colouring of the edges of $K_α$ there is either a red $K_α$ or a blue $K_3$."
+   },
+   {
+    "id": "ERDOS-165",
+    "title": "Erdős Problem #165",
+    "status": "open",
+    "statement": "Give an asymptotic formula for $R(3,k)$."
+   },
+   {
+    "id": "ERDOS-566",
+    "title": "Erdős Problem #566",
+    "status": "open",
+    "statement": "Let $G$ be such that any subgraph on $k$ vertices has at most $2k-3$ edges.\nIs it true that, if $H$ has $m$ edges and no isolated vertices, then $R(G,H) \\ll m$?"
+   },
+   {
+    "id": "ERDOS-161",
+    "title": "Erdős Problem #161",
+    "status": "open",
+    "statement": "(a) Let $\\alpha\\in[0,1/2)$ and $n,t\\geq 1$. Let $F^{(t)}(n,\\alpha)$ be the smallest $m$ such that we can\n$2$-colour the edges of the complete $t$-uniform hypergraph on $n$ vertices such that if $X\\subseteq\n[n]$ with $\\lvert X\\rvert \\geq m$ then there are at least $\\alpha \\binom{\\lvert X\\rvert}{t}$ many\n$t$-subsets of $X$ of each colour. For fixed $n,t$ as we change $\\alpha$ from $0$ to $1/2$ does\n$F^{(t)}(n,\\alpha)$ increase continuously or are there jumps? Only one jump?\n\n(b) For fixed $t\\geq 3$, do all positive densities below $1/2$ give the same asymptotic order?"
+   },
+   {
+    "id": "ERDOS-545",
+    "title": "Erdős Problem #545",
+    "status": "open",
+    "statement": "Let $m$ be sufficiently large and let $G$ be a graph with $m$ edges and no isolated vertices.\nIs the Ramsey number $R(G)$ maximised when $G$ is 'as complete as possible'?\nThat is, if $m=\\binom{n}{2}+t$ edges with $0\\leq t < n$\nthen is\n$$R(G)\\leq R(H),$$\nwhere $H$ is the graph formed by connecting a new vertex to $t$ of the vertices of $K_n$?"
+   },
+   {
+    "id": "ERDOS-162",
+    "title": "Erdős Problem #162",
+    "status": "open",
+    "statement": "Let $\\alpha > 0$ and $n \\geq 1$. Let $F(n,\\alpha)$ be the largest $k$ such that there exists some\n2-colouring of the edges of $K_n$ in which any induced subgraph $H$ on at least $k$ vertices\ncontains more than $\\alpha\\binom{|H|}{2}$ many edges of each colour."
+   },
+   {
+    "id": "ERDOS-555",
+    "title": "Erdős Problem #555",
+    "status": "open",
+    "statement": "Let $R_k(G)$ be the least $m$ such that every $k$-colouring of the edges of $K_m$ contains a\nmonochromatic copy of $G$. Determine $R_k(C_{2n})$."
+   },
+   {
+    "id": "ERDOS-70",
+    "title": "Erdős Problem #70",
+    "status": "open",
+    "statement": "Let $\\mathfrak{c}$ be the order type of the real numbers,\nlet $\\beta$ be a countable ordinal, and let $2 \\le n < \\omega$.\nIs it true that $\\mathfrak{c} \\to (\\beta, n)^3_2$?"
+   },
+   {
+    "id": "ERDOS-801",
+    "title": "Erdős Problem #801",
+    "status": "solved",
+    "statement": "If $G$ is a graph on $n$ vertices containing no independent set on $>n^{1/2}$ vertices then there\nis a set of $\\leq n^{1/2}$ vertices containing $\\gg n^{1/2}\\log n$ edges."
+   },
+   {
+    "id": "ERDOS-77",
+    "title": "Erdős Problem #77",
+    "status": "open",
+    "statement": "If $R(k)$ is the Ramsey number for $K_k$, the minimal $n$ such that every $2$-colouring of the edges\nof $K_n$ contains a monochromatic copy of $K_k$, then find the value of\n$$\\lim_{k\\to \\infty}R(k)^{1/k}.$$"
+   },
+   {
+    "id": "ERDOS-986",
+    "title": "Erdős Problem #986",
+    "status": "solved",
+    "statement": "For any fixed $s\\geq 3$,\n$$R(s,k) \\gg \\frac{k^{s-1}}{(\\log k)^c}$$\nfor some constant $c=c(s)>0$."
+   },
+   {
+    "id": "ERDOS-188",
+    "title": "Erdős Problem #188",
+    "status": "open",
+    "statement": "What is the smallest $k$ such that $\\mathbb{R}^2$ can be red/blue coloured with no pair of red\npoints unit distance apart, and no $k$-term arithmetic progression of blue points with distance 1?"
+   },
+   {
+    "id": "ERDOS-800",
+    "title": "Erdős Problem #800",
+    "status": "solved",
+    "statement": "If $G$ is a graph on $n$ vertices which has no two adjacent vertices of degree $\\geq 3$ then\n$$R(G)\\ll n,$$\nwhere the implied constant is absolute."
+   },
+   {
+    "id": "ERDOS-568",
+    "title": "Erdős Problem #568",
+    "status": "open",
+    "statement": "Let $G$ be a graph such that $R(G,T_n)\\ll n$ for any tree $T_n$ on $n$ vertices and\n$R(G,K_n)\\ll n^2$. Is it true that, for any $H$ with $m$ edges and no isolated vertices,\n$$R(G,H)\\ll m?$$"
+   },
+   {
+    "id": "ERDOS-911",
+    "title": "Erdős Problem #911",
+    "status": "open",
+    "statement": "Let $\\hat{R}(G)$ denote the size Ramsey number, the minimal number of edges $m$ such that there is\na graph $H$ with $m$ edges that is Ramsey for $G$.\n\nIs there a function $f$ such that $f(x)/x\\to \\infty$ as $x\\to \\infty$ such that, for all large $C$,\nif $G$ is a graph with $n$ vertices and $e\\geq Cn$ edges then\n$$\\hat{R}(G) > f(C) e?$$"
+   },
+   {
+    "id": "ERDOS-590",
+    "title": "Erdős Problem #590",
+    "status": "solved",
+    "statement": "Let $α$ be the infinite ordinal $\\omega^{\\omega}$. It was proved by Chang [Ch72] that any red/blue\ncolouring of the edges of $K_α$ there is either a red $K_α$ or a blue $K_3$."
+   },
+   {
+    "id": "ERDOS-613",
+    "title": "Erdős Problem #613",
+    "status": "solved",
+    "statement": "Let $n \\geq 3$ and $G$ be a graph with $\\binom{2n+1}{2} - \\binom{n}{2} - 1$ edges.\nMust $G$ be the union of a bipartite graph and a graph with maximum degree less than $n$?"
+   },
+   {
+    "id": "ERDOS-556",
+    "title": "Erdős Problem #556",
+    "status": "open",
+    "statement": "Erdős Problem 556 (Bondy–Erdős): for all $n \\ge 4$,\n$$R(C_n; 3) \\le 4n - 3.$$\nThe case $n = 3$ is excluded since $R(K_3; 3) = 17$."
+   },
+   {
+    "id": "ERDOS-636",
+    "title": "Erdős Problem #636",
+    "status": "solved",
+    "statement": "Suppose $G$ is a graph on $n$ vertices which contains no complete graph or independent set on\n$\\gg \\log n$ many vertices. Must $G$ contain $\\gg n^{5/2}$ induced subgraphs which pairwise differ\nin either the number of vertices or the number of edges?"
+   },
+   {
+    "id": "ERDOS-1090",
+    "title": "Erdős Problem #1090",
+    "status": "solved",
+    "statement": "Let $k\\geq 3$. Does there exist a finite set $A\\subset \\mathbb{R}^2$ such that, in any $2$-colouring of $A$, there exists a line which contains at least $k$ points from $A$, and all the points of $A$ on the line have the same colour?"
+   },
+   {
+    "id": "ERDOS-85",
+    "title": "Erdős Problem #85",
+    "status": "open",
+    "statement": "Let $f(n)$ be the smallest integer for which every graph on $n$ vertices with minimal degree $\\geq\nf(n)$ contains a $C_4$.\n\nIs it true that, for all large $n$, $f(n + 1) \\ge f(n)$?"
+   },
+   {
+    "id": "ERDOS-80",
+    "title": "Erdős Problem #80",
+    "status": "claimed",
+    "statement": "(a) Let $c>0$ and let $f_c(n)$ be the maximal $m$ such that every graph $G$ with $n$ vertices and\nat least $cn^2$ edges, where each edge is contained in at least one triangle, must contain a\nbook of size $m$, that is, an edge shared by at least $m$ different triangles. Estimate\n$f_c(n)$. In particular, is it true that $f_c(n)>n^\\epsilon$ for some $\\epsilon>0$?\n\n(b) The weaker question from the same problem: is $f_c(n) \\gg \\log n$?"
+   },
+   {
+    "id": "ERDOS-1128",
+    "title": "Erdős Problem #1128",
+    "status": "solved",
+    "statement": "(disproved by Prikry–Mills, 1978):"
+   },
+   {
+    "id": "ERDOS-547",
+    "title": "Erdős Problem #547",
+    "status": "solved",
+    "statement": "If $T$ is a tree on $n$ vertices then\n$$R(T) \\leq 2n-2.$$"
+   },
+   {
+    "id": "ERDOS-812",
+    "title": "Erdős Problem #812",
+    "status": "open",
+    "statement": "(a) Is it true that $\\frac{R(n+1)}{R(n)}\\geq 1+c$ for some constant $c>0$, for all large $n$?\n\n(b) Is it true that $R(n+1)-R(n) \\gg n^2$?"
+   },
+   {
+    "id": "ERDOS-557",
+    "title": "Erdős Problem #557",
+    "status": "solved",
+    "statement": "Let $R_k(G)$ denote the minimal $m$ such that if the edges of $K_m$ are $k$-coloured then there\nis a monochromatic copy of $G$. Is it true that\n$$R_k(T)\\leq kn+O(1)$$\nfor any tree $T$ on $n$ vertices?"
+   },
+   {
+    "id": "ERDOS-546",
+    "title": "Erdős Problem #546",
+    "status": "solved",
+    "statement": "Let $G$ be a graph with no isolated vertices and $m$ edges. Is it true that\n$$R(G) \\leq 2^{O(m^{1/2})}?$$"
+   },
+   {
+    "id": "ERDOS-550",
+    "title": "Erdős Problem #550",
+    "status": "claimed",
+    "statement": "Let $m_1\\leq\\cdots\\leq m_k$ and $n$ be sufficiently large. If $T$ is a tree on $n$ vertices\nand $G$ is the complete multipartite graph with vertex class sizes $m_1,\\ldots,m_k$ then prove that\n$$R(T,G)\\leq (\\chi(G)-1)(R(T,K_{m_1,m_2})-1)+m_1.$$"
+   },
+   {
+    "id": "ERDOS-1029",
+    "title": "Erdős Problem #1029",
+    "status": "open",
+    "statement": "If $R(k)$ is the Ramsey number for $K_k$, the minimal $n$ such that every $2$-colouring of the edges\nof $K_n$ contains a monochromatic copy of $K_k$, then\n$$\\frac{R(k)}{k2^{k/2}}\\to \\infty.$$"
+   },
+   {
+    "id": "ERDOS-564",
+    "title": "Erdős Problem #564",
+    "status": "open",
+    "statement": "Let $R_3(n)$ be the minimal $m$ such that if the edges of the $3$-uniform hypergraph on $m$\nvertices are $2$-coloured then there is a monochromatic copy of the complete $3$-uniform\nhypergraph on $n$ vertices.\n\nIs there some constant $c>0$ such that\n$$ R_3(n) \\geq 2^{2^{cn}}? $$"
+   },
+   {
+    "id": "ERDOS-181",
+    "title": "Erdős Problem #181",
+    "status": "claimed",
+    "statement": "Let $Q_n$ be the $n$-dimensional hypercube graph (so that $Q_n$ has $2^n$ vertices and\n$n2^{n-1}$ edges). Prove that $$R(Q_n) \\ll 2^n.$$"
+   },
+   {
+    "id": "ERDOS-567",
+    "title": "Erdős Problem #567",
+    "status": "open",
+    "statement": "(a) **Erdős Problem 567 (Q3)**\n\nIs $Q_3$ (the 3-dimensional hypercube) Ramsey size linear?\n\n(b) **Erdős Problem 567 (K33)**\n\nIs $K_{3,3}$ Ramsey size linear?\n\n(c) **Erdős Problem 567 (H5)**\n\nIs $H_5$ ($C_5$ with two vertex-disjoint chords) Ramsey size linear?"
+   },
+   {
+    "id": "ERDOS-559",
+    "title": "Erdős Problem #559",
+    "status": "solved",
+    "statement": "Let $\\hat{R}(G)$ denote the size Ramsey number, the minimal number of edges $m$ such that there is\na graph $H$ with $m$ edges that is Ramsey for $G$."
+   },
+   {
+    "id": "ERDOS-1198",
+    "title": "Erdős Problem #1198",
+    "status": "solved",
+    "statement": "If $\\mathbb{N}$ is $2$-coloured, must there exist an infinite set $A=\\{a_1<a_2<\\cdots\\}$ such that\nall expressions of the shape\n$$\\sum_{j=1}^{k}\\prod_{i\\in S_j}a_i,$$\nfor $k\\geq 1$ and pairwise disjoint nonempty finite sets of indices $S_1,\\ldots,S_k$ (excluding the\ntrivial expressions $a_i$, that is $k=1$ and $|S_1|=1$), have the same colour?"
+   },
+   {
+    "id": "ERDOS-561",
+    "title": "Erdős Problem #561",
+    "status": "open",
+    "statement": "Let $\\hat{R}(G)$ denote the size Ramsey number, the minimal number of edges $m$ such that there\nis a graph $H$ with $m$ edges such that in any $2$-colouring of the edges of $H$ there is a\nmonochromatic copy of $G$."
+   },
+   {
+    "id": "ERDOS-174",
+    "title": "Erdős Problem #174",
+    "status": "open",
+    "statement": "A finite set $A\\subset \\mathbb{R}^n$ is called Ramsey if, for any $k\\geq 1$, there exists some\n$d=d(A,k)$ such that in any $k$-colouring of $\\mathbb{R}^d$ there exists a monochromatic copy\nof $A$. Characterise the Ramsey sets in $\\mathbb{R}^n$."
+   },
+   {
+    "id": "ERDOS-560",
+    "title": "Erdős Problem #560",
+    "status": "open",
+    "statement": "Let $\\hat{R}(G)$ denote the size Ramsey number, the minimal number of edges $m$ such that there\nis a graph $H$ with $m$ edges such that in any $2$-colouring of the edges of $H$ there is a\nmonochromatic copy of $G$."
+   },
+   {
+    "id": "ERDOS-79",
+    "title": "Erdős Problem #79",
+    "status": "solved",
+    "statement": "We say $G$ is Ramsey size linear if $R(G,H)\\ll m$ for all graphs $H$ with $m$ edges and\nno isolated vertices.\n\nAre there infinitely many graphs $G$ which are not Ramsey size linear but such that all of\nits proper subgraphs are?"
+   },
+   {
+    "id": "ERDOS-166",
+    "title": "Erdős Problem #166",
+    "status": "solved",
+    "statement": "Prove that\n$$R(4,k) \\gg \\frac{k^3}{(\\log k)^{O(1)}}.$$"
+   },
+   {
+    "id": "ERDOS-88",
+    "title": "Erdős Problem #88",
+    "status": "solved",
+    "statement": "For any $\\epsilon>0$ there exists $\\delta=\\delta(\\epsilon)>0$ such that if $G$ is a graph on $n$\nvertices with no independent set or clique of size $\\geq \\epsilon\\log n$ then $G$ contains an\ninduced subgraph with $m$ edges for all $m\\leq \\delta n^2$."
+   },
+   {
+    "id": "ERDOS-173",
+    "title": "Erdős Problem #173",
+    "status": "open",
+    "statement": "In any $2$-colouring of $\\mathbb{R}^2$, for all but at most one triangle $T$ (up to\ncongruence), there is a monochromatic congruent copy of $T$."
+   },
+   {
+    "id": "ERDOS-591",
+    "title": "Erdős Problem #591",
+    "status": "solved",
+    "statement": "Let $α$ be the infinite ordinal $\\omega^{\\omega^2}$. Is it true that any red/blue colouring of the\nedges of $K_α$ there is either a red $K_α$ or a blue $K_3$?"
+   },
+   {
+    "id": "ERDOS-609",
+    "title": "Erdős Problem #609",
+    "status": "open",
+    "statement": "Let $f(n)$ be the minimal $m$ such that if the edges of $K_{2^n+1}$ are coloured with $n$ colours\nthen there must be a monochromatic odd cycle of length at most $m$. Estimate $f(n)$."
+   },
+   {
+    "id": "ERDOS-87",
+    "title": "Erdős Problem #87",
+    "status": "open",
+    "statement": "(a) Let $0 < \\epsilon < 1$. Is it true that, if $k$ is sufficiently large, then\n$$R(G) > (1-\\epsilon)^k R(k)$$\nfor every graph $G$ with chromatic number $\\chi(G)=k$?\n\n(b) Even stronger, is there some $c > 0$ such that, for all large $k$,\n$$R(G) > c R(k)$$\nfor every graph $G$ with chromatic number $\\chi(G)=k$?"
+   },
+   {
+    "id": "ERDOS-1174",
+    "title": "Erdős Problem #1174",
+    "status": "open",
+    "statement": "(a) **Erdős Problem 1174, part (i)** [Va99, 7.91]. A problem of Erdős and Hajnal:\ndoes there exist a graph $G$ with no $K_4$ such that every edge colouring of $G$\nwith countably many colours contains a monochromatic $K_3$?\n\n(b) **Erdős Problem 1174, part (ii)** [Va99, 7.91]. A problem of Erdős and Hajnal:\ndoes there exist a graph $G$ with no $K_{\\aleph_1}$ (that is, every clique of $G$\nis countable) such that every edge colouring of $G$ with countably many colours\ncontains a monochromatic $K_{\\aleph_0}$ (an infinite clique all of whose edges\nreceive the same colour)?"
+   },
+   {
+    "id": "ERDOS-1167",
+    "title": "Erdős Problem #1167",
+    "status": "open",
+    "statement": "Let $r \\geq 2$ be finite, $\\gamma \\geq 2$, and $\\lambda$ be an infinite\ncardinal. Let $\\kappa_\\alpha > r$ be cardinals for all $\\alpha < \\gamma$. Is it true\nthat\n$$2^\\lambda \\to (\\kappa_\\alpha + 1)_{\\alpha < \\gamma}^{r+1}$$\nimplies\n$$\\lambda \\to (\\kappa_\\alpha)_{\\alpha < \\gamma}^r?$$\nHere $+$ means cardinal addition, so that $\\kappa_\\alpha + 1 = \\kappa_\\alpha$\nif $\\kappa_\\alpha$ is infinite."
+   },
+   {
+    "id": "ERDOS-582",
+    "title": "Erdős Problem #582",
+    "status": "solved",
+    "statement": "Does there exist a graph $G$ which contains no $K_4$, and yet any $2$-colouring of the edges\nproduces a monochromatic $K_3$?"
+   },
+   {
+    "id": "ERDOS-1014",
+    "title": "Erdős Problem #1014",
+    "status": "solved",
+    "statement": "Let $R(k,l)$ be the Ramsey number, so the minimal $n$ such that every graph on at least $n$\nvertices contains either a $K_k$ or an independent set on $l$ vertices."
+   },
+   {
+    "id": "ERDOS-191",
+    "title": "Erdős Problem #191",
+    "status": "solved",
+    "statement": "Let $C>0$ be arbitrary. Is it true that, if $n$ is sufficiently large depending on $C$, then in\nany $2$-colouring of $\\binom{\\{2,\\ldots,n\\}}{2}$ there exists some $X\\subseteq \\{2,\\ldots,n\\}$\nsuch that $\\binom{X}{2}$ is monochromatic and\n$$\\sum_{x\\in X}\\frac{1}{\\log x}\\geq C?$$"
+   },
+   {
+    "id": "ERDOS-554",
+    "title": "Erdős Problem #554",
+    "status": "open",
+    "statement": "Let $R_k(G)$ denote the minimal $m$ such that if the edges of $K_m$ are $k$-coloured then there\nis a monochromatic copy of $G$. Show that\n$$\\lim_{k\\to \\infty}\\frac{R_k(C_{2n+1})}{R_k(K_3)}=0$$\nfor any $n\\geq 2$."
+   },
+   {
+    "id": "ERDOS-810",
+    "title": "Erdős Problem #810",
+    "status": "open",
+    "statement": "Does there exist some $\\epsilon>0$ such that, for all sufficiently large $n$, there exists a\ngraph $G$ on $n$ vertices with at least $\\epsilon n^2$ edges whose edges can be coloured with $n$\ncolours so that every $C_4$ receives four distinct colours?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "IMO-1964-P4",
+    "title": "IMO 1964 · Problem 4"
+   },
+   {
+    "id": "USAMO-1976-P1",
+    "title": "USAMO 1976 · Problem 1"
+   },
+   {
+    "id": "IMO-1979-P2",
+    "title": "IMO 1979 · Problem 2"
+   },
+   {
+    "id": "USAMO-1981-P2",
+    "title": "USAMO 1981 · Problem 2"
+   },
+   {
+    "id": "IMO-1992-P3",
+    "title": "IMO 1992 · Problem 3"
+   },
+   {
+    "id": "PUTNAM-2022-B3",
+    "title": "Putnam 2022 · B3"
+   },
+   {
+    "id": "AC-Applying-probability-to-combinatorics-1",
+    "title": "AC · Applying probability to combinatorics · Exercise 1"
+   },
+   {
+    "id": "AC-Applying-probability-to-combinatorics-2",
+    "title": "AC · Applying probability to combinatorics · Exercise 2"
+   },
+   {
+    "id": "AC-Applying-probability-to-combinatorics-3",
+    "title": "AC · Applying probability to combinatorics · Exercise 3"
+   },
+   {
+    "id": "AC-Applying-probability-to-combinatorics-4",
+    "title": "AC · Applying probability to combinatorics · Exercise 4"
+   },
+   {
+    "id": "AC-Applying-probability-to-combinatorics-5",
+    "title": "AC · Applying probability to combinatorics · Exercise 5"
+   }
+  ]
+ }
+]

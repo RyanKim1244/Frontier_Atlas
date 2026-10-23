@@ -1,0 +1,882 @@
+[
+ {
+  "id": "mertens",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Euler showed that $\\sum_p 1/p$ diverges, but divergence says nothing about speed. Sieving raises a related question. Strike out every multiple of every prime up to $x$. Each prime $p$ removes about a fraction $1/p$ of what is left, so roughly a fraction $\\prod_{p\\le x}(1-1/p)$ of the integers should survive. How big is that product?\n\nIn 1874 Franz Mertens answered both questions with three estimates. They use nothing deeper than Chebyshev's bound $\\psi(x)=O(x)$ from [[chebyshev]]. They are weaker than the prime number theorem, because they average over primes with weights $1/p$, but they are completely elementary, and sieve theory starts from them."
+   },
+   {
+    "type": "section",
+    "title": "Counting primes inside n!",
+    "body": "Everything starts from the factorisation of $n!$. The exponent of a prime $p$ in $n!$ is $\\lfloor n/p\\rfloor+\\lfloor n/p^2\\rfloor+\\cdots$: the multiples of $p$ up to $n$ each contribute one factor, the multiples of $p^2$ one more, and so on. Taking logarithms and remembering that the von Mangoldt function has $\\Lambda(p^k)=\\log p$, we get the exact identity\n\n$$\\log n! \\;=\\; \\sum_{p^k\\le n}\\Big\\lfloor \\frac{n}{p^k}\\Big\\rfloor \\log p \\;=\\; \\sum_{m\\le n}\\Lambda(m)\\Big\\lfloor\\frac nm\\Big\\rfloor .$$\n\nFor example $10! = 2^8\\cdot 3^4\\cdot 5^2\\cdot 7$, and indeed $\\lfloor 10/2\\rfloor+\\lfloor 10/4\\rfloor+\\lfloor 10/8\\rfloor = 5+2+1 = 8$.\n\nThe left side is easy to estimate. Since $\\log t$ is increasing, comparing $\\sum_{m=2}^{n}\\log m$ and $\\sum_{m=1}^{n-1}\\log m$ with $\\int_1^n\\log t\\,dt = n\\log n-n+1$ gives\n\n$$n\\log n - n + 1 \\;\\le\\; \\log n! \\;\\le\\; n\\log n - n + 1 + \\log n .$$\n\nSo $\\log n!/n = \\log n - 1 + O(\\log n/n)$. The right side of the identity is almost $n\\sum_{m\\le n}\\Lambda(m)/m$, because replacing $\\lfloor n/m\\rfloor$ by $n/m$ costs less than $1$ per term, so less than $\\sum_{m\\le n}\\Lambda(m)=\\psi(n)$ in total. Chebyshev's bound says exactly that this loss is $O(n)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Mertens' first theorem",
+    "body": "For $x\\ge 2$,\n$$\\sum_{n\\le x}\\frac{\\Lambda(n)}{n} = \\log x + O(1) \\qquad\\text{and}\\qquad \\sum_{p\\le x}\\frac{\\log p}{p} = \\log x + O(1).$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof of the first theorem",
+    "body": "Let $N=\\lfloor x\\rfloor$. Write $\\lfloor N/m\\rfloor = N/m - \\{N/m\\}$ with $0\\le\\{N/m\\}<1$. The identity above becomes\n$$\\log N! = N\\sum_{m\\le N}\\frac{\\Lambda(m)}{m} - E,\\qquad 0\\le E\\le \\sum_{m\\le N}\\Lambda(m)=\\psi(N).$$\nDivide by $N$. Then $\\sum_{m\\le N}\\Lambda(m)/m = \\log N!/N + E/N = \\log N - 1 + O(\\log N/N) + O(1)$, because $E/N\\le\\psi(N)/N$ is bounded by Chebyshev. Since $\\log N = \\log x + O(1/x)$, the first statement follows.\n\nFor the second, the two sums differ by the prime powers $p^k$ with $k\\ge 2$:\n$$0\\le \\sum_{n\\le x}\\frac{\\Lambda(n)}{n}-\\sum_{p\\le x}\\frac{\\log p}{p}\\le \\sum_p\\log p\\sum_{k\\ge2}\\frac1{p^k} = \\sum_p\\frac{\\log p}{p(p-1)},$$\nand the last series converges (compare with $\\sum_n \\log n/n^{3/2}$, say). So the difference is bounded."
+   },
+   {
+    "type": "section",
+    "title": "From weighted sums to the sum of 1/p",
+    "body": "The first theorem counts primes with weight $\\log p/p$. To remove the $\\log p$, use [[partial-summation]]. Write $A(t)=\\sum_{p\\le t}\\log p/p = \\log t + R(t)$, where $|R(t)|\\le C$ for $t\\ge2$ and $A(t)=0$ for $t<2$. With $f(t)=1/\\log t$, so $f'(t)=-1/(t\\log^2 t)$, Abel summation gives\n\n$$\\sum_{p\\le x}\\frac1p=\\sum_{p\\le x}\\frac{\\log p}{p}\\cdot\\frac{1}{\\log p} = \\frac{A(x)}{\\log x}+\\int_2^x\\frac{A(t)}{t\\log^2 t}\\,dt .$$\n\nInsert $A=\\log t+R$. The main part is $1+\\int_2^x\\frac{dt}{t\\log t} = 1+\\log\\log x-\\log\\log 2$. The rest is $R(x)/\\log x$ plus $\\int_2^x R(t)\\,dt/(t\\log^2t)$. That integral converges as $x\\to\\infty$, because $\\int_2^\\infty dt/(t\\log^2 t)=1/\\log 2$, and its tail beyond $x$ is at most $C/\\log x$. Collecting the constants gives the second theorem."
+   },
+   {
+    "type": "theorem",
+    "title": "Mertens' second theorem",
+    "body": "There is a constant $M = 0.2614972\\ldots$ (the Meissel–Mertens constant) such that for $x\\ge2$\n$$\\sum_{p\\le x}\\frac1p = \\log\\log x + M + O\\Big(\\frac{1}{\\log x}\\Big).$$\nExplicitly $M = 1-\\log\\log 2+\\int_2^\\infty R(t)\\,\\frac{dt}{t\\log^2 t}$, with $R$ as above."
+   },
+   {
+    "type": "section",
+    "title": "The product and the appearance of Euler's constant",
+    "body": "Taking logarithms turns the product into a sum:\n$$\\log\\prod_{p\\le x}\\Big(1-\\frac1p\\Big) = -\\sum_{p\\le x}\\frac1p-\\sum_{p\\le x}h(p),\\qquad h(p) = -\\log\\Big(1-\\frac1p\\Big)-\\frac1p=\\sum_{k\\ge2}\\frac{1}{kp^k}.$$\nSince $0<h(p)\\le \\frac{1}{2p(p-1)}$, the series $H=\\sum_p h(p)$ converges, with tail $O(1/x)$. With the second theorem this gives\n$$\\prod_{p\\le x}\\Big(1-\\frac1p\\Big) = \\frac{e^{-(M+H)}}{\\log x}\\Big(1+O\\Big(\\frac1{\\log x}\\Big)\\Big).$$\nThat much is routine. The surprise is the value of the constant: $M+H=\\gamma$, Euler's constant $0.5772\\ldots$. Numerically $H = 0.3157184\\ldots$ and $M = 0.2614972\\ldots$, which do add up to $\\gamma$. Equivalently $M=\\gamma+\\sum_p\\big(\\log(1-1/p)+1/p\\big)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Mertens' third theorem",
+    "body": "$$\\prod_{p \\le x}\\Bigl(1 - \\frac1p\\Bigr) \\sim \\frac{e^{-\\gamma}}{\\log x}\\qquad (x\\to\\infty).$$"
+   },
+   {
+    "type": "proof",
+    "title": "Why the constant is gamma",
+    "body": "We have to show $M+H=\\gamma$. The idea is to compute $\\log\\zeta(1+\\delta)$ as $\\delta\\to0^+$ in two ways. Only one fact about $\\zeta$ is needed, and it is elementary: comparing $\\sum n^{-1-\\delta}$ with $\\int_1^\\infty t^{-1-\\delta}dt = 1/\\delta$ gives $1/\\delta\\le\\zeta(1+\\delta)\\le 1/\\delta+1$, so $\\log\\zeta(1+\\delta) = -\\log\\delta+O(\\delta)$.\n\nFirst way, from the Euler product: $\\log\\zeta(1+\\delta)=\\sum_p p^{-1-\\delta}+\\sum_p h_\\delta(p)$ with $h_\\delta(p) = -\\log(1-p^{-1-\\delta})-p^{-1-\\delta}$. As $\\delta\\to0$, $\\sum_p h_\\delta(p)\\to H$ by dominated convergence, since $0\\le h_\\delta(p)\\le h(p)$.\n\nSecond way: let $S(t)=\\sum_{p\\le t}1/p=\\log\\log t+M+r(t)$ with $r(t)=O(1/\\log t)$. Integrating by parts,\n$$\\sum_p p^{-1-\\delta} = \\int_{2^-}^\\infty t^{-\\delta}\\,dS(t)=\\delta\\int_2^\\infty S(t)\\,t^{-\\delta-1}\\,dt .$$\nSubstitute $u=\\delta\\log t$, so that $t^{-\\delta}=e^{-u}$ and $dt/t = du/\\delta$. The main part becomes\n$$\\int_{\\delta\\log2}^\\infty\\big(\\log u-\\log\\delta+M\\big)e^{-u}\\,du = -\\gamma-\\log\\delta+M+o(1),$$\nusing $\\int_0^\\infty e^{-u}\\log u\\,du=\\Gamma'(1)=-\\gamma$ (see [[gamma]]). The part coming from $r$ is $\\int r\\,e^{-u}du$ with $|r|\\ll\\delta/u$. This is $O(\\delta\\log(1/\\delta))$ on $u\\le1$ and $O(\\delta)$ on $u\\ge 1$, so it tends to $0$.\n\nComparing the two ways: $-\\log\\delta+o(1) = (-\\log\\delta+M-\\gamma)+H+o(1)$, so $M+H=\\gamma$."
+   },
+   {
+    "type": "example",
+    "title": "Checking the three theorems at one million",
+    "body": "Compute the three Mertens quantities for $x=10^6$ and compare them with the predictions.",
+    "solution": "There are $78498$ primes up to $10^6$. Summing over them:\n\n1. $\\sum_{p\\le x}1/p = 2.887328\\ldots$, while $\\log\\log x+M = 2.887289\\ldots$. The difference is about $4\\times10^{-5}$, much smaller than the guaranteed $O(1/\\log x)$.\n\n2. $\\log x\\cdot\\prod_{p\\le x}(1-1/p) = 0.561438\\ldots$, while $e^{-\\gamma}=0.561459\\ldots$.\n\n3. $\\sum_{p\\le x}\\log p/p-\\log x = -1.3319\\ldots$. The first theorem only promises that this is bounded. It does tend to a limit, $-\\gamma-\\sum_p \\log p/(p(p-1)) = -1.33258\\ldots$, but showing that the limit exists is about as deep as the prime number theorem; Chebyshev's bounds are not enough.\n\nNote how well the second and third estimates already hold at this modest height."
+   },
+   {
+    "type": "example",
+    "title": "How many prime factors does a typical integer have?",
+    "body": "Let $\\omega(n)$ be the number of distinct primes dividing $n$. Show that the average of $\\omega(n)$ over $n\\le x$ is $\\log\\log x+M+O(1/\\log x)$.",
+    "solution": "Swap the order of summation. Each prime $p\\le x$ divides exactly $\\lfloor x/p\\rfloor$ integers $n\\le x$, so\n$$\\frac1x\\sum_{n\\le x}\\omega(n) = \\frac1x\\sum_{p\\le x}\\Big\\lfloor\\frac xp\\Big\\rfloor = \\sum_{p\\le x}\\frac1p-\\frac1x\\sum_{p\\le x}\\Big\\{\\frac xp\\Big\\}.$$\nThe last term lies between $0$ and $\\pi(x)/x$, which is $O(1/\\log x)$ by Chebyshev. The second theorem finishes the proof.\n\nAt $x=10^6$ the average is $2.8537\\ldots$, against $\\log\\log x+M=2.8873\\ldots$. A typical number near a million has only about three distinct prime factors, and this number grows extremely slowly. Hardy and Ramanujan showed that most $n$ have close to $\\log\\log n$ prime factors. That is the start of [[probabilistic-nt]]."
+   },
+   {
+    "type": "example",
+    "title": "An elementary lower bound",
+    "body": "Without using any of the theorems above, prove that for every $x\\ge2$\n$$\\sum_{p\\le x}\\frac1p > \\log\\log x-\\frac12 .$$",
+    "solution": "Expand each factor as a geometric series: $(1-1/p)^{-1}=\\sum_{k\\ge0}p^{-k}$. Multiplying these for $p\\le x$ gives a sum of $1/n$ over all $n$ whose prime factors are all at most $x$. This includes every $n\\le x$, so\n$$\\prod_{p\\le x}\\Big(1-\\frac1p\\Big)^{-1}\\ \\ge\\ \\sum_{n\\le x}\\frac1n\\ >\\ \\int_1^{\\lfloor x\\rfloor+1}\\frac{dt}{t}\\ >\\ \\log x .$$\nTake logarithms: $\\sum_{p\\le x}-\\log(1-1/p)>\\log\\log x$.\n\nNow we need an upper bound for $-\\log(1-u)$. Let $f(u)=u+u^2+\\log(1-u)$. Then $f(0)=0$ and $f'(u) = \\dfrac{u(1-2u)}{1-u}\\ge0$ on $[0,\\tfrac12]$, so $-\\log(1-u)\\le u+u^2$ there. With $u=1/p$:\n$$\\sum_{p\\le x}\\frac1p + \\sum_p\\frac1{p^2} > \\log\\log x .$$\nFinally, $\\sum_p 1/p^2\\le \\frac14+\\sum_{n\\ge3,\\ n \\text{ odd}}\\frac1{n^2} = \\frac14+\\frac{\\pi^2}8-1<0.484<\\frac12$. (The true value is $0.4522\\ldots$.)"
+   },
+   {
+    "type": "example",
+    "title": "Where the sieve heuristic breaks",
+    "body": "How many integers $n\\le N=10^6$ have no prime factor $\\le 1000$? Compare the answer with the heuristic $N\\prod_{p\\le1000}(1-1/p)$.",
+    "solution": "Since $1000=\\sqrt N$, an integer $n\\le N$ with no prime factor up to $1000$ is either $1$ or a prime in $(1000,N]$. The count is therefore exactly $1+\\pi(10^6)-\\pi(1000) = 1+78498-168 = 78331$.\n\nThe heuristic gives $10^6\\prod_{p\\le1000}(1-1/p) = 80965.3\\ldots$, about $3\\%$ too large. As $N\\to\\infty$ the error does not go away. By Mertens the heuristic is asymptotic to $e^{-\\gamma}N/\\log\\sqrt N = 2e^{-\\gamma}N/\\log N$, while the prime number theorem says the true count is asymptotic to $N/\\log N$. The ratio tends to $2e^{-\\gamma}=1.1229\\ldots$.\n\nThe reason is that the events \"$p\\mid n$\" for different primes are only approximately independent. The errors from many primes accumulate when $z$ is as large as $\\sqrt N$. The heuristic is asymptotically right only when $\\log z$ is small compared with $\\log N$. Controlling this error is the business of [[sieve-basics]]."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The constant in $\\sum 1/p$ is $M\\approx0.2615$, not $\\gamma$. Euler's constant enters only in the product, through the extra convergent sum $H$.\n- $\\prod_{p\\le z}(1-1/p)$ is the density of integers free of primes up to $z$ only when $z$ is small compared with $N$. At $z=\\sqrt N$ it overestimates by the factor $2e^{-\\gamma}$ (see the last example).\n- The first theorem gives $O(1)$, not $\\log x + C + o(1)$. The limit does exist, but proving that is about as deep as the prime number theorem.\n- $\\log$ is the natural logarithm throughout. With $\\log_{10}$, all the constants change.\n- Mertens' theorems do not imply $\\pi(x)\\sim x/\\log x$. Averaging with weight $1/p$ washes out exactly the information the prime number theorem needs."
+   },
+   {
+    "type": "connection",
+    "body": "Mertens' product $V(z)=\\prod_{p< z}(1-1/p)$ is the main term in every sieve, from Eratosthenes–Legendre through Brun and Selberg ([[sieve-basics]], [[selberg-sieve]]). Its size $e^{-\\gamma}/\\log z$ is why sieve upper bounds for twin primes and similar problems come out of order $x/\\log^2x$.\n\nThe second theorem is used repeatedly for sums like $\\sum_{y<p\\le x}1/p = \\log(\\log x/\\log y)+o(1)$. These sums are central in the study of [[primitive-sets]], where Erdős's sum $\\sum 1/(a\\log a)$ is compared with the corresponding sum over primes. They also drive the Hardy–Ramanujan and Erdős–Kac theorems in [[probabilistic-nt]]. The same partial-summation argument, run with the full [[pnt]] in place of Chebyshev's bound, gives sharper error terms."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\sum_{\\sqrt x<p\\le x}1/p\\to\\log 2$. Deduce that the number of $n\\le x$ having a prime factor greater than $\\sqrt x$ is asymptotic to $x\\log 2$. (Each such $n$ has only one such prime factor.)\n2. Show that $\\prod_{p\\le x}(1-1/p^2)$ converges to a positive limit, while $\\prod_{p\\le x}(1-1/p)\\to0$. Identify the first limit.\n3. Let $P=\\prod_{p\\le x}p$. Using the third theorem and Chebyshev's bound $\\theta(x)\\le Cx$, show that $P/\\varphi(P)\\ge c\\log\\log P$ for large $x$, for some constant $c>0$.\n4. In the proof of the first theorem, which of the two inequalities $\\sum_{m\\le N}\\Lambda(m)/m\\ge\\log N-C$ and $\\sum_{m\\le N}\\Lambda(m)/m\\le\\log N+C$ uses Chebyshev's bound, and which needs no information about primes at all?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Chapter 4"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers",
+    "where": "Chapter 22"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "10! = 2^8 3^4 5^2 7 and log 10! = sum_{m<=10} Lambda(m) floor(10/m)",
+    "python": "\nimport math, sympy\nassert sympy.factorint(math.factorial(10)) == {2:8,3:4,5:2,7:1}\ndef Lam(m):\n    f = sympy.factorint(m)\n    return math.log(list(f)[0]) if len(f)==1 else 0.0\ns = sum(Lam(m)*(10//m) for m in range(2,11))\nassert abs(s - math.log(math.factorial(10))) < 1e-9\nassert 10//2 + 10//4 + 10//8 == 8\n"
+   },
+   {
+    "claim": "n log n - n + 1 <= log n! <= n log n - n + 1 + log n for 1 <= n <= 3000",
+    "python": "\nimport math\nfor n in range(1,3001):\n    L = math.lgamma(n+1)\n    a = n*math.log(n)-n+1\n    assert a - 1e-9 <= L <= a + math.log(n) + 1e-9, n\n"
+   },
+   {
+    "claim": "At x=10^6: sum 1/p = 2.887328..., loglog x + M = 2.887289..., log x * prod(1-1/p) = 0.561438... vs e^-gamma = 0.561459..., sum log p/p - log x = -1.3319...; 78498 primes",
+    "python": "\ndef primes_upto(n):\n    s = bytearray([1])*(n+1); s[0]=s[1]=0\n    for i in range(2, int(n**0.5)+1):\n        if s[i]: s[i*i::i] = bytearray(len(range(i*i, n+1, i)))\n    return [i for i in range(n+1) if s[i]]\n\nimport math\nx = 10**6\nps = primes_upto(x)\nassert len(ps) == 78498\nM = 0.2614972128476428; g = 0.5772156649015329\ns1 = sum(1/p for p in ps)\nassert abs(s1 - 2.887328) < 1e-6\nassert abs(math.log(math.log(x)) + M - 2.887289) < 1e-6\npr = 1.0\nfor p in ps: pr *= 1-1/p\nassert abs(pr*math.log(x) - 0.561438) < 1e-6\nassert abs(math.exp(-g) - 0.561459) < 1e-6\ns2 = sum(math.log(p)/p for p in ps) - math.log(x)\nassert abs(s2 - (-1.3319)) < 1e-4\n"
+   },
+   {
+    "claim": "H = sum_p (-log(1-1/p) - 1/p) = 0.3157184..., M + H = gamma, and -gamma - sum log p/(p(p-1)) = -1.33258...",
+    "python": "\ndef primes_upto(n):\n    s = bytearray([1])*(n+1); s[0]=s[1]=0\n    for i in range(2, int(n**0.5)+1):\n        if s[i]: s[i*i::i] = bytearray(len(range(i*i, n+1, i)))\n    return [i for i in range(n+1) if s[i]]\n\nimport math\nps = primes_upto(2*10**6)\ng = 0.5772156649015329\nH = sum(-math.log1p(-1/p) - 1/p for p in ps)\nassert abs(H - 0.3157184) < 1e-6\nM = g - H\nassert abs(M - 0.2614972) < 1e-6\nE = -g - sum(math.log(p)/(p*(p-1)) for p in ps)\nassert abs(E - (-1.33258)) < 1e-5\n"
+   },
+   {
+    "claim": "Average of omega(n) for n <= 10^6 is 2.8537...",
+    "python": "\ndef primes_upto(n):\n    s = bytearray([1])*(n+1); s[0]=s[1]=0\n    for i in range(2, int(n**0.5)+1):\n        if s[i]: s[i*i::i] = bytearray(len(range(i*i, n+1, i)))\n    return [i for i in range(n+1) if s[i]]\n\nx = 10**6\nps = primes_upto(x)\navg = sum(x//p for p in ps)/x\nassert abs(avg - 2.8537) < 1e-4\n"
+   },
+   {
+    "claim": "sum_{p<=x} 1/p > loglog x - 1/2 for 2 <= x <= 10^5 (checked just before each prime and at 10^5); sum_p 1/p^2 = 0.4522... < 1/4 + pi^2/8 - 1 < 0.484; -log(1-u) <= u + u^2 on [0,1/2]",
+    "python": "\ndef primes_upto(n):\n    s = bytearray([1])*(n+1); s[0]=s[1]=0\n    for i in range(2, int(n**0.5)+1):\n        if s[i]: s[i*i::i] = bytearray(len(range(i*i, n+1, i)))\n    return [i for i in range(n+1) if s[i]]\n\nimport math\nps = primes_upto(10**5)\ns = 0.0\nfor i,p in enumerate(ps):\n    s += 1/p\n    nxt = ps[i+1] if i+1 < len(ps) else 10**5+1\n    # worst case for x in [p, nxt): x just below nxt\n    assert s > math.log(math.log(nxt)) - 0.5\nbig = primes_upto(10**6)\ns2 = sum(1/p**2 for p in big)\nassert abs(s2 - 0.4522) < 1e-3\nassert 0.25 + math.pi**2/8 - 1 < 0.484\nfor k in range(0,501):\n    u = k/1000\n    assert -math.log1p(-u) <= u + u*u + 1e-15\n"
+   },
+   {
+    "claim": "Integers <= 10^6 free of primes <= 1000: exactly 78331; heuristic 10^6 prod_{p<=1000}(1-1/p) = 80965.3; 2e^-gamma = 1.1229",
+    "python": "\ndef primes_upto(n):\n    s = bytearray([1])*(n+1); s[0]=s[1]=0\n    for i in range(2, int(n**0.5)+1):\n        if s[i]: s[i*i::i] = bytearray(len(range(i*i, n+1, i)))\n    return [i for i in range(n+1) if s[i]]\n\nimport math\nN = 10**6\nsmall = primes_upto(1000)\nassert len(small) == 168\nalive = bytearray([1])*(N+1); alive[0] = 0\nfor p in small:\n    alive[p::p] = bytearray(len(range(p, N+1, p)))\nassert sum(alive) == 78331 == 1 + 78498 - 168\npr = 1.0\nfor p in small: pr *= 1-1/p\nassert abs(N*pr - 80965.3) < 0.1\nassert abs(2*math.exp(-0.5772156649015329) - 1.1229) < 1e-4\n"
+   }
+  ]
+ },
+ {
+  "id": "pnt",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Primes thin out. There are $25$ below $100$, $168$ below $1000$ and $78498$ below a million. From tables of this kind Gauss and Legendre guessed, in the 1790s, that near $x$ about one integer in $\\log x$ is prime. The prime number theorem makes this precise: $\\pi(x)\\sim x/\\log x$.\n\nThe proof had to wait a century. In 1896 Hadamard and de la Vallée Poussin, working independently, proved it using Riemann's zeta function, and the decisive input was that $\\zeta(s)$ has no zeros on the line $\\operatorname{Re}s=1$. This lesson explains why that is the key point, proves it, and outlines the rest of the argument."
+   },
+   {
+    "type": "section",
+    "title": "Three equivalent forms",
+    "body": "The theorem can be stated with any of the counting functions from [[chebyshev]]:\n$$\\pi(x)\\sim\\frac{x}{\\log x}\\iff \\theta(x)\\sim x\\iff\\psi(x)\\sim x .$$\nHere $\\theta(x)=\\sum_{p\\le x}\\log p$ and $\\psi(x)=\\sum_{n\\le x}\\Lambda(n)$. The equivalences are elementary. $\\psi-\\theta$ only involves prime powers and is $O(\\sqrt x\\log x)$. Passing between $\\pi$ and $\\theta$ is partial summation with weight $\\log p$. Analysts prefer $\\psi$, because its Dirichlet series is exactly $-\\zeta'/\\zeta$.\n\nA better approximation than $x/\\log x$ is the logarithmic integral\n$$\\operatorname{li}(x) = \\int_2^x\\frac{dt}{\\log t} = \\frac{x}{\\log x}-\\frac{2}{\\log2}+\\int_2^x\\frac{dt}{\\log^2t}.$$\nThe last integral is $O(x/\\log^2x)$, so $\\operatorname{li}(x)\\sim x/\\log x$, and $\\pi(x)\\sim\\operatorname{li}(x)$ is the same theorem. A notational warning: many books write $\\operatorname{Li}(x)$ for this integral from $2$ and reserve $\\operatorname{li}(x)$ for the principal-value integral from $0$. The two differ by the constant $1.045\\ldots$, which is irrelevant here."
+   },
+   {
+    "type": "theorem",
+    "title": "The prime number theorem",
+    "body": "$$\\pi(x) \\sim \\operatorname{li}(x) = \\int_2^x \\frac{dt}{\\log t},\\qquad\\text{equivalently}\\qquad \\pi(x)\\sim\\frac{x}{\\log x},\\quad \\psi(x)\\sim x .$$"
+   },
+   {
+    "type": "section",
+    "title": "Why zeta knows about primes",
+    "body": "For $\\operatorname{Re}s>1$ the Euler product $\\zeta(s)=\\prod_p(1-p^{-s})^{-1}$ ([[zeta]]) can be differentiated logarithmically:\n$$-\\frac{\\zeta'(s)}{\\zeta(s)}=\\sum_p\\frac{\\log p\\;p^{-s}}{1-p^{-s}}=\\sum_{n\\ge1}\\frac{\\Lambda(n)}{n^s}.$$\nBy [[mellin]] (Perron's formula), $\\psi(x)$ can be recovered from this Dirichlet series as a contour integral, and its size is governed by the poles of $-\\zeta'/\\zeta$.\n\nThe pole of $\\zeta$ at $s=1$ gives $-\\zeta'/\\zeta$ a simple pole with residue $+1$, and this produces the main term $x$. A zero $\\rho$ of $\\zeta$ gives $-\\zeta'/\\zeta$ a pole with residue $-1$ (times the multiplicity), and this produces a term $-x^\\rho/\\rho$, of absolute value $x^{\\operatorname{Re}\\rho}/|\\rho|$. That is the content of the [[explicit-formula]].\n\nSo if $\\zeta(1+it)=0$ for some $t$, there would be a term of size comparable to $x$ that oscillates like $x^{it}$, and $\\psi(x)\\sim x$ would fail. Ruling out zeros on $\\operatorname{Re}s=1$ is the heart of the matter."
+   },
+   {
+    "type": "theorem",
+    "title": "Non-vanishing on the line Re s = 1",
+    "body": "For every real $t\\ne0$, $\\zeta(1+it)\\ne0$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof (the 3–4–1 argument)",
+    "body": "Let $s=\\sigma+it$ with $\\sigma>1$. Taking logarithms of the Euler product and real parts,\n$$\\log|\\zeta(\\sigma+it)| = \\sum_p\\sum_{k\\ge1}\\frac{\\cos(kt\\log p)}{k\\,p^{k\\sigma}}.$$\nFor every real $\\theta$ we have $3+4\\cos\\theta+\\cos2\\theta = 2(1+\\cos\\theta)^2\\ge0$. Apply this with $\\theta=kt\\log p$, multiply by the positive weight $1/(kp^{k\\sigma})$ and sum:\n$$3\\log|\\zeta(\\sigma)|+4\\log|\\zeta(\\sigma+it)|+\\log|\\zeta(\\sigma+2it)|\\ge0,\\quad\\text{i.e.}\\quad \\big|\\zeta(\\sigma)^3\\zeta(\\sigma+it)^4\\zeta(\\sigma+2it)\\big|\\ge1 .$$\nNow suppose $\\zeta(1+it_0)=0$ with $t_0\\ne0$, and let $\\sigma\\to1^+$. Then:\n- $\\zeta(\\sigma)\\le \\sigma/(\\sigma-1)$, so $\\zeta(\\sigma)^3=O((\\sigma-1)^{-3})$;\n- $\\zeta$ is holomorphic near $1+it_0$ and vanishes there, so $|\\zeta(\\sigma+it_0)|\\le C(\\sigma-1)$ and the fourth power is $O((\\sigma-1)^4)$;\n- $\\zeta$ is holomorphic at $1+2it_0$ (this is where $t_0\\ne0$ is used, since the only pole is at $s=1$), so $\\zeta(\\sigma+2it_0)$ stays bounded.\n\nThe product is therefore $O(\\sigma-1)\\to0$, contradicting the inequality. Hence $\\zeta(1+it_0)\\ne0$."
+   },
+   {
+    "type": "section",
+    "title": "From non-vanishing to the asymptotic",
+    "body": "Turning \"no zeros on $\\operatorname{Re}s=1$\" into \"$\\psi(x)\\sim x$\" requires a Tauberian theorem. The shortest route is due to D. J. Newman (1980), as streamlined by D. Zagier (1997). Let $\\Phi(s)=\\sum_p\\log p\\,p^{-s}$.\n\n1. $\\Phi(s)-\\frac1{s-1}$ extends holomorphically to a neighbourhood of the closed half-plane $\\operatorname{Re}s\\ge1$. Indeed $-\\zeta'/\\zeta(s)=\\Phi(s)+\\sum_p\\frac{\\log p}{p^s(p^s-1)}$. The last sum is holomorphic for $\\operatorname{Re}s>\\frac12$. And $-\\zeta'/\\zeta(s)-\\frac1{s-1}$ is holomorphic on $\\operatorname{Re}s\\ge1$, because the pole at $1$ is simple and, by the theorem, there are no zeros.\n\n2. Chebyshev's bound $\\theta(x)=O(x)$ makes $f(t)=\\theta(e^t)e^{-t}-1$ bounded on $t\\ge0$. For $\\operatorname{Re}z>0$ a change of variables gives\n$$\\int_0^\\infty f(t)e^{-zt}\\,dt=\\frac{\\Phi(z+1)}{z+1}-\\frac1z,$$\nand by step 1 the right side is holomorphic on $\\operatorname{Re}z\\ge0$.\n\n3. Newman's analytic theorem: if $f$ is bounded and locally integrable on $[0,\\infty)$ and its Laplace transform extends holomorphically to $\\operatorname{Re}z\\ge0$, then $\\int_0^\\infty f(t)\\,dt$ converges. (The proof is about a page of contour integration with [[residues]]-type estimates; we omit it.) Hence $\\int_1^\\infty\\frac{\\theta(x)-x}{x^2}\\,dx$ converges.\n\n4. Convergence of that integral forces $\\theta(x)\\sim x$. Suppose $\\theta(x)\\ge\\lambda x$ for some fixed $\\lambda>1$ and arbitrarily large $x$. Since $\\theta$ is nondecreasing,\n$$\\int_x^{\\lambda x}\\frac{\\theta(t)-t}{t^2}\\,dt\\ \\ge\\ \\int_x^{\\lambda x}\\frac{\\lambda x-t}{t^2}\\,dt=\\int_1^\\lambda\\frac{\\lambda-u}{u^2}\\,du>0,$$\na fixed positive amount over intervals going off to infinity. That contradicts the Cauchy criterion for the convergent integral. The case $\\theta(x)\\le\\lambda x$ with $\\lambda<1$ is symmetric, using $[\\lambda x,x]$. So $\\theta(x)/x\\to1$."
+   },
+   {
+    "type": "section",
+    "title": "How good is the approximation?",
+    "body": "The theorem says the ratio tends to $1$. The size of $\\pi(x)-\\operatorname{li}(x)$ is a much deeper question, and it is controlled by the zeros of $\\zeta$:\n\n- de la Vallée Poussin (1899) proved $\\pi(x)=\\operatorname{li}(x)+O\\big(x e^{-c\\sqrt{\\log x}}\\big)$ from a zero-free region ([[zero-free-region]]);\n- von Koch (1901) showed that the Riemann hypothesis is equivalent to $\\pi(x)=\\operatorname{li}(x)+O(\\sqrt x\\log x)$ ([[rh]]);\n- Littlewood (1914) proved that $\\pi(x)-\\operatorname{li}(x)$ changes sign infinitely often, although no sign change has ever been observed numerically.\n\nIn 1948 Selberg and Erdős found proofs that avoid complex analysis entirely. These \"elementary\" proofs are longer and give weaker error terms."
+   },
+   {
+    "type": "example",
+    "title": "The numbers",
+    "body": "Compare $\\pi(x)$ with $x/\\log x$ and $\\operatorname{li}(x)$ for $x=10^6,10^7,10^8,10^9$.",
+    "solution": "With $\\operatorname{li}(x)=\\int_2^x dt/\\log t$:\n\n- $x=10^6$: $\\pi=78498$, $x/\\log x\\approx72382$, $\\operatorname{li}\\approx78626.5$; ratios $\\pi/(x/\\log x)=1.0845$, $\\pi/\\operatorname{li}=0.99837$.\n- $x=10^7$: $\\pi=664579$, $x/\\log x\\approx620421$, $\\operatorname{li}\\approx664917.4$; ratios $1.0712$ and $0.99949$.\n- $x=10^8$: $\\pi=5761455$, $x/\\log x\\approx5428681$, $\\operatorname{li}\\approx5762208.3$; ratios $1.0613$ and $0.99987$.\n- $x=10^9$: $\\pi=50847534$, $x/\\log x\\approx48254942$, $\\operatorname{li}\\approx50849233.9$; ratios $1.0537$ and $0.99997$.\n\nTwo lessons. First, $x/\\log x$ approaches $\\pi(x)$ very slowly from below. Since $\\pi(x)\\approx\\operatorname{li}(x)$ and, by integration by parts, $\\operatorname{li}(x)/(x/\\log x)=1+1/\\log x+\\cdots$, the ratio exceeds $1$ by roughly $1/\\log x$, and $1/\\log 10^9\\approx0.048$. Second, $\\operatorname{li}(x)$ is far better: the absolute error $\\operatorname{li}(x)-\\pi(x)$ is only about $1700$ at $10^9$, smaller than $\\sqrt x\\approx31623$. In fact $\\pi(x)<\\operatorname{li}(x)$ for every $x$ from $8$ to $10^6$, and much further. Littlewood's theorem shows this pattern must eventually break."
+   },
+   {
+    "type": "example",
+    "title": "The n-th prime",
+    "body": "Show that the prime number theorem is equivalent to $p_n\\sim n\\log n$, where $p_n$ is the $n$-th prime. How accurate is this at $n=10^6$?",
+    "solution": "Assume $\\pi(x)\\sim x/\\log x$. Since $\\pi(p_n)=n$, we get $n\\sim p_n/\\log p_n$. Taking logarithms, $\\log n=\\log p_n-\\log\\log p_n+o(1)$, so $\\log n\\sim\\log p_n$. Hence $p_n\\sim n\\log p_n\\sim n\\log n$.\n\nConversely, assume $p_n\\sim n\\log n$. Then $p_{n+1}/p_n\\to1$. Given $x$, let $n=\\pi(x)$, so $p_n\\le x<p_{n+1}$ and $x\\sim p_n\\sim n\\log n$. Then $\\log x\\sim\\log n$, and $n\\sim x/\\log n\\sim x/\\log x$.\n\nNumerically $p_{10^6}=15485863$, while $n\\log n\\approx13815511$, a ratio of $1.121$. A sharper version of the same argument gives $p_n=n(\\log n+\\log\\log n-1+o(1))$. This yields $15441302$, within $0.3\\%$."
+   },
+   {
+    "type": "example",
+    "title": "Ratios of primes are dense",
+    "body": "Using the prime number theorem, show that (a) for every $\\varepsilon>0$ the interval $(x,(1+\\varepsilon)x]$ contains a prime for all large $x$; (b) the set $\\{p/q: p,q\\text{ prime}\\}$ is dense in $(0,\\infty)$.",
+    "solution": "(a) We have $\\pi((1+\\varepsilon)x)-\\pi(x) = \\frac{(1+\\varepsilon)x}{\\log((1+\\varepsilon)x)}-\\frac{x}{\\log x}+o\\Big(\\frac{x}{\\log x}\\Big)$. Since $\\log((1+\\varepsilon)x)\\sim\\log x$, this equals $\\frac{\\varepsilon x}{\\log x}(1+o(1))$, which tends to infinity. (Chebyshev's bounds alone give this only for $\\varepsilon$ large, such as Bertrand's $\\varepsilon=1$.)\n\n(b) Let $0<a<b$. Choose $\\varepsilon>0$ with $(1+\\varepsilon)a<b$. By (a) there is $X$ such that every $x>X$ has a prime in $(x,(1+\\varepsilon)x]$. Take any prime $q>X/a$ and apply this with $x=aq$. We get a prime $p$ with $aq<p\\le(1+\\varepsilon)aq<bq$, so $a<p/q<b$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $\\pi(x)\\sim x/\\log x$ is a statement about the ratio. The difference $\\pi(x)-x/\\log x$ is about $x/\\log^2x$ and tends to infinity.\n- The theorem says nothing about short intervals such as $(x,x+\\sqrt x]$, or about gaps between consecutive primes beyond their average size $\\log p$. See [[prime-patterns]].\n- In the proof of $\\zeta(1+it)\\ne0$ the condition $t\\ne0$ is essential. At $t=0$ the factor $\\zeta(\\sigma+2it)$ is the pole itself.\n- The inequality $|\\zeta^3(\\sigma)\\zeta^4(\\sigma+it)\\zeta(\\sigma+2it)|\\ge1$ holds only for $\\sigma>1$, where the Euler product converges.\n- Check whether a book's $\\operatorname{li}$ starts at $0$ or at $2$ before comparing numbers."
+   },
+   {
+    "type": "connection",
+    "body": "Quantifying the key step, so that there are no zeros not just on but near $\\operatorname{Re}s=1$, gives error terms. This is the subject of [[zero-free-region]], and the bridge between zeros and primes is the [[explicit-formula]]. Replacing $\\zeta$ by Dirichlet $L$-functions gives the prime number theorem for arithmetic progressions ([[l-functions]], [[siegel-walfisz]]). The heuristic \"a random $n$ near $x$ is prime with probability $1/\\log x$\" underlies Cramér's model and the conjectures in [[prime-patterns]] and [[probabilistic-nt]]. The best possible error term is the [[rh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Integrate by parts twice to show $\\operatorname{li}(x)=\\frac{x}{\\log x}+\\frac{x}{\\log^2x}+O\\Big(\\frac{x}{\\log^3x}\\Big)$.\n2. Show that the prime number theorem implies $p_{n+1}/p_n\\to1$, and that the number of primes in $(x,2x]$ is asymptotic to $x/\\log x$.\n3. (Chebyshev) Suppose only that $\\lim_{x\\to\\infty}\\pi(x)\\log x/x=c$ exists. Using Mertens' estimate $\\sum_{p\\le x}1/p=\\log\\log x+O(1)$ from [[mertens]], show that $c=1$.\n4. Show that $\\psi(x)-\\theta(x)=O(\\sqrt x\\log x)$, and deduce $\\theta(x)\\sim x\\iff\\psi(x)\\sim x$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Chapter 13"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapter 18"
+   },
+   {
+    "ref": "D. J. Newman, Simple analytic proof of the prime number theorem, American Mathematical Monthly 87 (1980)"
+   },
+   {
+    "ref": "D. Zagier, Newman's short proof of the prime number theorem, American Mathematical Monthly 104 (1997)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "pi(100)=25, pi(1000)=168, pi(10^6)=78498, pi(10^7)=664579, pi(10^8)=5761455, pi(10^9)=50847534",
+    "python": "\nfrom sympy import primepi\nfor x,v in [(100,25),(1000,168),(10**6,78498),(10**7,664579),(10**8,5761455),(10**9,50847534)]:\n    assert int(primepi(x)) == v\n"
+   },
+   {
+    "claim": "x/log x and li(x)=int_2^x values and ratios in the table",
+    "python": "\nimport math, mpmath as mp\ndata = {6:(78498,72382,78626.5,1.0845,0.99837), 7:(664579,620421,664917.4,1.0712,0.99949),\n        8:(5761455,5428681,5762208.3,1.0613,0.99987), 9:(50847534,48254942,50849233.9,1.0537,0.99997)}\nfor k,(pi,xl,li,r1,r2) in data.items():\n    x = 10**k\n    L = float(mp.li(x, offset=True))\n    assert abs(x/math.log(x) - xl) < 1\n    assert abs(L - li) < 0.06\n    assert abs(pi/(x/math.log(x)) - r1) < 6e-5\n    assert abs(pi/L - r2) < 6e-6\nassert abs(float(mp.li(10**9, offset=True)) - 50847534 - 1700) < 1\nassert math.isqrt(10**9) == 31622\nassert abs(float(mp.li(2)) - 1.045) < 1e-3\n"
+   },
+   {
+    "claim": "li(x) = x/log x - 2/log 2 + int_2^x dt/log^2 t (checked at x=1000)",
+    "python": "\nimport mpmath as mp\nx = mp.mpf(1000)\nlhs = mp.li(x, offset=True)\nrhs = x/mp.log(x) - 2/mp.log(2) + mp.quad(lambda t: 1/mp.log(t)**2, [2, x])\nassert abs(lhs - rhs) < 1e-10\n"
+   },
+   {
+    "claim": "3 + 4cos t + cos 2t = 2(1+cos t)^2, and |zeta(s)^3 zeta(s+it)^4 zeta(s+2it)| >= 1 at sample points with s>1",
+    "python": "\nimport sympy as sp, mpmath as mp\nt = sp.symbols('t', real=True)\nassert sp.simplify(3 + 4*sp.cos(t) + sp.cos(2*t) - 2*(1+sp.cos(t))**2) == 0\nfor s in [1.001, 1.01, 1.1, 1.5]:\n    for T in [0.5, 1, 6.0, 14.134725, 21.022, 100]:\n        v = abs(mp.zeta(s)**3 * mp.zeta(mp.mpc(s,T))**4 * mp.zeta(mp.mpc(s,2*T)))\n        assert v >= 1, (s,T,v)\n"
+   },
+   {
+    "claim": "p_{10^6} = 15485863; n log n = 13815511 (ratio 1.121); n(log n + loglog n - 1) = 15441302 (within 0.3%)",
+    "python": "\nimport math\nfrom sympy import prime\nn = 10**6\np = int(prime(n)); assert p == 15485863\na = n*math.log(n); assert abs(a - 13815511) < 1\nassert abs(p/a - 1.121) < 1e-3\nb = n*(math.log(n)+math.log(math.log(n))-1); assert abs(b - 15441302) < 1\nassert abs(p-b)/p < 0.003\n"
+   },
+   {
+    "claim": "pi(x) < li(x) (integral from 2) for all real 8 <= x <= 10^6",
+    "python": "\nimport mpmath as mp\nfrom sympy import primerange\n# pi is constant between primes and li increases, so it suffices to check at x=8 and at each prime p >= 11\nassert 4 < mp.li(8, offset=True)\nfor k,p in enumerate(primerange(2, 10**6+1), 1):\n    if p >= 11:\n        assert k < mp.li(p, offset=True), p\n"
+   },
+   {
+    "claim": "Laplace transform identity: int_1^inf theta(x) x^{-s-1} dx = Phi(s)/s, tested with a truncated prime set: for f(x)=sum_{p<=P, p<=x} log p, int_1^inf f(x) x^{-s-1} dx = sum_{p<=P} log p p^{-s}/s",
+    "python": "\nimport mpmath as mp\nps = [2,3,5,7,11,13]\ns = mp.mpf(2.5)\nlhs = mp.mpf(0)\nfor i,p in enumerate(ps):\n    val = sum(mp.log(q) for q in ps[:i+1])\n    b = ps[i+1] if i+1 < len(ps) else mp.inf\n    lhs += val*mp.quad(lambda x: x**(-s-1), [p, b])\nrhs = sum(mp.log(p)*p**(-s) for p in ps)/s\nassert abs(lhs - rhs) < 1e-12\n"
+   }
+  ]
+ },
+ {
+  "id": "nontrivial-zeros",
+  "minutes": 25,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "In 1859 Riemann showed that the primes are governed by the zeros of $\\zeta(s)$. The zeros that matter are not the easy ones at $-2,-4,-6,\\dots$ but the infinitely many zeros in the strip $0<\\operatorname{Re}s<1$. The first of them is $\\tfrac12+14.134725\\ldots\\,i$.\n\nNobody can say exactly where these zeros are; that is the Riemann hypothesis. But we can count them with remarkable precision. The number with imaginary part between $0$ and $T$ is about $\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e}$. This lesson proves that formula. It also explains how zeros on the critical line are detected, and records Hardy's theorem that there are infinitely many of them."
+   },
+   {
+    "type": "section",
+    "title": "Where the zeros can be",
+    "body": "Combine three facts.\n\n1. For $\\operatorname{Re}s>1$ the Euler product converges absolutely and has no zero factors, so $\\zeta(s)\\ne0$.\n\n2. By [[functional-equation]] the completed function $\\xi(s)=\\tfrac12s(s-1)\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ is entire and satisfies $\\xi(s)=\\xi(1-s)$. If $\\operatorname{Re}s<0$, then $\\xi(s)=\\xi(1-s)\\ne0$, so any zero of $\\zeta$ there must be cancelled by a pole of $\\Gamma(s/2)$. These are the trivial zeros $s=-2,-4,\\dots$.\n\n3. $\\zeta(1+it)\\ne0$ (proved in [[pnt]]), and by the functional equation also $\\zeta(it)\\ne0$ for $t\\ne0$.\n\nSo every other zero, a nontrivial zero $\\rho=\\beta+i\\gamma$, lies in the open critical strip $0<\\beta<1$. These are exactly the zeros of $\\xi$. Since $\\zeta$ is real on the real axis, $\\zeta(\\bar s)=\\overline{\\zeta(s)}$, so $\\bar\\rho$ is also a zero. The functional equation adds $1-\\rho$ and $1-\\bar\\rho$. The zeros are therefore symmetric about the real axis and about the critical line $\\operatorname{Re}s=\\tfrac12$. A zero off the line would come with a mirror partner.\n\nThere are no zeros on the real segment $(0,1)$. There $(1-2^{1-\\sigma})\\zeta(\\sigma)=1-2^{-\\sigma}+3^{-\\sigma}-\\cdots>0$, an alternating series with decreasing terms, while $1-2^{1-\\sigma}<0$. So $\\zeta(\\sigma)<0$."
+   },
+   {
+    "type": "definition",
+    "title": "The counting function N(T)",
+    "body": "For $T>0$,\n$$N(T)=\\#\\{\\rho=\\beta+i\\gamma:\\ \\zeta(\\rho)=0,\\ 0<\\beta<1,\\ 0<\\gamma\\le T\\},$$\ncounted with multiplicity. It counts the nontrivial zeros in the upper half of the strip up to height $T$. By symmetry, the number with $|\\gamma|\\le T$ is $2N(T)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Riemann–von Mangoldt formula",
+    "body": "For $T\\ge 3$,\n$$N(T)=\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi}-\\frac{T}{2\\pi}+\\frac78+S(T)+O\\Big(\\frac1T\\Big),\\qquad S(T)=O(\\log T).$$\nHere $S(T)=\\frac1\\pi\\arg\\zeta(\\tfrac12+iT)$, with the argument defined by continuous variation along the segments from $2$ to $2+iT$ to $\\tfrac12+iT$, starting from $\\arg\\zeta(2)=0$. If $T$ is the ordinate of a zero, take the average of the left and right limits. Since $\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi}-\\frac{T}{2\\pi}=\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e}$, this gives\n$$N(T) = \\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e} + \\frac78 + O(\\log T).$$\nRiemann stated the main term in 1859; von Mangoldt proved it."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of the main term",
+    "body": "Suppose $T$ is not the ordinate of a zero. We count zeros of the entire function $\\xi$ with the argument principle ([[residues]]). Write $\\xi(s)=(s-1)\\pi^{-s/2}\\Gamma(\\tfrac s2+1)\\zeta(s)$, using $\\tfrac s2\\Gamma(\\tfrac s2)=\\Gamma(\\tfrac s2+1)$.\n\nLet $R$ be the rectangle with vertices $2,\\ 2+iT,\\ -1+iT,\\ -1$. Inside $R$ the zeros of $\\xi$ are exactly the nontrivial zeros with $0<\\gamma<T$, since $\\xi$ has no zeros on the real segment. So $2\\pi N(T)=\\Delta_{\\partial R}\\arg\\xi$.\n\nOn the bottom edge $\\xi$ is real and nonzero, so $\\arg\\xi$ does not change. The reflection $s\\mapsto1-\\bar s$ maps the right half of the boundary, the path $L$ from $2$ to $2+iT$ to $\\tfrac12+iT$, onto the left half. Since $\\xi(1-\\bar s)=\\overline{\\xi(s)}$, the left half contributes the same change of argument as $L$. Therefore\n$$\\pi N(T)=\\Delta_L\\arg\\xi(s).$$\nNow add up the four factors along $L$.\n\n- $s-1$ runs from $1$ to $-\\tfrac12+iT$, so its argument changes by $\\tfrac\\pi2+\\arctan\\frac1{2T}=\\tfrac\\pi2+O(1/T)$.\n- $\\pi^{-s/2}=e^{-\\frac s2\\log\\pi}$ has argument $-\\frac t2\\log\\pi$, which changes by $-\\frac T2\\log\\pi$.\n- $\\Gamma(\\tfrac s2+1)$ is real and positive at $s=2$, so its argument change is $\\operatorname{Im}\\log\\Gamma(\\tfrac54+\\tfrac{iT}2)$. Stirling's formula $\\log\\Gamma(z)=(z-\\tfrac12)\\log z-z+\\tfrac12\\log2\\pi+O(1/|z|)$ ([[gamma]]) gives $\\frac T2\\log\\frac T2-\\frac T2+\\frac{3\\pi}8+O(1/T)$.\n- $\\zeta$ contributes $\\pi S(T)$, by definition.\n\nAdding: $\\pi N(T)=\\frac T2\\log\\frac{T}{2\\pi}-\\frac T2+\\frac{7\\pi}8+\\pi S(T)+O(1/T)$. Divide by $\\pi$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof that S(T) = O(log T)",
+    "body": "On the vertical segment from $2$ to $2+iT$, $\\operatorname{Re}\\zeta(2+it)\\ge1-\\sum_{n\\ge2}n^{-2}=2-\\pi^2/6>0$, so the argument stays in $(-\\pi/2,\\pi/2)$.\n\nOn the horizontal segment from $2+iT$ to $\\tfrac12+iT$, between consecutive zeros of $\\operatorname{Re}\\zeta$ the argument changes by at most $\\pi$. So it suffices to show that $\\sigma\\mapsto\\operatorname{Re}\\zeta(\\sigma+iT)$ has $O(\\log T)$ zeros in $[\\tfrac12,2]$. Put $f(z)=\\tfrac12\\big(\\zeta(z+iT)+\\zeta(z-iT)\\big)$, which is holomorphic for $|z-2|\\le\\tfrac74$ when $T\\ge3$. For real $z=\\sigma$ we have $f(\\sigma)=\\operatorname{Re}\\zeta(\\sigma+iT)$. Also $|f(2)|\\ge2-\\pi^2/6$.\n\nFrom $\\zeta(s)=\\frac{s}{s-1}-s\\int_1^\\infty\\{u\\}u^{-s-1}\\,du$ one gets $|\\zeta(s)|\\le C|t|$ for $\\operatorname{Re}s\\ge\\tfrac14$, $|t|\\ge1$, so $|f|\\le C(T+2)$ on the disc. Jensen's formula bounds the number of zeros of $f$ in $|z-2|\\le\\tfrac32$, a disc containing $[\\tfrac12,2]$, by\n$$\\frac{\\log\\big(C(T+2)/(2-\\pi^2/6)\\big)}{\\log(7/6)}=O(\\log T).$$"
+   },
+   {
+    "type": "section",
+    "title": "Detecting zeros on the critical line",
+    "body": "Counting zeros is one thing; showing that they lie on $\\operatorname{Re}s=\\tfrac12$ is another. The tool is a real-valued function. Let $\\vartheta(t)$ be the continuous argument of $\\pi^{-it/2}\\Gamma(\\tfrac14+\\tfrac{it}2)$ with $\\vartheta(0)=0$, and define Hardy's function\n$$Z(t)=e^{i\\vartheta(t)}\\zeta(\\tfrac12+it).$$\nIt is real for real $t$. To see why, note that $F(s)=\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ satisfies $F(s)=F(1-s)$, and on the critical line $1-s=\\bar s$. So $F(\\tfrac12+it)=\\overline{F(\\tfrac12+it)}$ is real, and $Z(t)$ is $F(\\tfrac12+it)$ divided by the positive number $\\pi^{-1/4}|\\Gamma(\\tfrac14+\\tfrac{it}2)|$. Also $|Z(t)|=|\\zeta(\\tfrac12+it)|$.\n\nSo every sign change of $Z$ is a zero of $\\zeta$ exactly on the critical line, and sign changes can be certified by finite computation. If the number of sign changes up to $T$ equals the value of $N(T)$ obtained from the formula above, all zeros up to height $T$ are on the line and simple. Turing's method makes this rigorous. Computations of this kind have verified the Riemann hypothesis up to very large heights."
+   },
+   {
+    "type": "theorem",
+    "title": "Hardy's theorem (1914)",
+    "body": "Infinitely many nontrivial zeros of $\\zeta$ lie on the critical line $\\operatorname{Re}s=\\tfrac12$."
+   },
+   {
+    "type": "section",
+    "title": "Beyond Hardy",
+    "body": "We omit the proof of Hardy's theorem. A standard proof compares $\\int_T^{2T}Z(t)\\,dt$ with $\\int_T^{2T}|Z(t)|\\,dt$. If $Z$ had constant sign for all large $t$, the two would agree up to sign, but their asymptotic sizes are different.\n\nLater results give positive proportions of all zeros. Selberg (1942) showed that a positive proportion of zeros lie on the line, Levinson (1974) that more than one third do, and Conrey (1989) that more than two fifths do. The Riemann hypothesis asserts that all of them do."
+   },
+   {
+    "type": "example",
+    "title": "Testing the formula",
+    "body": "Compare $N(T)$ with the main term $\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e}+\\frac78$ for $T=50,100,1000$.",
+    "solution": "The ordinates of the first zeros are $14.1347,\\ 21.0220,\\ 25.0109,\\dots$. Counting them gives $N(50)=10$, $N(100)=29$, $N(1000)=649$.\n\nThe main term gives $9.42$ at $T=50$, $29.002$ at $T=100$ and $648.62$ at $T=1000$. The discrepancy is exactly $S(T)$ (up to $O(1/T)$). Here it is small, below $1$ in absolute value, even though the theorem only guarantees $O(\\log T)$. This is typical: $S(T)$ grows extremely slowly and is small on average."
+   },
+   {
+    "type": "example",
+    "title": "Average spacing",
+    "body": "How far apart are consecutive zeros near height $T$? Test the prediction on the zeros with $900<\\gamma\\le1000$.",
+    "solution": "Differentiate the main term: $\\frac{d}{dT}\\Big(\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e}\\Big)=\\frac1{2\\pi}\\log\\frac{T}{2\\pi}$. So near height $T$ there are about $\\frac1{2\\pi}\\log\\frac T{2\\pi}$ zeros per unit length, and the mean gap is $\\frac{2\\pi}{\\log(T/2\\pi)}$. The zeros get denser, but only logarithmically.\n\nBetween $900$ and $1000$ the main term predicts $79.87$ zeros; in fact $N(1000)-N(900)=649-569=80$. The mean gap there is about $1.25$. Rescaling the gaps by this mean spacing is the starting point of [[pair-correlation]]."
+   },
+   {
+    "type": "example",
+    "title": "Finding the first zero",
+    "body": "Show numerically that $\\zeta$ has a zero on the critical line with $14<\\gamma<14.3$, and explain why it is the lowest nontrivial zero.",
+    "solution": "Numerically $Z(14)\\approx-0.1056$ and $Z(14.3)\\approx+0.1328$. Since $Z$ is real and continuous, it vanishes in between, at $14.134725\\ldots$. That gives a zero $\\tfrac12+14.1347\\ldots i$ exactly on the line.\n\nThat it is the lowest one does not follow from sign changes alone, since a zero off the line would not show up as a sign change of $Z$. One computes $N(T)$ exactly for some $T$ between $14.14$ and $21$ by the argument principle (numerically, $\\Delta\\arg\\xi$ around the rectangle is $2\\pi$). Then $N=1$ there, and the zero already found is the only one. Equivalently, $N(14)=0$."
+   },
+   {
+    "type": "example",
+    "title": "How large is the sum of 1/|rho|?",
+    "body": "Show that $\\sum_{0<\\gamma\\le T}\\frac1\\gamma=\\frac1{4\\pi}\\log^2T+O(\\log T)$. Deduce that $\\sum_\\rho 1/|\\rho|$ diverges, while $\\sum_\\rho1/|\\rho|^{1+\\varepsilon}$ converges for every $\\varepsilon>0$.",
+    "solution": "Write the sum as a Stieltjes integral and integrate by parts. Since $N(t)=0$ for $t<14$,\n$$\\sum_{0<\\gamma\\le T}\\frac1\\gamma=\\int_{1}^{T}\\frac{dN(t)}{t}=\\frac{N(T)}T+\\int_1^T\\frac{N(t)}{t^2}\\,dt .$$\nThe first term is $O(\\log T)$. In the integral insert $N(t)=\\frac{t}{2\\pi}\\big(\\log\\frac t{2\\pi}-1\\big)+O(\\log t)$:\n$$\\int_1^T\\frac{\\log t-\\log2\\pi-1}{2\\pi t}\\,dt+O\\Big(\\int_1^T\\frac{\\log t}{t^2}dt\\Big)=\\frac{\\log^2T}{4\\pi}+O(\\log T).$$\nSince $|\\rho|\\ge\\gamma$ and $|\\rho|\\le\\gamma+1$, the sum of $1/|\\rho|$ over zeros up to height $T$ is also $\\frac{1}{4\\pi}\\log^2T+O(\\log T)$, which is unbounded. The same integration by parts with $t^{-1-\\varepsilon}$ gives $\\int^\\infty t^{-2-\\varepsilon}\\cdot t\\log t\\,dt<\\infty$, so $\\sum1/|\\rho|^{1+\\varepsilon}$ converges. This is why the sum over zeros in the [[explicit-formula]] converges only conditionally."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $N(T)$ counts only zeros with $\\gamma>0$, and counts them with multiplicity. All zeros computed so far are simple, but that is not proved.\n- The $\\frac78$ is meaningful only together with $S(T)$. Since $S(T)$ is only known to be $O(\\log T)$, the formula as usually quoted, with error $O(\\log T)$, cannot see the constant. Littlewood proved $\\int_0^TS(t)\\,dt=O(\\log T)$, so on average the constant is visible.\n- Trivial zeros are not counted, and none of them lies in the critical strip.\n- Sign changes of $Z(t)$ find zeros on the line, but cannot by themselves rule out zeros off the line. For that one compares with $N(T)$.\n- $\\log$ is natural, and the main term is $\\frac{T}{2\\pi}\\log\\frac{T}{2\\pi e}$, not $\\frac{T}{2\\pi}\\log T$. The two differ by about $\\frac{T}{2\\pi}\\log 2\\pi e$, a linear amount."
+   },
+   {
+    "type": "connection",
+    "body": "Each zero contributes a term $-x^\\rho/\\rho$ to $\\psi(x)$ in the [[explicit-formula]], and $N(T)$ tells us how many terms there are up to height $T$. Bounds like $\\sum_{|\\gamma|\\le T}1/|\\rho|\\ll\\log^2T$ come straight from it. Normalising the spacing by $\\frac{1}{2\\pi}\\log\\frac{T}{2\\pi}$ leads to Montgomery's [[pair-correlation]] conjecture and the link with random matrices. Counting zeros with $\\beta>\\sigma$, rather than all zeros, is the subject of [[zero-density]] estimates. The conjecture that all of them have $\\beta=\\tfrac12$ is the [[rh]]. Under it, Littlewood improved the bound for $S(T)$ to $O(\\log T/\\log\\log T)$. The growth of $\\zeta$ on the line, which controls $S(T)$, is the topic of [[lindelof]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $N(T+1)-N(T)=O(\\log T)$: there are only logarithmically many zeros in any window of height $1$.\n2. Prove that zeros off the critical line come in groups of four, $\\rho,\\bar\\rho,1-\\rho,1-\\bar\\rho$, and that zeros on the line come in pairs.\n3. Using a computer, evaluate $Z(t)$ on a grid in $[14,40]$, locate its sign changes, and compare the count with $N(40)$ from the formula.\n4. Show that $\\sum_\\rho\\frac1{|\\rho|^2}<\\infty$ and compute the order of magnitude of $\\sum_{\\gamma>T}\\frac1{\\gamma^2}$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function (2nd ed., revised by Heath-Brown)",
+    "where": "Chapters 9 and 10"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapter 15"
+   },
+   {
+    "ref": "Edwards, Riemann's Zeta Function"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "First zero is 1/2 + 14.134725...i; next ordinates 21.0220, 25.0109",
+    "python": "\nimport mpmath as mp\nz = mp.zetazero(1)\nassert abs(z.real - 0.5) < 1e-12 and abs(z.imag - 14.134725141734693) < 1e-9\nassert abs(mp.zetazero(2).imag - 21.0220) < 1e-4\nassert abs(mp.zetazero(3).imag - 25.0109) < 1e-4\n"
+   },
+   {
+    "claim": "N(50)=10, N(100)=29, N(900)=569, N(1000)=649; main term 9.42, 29.002, 648.62; difference 900..1000 predicted 79.87; mean gap at 950 about 1.25",
+    "python": "\nimport mpmath as mp\nmain = lambda T: T/(2*mp.pi)*mp.log(T/(2*mp.pi*mp.e)) + mp.mpf(7)/8\nassert mp.nzeros(50) == 10 and mp.nzeros(100) == 29\nassert mp.nzeros(900) == 569 and mp.nzeros(1000) == 649\nassert abs(main(50) - 9.42) < 0.005\nassert abs(main(100) - 29.002) < 0.001\nassert abs(main(1000) - 648.62) < 0.005\nassert abs(main(1000) - main(900) - 79.87) < 0.005\nassert abs(2*mp.pi/mp.log(950/(2*mp.pi)) - 1.25) < 0.01\nfor T in [50, 100, 1000]:\n    assert abs(mp.nzeros(T) - main(T)) < 1\n"
+   },
+   {
+    "claim": "T/(2pi) log(T/(2pi e)) = T/(2pi) log(T/(2pi)) - T/(2pi), and its derivative is log(T/2pi)/(2pi)",
+    "python": "\nimport sympy as sp\nT = sp.symbols('T', positive=True)\na = T/(2*sp.pi)*sp.log(T/(2*sp.pi*sp.E))\nb = T/(2*sp.pi)*sp.log(T/(2*sp.pi)) - T/(2*sp.pi)\nassert sp.simplify(sp.expand_log(a - b, force=True)) == 0\nassert sp.simplify(sp.expand_log(sp.diff(a, T) - sp.log(T/(2*sp.pi))/(2*sp.pi), force=True)) == 0\n"
+   },
+   {
+    "claim": "Im log Gamma(5/4 + iT/2) = (T/2)log(T/2) - T/2 + 3pi/8 + O(1/T); arg change of s-1 is pi/2 + arctan(1/(2T)); total gives 7/8",
+    "python": "\nimport mpmath as mp\nfor T in [100, 1000, 10**4]:\n    T = mp.mpf(T)\n    lhs = mp.im(mp.loggamma(mp.mpf(5)/4 + 1j*T/2))\n    rhs = T/2*mp.log(T/2) - T/2 + 3*mp.pi/8\n    assert abs(lhs - rhs) < 2/T\n    a = mp.arg(mp.mpc(-0.5, T))\n    assert abs(a - (mp.pi/2 + mp.atan(1/(2*T)))) < 1e-12\nassert mp.mpf(1)/2 + mp.mpf(3)/8 == mp.mpf(7)/8\n"
+   },
+   {
+    "claim": "Z(14) ~ -0.1056 < 0 < Z(14.3) ~ 0.1328; Z is real and |Z(t)| = |zeta(1/2+it)|",
+    "python": "\nimport mpmath as mp\na, b = mp.siegelz(14), mp.siegelz(14.3)\nassert abs(a + 0.1056) < 1e-3 and abs(b - 0.1328) < 1e-3 and a < 0 < b\nfor t in [3, 14.3, 50.7]:\n    th = mp.siegeltheta(t)\n    z = mp.exp(1j*th)*mp.zeta(mp.mpc(0.5, t))\n    assert abs(z.imag) < 1e-10 and abs(abs(z) - abs(mp.zeta(mp.mpc(0.5,t)))) < 1e-10\nassert mp.nzeros(14) == 0 and mp.nzeros(20) == 1\n"
+   },
+   {
+    "claim": "xi(s) = (s-1) pi^{-s/2} Gamma(s/2+1) zeta(s) satisfies xi(s)=xi(1-s) and xi(conj s)=conj xi(s); zeta(sigma)<0 on (0,1); 2 - pi^2/6 > 0",
+    "python": "\nimport mpmath as mp\nxi = lambda s: (s-1)*mp.pi**(-s/2)*mp.gamma(s/2+1)*mp.zeta(s)\nfor s in [mp.mpf('0.3'), mp.mpc(0.2, 7), mp.mpc(-0.7, 3.1)]:\n    assert abs(xi(s) - xi(1-s)) < 1e-12\n    assert abs(xi(mp.conj(s)) - mp.conj(xi(s))) < 1e-12\nassert abs(xi(mp.mpf(0)) - 0.5) < 1e-12 and abs(xi(mp.mpf(2)) - mp.pi/6) < 1e-12\nfor k in range(1, 100):\n    assert mp.zeta(mp.mpf(k)/100) < 0\nassert 2 - mp.pi**2/6 > 0.35\n"
+   },
+   {
+    "claim": "Sum of 1/gamma over the first zeros grows like log^2(T)/(4 pi): check (1/(2pi)) int_1^T (log t - log 2pi - 1)/t dt = log^2 T/(4pi) + O(log T) symbolically",
+    "python": "\nimport sympy as sp\nt, T = sp.symbols('t T', positive=True)\nI = sp.integrate((sp.log(t) - sp.log(2*sp.pi) - 1)/(2*sp.pi*t), (t, 1, T))\nrest = sp.simplify(sp.expand(I - sp.log(T)**2/(4*sp.pi)))\n# remainder is a constant multiple of log T\nassert sp.simplify(sp.diff(rest, T)*T).free_symbols == set()\n"
+   }
+  ]
+ },
+ {
+  "id": "explicit-formula",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Chebyshev's function $\\psi(x)=\\sum_{n\\le x}\\Lambda(n)$ is a staircase that jumps by $\\log p$ at every prime power $p^k$. Riemann's astonishing discovery was that this staircase can be written exactly as a smooth main term $x$ minus a sum of oscillating waves, one for each zero of $\\zeta$.\n\nThe formula was proved rigorously by von Mangoldt in 1895. It is the dictionary of analytic number theory: every statement about the zeros becomes a statement about primes, and conversely. This lesson derives it, explains how to read it, and proves the basic equivalence between zero-free half-planes and power-saving error terms."
+   },
+   {
+    "type": "section",
+    "title": "Where the formula comes from",
+    "body": "Start from the Dirichlet series $-\\frac{\\zeta'}{\\zeta}(s)=\\sum_n\\Lambda(n)n^{-s}$, valid for $\\operatorname{Re}s>1$. Perron's formula ([[mellin]]) recovers the partial sums: for $c>1$ and $x>1$ not a prime power,\n$$\\psi(x)=\\frac1{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Big(-\\frac{\\zeta'}{\\zeta}(s)\\Big)\\frac{x^s}{s}\\,ds .$$\nNow move the line of integration far to the left. Each pole of the integrand passed over leaves behind its residue.\n\n- At $s=1$: $-\\zeta'/\\zeta$ has a simple pole with residue $1$, which gives $x$.\n- At a nontrivial zero $\\rho$ of multiplicity $m$: $-\\zeta'/\\zeta$ has residue $-m$, which gives $-m\\,x^\\rho/\\rho$. Counting zeros with multiplicity, each contributes $-x^\\rho/\\rho$.\n- At $s=0$: $x^s/s$ has a pole, which gives $-\\zeta'(0)/\\zeta(0)$. Since $\\zeta(0)=-\\tfrac12$ and $\\zeta'(0)=-\\tfrac12\\log2\\pi$, this is $-\\log2\\pi$.\n- At each trivial zero $s=-2n$: the residue is $-x^{-2n}/(-2n)=x^{-2n}/(2n)$. Summing over $n\\ge1$ gives $\\sum_n\\frac{x^{-2n}}{2n}=-\\tfrac12\\log(1-x^{-2})$.\n\nAdding up gives the formula below."
+   },
+   {
+    "type": "definition",
+    "title": "Normalised psi",
+    "body": "$\\psi_0(x)=\\tfrac12\\big(\\psi(x^+)+\\psi(x^-)\\big)$. It equals $\\psi(x)$ unless $x$ is a prime power, where it takes the midpoint of the jump. This is the value a Fourier-type inversion naturally produces at a discontinuity."
+   },
+   {
+    "type": "theorem",
+    "title": "The explicit formula (von Mangoldt, 1895)",
+    "body": "For $x>1$,\n$$\\psi_0(x) = x - \\sum_{\\rho} \\frac{x^{\\rho}}{\\rho} - \\log 2\\pi - \\tfrac12 \\log\\bigl(1 - x^{-2}\\bigr),$$\nwhere the sum runs over the nontrivial zeros with multiplicity and is taken as $\\lim_{T\\to\\infty}\\sum_{|\\gamma|<T}$. In particular, the formula holds with $\\psi(x)$ for every $x>1$ that is not a prime power."
+   },
+   {
+    "type": "proof",
+    "title": "About the proof",
+    "body": "The residue computation above is the whole idea. To make it rigorous, integrate over the rectangle with vertices $c\\pm iT$ and $-U\\pm iT$. Let $U\\to\\infty$ through values midway between trivial zeros, then let $T\\to\\infty$ through heights that stay at distance $\\gg1/\\log T$ from every ordinate. Such heights exist because only $O(\\log T)$ zeros have $T<\\gamma\\le T+1$ ([[nontrivial-zeros]]). On such horizontal lines $|\\zeta'/\\zeta|\\ll\\log^2T$, so the horizontal integrals vanish in the limit. The truncation error of Perron's formula is handled separately. We omit these estimates; Davenport gives them in full. The same argument, without letting $T\\to\\infty$, gives the version that is used in practice."
+   },
+   {
+    "type": "theorem",
+    "title": "Truncated explicit formula",
+    "body": "For $x\\ge2$ and $2\\le T\\le x$,\n$$\\psi(x)=x-\\sum_{|\\gamma|\\le T}\\frac{x^\\rho}{\\rho}+O\\Big(\\frac{x\\log^2x}{T}\\Big).$$"
+   },
+   {
+    "type": "section",
+    "title": "Reading the formula",
+    "body": "Group each zero with its conjugate. Since $x^{\\bar\\rho}/\\bar\\rho=\\overline{x^\\rho/\\rho}$, the pair contributes\n$$-2\\operatorname{Re}\\frac{x^\\rho}{\\rho}=-\\frac{2x^\\beta}{|\\rho|}\\cos(\\gamma\\log x-\\arg\\rho).$$\nThis is a wave in the variable $\\log x$ with frequency $\\gamma$ and amplitude $2x^\\beta/|\\rho|$. So the size of a zero's contribution is set by its real part, and its frequency by its height. If the Riemann hypothesis holds, every amplitude is $2\\sqrt x/|\\rho|$. Then $(\\psi(x)-x)/\\sqrt x$ is a superposition of pure oscillations in $\\log x$, with the low zeros dominating.\n\nThe other two terms are harmless. $\\log2\\pi\\approx1.8379$ is a constant, and $-\\tfrac12\\log(1-x^{-2})<0.144$ for $x\\ge2$.\n\nThe sum over zeros converges only conditionally, since $\\sum1/|\\rho|$ diverges. It has to be taken symmetrically, and no single zero can be dropped without changing the value. Yet adding zeros one pair at a time does reproduce the jumps of $\\psi$ at prime powers, which is a striking thing to watch numerically."
+   },
+   {
+    "type": "theorem",
+    "title": "Zeros versus error terms",
+    "body": "Let $\\tfrac12\\le\\Theta<1$.\n1. If every nontrivial zero has $\\beta\\le\\Theta$, then $\\psi(x)=x+O(x^\\Theta\\log^2x)$.\n2. If $\\psi(x)=x+O(x^\\Theta)$, then every nontrivial zero has $\\beta\\le\\Theta$.\n\nIn particular, the Riemann hypothesis is equivalent to $\\psi(x)=x+O(x^{1/2+\\varepsilon})$ for every $\\varepsilon>0$."
+   },
+   {
+    "type": "proof",
+    "body": "1. Use the truncated formula with $T=x$. Each term satisfies $|x^\\rho/\\rho|\\le x^\\Theta/|\\rho|$. By the Riemann–von Mangoldt formula, $\\sum_{|\\gamma|\\le T}1/|\\rho|\\ll\\log^2T$. So the sum over zeros is $O(x^\\Theta\\log^2x)$, and the error term is $O(\\log^2x)$.\n\n2. For $\\operatorname{Re}s>1$, partial summation gives $-\\frac{\\zeta'}{\\zeta}(s)=s\\int_1^\\infty\\psi(x)x^{-s-1}\\,dx$. Since $s\\int_1^\\infty x\\cdot x^{-s-1}dx=\\frac{s}{s-1}$,\n$$-\\frac{\\zeta'}{\\zeta}(s)=\\frac{s}{s-1}+s\\int_1^\\infty(\\psi(x)-x)\\,x^{-s-1}\\,dx .$$\nIf $|\\psi(x)-x|\\le Cx^\\Theta$, the integral converges absolutely and locally uniformly for $\\operatorname{Re}s>\\Theta$, so it is holomorphic there. The right side therefore continues $-\\zeta'/\\zeta$ meromorphically to $\\operatorname{Re}s>\\Theta$ with a single pole at $s=1$. A zero of $\\zeta$ with $\\beta>\\Theta$ would be another pole. Hence there is none.\n\nFor the last sentence, apply 1 with $\\Theta=\\tfrac12$, and apply 2 with $\\Theta=\\tfrac12+\\varepsilon$ for every $\\varepsilon$."
+   },
+   {
+    "type": "section",
+    "title": "Riemann's original version",
+    "body": "Riemann worked with the weighted prime count $J(x)=\\sum_{n\\ge1}\\frac1n\\pi(x^{1/n})$, whose Dirichlet-series transform is $\\log\\zeta(s)$ rather than $-\\zeta'/\\zeta(s)$. His formula reads\n$$J(x)=\\operatorname{li}(x)-\\sum_\\rho\\operatorname{li}(x^\\rho)-\\log2+\\int_x^\\infty\\frac{dt}{t(t^2-1)\\log t}\\qquad(x>1,\\ x\\text{ not a prime power}),$$\nwhere here $\\operatorname{li}$ is the principal-value integral from $0$, and $\\operatorname{li}(x^\\rho)$ must be interpreted by analytic continuation. Möbius inversion then expresses $\\pi(x)$ itself. The $\\psi$ version is easier to prove and to use, which is why it became standard."
+   },
+   {
+    "type": "example",
+    "title": "The constants",
+    "body": "Verify the residue at $s=0$ and the contribution of the trivial zeros at $x=2$.",
+    "solution": "Numerically $\\zeta(0)=-0.5$ and $\\zeta'(0)=-0.918938\\ldots=-\\tfrac12\\log2\\pi$, so $\\zeta'(0)/\\zeta(0)=\\log2\\pi=1.837877\\ldots$. At $x=2$ the trivial zeros give $\\sum_{n\\ge1}\\frac{4^{-n}}{2n}=-\\tfrac12\\log\\tfrac34=0.143841\\ldots$. As $x$ grows this term decreases to $0$, like $\\frac1{2x^2}$."
+   },
+   {
+    "type": "example",
+    "title": "Rebuilding psi from zeros",
+    "body": "Take $x=20.5$. Compute $\\psi(x)$ exactly and compare it with the explicit formula truncated to the first $K$ pairs of zeros, for $K=10,30,50$.",
+    "solution": "The prime powers up to $20$ are $2,3,4,5,7,8,9,11,13,16,17,19$. So $\\psi(20.5)=\\log\\operatorname{lcm}(1,\\dots,20)=\\log232792560=19.2657\\ldots$.\n\nThe truncated formula is $x-2\\sum_{n\\le K}\\operatorname{Re}(x^{\\rho_n}/\\rho_n)-\\log2\\pi-\\tfrac12\\log(1-x^{-2})$, with $\\rho_n$ the $n$-th zero in the upper half-plane. It gives approximately $19.656$ for $K=10$, $19.225$ for $K=30$, and $19.280$ for $K=50$.\n\nThe approximations oscillate around the true value and settle down slowly, as the conditional convergence predicts. Without the zeros, $x-\\log2\\pi-\\ldots\\approx18.66$; the zeros supply the remaining $0.6$. Plotting the truncated sum as a function of $x$ shows smoothed-out jumps at the prime powers, which sharpen as $K$ grows."
+   },
+   {
+    "type": "example",
+    "title": "From psi to pi under the Riemann hypothesis",
+    "body": "Assume the Riemann hypothesis. Show that $\\pi(x)=\\operatorname{li}(x)+O(\\sqrt x\\log x)$, with $\\operatorname{li}(x)=\\int_2^x dt/\\log t$.",
+    "solution": "By the theorem, $\\psi(x)=x+O(\\sqrt x\\log^2x)$. The prime powers with exponent at least $2$ contribute $\\psi(x)-\\theta(x)=\\theta(x^{1/2})+\\theta(x^{1/3})+\\cdots$. There are at most $\\log_2x$ nonzero terms, each $O(x^{1/3})$ after the first, so $\\psi(x)-\\theta(x)=O(\\sqrt x)$. Hence $\\theta(t)=t+E(t)$ with $E(t)=O(\\sqrt t\\log^2t)$.\n\nPartial summation with weight $1/\\log t$ gives\n$$\\pi(x)=\\frac{\\theta(x)}{\\log x}+\\int_2^x\\frac{\\theta(t)}{t\\log^2t}\\,dt,\\qquad \\operatorname{li}(x)=\\frac{x}{\\log x}-\\frac2{\\log2}+\\int_2^x\\frac{dt}{\\log^2t}.$$\nSubtracting,\n$$\\pi(x)-\\operatorname{li}(x)=\\frac{E(x)}{\\log x}+\\int_2^x\\frac{E(t)}{t\\log^2t}\\,dt+\\frac2{\\log2}.$$\nThe first term is $O(\\sqrt x\\log x)$, and the integral is $O\\big(\\int_2^xt^{-1/2}dt\\big)=O(\\sqrt x)$. This is von Koch's theorem, one direction."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The sum over $\\rho$ is not absolutely convergent. It must be summed symmetrically, pairing $\\rho$ with $\\bar\\rho$ and truncating at $|\\gamma|<T$.\n- At a prime power the formula gives $\\psi_0$, the midpoint of the jump, not $\\psi$.\n- The truncated formula has error $x\\log^2x/T$. To get an error smaller than $\\sqrt x$ you need $T$ larger than $\\sqrt x$, so a fixed finite set of zeros never suffices pointwise.\n- The explicit formula alone does not prove the prime number theorem. You still need every $\\beta<1$, with some uniformity as $\\gamma\\to\\infty$; that is the job of [[zero-free-region]].\n- The constants $\\log2\\pi$ and $-\\tfrac12\\log(1-x^{-2})$ are specific to $\\zeta$. For $L(s,\\chi)$ the trivial zeros and the constant term change."
+   },
+   {
+    "type": "connection",
+    "body": "The same contour argument works for Dirichlet $L$-functions and gives $\\psi(x,\\chi)$ in terms of the zeros of $L(s,\\chi)$. That is the route to the [[siegel-walfisz]] theorem and to primes in progressions ([[l-functions]]). Combined with [[zero-free-region]] results it gives the classical error term in the prime number theorem, and with [[zero-density]] estimates it gives primes in short intervals. Montgomery's study of [[pair-correlation]] starts from an explicit formula weighted by a test function, and Weil's general explicit formula, an identity between a sum over zeros and a sum over primes for a broad class of test functions, is a cornerstone of modern approaches to the [[rh]]. Mean values of $\\zeta$ and their applications are treated in [[moments]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $0<-\\tfrac12\\log(1-x^{-2})<0.144$ for all $x\\ge2$, and that it is asymptotic to $\\frac1{2x^2}$.\n2. Show that if some zero had $\\beta=\\tfrac34$, then $\\psi(x)-x$ could not be $O(x^{0.7})$.\n3. Assuming every zero has $\\beta\\le\\tfrac34$, what bound do you get for $\\pi(x)-\\operatorname{li}(x)$?\n4. Show that $\\frac1\\rho+\\frac1{\\bar\\rho}=\\frac{2\\beta}{|\\rho|^2}$, and deduce that $\\sum_\\rho\\frac1\\rho$, summed symmetrically, converges to a positive real number."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapter 17"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   },
+   {
+    "ref": "Edwards, Riemann's Zeta Function"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "zeta(0) = -1/2, zeta'(0) = -log(2pi)/2 = -0.918938..., zeta'(0)/zeta(0) = log 2pi = 1.837877...",
+    "python": "\nimport mpmath as mp\nassert abs(mp.zeta(0) + 0.5) < 1e-15\nd = mp.zeta(0, derivative=1)\nassert abs(d + mp.log(2*mp.pi)/2) < 1e-14 and abs(d + 0.918938) < 1e-6\nassert abs(d/mp.zeta(0) - 1.837877) < 1e-6\n"
+   },
+   {
+    "claim": "sum_{n>=1} x^{-2n}/(2n) = -1/2 log(1-x^{-2}); equals 0.143841 at x=2; below 0.144 and decreasing on x>=2; ~ 1/(2x^2)",
+    "python": "\nimport mpmath as mp\nfor x in [2, 3.7, 20.5]:\n    s = mp.nsum(lambda n: mp.mpf(x)**(-2*n)/(2*n), [1, mp.inf])\n    assert abs(s + 0.5*mp.log(1 - mp.mpf(x)**-2)) < 1e-15\nf = lambda x: -0.5*mp.log(1 - mp.mpf(x)**-2)\nassert abs(f(2) - 0.143841) < 1e-6\nprev = f(2)\nfor k in range(1, 200):\n    v = f(2 + k/10); assert 0 < v < prev; prev = v\nassert abs(f(1000)*2*1000**2 - 1) < 1e-5\n"
+   },
+   {
+    "claim": "psi(20.5) = log lcm(1..20) = log 232792560 = 19.2657...; prime powers up to 20 are 2,3,4,5,7,8,9,11,13,16,17,19",
+    "python": "\nimport math, sympy\nassert sympy.ilcm(*range(1,21)) == 232792560\npp = [n for n in range(2,21) if len(sympy.factorint(n)) == 1]\nassert pp == [2,3,4,5,7,8,9,11,13,16,17,19]\npsi = sum(math.log(list(sympy.factorint(n))[0]) for n in pp)\nassert abs(psi - math.log(232792560)) < 1e-12 and abs(psi - 19.2657) < 1e-4\n"
+   },
+   {
+    "claim": "Explicit formula at x=20.5 with first K zero pairs: about 19.656 (K=10), 19.225 (K=30), 19.280 (K=50); without zeros about 18.66",
+    "python": "\nimport mpmath as mp, math\nmp.mp.dps = 15\nx = mp.mpf('20.5')\nzs = [mp.zetazero(n) for n in range(1, 51)]\nbase = x - mp.log(2*mp.pi) - 0.5*mp.log(1 - x**-2)\nassert abs(base - 18.66) < 0.01\ndef approx(K):\n    return base - 2*sum(mp.re(x**r/r) for r in zs[:K])\nassert abs(approx(10) - 19.656) < 1e-3\nassert abs(approx(30) - 19.225) < 1e-3\nassert abs(approx(50) - 19.280) < 1e-3\nassert abs(approx(50) - math.log(232792560)) < 0.02\n"
+   },
+   {
+    "claim": "-2 Re(x^rho/rho) = -2 x^beta cos(gamma log x - arg rho)/|rho|",
+    "python": "\nimport mpmath as mp\nfor rho in [mp.mpc(0.5, 14.134725), mp.mpc(0.8, 3.0)]:\n    for x in [2, 20.5, 1000]:\n        x = mp.mpf(x)\n        lhs = -2*mp.re(x**rho/rho)\n        rhs = -2*x**rho.real*mp.cos(rho.imag*mp.log(x) - mp.arg(rho))/abs(rho)\n        assert abs(lhs - rhs) < 1e-10\n"
+   },
+   {
+    "claim": "psi(x) - theta(x) = O(sqrt x): ratio (psi - theta)/sqrt(x) stays below 1.5 for x up to 10^6 (sampled)",
+    "python": "\nimport math\nfrom sympy import primerange\nN = 10**6\nps = list(primerange(2, N+1))\nfor x in [10**2, 10**3, 10**4, 10**5, 10**6, 123457, 999983]:\n    d = 0.0\n    for p in ps:\n        if p*p > x: break\n        pk = p*p\n        while pk <= x:\n            d += math.log(p); pk *= p\n    assert d/math.sqrt(x) < 1.5, (x, d/math.sqrt(x))\n"
+   },
+   {
+    "claim": "s * int_1^inf x * x^{-s-1} dx = s/(s-1) (checked at s=2.5 and s=3+i)",
+    "python": "\nimport mpmath as mp\nfor s in [mp.mpf(2.5), mp.mpc(3, 1)]:\n    v = s*mp.quad(lambda x: x*x**(-s-1), [1, mp.inf])\n    assert abs(v - s/(s-1)) < 1e-12\n"
+   }
+  ]
+ },
+ {
+  "id": "zero-free-region",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The prime number theorem needs only that $\\zeta(s)$ has no zeros on the line $\\operatorname{Re}s=1$. To say how fast $\\pi(x)/\\operatorname{li}(x)\\to1$, we need more: no zeros near that line. A zero-free region is a region to the left of $\\operatorname{Re}s=1$ that provably contains no zeros. Its width at height $t$ translates directly into the error term in the prime number theorem.\n\nThe classical region, found by de la Vallée Poussin in 1899, has width $c/\\log|t|$. Vinogradov and Korobov widened it in 1958. Every known region still shrinks to width $0$ as $|t|\\to\\infty$, and no one knows how to prove that $\\zeta$ has no zeros in a strip $\\operatorname{Re}s>1-\\delta$ for any fixed $\\delta>0$."
+   },
+   {
+    "type": "section",
+    "title": "Why the width is the error term",
+    "body": "Use the truncated [[explicit-formula]]: for $2\\le T\\le x$,\n$$\\psi(x)-x=-\\sum_{|\\gamma|\\le T}\\frac{x^\\rho}{\\rho}+O\\Big(\\frac{x\\log^2x}{T}\\Big).$$\nSuppose every zero with $|\\gamma|\\le T$ satisfies $\\beta\\le1-\\eta(T)$. Then $|x^\\rho|\\le x\\,e^{-\\eta(T)\\log x}$. The number of zeros, weighted by $1/|\\rho|$, is $\\ll\\log^2T$ ([[nontrivial-zeros]]). So\n$$|\\psi(x)-x|\\ll x\\log^2x\\;\\Big(\\frac1T+e^{-\\eta(T)\\log x}\\Big).$$\nChoosing $T$ to balance the two terms means making $\\eta(T)\\log x$ and $\\log T$ about equal. A wider region (larger $\\eta$) allows a larger $T$ and hence a smaller error. There is also a converse: an error term of a given shape forces a corresponding zero-free region. The simplest case, a power saving $O(x^\\Theta)$ forcing $\\beta\\le\\Theta$, is proved in [[explicit-formula]]."
+   },
+   {
+    "type": "section",
+    "title": "The 3–4–1 trick, made quantitative",
+    "body": "For $\\sigma>1$, the logarithmic derivative of the Euler product gives\n$$-\\operatorname{Re}\\frac{\\zeta'}{\\zeta}(\\sigma+it)=\\sum_n\\frac{\\Lambda(n)}{n^\\sigma}\\cos(t\\log n).$$\nSince $3+4\\cos\\theta+\\cos2\\theta=2(1+\\cos\\theta)^2\\ge0$ and $\\Lambda(n)n^{-\\sigma}\\ge0$,\n$$3\\Big(-\\frac{\\zeta'}{\\zeta}(\\sigma)\\Big)+4\\Big(-\\operatorname{Re}\\frac{\\zeta'}{\\zeta}(\\sigma+it)\\Big)+\\Big(-\\operatorname{Re}\\frac{\\zeta'}{\\zeta}(\\sigma+2it)\\Big)\\ge0.$$\nIn [[pnt]] the same inequality for $\\log|\\zeta|$ showed that $\\zeta(1+it)\\ne0$. To get a region, we feed in two bounds, valid for $1<\\sigma\\le2$ and $|t|\\ge2$:\n\n(A) $-\\frac{\\zeta'}{\\zeta}(\\sigma)<\\frac1{\\sigma-1}+A_1$. This holds because $-\\zeta'/\\zeta(s)-\\frac1{s-1}$ is holomorphic on a neighbourhood of $[1,2]$, hence bounded there. (Near $s=1$ it equals $-\\gamma+O(s-1)$.)\n\n(B) $-\\operatorname{Re}\\frac{\\zeta'}{\\zeta}(\\sigma+it)<A_2\\log|t|-\\sum_\\rho\\operatorname{Re}\\frac1{s-\\rho}$, where $s=\\sigma+it$ and every term $\\operatorname{Re}\\frac1{s-\\rho}=\\frac{\\sigma-\\beta}{|s-\\rho|^2}$ is positive. This comes from the Hadamard product of $\\xi(s)$, together with Stirling's formula for the $\\Gamma$-factor. We take it as known; it is proved in Davenport's book.\n\nThe crucial feature is that (B) lets us throw away all zeros except one, since dropping positive terms only makes the right side larger."
+   },
+   {
+    "type": "theorem",
+    "title": "de la Vallée Poussin's zero-free region (1899)",
+    "body": "There is an absolute constant $c>0$ such that $\\zeta(\\sigma+it)\\ne0$ whenever $|t|\\ge2$ and\n$$\\sigma > 1 - \\frac{c}{\\log |t|}.$$\nSince there are no nontrivial zeros at all with $|t|\\le2$ (the lowest has $t\\approx14.13$), the region can be written for all $t$ as $\\sigma>1-c'/\\log(|t|+2)$."
+   },
+   {
+    "type": "proof",
+    "body": "Let $\\rho=\\beta+i\\gamma$ be a zero with $\\gamma\\ge2$ (the case $\\gamma\\le-2$ follows by conjugation). Apply the inequality with $t=\\gamma$ and $1<\\sigma\\le2$:\n\n- by (A), the first term is at most $\\frac3{\\sigma-1}+3A_1$;\n- by (B), keeping only the zero $\\rho$, for which $\\operatorname{Re}\\frac1{\\sigma+i\\gamma-\\rho}=\\frac1{\\sigma-\\beta}$, the second term is at most $4A_2\\log\\gamma-\\frac4{\\sigma-\\beta}$;\n- by (B), dropping all zeros, the third term is at most $A_2\\log(2\\gamma)\\le2A_2\\log\\gamma$.\n\nSo $0\\le\\frac3{\\sigma-1}-\\frac4{\\sigma-\\beta}+A\\log\\gamma$ with $A=6A_2+3A_1/\\log2$, that is,\n$$\\frac4{\\sigma-\\beta}\\le\\frac3{\\sigma-1}+A\\log\\gamma .$$\nTake $\\sigma=1+\\delta/\\log\\gamma$ with $0<\\delta\\le\\log2$, which ensures $\\sigma\\le2$. Then $\\frac4{\\sigma-\\beta}\\le\\big(\\frac3\\delta+A\\big)\\log\\gamma$, so\n$$1-\\beta=(\\sigma-\\beta)-(\\sigma-1)\\ \\ge\\ \\frac{4\\delta}{(3+A\\delta)\\log\\gamma}-\\frac{\\delta}{\\log\\gamma}=\\frac{\\delta(1-A\\delta)}{(3+A\\delta)\\log\\gamma}.$$\nWith $\\delta=\\min(\\log2,\\frac1{2A})$ the numerator is at least $\\delta/2$ and the denominator at most $\\frac72\\log\\gamma$. So $1-\\beta\\ge\\frac{\\delta}{7\\log\\gamma}$, and $c=\\delta/7$ works.\n\nNotice where $4>3$ was used: the zero term, with coefficient $4$, beats the pole term, with coefficient $3$."
+   },
+   {
+    "type": "theorem",
+    "title": "The classical error term",
+    "body": "There is $c>0$ such that\n$$\\psi(x)=x+O\\big(x\\,e^{-c\\sqrt{\\log x}}\\big)\\qquad\\text{and}\\qquad \\pi(x)=\\operatorname{li}(x)+O\\big(x\\,e^{-c\\sqrt{\\log x}}\\big).$$"
+   },
+   {
+    "type": "proof",
+    "body": "In the bound from the first section, take $\\eta(T)=c_0/\\log T$ (from the theorem) and $T=e^{\\sqrt{\\log x}}\\le x$. Then $\\eta(T)\\log x=c_0\\sqrt{\\log x}$ and $1/T=e^{-\\sqrt{\\log x}}$, so\n$$|\\psi(x)-x|\\ll x\\log^2x\\,e^{-\\min(c_0,1)\\sqrt{\\log x}}\\ll x\\,e^{-c\\sqrt{\\log x}}$$\nfor any $c<\\min(c_0,1)$. The power of $\\log x$ is absorbed by shrinking the constant. For $\\pi(x)$, pass from $\\psi$ to $\\theta$ (an error of $O(\\sqrt x)$) and use partial summation exactly as in the [[explicit-formula]] lesson."
+   },
+   {
+    "type": "section",
+    "title": "Vinogradov–Korobov and the limits of the method",
+    "body": "The width $c/\\log|t|$ comes from the $\\log|t|$ in bound (B), which in turn reflects how large $\\zeta$ can be near $\\operatorname{Re}s=1$. Better bounds for $|\\zeta(\\sigma+it)|$ near $\\sigma=1$, obtained from estimates for the exponential sums $\\sum n^{-it}$ ([[exponential-sums]]), give wider regions. In 1958 Vinogradov and Korobov independently proved\n$$\\zeta(\\sigma+it)\\ne0\\quad\\text{for}\\quad\\sigma>1-\\frac{c}{(\\log|t|)^{2/3}(\\log\\log|t|)^{1/3}},\\ |t|\\ge3,$$\nwhich gives $\\psi(x)=x+O\\big(x\\exp(-c(\\log x)^{3/5}(\\log\\log x)^{-1/5})\\big)$. In more than sixty years the shape of this region has not been improved, apart from the constants.\n\nA region of fixed width, with no zeros for $\\sigma>1-\\delta$, would give $\\psi(x)=x+O(x^{1-\\delta+\\varepsilon})$. That is the [[quasi-rh]], and it remains open. For Dirichlet $L$-functions the same argument works with one notorious exception: it cannot exclude a single real zero very close to $1$ for a real character. Those are the [[siegel-zeros]]."
+   },
+   {
+    "type": "example",
+    "title": "Why the trick needs a 4 bigger than the 3",
+    "body": "Try to run the argument with the simpler inequality $1+\\cos\\theta\\ge0$. What goes wrong?",
+    "solution": "Using $1+\\cos\\theta\\ge0$, the same steps give $\\frac1{\\sigma-\\beta}\\le\\frac1{\\sigma-1}+A\\log\\gamma$. But $\\beta<1$ already implies $\\frac1{\\sigma-\\beta}<\\frac1{\\sigma-1}$, so the inequality is automatically true and tells us nothing.\n\nThe general principle: the argument works with any cosine polynomial $a_0+a_1\\cos\\theta+\\cdots+a_n\\cos n\\theta\\ge0$ with all $a_k\\ge0$ and $a_1>a_0$. The pole contributes $a_0/(\\sigma-1)$ and the zero takes away $a_1/(\\sigma-\\beta)$. With degree $1$ this is impossible: evaluating $a_0+a_1\\cos\\theta$ at $\\theta=\\pi$ forces $a_1\\le a_0$. Degree $2$ is the first that works, and $3+4\\cos\\theta+\\cos2\\theta$ is the classical choice."
+   },
+   {
+    "type": "example",
+    "title": "The best ratio in degree two",
+    "body": "Suppose $p(\\theta)=a_0+a_1\\cos\\theta+a_2\\cos2\\theta\\ge0$ for all real $\\theta$. Prove that $a_1\\le\\sqrt2\\,a_0$, and show that equality can occur.",
+    "solution": "Evaluate at $\\theta=3\\pi/4$, where $\\cos\\theta=-\\frac1{\\sqrt2}$ and $\\cos2\\theta=\\cos\\frac{3\\pi}2=0$:\n$$0\\le p(3\\pi/4)=a_0-\\frac{a_1}{\\sqrt2},$$\nso $a_1\\le\\sqrt2a_0$. No condition on $a_2$ is needed.\n\nFor equality, take $p(\\theta)=1+\\sqrt2\\cos\\theta+\\tfrac12\\cos2\\theta$. Using $\\cos2\\theta=2\\cos^2\\theta-1$,\n$$p(\\theta)=\\cos^2\\theta+\\sqrt2\\cos\\theta+\\tfrac12=\\Big(\\cos\\theta+\\tfrac1{\\sqrt2}\\Big)^2\\ge0 .$$\nSo the classical $3+4\\cos\\theta+\\cos2\\theta$, with ratio $\\frac43<\\sqrt2$, is not extremal. The constant $c$ in the theorem depends on the whole polynomial, not just on this ratio. Explicit versions of the zero-free region use carefully optimised polynomials of higher degree."
+   },
+   {
+    "type": "example",
+    "title": "From region shape to error shape",
+    "body": "Suppose there are no zeros with $\\sigma>1-c/(\\log|t|)^a$ for large $|t|$, where $0<a\\le1$. Show that the balancing argument gives $\\psi(x)-x\\ll x\\exp\\big(-c'(\\log x)^{1/(1+a)}\\big)$. Check the cases $a=1$ and $a=2/3$.",
+    "solution": "Write $X=\\log x$ and $L=\\log T$. The error is roughly $x\\big(e^{-L}+e^{-cX/L^a}\\big)$, up to powers of $\\log x$. The best choice of $L$ minimises the larger exponent, which happens when $L$ and $cX/L^a$ are about equal: $L^{1+a}\\approx cX$, that is, $L\\approx(cX)^{1/(1+a)}$. Both exponents are then of order $X^{1/(1+a)}$. (Minimising the sum $cXL^{-a}+L$ exactly gives $L=(acX)^{1/(1+a)}$, the same order.) Also $L\\le X$, so $T\\le x$ as required.\n\nFor $a=1$ this is $\\exp(-c'\\sqrt{\\log x})$, de la Vallée Poussin's error. For $a=2/3$ the exponent is $(\\log x)^{3/5}$; keeping track of the $\\log\\log$ factor gives the Vinogradov–Korobov error $(\\log x)^{3/5}(\\log\\log x)^{-1/5}$. Each improvement in the region yields only a small gain in the exponent, which is why the error in the prime number theorem is still far from the $\\sqrt x$ predicted by the Riemann hypothesis."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The bound $\\sigma>1-c/\\log|t|$ is stated for $|t|\\ge2$; near $t=0$ write $\\log(|t|+2)$. It is a region we can prove, not a description of where zeros are. All computed zeros lie on $\\operatorname{Re}s=\\tfrac12$.\n- The 3–4–1 inequality alone proves only $\\zeta(1+it)\\ne0$. The region needs the quantitative input (B), whose $\\log|t|$ is what limits the width.\n- For a real Dirichlet character $\\chi$, taking $t=0$ makes the third term involve $\\chi^2=\\chi_0$, which has a pole at $s=1$. That is why real zeros of real-character $L$-functions escape the argument.\n- A wider region gives a better error term, but only through $\\exp(-(\\log x)^{\\text{power}<1})$. No region of this shrinking type gives a power saving $x^{1-\\delta}$."
+   },
+   {
+    "type": "connection",
+    "body": "Uniform versions of the theorem for $L(s,\\chi)$, and the exceptional real zero they leave open, are the subject of [[siegel-zeros]] and lead to the [[siegel-walfisz]] theorem ([[l-functions]]). Counting how many zeros can lie in $\\sigma>\\tfrac12+\\delta$, rather than excluding them altogether, is the theory of [[zero-density]] estimates; it often substitutes for the Riemann hypothesis. A strip of fixed width would be the [[quasi-rh]], and the full strip $\\sigma>\\tfrac12$ is the [[rh]]. The Vinogradov–Korobov region rests on [[exponential-sums]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the minimum of $3+4\\cos\\theta+\\cos2\\theta$ over $\\theta$ is $0$, attained only at $\\theta=\\pi$ (mod $2\\pi$).\n2. Show that there is $c'>0$ such that $\\zeta$ has no zeros with $|t|\\le2$ and $\\sigma\\ge1-c'$. (Use that $\\zeta$ has no zeros on $[\\tfrac12,1)$ or on $\\operatorname{Re}s=1$, and compactness.)\n3. Carry out the partial summation that turns $\\psi(x)=x+O(xe^{-c\\sqrt{\\log x}})$ into $\\pi(x)=\\operatorname{li}(x)+O(xe^{-c'\\sqrt{\\log x}})$.\n4. Suppose there were a zero-free region $\\sigma>1-c/\\log\\log|t|$ for large $|t|$. What error term would the balancing argument give for $\\psi(x)-x$?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapter 13"
+   },
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "3 + 4cos t + cos 2t = 2(1+cos t)^2 >= 0 with minimum 0 at t = pi only",
+    "python": "\nimport sympy as sp, math\nt = sp.symbols('t', real=True)\nassert sp.simplify(3 + 4*sp.cos(t) + sp.cos(2*t) - 2*(1 + sp.cos(t))**2) == 0\nvals = [(3 + 4*math.cos(k*2*math.pi/10000) + math.cos(2*k*2*math.pi/10000), k) for k in range(10000)]\nm, k = min(vals)\nassert abs(m) < 1e-12 and k == 5000\n"
+   },
+   {
+    "claim": "3(-zeta'/zeta(s)) + 4 Re(-zeta'/zeta(s+it)) + Re(-zeta'/zeta(s+2it)) >= 0 at sample points s>1",
+    "python": "\nimport mpmath as mp\nf = lambda s: -mp.zeta(s, derivative=1)/mp.zeta(s)\nfor s in [1.01, 1.05, 1.2, 2.0]:\n    for T in [2, 14.1347, 21.022, 50, 333.3]:\n        v = 3*f(mp.mpf(s)) + 4*mp.re(f(mp.mpc(s, T))) + mp.re(f(mp.mpc(s, 2*T)))\n        assert v >= 0, (s, T, v)\n"
+   },
+   {
+    "claim": "-zeta'/zeta(s) - 1/(s-1) is bounded on (1,2], tending to -gamma at s=1",
+    "python": "\nimport mpmath as mp\nf = lambda s: -mp.zeta(s, derivative=1)/mp.zeta(s) - 1/(s-1)\nassert abs(f(mp.mpf('1.000001')) + mp.euler) < 1e-5\nfor k in range(1, 101):\n    s = 1 + mp.mpf(k)/100\n    assert abs(f(s)) < 1\n"
+   },
+   {
+    "claim": "Algebra in the proof: 4d/(3+Ad) - d = d(1-Ad)/(3+Ad); with d <= 1/(2A): numerator >= d/2, denominator <= 7/2",
+    "python": "\nimport sympy as sp\nd, A = sp.symbols('d A', positive=True)\nassert sp.simplify(4*d/(3 + A*d) - d - d*(1 - A*d)/(3 + A*d)) == 0\nfor Av in [0.5, 1, 3, 10, 100]:\n    dv = min(sp.log(2), sp.Rational(1, 2)/Av)\n    val = dv*(1 - Av*dv)/(3 + Av*dv)\n    assert val >= dv/7 - 1e-15\n"
+   },
+   {
+    "claim": "a0 + a1 cos t + a2 cos 2t at t=3pi/4 equals a0 - a1/sqrt2; 1 + sqrt2 cos t + cos(2t)/2 = (cos t + 1/sqrt2)^2",
+    "python": "\nimport sympy as sp\na0, a1, a2, t = sp.symbols('a0 a1 a2 t', real=True)\np = a0 + a1*sp.cos(t) + a2*sp.cos(2*t)\nassert sp.simplify(p.subs(t, 3*sp.pi/4) - (a0 - a1/sp.sqrt(2))) == 0\nq = 1 + sp.sqrt(2)*sp.cos(t) + sp.cos(2*t)/2\nassert sp.simplify(sp.expand_trig(q) - (sp.cos(t) + 1/sp.sqrt(2))**2) == 0\nassert sp.Rational(4, 3) < sp.sqrt(2)\n"
+   },
+   {
+    "claim": "Minimising c X L^{-a} + L gives L = (a c X)^{1/(1+a)}, minimum proportional to X^{1/(1+a)}; exponents 1/2 for a=1 and 3/5 for a=2/3",
+    "python": "\nimport sympy as sp\nc, X, L, a = sp.symbols('c X L a', positive=True)\nF = c*X*L**(-a) + L\nLstar = (a*c*X)**(1/(1 + a))\nassert sp.simplify(sp.diff(F, L).subs(L, Lstar)) == 0\nfor av, e in [(1, sp.Rational(1, 2)), (sp.Rational(2, 3), sp.Rational(3, 5))]:\n    assert sp.Rational(1, 1)/(1 + av) == e\n    val = sp.simplify(F.subs(a, av).subs(L, Lstar.subs(a, av)))\n    assert sp.simplify(val/X**e).free_symbols <= {c}\n"
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-characters",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "To study primes $p\\equiv a\\pmod q$ we need to pick out one residue class from all integers. The indicator function of \"$n\\equiv a\\pmod q$\" is periodic but not multiplicative, so it has no Euler product. Dirichlet's idea (1837) was to write that indicator as a linear combination of periodic functions that are completely multiplicative. These are the characters. Each has its own $L$-function with an Euler product, and analysing those $L$-functions is how Dirichlet proved that every progression $a, a+q, a+2q,\\dots$ with $\\gcd(a,q)=1$ contains infinitely many primes."
+   },
+   {
+    "type": "section",
+    "title": "A first example: modulo 4",
+    "body": "The odd numbers split into $n\\equiv1$ and $n\\equiv3\\pmod4$. Define $\\chi_0(n)=1$ for odd $n$, and $\\chi_1(n)=(-1)^{(n-1)/2}$, which is $+1$ on $1\\bmod4$ and $-1$ on $3\\bmod4$. Both vanish on even $n$. Both are completely multiplicative: for $\\chi_1$, this is the fact that the product of two numbers $\\equiv3\\pmod 4$ is $\\equiv1\\pmod4$. And\n$$\\frac{\\chi_0(n)+\\chi_1(n)}2=\\begin{cases}1&n\\equiv1\\pmod4\\\\0&\\text{otherwise,}\\end{cases}\\qquad \\frac{\\chi_0(n)-\\chi_1(n)}2=\\begin{cases}1&n\\equiv3\\pmod4\\\\0&\\text{otherwise.}\\end{cases}$$\nSo \"primes $\\equiv1\\pmod 4$\" can be studied through the two multiplicative functions $\\chi_0$ and $\\chi_1$. The general theory does exactly this for every modulus."
+   },
+   {
+    "type": "definition",
+    "title": "Dirichlet character",
+    "body": "A Dirichlet character modulo $q$ is a function $\\chi:\\mathbb Z\\to\\mathbb C$ such that\n1. $\\chi(n+q)=\\chi(n)$ for all $n$;\n2. $\\chi(mn)=\\chi(m)\\chi(n)$ for all $m,n$;\n3. $\\chi(n)=0$ if $\\gcd(n,q)>1$, and $\\chi(n)\\ne0$ if $\\gcd(n,q)=1$.\n\nEquivalently, $\\chi$ is a group homomorphism $(\\mathbb Z/q\\mathbb Z)^\\times\\to\\mathbb C^\\times$, extended by $0$ to residues not coprime to $q$. The principal character $\\chi_0$ is $1$ on all $n$ coprime to $q$. By Euler's theorem, $\\chi(n)^{\\varphi(q)}=\\chi(n^{\\varphi(q)})=\\chi(1)=1$, so all nonzero values are $\\varphi(q)$-th roots of unity."
+   },
+   {
+    "type": "theorem",
+    "title": "How many characters there are",
+    "body": "There are exactly $\\varphi(q)$ characters modulo $q$. Under pointwise multiplication they form a group, with identity $\\chi_0$ and inverse $\\bar\\chi$. Moreover, if $\\gcd(n,q)=1$ and $n\\not\\equiv1\\pmod q$, then some character has $\\chi(n)\\ne1$."
+   },
+   {
+    "type": "proof",
+    "body": "Cyclic case first. If $(\\mathbb Z/q\\mathbb Z)^\\times$ is cyclic, say generated by a primitive root $g$ of order $m=\\varphi(q)$ ([[order-primroot]]), then a character is determined by $\\chi(g)$. That value must satisfy $\\chi(g)^m=1$, and each of the $m$ choices $\\chi(g)=e^{2\\pi ik/m}$ gives a well-defined character $\\chi(g^e)=e^{2\\pi ike/m}$. If $n=g^e$ with $e\\not\\equiv0\\pmod m$, the choice $k=1$ gives $\\chi(n)\\ne1$.\n\nGeneral case. By the [[crt]], $(\\mathbb Z/q\\mathbb Z)^\\times$ is the product of the groups $(\\mathbb Z/p^k\\mathbb Z)^\\times$ over $p^k\\parallel q$. For odd $p$ these are cyclic. For $p=2$: the group is trivial for $k=1$, cyclic of order $2$ for $k=2$, and for $k\\ge3$ every odd $n$ is uniquely $\\pm5^e$ with $0\\le e<2^{k-2}$. So there are generators $g_1,\\dots,g_r$ of orders $m_1,\\dots,m_r$, with $m_1\\cdots m_r=\\varphi(q)$, such that every unit is uniquely $g_1^{e_1}\\cdots g_r^{e_r}$ with $e_j$ taken mod $m_j$. A character is then determined freely by choosing each $\\chi(g_j)$ among the $m_j$-th roots of unity. Every choice is well defined, by the uniqueness of the exponents. That gives $\\varphi(q)$ characters. If $n\\ne1$, some exponent $e_j\\not\\equiv0$; set $\\chi(g_j)=e^{2\\pi i/m_j}$ and $\\chi(g_i)=1$ for $i\\ne j$, and then $\\chi(n)\\ne1$."
+   },
+   {
+    "type": "theorem",
+    "title": "Orthogonality relations",
+    "body": "1. $\\displaystyle\\sum_{n\\bmod q}\\chi(n)=\\begin{cases}\\varphi(q)&\\chi=\\chi_0\\\\0&\\chi\\ne\\chi_0.\\end{cases}$\n\n2. $\\displaystyle\\sum_{\\chi\\bmod q}\\chi(n)=\\begin{cases}\\varphi(q)&n\\equiv1\\pmod q\\\\0&\\text{otherwise.}\\end{cases}$\n\n3. If $\\gcd(a,q)=1$, then\n$$\\frac{1}{\\varphi(q)}\\sum_{\\chi \\bmod q} \\overline{\\chi}(a)\\,\\chi(n) = \\begin{cases} 1 & n \\equiv a \\pmod q\\\\ 0 & \\text{otherwise.}\\end{cases}$$"
+   },
+   {
+    "type": "proof",
+    "body": "1. If $\\chi\\ne\\chi_0$, pick $m$ coprime to $q$ with $\\chi(m)\\ne1$. As $n$ runs over residues mod $q$, so does $mn$. Hence $S=\\sum\\chi(mn)=\\chi(m)S$, which forces $S=0$.\n\n2. If $\\gcd(n,q)>1$, every term is $0$. If $\\gcd(n,q)=1$ and $n\\not\\equiv1$, the theorem gives $\\psi$ with $\\psi(n)\\ne1$. Since $\\chi\\mapsto\\psi\\chi$ permutes the characters, $T=\\sum_\\chi\\psi(n)\\chi(n)=\\psi(n)T$, so $T=0$.\n\n3. Let $\\bar a$ be an inverse of $a$ mod $q$ ([[mod-inverse]]). Since $|\\chi(a)|=1$, we have $\\overline{\\chi}(a)=\\chi(a)^{-1}=\\chi(\\bar a)$. So the sum is $\\sum_\\chi\\chi(\\bar an)$, and by 2 this is $\\varphi(q)$ if $\\bar an\\equiv1$, that is if $n\\equiv a$, and $0$ otherwise."
+   },
+   {
+    "type": "section",
+    "title": "Picking out a progression",
+    "body": "Relation 3 is the whole point. For any function $f$ and any $a$ coprime to $q$,\n$$\\sum_{\\substack{p\\le x\\\\p\\equiv a\\ (q)}}f(p)=\\frac1{\\varphi(q)}\\sum_{\\chi\\bmod q}\\overline\\chi(a)\\sum_{p\\le x}\\chi(p)f(p).$$\nThe principal character contributes $\\frac1{\\varphi(q)}\\sum_{p\\le x,\\,p\\nmid q}f(p)$, the same for every $a$. This is the expected main term, with the primes shared equally among the $\\varphi(q)$ classes. Every other character contributes a sum $\\sum\\chi(p)f(p)$ with oscillating weights, which one hopes is smaller. Showing that it really is smaller is where $L(s,\\chi)=\\sum\\chi(n)n^{-s}$ and the fact $L(1,\\chi)\\ne0$ enter ([[l-functions]]).\n\nSome vocabulary. A character is real if all its values are real, so they lie in $\\{0,\\pm1\\}$; this happens exactly when $\\chi^2=\\chi_0$. For an odd prime $p$, the Legendre symbol $\\left(\\frac{\\cdot}{p}\\right)$ ([[quadratic-residues]]) is the unique real character mod $p$ other than $\\chi_0$. Since $\\chi(-1)^2=\\chi(1)=1$, every character is even ($\\chi(-1)=1$) or odd ($\\chi(-1)=-1$)."
+   },
+   {
+    "type": "definition",
+    "title": "Induced and primitive characters",
+    "body": "Let $d\\mid q$ and let $\\chi^*$ be a character mod $d$. The character $\\chi$ mod $q$ defined by $\\chi(n)=\\chi^*(n)$ for $\\gcd(n,q)=1$ (and $0$ otherwise) is said to be induced by $\\chi^*$. The conductor of $\\chi$ is the least $d\\mid q$ such that $\\chi$ is induced from a character mod $d$. The character $\\chi$ is primitive if its conductor is $q$ itself.\n\nA practical test: $\\chi$ is induced from modulus $d$ if and only if $\\chi(n)=1$ whenever $n\\equiv1\\pmod d$ and $\\gcd(n,q)=1$. One direction is clear. For the other, reduction mod $d$ maps $(\\mathbb Z/q)^\\times$ onto $(\\mathbb Z/d)^\\times$ (by the [[crt]]), and a homomorphism that is trivial on the kernel factors through the quotient."
+   },
+   {
+    "type": "section",
+    "title": "Examples of primitivity",
+    "body": "Mod $12$ the units are $1,5,7,11$, and there are four characters, all real:\n- $\\chi_0$: values $1,1,1,1$; conductor $1$;\n- induced from the nonprincipal character mod $4$: values $1,1,-1,-1$; conductor $4$;\n- induced from the Legendre symbol mod $3$: values $1,-1,1,-1$; conductor $3$;\n- their product: values $1,-1,-1,1$; conductor $12$, hence primitive.\n\nThe number $\\varphi^*(q)$ of primitive characters mod $q$ satisfies $\\varphi(q)=\\sum_{d\\mid q}\\varphi^*(d)$, because every character is induced by exactly one primitive character. By [[mobius]] inversion, $\\varphi^*(q)=\\sum_{d\\mid q}\\mu(d)\\varphi(q/d)$. For $q=12$ this is $4-2-2+1=1$, matching the list. For a prime $p$ we get $\\varphi^*(p)=p-2$: every nonprincipal character mod $p$ is primitive. And $\\varphi^*(2)=0$, so, since $\\varphi^*$ is multiplicative, there are no primitive characters at all modulo $q\\equiv2\\pmod4$."
+   },
+   {
+    "type": "example",
+    "title": "The characters modulo 5",
+    "body": "List the characters mod $5$ and use them to write the indicator of $n\\equiv2\\pmod5$.",
+    "solution": "$2$ is a primitive root mod $5$: $2^0=1$, $2^1=2$, $2^2=4$, $2^3=3$. Write $\\operatorname{ind}(n)$ for the exponent, so $\\operatorname{ind}(1,2,4,3)=(0,1,2,3)$. The four characters are $\\chi_k(n)=i^{k\\operatorname{ind}(n)}$ for $k=0,1,2,3$:\n- $\\chi_0$: $(\\chi(1),\\chi(2),\\chi(3),\\chi(4))=(1,1,1,1)$;\n- $\\chi_1$: $(1,i,-i,-1)$;\n- $\\chi_2$: $(1,-1,-1,1)$, the Legendre symbol mod $5$;\n- $\\chi_3=\\overline{\\chi_1}$: $(1,-i,i,-1)$.\n\n$\\chi_0$ and $\\chi_2$ are even; $\\chi_1$ and $\\chi_3$ are odd, since $\\chi(4)=\\chi(-1)=-1$. By orthogonality,\n$$\\mathbf 1_{n\\equiv2\\ (5)}=\\frac14\\sum_{k=0}^{3}\\overline{\\chi_k(2)}\\chi_k(n)=\\frac14\\sum_{k=0}^3 i^{k(\\operatorname{ind}(n)-1)}.$$\nFor $n=2$ every term is $1$, giving $1$. For $n=3$ the terms are $1,i,-1,-i$, summing to $0$."
+   },
+   {
+    "type": "example",
+    "title": "The characters modulo 8",
+    "body": "Find all characters mod $8$ and their conductors.",
+    "solution": "The units $1,3,5,7$ all square to $1$ mod $8$, so the group is $C_2\\times C_2$ and every character is real. The four characters, listed by their values at $(1,3,5,7)$, are:\n- $\\chi_0$: $(1,1,1,1)$; conductor $1$;\n- $\\chi_{-4}(n)=(-1)^{(n-1)/2}$: $(1,-1,1,-1)$; conductor $4$, since it depends only on $n\\bmod4$;\n- $\\chi_8(n)=(-1)^{(n^2-1)/8}$: $(1,-1,-1,1)$; conductor $8$;\n- $\\chi_{-8}=\\chi_{-4}\\chi_8$: $(1,1,-1,-1)$; conductor $8$.\n\nFor the last two, $\\chi(5)=-1$ although $5\\equiv1\\pmod4$, so neither is induced from mod $4$. This agrees with $\\varphi^*(8)=\\varphi(8)-\\varphi(4)=2$. The character $\\chi_8$ is the one behind the second supplement to quadratic reciprocity: $\\left(\\frac2p\\right)=\\chi_8(p)$."
+   },
+   {
+    "type": "example",
+    "title": "Counting cube roots with characters",
+    "body": "Let $p$ be a prime and $p\\nmid a$. Prove that the number of solutions of $x^3\\equiv a\\pmod p$ equals $\\sum_{\\chi^3=\\chi_0}\\chi(a)$, the sum over characters mod $p$ whose cube is principal.",
+    "solution": "Let $g$ be a primitive root mod $p$ and $a\\equiv g^e$. Characters mod $p$ are $\\chi_k(g^j)=e^{2\\pi ikj/(p-1)}$, and $\\chi_k^3=\\chi_0$ means $(p-1)\\mid3k$.\n\nCase $p\\equiv2\\pmod3$ (or $p=3$). Then $\\gcd(3,p-1)=1$, so only $k=0$ qualifies and the sum is $1$. On the other side, $x\\mapsto x^3$ is a bijection on $(\\mathbb Z/p)^\\times$, since $x^3\\equiv y^3$ gives $(x/y)^3\\equiv1$, and the order of $x/y$ divides $\\gcd(3,p-1)=1$. So there is exactly one solution.\n\nCase $p\\equiv1\\pmod3$. The qualifying $k$ are $0,\\frac{p-1}3,\\frac{2(p-1)}3$. So the sum is $\\sum_{j=0}^2\\omega^{je}$ with $\\omega=e^{2\\pi i/3}$, which is $3$ if $3\\mid e$ and $0$ otherwise. On the other side, writing $x=g^y$, the congruence $x^3\\equiv a$ becomes $3y\\equiv e\\pmod{p-1}$. This has $3$ solutions $y$ if $3\\mid e$ and none otherwise. The counts agree.\n\nThe same argument shows that the number of solutions of $x^k\\equiv a$ is $\\sum_{\\chi^k=\\chi_0}\\chi(a)$ for every $k$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Orthogonality relation 3 needs $\\gcd(a,q)=1$. If $\\gcd(a,q)>1$, then $\\overline\\chi(a)=0$ for every $\\chi$, and the left side is $0$ even for $n\\equiv a$.\n- $\\chi_0$ mod $q$ is not the constant function $1$: it vanishes at integers sharing a factor with $q$. In particular $\\chi_0$ mod $q$ is induced from the trivial character mod $1$, and is not primitive unless $q=1$.\n- A character mod $q$ is a function on all of $\\mathbb Z$. Do not forget the zeros when forming $L(s,\\chi)=\\sum\\chi(n)n^{-s}$.\n- Imprimitive and primitive versions of \"the same\" character have $L$-functions that differ by finitely many Euler factors $(1-\\chi^*(p)p^{-s})$ with $p\\mid q$. This matters for functional equations and Gauss sums.\n- Characters are not all real. For $q>2$ there are complex characters whenever $(\\mathbb Z/q)^\\times$ has an element of order greater than $2$."
+   },
+   {
+    "type": "connection",
+    "body": "Characters are the multiplicative side of Fourier analysis on $\\mathbb Z/q\\mathbb Z$. The additive side is $e(an/q)$, and [[gauss-sums]] connect the two; for primitive $\\chi$ they give $|g(\\chi)|=\\sqrt q$. Dirichlet $L$-functions $L(s,\\chi)$ and the prime number theorem in progressions are developed in [[l-functions]], and the value $L(1,\\chi)$ for real $\\chi$ is given by the [[class-number-formula]]. Averages over all characters to many moduli are the subject of the [[large-sieve]]. Characters of order $3$ lead to [[cubic-characters]] and cubic reciprocity."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the number of real characters mod $q$ equals the number of solutions of $x^2\\equiv1\\pmod q$. Compute it for $q=15$ and $q=16$.\n2. Find all characters mod $7$, and identify which are even, which are odd, and which is the Legendre symbol.\n3. Show that if $\\chi_1$ and $\\chi_2$ are primitive characters to coprime moduli $q_1,q_2$, then $\\chi_1\\chi_2$ is a primitive character mod $q_1q_2$.\n4. Prove that $\\sum_{\\chi\\bmod q}|\\sum_{n\\le N}\\chi(n)|^2\\le\\varphi(q)\\,N(N/q+1)$. (Expand the square and use orthogonality.)"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapters 4 and 5"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 16"
+   },
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Chapter 6"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "For q <= 40 the construction gives phi(q) distinct, periodic, completely multiplicative characters with values roots of unity",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\nfor q in range(1, 41):\n    cs = characters(q)\n    assert len(cs) == totient(q)\n    for c in cs:\n        for m in range(q):\n            for n in range(q):\n                assert close(c[m*n % q], c[m]*c[n])\n        for n in range(q):\n            if gcd(n, q) == 1: assert close(abs(c[n]), 1) and close(c[n]**int(totient(q)), 1)\n    keys = set(tuple(round(v.real, 6) + 1j*round(v.imag, 6) for v in c) for c in cs)\n    assert len(keys) == len(cs)\n"
+   },
+   {
+    "claim": "Orthogonality 1, 2 and 3 (with gcd(a,q)=1) hold for q <= 30; relation 3 fails (gives 0) when gcd(a,q)>1",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\nfor q in range(2, 31):\n    cs = characters(q); ph = int(totient(q))\n    for c in cs:\n        s = sum(c[n] for n in range(q))\n        assert close(s, ph if all(close(c[n], 1) for n in range(q) if gcd(n, q) == 1) else 0)\n    for a in range(q):\n        for n in range(q):\n            s = sum(c[a].conjugate()*c[n] for c in cs)/ph\n            if gcd(a, q) == 1:\n                assert close(s, 1 if n == a else 0)\n            else:\n                assert close(s, 0)\n"
+   },
+   {
+    "claim": "Number of primitive characters = sum_{d|q} mu(d) phi(q/d); equals 1 for q=12, 2 for q=8, p-2 for primes, 0 for q = 2 mod 4 (q <= 60)",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\nfor q in range(1, 61):\n    cs = characters(q)\n    prim = sum(1 for c in cs if conductor(c, q) == q)\n    formula = sum(mobius(d)*totient(q//d) for d in divisors(q))\n    assert prim == formula, q\n    if q % 4 == 2: assert prim == 0\nassert sum(1 for c in characters(12) if conductor(c, 12) == 12) == 1\nassert sum(1 for c in characters(8) if conductor(c, 8) == 8) == 2\nfor p in [3, 5, 7, 11, 13]:\n    assert sum(1 for c in characters(p) if conductor(c, p) == p) == p - 2\n"
+   },
+   {
+    "claim": "Mod 12 characters on (1,5,7,11) are (1,1,1,1),(1,1,-1,-1),(1,-1,1,-1),(1,-1,-1,1) with conductors 1,4,3,12",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\ncs = characters(12)\ntable = {}\nfor c in cs:\n    vals = tuple(int(round(c[n].real)) for n in (1, 5, 7, 11))\n    table[vals] = conductor(c, 12)\nassert table == {(1,1,1,1): 1, (1,1,-1,-1): 4, (1,-1,1,-1): 3, (1,-1,-1,1): 12}\n"
+   },
+   {
+    "claim": "Mod 8: chi_-4 = (1,-1,1,-1) conductor 4; chi_8 = (-1)^((n^2-1)/8) = (1,-1,-1,1) conductor 8; chi_-8 = (1,1,-1,-1) conductor 8; (2/p) = chi_8(p) for odd primes p < 500",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\nfrom sympy import legendre_symbol, primerange\ncs = characters(8)\ntable = {tuple(int(round(c[n].real)) for n in (1, 3, 5, 7)): conductor(c, 8) for c in cs}\nassert table == {(1,1,1,1): 1, (1,-1,1,-1): 4, (1,-1,-1,1): 8, (1,1,-1,-1): 8}\nassert tuple((-1)**((n*n - 1)//8) for n in (1, 3, 5, 7)) == (1, -1, -1, 1)\nfor p in primerange(3, 500):\n    assert legendre_symbol(2, p) == (-1)**((p*p - 1)//8)\n"
+   },
+   {
+    "claim": "Mod 5 with 2 as primitive root: chi_k(n) = i^(k ind n) gives tables (1,1,1,1), (1,i,-i,-1), (1,-1,-1,1), (1,-i,i,-1) at n=1,2,3,4; chi_2 is the Legendre symbol; indicator of n = 2 mod 5 recovered",
+    "python": "\nfrom sympy import legendre_symbol\nind = {1: 0, 2: 1, 4: 2, 3: 3}\nassert all(pow(2, e, 5) == n for n, e in ind.items())\nchi = lambda k, n: 0 if n % 5 == 0 else 1j**(k*ind[n % 5])\nexp = {0: (1, 1, 1, 1), 1: (1, 1j, -1j, -1), 2: (1, -1, -1, 1), 3: (1, -1j, 1j, -1)}\nfor k, v in exp.items():\n    assert all(abs(chi(k, n) - v[n-1]) < 1e-12 for n in range(1, 5))\nassert all(abs(chi(2, n) - int(legendre_symbol(n, 5))) < 1e-12 for n in range(1, 5))\nfor n in range(10):\n    s = sum(chi(k, 2).conjugate()*chi(k, n) for k in range(4))/4\n    assert abs(s - (1 if n % 5 == 2 else 0)) < 1e-12\nassert abs(sum(1j**(k*(ind[3] - 1)) for k in range(4))) < 1e-12\n"
+   },
+   {
+    "claim": "#{x mod p : x^3 = a} = sum over chi with chi^3 = chi_0 of chi(a), for all primes p < 80 and all a not divisible by p",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\nfrom sympy import primerange\nfor p in primerange(2, 80):\n    cs = [c for c in characters(p) if all(close(c[n]**3, 1) for n in range(1, p))]\n    for a in range(1, p):\n        cnt = sum(1 for x in range(p) if pow(x, 3, p) == a)\n        assert close(sum(c[a] for c in cs), cnt), (p, a)\n"
+   }
+  ]
+ },
+ {
+  "id": "gauss-sums",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Modulo $q$ there are two natural families of \"waves\". The additive characters $n\\mapsto e(an/q)$, where $e(x)=e^{2\\pi ix}$, respect addition. The [[dirichlet-characters]] $\\chi$ respect multiplication. A Gauss sum is the inner product of one with the other:\n$$g(\\chi)=\\sum_{a\\bmod q}\\chi(a)\\,e\\Big(\\frac aq\\Big).$$\nIt is a sum of $\\varphi(q)$ roots of unity, so a priori its size could be anything up to $\\varphi(q)$. In fact, for primitive $\\chi$, $|g(\\chi)|$ is exactly $\\sqrt q$, as if the terms were random signs. Gauss used the quadratic case to prove quadratic reciprocity, and Gauss sums reappear in the functional equation of the Dirichlet $L$-function of every primitive character."
+   },
+   {
+    "type": "section",
+    "title": "Warm-up: p = 3 and p = 5",
+    "body": "Take $\\chi$ to be the Legendre symbol $\\left(\\frac{\\cdot}{p}\\right)$, and write $\\zeta=e(1/p)$.\n\nFor $p=3$: $g=\\zeta-\\zeta^2=2i\\sin(2\\pi/3)=i\\sqrt3$.\n\nFor $p=5$: the squares mod $5$ are $1$ and $4$, so $g=\\zeta+\\zeta^4-\\zeta^2-\\zeta^3=2\\cos\\frac{2\\pi}5-2\\cos\\frac{4\\pi}5$. This is $\\sqrt5$, as we will see in an example below.\n\nIn both cases $g^2=\\pm p$, with sign $+$ for $p\\equiv1\\pmod 4$ and $-$ for $p\\equiv3\\pmod 4$. There is also a second description. The number of $x$ with $x^2\\equiv a$ is $1+\\left(\\frac ap\\right)$, so\n$$\\sum_{x\\bmod p}e\\Big(\\frac{x^2}p\\Big)=\\sum_{a\\bmod p}\\Big(1+\\Big(\\frac ap\\Big)\\Big)e\\Big(\\frac ap\\Big)=g,$$\nbecause $\\sum_a e(a/p)=0$. So the quadratic Gauss sum is also the sum of $e(x^2/p)$ over all $x$."
+   },
+   {
+    "type": "definition",
+    "title": "Gauss sum",
+    "body": "For a character $\\chi$ mod $q$ and an integer $b$,\n$$g(\\chi,b)=\\sum_{a\\bmod q}\\chi(a)\\,e\\Big(\\frac{ab}q\\Big),\\qquad g(\\chi)=g(\\chi,1).$$\nIt measures how much the multiplicative character $\\chi$ correlates with the additive character $a\\mapsto e(ab/q)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Separating the variables",
+    "body": "If $\\gcd(b,q)=1$, then $g(\\chi,b)=\\overline\\chi(b)\\,g(\\chi)$. If $\\chi$ is primitive, this identity holds for every integer $b$, since then both sides vanish when $\\gcd(b,q)>1$."
+   },
+   {
+    "type": "proof",
+    "body": "If $\\gcd(b,q)=1$, substitute $a=b^{-1}c$, so that $c=ab$ runs over all residues as $a$ does. Then $g(\\chi,b)=\\sum_c\\chi(b^{-1}c)e(c/q)=\\overline\\chi(b)g(\\chi)$.\n\nNow let $\\chi$ be primitive and $d=\\gcd(b,q)>1$, and put $q_1=q/d$, a proper divisor of $q$. Since $\\chi$ is not induced from modulus $q_1$, the test in [[dirichlet-characters]] gives an integer $c\\equiv1\\pmod{q_1}$ with $\\gcd(c,q)=1$ and $\\chi(c)\\ne1$. Write $b=db'$ and $c=1+q_1k$. Then $cb=b+qb'k\\equiv b\\pmod q$. Replacing $a$ by $ac$ permutes the residues mod $q$, so\n$$g(\\chi,b)=\\sum_a\\chi(ac)e\\Big(\\frac{acb}q\\Big)=\\chi(c)\\sum_a\\chi(a)e\\Big(\\frac{ab}q\\Big)=\\chi(c)\\,g(\\chi,b).$$\nSince $\\chi(c)\\ne1$, $g(\\chi,b)=0=\\overline\\chi(b)g(\\chi)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Absolute value",
+    "body": "If $\\chi$ is a primitive character mod $q$, then\n$$|g(\\chi)|^2 = q .$$"
+   },
+   {
+    "type": "proof",
+    "body": "Compute $\\Sigma=\\sum_{b\\bmod q}|g(\\chi,b)|^2$ in two ways.\n\nBy the previous theorem, which holds for all $b$ because $\\chi$ is primitive, $|g(\\chi,b)|^2=|\\chi(b)|^2|g(\\chi)|^2$. Hence $\\Sigma=\\varphi(q)|g(\\chi)|^2$.\n\nExpanding the square instead,\n$$\\Sigma=\\sum_{a_1,a_2}\\chi(a_1)\\overline{\\chi(a_2)}\\sum_b e\\Big(\\frac{b(a_1-a_2)}q\\Big).$$\nThe inner sum is $q$ if $a_1\\equiv a_2$ and $0$ otherwise. So $\\Sigma=q\\sum_a|\\chi(a)|^2=q\\varphi(q)$. Comparing gives $|g(\\chi)|^2=q$."
+   },
+   {
+    "type": "section",
+    "title": "Primitivity matters",
+    "body": "For imprimitive characters the size can be very different. For the principal character, $g(\\chi_0)=\\sum_{\\gcd(a,q)=1}e(a/q)$ is the sum of the primitive $q$-th roots of unity, which equals $\\mu(q)$. So $g(\\chi_0)=-1$ for $q$ prime, and $0$ for $q=4$. In general, if $\\chi$ mod $q$ is induced by a primitive $\\chi^*$ mod $d$, one can show $g(\\chi)=\\mu(q/d)\\chi^*(q/d)g(\\chi^*)$. This vanishes, for instance, whenever $q/d$ is not squarefree."
+   },
+   {
+    "type": "theorem",
+    "title": "The quadratic Gauss sum",
+    "body": "Let $p$ be an odd prime and $\\chi=\\left(\\frac{\\cdot}{p}\\right)$. Then\n$$g(\\chi)^2=\\Big(\\frac{-1}{p}\\Big)p=(-1)^{(p-1)/2}\\,p .$$\nGauss proved the sharper statement $g(\\chi)=\\sqrt p$ if $p\\equiv1\\pmod 4$ and $g(\\chi)=i\\sqrt p$ if $p\\equiv3\\pmod 4$. Determining this sign is genuinely harder, and Gauss reported that it took him years; we do not prove it here."
+   },
+   {
+    "type": "proof",
+    "body": "The character $\\chi$ is real and primitive (every nonprincipal character mod a prime is primitive). So $|g|^2=p$. Also\n$$\\overline{g}=\\sum_a\\chi(a)e\\Big(-\\frac ap\\Big)=g(\\chi,-1)=\\chi(-1)\\,g,$$\nusing separation with $b=-1$ and $\\overline\\chi=\\chi$. Hence $p=g\\overline g=\\chi(-1)g^2$, and $g^2=\\chi(-1)p$. Finally, $\\chi(-1)=\\left(\\frac{-1}p\\right)=(-1)^{(p-1)/2}$ by Euler's criterion."
+   },
+   {
+    "type": "section",
+    "title": "Quadratic reciprocity from Gauss sums",
+    "body": "Let $p\\ne\\ell$ be odd primes, $\\chi=\\left(\\frac{\\cdot}{p}\\right)$, $g=g(\\chi)$, and $p^*=(-1)^{(p-1)/2}p$, so that $g^2=p^*$. Work in the ring $\\mathbb Z[\\zeta]$, $\\zeta=e(1/p)$, whose elements are integer polynomials in $\\zeta$. Write $\\alpha\\equiv\\beta\\pmod\\ell$ if $\\alpha-\\beta\\in\\ell\\,\\mathbb Z[\\zeta]$.\n\nStep 1. $g^\\ell=g\\,(g^2)^{(\\ell-1)/2}=g\\,(p^*)^{(\\ell-1)/2}\\equiv\\Big(\\frac{p^*}{\\ell}\\Big)g\\pmod\\ell$, by Euler's criterion for the integer $p^*$ modulo $\\ell$.\n\nStep 2. In any commutative ring, $(x+y)^\\ell\\equiv x^\\ell+y^\\ell\\pmod\\ell$, because the binomial coefficients $\\binom\\ell k$ with $0<k<\\ell$ are divisible by $\\ell$. Since $\\chi(a)^\\ell=\\chi(a)$ ($\\ell$ is odd),\n$$g^\\ell\\equiv\\sum_a\\chi(a)\\zeta^{a\\ell}=g(\\chi,\\ell)=\\chi(\\ell)\\,g\\pmod\\ell .$$\nStep 3. So $\\big(\\frac{p^*}\\ell\\big)g\\equiv\\big(\\frac\\ell p\\big)g$. Multiply by $g$: $\\big(\\frac{p^*}\\ell\\big)p^*\\equiv\\big(\\frac\\ell p\\big)p^*\\pmod\\ell$. Both sides are integers, and $1,\\zeta,\\dots,\\zeta^{p-2}$ is a $\\mathbb Z$-basis of $\\mathbb Z[\\zeta]$ (because the minimal polynomial $1+x+\\cdots+x^{p-1}$ of $\\zeta$ is monic of degree $p-1$; see [[cyclotomic]]). So an integer lies in $\\ell\\mathbb Z[\\zeta]$ only if it is divisible by $\\ell$ in $\\mathbb Z$. As $\\ell\\nmid p^*$, we get $\\big(\\frac{p^*}\\ell\\big)\\equiv\\big(\\frac\\ell p\\big)\\pmod\\ell$. Two signs that agree mod $\\ell\\ge3$ are equal.\n\nStep 4. $\\big(\\frac{p^*}\\ell\\big)=\\big(\\frac{-1}\\ell\\big)^{(p-1)/2}\\big(\\frac p\\ell\\big)=(-1)^{\\frac{p-1}2\\cdot\\frac{\\ell-1}2}\\big(\\frac p\\ell\\big)$. Together with step 3, this is the law of quadratic reciprocity ([[quadratic-residues]])."
+   },
+   {
+    "type": "example",
+    "title": "The regular pentagon",
+    "body": "Use the Gauss sum mod $5$ to show $\\cos\\frac{2\\pi}5=\\frac{\\sqrt5-1}4$.",
+    "solution": "Let $\\zeta=e(1/5)$, $u=\\zeta+\\zeta^4=2\\cos\\frac{2\\pi}5$ and $v=\\zeta^2+\\zeta^3=2\\cos\\frac{4\\pi}5$. Since $1+\\zeta+\\zeta^2+\\zeta^3+\\zeta^4=0$, we have $u+v=-1$. The quadratic Gauss sum is $g=u-v$. Since $5\\equiv1\\pmod4$, the theorem gives $g^2=5$. And $u>0>v$, because $\\frac{2\\pi}5<\\frac\\pi2<\\frac{4\\pi}5$, so $g=u-v>0$ and $g=\\sqrt5$. Solving $u+v=-1$, $u-v=\\sqrt5$ gives $u=\\frac{\\sqrt5-1}2$, that is, $\\cos\\frac{2\\pi}5=\\frac{\\sqrt5-1}4$.\n\nThe general principle is that $\\sqrt{p^*}$ always lies in the field generated by the $p$-th roots of unity."
+   },
+   {
+    "type": "example",
+    "title": "A complex character",
+    "body": "Let $\\chi$ be the character mod $5$ with $\\chi(2)=i$. Compute $g(\\chi)$, check $|g(\\chi)|^2=5$, and verify $g(\\chi)g(\\overline\\chi)=\\chi(-1)\\cdot5$.",
+    "solution": "From $2^1=2$, $2^2=4$, $2^3=3$ we get $\\chi(1)=1$, $\\chi(2)=i$, $\\chi(4)=-1$, $\\chi(3)=-i$. So\n$$g(\\chi)=\\zeta+i\\zeta^2-i\\zeta^3-\\zeta^4=(\\zeta-\\zeta^4)+i(\\zeta^2-\\zeta^3)=2i\\sin\\tfrac{2\\pi}5-2\\sin\\tfrac{4\\pi}5 .$$\nNumerically this is $-1.17557+1.90211\\,i$, and $1.17557^2+1.90211^2=5.0000$.\n\nFor the second identity, $g(\\overline\\chi)=\\overline{g(\\chi,-1)}=\\overline{\\chi(-1)g(\\chi)}$ (separate the variables with $b=-1$), so $g(\\chi)g(\\overline\\chi)=\\overline{\\chi(-1)}|g(\\chi)|^2=\\chi(-1)\\cdot5$. Here $\\chi(-1)=\\chi(4)=-1$, so the product is $-5$. The same computation gives $g(\\chi)g(\\overline\\chi)=\\chi(-1)q$ for every primitive $\\chi$ mod $q$."
+   },
+   {
+    "type": "example",
+    "title": "Characters as combinations of additive waves",
+    "body": "Show that if $\\chi$ is primitive mod $q$, then for every integer $n$\n$$\\chi(n)=\\frac1{g(\\overline\\chi)}\\sum_{a\\bmod q}\\overline\\chi(a)\\,e\\Big(\\frac{an}q\\Big).$$\nWhy is this useful?",
+    "solution": "$\\overline\\chi$ is also primitive, so separation holds for all $n$: $g(\\overline\\chi,n)=\\overline{\\overline\\chi}(n)g(\\overline\\chi)=\\chi(n)g(\\overline\\chi)$. Since $g(\\overline\\chi)\\ne0$ (its absolute value is $\\sqrt q$), divide by it.\n\nThis is the finite Fourier expansion of $\\chi$. The coefficients all have the same size, $1/\\sqrt q$. It turns any sum $\\sum_n c_n\\chi(n)$ into a combination of exponential sums $\\sum_n c_ne(an/q)$. This is how the multiplicative [[large-sieve]] is derived from the additive one, and how the Pólya–Vinogradov inequality $\\sum_{n\\le N}\\chi(n)\\ll\\sqrt q\\log q$ is proved."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $|g(\\chi)|=\\sqrt q$ needs $\\chi$ primitive. For $\\chi_0$ mod a prime, $g=-1$; for imprimitive characters $g$ can vanish.\n- $g^2=\\left(\\frac{-1}p\\right)p$ is for the quadratic character mod an odd prime. Mod $2$ there is no nontrivial character at all.\n- From $g^2=p^*$ alone you cannot tell $g$ from $-g$. The sign is a separate and harder theorem.\n- Separation $g(\\chi,b)=\\overline\\chi(b)g(\\chi)$ for $\\gcd(b,q)>1$ uses primitivity in an essential way.\n- Normalisations vary: some books use $e(-a/q)$ or put $\\overline\\chi$ in the definition, which changes $g$ by $\\chi(-1)$ or by complex conjugation."
+   },
+   {
+    "type": "connection",
+    "body": "For primitive $\\chi$ mod $q$, the completed $L$-function $\\Lambda(s,\\chi)=(q/\\pi)^{(s+\\kappa)/2}\\Gamma\\big(\\frac{s+\\kappa}2\\big)L(s,\\chi)$, with $\\kappa=0$ for even and $\\kappa=1$ for odd $\\chi$, satisfies $\\Lambda(s,\\chi)=\\varepsilon(\\chi)\\Lambda(1-s,\\overline\\chi)$ with root number $\\varepsilon(\\chi)=g(\\chi)/(i^\\kappa\\sqrt q)$, a complex number of absolute value $1$ ([[l-functions]]). The expansion of $\\chi$ in additive characters is the bridge to the [[large-sieve]] and to [[exponential-sums]]. Products of Gauss sums give Jacobi sums, $J(\\chi,\\psi)=g(\\chi)g(\\psi)/g(\\chi\\psi)$ when $\\chi\\psi$ is nontrivial. These are the key to [[cubic-characters]] and cubic reciprocity, and to counting points on curves over [[finite-fields]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Compute the quadratic Gauss sum mod $7$ directly, and check that it equals $i\\sqrt7$.\n2. Show that $g(\\chi_0)=\\mu(q)$ for the principal character mod $q$. (Use Möbius inversion on $\\sum_{d\\mid\\gcd(a,q)}\\mu(d)$.)\n3. For an odd prime $p$ and $p\\nmid a$, show that $\\big|\\sum_{x\\bmod p}e(ax^2/p)\\big|=\\sqrt p$.\n4. Let $\\chi,\\psi$ be nontrivial characters mod a prime $p$ with $\\chi\\psi$ nontrivial. Prove $g(\\chi)g(\\psi)=J(\\chi,\\psi)g(\\chi\\psi)$, where $J(\\chi,\\psi)=\\sum_{a}\\chi(a)\\psi(1-a)$, and deduce $|J(\\chi,\\psi)|=\\sqrt p$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapters 6 and 8"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory",
+    "where": "Chapter 9"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Quadratic Gauss sum: g = sqrt(p) for p = 1 mod 4 and i sqrt(p) for p = 3 mod 4 (odd primes < 200); equals sum_x e(x^2/p); p=3 gives i sqrt3, p=5 gives sqrt5",
+    "python": "\nimport cmath, math\nfrom sympy import primerange, legendre_symbol\nfor p in primerange(3, 200):\n    g = sum(int(legendre_symbol(a, p))*cmath.exp(2j*math.pi*a/p) for a in range(1, p))\n    h = sum(cmath.exp(2j*math.pi*x*x/p) for x in range(p))\n    assert abs(g - h) < 1e-9\n    want = math.sqrt(p) if p % 4 == 1 else 1j*math.sqrt(p)\n    assert abs(g - want) < 1e-9, p\n    assert abs(g*g - (-1)**((p-1)//2)*p) < 1e-8\nz = cmath.exp(2j*math.pi/3)\nassert abs((z - z**2) - 1j*math.sqrt(3)) < 1e-12\nz = cmath.exp(2j*math.pi/5)\nassert abs((z + z**4 - z**2 - z**3) - math.sqrt(5)) < 1e-12\nassert abs(2*math.cos(2*math.pi/5) - 2*math.cos(4*math.pi/5) - math.sqrt(5)) < 1e-12\n"
+   },
+   {
+    "claim": "|g(chi)|^2 = q for all primitive chi mod q <= 40; g(chi_0) = mu(q) for q <= 60",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\ne = lambda x: cmath.exp(2j*cmath.pi*x)\ng = lambda c, q, b=1: sum(c[a]*e(a*b/q) for a in range(q))\nfor q in range(1, 41):\n    for c in characters(q):\n        if conductor(c, q) == q:\n            assert close(abs(g(c, q))**2, q, 1e-7)\nfor q in range(1, 61):\n    c0 = [1 if gcd(n, q) == 1 else 0 for n in range(q)]\n    assert close(g(c0, q), mobius(q), 1e-7)\n"
+   },
+   {
+    "claim": "Separation g(chi,b) = conj(chi(b)) g(chi) for all b when chi is primitive (q <= 30); also g(chi) g(conj chi) = chi(-1) q",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\ne = lambda x: cmath.exp(2j*cmath.pi*x)\ng = lambda c, q, b=1: sum(c[a]*e(a*b/q) for a in range(q))\nfor q in range(3, 31):\n    for c in characters(q):\n        if conductor(c, q) != q: continue\n        G = g(c, q)\n        for b in range(q):\n            assert close(g(c, q, b), c[b].conjugate()*G, 1e-7)\n        cb = [v.conjugate() for v in c]\n        assert close(G*g(cb, q), c[q-1]*q, 1e-7)\n"
+   },
+   {
+    "claim": "Imprimitive formula g(chi) = mu(q/d) chi*(q/d) g(chi*) for chi mod q induced by primitive chi* mod d (q <= 36)",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\ne = lambda x: cmath.exp(2j*cmath.pi*x)\ng = lambda c, q: sum(c[a]*e(a/q) for a in range(q))\nfor q in range(2, 37):\n    for c in characters(q):\n        d = conductor(c, q)\n        # build the primitive character mod d inducing c\n        star = None\n        for cs in characters(d):\n            if all(close(cs[n % d], c[n]) for n in range(q) if gcd(n, q) == 1):\n                star = cs; break\n        assert star is not None and conductor(star, d) == d\n        m = q//d\n        assert close(g(c, q), mobius(m)*star[m % d]*g(star, d), 1e-7), (q, d)\n"
+   },
+   {
+    "claim": "cos(2pi/5) = (sqrt5 - 1)/4; character mod 5 with chi(2)=i has g = -1.17557 + 1.90211i, |g|^2 = 5, g(chi)g(conj chi) = -5",
+    "python": "\nimport cmath, math\nassert abs(math.cos(2*math.pi/5) - (math.sqrt(5) - 1)/4) < 1e-15\nchi = {0: 0, 1: 1, 2: 1j, 4: -1, 3: -1j}\nz = cmath.exp(2j*math.pi/5)\ng = sum(chi[a]*z**a for a in range(5))\ngb = sum(complex(chi[a]).conjugate()*z**a for a in range(5))\nassert abs(g - (-1.17557 + 1.90211j)) < 1e-5\nassert abs(abs(g)**2 - 5) < 1e-12\nassert abs(g*gb + 5) < 1e-12\nassert abs(g - (2j*math.sin(2*math.pi/5) - 2*math.sin(4*math.pi/5))) < 1e-12\n"
+   },
+   {
+    "claim": "Step 2 of the reciprocity proof: in Z[x]/(Phi_p) reduced mod l, g^l = chi(l) g, for p in {5,7,11,13} and l in {3,5,7,11,13,17,19}, l != p; and quadratic reciprocity holds for odd primes < 150",
+    "python": "\nfrom sympy import Poly, symbols, cyclotomic_poly, legendre_symbol, GF, primerange\nx = symbols('x')\nfor p in [5, 7, 11, 13]:\n    Phi = Poly(cyclotomic_poly(p, x), x)\n    for l in [3, 5, 7, 11, 13, 17, 19]:\n        if l == p: continue\n        dom = GF(l)\n        Phil = Poly(Phi.as_expr(), x, domain=dom)\n        g = Poly(sum(legendre_symbol(a, p)*x**a for a in range(1, p)), x, domain=dom)\n        lhs = (g**l).rem(Phil)\n        rhs = (g*legendre_symbol(l, p)).rem(Phil)\n        assert lhs == rhs, (p, l)\n        # step 1: g^2 = p* in the ring\n        pstar = (-1)**((p-1)//2)*p\n        assert (g**2).rem(Phil) == Poly(pstar, x, domain=dom).rem(Phil)\nps = list(primerange(3, 150))\nfor p in ps:\n    for q in ps:\n        if p < q:\n            assert legendre_symbol(p, q)*legendre_symbol(q, p) == (-1)**(((p-1)//2)*((q-1)//2))\n"
+   },
+   {
+    "claim": "Functional equation with root number g(chi)/(i^kappa sqrt q) for the odd character mod 5 (chi(2)=i) and the even Legendre character mod 5 (root number 1), checked numerically",
+    "python": "\nimport mpmath as mp\nmp.mp.dps = 25\nchi = [0, 1, 1j, -1j, -1]\nchib = [0, 1, -1j, 1j, -1]\ng = sum(chi[a]*mp.exp(2j*mp.pi*a/5) for a in range(5))\ndef Lam(s, c, kap):\n    return (mp.mpf(5)/mp.pi)**((s + kap)/2)*mp.gamma((s + kap)/2)*mp.dirichlet(s, c)\neps = g/(1j*mp.sqrt(5))\nassert abs(abs(eps) - 1) < 1e-20\nfor s in [mp.mpf('0.3'), mp.mpc('0.2', '1.5')]:\n    assert abs(Lam(s, chi, 1) - eps*Lam(1 - s, chib, 1)) < 1e-15\nleg = [0, 1, -1, -1, 1]\ngl = sum(leg[a]*mp.exp(2j*mp.pi*a/5) for a in range(5))\nassert abs(gl/mp.sqrt(5) - 1) < 1e-20\nfor s in [mp.mpf('0.3'), mp.mpc('0.1', '2')]:\n    assert abs(Lam(s, leg, 0) - Lam(1 - s, leg, 0)) < 1e-15\n"
+   },
+   {
+    "claim": "Fourier expansion chi(n) = (1/g(conj chi)) sum_a conj chi(a) e(an/q) for primitive chi, q in {5, 7, 8, 9, 12}",
+    "python": "\nimport cmath, itertools\nfrom math import gcd\nfrom sympy import factorint, primitive_root, totient, mobius, divisors\ndef characters(q):\n    \"\"\"All Dirichlet characters mod q, each as a list of values chi(0..q-1).\"\"\"\n    comps = []\n    for p, k in factorint(q).items():\n        pk = p**k\n        if p == 2:\n            if k >= 2:\n                comps.append((pk, 2, lambda n: 0 if n % 4 == 1 else 1))\n            if k >= 3:\n                m = 2**(k-2); tab = {}; x = 1\n                for e in range(m): tab[x] = e; x = x*5 % pk\n                comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[(n if n % 4 == 1 else -n) % pk]))\n        else:\n            g = primitive_root(pk); m = pk//p*(p-1); tab = {}; x = 1\n            for e in range(m): tab[x] = e; x = x*g % pk\n            comps.append((pk, m, lambda n, pk=pk, tab=tab: tab[n % pk]))\n    out = []\n    for ks in itertools.product(*[range(m) for _, m, _ in comps]):\n        vals = []\n        for n in range(q):\n            if gcd(n, q) != 1:\n                vals.append(0); continue\n            z = 1\n            for (pk, m, lg), kk in zip(comps, ks):\n                z *= cmath.exp(2j*cmath.pi*kk*lg(n)/m)\n            vals.append(z)\n        out.append(vals)\n    return out\ndef conductor(chi, q):\n    for d in divisors(q):\n        if all(abs(chi[n] - 1) < 1e-9 for n in range(q) if gcd(n, q) == 1 and n % d == 1 % d):\n            return d\ndef close(a, b, eps=1e-9): return abs(a - b) < eps\n\ne = lambda x: cmath.exp(2j*cmath.pi*x)\nfor q in [5, 7, 8, 9, 12]:\n    for c in characters(q):\n        if conductor(c, q) != q: continue\n        cb = [v.conjugate() for v in c]\n        G = sum(cb[a]*e(a/q) for a in range(q))\n        for n in range(q):\n            assert close(c[n], sum(cb[a]*e(a*n/q) for a in range(q))/G, 1e-9)\n"
+   }
+  ]
+ }
+]

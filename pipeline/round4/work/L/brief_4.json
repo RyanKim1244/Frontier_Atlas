@@ -1,0 +1,367 @@
+[
+ {
+  "id": "l-functions",
+  "title": "Dirichlet L-functions and primes in progressions",
+  "area": "Analytic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$L(s,\\chi) = \\sum \\chi(n) n^{-s} = \\prod_p (1-\\chi(p)p^{-s})^{-1}$. Dirichlet (1837) proved $L(1,\\chi) \\ne 0$ for $\\chi \\ne \\chi_0$, so every progression $a \\bmod q$ with $\\gcd(a,q)=1$ has infinitely many primes.",
+  "key_statements": [
+   "\\sum_{\\substack{p \\le x \\\\ p \\equiv a \\ (q)}} \\frac{1}{p} = \\frac{1}{\\varphi(q)} \\log\\log x + O(1)"
+  ],
+  "why": "The template for every later $L$-function.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Apostol, Introduction to Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "dirichlet-characters",
+    "title": "Dirichlet characters"
+   },
+   {
+    "id": "dirichlet-series",
+    "title": "Dirichlet series and Euler products"
+   },
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "class-number-formula",
+    "title": "Dirichlet's class number formula"
+   },
+   {
+    "id": "siegel-zeros",
+    "title": "Siegel zeros and the Landau–Siegel problem"
+   },
+   {
+    "id": "moments",
+    "title": "Moments, mollifiers and amplifiers"
+   },
+   {
+    "id": "hecke-l",
+    "title": "Hecke L-functions"
+   },
+   {
+    "id": "grh",
+    "title": "The generalized Riemann hypothesis"
+   },
+   {
+    "id": "no-siegel",
+    "title": "Exclusion of Siegel zeros"
+   },
+   {
+    "id": "bsd",
+    "title": "The Birch and Swinnerton-Dyer conjecture"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1837",
+    "title": "Primes in arithmetic progressions",
+    "who": "Peter Gustav Lejeune Dirichlet",
+    "text": "Introduced characters and $L$-functions and proved $L(1,\\chi) \\ne 0$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "class-number-formula",
+  "title": "Dirichlet's class number formula",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Dirichlet (1839) expressed $L(1,\\chi_D)$ through the class number of forms of discriminant $D$. For $D < -4$, $L(1,\\chi_D) = \\pi h(D)/\\sqrt{|D|}$.",
+  "key_statements": [
+   "L(1, \\chi_D) = \\frac{2\\pi\\, h(D)}{w \\sqrt{|D|}} \\quad (D < 0)"
+  ],
+  "why": "It turns the non-vanishing of $L(1,\\chi)$ into the positivity of a class number, and links Siegel zeros to small class numbers.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Cox, Primes of the Form x² + ny²"
+  ],
+  "prerequisites": [
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   },
+   {
+    "id": "quadratic-forms",
+    "title": "Binary quadratic forms"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "siegel-zeros",
+    "title": "Siegel zeros and the Landau–Siegel problem"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1839",
+    "title": "The class number formula",
+    "who": "Peter Gustav Lejeune Dirichlet",
+    "text": "Expressed $L(1,\\chi_D)$ through class numbers of quadratic forms.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "siegel-zeros",
+  "title": "Siegel zeros and the Landau–Siegel problem",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "A real character $\\chi$ might have $L(\\beta,\\chi) = 0$ with $\\beta$ extremely close to $1$. Siegel (1935) proved $1 - \\beta \\gg_\\varepsilon q^{-\\varepsilon}$, but the constant cannot be computed. Excluding such zeros was a central open problem.",
+  "key_statements": [
+   "1 - \\beta \\;\\gg_\\varepsilon\\; q^{-\\varepsilon}"
+  ],
+  "why": "A Siegel zero would make primes unevenly spread among residue classes and class numbers unexpectedly small.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Iwaniec & Kowalski, Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   },
+   {
+    "id": "zero-free-region",
+    "title": "Zero-free regions"
+   },
+   {
+    "id": "class-number-formula",
+    "title": "Dirichlet's class number formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "siegel-walfisz",
+    "title": "The Siegel–Walfisz theorem"
+   },
+   {
+    "id": "no-siegel",
+    "title": "Exclusion of Siegel zeros"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1935",
+    "title": "Siegel's theorem",
+    "who": "Carl Ludwig Siegel",
+    "text": "Real exceptional zeros cannot be too close to $1$, with an ineffective constant.",
+    "ai_claim": false
+   },
+   {
+    "date": "6 Oct 2026",
+    "title": "372 proof claims released; Siegel zeros excluded",
+    "who": "OpenAI",
+    "text": "372 result families released on GitHub, including a short paper excluding Siegel zeros. Three manuscripts were withdrawn the next day over a sign error.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "siegel-walfisz",
+  "title": "The Siegel–Walfisz theorem",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "For any fixed $A$, primes up to $x$ split evenly among residue classes modulo $q \\le (\\log x)^A$, with error $O(x e^{-c\\sqrt{\\log x}})$. The constant is ineffective because it relies on Siegel's theorem.",
+  "key_statements": [
+   "\\psi(x; q, a) = \\frac{x}{\\varphi(q)} + O_A\\!\\bigl(x\\, e^{-c\\sqrt{\\log x}}\\bigr), \\quad q \\le (\\log x)^A"
+  ],
+  "why": "It is the input for Vinogradov's three-primes theorem and for Bombieri–Vinogradov.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Iwaniec & Kowalski, Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "siegel-zeros",
+    "title": "Siegel zeros and the Landau–Siegel problem"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bombieri-vinogradov",
+    "title": "The Bombieri–Vinogradov theorem"
+   },
+   {
+    "id": "ternary-goldbach",
+    "title": "Ternary Goldbach"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1935",
+    "title": "Siegel's theorem",
+    "who": "Carl Ludwig Siegel",
+    "text": "Real exceptional zeros cannot be too close to $1$, with an ineffective constant.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "sieve-basics",
+  "title": "Sieves from Eratosthenes to Brun",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "The sieve of Eratosthenes, written with inclusion–exclusion, is the Legendre identity. Brun (1919) truncated it and proved $\\sum 1/p$ over twin primes converges, the first result on twin primes.",
+  "key_statements": [
+   "\\pi(x) - \\pi(\\sqrt x) + 1 = \\sum_{d \\mid P(\\sqrt x)} \\mu(d) \\Bigl\\lfloor \\frac{x}{d} \\Bigr\\rfloor"
+  ],
+  "why": "Sieves estimate how many integers survive after removing residue classes, which is the right question for twin primes and Goldbach.",
+  "references": [
+   "Friedlander & Iwaniec, Opera de Cribro",
+   "Montgomery & Vaughan, Multiplicative Number Theory I"
+  ],
+  "prerequisites": [
+   {
+    "id": "mobius",
+    "title": "Möbius inversion and Dirichlet convolution"
+   },
+   {
+    "id": "mertens",
+    "title": "Mertens' theorems"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "selberg-sieve",
+    "title": "The Selberg sieve"
+   },
+   {
+    "id": "prime-patterns",
+    "title": "Primes in sequences and gaps"
+   },
+   {
+    "id": "goldbach",
+    "title": "Goldbach's conjecture"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1919",
+    "title": "Brun's theorem",
+    "who": "Viggo Brun",
+    "text": "The sum of reciprocals of twin primes converges.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "selberg-sieve",
+  "title": "The Selberg sieve",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Selberg (1947) replaced $\\mu(d)$ by weights $\\lambda_d$ chosen to minimise a quadratic form, giving sharp upper bounds such as $\\pi(x+y) - \\pi(x) \\le (2+o(1))\\,y/\\log y$.",
+  "key_statements": [
+   "\\sum_{n \\le x}\\Bigl(\\sum_{d \\mid n} \\lambda_d\\Bigr)^2, \\qquad \\lambda_1 = 1"
+  ],
+  "why": "The same idea, applied with many linear forms at once, is the engine of Maynard's 2013 proof of bounded gaps.",
+  "references": [
+   "Friedlander & Iwaniec, Opera de Cribro"
+  ],
+  "prerequisites": [
+   {
+    "id": "sieve-basics",
+    "title": "Sieves from Eratosthenes to Brun"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bounded-gaps",
+    "title": "Bounded gaps between primes"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1947",
+    "title": "The Selberg sieve",
+    "who": "Atle Selberg",
+    "text": "Optimised sieve weights by a quadratic form.",
+    "ai_claim": false
+   },
+   {
+    "date": "2013–2014",
+    "title": "Multidimensional sieve and Polymath8",
+    "who": "James Maynard; Polymath8",
+    "text": "A new sieve for bounded gaps; the collaborative project lowered the bound to $246$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "large-sieve",
+  "title": "The large sieve",
+  "area": "Analytic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "An inequality bounding a trigonometric polynomial at well-spaced points (Linnik, 1941). With characters it says no sequence can be badly distributed in many residue classes at once.",
+  "key_statements": [
+   "\\sum_{q \\le Q}\\ \\sum_{\\substack{a \\bmod q \\\\ (a,q)=1}} \\Bigl|\\sum_{n \\le N} a_n e\\!\\left(\\tfrac{an}{q}\\right)\\Bigr|^2 \\le (N + Q^2)\\sum_n |a_n|^2"
+  ],
+  "why": "The key input of Bombieri–Vinogradov.",
+  "references": [
+   "Iwaniec & Kowalski, Analytic Number Theory",
+   "Montgomery & Vaughan, Multiplicative Number Theory I"
+  ],
+  "prerequisites": [
+   {
+    "id": "gauss-sums",
+    "title": "Gauss sums"
+   },
+   {
+    "id": "fourier-poisson",
+    "title": "Fourier analysis and Poisson summation"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "bombieri-vinogradov",
+    "title": "The Bombieri–Vinogradov theorem"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1941",
+    "title": "The large sieve",
+    "who": "Yuri Linnik",
+    "text": "Introduced the large sieve.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

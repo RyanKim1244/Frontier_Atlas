@@ -1,0 +1,280 @@
+[
+ {
+  "id": "ramsey",
+  "title": "Ramsey theory",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Every $2$-colouring of the edges of a large complete graph contains a monochromatic $K_k$. The Ramsey number $R(k)$ is the threshold; $\\sqrt2^{\\,k} \\le R(k) \\le 4^k$, improved to $(4-\\varepsilon)^k$ in 2023.",
+  "key_statements": [
+   "R(k,\\ell) \\le \\binom{k+\\ell-2}{k-1}",
+   "R(k) \\le (4-\\varepsilon)^k \\ \\ \\text{(Campos–Griffiths–Morris–Sahasrabudhe 2023)}"
+  ],
+  "why": "Complete disorder is impossible: this one principle spans graphs, arithmetic progressions and logic.",
+  "references": [
+   "Graham, Rothschild & Spencer, Ramsey Theory",
+   "Bollobás, Modern Graph Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   },
+   {
+    "id": "infinite-combinatorics",
+    "title": "Infinite combinatorics and partition calculus"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1930",
+    "title": "Ramsey's theorem",
+    "who": "Frank Ramsey",
+    "text": "Proved as a lemma about decision procedures in logic.",
+    "ai_claim": false
+   },
+   {
+    "date": "1947",
+    "title": "Random graphs bound Ramsey numbers",
+    "who": "Paul Erdős",
+    "text": "A counting argument shows $R(k) > 2^{k/2}$, the start of the probabilistic method.",
+    "ai_claim": false
+   },
+   {
+    "date": "2023",
+    "title": "Exponential improvement for Ramsey numbers",
+    "who": "Campos, Griffiths, Morris, Sahasrabudhe",
+    "text": "$R(k) \\le (4-\\varepsilon)^k$, the first exponential improvement since 1935.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "probabilistic-method",
+  "title": "The probabilistic method",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics",
+   "probability"
+  ],
+  "status": null,
+  "summary": "To show an object exists, pick one at random and show the probability it works is positive. Linearity of expectation, alterations, the Lovász local lemma and concentration inequalities are the main tools.",
+  "key_statements": [
+   "\\Pr\\big[\\text{some } K_k \\text{ monochromatic}\\big] \\le \\binom nk 2^{1-\\binom k2} < 1 \\Rightarrow R(k) > n",
+   "\\mathbb E[X] \\ge t \\Rightarrow \\Pr[X\\ge t] > 0"
+  ],
+  "why": "Erdős's 1947 Ramsey lower bound started it; it now drives coding theory, randomized algorithms and much of extremal combinatorics.",
+  "references": [
+   "Alon & Spencer, The Probabilistic Method"
+  ],
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   },
+   {
+    "id": "random-variables",
+    "title": "Random variables and expectation"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1947",
+    "title": "Random graphs bound Ramsey numbers",
+    "who": "Paul Erdős",
+    "text": "A counting argument shows $R(k) > 2^{k/2}$, the start of the probabilistic method.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "set-systems",
+  "title": "Extremal set theory",
+  "area": "Combinatorics",
+  "stage": "undergraduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "How large can a family of subsets of $[n]$ be under a restriction? Sperner bounds antichains, Erdős–Ko–Rado bounds intersecting families of $k$-sets, and the sunflower lemma finds structured subfamilies.",
+  "key_statements": [
+   "|\\mathcal F| \\le \\binom{n}{\\lfloor n/2\\rfloor}\\ \\ \\text{(Sperner)}",
+   "|\\mathcal F| \\le \\binom{n-1}{k-1}\\ \\ \\text{if pairwise intersecting},\\ n\\ge 2k"
+  ],
+  "why": "These bounds are the combinatorial core of results in coding theory, complexity lower bounds and the union-closed sets conjecture.",
+  "references": [
+   "Jukna, Extremal Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   },
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "hypergraphs",
+    "title": "Hypergraphs"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1961",
+    "title": "Erdős–Ko–Rado theorem",
+    "who": "Erdős, Ko, Rado",
+    "text": "Intersecting families of $k$-subsets of $[n]$, $n\\ge2k$, have at most $\\binom{n-1}{k-1}$ members.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "hypergraphs",
+  "title": "Hypergraphs",
+  "area": "Combinatorics",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Edges with any number of vertices. Turán and Ramsey questions become much harder: the Turán density of the $3$-uniform $K_4^{(3)}$ is still unknown.",
+  "key_statements": [
+   "\\pi\\big(K_4^{(3)}\\big) \\overset{?}{=} \\tfrac59 \\ \\ \\text{(Turán's conjecture)}"
+  ],
+  "why": "Hypergraph regularity and container methods power modern proofs of Szemerédi-type theorems.",
+  "references": [
+   "Jukna, Extremal Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "set-systems",
+    "title": "Extremal set theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "grids-tilings",
+  "title": "Grids, tilings and board colourings",
+  "area": "Combinatorics",
+  "stage": "olympiad",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Problems on chessboards and grids: tiling regions with dominoes or polyominoes, placing pieces, and colouring the board so a counting argument rules a configuration out.",
+  "key_statements": [
+   "\\text{a mutilated } 8\\times8 \\text{ board (two opposite corners removed) has no domino tiling}"
+  ],
+  "why": "The colouring trick is an invariant in disguise; domino tilings link to determinants and statistical physics.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [
+   {
+    "id": "invariants",
+    "title": "Invariants and monovariants"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "discrete-geometry",
+  "title": "Combinatorial geometry",
+  "area": "Combinatorics",
+  "stage": "graduate",
+  "fields": [
+   "geometry",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Finite point sets in the plane: how many unit distances, how many distinct distances, when points must contain a convex $k$-gon, how lines and points can be incident.",
+  "key_statements": [
+   "\\#\\text{unit distances} \\le O(n^{4/3})\\ \\ \\text{(Spencer–Szemerédi–Trotter)}",
+   "\\#\\text{distinct distances} \\ge c\\,\\frac{n}{\\log n}\\ \\ \\text{(Guth–Katz)}"
+  ],
+  "why": "Erdős's distance problems pushed incidence geometry into polynomial methods; in May 2026 an AI model found a counterexample to his unit distance conjecture.",
+  "references": [
+   "Matoušek, Lectures on Discrete Geometry"
+  ],
+  "prerequisites": [
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   },
+   {
+    "id": "euclid-basics",
+    "title": "Angles, triangles and similarity"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2010",
+    "title": "The distinct distances problem",
+    "who": "Larry Guth, Nets Katz",
+    "text": "$n$ points determine $\\gg n/\\log n$ distinct distances, via the polynomial method.",
+    "ai_claim": false
+   },
+   {
+    "date": "20 May 2026",
+    "title": "Unit distance conjecture disproved",
+    "who": "OpenAI internal model",
+    "text": "Reported counterexample to Erdős's 1946 conjecture on the maximum number of unit distances; Tim Gowers praised the proof.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "infinite-combinatorics",
+  "title": "Infinite combinatorics and partition calculus",
+  "area": "Combinatorics",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "logic"
+  ],
+  "status": null,
+  "summary": "Ramsey theory for infinite sets and cardinals. The arrow notation $\\kappa \\to (\\lambda)^n_r$ asks whether every colouring of $n$-subsets of $\\kappa$ with $r$ colours has a homogeneous set of size $\\lambda$.",
+  "key_statements": [
+   "\\aleph_0 \\to (\\aleph_0)^n_r \\ \\ \\text{(infinite Ramsey)}",
+   "2^{\\aleph_0} \\not\\to (\\aleph_1)^2_2 \\ \\ \\text{(Sierpiński)}"
+  ],
+  "why": "Several of these questions are independent of ZFC, so the answer depends on the axioms.",
+  "references": [
+   "Graham, Rothschild & Spencer, Ramsey Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ }
+]

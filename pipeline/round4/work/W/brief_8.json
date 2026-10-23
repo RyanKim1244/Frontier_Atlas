@@ -1,0 +1,222 @@
+[
+ {
+  "id": "fundamental-group",
+  "title": "The fundamental group and covering spaces",
+  "short": "Fundamental group",
+  "area": "Topology",
+  "fields": [
+   "topology",
+   "algebra"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "topological-spaces",
+    "title": "Topological spaces, continuity and connectedness"
+   },
+   {
+    "id": "groups",
+    "title": "Groups and symmetry"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "homology",
+    "title": "Homology"
+   }
+  ],
+  "curriculum_sources": [
+   "Munkres, ch. 9, 12",
+   "Hatcher, ch. 0, §1.1, §1.3"
+  ]
+ },
+ {
+  "id": "classification-of-surfaces",
+  "title": "The classification of surfaces",
+  "short": "Classification of surfaces",
+  "area": "Topology",
+  "fields": [
+   "topology",
+   "geometry"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "topological-spaces",
+    "title": "Topological spaces, continuity and connectedness"
+   },
+   {
+    "id": "planar-graphs",
+    "title": "Planar graphs and Euler's formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "gauss-bonnet",
+    "title": "Geodesics and the Gauss–Bonnet theorem"
+   }
+  ],
+  "curriculum_sources": [
+   "Munkres, ch. 13"
+  ]
+ },
+ {
+  "id": "homology",
+  "title": "Homology",
+  "short": "Homology",
+  "area": "Topology",
+  "fields": [
+   "topology",
+   "algebra"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "fundamental-group",
+    "title": "The fundamental group and covering spaces"
+   },
+   {
+    "id": "group-homomorphisms",
+    "title": "Homomorphisms, normal subgroups and quotient groups"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Hatcher, ch. 2"
+  ]
+ },
+ {
+  "id": "curves",
+  "title": "Curves: arc length, curvature and the Frenet frame",
+  "short": "Curves & curvature",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "geometry",
+   "calculus"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "parametric-polar",
+    "title": "Parametric curves and polar coordinates"
+   },
+   {
+    "id": "vectors-plane",
+    "title": "Vectors in the plane and in space"
+   },
+   {
+    "id": "derivative",
+    "title": "The derivative"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "surfaces-curvature",
+    "title": "Surfaces and Gaussian curvature"
+   }
+  ],
+  "curriculum_sources": [
+   "do Carmo, ch. 1",
+   "AP Calculus BC / Unit 9: Parametric Equations, Polar Coordinates, and Vector-Valued Functions / Position, velocity, speed and acceleration along a curve",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 13 Vector functions / 13.1 Vector functions and space curves",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 13 Vector functions / 13.2 Derivatives and integrals of vector functions",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 13 Vector functions / 13.3 Arc length and curvature",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 13 Vector functions / 13.4 Motion in space: velocity and acceleration",
+   "고급 기하 / 곡선의 성질"
+  ]
+ },
+ {
+  "id": "surfaces-curvature",
+  "title": "Surfaces and Gaussian curvature",
+  "short": "Surfaces & curvature",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "geometry"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "curves",
+    "title": "Curves: arc length, curvature and the Frenet frame"
+   },
+   {
+    "id": "partial-derivatives",
+    "title": "Partial derivatives and the gradient"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "gauss-bonnet",
+    "title": "Geodesics and the Gauss–Bonnet theorem"
+   },
+   {
+    "id": "riemannian-geometry",
+    "title": "Riemannian metrics, geodesics and curvature"
+   }
+  ],
+  "curriculum_sources": [
+   "do Carmo, ch. 2-3"
+  ]
+ },
+ {
+  "id": "gauss-bonnet",
+  "title": "Geodesics and the Gauss–Bonnet theorem",
+  "short": "Gauss–Bonnet",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "topology"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "surfaces-curvature",
+    "title": "Surfaces and Gaussian curvature"
+   },
+   {
+    "id": "classification-of-surfaces",
+    "title": "The classification of surfaces"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "do Carmo, ch. 4-5"
+  ]
+ },
+ {
+  "id": "smooth-manifolds",
+  "title": "Smooth manifolds and tangent spaces",
+  "short": "Smooth manifolds",
+  "area": "Differential geometry",
+  "fields": [
+   "differential-geometry",
+   "topology"
+  ],
+  "stage": "graduate",
+  "prerequisites": [
+   {
+    "id": "topological-spaces",
+    "title": "Topological spaces, continuity and connectedness"
+   },
+   {
+    "id": "inverse-function-theorem",
+    "title": "The inverse and implicit function theorems"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "lie-groups",
+    "title": "Lie groups and matrix groups"
+   },
+   {
+    "id": "riemannian-geometry",
+    "title": "Riemannian metrics, geodesics and curvature"
+   }
+  ],
+  "curriculum_sources": [
+   "Lee, ch. 1-6"
+  ]
+ }
+]

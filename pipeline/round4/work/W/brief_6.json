@@ -1,0 +1,213 @@
+[
+ {
+  "id": "conformal-maps",
+  "title": "Conformal maps and the Riemann mapping theorem",
+  "short": "Conformal maps",
+  "area": "Complex analysis",
+  "fields": [
+   "complex-analysis",
+   "geometry"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "holomorphic",
+    "title": "Holomorphic functions and Cauchy's theorem"
+   },
+   {
+    "id": "arzela-ascoli",
+    "title": "The Arzelà–Ascoli and Stone–Weierstrass theorems"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Stein & Shakarchi (Complex), ch. 8"
+  ]
+ },
+ {
+  "id": "dual-spaces",
+  "title": "Dual spaces and quotient spaces",
+  "short": "Duality",
+  "area": "Linear algebra",
+  "fields": [
+   "linear-algebra"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "linear-maps",
+    "title": "Linear maps and the rank–nullity theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "tensor-products",
+    "title": "Tensor products and exterior algebra"
+   },
+   {
+    "id": "hahn-banach",
+    "title": "The Hahn–Banach theorem and dual spaces"
+   }
+  ],
+  "curriculum_sources": [
+   "Axler, ch. 3",
+   "Dummit & Foote, §11.3"
+  ]
+ },
+ {
+  "id": "tensor-products",
+  "title": "Tensor products and exterior algebra",
+  "short": "Tensors & exterior algebra",
+  "area": "Linear algebra",
+  "fields": [
+   "linear-algebra",
+   "algebra",
+   "physics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "dual-spaces",
+    "title": "Dual spaces and quotient spaces"
+   },
+   {
+    "id": "determinants",
+    "title": "Determinants"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "differential-forms",
+    "title": "Differential forms and the general Stokes theorem"
+   },
+   {
+    "id": "riemannian-geometry",
+    "title": "Riemannian metrics, geodesics and curvature"
+   }
+  ],
+  "curriculum_sources": [
+   "Axler, ch. 9",
+   "Dummit & Foote, §10.4, §11.5",
+   "Lee, ch. 12"
+  ]
+ },
+ {
+  "id": "least-squares",
+  "title": "Orthogonal projection, least squares and QR",
+  "short": "Least squares",
+  "area": "Linear algebra",
+  "fields": [
+   "linear-algebra",
+   "statistics",
+   "numerical-analysis"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "inner-products",
+    "title": "Inner products and orthogonality"
+   },
+   {
+    "id": "linear-maps",
+    "title": "Linear maps and the rank–nullity theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "linear-regression",
+    "title": "Correlation and linear regression"
+   }
+  ],
+  "curriculum_sources": [
+   "Strang, Introduction to Linear Algebra, 6th ed. / 4 Orthogonality / 4.2 Projections onto Lines and Subspaces",
+   "Strang, Introduction to Linear Algebra, 6th ed. / 4 Orthogonality / 4.3 Least Squares Approximations",
+   "Trefethen & Bau, Lectures 6-11",
+   "Boyd & Vandenberghe, ch. 6"
+  ]
+ },
+ {
+  "id": "solvable-groups",
+  "title": "Solvable and nilpotent groups",
+  "short": "Solvable groups",
+  "area": "Abstract algebra",
+  "fields": [
+   "algebra"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "group-homomorphisms",
+    "title": "Homomorphisms, normal subgroups and quotient groups"
+   },
+   {
+    "id": "group-actions",
+    "title": "Group actions and the Sylow theorems"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Dummit & Foote, §3.4, ch. 6"
+  ]
+ },
+ {
+  "id": "ufds",
+  "title": "Euclidean domains, PIDs and unique factorisation",
+  "short": "Unique factorisation domains",
+  "area": "Abstract algebra",
+  "fields": [
+   "algebra",
+   "number-theory"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "rings",
+    "title": "Rings, ideals and quotient rings"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "modules",
+    "title": "Modules and the structure theorem over a PID"
+   }
+  ],
+  "curriculum_sources": [
+   "Dummit & Foote, ch. 8-9"
+  ]
+ },
+ {
+  "id": "modules",
+  "title": "Modules and the structure theorem over a PID",
+  "short": "Modules",
+  "area": "Abstract algebra",
+  "fields": [
+   "algebra",
+   "linear-algebra"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "ufds",
+    "title": "Euclidean domains, PIDs and unique factorisation"
+   },
+   {
+    "id": "linear-maps",
+    "title": "Linear maps and the rank–nullity theorem"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "noetherian-rings",
+    "title": "Noetherian rings and Hilbert's basis theorem"
+   }
+  ],
+  "curriculum_sources": [
+   "Dummit & Foote, ch. 5, 10, 12",
+   "Atiyah & Macdonald, ch. 2"
+  ]
+ }
+]

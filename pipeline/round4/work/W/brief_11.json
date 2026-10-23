@@ -1,0 +1,218 @@
+[
+ {
+  "id": "point-estimation",
+  "title": "Estimators and maximum likelihood",
+  "short": "Estimation",
+  "area": "Statistics",
+  "fields": [
+   "statistics",
+   "probability"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "distributions",
+    "title": "Discrete and continuous distributions"
+   },
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Casella & Berger, ch. 6-7, 10"
+  ]
+ },
+ {
+  "id": "confidence-intervals",
+  "title": "Sampling distributions and confidence intervals",
+  "short": "Confidence intervals",
+  "area": "Statistics",
+  "fields": [
+   "statistics",
+   "probability"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "limit-theorems",
+    "title": "The law of large numbers and the central limit theorem"
+   },
+   {
+    "id": "sampling-design",
+    "title": "Sampling, surveys and experiments"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "hypothesis-testing",
+    "title": "Hypothesis testing"
+   }
+  ],
+  "curriculum_sources": [
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Estimators",
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Sampling distributions for sample proportions",
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Confidence interval for a population proportion",
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Confidence interval for a difference of two proportions",
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Sampling distributions for sample means",
+   "Cambridge International AS & A Level Mathematics 9709 / Probability & Statistics 2 (Paper 6) / 6.4 Sampling and estimation",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 5 Estimation, confidence intervals and tests using a normal distribution",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 5 Foundations for Inference / 5.1 Point estimates and sampling variability"
+  ]
+ },
+ {
+  "id": "hypothesis-testing",
+  "title": "Hypothesis testing",
+  "short": "Hypothesis testing",
+  "area": "Statistics",
+  "fields": [
+   "statistics",
+   "probability"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "confidence-intervals",
+    "title": "Sampling distributions and confidence intervals"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "t-tests",
+    "title": "Inference for means: t-tests and analysis of variance"
+   },
+   {
+    "id": "chi-square-tests",
+    "title": "Chi-square tests"
+   }
+  ],
+  "curriculum_sources": [
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Test for a population proportion",
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Test for a difference of two proportions",
+   "Cambridge International AS & A Level Mathematics 9709 / Probability & Statistics 2 (Paper 6) / 6.5 Hypothesis tests",
+   "Cambridge International AS & A Level Further Mathematics 9231 / Further Probability & Statistics (Paper 4) / 4.4 Non-parametric tests",
+   "Pearson Edexcel A level Mathematics 9MA0 / Paper 3 Section A: Statistics / 5 Statistical hypothesis testing",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3B: Further Statistics 1 / 4 Hypothesis testing",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3B: Further Statistics 1 / 8 Quality of tests",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 6 Other hypothesis tests and confidence intervals"
+  ]
+ },
+ {
+  "id": "t-tests",
+  "title": "Inference for means: t-tests and analysis of variance",
+  "short": "t-tests & ANOVA",
+  "area": "Statistics",
+  "fields": [
+   "statistics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "hypothesis-testing",
+    "title": "Hypothesis testing"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Confidence interval for a mean or mean difference",
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Test for a mean or mean difference",
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Sampling distribution of a difference of two sample means",
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Confidence interval for a difference of two means",
+   "AP Statistics / Unit 4: Inference for Quantitative Data: Means / Test for a difference of two means",
+   "Cambridge International AS & A Level Further Mathematics 9231 / Further Probability & Statistics (Paper 4) / 4.2 Inference using normal and t-distributions",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 7 Confidence intervals and tests using the t-distribution",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 7 Inference for Numerical Data / 7.1 One-sample means with the t-distribution"
+  ]
+ },
+ {
+  "id": "chi-square-tests",
+  "title": "Chi-square tests",
+  "short": "Chi-square tests",
+  "area": "Statistics",
+  "fields": [
+   "statistics"
+  ],
+  "stage": "undergraduate",
+  "prerequisites": [
+   {
+    "id": "hypothesis-testing",
+    "title": "Hypothesis testing"
+   },
+   {
+    "id": "distributions",
+    "title": "Discrete and continuous distributions"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "AP Statistics / Unit 3: Inference for Categorical Data: Proportions / Chi-square test for homogeneity or independence",
+   "Cambridge International AS & A Level Further Mathematics 9231 / Further Probability & Statistics (Paper 4) / 4.3 Chi-squared tests",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 3B: Further Statistics 1 / 6 Chi squared tests",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 6 Inference for Categorical Data / 6.3 Testing goodness of fit using chi-square",
+   "Diez, Cetinkaya-Rundel & Barr, OpenIntro Statistics, 4th ed. / 6 Inference for Categorical Data / 6.4 Testing for independence in two-way tables"
+  ]
+ },
+ {
+  "id": "linear-regression",
+  "title": "Correlation and linear regression",
+  "short": "Regression",
+  "area": "Statistics",
+  "fields": [
+   "statistics",
+   "linear-algebra"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "descriptive-statistics",
+    "title": "Describing data: summaries and displays"
+   },
+   {
+    "id": "least-squares",
+    "title": "Orthogonal projection, least squares and QR"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Common Core State Standards for Mathematics - High School / Statistics and Probability: Interpreting Categorical and Quantitative Data (S-ID) / Interpret linear models",
+   "AP Statistics / Unit 5: Regression Analysis / Graphical representations of two quantitative variables",
+   "AP Statistics / Unit 5: Regression Analysis / Correlation",
+   "AP Statistics / Unit 5: Regression Analysis / Linear regression models",
+   "AP Statistics / Unit 5: Regression Analysis / Least-squares regression",
+   "AP Precalculus / Unit 2: Exponential and Logarithmic Functions / Validating a model with a residual plot",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 1 Linear regression",
+   "Pearson Edexcel A level Further Mathematics 9FM0 / Paper 4B: Further Statistics 2 / 3 Correlation"
+  ]
+ },
+ {
+  "id": "root-finding",
+  "title": "Numerical solution of equations: bisection and Newton's method",
+  "short": "Root-finding",
+  "area": "Numerical analysis and optimisation",
+  "fields": [
+   "numerical-analysis",
+   "calculus"
+  ],
+  "stage": "school",
+  "prerequisites": [
+   {
+    "id": "continuity",
+    "title": "Continuity and the intermediate value theorem"
+   },
+   {
+    "id": "derivative",
+    "title": "The derivative"
+   }
+  ],
+  "leads_to": [],
+  "curriculum_sources": [
+   "Cambridge International AS & A Level Mathematics 9709 / Pure Mathematics 2 (Paper 2) / 2.6 Numerical solution of equations",
+   "Cambridge International AS & A Level Mathematics 9709 / Pure Mathematics 3 (Paper 3) / 3.6 Numerical solution of equations",
+   "Pearson Edexcel A level Mathematics 9MA0 / Papers 1 and 2: Pure Mathematics / 9 Numerical methods",
+   "Stewart, Calculus: Early Transcendentals, 7th ed. / 4 Applications of differentiation / 4.8 Newton's method",
+   "고급 미적분 / 미분방정식",
+   "고급 미적분 / 미적분의 활용"
+  ]
+ }
+]

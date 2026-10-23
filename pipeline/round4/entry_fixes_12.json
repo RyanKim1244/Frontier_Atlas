@@ -1,0 +1,67 @@
+[
+ {
+  "id": "groups",
+  "field": "key_statements",
+  "problem": "Lagrange's theorem needs H to be a subgroup of a finite group G, and Burnside's formula needs a finite group acting on a finite set. Neither hypothesis is stated.",
+  "corrected": [
+   "|H| \\text{ divides } |G|\\ \\ (H \\le G,\\ G \\text{ finite})\\ \\ \\text{(Lagrange)}",
+   "\\#\\text{orbits} = \\frac1{|G|}\\sum_{g\\in G}|\\operatorname{Fix}(g)|\\ \\ (G \\text{ finite, acting on a finite set } X)\\ \\ \\text{(Burnside)}"
+  ]
+ },
+ {
+  "id": "amgm",
+  "field": "key_statements",
+  "problem": "AM–GM needs x_i >= 0 (it fails for (-1,-8,1): AM = -8/3 < 2 = GM). Power means of order p <= 0 need x_i > 0, with M_0 taken as the geometric mean.",
+  "corrected": [
+   "\\frac{x_1+\\cdots+x_n}{n} \\ge \\sqrt[n]{x_1\\cdots x_n}\\ \\ (x_i \\ge 0)",
+   "M_p(x) = \\Big(\\tfrac1n\\textstyle\\sum x_i^p\\Big)^{1/p}\\ \\text{is increasing in } p\\ \\ (x_i>0,\\ M_0 = \\text{geometric mean})"
+  ]
+ },
+ {
+  "id": "cauchy-schwarz",
+  "field": "key_statements",
+  "problem": "The Engel form needs b_i > 0. It is false otherwise: a = (1,1), b = (1,-1/2) gives -1 on the left and 8 on the right.",
+  "corrected": [
+   "\\Big(\\sum a_ib_i\\Big)^2 \\le \\sum a_i^2 \\sum b_i^2",
+   "\\sum \\frac{a_i^2}{b_i} \\ge \\frac{(\\sum a_i)^2}{\\sum b_i}\\ \\ (b_i > 0)"
+  ]
+ },
+ {
+  "id": "cauchy-schwarz",
+  "field": "summary",
+  "problem": "The Engel form is stated without its hypothesis b_i > 0.",
+  "corrected": "$(\\sum a_ib_i)^2 \\le (\\sum a_i^2)(\\sum b_i^2)$, its Engel form $\\sum a_i^2/b_i \\ge (\\sum a_i)^2/\\sum b_i$ for $b_i > 0$, Hölder's generalisation, and the rearrangement inequality for similarly ordered sequences."
+ },
+ {
+  "id": "convexity",
+  "field": "key_statements",
+  "problem": "Jensen's inequality needs non-negative weights. With f = x^2, w = (2,-1) and x = (0,1) it fails (1 > -1).",
+  "corrected": [
+   "f\\Big(\\sum w_ix_i\\Big) \\le \\sum w_i f(x_i)\\ \\ (f \\text{ convex},\\ w_i \\ge 0,\\ \\textstyle\\sum w_i = 1)"
+  ]
+ },
+ {
+  "id": "convexity",
+  "field": "why",
+  "problem": "Convexity alone does not give unique answers (a constant function is convex). It makes every local minimum global, and uniqueness needs strict convexity.",
+  "corrected": "Convexity is the reason local minima of optimisation problems are global minima (and unique under strict convexity), from mechanics to machine learning."
+ },
+ {
+  "id": "symmetric-ineq",
+  "field": "why",
+  "problem": "This misstates Hilbert's 17th problem. It asks whether every non-negative polynomial is a sum of squares of rational functions, which Artin proved in 1927. Deciding when a polynomial is a sum of squares of polynomials is a different question, and Hilbert showed in 1888 that the answer is not always yes.",
+  "corrected": "Whether every non-negative polynomial is a sum of squares of rational functions is Hilbert's 17th problem, solved by Artin in 1927."
+ },
+ {
+  "id": "symmetric-ineq",
+  "field": "summary",
+  "problem": "For non-negative variables the uvw method reduces to two cases, two equal variables or one variable equal to zero. The summary mentions only the first; Schur's equality case (1,1,0) shows the zero case cannot be dropped.",
+  "corrected": "Inequalities in symmetric polynomials of a few variables: Schur's inequality, Muirhead, sum-of-squares decompositions and the $uvw$ method that reduces to the case of two equal variables or one variable zero."
+ },
+ {
+  "id": "polynomials-roots",
+  "field": "summary",
+  "problem": "'At most n roots' needs coefficients in a field (or an integral domain). Modulo 8, x^2 - 1 has the four roots 1, 3, 5, 7.",
+  "corrected": "A degree-$n$ polynomial over a field (such as $\\mathbb Q$, $\\mathbb R$ or $\\mathbb C$) has at most $n$ roots; its coefficients are the elementary symmetric functions of the roots. Interpolation, the factor theorem and comparing coefficients solve most problems."
+ }
+]

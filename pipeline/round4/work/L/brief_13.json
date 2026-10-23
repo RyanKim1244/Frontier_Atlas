@@ -1,0 +1,233 @@
+[
+ {
+  "id": "sequences",
+  "title": "Sequences, recurrences and limits",
+  "area": "Algebra & inequalities",
+  "stage": "school",
+  "fields": [
+   "real-analysis",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "Sequences defined by a rule: bound them, find their limit, prove periodicity or eventual behaviour. Linear recurrences solve by characteristic roots; non-linear ones by monotonicity and invariants.",
+  "key_statements": [
+   "a_{n+2} = pa_{n+1} + qa_n \\Rightarrow a_n = \\alpha r_1^n + \\beta r_2^n",
+   "\\text{bounded and monotone} \\Rightarrow \\text{convergent}"
+  ],
+  "why": "Discrete dynamical systems start here; the Collatz problem shows how quickly simple rules become intractable.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [
+   {
+    "id": "ap-gp",
+    "title": "Arithmetic and geometric sequences"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "floor-functions",
+  "title": "Floor functions and fractional parts",
+  "area": "Algebra & inequalities",
+  "stage": "school",
+  "fields": [
+   "number-theory",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "Identities and estimates for $\\lfloor x\\rfloor$ and $\\{x\\} = x - \\lfloor x\\rfloor$, Beatty sequences, and equidistribution of $\\{n\\alpha\\}$.",
+  "key_statements": [
+   "\\sum_{k=0}^{n-1}\\Big\\lfloor x + \\frac kn\\Big\\rfloor = \\lfloor nx\\rfloor\\ \\ \\text{(Hermite)}",
+   "\\tfrac1\\alpha + \\tfrac1\\beta = 1,\\ \\alpha\\notin\\mathbb Q \\Rightarrow \\{\\lfloor n\\alpha\\rfloor\\} \\sqcup \\{\\lfloor n\\beta\\rfloor\\} = \\mathbb N_{>0}"
+  ],
+  "why": "Counting lattice points under a curve is a floor sum; Weyl's equidistribution theorem is about fractional parts.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [
+   {
+    "id": "divisibility",
+    "title": "Divisibility and the Euclidean algorithm"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "linear-algebra",
+  "title": "Linear algebra methods in combinatorics",
+  "area": "Algebra & inequalities",
+  "stage": "undergraduate",
+  "fields": [
+   "algebra"
+  ],
+  "status": null,
+  "summary": "Vector spaces, rank and determinants as tools: bound a family by showing its members are linearly independent in a space of known dimension.",
+  "key_statements": [
+   "v_1,\\dots,v_m \\in \\mathbb F^n \\text{ independent} \\Rightarrow m \\le n"
+  ],
+  "why": "The dimension argument gives some of the sharpest bounds in combinatorics (Frankl–Wilson, Fisher's inequality).",
+  "references": [
+   "Artin, Algebra",
+   "Jukna, Extremal Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "basis-dimension",
+    "title": "Linear independence, bases and dimension"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "euclid-basics",
+  "title": "Angles, triangles and similarity",
+  "area": "Geometry",
+  "stage": "school",
+  "fields": [
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Angle chasing, congruent and similar triangles, the laws of sines and cosines, and areas. Nearly every olympiad geometry solution is built from these.",
+  "key_statements": [
+   "\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R",
+   "c^2 = a^2 + b^2 - 2ab\\cos C"
+  ],
+  "why": "Euclid's Elements is the first axiomatic theory; its parallel postulate led to non-Euclidean geometry.",
+  "references": [
+   "Coxeter & Greitzer, Geometry Revisited",
+   "Chen, Euclidean Geometry in Mathematical Olympiads"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "discrete-geometry",
+    "title": "Combinatorial geometry"
+   },
+   {
+    "id": "trig",
+    "title": "Trigonometric functions"
+   },
+   {
+    "id": "vectors-plane",
+    "title": "Vectors in the plane and in space"
+   },
+   {
+    "id": "circles",
+    "title": "Circles and power of a point"
+   },
+   {
+    "id": "analytic-geometry",
+    "title": "Coordinates, vectors and complex numbers"
+   },
+   {
+    "id": "geo-inequalities",
+    "title": "Geometric inequalities and extremal geometry"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "c. 300 BC",
+    "title": "Euclid's Elements",
+    "who": "Euclid",
+    "text": "Axiomatic plane geometry; Book IX also proves there are infinitely many primes.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "circles",
+  "title": "Circles and power of a point",
+  "area": "Geometry",
+  "stage": "school",
+  "fields": [
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Inscribed angles, cyclic quadrilaterals, tangents, and the power of a point $P$ with respect to a circle: for any line through $P$ meeting the circle at $A,B$, $PA\\cdot PB$ is constant.",
+  "key_statements": [
+   "PA \\cdot PB = |PO|^2 - r^2",
+   "ABCD \\text{ cyclic} \\iff \\angle A + \\angle C = 180^\\circ"
+  ],
+  "why": "Radical axes and coaxal circles organise most configurations with several circles.",
+  "references": [
+   "Chen, Euclidean Geometry in Mathematical Olympiads",
+   "Coxeter & Greitzer, Geometry Revisited"
+  ],
+  "prerequisites": [
+   {
+    "id": "euclid-basics",
+    "title": "Angles, triangles and similarity"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "triangle-centres",
+    "title": "Triangle centres and classical configurations"
+   },
+   {
+    "id": "geo-transformations",
+    "title": "Transformations and inversion"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "triangle-centres",
+  "title": "Triangle centres and classical configurations",
+  "area": "Geometry",
+  "stage": "olympiad",
+  "fields": [
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Incentre, circumcentre, orthocentre, centroid and their circles: the Euler line, the nine-point circle, the incircle and excircles, Ceva's and Menelaus's theorems.",
+  "key_statements": [
+   "OH^2 = 9R^2 - (a^2+b^2+c^2)",
+   "\\frac{BD}{DC}\\cdot\\frac{CE}{EA}\\cdot\\frac{AF}{FB} = 1\\ \\ \\text{(Ceva)}"
+  ],
+  "why": "Recognising a standard configuration is often the whole solution.",
+  "references": [
+   "Chen, Euclidean Geometry in Mathematical Olympiads",
+   "Coxeter & Greitzer, Geometry Revisited"
+  ],
+  "prerequisites": [
+   {
+    "id": "circles",
+    "title": "Circles and power of a point"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "geo-transformations",
+  "title": "Transformations and inversion",
+  "area": "Geometry",
+  "stage": "olympiad",
+  "fields": [
+   "geometry"
+  ],
+  "status": null,
+  "summary": "Homotheties, rotations, reflections, spiral similarities and inversion map a configuration to a simpler one. Inversion turns circles through the centre into lines.",
+  "key_statements": [
+   "P \\mapsto P' \\text{ on ray } OP,\\ \\ OP\\cdot OP' = r^2"
+  ],
+  "why": "Thinking in transformations is Klein's Erlangen programme: a geometry is the study of invariants of a group.",
+  "references": [
+   "Chen, Euclidean Geometry in Mathematical Olympiads",
+   "Coxeter & Greitzer, Geometry Revisited"
+  ],
+  "prerequisites": [
+   {
+    "id": "circles",
+    "title": "Circles and power of a point"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ }
+]

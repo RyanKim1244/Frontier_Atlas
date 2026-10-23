@@ -1,0 +1,295 @@
+[
+ {
+  "id": "analytic-geometry",
+  "title": "Coordinates, vectors and complex numbers",
+  "area": "Geometry",
+  "stage": "olympiad",
+  "fields": [
+   "geometry",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "Place the figure in coordinates, use vectors, complex numbers on the unit circle, or barycentric coordinates, and compute.",
+  "key_statements": [
+   "a,b,c,d \\text{ on the unit circle: } ab \\parallel cd \\iff ab = cd"
+  ],
+  "why": "Computation is a guaranteed fallback; choosing the frame that keeps it short is the skill.",
+  "references": [
+   "Chen, Euclidean Geometry in Mathematical Olympiads"
+  ],
+  "prerequisites": [
+   {
+    "id": "euclid-basics",
+    "title": "Angles, triangles and similarity"
+   },
+   {
+    "id": "complex-numbers",
+    "title": "Complex numbers and functions"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "geo-inequalities",
+  "title": "Geometric inequalities and extremal geometry",
+  "area": "Geometry",
+  "stage": "olympiad",
+  "fields": [
+   "geometry",
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "Inequalities among lengths, areas and angles of figures: the triangle inequality, Euler's $R \\ge 2r$, the isoperimetric inequality, Erdős–Mordell.",
+  "key_statements": [
+   "R \\ge 2r",
+   "PA+PB+PC \\ge 2(PD+PE+PF)\\ \\ \\text{(Erdős–Mordell)}",
+   "4\\pi A \\le L^2"
+  ],
+  "why": "The isoperimetric inequality is the model for a large part of geometric analysis.",
+  "references": [
+   "Coxeter & Greitzer, Geometry Revisited"
+  ],
+  "prerequisites": [
+   {
+    "id": "euclid-basics",
+    "title": "Angles, triangles and similarity"
+   },
+   {
+    "id": "amgm",
+    "title": "AM–GM and power means"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "primality",
+  "title": "Primality testing",
+  "area": "Computation & cryptography",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory",
+   "computer-science"
+  ],
+  "status": null,
+  "summary": "The Fermat test fails on Carmichael numbers such as $561$. Miller–Rabin is fast and probabilistic; Agrawal, Kayal and Saxena (2002) gave the first deterministic polynomial-time test.",
+  "key_statements": [
+   "a^{n-1} \\not\\equiv 1 \\pmod n \\ \\Longrightarrow\\ n \\text{ composite}"
+  ],
+  "why": "Generating RSA keys requires finding large primes quickly.",
+  "references": [
+   "Crandall & Pomerance, Prime Numbers: A Computational Perspective"
+  ],
+  "prerequisites": [
+   {
+    "id": "fermat-euler",
+    "title": "Fermat's little theorem and Euler's theorem"
+   },
+   {
+    "id": "quadratic-residues",
+    "title": "Quadratic residues and reciprocity"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2002",
+    "title": "PRIMES is in P",
+    "who": "Manindra Agrawal, Neeraj Kayal, Nitin Saxena",
+    "text": "A deterministic polynomial-time primality test.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "rsa",
+  "title": "RSA and public-key cryptography",
+  "area": "Computation & cryptography",
+  "stage": "undergraduate",
+  "fields": [
+   "cryptography",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "Rivest, Shamir and Adleman (1977): publish $n = pq$ and $e$, keep $d = e^{-1} \\bmod \\varphi(n)$. Encryption is $c = m^e \\bmod n$ and decryption $m = c^d \\bmod n$. Security rests on the difficulty of factoring $n$.",
+  "key_statements": [
+   "m^{ed} \\equiv m \\pmod n \\quad \\text{when } ed \\equiv 1 \\pmod{\\varphi(n)}"
+  ],
+  "why": "Number theory in daily use, and the reason factoring is studied so intensely.",
+  "references": [
+   "Crandall & Pomerance, Prime Numbers: A Computational Perspective"
+  ],
+  "prerequisites": [
+   {
+    "id": "fermat-euler",
+    "title": "Fermat's little theorem and Euler's theorem"
+   },
+   {
+    "id": "crt",
+    "title": "Chinese remainder theorem"
+   },
+   {
+    "id": "mod-inverse",
+    "title": "Modular inverses and linear congruences"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1977",
+    "title": "RSA",
+    "who": "Ron Rivest, Adi Shamir, Leonard Adleman",
+    "text": "Public-key encryption based on factoring.",
+    "ai_claim": false
+   },
+   {
+    "date": "1994",
+    "title": "Shor's algorithm",
+    "who": "Peter Shor",
+    "text": "A quantum algorithm for factoring and discrete logarithms in polynomial time.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "discrete-log",
+  "title": "Discrete logarithms and Diffie–Hellman",
+  "area": "Computation & cryptography",
+  "stage": "undergraduate",
+  "fields": [
+   "cryptography",
+   "number-theory",
+   "computer-science"
+  ],
+  "status": null,
+  "summary": "Given a primitive root $g$ modulo $p$ and $h$, find $x$ with $g^x \\equiv h$. Diffie and Hellman (1976) used its difficulty for key exchange: Alice sends $g^a$, Bob $g^b$, both compute $g^{ab}$.",
+  "key_statements": [
+   "g^x \\equiv h \\pmod p"
+  ],
+  "why": "Baby-step giant-step solves it in about $\\sqrt p$ steps; nothing much faster is known for well-chosen groups.",
+  "references": [
+   "Crandall & Pomerance, Prime Numbers: A Computational Perspective"
+  ],
+  "prerequisites": [
+   {
+    "id": "order-primroot",
+    "title": "Order and primitive roots"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1976",
+    "title": "New Directions in Cryptography",
+    "who": "Whitfield Diffie, Martin Hellman",
+    "text": "Public key exchange from discrete logarithms.",
+    "ai_claim": false
+   },
+   {
+    "date": "1994",
+    "title": "Shor's algorithm",
+    "who": "Peter Shor",
+    "text": "A quantum algorithm for factoring and discrete logarithms in polynomial time.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "rh",
+  "title": "The Riemann hypothesis",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "Every nontrivial zero of $\\zeta$ has real part $\\tfrac12$. Stated by Riemann in 1859, one of Hilbert's 1900 problems and a Clay Millennium Problem since 2000. Open as of October 2026.",
+  "key_statements": [
+   "\\zeta(\\rho) = 0,\\ 0 < \\operatorname{Re}\\rho < 1 \\ \\Longrightarrow\\ \\operatorname{Re}\\rho = \\tfrac12",
+   "\\psi(x) = x + O(\\sqrt x \\log^2 x)"
+  ],
+  "why": "It is equivalent to the best possible error term in the prime number theorem.",
+  "references": [
+   "Edwards, Riemann's Zeta Function",
+   "Titchmarsh, The Theory of the Riemann Zeta-Function"
+  ],
+  "prerequisites": [
+   {
+    "id": "nontrivial-zeros",
+    "title": "Nontrivial zeros and the Riemann–von Mangoldt formula"
+   },
+   {
+    "id": "explicit-formula",
+    "title": "The explicit formula"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "grh",
+    "title": "The generalized Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1859",
+    "title": "On the Number of Primes Less Than a Given Magnitude",
+    "who": "Bernhard Riemann",
+    "text": "Continued $\\zeta$ to the complex plane, proved the functional equation, linked zeros to primes and stated the Riemann hypothesis.",
+    "ai_claim": false
+   },
+   {
+    "date": "1914",
+    "title": "Infinitely many zeros on the critical line",
+    "who": "G. H. Hardy",
+    "text": "Proved infinitely many zeros have real part $\\tfrac12$.",
+    "ai_claim": false
+   },
+   {
+    "date": "2000",
+    "title": "Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "The Riemann hypothesis was named one of seven problems with a $1 million prize.",
+    "ai_claim": false
+   },
+   {
+    "date": "2000",
+    "title": "The Millennium Prize Problems",
+    "who": "Clay Mathematics Institute",
+    "text": "Seven problems, a million dollars each: RH, P vs NP, Navier–Stokes, Yang–Mills, Hodge, BSD and Poincaré.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "grh",
+  "title": "The generalized Riemann hypothesis",
+  "area": "Frontier",
+  "stage": "research",
+  "fields": [
+   "number-theory"
+  ],
+  "status": "open",
+  "summary": "All nontrivial zeros of every Dirichlet $L$-function lie on $\\operatorname{Re}s=\\tfrac12$. GRH would give primes in progressions with square-root error and make many algorithms provably fast.",
+  "key_statements": [
+   "L(\\rho,\\chi) = 0,\\ 0<\\operatorname{Re}\\rho<1 \\ \\Longrightarrow\\ \\operatorname{Re}\\rho = \\tfrac12"
+  ],
+  "why": "Bombieri–Vinogradov is GRH on average.",
+  "references": [
+   "Davenport, Multiplicative Number Theory",
+   "Iwaniec & Kowalski, Analytic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "rh",
+    "title": "The Riemann hypothesis"
+   },
+   {
+    "id": "l-functions",
+    "title": "Dirichlet L-functions and primes in progressions"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ }
+]

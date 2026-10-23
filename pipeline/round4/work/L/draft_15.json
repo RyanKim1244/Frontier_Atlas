@@ -1,0 +1,1011 @@
+[
+ {
+  "id": "quasi-rh",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The Riemann hypothesis puts every nontrivial zero of $\\zeta(s)$ on the line $\\operatorname{Re}s = \\tfrac12$. A far weaker statement asks only that the zeros keep a fixed distance from the line $\\operatorname{Re}s = 1$: is there some $\\theta < 1$ such that no zero has real part larger than $\\theta$? This is the quasi-Riemann hypothesis. Until 2026 nobody could prove it for any value of $\\theta$, not even $\\theta = 0.999$, and this was true for $\\zeta$ itself as well as for every Dirichlet $L$-function.\n\nThis page explains why a fixed half-plane matters so much more than the classical zero-free regions, proves the easy half of the link between zeros and prime counting, and then describes, as claims, what was announced in autumn 2026."
+   },
+   {
+    "type": "section",
+    "title": "Zeros control the error in the prime number theorem",
+    "body": "Write $\\psi(x) = \\sum_{n \\le x} \\Lambda(n)$ for the Chebyshev function. The [[explicit-formula]] says, roughly,\n\n$$\\psi(x) = x - \\sum_{\\rho} \\frac{x^{\\rho}}{\\rho} + (\\text{small terms}),$$\n\nthe sum running over nontrivial zeros $\\rho = \\beta + i\\gamma$ of $\\zeta$. A zero contributes a wave of size about $x^{\\beta}/|\\rho|$. So the error in the [[pnt]] is governed by how far to the right the zeros can reach.\n\nThe classical [[zero-free-region]] of de la Vallée Poussin (1899) says $\\zeta(\\beta + i\\gamma) \\ne 0$ when $\\beta > 1 - c/\\log(|\\gamma| + 2)$. The region gets thinner as $|\\gamma|$ grows, so zeros very high up could come very close to $\\operatorname{Re}s = 1$. The resulting error term is $\\psi(x) - x = O\\bigl(x e^{-c'\\sqrt{\\log x}}\\bigr)$. The Vinogradov–Korobov region (1958), of width about $(\\log|\\gamma|)^{-2/3}(\\log\\log|\\gamma|)^{-1/3}$, improves this to $O\\bigl(x \\exp(-c(\\log x)^{3/5}(\\log\\log x)^{-1/5})\\bigr)$. Each of these savings is smaller than every power $x^{-\\delta}$.\n\nA zero-free half-plane $\\operatorname{Re}s > \\theta$ changes the shape of the answer. It is a classical theorem (proof omitted here; it comes from the truncated explicit formula) that if $\\theta$ is at least the supremum of the real parts of the zeros, then\n\n$$\\psi(x) = x + O\\bigl(x^{\\theta}(\\log x)^2\\bigr), \\qquad \\pi(x) = \\operatorname{li}(x) + O\\bigl(x^{\\theta}\\log x\\bigr).$$\n\nThat is a power saving, the kind of statement the Riemann hypothesis gives with $\\theta = \\tfrac12$."
+   },
+   {
+    "type": "definition",
+    "title": "Quasi-Riemann hypothesis",
+    "body": "For a family of $L$-functions (for example $\\zeta$ alone, or all Dirichlet $L$-functions $L(s,\\chi)$), the quasi-Riemann hypothesis with exponent $\\theta < 1$ is the statement that $L(s,\\chi) \\ne 0$ whenever $\\operatorname{Re}s > \\theta$, for every member of the family, with the same $\\theta$ for all of them.\n\nIn words: every zero stays at least $1 - \\theta$ away from the edge of the critical strip, however high up it sits and however large the modulus is."
+   },
+   {
+    "type": "theorem",
+    "title": "A power saving forces a zero-free half-plane",
+    "body": "Suppose there are constants $C$ and $\\theta < 1$ with $|\\psi(x) - x| \\le C x^{\\theta}$ for all $x \\ge 1$. Then $\\zeta(s) \\ne 0$ for $\\operatorname{Re}s > \\theta$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For $\\operatorname{Re}s > 1$, partial summation (see [[mellin]]) gives\n\n$$-\\frac{\\zeta'(s)}{\\zeta(s)} = \\sum_{n \\ge 1}\\frac{\\Lambda(n)}{n^{s}} = s\\int_1^{\\infty}\\psi(x)\\,x^{-s-1}\\,dx,$$\n\nwhere the boundary term $\\psi(X)X^{-s}$ tends to $0$ because $\\psi(X) = O(X)$. Also $s\\int_1^\\infty x \\cdot x^{-s-1}\\,dx = \\dfrac{s}{s-1}$. Subtracting,\n\n$$-\\frac{\\zeta'(s)}{\\zeta(s)} - \\frac{s}{s-1} = s\\int_1^{\\infty}\\bigl(\\psi(x) - x\\bigr)x^{-s-1}\\,dx \\qquad (\\operatorname{Re}s > 1).$$\n\nBy hypothesis the integrand is at most $C x^{\\theta - \\sigma - 1}$ in absolute value, where $\\sigma = \\operatorname{Re}s$. So the integral converges absolutely and uniformly on every half-plane $\\operatorname{Re}s \\ge \\theta + \\delta$ with $\\delta > 0$, and the right side defines a holomorphic function on $\\operatorname{Re}s > \\theta$.\n\nThe left side is meromorphic on all of $\\mathbb C$, because $\\zeta$ continues meromorphically with a single pole at $s = 1$. The two sides agree on $\\operatorname{Re}s > 1$, so by uniqueness of analytic continuation they agree on $\\operatorname{Re}s > \\theta$, and the left side has no poles there.\n\nNow look at the possible poles of the left side. At $s = 1$, $-\\zeta'/\\zeta$ has a simple pole with residue $1$ and $s/(s-1)$ has a simple pole with residue $1$, so they cancel. At a zero $\\rho$ of $\\zeta$ of multiplicity $m \\ge 1$, $-\\zeta'/\\zeta$ has a simple pole with residue $-m$, while $s/(s-1)$ is holomorphic there. So every zero of $\\zeta$ is a pole of the left side, and therefore no zero lies in $\\operatorname{Re}s > \\theta$. $\\square$\n\nThe same argument with $\\psi(x,\\chi) = \\sum_{n \\le x}\\chi(n)\\Lambda(n)$ in place of $\\psi(x)$ works for any Dirichlet $L$-function. So the quasi-Riemann hypothesis for a family is, up to the $\\varepsilon$ and log factors, equivalent to a uniform power saving in the corresponding prime counts."
+   },
+   {
+    "type": "section",
+    "title": "Symmetry: why 7/8 also gives 1/8",
+    "body": "For a primitive character $\\chi$ the completed function $\\Lambda(s,\\chi)$ satisfies $\\Lambda(s,\\chi) = \\varepsilon(\\chi)\\Lambda(1-s,\\bar\\chi)$ with $|\\varepsilon(\\chi)| = 1$, and $\\overline{\\Lambda(\\bar s,\\chi)} = \\Lambda(s,\\bar\\chi)$. Put together: if $\\rho$ is a nontrivial zero of $L(s,\\chi)$, then $1 - \\rho$ is a zero of $L(s,\\bar\\chi)$, and conjugating, $1 - \\bar\\rho$ is again a zero of $L(s,\\chi)$. The map $\\rho \\mapsto 1 - \\bar\\rho$ is reflection in the critical line, and it sends real part $\\beta$ to $1 - \\beta$.\n\nSo a zero-free half-plane $\\operatorname{Re}s > \\tfrac78$ for primitive characters automatically gives $\\operatorname{Re}\\rho \\ge \\tfrac18$ for their nontrivial zeros, which is the second key statement. One precision: an imprimitive character $\\chi$ induced from $\\chi^*$ satisfies $L(s,\\chi) = L(s,\\chi^*)\\prod_{p \\mid q}(1 - \\chi^*(p)p^{-s})$, and the finite product has extra zeros on the line $\\operatorname{Re}s = 0$. Those are not counted as nontrivial zeros; the bound $\\tfrac18 \\le \\operatorname{Re}\\rho$ concerns the zeros of the primitive $L(s,\\chi^*)$."
+   },
+   {
+    "type": "section",
+    "title": "Why no fixed half-plane was known",
+    "body": "The classical method (the inequality $3 + 4\\cos\\phi + \\cos 2\\phi \\ge 0$ applied to $\\log|\\zeta^3(\\sigma)\\zeta^4(\\sigma+it)\\zeta(\\sigma+2it)|$) needs upper bounds for $\\zeta$ and $\\zeta'/\\zeta$ just left of $\\operatorname{Re}s = 1$ at height $t$. Those bounds grow with $t$, and the width of the region inherits that growth. Better bounds for $\\zeta$ near the $1$-line, coming from exponential sums, give the Vinogradov–Korobov shape, but every method of this type loses width as $t \\to \\infty$.\n\n[[zero-density]] estimates say that zeros near the $1$-line are rare, and numerical work (Platt and Trudgian, 2021) confirms that all zeros with $0 < \\gamma \\le 3\\cdot 10^{12}$ lie on $\\operatorname{Re}s = \\tfrac12$. Neither kind of result can rule out a single zero far up with real part $0.9999$. A proof of quasi-RH needs a genuinely new input that sees all heights at once."
+   },
+   {
+    "type": "section",
+    "title": "The 2026 claims",
+    "body": "Everything in this section is a claim reported in 2026 and was still being checked when this page was written.\n\nA manuscript dated 30 September 2026, produced by an internal OpenAI model, claims that every Dirichlet $L$-function, $\\zeta$ included, satisfies $L(s,\\chi) \\ne 0$ for $\\operatorname{Re}s > \\tfrac78$. According to the manuscript, the argument uses [[hecke-l|Hecke L-functions]] over $\\mathbb Q(\\sqrt{-3})$ (the field of [[eisenstein-integers]]), cubic theta sums built from [[cubic-characters]], and a Mellin continuation. The 7/8 version was reported as verified in the Lean proof assistant.\n\nOn 5 October 2026 a second, different argument from the same source was released, giving the weaker half-plane $\\operatorname{Re}s > \\tfrac{11}{12}$; it was edited by people for readability. On 6 October a larger release followed, with a separate short paper excluding Siegel zeros (see [[no-siegel]]). Within about two weeks, four independent mathematicians reported verifying a key claim of the release, and Terence Tao launched an AI-assisted mathematics challenge. Two October preprints build on the manuscript: arXiv 2610.12234 varies the parameters of the cubic theta argument to widen the zero-free half-plane, and arXiv 2610.15291 assumes the manuscript's analytic inputs and improves the bound with amplified moments (see [[moments]]).\n\nA formal proof certifies that the formal statement follows from the formalised definitions; readers still have to confirm that the formal statement and its inputs match the mathematics claimed. Community verification is ongoing, and the status on this site is claimed, not proved."
+   },
+   {
+    "type": "example",
+    "title": "How much better is a power saving?",
+    "body": "Ignore all constants (set them to $1$) and compare the relative error sizes $x^{-1/8}$, $e^{-\\sqrt{\\log x}}$ and $\\exp\\bigl(-(\\log x)^{3/5}(\\log\\log x)^{-1/5}\\bigr)$ at $x = 10^{100}$ and $x = 10^{1000}$.",
+    "solution": "At $x = 10^{100}$ we have $\\log x \\approx 230.26$. Then $x^{-1/8} = 10^{-12.5}$, while $e^{-\\sqrt{\\log x}} \\approx 10^{-6.59}$ and the Vinogradov–Korobov shape gives about $10^{-8.09}$.\n\nAt $x = 10^{1000}$: $x^{-1/8} = 10^{-125}$, against about $10^{-20.8}$ and $10^{-30.0}$.\n\nThe power saving wins, and its lead grows without bound: $\\log$ of the ratio is $\\tfrac18\\log x$ against $\\sqrt{\\log x}$ or $(\\log x)^{3/5}$ up to log factors. The real constants are unknown or poor, so these numbers only illustrate the shapes."
+   },
+   {
+    "type": "example",
+    "title": "Reflecting a hypothetical zero",
+    "body": "Suppose a primitive Dirichlet $L$-function had a zero at $\\rho = 0.1 + 5i$. Explain why this alone would contradict the 7/8 claim.",
+    "solution": "By the symmetry above, $1 - \\bar\\rho = 1 - (0.1 - 5i) = 0.9 + 5i$ would also be a zero of the same $L(s,\\chi)$. Its real part $0.9$ exceeds $\\tfrac78 = 0.875$. So a zero to the left of $\\operatorname{Re}s = \\tfrac18$ is exactly as forbidden as one to the right of $\\operatorname{Re}s = \\tfrac78$."
+   },
+   {
+    "type": "example",
+    "title": "What the data look like",
+    "body": "Compute $\\psi(n)$ for integers $10 \\le n \\le 10^6$ and find the largest value of $|\\psi(n) - n|/\\sqrt n$. What does this say about quasi-RH?",
+    "solution": "A direct computation (sieve the primes, add $\\log p$ at each prime power) gives a maximum of about $0.777$, attained at $n = 1422$. The error stays below $\\sqrt n$ in this range, which is what the Riemann hypothesis would lead one to expect.\n\nIt says nothing rigorous about quasi-RH. A zero with real part $0.99$ at height $10^{20}$ would contribute a term of size about $x^{0.99}/10^{20}$, invisible for every $x$ anyone can compute with, yet it would destroy any power saving with $\\theta < 0.99$. This is why the problem cannot be settled by computation."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Quasi-RH is not RH. Even a confirmed $\\tfrac78$ leaves the critical line itself untouched; see [[rh]] and [[grh]].\n- The classical zero-free regions are not half-planes. A region of width $c/\\log|\\gamma|$ contains no half-plane $\\operatorname{Re}s > \\theta$ with $\\theta<1$.\n- Uniformity matters. A half-plane for each $L(s,\\chi)$ separately, with $\\theta$ depending on $\\chi$, would be a different (weaker) statement from one $\\theta$ for all characters.\n- The lower bound $\\tfrac18$ is for nontrivial zeros of primitive characters; imprimitive $L$-functions have extra zeros on $\\operatorname{Re}s = 0$."
+   },
+   {
+    "type": "connection",
+    "body": "If the $\\tfrac78$ claim holds for all Dirichlet $L$-functions, the same Perron-formula argument gives $\\psi(x,\\chi) = O\\bigl(x^{7/8}(\\log qx)^2\\bigr)$ for nonprincipal $\\chi$, hence an asymptotic for primes in progressions with a power saving whenever $q$ is below a small power of $x$. Real zeros near $1$ are excluded too, so there are no [[siegel-zeros]] (compare [[no-siegel]]), and ineffective constants such as the one in [[siegel-walfisz]] become effective. The prerequisites behind the claimed method are [[zero-free-region]], [[hecke-l]], [[cubic-characters]] and [[mellin]]; the follow-up work uses [[moments]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $s\\int_1^\\infty x\\cdot x^{-s-1}\\,dx = s/(s-1)$ for $\\operatorname{Re}s > 1$.\n2. Assuming $\\psi(x) = x + O(x^{7/8}(\\log x)^2)$, use partial summation to show $\\theta(x) = \\sum_{p \\le x}\\log p = x + O(x^{7/8}(\\log x)^2)$. (Hint: $\\psi(x) - \\theta(x) = O(\\sqrt x \\log x)$.)\n3. Explain why the proof of the theorem above breaks down if one only knows $\\psi(x) - x = O(x e^{-\\sqrt{\\log x}})$.\n4. Why does a zero-free half-plane for all primitive characters immediately give one for imprimitive characters as well?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function (2nd ed., revised by Heath-Brown)"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   },
+   {
+    "ref": "Platt & Trudgian, The Riemann hypothesis is true up to 3·10^12, Bulletin of the London Mathematical Society (2021)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "The first nontrivial zero of zeta is about 1/2 + 14.1347i",
+    "python": "import mpmath\nz = mpmath.zetazero(1)\nassert abs(z.real - 0.5) < 1e-12 and abs(z.imag - 14.1347251417) < 1e-8\nassert abs(mpmath.zeta(z)) < 1e-10"
+   },
+   {
+    "claim": "-zeta'/zeta has residue -1 at a simple zero (here the first zero)",
+    "python": "import mpmath\nmpmath.mp.dps = 30\nrho = mpmath.zetazero(1)\nh = mpmath.mpf('1e-12')\ns = rho + h\nval = -(s - rho) * mpmath.zeta(s, derivative=1) / mpmath.zeta(s)\nassert abs(val + 1) < 1e-8"
+   },
+   {
+    "claim": "L(1, chi_-3) = pi/(3 sqrt 3) for the character mod 3 (field Q(sqrt -3))",
+    "python": "import mpmath\nv = mpmath.dirichlet(1, [0, 1, -1])\nassert abs(v - mpmath.pi/(3*mpmath.sqrt(3))) < 1e-12"
+   },
+   {
+    "claim": "Relative error sizes at x=10^100 and 10^1000: 10^-12.5 vs about 10^-6.59 and 10^-8.09; 10^-125 vs about 10^-20.8 and 10^-30.0",
+    "python": "import mpmath\ndef shapes(k):\n    L = k*mpmath.log(10)\n    a = -k/8\n    b = -mpmath.sqrt(L)/mpmath.log(10)\n    c = -(L**(mpmath.mpf(3)/5)*mpmath.log(L)**(-mpmath.mpf(1)/5))/mpmath.log(10)\n    return a, b, c\na,b,c = shapes(100)\nassert a == -12.5 and abs(b + 6.59) < 0.01 and abs(c + 8.09) < 0.01\na,b,c = shapes(1000)\nassert a == -125 and abs(b + 20.84) < 0.01 and abs(c + 30.02) < 0.01"
+   },
+   {
+    "claim": "Reflection of 0.1+5i in the critical line is 0.9+5i, real part above 7/8",
+    "python": "rho = complex(0.1, 5)\nr = 1 - rho.conjugate()\nassert abs(r - complex(0.9, 5)) < 1e-15 and r.real > 7/8"
+   },
+   {
+    "claim": "max |psi(n)-n|/sqrt(n) over integers 10<=n<=10^6 is about 0.777, at n=1422",
+    "python": "import math\nN = 10**6\ns = bytearray([1])*(N+1); s[0] = s[1] = 0\nfor i in range(2, int(N**0.5)+1):\n    if s[i]: s[i*i::i] = bytearray(len(s[i*i::i]))\nlam = [0.0]*(N+1)\nfor p in range(2, N+1):\n    if s[p]:\n        q = p\n        while q <= N:\n            lam[q] = math.log(p); q *= p\npsi = 0.0; best = 0.0; arg = 0\nfor n in range(1, N+1):\n    psi += lam[n]\n    if n >= 10:\n        v = abs(psi - n)/math.sqrt(n)\n        if v > best: best, arg = v, n\nassert arg == 1422 and abs(best - 0.777) < 0.001"
+   },
+   {
+    "claim": "s * integral_1^inf x * x^(-s-1) dx = s/(s-1), checked at s=2.5",
+    "python": "import mpmath\ns = mpmath.mpf('2.5')\nv = s*mpmath.quad(lambda x: x*x**(-s-1), [1, mpmath.inf])\nassert abs(v - s/(s-1)) < 1e-12"
+   }
+  ]
+ },
+ {
+  "id": "no-siegel",
+  "minutes": 14,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Let $\\chi$ be a real primitive Dirichlet character modulo $q$, such as the Kronecker symbol attached to an imaginary quadratic field. Then $L(s,\\chi)$ is real for real $s$, and $L(1,\\chi) > 0$. Could $L(\\beta,\\chi)$ vanish at a real point $\\beta$ extraordinarily close to $1$, say $\\beta = 1 - q^{-1/100}$? Classical methods cannot rule this out. Such hypothetical zeros are called Siegel zeros (or Landau–Siegel, or exceptional, zeros), and their possible existence is the reason many theorems about primes and class numbers come with constants nobody can compute.\n\nThis page explains exactly what is to be excluded, why the problem matters, and what was claimed in October 2026."
+   },
+   {
+    "type": "section",
+    "title": "The one exception in the classical zero-free region",
+    "body": "The classical [[zero-free-region]] for Dirichlet $L$-functions has one gap. There is an absolute, effectively computable constant $c > 0$ such that $\\prod_{\\chi \\bmod q} L(s,\\chi)$ has no zeros in\n\n$$\\sigma > 1 - \\frac{c}{\\log\\bigl(q(|t|+2)\\bigr)},$$\n\nexcept possibly a single simple real zero $\\beta_1$, belonging to a single real character $\\chi_1 \\bmod q$. Complex characters and complex zeros are handled by the de la Vallée Poussin argument; for a real character the trigonometric trick degenerates, because $\\chi^2$ is principal and $L(s,\\chi^2)$ has a pole at $s=1$.\n\nExceptions are also rare across moduli. Page's theorem (in a form due to Landau and Page) says that for each $Q \\ge 3$ at most one real primitive character of conductor at most $Q$ has a real zero in $(1 - c/\\log Q,\\, 1)$, for a suitable effective $c$."
+   },
+   {
+    "type": "definition",
+    "title": "Siegel zeros",
+    "body": "Siegel zeros exist if there is a sequence of real primitive characters $\\chi_n$ with conductors $q_n \\to \\infty$ and real zeros $L(\\beta_n,\\chi_n) = 0$ such that $(1 - \\beta_n)\\log q_n \\to 0$.\n\nEquivalently, there are no Siegel zeros if and only if there is an absolute constant $c > 0$ with $L(\\beta,\\chi) \\ne 0$ for all $1 - c/\\log q < \\beta < 1$ and all real primitive $\\chi$ of conductor $q$. This is the precise meaning of the key statement on this page: \"near $1$\" means within $c/\\log q$ of $1$, with $c$ independent of $q$. (For a single fixed $\\chi$ there is nothing to prove, since $L(1,\\chi) \\ne 0$ and $L$ is continuous; the whole content is uniformity in $q$.)"
+   },
+   {
+    "type": "theorem",
+    "title": "Siegel's theorem (1935)",
+    "body": "For every $\\varepsilon > 0$ there is a constant $c(\\varepsilon) > 0$ such that for every real primitive character $\\chi$ of conductor $q$,\n\n$$L(1,\\chi) > c(\\varepsilon)\\,q^{-\\varepsilon}, \\qquad\\text{and hence}\\qquad L(\\beta,\\chi) \\ne 0 \\ \\text{ for } \\ \\beta > 1 - c(\\varepsilon)\\,q^{-\\varepsilon}$$\n\n(with a possibly smaller constant in the second statement). The proof gives no way to compute $c(\\varepsilon)$ when $\\varepsilon < \\tfrac12$. Proof omitted; see Davenport's book."
+   },
+   {
+    "type": "section",
+    "title": "Where the ineffectivity comes from",
+    "body": "Siegel's proof splits into two cases. If no real character has a zero in $(1-\\varepsilon, 1)$, the bound follows directly. Otherwise one fixes such a character $\\chi_1$ with its zero $\\beta_1$, and studies the product $\\zeta(s)L(s,\\chi)L(s,\\chi_1)L(s,\\chi\\chi_1)$, which is essentially the Dedekind zeta function of a biquadratic field and has nonnegative Dirichlet coefficients. The existence of $\\beta_1$ is then used as a lever to bound every other $L(1,\\chi)$ from below, and the constant depends on $\\chi_1$ and $\\beta_1$.\n\nIf Siegel zeros do not exist, we are in the first case, but we cannot know that; if they do, we do not know where the first one is. Either way no number can be written down. This is why Siegel's theorem makes the [[siegel-walfisz]] theorem,\n\n$$\\psi(x;q,a) = \\frac{x}{\\varphi(q)} + O_A\\Bigl(x\\,e^{-c_A\\sqrt{\\log x}}\\Bigr) \\qquad (q \\le (\\log x)^A,\\ \\gcd(a,q)=1),$$\n\nineffective: the implied constants exist, but no one can compute them."
+   },
+   {
+    "type": "section",
+    "title": "Class numbers: the most famous casualty",
+    "body": "For a fundamental discriminant $-d < -4$ with Kronecker character $\\chi_{-d}$, [[class-number-formula|Dirichlet's class number formula]] reads\n\n$$h(-d) = \\frac{\\sqrt d}{\\pi}\\,L(1,\\chi_{-d}).$$\n\nA Siegel zero for $\\chi_{-d}$ would force $L(1,\\chi_{-d})$ to be tiny and the class number to be unusually small. Siegel's theorem gives $h(-d) \\gg_\\varepsilon d^{1/2-\\varepsilon}$, so only finitely many imaginary quadratic fields have any given class number, but the bound cannot tell you which. The complete list of class number $1$ fields, $d \\in \\{3,4,7,8,11,19,43,67,163\\}$, came from different methods (Heegner 1952; Baker and Stark in the 1960s). An effective lower bound for general $d$ growing roughly like $\\log d$ came from Goldfeld's method combined with the Gross–Zagier theorem in the 1980s, which is far from $\\sqrt d$.\n\nWith no Siegel zeros, one gets an effective bound $L(1,\\chi) \\gg 1/\\log q$, hence $h(-d) \\gg \\sqrt d/\\log d$ with a computable constant."
+   },
+   {
+    "type": "section",
+    "title": "The October 2026 claims",
+    "body": "Everything here is a claim reported in 2026, under independent checking when this page was written.\n\nOn 6 October 2026 OpenAI released 372 families of claimed results on GitHub. Among them is a short paper that claims there are no exceptional zeros near $1$: in the language above, an absolute $c > 0$ with $L(\\beta,\\chi) \\ne 0$ for $\\beta > 1 - c/\\log q$. Three manuscripts in the release were withdrawn the next day over a sign error, which is a reminder that a release of this size needs checking item by item. Four independent mathematicians reported verifying a key claim within two weeks, and Terence Tao launched an AI-assisted mathematics challenge.\n\nThe separate manuscript on the [[quasi-rh]] (dated 30 September 2026) would give the same conclusion by a different route, as the second example below shows. So two independent arguments for the same statement were offered, which makes the claim easier to cross-check: an error in one need not affect the other."
+   },
+   {
+    "type": "example",
+    "title": "The class number formula in a small case",
+    "body": "Take $d = 23$. Count the reduced primitive forms $ax^2 + bxy + cy^2$ of discriminant $-23$, and compare with $h(-23) = -\\frac1{23}\\sum_{a=1}^{22}a\\,\\chi_{-23}(a)$ and with $\\frac{\\sqrt{23}}{\\pi}L(1,\\chi_{-23})$.",
+    "solution": "A reduced form has $|b| \\le a \\le c$ (with $b \\ge 0$ if $|b| = a$ or $a = c$), and $b^2 - 4ac = -23$ forces $b$ odd and $3a^2 \\le 23$, so $a \\le 2$. For $a = 1$: $b = 1$, $c = 6$, giving $x^2 + xy + 6y^2$. For $a = 2$: $b = \\pm 1$, $c = 3$, giving $2x^2 \\pm xy + 3y^2$. So $h(-23) = 3$.\n\nThe character $\\chi_{-23}(a)$ is the Legendre symbol $\\left(\\frac{a}{23}\\right)$. The quadratic residues mod $23$ are $1,2,3,4,6,8,9,12,13,16,18$, with sum $92$; the nonresidues sum to $253 - 92 = 161$. So $-\\frac1{23}(92 - 161) = 3$, as it should be.\n\nNumerically $L(1,\\chi_{-23}) = 3\\pi/\\sqrt{23} \\approx 1.965$. Nothing small here; a Siegel zero would show up as an $L(1,\\chi)$ much smaller than $1/\\log q$."
+   },
+   {
+    "type": "example",
+    "title": "Quasi-RH implies no Siegel zeros",
+    "body": "Suppose every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s > \\tfrac78$. Find an explicit $c$ with $L(\\beta,\\chi) \\ne 0$ for $1 - c/\\log q < \\beta < 1$ and all real primitive $\\chi$ of conductor $q \\ge 3$.",
+    "solution": "Take $c = \\tfrac18\\log 3 \\approx 0.137$. For $q \\ge 3$ we have $\\log q \\ge \\log 3$, so\n\n$$1 - \\frac{c}{\\log q} \\ \\ge\\ 1 - \\frac{\\log 3}{8\\log 3} = \\frac78.$$\n\nAny $\\beta$ in $(1 - c/\\log q, 1)$ is therefore larger than $\\tfrac78$, where $L(\\beta,\\chi) \\ne 0$ by assumption. The half-plane is far stronger than needed: it excludes real zeros in a window of fixed width $\\tfrac18$, not just of width $c/\\log q$."
+   },
+   {
+    "type": "example",
+    "title": "Class number one, by brute force",
+    "body": "Compute $h(-d)$ by counting reduced forms for every fundamental discriminant $-d$ with $3 \\le d < 3000$, and list those with $h(-d) = 1$.",
+    "solution": "A short program finds exactly $d = 3, 4, 7, 8, 11, 19, 43, 67, 163$. The theorem of Heegner, Baker and Stark says the list is complete for all $d$. Siegel's theorem alone could prove that the list is finite, but because its constant is ineffective it could never prove that no tenth field exists beyond the range of computation. That gap, between finiteness and an explicit list, is exactly what an effective exclusion of Siegel zeros would close in many other problems."
+   },
+   {
+    "type": "pitfall",
+    "body": "- A Siegel zero is not a counterexample to anything known. It is compatible with all proved theorems; it would contradict [[grh]], which predicts all nontrivial zeros on $\\operatorname{Re}s = \\tfrac12$.\n- The issue is uniformity in $q$, not the behaviour of one $L$-function.\n- Ineffective does not mean false or weak: Siegel–Walfisz is a true theorem with good shape. It means the constant cannot be computed from the proof.\n- Curiously, Siegel zeros would also have useful consequences: Heath-Brown (1983) showed their existence would imply infinitely many twin primes. Excluding them closes that route to [[twin-primes]]."
+   },
+   {
+    "type": "connection",
+    "body": "This problem sits on top of [[siegel-zeros]] and [[l-functions]]. If the claimed exclusion holds, the constants in [[siegel-walfisz]], in class number bounds via the [[class-number-formula]], and in many sieve results that rely on them (for instance through [[bombieri-vinogradov]]) become effective. The same conclusion follows from the [[quasi-rh]] claim, and of course from [[grh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Using the class number formula, show that $h(-d) \\ge 1$ forces $L(1,\\chi_{-d}) \\ge \\pi/\\sqrt d$. Why does this lower bound not exclude Siegel zeros?\n2. Verify $h(-47) = 5$ by listing the reduced forms of discriminant $-47$.\n3. Explain why, for a single fixed real character $\\chi$, there is some $\\delta > 0$ with $L(\\beta,\\chi) \\ne 0$ on $(1-\\delta, 1)$.\n4. Why does the de la Vallée Poussin argument need $L(s,\\chi^2)$, and what goes wrong when $\\chi$ is real?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   },
+   {
+    "ref": "Iwaniec & Kowalski, Analytic Number Theory"
+   },
+   {
+    "ref": "Heath-Brown, Prime twins and Siegel zeros, Proceedings of the London Mathematical Society (1983)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "h(-23)=3 by reduced forms, and -(1/23) sum a*chi(a) = 3 with residue sum 92, nonresidue sum 161",
+    "python": "import math\ndef h(D):\n    cnt = 0; a = 1\n    while 3*a*a <= -D:\n        for b in range(-a+1, a+1):\n            if (b*b - D) % (4*a) == 0:\n                c = (b*b - D)//(4*a)\n                if c < a or (c == a and b < 0): continue\n                if math.gcd(math.gcd(a, abs(b)), c) != 1: continue\n                cnt += 1\n        a += 1\n    return cnt\nassert h(-23) == 3 and h(-47) == 5\nR = sorted({x*x % 23 for x in range(1, 23)})\nassert R == [1,2,3,4,6,8,9,12,13,16,18]\nassert sum(R) == 92 and sum(range(1, 23)) - sum(R) == 161\nchi = lambda a: 1 if a % 23 in R else -1\nassert sum(a*chi(a) for a in range(1, 23)) == -69"
+   },
+   {
+    "claim": "L(1, chi_-23) = 3 pi / sqrt 23, about 1.965 (via L(1,chi) = -(1/q) sum chi(a) digamma(a/q), cross-checked by a partial sum)",
+    "python": "import mpmath\nR = {x*x % 23 for x in range(1, 23)}\nchi = lambda a: 0 if a % 23 == 0 else (1 if a % 23 in R else -1)\nv = -sum(chi(a)*mpmath.digamma(mpmath.mpf(a)/23) for a in range(1, 23))/23\nps = sum(chi(n)/n for n in range(1, 23*20000 + 1))\nassert abs(ps - v) < 1e-3\nassert abs(v - 3*mpmath.pi/mpmath.sqrt(23)) < 1e-10 and abs(v - 1.965) < 0.001"
+   },
+   {
+    "claim": "Fundamental discriminants -d with 3<=d<3000 and class number 1 are exactly 3,4,7,8,11,19,43,67,163",
+    "python": "import math\nfrom sympy import factorint\ndef h(D):\n    cnt = 0; a = 1\n    while 3*a*a <= -D:\n        for b in range(-a+1, a+1):\n            if (b*b - D) % (4*a) == 0:\n                c = (b*b - D)//(4*a)\n                if c < a or (c == a and b < 0): continue\n                if math.gcd(math.gcd(a, abs(b)), c) != 1: continue\n                cnt += 1\n        a += 1\n    return cnt\ndef sqfree(n): return all(e == 1 for e in factorint(n).values())\ndef fund(D):\n    if D % 4 == 1: return sqfree(-D)\n    if D % 4 == 0 and (D//4) % 4 in (2, 3): return sqfree(-(D//4))\n    return False\nL = [-D for D in range(-3, -3000, -1) if fund(D) and h(D) == 1]\nassert L == [3, 4, 7, 8, 11, 19, 43, 67, 163]"
+   },
+   {
+    "claim": "With c = (log 3)/8, 1 - c/log q >= 7/8 for all q >= 3",
+    "python": "import math\nc = math.log(3)/8\nassert abs(c - 0.137) < 0.001\nassert all(1 - c/math.log(q) >= 7/8 - 1e-15 for q in range(3, 10**5))"
+   },
+   {
+    "claim": "Class number formula h(-d) = sqrt(d) L(1,chi)/pi holds numerically for d = 47, 71 (h = 5, 7)",
+    "python": "import mpmath\nfrom sympy import jacobi_symbol\nfor d, hh in [(47, 5), (71, 7)]:\n    v = -sum(jacobi_symbol(a, d)*mpmath.digamma(mpmath.mpf(a)/d) for a in range(1, d))/d\n    assert abs(mpmath.sqrt(d)*v/mpmath.pi - hh) < 1e-8"
+   }
+  ]
+ },
+ {
+  "id": "twin-primes",
+  "minutes": 15,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The pairs $(3,5)$, $(5,7)$, $(11,13)$, $(17,19)$, $(29,31)$, $(41,43)$ are primes two apart. They thin out, but they never seem to stop: there are $1224$ such pairs with $p \\le 10^5$ and $8169$ with $p \\le 10^6$. The twin prime conjecture says there are infinitely many.\n\nThe problem is easy to state and has resisted every method so far, though the last decade brought it remarkably close: we now know that some fixed gap of at most $246$ occurs infinitely often. This page explains the conjectured count, the classical theorems around it, and the barrier that stops sieves at the last step."
+   },
+   {
+    "type": "definition",
+    "title": "Twin primes and their counting function",
+    "body": "A twin prime pair is a pair $(p, p+2)$ with both entries prime. Write\n\n$$\\pi_2(x) = \\#\\{p \\le x : p \\text{ and } p+2 \\text{ both prime}\\}.$$\n\nThe twin prime conjecture asserts $\\pi_2(x) \\to \\infty$."
+   },
+   {
+    "type": "section",
+    "title": "Where the constant comes from",
+    "body": "A random integer near $x$ is prime with \"probability\" about $1/\\log x$. If the events \"$n$ is prime\" and \"$n+2$ is prime\" were independent we would predict $\\pi_2(x) \\approx x/(\\log x)^2$. They are not independent, and the correction is computed one prime at a time.\n\nFix a prime $p$. For a random $n$, the chance that $p \\nmid n$ is $1 - 1/p$, and the chance that $p \\nmid n(n+2)$ is the chance that $n$ avoids two residue classes mod $p$. For $p = 2$ those classes coincide (both are $n \\equiv 0$), so the chance is $\\tfrac12$; for odd $p$ it is $1 - 2/p$. Comparing with independence gives a correction factor\n\n$$\\frac{1/2}{(1/2)^2} = 2 \\quad (p = 2), \\qquad \\frac{1 - 2/p}{(1 - 1/p)^2} = \\frac{p(p-2)}{(p-1)^2} = 1 - \\frac{1}{(p-1)^2} \\quad (p > 2).$$\n\nMultiplying all the factors gives the prediction of Hardy and Littlewood (1923):"
+   },
+   {
+    "type": "theorem",
+    "title": "Hardy–Littlewood conjecture for twin primes",
+    "body": "$$\\pi_2(x) \\sim 2 C_2 \\frac{x}{(\\log x)^2}, \\qquad C_2 = \\prod_{p > 2}\\Bigl(1 - \\frac{1}{(p-1)^2}\\Bigr) \\approx 0.6601618.$$\n\nThis is a conjecture, not a theorem; even $\\pi_2(x) \\to \\infty$ is unproved. The integral form $2C_2\\int_2^x \\frac{dt}{(\\log t)^2}$ has the same asymptotics and is numerically much more accurate."
+   },
+   {
+    "type": "section",
+    "title": "What is proved",
+    "body": "Upper bounds are within reach of sieves. [[sieve-basics|Brun's sieve]] (1919) showed $\\pi_2(x) \\ll x(\\log\\log x)^2/(\\log x)^2$, and later sieves ([[selberg-sieve]]) remove the $\\log\\log$ factor: $\\pi_2(x)$ is at most a constant multiple of the conjectured count. Lower bounds are the problem.\n\nTwo partial results stand out.\n\n- Chen (1973): there are infinitely many primes $p$ such that $p + 2$ is either prime or a product of two primes.\n- [[bounded-gaps|Bounded gaps]]: Zhang (2013) proved $\\liminf_{n}(p_{n+1} - p_n) < 7\\cdot 10^7$. Maynard's multidimensional sieve (2013, found independently by Tao) gave $600$ and much more, and the Polymath8 project lowered the bound to $246$. Assuming the Elliott–Halberstam conjecture the method gives $12$, and assuming a generalised form of it, $6$.\n\nThe gap from $6$ to $2$ is the parity problem, identified by Selberg: sieve weights cannot by themselves distinguish numbers with an odd number of prime factors from numbers with an even number. A sieve can show that $n(n+2)$ has few prime factors (this is how Chen's theorem works), but it cannot force both factors to be prime. Proving the conjecture seems to need an input beyond sieve axioms, something that sees the actual primes."
+   },
+   {
+    "type": "theorem",
+    "title": "Brun's theorem (1919)",
+    "body": "The sum of the reciprocals of the twin primes converges:\n\n$$\\sum_{p,\\ p+2 \\text{ prime}}\\Bigl(\\frac1p + \\frac1{p+2}\\Bigr) < \\infty.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof from Brun's upper bound",
+    "body": "Assume Brun's sieve bound in the form $\\pi_2(x) \\le A\\,x(\\log\\log x)^2/(\\log x)^2$ for all $x \\ge 16$, with a constant $A$ (the sieve itself is the hard part, and is omitted here). Since $1/(p+2) < 1/p$, it suffices to show $\\sum 1/p$ converges over twin primes $p$.\n\nSplit into dyadic blocks $2^k \\le p < 2^{k+1}$ with $k \\ge 4$. Each $p$ in the block has $1/p \\le 2^{-k}$, and the block contains at most $\\pi_2(2^{k+1})$ twin primes, so its contribution is at most\n\n$$\\frac{\\pi_2(2^{k+1})}{2^k} \\le 2A\\,\\frac{(\\log\\log 2^{k+1})^2}{(\\log 2^{k+1})^2} = \\frac{2A}{(\\log 2)^2}\\cdot\\frac{\\bigl(\\log((k+1)\\log 2)\\bigr)^2}{(k+1)^2}.$$\n\nSince $(\\log m)^2 \\le C\\sqrt m$ for some constant $C$, this term is at most a constant times $(k+1)^{-3/2}$, and $\\sum_k (k+1)^{-3/2}$ converges. The finitely many twin primes below $16$ add a finite amount. $\\square$\n\nContrast this with all primes, where $\\sum 1/p$ diverges like $\\log\\log x$ ([[mertens]]). Twin primes are sparse enough that convergence follows, which is also why Brun's theorem says nothing about whether there are infinitely many."
+   },
+   {
+    "type": "example",
+    "title": "Only one prime triple",
+    "body": "Show that $(3,5,7)$ is the only triple $p, p+2, p+4$ of primes, and that every twin pair other than $(3,5)$ has the form $(6k-1, 6k+1)$.",
+    "solution": "The numbers $p$, $p+2$, $p+4$ are congruent to $p$, $p+2$, $p+1 \\pmod 3$, so they cover all three residues mod $3$ and one of them is divisible by $3$. That one must equal $3$, and since all three are at least $2$ and differ by $2$, only $p = 3$ works.\n\nFor a twin pair with $p > 3$, neither $p$ nor $p+2$ is divisible by $2$ or $3$. So $p+1$ is even, and $p+1 \\not\\equiv 1, 2 \\pmod 3$ because those would make $p$ or $p+2$ divisible by $3$. Hence $6 \\mid p+1$ and the pair is $(6k-1, 6k+1)$.\n\nThis is the simplest case of the \"admissibility\" idea behind the Hardy–Littlewood constant: a pattern like $(n, n+2, n+4)$ that covers every class mod some prime can contain primes only finitely often, while $(n, n+2)$ misses a class mod every prime."
+   },
+   {
+    "type": "example",
+    "title": "Testing the prediction",
+    "body": "Compare $\\pi_2(x)$ with $2C_2 x/(\\log x)^2$ and with $2C_2\\int_2^x dt/(\\log t)^2$ at $x = 10^5$ and $x = 10^6$.",
+    "solution": "With $C_2 \\approx 0.66016$:\n\n- $x = 10^5$: $\\pi_2 = 1224$; the simple formula gives about $996$ (ratio $1.23$); the integral gives about $1249$ (ratio $0.980$).\n- $x = 10^6$: $\\pi_2 = 8169$; the simple formula gives about $6917$ (ratio $1.18$); the integral gives about $8248$ (ratio $0.990$).\n\nThe integral form tracks the data closely; the simple form is asymptotically equivalent but converges slowly, just as $x/\\log x$ is a worse approximation to $\\pi(x)$ than $\\operatorname{li}(x)$ ([[pnt]])."
+   },
+   {
+    "type": "example",
+    "title": "Brun's constant converges slowly",
+    "body": "Compute $\\sum (1/p + 1/(p+2))$ over twin pairs with $p \\le 10^6$.",
+    "solution": "The partial sum is about $1.7108$. The full sum, Brun's constant, is believed to be about $1.902$; that value comes from extrapolating with the Hardy–Littlewood prediction, since the tail beyond $x$ is roughly $4C_2/\\log x$, which decays very slowly. A computation of this constant by Thomas Nicely in 1994 exposed the division bug in the Intel Pentium processor."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Brun's theorem does not show finiteness or infiniteness; convergent sums can have infinitely many terms.\n- Bounded gaps is not twin primes. Knowing some gap $h \\le 246$ occurs infinitely often does not tell you which $h$, and certainly not $h = 2$.\n- The heuristic factor at $p = 2$ is $2$, not $1 - 1/(2-1)^2 = 0$. The formula $1 - 1/(p-1)^2$ is only for odd $p$, which is why the conjecture has $2C_2$ with the product over $p > 2$."
+   },
+   {
+    "type": "connection",
+    "body": "The modern lower-bound technology is in [[bounded-gaps]], built on [[sieve-basics]], the [[selberg-sieve]] and [[bombieri-vinogradov]]. The same singular-series heuristic predicts [[goldbach]] representation counts, and both belong to the general study of [[prime-patterns]]. A surprising conditional link: if [[siegel-zeros]] existed, Heath-Brown showed there would be infinitely many twin primes; see [[no-siegel]] for the 2026 claim that they do not."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that for twin primes $p, p+2$ with $p > 3$, the number $p(p+2) + 1$ is divisible by $36$.\n2. Write down the heuristic constant for prime pairs $(p, p+4)$ and for $(p, p+6)$. Which should be more common?\n3. Explain why the pattern $(n, n+2, n+6)$ can contain infinitely many prime triples in principle while $(n, n+2, n+4)$ cannot.\n4. Using $\\pi_2(x) \\le B x/(\\log x)^2$, give a shorter proof of Brun's theorem."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Friedlander & Iwaniec, Opera de Cribro"
+   },
+   {
+    "ref": "Hardy & Littlewood, Some problems of 'Partitio numerorum' III, Acta Mathematica (1923)"
+   },
+   {
+    "ref": "Maynard, Small gaps between primes, Annals of Mathematics (2015)"
+   },
+   {
+    "ref": "Polymath, Variants of the Selberg sieve, and bounded intervals containing many primes, Research in the Mathematical Sciences (2014)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "pi_2(10^5) = 1224, pi_2(10^6) = 8169; formula ratios 1.23, 1.18 and integral ratios 0.980, 0.990; C_2 about 0.6601618",
+    "python": "import math, mpmath\nN = 10**6 + 2\ns = bytearray([1])*(N+1); s[0] = s[1] = 0\nfor i in range(2, int(N**0.5)+1):\n    if s[i]: s[i*i::i] = bytearray(len(s[i*i::i]))\ntw = [p for p in range(2, 10**6+1) if s[p] and s[p+2]]\nassert sum(1 for p in tw if p <= 10**5) == 1224 and len(tw) == 8169\nassert tw[:6] == [3, 5, 11, 17, 29, 41]\nC2 = 1.0\nfor p in range(3, N+1):\n    if s[p]: C2 *= 1 - 1/(p-1)**2\nassert abs(C2 - 0.6601618) < 1e-6\nfor X, c, r1, r2 in [(10**5, 1224, 1.23, 0.980), (10**6, 8169, 1.18, 0.990)]:\n    simple = 2*C2*X/math.log(X)**2\n    integ = 2*C2*float(mpmath.quad(lambda t: 1/mpmath.log(t)**2, [2, X]))\n    assert abs(c/simple - r1) < 0.005 and abs(c/integ - r2) < 0.0015\nassert abs(2*C2*10**6/math.log(10**6)**2 - 6917) < 1\nassert abs(2*C2*float(mpmath.quad(lambda t: 1/mpmath.log(t)**2, [2, 10**6])) - 8248) < 1"
+   },
+   {
+    "claim": "Local factor identity (1-2/p)/(1-1/p)^2 = 1 - 1/(p-1)^2, and the p=2 factor is 2",
+    "python": "import sympy as sp\np = sp.symbols('p')\nassert sp.simplify((1 - 2/p)/(1 - 1/p)**2 - (1 - 1/(p-1)**2)) == 0\nassert sp.Rational(1, 2)/sp.Rational(1, 2)**2 == 2"
+   },
+   {
+    "claim": "Brun partial sum up to 10^6 is about 1.7108",
+    "python": "N = 10**6 + 2\ns = bytearray([1])*(N+1); s[0] = s[1] = 0\nfor i in range(2, int(N**0.5)+1):\n    if s[i]: s[i*i::i] = bytearray(len(s[i*i::i]))\nB = sum(1/p + 1/(p+2) for p in range(2, 10**6+1) if s[p] and s[p+2])\nassert abs(B - 1.7108) < 0.0001"
+   },
+   {
+    "claim": "(3,5,7) is the only prime triple p,p+2,p+4 below 10^6; twin pairs beyond (3,5) have 6 | p+1 and 36 | p(p+2)+1",
+    "python": "from sympy import isprime, primerange\nassert [p for p in primerange(2, 10**6) if isprime(p+2) and isprime(p+4)] == [3]\nfor p in primerange(5, 10**5):\n    if isprime(p+2):\n        assert (p+1) % 6 == 0 and (p*(p+2)+1) % 36 == 0"
+   },
+   {
+    "claim": "Dyadic bound used in Brun's proof: (log m)^2 <= C sqrt(m) with C = 2.2 for all m >= 1 (max of (log m)^2/sqrt m is 16/e^2 at m = e^4)",
+    "python": "import math\ngrid = [1 + j/100 for j in range(10**6)]\nmx = max(math.log(m)**2/math.sqrt(m) for m in grid)\nassert abs(mx - 16/math.e**2) < 1e-6 and 16/math.e**2 < 2.2\nassert all(math.log(m)**2 <= 2.2*math.sqrt(m) for m in range(1, 10**6))"
+   }
+  ]
+ },
+ {
+  "id": "goldbach",
+  "minutes": 15,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "$4 = 2+2$, $6 = 3+3$, $8 = 3+5$, $10 = 3+7 = 5+5$, $98 = 19+79 = 31+67 = 37+61$. Every even number anyone has tried is a sum of two primes, usually in many ways. Goldbach's conjecture says this never fails:\n\n$$\\text{every even } 2N \\ge 4 \\text{ can be written as } 2N = p + q \\text{ with } p, q \\text{ prime.}$$\n\nThe question comes from the 1742 correspondence between Christian Goldbach and Leonhard Euler. It is one of the oldest open problems in number theory, and its odd cousin, the ternary problem, was settled only in 2013. This page explains the evidence, the predicted number of representations, the strongest theorems, and why the two-prime case is so much harder than the three-prime case."
+   },
+   {
+    "type": "section",
+    "title": "History and evidence",
+    "body": "In a letter of June 1742 Goldbach proposed that every integer greater than $2$ is a sum of three primes (he counted $1$ as a prime). In his reply Euler pointed out that this would follow from the statement that every even number is a sum of two primes, which he recalled Goldbach telling him earlier, and which he called a theorem he was sure of but could not prove. The even form is now called the binary (or strong) Goldbach conjecture; the odd form is the ternary (or weak) one.\n\nComputation supports it overwhelmingly. Oliveira e Silva, Herzog and Pardi (2014) verified the binary conjecture for all even numbers up to $4\\cdot 10^{18}$. In the data, the representations are never scarce: for every even $2N \\le 10^5$ there is a representation $2N = p + q$ with $p \\le 293$, and that maximum is reached at $2N = 63274$."
+   },
+   {
+    "type": "section",
+    "title": "How many representations to expect",
+    "body": "Let $r(n)$ count ordered pairs of primes $(p,q)$ with $p + q = n$. The same local-factor heuristic as for [[twin-primes]] predicts (Hardy and Littlewood, 1923)\n\n$$r(n) \\sim 2C_2\\prod_{\\substack{p \\mid n\\\\ p > 2}}\\frac{p-1}{p-2}\\cdot\\frac{n}{(\\log n)^2} \\qquad (n \\text{ even}),$$\n\nwith the same twin prime constant $C_2 \\approx 0.66016$. The product over odd primes dividing $n$ says that numbers with many small odd prime factors have more representations: if $3 \\mid n$, then $p \\equiv 0 \\pmod 3$ forces $q \\equiv 0$ too, so choosing $p \\not\\equiv 0$ automatically keeps $q$ off the bad class.\n\nThe data agree well: $r(10^6) = 10804$, while the formula gives about $9223$ (ratio $1.17$); as with twin primes, the ratio drifts toward $1$ slowly because $n/(\\log n)^2$ is a crude form of the main term."
+   },
+   {
+    "type": "section",
+    "title": "What is proved",
+    "body": "- Vinogradov (1937): every sufficiently large odd number is a sum of three primes, using the [[circle-method]] and his estimates for prime [[exponential-sums]].\n- Helfgott (2013): every odd number greater than $5$ is a sum of three primes ([[ternary-goldbach]]).\n- In the late 1930s van der Corput, Chudakov and Estermann independently showed that almost all even numbers are sums of two primes: the exceptions up to $x$ are $o(x)$. Montgomery and Vaughan (1975) improved this to at most $x^{1-\\delta}$ exceptions for some $\\delta > 0$.\n- Chen (1973): every sufficiently large even number is $p + P_2$, where $P_2$ is a prime or a product of two primes. This is a sieve result ([[sieve-basics]]), and it is the parity barrier that stops it at two prime factors.\n\nAs a consequence of Helfgott's theorem, every even number $n \\ge 4$ is a sum of at most four primes (see the first example)."
+   },
+   {
+    "type": "section",
+    "title": "Why two primes is harder than three",
+    "body": "Let $S(\\alpha) = \\sum_{p \\le n}(\\log p)\\,e(p\\alpha)$ with $e(t) = e^{2\\pi i t}$. Then the weighted counts are Fourier coefficients:\n\n$$\\sum_{p_1+p_2+p_3 = n}\\log p_1\\log p_2\\log p_3 = \\int_0^1 S(\\alpha)^3 e(-n\\alpha)\\,d\\alpha, \\qquad \\sum_{p+q = n}\\log p\\log q = \\int_0^1 S(\\alpha)^2 e(-n\\alpha)\\,d\\alpha.$$\n\nThe circle method splits $[0,1]$ into major arcs (near rationals with small denominators), which give the predicted main term, and minor arcs, which must be shown to contribute less. The only general tool on the minor arcs $\\mathfrak m$ is a pointwise bound $\\sup_{\\mathfrak m}|S|$ combined with Parseval:\n\n$$\\int_0^1|S(\\alpha)|^2\\,d\\alpha = \\sum_{p \\le n}(\\log p)^2 \\sim n\\log n.$$\n\nFor three primes the main term has size about $n^2$, and the minor arcs are at most $\\sup_{\\mathfrak m}|S|\\cdot n\\log n$. Vinogradov's bound $\\sup_{\\mathfrak m}|S| \\ll n(\\log n)^{-A}$ makes this $\\ll n^2(\\log n)^{1-A}$, which is smaller. For two primes the main term has size about $n$, but the trivial minor-arc bound $\\int|S|^2 \\sim n\\log n$ is already larger by a factor $\\log n$, before any saving. One would need square-root-type cancellation in $\\int_{\\mathfrak m}S(\\alpha)^2e(-n\\alpha)\\,d\\alpha$ for each individual $n$, and no method provides it. Averaging over $n$ recovers the missing cancellation, which is why \"almost all\" results are possible."
+   },
+   {
+    "type": "example",
+    "title": "From three primes to four, and from two to three",
+    "body": "(a) Show that the binary conjecture implies that every odd $n \\ge 7$ is a sum of three primes.\n\n(b) Using Helfgott's theorem (every odd $n > 5$ is a sum of three primes), show that every even $n \\ge 4$ is a sum of at most four primes.",
+    "solution": "(a) If $n \\ge 7$ is odd then $n - 3 \\ge 4$ is even, so $n - 3 = p + q$ and $n = 3 + p + q$.\n\n(b) Small cases: $4 = 2 + 2$, $6 = 3 + 3$, $8 = 3 + 5$. If $n \\ge 10$ is even, then $n - 3 \\ge 7$ is odd and greater than $5$, so $n - 3 = p_1 + p_2 + p_3$ and $n = 3 + p_1 + p_2 + p_3$.\n\nNeither argument goes the other way: knowing all odd numbers are sums of three primes gives no control over which even number $n - p_3$ is a sum of two."
+   },
+   {
+    "type": "example",
+    "title": "The singular series in action",
+    "body": "Compare $r(510510)$ with $r(524288)$, where $510510 = 2\\cdot 3\\cdot 5\\cdot 7\\cdot 11\\cdot 13\\cdot 17$ and $524288 = 2^{19}$. The numbers are about the same size. What does the Hardy–Littlewood formula predict for the ratio?",
+    "solution": "Counting gives $r(510510) = 18986$ and $r(2^{19}) = 4734$, a ratio of about $4.01$.\n\nFor $2^{19}$ the product over odd prime divisors is empty, equal to $1$. For $510510$ it is\n\n$$\\frac{2}{1}\\cdot\\frac{4}{3}\\cdot\\frac{6}{5}\\cdot\\frac{10}{9}\\cdot\\frac{12}{11}\\cdot\\frac{16}{15} \\approx 4.137.$$\n\nAdjusting for the slightly different sizes, the factor $\\frac{n}{(\\log n)^2}$ contributes about $0.977$, so the prediction is about $4.04$, close to the observed $4.01$. The number of representations depends strongly on the arithmetic of $n$, not only its size: this is the \"comet\" pattern seen when $r(n)$ is plotted."
+   },
+   {
+    "type": "example",
+    "title": "Parseval for prime sums",
+    "body": "Check numerically that $\\int_0^1|S(\\alpha)|^2\\,d\\alpha = \\sum_{p\\le n}(\\log p)^2$, and compare the sum with $n\\log n$ at $n = 10^6$.",
+    "solution": "$S(\\alpha)$ is a trigonometric polynomial with frequencies at most $n$, so $|S|^2$ has frequencies in $[-n, n]$, and averaging $|S|^2$ over $M > 2n$ equally spaced points computes the integral exactly. For $n = 50$ this agrees with $\\sum_{p \\le 50}(\\log p)^2$ to rounding error.\n\nAt $n = 10^6$, $\\sum_{p \\le n}(\\log p)^2 \\approx 1.280\\cdot 10^7$, while $n\\log n \\approx 1.382\\cdot 10^7$, ratio about $0.926$; the ratio tends to $1$ by the [[pnt]] and partial summation. Compare this with the binary main term, of order $n$, about $10^6$: the trivial bound is more than ten times too large already at this size."
+   },
+   {
+    "type": "pitfall",
+    "body": "- \"Almost all even numbers\" does not mean all; an infinite set of exceptions of density zero is not excluded by density results.\n- Verification to $4\\cdot 10^{18}$ is evidence, not proof. The expected number of representations grows like $n/(\\log n)^2$, which is why a counterexample is considered very unlikely, but heuristics have been wrong before.\n- The ternary theorem does not imply the binary conjecture (see the first example).\n- Ordered and unordered counts differ by a factor of about $2$; state which one you use."
+   },
+   {
+    "type": "connection",
+    "body": "The tools are the [[circle-method]], [[exponential-sums]] and sieves ([[sieve-basics]], [[selberg-sieve]]); the ternary case is [[ternary-goldbach]]. The singular series is the same local-density heuristic that predicts [[twin-primes]] and other [[prime-patterns]], and the additive viewpoint connects with [[additive-bases]] and [[waring]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find all ways to write $100$ as an unordered sum of two primes.\n2. Let $n = p + q$ with $p, q$ primes different from $3$. Show that if $3 \\mid n$ then $p$ and $q$ lie in different nonzero classes mod $3$, and if $n \\equiv 1 \\pmod 3$ then $p \\equiv q \\equiv 2 \\pmod 3$. How does this explain the factor $(3-1)/(3-2) = 2$ in the prediction?\n3. Compute the Hardy–Littlewood product $\\prod_{p \\mid n, p>2}\\frac{p-1}{p-2}$ for $n = 30$ and $n = 32$.\n4. Explain why Chen's theorem cannot be upgraded to the full conjecture by sieve methods alone."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Vaughan, The Hardy–Littlewood Method"
+   },
+   {
+    "ref": "Oliveira e Silva, Herzog & Pardi, Empirical verification of the even Goldbach conjecture and computation of prime gaps up to 4·10^18, Mathematics of Computation (2014)"
+   },
+   {
+    "ref": "Friedlander & Iwaniec, Opera de Cribro"
+   },
+   {
+    "ref": "Helfgott, The ternary Goldbach problem (arXiv, 2015)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "98 = 19+79 = 31+67 = 37+61 and these are all unordered representations; 4,6,8,10 representations as stated",
+    "python": "from sympy import isprime\nassert [(p, 98-p) for p in range(2, 50) if isprime(p) and isprime(98-p)] == [(19, 79), (31, 67), (37, 61)]\nassert isprime(5) and isprime(7) and [(p, 10-p) for p in range(2, 6) if isprime(p) and isprime(10-p)] == [(3, 7), (5, 5)]"
+   },
+   {
+    "claim": "For every even 2N <= 10^5 some p <= 293 works, and 293 is needed at 2N = 63274 (first time)",
+    "python": "N = 10**5\ns = bytearray([1])*(N+1); s[0] = s[1] = 0\nfor i in range(2, int(N**0.5)+1):\n    if s[i]: s[i*i::i] = bytearray(len(s[i*i::i]))\nbest, arg = 0, None\nfor n in range(4, N+1, 2):\n    p = 2\n    while not (s[p] and s[n-p]): p += 1\n    if p > best: best, arg = p, n\nassert best == 293 and arg == 63274"
+   },
+   {
+    "claim": "r(10^6) = 10804 ordered, HL estimate about 9223 (ratio 1.17); r(510510)=18986, r(2^19)=4734, ratio about 4.01; singular-series ratio 4.137, size factor about 0.977, prediction about 4.04",
+    "python": "import math\nN = 10**6\ns = bytearray([1])*(N+1); s[0] = s[1] = 0\nfor i in range(2, int(N**0.5)+1):\n    if s[i]: s[i*i::i] = bytearray(len(s[i*i::i]))\nr = lambda n: sum(1 for p in range(2, n-1) if s[p] and s[n-p])\nassert r(10**6) == 10804 and r(510510) == 18986 and r(2**19) == 4734\nassert 510510 == 2*3*5*7*11*13*17\nC2 = 1.0\nfor p in range(3, N+1):\n    if s[p]: C2 *= 1 - 1/(p-1)**2\nhl = 2*C2*(4/3)*10**6/math.log(10**6)**2  # 10^6 = 2^6 5^6: only p=5, factor 4/3\nassert abs(hl - 9223) < 1 and abs(10804/hl - 1.17) < 0.005\nsing = 2*(4/3)*(6/5)*(10/9)*(12/11)*(16/15)\nassert abs(sing - 4.137) < 0.001\nsize = (510510/math.log(510510)**2)/(2**19/math.log(2**19)**2)\nassert abs(size - 0.977) < 0.001 and abs(sing*size - 4.04) < 0.01\nassert abs(18986/4734 - 4.01) < 0.005"
+   },
+   {
+    "claim": "Parseval: mean of |S|^2 over M > 2n points equals sum (log p)^2 for n=50; at n=10^6 the sum is about 1.280e7, n log n about 1.382e7, ratio about 0.926",
+    "python": "import cmath, math\nfrom sympy import primerange\nn = 50\nP = list(primerange(2, n+1))\nM = 2*n + 7\navg = sum(abs(sum(math.log(p)*cmath.exp(2j*math.pi*p*k/M) for p in P))**2 for k in range(M))/M\nassert abs(avg - sum(math.log(p)**2 for p in P)) < 1e-9\nn = 10**6\nT = sum(math.log(p)**2 for p in primerange(2, n+1))\nassert abs(T/1e7 - 1.280) < 0.001 and abs(n*math.log(n)/1e7 - 1.382) < 0.001 and abs(T/(n*math.log(n)) - 0.926) < 0.001"
+   },
+   {
+    "claim": "Every even n with 4 <= n <= 10^4 is a sum of at most four primes via 3 + (three primes) for n >= 10 (checked directly)",
+    "python": "from sympy import isprime, primerange\nP = list(primerange(2, 10**4))\ntwo = set(p+q for p in P for q in P if p+q <= 10**4)\nassert all(n in two for n in range(4, 10**4+1, 2))\nthree_odd = all(any((n-p) in two for p in P if p < n) for n in range(7, 10**4, 2))\nassert three_odd"
+   }
+  ]
+ },
+ {
+  "id": "bsd",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Does the equation $y^2 = x^3 - 25x$ have infinitely many rational solutions? (Yes: $(-4, 6)$ is one, and it has infinite order, so its multiples give infinitely many.) Does $y^2 = x^3 - x$? (No: only $(0,0)$, $(\\pm1, 0)$ and the point at infinity.) For a general [[elliptic-curves|elliptic curve]] there is no known algorithm that always answers this question.\n\nThe Birch and Swinnerton-Dyer conjecture proposes that the answer is hidden in counts of solutions modulo primes. Packaged into an $L$-function, those counts should vanish at $s = 1$ to an order equal to the number of independent rational points. It is one of the seven Millennium Prize Problems."
+   },
+   {
+    "type": "section",
+    "title": "The two sides of the conjecture",
+    "body": "The algebraic side. For an elliptic curve $E/\\mathbb Q$, the Mordell–Weil theorem (Mordell 1922) says the group of rational points is finitely generated:\n\n$$E(\\mathbb Q) \\cong \\mathbb Z^{r} \\oplus E(\\mathbb Q)_{\\text{tors}},$$\n\nwith a finite torsion part (by Mazur's theorem, of order at most $16$, and every torsion point has order at most $12$). The integer $r = \\operatorname{rank}E(\\mathbb Q)$ is the rank. $E(\\mathbb Q)$ is infinite exactly when $r \\ge 1$. Nobody knows how to compute $r$ in general.\n\nThe analytic side. For a prime $p$ of good reduction let $N_p$ be the number of points of $E$ over $\\mathbb F_p$, counting the point at infinity, and put $a_p = p + 1 - N_p$. Hasse's theorem gives $|a_p| \\le 2\\sqrt p$. The $L$-function is\n\n$$L(E,s) = \\prod_{p \\nmid N}\\bigl(1 - a_p p^{-s} + p^{1-2s}\\bigr)^{-1}\\cdot\\prod_{p \\mid N}(\\text{simpler factors}),$$\n\nwhere $N$ is the conductor. The product converges for $\\operatorname{Re}s > \\tfrac32$. Its continuation to all of $\\mathbb C$, with a functional equation relating $s$ and $2 - s$, follows from the modularity theorem (Wiles; Taylor–Wiles; completed by Breuil, Conrad, Diamond and Taylor in 2001). The point $s = 1$ is the centre of symmetry."
+   },
+   {
+    "type": "theorem",
+    "title": "The Birch and Swinnerton-Dyer conjecture",
+    "body": "For every elliptic curve $E/\\mathbb Q$,\n\n$$\\operatorname{rank}E(\\mathbb Q) = \\operatorname{ord}_{s=1}L(E,s).$$\n\nThe refined form also predicts the leading Taylor coefficient at $s = 1$ in terms of the real period, the regulator of a basis of $E(\\mathbb Q)$ modulo torsion, the Tamagawa numbers, the torsion order and the order of the Tate–Shafarevich group (which is conjectured to be finite). This is a conjecture; the Clay statement asks for the rank equality."
+   },
+   {
+    "type": "section",
+    "title": "Where the idea came from",
+    "body": "Formally, at $s = 1$ the Euler factor is $(1 - a_p/p + 1/p)^{-1} = p/N_p$. So the value $L(E,1)$ is, very loosely, $\\prod_p p/N_p$. If $E$ has many rational points, they reduce to points mod every $p$, so one expects $N_p$ to be a little larger than $p$ on average, the product $\\prod_{p \\le X}N_p/p$ to grow, and $L(E,1)$ to be \"zero\". Birch and Swinnerton-Dyer computed these products on the EDSAC computer at Cambridge in the early 1960s and saw growth roughly like $C(\\log X)^r$. (The Euler product does not converge at $s=1$, so this is a heuristic, not a derivation.)"
+   },
+   {
+    "type": "section",
+    "title": "What is known",
+    "body": "- Coates and Wiles (1977): for curves with complex multiplication, $L(E,1) \\ne 0$ implies $E(\\mathbb Q)$ is finite.\n- Gross and Zagier (1986) related $L'(E,1)$ to the height of a Heegner point, and Kolyvagin (around 1989) showed how Heegner points bound the rank and the Tate–Shafarevich group. Together with modularity: if $\\operatorname{ord}_{s=1}L(E,s) \\le 1$, then the rank equals that order and the Tate–Shafarevich group is finite.\n- Bhargava and Shankar bounded the average rank of elliptic curves ordered by height, and combined with further work this shows that a positive proportion of curves satisfy the conjecture.\n- Nothing is known when the order of vanishing is $2$ or more. For such curves no one can even prove that the rank is at least $2$ from the analytic data."
+   },
+   {
+    "type": "example",
+    "title": "Congruent numbers",
+    "body": "A positive integer $n$ is congruent if it is the area of a right triangle with rational sides. Show that the triangle $(3,4,5)$ gives a rational point on $y^2 = x^3 - 36x$ via $x = c^2/4$, $y = c(b^2 - a^2)/8$, and that the triangle $(\\tfrac32, \\tfrac{20}3, \\tfrac{41}6)$ shows $5$ is congruent.",
+    "solution": "For $(a,b,c) = (3,4,5)$ with area $6$: $x = 25/4$ and $y = 5\\cdot 7/8 = 35/8$. Then $y^2 = 1225/64$ and $x^3 - 36x = 15625/64 - 225 = 15625/64 - 14400/64 = 1225/64$. So $(25/4, 35/8)$ lies on $y^2 = x^3 - 36x$, and it is not one of the points with $y = 0$.\n\nFor $(\\tfrac32, \\tfrac{20}3, \\tfrac{41}6)$: $(\\tfrac32)^2 + (\\tfrac{20}3)^2 = \\tfrac94 + \\tfrac{400}9 = \\tfrac{1681}{36} = (\\tfrac{41}6)^2$, and the area is $\\tfrac12\\cdot\\tfrac32\\cdot\\tfrac{20}3 = 5$.\n\nIn general $n$ is congruent exactly when $y^2 = x^3 - n^2x$ has positive rank. Tunnell (1983) gave an elementary criterion, counting solutions of a few ternary quadratic equations, which decides whether $n$ is congruent provided the Birch and Swinnerton-Dyer conjecture holds for these curves. One direction (if the criterion fails, $n$ is not congruent) is unconditional, by Coates–Wiles."
+   },
+   {
+    "type": "example",
+    "title": "Counting points mod p",
+    "body": "For $E: y^2 + y = x^3 - x$ (conductor $37$), compute $a_p$ for $p = 2, 3, 5, 7, 11, 13$ and check Hasse's bound.",
+    "solution": "For odd $p$, complete the square: $(2y+1)^2 = 4x^3 - 4x + 1$, so for each $x \\in \\mathbb F_p$ the number of $y$ is $1 + \\left(\\frac{4x^3-4x+1}{p}\\right)$. For $p = 2$ check the four pairs directly. Adding $1$ for the point at infinity gives $N_p$, and then\n\n$$a_2 = -2,\\quad a_3 = -3,\\quad a_5 = -2,\\quad a_7 = -1,\\quad a_{11} = -5,\\quad a_{13} = -2.$$\n\nAll satisfy $|a_p| \\le 2\\sqrt p$; for instance $|a_3| = 3 \\le 2\\sqrt3 \\approx 3.46$. The point $(0,0)$ is on $E$, and its multiples $2P, 3P, \\dots, 12P$ are all different from the point at infinity, so by Mazur's bound on torsion orders $P$ has infinite order and the rank is at least $1$. In fact the rank is exactly $1$ and $L(E,s)$ vanishes to order $1$ at $s=1$, a case covered by Gross–Zagier and Kolyvagin."
+   },
+   {
+    "type": "example",
+    "title": "The original experiment, in miniature",
+    "body": "Compute $\\prod_{p < X,\\ p \\nmid N}N_p/p$ for $X = 10^4$ for four curves of known rank: $y^2 + y = x^3 - x^2 - 10x - 20$ (conductor $11$, rank $0$), $y^2 + y = x^3 - x$ (conductor $37$, rank $1$), $y^2 + y = x^3 + x^2 - 2x$ (conductor $389$, rank $2$) and $y^2 + y = x^3 - 7x + 6$ (conductor $5077$, rank $3$).",
+    "solution": "Counting points with the Legendre-symbol method gives, for $p < 10^4$, products of about $6.2$, $75$, $638$ and $3096$ respectively. At $X = 10^3$ the values are about $5.7$, $46$, $329$ and $1830$.\n\nThe rank $0$ product stays bounded, and the others grow faster the higher the rank, as Birch and Swinnerton-Dyer observed. Such numbers are suggestive only: convergence is slow and erratic, and nothing about the exact order of vanishing can be read off a finite product."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The rank is not the number of rational points; a curve of rank $0$ can still have up to $16$ torsion points.\n- The Euler product does not converge at $s = 1$. Statements about $L(E,1)$ refer to the analytic continuation.\n- Knowing $L(E,1) = 0$ (for example because the sign of the functional equation is $-1$) gives rank at least $1$ only via the conjecture or via Gross–Zagier and Kolyvagin when the order is exactly $1$.\n- An algorithm for the rank needs more than the rank formula: the conjecture would tell you when to stop searching for points, and computing generators also uses finiteness of the Tate–Shafarevich group."
+   },
+   {
+    "type": "connection",
+    "body": "The conjecture joins the arithmetic of [[elliptic-curves]] with the analytic theory of $L$-functions developed for [[l-functions|Dirichlet L-functions]]: both have Euler products, functional equations and central values that carry arithmetic information, as $L(1,\\chi)$ does in the [[class-number-formula]]. The Hasse bound is an analogue of the Riemann hypothesis for curves over finite fields ([[finite-fields]]), and the analytic rank depends on the zeros of $L(E,s)$ in the way [[grh]] studies zeros in general. The other Millennium problems include [[rh]], [[hodge]] and [[p-vs-np]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that at $s = 1$ the good Euler factor $(1 - a_p p^{-s} + p^{1-2s})^{-1}$ equals $p/N_p$.\n2. Count the points of $y^2 = x^3 - x$ over $\\mathbb F_p$ for $p = 3, 7, 11$ and observe that $N_p = p + 1$ for $p \\equiv 3 \\pmod 4$. Prove it.\n3. Verify that $(-4, 6)$ lies on $y^2 = x^3 - 25x$ and find the right triangle of area $5$ it corresponds to.\n4. Why does a sign $-1$ in the functional equation force $L(E,1) = 0$?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Silverman & Tate, Rational Points on Elliptic Curves"
+   },
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Silverman, The Arithmetic of Elliptic Curves"
+   },
+   {
+    "ref": "Koblitz, Introduction to Elliptic Curves and Modular Forms"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "(25/4, 35/8) on y^2 = x^3 - 36x; (3/2, 20/3, 41/6) is a right triangle of area 5; (-4,6) on y^2 = x^3 - 25x",
+    "python": "from fractions import Fraction as F\nx, y = F(25, 4), F(35, 8)\nassert y*y == x**3 - 36*x\na, b, c = F(3, 2), F(20, 3), F(41, 6)\nassert a*a + b*b == c*c and a*b/2 == 5\nassert 6**2 == (-4)**3 - 25*(-4)\na, b, c = 3, 4, 5\nassert F(c*c, 4) == x and F(c*(b*b - a*a), 8) == y"
+   },
+   {
+    "claim": "For y^2 + y = x^3 - x: a_2..a_13 = -2,-3,-2,-1,-5,-2 and Hasse holds",
+    "python": "import math\ndef N(p):\n    return 1 + sum(1 for x in range(p) for y in range(p) if (y*y + y - x**3 + x) % p == 0)\na = {p: p + 1 - N(p) for p in [2, 3, 5, 7, 11, 13]}\nassert a == {2: -2, 3: -3, 5: -2, 7: -1, 11: -5, 13: -2}\nassert all(abs(v) <= 2*math.sqrt(p) for p, v in a.items())"
+   },
+   {
+    "claim": "P = (0,0) on y^2 + y = x^3 - x: nP is not the identity for n = 1..12, so P has infinite order (Mazur)",
+    "python": "from fractions import Fraction as F\na1, a2, a3, a4, a6 = 0, 0, 1, -1, 0\nO = None\ndef neg(P):\n    x, y = P\n    return (x, -y - a1*x - a3)\ndef add(P, Q):\n    if P is O: return Q\n    if Q is O: return P\n    x1, y1 = P; x2, y2 = Q\n    if x1 == x2 and y1 + y2 + a1*x2 + a3 == 0: return O\n    if x1 == x2:\n        lam = (3*x1*x1 + 2*a2*x1 + a4 - a1*y1)/(2*y1 + a1*x1 + a3)\n    else:\n        lam = (y2 - y1)/(x2 - x1)\n    nu = y1 - lam*x1\n    x3 = lam*lam + a1*lam - a2 - x1 - x2\n    y3 = -(lam + a1)*x3 - nu - a3\n    return (x3, y3)\nP = (F(0), F(0))\nassert P[1]**2 + a3*P[1] == P[0]**3 + a4*P[0]\nQ = O\nfor n in range(1, 13):\n    Q = add(Q, P)\n    assert Q is not O\n    x, y = Q\n    assert y*y + a1*x*y + a3*y == x**3 + a2*x*x + a4*x + a6"
+   },
+   {
+    "claim": "Partial products prod N_p/p over good p < 10^4: about 6.2, 75, 638, 3096; at 10^3 about 5.7, 46, 329, 1830",
+    "python": "import numpy as np\nfrom sympy import primerange\ncurves = [(-1, 1, -10, -20, 11), (0, 1, -1, 0, 37), (1, 1, -2, 0, 389), (0, 1, -7, 6, 5077)]\ndef count(c, p):\n    a2, a3, a4, a6, N = c\n    if p == 2:\n        return 1 + sum(1 for x in range(2) for y in range(2) if (y*y + a3*y - (x**3 + a2*x*x + a4*x + a6)) % 2 == 0)\n    y = np.arange(p, dtype=np.int64); sq = np.bincount(y*y % p, minlength=p)\n    x = np.arange(p, dtype=np.int64)\n    v = (4*((x*x % p)*x % p + a2*(x*x % p) + a4*x + a6) + a3*a3) % p\n    return 1 + int(sq[v].sum())\nres = []\nfor c in curves:\n    prod = 1.0; at3 = None\n    for p in primerange(2, 10**4):\n        if p > 1000 and at3 is None: at3 = prod\n        if c[4] % p == 0: continue\n        prod *= count(c, p)/p\n    res.append((at3, prod))\nbig = [r[1] for r in res]; small = [r[0] for r in res]\nassert abs(big[0] - 6.24) < 0.01 and abs(big[1] - 74.7) < 0.1 and abs(big[2] - 637.9) < 0.5 and abs(big[3] - 3096.5) < 1\nassert abs(small[0] - 5.73) < 0.01 and abs(small[1] - 45.7) < 0.1 and abs(small[2] - 328.6) < 0.5 and abs(small[3] - 1829.6) < 1"
+   },
+   {
+    "claim": "For y^2 = x^3 - x, N_p = p+1 when p = 3 mod 4 (checked for p < 200); integral points with y=0 are x=0,1,-1",
+    "python": "from sympy import primerange\nfor p in primerange(3, 200):\n    if p % 4 == 3:\n        N = 1 + sum(1 for x in range(p) for y in range(p) if (y*y - x**3 + x) % p == 0)\n        assert N == p + 1\nassert [x for x in range(-5, 6) if x**3 - x == 0] == [-1, 0, 1]"
+   }
+  ]
+ },
+ {
+  "id": "p-vs-np",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Given a map with $50$ countries, can it be coloured with $3$ colours so that neighbours differ? If someone hands you a colouring, checking it takes a minute: look at each border once. Finding one, or proving none exists, seems to require searching through a huge number of possibilities, and no one knows a fundamentally better way.\n\nThe P versus NP problem asks whether this gap between checking and finding is real. If every problem whose solutions are easy to check were also easy to solve, much of mathematics, optimisation and cryptography would change overnight. Most researchers believe the gap is real, $\\mathrm P \\ne \\mathrm{NP}$, but there is no proof."
+   },
+   {
+    "type": "section",
+    "title": "Problems, inputs and running time",
+    "body": "A decision problem is a question with a yes/no answer about an input written as a finite string, for instance a [[graph-basics|graph]] given by its list of edges. The size $n$ of an input is the length of that string. An algorithm runs in polynomial time if there are constants $C, k$ such that on every input of size $n$ it stops after at most $Cn^k$ elementary steps. (The precise model, a Turing machine or a random-access machine, does not matter: they simulate each other with polynomial overhead.)\n\nPolynomial time is the working definition of \"efficient\". The reason is growth: $n^3$ and $2^n$ are close at $n = 10$ ($1000$ against $1024$), but at $n = 100$ the first is a million and the second is about $1.27\\cdot 10^{30}$."
+   },
+   {
+    "type": "definition",
+    "title": "P and NP",
+    "body": "$\\mathrm P$ is the class of decision problems solvable by a polynomial-time algorithm.\n\n$\\mathrm{NP}$ is the class of decision problems for which there exist a polynomial $q$ and a polynomial-time checking algorithm $V$ with the property: an input $x$ is a yes-instance if and only if there is a certificate $w$ of length at most $q(|x|)$ such that $V(x, w)$ accepts.\n\nIn words: NP problems are those whose yes-answers have short proofs that can be checked quickly. A $3$-colouring is a certificate for \"this graph is $3$-colourable\". Every problem in P is in NP (ignore the certificate and solve), so $\\mathrm P \\subseteq \\mathrm{NP}$; the question is whether the inclusion is strict. NP stands for nondeterministic polynomial time, not \"non-polynomial\"."
+   },
+   {
+    "type": "section",
+    "title": "Reductions and NP-completeness",
+    "body": "Problem $A$ reduces to problem $B$ if there is a polynomial-time map $f$ from inputs of $A$ to inputs of $B$ with $x$ a yes-instance of $A$ exactly when $f(x)$ is a yes-instance of $B$. Then a fast algorithm for $B$ gives one for $A$. A problem is NP-complete if it is in NP and every NP problem reduces to it.\n\nThe satisfiability problem SAT asks whether a Boolean formula in conjunctive normal form (an AND of clauses, each an OR of variables and negated variables) has a satisfying assignment."
+   },
+   {
+    "type": "theorem",
+    "title": "Cook–Levin theorem (1971)",
+    "body": "SAT is NP-complete. (Proved by Stephen Cook in 1971 and independently by Leonid Levin.) Consequently, $\\mathrm P = \\mathrm{NP}$ if and only if SAT can be solved in polynomial time."
+   },
+   {
+    "type": "section",
+    "title": "The landscape",
+    "body": "Karp (1972) showed that $21$ natural problems are NP-complete, including graph colouring, Hamiltonian cycle, clique and a knapsack (subset-sum) problem; thousands more are known now. They stand or fall together: a polynomial algorithm for one gives one for all.\n\nSome separations are known. The time hierarchy theorem (Hartmanis and Stearns, 1965) shows that $\\mathrm P \\ne \\mathrm{EXP}$: some problems solvable in exponential time are provably not in P. Some problems once thought hard turned out to be in P, the most famous being primality testing (Agrawal, Kayal and Saxena, 2002; see [[primality]]). Ladner (1975) proved that if $\\mathrm P \\ne \\mathrm{NP}$, there are NP problems that are neither in P nor NP-complete; factoring and graph isomorphism are candidates.\n\nThree barrier results explain why the question is hard. Relativisation (Baker, Gill and Solovay, 1975): there are oracles relative to which P equals NP and others relative to which they differ, so no proof technique that works unchanged in the presence of every oracle can settle the question. Natural proofs (Razborov and Rudich, 1994): if strong pseudorandom functions exist, a broad class of circuit lower bound arguments cannot prove $\\mathrm P \\ne \\mathrm{NP}$. Algebrisation (Aaronson and Wigderson, 2008) extends the relativisation barrier to techniques like arithmetisation. These rule out large families of known methods, not every conceivable method."
+   },
+   {
+    "type": "example",
+    "title": "Reducing 3-colouring to SAT",
+    "body": "Given a graph with vertex set $V$ ($|V| = n$) and edge set $E$ ($|E| = m$), build a CNF formula that is satisfiable exactly when the graph is $3$-colourable. How many clauses does it have? Apply it to the Petersen graph and to $K_4$.",
+    "solution": "Use variables $x_{v,c}$ for $v \\in V$, $c \\in \\{1,2,3\\}$, meaning \"$v$ gets colour $c$\". Clauses:\n\n1. For each $v$: $(x_{v,1} \\lor x_{v,2} \\lor x_{v,3})$ — at least one colour. That is $n$ clauses.\n2. For each $v$ and each pair $c < c'$: $(\\lnot x_{v,c} \\lor \\lnot x_{v,c'})$ — at most one colour. That is $3n$ clauses.\n3. For each edge $uv$ and each colour $c$: $(\\lnot x_{u,c} \\lor \\lnot x_{v,c})$ — neighbours differ. That is $3m$ clauses.\n\nA satisfying assignment gives each vertex exactly one colour with neighbours different, and conversely, so the formula has $3n$ variables and $4n + 3m$ clauses, built in polynomial time.\n\nThe Petersen graph has $n = 10$, $m = 15$: $30$ variables and $85$ clauses. It is $3$-colourable; in fact it has exactly $120$ proper $3$-colourings. For $K_4$ ($n = 4$, $m = 6$, $34$ clauses) the formula is unsatisfiable, since four mutually adjacent vertices need four colours."
+   },
+   {
+    "type": "example",
+    "title": "Deciding is as hard as finding",
+    "body": "Suppose an algorithm decides SAT in polynomial time. Show how to find a satisfying assignment in polynomial time.",
+    "solution": "Let the formula $\\Phi$ have variables $x_1, \\dots, x_k$. If the decider says $\\Phi$ is unsatisfiable, stop. Otherwise set $x_1 = \\text{true}$ (substitute and simplify) and ask the decider about the resulting formula. If it is satisfiable keep $x_1 = \\text{true}$; if not, then $\\Phi$ with $x_1 = \\text{false}$ must be satisfiable, so keep that. Repeat for $x_2, \\dots, x_k$. After $k$ more calls every variable is fixed, and each step preserved satisfiability, so the final assignment satisfies $\\Phi$.\n\nThe total work is at most $k + 1$ calls on formulas no longer than $\\Phi$, plus polynomial bookkeeping. So for NP-complete problems, \"is there a solution?\" and \"find one\" are equally hard up to polynomial factors."
+   },
+   {
+    "type": "example",
+    "title": "A trap: pseudo-polynomial time",
+    "body": "Subset sum: given positive integers $a_1, \\dots, a_k$ and a target $T$, is some subset's sum equal to $T$? Solve the instance $\\{3, 34, 4, 12, 5, 2\\}$, $T = 9$, and explain why the standard table algorithm does not show subset sum is in P.",
+    "solution": "The subsets with sum $9$ are $\\{4, 5\\}$ and $\\{3, 4, 2\\}$.\n\nThe table algorithm records, for $j = 0, 1, \\dots, k$, which totals $0, 1, \\dots, T$ are reachable using $a_1, \\dots, a_j$. It takes about $kT$ steps. But the input size is the number of digits, about $k\\log_2(\\max a_i) + \\log_2 T$, and $T$ can be exponential in that: a $60$-digit target makes $kT$ astronomically large while the input is short. Such algorithms are called pseudo-polynomial. Subset sum is NP-complete, and this algorithm is consistent with that."
+   },
+   {
+    "type": "pitfall",
+    "body": "- NP does not mean \"not polynomial\". Every problem in P is in NP.\n- NP-complete does not mean every instance is hard; many large SAT instances are solved routinely in practice. Complexity classes are about worst-case behaviour as $n$ grows.\n- $\\mathrm P = \\mathrm{NP}$ would not automatically be practical: an $n^{100}$ algorithm is polynomial.\n- Cryptography needs more than $\\mathrm P \\ne \\mathrm{NP}$. Schemes such as [[rsa]] and [[discrete-log|Diffie–Hellman]] rely on specific problems being hard on average, an assumption stronger than $\\mathrm P \\ne \\mathrm{NP}$; but $\\mathrm P = \\mathrm{NP}$ would break them, since checking a proposed factorisation is easy."
+   },
+   {
+    "type": "connection",
+    "body": "Graph problems ([[graph-basics]], [[graph-coloring]], [[cycles-matchings]]) supply many of the standard NP-complete problems, and a counting argument in the spirit of the [[probabilistic-method]] (Shannon, 1949) shows that most Boolean functions need enormous circuits, although no explicit function in NP is known to need them. Number-theoretic algorithms ([[primality]], [[rsa]], [[discrete-log]]) are where complexity meets the rest of this site. It is one of the Millennium problems together with [[rh]], [[bsd]], [[navier-stokes]], [[yang-mills]], [[hodge]] and the solved [[poincare]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that if a problem $A$ reduces to $B$ and $B$ reduces to $C$, then $A$ reduces to $C$.\n2. Explain why \"this graph is not $3$-colourable\" has no obvious short certificate. (The class of such complements of NP problems is called coNP.)\n3. Modify the reduction above to encode $k$-colouring for general $k$, and count variables and clauses.\n4. Show that the Hamiltonian cycle problem (\"does this graph have a cycle through every vertex exactly once?\") is in NP: describe a certificate and a polynomial-time check."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Sipser, Introduction to the Theory of Computation"
+   },
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Arora & Barak, Computational Complexity: A Modern Approach"
+   },
+   {
+    "ref": "Garey & Johnson, Computers and Intractability: A Guide to the Theory of NP-Completeness"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "n^3 vs 2^n: 1000 vs 1024 at n=10; at n=100, 10^6 vs about 1.27e30",
+    "python": "assert 10**3 == 1000 and 2**10 == 1024\nassert 100**3 == 10**6 and abs(2**100/1e30 - 1.2677) < 1e-3"
+   },
+   {
+    "claim": "Petersen graph: 10 vertices, 15 edges, exactly 120 proper 3-colourings; K4 has none; clause counts 4n+3m = 85 and 34",
+    "python": "import itertools\nE = [(i, (i+1) % 5) for i in range(5)] + [(i, i+5) for i in range(5)] + [(5+i, 5+(i+2) % 5) for i in range(5)]\nassert len(set(tuple(sorted(e)) for e in E)) == 15\ndeg = [sum(1 for e in E if v in e) for v in range(10)]\nassert deg == [3]*10\ncnt = sum(1 for c in itertools.product(range(3), repeat=10) if all(c[u] != c[v] for u, v in E))\nassert cnt == 120\nK4 = [(i, j) for i in range(4) for j in range(i+1, 4)]\nassert sum(1 for c in itertools.product(range(3), repeat=4) if all(c[u] != c[v] for u, v in K4)) == 0\nassert 4*10 + 3*15 == 85 and 4*4 + 3*6 == 34"
+   },
+   {
+    "claim": "The CNF built by the reduction is satisfiable for Petersen and unsatisfiable for K4, and its satisfying assignments correspond to the 120 colourings",
+    "python": "import itertools\ndef cnf(n, E):\n    var = lambda v, c: 3*v + c\n    C = [[(var(v, c), True) for c in range(3)] for v in range(n)]\n    C += [[(var(v, c), False), (var(v, d), False)] for v in range(n) for c in range(3) for d in range(c+1, 3)]\n    C += [[(var(u, c), False), (var(v, c), False)] for u, v in E for c in range(3)]\n    return C\ndef nsat(n, E):\n    C = cnf(n, E); k = 0\n    for bits in itertools.product([False, True], repeat=3*n):\n        if all(any(bits[i] == pos for i, pos in cl) for cl in C): k += 1\n    return k, len(C)\nK4 = [(i, j) for i in range(4) for j in range(i+1, 4)]\nassert nsat(4, K4) == (0, 34)\nC5 = [(i, (i+1) % 5) for i in range(5)]\nassert nsat(5, C5) == (30, 35)\nE = [(i, (i+1) % 5) for i in range(5)] + [(i, i+5) for i in range(5)] + [(5+i, 5+(i+2) % 5) for i in range(5)]\nassert len(cnf(10, E)) == 85"
+   },
+   {
+    "claim": "Subset sum instance {3,34,4,12,5,2}, T=9 has exactly the solutions {4,5} and {3,4,2}; DP table agrees",
+    "python": "import itertools\nS = [3, 34, 4, 12, 5, 2]\nsols = [c for r in range(len(S)+1) for c in itertools.combinations(S, r) if sum(c) == 9]\nassert sols == [(4, 5), (3, 4, 2)]\nreach = {0}\nfor a in S:\n    reach |= {r + a for r in reach if r + a <= 9}\nassert 9 in reach"
+   },
+   {
+    "claim": "Search-to-decision self-reduction finds a satisfying assignment using a decision oracle (tested on random small CNFs)",
+    "python": "import itertools, random\nrandom.seed(1)\ndef sat(C, k, fixed):\n    for bits in itertools.product([False, True], repeat=k):\n        if any(bits[i] != v for i, v in fixed.items()): continue\n        if all(any(bits[i] == pos for i, pos in cl) for cl in C): return True\n    return False\nfor trial in range(200):\n    k = 6\n    C = [[(random.randrange(k), random.random() < 0.5) for _ in range(3)] for _ in range(random.randint(5, 25))]\n    if not sat(C, k, {}): continue\n    fixed = {}\n    for i in range(k):\n        fixed[i] = True\n        if not sat(C, k, fixed): fixed[i] = False\n    bits = [fixed[i] for i in range(k)]\n    assert all(any(bits[i] == pos for i, pos in cl) for cl in C)"
+   }
+  ]
+ },
+ {
+  "id": "navier-stokes",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Water in a pipe, air over a wing and blood in an artery all obey, to excellent accuracy, the incompressible Navier–Stokes equations. Engineers solve them numerically every day. Yet nobody knows whether, in three dimensions, a smooth and finite-energy initial flow always stays smooth, or whether the velocity can become infinite at some point in finite time.\n\nThis page explains the equations, the one conserved-type quantity we control (energy), why that control is too weak in three dimensions, and the main theorems that bracket the problem."
+   },
+   {
+    "type": "section",
+    "title": "The equations",
+    "body": "The unknowns are a velocity field $u(x,t) \\in \\mathbb R^3$ and a pressure $p(x,t) \\in \\mathbb R$, for $x \\in \\mathbb R^3$ (or the periodic box $\\mathbb T^3$) and $t \\ge 0$. With density normalised to $1$ and viscosity $\\nu > 0$,\n\n$$\\partial_t u + (u\\cdot\\nabla)u = \\nu\\Delta u - \\nabla p, \\qquad \\nabla\\cdot u = 0, \\qquad u(x,0) = u_0(x).$$\n\nRead term by term: $\\partial_t u + (u\\cdot\\nabla)u$ is the acceleration of a fluid particle (Newton's law in a moving frame), $\\nu\\Delta u$ is internal friction, $-\\nabla p$ is the pressure force, and $\\nabla\\cdot u = 0$ says volume is preserved ([[vector-calculus]]). The pressure is not given independently: taking the divergence of the equation gives $-\\Delta p = \\sum_{i,j}\\partial_i\\partial_j(u_iu_j)$, so $p$ is determined by $u$ and acts to keep $u$ divergence-free.\n\nThe difficulty is the nonlinear term $(u\\cdot\\nabla)u$, which moves energy between scales, against the smoothing term $\\nu\\Delta u$, which damps small scales."
+   },
+   {
+    "type": "section",
+    "title": "The Clay problem",
+    "body": "The official statement, written by Charles Fefferman, asks for a proof of one of four alternatives. Either, with no external force, every smooth divergence-free $u_0$ on $\\mathbb R^3$ with suitable decay (respectively, every smooth periodic $u_0$) has a smooth solution for all $t \\ge 0$ with bounded energy; or there exist such initial data together with a smooth external force, decaying (respectively periodic), for which no smooth finite-energy solution exists for all time. A proof of regularity or a proof of breakdown would each solve the problem."
+   },
+   {
+    "type": "theorem",
+    "title": "Energy identity",
+    "body": "Let $(u, p)$ be a smooth solution on $\\mathbb T^3 \\times [0, T]$. Then\n\n$$\\frac{d}{dt}\\,\\frac12\\int_{\\mathbb T^3}|u|^2\\,dx = -\\nu\\int_{\\mathbb T^3}|\\nabla u|^2\\,dx, \\qquad\\text{where } |\\nabla u|^2 = \\sum_{i,j}(\\partial_j u_i)^2.$$\n\nIn particular the kinetic energy $\\tfrac12\\int|u|^2$ never increases."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Take the dot product of the equation with $u$ and integrate over the box. Every integration by parts below has no boundary term, because the functions are periodic (on $\\mathbb R^3$ one uses decay at infinity instead).\n\nTime derivative: $\\int u\\cdot\\partial_t u = \\frac{d}{dt}\\frac12\\int|u|^2$.\n\nTransport term: $u\\cdot(u\\cdot\\nabla)u = \\sum_j u_j\\partial_j\\bigl(\\tfrac12|u|^2\\bigr)$, so integrating by parts, $\\int u\\cdot(u\\cdot\\nabla)u = -\\int(\\nabla\\cdot u)\\tfrac12|u|^2 = 0$.\n\nPressure: $\\int u\\cdot\\nabla p = -\\int(\\nabla\\cdot u)\\,p = 0$.\n\nViscosity: $\\int u\\cdot\\Delta u = \\sum_{i,j}\\int u_i\\,\\partial_j\\partial_j u_i = -\\sum_{i,j}\\int(\\partial_j u_i)^2 = -\\int|\\nabla u|^2$.\n\nPutting these together gives the identity. $\\square$\n\nNotice that the nonlinear term dropped out completely: it moves energy around but neither creates nor destroys it. That is the good news. The bad news is that energy is the only such a priori bound known for general data, and it is too weak."
+   },
+   {
+    "type": "section",
+    "title": "Scaling: why three dimensions is hard",
+    "body": "If $(u,p)$ solves the equations, so does\n\n$$u_\\lambda(x,t) = \\lambda\\,u(\\lambda x, \\lambda^2 t), \\qquad p_\\lambda(x,t) = \\lambda^2 p(\\lambda x, \\lambda^2 t)$$\n\nfor every $\\lambda > 0$ (check: every term in the momentum equation picks up a factor $\\lambda^3$). Large $\\lambda$ zooms in on small scales and short times. In three dimensions the energy of the rescaled field is\n\n$$\\int_{\\mathbb R^3}|u_\\lambda(x,t)|^2\\,dx = \\lambda^2\\int|u(\\lambda x,\\lambda^2 t)|^2\\,dx = \\lambda^{-1}\\int|u(y,\\lambda^2t)|^2\\,dy.$$\n\nSo a potential singularity, viewed through the zoom that makes it look like a unit-size event, has tiny energy. The energy bound cannot see it. Quantities that do not change under the scaling are called critical; in $3$D examples are $\\|u\\|_{L^3}$ and the homogeneous Sobolev norm $\\|u\\|_{\\dot H^{1/2}}$. The energy is supercritical.\n\nIn two dimensions the same computation gives $\\lambda^{0}$: energy is critical, and global regularity in $2$D has been known since the classical work of Leray and of Ladyzhenskaya. Another way to see the difference: the vorticity $\\omega = \\nabla\\times u$ satisfies\n\n$$\\partial_t\\omega + (u\\cdot\\nabla)\\omega = (\\omega\\cdot\\nabla)u + \\nu\\Delta\\omega,$$\n\nand the vortex-stretching term $(\\omega\\cdot\\nabla)u$ vanishes identically in $2$D but can amplify vorticity in $3$D."
+   },
+   {
+    "type": "section",
+    "title": "What is known",
+    "body": "- Leray (1934): for every finite-energy divergence-free $u_0$ on $\\mathbb R^3$ there is a global weak solution satisfying the energy inequality (Hopf, 1951, for bounded domains). Whether these Leray–Hopf solutions are unique or smooth is open.\n- Local regularity: smooth data give a smooth solution on some time interval $[0, T^*)$, and if the data are small in a critical norm the solution is global (Fujita and Kato, 1964, for $\\dot H^{1/2}$; Kato, 1984, for $L^3$).\n- Caffarelli, Kohn and Nirenberg (1982): for suitable weak solutions the set of singular points in space-time has one-dimensional parabolic Hausdorff measure zero. In particular it cannot contain a curve.\n- Escauriaza, Seregin and Šverák (2003): if $\\|u(t)\\|_{L^3}$ stays bounded up to time $T$, no singularity forms at $T$.\n- Tao (2016) constructed a modified (\"averaged\") equation with the same energy identity and similar harmonic-analysis structure whose solutions blow up. So any regularity proof must use finer features of the true nonlinearity.\n- Non-uniqueness has been proved in weaker settings: Buckmaster and Vicol (2019) for very weak solutions, and Albritton, Brué and Colombo (2022) for Leray–Hopf solutions with a specially chosen force. For the unforced Leray–Hopf class the question remains open."
+   },
+   {
+    "type": "example",
+    "title": "An exact three-dimensional solution",
+    "body": "On $\\mathbb T^3 = (\\mathbb R/2\\pi\\mathbb Z)^3$ let $A, B, C$ be constants and\n\n$$u = e^{-\\nu t}\\bigl(A\\sin z + C\\cos y,\\ B\\sin x + A\\cos z,\\ C\\sin y + B\\cos x\\bigr), \\qquad p = -\\tfrac12|u|^2.$$\n\nShow this solves the Navier–Stokes equations, and check the energy identity.",
+    "solution": "Write $u = e^{-\\nu t}v$. Each component of $v$ depends only on the other two coordinates, so $\\nabla\\cdot v = 0$. A direct computation gives $\\nabla\\times v = v$ and $\\Delta v = -v$.\n\nUse the vector identity $(u\\cdot\\nabla)u = \\nabla\\bigl(\\tfrac12|u|^2\\bigr) - u\\times(\\nabla\\times u)$. Since $\\nabla\\times u = u$, the cross product vanishes and $(u\\cdot\\nabla)u = \\nabla(\\tfrac12|u|^2) = -\\nabla p$. Then\n\n$$\\partial_t u + (u\\cdot\\nabla)u = -\\nu u - \\nabla p = \\nu\\Delta u - \\nabla p.$$\n\nEnergy: $\\int|u|^2 = e^{-2\\nu t}\\int|v|^2$, so $\\frac{d}{dt}\\frac12\\int|u|^2 = -\\nu\\int|u|^2$. Because $v$ is built from Fourier modes with $|k| = 1$, Parseval ([[fourier-poisson]]) gives $\\int|\\nabla u|^2 = \\int|u|^2$, which matches the identity. On $(0,2\\pi)^3$ the energy at $t = 0$ is $\\tfrac12\\int|v|^2 = 4\\pi^3(A^2 + B^2 + C^2)$.\n\nThese Arnold–Beltrami–Childress flows are smooth for all time, but they are special: the nonlinearity is a pure gradient and does no work at all."
+   },
+   {
+    "type": "example",
+    "title": "Which norms are critical?",
+    "body": "For which $q$ is $\\|u_\\lambda(\\cdot,t)\\|_{L^q(\\mathbb R^3)}$ independent of $\\lambda$? For which $s$ is $\\|u_\\lambda\\|_{\\dot H^s}$, defined by $\\|f\\|_{\\dot H^s}^2 = \\int|\\xi|^{2s}|\\hat f(\\xi)|^2\\,d\\xi$, independent of $\\lambda$?",
+    "solution": "Substituting $y = \\lambda x$,\n\n$$\\int|\\lambda u(\\lambda x)|^q\\,dx = \\lambda^{q-3}\\int|u(y)|^q\\,dy,$$\n\nwhich is independent of $\\lambda$ exactly when $q = 3$.\n\nFor the Sobolev norm, the Fourier transform of $f_\\lambda(x) = \\lambda f(\\lambda x)$ is $\\hat f_\\lambda(\\xi) = \\lambda^{-2}\\hat f(\\xi/\\lambda)$. Then with $\\xi = \\lambda\\eta$,\n\n$$\\int|\\xi|^{2s}\\lambda^{-4}|\\hat f(\\xi/\\lambda)|^2\\,d\\xi = \\lambda^{2s - 4 + 3}\\int|\\eta|^{2s}|\\hat f(\\eta)|^2\\,d\\eta = \\lambda^{2s-1}\\|f\\|_{\\dot H^s}^2.$$\n\nSo $s = \\tfrac12$ is critical. Energy is the case $s = 0$, scaling like $\\lambda^{-1}$, which is the supercritical computation above."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Global weak solutions exist; the problem is their regularity (and uniqueness), not existence in some sense.\n- Numerical simulations cannot settle the question: a singularity, if one exists, lives at arbitrarily small scales that no grid resolves.\n- The inviscid Euler equations ($\\nu = 0$) are a different problem; results about Euler blow-up do not transfer directly.\n- Smallness of the data in the energy norm is not enough for global regularity; smallness must be measured in a critical norm."
+   },
+   {
+    "type": "connection",
+    "body": "The tools are those of [[vector-calculus]] (divergence theorem, vorticity) and [[fourier-poisson]] (Fourier series on $\\mathbb T^3$, Sobolev norms, Parseval), developed into the modern theory of partial differential equations. It is one of the Millennium problems with [[rh]], [[p-vs-np]], [[yang-mills]], [[hodge]], [[bsd]] and the solved [[poincare]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Verify that $u_\\lambda$, $p_\\lambda$ solve the equations if $u$, $p$ do, by tracking the power of $\\lambda$ in each term.\n2. Show that on $\\mathbb T^3$ the mean $\\int u\\,dx$ is conserved by smooth solutions.\n3. Using $\\int|\\nabla u|^2 \\ge \\int|u|^2$ for mean-zero periodic fields on $(\\mathbb R/2\\pi\\mathbb Z)^3$, show $\\int|u(t)|^2 \\le e^{-2\\nu t}\\int|u_0|^2$.\n4. In two dimensions, write $\\omega = \\partial_1u_2 - \\partial_2u_1$ and show the vortex-stretching term vanishes."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Majda & Bertozzi, Vorticity and Incompressible Flow"
+   },
+   {
+    "ref": "Robinson, Rodrigo & Sadowski, The Three-Dimensional Navier–Stokes Equations"
+   },
+   {
+    "ref": "Temam, Navier–Stokes Equations: Theory and Numerical Analysis"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "ABC flow with p = -|u|^2/2 solves Navier-Stokes; div u = 0, curl v = v, Laplacian v = -v",
+    "python": "import sympy as sp\nx, y, z, t, nu, A, B, C = sp.symbols('x y z t nu A B C', real=True)\nX = (x, y, z)\nv = sp.Matrix([A*sp.sin(z) + C*sp.cos(y), B*sp.sin(x) + A*sp.cos(z), C*sp.sin(y) + B*sp.cos(x)])\nu = sp.exp(-nu*t)*v\np = -(u.dot(u))/2\ndiv = sum(sp.diff(u[i], X[i]) for i in range(3))\ncurl = lambda w: sp.Matrix([sp.diff(w[2], y) - sp.diff(w[1], z), sp.diff(w[0], z) - sp.diff(w[2], x), sp.diff(w[1], x) - sp.diff(w[0], y)])\nlap = lambda f: sum(sp.diff(f, X[i], 2) for i in range(3))\nassert sp.simplify(div) == 0\nassert sp.simplify(curl(v) - v) == sp.zeros(3, 1)\nfor i in range(3):\n    assert sp.simplify(lap(v[i]) + v[i]) == 0\n    res = sp.diff(u[i], t) + sum(u[j]*sp.diff(u[i], X[j]) for j in range(3)) - nu*lap(u[i]) + sp.diff(p, X[i])\n    assert sp.simplify(res) == 0"
+   },
+   {
+    "claim": "Scaling: if u solves NS, so does lambda*u(lambda x, lambda^2 t) (tested on a scaled ABC flow with wavenumber lambda)",
+    "python": "import sympy as sp\nx, y, z, t, nu, A, B, C, lam = sp.symbols('x y z t nu A B C lam', positive=True)\nX = (x, y, z)\ndef U(x, y, z, t):\n    return sp.exp(-nu*t)*sp.Matrix([A*sp.sin(z) + C*sp.cos(y), B*sp.sin(x) + A*sp.cos(z), C*sp.sin(y) + B*sp.cos(x)])\nu = lam*U(lam*x, lam*y, lam*z, lam**2*t)\np = lam**2*(-(U(lam*x, lam*y, lam*z, lam**2*t).dot(U(lam*x, lam*y, lam*z, lam**2*t)))/2)\nlap = lambda f: sum(sp.diff(f, X[i], 2) for i in range(3))\nassert sp.simplify(sum(sp.diff(u[i], X[i]) for i in range(3))) == 0\nfor i in range(3):\n    res = sp.diff(u[i], t) + sum(u[j]*sp.diff(u[i], X[j]) for j in range(3)) - nu*lap(u[i]) + sp.diff(p, X[i])\n    assert sp.simplify(res) == 0"
+   },
+   {
+    "claim": "Energy identity for ABC flow on (0,2pi)^3: int|grad u|^2 = int|u|^2, and (1/2)int|v|^2 = 4 pi^3 (A^2+B^2+C^2)",
+    "python": "import sympy as sp\nx, y, z, A, B, C = sp.symbols('x y z A B C', real=True)\nX = (x, y, z)\nv = [A*sp.sin(z) + C*sp.cos(y), B*sp.sin(x) + A*sp.cos(z), C*sp.sin(y) + B*sp.cos(x)]\nI = lambda f: sp.integrate(f, (x, 0, 2*sp.pi), (y, 0, 2*sp.pi), (z, 0, 2*sp.pi))\nE = I(sum(c**2 for c in v))\nG = I(sum(sp.diff(c, X[j])**2 for c in v for j in range(3)))\nassert sp.simplify(E - G) == 0\nassert sp.simplify(E/2 - 4*sp.pi**3*(A**2 + B**2 + C**2)) == 0"
+   },
+   {
+    "claim": "L^q norm scaling exponent q-3 (radial Gaussian test), and energy (q=2) scales like lambda^(-1); Fourier exponent 2s-1",
+    "python": "import sympy as sp\nr, lam = sp.symbols('r lam', positive=True)\nfor q in [2, 3, 4]:\n    f = sp.exp(-r**2)\n    base = sp.integrate(4*sp.pi*r**2*f**q, (r, 0, sp.oo))\n    scaled = sp.integrate(4*sp.pi*r**2*(lam*f.subs(r, lam*r))**q, (r, 0, sp.oo))\n    assert sp.simplify(scaled/base - lam**(q-3)) == 0\ns = sp.symbols('s')\nassert sp.solve(sp.Eq(2*s - 4 + 3, 0), s) == [sp.Rational(1, 2)]"
+   },
+   {
+    "claim": "Vorticity equation check: for the 2D field u=(-dpsi/dy, dpsi/dx, 0), the stretching term (omega.grad)u vanishes",
+    "python": "import sympy as sp\nx, y, z = sp.symbols('x y z')\npsi = sp.Function('psi')(x, y)\nu = sp.Matrix([-sp.diff(psi, y), sp.diff(psi, x), 0])\nX = (x, y, z)\nw = sp.Matrix([sp.diff(u[2], y) - sp.diff(u[1], z), sp.diff(u[0], z) - sp.diff(u[2], x), sp.diff(u[1], x) - sp.diff(u[0], y)])\nstretch = sp.Matrix([sum(w[j]*sp.diff(u[i], X[j]) for j in range(3)) for i in range(3)])\nassert sp.simplify(stretch) == sp.zeros(3, 1)\nassert sp.simplify(sum(sp.diff(u[i], X[i]) for i in range(3))) == 0"
+   }
+  ]
+ },
+ {
+  "id": "yang-mills",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Physicists describe the strong nuclear force with a quantum field theory built on the symmetry group $SU(3)$. Its predictions are tested at particle colliders and computed on supercomputers, and one of its striking features is that the force carriers (gluons), although massless in the classical equations, never appear as free massless particles: the lightest states of the pure theory have positive mass.\n\nMathematically, no one has constructed this quantum theory in four-dimensional spacetime in a way that meets the standards of rigorous mathematics, let alone proved the mass gap. The Millennium problem asks for both. This page explains the classical theory (which is concrete matrix calculus), what \"mass gap\" means, and why the problem is hard."
+   },
+   {
+    "type": "section",
+    "title": "From symmetry groups to gauge fields",
+    "body": "Fix a compact matrix [[groups|group]] $G$; the main example is $SU(2)$, the $2 \\times 2$ complex unitary matrices with determinant $1$. Its Lie algebra $\\mathfrak{su}(2)$ consists of the $2\\times 2$ skew-Hermitian traceless matrices, a $3$-dimensional real vector space with basis\n\n$$T_a = -\\tfrac{i}{2}\\sigma_a \\quad (a = 1,2,3), \\qquad [T_1, T_2] = T_3,\\ [T_2,T_3] = T_1,\\ [T_3,T_1] = T_2,$$\n\nwhere $\\sigma_a$ are the Pauli matrices and $[X,Y] = XY - YX$. For $SU(N)$ the Lie algebra has dimension $N^2 - 1$; for $SU(3)$ that is $8$, the number of gluons.\n\nA gauge field (connection) is a list of four matrix-valued functions $A_\\mu(x) \\in \\mathfrak g$, $\\mu = 0,1,2,3$, on spacetime. Its field strength (curvature) is\n\n$$F_{\\mu\\nu} = \\partial_\\mu A_\\nu - \\partial_\\nu A_\\mu + [A_\\mu, A_\\nu].$$\n\nFor the abelian group $U(1)$ the commutator vanishes and $F$ is the electromagnetic field of Maxwell's theory. For non-abelian $G$ the commutator makes everything nonlinear.\n\nA gauge transformation is a function $g(x) \\in G$, acting by $A_\\mu \\mapsto gA_\\mu g^{-1} - (\\partial_\\mu g)g^{-1}$. Then $F_{\\mu\\nu} \\mapsto gF_{\\mu\\nu}g^{-1}$, so $\\operatorname{tr}(F_{\\mu\\nu}F_{\\mu\\nu})$ is gauge invariant, and fields related by a gauge transformation describe the same physics. The classical Yang–Mills action (Yang and Mills, 1954) is, up to a constant factor $1/g^2$ that sets the coupling strength,\n\n$$S(A) = -\\frac{1}{2}\\int\\sum_{\\mu,\\nu}\\operatorname{tr}\\bigl(F_{\\mu\\nu}F_{\\mu\\nu}\\bigr)\\,d^4x \\ \\ge 0$$\n\nin Euclidean signature; its critical points satisfy the Yang–Mills equations, the non-abelian analogue of Maxwell's equations."
+   },
+   {
+    "type": "definition",
+    "title": "Mass gap",
+    "body": "In a quantum theory the energy is an operator $H \\ge 0$ (the Hamiltonian) on a Hilbert space, with a unique vacuum vector $\\Omega$, $H\\Omega = 0$. The theory has a mass gap $\\Delta > 0$ if\n\n$$\\operatorname{spec}(H) \\subset \\{0\\} \\cup [\\Delta, \\infty).$$\n\nEvery state orthogonal to the vacuum has energy at least $\\Delta$; the lightest particle has mass $\\Delta$ (in units with $c = 1$). Equivalently, correlations between distant measurements decay like $e^{-\\Delta\\,|x|}$."
+   },
+   {
+    "type": "section",
+    "title": "The Clay problem",
+    "body": "The official statement, by Arthur Jaffe and Edward Witten, asks: prove that for every compact simple gauge group $G$, a nontrivial quantum Yang–Mills theory exists on $\\mathbb R^4$ and has a mass gap $\\Delta > 0$. Existence includes establishing axiomatic properties at least as strong as the standard Wightman or Osterwalder–Schrader axioms for quantum field theory.\n\n\"Simple\" excludes $U(1)$, for good reason: quantum electrodynamics without charges is free Maxwell theory, whose particles (photons) are massless, so there is no gap. The classical Yang–Mills equations have no gap either: their waves travel at the speed of light. The gap, if it exists, is a purely quantum effect."
+   },
+   {
+    "type": "section",
+    "title": "Why it is hard",
+    "body": "To quantise, one would like to define a probability measure on the space of gauge fields modulo gauge transformations, formally\n\n$$d\\mu(A) = \\frac{1}{Z}e^{-S(A)/g^2}\\,\\mathcal DA,$$\n\nand read off correlation functions from it. In four dimensions this expression has no direct meaning: there is no Lebesgue measure $\\mathcal DA$ on an infinite-dimensional space, and the naive computations diverge at short distances, requiring renormalisation. Wilson (1974) gave a well-defined approximation: replace spacetime by a lattice, put a group element on each edge, and use Haar measure on finitely many copies of $G$. The difficulty is then to take the continuum limit and to prove the gap survives.\n\nTwo features pull in opposite directions. Asymptotic freedom (Gross and Wilczek, and Politzer, 1973) says the effective coupling becomes weak at short distances, which is what makes a continuum limit plausible. But the gap is a long-distance phenomenon, where the coupling is strong and perturbation theory says nothing. Rigorous constructions of interacting quantum field theories exist in two and three spacetime dimensions (for example the $\\phi^4$ models of Glimm and Jaffe), and two-dimensional Yang–Mills is understood in detail. No interacting theory has been rigorously constructed in four dimensions."
+   },
+   {
+    "type": "example",
+    "title": "Non-abelian curvature from a constant field",
+    "body": "For $G = SU(2)$ take the constant gauge field $A_1 = T_1$, $A_2 = T_2$, $A_0 = A_3 = 0$. Compute $F_{12}$. What would the answer be for $U(1)$?",
+    "solution": "All derivatives vanish, so $F_{12} = [A_1, A_2] = [T_1, T_2] = T_3 \\ne 0$.\n\nExplicitly, $T_1T_2 = (-\\tfrac i2)^2\\sigma_1\\sigma_2 = -\\tfrac14(i\\sigma_3)$ and $T_2T_1 = -\\tfrac14(-i\\sigma_3)$, so $[T_1,T_2] = -\\tfrac{i}{2}\\sigma_3 = T_3$.\n\nFor $U(1)$ the field values are numbers, commutators vanish, and a constant potential has zero field strength. In the non-abelian theory the gauge field acts as a source for itself: this self-interaction is what makes the equations nonlinear and the quantum theory so different from electromagnetism."
+   },
+   {
+    "type": "example",
+    "title": "Pure gauge fields have zero curvature",
+    "body": "Let $g(x) = e^{x_1T_1}e^{x_2T_2}$ and $A_\\mu = -(\\partial_\\mu g)g^{-1}$, the gauge transform of the zero field. Check that $F_{12} = 0$.",
+    "solution": "Here $e^{\\theta T_a} = \\cos(\\theta/2)I - i\\sin(\\theta/2)\\sigma_a$. Then $A_1 = -T_1$ (since $\\partial_1 g = T_1 g$), while\n\n$$A_2 = -e^{x_1T_1}T_2\\,e^{-x_1T_1},$$\n\nwhich depends on $x_1$. Differentiating, $\\partial_1A_2 = -[T_1,\\, e^{x_1T_1}T_2e^{-x_1T_1}] = [T_1, A_2]$, and $\\partial_2A_1 = 0$. So\n\n$$F_{12} = [T_1, A_2] - 0 + [-T_1, A_2] = 0.$$\n\nThe derivative term and the commutator term cancel exactly; neither is zero on its own. This is the transformation law $F \\mapsto gFg^{-1}$ at work, and it shows why the commutator must be part of the definition of $F$."
+   },
+   {
+    "type": "example",
+    "title": "A gap in a toy model",
+    "body": "In the one-dimensional Ising model, spins $s_i = \\pm1$ on a ring of $L$ sites have weight $\\exp(K\\sum_i s_is_{i+1})$ with $K > 0$. Use the transfer matrix $\\begin{pmatrix} e^K & e^{-K}\\\\ e^{-K} & e^K\\end{pmatrix}$ to compute the correlation $\\langle s_0s_n\\rangle$ and identify the \"mass gap\".",
+    "solution": "The transfer matrix has eigenvalues $\\lambda_0 = 2\\cosh K$ and $\\lambda_1 = 2\\sinh K$, with eigenvectors $(1,1)$ and $(1,-1)$. Summing over configurations,\n\n$$\\langle s_0s_n\\rangle = \\frac{\\lambda_0^{L-n}\\lambda_1^{n} + \\lambda_0^{n}\\lambda_1^{L-n}}{\\lambda_0^L + \\lambda_1^L} = \\frac{t^n + t^{L-n}}{1 + t^L}, \\qquad t = \\tanh K.$$\n\nAs $L \\to \\infty$ this tends to $t^n = e^{-mn}$ with $m = \\log(\\lambda_0/\\lambda_1) = -\\log\\tanh K > 0$. Writing the transfer matrix as $e^{-H}$, the \"Hamiltonian\" $H$ has lowest levels $-\\log\\lambda_0$ and $-\\log\\lambda_1$, whose difference is exactly $m$. The gap in the spectrum of $H$ is the rate of exponential decay of correlations. This is the dictionary behind the definition above; the Yang–Mills problem asks for the same kind of statement in a four-dimensional continuum gauge theory, where nothing is finite-dimensional."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The problem is not about solving the classical Yang–Mills equations; they have no mass gap. It is about constructing the quantum theory.\n- Lattice simulations giving a gap are strong evidence, but they are numerical and at finite lattice spacing. A proof needs the continuum limit.\n- $U(1)$ is not simple and has no gap; the problem asks for every compact simple $G$, such as $SU(N)$ with $N \\ge 2$.\n- The mass gap is related to, but not the same as, confinement of quarks; the Clay problem concerns the pure gauge theory without quarks."
+   },
+   {
+    "type": "connection",
+    "body": "The algebra is that of [[groups]], with matrix Lie groups and their Lie algebras ([[matrices]], [[eigen]]); the transfer-matrix example is a [[markov-chains|Markov chain]] in disguise, and the spectral picture uses the [[spectral-theorem]]. Yang–Mills theory also feeds pure mathematics: instantons (minimisers of the action) were used by Donaldson to study four-dimensional manifolds, a theme close to [[poincare]]. It is one of the Millennium problems, with [[navier-stokes]], [[rh]], [[p-vs-np]], [[hodge]] and [[bsd]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Verify $[T_2, T_3] = T_1$ from the Pauli matrices.\n2. Show that $\\dim\\mathfrak{su}(N) = N^2 - 1$.\n3. For $G = U(1)$ write $A_\\mu = i a_\\mu$ with $a_\\mu$ real. Show that the gauge transformation with $g = e^{i\\phi}$ sends $a_\\mu \\mapsto a_\\mu - \\partial_\\mu\\phi$, and that $F_{\\mu\\nu} = i(\\partial_\\mu a_\\nu - \\partial_\\nu a_\\mu)$ is unchanged.\n4. In the Ising example, compute the correlation length $1/m$ for $K = 1$, and show that it tends to infinity as $K \\to \\infty$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Glimm & Jaffe, Quantum Physics: A Functional Integral Point of View"
+   },
+   {
+    "ref": "Yang & Mills, Conservation of isotopic spin and isotopic gauge invariance, Physical Review (1954)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "T_a = -i sigma_a/2 satisfy [T1,T2]=T3, [T2,T3]=T1, [T3,T1]=T2; they are skew-Hermitian and traceless",
+    "python": "import sympy as sp\nI = sp.I\ns1 = sp.Matrix([[0, 1], [1, 0]]); s2 = sp.Matrix([[0, -I], [I, 0]]); s3 = sp.Matrix([[1, 0], [0, -1]])\nT = [-I*s/2 for s in (s1, s2, s3)]\nbr = lambda X, Y: X*Y - Y*X\nassert br(T[0], T[1]) == T[2] and br(T[1], T[2]) == T[0] and br(T[2], T[0]) == T[1]\nfor X in T:\n    assert X.H == -X and X.trace() == 0"
+   },
+   {
+    "claim": "Pure gauge field from g = exp(x1 T1) exp(x2 T2) has F_12 = 0, while each of the two pieces is nonzero",
+    "python": "import sympy as sp\nI = sp.I\nx1, x2 = sp.symbols('x1 x2', real=True)\ns1 = sp.Matrix([[0, 1], [1, 0]]); s2 = sp.Matrix([[0, -I], [I, 0]])\nT1, T2 = -I*s1/2, -I*s2/2\nE = lambda th, s: sp.cos(th/2)*sp.eye(2) - I*sp.sin(th/2)*s\ng = E(x1, s1)*E(x2, s2)\nassert sp.simplify(g.diff(x1) - T1*g) == sp.zeros(2, 2)\ngi = g.inv()\nA1 = sp.simplify(-g.diff(x1)*gi); A2 = sp.simplify(-g.diff(x2)*gi)\ndpart = sp.simplify(A2.diff(x1) - A1.diff(x2))\ncomm = sp.simplify(A1*A2 - A2*A1)\nassert sp.simplify(dpart + comm) == sp.zeros(2, 2)\nassert dpart != sp.zeros(2, 2) and comm != sp.zeros(2, 2)"
+   },
+   {
+    "claim": "dim su(N) = N^2 - 1 (8 for SU(3)), by counting a real basis of traceless skew-Hermitian matrices",
+    "python": "import numpy as np\ndef dim_su(N):\n    basis = []\n    for i in range(N):\n        for j in range(i+1, N):\n            M = np.zeros((N, N), complex); M[i, j] = 1; M[j, i] = -1; basis.append(M)\n            M = np.zeros((N, N), complex); M[i, j] = 1j; M[j, i] = 1j; basis.append(M)\n    for i in range(N-1):\n        M = np.zeros((N, N), complex); M[i, i] = 1j; M[i+1, i+1] = -1j; basis.append(M)\n    V = np.array([np.concatenate([b.real.ravel(), b.imag.ravel()]) for b in basis])\n    return np.linalg.matrix_rank(V)\nfor N in range(2, 6):\n    assert dim_su(N) == N*N - 1\nassert dim_su(3) == 8"
+   },
+   {
+    "claim": "Ising ring: <s0 sn> = (t^n + t^(L-n))/(1+t^L) with t = tanh K (brute force, L=10, K=0.7); eigenvalues 2cosh K, 2sinh K",
+    "python": "import itertools, math\nimport numpy as np\nK, L = 0.7, 10\nZ = 0.0; C = [0.0]*L\nfor s in itertools.product([1, -1], repeat=L):\n    w = math.exp(K*sum(s[i]*s[(i+1) % L] for i in range(L)))\n    Z += w\n    for n in range(L): C[n] += w*s[0]*s[n]\nt = math.tanh(K)\nfor n in range(L):\n    assert abs(C[n]/Z - (t**n + t**(L-n))/(1 + t**L)) < 1e-12\nev = sorted(np.linalg.eigvalsh(np.array([[math.exp(K), math.exp(-K)], [math.exp(-K), math.exp(K)]])))\nassert abs(ev[1] - 2*math.cosh(K)) < 1e-12 and abs(ev[0] - 2*math.sinh(K)) < 1e-12\nassert abs(math.log(ev[1]/ev[0]) + math.log(t)) < 1e-12"
+   }
+  ]
+ },
+ {
+  "id": "hodge",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A smooth complex surface defined by a polynomial equation, such as $x^4 + y^4 + z^4 + w^4 = 0$ in complex projective space, is at the same time three kinds of object: a topological space with holes of various dimensions, a manifold on which one can do calculus with complex coordinates, and an algebraic object built from polynomials. Each viewpoint produces its own invariants. The Hodge conjecture predicts exactly which topological features come from algebra: which \"holes\" can be filled or traced out by subvarieties cut out by polynomial equations.\n\nThis page builds the minimum vocabulary (projective varieties, cohomology, types $(p,q)$), states the conjecture, and explains the cases that are known."
+   },
+   {
+    "type": "section",
+    "title": "The objects",
+    "body": "Complex projective space $\\mathbb{CP}^n$ is the set of nonzero vectors $(z_0, \\dots, z_n) \\in \\mathbb C^{n+1}$ up to scaling by nonzero [[complex-numbers|complex numbers]]. A projective variety $X \\subset \\mathbb{CP}^n$ is the common zero set of finitely many homogeneous [[polynomials-roots|polynomials]]; it is non-singular if at every point the gradients of the defining polynomials have the expected rank, so that $X$ is a complex manifold. A complex manifold of complex dimension $n$ has real dimension $2n$. A curve ($n = 1$) is a real surface; a plane cubic curve is topologically a torus.\n\nInside $X$ we can look for algebraic subvarieties $Z$: subsets of $X$ cut out by further polynomial equations. If $Z$ has complex codimension $p$ in $X$, it has real dimension $2n - 2p$."
+   },
+   {
+    "type": "section",
+    "title": "Cohomology and the Hodge decomposition",
+    "body": "Cohomology measures holes. The group $H^k(X,\\mathbb Q)$ is a finite-dimensional vector space over $\\mathbb Q$ whose dimension $b_k$ (the $k$-th Betti number) counts the independent $k$-dimensional holes. For a torus $b_0 = 1$, $b_1 = 2$, $b_2 = 1$. One concrete model: $H^k(X,\\mathbb C)$ is the space of closed differential $k$-forms modulo exact ones (de Rham cohomology), and the rational classes $H^k(X,\\mathbb Q)$ sit inside it as those whose integrals over all $k$-dimensional cycles with integer coefficients are rational.\n\nIn complex coordinates $z_j = x_j + iy_j$ every form is built from $dz_j = dx_j + i\\,dy_j$ and $d\\bar z_j = dx_j - i\\,dy_j$. A form has type $(p,q)$ if each term contains $p$ factors $dz$ and $q$ factors $d\\bar z$. Hodge's theorem says that on a non-singular projective variety this splitting passes to cohomology:\n\n$$H^k(X,\\mathbb C) = \\bigoplus_{p+q=k}H^{p,q}(X), \\qquad \\overline{H^{p,q}} = H^{q,p}.$$\n\nThe Hodge numbers $h^{p,q} = \\dim H^{p,q}$ satisfy $b_k = \\sum_{p+q=k}h^{p,q}$ and $h^{p,q} = h^{q,p}$. For a curve of genus $g$: $h^{1,0} = h^{0,1} = g$ and $b_1 = 2g$."
+   },
+   {
+    "type": "section",
+    "title": "Why subvarieties give (p,p) classes",
+    "body": "A subvariety $Z$ of codimension $p$ defines a class $[Z] \\in H^{2p}(X,\\mathbb Q)$: it is the class that, paired with a closed form $\\eta$ of degree $2n-2p$, gives $\\int_Z\\eta$. Integrals over $Z$ of forms with integer periods are integers, so the class is rational.\n\nIt is also of type $(p,p)$. The reason is that $Z$ is itself complex, of complex dimension $m = n - p$. Restricted to $Z$, a form of degree $2m$ can only survive if it has type $(m,m)$: a term with more than $m$ factors $dz$ vanishes on an $m$-dimensional complex manifold, just as $dz_1\\wedge dz_1 = 0$. So $\\int_Z\\eta$ only sees the $(m,m)$ part of $\\eta$, and this forces $[Z]$ to lie in $H^{p,p}$. Rational linear combinations of such classes are called algebraic classes."
+   },
+   {
+    "type": "definition",
+    "title": "Hodge classes",
+    "body": "The Hodge classes of degree $2p$ on $X$ are the elements of\n\n$$\\operatorname{Hdg}^p(X) = H^{2p}(X,\\mathbb Q)\\cap H^{p,p}(X).$$\n\nThey are the cohomology classes that pass both tests satisfied by algebraic classes: they are rational, and they have type $(p,p)$."
+   },
+   {
+    "type": "theorem",
+    "title": "The Hodge conjecture",
+    "body": "Let $X$ be a non-singular complex projective variety. Then every Hodge class is algebraic:\n\n$$H^{2p}(X,\\mathbb Q)\\cap H^{p,p}(X) = \\operatorname{span}_{\\mathbb Q}\\{[Z] : Z \\subset X \\text{ an algebraic subvariety of codimension } p\\}.$$\n\nThe inclusion $\\supseteq$ is the argument above; the conjecture is the inclusion $\\subseteq$. Hodge raised the question in 1950."
+   },
+   {
+    "type": "section",
+    "title": "What is known",
+    "body": "- Lefschetz $(1,1)$ theorem (Lefschetz, 1924; later reproved by Kodaira and Spencer): the conjecture holds for $p = 1$, and even with integer coefficients. Hodge classes in $H^2$ are classes of divisors.\n- Using the hard Lefschetz theorem, the case $p = 1$ implies the case $p = n - 1$. Since $p = 0$ and $p = n$ are trivial, the conjecture holds for all varieties of dimension at most $3$. The first open case is $p = 2$ on fourfolds.\n- The integral version is false: Atiyah and Hirzebruch (1962) found torsion integral classes that are not algebraic, and Kollár gave non-torsion examples. That is why the conjecture is stated over $\\mathbb Q$.\n- For general compact Kähler manifolds, which need not be projective, the natural analogue fails (Voisin, 2002).\n- Evidence: Cattani, Deligne and Kaplan (1995) proved that the locus where a class stays Hodge, in a family of varieties, is algebraic, which the conjecture predicts. Deligne showed that Hodge classes on abelian varieties are \"absolute Hodge\", a weaker algebraicity property."
+   },
+   {
+    "type": "example",
+    "title": "Holomorphic forms vanish on complex curves",
+    "body": "In $\\mathbb C^2$ with coordinates $(z, w)$, restrict the forms $dz\\wedge dw$ (type $(2,0)$) and $dz\\wedge d\\bar z$ (type $(1,1)$) to the complex line $w = az + b$, parametrised by $z = s + it$ with real $s, t$.",
+    "solution": "On the line, $dw = a\\,dz$, so $dz\\wedge dw = a\\,dz\\wedge dz = 0$. In real terms the coefficient of $ds\\wedge dt$ is $\\dfrac{\\partial z}{\\partial s}\\dfrac{\\partial w}{\\partial t} - \\dfrac{\\partial z}{\\partial t}\\dfrac{\\partial w}{\\partial s} = 1\\cdot ai - i\\cdot a = 0$.\n\nFor $dz\\wedge d\\bar z$ the coefficient is $1\\cdot(-i) - i\\cdot 1 = -2i$, so $dz\\wedge d\\bar z = -2i\\,ds\\wedge dt$, a nonzero multiple of the area form. Integrals of $(2,0)$ forms over complex curves are always $0$; only the $(1,1)$ part of a $2$-form can be detected by a complex curve. This is the mechanism that puts algebraic classes in $H^{p,p}$."
+   },
+   {
+    "type": "example",
+    "title": "Curves: the conjecture is easy",
+    "body": "A non-singular plane curve of degree $d$ has genus $g = (d-1)(d-2)/2$. Compute $g$ for $d = 1, 2, 3, 4, 5$ and explain why the Hodge conjecture is trivially true for curves.",
+    "solution": "The genera are $0, 0, 1, 3, 6$. So lines and conics are spheres, cubics are tori, and quartics have three handles.\n\nFor a curve ($n = 1$) the only possible $p$ are $0$ and $1$. $H^0$ is spanned by the class of the whole curve, and $H^2(X,\\mathbb Q)$ is one-dimensional, spanned by the class of a point (a codimension $1$ subvariety). Both are algebraic, so every Hodge class is algebraic. The interesting middle group $H^1$ has odd degree and contains no Hodge classes at all."
+   },
+   {
+    "type": "example",
+    "title": "Hodge numbers of surfaces in projective 3-space",
+    "body": "For a non-singular surface of degree $d$ in $\\mathbb{CP}^3$ one has $b_1 = 0$, Euler characteristic $\\chi = d^3 - 4d^2 + 6d$, and $h^{2,0} = \\binom{d-1}{3}$. Compute $b_2$, $h^{2,0}$ and $h^{1,1}$ for $d = 4$ and $d = 5$, and check $d = 1, 2$ against known spaces.",
+    "solution": "Since $b_0 = b_4 = 1$ and $b_1 = b_3 = 0$, $b_2 = \\chi - 2 = d^3 - 4d^2 + 6d - 2$, and $h^{1,1} = b_2 - 2h^{2,0}$.\n\n- $d = 1$: $\\chi = 3$, the Euler characteristic of the projective plane. $d = 2$: $\\chi = 4$, that of $\\mathbb{CP}^1\\times\\mathbb{CP}^1$, which is what a smooth quadric is.\n- $d = 4$ (a K3 surface): $b_2 = 22$, $h^{2,0} = 1$, $h^{1,1} = 20$.\n- $d = 5$: $b_2 = 53$, $h^{2,0} = 4$, $h^{1,1} = 45$.\n\nFor a quartic surface, which classes in the $22$-dimensional $H^2(X,\\mathbb Q)$ are Hodge depends delicately on the coefficients of the equation: the rational classes lying in the $20$-dimensional subspace $H^{1,1}$ form a space whose dimension (the Picard number) depends on the equation and always lies between $1$ and $20$. Lefschetz's theorem guarantees that all of them are classes of curves on the surface. The conjecture asks for the same phenomenon in higher codimension, where no analogue of Lefschetz's proof is known."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Both conditions matter. Classes of type $(p,p)$ with complex coefficients are far more numerous; the conjecture concerns rational classes of type $(p,p)$.\n- The integral Hodge conjecture is false; use $\\mathbb Q$.\n- Non-singular and projective are essential hypotheses; the analogue for general compact Kähler manifolds fails.\n- Known low-dimensional cases come from $p = 1$; they do not suggest a method for $p = 2$."
+   },
+   {
+    "type": "connection",
+    "body": "The conjecture lives where [[complex-numbers|complex analysis]] ([[holomorphic]]) meets the algebra of [[polynomials-roots|polynomial equations]] and topology. Its arithmetic cousins, the Tate conjecture and the conjectures on algebraic cycles, connect with [[bsd]] and with the zeta functions of varieties over [[finite-fields]]. It is one of the Millennium problems with [[rh]], [[p-vs-np]], [[navier-stokes]], [[yang-mills]], [[bsd]] and the solved [[poincare]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that a form of type $(2,0)$ on $\\mathbb C^2$ restricts to zero on every complex line.\n2. Verify $b_2 = 22$ for the quartic surface from the Euler characteristic formula, and explain why $h^{2,0} = h^{0,2}$.\n3. Why can odd-degree cohomology contain no Hodge classes?\n4. Compute $h^{1,1}$ for a non-singular surface of degree $6$ in $\\mathbb{CP}^3$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Voisin, Hodge Theory and Complex Algebraic Geometry I"
+   },
+   {
+    "ref": "Griffiths & Harris, Principles of Algebraic Geometry"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Pullback coefficients to the line w = a z + b: 0 for dz^dw, -2i for dz^dzbar",
+    "python": "import sympy as sp\ns, t = sp.symbols('s t', real=True)\na, b = sp.symbols('a b')\nz = s + sp.I*t\nw = a*z + b\nzb = s - sp.I*t\ncoef = lambda f, g: sp.simplify(sp.diff(f, s)*sp.diff(g, t) - sp.diff(f, t)*sp.diff(g, s))\nassert coef(z, w) == 0\nassert coef(z, zb) == -2*sp.I"
+   },
+   {
+    "claim": "Plane curve genera (d-1)(d-2)/2 for d=1..5 are 0,0,1,3,6",
+    "python": "assert [(d-1)*(d-2)//2 for d in range(1, 6)] == [0, 0, 1, 3, 6]"
+   },
+   {
+    "claim": "Surfaces in P^3: chi = d^3-4d^2+6d gives 3, 4 for d=1,2; d=4: b2=22, h20=1, h11=20; d=5: 53, 4, 45",
+    "python": "from math import comb\nchi = lambda d: d**3 - 4*d**2 + 6*d\nassert chi(1) == 3 and chi(2) == 4\ndef hodge(d):\n    b2 = chi(d) - 2\n    h20 = comb(d-1, 3)\n    return b2, h20, b2 - 2*h20\nassert hodge(4) == (22, 1, 20) and hodge(5) == (53, 4, 45)\nassert hodge(1)[2] == 1 and hodge(2)[2] == 2"
+   },
+   {
+    "claim": "Torus Betti numbers 1,2,1 and Euler characteristic 0 (from a square grid on the torus: V - E + F)",
+    "python": "n, m = 5, 7\nV, E, F = n*m, 2*n*m, n*m\nassert V - E + F == 0 == 1 - 2 + 1"
+   }
+  ]
+ },
+ {
+  "id": "poincare",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Imagine living inside a finite universe with no edge. How could you tell whether it is shaped like a three-dimensional sphere or like something more complicated? One test: tie a loop of string through space, starting and ending at you, and try to reel it in without cutting it. On a sphere every loop can be reeled in. Poincaré asked in 1904 whether this single test is enough to recognise the $3$-sphere.\n\nThe answer is yes. Grigori Perelman proved it in 2002–03, using Richard Hamilton's Ricci flow, an equation that smooths the geometry of a space the way heat smooths temperature. It is the only Millennium Prize Problem solved so far. This page explains the statement, the two-dimensional analogue, the idea of Ricci flow, and the history."
+   },
+   {
+    "type": "section",
+    "title": "Manifolds and loops",
+    "body": "An $n$-dimensional manifold is a space that looks, near each point, like ordinary $n$-dimensional space $\\mathbb R^n$. A closed manifold is one that is compact (finite in extent) and has no boundary. Examples in dimension $2$: the sphere, the torus (surface of a doughnut), the surface of a pretzel with $g$ holes. The $3$-sphere $S^3$ is the set of points at distance $1$ from the origin in $\\mathbb R^4$, a closed $3$-manifold.\n\nTwo spaces are homeomorphic if there is a continuous bijection between them with continuous inverse: they are the same up to stretching and bending, without tearing or gluing.\n\nA space is simply connected if every closed loop in it can be continuously shrunk to a point while staying in the space. The sphere $S^2$ is simply connected. The torus is not: a loop going once around the hole cannot be shrunk."
+   },
+   {
+    "type": "theorem",
+    "title": "The Poincaré conjecture (Perelman's theorem)",
+    "body": "Every closed, simply connected $3$-manifold is homeomorphic to the $3$-sphere $S^3$."
+   },
+   {
+    "type": "section",
+    "title": "The two-dimensional picture",
+    "body": "For surfaces the analogous statement has been known since the nineteenth century, as part of the classification of closed surfaces. Every closed orientable surface is a sphere with $g \\ge 0$ handles, and $g$ is determined by the Euler characteristic $\\chi = V - E + F$ of any subdivision into polygons: $\\chi = 2 - 2g$. Only the sphere ($g = 0$) is simply connected, because each handle carries a loop that cannot be shrunk.\n\nGeometry gives another view. The Gauss–Bonnet theorem says that the total curvature of a closed surface is $\\int K\\,dA = 2\\pi\\chi$. So a sphere carries a metric of constant positive curvature, a torus one of zero curvature, and surfaces with $g \\ge 2$ metrics of constant negative curvature. In dimension $2$ topology is controlled by a \"best\" geometry. Thurston's geometrisation conjecture (1982) proposed a similar but more intricate picture in dimension $3$: every closed $3$-manifold can be cut along spheres and tori into pieces, each carrying one of eight model geometries. The Poincaré conjecture is a special case."
+   },
+   {
+    "type": "section",
+    "title": "Why dimension three was the hard case",
+    "body": "The natural generalisation, that a closed $n$-manifold with the same homotopy type as $S^n$ is homeomorphic to $S^n$, was proved first in high dimensions. Smale proved it for $n \\ge 5$ in 1961 (other proofs were given by Stallings and Zeeman): in high dimensions there is room to move obstructions out of the way. Freedman proved the case $n = 4$ in 1982, by very different methods. That left $n = 3$, where neither technique works.\n\nPoincaré had first conjectured that having the same homology as the sphere would suffice. In 1904 he constructed a counterexample to that stronger claim: the Poincaré homology sphere, which has the homology of $S^3$ but whose loops cannot all be shrunk; its fundamental group (the group of loops) is the binary icosahedral group, of order $120$. This is why the conjecture is stated with simple connectivity."
+   },
+   {
+    "type": "section",
+    "title": "Ricci flow",
+    "body": "A Riemannian metric $g$ on a manifold tells you lengths and angles, and hence curvature. The Ricci curvature $\\operatorname{Ric}(g)$ is a kind of average of sectional curvatures in each direction. Hamilton (1982) introduced the Ricci flow,\n\n$$\\partial_t g = -2\\operatorname{Ric}(g),$$\n\nwhich evolves the metric in time. It behaves like a heat equation for the metric: regions of positive curvature contract, regions of negative curvature expand, and irregularities tend to spread out. Hamilton proved in 1982 that a closed $3$-manifold with a metric of positive Ricci curvature flows, after rescaling, to a metric of constant positive curvature, so it is a quotient of $S^3$.\n\nFor general metrics the flow develops singularities: thin necks pinch off, for example. Perelman's work (three preprints of 2002–03) controlled the singularities with new monotone quantities (an entropy functional and a \"no local collapsing\" theorem), classified what the geometry looks like near a singularity, and showed how to perform surgery: cut out a neck, cap the two ends with balls and restart the flow. For a simply connected manifold the flow with surgery becomes extinct in finite time, and running the surgeries backwards shows the manifold was a sphere. The same method proves the full geometrisation conjecture. Detailed expositions by Kleiner and Lott, by Morgan and Tian, and by Cao and Zhu checked the argument in the following years."
+   },
+   {
+    "type": "example",
+    "title": "The shrinking round sphere",
+    "body": "The round sphere $S^n$ of radius $r$ has metric $g = r^2 g_1$, where $g_1$ is the unit sphere metric, and $\\operatorname{Ric}(g) = (n-1)g_1$, independent of $r$. Solve the Ricci flow starting from radius $r_0$ and find when it becomes extinct.",
+    "solution": "Look for a solution $g(t) = r(t)^2g_1$. Then $\\partial_t g = \\frac{d}{dt}(r^2)\\,g_1$, and the equation becomes\n\n$$\\frac{d}{dt}(r^2) = -2(n-1), \\qquad\\text{so}\\qquad r(t)^2 = r_0^2 - 2(n-1)t.$$\n\nThe sphere shrinks and disappears at $T = \\dfrac{r_0^2}{2(n-1)}$; for $S^3$ that is $T = r_0^2/4$. Its shape stays perfectly round the whole time. Finite-time extinction of this kind is exactly what Perelman proved happens, after surgeries, for every simply connected closed $3$-manifold."
+   },
+   {
+    "type": "example",
+    "title": "Euler characteristics",
+    "body": "Compute $V - E + F$ for the surface of a cube, an octahedron, and a torus made from an $n \\times m$ grid of squares with opposite edges glued. Check Gauss–Bonnet for a round sphere of radius $r$.",
+    "solution": "Cube: $8 - 12 + 6 = 2$. Octahedron: $6 - 12 + 8 = 2$. Both are spheres, $g = 0$.\n\nTorus grid: after gluing there are $nm$ vertices (one per grid point, with the edges identified), $2nm$ edges (one horizontal and one vertical starting at each vertex) and $nm$ squares, so $\\chi = nm - 2nm + nm = 0$, giving $g = 1$.\n\nRound sphere: curvature $K = 1/r^2$ everywhere and area $4\\pi r^2$, so $\\int K\\,dA = 4\\pi = 2\\pi\\cdot 2$. The radius cancels, as it must for a topological invariant."
+   },
+   {
+    "type": "example",
+    "title": "A group of order 120",
+    "body": "The binary icosahedral group can be realised as a set of unit quaternions. Generate the group from $a = \\tfrac12(1 + i + j + k)$ and $b = \\tfrac12(\\varphi + \\varphi^{-1}i + j)$, where $\\varphi = (1+\\sqrt5)/2$, and count its elements.",
+    "solution": "First, both are unit quaternions: $|a|^2 = \\tfrac14(1+1+1+1) = 1$, and $|b|^2 = \\tfrac14(\\varphi^2 + \\varphi^{-2} + 1) = \\tfrac14(3 + 1) = 1$ using $\\varphi^2 + \\varphi^{-2} = 3$.\n\nMultiplying them together repeatedly (a computer does this in a moment) produces exactly $120$ distinct unit quaternions, closed under multiplication. This finite group is the fundamental group of the Poincaré homology sphere, which is the quotient $S^3/\\Gamma$ of the unit quaternions $S^3$ by this group $\\Gamma$. So that space has a loop that cannot be shrunk, even though its homology agrees with that of $S^3$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Simply connected is about loops, not about holes in the sense of homology; the Poincaré homology sphere shows the difference.\n- The theorem is about closed manifolds. $\\mathbb R^3$ is simply connected but not compact, and is not a sphere.\n- Ricci flow alone does not prove the theorem; singularities form, and the surgery and its control are the heart of Perelman's work.\n- In dimension $4$ the smooth version (is every smooth homotopy $4$-sphere diffeomorphic to the standard one?) is still open; Freedman's theorem is topological."
+   },
+   {
+    "type": "connection",
+    "body": "The proof combines geometry, analysis of partial differential equations (Ricci flow is a nonlinear heat equation, compare [[navier-stokes]] and [[fourier-poisson]]) and topology. Perelman declined both the Fields Medal (2006) and the Millennium Prize (2010). The other Millennium problems are [[rh]], [[p-vs-np]], [[navier-stokes]], [[yang-mills]], [[hodge]] and [[bsd]]; gauge theory from [[yang-mills]] is also a central tool in four-dimensional topology."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Compute $V - E + F$ for a tetrahedron and for a dodecahedron.\n2. Explain why a loop going once around a torus cannot be shrunk, by lifting it to the plane $\\mathbb R^2$ that covers the torus.\n3. For the round $S^2$ of radius $r_0$ under Ricci flow, find the extinction time.\n4. Show that the product of two unit quaternions is a unit quaternion, so that $S^3$ is a group."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Carlson, Jaffe & Wiles (eds.), The Millennium Prize Problems"
+   },
+   {
+    "ref": "Morgan & Tian, Ricci Flow and the Poincaré Conjecture"
+   },
+   {
+    "ref": "Perelman, The entropy formula for the Ricci flow and its geometric applications (arXiv, 2002)"
+   },
+   {
+    "ref": "Hamilton, Three-manifolds with positive Ricci curvature, Journal of Differential Geometry (1982)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Round S^2 and S^3 of radius r: Ricci tensor equals (n-1)/r^2 times g, i.e. (n-1) g_unit",
+    "python": "import sympy as sp\ndef ricci(g, X):\n    n = len(X); gi = g.inv()\n    Gam = [[[sum(gi[a, d]*(sp.diff(g[d, b], X[c]) + sp.diff(g[d, c], X[b]) - sp.diff(g[b, c], X[d])) for d in range(n))/2 for c in range(n)] for b in range(n)] for a in range(n)]\n    R = sp.zeros(n, n)\n    for b in range(n):\n        for c in range(n):\n            R[b, c] = sp.simplify(sum(sp.diff(Gam[a][b][c], X[a]) - sp.diff(Gam[a][b][a], X[c]) + sum(Gam[a][a][d]*Gam[d][b][c] - Gam[a][c][d]*Gam[d][b][a] for d in range(n)) for a in range(n)))\n    return R\nr = sp.symbols('r', positive=True)\nth, ph, ch = sp.symbols('theta phi chi')\ng2 = sp.diag(r**2, r**2*sp.sin(th)**2)\nassert sp.simplify(ricci(g2, (th, ph)) - g2/r**2) == sp.zeros(2, 2)\ng3 = sp.diag(r**2, r**2*sp.sin(ch)**2, r**2*sp.sin(ch)**2*sp.sin(th)**2)\nassert sp.simplify(ricci(g3, (ch, th, ph)) - 2*g3/r**2) == sp.zeros(3, 3)"
+   },
+   {
+    "claim": "Ricci flow of round S^n: r^2 = r0^2 - 2(n-1)t, extinction T = r0^2/(2(n-1)) (= r0^2/4 for S^3)",
+    "python": "import sympy as sp\nt, r0, n = sp.symbols('t r0 n', positive=True)\nR2 = sp.Function('R2')\nsol = sp.dsolve(sp.Eq(R2(t).diff(t), -2*(n-1)), R2(t), ics={R2(0): r0**2})\nassert sp.simplify(sol.rhs - (r0**2 - 2*(n-1)*t)) == 0\nT = sp.solve(sp.Eq(sol.rhs, 0), t)[0]\nassert sp.simplify(T - r0**2/(2*(n-1))) == 0 and sp.simplify(T.subs(n, 3) - r0**2/4) == 0"
+   },
+   {
+    "claim": "Euler characteristics: cube 2, octahedron 2, torus grid 0; Gauss-Bonnet on sphere gives 4 pi",
+    "python": "import sympy as sp\nassert 8 - 12 + 6 == 2 and 6 - 12 + 8 == 2 and 4 - 6 + 4 == 2 and 20 - 30 + 12 == 2\nfor n in range(2, 8):\n    for m in range(2, 8):\n        assert n*m - 2*n*m + n*m == 0\nr, th, ph = sp.symbols('r theta phi', positive=True)\ntotal = sp.integrate(sp.integrate((1/r**2)*r**2*sp.sin(th), (th, 0, sp.pi)), (ph, 0, 2*sp.pi))\nassert sp.simplify(total - 4*sp.pi) == 0"
+   },
+   {
+    "claim": "Unit quaternions a=(1+i+j+k)/2 and b=(phi + i/phi + j)/2 generate a group of exactly 120 elements",
+    "python": "import math\nphi = (1 + 5**0.5)/2\ndef mul(p, q):\n    a1, b1, c1, d1 = p; a2, b2, c2, d2 = q\n    return (a1*a2 - b1*b2 - c1*c2 - d1*d2, a1*b2 + b1*a2 + c1*d2 - d1*c2, a1*c2 - b1*d2 + c1*a2 + d1*b2, a1*d2 + b1*c2 - c1*b2 + d1*a2)\nkey = lambda q: tuple(round(x, 9) + 0.0 for x in q)\na = (0.5, 0.5, 0.5, 0.5); b = (phi/2, 1/(2*phi), 0.5, 0.0)\nassert abs(sum(x*x for x in a) - 1) < 1e-12 and abs(sum(x*x for x in b) - 1) < 1e-12\nassert abs(phi**2 + phi**-2 - 3) < 1e-12\nG = {key((1.0, 0.0, 0.0, 0.0)): (1.0, 0.0, 0.0, 0.0)}\nfrontier = list(G.values())\nwhile frontier:\n    new = []\n    for q in frontier:\n        for s in (a, b):\n            p = mul(q, s); k = key(p)\n            if k not in G:\n                G[k] = p; new.append(p)\n    frontier = new\n    assert len(G) <= 1000\nassert len(G) == 120"
+   }
+  ]
+ }
+]

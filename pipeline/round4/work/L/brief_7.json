@@ -1,0 +1,318 @@
+[
+ {
+  "id": "gaussian-integers",
+  "title": "Gaussian integers",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\mathbb Z[i]$ has unique factorization with norm $N(a+bi) = a^2 + b^2$. A prime $p \\equiv 1 \\pmod 4$ splits as $\\pi\\bar\\pi$, $p \\equiv 3 \\pmod 4$ stays prime, and $2 = -i(1+i)^2$ ramifies.",
+  "key_statements": [
+   "p = a^2 + b^2 = (a+bi)(a-bi) \\iff p \\equiv 1 \\pmod 4 \\ \\text{or}\\ p = 2"
+  ],
+  "why": "The cleanest proof of the two-squares theorem, and the first number ring beyond $\\mathbb Z$.",
+  "references": [
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+   "Marcus, Number Fields"
+  ],
+  "prerequisites": [
+   {
+    "id": "quadratic-residues",
+    "title": "Quadratic residues and reciprocity"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "ideals",
+    "title": "Ideals and rings of integers"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "eisenstein-integers",
+  "title": "Eisenstein integers",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\mathbb Z[\\omega]$ with $\\omega = e^{2\\pi i/3}$ is the ring of integers of $\\mathbb Q(\\sqrt{-3})$. It has unique factorization, six units, and norm $a^2 - ab + b^2$; primes $p \\equiv 1 \\pmod 3$ split.",
+  "key_statements": [
+   "N(a + b\\omega) = a^2 - ab + b^2"
+  ],
+  "why": "The arena of cubic reciprocity, and of the 2026 quasi-RH manuscript.",
+  "references": [
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "quadratic-residues",
+    "title": "Quadratic residues and reciprocity"
+   },
+   {
+    "id": "fta",
+    "title": "Primes and the fundamental theorem of arithmetic"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "cubic-characters",
+    "title": "Cubic characters and cubic reciprocity"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1844",
+    "title": "Cubic reciprocity",
+    "who": "Gotthold Eisenstein",
+    "text": "Proved cubic reciprocity in $\\mathbb Z[\\omega]$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "ideals",
+  "title": "Ideals and rings of integers",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "In a ring of integers $\\mathcal O_K$ elements may factor non-uniquely, but ideals factor uniquely into prime ideals (Dedekind, 1871). Kummer's ideal numbers (1847) were the precursor.",
+  "key_statements": [
+   "(6) = (2, 1+\\sqrt{-5})^2\\,(3, 1+\\sqrt{-5})(3, 1-\\sqrt{-5}) \\ \\text{ in } \\mathbb Z[\\sqrt{-5}]"
+  ],
+  "why": "Ideal factorization is what number fields have instead of unique factorization.",
+  "references": [
+   "Marcus, Number Fields",
+   "Neukirch, Algebraic Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "gaussian-integers",
+    "title": "Gaussian integers"
+   },
+   {
+    "id": "rings",
+    "title": "Rings, ideals and quotient rings"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "class-group",
+    "title": "Class groups"
+   },
+   {
+    "id": "cyclotomic",
+    "title": "Cyclotomic fields"
+   },
+   {
+    "id": "dedekind-zeta",
+    "title": "Dedekind zeta functions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1847",
+    "title": "Ideal numbers",
+    "who": "Ernst Kummer",
+    "text": "Restored unique factorization in cyclotomic rings with ideal numbers and proved Fermat's Last Theorem for regular primes.",
+    "ai_claim": false
+   },
+   {
+    "date": "1871",
+    "title": "Ideals",
+    "who": "Richard Dedekind",
+    "text": "Defined ideals and proved unique factorization of ideals in rings of integers.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "class-group",
+  "title": "Class groups",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "The ideal class group measures the failure of unique factorization; its order is the class number $h_K$. Imaginary quadratic fields with $h = 1$ are exactly $d = 1,2,3,7,11,19,43,67,163$.",
+  "key_statements": [
+   "h(-163) = 1, \\qquad e^{\\pi\\sqrt{163}} \\approx 640320^3 + 744"
+  ],
+  "why": "Class numbers of imaginary quadratic fields grow, but how fast is tied to Siegel zeros.",
+  "references": [
+   "Cox, Primes of the Form x² + ny²",
+   "Marcus, Number Fields"
+  ],
+  "prerequisites": [
+   {
+    "id": "ideals",
+    "title": "Ideals and rings of integers"
+   },
+   {
+    "id": "quadratic-forms",
+    "title": "Binary quadratic forms"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "cyclotomic",
+  "title": "Cyclotomic fields",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\mathbb Q(\\zeta_n)$ has degree $\\varphi(n)$, and $p \\nmid n$ splits into $\\varphi(n)/f$ primes, where $f$ is the order of $p$ modulo $n$. Gauss used $\\mathbb Q(\\zeta_{17})$ in 1796 to construct the regular 17-gon.",
+  "key_statements": [
+   "\\Phi_n(x) = \\prod_{\\substack{1 \\le k \\le n \\\\ \\gcd(k,n)=1}} \\bigl(x - e^{2\\pi i k/n}\\bigr), \\qquad [\\mathbb Q(\\zeta_n):\\mathbb Q] = \\varphi(n)"
+  ],
+  "why": "By Kronecker–Weber every abelian extension of $\\mathbb Q$ lies in a cyclotomic field.",
+  "references": [
+   "Washington, Introduction to Cyclotomic Fields",
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "ideals",
+    "title": "Ideals and rings of integers"
+   },
+   {
+    "id": "order-primroot",
+    "title": "Order and primitive roots"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1796",
+    "title": "The regular 17-gon",
+    "who": "Carl Friedrich Gauss",
+    "text": "Constructed it with ruler and compass using $\\mathbb Q(\\zeta_{17})$.",
+    "ai_claim": false
+   },
+   {
+    "date": "1847",
+    "title": "Ideal numbers",
+    "who": "Ernst Kummer",
+    "text": "Restored unique factorization in cyclotomic rings with ideal numbers and proved Fermat's Last Theorem for regular primes.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "cubic-characters",
+  "title": "Cubic characters and cubic reciprocity",
+  "area": "Algebraic number theory",
+  "stage": "undergraduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "For $p \\equiv 1 \\pmod 3$ there are two characters of order $3$ modulo $p$. Eisenstein proved cubic reciprocity in $\\mathbb Z[\\omega]$ in 1844; cubic Gauss sums satisfy $g(\\chi)^3 = p\\,J(\\chi,\\chi)$ with a Jacobi sum $J$.",
+  "key_statements": [
+   "g(\\chi)^3 = p\\,J(\\chi,\\chi), \\qquad |J(\\chi,\\chi)| = \\sqrt p"
+  ],
+  "why": "Cubic theta sums built from these characters drive the 2026 quasi-RH manuscript.",
+  "references": [
+   "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "eisenstein-integers",
+    "title": "Eisenstein integers"
+   },
+   {
+    "id": "gauss-sums",
+    "title": "Gauss sums"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "quasi-rh",
+    "title": "The quasi-Riemann hypothesis"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1844",
+    "title": "Cubic reciprocity",
+    "who": "Gotthold Eisenstein",
+    "text": "Proved cubic reciprocity in $\\mathbb Z[\\omega]$.",
+    "ai_claim": false
+   },
+   {
+    "date": "30 Sep 2026",
+    "title": "Quasi-RH manuscript (7/8)",
+    "who": "OpenAI internal model",
+    "text": "Claims every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation. Reported as Lean-verified.",
+    "ai_claim": true
+   },
+   {
+    "date": "Oct 2026",
+    "title": "Improving the 7/8 half-plane",
+    "who": "arXiv 2610.12234",
+    "text": "Varies the parameters of the cubic theta argument to widen the zero-free half-plane.",
+    "ai_claim": true
+   }
+  ]
+ },
+ {
+  "id": "dedekind-zeta",
+  "title": "Dedekind zeta functions",
+  "area": "Algebraic number theory",
+  "stage": "graduate",
+  "fields": [
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "$\\zeta_K(s) = \\sum_{\\mathfrak a} N\\mathfrak a^{-s}$ over nonzero ideals of $\\mathcal O_K$. For a quadratic field it factors as $\\zeta(s)L(s,\\chi_D)$, and its residue at $s=1$ carries the class number.",
+  "key_statements": [
+   "\\zeta_{\\mathbb Q(\\sqrt D)}(s) = \\zeta(s)\\, L(s, \\chi_D)"
+  ],
+  "why": "The factorization moves questions about a number field down to $\\mathbb Q$.",
+  "references": [
+   "Neukirch, Algebraic Number Theory",
+   "Marcus, Number Fields"
+  ],
+  "prerequisites": [
+   {
+    "id": "ideals",
+    "title": "Ideals and rings of integers"
+   },
+   {
+    "id": "zeta",
+    "title": "The Riemann zeta function"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "hecke-l",
+    "title": "Hecke L-functions"
+   }
+  ],
+  "timeline": [
+   {
+    "date": "1871",
+    "title": "Ideals",
+    "who": "Richard Dedekind",
+    "text": "Defined ideals and proved unique factorization of ideals in rings of integers.",
+    "ai_claim": false
+   }
+  ]
+ }
+]

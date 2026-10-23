@@ -1,0 +1,286 @@
+[
+ {
+  "id": "additive-bases",
+  "title": "Additive bases and complete sequences",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "$A$ is a basis of order $h$ if every large integer is a sum of $h$ elements of $A$; $A$ is complete if every large integer is a sum of distinct elements. Lagrange, Waring and Goldbach are statements of this kind.",
+  "key_statements": [
+   "r_A(n) = \\#\\{(a,b)\\in A^2 : a+b=n\\}",
+   "\\text{Erdős–Turán: } r_A(n)\\ge1 \\ \\forall n \\Rightarrow \\limsup r_A(n) = \\infty\\ ?"
+  ],
+  "why": "It is the additive counterpart of factorisation: which sparse sets still generate everything.",
+  "references": [
+   "Tao & Vu, Additive Combinatorics",
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "additive-combinatorics",
+    "title": "Sumsets and additive combinatorics"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "unit-fractions",
+  "title": "Egyptian fractions",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Writing rationals as sums of distinct $1/n$. Every rational has such representations; the questions are how short, how small the denominators, and which colourings or dense sets must contain a representation of $1$.",
+  "key_statements": [
+   "\\frac{4}{n} = \\frac1x+\\frac1y+\\frac1z \\ \\ (\\text{Erdős–Straus, open})",
+   "\\text{any } r\\text{-colouring of } \\mathbb N \\text{ has a monochromatic } \\textstyle\\sum 1/n_i = 1 \\ \\text{(Croot 2003)}"
+  ],
+  "why": "Bloom's 2021 density theorem, built on Croot's method, is a model of how analytic tools enter elementary-looking questions.",
+  "references": [
+   "Guy, Unsolved Problems in Number Theory",
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "divisibility",
+    "title": "Divisibility and the Euclidean algorithm"
+   },
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2003",
+    "title": "Monochromatic Egyptian fractions",
+    "who": "Ernie Croot",
+    "text": "Any finite colouring of the integers has a monochromatic set with $\\sum 1/n = 1$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "covering-systems",
+  "title": "Covering systems",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "A finite set of congruences $a_i \\bmod n_i$ covering every integer, such as $0\\bmod2,\\ 0\\bmod3,\\ 1\\bmod4,\\ 5\\bmod6,\\ 7\\bmod12$. Hough (2015) proved the smallest modulus of a covering with distinct moduli is bounded.",
+  "key_statements": [
+   "\\textstyle\\bigcup_i \\{x : x\\equiv a_i \\bmod n_i\\} = \\mathbb Z,\\quad n_1<n_2<\\cdots<n_k"
+  ],
+  "why": "Coverings produce Sierpiński numbers (odd $k$ with every $k2^n+1$ composite) and are a test case for the probabilistic method.",
+  "references": [
+   "Guy, Unsolved Problems in Number Theory",
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "crt",
+    "title": "Chinese remainder theorem"
+   },
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1950",
+    "title": "Covering systems introduced",
+    "who": "Paul Erdős",
+    "text": "Used a covering of $\\mathbb Z$ by congruences to show a positive proportion of odd numbers are not $2^k+p$.",
+    "ai_claim": false
+   },
+   {
+    "date": "2015",
+    "title": "Minimum modulus of covering systems is bounded",
+    "who": "Bob Hough",
+    "text": "Settled Erdős's minimum modulus problem negatively: distinct-moduli coverings have least modulus at most $10^{16}$.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "primitive-sets",
+  "title": "Primitive sets",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "number-theory",
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "A set of integers $>1$ in which no element divides another. Erdős proved $\\sum 1/(a\\log a)$ is bounded over primitive sets and conjectured the primes maximise it; Lichtman proved this in 2022.",
+  "key_statements": [
+   "\\sum_{a\\in A}\\frac{1}{a\\log a} \\le \\sum_{p}\\frac{1}{p\\log p} \\ \\ \\text{(Lichtman 2022)}"
+  ],
+  "why": "It shows how a combinatorial condition (no divisibility) interacts with the multiplicative structure measured by Mertens-type sums.",
+  "references": [
+   "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "mertens",
+    "title": "Mertens' theorems"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2022",
+    "title": "Erdős primitive set conjecture",
+    "who": "Jared Duker Lichtman",
+    "text": "The primes maximise $\\sum 1/(a\\log a)$ over primitive sets.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "discrepancy",
+  "title": "Discrepancy",
+  "area": "Combinatorial & additive",
+  "stage": "graduate",
+  "fields": [
+   "combinatorics",
+   "number-theory"
+  ],
+  "status": null,
+  "summary": "How evenly can a $\\pm1$ sequence be balanced on a family of sets? Erdős asked whether $\\sup_{n,d}|\\sum_{k\\le n} f(kd)|$ is unbounded for every $f:\\mathbb N\\to\\{\\pm1\\}$; Tao proved it in 2015.",
+  "key_statements": [
+   "\\sup_{n,d}\\Big|\\sum_{k=1}^{n} f(kd)\\Big| = \\infty \\ \\ \\text{(Tao 2015)}"
+  ],
+  "why": "Tao's proof combined the Polymath5 reduction to multiplicative functions, an entropy decrement argument and the Matomäki–Radziwiłł theorem on short averages.",
+  "references": [
+   "Tao & Vu, Additive Combinatorics"
+  ],
+  "prerequisites": [
+   {
+    "id": "ramsey-arithmetic",
+    "title": "Arithmetic Ramsey theory"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "2015",
+    "title": "The Erdős discrepancy problem",
+    "who": "Terence Tao",
+    "text": "Proved $\\sup|\\sum_{k\\le n} f(kd)| = \\infty$ for every $\\pm1$ sequence, building on Polymath5.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "counting",
+  "title": "Counting and bijections",
+  "area": "Combinatorics",
+  "stage": "school",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "Counting a set by splitting it into cases, by a bijection with a set that is easier to count, or by inclusion–exclusion. Binomial coefficients are the basic language.",
+  "key_statements": [
+   "\\Big|\\bigcup_{i=1}^n A_i\\Big| = \\sum_{\\emptyset\\ne I\\subseteq[n]} (-1)^{|I|+1}\\Big|\\bigcap_{i\\in I}A_i\\Big|",
+   "\\binom{n}{k} = \\binom{n-1}{k} + \\binom{n-1}{k-1}"
+  ],
+  "why": "Every probability, every expected value and most extremal bounds start as a count.",
+  "references": [
+   "Stanley, Enumerative Combinatorics, Vol. 1",
+   "Andreescu & Feng, A Path to Combinatorics for Undergraduates"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "pigeonhole",
+    "title": "Pigeonhole and double counting"
+   },
+   {
+    "id": "generating-functions",
+    "title": "Generating functions and recurrences"
+   },
+   {
+    "id": "graph-basics",
+    "title": "Graphs, trees and paths"
+   },
+   {
+    "id": "probabilistic-method",
+    "title": "The probabilistic method"
+   },
+   {
+    "id": "set-systems",
+    "title": "Extremal set theory"
+   },
+   {
+    "id": "probability-basics",
+    "title": "Probability spaces and conditional probability"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "pigeonhole",
+  "title": "Pigeonhole and double counting",
+  "area": "Combinatorics",
+  "stage": "school",
+  "fields": [
+   "combinatorics"
+  ],
+  "status": null,
+  "summary": "If $n+1$ objects go into $n$ boxes, some box gets two. Double counting evaluates one quantity in two ways, such as the number of (vertex, edge) incidences, to get an identity or inequality.",
+  "key_statements": [
+   "\\sum_{v} \\deg v = 2|E|",
+   "\\text{some box holds at least } \\lceil N/k \\rceil \\text{ objects}"
+  ],
+  "why": "Both are the first move in extremal problems: they turn a structure into a count that cannot be too large.",
+  "references": [
+   "Andreescu & Feng, A Path to Combinatorics for Undergraduates",
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [
+   {
+    "id": "counting",
+    "title": "Counting and bijections"
+   }
+  ],
+  "leads_to": [
+   {
+    "id": "extremal-graphs",
+    "title": "Extremal graph theory"
+   },
+   {
+    "id": "ramsey",
+    "title": "Ramsey theory"
+   },
+   {
+    "id": "set-systems",
+    "title": "Extremal set theory"
+   },
+   {
+    "id": "discrete-geometry",
+    "title": "Combinatorial geometry"
+   }
+  ],
+  "timeline": []
+ }
+]

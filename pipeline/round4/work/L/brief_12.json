@@ -1,0 +1,249 @@
+[
+ {
+  "id": "groups",
+  "title": "Groups and symmetry",
+  "area": "Abstract algebra",
+  "stage": "undergraduate",
+  "fields": [
+   "algebra"
+  ],
+  "status": null,
+  "summary": "A group is a set with an associative operation, an identity and inverses. Lagrange's theorem, group actions and orbit counting (Burnside) are the first tools.",
+  "key_statements": [
+   "|H| \\text{ divides } |G|\\ \\ \\text{(Lagrange)}",
+   "\\#\\text{orbits} = \\frac1{|G|}\\sum_{g\\in G}|\\operatorname{Fix}(g)|\\ \\ \\text{(Burnside)}"
+  ],
+  "why": "Symmetry is group theory; Fermat's little theorem is Lagrange's theorem for $(\\mathbb Z/p)^\\times$.",
+  "references": [
+   "Artin, Algebra"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "group-homomorphisms",
+    "title": "Homomorphisms, normal subgroups and quotient groups"
+   },
+   {
+    "id": "rings",
+    "title": "Rings, ideals and quotient rings"
+   },
+   {
+    "id": "yang-mills",
+    "title": "Yang–Mills existence and mass gap"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "amgm",
+  "title": "AM–GM and power means",
+  "area": "Algebra & inequalities",
+  "stage": "school",
+  "fields": [
+   "real-analysis",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "For non-negative reals the arithmetic mean is at least the geometric mean, with equality when all are equal. More generally the power means $M_p$ increase with $p$.",
+  "key_statements": [
+   "\\frac{x_1+\\cdots+x_n}{n} \\ge \\sqrt[n]{x_1\\cdots x_n}",
+   "M_p(x) = \\Big(\\tfrac1n\\textstyle\\sum x_i^p\\Big)^{1/p}\\ \\text{is increasing in } p"
+  ],
+  "why": "Most competition inequalities reduce to weighted AM–GM after the right substitution.",
+  "references": [
+   "Hardy, Littlewood & Pólya, Inequalities",
+   "Steele, The Cauchy–Schwarz Master Class"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "cauchy-schwarz",
+    "title": "Cauchy–Schwarz, Hölder and rearrangement"
+   },
+   {
+    "id": "convexity",
+    "title": "Convexity, Jensen and majorization"
+   },
+   {
+    "id": "symmetric-ineq",
+    "title": "Symmetric and polynomial inequalities"
+   },
+   {
+    "id": "geo-inequalities",
+    "title": "Geometric inequalities and extremal geometry"
+   }
+  ],
+  "timeline": []
+ },
+ {
+  "id": "cauchy-schwarz",
+  "title": "Cauchy–Schwarz, Hölder and rearrangement",
+  "area": "Algebra & inequalities",
+  "stage": "olympiad",
+  "fields": [
+   "real-analysis",
+   "algebra"
+  ],
+  "status": null,
+  "summary": "$(\\sum a_ib_i)^2 \\le (\\sum a_i^2)(\\sum b_i^2)$, its Engel form $\\sum a_i^2/b_i \\ge (\\sum a_i)^2/\\sum b_i$, Hölder's generalisation, and the rearrangement inequality for similarly ordered sequences.",
+  "key_statements": [
+   "\\Big(\\sum a_ib_i\\Big)^2 \\le \\sum a_i^2 \\sum b_i^2",
+   "\\sum \\frac{a_i^2}{b_i} \\ge \\frac{(\\sum a_i)^2}{\\sum b_i}"
+  ],
+  "why": "Cauchy–Schwarz is the inequality of inner-product spaces, used everywhere from Fourier analysis to quantum mechanics.",
+  "references": [
+   "Steele, The Cauchy–Schwarz Master Class",
+   "Hardy, Littlewood & Pólya, Inequalities"
+  ],
+  "prerequisites": [
+   {
+    "id": "amgm",
+    "title": "AM–GM and power means"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1821",
+    "title": "Cauchy's inequality",
+    "who": "Augustin-Louis Cauchy",
+    "text": "$(\\sum a_ib_i)^2 \\le \\sum a_i^2\\sum b_i^2$ in his Cours d'analyse; Schwarz proved the integral form in 1888.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "convexity",
+  "title": "Convexity, Jensen and majorization",
+  "area": "Algebra & inequalities",
+  "stage": "olympiad",
+  "fields": [
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "A convex function lies below its chords, so $f(\\text{mean}) \\le \\text{mean of } f$. Tangent-line tricks, Karamata's majorization inequality and smoothing arguments extend this.",
+  "key_statements": [
+   "f\\Big(\\sum w_ix_i\\Big) \\le \\sum w_i f(x_i)\\ \\ (f \\text{ convex},\\ \\textstyle\\sum w_i = 1)"
+  ],
+  "why": "Convexity is the reason optimisation problems have unique answers, from mechanics to machine learning.",
+  "references": [
+   "Hardy, Littlewood & Pólya, Inequalities"
+  ],
+  "prerequisites": [
+   {
+    "id": "amgm",
+    "title": "AM–GM and power means"
+   },
+   {
+    "id": "derivative",
+    "title": "The derivative"
+   }
+  ],
+  "leads_to": [],
+  "timeline": [
+   {
+    "date": "1906",
+    "title": "Jensen's inequality",
+    "who": "Johan Jensen",
+    "text": "Convex functions lie below their chords, in any number of points.",
+    "ai_claim": false
+   }
+  ]
+ },
+ {
+  "id": "symmetric-ineq",
+  "title": "Symmetric and polynomial inequalities",
+  "area": "Algebra & inequalities",
+  "stage": "olympiad",
+  "fields": [
+   "algebra",
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "Inequalities in symmetric polynomials of a few variables: Schur's inequality, Muirhead, sum-of-squares decompositions and the $uvw$ method that reduces to the case of two equal variables.",
+  "key_statements": [
+   "\\sum_{\\text{cyc}} a^t(a-b)(a-c) \\ge 0\\ \\ (a,b,c\\ge0,\\ t>0)\\ \\ \\text{(Schur)}"
+  ],
+  "why": "Deciding when a polynomial is a sum of squares is Hilbert's 17th problem, solved by Artin in 1927.",
+  "references": [
+   "Hardy, Littlewood & Pólya, Inequalities"
+  ],
+  "prerequisites": [
+   {
+    "id": "amgm",
+    "title": "AM–GM and power means"
+   },
+   {
+    "id": "polynomials-roots",
+    "title": "Polynomials, roots and Vieta's formulas"
+   }
+  ],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "real-functional-eq",
+  "title": "Functional equations over the reals",
+  "area": "Algebra & inequalities",
+  "stage": "olympiad",
+  "fields": [
+   "algebra",
+   "real-analysis"
+  ],
+  "status": null,
+  "summary": "Find all $f:\\mathbb R\\to\\mathbb R$ with an identity such as $f(x+y)=f(x)+f(y)$. The moves are substitutions, proving injectivity or surjectivity, and pinning down $f$ on rationals before using a regularity condition.",
+  "key_statements": [
+   "f(x+y)=f(x)+f(y),\\ f \\text{ monotone} \\Rightarrow f(x)=cx\\ \\ \\text{(Cauchy)}"
+  ],
+  "why": "Without a regularity condition Cauchy's equation has wild solutions built from a Hamel basis, an early use of the axiom of choice.",
+  "references": [
+   "Engel, Problem-Solving Strategies"
+  ],
+  "prerequisites": [],
+  "leads_to": [],
+  "timeline": []
+ },
+ {
+  "id": "polynomials-roots",
+  "title": "Polynomials, roots and Vieta's formulas",
+  "area": "Algebra & inequalities",
+  "stage": "school",
+  "fields": [
+   "algebra"
+  ],
+  "status": null,
+  "summary": "A degree-$n$ polynomial has at most $n$ roots; its coefficients are the elementary symmetric functions of the roots. Interpolation, the factor theorem and comparing coefficients solve most problems.",
+  "key_statements": [
+   "\\prod_{i=1}^n (x - r_i) = x^n - e_1x^{n-1} + e_2x^{n-2} - \\cdots + (-1)^n e_n",
+   "P(a) = 0 \\iff (x-a) \\mid P(x)"
+  ],
+  "why": "Polynomials are the objects of algebraic geometry and the workhorse of the polynomial method in combinatorics.",
+  "references": [
+   "Artin, Algebra"
+  ],
+  "prerequisites": [],
+  "leads_to": [
+   {
+    "id": "vieta-jumping",
+    "title": "Vieta jumping"
+   },
+   {
+    "id": "eigen",
+    "title": "Eigenvalues and eigenvectors"
+   },
+   {
+    "id": "fields-ext",
+    "title": "Fields and field extensions"
+   },
+   {
+    "id": "symmetric-ineq",
+    "title": "Symmetric and polynomial inequalities"
+   },
+   {
+    "id": "hodge",
+    "title": "The Hodge conjecture"
+   }
+  ],
+  "timeline": []
+ }
+]

@@ -1,0 +1,460 @@
+[
+ {
+  "concept": "twin-primes",
+  "ladder": [
+   {
+    "title": "Twin primes modulo 6 and the only prime triple",
+    "kind": "classic",
+    "q": "Call $(p,p+2)$ a twin prime pair if both $p$ and $p+2$ are prime.\n\nShow that if $(p,p+2)$ is a twin prime pair with $p>3$, then $6\\mid p+1$. Show also that $(3,5,7)$ is the only triple $(p,p+2,p+4)$ of three primes.",
+    "concepts": [
+     "twin-primes",
+     "congruences",
+     "prime-patterns"
+    ],
+    "source": "Folklore; see R. K. Guy, Unsolved Problems in Number Theory, 3rd ed. (2004), Section A",
+    "bridges_to": [],
+    "note": "The simplest local obstruction: it is why $(p,p+2)$ is an admissible pattern while $(p,p+2,p+4)$ is not, the starting point of the Hardy–Littlewood singular series."
+   },
+   {
+    "title": "Clement's twin-prime criterion",
+    "kind": "theorem",
+    "q": "Let $n\\ge 2$ be an integer. Show that $n$ and $n+2$ are both prime if and only if\n$$4\\bigl((n-1)!+1\\bigr)+n\\equiv 0 \\pmod{n(n+2)}.$$",
+    "concepts": [
+     "twin-primes",
+     "wilson",
+     "congruences"
+    ],
+    "source": "P. A. Clement, Congruences for sets of primes, Amer. Math. Monthly 56 (1949), 23–25",
+    "year": 1949,
+    "bridges_to": [],
+    "note": "An exact characterization of twin primes via Wilson's theorem; it shows that characterizing twin primes is easy, while counting them is the real problem."
+   },
+   {
+    "title": "Brun's theorem",
+    "kind": "theorem",
+    "q": "Let $\\pi_2(x)$ be the number of primes $p\\le x$ such that $p+2$ is also prime.\n\nUsing Brun's combinatorial sieve, show that\n$$\\pi_2(x)=O\\!\\left(\\frac{x(\\log\\log x)^2}{(\\log x)^2}\\right)\\qquad (x\\ge 3),$$\nand deduce that $\\sum 1/p$, taken over all primes $p$ such that $p+2$ is prime, converges.",
+    "concepts": [
+     "twin-primes",
+     "sieve-basics",
+     "partial-summation"
+    ],
+    "source": "V. Brun, La série 1/5+1/7+1/11+1/13+1/17+1/19+1/29+1/31+1/41+1/43+1/59+1/61+..., où les dénominateurs sont nombres premiers jumeaux est convergente ou finie, Bull. Sci. Math. 43 (1919); see Halberstam & Richert, Sieve Methods (1974)",
+    "year": 1919,
+    "bridges_to": [],
+    "note": "The first nontrivial result on twin primes: there are few of them compared with primes, in contrast to the infinitely many primes with $\\sum 1/p=\\infty$."
+   },
+   {
+    "title": "The sieve upper bound of the right order",
+    "kind": "classic",
+    "q": "With $\\pi_2(x)$ as above, use the Selberg upper-bound sieve to show that there is an absolute constant $C$ such that\n$$\\pi_2(x)\\le C\\,\\frac{x}{(\\log x)^2}\\qquad\\text{for all } x\\ge 2.$$",
+    "concepts": [
+     "twin-primes",
+     "selberg-sieve",
+     "sieve-basics"
+    ],
+    "source": "H. Halberstam and H.-E. Richert, Sieve Methods (1974)",
+    "bridges_to": [],
+    "note": "Removes Brun's $(\\log\\log x)^2$ loss: the upper bound now matches the Hardy–Littlewood prediction $2C_2x/(\\log x)^2$ up to a constant factor. A matching lower bound is blocked by the parity problem."
+   },
+   {
+    "title": "Bombieri–Davenport small gaps",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$-th prime. Show that\n$$\\liminf_{n\\to\\infty}\\frac{p_{n+1}-p_n}{\\log p_n}\\le\\frac{2+\\sqrt3}{8}.$$",
+    "concepts": [
+     "bounded-gaps",
+     "bombieri-vinogradov",
+     "twin-primes"
+    ],
+    "source": "E. Bombieri and H. Davenport, Small differences between prime numbers, Proc. Roy. Soc. London Ser. A 293 (1966), 1–18",
+    "year": 1966,
+    "bridges_to": [],
+    "note": "Since the average gap is $\\log p_n$, this shows gaps are infinitely often much smaller than average; it was among the first applications of the Bombieri–Vinogradov theorem."
+   },
+   {
+    "title": "Goldston–Pintz–Yıldırım",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$-th prime. Show that\n$$\\liminf_{n\\to\\infty}\\frac{p_{n+1}-p_n}{\\log p_n}=0.$$\n\nShow moreover that if the primes have level of distribution $\\theta$ for some $\\theta>\\tfrac12$ (that is, the Bombieri–Vinogradov estimate holds with moduli up to $x^{\\theta-\\varepsilon}$ for every $\\varepsilon>0$), then $\\liminf_{n\\to\\infty}(p_{n+1}-p_n)<\\infty$, and that under the Elliott–Halberstam conjecture ($\\theta=1$) one has $p_{n+1}-p_n\\le 16$ for infinitely many $n$.",
+    "concepts": [
+     "bounded-gaps",
+     "bombieri-vinogradov",
+     "selberg-sieve",
+     "twin-primes"
+    ],
+    "source": "D. A. Goldston, J. Pintz and C. Y. Yıldırım, Primes in tuples I, Ann. of Math. 170 (2009), 819–862",
+    "year": 2009,
+    "bridges_to": [],
+    "note": "The GPY weights reduce bounded gaps to a level of distribution just beyond $\\tfrac12$, exactly the barrier Zhang later crossed."
+   },
+   {
+    "title": "Chen's theorem for twin primes",
+    "kind": "theorem",
+    "q": "Show that there are infinitely many primes $p$ such that $p+2$ is either a prime or a product of two primes.",
+    "concepts": [
+     "twin-primes",
+     "sieve-basics",
+     "bombieri-vinogradov"
+    ],
+    "source": "J. R. Chen, On the representation of a larger even integer as the sum of a prime and the product of at most two primes, Sci. Sinica 16 (1973), 157–176",
+    "year": 1973,
+    "bridges_to": [],
+    "note": "The sieve reaches $P_2$ but, because of the parity problem, cannot by itself separate primes from products of two primes; this is the closest result of this type to the conjecture."
+   },
+   {
+    "title": "Zhang's bounded gaps",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$-th prime. Show that\n$$\\liminf_{n\\to\\infty}(p_{n+1}-p_n)<7\\times 10^{7}.$$",
+    "concepts": [
+     "bounded-gaps",
+     "bombieri-vinogradov",
+     "twin-primes"
+    ],
+    "source": "Y. Zhang, Bounded gaps between primes, Ann. of Math. 179 (2014), 1121–1174",
+    "year": 2014,
+    "bridges_to": [],
+    "note": "First proof that some even gap $h$ occurs infinitely often, via a level of distribution beyond $\\tfrac12$ for smooth moduli fed into the GPY method."
+   },
+   {
+    "title": "Maynard's multidimensional sieve",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$-th prime. Show that\n$$\\liminf_{n\\to\\infty}(p_{n+1}-p_n)\\le 600,$$\nand that for every integer $m\\ge1$\n$$\\liminf_{n\\to\\infty}(p_{n+m}-p_n)\\ll m^3e^{4m},$$\nwith an absolute implied constant.",
+    "concepts": [
+     "bounded-gaps",
+     "selberg-sieve",
+     "bombieri-vinogradov",
+     "prime-patterns"
+    ],
+    "source": "J. Maynard, Small gaps between primes, Ann. of Math. 181 (2015), 383–413",
+    "year": 2015,
+    "bridges_to": [],
+    "note": "Needs only the Bombieri–Vinogradov theorem and gives bounded gaps between $m$ consecutive primes for every $m$, which GPY and Zhang could not."
+   },
+   {
+    "title": "Polymath8b: gap 246, and 6 under GEH",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$-th prime. Show that\n$$\\liminf_{n\\to\\infty}(p_{n+1}-p_n)\\le 246.$$\n\nShow further that, assuming the generalized Elliott–Halberstam conjecture, $\\liminf_{n\\to\\infty}(p_{n+1}-p_n)\\le 6$.",
+    "concepts": [
+     "bounded-gaps",
+     "twin-primes",
+     "selberg-sieve"
+    ],
+    "source": "D. H. J. Polymath, Variants of the Selberg sieve, and bounded intervals containing many primes, Res. Math. Sci. 1 (2014), Art. 12",
+    "year": 2014,
+    "bridges_to": [],
+    "note": "The current record; even conditionally the method stops at $6$ rather than $2$ because of the parity problem, so the twin prime conjecture itself needs a new idea."
+   }
+  ]
+ },
+ {
+  "concept": "goldbach",
+  "ladder": [
+   {
+    "title": "Binary versus ternary Goldbach",
+    "kind": "classic",
+    "q": "Show that the following two statements are equivalent:\n\n(a) every even integer $n\\ge4$ is a sum of two primes;\n\n(b) every integer $n\\ge6$ is a sum of three primes.\n\nDeduce that (a) implies that every odd integer $n\\ge7$ is a sum of three primes.",
+    "concepts": [
+     "goldbach",
+     "ternary-goldbach"
+    ],
+    "source": "Folklore (going back to the Goldbach–Euler correspondence of 1742); see R. K. Guy, Unsolved Problems in Number Theory, 3rd ed. (2004), Section C",
+    "bridges_to": [],
+    "note": "Explains why the ternary problem is the weaker one: binary Goldbach implies ternary, not conversely."
+   },
+   {
+    "title": "Sieve upper bound for Goldbach representations",
+    "kind": "classic",
+    "q": "For an even integer $n\\ge4$ let $r(n)$ be the number of ordered pairs $(p,q)$ of primes with $p+q=n$.\n\nUse an upper-bound sieve (Brun's or Selberg's) to show that there is an absolute constant $C$ such that\n$$r(n)\\le C\\,\\frac{n}{(\\log n)^2}\\prod_{p\\mid n}\\Bigl(1+\\frac1p\\Bigr)\\qquad\\text{for all even } n\\ge4.$$",
+    "concepts": [
+     "goldbach",
+     "sieve-basics",
+     "selberg-sieve"
+    ],
+    "source": "H. Halberstam and H.-E. Richert, Sieve Methods (1974)",
+    "bridges_to": [],
+    "note": "The upper bound has the order predicted by Hardy–Littlewood; it is the key input to Schnirelmann's theorem in the next rung."
+   },
+   {
+    "title": "Schnirelmann's theorem",
+    "kind": "theorem",
+    "q": "Show that there is an absolute constant $k$ such that every integer $n\\ge2$ is a sum of at most $k$ primes.\n\n(One route: use the upper bound for $r(n)$ and the Cauchy–Schwarz inequality to show that the set of sums of two primes, together with $0$ and $1$, has positive Schnirelmann density, and then apply Schnirelmann's theorem on additive bases.)",
+    "concepts": [
+     "goldbach",
+     "additive-bases",
+     "sieve-basics",
+     "cauchy-schwarz"
+    ],
+    "source": "L. Schnirelmann, Über additive Eigenschaften von Zahlen, Math. Ann. 107 (1933), 649–690 (Russian original 1930); see M. B. Nathanson, Additive Number Theory: The Classical Bases (1996)",
+    "year": 1930,
+    "bridges_to": [],
+    "note": "First unconditional theorem of Goldbach type: the primes form an additive basis of finite order."
+   },
+   {
+    "title": "Vinogradov's three primes theorem",
+    "kind": "theorem",
+    "q": "Show that every sufficiently large odd integer is a sum of three primes.\n\nMore precisely, let $R_3(N)=\\sum_{p_1+p_2+p_3=N}\\log p_1\\log p_2\\log p_3$ over primes $p_i$. Show that for odd $N$\n$$R_3(N)=\\tfrac12\\,\\mathfrak S(N)\\,N^2+O_A\\!\\left(\\frac{N^2}{(\\log N)^A}\\right)\\quad\\text{for every }A>0,$$\nwhere $\\mathfrak S(N)=\\prod_{p\\mid N}\\Bigl(1-\\frac{1}{(p-1)^2}\\Bigr)\\prod_{p\\nmid N}\\Bigl(1+\\frac{1}{(p-1)^3}\\Bigr)\\ge1$ for odd $N$.",
+    "concepts": [
+     "ternary-goldbach",
+     "circle-method",
+     "exponential-sums",
+     "goldbach"
+    ],
+    "source": "I. M. Vinogradov, Representation of an odd number as a sum of three primes, Dokl. Akad. Nauk SSSR 15 (1937); see R. C. Vaughan, The Hardy–Littlewood Method, 2nd ed. (1997)",
+    "year": 1937,
+    "bridges_to": [],
+    "note": "The circle method with Vinogradov's minor-arc bound for $\\sum_{p\\le N}e(\\alpha p)$; for two primes the same minor-arc bound is too weak, which is the core obstruction to binary Goldbach."
+   },
+   {
+    "title": "Almost all even numbers are Goldbach numbers",
+    "kind": "theorem",
+    "q": "Let $E(x)$ be the number of even integers $n\\le x$ that are not a sum of two primes. Show that $E(x)=O_A\\bigl(x(\\log x)^{-A}\\bigr)$ for every $A>0$; in particular $E(x)=o(x)$.",
+    "concepts": [
+     "goldbach",
+     "circle-method",
+     "exponential-sums"
+    ],
+    "source": "T. Estermann, On Goldbach's problem: proof that almost all even positive integers are sums of two primes, Proc. London Math. Soc. (2) 44 (1938); independently N. G. Chudakov and J. G. van der Corput (1937–38); see R. C. Vaughan, The Hardy–Littlewood Method",
+    "year": 1938,
+    "bridges_to": [],
+    "note": "Averaging over $n$ turns the minor-arc estimate into an $L^2$ bound via Parseval, which is strong enough for two primes on average."
+   },
+   {
+    "title": "Ramaré: six primes suffice",
+    "kind": "theorem",
+    "q": "Show that every even integer $n\\ge4$ is a sum of at most six primes.",
+    "concepts": [
+     "goldbach",
+     "sieve-basics",
+     "additive-bases"
+    ],
+    "source": "O. Ramaré, On Šnirel'man's constant, Ann. Scuola Norm. Sup. Pisa Cl. Sci. (4) 22 (1995), 645–706",
+    "year": 1995,
+    "bridges_to": [],
+    "note": "An explicit, fully effective Schnirelmann constant, obtained before the ternary conjecture was settled."
+   },
+   {
+    "title": "Helfgott's ternary Goldbach theorem",
+    "kind": "theorem",
+    "q": "Show that every odd integer $n\\ge7$ is a sum of three primes.\n\nDeduce that every integer $n\\ge2$ is a sum of at most four primes.",
+    "concepts": [
+     "ternary-goldbach",
+     "circle-method",
+     "exponential-sums",
+     "goldbach"
+    ],
+    "source": "H. A. Helfgott, The ternary Goldbach conjecture is true, arXiv:1312.7748 (2013); see also H. A. Helfgott, Major arcs for Goldbach's problem, arXiv:1305.2897 (2013)",
+    "year": 2013,
+    "bridges_to": [],
+    "note": "Makes Vinogradov's theorem effective all the way down, combined with computer verification of binary Goldbach up to a large bound; the four-primes corollary is the best Schnirelmann-type result."
+   },
+   {
+    "title": "Montgomery–Vaughan exceptional set",
+    "kind": "theorem",
+    "q": "With $E(x)$ the number of even $n\\le x$ that are not a sum of two primes, show that there is an effectively computable constant $\\delta>0$ such that\n$$E(x)=O\\bigl(x^{1-\\delta}\\bigr).$$",
+    "concepts": [
+     "goldbach",
+     "circle-method",
+     "l-functions",
+     "zero-density"
+    ],
+    "source": "H. L. Montgomery and R. C. Vaughan, The exceptional set in Goldbach's problem, Acta Arith. 27 (1975), 353–370",
+    "year": 1975,
+    "bridges_to": [],
+    "note": "A power saving in the exceptional set; it needs zero-density estimates and control of a possible exceptional zero of Dirichlet $L$-functions."
+   },
+   {
+    "title": "Linnik's problem: two primes and powers of two",
+    "kind": "theorem",
+    "q": "Show that every sufficiently large even integer $n$ can be written as\n$$n=p_1+p_2+2^{\\nu_1}+\\cdots+2^{\\nu_k}$$\nwith $p_1,p_2$ primes, $\\nu_i\\ge1$ integers, and $k\\le 13$.",
+    "concepts": [
+     "goldbach",
+     "circle-method",
+     "zero-density"
+    ],
+    "source": "D. R. Heath-Brown and J.-C. Puchta, Integers represented as a sum of primes and powers of two, Asian J. Math. 6 (2002), 535–565; arXiv:math/0201299",
+    "year": 2002,
+    "bridges_to": [],
+    "note": "Linnik showed some bounded number $k$ of powers of two suffices; making $k$ small quantifies how close one can get to binary Goldbach with two primes."
+   },
+   {
+    "title": "Chen's theorem",
+    "kind": "theorem",
+    "q": "Show that every sufficiently large even integer $n$ can be written as $n=p+m$ where $p$ is prime and $m$ is either a prime or a product of two primes.",
+    "concepts": [
+     "goldbach",
+     "sieve-basics",
+     "bombieri-vinogradov",
+     "selberg-sieve"
+    ],
+    "source": "J. R. Chen, On the representation of a larger even integer as the sum of a prime and the product of at most two primes, Sci. Sinica 16 (1973), 157–176",
+    "year": 1973,
+    "bridges_to": [],
+    "note": "The strongest sieve result toward binary Goldbach; replacing 'product of two primes' by 'prime' is blocked by the parity problem."
+   }
+  ]
+ },
+ {
+  "concept": "rh",
+  "ladder": [
+   {
+    "title": "Trivial zeros and the symmetry of the zeros",
+    "kind": "classic",
+    "q": "Using the functional equation $\\xi(s)=\\xi(1-s)$ for $\\xi(s)=\\tfrac12 s(s-1)\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ and the Euler product for $\\operatorname{Re}s>1$, show:\n\n(a) $\\zeta(s)\\ne0$ for $\\operatorname{Re}s>1$;\n\n(b) the only zeros of $\\zeta$ with $\\operatorname{Re}s<0$ are the simple zeros at $s=-2,-4,-6,\\ldots$;\n\n(c) the zeros $\\rho$ with $0\\le\\operatorname{Re}\\rho\\le1$ are symmetric under $\\rho\\mapsto1-\\rho$ and $\\rho\\mapsto\\bar\\rho$.",
+    "concepts": [
+     "rh",
+     "zeta",
+     "functional-equation",
+     "gamma",
+     "nontrivial-zeros"
+    ],
+    "source": "H. Davenport, Multiplicative Number Theory, 3rd ed. (2000); E. C. Titchmarsh, The Theory of the Riemann Zeta-Function, 2nd ed. (1986)",
+    "bridges_to": [],
+    "note": "Confines all nontrivial zeros to the critical strip and shows the line $\\operatorname{Re}s=\\tfrac12$ is the axis of symmetry, which is why RH is the natural conjecture."
+   },
+   {
+    "title": "No zeros on the line Re s = 1",
+    "kind": "classic",
+    "q": "Show that $3+4\\cos\\theta+\\cos2\\theta\\ge0$ for all real $\\theta$, and deduce that for $\\sigma>1$ and real $t$\n$$\\zeta(\\sigma)^3\\,|\\zeta(\\sigma+it)|^4\\,|\\zeta(\\sigma+2it)|\\ge1.$$\n\nConclude that $\\zeta(1+it)\\ne0$ for every real $t\\ne0$.",
+    "concepts": [
+     "rh",
+     "zeta",
+     "zero-free-region",
+     "pnt"
+    ],
+    "source": "Classical (Mertens's 3–4–1 inequality); see H. Davenport, Multiplicative Number Theory, or E. C. Titchmarsh, The Theory of the Riemann Zeta-Function",
+    "bridges_to": [],
+    "note": "Non-vanishing on $\\operatorname{Re}s=1$ is equivalent to the prime number theorem; RH asks for non-vanishing on the whole half-plane $\\operatorname{Re}s>\\tfrac12$."
+   },
+   {
+    "title": "Error terms in prime counting detect zeros",
+    "kind": "classic",
+    "q": "Let $\\psi(x)=\\sum_{n\\le x}\\Lambda(n)$ and $M(x)=\\sum_{n\\le x}\\mu(n)$.\n\n(a) Suppose $\\psi(x)=x+O(x^{\\alpha})$ for some $\\alpha$ with $\\tfrac12\\le\\alpha<1$. Using $-\\zeta'(s)/\\zeta(s)=s\\int_1^\\infty\\psi(x)x^{-s-1}\\,dx$ for $\\operatorname{Re}s>1$, show that $\\zeta(s)\\ne0$ for $\\operatorname{Re}s>\\alpha$.\n\n(b) Suppose that for every $\\varepsilon>0$ one has $M(x)=O_\\varepsilon(x^{1/2+\\varepsilon})$. Show that $\\zeta(s)\\ne0$ for $\\operatorname{Re}s>\\tfrac12$.",
+    "concepts": [
+     "rh",
+     "explicit-formula",
+     "mobius",
+     "mellin",
+     "dirichlet-series"
+    ],
+    "source": "J. E. Littlewood (1912) for (b); see E. C. Titchmarsh, The Theory of the Riemann Zeta-Function, and H. Davenport, Multiplicative Number Theory",
+    "year": 1912,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "The easy direction of the classical equivalences: RH is the same as square-root cancellation in $\\psi(x)-x$ or in $M(x)$; the converse uses the explicit formula."
+   },
+   {
+    "title": "De la Vallée Poussin's zero-free region",
+    "kind": "theorem",
+    "q": "Show that there is an absolute constant $c>0$ such that $\\zeta(\\sigma+it)\\ne0$ whenever\n$$\\sigma\\ge1-\\frac{c}{\\log(|t|+2)}.$$\n\nDeduce that there is $c'>0$ with $\\psi(x)=x+O\\bigl(x\\exp(-c'\\sqrt{\\log x})\\bigr)$.",
+    "concepts": [
+     "zero-free-region",
+     "rh",
+     "pnt",
+     "explicit-formula"
+    ],
+    "source": "Ch.-J. de la Vallée Poussin (1899); see H. Davenport, Multiplicative Number Theory",
+    "year": 1899,
+    "bridges_to": [],
+    "note": "The first quantitative region free of zeros, and the template for every later improvement; RH would replace the width $c/\\log|t|$ by $\\tfrac12$."
+   },
+   {
+    "title": "Hardy: infinitely many zeros on the critical line",
+    "kind": "theorem",
+    "q": "Show that $\\zeta(s)$ has infinitely many zeros on the line $\\operatorname{Re}s=\\tfrac12$.",
+    "concepts": [
+     "rh",
+     "nontrivial-zeros",
+     "functional-equation",
+     "mellin"
+    ],
+    "source": "G. H. Hardy, Sur les zéros de la fonction ζ(s) de Riemann, C. R. Acad. Sci. Paris 158 (1914), 1012–1014",
+    "year": 1914,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "The first theorem about zeros on the line itself, using that $Z(t)=e^{i\\vartheta(t)}\\zeta(\\tfrac12+it)$ is real and must change sign."
+   },
+   {
+    "title": "The Vinogradov–Korobov zero-free region",
+    "kind": "theorem",
+    "q": "Show that there is an absolute constant $c>0$ such that $\\zeta(\\sigma+it)\\ne0$ whenever $|t|\\ge3$ and\n$$\\sigma\\ge1-\\frac{c}{(\\log|t|)^{2/3}(\\log\\log|t|)^{1/3}}.$$\n\nDeduce that $\\psi(x)=x+O\\bigl(x\\exp(-c'(\\log x)^{3/5}(\\log\\log x)^{-1/5})\\bigr)$ for some $c'>0$.",
+    "concepts": [
+     "zero-free-region",
+     "exponential-sums",
+     "pnt",
+     "rh"
+    ],
+    "source": "N. M. Korobov (1958) and I. M. Vinogradov (1958); see A. Ivić, The Riemann Zeta-Function (1985)",
+    "year": 1958,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "Still essentially the widest known zero-free region, from Vinogradov's mean-value method for exponential sums; no region of the form $\\sigma>1-\\delta$ with fixed $\\delta>0$ is known."
+   },
+   {
+    "title": "Ingham's zero-density estimate",
+    "kind": "theorem",
+    "q": "For $\\tfrac12\\le\\sigma\\le1$ let $N(\\sigma,T)$ be the number of zeros $\\beta+i\\gamma$ of $\\zeta$ with $\\beta\\ge\\sigma$ and $0<\\gamma\\le T$. Show that, uniformly for $\\tfrac12\\le\\sigma\\le1$ and $T\\ge2$,\n$$N(\\sigma,T)=O\\bigl(T^{3(1-\\sigma)/(2-\\sigma)}(\\log T)^5\\bigr).$$",
+    "concepts": [
+     "zero-density",
+     "rh",
+     "moments",
+     "explicit-formula"
+    ],
+    "source": "A. E. Ingham, On the estimation of N(σ,T), Quart. J. Math. Oxford 11 (1940), 201–202; see E. C. Titchmarsh, The Theory of the Riemann Zeta-Function",
+    "year": 1940,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "Shows that zeros off the line, if any, are rare; the density hypothesis $N(\\sigma,T)\\ll T^{2(1-\\sigma)+\\varepsilon}$ would give much of what RH gives for primes in short intervals."
+   },
+   {
+    "title": "Guth–Maynard: beyond Ingham's exponent",
+    "kind": "theorem",
+    "q": "With $N(\\sigma,T)$ as above, show that uniformly for $\\tfrac12\\le\\sigma\\le1$\n$$N(\\sigma,T)\\le T^{30(1-\\sigma)/13+o(1)}\\qquad(T\\to\\infty).$$",
+    "concepts": [
+     "zero-density",
+     "rh",
+     "exponential-sums"
+    ],
+    "source": "L. Guth and J. Maynard, New large value estimates for Dirichlet polynomials, arXiv:2405.20552 (2024)",
+    "year": 2024,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "The first improvement of Ingham's bound near $\\sigma=\\tfrac34$, via new large-value estimates for Dirichlet polynomials; it gives asymptotics for primes in almost all intervals of length $x^{17/30+o(1)}$."
+   },
+   {
+    "title": "Selberg: a positive proportion of zeros on the line",
+    "kind": "theorem",
+    "q": "Let $N_0(T)$ be the number of zeros $\\tfrac12+i\\gamma$ of $\\zeta$ with $0<\\gamma\\le T$, and $N(T)$ the number of zeros $\\rho=\\beta+i\\gamma$ of $\\zeta$ with $0<\\beta<1$ and $0<\\gamma\\le T$ (zeros counted with multiplicity). Show that there is a constant $c>0$ such that\n$$N_0(T)\\ge c\\,T\\log T$$\nfor all sufficiently large $T$; equivalently $\\liminf_{T\\to\\infty}N_0(T)/N(T)>0$.",
+    "concepts": [
+     "rh",
+     "nontrivial-zeros",
+     "moments"
+    ],
+    "source": "A. Selberg, On the zeros of Riemann's zeta-function, Skr. Norske Vid.-Akad. Oslo I (1942), no. 10",
+    "year": 1942,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "Mollifying $\\zeta$ with Selberg-type weights gives a positive proportion of all zeros on the line."
+   },
+   {
+    "title": "Levinson and Conrey: one third, then two fifths",
+    "kind": "theorem",
+    "q": "With $N_0(T)$ and $N(T)$ as above, show that\n$$\\liminf_{T\\to\\infty}\\frac{N_0(T)}{N(T)}\\ge\\frac13,$$\nand then, refining the mollifier, that\n$$\\liminf_{T\\to\\infty}\\frac{N_0(T)}{N(T)}\\ge\\frac25.$$",
+    "concepts": [
+     "rh",
+     "nontrivial-zeros",
+     "moments"
+    ],
+    "source": "N. Levinson, More than one third of zeros of Riemann's zeta-function are on σ=1/2, Adv. Math. 13 (1974), 383–436; J. B. Conrey, More than two fifths of the zeros of the Riemann zeta function are on the critical line, J. Reine Angew. Math. 399 (1989), 1–26",
+    "year": 1989,
+    "bridges_to": [
+     "CLAY-rh"
+    ],
+    "note": "The method of Levinson (detecting zeros of $\\zeta$ via zeros of a combination of $\\zeta$ and $\\zeta'$) with long mollifiers gives the best known proportions; RH asks for the proportion to be $1$, and for all zeros, not just almost all."
+   }
+  ]
+ }
+]

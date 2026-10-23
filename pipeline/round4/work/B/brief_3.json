@@ -1,0 +1,498 @@
+[
+ {
+  "id": "unit-fractions",
+  "title": "Egyptian fractions",
+  "summary": "Writing rationals as sums of distinct $1/n$. Every rational has such representations; the questions are how short, how small the denominators, and which colourings or dense sets must contain a representation of $1$.",
+  "key_statements": [
+   "\\frac{4}{n} = \\frac1x+\\frac1y+\\frac1z \\ \\ (\\text{Erdős–Straus, open})",
+   "\\text{any } r\\text{-colouring of } \\mathbb N \\text{ has a monochromatic } \\textstyle\\sum 1/n_i = 1 \\ \\text{(Croot 2003)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "divisibility",
+    "title": "Divisibility and the Euclidean algorithm"
+   },
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-316",
+    "title": "Erdős Problem #316",
+    "status": "solved",
+    "statement": "Is it true that if $A \\subseteq \\mathbb{N}\\setminus\\{1\\}$ is a finite set with\n$\\sum_{n \\in A} \\frac{1}{n} < 2$ then there is a partition $A=A_1 \\sqcup A_2$\nsuch that $\\sum_{n \\in A_i} \\frac{1}{n} < 1$ for $i=1,2$?"
+   },
+   {
+    "id": "ERDOS-46",
+    "title": "Erdős Problem #46",
+    "status": "solved",
+    "statement": "Does every finite colouring of the integers have a monochromatic solution to\n$1=\\sum \\frac{1}{n_i}$ with $2\\leq n_1<\\cdots <n_k$?"
+   },
+   {
+    "id": "ERDOS-296",
+    "title": "Erdős Problem #296",
+    "status": "solved",
+    "statement": "Let $N\\geq 1$ and let $k(N)$ be maximal such that there are $k$ disjoint $A_1,\\ldots,A_k\\subseteq \\{1,\\ldots,N\\}$ with $\\sum_{n\\in A_i}\\frac{1}{n}=1$ for all $i$. Estimate $k(N)$. Is it true that $k(N)=o(\\log N)$?"
+   },
+   {
+    "id": "ERDOS-290",
+    "title": "Erdős Problem #290",
+    "status": "solved",
+    "statement": "Let $a\\geq 1$. Must there exist some $b>a$ such that\n$$\\sum_{a\\leq n\\leq b}\\frac{1}{n}=\\frac{r_1}{s_1}\\textrm{ and }\n\\sum_{a\\leq n\\leq b+1}\\frac{1}{n}=\\frac{r_2}{s_2},$$\nwith $(r_i,s_i)=1$ and $s_2<s_1$? If so, how does this $b(a)$ grow with $a$?"
+   },
+   {
+    "id": "ERDOS-242",
+    "title": "Erdős Problem #242",
+    "status": "open",
+    "statement": "For every $n>2$ there exist distinct integers $1 ≤ x < y < z$\nsuch that $\\frac 4 n = \\frac 1 x + \\frac 1 y + \\frac 1 z$."
+   },
+   {
+    "id": "ERDOS-310",
+    "title": "Erdős Problem #310",
+    "status": "solved",
+    "statement": "Let $\\alpha >0$ and $N\\geq 1$. Is it true that for any $A\\subseteq \\{1,\\ldots,N\\}$ with\n$\\lvert A\\rvert \\geq \\alpha N$ there exists some $S\\subseteq A$ such that\n$$\\frac{a}{b}=\\sum_{n\\in S}\\frac{1}{n}$$\nwith $a\\leq b =O_\\alpha(1)$?"
+   },
+   {
+    "id": "ERDOS-206",
+    "title": "Erdős Problem #206",
+    "status": "solved",
+    "statement": "Let $x>0$ be a real number. For any $n\\geq 1$ let\n$$R_n(x) = \\sum_{i=1}^n\\frac{1}{m_i}<x$$\nbe the maximal sum of $n$ distinct unit fractions which is $<x$."
+   },
+   {
+    "id": "ERDOS-299",
+    "title": "Erdős Problem #299",
+    "status": "solved",
+    "statement": "Is there an infinite sequence $a_1 < a_2 < \\dots$ such that $a_{i+1} - a_i = O(1)$ and no finite\nsum of $\\frac{1}{a_i}$ is equal to 1?"
+   },
+   {
+    "id": "ERDOS-148",
+    "title": "Erdős Problem #148",
+    "status": "claimed",
+    "statement": "Let $F(k)$ be the number of solutions to\n$$ 1= \\frac{1}{n_1}+\\cdots+\\frac{1}{n_k},$$\nwhere $1\\leq n_1<\\cdots<n_k$ are distinct integers. Find good estimates for $F(k)$."
+   },
+   {
+    "id": "ERDOS-300",
+    "title": "Erdős Problem #300",
+    "status": "solved",
+    "statement": "Let $A(N)$ denote the maximal cardinality of $A\\subseteq \\{1,\\ldots,N\\}$ such that\n$\\sum_{n\\in S}\\frac{1}{n}\\neq 1$ for all $S\\subseteq A$. Estimate $A(N)$."
+   },
+   {
+    "id": "ERDOS-306",
+    "title": "Erdős Problem #306",
+    "status": "open",
+    "statement": "Let $\\frac a b\\in \\mathbb{Q}_{>0}$ with $b$ squarefree. Are there integers $1 < n_1 < \\dots < n_k$,\neach the product of two distinct primes, such that $\\frac{a}{b}=\\frac{1}{n_1}+\\cdots+\\frac{1}{n_k}$?"
+   },
+   {
+    "id": "ERDOS-287",
+    "title": "Erdős Problem #287",
+    "status": "open",
+    "statement": "Let $k\\geq2$. Is it true that, for any distinct integers\n$1 < n_1 < \\cdots < n_k$ such that $\\sum_{i=1}^k \\frac{1}{n_i} = 1$,\nwe must have $\\max(n_{i+1} - n_i) \\geq 3$?"
+   },
+   {
+    "id": "ERDOS-295",
+    "title": "Erdős Problem #295",
+    "status": "open",
+    "statement": "Let $k(N)$ denote the smallest $k$ such that there exists\n$N ≤ n_1 < ⋯ < n_k$ with $\\frac 1 {n_1} + ... + \\frac 1 {n_k} = 1$\n\nIs it true that $\\lim_{N \\to \\infty} k(N) - (e - 1)N = \\infty$?"
+   },
+   {
+    "id": "ERDOS-313",
+    "title": "Erdős Problem #313",
+    "status": "open",
+    "statement": "Are there infinitely many pairs `(m, P)` where `m ≥ 2` is an integer\nand `P` is a set of distinct primes such that the following equation holds:\n$\\sum_{p \\in P} \\frac{1}{p} = 1 - \\frac{1}{m}$?"
+   },
+   {
+    "id": "ERDOS-294",
+    "title": "Erdős Problem #294",
+    "status": "solved",
+    "statement": "Let $N\\geq 1$ and let $t(N)$ be the least integer $t$ such that there is no solution to\n$$1=\\frac{1}{n_1}+\\cdots+\\frac{1}{n_k}$$\nwith $t=n_1<\\cdots <n_k\\leq N$. Estimate $t(N)$."
+   },
+   {
+    "id": "ERDOS-292",
+    "title": "Erdős Problem #292",
+    "status": "solved",
+    "statement": "Let $A$ be the set of $n\\in \\mathbb{N}$ such that there exist $1\\leq m_1<\\cdots <m_k=n$ with\n$\\sum\\tfrac{1}{m_i}=1$. Explore $A$. In particular, does $A$ have density $1$?"
+   },
+   {
+    "id": "ERDOS-291",
+    "title": "Erdős Problem #291",
+    "status": "open",
+    "statement": "(a) Let $n\\geq 1$ and define $L_n$ to be the least common multiple of $\\{1,\\ldots,n\\}$ and $a_n$ by\n$\\sum_{1\\leq k\\leq n}\\frac{1}{k}=\\frac{a_n}{L_n}$.\n\nIs it true that $(a_n,L_n)=1$ occurs for infinitely many $n$?\n\n(b) Is it true that $(a_n,L_n)>1$ occurs for infinitely many $n$?"
+   },
+   {
+    "id": "ERDOS-288",
+    "title": "Erdős Problem #288",
+    "status": "open",
+    "statement": "Is it true that there are only finitely many pairs of intervals $I_1$, $I_2$ such that\n$$\n\\sum_{n_1 \\in I_1} \\frac{1}{n_1} + \\sum_{n_2 \\in I_2} \\frac{1}{n_2} \\in \\mathbb{N}?\n$$"
+   },
+   {
+    "id": "ERDOS-315",
+    "title": "Erdős Problem #315",
+    "status": "solved",
+    "statement": "Let $u_1=1$ and $u_{n+1}=u_n(u_n+1)$, so that $\\sum_{k\\geq 1}\\frac{1}{u_k+1}$ and\n$u_k=\\lfloor c_0^{2^k}+1\\rfloor$ for $k\\geq 1$, where\n$$c_0=\\lim u_n^{1/2^n}=1.264085\\cdots.$$\nLet $a_1<a_2<\\cdots $ be any other sequence with $\\sum \\frac{1}{a_k}=1$. Is it true that\n$$\\liminf a_n^{1/2^n}<c_0=1.264085\\cdots?$$"
+   },
+   {
+    "id": "ERDOS-307",
+    "title": "Erdős Problem #307",
+    "status": "open",
+    "statement": "Are there two finite set of primes $P$ and $Q$ such that\n\n$$\n1 = \\left( \\sum_{p \\in P} \\frac{1}{p} \\right) \\left( \\sum_{q \\in Q} \\frac{1}{q} \\right)\n$$\n?"
+   },
+   {
+    "id": "ERDOS-318",
+    "title": "Erdős Problem #318",
+    "status": "solved",
+    "statement": "(a) There exists a set `A` with positive density that does not have property `P₁`.\n#TODO: prove this lemma by assuming `erdos_318.contain_single_even`.\n\n(b) Does the set of squares excluding 1 have property `P₁`?"
+   },
+   {
+    "id": "ERDOS-305",
+    "title": "Erdős Problem #305",
+    "status": "solved",
+    "statement": "For integers $1\\leq a<b$ let $D(a,b)$ be the minimal value of $n_k$ such that there exist\nintegers $1\\leq n_1<\\cdots <n_k$ with\n$$\\frac{a}{b}=\\frac{1}{n_1}+\\cdots+\\frac{1}{n_k}.$$\nEstimate $D(b)=\\max_{1\\leq a<b}D(a,b)$. Is it true that\n$$D(b) \\ll b(\\log b)^{1+o(1)}?$$"
+   },
+   {
+    "id": "ERDOS-45",
+    "title": "Erdős Problem #45",
+    "status": "solved",
+    "statement": "Let $k\\geq 2$. Is there an integer $n_k$ such that, if $D=\\{ 1<d<n_k : d\\mid n_k\\}$, then for any\n$k$-colouring of $D$ there is a monochromatic subset $D'\\subseteq D$ such that\n$\\sum_{d\\in D'}\\frac{1}{d}=1$?"
+   },
+   {
+    "id": "ERDOS-282",
+    "title": "Erdős Problem #282",
+    "status": "open",
+    "statement": "Let $A\\subseteq \\mathbb{N}$ be an infinite set and consider the following\ngreedy algorithm for a rational $x\\in (0,1)$: choose the minimal $n\\in A$ not used\nso far such that $n\\geq 1/x$ and repeat with $x$ replaced by $x-\\frac{1}{n}$. If this\nterminates after finitely many steps then this produces a representation of\n$x$ as the sum of distinct unit fractions with denominators from $A$.\n\nDoes this process always terminate if $x$ has odd denominator and $A$ is the\nset of odd numbers?"
+   },
+   {
+    "id": "ERDOS-312",
+    "title": "Erdős Problem #312",
+    "status": "open",
+    "statement": "Does there exist a constant `c > 0` such that, for any `K > 1`, whenever `A` is a sufficiently large\nfinite multiset of integers with $\\sum_{n \\in A} 1/n > K$ there exists some $S \\subseteq A$ such that\n$1 - \\exp(-(c*K)) < \\sum_{n \\in S} 1/n \\le 1$?"
+   },
+   {
+    "id": "ERDOS-286",
+    "title": "Erdős Problem #286",
+    "status": "solved",
+    "statement": "Let $k\\geq 2$. Is it true that there exists an interval $I$ of width $(e-1+o(1))k$ and integers\n$n_1<\\cdots<n_k\\in I$ such that\n$$1=\\frac{1}{n_1}+\\cdots+\\frac{1}{n_k}?$$"
+   },
+   {
+    "id": "ERDOS-285",
+    "title": "Erdős Problem #285",
+    "status": "solved",
+    "statement": "Let $f(k)$ be the minimal value of $n_k$ such that there exist $n_1 < n_2 < \\dots < n_k$ with\n$$\n  1 = \\frac{1}{n_1} + \\cdots + \\frac{1}{n_k}.\n$$\nIs it true that\n$$\n  f(k) = (1 + o(1)) \\frac{e}{e - 1} k ?\n$$"
+   },
+   {
+    "id": "ERDOS-303",
+    "title": "Erdős Problem #303",
+    "status": "solved",
+    "statement": "Is it true that in any finite colouring of the integers there exists a monochromatic solution\nto $\\frac 1 a = \\frac 1 b + \\frac 1 c$ with distinct $a, b, c$?"
+   },
+   {
+    "id": "ERDOS-289",
+    "title": "Erdős Problem #289",
+    "status": "claimed",
+    "statement": "Is it true that, for all sufficiently large $k$, there exist finite intervals\n$I_1, \\dotsc, I_k \\subset \\mathbb{N}$, distinct, not overlapping or adjacent, with\n$|I_i| \\geq 2$ for $1 \\leq i \\leq k$ such that\n$$\n1 = \\sum_{i=1}^k \\sum_{n \\in I_i} \\frac{1}{n}?\n$$\nHere two intervals are adjacent if their union is again an interval, so any two of the\n$I_i$ must be separated by at least one integer."
+   },
+   {
+    "id": "ERDOS-321",
+    "title": "Erdős Problem #321",
+    "status": "solved",
+    "statement": "Let $R(N)$ be the size of the largest $A\\subseteq\\{1, ..., N\\}$ such that all sums\n$\\sum_{n\\in S} \\frac{1}{n}$ are distinct for $S\\subseteq A$.\n\nLet $R(N)$ be the size of the largest $A\\subseteq\\{1, ..., N\\}$ such that all sums\n$\\sum_{n\\in S} \\frac{1}{n}$ are distinct for $S\\subseteq A$. What is $R(N)$?"
+   },
+   {
+    "id": "ERDOS-283",
+    "title": "Erdős Problem #283",
+    "status": "solved",
+    "statement": "Let $p\\colon \\mathbb{Z} \\rightarrow \\mathbb{Z}$ be a polynomial (with rational coefficients,\ntaking integer values at all integers) whose leading coefficient is positive and such that there\nexists no $d≥2$ with $d ∣ p(n)$ for all $n≥1$. Is it true that,\nfor all sufficiently large $m$, there exist integers $1≤n_1<\\dots < n_k$ such that\n$$1=\\frac{1}{n_1}+\\cdots+\\frac{1}{n_k}$$\nand\n$$m=p(n_1)+\\cdots+p(n_k)$$?"
+   },
+   {
+    "id": "ERDOS-311",
+    "title": "Erdős Problem #311",
+    "status": "open",
+    "statement": "Let $\\delta(N)$ be the minimal non-zero value of $\\lvert 1-\\sum_{n\\in A}\\frac{1}{n}\\rvert$ as $A$\nranges over all subsets of $\\{1,\\ldots,N\\}$. Is it true that\n$$\\delta(N)=e^{-(c+o(1))N}$$\nfor some constant $c\\in (0,1)$?"
+   },
+   {
+    "id": "ERDOS-314",
+    "title": "Erdős Problem #314",
+    "status": "solved",
+    "statement": "Let $n\\geq 1$ and let $m$ be minimal such that $\\sum_{n\\leq k\\leq m}\\frac{1}{k}\\geq 1$. We define\n$$\\epsilon(n) = \\sum_{n\\leq k\\leq m}\\frac{1}{k}-1.$$\nHow small can $\\epsilon(n)$ be? Is it true that\n$$\\liminf n^2\\epsilon(n)=0?$$"
+   },
+   {
+    "id": "ERDOS-319",
+    "title": "Erdős Problem #319",
+    "status": "open",
+    "statement": "What is the size of the largest $A\\subseteq\\{1, \\dots, N\\}$ such that there is a function\n$\\delta : A \\to \\{-1, 1\\}$ such that\n$$\n  \\sum_{n\\in A} \\frac{\\delta n}{n} = 0\n$$\nand\n$$\n  \\sum_{n\\in A'}\\frac{\\delta n}{n} \\neq 0\n$$\nfor all non-empty $A'\\subsetneq A$."
+   },
+   {
+    "id": "ERDOS-309",
+    "title": "Erdős Problem #309",
+    "status": "solved",
+    "statement": "Let $N\\geq 1$. How many integers can be written as the sum of distinct unit fractions with\ndenominators from $\\{1,\\ldots,N\\}$? Are there $o(\\log N)$ such integers?"
+   },
+   {
+    "id": "ERDOS-825",
+    "title": "Erdős Problem #825",
+    "status": "solved",
+    "statement": "Is there an absolute constant $C > 0$ such that every integer $n$ with\n$\\sigma(n) > Cn$ is the distinct sum of proper divisors of $n$?"
+   },
+   {
+    "id": "ERDOS-355",
+    "title": "Erdős Problem #355",
+    "status": "solved",
+    "statement": "Is there a lacunary sequence $A\\subseteq \\mathbb{N}$ (so that $A=\\{a_1 < \\cdots\\}$ and\nthere exists some $\\lambda > 1$ such that $a_{n+1}/a_n\\geq \\lambda$ for all $n\\geq 1$) such that\n$$\\left\\{ \\sum_{a\\in A'}\\frac{1}{a} : A'\\subseteq A\\textrm{ finite}\\right\\}$$\ncontain all rationals in some open interval?"
+   },
+   {
+    "id": "ERDOS-47",
+    "title": "Erdős Problem #47",
+    "status": "solved",
+    "statement": "If $\\delta>0$ and $N$ is sufficiently large in terms of $\\delta$, and $A\\subseteq\\{1,\\ldots,N\\}$ is such that $\\sum_{a\\in A}\\frac{1}{a}>\\delta \\log N$ then must there exist $S\\subseteq A$ such that $\\sum_{n\\in S}\\frac{1}{n}=1$?"
+   },
+   {
+    "id": "ERDOS-302",
+    "title": "Erdős Problem #302",
+    "status": "open",
+    "statement": "(a) Let $f(N)$ be the size of the largest $A\\subseteq \\{1,\\ldots,N\\}$ such that there are no\nsolutions to\n$$\\frac{1}{a}= \\frac{1}{b}+\\frac{1}{c}$$\nwith distinct $a,b,c\\in A$? Estimate $f(N)$.\n\n(b) In particular, is $f(N)=(\\tfrac{1}{2}+o(1))N$?"
+   },
+   {
+    "id": "ERDOS-317",
+    "title": "Erdős Problem #317",
+    "status": "open",
+    "statement": "Is there some constant $c>0$ such that for every $n\\geq 1$ there exists some $\\delta_k\\in \\{-1,0,1\\}$ for $1\\leq k\\leq n$ with\n$$0< \\left\\lvert \\sum_{1\\leq k\\leq n}\\frac{\\delta_k}{k}\\right\\rvert < \\frac{c}{2^n}?$$"
+   },
+   {
+    "id": "ERDOS-298",
+    "title": "Erdős Problem #298",
+    "status": "solved",
+    "statement": "Does every set $A \\subseteq \\mathbb{N}$ of positive density contain some finite $S \\subset A$ such that\n$\\sum_{n \\in S} \\frac{1}{n} = 1$?"
+   },
+   {
+    "id": "ERDOS-308",
+    "title": "Erdős Problem #308",
+    "status": "solved",
+    "statement": "(a) Let $N\\geq 1$. What is the smallest integer not representable as the sum of distinct unit\nfractions with denominators from $\\{1,\\ldots,N\\}$?\n\n(b) Let $N\\geq 1$. Is it true that the set of integers representable as the sum of distinct unit\nfractions with denominators from $\\{1,\\ldots,N\\}$ has the shape $\\{1,\\ldots,m\\}$ for some $m$?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "USAMO-1978-P3",
+    "title": "USAMO 1978 · Problem 3"
+   },
+   {
+    "id": "PUTNAM-1997-A5",
+    "title": "Putnam 1997 · A5"
+   },
+   {
+    "id": "PUTNAM-2005-B2",
+    "title": "Putnam 2005 · B2"
+   },
+   {
+    "id": "IMO-2012-P6",
+    "title": "IMO 2012 · Problem 6"
+   },
+   {
+    "id": "IMO-2014-P5",
+    "title": "IMO 2014 · Problem 5"
+   },
+   {
+    "id": "PUTNAM-2018-A1",
+    "title": "Putnam 2018 · A1"
+   }
+  ]
+ },
+ {
+  "id": "covering-systems",
+  "title": "Covering systems",
+  "summary": "A finite set of congruences $a_i \\bmod n_i$ covering every integer, such as $0\\bmod2,\\ 0\\bmod3,\\ 1\\bmod4,\\ 5\\bmod6,\\ 7\\bmod12$. Hough (2015) proved the smallest modulus of a covering with distinct moduli is bounded.",
+  "key_statements": [
+   "\\textstyle\\bigcup_i \\{x : x\\equiv a_i \\bmod n_i\\} = \\mathbb Z,\\quad n_1<n_2<\\cdots<n_k"
+  ],
+  "prerequisites": [
+   {
+    "id": "crt",
+    "title": "Chinese remainder theorem"
+   },
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-7",
+    "title": "Erdős Problem #7",
+    "status": "open",
+    "statement": "Is there a covering system all of whose moduli are odd (and greater than 1)?"
+   },
+   {
+    "id": "ERDOS-273",
+    "title": "Erdős Problem #273",
+    "status": "open",
+    "statement": "Is there a covering system all of whose moduli are of the form $p-1$ for some primes $p \\geq 5$?"
+   },
+   {
+    "id": "ERDOS-280",
+    "title": "Erdős Problem #280",
+    "status": "solved",
+    "statement": "Let $n_1<n_2<\\cdots $ be an infinite sequence of integers with associated $a_k\\pmod{n_k}$, such that for some $\\epsilon>0$ we have $n_k>(1+\\epsilon)k\\log k$ for all $k$. Then\n$$\n\\#\\{ m<n_k : m\\not\\equiv a_i\\pmod{n_i} \\textrm{ for }1\\leq i\\leq k\\}\\neq o(k).\n$$"
+   },
+   {
+    "id": "ERDOS-1188",
+    "title": "Erdős Problem #1188",
+    "status": "claimed",
+    "statement": "Call a set of distinct integers $1<n_1<\\cdots<n_k$ with associated congruence\nclasses $a_i\\pmod{n_i}$ a distinct covering system if every integer satisfies at\nleast one of these congruences. A minimal distinct covering system is one such\nthat no proper subset forms a covering system. Let $F(x)$ count the number of\nminimal distinct covering systems with all moduli in $[1,x]$. Estimate $F(x)$."
+   },
+   {
+    "id": "ERDOS-947",
+    "title": "Erdős Problem #947",
+    "status": "solved",
+    "statement": "There is no exact covering system - that is, a finite collection of congruence classes\n$a_i\\pmod{n_i}$ with distinct $n_i$ such that every integer satisfies exactly one of these\ncongruence classes."
+   },
+   {
+    "id": "ERDOS-274",
+    "title": "Erdős Problem #274",
+    "status": "open",
+    "statement": "If $G$ is a group, can there exist an exact covering of $G$ by more than one coset\nof different sizes? (i.e. each element is contained in exactly one of the cosets.)"
+   },
+   {
+    "id": "ERDOS-275",
+    "title": "Erdős Problem #275",
+    "status": "solved",
+    "statement": "If a finite system of $r$ congruences $\\{ a_i\\pmod{n_i} : 1\\leq i\\leq r\\}$ (the $n_i$ are not\nnecessarily distinct) covers $2^r$ consecutive integers then it covers all integers."
+   },
+   {
+    "id": "ERDOS-2",
+    "title": "Erdős Problem #2",
+    "status": "solved",
+    "statement": "Can the smallest modulus of a covering system be arbitrarily large?"
+   },
+   {
+    "id": "ERDOS-203",
+    "title": "Erdős Problem #203",
+    "status": "open",
+    "statement": "Is there an integer $m$ with $(m, 6) = 1$ such that none of $2^k \\cdot 3^\\ell \\cdot m + 1$ are prime,\nfor any $k, \\ell \\ge 0$?"
+   },
+   {
+    "id": "ERDOS-586",
+    "title": "Erdős Problem #586",
+    "status": "solved",
+    "statement": "Is there a covering system such that no two of the moduli divide each other?"
+   },
+   {
+    "id": "ERDOS-204",
+    "title": "Erdős Problem #204",
+    "status": "solved",
+    "statement": "Are there $n$ such that there is a covering system with moduli the divisors of $n$ which is 'as\ndisjoint as possible'?"
+   },
+   {
+    "id": "ERDOS-1113",
+    "title": "Erdős Problem #1113",
+    "status": "open",
+    "statement": "Do there exist Sierpiński numbers that possess no finite covering set\nof primes?"
+   },
+   {
+    "id": "ERDOS-277",
+    "title": "Erdős Problem #277",
+    "status": "solved",
+    "statement": "Is it true that, for every $c$, there exists an $n$ such that $\\sigma(n)>cn$ but there is no\ncovering system whose moduli all divide $n$?"
+   },
+   {
+    "id": "ERDOS-276",
+    "title": "Erdős Problem #276",
+    "status": "open",
+    "statement": "Is there an infinite Lucas sequence $a_0, a_1, \\ldots$ where $a_{n+2} = a_{n+1} + a_n$ for\n$n \\ge 0$ such that all $a_k$ are composite, and yet no integer has a common factor with every\nterm of the sequence?"
+   },
+   {
+    "id": "ERDOS-1190",
+    "title": "Erdős Problem #1190",
+    "status": "solved",
+    "statement": "Let\n$$\\epsilon_m=\\max \\sum \\frac{1}{n_i}$$\nwhere the maximum is taken over all finite sequences $m<n_1<\\cdots<n_k$ for which there exist\ncongruences $a_i\\pmod{n_i}$ such that no integer satisfies two such congruences."
+   },
+   {
+    "id": "ERDOS-202",
+    "title": "Erdős Problem #202",
+    "status": "solved",
+    "statement": "Let $n_1<\\cdots < n_r\\leq N$ with associated $a_i\\pmod{n_i}$ such that the congruence classes are\ndisjoint (that is, every integer is $\\equiv a_i\\pmod{n_i}$ for at most one $1\\leq i\\leq r$). How\nlarge can $r$ be in terms of $N$?"
+   },
+   {
+    "id": "ERDOS-281",
+    "title": "Erdős Problem #281",
+    "status": "solved",
+    "statement": "Let $n_1<n_2<\\cdots$ be an infinite sequence such that, for any choice of congruence classes\n$a_i\\pmod{n_i}$, the set of integers not satisfying any of the congruences $a_i\\pmod{n_i}$ has\ndensity $0$. Is it true that for every $\\epsilon>0$ there exists some $k$ such that, for every\nchoice of congruence classes $a_i$, the density of integers not satisfying any of the congruences\n$a_i\\pmod{n_i}$ for $1\\leq i\\leq k$ is less than $\\epsilon$?"
+   },
+   {
+    "id": "ERDOS-279",
+    "title": "Erdős Problem #279",
+    "status": "open",
+    "statement": "Let $k\\geq 3$. Is there a choice of congruence classes $a_p\\pmod{p}$ for every prime $p$\nsuch that all sufficiently large integers can be written as $a_p+tp$ for some prime $p$\nand integer $t\\geq k$?"
+   }
+  ],
+  "existing_easier_problems": [
+   {
+    "id": "USAMO-1982-P4",
+    "title": "USAMO 1982 · Problem 4"
+   }
+  ]
+ },
+ {
+  "id": "primitive-sets",
+  "title": "Primitive sets",
+  "summary": "A set of integers $>1$ in which no element divides another. Erdős proved $\\sum 1/(a\\log a)$ is bounded over primitive sets and conjectured the primes maximise it; Lichtman proved this in 2022.",
+  "key_statements": [
+   "\\sum_{a\\in A}\\frac{1}{a\\log a} \\le \\sum_{p}\\frac{1}{p\\log p} \\ \\ \\text{(Lichtman 2022)}"
+  ],
+  "prerequisites": [
+   {
+    "id": "combinatorial-nt",
+    "title": "Combinatorial number theory"
+   },
+   {
+    "id": "mertens",
+    "title": "Mertens' theorems"
+   }
+  ],
+  "research_problems": [
+   {
+    "id": "ERDOS-882",
+    "title": "Erdős Problem #882",
+    "status": "solved",
+    "statement": "What is the size of the largest $A\\subseteq \\{1,\\ldots,n\\}$ such that in the set\n$$\\left\\{ \\sum_{a\\in S} a : \\emptyset\\neq S\\subseteq A\\right\\}$$\nno two distinct elements divide each other?"
+   },
+   {
+    "id": "ERDOS-143",
+    "title": "Erdős Problem #143",
+    "status": "open",
+    "statement": "Let $A \\subseteq (1, \\infty)$ be a countably infinite set such that for all $x\\neq y\\in A$ and\nintegers $k \\geq 1$ we have $|kx - y| \\geq 1$.\n\n(a) Does this imply that\n$$\n\\liminf \\frac{|A \\cap [1,x]|}{x} = 0?\n$$\n\n(b) Or\n$$\n\\sum_{x \\in A} \\frac{1}{x \\log x} < \\infty,\n$$"
+   },
+   {
+    "id": "ERDOS-1196",
+    "title": "Erdős Problem #1196",
+    "status": "solved",
+    "statement": "Is it true that, for any $x$, if $A\\subset [x,\\infty)$ is a primitive set of integers (so that no distinct elements of $A$ divide each other) then$$\\sum_{a\\in A}\\frac{1}{a\\log a}&#60; 1+o(1),$$where the $o(1)$ term $\\to 0$ as $x\\to \\infty$?\n-"
+   },
+   {
+    "id": "ERDOS-164",
+    "title": "Erdős Problem #164",
+    "status": "solved",
+    "statement": "A set $A\\subset \\mathbb{N}$ is primitive if no member of $A$ divides another. Is the sum\n$$\\sum_{n\\in A}\\frac{1}{n\\log n}$$\nmaximised over all primitive sets when $A$ is the set of primes?"
+   },
+   {
+    "id": "ERDOS-858",
+    "title": "Erdős Problem #858",
+    "status": "solved",
+    "statement": "Let $A\\subseteq \\{1,\\ldots,N\\}$ be such that there is no solution to $at=b$ with $a,b\\in A$ and\nthe smallest prime factor of $t$ is $>a$. Estimate the maximum of\n$$\\frac{1}{\\log N}\\sum_{n\\in A}\\frac{1}{n}.$$"
+   },
+   {
+    "id": "ERDOS-486",
+    "title": "Erdős Problem #486",
+    "status": "claimed",
+    "statement": "Let $A \\subseteq \\mathbb{N}$, and for each $n \\in A$ choose some\n$X_n \\subseteq \\mathbb{Z}/n\\mathbb{Z}$. Let\n$B = \\{m \\in \\mathbb{N} : m \\not\\in X_n \\pmod{n} \\text{ for all } n \\in A \\text{ with } m > n\\}$.\nMust $B$ have a logarithmic density?"
+   },
+   {
+    "id": "ERDOS-872",
+    "title": "Erdős Problem #872",
+    "status": "open",
+    "statement": "(a) Erdős Problem 872, part (i) (weak form): there exists a constant $\\epsilon > 0$ such that the\ngame length is at least $\\epsilon \\cdot n$ for all sufficiently large $n$.\n\n(b) Erdős Problem 872, part (ii) (strong form): for every $\\epsilon > 0$, the game length is at\nleast $(1-\\epsilon) \\cdot n / 2$ for all sufficiently large $n$."
+   }
+  ],
+  "existing_easier_problems": []
+ }
+]

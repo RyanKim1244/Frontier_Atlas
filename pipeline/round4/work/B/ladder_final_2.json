@@ -1,0 +1,470 @@
+[
+ {
+  "concept": "additive-combinatorics",
+  "ladder": [
+   {
+    "title": "Sumsets of integers: the trivial bound and its equality case",
+    "kind": "classic",
+    "q": "Let $A$ be a finite nonempty set of integers and $A+A=\\{a+b : a,b\\in A\\}$. Prove that $$|A+A|\\ge 2|A|-1.$$\n\nShow moreover that equality holds if and only if $A$ is an arithmetic progression.",
+    "concepts": [
+     "additive-combinatorics",
+     "combinatorial-nt"
+    ],
+    "source": "M. B. Nathanson, Additive Number Theory: Inverse Problems and the Geometry of Sumsets, GTM 165, Springer (1996), Ch. 1",
+    "bridges_to": [],
+    "note": "The simplest direct theorem together with its inverse theorem: extremal sumset size forces arithmetic structure."
+   },
+   {
+    "title": "The Cauchy–Davenport theorem",
+    "kind": "theorem",
+    "q": "Let $p$ be a prime and let $A,B$ be nonempty subsets of $\\mathbb{Z}/p\\mathbb{Z}$. Prove that $$|A+B|\\ge \\min\\big(p,\\ |A|+|B|-1\\big).$$",
+    "concepts": [
+     "additive-combinatorics",
+     "congruences",
+     "combinatorial-nt"
+    ],
+    "source": "A.-L. Cauchy (1813); H. Davenport, On the addition of residue classes, J. London Math. Soc. 10 (1935)",
+    "year": 1935,
+    "bridges_to": [],
+    "note": "Transfers the integer bound to a cyclic group of prime order, where wrap-around is the only obstruction."
+   },
+   {
+    "title": "Ruzsa's triangle inequality",
+    "kind": "classic",
+    "q": "Let $A,B,C$ be finite nonempty subsets of an abelian group. Prove that $$|A|\\,|B-C|\\le |A-B|\\,|A-C|.$$\n\nDeduce that $d(X,Y)=\\log\\dfrac{|X-Y|}{\\sqrt{|X|\\,|Y|}}$ satisfies $d(B,C)\\le d(A,B)+d(A,C)$.",
+    "concepts": [
+     "additive-combinatorics",
+     "pigeonhole"
+    ],
+    "source": "I. Z. Ruzsa (1978); T. Tao and V. Vu, Additive Combinatorics, Cambridge University Press (2006)",
+    "bridges_to": [],
+    "note": "First tool for passing information about one sumset to another; an injection argument rather than a counting identity."
+   },
+   {
+    "title": "Plünnecke–Ruzsa inequality",
+    "kind": "theorem",
+    "q": "Let $A,B$ be finite nonempty subsets of an abelian group with $|A+B|\\le K|A|$. Prove that for all integers $m,n\\ge 0$ with $m+n\\ge 1$, $$|mB-nB|\\le K^{m+n}|A|,$$ where $mB-nB$ is the set of all $b_1+\\cdots+b_m-b'_1-\\cdots-b'_n$ with $b_i,b'_j\\in B$.",
+    "concepts": [
+     "additive-combinatorics"
+    ],
+    "source": "G. Petridis, New proofs of Plünnecke-type estimates for product sets in groups, Combinatorica 32 (2012), 721–733 (inequality due to Plünnecke 1970 and Ruzsa 1989)",
+    "year": 2012,
+    "bridges_to": [],
+    "note": "Small doubling propagates to all iterated sum and difference sets with polynomial loss; used in every Freiman-type theorem below."
+   },
+   {
+    "title": "Bogolyubov's lemma in the finite field model",
+    "kind": "classic",
+    "q": "Let $A\\subseteq\\mathbb{F}_2^n$ have density $\\alpha=|A|/2^n>0$. Prove that $A+A+A+A$ contains a subspace of $\\mathbb{F}_2^n$ of codimension at most $\\alpha^{-2}$.",
+    "concepts": [
+     "additive-combinatorics",
+     "fourier-poisson",
+     "finite-fields",
+     "vector-spaces"
+    ],
+    "source": "N. N. Bogolyubov (1939); B. Green, Finite field models in additive combinatorics, Surveys in Combinatorics 2005, LMS Lecture Note Series 327, §10",
+    "bridges_to": [
+     "GREEN-50"
+    ],
+    "note": "The basic Fourier-analytic argument (large spectrum plus Parseval); Green's Problem 50 asks to improve the codimension from $\\alpha^{-2}$ to $O(\\log(1/\\alpha))$."
+   },
+   {
+    "title": "The Erdős–Heilbronn conjecture for restricted sums",
+    "kind": "theorem",
+    "q": "Let $p$ be a prime and let $A\\subseteq\\mathbb{Z}/p\\mathbb{Z}$ be nonempty. Writing $A\\hat{+}A=\\{a+b : a,b\\in A,\\ a\\neq b\\}$, prove that $$|A\\hat{+}A|\\ge \\min\\big(p,\\ 2|A|-3\\big).$$",
+    "concepts": [
+     "additive-combinatorics",
+     "congruences",
+     "polynomials-roots",
+     "finite-fields"
+    ],
+    "source": "J. A. Dias da Silva and Y. O. Hamidoune, Cyclic spaces for Grassmann derivatives and additive theory, Bull. London Math. Soc. 26 (1994); polynomial-method proof: N. Alon, M. B. Nathanson and I. Z. Ruzsa, Adding distinct congruence classes modulo a prime, Amer. Math. Monthly 102 (1995)",
+    "year": 1994,
+    "bridges_to": [
+     "ERDOS-476"
+    ],
+    "note": "Restricting to distinct summands breaks the Cauchy–Davenport proofs; the polynomial method handles it and settles Erdős Problem 476."
+   },
+   {
+    "title": "Freiman's 3k−4 theorem",
+    "kind": "theorem",
+    "q": "Let $A\\subset\\mathbb{Z}$ be finite with $|A|=k\\ge 3$ and $$|A+A|\\le 3k-4.$$ Prove that $A$ is contained in an arithmetic progression of length at most $|A+A|-k+1$.",
+    "concepts": [
+     "additive-combinatorics",
+     "combinatorial-nt"
+    ],
+    "source": "G. A. Freiman (1959); see M. B. Nathanson, Additive Number Theory: Inverse Problems and the Geometry of Sumsets, GTM 165 (1996), Ch. 1",
+    "year": 1959,
+    "bridges_to": [],
+    "note": "The first genuinely structural inverse theorem: doubling below 3 forces containment in a short progression."
+   },
+   {
+    "title": "Ruzsa's Freiman theorem in groups of exponent 2",
+    "kind": "theorem",
+    "q": "Let $A\\subseteq\\mathbb{F}_2^n$ be nonempty with $|A+A|\\le K|A|$. Prove that $A$ is contained in a subspace $H\\le\\mathbb{F}_2^n$ with $$|H|\\le K^2\\,2^{K^4}\\,|A|.$$",
+    "concepts": [
+     "additive-combinatorics",
+     "finite-fields",
+     "vector-spaces"
+    ],
+    "source": "I. Z. Ruzsa, An analog of Freiman's theorem in groups, Astérisque 258 (1999), 323–326 (proved there for groups of torsion $r$, with bound $K^2r^{K^4}|A|$)",
+    "year": 1999,
+    "bridges_to": [
+     "GREEN-49"
+    ],
+    "note": "Freiman's theorem in the model setting with an exponential loss in $K$; Marton's conjecture (Green's Problem 49) asks for polynomial loss."
+   },
+   {
+    "title": "Sanders' quasi-polynomial Bogolyubov lemma",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C$ such that the following holds. If $A\\subseteq\\mathbb{F}_2^n$ has density $\\alpha>0$, then $A+A+A+A$ contains a subspace of $\\mathbb{F}_2^n$ of codimension at most $C\\log^4(2/\\alpha)$.",
+    "concepts": [
+     "additive-combinatorics",
+     "fourier-poisson",
+     "finite-fields",
+     "probabilistic-method"
+    ],
+    "source": "T. Sanders, On the Bogolyubov–Ruzsa lemma, Analysis & PDE 5 (2012), 627–655, arXiv:1011.0107 (Theorem A.1)",
+    "year": 2012,
+    "bridges_to": [
+     "GREEN-50"
+    ],
+    "note": "Replaces $\\alpha^{-2}$ by a power of $\\log(1/\\alpha)$ via almost-periodicity; the conjectured codimension in Green's Problem 50 is $O(\\log(1/\\alpha))$."
+   },
+   {
+    "title": "Marton's conjecture (polynomial Freiman–Ruzsa) over F_2",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C$ (one may take $C=12$) such that the following holds. If $A\\subseteq\\mathbb{F}_2^n$ is nonempty with $|A+A|\\le K|A|$, then $A$ is covered by at most $2K^{C}$ cosets of some subgroup $H\\le\\mathbb{F}_2^n$ with $|H|\\le|A|$.",
+    "concepts": [
+     "additive-combinatorics",
+     "finite-fields",
+     "vector-spaces",
+     "probabilistic-method"
+    ],
+    "source": "W. T. Gowers, B. Green, F. Manners and T. Tao, On a conjecture of Marton, Ann. of Math. 201 (2025), 515–549, arXiv:2311.05762 (2023)",
+    "year": 2023,
+    "bridges_to": [
+     "GREEN-49",
+     "GREEN-50"
+    ],
+    "note": "Polynomial dependence on $K$, solving Green's Problem 49; its Bogolyubov-type analogue (Problem 50) remains open."
+   }
+  ]
+ },
+ {
+  "concept": "ramsey-arithmetic",
+  "ladder": [
+   {
+    "title": "Schur's theorem with an explicit bound",
+    "kind": "classic",
+    "q": "Let $k\\ge1$ and $N\\ge\\lfloor e\\cdot k!\\rfloor$. Prove that for every colouring of $\\{1,\\ldots,N\\}$ with $k$ colours there exist $x,y,z$ of the same colour (not necessarily distinct) with $x+y=z$.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "ramsey",
+     "pigeonhole"
+    ],
+    "source": "I. Schur (1916); R. L. Graham, B. L. Rothschild and J. H. Spencer, Ramsey Theory, 2nd ed., Wiley (1990)",
+    "year": 1916,
+    "bridges_to": [
+     "ERDOS-483"
+    ],
+    "note": "Reduces to multicolour Ramsey numbers of triangles via the colouring of pairs by differences; gives the factorial upper bound in Erdős Problem 483."
+   },
+   {
+    "title": "The Schur number S(3) = 13",
+    "kind": "classic",
+    "q": "Show that $\\{1,\\ldots,13\\}$ can be coloured with $3$ colours so that no colour class contains $x,y,z$ (not necessarily distinct) with $x+y=z$, but that every $3$-colouring of $\\{1,\\ldots,14\\}$ contains such a monochromatic solution.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "pigeonhole"
+    ],
+    "source": "B. M. Landman and A. Robertson, Ramsey Theory on the Integers, AMS Student Mathematical Library (2004)",
+    "bridges_to": [],
+    "note": "An exact small case, showing how far the general factorial bound is from the truth."
+   },
+   {
+    "title": "Exponential lower bound for Schur numbers",
+    "kind": "classic",
+    "q": "Let $S(k)$ be the largest $N$ such that $\\{1,\\ldots,N\\}$ admits a $k$-colouring with no monochromatic solution of $x+y=z$ ($x,y$ not necessarily distinct). Prove that $S(k+1)\\ge 3S(k)+1$ for every $k\\ge1$, and deduce that $$S(k)\\ge\\frac{3^k-1}{2}.$$",
+    "concepts": [
+     "ramsey-arithmetic",
+     "combinatorial-nt"
+    ],
+    "source": "I. Schur (1916); R. L. Graham, B. L. Rothschild and J. H. Spencer, Ramsey Theory, 2nd ed., Wiley (1990)",
+    "year": 1916,
+    "bridges_to": [
+     "ERDOS-483"
+    ],
+    "note": "The matching lower-bound construction; Erdős Problem 483 asks whether the true growth is exponential, i.e. whether $S(k)<c^k$."
+   },
+   {
+    "title": "Colourings that defeat a non-regular linear equation",
+    "kind": "classic",
+    "q": "Let $a_1,\\ldots,a_k$ be nonzero integers such that $\\sum_{i\\in I}a_i\\neq0$ for every nonempty $I\\subseteq\\{1,\\ldots,k\\}$, and let $p$ be a prime with $p>\\sum_{i=1}^k|a_i|$. Colour each $n\\in\\mathbb{N}$ by the last nonzero digit of $n$ in base $p$.\n\nProve that this colouring with $p-1$ colours has no monochromatic solution of $a_1x_1+\\cdots+a_kx_k=0$.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "p-adic-valuation",
+     "digits-bases",
+     "congruences"
+    ],
+    "source": "R. Rado, Studien zur Kombinatorik, Math. Z. 36 (1933); R. L. Graham, B. L. Rothschild and J. H. Spencer, Ramsey Theory, 2nd ed. (1990)",
+    "year": 1933,
+    "bridges_to": [
+     "GREEN-21"
+    ],
+    "note": "The necessity half of Rado's theorem; the number of colours depends on the size of the coefficients, and Green's Problem 21 asks whether it can be bounded in terms of $k$ alone."
+   },
+   {
+    "title": "Van der Waerden's theorem",
+    "kind": "theorem",
+    "q": "Prove that for all integers $k,r\\ge1$ there exists $N$ such that every colouring of $\\{1,\\ldots,N\\}$ with $r$ colours contains a monochromatic arithmetic progression of length $k$.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "ramsey",
+     "arithmetic-progressions"
+    ],
+    "source": "B. L. van der Waerden, Beweis einer Baudetschen Vermutung, Nieuw Arch. Wisk. 15 (1927)",
+    "year": 1927,
+    "bridges_to": [],
+    "note": "The colour-focusing induction, the engine behind Rado's sufficiency proof and finite-sums theorems."
+   },
+   {
+    "title": "Folkman's finite sums theorem",
+    "kind": "classic",
+    "q": "Prove that for all integers $r,m\\ge1$ there exists $N$ such that for every $r$-colouring of $\\{1,\\ldots,N\\}$ there is a set $S$ of $m$ distinct positive integers such that all sums $\\sum_{s\\in T}s$, over nonempty $T\\subseteq S$, lie in $\\{1,\\ldots,N\\}$ and have the same colour.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "ramsey"
+    ],
+    "source": "J. Folkman, R. Rado, J. Sanders; R. L. Graham, B. L. Rothschild and J. H. Spencer, Ramsey Theory, 2nd ed., Wiley (1990)",
+    "bridges_to": [
+     "ERDOS-532"
+    ],
+    "note": "Finite version of Hindman's theorem; Erdős Problem 532 is the infinite version for two colours."
+   },
+   {
+    "title": "Rado's theorem for a single equation",
+    "kind": "theorem",
+    "q": "Let $a_1,\\ldots,a_k$ be nonzero integers. Prove that every finite colouring of $\\mathbb{N}$ admits a monochromatic solution $x_1,\\ldots,x_k$ of $$a_1x_1+\\cdots+a_kx_k=0$$ if and only if $\\sum_{i\\in I}a_i=0$ for some nonempty $I\\subseteq\\{1,\\ldots,k\\}$.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "ramsey",
+     "arithmetic-progressions"
+    ],
+    "source": "R. Rado, Studien zur Kombinatorik, Math. Z. 36 (1933)",
+    "year": 1933,
+    "bridges_to": [
+     "GREEN-21"
+    ],
+    "note": "Completes the characterisation of partition regular single equations; the boundedness question in Green's Problem 21 concerns the complementary case."
+   },
+   {
+    "title": "Rado's boundedness conjecture for three variables",
+    "kind": "special-case",
+    "q": "Let $a_1,a_2,a_3$ be nonzero integers such that $\\sum_{i\\in I}a_i\\neq0$ for every nonempty $I\\subseteq\\{1,2,3\\}$. Prove that $\\mathbb{N}$ can be coloured with $24$ colours so that there is no monochromatic solution of $$a_1x_1+a_2x_2+a_3x_3=0.$$",
+    "concepts": [
+     "ramsey-arithmetic",
+     "p-adic-valuation",
+     "combinatorial-nt"
+    ],
+    "source": "J. Fox and D. J. Kleitman, On Rado's boundedness conjecture, J. Combin. Theory Ser. A 113 (2006), 84–100",
+    "year": 2006,
+    "bridges_to": [
+     "GREEN-21"
+    ],
+    "note": "The case $k=3$ of Green's Problem 21 with a bound independent of the coefficients; open for $k\\ge4$."
+   },
+   {
+    "title": "Monochromatic x, x+y and xy",
+    "kind": "theorem",
+    "q": "Prove that for every finite colouring of $\\mathbb{N}$ there exist $x,y\\in\\mathbb{N}$ such that $x$, $x+y$ and $xy$ all have the same colour.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "ramsey"
+    ],
+    "source": "J. Moreira, Monochromatic sums and products in N, Ann. of Math. 185 (2017), 1069–1090",
+    "year": 2017,
+    "bridges_to": [
+     "GREEN-22"
+    ],
+    "note": "Forces a sum and a product into one colour (together with $x$); Green's Problem 22 asks the same for the pair $x+y$, $xy$ alone (with $x,y\\ge3$ to exclude $2+2=2\\cdot2$), which remains open."
+   },
+   {
+    "title": "Partition regularity of Pythagorean pairs",
+    "kind": "theorem",
+    "q": "Prove that for every finite colouring of $\\mathbb{N}$ there exist distinct $x,y\\in\\mathbb{N}$ of the same colour such that $x^2+y^2$ is a perfect square.",
+    "concepts": [
+     "ramsey-arithmetic",
+     "pythagorean",
+     "arithmetic-functions"
+    ],
+    "source": "N. Frantzikinakis, O. Klurman and J. Moreira, Partition regularity of Pythagorean pairs, Forum Math. Pi 13 (2025), e5, arXiv:2309.10636",
+    "year": 2025,
+    "bridges_to": [
+     "GREEN-23"
+    ],
+    "note": "Settles Green's Problem 23 via multiplicative functions; partition regularity of $x^2+y^2=z^2$ with $x,y,z$ all of one colour remains open for general finite colourings."
+   }
+  ]
+ },
+ {
+  "concept": "discrepancy",
+  "ladder": [
+   {
+    "title": "Discrepancy 1 survives exactly to length 11",
+    "kind": "classic",
+    "q": "For $f:\\{1,\\ldots,N\\}\\to\\{-1,1\\}$ let $D(f)=\\max\\{|\\sum_{k=1}^{n}f(kd)| : n,d\\ge1,\\ nd\\le N\\}$.\n\nShow that some $f:\\{1,\\ldots,11\\}\\to\\{-1,1\\}$ has $D(f)=1$, but that every $f:\\{1,\\ldots,12\\}\\to\\{-1,1\\}$ has $D(f)\\ge2$.",
+    "concepts": [
+     "discrepancy",
+     "pigeonhole"
+    ],
+    "source": "Folklore; the value 11 is a(1) in OEIS A237695 (maximum length of a ±1 sequence of discrepancy n), whose a(2)=1160 is due to B. Konev and A. Lisitsa, A SAT attack on the Erdős discrepancy conjecture, arXiv:1402.2184 (2014)",
+    "bridges_to": [],
+    "note": "The case $C=1$ of the Erdős discrepancy problem by hand; the case $C=2$ already needed a SAT solver."
+   },
+   {
+    "title": "Weyl equidistribution and the quantifier in Khinchin's question",
+    "kind": "classic",
+    "q": "Let $\\alpha$ be irrational. Prove that for every interval $[a,b)\\subseteq[0,1)$, $$\\lim_{n\\to\\infty}\\frac1n\\#\\{1\\le k\\le n : \\{k\\alpha\\}\\in[a,b)\\}=b-a.$$\n\nShow on the other hand that for every real $\\alpha$ there is a measurable $E\\subseteq(0,1)$ with $\\lambda(E)=1$ such that $\\{k\\alpha\\}\\notin E$ for all $k\\ge1$.",
+    "concepts": [
+     "discrepancy",
+     "diophantine-approx",
+     "fourier-poisson",
+     "floor-functions"
+    ],
+    "source": "H. Weyl, Über die Gleichverteilung von Zahlen mod. Eins, Math. Ann. 77 (1916); L. Kuipers and H. Niederreiter, Uniform Distribution of Sequences, Wiley (1974)",
+    "year": 1916,
+    "bridges_to": [
+     "ERDOS-994"
+    ],
+    "note": "Equidistribution holds for intervals, but no single $\\alpha$ works for all measurable sets, so Khinchin's question in Erdős Problem 994 must be read as: for each fixed $E$, for almost all $\\alpha$."
+   },
+   {
+    "title": "Exponential sums of a sequence cannot all stay bounded",
+    "kind": "classic",
+    "q": "Let $x_1,x_2,\\ldots$ be any sequence of real numbers and $e(t)=e^{2\\pi it}$. Prove that $$\\limsup_{k\\to\\infty}\\ \\sup_{n\\ge1}\\ \\Big|\\sum_{j=1}^{n}e(kx_j)\\Big|=\\infty.$$",
+    "concepts": [
+     "discrepancy",
+     "exponential-sums",
+     "fourier-poisson"
+    ],
+    "source": "Remark of P. Erdős (1964), recorded at erdosproblems.com/987 (where it is described as easy), together with the later results of Clunie (1967)",
+    "year": 1964,
+    "bridges_to": [
+     "ERDOS-987"
+    ],
+    "note": "The version with $\\sup_n$ is elementary; Erdős Problem 987 asks the same with $\\limsup_n$ in place of $\\sup_n$, and for the growth rate in $k$."
+   },
+   {
+    "title": "A multiplicative sequence with logarithmic discrepancy",
+    "kind": "classic",
+    "q": "Let $\\lambda:\\mathbb{N}\\to\\{-1,1\\}$ be the completely multiplicative function with $\\lambda(3)=1$, $\\lambda(p)=1$ for primes $p\\equiv1\\pmod 3$ and $\\lambda(p)=-1$ for primes $p\\equiv2\\pmod 3$. Prove that $$0\\le\\sum_{k=1}^{n}\\lambda(k)\\le\\log_3 n+1\\quad\\text{for all } n\\ge1,$$ and deduce that $|\\sum_{k=1}^{n}\\lambda(kd)|\\le\\log_3 N+1$ whenever $n,d\\ge1$ and $nd\\le N$.",
+    "concepts": [
+     "discrepancy",
+     "arithmetic-functions",
+     "dirichlet-characters"
+    ],
+    "source": "P. Borwein, S. K. K. Choi and M. Coons, Completely multiplicative functions taking values in {−1,1}, Trans. Amer. Math. Soc. 362 (2010), 6279–6291 (Corollary 4)",
+    "year": 2010,
+    "bridges_to": [
+     "ERDOS-67"
+    ],
+    "note": "Shows that discrepancy along homogeneous progressions can grow as slowly as $\\log N$, matching the lower bound $\\gg\\log N$ that Erdős conjectured."
+   },
+   {
+    "title": "Random colourings of pairs: the upper bound n^{3/2}",
+    "kind": "theorem",
+    "q": "For $f:\\{(x,y): 1\\le x<y\\le n\\}\\to\\{-1,1\\}$ and $X\\subseteq\\{1,\\ldots,n\\}$ write $f(X)=\\sum_{x<y,\\ x,y\\in X}f(x,y)$. Prove that there is an absolute constant $C$ such that for every $n\\ge1$ some $f$ satisfies $|f(X)|\\le Cn^{3/2}$ for all $X\\subseteq\\{1,\\ldots,n\\}$.",
+    "concepts": [
+     "discrepancy",
+     "probabilistic-method",
+     "graph-coloring"
+    ],
+    "source": "P. Erdős (1963), as recorded at erdosproblems.com/1028; the method is the standard Chernoff-plus-union-bound argument, see N. Alon and J. H. Spencer, The Probabilistic Method",
+    "year": 1963,
+    "bridges_to": [
+     "ERDOS-1028"
+    ],
+    "note": "Random colouring plus a union bound over all $2^n$ sets gives the upper bound in Erdős Problem 1028."
+   },
+   {
+    "title": "Roth's theorem on discrepancy in arithmetic progressions",
+    "kind": "theorem",
+    "q": "Prove that there is a constant $c>0$ such that for every $N\\ge1$ and every $f:\\{1,\\ldots,N\\}\\to\\{-1,1\\}$ there is an arithmetic progression $P\\subseteq\\{1,\\ldots,N\\}$ with $$\\Big|\\sum_{x\\in P}f(x)\\Big|\\ge cN^{1/4}.$$",
+    "concepts": [
+     "discrepancy",
+     "fourier-poisson",
+     "arithmetic-progressions"
+    ],
+    "source": "K. F. Roth, Remark concerning integer sequences, Acta Arith. 9 (1964); the exponent 1/4 is sharp by J. Matoušek and J. Spencer, Discrepancy in arithmetic progressions, J. Amer. Math. Soc. 9 (1996)",
+    "year": 1964,
+    "bridges_to": [],
+    "note": "For all progressions (not only homogeneous ones) discrepancy is polynomial, in contrast with the logarithmic example above."
+   },
+   {
+    "title": "Erdős–Spencer lower bound for imbalance of 2-colourings of pairs",
+    "kind": "theorem",
+    "q": "With $f(X)$ as above, prove that there is a constant $c>0$ such that for every $n\\ge2$ and every $f:\\{(x,y): 1\\le x<y\\le n\\}\\to\\{-1,1\\}$ there is $X\\subseteq\\{1,\\ldots,n\\}$ with $|f(X)|\\ge cn^{3/2}$.",
+    "concepts": [
+     "discrepancy",
+     "graph-coloring",
+     "probabilistic-method"
+    ],
+    "source": "P. Erdős and J. Spencer, Imbalances in k-colorations, Networks 1 (1971/72), 379–385",
+    "year": 1972,
+    "bridges_to": [
+     "ERDOS-1028"
+    ],
+    "note": "Matches the random upper bound, giving $H(n)\\asymp n^{3/2}$ in Erdős Problem 1028; the density version for large induced subgraphs is Erdős Problem 162."
+   },
+   {
+    "title": "Spencer's six standard deviations",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $C$ such that for every $n\\ge1$ and any $n$ sets $S_1,\\ldots,S_n\\subseteq\\{1,\\ldots,n\\}$ there exists $\\chi:\\{1,\\ldots,n\\}\\to\\{-1,1\\}$ with $$\\Big|\\sum_{x\\in S_i}\\chi(x)\\Big|\\le C\\sqrt n\\quad\\text{for all } 1\\le i\\le n.$$",
+    "concepts": [
+     "discrepancy",
+     "probabilistic-method",
+     "set-systems"
+    ],
+    "source": "J. Spencer, Six standard deviations suffice, Trans. Amer. Math. Soc. 289 (1985) (with $C=6$)",
+    "year": 1985,
+    "bridges_to": [],
+    "note": "Beats random colouring (which gives $\\sqrt{2n\\log(2n)}$) by partial colouring and entropy; the prototype of all sharp discrepancy bounds."
+   },
+   {
+    "title": "Law of the iterated logarithm for lacunary exponential sums",
+    "kind": "special-case",
+    "q": "Let $n_1<n_2<\\cdots$ be positive integers with $n_{k+1}/n_k\\ge q$ for all $k$, for some fixed $q>1$. Prove that for almost every $\\alpha\\in[0,1]$, $$\\limsup_{N\\to\\infty}\\frac{|\\sum_{k=1}^{N}e(n_k\\alpha)|}{\\sqrt{N\\log\\log N}}\\le1.$$\n\nDeduce that if $f$ is a trigonometric polynomial with $\\int_0^1f=0$, then for almost every $\\alpha$, $$\\sum_{k=1}^{N}f(\\{\\alpha n_k\\})=O\\big(\\sqrt{N\\log\\log N}\\big),$$ and in particular this sum is $o(N\\sqrt{\\log\\log N})$.",
+    "concepts": [
+     "discrepancy",
+     "exponential-sums",
+     "limit-theorems",
+     "lebesgue"
+    ],
+    "source": "P. Erdős and I. S. Gál, On the law of the iterated logarithm I, II, Nederl. Akad. Wetensch. Proc. Ser. A 58 = Indag. Math. 17 (1955), 65–76, 77–84 (they prove the limsup equals 1)",
+    "year": 1955,
+    "bridges_to": [
+     "ERDOS-995"
+    ],
+    "note": "Answers Erdős Problem 995 for trigonometric polynomials; the open case is general $f\\in L^2$, where Erdős constructed examples whose sums exceed $N(\\log\\log N)^{1/2-\\epsilon}$ infinitely often."
+   },
+   {
+    "title": "The Erdős discrepancy problem, Hilbert-space form",
+    "kind": "theorem",
+    "q": "Let $H$ be a real or complex Hilbert space and $f:\\mathbb{N}\\to H$ a function with $\\|f(n)\\|=1$ for all $n$. Prove that $$\\sup_{n,d\\ge1}\\Big\\|\\sum_{j=1}^{n}f(jd)\\Big\\|=\\infty.$$\n\nIn particular, every $f:\\mathbb{N}\\to\\{-1,1\\}$ has unbounded discrepancy along homogeneous arithmetic progressions.",
+    "concepts": [
+     "discrepancy",
+     "arithmetic-functions",
+     "dirichlet-characters",
+     "fourier-poisson"
+    ],
+    "source": "T. Tao, The Erdős discrepancy problem, Discrete Analysis 2016:1, arXiv:1509.05363",
+    "year": 2016,
+    "bridges_to": [
+     "ERDOS-67"
+    ],
+    "note": "Reduction to completely multiplicative functions plus a logarithmically averaged Elliott conjecture; the conjectured $\\log N$ growth rate remains open."
+   }
+  ]
+ }
+]
