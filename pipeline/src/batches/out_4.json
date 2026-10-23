@@ -1,0 +1,1064 @@
+[
+ {
+  "file": "Usa1985P1",
+  "source": "USAMO",
+  "year": 1985,
+  "num": "1",
+  "q": "Determine whether or not there are any positive integral solutions of the simultaneous equations\n$$x_1^2 + x_2^2 + \\cdots + x_{1985}^2 = y^3,$$\n$$x_1^3 + x_2^3 + \\cdots + x_{1985}^3 = z^2$$\nwith distinct integers $x_1, x_2, \\ldots, x_{1985}$.",
+  "concepts": [
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1985P2",
+  "source": "USAMO",
+  "year": 1985,
+  "num": "2",
+  "q": "Find all real roots of the quartic $$x^4 - (2N + 1)x^2 - x + N^2 + N - 1 = 0$$ correct to 4 decimal places, where $N = 10^{10}$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1985P4",
+  "source": "USAMO",
+  "year": 1985,
+  "num": "4",
+  "q": "A graph has $n > 2$ points. Show that we can find two points $A$ and $B$ such that at least $\\lfloor n/2 \\rfloor - 1$ of the remaining points are joined to either both or neither of $A$ and $B$.",
+  "concepts": [
+   "graph-basics",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1985P5",
+  "source": "USAMO",
+  "year": 1985,
+  "num": "5",
+  "q": "$0 < a_1 \\le a_2 \\le a_3 \\le \\cdots$ is an unbounded sequence of integers. Let $b_n = m$ if $a_m$ is the first member of the sequence to equal or exceed $n$. Given that $a_{19} = 85$, what is the maximum possible value of $a_1 + a_2 + \\cdots + a_{19} + b_1 + b_2 + \\cdots + b_{85}$?",
+  "concepts": [
+   "pigeonhole",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1986P1",
+  "source": "USAMO",
+  "year": 1986,
+  "num": "1",
+  "q": "(a) Do there exist $14$ consecutive positive integers, each of which is divisible by a prime less than $13$?\n\n(b) Do there exist $21$ consecutive positive integers, each of which is divisible by a prime less than $17$?",
+  "concepts": [
+   "crt",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1986P2",
+  "source": "USAMO",
+  "year": 1986,
+  "num": "2",
+  "q": "Five professors attended a lecture. Each fell asleep just twice. For each pair there was a moment when both were asleep. Show that there was a moment when three of them were asleep.",
+  "concepts": [
+   "pigeonhole",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1986P3",
+  "source": "USAMO",
+  "year": 1986,
+  "num": "3",
+  "q": "What is the smallest $n > 1$ for which the average of the first $n$ (non-zero) squares is a square?",
+  "concepts": [
+   "pell",
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1986P5",
+  "source": "USAMO",
+  "year": 1986,
+  "num": "5",
+  "q": "A partition of $n$ is an increasing sequence of integers with sum $n$. For example, the partitions of $5$ are: $1, 1, 1, 1, 1$; $1, 1, 1, 2$; $1, 1, 3$; $1, 4$; $5$; $1, 2, 2$; and $2, 3$. If $p$ is a partition, $f(p)$ is the number of $1$s in $p$, and $g(p)$ is the number of distinct integers in the partition. Show that $\\sum f(p) = \\sum g(p)$, where the sum is taken over all partitions of $n$.",
+  "concepts": [
+   "counting",
+   "generating-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1987P1",
+  "source": "USAMO",
+  "year": 1987,
+  "num": "1",
+  "q": "Determine all solutions to\n$$(m^2 + n)(m + n^2) = (m - n)^3,$$\nwhere $m$ and $n$ are non-zero integers.",
+  "concepts": [
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1987P3",
+  "source": "USAMO",
+  "year": 1987,
+  "num": "3",
+  "q": "$X$ is the smallest set of polynomials $p(x)$ such that:\n\n(1) $p(x) = x$ belongs to $X$; and\n\n(2) if $r(x)$ belongs to $X$, then $x\\,r(x)$ and $x + (1 - x)\\,r(x)$ both belong to $X$.\n\nShow that if $r(x)$ and $s(x)$ are distinct elements of $X$, then $r(x) \\ne s(x)$ for any $0 < x < 1$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1987P5",
+  "source": "USAMO",
+  "year": 1987,
+  "num": "5",
+  "q": "$a_1, a_2, \\ldots, a_n$ is a sequence of $0$s and $1$s. $T$ is the number of triples $(a_i, a_j, a_k)$ with $i < j < k$ which are not equal to $(0, 1, 0)$ or $(1, 0, 1)$. For $1 \\le i \\le n$, $f(i)$ is the number of $j < i$ with $a_j = a_i$ plus the number of $j > i$ with $a_j \\ne a_i$. Show that\n$$T = \\frac{f(1)(f(1) - 1)}{2} + \\frac{f(2)(f(2) - 1)}{2} + \\cdots + \\frac{f(n)(f(n) - 1)}{2}.$$\nIf $n$ is odd, what is the smallest value of $T$?",
+  "concepts": [
+   "counting",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1988P1",
+  "source": "USAMO",
+  "year": 1988,
+  "num": "1",
+  "q": "The repeating decimal $0.ab\\cdots k\\overline{pq\\cdots u} = \\dfrac{m}{n}$, where $m$ and $n$ are relatively prime integers, and there is at least one decimal before the repeating part. Show that $n$ is divisible by $2$ or $5$ (or both). (For example, $0.011\\overline{36} = 0.01136363636\\cdots = \\dfrac{1}{88}$, and $88$ is divisible by $2$.)",
+  "concepts": [
+   "digits-bases",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1988P2",
+  "source": "USAMO",
+  "year": 1988,
+  "num": "2",
+  "q": "The cubic $x^3 + ax^2 + bx + c$ has real coefficients and three real roots $r \\ge s \\ge t$. Show that $k = a^2 - 3b \\ge 0$ and that $\\sqrt{k} \\le r - t$.",
+  "concepts": [
+   "polynomials-roots",
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1988P3",
+  "source": "USAMO",
+  "year": 1988,
+  "num": "3",
+  "q": "Let $X$ be the set $\\{1, 2, \\ldots, 20\\}$ and let $P$ be the set of all $9$-element subsets of $X$. Show that for any map $f : P \\to X$ we can find a $10$-element subset $Y$ of $X$ such that $f(Y \\setminus \\{k\\}) \\ne k$ for any $k$ in $Y$.",
+  "concepts": [
+   "set-systems",
+   "pigeonhole",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1988P4",
+  "source": "USAMO",
+  "year": 1988,
+  "num": "4",
+  "q": "$ABC$ is a triangle with incenter $I$. Show that the circumcenters of triangles $IAB$, $IBC$, and $ICA$ lie on a circle whose center is the circumcenter of triangle $ABC$.",
+  "concepts": [
+   "triangle-centres",
+   "circles"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1988P5",
+  "source": "USAMO",
+  "year": 1988,
+  "num": "5",
+  "q": "Let $p(x)$ be the polynomial $(1 - x)^a (1 - x^2)^b (1 - x^3)^c \\cdots (1 - x^{32})^k$, where $a, b, \\ldots, k$ are integers. When expanded in powers of $x$, the coefficient of $x^1$ is $-2$ and the coefficients of $x^2, x^3, \\ldots, x^{32}$ are all zero. Find $k$.",
+  "concepts": [
+   "generating-functions",
+   "integer-polynomials"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1989P1",
+  "source": "USAMO",
+  "year": 1989,
+  "num": "1",
+  "q": "For each positive integer $n$, let\n$$S_n = 1 + \\frac{1}{2} + \\frac{1}{3} + \\cdots + \\frac{1}{n},$$\n$$T_n = S_1 + S_2 + S_3 + \\cdots + S_n,$$\n$$U_n = \\frac{T_1}{2} + \\frac{T_2}{3} + \\frac{T_3}{4} + \\cdots + \\frac{T_n}{n+1}.$$\nFind, with proof, integers $0 < a, b, c, d < 1000000$ such that $T_{1988} = a S_{1989} - b$ and $U_{1988} = c S_{1989} - d$.",
+  "concepts": [
+   "partial-summation",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1989P2",
+  "source": "USAMO",
+  "year": 1989,
+  "num": "2",
+  "q": "The $20$ members of a local tennis club have scheduled exactly $14$ two-person games among themselves, with each member playing in at least one game. Prove that within this schedule can be found a set of six games with $12$ distinct players.",
+  "concepts": [
+   "cycles-matchings",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1989P3",
+  "source": "USAMO",
+  "year": 1989,
+  "num": "3",
+  "q": "Let $P(z) = z^n + c_1 z^{n-1} + \\cdots + c_n$ be a polynomial in the complex variable $z$, with real coefficients $c_k$. Suppose that $|P(i)| < 1$. Prove that there exist real numbers $a$ and $b$ such that $P(a + bi) = 0$ and $(a^2 + b^2 + 1)^2 < 4b^2 + 1$.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1989P5",
+  "source": "USAMO",
+  "year": 1989,
+  "num": "5",
+  "q": "Let $u$ and $v$ be real numbers such that\n$$(u + u^2 + u^3 + \\cdots + u^8) + 10u^9 = (v + v^2 + v^3 + \\cdots + v^{10}) + 10v^{11} = 8.$$\nDetermine, with proof, which of the two numbers, $u$ or $v$, is larger.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1990P1",
+  "source": "USAMO",
+  "year": 1990,
+  "num": "1",
+  "q": "A license plate has six digits from $0$ to $9$ and may have leading zeros. If two plates must always differ in at least two places, what is the largest number of plates that is possible?",
+  "concepts": [
+   "counting",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1990P2",
+  "source": "USAMO",
+  "year": 1990,
+  "num": "2",
+  "q": "A sequence of functions $\\{f_n(x)\\}$ is defined recursively as follows:\n$$f_0(x) = 8, \\qquad f_{n+1}(x) = \\sqrt{x^2 + 6f_n(x)}.$$\nFor each nonnegative integer $n$, find all real solutions of the equation $f_n(x) = 2x$.",
+  "concepts": [
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1990P3",
+  "source": "USAMO",
+  "year": 1990,
+  "num": "3",
+  "q": "Show that for any odd positive integer $n$, we can always divide the set $\\{n, n+1, n+2, \\ldots, n+32\\}$ into two parts, one with $14$ numbers and one with $19$, so that the numbers in each part can be arranged in a circle, with each number relatively prime to its two neighbours.",
+  "concepts": [
+   "divisibility",
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1990P4",
+  "source": "USAMO",
+  "year": 1990,
+  "num": "4",
+  "q": "How many positive integers can be written in base $n$ so that\n\n(1) the integer has no two digits the same, and\n\n(2) each digit after the first differs by one from an earlier digit?\n\nFor example, in base $3$, the possible numbers are $1, 2, 10, 12, 21, 102, 120, 210$.",
+  "concepts": [
+   "counting",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1991P2",
+  "source": "USAMO",
+  "year": 1991,
+  "num": "2",
+  "q": "For each non-empty subset of $\\{1, 2, \\ldots, n\\}$ take the sum of the elements divided by the product. Show that the sum of the resulting quantities is $n^2 + 2n - (n + 1)s_n$, where $s_n = 1 + \\dfrac{1}{2} + \\dfrac{1}{3} + \\cdots + \\dfrac{1}{n}$.",
+  "concepts": [
+   "generating-functions",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1991P3",
+  "source": "USAMO",
+  "year": 1991,
+  "num": "3",
+  "q": "Define the function $f$ on the natural numbers by $f(1) = 2$, $f(n) = 2^{f(n-1)}$. Show that $f(n)$ has the same residue mod $m$ for all sufficiently large $n$.",
+  "concepts": [
+   "fermat-euler",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1991P4",
+  "source": "USAMO",
+  "year": 1991,
+  "num": "4",
+  "q": "Let $$a = \\frac{m^{m+1} + n^{n+1}}{m^m + n^n},$$ where $m$ and $n$ are positive integers. Prove that $a^m + a^n \\ge m^m + n^n$.",
+  "concepts": [
+   "amgm",
+   "convexity"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1992P1",
+  "source": "USAMO",
+  "year": 1992,
+  "num": "1",
+  "q": "Find, as a function of $n$, the sum of the digits of\n$$9 \\times 99 \\times 9999 \\times \\cdots \\times \\left(10^{2^n} - 1\\right),$$\nwhere each factor has twice as many digits as the last one.",
+  "concepts": [
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1992P2",
+  "source": "USAMO",
+  "year": 1992,
+  "num": "2",
+  "q": "Prove that\n$$\\frac{1}{\\cos 0^\\circ \\cos 1^\\circ} + \\frac{1}{\\cos 1^\\circ \\cos 2^\\circ} + \\cdots + \\frac{1}{\\cos 88^\\circ \\cos 89^\\circ} = \\frac{\\cos 1^\\circ}{\\sin^2 1^\\circ}.$$",
+  "concepts": [
+   "series",
+   "complex-numbers"
+  ],
+  "check": "docstring typo: last term read cos 99; corrected to cos 89 (matches Lean and official)"
+ },
+ {
+  "file": "Usa1992P3",
+  "source": "USAMO",
+  "year": 1992,
+  "num": "3",
+  "q": "A set of $11$ distinct positive integers has the property that we can find a subset with sum $n$ for any $n$ between $1$ and $1500$ inclusive. What is the smallest possible value for the second largest element?",
+  "concepts": [
+   "additive-bases",
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1992P5",
+  "source": "USAMO",
+  "year": 1992,
+  "num": "5",
+  "q": "A complex polynomial has degree $1992$ and distinct zeros. Show that we can find complex numbers $z_n$ such that if $p_1(z) = z - z_1$ and $p_n(z) = p_{n-1}(z)^2 - z_n$, then the polynomial divides $p_{1992}(z)$.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1993P1",
+  "source": "USAMO",
+  "year": 1993,
+  "num": "1",
+  "q": "For each integer $n \\ge 2$, determine whether $a$ or $b$ is larger, where $a$ and $b$ are positive real numbers satisfying\n$$a^n = a + 1, \\qquad b^{2n} = b + 3a.$$",
+  "concepts": [
+   "polynomials-roots",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1993P3",
+  "source": "USAMO",
+  "year": 1993,
+  "num": "3",
+  "q": "Consider functions $f : [0,1] \\to \\mathbb{R}$ which satisfy\n\n(i) $f(x) \\ge 0$ for all $x \\in [0,1]$;\n\n(ii) $f(1) = 1$;\n\n(iii) $f(x) + f(y) \\le f(x + y)$ whenever $x$, $y$ and $x + y$ are all in $[0,1]$.\n\nDetermine the smallest constant $c$ such that $f(x) \\le cx$ for every function $f$ satisfying (i)–(iii) and every $x \\in [0,1]$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1993P4",
+  "source": "USAMO",
+  "year": 1993,
+  "num": "4",
+  "q": "The sequence $a_n$ of odd positive integers is defined as follows: $a_1 = r$, $a_2 = s$, and $a_n$ is the greatest odd divisor of $a_{n-1} + a_{n-2}$. Show that, for sufficiently large $n$, $a_n$ is constant and find this constant (in terms of $r$ and $s$).",
+  "concepts": [
+   "divisibility",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1993P5",
+  "source": "USAMO",
+  "year": 1993,
+  "num": "5",
+  "q": "A sequence $x_0, x_1, x_2, \\ldots$ of positive reals satisfies $x_{n-1}x_{n+1} \\le x_n^2$ for all $n \\ge 1$. Let $a_n$ be the average of the terms $x_0, x_1, \\ldots, x_n$ and $b_n$ be the average of the terms $x_1, x_2, \\ldots, x_n$. Show that $a_n b_{n-1} \\ge a_{n-1} b_n$ for each $n > 1$.",
+  "concepts": [
+   "sequences",
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1994P1",
+  "source": "USAMO",
+  "year": 1994,
+  "num": "1",
+  "q": "$a_1, a_2, a_3, \\ldots$ are positive integers such that $a_n > a_{n-1} + 1$. Put $b_n = a_1 + a_2 + \\cdots + a_n$. Show that there is always a square in the range $b_n, b_n + 1, b_n + 2, \\ldots, b_{n+1} - 1$.",
+  "concepts": [
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1994P2",
+  "source": "USAMO",
+  "year": 1994,
+  "num": "2",
+  "q": "The sequence $a_1, a_2, \\ldots, a_{99}$ has $a_1 = a_3 = a_5 = \\cdots = a_{97} = 1$, $a_2 = a_4 = a_6 = \\cdots = a_{98} = 2$, and $a_{99} = 3$. We interpret subscripts greater than $99$ by subtracting $99$, so that $a_{100}$ means $a_1$, etc. An allowed move is to change the value of any one of the $a_n$ to another member of $\\{1, 2, 3\\}$ different from its two neighbors, $a_{n-1}$ and $a_{n+1}$. Is there a sequence of allowed moves which results in $a_m = a_{m+2} = \\cdots = a_{m+96} = 1$, $a_{m+1} = a_{m+3} = \\cdots = a_{m+95} = 2$, $a_{m+97} = 3$, $a_{m+98} = 2$ for some $m$? (So if $m = 1$, we have just interchanged the values of $a_{98}$ and $a_{99}$.)",
+  "concepts": [
+   "invariants"
+  ],
+  "check": "removed answer/solution sketch from docstring"
+ },
+ {
+  "file": "Usa1994P4",
+  "source": "USAMO",
+  "year": 1994,
+  "num": "4",
+  "q": "$x_1, x_2, x_3, \\ldots$ is an infinite sequence of positive reals such that for all $n$, $x_1 + x_2 + \\cdots + x_n \\ge \\sqrt{n}$. Show that\n$$x_1^2 + x_2^2 + \\cdots + x_n^2 > \\frac{1}{4}\\left(1 + \\frac{1}{2} + \\frac{1}{3} + \\cdots + \\frac{1}{n}\\right)$$\nfor all $n$.",
+  "concepts": [
+   "cauchy-schwarz",
+   "partial-summation"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1994P5",
+  "source": "USAMO",
+  "year": 1994,
+  "num": "5",
+  "q": "Let $|U|$, $\\sigma(U)$ and $\\pi(U)$ denote the number of elements, the sum, and the product, respectively, of a finite set $U$ of positive integers. (If $U$ is the empty set, $|U| = 0$, $\\sigma(U) = 0$, $\\pi(U) = 1$.) Let $S$ be a finite set of positive integers. As usual, define $\\binom{n}{k} = \\dfrac{n!}{k!\\,(n-k)!}$ for $0 \\le k \\le n$ and $\\binom{n}{k} = 0$ otherwise. Prove that\n$$\\sum_{U \\subseteq S} (-1)^{|U|} \\binom{m - \\sigma(U)}{|S|} = \\pi(S)$$\nfor all integers $m \\ge \\sigma(S)$.",
+  "concepts": [
+   "counting",
+   "generating-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1995P1",
+  "source": "USAMO",
+  "year": 1995,
+  "num": "1",
+  "q": "Let $p$ be an odd prime. The sequence $(a_n)_{n \\ge 0}$ is defined as follows: $a_0 = 0$, $a_1 = 1$, $\\ldots$, $a_{p-2} = p - 2$, and for all $n \\ge p - 1$, $a_n$ is the least integer greater than $a_{n-1}$ such that $a_0, a_1, \\ldots, a_n$ does not contain an arithmetic progression of length $p$. Prove that, for all $n$, $a_n$ is the number obtained by writing $n$ in base $p - 1$ and reading the result in base $p$.",
+  "concepts": [
+   "arithmetic-progressions",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1995P2",
+  "source": "USAMO",
+  "year": 1995,
+  "num": "2",
+  "q": "A trigonometric map is any one of $\\sin$, $\\cos$, $\\tan$, $\\arcsin$, $\\arccos$ and $\\arctan$. Show that given any positive rational number $x$, one can find a finite sequence of trigonometric maps which take $0$ to $x$. (So we need to show that we can always find a sequence of trigonometric maps $t_i$ so that $x_1 = t_0(0)$, $x_2 = t_1(x_1)$, $\\ldots$, $x_n = t_{n-1}(x_{n-1})$, $x = t_n(x_n)$.)",
+  "concepts": [
+   "continued-fractions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1995P4",
+  "source": "USAMO",
+  "year": 1995,
+  "num": "4",
+  "q": "$a_0, a_1, a_2, \\ldots$ is an infinite sequence of integers such that $a_n - a_m$ is divisible by $n - m$ for all (unequal) $n$ and $m$. For some polynomial $p(x)$ we have $p(n) > |a_n|$ for all $n$. Show that there is a polynomial $q(x)$ such that $q(n) = a_n$ for all $n$.",
+  "concepts": [
+   "integer-polynomials",
+   "polynomials-roots",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1995P5",
+  "source": "USAMO",
+  "year": 1995,
+  "num": "5",
+  "q": "A graph with $n$ points and $k$ edges has no triangles. Show that it has a point $P$ such that there are at most $k\\left(1 - \\dfrac{4k}{n^2}\\right)$ edges between points not joined to $P$ (by an edge).",
+  "concepts": [
+   "extremal-graphs",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1996P1",
+  "source": "USAMO",
+  "year": 1996,
+  "num": "1",
+  "q": "Prove that the average of the numbers $n \\sin n^\\circ$ $(n = 2, 4, 6, \\ldots, 180)$ is $\\cot 1^\\circ$.",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1996P2",
+  "source": "USAMO",
+  "year": 1996,
+  "num": "2",
+  "q": "Let $S$ be a set of $n$ positive integers. Let $P$ be the set of all integers which are the sum of one or more distinct elements of $S$. Show that we can find $n$ subsets of $P$ whose union is $P$ such that if $a, b$ belong to the same subset, then $a \\le 2b$.",
+  "concepts": [
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1996P4",
+  "source": "USAMO",
+  "year": 1996,
+  "num": "4",
+  "q": "An $n$-term sequence $(x_1, x_2, \\ldots, x_n)$ in which each term is either $0$ or $1$ is called a binary sequence of length $n$. Let $a_n$ be the number of binary sequences of length $n$ containing no three consecutive terms equal to $0, 1, 0$ in that order. Let $b_n$ be the number of binary sequences of length $n$ that contain no four consecutive terms equal to $0, 0, 1, 1$ or $1, 1, 0, 0$ in that order. Prove that $b_{n+1} = 2a_n$ for all positive integers $n$.",
+  "concepts": [
+   "counting",
+   "generating-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1996P6",
+  "source": "USAMO",
+  "year": 1996,
+  "num": "6",
+  "q": "Determine, with proof, whether there is a subset $X$ of the integers with the following property: for any integer $n$ there is exactly one pair $(a, b)$ of elements of $X$ satisfying $a + 2b = n$.",
+  "concepts": [
+   "additive-bases",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1997P1",
+  "source": "USAMO",
+  "year": 1997,
+  "num": "1",
+  "q": "Let $p_1, p_2, p_3, \\ldots$ be the prime numbers listed in increasing order, and let $x_0$ be a real number between $0$ and $1$. For positive integer $k$, define\n$$x_k = \\begin{cases} 0 & \\text{if } x_{k-1} = 0, \\\\ \\left\\{ \\dfrac{p_k}{x_{k-1}} \\right\\} & \\text{if } x_{k-1} \\ne 0, \\end{cases}$$\nwhere $\\{x\\}$ denotes the fractional part of $x$. (The fractional part of $x$ is given by $x - \\lfloor x \\rfloor$, where $\\lfloor x \\rfloor$ is the greatest integer less than or equal to $x$.) Find, with proof, all $x_0$ satisfying $0 < x_0 < 1$ for which the sequence $x_0, x_1, x_2, \\ldots$ eventually becomes $0$.",
+  "concepts": [
+   "floor-functions",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1997P3",
+  "source": "USAMO",
+  "year": 1997,
+  "num": "3",
+  "q": "Prove that for any integer $n$, there exists a unique polynomial $Q$ with coefficients in $\\{0, 1, \\ldots, 9\\}$ such that $Q(-2) = Q(-5) = n$.",
+  "concepts": [
+   "digits-bases",
+   "integer-polynomials"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1997P5",
+  "source": "USAMO",
+  "year": 1997,
+  "num": "5",
+  "q": "Let $a, b, c$ be positive reals. Prove that\n$$\\frac{1}{a^3 + b^3 + abc} + \\frac{1}{b^3 + c^3 + abc} + \\frac{1}{c^3 + a^3 + abc} \\le \\frac{1}{abc}.$$",
+  "concepts": [
+   "symmetric-ineq",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1997P6",
+  "source": "USAMO",
+  "year": 1997,
+  "num": "6",
+  "q": "Suppose the sequence of nonnegative integers $a_1, a_2, \\ldots, a_{1997}$ satisfies\n$$a_i + a_j \\le a_{i+j} \\le a_i + a_j + 1$$\nfor all $i, j \\ge 1$ with $i + j \\le 1997$. Prove that there exists a real number $x$ such that $a_n = \\lfloor nx \\rfloor$ for all $1 \\le n \\le 1997$.",
+  "concepts": [
+   "floor-functions",
+   "diophantine-approx"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1998P1",
+  "source": "USAMO",
+  "year": 1998,
+  "num": "1",
+  "q": "Suppose that the set $\\{1, 2, \\ldots, 1998\\}$ has been partitioned into disjoint pairs $\\{a_i, b_i\\}$, where $1 \\le i \\le 999$, so that for all $i$, $|a_i - b_i| = 1$ or $6$. Prove that the sum\n$$|a_1 - b_1| + |a_2 - b_2| + \\cdots + |a_{999} - b_{999}|$$\nends in the digit $9$.",
+  "concepts": [
+   "congruences",
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1998P3",
+  "source": "USAMO",
+  "year": 1998,
+  "num": "3",
+  "q": "Let $a_0, a_1, \\ldots, a_n$ be real numbers from the interval $\\left(0, \\dfrac{\\pi}{2}\\right)$ such that\n$$\\tan\\left(a_0 - \\frac{\\pi}{4}\\right) + \\tan\\left(a_1 - \\frac{\\pi}{4}\\right) + \\cdots + \\tan\\left(a_n - \\frac{\\pi}{4}\\right) \\ge n - 1.$$\nProve that\n$$\\tan a_0 \\tan a_1 \\cdots \\tan a_n \\ge n^{n+1}.$$",
+  "concepts": [
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1998P4",
+  "source": "USAMO",
+  "year": 1998,
+  "num": "4",
+  "q": "A computer screen shows a $98 \\times 98$ chessboard, colored in the usual way. One can select with a mouse any rectangle with sides on the lines of the chessboard and click the mouse button: as a result, the colors in the selected rectangle switch (black becomes white, white becomes black). Find, with proof, the minimum number of mouse clicks needed to make the chessboard all one color.",
+  "concepts": [
+   "grids-tilings",
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1998P5",
+  "source": "USAMO",
+  "year": 1998,
+  "num": "5",
+  "q": "Prove that for each $n \\ge 2$, there is a set $S$ of $n$ integers such that $(a - b)^2$ divides $ab$ for every distinct $a, b \\in S$.",
+  "concepts": [
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1999P1",
+  "source": "USAMO",
+  "year": 1999,
+  "num": "1",
+  "q": "Some checkers placed on an $n \\times n$ checkerboard satisfy the following conditions:\n\n(a) every square that does not contain a checker shares a side with one that does;\n\n(b) given any pair of squares that contain checkers, there is a sequence of squares containing checkers, starting and ending with the given squares, such that every two consecutive squares of the sequence share a side.\n\nProve that at least $\\dfrac{n^2 - 2}{3}$ checkers have been placed on the board.",
+  "concepts": [
+   "grids-tilings",
+   "graph-basics"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and official problem"
+ },
+ {
+  "file": "Usa1999P3",
+  "source": "USAMO",
+  "year": 1999,
+  "num": "3",
+  "q": "Let $p > 2$ be a prime and let $a, b, c, d$ be integers not divisible by $p$, such that\n$$\\left\\{\\frac{ra}{p}\\right\\} + \\left\\{\\frac{rb}{p}\\right\\} + \\left\\{\\frac{rc}{p}\\right\\} + \\left\\{\\frac{rd}{p}\\right\\} = 2$$\nfor any integer $r$ not divisible by $p$. (Here, $\\{t\\} = t - \\lfloor t \\rfloor$ is the fractional part.) Prove that at least two of the numbers $a + b$, $a + c$, $a + d$, $b + c$, $b + d$, $c + d$ are divisible by $p$.",
+  "concepts": [
+   "floor-functions",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1999P4",
+  "source": "USAMO",
+  "year": 1999,
+  "num": "4",
+  "q": "Let $a_1, a_2, \\ldots, a_n$ be a sequence of $n > 3$ real numbers such that\n$$a_1 + a_2 + \\cdots + a_n \\ge n \\quad \\text{and} \\quad a_1^2 + a_2^2 + \\cdots + a_n^2 \\ge n^2.$$\nProve that $\\max(a_1, a_2, \\ldots, a_n) \\ge 2$.",
+  "concepts": [
+   "cauchy-schwarz",
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1999P5",
+  "source": "USAMO",
+  "year": 1999,
+  "num": "5",
+  "q": "The Y2K Game is played on a $1 \\times 2000$ grid as follows. Two players in turn write either an S or an O in an empty square. The first player who produces three consecutive boxes that spell SOS wins. If all boxes are filled without producing SOS then the game is a draw. Prove that the second player has a winning strategy.",
+  "concepts": [
+   "comb-games"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2000P1",
+  "source": "USAMO",
+  "year": 2000,
+  "num": "1",
+  "q": "Call a real-valued function $f$ very convex if\n$$\\frac{f(x) + f(y)}{2} \\ge f\\left(\\frac{x + y}{2}\\right) + |x - y|$$\nholds for all real numbers $x$ and $y$. Prove that no very convex function exists.",
+  "concepts": [
+   "real-functional-eq",
+   "convexity"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and official problem"
+ },
+ {
+  "file": "Usa2000P3",
+  "source": "USAMO",
+  "year": 2000,
+  "num": "3",
+  "q": "A player starts with $A$ blue cards, $B$ red cards and $C$ white cards. He scores points as he plays each card. If he plays a blue card, his score is the number of white cards remaining in his hand. If he plays a red card, it is three times the number of blue cards remaining in his hand. If he plays a white card, it is twice the number of red cards remaining in his hand. What is the lowest possible score as a function of $A$, $B$ and $C$, and how many different ways can it be achieved?",
+  "concepts": [
+   "counting",
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2000P4",
+  "source": "USAMO",
+  "year": 2000,
+  "num": "4",
+  "q": "Find the smallest positive integer $n$ such that if $n$ squares of a $1000 \\times 1000$ chessboard are colored, then there will exist three colored squares whose centers form a right triangle with sides parallel to the edges of the board.",
+  "concepts": [
+   "grids-tilings",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2000P5",
+  "source": "USAMO",
+  "year": 2000,
+  "num": "5",
+  "q": "Let $A_1A_2A_3$ be a triangle and let $\\omega_1$ be a circle in its plane passing through $A_1$ and $A_2$. Suppose there exist circles $\\omega_2, \\omega_3, \\ldots, \\omega_7$ such that for $k = 2, 3, \\ldots, 7$, $\\omega_k$ is externally tangent to $\\omega_{k-1}$ and passes through $A_k$ and $A_{k+1}$, where $A_{n+3} = A_n$ for all $n \\ge 1$. Prove that $\\omega_7 = \\omega_1$.",
+  "concepts": [
+   "circles",
+   "geo-transformations"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2000P6",
+  "source": "USAMO",
+  "year": 2000,
+  "num": "6",
+  "q": "Let $a_1, b_1, a_2, b_2, \\ldots, a_n, b_n$ be nonnegative real numbers. Prove that\n$$\\sum_{i,j=1}^{n} \\min(a_i a_j, b_i b_j) \\le \\sum_{i,j=1}^{n} \\min(a_i b_j, a_j b_i).$$",
+  "concepts": [
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2001P1",
+  "source": "USAMO",
+  "year": 2001,
+  "num": "1",
+  "q": "Each of eight boxes contains six balls. Each ball has been colored with one of $n$ colors, such that no two balls in the same box are the same color, and no two colors occur together in more than one box. Determine, with justification, the smallest integer $n$ for which this is possible.",
+  "concepts": [
+   "set-systems",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2001P3",
+  "source": "USAMO",
+  "year": 2001,
+  "num": "3",
+  "q": "Let $a, b, c \\ge 0$ be real numbers satisfying\n$$a^2 + b^2 + c^2 + abc = 4.$$\nShow that\n$$0 \\le ab + bc + ca - abc \\le 2.$$",
+  "concepts": [
+   "symmetric-ineq",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2001P4",
+  "source": "USAMO",
+  "year": 2001,
+  "num": "4",
+  "q": "Let $P$ be a point in the plane of triangle $ABC$ such that the segments $PA$, $PB$, and $PC$ are the sides of an obtuse triangle. Assume that in this triangle the obtuse angle opposes the side congruent to $PA$. Prove that $\\angle BAC$ is acute.",
+  "concepts": [
+   "geo-inequalities",
+   "circles"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2001P5",
+  "source": "USAMO",
+  "year": 2001,
+  "num": "5",
+  "q": "Let $S$ be a set of integers (not necessarily positive) such that\n\n(a) there exist $a, b \\in S$ with $\\gcd(a, b) = \\gcd(a - 2, b - 2) = 1$;\n\n(b) if $x$ and $y$ are elements of $S$ (possibly equal), then $x^2 - y$ also belongs to $S$.\n\nProve that $S$ is the set of all integers.",
+  "concepts": [
+   "bezout",
+   "divisibility",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2002P1",
+  "source": "USAMO",
+  "year": 2002,
+  "num": "1",
+  "q": "Let $S$ be a set with $2002$ elements, and let $N$ be an integer with $0 \\le N \\le 2^{2002}$. Prove that it is possible to color every subset of $S$ either blue or red so that the following conditions hold:\n\n(a) the union of any two red subsets is red;\n\n(b) the union of any two blue subsets is blue;\n\n(c) there are exactly $N$ red subsets.",
+  "concepts": [
+   "set-systems",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2002P3",
+  "source": "USAMO",
+  "year": 2002,
+  "num": "3",
+  "q": "Prove that any monic polynomial (a polynomial with leading coefficient $1$) of degree $n$ with real coefficients is the average of two monic polynomials of degree $n$ with $n$ real roots.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2002P4",
+  "source": "USAMO",
+  "year": 2002,
+  "num": "4",
+  "q": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that for all $x, y \\in \\mathbb{R}$,\n$$f(x^2 - y^2) = x f(x) - y f(y).$$",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2002P5",
+  "source": "USAMO",
+  "year": 2002,
+  "num": "5",
+  "q": "Let $a, b$ be integers greater than $2$. Prove that there exists a positive integer $k$ and a finite sequence $n_1, n_2, \\ldots, n_k$ of positive integers such that $n_1 = a$, $n_k = b$, and $n_i + n_{i+1}$ divides $n_i n_{i+1}$ for each $i$ $(1 \\le i < k)$.",
+  "concepts": [
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2002P6",
+  "source": "USAMO",
+  "year": 2002,
+  "num": "6",
+  "q": "I have an $n \\times n$ sheet of stamps, from which I've been asked to tear out blocks of three adjacent stamps in a single row or column. (I can only tear along the perforations separating adjacent stamps, and each block must come out of the sheet in one piece.) Let $b(n)$ be the smallest number of blocks I can tear out and make it impossible to tear out any more blocks. Prove that there are real constants $c$ and $d$ such that\n$$\\frac{1}{7}n^2 - cn \\le b(n) \\le \\frac{1}{5}n^2 - dn$$\nfor all $n > 0$.",
+  "concepts": [
+   "grids-tilings",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2003P1",
+  "source": "USAMO",
+  "year": 2003,
+  "num": "1",
+  "q": "Prove that for every positive integer $n$ there exists an $n$-digit number divisible by $5^n$, all of whose digits are odd.",
+  "concepts": [
+   "digits-bases",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2003P3",
+  "source": "USAMO",
+  "year": 2003,
+  "num": "3",
+  "q": "Let $n$ be a positive integer. For every sequence of integers $A = (a_0, a_1, a_2, \\ldots, a_n)$ satisfying $0 \\le a_i \\le i$, for $i = 0, \\ldots, n$, we define another sequence $t(A) = (t(a_0), t(a_1), t(a_2), \\ldots, t(a_n))$ by setting $t(a_i)$ to be the number of terms in the sequence $A$ that precede the term $a_i$ and are different from $a_i$. Show that, starting from any sequence $A$ as above, fewer than $n$ applications of the transformation $t$ lead to a sequence $B$ such that $t(B) = B$.",
+  "concepts": [
+   "invariants",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2003P5",
+  "source": "USAMO",
+  "year": 2003,
+  "num": "5",
+  "q": "Let $a, b, c$ be positive real numbers. Prove that\n$$\\frac{(2a + b + c)^2}{2a^2 + (b + c)^2} + \\frac{(2b + c + a)^2}{2b^2 + (c + a)^2} + \\frac{(2c + a + b)^2}{2c^2 + (a + b)^2} \\le 8.$$",
+  "concepts": [
+   "symmetric-ineq",
+   "convexity"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2003P6",
+  "source": "USAMO",
+  "year": 2003,
+  "num": "6",
+  "q": "At the vertices of a regular hexagon are written six nonnegative integers whose sum is $2003^{2003}$. Bert is allowed to make moves of the following form: he may pick a vertex and replace the number written there by the absolute value of the difference between the numbers written at the two neighboring vertices. Prove that Bert can make a sequence of moves, after which the number $0$ appears at all six vertices.",
+  "concepts": [
+   "invariants",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2004P2",
+  "source": "USAMO",
+  "year": 2004,
+  "num": "2",
+  "q": "Suppose $a_1, a_2, \\ldots, a_n$ are integers whose greatest common divisor is $1$. Let $S$ be a set of integers with the following properties:\n\n(a) For $i = 1, 2, \\ldots, n$, $a_i \\in S$.\n\n(b) For $i, j = 1, 2, \\ldots, n$ (not necessarily distinct), $a_i - a_j \\in S$.\n\n(c) For any integers $x, y \\in S$, if $x + y \\in S$, then $x - y \\in S$.\n\nProve that $S$ must equal the set of all integers.",
+  "concepts": [
+   "bezout",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2004P4",
+  "source": "USAMO",
+  "year": 2004,
+  "num": "4",
+  "q": "Alice and Bob play a game on a $6 \\times 6$ grid. On his or her turn, a player chooses a rational number not yet appearing in the grid and writes it in an empty square of the grid. Alice goes first and then the players alternate. When all squares have numbers written in them, in each row, the square with the greatest number in that row is colored black. Alice wins if she can then draw a line from the top of the grid to the bottom of the grid that stays in black squares, and Bob wins if she can't. (If two squares share a vertex, Alice can draw a line from one to the other that stays in those two squares.) Find, with proof, a winning strategy for one of the players.",
+  "concepts": [
+   "comb-games",
+   "grids-tilings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2004P5",
+  "source": "USAMO",
+  "year": 2004,
+  "num": "5",
+  "q": "Let $a, b, c$ be positive real numbers. Prove that\n$$(a^5 - a^2 + 3)(b^5 - b^2 + 3)(c^5 - c^2 + 3) \\ge (a + b + c)^3.$$",
+  "concepts": [
+   "cauchy-schwarz",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2005P1",
+  "source": "USAMO",
+  "year": 2005,
+  "num": "1",
+  "q": "Determine all composite positive integers $n$ for which it is possible to arrange all divisors of $n$ that are greater than $1$ in a circle so that no two adjacent divisors are relatively prime.",
+  "concepts": [
+   "fta",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2005P2",
+  "source": "USAMO",
+  "year": 2005,
+  "num": "2",
+  "q": "Prove that the system\n$$x^6 + x^3 + x^3 y + y = 147^{157},$$\n$$x^3 + x^3 y + y^2 + y + z^9 = 157^{147}$$\nhas no solutions in integers $x$, $y$, and $z$.",
+  "concepts": [
+   "congruences",
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2005P4",
+  "source": "USAMO",
+  "year": 2005,
+  "num": "4",
+  "q": "Legs $L_1, L_2, L_3, L_4$ of a square table each have length $n$, where $n$ is a positive integer. For how many ordered $4$-tuples $(k_1, k_2, k_3, k_4)$ of nonnegative integers can we cut a piece of length $k_i$ from the end of leg $L_i$ $(i = 1, 2, 3, 4)$ and still have a stable table? (The table is stable if it can be placed so that all four of the leg ends touch the floor. Note that a cut leg of length $0$ is permitted.)",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2005P6",
+  "source": "USAMO",
+  "year": 2005,
+  "num": "6",
+  "q": "For a positive integer $m$, let $s(m)$ denote the sum of the decimal digits of $m$. A set $S$ of positive integers is $k$-stable if $s\\left(\\sum_{x \\in X} x\\right) = k$ for any nonempty subset $X \\subseteq S$. For each integer $n \\ge 2$ let $f(n)$ be the minimal $k$ for which there exists a $k$-stable set with $n$ integers. Prove that there are constants $0 < C_1 < C_2$ with\n$$C_1 \\log_{10} n \\le f(n) \\le C_2 \\log_{10} n.$$",
+  "concepts": [
+   "digits-bases",
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2006P1",
+  "source": "USAMO",
+  "year": 2006,
+  "num": "1",
+  "q": "Let $p$ be a prime number and let $s$ be an integer with $0 < s < p$. Prove that there exist integers $m$ and $n$ with $0 < m < n < p$ and\n$$\\left\\{\\frac{sm}{p}\\right\\} < \\left\\{\\frac{sn}{p}\\right\\} < \\frac{s}{p}$$\nif and only if $s$ is not a divisor of $p - 1$. (Here $\\{x\\} = x - \\lfloor x \\rfloor$ denotes the fractional part of $x$.)",
+  "concepts": [
+   "floor-functions",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2006P2",
+  "source": "USAMO",
+  "year": 2006,
+  "num": "2",
+  "q": "For a given positive integer $k$ find, in terms of $k$, the minimum value of $N$ for which there is a set of $2k + 1$ distinct positive integers that has sum greater than $N$ but every subset of size $k$ has sum at most $N/2$.",
+  "concepts": [
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2006P3",
+  "source": "USAMO",
+  "year": 2006,
+  "num": "3",
+  "q": "For integral $m$, let $p(m)$ be the greatest prime divisor of $m$. By convention, we set $p(\\pm 1) = 1$ and $p(0) = \\infty$. Find all polynomials $f$ with integer coefficients such that the sequence\n$$\\{p(f(n^2)) - 2n\\}_{n \\ge 0}$$\nis bounded above. (In particular, this requires $f(n^2) \\ne 0$ for $n \\ge 0$.)",
+  "concepts": [
+   "integer-polynomials",
+   "quadratic-residues",
+   "fta"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2006P4",
+  "source": "USAMO",
+  "year": 2006,
+  "num": "4",
+  "q": "Find all positive integers $n$ for which there exist an integer $k \\ge 2$ and positive rational numbers $a_1, a_2, \\ldots, a_k$ satisfying\n$$a_1 + a_2 + \\cdots + a_k = a_1 \\cdot a_2 \\cdots a_k = n.$$",
+  "concepts": [
+   "diophantine",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2006P5",
+  "source": "USAMO",
+  "year": 2006,
+  "num": "5",
+  "q": "A mathematical frog jumps along the number line. The frog starts at $1$, and jumps according to the following rule: if the frog is at integer $n$, then it can jump either to $n + 1$ or to $n + 2^{m_n + 1}$, where $2^{m_n}$ is the largest power of $2$ that is a factor of $n$. Show that if $k \\ge 2$ is a positive integer and $i$ is a nonnegative integer, then the minimum number of jumps needed to reach $2^i k$ is greater than the minimum number of jumps needed to reach $2^i$.",
+  "concepts": [
+   "p-adic-valuation",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa2007P1",
+  "source": "USAMO",
+  "year": 2007,
+  "num": "1",
+  "q": "Let $n$ be a positive integer. Define a sequence by setting $a_1 = n$ and, for each $k > 1$, letting $a_k$ be the unique integer in the range $0 \\le a_k \\le k - 1$ for which $a_1 + a_2 + \\cdots + a_k$ is divisible by $k$. (For instance, when $n = 9$ the obtained sequence is $9, 1, 2, 0, 3, 3, 3, \\ldots$.) Prove that for any $n$ the sequence $a_1, a_2, \\ldots$ eventually becomes constant.",
+  "concepts": [
+   "sequences",
+   "divisibility"
+  ],
+  "check": "ok"
+ }
+]

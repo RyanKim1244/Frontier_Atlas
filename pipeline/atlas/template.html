@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frontier Atlas</title>
+<meta name="description" content="An atlas of mathematics from school to the research frontier: concepts shared across fields, AI-written lessons checked by a second model, and olympiad, textbook and research problems with their current status.">
+<meta property="og:title" content="Frontier Atlas">
+<meta property="og:description" content="Mathematics from first principles to what was claimed last week.">
+<meta name="theme-color" content="#fbfaf6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='9.5' fill='%23fbfaf6' stroke='%231d1c19' stroke-width='1.3'/%3E%3Cpath d='M11 3.5 L13.2 11 L11 18.5 L8.8 11 Z' fill='%23a13d1d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field guide. Warm paper, serif reading text, sans for apparatus. Concept pages carry a margin column;
+   problems are cards whose answers stay folded until asked for. */
+:root {
+  --paper: #fbfaf6; --raise: #ffffff; --sunk: #f2efe7; --ink: #1d1c19; --ink-2: #4e4b44; --ink-3: #7c786e;
+  --rule: #e6e2d8; --rule-2: #cdc7b9; --accent: #a13d1d; --accent-tint: rgba(161, 61, 29, 0.08); --link: #8f3518;
+  --good: #2c7a4b; --good-tint: rgba(44, 122, 75, 0.10); --warn: #946200; --warn-tint: rgba(148, 98, 0, 0.11); --bad: #b3261e;
+  --a-foundations: #3462c4; --a-analysis: #11866e; --a-analytic: #c3452a; --a-algebraic: #96408e; --a-combinatorial: #b07800; --a-computation: #5a6c80; --a-frontier: #1d1c19; --a-discrete: #12799a; --a-olyalg: #5f7f1c; --a-geometry: #8a5a2b; --a-precalc: #5b9a6a; --a-calculus: #13875a; --a-realanalysis: #0b5c49; --a-linalg: #a8468e; --a-abstract: #7a4fb0; --a-probability: #c2700f;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif; --sans: "Public Sans", -apple-system, "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #161512; --raise: #1d1c18; --sunk: #221f1a; --ink: #ece8de; --ink-2: #b9b3a6; --ink-3: #8b8578; --rule: #2e2b25; --rule-2: #413d35;
+  --accent: #ee8a63; --accent-tint: rgba(238, 138, 99, 0.12); --link: #f09872; --good: #6cc792; --good-tint: rgba(108, 199, 146, 0.12); --warn: #e8b552; --warn-tint: rgba(232, 181, 82, 0.13); --bad: #ff8a7c;
+  --a-foundations: #7fa4f5; --a-analysis: #52cdb0; --a-analytic: #f2805f; --a-algebraic: #da80cf; --a-combinatorial: #e6b440; --a-computation: #98a9bd; --a-frontier: #ece8de; --a-discrete: #5cc3e2; --a-olyalg: #a9cc5e; --a-geometry: #d6a372; --a-precalc: #92d0a0; --a-calculus: #4fcf98; --a-realanalysis: #7fc8b4; --a-linalg: #ee8fd2; --a-abstract: #b99bf2; --a-probability: #f2aa55; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #161512; --raise: #1d1c18; --sunk: #221f1a; --ink: #ece8de; --ink-2: #b9b3a6; --ink-3: #8b8578; --rule: #2e2b25; --rule-2: #413d35;
+  --accent: #ee8a63; --accent-tint: rgba(238, 138, 99, 0.12); --link: #f09872; --good: #6cc792; --good-tint: rgba(108, 199, 146, 0.12); --warn: #e8b552; --warn-tint: rgba(232, 181, 82, 0.13); --bad: #ff8a7c;
+  --a-foundations: #7fa4f5; --a-analysis: #52cdb0; --a-analytic: #f2805f; --a-algebraic: #da80cf; --a-combinatorial: #e6b440; --a-computation: #98a9bd; --a-frontier: #ece8de; --a-discrete: #5cc3e2; --a-olyalg: #a9cc5e; --a-geometry: #d6a372; --a-precalc: #92d0a0; --a-calculus: #4fcf98; --a-realanalysis: #7fc8b4; --a-linalg: #ee8fd2; --a-abstract: #b99bf2; --a-probability: #f2aa55; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.58; font-optical-sizing: auto; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: 500; letter-spacing: -0.01em; }
+p { margin: 0 0 14px; }
+a { color: var(--link); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.sans { font-family: var(--sans); } .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-3); } .small { font-family: var(--sans); font-size: 13px; }
+.eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+
+/* header */
+.top { background: var(--paper); border-bottom: 1px solid var(--rule); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--paper); }
+.top .wrap { display: flex; align-items: center; gap: 8px 26px; min-height: 58px; flex-wrap: wrap; padding-block: 6px; }
+.brand { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; font-family: var(--serif); font-size: 21px; font-weight: 500; }
+.brand svg { flex: none; }
+.brand span { text-box: trim-both cap alphabetic; }
+@supports not (text-box: trim-both cap alphabetic) { .brand svg { transform: translateY(-2px); } }
+.nav { display: flex; gap: 2px 18px; flex-wrap: wrap; font-family: var(--sans); font-size: 14.5px; }
+.nav a { color: var(--ink-2); text-decoration: none; padding: 6px 0; position: relative; }
+.nav a.on { color: var(--ink); font-weight: 600; }
+.nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); }
+.nav a small { font-family: var(--mono); font-size: 11.5px; color: var(--accent); margin-left: 4px; }
+.topsearch { margin-left: auto; } .topsearch input { width: 210px; }
+main { padding-block: 40px 84px; min-height: 60vh; overflow-x: clip; }
+
+/* inputs */
+input[type="text"], input[type="search"], select, textarea { background: var(--raise); border: 1px solid var(--rule-2); border-radius: 4px; padding: 8px 11px; font-family: var(--sans); font-size: 15px; }
+textarea { width: 100%; min-height: 96px; resize: vertical; line-height: 1.5; }
+.btn { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); border-radius: 4px; padding: 8px 15px; font-family: var(--sans); font-weight: 600; font-size: 14px; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--link); font-family: var(--sans); font-size: 13.5px; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent); text-underline-offset: 3px; }
+.seg { display: inline-flex; border: 1px solid var(--rule-2); border-radius: 4px; overflow: hidden; flex-wrap: wrap; }
+.seg button { border: 0; border-right: 1px solid var(--rule-2); background: var(--raise); padding: 5px 12px; font-family: var(--sans); font-size: 13px; cursor: pointer; color: var(--ink-2); }
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.seg button .n { font-family: var(--mono); font-size: 11.5px; opacity: 0.7; margin-left: 5px; }
+
+/* home */
+.hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 56px); line-height: 1.04; font-weight: 400; letter-spacing: -0.02em; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .lede { font-size: 19px; color: var(--ink-2); margin-top: 20px; max-width: 34em; }
+.search-big { display: flex; margin-top: 26px; max-width: 520px; border: 1px solid var(--ink); border-radius: 4px; background: var(--raise); overflow: hidden; }
+.search-big input { flex: 1; min-width: 0; border: 0; background: transparent; font-size: 16px; padding: 12px 14px; }
+.search-big button { border: 0; background: var(--ink); color: var(--paper); font-family: var(--sans); font-weight: 600; padding: 0 18px; cursor: pointer; }
+.frontier { border-left: 3px solid var(--accent); padding-left: 20px; }
+.frontier ol { list-style: none; padding: 0; margin: 10px 0 8px; }
+.frontier li { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.frontier li:last-child { border-bottom: 0; }
+.frontier .d { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+.frontier .t { font-size: 17px; line-height: 1.35; display: block; margin-top: 2px; }
+.ledger { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.ledger div { background: var(--raise); border: 1px solid var(--rule); border-top: 3px solid var(--accent); border-radius: 0 0 4px 4px; padding: 22px 16px 20px; text-align: center; }
+.ledger b { font-family: var(--serif); font-weight: 400; font-size: 48px; line-height: 1; display: block; font-variant-numeric: tabular-nums lining-nums; letter-spacing: -0.01em; }
+.ledger span { display: block; margin-top: 8px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.section { margin-top: 64px; }
+.section-h { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--rule-2); padding-bottom: 8px; }
+.section-h h2 { font-size: 28px; }
+.section .sub { color: var(--ink-2); max-width: 44em; margin-top: 10px; }
+.areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; margin-top: 18px; }
+.area { background: var(--raise); border: 1px solid var(--rule); border-top: 3px solid var(--c); padding: 14px 16px 12px; border-radius: 0 0 4px 4px; }
+.area h3 { font-size: 20px; } .area h3 a { color: var(--ink); text-decoration: none; } .area h3 a:hover { text-decoration: underline; }
+.area p { font-size: 15px; color: var(--ink-2); margin: 6px 0 10px; line-height: 1.45; }
+.area .nums { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.area ul { list-style: none; padding: 0; margin: 8px 0 0; font-size: 15px; }
+.area li { padding: 2px 0; }
+
+/* tags */
+.tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-size: 12.5px; padding: 1px 8px; border: 1px solid var(--rule-2); border-radius: 3px; color: var(--ink-2); text-decoration: none; background: var(--raise); white-space: nowrap; line-height: 1.6; }
+a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--c); flex: none; }
+.tag.msc { font-family: var(--mono); font-size: 11.5px; }
+.tag.open { border-color: var(--accent); color: var(--accent); }
+.tag.claimed { border-color: var(--warn); color: var(--warn); background: var(--warn-tint); }
+.tag.solved { border-color: var(--good); color: var(--good); background: var(--good-tint); }
+.tag.ai { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tag.prize { font-family: var(--mono); font-size: 11.5px; }
+
+/* map */
+.map-box { overflow-x: auto; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--raise); }
+.map-box svg { display: block; }
+.mlabel { font-family: var(--sans); font-size: 11.5px; fill: var(--ink-2); paint-order: stroke; stroke: var(--raise); stroke-width: 3px; stroke-linejoin: round; }
+.mnode { cursor: pointer; } .mnode:hover .mlabel, .mnode:focus .mlabel { fill: var(--ink); text-decoration: underline; }
+.medge { fill: none; stroke: var(--rule-2); stroke-width: 0.9; }
+.dim .mnode { opacity: 0.2; } .dim .medge { opacity: 0.18; }
+.dim .mnode.on { opacity: 1; } .dim .medge.on { opacity: 1; stroke: var(--accent); stroke-width: 1.3; }
+.mnode.done .mlabel { fill: var(--good); }
+.mnode.ghost .mlabel { fill: var(--ink-3); font-style: italic; }
+.mnode.focus .mlabel { font-weight: 700; fill: var(--ink); }
+.medge.ghost { stroke-dasharray: 3 3; }
+.fnode { cursor: pointer; } .fnode:hover circle, .fnode:focus circle { stroke: var(--accent); stroke-width: 2.4; }
+.fcount { font-family: var(--mono); font-size: 12px; fill: var(--ink-2); }
+.flabel { font-family: var(--sans); font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--raise); stroke-width: 4px; stroke-linejoin: round; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--sans); font-size: 13px; color: var(--ink-2); margin-top: 12px; align-items: center; }
+.legend svg { vertical-align: -2px; margin-right: 6px; }
+.maptools { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; font-family: var(--sans); font-size: 14px; margin: 16px 0 12px; }
+.maptools select { max-width: 100%; }
+.caption { font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 8px; }
+
+/* concept list */
+.page-h h1 { font-size: 40px; font-weight: 400; }
+.page-h p { color: var(--ink-2); max-width: 44em; margin-top: 8px; }
+.filters { display: grid; gap: 8px; margin-top: 16px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.filters .row { display: flex; gap: 8px 10px; flex-wrap: wrap; align-items: center; }
+.filters .row > span:first-child { min-width: 58px; }
+.fbtn { font-family: var(--sans); font-size: 13px; padding: 2px 10px; border-radius: 3px; border: 1px solid var(--rule-2); background: var(--raise); cursor: pointer; color: var(--ink-2); display: inline-flex; gap: 6px; align-items: center; }
+.fbtn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.area-h { margin-top: 38px; display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--rule-2); }
+.area-h h2 { font-size: 23px; }
+.crow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 18px; padding: 13px 0; border-bottom: 1px solid var(--rule); }
+.crow h3 { font-size: 19px; } .crow h3 a { color: var(--ink); text-decoration: none; } .crow h3 a:hover { text-decoration: underline; }
+.crow .desc { grid-column: 1 / 2; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+.crow .meta { grid-column: 1 / 3; margin-top: 4px; }
+.crow .count { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); white-space: nowrap; text-align: right; }
+
+/* concept page */
+.crumbs { font-family: var(--sans); font-size: 13px; color: var(--ink-3); } .crumbs a { color: var(--ink-3); }
+.chead { margin-top: 18px; max-width: 820px; }
+.chead .eyebrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.chead h1 { font-size: clamp(32px, 4.6vw, 48px); line-height: 1.1; font-weight: 400; margin-top: 8px; }
+.chead .sum { font-size: 20px; color: var(--ink-2); margin-top: 16px; }
+.chead .tags { margin-top: 16px; }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 56px; margin-top: 34px; align-items: start; }
+.block { margin-top: 36px; } .block:first-child { margin-top: 0; }
+.block > h2 { font-size: 24px; margin-bottom: 12px; }
+.key { border-left: 3px solid var(--rule-2); padding: 2px 0 2px 18px; overflow-x: auto; }
+.aside { font-size: 15.5px; }
+.aside .block { margin-top: 26px; } .aside .block:first-child { margin-top: 0; }
+.aside .block > h2 { font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 6px; }
+.aside ul { list-style: none; padding: 0; margin: 0; }
+.aside li { padding: 5px 0; border-bottom: 1px solid var(--rule); line-height: 1.4; }
+.aside .note-s { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 2px; line-height: 1.45; }
+.meter { height: 4px; background: var(--rule); margin: 8px 0 6px; } .meter i { display: block; height: 100%; background: var(--good); }
+/* lessons */
+.lesson-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-family: var(--sans); font-size: 13px; color: var(--ink-3); padding: 10px 0 14px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; }
+.lesson-meta span:nth-child(2) { flex: 1 1 320px; }
+.lesson-body { max-width: 44em; }
+.lesson-body p { margin: 0 0 14px; }
+.lb-intro p { font-size: 19px; color: var(--ink); }
+.lb-h { font-size: 22px; margin: 30px 0 10px; scroll-margin-top: 80px; }
+.lb-k { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+.lb-box { border: 1px solid var(--rule); border-left: 3px solid var(--c, var(--rule-2)); background: var(--raise); border-radius: 0 4px 4px 0; padding: 12px 16px 4px; margin: 16px 0; overflow-x: auto; }
+.lb-def { --c: var(--a-foundations); } .lb-thm { --c: var(--accent); } .lb-pit { --c: var(--warn); } .lb-ex { --c: var(--good); }
+.lb-proof { margin: -6px 0 18px; padding: 4px 0 0 16px; border-left: 1px dashed var(--rule-2); overflow-x: auto; }
+.lb-proof .qed { text-align: right; color: var(--ink-3); margin-top: -10px; }
+.lb-example { background: var(--sunk); border-radius: 4px; padding: 12px 16px; margin: 18px 0; overflow-x: auto; }
+.lb-example > .linkbtn { margin-bottom: 4px; }
+.lb-src { margin-top: 26px; font-size: 15px; color: var(--ink-2); } .lb-src ul { margin: 4px 0 0; padding-left: 18px; }
+.rlist { margin: 0 0 14px; padding-left: 22px; } .rlist li { margin: 3px 0; }
+.toc-block ul li { border: 0; padding: 3px 0; } .toc { text-align: left; font-size: 14px; text-decoration: none; }
+@media (min-width: 901px) { .aside { position: sticky; top: 78px; max-height: calc(100vh - 96px); overflow-y: auto; } }
+
+/* problems */
+.ptools { display: grid; gap: 10px; padding: 4px 0 14px; border-bottom: 1px solid var(--rule-2); font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.ptools .row { display: flex; gap: 8px 12px; flex-wrap: wrap; align-items: center; }
+.pcard { background: var(--raise); border: 1px solid var(--rule); border-radius: 4px; padding: 16px 18px 14px; margin-top: 14px; }
+.pcard.solvedc { border-left: 3px solid var(--good); }
+.pcard-h { display: flex; gap: 6px 10px; flex-wrap: wrap; align-items: center; font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.pcard-h .pt { font-family: var(--sans); font-weight: 700; font-size: 13.5px; color: var(--ink); text-decoration: none; }
+.pcard-h a.pt:hover { text-decoration: underline; }
+.pcard-h .kind { font-family: var(--sans); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.lvl { display: inline-flex; gap: 2px; align-items: center; } .lvl i { width: 5px; height: 11px; background: var(--rule-2); display: inline-block; } .lvl i.f { background: var(--ink-2); }
+.pcard .q { margin: 10px 0 12px; overflow-wrap: anywhere; }
+.pcard .q p { margin: 0 0 8px; }
+.pacts { display: flex; gap: 8px 16px; flex-wrap: wrap; align-items: center; border-top: 1px dashed var(--rule); padding-top: 10px; }
+.pacts .nosol { font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.mark { font-family: var(--sans); font-size: 13px; border: 1px solid var(--rule-2); background: var(--paper); border-radius: 3px; padding: 2px 10px; cursor: pointer; color: var(--ink-2); margin-left: auto; }
+.mark[aria-pressed="true"] { background: var(--good); border-color: var(--good); color: var(--paper); }
+.fold { background: var(--sunk); border-radius: 3px; padding: 10px 14px; margin-top: 10px; font-size: 16px; overflow-wrap: anywhere; }
+.fold p { margin: 0 0 8px; }
+.fold .fl { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); display: block; margin-bottom: 4px; }
+.fold ul { margin: 6px 0 0; padding-left: 18px; font-size: 14.5px; }
+.opts { display: grid; gap: 6px; margin: 0 0 12px; padding-left: 0; list-style: none; }
+.opts li { padding: 5px 10px; border: 1px solid var(--rule); border-radius: 3px; font-size: 16px; }
+.opts li.right { border-color: var(--good); background: var(--good-tint); }
+.pager { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 18px; font-family: var(--sans); font-size: 13.5px; }
+.pager button { border: 1px solid var(--rule-2); background: var(--raise); border-radius: 3px; padding: 3px 10px; cursor: pointer; font-family: var(--mono); font-size: 12.5px; min-width: 32px; }
+.pager button[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.credit { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); margin-top: 20px; max-width: 62em; }
+
+/* timeline */
+.era { margin-top: 40px; }
+.era-h { display: flex; gap: 12px; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
+.era-h h2 { font-size: 24px; }
+.ev { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 20px; padding: 15px 0; border-bottom: 1px solid var(--rule); }
+.ev .yr { font-family: var(--mono); font-size: 13.5px; color: var(--ink-2); padding-top: 4px; }
+.ev.ai .yr { color: var(--accent); font-weight: 500; }
+.ev h3 { font-size: 19px; } .ev .who { font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+.ev p { margin: 6px 0 8px; color: var(--ink-2); max-width: 42em; font-size: 16.5px; }
+
+/* community */
+.thread { display: grid; gap: 12px; }
+.note { font-family: var(--sans); font-size: 13.5px; color: var(--ink-2); background: var(--sunk); border-radius: 3px; padding: 10px 12px; }
+.post { border-top: 1px solid var(--rule); padding-top: 12px; }
+.post-h { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.post-h img { width: 20px; height: 20px; border-radius: 50%; } .post-h b { color: var(--ink); font-weight: 600; }
+.spoiler { margin-top: 6px; padding: 8px 12px; background: var(--sunk); border-radius: 3px; }
+.post .body { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 6px; font-size: 16.5px; }
+.post .acts { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+.post .replies { margin-top: 10px; padding-left: 16px; border-left: 2px solid var(--rule); display: grid; gap: 8px; }
+.post .replies .post { border-top: 0; padding-top: 0; }
+.vote { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule-2); background: var(--raise); border-radius: 3px; padding: 1px 9px; cursor: pointer; }
+.vote.on { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); }
+.composer { display: grid; gap: 8px; }
+.composer .bar { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; font-family: var(--sans); font-size: 13.5px; color: var(--ink-2); }
+.composer label { display: inline-flex; gap: 6px; align-items: center; }
+.preview { border: 1px dashed var(--rule-2); border-radius: 3px; padding: 8px 12px; }
+.preview-label { font-family: var(--sans); font-size: 11px; color: var(--ink-3); font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+.preview-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+.empty { border: 1px dashed var(--rule-2); border-radius: 4px; padding: 18px; color: var(--ink-2); font-size: 16px; margin-top: 14px; }
+.empty b { display: block; color: var(--ink); font-family: var(--sans); font-size: 14.5px; margin-bottom: 4px; }
+details.submit { border-top: 1px solid var(--rule-2); padding-top: 12px; margin-top: 24px; }
+details.submit summary { cursor: pointer; font-family: var(--sans); font-weight: 600; font-size: 15px; }
+.formgrid { display: grid; gap: 10px; margin-top: 12px; }
+.formgrid label { font-family: var(--sans); font-size: 13px; color: var(--ink-2); display: grid; gap: 4px; }
+.formrow { display: flex; gap: 10px; flex-wrap: wrap; } .formrow > label { flex: 1; min-width: 160px; }
+footer { border-top: 1px solid var(--rule); padding-block: 24px 44px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+footer p { max-width: 62em; }
+.flinks a { color: var(--ink-2); }
+[hidden] { display: none !important; }
+@media (max-width: 900px) { .top .brand { order: -2; } .acct { order: -1; margin-left: auto; } }
+.acct { display: flex; align-items: center; min-height: 34px; }
+.acct .btn { padding: 6px 13px; font-size: 13.5px; }
+.acct-wait { display: inline-block; width: 64px; height: 30px; }
+.acct-me { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-family: var(--sans); font-size: 14px; font-weight: 600; max-width: 180px; }
+.acct-me img, .acct-av { width: 26px; height: 26px; border-radius: 50%; flex: none; }
+.acct-av { display: inline-grid; place-items: center; background: var(--ink); color: var(--paper); font-size: 12.5px; }
+.acct-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dlg { border: 1px solid var(--rule-2); border-radius: 6px; background: var(--raise); color: var(--ink); padding: 24px 24px 18px; width: min(420px, calc(100vw - 32px)); }
+.dlg::backdrop { background: rgb(0 0 0 / .35); }
+.dlg h2 { font-size: 22px; } .dlg p { margin: 10px 0; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-family: var(--sans); font-size: 14px; color: var(--ink-2); margin: 14px 0; cursor: pointer; }
+.consent input { margin-top: 3px; flex: none; }
+.provs { display: grid; gap: 8px; } .provs .btn { width: 100%; padding: 10px 14px; }
+.dlg-x { text-align: right; margin-top: 4px; }
+.btn.danger { background: var(--accent); border-color: var(--accent); }
+.acct-block { max-width: 560px; margin-top: 26px; } .acct-block .formrow input { flex: 1; min-width: 180px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.legal { max-width: 44em; } .legal h2 { font-size: 20px; margin-top: 28px; } .legal p { color: var(--ink-2); margin: 8px 0; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); background: var(--ink); color: var(--paper); padding: 8px 16px; border-radius: 4px; font-family: var(--sans); font-size: 14px; z-index: 30; }
+mjx-container { color: inherit; }
+mjx-container.wide { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+mjx-container.more { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+
+@media (max-width: 900px) {
+  .hero, .cgrid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .topsearch { margin-left: 0; width: 100%; } .topsearch input { width: 100%; }
+}
+@media (max-width: 620px) {
+  body { font-size: 17px; }
+  .top { position: static; }
+  .ledger { gap: 8px; } .ledger div { padding: 14px 12px 12px; } .ledger b { font-size: 30px; } .ledger span { font-size: 12px; }
+  .ev { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .crow { grid-template-columns: minmax(0, 1fr); } .crow .count { text-align: left; }
+  .pcard { padding: 14px 14px 12px; }
+  .mark { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Frontier Atlas home">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M11 3.5 L13.2 11 L11 18.5 L8.8 11 Z" fill="var(--accent)"/><circle cx="11" cy="11" r="1.4" fill="var(--paper)"/></svg>
+      <span>Frontier Atlas</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="#concepts" data-r="concepts">Concepts</a>
+      <a href="#problems" data-r="problems">Problems</a>
+      <a href="#map" data-r="map">Map</a>
+      <a href="#timeline" data-r="timeline">Timeline</a>
+      <a href="#questions" data-r="questions">Questions<small id="qcount"></small></a>
+      <a href="#review" data-r="review" id="nav-review" hidden>Review<small id="rcount"></small></a>
+    </nav>
+    <form class="topsearch" id="topsearch" role="search"><input type="search" id="topq" placeholder="Search concepts" aria-label="Search concepts"></form>
+    <div class="acct" id="acct"></div>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer class="wrap">
+  <p>Frontier Atlas is a working title. Compiled 23 October 2026. Olympiad statements come from the IMO, USAMO and national olympiads, checked against the compfiles Lean statements; Erdős and Green problems come from Google DeepMind's formal-conjectures, with Erdős status from the erdosproblems.com mirror at teorth/erdosproblems. Solutions for olympiad and research problems are not written yet. Anything marked <i>claimed</i> is an unreviewed result, often AI-produced.</p>
+  <p class="flinks"><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
+</footer>
+<div class="toast" id="toast" hidden></div>
+
+<script id="catalog" type="application/json">/*CATALOG*/</script>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, packages: { "[-]": ["require", "autoload"] }, macros: { R: "\\mathbb{R}", N: "\\mathbb{N}", Z: "\\mathbb{Z}", Q: "\\mathbb{Q}", C: "\\mathbb{C}", RR: "\\mathbb{R}", NN: "\\mathbb{N}", ZZ: "\\mathbb{Z}", QQ: "\\mathbb{Q}", CC: "\\mathbb{C}", FF: "\\mathbb{F}", boldsymbol: ["\\mathbf{#1}", 1] } },
+  svg: { fontCache: "global" },
+  startup: { ready() { MathJax.startup.defaultReady(); MathJax.startup.input[0].preFilters.add(({ math }) => { if (!math.display) math.math = "\\displaystyle " + math.math; }); } },
+  options: { enableMenu: false, ignoreHtmlClass: "mathjax_ignore", skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "select", "input"] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" defer></script>
+<script src="config.js"></script>
+<script>
+"use strict";
+const CAT = JSON.parse(document.getElementById("catalog").textContent);
+const CON = Object.fromEntries(CAT.concepts.map(c => [c.id, c]));
+const AREA = Object.fromEntries(CAT.bands.map(b => [b.id, b]));
+const FIELD = Object.fromEntries(CAT.fields.map(f => [f.id, f]));
+const ST = CAT.stats, KINDS = ["textbook", "olympiad", "research", "examples"];
+const STAGES = [["school", "School"], ["olympiad", "Olympiad training"], ["undergraduate", "Undergraduate"], ["graduate", "Graduate"], ["research", "Research frontier"]];
+const STAGE = Object.fromEntries(STAGES);
+const kids = {};
+CAT.concepts.forEach(c => c.pre.forEach(p => (kids[p] = kids[p] || []).push(c.id)));
+const depth = {};
+function depthOf(id) { if (depth[id] !== undefined) return depth[id]; const c = CON[id]; depth[id] = c.pre.length ? 1 + Math.max(...c.pre.map(depthOf)) : 0; return depth[id]; }
+CAT.concepts.forEach(c => depthOf(c.id));
+function ancestors(id) { const out = new Set(); (function w(x) { CON[x].pre.forEach(p => { if (!out.has(p)) { out.add(p); w(p); } }); })(id); return out; }
+function pathTo(id) { const s = ancestors(id); s.add(id); return CAT.concepts.filter(c => s.has(c.id)).sort((a, b) => depth[a.id] - depth[b.id]).map(c => c.id); }
+function eventsFor(id) { return CAT.events.filter(e => e.nodes.includes(id)).sort((a, b) => a.y - b.y); }
+function inField(c, f) { return c.fields.includes(f); }
+function touchesField(c, f) { return inField(c, f) || c.links.some(l => l.field === f); }
+const usedFields = CAT.fields.filter(f => CAT.concepts.some(c => touchesField(c, f.id)));
+const ownFields = usedFields.filter(f => CAT.concepts.some(c => inField(c, f.id)));
+
+/* ---------- helpers ---------- */
+function h(tag, attrs, ...kids) {
+  const el = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") el.className = v; else if (k === "style") el.setAttribute("style", v);
+    else if (k.startsWith("on")) el.addEventListener(k.slice(2), v); else el.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat(Infinity)) if (k !== null && k !== undefined && k !== false) el.append(k.nodeType ? k : document.createTextNode(String(k)));
+  return el;
+}
+const svgNS = "http://www.w3.org/2000/svg";
+function s(tag, attrs, ...kids) { const el = document.createElementNS(svgNS, tag); for (const k in attrs || {}) el.setAttribute(k, attrs[k]); kids.flat().forEach(k => k && el.append(k.nodeType ? k : document.createTextNode(k))); return el; }
+const acol = a => "var(--a-" + a + ")";
+function dot(a) { return h("span", { class: "dot", style: "--c:" + acol(a) }); }
+function toast(m) { const t = document.getElementById("toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 2400); }
+function fmtDate(iso) { const d = new Date(iso); return isNaN(d) ? "" : d.toISOString().slice(0, 10); }
+let mjChain = Promise.resolve();
+/* Inline formulas wider than their line get their own horizontal scroll instead of widening the page. */
+function fitWide(el) {
+  el.querySelectorAll("mjx-container:not([display])").forEach(m => { const par = m.parentElement; if (par && m.getBoundingClientRect().width > par.clientWidth + 1) m.classList.add("wide"); });
+  const mark = m => { const upd = () => m.classList.toggle("more", m.scrollLeft + m.clientWidth < m.scrollWidth - 2); upd(); m.addEventListener("scroll", upd, { passive: true }); };
+  el.querySelectorAll("mjx-container.wide, mjx-container[display=\"true\"]").forEach(m => { if (m.scrollWidth > m.clientWidth + 1) mark(m); });
+}
+function typeset(el) { if (!el || !window.MathJax || typeof window.MathJax.typesetPromise !== "function") return; mjChain = mjChain.then(() => el.isConnected ? window.MathJax.typesetPromise([el]).then(() => fitWide(el)) : null).catch(() => {}); }
+function safeTex(x) { return String(x).replace(/\\(href|url|require|class|style|cssId|data|html|unicode)(?![a-zA-Z])/g, "∖$1"); }
+function plain(tex) { return String(tex).replace(/\$[^$]*\$/g, " ").replace(/\s+/g, " ").trim(); }
+/* Rich text for external strings: paragraphs, markdown links (https only) and `code`; everything else stays text. */
+/* Rich text for lesson and external strings: paragraphs, "1. " / "- " lists, [[concept]] links, markdown https links and `code`. */
+function inline(par, em, into) {
+  const re = em ? /\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]|\[([^\]]+)\]\((https:\/\/[^)\s]+)\)|`([^`]+)`|\*([^*$]+)\*/g : /\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]|\[([^\]]+)\]\((https:\/\/[^)\s]+)\)|`([^`]+)`/g;
+  let last = 0, m;
+  while ((m = re.exec(par))) {
+    if (m.index > last) into.append(par.slice(last, m.index));
+    if (m[1]) into.append(CON[m[1]] ? conceptLink(m[1], m[2] || CON[m[1]].title) : (m[2] || m[1]));
+    else if (m[4]) into.append(h("a", { href: m[4], target: "_blank", rel: "noopener" }, m[3]));
+    else if (m[6]) into.append(h("i", null, m[6]));
+    else into.append(h("code", { class: "mono", style: "font-size:.88em" }, m[5]));
+    last = re.lastIndex;
+  }
+  into.append(par.slice(last));
+  return into;
+}
+function rich(text, em) {
+  const frag = document.createDocumentFragment();
+  String(text).split(/\n\s*\n/).forEach(par => {
+    par = safeTex(par);
+    const lines = par.split("\n");
+    const isOl = lines.length > 1 && lines.every(l => /^\s*\d+[.)]\s/.test(l)), isUl = lines.length > 1 && lines.every(l => /^\s*[-•]\s/.test(l));
+    if (isOl || isUl) { frag.append(h(isOl ? "ol" : "ul", { class: "rlist" }, lines.map(l => inline(l.replace(/^\s*(\d+[.)]|[-•])\s+/, ""), em, h("li"))))); return; }
+    frag.append(inline(par, em, h("p")));
+  });
+  return frag;
+}
+const LESSON = {};
+function loadLesson(id) { if (!LESSON[id]) LESSON[id] = fetch("data/lessons/" + id + ".json").then(r => { if (!r.ok) throw new Error("lesson"); return r.json(); }); return LESSON[id]; }
+function lessonView(c, tocEl) {
+  const L = c.lesson, box = h("div", { class: "lesson" });
+  const meta = h("div", { class: "lesson-meta" },
+    h("span", { class: "tag ai" }, "AI-written"),
+    h("span", null, "Drafted by one model, then checked by a second model working separately" + (L.fixed ? ", which found and fixed " + L.fixed + " mathematical error" + (L.fixed > 1 ? "s" : "") : "") + ". " + L.checks + " numerical claims were re-computed in code. About " + L.minutes + " minutes to read."),
+    h("button", { class: "linkbtn", onclick: () => { const d = document.getElementById("discussion-sec"); if (d) { d.scrollIntoView({ behavior: "smooth" }); const t = d.querySelector("textarea"); if (t) setTimeout(() => t.focus(), 400); } } }, "Report a mistake"));
+  const body = h("div", { class: "lesson-body" }, h("p", { class: "small muted" }, "Loading the lesson…"));
+  box.append(meta, body);
+  loadLesson(c.id).then(les => {
+    const out = [], toc = [];
+    let secN = 0;
+    les.blocks.forEach(b => {
+      const t = b.type;
+      if (t === "intro") out.push(h("div", { class: "lb-intro" }, rich(b.body)));
+      else if (t === "section") { const id = "ls-" + (++secN); toc.push([id, b.title]); out.push(h("h3", { class: "lb-h", id }, b.title), h("div", null, rich(b.body))); }
+      else if (t === "definition") out.push(h("div", { class: "lb-box lb-def" }, h("div", { class: "lb-k" }, "Definition", b.title ? " · " + b.title : ""), rich(b.body)));
+      else if (t === "theorem") out.push(h("div", { class: "lb-box lb-thm" }, h("div", { class: "lb-k" }, "Theorem", b.title ? " · " + b.title : ""), rich(b.body)));
+      else if (t === "proof") out.push(h("div", { class: "lb-proof" }, h("div", { class: "lb-k" }, b.title || "Proof"), rich(b.body), h("div", { class: "qed", "aria-hidden": "true" }, "∎")));
+      else if (t === "example") {
+        let sol = null;
+        const ex = h("div", { class: "lb-example" }, h("div", { class: "lb-k" }, "Example", b.title ? " · " + b.title : ""), rich(b.body));
+        if (b.solution) { const btn = h("button", { class: "linkbtn", "aria-expanded": "false", onclick: () => { if (sol) { sol.remove(); sol = null; btn.textContent = "Show solution"; btn.setAttribute("aria-expanded", "false"); } else { sol = h("div", { class: "fold" }, h("span", { class: "fl" }, "Solution"), rich(b.solution)); ex.append(sol); typeset(sol); btn.textContent = "Hide solution"; btn.setAttribute("aria-expanded", "true"); } } }, "Show solution"); ex.append(btn); }
+        out.push(ex);
+      }
+      else if (t === "pitfall") out.push(h("div", { class: "lb-box lb-pit" }, h("div", { class: "lb-k" }, b.title || "Common mistakes"), rich(b.body)));
+      else if (t === "connection") { const id = "ls-" + (++secN); toc.push([id, b.title || "Where this leads"]); out.push(h("h3", { class: "lb-h", id }, b.title || "Where this leads"), h("div", null, rich(b.body))); }
+      else if (t === "exercise") out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Check yourself"), rich(b.body)));
+    });
+    if (les.sources && les.sources.length) out.push(h("div", { class: "lb-src" }, h("div", { class: "lb-k" }, "Sources"), h("ul", null, les.sources.map(s => h("li", null, s.ref, s.where ? ", " + s.where : "")))));
+    body.replaceChildren(...out); typeset(body);
+    if (tocEl && toc.length) tocEl.replaceChildren(h("h2", null, "In this lesson"), h("ul", null, toc.map(([id, t]) => h("li", null, h("button", { class: "linkbtn toc", onclick: () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); } }, t)))));
+  }).catch(() => body.replaceChildren(h("div", { class: "empty" }, h("b", null, "The lesson could not be loaded."), "Reload the page to try again.")));
+  return box;
+}
+function conceptLink(id, text) { return h("a", { href: "#concept-" + id }, text || CON[id].title); }
+function fieldTag(f) { return h("a", { class: "tag", href: "#field-" + f }, FIELD[f].name); }
+function statusTag(st) { return st ? h("span", { class: "tag " + st }, st === "open" ? "Open problem" : "Claimed · under verification") : null; }
+
+/* ---------- state ---------- */
+const S = {
+  q: "", filters: { area: "", status: "", field: "", stage: "" }, goal: "quasi-rh", mapField: "",
+  solved: new Set(), pstate: {}, gp: { kind: "", status: "", coll: "", field: "", q: "", hide: false, page: 0, sort: "default" },
+  sb: null, session: null, uid: null, me: null, isAdmin: false,
+  posts: {}, counts: {}, myVotes: new Set(), loads: {}, reviews: {}, community: "loading", openThreads: new Set(), drafts: {}
+};
+let progressChain = Promise.resolve();
+
+/* ---------- progress (self-marked) ---------- */
+const LS = "frontier-atlas-marked";
+try { JSON.parse(localStorage.getItem(LS) || "[]").forEach(x => S.solved.add(x)); } catch (e) {}
+function saveProgress() { try { localStorage.setItem(LS, JSON.stringify([...S.solved])); } catch (e) {} }
+function toggleSolved(pid) { const on = !S.solved.has(pid); if (on) S.solved.add(pid); else S.solved.delete(pid); saveProgress(); pushProgress(pid, on); const m = document.getElementById("cprogress"); if (m && S.route.id) renderProgress(m, S.route.id); }
+
+/* ---------- problem data ---------- */
+const PB = {}, PBload = {}, PIDX = {};
+function loadSrc(k) { if (PB[k]) return Promise.resolve(PB[k]); if (!PBload[k]) PBload[k] = fetch("data/problems/" + k + ".json").then(r => { if (!r.ok) throw new Error(k); return r.json(); }).then(x => { PB[k] = x; x.forEach(p => { PIDX[p.id] = p; }); return x; }); return PBload[k]; }
+/* Accepted community problems arrive from the backend; wait for the first load (at most 4 s) so lists include them. */
+let subsDone; const subsReady = new Promise(r => { subsDone = r; }); setTimeout(() => subsDone(), 4000);
+function loadFor(c) { return Promise.all([...KINDS.filter(k => !c || c.np[k]).map(loadSrc), subsReady]); }
+function allProblems() { return [].concat(PB.textbook || [], PB.olympiad || [], PB.research || [], PB.examples || [], communityProblems()); }
+function solvedInConcept(cid) { let n = 0; S.solved.forEach(pid => { const p = PIDX[pid]; if (p && p.concepts.includes(cid)) n++; }); return n; }
+
+/* ---------- router ---------- */
+function parseRoute() {
+  const t = decodeURIComponent((location.hash || "").slice(1));
+  if (t.startsWith("concept-") && CON[t.slice(8)]) return { name: "concept", id: t.slice(8) };
+  if (t.startsWith("field-") && FIELD[t.slice(6)]) return { name: "field", id: t.slice(6) };
+  if (t.startsWith("problem-") && t.length > 8) return { name: "problem", id: t.slice(8) };
+  if (["concepts", "problems", "map", "timeline", "questions", "review", "account", "privacy", "terms"].includes(t)) return { name: t };
+  return { name: "home" };
+}
+function route() {
+  S.route = parseRoute();
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.r === S.route.name || (S.route.name === "problem" && a.dataset.r === "problems")));
+  const app = document.getElementById("app");
+  const views = { home: viewHome, concepts: viewConcepts, problems: viewProblems, map: viewMap, timeline: viewTimeline, questions: viewQuestions, review: viewReview, account: viewAccount, privacy: viewPrivacy, terms: viewTerms, concept: viewConcept, field: viewField, problem: viewProblem };
+  app.replaceChildren(views[S.route.name](S.route));
+  window.scrollTo(0, 0);
+  typeset(app);
+  countUp(app);
+}
+window.addEventListener("hashchange", route);
+document.getElementById("topsearch").addEventListener("submit", e => { e.preventDefault(); S.q = document.getElementById("topq").value; if (location.hash === "#concepts") route(); else location.hash = "concepts"; });
+
+/* ---------- home ---------- */
+function viewHome() {
+  const qin = h("input", { type: "search", id: "homeq", placeholder: "A concept, an alias, an MSC code", "aria-label": "Search concepts" });
+  const go = e => { e.preventDefault(); S.q = qin.value; location.hash = "concepts"; };
+  const recent = [...CAT.events].filter(e => e.ai).sort((a, b) => b.y - a.y).slice(0, 4);
+  return h("div", null,
+    h("section", { class: "hero" },
+      h("div", null,
+        h("div", { class: "eyebrow" }, "Mathematics · from school to the research frontier"),
+        h("h1", { style: "margin-top:14px" }, "An atlas of mathematics, from ", h("em", null, "first principles"), " to what was claimed last week"),
+        h("p", { class: "lede" }, "Concepts are shared across fields, so the Fourier analysis behind the circle method is the same page a physicist would read. Each concept carries the problems that test it: olympiad problems, and research problems with their current status."),
+        h("form", { class: "search-big", onsubmit: go }, qin, h("button", { type: "submit" }, "Search"))),
+      h("aside", { class: "frontier", "aria-label": "Latest on the frontier" },
+        h("div", { class: "eyebrow" }, "On the frontier"),
+        h("ol", null, recent.map(e => h("li", null, h("span", { class: "d" }, e.label), h("a", { class: "t", href: "#timeline", style: "color:var(--ink);text-decoration:none" }, e.title), h("span", { class: "small muted" }, e.who)))),
+        h("a", { class: "small", href: "#timeline" }, "Full timeline"))),
+    h("div", { class: "ledger" },
+      led(CAT.concepts.length, "concepts"), led(ST.total, "problems"), led(usedFields.length, "fields touched")),
+    h("section", { class: "section" },
+      h("div", { class: "section-h" }, h("h2", null, "Areas"), h("a", { class: "small", href: "#concepts" }, "All concepts")),
+      h("p", { class: "sub" }, "An area is a cluster of concepts, not a field. Combinatorial & additive belongs to combinatorics and number theory at once."),
+      h("div", { class: "areas" }, CAT.bands.map(areaCard))),
+    h("section", { class: "section" },
+      h("div", { class: "section-h" }, h("h2", null, "How the fields connect"), h("a", { class: "small", href: "#map", onclick: () => { S.mapMode = "fields"; } }, "Open the map")),
+      h("p", { class: "sub" }, "Each circle is a field, sized by the concepts it owns. Lines are concepts two fields share or pass to each other as prerequisites. Click a field to see its concept graph."),
+      h("div", { class: "map-box", style: "margin-top:16px;padding:6px 0" }, fieldOverview(980, 460, true))),
+    h("section", { class: "section" },
+      h("div", { class: "section-h" }, h("h2", null, "Claimed, not yet checked"), h("a", { class: "small", href: "#problems", onclick: () => { Object.assign(S.gp, { kind: "research", status: "claimed", page: 0 }); } }, "All " + ST.claimed)),
+      h("p", { class: "sub" }, "Research problems where a solution has been claimed but the problem list still marks them open, most from the October 2026 OpenAI release."),
+      claimedList()),
+    h("section", { class: "section" },
+      h("div", { class: "section-h" }, h("h2", null, "Fields")),
+      h("p", { class: "sub" }, "Every field a concept belongs to or feeds into. Fields without a strand of their own are where the next ones attach."),
+      h("div", { class: "tags", style: "margin-top:14px" }, usedFields.map(f => h("a", { class: "tag", href: "#field-" + f.id }, f.name, h("span", { class: "mono muted" }, CAT.concepts.filter(c => touchesField(c, f.id)).length))))));
+}
+function led(n, label) { return h("div", null, h("b", { "data-count": n }, n.toLocaleString("en-US")), h("span", null, label)); }
+/* Count up from 0 with an ease-out. The final number is in the markup, so the page is right even if animation never runs. */
+function countUp(root) {
+  const els = root.querySelectorAll("[data-count]");
+  if (!els.length || !window.requestAnimationFrame) return;
+  try { if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; } catch (e) {}
+  const D = 1400; let t0 = null;
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const step = now => {
+    if (t0 === null) t0 = now;
+    const t = Math.min(1, (now - t0) / D);
+    els.forEach(el => { const n = Number(el.dataset.count); el.textContent = Math.round(n * ease(t)).toLocaleString("en-US"); });
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function areaCard(b) {
+  const cs = CAT.concepts.filter(c => c.band === b.id), np = cs.reduce((s, c) => s + c.nprob, 0);
+  const top = [...cs].sort((x, y) => y.nprob - x.nprob).slice(0, 4);
+  return h("article", { class: "area", style: "--c:" + acol(b.id) },
+    h("h3", null, h("a", { href: "#concepts", onclick: () => { S.filters.area = b.id; } }, b.name)),
+    h("p", null, b.blurb),
+    h("div", { class: "nums" }, cs.length + " concepts · " + np + " problems · " + b.fields.map(f => FIELD[f].name).join(", ")),
+    h("ul", null, top.map(c => h("li", null, conceptLink(c.id, c.short)))));
+}
+function claimedList() {
+  const box = h("div", { style: "margin-top:6px" }, h("p", { class: "small muted", style: "padding:14px 0" }, "Loading…"));
+  loadSrc("research").then(list => { box.replaceChildren(...list.filter(p => p.status === "claimed").sort((a, b) => prizeVal(b) - prizeVal(a) || a.num - b.num).slice(0, 3).map(p => problemCard(p, null))); typeset(box); }).catch(() => box.replaceChildren());
+  return box;
+}
+
+/* ---------- maps ----------
+   The single global map does not scale past a few hundred concepts, so there are three scales:
+   fields (one node per field), a field's own concept graph (with outside prerequisites as ghosts),
+   and the neighbourhood of one concept. A goal path view shows exactly what one concept needs. */
+function layered(ids, depthOf, ghosts) {
+  const set = new Set(ids), layers = [], pos = {};
+  ids.forEach(id => { const d = depthOf(id); (layers[d] = layers[d] || []).push(id); });
+  const COLW = 176, ROWH = 26, PADX = 18, PADY = 24;
+  const aidx = id => CAT.bands.findIndex(x => x.id === CON[id].band);
+  for (let d = 0; d < layers.length; d++) {
+    const ids2 = layers[d] || (layers[d] = []);
+    const bary = id => { const ps = CON[id].pre.filter(p => pos[p]); return ps.length ? ps.reduce((s, p) => s + pos[p].i, 0) / ps.length : aidx(id) * 3; };
+    ids2.sort((a, b) => bary(a) - bary(b) || aidx(a) - aidx(b));
+    ids2.forEach((id, i) => { pos[id] = { d, i }; });
+  }
+  const maxRows = Math.max(1, ...layers.map(l => l.length));
+  layers.forEach(l => { const off = (maxRows - l.length) / 2; l.forEach(id => { pos[id].x = PADX + pos[id].d * COLW + 8; pos[id].y = PADY + (pos[id].i + off) * ROWH; }); });
+  return { pos, set, ghosts: ghosts || new Set(), w: PADX * 2 + layers.length * COLW, h: PADY * 2 + (maxRows - 1) * ROWH };
+}
+function nodeMark(c, x, y, ghost) {
+  const r = Math.min(7.5, 3.2 + Math.sqrt(c.nprob) * 0.45), col = ghost ? "var(--ink-3)" : acol(c.band);
+  if (ghost) return s("circle", { cx: x, cy: y, r: 4, fill: "var(--raise)", stroke: col, "stroke-width": 1.2, "stroke-dasharray": "1.5 1.5" });
+  if (c.status === "open") return s("circle", { cx: x, cy: y, r: r, fill: "var(--raise)", stroke: col, "stroke-width": 2 });
+  if (c.status === "claimed") return s("circle", { cx: x, cy: y, r: r, fill: "var(--raise)", stroke: col, "stroke-width": 2, "stroke-dasharray": "2.2 1.6" });
+  return s("circle", { cx: x, cy: y, r: r, fill: col });
+}
+function graphSVG(L, highlight) {
+  const svg = s("svg", { viewBox: `0 0 ${L.w} ${L.h}`, width: L.w, height: L.h, role: "img", "aria-label": "Concept graph" });
+  const eg = s("g"), ng = s("g"), edges = [], nodes = {};
+  Object.keys(L.pos).forEach(id => CON[id].pre.forEach(p => {
+    if (!L.pos[p]) return;
+    const a = L.pos[p], b = L.pos[id], mx = (a.x + b.x) / 2;
+    const e = s("path", { d: `M${a.x} ${a.y}C${mx} ${a.y} ${mx} ${b.y} ${b.x} ${b.y}`, class: "medge" + (L.ghosts.has(p) ? " ghost" : "") });
+    e.dataset.a = p; e.dataset.b = id; edges.push(e); eg.append(e);
+  }));
+  Object.keys(L.pos).forEach(id => {
+    const c = CON[id], p = L.pos[id], ghost = L.ghosts.has(id);
+    const g = s("g", { class: "mnode" + (ghost ? " ghost" : "") + (id === highlight ? " focus" : ""), tabindex: "0", role: "link", "aria-label": c.title });
+    g.append(s("title", null, c.title + " · " + c.fields.map(f => FIELD[f].name).join(", ")), nodeMark(c, p.x, p.y, ghost), s("text", { x: p.x + 11, y: p.y + 4, class: "mlabel" }, c.short));
+    g.addEventListener("click", () => { location.hash = "concept-" + id; });
+    g.addEventListener("keydown", e => { if (e.key === "Enter") location.hash = "concept-" + id; });
+    nodes[id] = g; ng.append(g);
+  });
+  svg.append(eg, ng);
+  const light = id => {
+    if (!id) { svg.classList.remove("dim"); return; }
+    const keep = new Set([...ancestors(id)].filter(x => L.pos[x])); keep.add(id); (kids[id] || []).forEach(k => { if (L.pos[k]) keep.add(k); });
+    svg.classList.add("dim");
+    Object.entries(nodes).forEach(([k, g]) => g.classList.toggle("on", keep.has(k)));
+    edges.forEach(e => e.classList.toggle("on", keep.has(e.dataset.a) && keep.has(e.dataset.b) && (e.dataset.b === id || e.dataset.a === id || ancestors(id).has(e.dataset.b))));
+  };
+  Object.entries(nodes).forEach(([k, g]) => { g.addEventListener("mouseenter", () => light(k)); g.addEventListener("focus", () => light(k)); g.addEventListener("mouseleave", () => light(null)); });
+  return h("div", { class: "map-box" }, svg);
+}
+function fieldGraph(fid) {
+  const own = CAT.concepts.filter(c => inField(c, fid)).map(c => c.id), ownSet = new Set(own);
+  const ghosts = new Set(); own.forEach(id => CON[id].pre.forEach(p => { if (!ownSet.has(p)) ghosts.add(p); }));
+  const memo = {};
+  const dep = id => { if (ghosts.has(id)) return 0; if (memo[id] !== undefined) return memo[id]; const ps = CON[id].pre.filter(p => ownSet.has(p) || ghosts.has(p)); memo[id] = ps.length ? 1 + Math.max(...ps.map(dep)) : (ghosts.size ? 1 : 0); return memo[id]; };
+  return layered([...ghosts, ...own], dep, ghosts);
+}
+function pathGraph(goal) { const ids = pathTo(goal), set = new Set(ids), memo = {}; const dep = id => { if (memo[id] !== undefined) return memo[id]; const ps = CON[id].pre.filter(p => set.has(p)); return (memo[id] = ps.length ? 1 + Math.max(...ps.map(dep)) : 0); }; return layered(ids, dep); }
+function neighbourhood(cid) {
+  const c = CON[cid], pre = c.pre, nxt = kids[cid] || [];
+  const ids = [...pre, cid, ...nxt];
+  return layered(ids, id => id === cid ? 1 : pre.includes(id) ? 0 : 2);
+}
+/* field overview: weights = shared concepts + prerequisite edges crossing fields */
+function fieldStats() {
+  if (fieldStats.v) return fieldStats.v;
+  const fs = ownFields.map(f => f.id), W = {};
+  const add = (a, b, w) => { if (a === b) return; const k = a < b ? a + "|" + b : b + "|" + a; W[k] = (W[k] || 0) + w; };
+  CAT.concepts.forEach(c => {
+    for (let i = 0; i < c.fields.length; i++) for (let j = i + 1; j < c.fields.length; j++) add(c.fields[i], c.fields[j], 1);
+    c.pre.forEach(p => { const a = CON[p].fields[0], b = c.fields[0]; add(a, b, 0.5); });
+  });
+  const size = Object.fromEntries(fs.map(f => [f, CAT.concepts.filter(c => inField(c, f)).length]));
+  return (fieldStats.v = { fs, W, size });
+}
+function fieldOverview(width, height, compact) {
+  const { fs, W, size } = fieldStats();
+  // deterministic force layout
+  const P = {}; fs.forEach((f, i) => { const a = 2 * Math.PI * i / fs.length; P[f] = { x: Math.cos(a), y: Math.sin(a) }; });
+  for (let it = 0; it < 400; it++) {
+    const F = Object.fromEntries(fs.map(f => [f, { x: 0, y: 0 }]));
+    for (let i = 0; i < fs.length; i++) for (let j = i + 1; j < fs.length; j++) {
+      const a = fs[i], b = fs[j], dx = P[a].x - P[b].x, dy = P[a].y - P[b].y, d2 = dx * dx + dy * dy + 0.01, d = Math.sqrt(d2);
+      const rep = 0.06 / d2, w = W[a < b ? a + "|" + b : b + "|" + a] || 0, att = w ? 0.02 * Math.log(1 + w) * d : 0;
+      const fx = (rep - att) * dx / d, fy = (rep - att) * dy / d;
+      F[a].x += fx; F[a].y += fy; F[b].x -= fx; F[b].y -= fy;
+    }
+    fs.forEach(f => { F[f].x -= 0.01 * P[f].x; F[f].y -= 0.01 * P[f].y; P[f].x += Math.max(-0.05, Math.min(0.05, F[f].x)); P[f].y += Math.max(-0.05, Math.min(0.05, F[f].y)); });
+  }
+  const xs = fs.map(f => P[f].x), ys = fs.map(f => P[f].y), pad = compact ? 70 : 90;
+  const sx = v => pad + (v - Math.min(...xs)) / ((Math.max(...xs) - Math.min(...xs)) || 1) * (width - 2 * pad);
+  const sy = v => 40 + (v - Math.min(...ys)) / ((Math.max(...ys) - Math.min(...ys)) || 1) * (height - 80);
+  const svg = s("svg", { viewBox: `0 0 ${width} ${height}`, width: "100%", role: "img", "aria-label": "Fields and how strongly they connect", style: "max-width:" + width + "px;display:block" });
+  const maxW = Math.max(...Object.values(W));
+  Object.entries(W).forEach(([k, w]) => { const [a, b] = k.split("|"); if (!P[a] || !P[b]) return; svg.append(s("line", { x1: sx(P[a].x), y1: sy(P[a].y), x2: sx(P[b].x), y2: sy(P[b].y), stroke: "var(--rule-2)", "stroke-width": 0.6 + 4 * w / maxW, "stroke-linecap": "round" })); });
+  fs.forEach(f => {
+    const x = sx(P[f].x), y = sy(P[f].y), r = 6 + Math.sqrt(size[f]) * 2.2;
+    const g = s("g", { class: "fnode", tabindex: "0", role: "link", "aria-label": FIELD[f].name });
+    g.append(s("title", null, FIELD[f].name + ": " + size[f] + " concepts"), s("circle", { cx: x, cy: y, r, fill: "var(--raise)", stroke: "var(--ink)", "stroke-width": 1.4 }),
+      s("text", { x, y: y + 4, "text-anchor": "middle", class: "fcount" }, size[f]), s("text", { x, y: y + r + 15, "text-anchor": "middle", class: "flabel" }, FIELD[f].name));
+    const go = () => { S.mapMode = "field"; S.mapField = f; location.hash = "map"; if (S.route && S.route.name === "map") route(); };
+    g.addEventListener("click", go); g.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+    svg.append(g);
+  });
+  return svg;
+}
+function mapLegend(ghost) {
+  const sw = kind => { const v = s("svg", { width: 14, height: 14, viewBox: "0 0 14 14", "aria-hidden": "true" }); v.append(kind === "open" ? s("circle", { cx: 7, cy: 7, r: 5, fill: "none", stroke: "var(--ink-2)", "stroke-width": 1.8 }) : kind === "claimed" ? s("circle", { cx: 7, cy: 7, r: 5, fill: "none", stroke: "var(--ink-2)", "stroke-width": 1.8, "stroke-dasharray": "2 1.5" }) : kind === "ghost" ? s("circle", { cx: 7, cy: 7, r: 4, fill: "none", stroke: "var(--ink-3)", "stroke-width": 1.2, "stroke-dasharray": "1.5 1.5" }) : s("circle", { cx: 7, cy: 7, r: 5, fill: "var(--a-" + kind + ")" })); return v; };
+  return h("div", { class: "legend" }, CAT.bands.map(b => h("span", null, sw(b.id), b.name)), h("span", null, sw("open"), "Open"), h("span", null, sw("claimed"), "Claimed"), ghost ? h("span", null, sw("ghost"), "From another field") : null);
+}
+function viewMap() {
+  S.mapMode = S.mapMode || "fields";
+  const body = h("div"), info = h("p", { class: "caption" });
+  const modeSeg = h("div", { class: "seg", role: "group", "aria-label": "Map scale" });
+  const fsel = h("select", { id: "mfield", "aria-label": "Field" }, ownFields.map(f => h("option", { value: f.id, selected: f.id === (S.mapField || "number-theory") }, f.name + " (" + fieldStats().size[f.id] + ")")));
+  const gsel = h("select", { id: "goal", "aria-label": "Goal concept" }, [...CAT.concepts].sort((a, b) => a.title.localeCompare(b.title)).map(c => h("option", { value: c.id, selected: c.id === S.goal }, c.title)));
+  const ctl = h("span", { style: "display:inline-flex;gap:8px;align-items:center" });
+  function draw() {
+    modeSeg.replaceChildren(...[["fields", "Fields"], ["field", "One field"], ["path", "Path to a concept"]].map(([v, l]) => h("button", { "aria-pressed": S.mapMode === v ? "true" : "false", onclick: () => { S.mapMode = v; draw(); } }, l)));
+    ctl.replaceChildren();
+    if (S.mapMode === "fields") {
+      body.replaceChildren(h("div", { class: "map-box", style: "padding:8px 0" }, fieldOverview(980, 560, false)));
+      info.textContent = ownFields.length + " fields. Circle size is the number of concepts a field owns; line weight is how many concepts the two fields share or pass between them as prerequisites. Click a field to open its concept graph.";
+    } else if (S.mapMode === "field") {
+      S.mapField = S.mapField || "number-theory"; fsel.value = S.mapField;
+      ctl.append(h("label", { for: "mfield" }, "Field"), fsel);
+      const L = fieldGraph(S.mapField);
+      body.replaceChildren(graphSVG(L), mapLegend(true));
+      info.textContent = (Object.keys(L.pos).length - L.ghosts.size) + " concepts in " + FIELD[S.mapField].name.toLowerCase() + ", plus " + L.ghosts.size + " prerequisites from other fields on the left. Hover to trace a concept's prerequisites.";
+    } else {
+      S.goal = S.goal || "quasi-rh"; gsel.value = S.goal;
+      ctl.append(h("label", { for: "goal" }, "Concept"), gsel);
+      const L = pathGraph(S.goal);
+      body.replaceChildren(graphSVG(L, S.goal), mapLegend(false));
+      info.textContent = Object.keys(L.pos).length + " concepts lie on the way to " + CON[S.goal].title + ", across " + new Set(Object.keys(L.pos).flatMap(id => CON[id].fields)).size + " fields.";
+    }
+  }
+  fsel.addEventListener("change", () => { S.mapField = fsel.value; draw(); });
+  gsel.addEventListener("change", () => { S.goal = gsel.value; draw(); });
+  draw();
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Map"), h("p", null, "One graph for every field, shown at three scales: how fields connect, the concepts inside one field, and the path to a single concept.")),
+    h("div", { class: "maptools" }, modeSeg, ctl), body, info);
+}
+
+/* ---------- concepts index ---------- */
+function matches(c, q) {
+  if (!q) return 1; q = q.toLowerCase();
+  if (c.title.toLowerCase().includes(q) || c.short.toLowerCase().includes(q)) return 3;
+  if (c.aliases.some(a => a.toLowerCase().includes(q)) || c.msc.some(m => m.toLowerCase().startsWith(q))) return 2;
+  if (plain(c.sum).toLowerCase().includes(q)) return 1;
+  return 0;
+}
+function viewConcepts() {
+  const qin = h("input", { type: "search", id: "cq", value: S.q, placeholder: "Name, alias or MSC code", "aria-label": "Search", style: "width:100%;max-width:520px" });
+  const list = h("div"), filt = h("div", { class: "filters" });
+  const fb = (key, val, label, pre) => h("button", { class: "fbtn", "aria-pressed": S.filters[key] === val ? "true" : "false", onclick: () => { S.filters[key] = S.filters[key] === val ? "" : val; draw(); } }, pre, label);
+  function draw() {
+    filt.replaceChildren(
+      h("div", { class: "row" }, h("span", null, "Area"), CAT.bands.map(b => fb("area", b.id, b.name, dot(b.id)))),
+      h("div", { class: "row" }, h("span", null, "Field"), ownFields.map(f => fb("field", f.id, f.name))),
+      h("div", { class: "row" }, h("span", null, "Stage"), STAGES.map(([k, l]) => fb("stage", k, l))),
+      h("div", { class: "row" }, h("span", null, "Status"), fb("status", "open", "Open problems"), fb("status", "claimed", "Claimed"), fb("status", "has", "Has problems"), fb("status", "lesson", "Has a lesson")));
+    const q = S.q.trim();
+    const rows = CAT.concepts.map(c => ({ c, m: matches(c, q) })).filter(x => x.m > 0)
+      .filter(({ c }) => (!S.filters.area || c.band === S.filters.area) && (!S.filters.field || inField(c, S.filters.field)) && (!S.filters.stage || c.stage === S.filters.stage)
+        && (!S.filters.status || (S.filters.status === "has" ? c.nprob > 0 : S.filters.status === "lesson" ? !!c.lesson : c.status === S.filters.status)));
+    if (q) rows.sort((a, b) => b.m - a.m);
+    const out = [h("p", { class: "small muted", style: "margin-top:18px" }, rows.length + " of " + CAT.concepts.length + " concepts")];
+    if (!rows.length) out.push(h("div", { class: "empty" }, h("b", null, "No concept matches."), "Try a shorter word, an alias such as \"LTE\" or \"Szemerédi\", or an MSC code such as 11B."));
+    if (q) rows.forEach(r => out.push(conceptRow(r.c)));
+    else CAT.bands.forEach(b => {
+      const rs = rows.filter(r => r.c.band === b.id); if (!rs.length) return;
+      out.push(h("div", { class: "area-h" }, dot(b.id), h("h2", null, b.name), h("span", { class: "small muted" }, rs.length)));
+      rs.forEach(r => out.push(conceptRow(r.c)));
+    });
+    list.replaceChildren(...out); typeset(list);
+  }
+  let tm; qin.addEventListener("input", () => { S.q = qin.value; clearTimeout(tm); tm = setTimeout(draw, 150); });
+  draw(); setTimeout(() => qin.focus(), 0);
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Concepts")), h("div", { style: "margin-top:16px" }, qin), filt, list);
+}
+function firstSentence(t) { const i = t.search(/\.\s+[A-Z]/); return i > 0 ? t.slice(0, i + 1) : t; }
+function npText(c) { const parts = []; if (c.np.textbook) parts.push(c.np.textbook + " textbook"); if (c.np.olympiad) parts.push(c.np.olympiad + " olympiad"); if (c.np.research) parts.push(c.np.research + " research"); if (c.np.examples) parts.push(c.np.examples + " example"); return parts.join(" · ") || "no problems yet"; }
+function conceptRow(c) {
+  return h("article", { class: "crow" },
+    h("h3", null, conceptLink(c.id)), h("span", { class: "count" }, npText(c)),
+    h("div", { class: "desc" }, firstSentence(c.sum)),
+    h("div", { class: "meta tags" }, statusTag(c.status), c.lesson ? h("span", { class: "tag solved" }, "Lesson") : null, h("span", { class: "tag", style: "border-style:dotted" }, STAGE[c.stage]), c.fields.map(f => h("span", { class: "tag" }, FIELD[f].name)), c.links.filter(l => !c.fields.includes(l.field)).map(l => h("span", { class: "tag", style: "border-style:dashed", title: "Feeds into" }, "→ " + FIELD[l.field].name))));
+}
+
+/* ---------- concept page ---------- */
+function viewConcept(r) {
+  const c = CON[r.id], area = AREA[c.band];
+  const pre = c.pre, next = kids[c.id] || [], evs = eventsFor(c.id), path = pathTo(c.id);
+  const tocEl = h("section", { class: "block toc-block" });
+  const main = h("div", null,
+    !c.lesson && c.key.length ? h("section", { class: "block" }, h("h2", null, "Key statements"), h("div", { class: "key" }, c.key.map(k => h("div", null, "$$" + k + "$$")))) : null,
+    !c.lesson && c.why ? h("section", { class: "block" }, h("h2", null, "Why it matters"), h("p", null, c.why)) : null,
+    c.lesson ? h("section", { class: "block" }, h("h2", null, "Lesson"), lessonView(c, tocEl)) : null,
+    (pre.length || next.length) ? h("section", { class: "block" }, h("h2", null, "Where it sits"), graphSVG(neighbourhood(c.id), c.id), h("p", { class: "caption" }, "Prerequisites on the left, what it leads to on the right. ", h("a", { href: "#map", onclick: () => { S.mapMode = "path"; S.goal = c.id; } }, "Full path from scratch"), " · ", h("a", { href: "#map", onclick: () => { S.mapMode = "field"; S.mapField = c.fields[0]; } }, "See it in the " + FIELD[c.fields[0]].name.toLowerCase() + " map"))) : null,
+    h("section", { class: "block", id: "problems-sec" }, h("h2", null, "Problems"), problemBrowser(c)),
+    h("section", { class: "block", id: "discussion-sec" }, h("h2", null, "Discussion"), threadBox("concept:" + c.id, { allowProposal: true })));
+  const aside = h("aside", { class: "aside" },
+    c.lesson ? tocEl : null,
+    h("section", { class: "block" }, h("h2", null, "Your progress"), h("div", { id: "cprogress" })),
+    h("section", { class: "block" }, h("h2", null, "Requires"), pre.length ? h("ul", null, pre.map(p => h("li", null, conceptLink(p)))) : h("p", { class: "small muted" }, "A starting point.")),
+    next.length ? h("section", { class: "block" }, h("h2", null, "Leads to"), h("ul", null, next.map(p => h("li", null, conceptLink(p))))) : null,
+    path.length > 1 ? h("section", { class: "block" }, h("h2", null, "Path from scratch"),
+      h("details", null, h("summary", { class: "small" }, path.length + " concepts in order"),
+        h("ol", { style: "padding-left:20px;margin:8px 0 0" }, path.map(p => h("li", { style: "border:0;padding:2px 0" }, p === c.id ? h("b", null, CON[p].short) : conceptLink(p, CON[p].short)))))) : null,
+    c.links.length ? h("section", { class: "block" }, h("h2", null, "Connections"), h("ul", null, c.links.map(l => h("li", null, h("a", { href: "#field-" + l.field, class: "sans", style: "font-size:13.5px;font-weight:600" }, FIELD[l.field].name), h("span", { class: "note-s" }, l.note))))) : null,
+    evs.length ? h("section", { class: "block" }, h("h2", null, "History"), h("ul", null, evs.map(e => h("li", null, h("span", { class: "mono", style: "font-size:12px;color:" + (e.ai ? "var(--accent)" : "var(--ink-3)") }, e.label), " ", e.title, e.url ? h("span", { class: "small" }, " · ", h("a", { href: e.url, target: "_blank", rel: "noopener" }, e.src)) : null)))) : null,
+    c.refs.length ? h("section", { class: "block" }, h("h2", null, "Further reading"), h("ul", null, c.refs.map(t => h("li", { style: "font-size:14.5px" }, t)))) : null);
+  setTimeout(() => { const m = document.getElementById("cprogress"); if (m) renderProgress(m, c.id); }, 0);
+  return h("article", null,
+    h("div", { class: "crumbs" }, h("a", { href: "#" }, "Atlas"), " / ", h("a", { href: "#concepts", onclick: () => { S.filters.area = c.band; } }, area.name)),
+    h("header", { class: "chead" },
+      h("div", { class: "eyebrow" }, dot(c.band), h("span", null, area.name), h("span", { "aria-hidden": "true" }, "·"), h("span", null, c.fields.map((f, i) => [i ? ", " : "", h("a", { href: "#field-" + f, style: "color:inherit" }, FIELD[f].name)])), h("span", { "aria-hidden": "true" }, "·"), h("span", { title: "Where readers usually first meet this concept" }, STAGE[c.stage] || "")),
+      h("h1", null, c.title), h("p", { class: "sum" }, c.sum),
+      h("div", { class: "tags" }, statusTag(c.status), c.msc.map(m => h("span", { class: "tag msc", title: "Mathematics Subject Classification" }, "MSC " + m)), c.links.filter(l => !c.fields.includes(l.field)).map(l => fieldTag(l.field)))),
+    h("div", { class: "cgrid" }, main, aside));
+}
+function renderProgress(el, cid) {
+  const c = CON[cid];
+  const draw = () => { const sv = solvedInConcept(cid); el.replaceChildren(h("div", { class: "small" }, sv + " of " + c.nprob + " problems marked solved"), h("div", { class: "meter" }, h("i", { style: "width:" + (c.nprob ? 100 * Math.min(1, sv / c.nprob) : 0) + "%" })), h("div", { class: "small muted" }, "You mark problems yourself; nothing is graded.")); };
+  draw(); if (c.nprob) loadFor(c).then(draw).catch(() => {});
+}
+
+/* ---------- problem browser ---------- */
+const PAGE = 10;
+function communityProblems() {
+  return allItems().filter(it => it.kind === "problem" && it.target.startsWith("concept:") && CON[it.target.slice(8)] && S.reviews[it.id] && S.reviews[it.id].status === "accepted")
+    .map(it => ({ id: "C-" + it.id, kind: "community", coll: "Community", title: it.sourceNote ? "Community · " + it.sourceNote.slice(0, 60) : "Community", q: it.body, concepts: [it.target.slice(8)], fields: CON[it.target.slice(8)].fields, sol: it.solution || "", ans: "", community: true }));
+}
+function prizeVal(p) { const m = p.prize && String(p.prize).replace(/[^0-9]/g, ""); return m ? Number(m) : 0; }
+function problemBrowser(c) {
+  const st = c ? (S.pstate[c.id] = S.pstate[c.id] || { kind: "", status: "", coll: "", hide: false, page: 0, sort: "default", field: "", q: "" }) : S.gp;
+  const box = h("div"), tools = h("div", { class: "ptools" }), list = h("div"), pager = h("div", { class: "pager" });
+  box.append(tools, list, pager);
+  const none = () => { tools.remove(); pager.remove(); list.replaceChildren(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No problems here yet."), "This concept is still waiting for olympiad or research problems. You can submit one below.")); };
+  if (c && c.nprob === 0) { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); subsReady.then(() => { if (bank().length) draw(); else none(); }); }
+  else { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); loadFor(c).then(draw).catch(() => list.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); }
+  if (c) box.append(submitForm(c));
+  const kindName = { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Examples", community: "Community" };
+  function bank() { return allProblems().filter(p => !c || p.concepts.includes(c.id)); }
+  function draw() {
+    const all = bank();
+    const kinds = ["textbook", "olympiad", "research", "example", "community"].filter(k => all.some(p => p.kind === k));
+    const seg = (key, opts) => h("div", { class: "seg", role: "group" }, opts.map(([v, label, n]) => h("button", { "aria-pressed": st[key] === v ? "true" : "false", onclick: () => { st[key] = v; st.page = 0; if (key === "kind") { st.coll = ""; if (v !== "research") st.status = ""; } draw(); } }, label, n !== undefined ? h("span", { class: "n" }, n) : null)));
+    const rows = [h("div", { class: "row" }, seg("kind", [["", "All", all.length]].concat(kinds.map(k => [k, kindName[k], all.filter(p => p.kind === k).length]))))];
+    const rs = all.filter(p => p.kind === "research");
+    if (rs.length && (!st.kind || st.kind === "research"))
+      rows.push(h("div", { class: "row" }, h("span", null, "Research status"), seg("status", [["", "Any"], ["open", "Open", rs.filter(p => p.status === "open").length], ["solved", "Solved", rs.filter(p => p.status === "solved").length], ["claimed", "Claimed", rs.filter(p => p.status === "claimed").length]])));
+    const extra = h("div", { class: "row" });
+    const colls = {}; all.filter(p => !st.kind || p.kind === st.kind).forEach(p => { colls[p.coll] = (colls[p.coll] || 0) + 1; });
+    if (Object.keys(colls).length > 1) extra.append(h("select", { "aria-label": "Collection", onchange: e => { st.coll = e.target.value; st.page = 0; drawList(); } }, h("option", { value: "" }, "Any collection"), Object.entries(colls).sort((a, b) => b[1] - a[1]).map(([k, n]) => h("option", { value: k, selected: st.coll === k }, k + " (" + n + ")"))));
+    if (!c) {
+      const qi = h("input", { type: "search", id: "pq", value: st.q, placeholder: "Search statements, e.g. Sidon", "aria-label": "Search problems", style: "min-width:220px" });
+      let tm; qi.addEventListener("input", () => { st.q = qi.value; clearTimeout(tm); tm = setTimeout(() => { st.page = 0; drawList(); }, 200); });
+      const fsel = h("select", { "aria-label": "Field", onchange: e => { st.field = e.target.value; st.page = 0; drawList(); } }, h("option", { value: "" }, "Any field"), usedFields.map(f => h("option", { value: f.id, selected: st.field === f.id }, f.name)));
+      extra.prepend(qi); extra.append(fsel);
+    }
+    const ssel = h("select", { "aria-label": "Order", onchange: e => { st.sort = e.target.value; st.page = 0; drawList(); } }, [["default", "Textbook, olympiad, research"], ["new", "Newest first"], ["old", "Oldest first"], ["prize", "Prize first"]].map(([v, l]) => h("option", { value: v, selected: st.sort === v }, l)));
+    extra.append(ssel, h("label", { style: "display:inline-flex;gap:6px;align-items:center" }, h("input", { type: "checkbox", checked: st.hide, onchange: e => { st.hide = e.target.checked; st.page = 0; drawList(); } }), "Hide marked"));
+    rows.push(extra);
+    tools.replaceChildren(...rows);
+    drawList();
+    function drawList() {
+      const ql = (st.q || "").toLowerCase().trim();
+      const shown = all.filter(p => (!st.kind || p.kind === st.kind) && (!st.status || (p.kind === "research" && p.status === st.status)) && (!st.coll || p.coll === st.coll)
+        && (!st.hide || !S.solved.has(p.id)) && (!st.field || (p.fields || []).includes(st.field))
+        && (!ql || p.title.toLowerCase().includes(ql) || p.q.toLowerCase().includes(ql) || (p.tags || []).some(t => t.includes(ql))));
+      const yr = p => p.year || 0;
+      const so = { textbook: 0, olympiad: 1, research: 2, example: 3, community: 4 }, co = { Millennium: 0, Erdős: 1, Green: 2 };
+      const sorters = { default: (a, b) => so[a.kind] - so[b.kind] || (co[a.coll] ?? 9) - (co[b.coll] ?? 9) || yr(a) - yr(b) || (a.num || 0) - (b.num || 0) || a.title.localeCompare(b.title, "en", { numeric: true }),
+        new: (a, b) => yr(b) - yr(a) || a.title.localeCompare(b.title, "en", { numeric: true }), old: (a, b) => (yr(a) || 9999) - (yr(b) || 9999) || a.title.localeCompare(b.title, "en", { numeric: true }), prize: (a, b) => prizeVal(b) - prizeVal(a) || so[a.kind] - so[b.kind] };
+      shown.sort(sorters[st.sort] || sorters.default);
+      const pages = Math.max(1, Math.ceil(shown.length / PAGE)); st.page = Math.min(st.page, pages - 1);
+      const slice = shown.slice(st.page * PAGE, st.page * PAGE + PAGE);
+      list.replaceChildren(...(slice.length ? slice.map(p => problemCard(p, c)) : [h("div", { class: "empty" }, h("b", null, "Nothing matches these filters."), "Clear a filter or the search.")]));
+      pager.replaceChildren();
+      if (pages > 1) {
+        const btn = i => h("button", { "aria-current": i === st.page ? "page" : null, "aria-label": "Page " + (i + 1), onclick: () => { st.page = i; drawList(); box.scrollIntoView({ block: "start", behavior: "smooth" }); } }, i + 1);
+        const show = [...new Set([0, pages - 1, st.page - 1, st.page, st.page + 1].filter(i => i >= 0 && i < pages))].sort((a, b) => a - b);
+        let prev = -1; show.forEach(i => { if (i - prev > 1) pager.append(h("span", { class: "muted" }, "…")); pager.append(btn(i)); prev = i; });
+        pager.append(h("span", { class: "muted", style: "margin-left:6px" }, shown.length + " problems"));
+      }
+      typeset(list);
+    }
+  }
+  return box;
+}
+function problemCard(p, c, mode) {
+  const page = mode === "page";
+  const solved = S.solved.has(p.id);
+  const card = h("article", { class: "pcard" + (solved ? " solvedc" : ""), id: "p-" + p.id });
+  const stTag = p.kind === "research" ? h("span", { class: "tag " + p.status }, p.status === "claimed" ? "Claimed" : p.slabel + (p.lean ? " · Lean" : "")) : null;
+  const kindTag = h("span", { class: "kind" }, { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Example", community: "Community" }[p.kind]);
+  const home = c ? c.fields : ["number-theory"];
+  const otherFields = (p.fields || []).filter(f => FIELD[f] && !home.includes(f)).slice(0, 3);
+  card.append(h("div", { class: "pcard-h" }, page ? null : h("a", { class: "pt", href: "#problem-" + p.id }, p.title), page ? null : kindTag, stTag,
+    p.prize ? h("span", { class: "tag prize mathjax_ignore" }, p.prize) : null, p.ai ? h("span", { class: "tag ai", title: "AI systems are involved in the solution or the claim" }, "AI") : null,
+    page ? null : otherFields.map(f => h("span", { class: "tag" }, FIELD[f].name))));
+  const q = h("div", { class: "q" }); q.append(rich(p.q)); card.append(q);
+  if (p.note) card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, p.note));
+  if (p.license) card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, "From " + p.credit + (p.section ? ", " + p.section : "") + " · ", h("a", { href: p.license_url, target: "_blank", rel: "noopener" }, p.license)));
+  if (p.opts) card.append(h("ol", { class: "opts" }, p.opts.map((o, i) => h("li", { "data-i": i }, String.fromCharCode(65 + i) + ". ", o))));
+  const others = p.concepts.filter(x => !c || x !== c.id);
+  if (others.length) card.append(h("div", { class: "tags", style: "margin:-2px 0 12px" }, h("span", { class: "small muted" }, c ? "Also" : "Concepts"), others.map(x => h("a", { class: "tag", href: "#concept-" + x }, dot(CON[x].band), CON[x].short))));
+  const acts = h("div", { class: "pacts" }), folds = h("div");
+  const foldBtn = (label, build) => {
+    let el = null;
+    const b = h("button", { class: "linkbtn", "aria-expanded": "false", onclick: () => {
+      if (el) { el.remove(); el = null; b.setAttribute("aria-expanded", "false"); b.textContent = label; }
+      else { el = build(); folds.append(el); typeset(el); b.setAttribute("aria-expanded", "true"); b.textContent = "Hide " + label.toLowerCase(); }
+    } }, label);
+    return b;
+  };
+  if (p.hint) acts.append(foldBtn("Hint", () => h("div", { class: "fold" }, h("span", { class: "fl" }, "Hint"), rich(p.hint))));
+  if (p.kind === "example" || p.kind === "community") {
+    if (p.ans || p.sol) acts.append(foldBtn(p.ans ? "Answer" : "Solution", () => {
+      const f = h("div", { class: "fold" });
+      if (p.ans) f.append(h("span", { class: "fl" }, "Answer"), rich(p.ans));
+      if (p.sol) f.append(h("span", { class: "fl", style: "margin-top:6px" }, p.ans ? "Why" : "Solution"), rich(p.sol));
+      if (p.opts) { const i = p.opts.indexOf(p.ans); card.querySelectorAll(".opts li").forEach(li => li.classList.toggle("right", Number(li.dataset.i) === i)); }
+      return f;
+    }));
+  } else if (p.kind === "research") {
+    acts.append(foldBtn("Status and notes", () => h("div", { class: "fold" },
+      h("span", { class: "fl" }, "Status"), h("p", null, (p.status === "claimed" ? "Claimed. " : p.slabel + ". ") + (p.lean ? "The answer has a Lean formalisation. " : "") + (p.claim ? p.claim + " " : "") + (p.updated ? "Status on erdosproblems.com last changed " + p.updated + "." : "")),
+      p.notes ? [h("span", { class: "fl" }, "Notes"), rich(p.notes)] : null,
+      p.refs && p.refs.length ? [h("span", { class: "fl" }, "References"), h("ul", null, p.refs.map(r => h("li", null, rich(r, true))))] : null)));
+  }
+  (p.links || []).forEach(l => acts.append(h("a", { class: "small", href: l.url, target: "_blank", rel: "noopener" }, l.label)));
+  const n = threadCount("problem:" + p.id);
+  if (!page) acts.append(h("a", { class: "small", href: "#problem-" + p.id, style: "font-weight:600" }, n ? "Solutions & discussion (" + n + ")" : "Solutions & discussion"));
+  acts.append(h("button", { class: "mark", "aria-pressed": solved ? "true" : "false", onclick: e => { toggleSolved(p.id); const on = S.solved.has(p.id); e.currentTarget.setAttribute("aria-pressed", on ? "true" : "false"); e.currentTarget.textContent = on ? "✓ Solved" : "Mark solved"; card.classList.toggle("solvedc", on); } }, solved ? "✓ Solved" : "Mark solved"));
+  card.append(acts, folds);
+  return card;
+}
+function srcOf(id) { return /^(ULA|AC)-/.test(id) ? "textbook" : id.startsWith("EX-") ? "examples" : /^(ERDOS|GREEN|CLAY)-/.test(id) ? "research" : id.startsWith("C-") ? null : "olympiad"; }
+function viewProblem(r) {
+  const box = h("div", null, h("p", { class: "small muted" }, "Loading the problem…"));
+  const k = srcOf(r.id);
+  const show = () => {
+    const p = PIDX[r.id] || communityProblems().find(x => x.id === r.id);
+    if (!p) { box.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problem not found."), "It may have been renamed. ", h("a", { href: "#problems" }, "Browse all problems"))); return; }
+    box.replaceChildren(problemPage(p, k ? PB[k] : [])); typeset(box);
+  };
+  if (k) loadSrc(k).then(show).catch(() => box.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); else subsReady.then(show);
+  return box;
+}
+function problemPage(p, list) {
+  const kindName = { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Example", community: "Community" }[p.kind];
+  const same = (list || []).filter(x => x.coll === p.coll), i = same.findIndex(x => x.id === p.id);
+  const prev = i > 0 ? same[i - 1] : null, next = i >= 0 && i < same.length - 1 ? same[i + 1] : null;
+  const c0 = p.concepts[0], more = (list || []).filter(x => x.id !== p.id && x.concepts.includes(c0)).slice(0, 6);
+  const main = h("div", null,
+    problemCard(p, null, "page"),
+    h("section", { class: "block", id: "discussion-sec", style: "margin-top:36px" }, h("h2", null, "Solutions and discussion"),
+      h("p", { class: "small muted", style: "margin:-4px 0 14px" }, "Post your own solution or an approach. Posts marked as solutions stay folded until a reader opens them."),
+      threadBox("problem:" + p.id, { solutions: true })));
+  const aside = h("aside", { class: "aside" },
+    h("section", { class: "block" }, h("h2", null, "Concepts"), h("ul", null, p.concepts.map(x => h("li", null, dot(CON[x].band), " ", conceptLink(x))))),
+    (p.fields || []).length ? h("section", { class: "block" }, h("h2", null, "Fields"), h("div", { class: "tags" }, p.fields.filter(f => FIELD[f]).map(fieldTag))) : null,
+    (p.links || []).length ? h("section", { class: "block" }, h("h2", null, "Sources"), h("ul", null, p.links.map(l => h("li", null, h("a", { href: l.url, target: "_blank", rel: "noopener" }, l.label))))) : null,
+    (prev || next) ? h("section", { class: "block" }, h("h2", null, "In " + p.coll), h("ul", null, prev ? h("li", null, "← ", h("a", { href: "#problem-" + prev.id }, prev.title)) : null, next ? h("li", null, "→ ", h("a", { href: "#problem-" + next.id }, next.title)) : null)) : null,
+    more.length ? h("section", { class: "block" }, h("h2", null, "More on " + CON[c0].short), h("ul", null, more.map(x => h("li", null, h("a", { href: "#problem-" + x.id }, x.title))))) : null);
+  return h("article", null,
+    h("div", { class: "crumbs" }, h("a", { href: "#" }, "Atlas"), " / ", h("a", { href: "#problems" }, "Problems"), " / ", h("a", { href: "#problems", onclick: () => { Object.assign(S.gp, { kind: p.kind === "example" ? "example" : p.kind, coll: p.coll, page: 0 }); } }, p.coll)),
+    h("header", { class: "chead" }, h("div", { class: "eyebrow" }, h("span", null, kindName), h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.coll), p.year ? [h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.year)] : null),
+      h("h1", null, p.title)),
+    h("div", { class: "cgrid", style: "margin-top:22px" }, main, aside));
+}
+function submitForm(c) {
+  const d = h("details", { class: "submit" }, h("summary", null, "Submit a problem for " + c.short));
+  const body = h("div", { class: "formgrid" }); d.append(body);
+  d.addEventListener("toggle", () => {
+    if (!d.open || body.dataset.built) return; body.dataset.built = "1";
+    if (!canPost()) { body.append(h("p", { class: "note" }, participationNote() || "")); return; }
+    const st = h("textarea", { id: "sp-q-" + c.id, placeholder: "Statement. Use $...$ for math." });
+    const src = h("input", { type: "text", id: "sp-src-" + c.id, placeholder: "e.g. ISL 2019 N4, or your own" });
+    const sol = h("textarea", { id: "sp-s-" + c.id, placeholder: "Optional. Kept folded until a reader opens it." });
+    const send = h("button", { class: "btn", onclick: async () => {
+      const q = st.value.trim(); if (!q) { toast("Write the statement first."); return; }
+      const ok = await addItem({ kind: "problem", target: "concept:" + c.id, body: q, sourceNote: src.value.trim().slice(0, 200), solution: sol.value.trim().slice(0, 4000) });
+      if (ok) { st.value = ""; src.value = ""; sol.value = ""; toast("Submitted for review."); }
+    } }, "Submit for review");
+    body.append(h("label", { for: st.id }, "Statement", st), livePreview(st),
+      h("label", { for: src.id }, "Source", src),
+      h("label", { for: sol.id }, "Solution", sol),
+      h("div", { class: "composer" }, h("div", { class: "bar" }, h("span", null, "Editors review submissions before they appear."), send)));
+  });
+  return d;
+}
+function viewProblems() {
+  const C = ST.collections;
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Problems"),
+    h("p", null, ST.textbook + " textbook exercises from openly licensed books, " + ST.olympiad + " olympiad problems (IMO " + C["IMO"] + ", USAMO " + C["USAMO"] + (C["Putnam"] ? ", Putnam " + C["Putnam"] : "") + ", and national olympiads), " + ST.research + " research problems (" + C["Erdős"] + " Erdős, " + C["Green"] + " from Ben Green's list, the " + C["Millennium"] + " Millennium Prize Problems; " + ST.open + " open, " + ST.claimed + " claimed, " + ST.solved + " solved). Solutions come from readers on each problem's page; mark what you solve yourself.")),
+    problemBrowser(null), h("div", { class: "credit" }, CAT.credits.map(t => h("p", { style: "margin:0 0 4px" }, t))));
+}
+
+/* ---------- timeline & field ---------- */
+const ERAS = [["Antiquity to 1600", -1e9, 1599], ["1600–1799", 1600, 1799], ["1800–1899", 1800, 1899], ["1900–1999", 1900, 1999], ["2000 to mid 2026", 2000, 2026.5], ["Autumn 2026", 2026.5, 1e9]];
+function evRow(e) {
+  return h("article", { class: "ev" + (e.ai ? " ai" : "") }, h("div", { class: "yr" }, e.label),
+    h("div", { style: "min-width:0" }, h("h3", null, e.title), h("div", { class: "who" }, e.who), h("p", null, e.text),
+      h("div", { class: "tags" }, e.ai ? h("span", { class: "tag ai" }, "AI") : null, e.nodes.map(n => h("a", { class: "tag", href: "#concept-" + n }, dot(CON[n].band), CON[n].short)),
+        e.url ? h("a", { class: "tag", href: e.url, target: "_blank", rel: "noopener" }, e.src + " ↗") : null)));
+}
+function viewTimeline() {
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Timeline"), h("p", null, "Research in order, each event tagged with the concepts it created or moved. The autumn 2026 entries are claims still being checked.")),
+    ERAS.map(([name, a, b]) => { const evs = CAT.events.filter(e => e.y >= a && e.y <= b).sort((x, y) => x.y - y.y); return evs.length ? h("section", { class: "era" }, h("div", { class: "era-h" }, h("h2", null, name), h("span", { class: "small muted" }, evs.length + " events")), evs.map(evRow)) : null; }));
+}
+function viewField(r) {
+  const f = FIELD[r.id], own = CAT.concepts.filter(c => inField(c, r.id)), linked = CAT.concepts.filter(c => !inField(c, r.id) && c.links.some(l => l.field === r.id));
+  const status = f.built === true ? "This field has its own strand." : f.built === "partial" ? "Part of this field is mapped through the combinatorial & additive area; its own strand comes later." : "This field has no strand of its own yet. These concepts are where it will attach.";
+  return h("div", null, h("div", { class: "crumbs" }, h("a", { href: "#" }, "Atlas"), " / Field"),
+    h("header", { class: "page-h", style: "margin-top:12px" }, h("h1", null, f.name), h("p", null, status)),
+    own.length ? h("section", { class: "section", style: "margin-top:30px" }, h("div", { class: "section-h" }, h("h2", null, "Concepts in " + f.name.toLowerCase()), h("span", { class: "small muted" }, own.length)), own.map(conceptRow)) : null,
+    linked.length ? h("section", { class: "section", style: "margin-top:40px" }, h("div", { class: "section-h" }, h("h2", null, "Connected from elsewhere"), h("span", { class: "small muted" }, linked.length)),
+      linked.map(c => h("article", { class: "crow" }, h("h3", null, conceptLink(c.id)), h("span", { class: "count" }, AREA[c.band].name), h("div", { class: "desc" }, c.links.find(l => l.field === r.id).note)))) : null);
+}
+
+/* ---------- community: data (Supabase) ---------- */
+function rowItem(r) {
+  return { id: r.id, author: r.author, kind: ["post", "proposal", "problem"].includes(r.kind) ? r.kind : "post", target: String(r.target || ""), parent: r.parent || null,
+    body: String(r.body || "").slice(0, 6000), createdAt: String(r.created_at || ""), spoiler: r.spoiler === true, sourceNote: r.source_note || "", solution: r.solution || "",
+    authorName: r.author_name || "Member", authorAvatar: /^https:\/\//.test(r.author_avatar || "") ? r.author_avatar : "", votes: r.votes | 0 };
+}
+function allItems() { return Object.values(S.posts).sort((a, b) => a.createdAt.localeCompare(b.createdAt)); }
+function threadCount(t) { return S.counts[t] || 0; }
+function votesFor(id) { const it = S.posts[id]; return { n: it ? it.votes : 0, mine: S.myVotes.has(id) }; }
+const FEED = "id,author,kind,target,parent,body,spoiler,source_note,solution,created_at,author_name,author_avatar,votes";
+async function loadMyVotes(ids) {
+  if (!S.sb || !S.uid || !ids.length) return;
+  for (let i = 0; i < ids.length; i += 150) {
+    const { data, error } = await S.sb.from("votes").select("post_id").in("post_id", ids.slice(i, i + 150));
+    if (!error) data.forEach(v => S.myVotes.add(v.post_id));
+  }
+}
+async function absorb(rows) { rows.forEach(r => { S.posts[r.id] = rowItem(r); }); await loadMyVotes(rows.map(r => r.id)); }
+/* Each loader is cached per key; force=true reloads (after realtime events or sign-in). */
+function once(key, force, fn) { if (!S.sb) return Promise.resolve(); if (force || !S.loads[key]) S.loads[key] = fn().catch(e => { delete S.loads[key]; throw e; }); return S.loads[key]; }
+function ensureTarget(t, force) {
+  return once("t:" + t, force, async () => {
+    const { data, error } = await S.sb.from("post_feed").select(FEED).eq("target", t).neq("kind", "problem").order("created_at").limit(1000);
+    if (error) throw error;
+    for (const [id, it] of Object.entries(S.posts)) if (it.target === t && it.kind !== "problem") delete S.posts[id];
+    await absorb(data);
+  });
+}
+function ensureProposals(force) {
+  return once("proposals", force, async () => {
+    const { data, error } = await S.sb.from("post_feed").select(FEED).eq("kind", "proposal").is("parent", null).order("created_at", { ascending: false }).limit(300);
+    if (error) throw error;
+    await absorb(data);
+    const ids = data.map(r => r.id);
+    for (let i = 0; i < ids.length; i += 150) {
+      const rep = await S.sb.from("post_feed").select(FEED).in("parent", ids.slice(i, i + 150)).order("created_at").limit(2000);
+      if (!rep.error) await absorb(rep.data);
+    }
+  });
+}
+function ensureSubmissions(force) {
+  return once("problems", force, async () => {
+    const { data, error } = await S.sb.from("post_feed").select(FEED).eq("kind", "problem").order("created_at", { ascending: false }).limit(1000);
+    if (error) throw error;
+    for (const [id, it] of Object.entries(S.posts)) if (it.kind === "problem") delete S.posts[id];
+    await absorb(data);
+    const ids = data.map(r => r.id), rv = {};
+    for (let i = 0; i < ids.length; i += 150) {
+      const r = await S.sb.from("reviews").select("post_id,status").in("post_id", ids.slice(i, i + 150));
+      if (!r.error) r.data.forEach(x => { if (x.status === "accepted" || x.status === "declined") rv[x.post_id] = { status: x.status }; });
+    }
+    S.reviews = rv;
+  });
+}
+function loadCounts() {
+  return once("counts", true, async () => {
+    const { data, error } = await S.sb.from("thread_counts").select("target,n").limit(100000);
+    if (error) throw error;
+    const m = {}; data.forEach(r => { m[r.target] = r.n | 0; }); S.counts = m;
+  });
+}
+function saveError(error) {
+  const code = error && error.code;
+  if (code === "54000" || /rate limit/i.test((error && error.message) || "")) toast("You have posted a lot in the last hour. Try again later.");
+  else if (code === "42501" || code === "PGRST301") toast("Your session has ended. Sign in again.");
+  else toast("Could not save. Try again in a moment.");
+}
+async function addItem(fields) {
+  if (!canPost()) return false;
+  const row = { kind: fields.kind || "post", target: fields.target, parent: fields.parent || null, body: String(fields.body).slice(0, 6000), spoiler: fields.spoiler === true };
+  if (row.kind === "problem") { row.source_note = fields.sourceNote || null; row.solution = fields.solution || null; }
+  const { data, error } = await S.sb.from("posts").insert(row).select("id,created_at").single();
+  if (error) { saveError(error); return false; }
+  S.posts[data.id] = rowItem(Object.assign({}, row, { id: data.id, author: S.uid, created_at: data.created_at, author_name: S.me && S.me.display_name, author_avatar: S.me && S.me.avatar_url, votes: 0 }));
+  if (row.kind !== "problem") S.counts[row.target] = (S.counts[row.target] || 0) + 1;
+  refreshCommunity();
+  return true;
+}
+async function deleteItem(it) {
+  if (!S.sb || !(it.author === S.uid || S.isAdmin)) return;
+  const { error } = await S.sb.from("posts").delete().eq("id", it.id);
+  if (error) { toast("Could not delete."); return; }
+  dropPost(it.id); refreshCommunity();
+}
+function dropPost(id) {
+  const it = S.posts[id]; if (!it) return;
+  const gone = [id, ...Object.values(S.posts).filter(x => x.parent === id).map(x => x.id)];
+  gone.forEach(g => { const x = S.posts[g]; if (x && x.kind !== "problem") S.counts[x.target] = Math.max(0, (S.counts[x.target] || 0) - 1); delete S.posts[g]; });
+}
+let voteBusy = new Set();
+async function toggleVote(id) {
+  if (!canPost() || voteBusy.has(id)) return;
+  const it = S.posts[id]; if (!it) return;
+  voteBusy.add(id);
+  const had = S.myVotes.has(id);
+  if (had) { S.myVotes.delete(id); it.votes = Math.max(0, it.votes - 1); } else { S.myVotes.add(id); it.votes++; }
+  refreshCommunity();
+  const { error } = had ? await S.sb.from("votes").delete().eq("post_id", id).eq("user_id", S.uid) : await S.sb.from("votes").insert({ post_id: id });
+  voteBusy.delete(id);
+  if (error && !(error.code === "23505" && !had)) {
+    if (had) { S.myVotes.add(id); it.votes++; } else { S.myVotes.delete(id); it.votes = Math.max(0, it.votes - 1); }
+    refreshCommunity(); saveError(error);
+  }
+}
+async function setReview(id, status) {
+  if (!S.sb || !S.isAdmin) return;
+  const before = S.reviews[id];
+  S.reviews = Object.assign({}, S.reviews, { [id]: { status } }); refreshCommunity();
+  const { error } = await S.sb.from("reviews").upsert({ post_id: id, status }, { onConflict: "post_id" });
+  if (error) { S.reviews = Object.assign({}, S.reviews); if (before) S.reviews[id] = before; else delete S.reviews[id]; refreshCommunity(); toast("Could not save the review."); }
+}
+
+/* ---------- progress sync ---------- */
+async function syncProgress() {
+  if (!S.sb || !S.uid) return;
+  const server = new Set();
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await S.sb.from("progress").select("problem_id").range(from, from + 999);
+    if (error) return;
+    data.forEach(r => server.add(r.problem_id));
+    if (data.length < 1000) break;
+  }
+  const up = [...S.solved].filter(x => !server.has(x) && /^[A-Za-z0-9._-]{1,120}$/.test(x)).map(problem_id => ({ problem_id }));
+  for (let i = 0; i < up.length; i += 500) await S.sb.from("progress").upsert(up.slice(i, i + 500), { onConflict: "user_id,problem_id", ignoreDuplicates: true });
+  server.forEach(x => S.solved.add(x));
+  try { localStorage.setItem(LS, JSON.stringify([...S.solved])); } catch (e) {}
+  const m = document.getElementById("cprogress"); if (m && S.route && S.route.id && CON[S.route.id]) renderProgress(m, S.route.id);
+}
+function pushProgress(pid, on) {
+  if (!S.sb || !S.uid) return;
+  progressChain = progressChain.then(() => on ? S.sb.from("progress").upsert({ problem_id: pid }, { onConflict: "user_id,problem_id", ignoreDuplicates: true }) : S.sb.from("progress").delete().eq("problem_id", pid).eq("user_id", S.uid))
+    .then(r => { if (r && r.error) toast("Could not sync your progress."); }).catch(() => {});
+}
+
+/* ---------- community: UI ---------- */
+function canPost() { return S.community === "on" && !!S.uid && !!S.me; }
+function participationNote() {
+  if (S.community === "loading") return "Loading the discussion…";
+  if (S.community === "off") return "Discussion is not switched on for this copy of the site. What you mark as solved is kept in this browser.";
+  if (!S.uid) return ["Reading is open to everyone. ", h("button", { class: "linkbtn", onclick: openSignIn }, "Sign in"), " to post, vote or submit a problem."];
+  if (!S.me) return "Your profile could not be loaded. Reload the page.";
+  return null;
+}
+async function names() { const m = {}; Object.values(S.posts).forEach(it => { m[it.author] = { name: it.authorName, avatarUrl: it.authorAvatar }; }); return m; }
+function targetLink(t) {
+  if (t.startsWith("concept:") && CON[t.slice(8)]) return h("a", { href: "#concept-" + t.slice(8) }, CON[t.slice(8)].short);
+  if (t.startsWith("problem:")) { const pid = t.slice(8), p = PIDX[pid]; return h("a", { href: "#problem-" + pid }, p ? p.title : pid); }
+  return null;
+}
+function livePreview(ta) {
+  const box = h("div", { class: "preview", hidden: true }), out = h("div", { class: "preview-body" });
+  box.append(h("div", { class: "preview-label" }, "Preview"), out);
+  let tm; const draw = () => { box.hidden = !/\$|\\\(|\\\[/.test(ta.value); if (box.hidden) return; out.textContent = safeTex(ta.value); typeset(out); };
+  ta.addEventListener("input", () => { clearTimeout(tm); tm = setTimeout(draw, 350); }); setTimeout(draw, 0);
+  return box;
+}
+function postView(it, ps, replies, opts) {
+  const p = ps[it.author] || {}, v = votesFor(it.id);
+  const el = h("div", { class: "post" }), body = h("div", { class: "body" }); body.textContent = safeTex(it.body);
+  let shownBody = body;
+  if (it.spoiler && it.author !== S.uid) {
+    const wrap = h("div", { class: "spoiler" });
+    const btn = h("button", { class: "linkbtn", onclick: () => { wrap.replaceChildren(body); typeset(body); } }, "Show solution");
+    wrap.append(btn); shownBody = wrap;
+  }
+  const acts = h("div", { class: "acts" });
+  if (!it.parent) {
+    acts.append(h("button", { class: "vote" + (v.mine ? " on" : ""), disabled: canPost() ? null : true, "aria-pressed": v.mine ? "true" : "false", onclick: () => toggleVote(it.id), title: "Agree" }, "+" + v.n));
+    if (canPost()) acts.append(h("button", { class: "linkbtn", onclick: () => { const rb = el.querySelector(".reply-box"); rb.hidden = !rb.hidden; rb.querySelector("textarea").focus(); } }, "Reply"));
+  }
+  if (canPost() && (it.author === S.uid || S.isAdmin)) {
+    const del = h("button", { class: "linkbtn", onclick: () => { if (del.dataset.armed) deleteItem(it); else { del.dataset.armed = "1"; del.textContent = "Delete for good?"; setTimeout(() => { if (del.isConnected) { delete del.dataset.armed; del.textContent = "Delete"; } }, 4000); } } }, "Delete");
+    acts.append(del);
+  }
+  el.append(h("div", { class: "post-h" }, p.avatarUrl ? h("img", { src: p.avatarUrl, alt: "" }) : null, h("b", null, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
+    it.kind === "proposal" ? h("span", { class: "tag claimed" }, "Research question") : null, it.spoiler ? h("span", { class: "tag solved" }, "Solution") : null, opts.showTarget ? targetLink(it.target) : null), shownBody, acts);
+  if (!it.parent) {
+    if (replies.length) el.append(h("div", { class: "replies" }, replies.map(r => postView(r, ps, [], opts))));
+    if (canPost()) {
+      const ta = h("textarea", { id: "re-" + it.id, placeholder: "Reply. Math in $...$" });
+      el.append(h("div", { class: "reply-box composer", hidden: true, style: "margin-top:10px" }, ta, livePreview(ta),
+        h("div", { class: "bar" }, h("span"), h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; ta.value = ""; await addItem({ kind: "post", target: it.target, body: t, parent: it.id }); } }, "Reply"))));
+    }
+  }
+  return el;
+}
+function threadBox(target, opts) { const el = h("div", { class: "thread", "data-target": target }); el._opts = opts; renderThread(el, true); return el; }
+async function renderThread(el, fresh) {
+  const target = el.dataset.target, opts = el._opts || {}, gen = el._gen = (el._gen || 0) + 1;
+  if (fresh) el._fresh = true;
+  let failed = false;
+  if (S.community === "on") { const force = !!el._fresh; el._fresh = false; await ensureTarget(target, force).catch(() => { failed = true; }); }
+  if (gen !== el._gen) return;
+  const items = allItems().filter(i => i.target === target && i.kind !== "problem"), tops = items.filter(i => !i.parent);
+  const ps = await names(items.map(i => i.author));
+  if (gen !== el._gen) return;
+  const out = [], note = participationNote();
+  if (note) out.push(h("div", { class: "note" }, note));
+  if (failed) out.push(h("div", { class: "note" }, "The discussion could not be loaded. Reload the page to try again."));
+  if (!tops.length && S.community === "on" && !failed) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No posts yet."), target.startsWith("problem:") ? "Post an approach, a proof or a question about this problem." : "Ask a question, explain an idea, or point out a gap in the map."));
+  tops.forEach(t => out.push(postView(t, ps, items.filter(r => r.parent === t.id), opts)));
+  if (canPost()) {
+    const key = target, ta = h("textarea", { id: "c-" + target.replace(/[^a-z0-9]/gi, "-"), placeholder: "Plain text; math in $...$ or $$...$$." });
+    ta.value = S.drafts[key] || ""; ta.addEventListener("input", () => { S.drafts[key] = ta.value; });
+    const prop = opts.allowProposal ? h("input", { type: "checkbox", id: "pp-" + target.replace(/[^a-z0-9]/gi, "-") }) : null;
+    const spo = opts.solutions ? h("input", { type: "checkbox", id: "sp-" + target.replace(/[^a-z0-9]/gi, "-"), checked: true }) : null;
+    const send = h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; send.disabled = true; const ok = await addItem(Object.assign({ kind: prop && prop.checked ? "proposal" : "post", target, body: t }, spo && spo.checked ? { spoiler: true } : {})); if (ok) { S.drafts[key] = ""; toast(prop && prop.checked ? "Posted as a research question." : "Posted."); } send.disabled = false; } }, "Post");
+    out.push(h("div", { class: "composer" }, ta, livePreview(ta), h("div", { class: "bar" }, prop ? h("label", { for: prop.id }, prop, "Propose as a research question") : spo ? h("label", { for: spo.id }, spo, "This is a solution (keep it folded)") : h("span"), send)));
+  }
+  el.replaceChildren(...out); typeset(el);
+}
+function viewQuestions() {
+  setTimeout(() => renderQuestions(true), 0);
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Research questions"), h("p", null, "Questions that came up while studying, gaps in the map, problems worth attacking next. Agree with the ones you want answered.")),
+    h("div", { class: "cgrid" }, h("div", { class: "thread", id: "qlist" }), h("aside", { class: "aside" }, h("section", { class: "block" }, h("h2", null, "Propose a question"), h("div", { id: "qcomp" })))));
+}
+let qGen = 0;
+async function renderQuestions(fresh) {
+  const gen = ++qGen;
+  if (S.community === "on") await ensureProposals(fresh === true).catch(() => {});
+  if (gen !== qGen) return;
+  const list = document.getElementById("qlist"), comp = document.getElementById("qcomp");
+  const all = allItems(), props = all.filter(i => i.kind === "proposal" && !i.parent);
+  document.getElementById("qcount").textContent = props.length ? props.length : "";
+  if (!list) return;
+  const ps = await names(all.map(i => i.author));
+  if (gen !== qGen) return;
+  props.sort((a, b) => votesFor(b.id).n - votesFor(a.id).n || b.createdAt.localeCompare(a.createdAt));
+  const out = [], note = participationNote();
+  if (note) out.push(h("div", { class: "note" }, note));
+  if (!props.length) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No research questions yet."), "Propose one here, or tick \"Propose as a research question\" when posting on a concept page."));
+  props.forEach(p => out.push(postView(p, ps, all.filter(r => r.parent === p.id), { showTarget: true })));
+  list.replaceChildren(...out); typeset(list);
+  if (!comp || comp.dataset.built === String(canPost())) return;
+  comp.dataset.built = String(canPost());
+  if (!canPost()) { comp.replaceChildren(h("p", { class: "note" }, participationNote() || "")); return; }
+  const sel = h("select", { id: "qt", style: "width:100%" }, h("option", { value: "general" }, "No specific concept"), CAT.concepts.map(c => h("option", { value: "concept:" + c.id }, c.title)));
+  const ta = h("textarea", { id: "qb", placeholder: "For example: does the cubic theta argument extend from $\\mathbb Q(\\sqrt{-3})$ to $\\mathbb Q(\\sqrt{-7})$?" });
+  const send = h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; const ok = await addItem({ kind: "proposal", target: sel.value, body: t }); if (ok) { ta.value = ""; toast("Question posted."); } } }, "Propose");
+  comp.replaceChildren(h("div", { class: "composer" }, h("label", { for: "qt", class: "small" }, "Related concept"), sel, ta, livePreview(ta), h("div", { class: "bar" }, h("span"), send)));
+}
+function viewReview() {
+  setTimeout(() => renderReviewList(true), 0);
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Review submissions"), h("p", null, "Accepted problems appear on their concept page right away, marked Community.")), h("div", { id: "rlist" }));
+}
+let rGen = 0;
+async function renderReviewList(fresh) {
+  const gen = ++rGen;
+  if (S.community === "on" && S.isAdmin) await ensureSubmissions(fresh === true).catch(() => {});
+  if (gen !== rGen) return;
+  const el = document.getElementById("rlist");
+  const subs = allItems().filter(i => i.kind === "problem"), pending = subs.filter(i => !S.reviews[i.id]);
+  document.getElementById("rcount").textContent = pending.length ? pending.length : "";
+  if (!el) return;
+  if (!S.isAdmin) { el.replaceChildren(h("p", { class: "note" }, S.community === "loading" ? "Loading…" : "Only editors can review submissions.")); return; }
+  const ps = await names(subs.map(i => i.author));
+  if (gen !== rGen) return;
+  if (!subs.length) { el.replaceChildren(h("div", { class: "empty" }, h("b", null, "No submissions yet."), "Problems submitted from concept pages wait here.")); return; }
+  el.replaceChildren(...subs.sort((a, b) => (S.reviews[a.id] ? 1 : 0) - (S.reviews[b.id] ? 1 : 0) || b.createdAt.localeCompare(a.createdAt)).map(it => {
+    const rv = S.reviews[it.id], c = CON[it.target.slice(8)];
+    const q = h("div", { class: "q" }); q.textContent = safeTex(it.body);
+    const sol = h("div", { class: "fold" }); sol.textContent = "Source: " + (it.sourceNote || "not given") + (it.solution ? "\n\n" + safeTex(it.solution) : "");
+    return h("article", { class: "pcard" }, h("div", { class: "pcard-h" }, c ? conceptLink(c.id, c.short) : null, h("span", null, (ps[it.author] || {}).name || "Member"), h("span", { class: "mono" }, fmtDate(it.createdAt)),
+      rv ? h("span", { class: "tag " + (rv.status === "accepted" ? "solved" : "open") }, rv.status === "accepted" ? "Accepted" : "Declined") : h("span", { class: "tag" }, "Pending")),
+      q, sol, h("div", { class: "pacts" }, h("button", { class: "btn", onclick: () => setReview(it.id, "accepted") }, "Accept"), h("button", { class: "btn ghost", onclick: () => setReview(it.id, "declined") }, "Decline")));
+  }));
+  typeset(el);
+}
+function refreshCommunity() { renderAcct(); renderQuestions(); renderReviewList(); document.querySelectorAll(".thread[data-target]").forEach(renderThread); }
+
+/* ---------- accounts ---------- */
+const CFG = Object.assign({ supabaseUrl: "", supabaseAnonKey: "", providers: ["github", "google", "kakao"], contact: "", dataRegion: "", repo: "" }, window.ATLAS_CONFIG || {});
+const PROVIDERS = { github: "GitHub", google: "Google", kakao: "Kakao" };
+const RETURN_KEY = "frontier-atlas-return", CONSENT_KEY = "frontier-atlas-consent";
+function renderAcct() {
+  const el = document.getElementById("acct"); if (!el) return;
+  if (S.community === "off") { el.replaceChildren(); return; }
+  if (S.community === "loading") { el.replaceChildren(h("span", { class: "acct-wait", "aria-hidden": "true" })); return; }
+  if (!S.uid) { el.replaceChildren(h("button", { class: "btn ghost acct-in", onclick: openSignIn }, "Sign in")); return; }
+  const name = (S.me && S.me.display_name) || "Account";
+  el.replaceChildren(h("a", { class: "acct-me", href: "#account", title: "Your account" },
+    S.me && S.me.avatar_url ? h("img", { src: S.me.avatar_url, alt: "" }) : h("span", { class: "acct-av", "aria-hidden": "true" }, name.slice(0, 1).toUpperCase()), h("span", { class: "acct-name" }, name)));
+}
+function openSignIn() {
+  let dlg = document.getElementById("signin");
+  if (dlg) dlg.remove();
+  const ok = h("input", { type: "checkbox", id: "signin-ok" });
+  const btns = CFG.providers.filter(p => PROVIDERS[p]).map(p => h("button", { class: "btn ghost prov prov-" + p, disabled: true, onclick: () => signIn(p) }, "Continue with " + PROVIDERS[p]));
+  ok.addEventListener("change", () => btns.forEach(b => { b.disabled = !ok.checked; }));
+  dlg = h("dialog", { id: "signin", class: "dlg", "aria-labelledby": "signin-h" },
+    h("h2", { id: "signin-h" }, "Sign in to Frontier Atlas"),
+    h("p", { class: "small" }, "Signing in lets you post, vote, submit problems and keep your progress across devices. Reading needs no account."),
+    h("label", { class: "consent", for: "signin-ok" }, ok, h("span", null, "I am 14 or older, and I agree to the ", h("a", { href: "#terms", onclick: () => dlg.close() }, "Terms"), " and the ", h("a", { href: "#privacy", onclick: () => dlg.close() }, "Privacy Policy"), ".")),
+    h("div", { class: "provs" }, btns),
+    h("p", { class: "small muted" }, "Your public name starts as a neutral handle (your username if you use GitHub). You can change it on your account page."),
+    h("form", { method: "dialog", class: "dlg-x" }, h("button", { class: "linkbtn" }, "Cancel")));
+  document.body.append(dlg);
+  dlg.showModal(); ok.focus();
+}
+async function signIn(provider) {
+  if (!S.sb) return;
+  try { sessionStorage.setItem(RETURN_KEY, location.hash || ""); sessionStorage.setItem(CONSENT_KEY, new Date().toISOString()); } catch (e) {}
+  const { error } = await S.sb.auth.signInWithOAuth({ provider, options: { redirectTo: location.origin + location.pathname } });
+  if (error) toast("Could not start the sign-in. Try again.");
+}
+async function signOut() { if (S.sb) await S.sb.auth.signOut(); location.hash = ""; }
+async function loadMe() {
+  S.me = null; S.isAdmin = false;
+  if (!S.uid) return;
+  const [p, a] = await Promise.all([S.sb.from("profiles").select("id,display_name,avatar_url,terms_accepted_at,created_at").eq("id", S.uid).maybeSingle(), S.sb.from("admins").select("user_id").eq("user_id", S.uid).maybeSingle()]);
+  if (!p.error) S.me = p.data;
+  S.isAdmin = !a.error && !!a.data;
+  let consent = null; try { consent = sessionStorage.getItem(CONSENT_KEY); sessionStorage.removeItem(CONSENT_KEY); } catch (e) {}
+  if (S.me && !S.me.terms_accepted_at && consent) {
+    const r = await S.sb.from("profiles").update({ terms_accepted_at: new Date().toISOString() }).eq("id", S.uid).select("terms_accepted_at").maybeSingle();
+    if (!r.error && r.data) S.me.terms_accepted_at = r.data.terms_accepted_at;
+  }
+}
+function viewAccount() {
+  const box = h("div", null, h("header", { class: "page-h" }, h("h1", null, "Your account")));
+  if (S.community === "off") { box.append(h("p", { class: "note" }, "Accounts are not switched on for this copy of the site.")); return box; }
+  if (S.community === "loading") { box.append(h("p", { class: "small muted" }, "Loading…")); return box; }
+  if (!S.uid) { box.append(h("p", null, "You are not signed in."), h("button", { class: "btn", onclick: openSignIn }, "Sign in")); return box; }
+  const me = S.me || {};
+  const nameIn = h("input", { type: "text", id: "acct-name", value: me.display_name || "", maxlength: "40", autocomplete: "nickname" });
+  const save = h("button", { class: "btn", onclick: async () => {
+    const v = nameIn.value.trim();
+    if (v.length < 2 || v.length > 40) { toast("Use 2 to 40 characters."); return; }
+    save.disabled = true;
+    const { data, error } = await S.sb.from("profiles").update({ display_name: v }).eq("id", S.uid).select("display_name").maybeSingle();
+    save.disabled = false;
+    if (error || !data) { toast("Could not save the name."); return; }
+    S.me.display_name = data.display_name;
+    Object.values(S.posts).forEach(it => { if (it.author === S.uid) it.authorName = data.display_name; });
+    renderAcct(); toast("Saved.");
+  } }, "Save name");
+  const delIn = h("input", { type: "text", id: "acct-del", placeholder: "Type delete", autocomplete: "off" });
+  const del = h("button", { class: "btn danger", onclick: async () => {
+    if (delIn.value.trim().toLowerCase() !== "delete") { toast("Type delete to confirm."); return; }
+    del.disabled = true;
+    const { error } = await S.sb.rpc("delete_me");
+    if (error) { del.disabled = false; toast("Could not delete the account."); return; }
+    try { await S.sb.auth.signOut({ scope: "local" }); } catch (e) {}
+    S.posts = {}; S.loads = {}; toast("Your account was deleted."); location.hash = "";
+  } }, "Delete my account");
+  const exp = h("button", { class: "btn ghost", onclick: exportMine }, "Download my data");
+  const prov = (S.session && S.session.user && S.session.user.app_metadata && S.session.user.app_metadata.provider) || "";
+  box.append(
+    h("section", { class: "block acct-block" }, h("h2", null, "Public name"),
+      h("p", { class: "small muted" }, "Shown next to your posts. Avoid your full real name if you prefer privacy."),
+      h("div", { class: "formrow" }, h("label", { for: "acct-name", class: "sr" }, "Public name"), nameIn, save)),
+    h("section", { class: "block acct-block" }, h("h2", null, "Signed in with"), h("p", null, PROVIDERS[prov] || prov || "—"),
+      h("button", { class: "btn ghost", onclick: signOut }, "Sign out")),
+    S.isAdmin ? h("section", { class: "block acct-block" }, h("h2", null, "Editor"), h("p", null, "You can review problem submissions. ", h("a", { href: "#review" }, "Open the review queue"))) : null,
+    h("section", { class: "block acct-block" }, h("h2", null, "Your data"),
+      h("p", { class: "small muted" }, "A JSON file with your profile, posts, votes and the problems you marked solved."), exp),
+    h("section", { class: "block acct-block" }, h("h2", null, "Delete account"),
+      h("p", { class: "small muted" }, "Removes your profile, posts, replies, votes and progress right away. This cannot be undone."),
+      h("div", { class: "formrow" }, h("label", { for: "acct-del", class: "sr" }, "Confirm"), delIn, del)));
+  return box;
+}
+async function exportMine() {
+  if (!S.sb || !S.uid) return;
+  const [posts, votes, prog] = await Promise.all([
+    S.sb.from("posts").select("*").eq("author", S.uid).order("created_at").limit(10000),
+    S.sb.from("votes").select("post_id,created_at").limit(10000),
+    S.sb.from("progress").select("problem_id,created_at").limit(100000)]);
+  if (posts.error || votes.error || prog.error) { toast("Could not collect your data."); return; }
+  const blob = new Blob([JSON.stringify({ exported_at: new Date().toISOString(), profile: S.me, email: S.session && S.session.user && S.session.user.email || null, posts: posts.data, votes: votes.data, progress: prog.data }, null, 2)], { type: "application/json" });
+  const a = h("a", { href: URL.createObjectURL(blob), download: "frontier-atlas-data.json" }); document.body.append(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+}
+function contactLine() {
+  if (CFG.contact) return h("a", { href: "mailto:" + CFG.contact }, CFG.contact);
+  if (CFG.repo) return h("a", { href: CFG.repo + "/issues", target: "_blank", rel: "noopener" }, "the project's issue tracker");
+  return "the operator";
+}
+function legal(title, updated, sections) {
+  return h("article", { class: "legal" }, h("header", { class: "page-h" }, h("h1", null, title), h("p", { class: "small muted" }, "Last updated " + updated)),
+    sections.map(([t, ...ps]) => h("section", null, h("h2", null, t), ps.map(p => h("p", null, p)))));
+}
+function viewPrivacy() {
+  return legal("Privacy Policy", "23 October 2026", [
+    ["What this covers", "Frontier Atlas is a study site for mathematics. Reading needs no account. This policy explains what is stored when you sign in and take part."],
+    ["What we store", "When you sign in with GitHub, Google or Kakao, our authentication service receives an account identifier and, where the provider shares it, your email address. We keep a public name (a neutral handle by default; your username if you use GitHub, along with your GitHub avatar), the time you accepted these terms, the posts, replies and problem submissions you write, your votes, and the problems you mark as solved."],
+    ["What is public", "Your public name, avatar and posts are visible to everyone. Problem submissions are visible to you and the editors until accepted. Your email address, your individual votes (only totals are shown) and your progress are not public."],
+    ["What we do not do", "No advertising, no analytics or tracking cookies, and no selling or sharing of your data. Sign-in keeps a session token in your browser's local storage; problems you mark solved are also kept there."],
+    ["Who processes the data", ["Accounts and posts are stored with Supabase", CFG.dataRegion ? " (data region: " + CFG.dataRegion + ")" : "", ", which may be outside your country. The site is served by GitHub Pages. Fonts load from Google Fonts and the formula renderer from jsDelivr, which see your IP address when your browser fetches them. The sign-in provider you choose handles your login under its own policy."]],
+    ["How long we keep it", "Until you delete your account. Deleting it from your account page removes your profile, posts, replies, votes and progress immediately; copies in the database provider's backups expire on its backup schedule."],
+    ["Age", "You must be 14 or older to create an account."],
+    ["Your rights", ["From your account page you can change your public name, download your data and delete your account. For anything else, contact ", contactLine(), "."]]
+  ]);
+}
+function viewTerms() {
+  return legal("Terms of Use", "23 October 2026", [
+    ["Using the site", "Frontier Atlas is free to read. Lessons are written by AI and checked by a second AI and by computation; they can still contain errors. Problem statements come from the sources credited on each page."],
+    ["Accounts", "You must be 14 or older to sign in. Keep to one account, and do not impersonate anyone."],
+    ["What you post", "Post your own work, or material you have the right to share, with its source. Mark full solutions as solutions so they stay folded. No harassment, spam, or content that is illegal or sexual."],
+    ["License of posts", "By posting, you license your contribution under Creative Commons Attribution-ShareAlike 4.0, so others can learn from and build on it with credit."],
+    ["Moderation", "Editors may fold, remove or decline content and may suspend accounts that break these terms."],
+    ["No warranty", "The site is provided as is, without warranty of any kind."],
+    ["Contact", ["Questions: ", contactLine(), "."]]
+  ]);
+}
+
+/* ---------- boot: connect to the backend if configured ---------- */
+function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej; document.head.append(s); }); }
+async function onSession(session) {
+  const uid = session && session.user ? session.user.id : null;
+  S.session = session || null;
+  if (uid === S.uid && S.community === "on") return;
+  S.uid = uid; S.myVotes = new Set();
+  await loadMe();
+  S.community = "on";
+  document.getElementById("nav-review").hidden = !S.isAdmin;
+  renderAcct();
+  if (S.uid) { syncProgress(); const ids = Object.keys(S.posts); loadMyVotes(ids).then(refreshCommunity); }
+  S.loads = {}; loadCounts().catch(() => {}); ensureSubmissions().then(refreshCommunity).catch(() => {}).finally(() => subsDone());
+  refreshCommunity();
+  if (["account", "review"].includes(S.route && S.route.name)) route();
+}
+let rtTimer = null;
+function onRealtime(ev) {
+  const row = ev.new && ev.new.id ? ev.new : ev.old || {};
+  if (ev.eventType === "DELETE" && row.id) dropPost(row.id);
+  clearTimeout(rtTimer);
+  rtTimer = setTimeout(() => {
+    const t = ev.new && ev.new.target;
+    const jobs = [loadCounts()];
+    if (t && S.loads["t:" + t]) jobs.push(ensureTarget(t, true));
+    if (ev.new && ev.new.kind === "proposal" && S.loads.proposals) jobs.push(ensureProposals(true));
+    if (ev.new && ev.new.kind === "problem") jobs.push(ensureSubmissions(true));
+    if (ev.new && ev.new.parent && S.loads.proposals) jobs.push(ensureProposals(true));
+    Promise.all(jobs.map(j => j.catch(() => {}))).then(refreshCommunity);
+  }, 400);
+}
+async function connect() {
+  const q = new URLSearchParams(location.search);
+  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey) { S.community = "off"; subsDone(); renderAcct(); refreshCommunity(); return; }
+  renderAcct();
+  try { if (!window.supabase) await loadScript("vendor/supabase-2.117.3.js"); }
+  catch (e) { S.community = "off"; subsDone(); renderAcct(); refreshCommunity(); return; }
+  S.sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { flowType: "pkce", detectSessionInUrl: true, persistSession: true, autoRefreshToken: true } });
+  const { data } = await S.sb.auth.getSession();
+  if (q.has("code") || q.has("error")) {
+    let back = ""; try { back = sessionStorage.getItem(RETURN_KEY) || ""; sessionStorage.removeItem(RETURN_KEY); } catch (e) {}
+    history.replaceState(null, "", location.pathname + (back || location.hash));
+    if (q.has("error")) toast("Sign-in was cancelled or failed.");
+    if (back) route();
+  }
+  await onSession(data && data.session);
+  S.sb.auth.onAuthStateChange((event, session) => { setTimeout(() => onSession(session), 0); });
+  S.sb.channel("posts").on("postgres_changes", { event: "*", schema: "public", table: "posts" }, onRealtime).subscribe();
+}
+
+/* ---------- boot ---------- */
+route();
+connect();
+</script>
+</body>
+</html>

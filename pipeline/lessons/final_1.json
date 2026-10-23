@@ -1,0 +1,1011 @@
+[
+ {
+  "id": "divisibility",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Is 1071 a multiple of 462? No, but the two numbers still have something in common: both are multiples of 21, and no larger number divides them both. How would you find that 21 if the numbers had two hundred digits each, far too large to factor? This lesson answers that question with the oldest non-trivial algorithm still in daily use.\n\nAlong the way we set up the basic language of number theory: what it means for one integer to divide another, division with remainder, and the greatest common divisor. Everything later in the subject, from modular arithmetic to continued fractions, is built on these few ideas."
+   },
+   {
+    "type": "definition",
+    "title": "Divisibility",
+    "body": "Let $a$ and $b$ be integers. We say $a$ divides $b$, and write $a \\mid b$, if there is an integer $k$ with $b = ak$. We also say $a$ is a divisor of $b$, or $b$ is a multiple of $a$. If no such $k$ exists we write $a \\nmid b$.\n\nIn words: $b$ can be split into $|a|$-sized pieces with nothing left over (or, for $a=0$, $b$ itself is $0$)."
+   },
+   {
+    "type": "section",
+    "title": "First properties",
+    "body": "Some quick cases: $3 \\mid 12$ because $12 = 3\\cdot 4$; $5 \\nmid 12$; $-4 \\mid 12$ because $12 = (-4)(-3)$. Every integer divides $0$, since $0 = a \\cdot 0$. The only multiple of $0$ is $0$ itself, so $0 \\mid b$ forces $b = 0$. And $1$ divides everything.\n\nNotice that $a \\mid b$ is a statement, true or false, not a number. It should not be confused with the fraction $a/b$. \"$3 \\mid 12$\" is true; \"$12/3$\" is the number $4$.\n\nA handful of rules follow straight from the definition, and you will use them constantly.\n\n1. If $a \\mid b$ and $b \\mid c$, then $a \\mid c$. (If $b = ak$ and $c = bl$, then $c = a(kl)$.)\n2. If $a \\mid b$ and $a \\mid c$, then $a \\mid bx + cy$ for all integers $x, y$. (If $b = ak$ and $c = al$, then $bx + cy = a(kx + ly)$.)\n3. If $a \\mid b$ and $b \\neq 0$, then $|a| \\le |b|$. (From $b = ak$ with $k \\ne 0$ we get $|b| = |a|\\,|k| \\ge |a|$.)\n4. If $a \\mid b$ and $b \\mid a$, then $a = \\pm b$.\n\nRule 2 is the workhorse. Any integer combination $bx + cy$ of two multiples of $a$ is again a multiple of $a$. Most divisibility arguments come down to finding the right combination."
+   },
+   {
+    "type": "theorem",
+    "title": "Division with remainder",
+    "body": "Let $a$ and $b$ be integers with $b > 0$. There are unique integers $q$ and $r$ such that\n$$a = bq + r, \\qquad 0 \\le r < b.$$\nWe call $q$ the quotient and $r$ the remainder, and write $r = a \\bmod b$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Existence. Look at the numbers $a - bq$ for all integers $q$. Some of them are non-negative (take $q$ very negative), so there is a smallest non-negative one; call it $r = a - bq$. Then $r \\ge 0$. If $r \\ge b$, then $r - b = a - b(q+1)$ would be a smaller non-negative number of the same form, contradicting the choice of $r$. So $0 \\le r < b$.\n\nUniqueness. Suppose $a = bq + r = bq' + r'$ with both remainders in $[0, b)$. Then $b(q - q') = r' - r$. The right-hand side lies strictly between $-b$ and $b$, and it is a multiple of $b$, so it must be $0$. Hence $r = r'$ and then $q = q'$."
+   },
+   {
+    "type": "definition",
+    "title": "Greatest common divisor",
+    "body": "Let $a$ and $b$ be integers, not both zero. The greatest common divisor $\\gcd(a,b)$ is the largest integer that divides both $a$ and $b$. If $\\gcd(a,b) = 1$ we say $a$ and $b$ are coprime.\n\nIt always exists and is positive, because $1$ is a common divisor and every common divisor is at most $\\max(|a|,|b|)$. Note $\\gcd(a, 0) = |a|$ for $a \\ne 0$."
+   },
+   {
+    "type": "theorem",
+    "title": "The Euclidean step",
+    "body": "For integers $a$ and $b$ with $b > 0$,\n$$\\gcd(a,b) = \\gcd(b,\\ a \\bmod b).$$\nMore precisely, the pairs $(a, b)$ and $(b, a \\bmod b)$ have exactly the same common divisors."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Write $a = bq + r$ with $r = a \\bmod b$. If $d$ divides $a$ and $b$, then $d$ divides $r = a - bq$ by rule 2, so $d$ is a common divisor of $b$ and $r$. Conversely, if $d$ divides $b$ and $r$, then $d$ divides $a = bq + r$. So the two pairs have the same set of common divisors, and in particular the same largest one."
+   },
+   {
+    "type": "section",
+    "title": "The Euclidean algorithm",
+    "body": "The Euclidean step replaces a pair by a smaller pair with the same common divisors. Repeat it until the remainder is $0$; since $\\gcd(g, 0) = g$, the last non-zero remainder is the answer. For $1071$ and $462$:\n$$\\begin{aligned} 1071 &= 2 \\cdot 462 + 147 \\\\ 462 &= 3 \\cdot 147 + 21 \\\\ 147 &= 7 \\cdot 21 + 0 \\end{aligned}$$\nso $\\gcd(1071, 462) = \\gcd(462, 147) = \\gcd(147, 21) = \\gcd(21, 0) = 21$.\n\nThe process must stop, because the remainders form a strictly decreasing sequence of non-negative integers. It also gives something more than the number $21$. Since every step preserves the whole set of common divisors, the common divisors of $1071$ and $462$ are exactly the common divisors of $21$ and $0$, that is, the divisors of $21$. In general:\n\nEvery common divisor of $a$ and $b$ divides $\\gcd(a,b)$.\n\nThis is a much stronger statement than \"the gcd is the largest common divisor\", and it is often the form you actually need.\n\nA second useful consequence: if $k > 0$, multiplying every line of the algorithm for $(a, b)$ by $k$ gives a valid run of the algorithm for $(ka, kb)$, so $\\gcd(ka, kb) = k \\gcd(a, b)$."
+   },
+   {
+    "type": "section",
+    "title": "How fast is it?",
+    "body": "How many steps does the algorithm need? Assume $a \\ge b > 0$ and write the successive remainders as $r_0 = a$, $r_1 = b$, $r_2, r_3, \\dots$. The key observation is that the remainder at least halves every two steps:\n$$r_{i+2} < \\tfrac12 r_i.$$\nIndeed, if $r_{i+1} \\le \\frac12 r_i$ this is clear, since $r_{i+2} < r_{i+1}$. Otherwise $r_{i+1} > \\frac12 r_i$, so $r_{i+1}$ fits into $r_i$ exactly once and $r_{i+2} = r_i - r_{i+1} < \\frac12 r_i$.\n\nSo after $2k$ steps the remainder is below $b/2^k$, and the algorithm finishes in at most about $2\\log_2 b$ steps. For numbers with two hundred digits that is under about 1400 steps; trial factoring would never finish. Lamé proved in 1844 the sharper bound that the number of steps is at most five times the number of decimal digits of the smaller input. The worst inputs are consecutive Fibonacci numbers, where every quotient except the last is $1$. This was one of the first results in mathematics about the running time of an algorithm."
+   },
+   {
+    "type": "example",
+    "title": "A first computation",
+    "body": "Compute $\\gcd(252, 198)$ with the Euclidean algorithm.",
+    "solution": "$$\\begin{aligned} 252 &= 1 \\cdot 198 + 54 \\\\ 198 &= 3 \\cdot 54 + 36 \\\\ 54 &= 1 \\cdot 36 + 18 \\\\ 36 &= 2 \\cdot 18 + 0 \\end{aligned}$$\nThe last non-zero remainder is $18$, so $\\gcd(252, 198) = 18$. As a sanity check, $252 = 18 \\cdot 14$ and $198 = 18 \\cdot 11$, and $\\gcd(14, 11) = 1$."
+   },
+   {
+    "type": "example",
+    "title": "Removing the variable",
+    "body": "Find all positive integers $n$ such that $n + 3$ divides $n^2 + 7$.",
+    "solution": "Divide $n^2 + 7$ by $n + 3$ as polynomials: $n^2 + 7 = (n+3)(n-3) + 16$. Since $n + 3$ divides $(n+3)(n-3)$, rule 2 shows that $n + 3 \\mid n^2 + 7$ holds exactly when $n + 3 \\mid 16$.\n\nFor positive $n$ we have $n + 3 \\ge 4$, and the divisors of $16$ that are at least $4$ are $4, 8, 16$. So $n \\in \\{1, 5, 13\\}$. Check: $1 + 7 = 8 = 4 \\cdot 2$, $25 + 7 = 32 = 8 \\cdot 4$, $169 + 7 = 176 = 16 \\cdot 11$.\n\nThe trick of subtracting a multiple to get rid of $n$ is exactly a Euclidean step."
+   },
+   {
+    "type": "example",
+    "title": "A gcd that depends on parity",
+    "body": "For each integer $n$, determine $\\gcd(n^2 + 1,\\ n + 1)$.",
+    "solution": "The identity $n^2 + 1 = (n + 1)(n - 1) + 2$ shows that $n^2+1$ and $2$ differ by a multiple of $n+1$. By the same argument as the Euclidean step (subtracting a multiple of one number from the other does not change the common divisors),\n$$\\gcd(n^2 + 1,\\ n + 1) = \\gcd(n + 1,\\ 2).$$\nThis is $2$ when $n + 1$ is even, i.e. when $n$ is odd, and $1$ when $n$ is even. For example $n = 3$ gives $\\gcd(10, 4) = 2$ and $n = 4$ gives $\\gcd(17, 5) = 1$."
+   },
+   {
+    "type": "example",
+    "title": "Euclid on the exponents",
+    "body": "Prove that for all positive integers $m$ and $n$,\n$$\\gcd(2^m - 1,\\ 2^n - 1) = 2^{\\gcd(m,n)} - 1.$$",
+    "solution": "Suppose $m > n$. Then\n$$2^m - 1 = 2^{m-n}(2^n - 1) + (2^{m-n} - 1),$$\nwhich you can check by expanding the right-hand side. So $2^m - 1$ and $2^{m-n}-1$ differ by a multiple of $2^n - 1$, and as in the Euclidean step\n$$\\gcd(2^m - 1,\\ 2^n - 1) = \\gcd(2^n - 1,\\ 2^{m-n} - 1).$$\nOn the exponents this is the move $(m, n) \\to (n, m - n)$: the subtractive form of the Euclidean algorithm, which repeatedly replaces the larger number by the difference. It does not change $\\gcd(m, n)$ and ends at a pair $(g, g)$ with $g = \\gcd(m,n)$ (if $m = n$ we are already there). Applying the identity at every step, the left-hand side ends at $\\gcd(2^g - 1, 2^g - 1) = 2^g - 1$.\n\nFor instance $\\gcd(2^{12} - 1, 2^{18} - 1) = \\gcd(4095, 262143) = 63 = 2^6 - 1$. The same proof works with $2$ replaced by any integer $b \\ge 2$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $a \\mid bc$ does not imply $a \\mid b$ or $a \\mid c$: $6 \\mid 4 \\cdot 9$ but $6 \\nmid 4$ and $6 \\nmid 9$. (For primes it does hold; see [[fta]].)\n- $a \\mid c$ and $b \\mid c$ do not imply $ab \\mid c$: $4 \\mid 12$ and $6 \\mid 12$ but $24 \\nmid 12$. It does hold when $\\gcd(a,b) = 1$.\n- $a \\mid b$ and $b \\mid a$ give $a = \\pm b$, not $a = b$.\n- The remainder $a \\bmod b$ is never negative in our convention: $-7 = 3\\cdot(-3) + 2$, so $-7 \\bmod 3 = 2$, not $-1$. Some programming languages disagree.\n- The gcd is the largest common divisor, but the more useful fact is that every common divisor divides it."
+   },
+   {
+    "type": "connection",
+    "body": "Running the Euclidean algorithm backwards writes $\\gcd(a,b)$ as $ax + by$; that is [[bezout]], and it is the engine behind modular inverses. The fact that primes behave well under division, which gives unique factorisation, is proved in [[fta]] from the properties above. [[congruences|Modular arithmetic]] is the systematic study of remainders.\n\nThe quotients of the algorithm are themselves meaningful: for $1071/462$ they were $2, 3, 7$, and indeed $\\frac{1071}{462} = 2 + \\cfrac{1}{3 + \\cfrac{1}{7}}$. This is the start of [[continued-fractions]]. The quotient $q$ in division with remainder is $\\lfloor a/b \\rfloor$, which links to [[floor-functions]].\n\nThe same algorithm works for polynomials, which matters in [[integer-polynomials]], and divisibility arguments are the first tool for [[diophantine]] equations, [[unit-fractions]], [[integer-functional-eq]] and [[combinatorial-nt]]. In computer science the algorithm is a standard example in the analysis of algorithms, thanks to Lamé's bound."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use the Euclidean algorithm to compute $\\gcd(1001, 777)$.\n2. Show that $\\gcd(n, n + 1) = 1$ for every integer $n$.\n3. Show that for every integer $n$ the fraction $\\dfrac{2n + 3}{5n + 7}$ is in lowest terms.\n4. Find all positive integers $n$ such that $n + 2$ divides $n^3 + 11$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Knuth, The Art of Computer Programming, Vol. 2: Seminumerical Algorithms",
+    "where": "§4.5.2–4.5.3"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "1071 = 2*462+147, 462 = 3*147+21, 147 = 7*21, gcd = 21",
+    "python": "from math import gcd\nassert 1071 == 2*462+147 and 462 == 3*147+21 and 147 == 7*21\nassert gcd(1071,462) == 21"
+   },
+   {
+    "claim": "gcd(252,198) = 18 via the displayed steps",
+    "python": "from math import gcd\nassert 252 == 198+54 and 198 == 3*54+36 and 54 == 36+18 and 36 == 2*18\nassert gcd(252,198) == 18 and gcd(14,11) == 1 and 252 == 18*14 and 198 == 18*11"
+   },
+   {
+    "claim": "n+3 | n^2+7 for positive n exactly when n in {1,5,13}",
+    "python": "assert [n for n in range(1,10000) if (n*n+7) % (n+3) == 0] == [1,5,13]"
+   },
+   {
+    "claim": "gcd(n^2+1, n+1) is 2 for odd n and 1 for even n",
+    "python": "from math import gcd\nfor n in range(-500,500):\n    assert gcd(n*n+1, n+1) == (2 if n % 2 else 1)"
+   },
+   {
+    "claim": "gcd(2^m-1, 2^n-1) = 2^gcd(m,n)-1, and gcd(4095, 262143) = 63",
+    "python": "from math import gcd\nfor m in range(1,60):\n    for n in range(1,60):\n        assert gcd(2**m-1, 2**n-1) == 2**gcd(m,n)-1\nassert 2**12-1 == 4095 and 2**18-1 == 262143 and gcd(4095,262143) == 63"
+   },
+   {
+    "claim": "Euclidean remainders satisfy r_{i+2} < r_i/2",
+    "python": "import random\nfor _ in range(3000):\n    a, b = random.randint(1,10**12), random.randint(1,10**12)\n    r = [max(a,b), min(a,b)]\n    while r[-1]:\n        r.append(r[-2] % r[-1])\n    for i in range(len(r)-2):\n        assert 2*r[i+2] < r[i]"
+   },
+   {
+    "claim": "Lame: steps <= 5 * (digits of smaller input); Fibonacci pairs attain many steps",
+    "python": "import random\ndef steps(a,b):\n    s=0\n    while b:\n        a,b=b,a%b; s+=1\n    return s\nfor _ in range(3000):\n    a,b = random.randint(1,10**9), random.randint(1,10**9)\n    assert steps(max(a,b),min(a,b)) <= 5*len(str(min(a,b)))\nf=[1,1]\nwhile len(f)<80: f.append(f[-1]+f[-2])\nfor k in range(2,79):\n    assert steps(f[k+1],f[k]) <= 5*len(str(f[k]))"
+   },
+   {
+    "claim": "1071/462 = 2 + 1/(3 + 1/7)",
+    "python": "from fractions import Fraction as F\nassert F(1071,462) == 2 + 1/(3 + F(1,7))"
+   },
+   {
+    "claim": "-7 mod 3 = 2 with -7 = 3*(-3)+2",
+    "python": "assert -7 == 3*(-3)+2 and (-7) % 3 == 2"
+   },
+   {
+    "claim": "Two hundred digits: 2*log2(10^200) is about 1329, under 1400; Lame bound 5*200 = 1000 steps",
+    "python": "import math\nassert 1328 < 2*math.log2(10**200) < 1330 < 1400"
+   },
+   {
+    "claim": "For consecutive Fibonacci numbers every Euclidean quotient is 1 except the last, which is 2",
+    "python": "f=[1,2]\nwhile len(f)<60: f.append(f[-1]+f[-2])\nfor k in range(1,59):\n    a,b=f[k+1],f[k]; qs=[]\n    while b:\n        qs.append(a//b); a,b=b,a%b\n    assert qs[:-1] == [1]*(len(qs)-1) and qs[-1] == 2"
+   },
+   {
+    "claim": "The halving bound r_{i+2} < r_i/2 needs a >= b: with a < b it fails at i = 0",
+    "python": "a,b=3,10\nr=[a,b]\nwhile r[-1]: r.append(r[-2]%r[-1])\nassert r[2] == a and not (2*r[2] < r[0])"
+   },
+   {
+    "claim": "gcd(ka, kb) = k gcd(a, b) for k > 0",
+    "python": "from math import gcd\nimport random\nfor _ in range(5000):\n    a,b,k=random.randint(-10**6,10**6),random.randint(1,10**6),random.randint(1,1000)\n    assert gcd(k*a,k*b) == k*gcd(a,b)"
+   }
+  ]
+ },
+ {
+  "id": "bezout",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "With a 6-litre jug and a 10-litre jug and an unlimited tap, which amounts of water can you measure? Every amount you can produce has the form $6x + 10y$ for some integers $x$ and $y$ (negative values mean pouring out), so the question is which integers can be written that way. All of them are even, so $3$ is impossible. But $2 = 6 \\cdot 2 + 10 \\cdot (-1)$ is possible, and then every even number is.\n\nThe pattern is general. The integer combinations $ax + by$ are exactly the multiples of $\\gcd(a,b)$, and the Euclidean algorithm, run backwards, tells you how to find the coefficients. This lesson proves that and uses it to solve every equation $ax + by = c$ in integers."
+   },
+   {
+    "type": "section",
+    "title": "Which numbers are combinations?",
+    "body": "Fix $a = 6$, $b = 10$, and list some values of $6x + 10y$: with $(x, y) = (1, 0), (0, 1), (2, -1), (-3, 2), (5, -3)$ we get $6, 10, 2, 2, 0$. Every value is divisible by $\\gcd(6,10) = 2$, since $2$ divides both $6$ and $10$. The surprise is the reverse direction: $2$ itself shows up, and then $2k = 6(2k) + 10(-k)$ for every $k$.\n\nWhy should the gcd always be reachable? Think of the Euclidean algorithm. Each remainder is the previous number minus a multiple of the one before it, so each remainder is an integer combination of the two numbers you started with. The last non-zero remainder is the gcd, so the gcd is an integer combination of $a$ and $b$. The theorem below makes this precise with a short argument, and the next section turns the idea into an algorithm."
+   },
+   {
+    "type": "theorem",
+    "title": "Bézout's identity",
+    "body": "Let $a$ and $b$ be integers, not both zero. Then there are integers $x$ and $y$ with\n$$ax + by = \\gcd(a,b).$$\nMoreover, the set $\\{ax + by : x, y \\in \\mathbb Z\\}$ is exactly the set of multiples of $\\gcd(a,b)$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of Bézout's identity",
+    "body": "Let $S = \\{ax + by : x, y \\in \\mathbb Z\\}$. It contains the positive number $a^2 + b^2$, so it has a smallest positive element; call it $d = ax_0 + by_0$.\n\nWe show $d \\mid a$. Divide with remainder: $a = qd + r$ with $0 \\le r < d$. Then\n$$r = a - q(ax_0 + by_0) = a(1 - qx_0) + b(-qy_0),$$\nso $r$ is also in $S$. Since $0 \\le r < d$ and $d$ is the smallest positive element of $S$, we must have $r = 0$. So $d \\mid a$, and in the same way $d \\mid b$. Hence $d$ is a common divisor, and $d \\le g$ where $g = \\gcd(a,b)$.\n\nOn the other hand $g$ divides $a$ and $b$, so it divides $ax_0 + by_0 = d$, which gives $g \\le d$. Therefore $d = g$, proving the first claim.\n\nFor the second claim: every element of $S$ is divisible by $g$ (as $g \\mid a$ and $g \\mid b$), and every multiple $kg = a(kx_0) + b(ky_0)$ lies in $S$."
+   },
+   {
+    "type": "section",
+    "title": "The extended Euclidean algorithm",
+    "body": "The proof above shows the coefficients exist but does not find them. To find them, run the Euclidean algorithm and keep track of how each remainder is built from $a$ and $b$. For $a = 1071$ and $b = 462$ the algorithm read $1071 = 2\\cdot 462 + 147$, $462 = 3 \\cdot 147 + 21$, $147 = 7 \\cdot 21$. Solve each line for its remainder and substitute upwards:\n$$\\begin{aligned} 21 &= 462 - 3 \\cdot 147 \\\\ &= 462 - 3\\,(1071 - 2 \\cdot 462) \\\\ &= 7 \\cdot 462 - 3 \\cdot 1071. \\end{aligned}$$\nSo $1071 \\cdot (-3) + 462 \\cdot 7 = 21$.\n\nFor hand or computer work it is tidier to go forwards with a table. Keep rows $(r, x, y)$ with $r = ax + by$. Start with $(a, 1, 0)$ and $(b, 0, 1)$. If the last two rows are $R_{i-1}$ and $R_i$ and $q$ is the quotient of $r_{i-1}$ by $r_i$, the next row is $R_{i-1} - q R_i$:\n$$\\begin{array}{c|c|r|r} q & r & x & y \\\\ \\hline & 1071 & 1 & 0 \\\\ & 462 & 0 & 1 \\\\ 2 & 147 & 1 & -2 \\\\ 3 & 21 & -3 & 7 \\\\ 7 & 0 & 22 & -51 \\end{array}$$\nThe row with the last non-zero remainder gives the Bézout coefficients. The final row is a nice bonus: $1071 \\cdot 22 - 462 \\cdot 51 = 0$, and $22 = 462/21$, $51 = 1071/21$. It hands you the step between solutions, which is the subject of the theorem on linear Diophantine equations below."
+   },
+   {
+    "type": "theorem",
+    "title": "Euclid's lemma (general form)",
+    "body": "If $m \\mid kn$ and $\\gcd(m, k) = 1$, then $m \\mid n$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "By Bézout there are integers $u, v$ with $mu + kv = 1$. Multiply by $n$: $n = m(nu) + (kn)v$. Both terms on the right are divisible by $m$, the second because $m \\mid kn$. So $m \\mid n$."
+   },
+   {
+    "type": "theorem",
+    "title": "Linear Diophantine equations in two variables",
+    "body": "Let $a, b$ be non-zero integers, $g = \\gcd(a,b)$ and $c$ an integer. The equation\n$$ax + by = c$$\nhas an integer solution if and only if $g \\mid c$. If $(x_0, y_0)$ is one solution, then all integer solutions are\n$$x = x_0 + \\frac{b}{g}\\,t, \\qquad y = y_0 - \\frac{a}{g}\\,t, \\qquad t \\in \\mathbb Z.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Solvability is the second half of Bézout's identity: the values of $ax + by$ are exactly the multiples of $g$.\n\nPlugging in shows each pair in the family is a solution, since $a \\cdot \\frac{b}{g}t - b\\cdot\\frac{a}{g}t = 0$. Conversely let $(x, y)$ be any solution. Subtracting $ax_0 + by_0 = c$ gives $a(x - x_0) = -b(y - y_0)$, and dividing by $g$,\n$$\\frac{a}{g}(x - x_0) = -\\frac{b}{g}(y - y_0).$$\nThe numbers $a/g$ and $b/g$ are coprime: from $ax_0' + by_0' = g$ (Bézout) we get $\\frac{a}{g}x_0' + \\frac{b}{g}y_0' = 1$, and any common divisor of $a/g$ and $b/g$ divides $1$. Now $b/g$ divides $\\frac{a}{g}(x - x_0)$ and is coprime to $a/g$, so by Euclid's lemma $\\frac{b}{g} \\mid x - x_0$. Write $x - x_0 = \\frac{b}{g}t$. Substituting back gives $\\frac{a}{g}\\cdot\\frac{b}{g}t = -\\frac{b}{g}(y - y_0)$, and dividing by $\\frac{b}{g} \\neq 0$ gives $y - y_0 = -\\frac{a}{g}t$."
+   },
+   {
+    "type": "example",
+    "title": "Running the algorithm backwards",
+    "body": "Find integers $x, y$ with $240x + 46y = \\gcd(240, 46)$.",
+    "solution": "Euclidean algorithm:\n$$\\begin{aligned} 240 &= 5 \\cdot 46 + 10 \\\\ 46 &= 4 \\cdot 10 + 6 \\\\ 10 &= 1 \\cdot 6 + 4 \\\\ 6 &= 1 \\cdot 4 + 2 \\\\ 4 &= 2 \\cdot 2 + 0 \\end{aligned}$$\nso the gcd is $2$. Back-substitute:\n$$\\begin{aligned} 2 &= 6 - 4 = 6 - (10 - 6) = 2 \\cdot 6 - 10 \\\\ &= 2(46 - 4 \\cdot 10) - 10 = 2 \\cdot 46 - 9 \\cdot 10 \\\\ &= 2 \\cdot 46 - 9(240 - 5 \\cdot 46) = 47 \\cdot 46 - 9 \\cdot 240. \\end{aligned}$$\nSo $x = -9$, $y = 47$. Check: $47 \\cdot 46 = 2162$ and $9 \\cdot 240 = 2160$."
+   },
+   {
+    "type": "example",
+    "title": "Coprime divisors multiply",
+    "body": "Show that if $\\gcd(a, b) = 1$, $a \\mid c$ and $b \\mid c$, then $ab \\mid c$.",
+    "solution": "Choose $x, y$ with $ax + by = 1$ and multiply by $c$: $c = acx + bcy$. Since $b \\mid c$, the product $ab$ divides $ac$; since $a \\mid c$, it divides $bc$. So $ab$ divides both terms, hence divides $c$.\n\nWithout the coprimality the claim fails: $4 \\mid 12$ and $6 \\mid 12$ but $24 \\nmid 12$."
+   },
+   {
+    "type": "example",
+    "title": "A word problem",
+    "body": "Pens cost 15 units and notebooks 21 units. Someone spent exactly 261 units and bought at least one of each. What could they have bought?",
+    "solution": "We need positive integers with $15x + 21y = 261$. Here $\\gcd(15, 21) = 3$ and $3 \\mid 261$, so solutions exist; divide by $3$ to get $5x + 7y = 87$.\n\nA Bézout relation for $5$ and $7$ is $5 \\cdot 3 + 7 \\cdot (-2) = 1$. Multiplying by $87$ gives the particular solution $(x_0, y_0) = (261, -174)$, and by the theorem every solution is\n$$x = 261 + 7t, \\qquad y = -174 - 5t.$$\nPositivity needs $261 + 7t > 0$, i.e. $t \\ge -37$, and $-174 - 5t > 0$, i.e. $t \\le -35$. So $t \\in \\{-37, -36, -35\\}$, giving\n$$(x, y) = (2, 11),\\ (9, 6),\\ (16, 1).$$\nCheck one: $15 \\cdot 9 + 21 \\cdot 6 = 135 + 126 = 261$. Note how the step from one answer to the next is $(7, -5) = (21/3, -15/3)$."
+   },
+   {
+    "type": "example",
+    "title": "The largest amount you cannot pay",
+    "body": "Let $a, b$ be coprime positive integers. Call $n$ representable if $n = ax + by$ with $x, y \\ge 0$. Show that $ab - a - b$ is not representable, but every integer larger than it is.",
+    "solution": "Fix an integer $n$. All integer solutions of $ax + by = n$ are $x = x_0 + bt$, $y = y_0 - at$. Exactly one of them has $0 \\le x \\le b - 1$ (choose $t$ so that $x_0 + bt$ is the remainder of $x_0$ on division by $b$). Call this the standard solution $(x^*, y^*)$.\n\nAmong all solutions with $x \\ge 0$, the standard one has the largest $y$, because increasing $t$ increases $x$ and decreases $y$, and decreasing $t$ below the standard value makes $x$ negative. So $n$ is representable exactly when $y^* \\ge 0$.\n\nFor $n = ab - a - b = a(b - 1) + b(-1)$, the standard solution is $x^* = b - 1$, $y^* = -1 < 0$. So $ab - a - b$ is not representable.\n\nIf $n > ab - a - b$, then $by^* = n - ax^* \\ge n - a(b-1) > ab - a - b - ab + a = -b$. So $y^* > -1$, that is $y^* \\ge 0$, and $n$ is representable.\n\nFor example with $a = 5$, $b = 7$ the largest non-representable number is $35 - 12 = 23$. This is the two-coin case of the Frobenius coin problem."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The Bézout coefficients are not unique: $6 \\cdot 2 + 10 \\cdot (-1) = 2$ and $6 \\cdot (-3) + 10 \\cdot 2 = 2$. They differ by multiples of $(b/g, -a/g)$.\n- If $ax + by = d$ you may only conclude $\\gcd(a,b) \\mid d$, not $d = \\gcd(a,b)$: $6 \\cdot 1 + 10 \\cdot 1 = 16$. The exception is $d = 1$, which does force $\\gcd(a, b) = 1$.\n- The general solution steps by $b/g$ and $a/g$, not by $b$ and $a$. Using $b$ and $a$ misses solutions whenever $g > 1$.\n- Bézout gives integer coefficients, usually one negative. Whether non-negative coefficients exist is a different question (the last example)."
+   },
+   {
+    "type": "connection",
+    "body": "The most important use comes next: a relation $ax + ny = 1$ says exactly that $ax \\equiv 1 \\pmod n$, so Bézout computes [[mod-inverse|modular inverses]], and through them the [[crt]]. Euclid's lemma for primes, the key to unique factorisation in [[fta]], is the special case $m = p$ of the lemma above.\n\nIn the language of algebra, the set $S$ in the proof is the ideal generated by $a$ and $b$, and the theorem says it is generated by the single number $\\gcd(a,b)$. Rings in which every ideal is generated by one element are called principal ideal domains; see [[ideals]]. The [[gaussian-integers]] have their own division with remainder and hence their own Bézout identity. Equations with more variables or higher degree are taken up in [[diophantine]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find integers $x, y$ with $101x + 37y = 1$.\n2. Find all integer solutions of $14x - 35y = 21$.\n3. Prove that $\\gcd(a, b) = 1$ if and only if there are integers $x, y$ with $ax + by = 1$.\n4. With a 9-litre and a 15-litre jug, can you measure exactly 4 litres? Exactly 6 litres?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Knuth, The Art of Computer Programming, Vol. 2: Seminumerical Algorithms",
+    "where": "§4.5.2"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "7*462 - 3*1071 = 21 and the table rows satisfy r = 1071x + 462y",
+    "python": "assert 7*462 - 3*1071 == 21\nrows=[(1071,1,0),(462,0,1),(147,1,-2),(21,-3,7),(0,22,-51)]\nfor r,x,y in rows: assert r == 1071*x+462*y\nassert 462//21 == 22 and 1071//21 == 51"
+   },
+   {
+    "claim": "6*2+10*(-1) = 2 = 6*(-3)+10*2, 6+10 = 16",
+    "python": "assert 6*2+10*(-1) == 2 == 6*(-3)+10*2 and 6+10 == 16"
+   },
+   {
+    "claim": "240 and 46: gcd 2 = 47*46 - 9*240",
+    "python": "from math import gcd\nassert gcd(240,46) == 2 and 47*46 - 9*240 == 2\nassert 240 == 5*46+10 and 46 == 4*10+6 and 10 == 6+4 and 6 == 4+2 and 47*46 == 2162 and 9*240 == 2160"
+   },
+   {
+    "claim": "15x+21y=261 positive solutions are (2,11),(9,6),(16,1); 5*3+7*(-2)=1",
+    "python": "assert 5*3+7*(-2) == 1\nsols=[(x,y) for x in range(1,300) for y in range(1,300) if 15*x+21*y == 261]\nassert sols == [(2,11),(9,6),(16,1)]\nassert [(261+7*t, -174-5*t) for t in (-37,-36,-35)] == sols"
+   },
+   {
+    "claim": "Frobenius: for coprime a,b the largest non-representable number is ab-a-b (5,7 -> 23)",
+    "python": "from math import gcd\nfor a in range(2,15):\n    for b in range(2,15):\n        if gcd(a,b) != 1: continue\n        rep = set(a*x+b*y for x in range(0,b*a+5) for y in range(0,a*b+5))\n        bad = [n for n in range(0, a*b+1) if n not in rep]\n        assert max(bad) == a*b-a-b\nassert 5*7-5-7 == 23"
+   },
+   {
+    "claim": "General solution theorem: brute-force check of solution sets",
+    "python": "from math import gcd\nimport itertools\nfor a,b,c in itertools.product(range(-9,10), range(-9,10), range(-12,13)):\n    if a == 0 or b == 0: continue\n    g = gcd(a,b)\n    sols = {(x,y) for x in range(-40,41) for y in range(-40,41) if a*x+b*y == c}\n    assert bool(sols) == (c % g == 0)\n    if sols:\n        x0,y0 = min(sols)\n        fam = {(x0+b//g*t, y0-a//g*t) for t in range(-200,201)}\n        fam = {p for p in fam if -40 <= p[0] <= 40 and -40 <= p[1] <= 40}\n        assert fam == sols"
+   },
+   {
+    "claim": "6x+10y at (1,0),(0,1),(2,-1),(-3,2),(5,-3) gives 6,10,2,2,0; 2k = 6(2k)+10(-k)",
+    "python": "assert [6*x+10*y for x,y in [(1,0),(0,1),(2,-1),(-3,2),(5,-3)]] == [6,10,2,2,0]\nassert all(6*(2*k)+10*(-k) == 2*k for k in range(-50,50))"
+   },
+   {
+    "claim": "Euclid's lemma (general form): m | kn and gcd(m,k)=1 imply m | n",
+    "python": "from math import gcd\nfor m in range(1,40):\n    for k in range(-30,31):\n        for n in range(-30,31):\n            if gcd(m,k) == 1 and (k*n) % m == 0: assert n % m == 0"
+   },
+   {
+    "claim": "Frobenius argument: n is representable iff the standard solution (0 <= x* <= b-1) has y* >= 0",
+    "python": "from math import gcd\nfor a in range(1,13):\n    for b in range(1,13):\n        if gcd(a,b) != 1: continue\n        rep = {a*x+b*y for x in range(0,200) for y in range(0,200)}\n        for n in range(-50,150):\n            xs = next(x for x in range(b) if (n-a*x) % b == 0)\n            ys = (n-a*xs)//b\n            assert (n in rep) == (ys >= 0)"
+   }
+  ]
+ },
+ {
+  "id": "fta",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Break $360$ into factors and keep going until nothing breaks further: $360 = 2^3 \\cdot 3^2 \\cdot 5$. Whichever way you start ($36 \\cdot 10$, $8 \\cdot 45$, $2 \\cdot 180$), you always end with the same three primes and the same exponents. Is that a theorem or an accident of small numbers?\n\nIt is a theorem, the fundamental theorem of arithmetic, and it is less obvious than it looks: there are number systems that look much like the integers where it fails. This lesson proves it, along with Euclid's proof that the supply of primes never runs out, and shows how the prime factorisation answers questions about divisors, gcds and squares."
+   },
+   {
+    "type": "definition",
+    "title": "Prime number",
+    "body": "An integer $p > 1$ is prime if its only positive divisors are $1$ and $p$. An integer $n > 1$ that is not prime is composite, meaning $n = ab$ with $1 < a, b < n$. The number $1$ is neither prime nor composite.\n\nPrimes are the integers that cannot be split into smaller factors."
+   },
+   {
+    "type": "section",
+    "title": "Existence of a factorisation",
+    "body": "Every integer $n > 1$ has at least one prime divisor: its smallest divisor $d > 1$. If $d$ were composite, $d = ab$ with $1 < a < d$, then $a$ would be an even smaller divisor of $n$ larger than $1$.\n\nFrom this, every $n > 1$ is a product of primes. Argue by strong induction: if $n$ is prime we are done; otherwise $n = ab$ with $1 < a, b < n$, and $a$ and $b$ are products of primes by the induction hypothesis, so $n$ is too.\n\nThe same observation gives a practical primality test. If $n$ is composite, $n = ab$ with $a \\le b$, then $a^2 \\le n$, so $n$ has a prime divisor at most $\\sqrt n$. To check that $97$ is prime it is enough to rule out $2, 3, 5, 7$."
+   },
+   {
+    "type": "theorem",
+    "title": "Euclid's theorem",
+    "body": "There are infinitely many primes."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Suppose $p_1, \\dots, p_n$ is any finite list of primes, and let $N = p_1 p_2 \\cdots p_n + 1$. Since $N > 1$, it has a prime divisor $q$. If $q$ were one of the $p_i$, then $q$ would divide both $p_1 \\cdots p_n$ and $N$, hence their difference $1$, which is impossible. So $q$ is a prime not on the list. No finite list contains all primes."
+   },
+   {
+    "type": "section",
+    "title": "Why uniqueness is not automatic",
+    "body": "Existence was easy. Uniqueness needs a genuinely new idea, and a toy world shows why. Live inside the even numbers $E = \\{2, 4, 6, 8, \\dots\\}$ only, and call an element of $E$ an E-prime if it is not a product of two elements of $E$. The E-primes are $2, 6, 10, 14, 18, 22, 26, 30, \\dots$: the numbers that leave remainder $2$ on division by $4$. In this world\n$$60 = 2 \\cdot 30 = 6 \\cdot 10,$$\ntwo genuinely different factorisations into E-primes. Everything in the existence argument works in $E$, so the existence argument cannot be what forces uniqueness in $\\mathbb Z$.\n\nWhat the integers have and $E$ lacks is division with remainder and the Euclidean algorithm. They give the following property of primes, which is the heart of the matter."
+   },
+   {
+    "type": "theorem",
+    "title": "Euclid's lemma",
+    "body": "If $p$ is prime and $p \\mid ab$, then $p \\mid a$ or $p \\mid b$. More generally, if $p \\mid a_1 a_2 \\cdots a_k$ then $p$ divides at least one $a_i$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "We may assume $a, b > 0$ (signs do not affect divisibility, and if $a$ or $b$ is $0$ there is nothing to prove). Suppose $p \\nmid a$. The only positive divisors of $p$ are $1$ and $p$, and $p$ does not divide $a$, so $\\gcd(a, p) = 1$.\n\nMultiplying every line of the Euclidean algorithm for $(a, p)$ by $b$ gives a run of the algorithm for $(ab, pb)$, so $\\gcd(ab, pb) = b \\gcd(a, p) = b$ (see [[divisibility]]). Now $p$ divides $ab$ by assumption and clearly divides $pb$. Every common divisor divides the gcd, so $p \\mid b$.\n\nThe version with $k$ factors follows by induction: if $p \\mid a_1 (a_2 \\cdots a_k)$ then $p \\mid a_1$ or $p \\mid a_2 \\cdots a_k$, and in the second case apply the induction hypothesis."
+   },
+   {
+    "type": "theorem",
+    "title": "Fundamental theorem of arithmetic",
+    "body": "Every integer $n > 1$ can be written as a product of primes, and this factorisation is unique apart from the order of the factors. Grouping equal primes, $n$ has a unique expression\n$$n = p_1^{a_1} p_2^{a_2} \\cdots p_k^{a_k}$$\nwith primes $p_1 < p_2 < \\dots < p_k$ and exponents $a_i \\ge 1$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Existence was shown above. For uniqueness, suppose some integer has two different factorisations, and let $n$ be the smallest such integer:\n$$n = p_1 p_2 \\cdots p_r = q_1 q_2 \\cdots q_s,$$\nall factors prime, and the two lists not the same up to order. The prime $p_1$ divides $q_1 \\cdots q_s$, so by Euclid's lemma $p_1 \\mid q_j$ for some $j$. As $q_j$ is prime and $p_1 > 1$, this means $p_1 = q_j$. Cancel it from both sides:\n$$\\frac{n}{p_1} = p_2 \\cdots p_r = q_1 \\cdots \\widehat{q_j} \\cdots q_s,$$\nwhere the hat means $q_j$ is omitted. These two lists differ up to order (we removed the same prime from two lists that differed). If $n/p_1 = 1$, both lists are now empty, so the original lists were both just $p_1$, a contradiction. Otherwise $n/p_1$ is an integer greater than $1$ and smaller than $n$ with two different factorisations, contradicting the minimality of $n$."
+   },
+   {
+    "type": "section",
+    "title": "Reading information off the factorisation",
+    "body": "Once factorisations are unique, many questions become bookkeeping with exponents. Let $n = p_1^{a_1}\\cdots p_k^{a_k}$.\n\n1. Divisors. The positive divisors of $n$ are exactly the numbers $p_1^{b_1} \\cdots p_k^{b_k}$ with $0 \\le b_i \\le a_i$. (A divisor $d$ with $n = de$ has its factorisation inside that of $n$, by uniqueness.) So $n$ has $(a_1 + 1)(a_2 + 1)\\cdots(a_k + 1)$ positive divisors. For $360 = 2^3 \\cdot 3^2 \\cdot 5$ that is $4 \\cdot 3 \\cdot 2 = 24$.\n2. Gcd and lcm. Writing $a$ and $b$ over the same primes (allowing exponent $0$), $\\gcd(a,b)$ takes the smaller exponent of each prime and $\\operatorname{lcm}(a,b)$ the larger. Since $\\min + \\max$ of two numbers is their sum, $\\gcd(a,b)\\operatorname{lcm}(a,b) = ab$.\n3. Squares. A positive integer is a perfect square exactly when every exponent in its factorisation is even; more generally a $k$-th power exactly when every exponent is divisible by $k$.\n\nA warning about using this in practice: factoring large numbers is hard, while the Euclidean algorithm is fast. The exponent description of the gcd is a tool for proofs, not for computation."
+   },
+   {
+    "type": "example",
+    "title": "Gcd and lcm from exponents",
+    "body": "Factor $360$ and $756$, and use the factorisations to find their gcd and lcm.",
+    "solution": "$360 = 2^3 \\cdot 3^2 \\cdot 5$ and $756 = 4 \\cdot 189 = 2^2 \\cdot 3^3 \\cdot 7$. Over the primes $2, 3, 5, 7$ the exponents are $(3, 2, 1, 0)$ and $(2, 3, 0, 1)$. Taking minima and maxima,\n$$\\gcd = 2^2 \\cdot 3^2 = 36, \\qquad \\operatorname{lcm} = 2^3 \\cdot 3^3 \\cdot 5 \\cdot 7 = 7560.$$\nCheck: $36 \\cdot 7560 = 272160 = 360 \\cdot 756$."
+   },
+   {
+    "type": "example",
+    "title": "Irrational square roots",
+    "body": "Let $n$ be a positive integer. Show that if $\\sqrt n$ is rational then $n$ is a perfect square.",
+    "solution": "Suppose $\\sqrt n = a/b$ with positive integers $a, b$. Then $n b^2 = a^2$. Fix a prime $p$ and compare the exponent of $p$ on both sides; by uniqueness of factorisation these exponents are equal. If $p$ appears in $n$, $b$ and $a$ with exponents $e$, $\\beta$ and $\\alpha$ (any of them possibly $0$), we get $e + 2\\beta = 2\\alpha$, so $e$ is even. Every exponent of $n$ is even, so $n$ is a perfect square.\n\nIn particular $\\sqrt 2$, $\\sqrt 3$, $\\sqrt{12}$ are irrational. The argument is a clean replacement for the usual parity proof for $\\sqrt 2$, and it works just as well for cube roots."
+   },
+   {
+    "type": "example",
+    "title": "Counting divisors",
+    "body": "Find the smallest positive integer with exactly $12$ positive divisors.",
+    "solution": "If $n = p_1^{a_1}\\cdots p_k^{a_k}$, the number of divisors is $(a_1+1)\\cdots(a_k+1) = 12$. The ways to write $12$ as a product of factors greater than $1$ (ignoring order) are $12$, $6 \\cdot 2$, $4 \\cdot 3$ and $3 \\cdot 2 \\cdot 2$, giving exponent patterns $(11)$, $(5,1)$, $(3,2)$, $(2,1,1)$.\n\nFor a given pattern, the number is smallest when the largest exponent goes on the smallest prime, and the primes used are $2, 3, 5, \\dots$. The candidates are\n$$2^{11} = 2048, \\quad 2^5 \\cdot 3 = 96, \\quad 2^3 \\cdot 3^2 = 72, \\quad 2^2 \\cdot 3 \\cdot 5 = 60.$$\nThe smallest is $60$; its divisors are $1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60$."
+   },
+   {
+    "type": "example",
+    "title": "Euclid's idea with a twist",
+    "body": "Prove that there are infinitely many primes that leave remainder $3$ on division by $4$.",
+    "solution": "First an observation: if two numbers each leave remainder $1$ on division by $4$, so does their product, since $(4s+1)(4t+1) = 4(4st + s + t) + 1$. Hence any product of numbers of the form $4k+1$ is again of that form.\n\nNow let $p_1, \\dots, p_m$ be any finite list of primes of the form $4k + 3$, and put $N = 4p_1 p_2 \\cdots p_m - 1$. Then $N$ is odd and leaves remainder $3$ on division by $4$. Its prime factors are all odd, so each leaves remainder $1$ or $3$. They cannot all leave remainder $1$, or $N$ would too. So some prime $q$ of the form $4k + 3$ divides $N$. If $q$ were some $p_i$, it would divide $4p_1 \\cdots p_m - N = 1$, which is absurd. So $q$ is a new prime of the form $4k+3$, and no finite list is complete.\n\nFor example, from the list $3, 7, 11$ we get $N = 4 \\cdot 231 - 1 = 923 = 13 \\cdot 71$, and $71 = 4 \\cdot 17 + 3$ is a new prime of the right kind. The same trick does not work for primes of the form $4k+1$ (why?), though that statement is also true."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Euclid's proof does not say that $p_1 \\cdots p_n + 1$ is prime. For the first six primes, $2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 11 \\cdot 13 + 1 = 30031 = 59 \\cdot 509$.\n- Euclid's lemma is special to primes: $6 \\mid 4 \\cdot 9$ but $6$ divides neither factor.\n- $1$ is not prime. If it were, factorisations would not be unique ($6 = 2 \\cdot 3 = 1 \\cdot 2 \\cdot 3$).\n- Uniqueness is a theorem, not a triviality: the even-numbers world above has existence without uniqueness.\n- The divisor-count formula $(a_1+1)\\cdots(a_k+1)$ needs distinct primes. Writing $12 = 2 \\cdot 2 \\cdot 3$ and computing $2 \\cdot 2 \\cdot 2 = 8$ is wrong; group first: $12 = 2^2 \\cdot 3$ has $3 \\cdot 2 = 6$ divisors."
+   },
+   {
+    "type": "connection",
+    "body": "The exponent of $p$ in $n$ is the $p$-adic valuation $v_p(n)$, studied in [[p-adic-valuation]]. The divisor-count and divisor-sum formulas are the start of [[arithmetic-functions]], and unique factorisation is also the input to [[fermat-euler]], [[pythagorean]] triples, many [[diophantine]] equations, [[smooth-powerful]] numbers, [[integer-functional-eq]] and [[combinatorial-nt]].\n\nEuler noticed that unique factorisation can be packaged as an identity between an infinite series and an infinite product,\n$$\\sum_{n \\ge 1} \\frac{1}{n^s} = \\prod_{p} \\frac{1}{1 - p^{-s}} \\qquad (s > 1),$$\nbecause expanding the product produces each $1/n^s$ exactly once. This Euler product is where [[dirichlet-series]] and analytic number theory begin.\n\nUnique factorisation also holds in the [[gaussian-integers]] and [[eisenstein-integers]], but it fails in $\\mathbb Z[\\sqrt{-5}]$, where $6 = 2 \\cdot 3 = (1 + \\sqrt{-5})(1 - \\sqrt{-5})$ with all four factors irreducible. Kummer and Dedekind repaired this by factoring [[ideals]] instead of numbers."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Factor $2024$ into primes and count its positive divisors.\n2. How many positive divisors does $10^6$ have?\n3. Show that if $a^2 \\mid b^2$ for positive integers $a, b$, then $a \\mid b$.\n4. Show that $\\log_2 3$ is irrational."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 1"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 1"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "360 = 2^3*3^2*5 has 24 divisors; 97 is prime",
+    "python": "import sympy\nassert sympy.factorint(360) == {2:3,3:2,5:1} and sympy.divisor_count(360) == 24 and sympy.isprime(97)"
+   },
+   {
+    "claim": "E-primes (in the even numbers) are the numbers 2 mod 4, and 60 = 2*30 = 6*10 are E-prime factorisations",
+    "python": "E = range(2,400,2)\ndef eprime(n): return not any(n % a == 0 and (n//a) % 2 == 0 for a in range(2,n,2))\nassert [n for n in E if eprime(n)] == [n for n in E if n % 4 == 2]\nassert 2*30 == 60 == 6*10 and all(eprime(x) for x in (2,30,6,10))"
+   },
+   {
+    "claim": "756 = 2^2*3^3*7, gcd(360,756)=36, lcm=7560, 36*7560 = 272160 = 360*756",
+    "python": "import sympy, math\nassert sympy.factorint(756) == {2:2,3:3,7:1}\nassert math.gcd(360,756) == 36 and math.lcm(360,756) == 7560 and 36*7560 == 272160 == 360*756"
+   },
+   {
+    "claim": "Smallest positive integer with 12 divisors is 60; candidates 2048, 96, 72, 60",
+    "python": "import sympy\nassert min(n for n in range(1,5000) if sympy.divisor_count(n) == 12) == 60\nassert sympy.divisors(60) == [1,2,3,4,5,6,10,12,15,20,30,60]\nassert [2**11, 2**5*3, 2**3*9, 4*3*5] == [2048,96,72,60]"
+   },
+   {
+    "claim": "4*3*7*11 - 1 = 923 = 13*71 and 71 = 4*17+3",
+    "python": "import sympy\nassert 4*3*7*11-1 == 923 and sympy.factorint(923) == {13:1,71:1} and 71 == 4*17+3"
+   },
+   {
+    "claim": "2*3*5*7*11*13+1 = 30031 = 59*509",
+    "python": "import sympy\nassert 2*3*5*7*11*13+1 == 30031 == 59*509 and sympy.isprime(59) and sympy.isprime(509)"
+   },
+   {
+    "claim": "12 has 6 divisors; 2024 = 2^3*11*23",
+    "python": "import sympy\nassert sympy.divisor_count(12) == 6 and sympy.factorint(2024) == {2:3,11:1,23:1}"
+   },
+   {
+    "claim": "Euler product identity: partial products approach zeta(2) = pi^2/6",
+    "python": "import sympy, math\nprod = 1.0\nfor p in sympy.primerange(2, 200000):\n    prod *= 1/(1 - p**-2)\nassert abs(prod - math.pi**2/6) < 1e-5"
+   },
+   {
+    "claim": "For lists of primes 3 mod 4, N = 4*prod - 1 always has a prime factor 3 mod 4 outside the list",
+    "python": "import sympy, itertools\nP=[p for p in sympy.primerange(3,60) if p%4==3]\nfor r in range(0,4):\n    for lst in itertools.combinations(P,r):\n        N=4*sympy.prod(lst)-1\n        assert any(q%4==3 and q not in lst for q in sympy.factorint(N))"
+   },
+   {
+    "claim": "Z[sqrt(-5)]: norms of 2, 3, 1+sqrt(-5) are 4, 9, 6 and no element has norm 2 or 3, so all four factors of 6 are irreducible",
+    "python": "norms={x*x+5*y*y for x in range(-5,6) for y in range(-5,6)}\nassert 2 not in norms and 3 not in norms\nassert (2*2, 3*3, 1+5) == (4,9,6) and (1+5)*(1+5) == 36 == 4*9"
+   },
+   {
+    "claim": "Divisor count equals prod(a_i+1), and n is a perfect square iff all exponents are even (n < 3000)",
+    "python": "import sympy, math\nfor n in range(1,3000):\n    f=sympy.factorint(n)\n    assert sympy.divisor_count(n) == math.prod(e+1 for e in f.values())\n    assert (math.isqrt(n)**2 == n) == all(e%2==0 for e in f.values())"
+   }
+  ]
+ },
+ {
+  "id": "congruences",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "What is the last digit of $7^{2026}$? What is the remainder when $2^{100}$ is divided by $13$? You cannot compute these numbers in full by hand, and you do not need to: only remainders matter, and remainders can be added and multiplied on their own, throwing away everything else.\n\nGauss made this idea into a notation in 1801. Writing $a \\equiv b \\pmod n$ for \"$a$ and $b$ leave the same remainder on division by $n$\" lets you manipulate remainders almost exactly like equations. Nearly every olympiad number theory problem is phrased in this language, and this lesson sets it up carefully, including the one place where the analogy with equations breaks."
+   },
+   {
+    "type": "definition",
+    "title": "Congruence",
+    "body": "Let $n$ be a positive integer. Integers $a$ and $b$ are congruent modulo $n$, written\n$$a \\equiv b \\pmod n,$$\nif $n \\mid a - b$. The number $n$ is the modulus.\n\nSo $a \\equiv b \\pmod n$ means $a$ and $b$ differ by a multiple of $n$; for instance $17 \\equiv 2 \\pmod 5$ and $-3 \\equiv 9 \\pmod{12}$."
+   },
+   {
+    "type": "section",
+    "title": "Same remainder, same class",
+    "body": "The definition is about differences, but it is the same as \"same remainder\". Write $a = nq + r$ and $b = nq' + r'$ with $0 \\le r, r' < n$. Then $a - b = n(q - q') + (r - r')$, so $n \\mid a - b$ exactly when $n \\mid r - r'$. Since $|r - r'| < n$, that happens only when $r = r'$.\n\nCongruence modulo $n$ behaves like equality in three ways: $a \\equiv a$; if $a \\equiv b$ then $b \\equiv a$; and if $a \\equiv b$ and $b \\equiv c$ then $a \\equiv c$ (add the two differences). So the integers split into $n$ classes, called residue classes, according to their remainder. Modulo $3$ the classes are\n$$\\{\\dots, -3, 0, 3, 6, \\dots\\}, \\quad \\{\\dots, -2, 1, 4, 7, \\dots\\}, \\quad \\{\\dots, -1, 2, 5, 8, \\dots\\}.$$\nAny choice of one number from each class, such as $\\{0, 1, \\dots, n - 1\\}$ or $\\{-1, 0, 1\\}$ for $n = 3$, is called a complete residue system. Choosing the representatives cleverly (often including negative ones) is a large part of the art."
+   },
+   {
+    "type": "theorem",
+    "title": "Congruences can be added and multiplied",
+    "body": "If $a \\equiv b \\pmod n$ and $c \\equiv d \\pmod n$, then\n$$a + c \\equiv b + d \\pmod n \\quad \\text{and} \\quad ac \\equiv bd \\pmod n.$$\nConsequently $a^k \\equiv b^k \\pmod n$ for every $k \\ge 1$, and $P(a) \\equiv P(b) \\pmod n$ for every polynomial $P$ with integer coefficients."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Write $a - b = ns$ and $c - d = nt$. Then $(a + c) - (b + d) = n(s + t)$. For the product, add and subtract $bc$:\n$$ac - bd = (a - b)c + b(c - d) = n(sc + bt).$$\nApplying the product rule $k - 1$ times to $a \\equiv b$ gives $a^k \\equiv b^k$. A polynomial with integer coefficients is built from its variable and integers by additions and multiplications, so $P(a) \\equiv P(b)$."
+   },
+   {
+    "type": "section",
+    "title": "Arithmetic in Z/nZ",
+    "body": "The theorem says that the residue classes modulo $n$ can themselves be added and multiplied: to multiply two classes, multiply any representatives and take the class of the result; the answer does not depend on the choices. The resulting number system with $n$ elements is written $\\mathbb Z/n\\mathbb Z$. Algebraically it is a commutative ring, which means the familiar laws (commutativity, associativity, distributivity, $0$ and $1$) all hold.\n\nIn practice this means: reduce early and often. To find $7^{2026} \\bmod 10$, notice $7^2 = 49 \\equiv -1$, so $7^4 \\equiv 1 \\pmod{10}$. As $2026 = 4 \\cdot 506 + 2$,\n$$7^{2026} = (7^4)^{506} \\cdot 7^2 \\equiv 1 \\cdot 49 \\equiv 9 \\pmod{10}.$$\nThe last digit is $9$.\n\nAnother classical application is digit tests. Since $10 \\equiv 1 \\pmod 9$, a number $\\overline{d_k \\dots d_1 d_0} = \\sum d_i 10^i$ is congruent to $\\sum d_i$ modulo $9$: a number and its digit sum leave the same remainder on division by $9$ (and by $3$). Since $10 \\equiv -1 \\pmod{11}$, the number is congruent modulo $11$ to the alternating sum $d_0 - d_1 + d_2 - \\cdots$."
+   },
+   {
+    "type": "section",
+    "title": "Cancellation: the one trap",
+    "body": "Addition, subtraction and multiplication work perfectly. Division does not. Modulo $6$,\n$$2 \\cdot 4 \\equiv 2 \\cdot 1 \\pmod 6 \\quad (\\text{both are } \\equiv 2), \\qquad \\text{but} \\quad 4 \\not\\equiv 1 \\pmod 6.$$\nWorse, $2 \\cdot 3 \\equiv 0 \\pmod 6$ although neither factor is $\\equiv 0$. Such zero divisors exist modulo every composite $n$.\n\nThe correct rule is: if $ac \\equiv bc \\pmod n$ and $\\gcd(c, n) = 1$, then $a \\equiv b \\pmod n$.\n\nProof: we know $n \\mid c(a - b)$, and we may assume $a \\ne b$. By the Euclidean algorithm scaled by $|a - b|$ (see [[divisibility]]), $\\gcd(n|a-b|,\\ c|a-b|) = |a - b| \\gcd(n, c) = |a - b|$. Now $n$ divides both $n|a-b|$ and $c|a-b|$, so it divides their gcd $|a - b|$.\n\nWithout coprimality you can still cancel, but you must shrink the modulus: if $ac \\equiv bc \\pmod n$ then $a \\equiv b \\pmod{n/\\gcd(c,n)}$. In the example above, $2\\cdot 4 \\equiv 2 \\cdot 1 \\pmod 6$ gives $4 \\equiv 1 \\pmod 3$, which is true. The full theory of division, with inverses, is in [[mod-inverse]]."
+   },
+   {
+    "type": "example",
+    "title": "A large power",
+    "body": "Find the remainder of $2^{100}$ on division by $13$.",
+    "solution": "Look for a small power of $2$ that is $\\pm 1$ modulo $13$: $2^6 = 64 = 5 \\cdot 13 - 1$, so $2^6 \\equiv -1$ and $2^{12} \\equiv 1 \\pmod{13}$. Since $100 = 12 \\cdot 8 + 4$,\n$$2^{100} = (2^{12})^8 \\cdot 2^4 \\equiv 1 \\cdot 16 \\equiv 3 \\pmod{13}.$$\nThe remainder is $3$."
+   },
+   {
+    "type": "example",
+    "title": "The test for 11",
+    "body": "Without dividing, decide whether $918082$ is divisible by $11$.",
+    "solution": "Since $10 \\equiv -1 \\pmod{11}$, we have $10^i \\equiv (-1)^i$. Reading the digits from the units end, $2, 8, 0, 8, 1, 9$, the number is congruent to\n$$2 - 8 + 0 - 8 + 1 - 9 = -22 \\equiv 0 \\pmod{11}.$$\nSo it is divisible by $11$; indeed $918082 = 11 \\cdot 83462$."
+   },
+   {
+    "type": "example",
+    "title": "An impossibility proof",
+    "body": "Show that no integer of the form $8k + 7$ is a sum of three perfect squares.",
+    "solution": "Work modulo $8$. Every integer is congruent to one of $0, \\pm1, \\pm2, \\pm3, 4$, and their squares are\n$$0^2 = 0,\\quad (\\pm1)^2 = 1,\\quad (\\pm 2)^2 = 4,\\quad (\\pm 3)^2 = 9 \\equiv 1,\\quad 4^2 = 16 \\equiv 0.$$\nSo every square is $\\equiv 0, 1$ or $4 \\pmod 8$. There are ten ways to add three values from $\\{0, 1, 4\\}$ (order does not matter):\n$$0, 1, 2, 3 \\ \\ (\\text{no } 4\\text{s}), \\qquad 4, 5, 6 \\ \\ (\\text{one } 4), \\qquad 8, 9 \\ \\ (\\text{two } 4\\text{s}), \\qquad 12 \\ \\ (\\text{three } 4\\text{s}).$$\nModulo $8$ these are $0, 1, 2, 3, 4, 5, 6, 0, 1, 4$. The residue $7$ never appears, so $x^2 + y^2 + z^2 = 8k + 7$ has no integer solutions.\n\nThis is the typical shape of an impossibility proof: find a modulus where the two sides cannot match. (Legendre showed that the numbers which are not sums of three squares are exactly those of the form $4^a(8k+7)$; see [[sums-of-squares]].)"
+   },
+   {
+    "type": "example",
+    "title": "Euler's factor of a Fermat number",
+    "body": "Fermat conjectured that every number $2^{2^m} + 1$ is prime. Show that $641$ divides $2^{32} + 1$.",
+    "solution": "The number $641$ has two special forms: $641 = 5 \\cdot 2^7 + 1$ and $641 = 5^4 + 2^4$. From the first,\n$$5 \\cdot 2^7 \\equiv -1 \\pmod{641}, \\quad \\text{so} \\quad 5^4 \\cdot 2^{28} \\equiv (-1)^4 = 1 \\pmod{641}.$$\nFrom the second, $5^4 \\equiv -2^4 \\pmod{641}$. Substituting,\n$$-2^4 \\cdot 2^{28} \\equiv 1, \\quad \\text{that is} \\quad 2^{32} \\equiv -1 \\pmod{641}.$$\nSo $641 \\mid 2^{32} + 1$, and Fermat's conjecture fails for $m = 5$. Euler found this factor in 1732. Notice that no large number was ever computed: the two special forms of $641$ did all the work."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Do not cancel a common factor unless it is coprime to the modulus: $2 \\cdot 4 \\equiv 2 \\cdot 1 \\pmod 6$ but $4 \\not\\equiv 1$.\n- Exponents cannot be reduced modulo $n$. Although $5 \\equiv 0 \\pmod 5$, we have $2^5 = 32 \\equiv 2$ while $2^0 = 1$. (Exponents can be reduced modulo something else; see [[fermat-euler]].)\n- $x^2 \\equiv y^2$ does not imply $x \\equiv \\pm y$ for composite moduli: $1^2 \\equiv 3^2 \\pmod 8$, yet $3 \\not\\equiv \\pm 1 \\pmod 8$.\n- A congruence with a fraction such as $x \\equiv \\frac12 \\pmod 7$ means nothing until you say which residue plays the role of $\\frac12$ (here $4$, since $2 \\cdot 4 \\equiv 1$).\n- Be careful with negative numbers: $-7 \\equiv 2 \\pmod 3$, so its least non-negative residue is $2$."
+   },
+   {
+    "type": "connection",
+    "body": "Division modulo $n$ is the topic of [[mod-inverse]], and the reason $2^{12} \\equiv 1 \\pmod{13}$ was no accident is [[fermat-euler]]. Passing from a prime modulus $p$ to $p^2, p^3, \\dots$ is [[hensel]]. Digit tests generalise to [[digits-bases]], and the fact that $a - b \\mid P(a) - P(b)$ for integer polynomials, which for $a \\ne b$ is just $P(a) \\equiv P(b) \\pmod{|a-b|}$, is a basic tool in [[integer-polynomials]]. Modular obstructions like the one for $8k+7$ are the first thing to try on any [[diophantine]] equation; deciding which numbers are squares modulo $p$ is [[quadratic-residues]].\n\nFurther on, counting points on curves modulo $p$ is central to [[elliptic-curves]], and sums of $e^{2\\pi i f(x)/n}$ over residues are [[exponential-sums]]. In computing, check digits work this way: the ISBN-10 check digit is chosen so that a weighted digit sum is divisible by $11$, and IBAN uses a check modulo $97$. Hash tables reduce keys modulo a table size."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the remainder of $3^{100}$ on division by $7$.\n2. Show that $n^3 - n$ is divisible by $6$ for every integer $n$.\n3. Show that the last digit of a perfect square is never $2, 3, 7$ or $8$.\n4. Show that $x^2 - 3y^2 = 2$ has no integer solutions."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "§2.1"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 3"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "2^100 mod 13 = 3; 2^6 = 64 = 5*13-1",
+    "python": "assert pow(2,100,13) == 3 and 64 == 5*13-1 and pow(2,12,13) == 1 and 100 == 12*8+4"
+   },
+   {
+    "claim": "Last digit of 7^2026 is 9; 2026 = 4*506+2",
+    "python": "assert pow(7,2026,10) == 9 and 2026 == 4*506+2 and pow(7,4,10) == 1"
+   },
+   {
+    "claim": "918082 = 11*83462 and alternating digit sum is -22",
+    "python": "d = [int(c) for c in reversed('918082')]\nassert sum((-1)**i*x for i,x in enumerate(d)) == -22 and 918082 == 11*83462"
+   },
+   {
+    "claim": "Squares mod 8 are {0,1,4}; sums of three never 7 mod 8; no 8k+7 is a sum of three squares",
+    "python": "assert {x*x % 8 for x in range(8)} == {0,1,4}\nassert 7 not in {(a+b+c) % 8 for a in (0,1,4) for b in (0,1,4) for c in (0,1,4)}\nS = set(x*x+y*y+z*z for x in range(40) for y in range(40) for z in range(40))\nassert all(n not in S for n in range(7,1500,8))"
+   },
+   {
+    "claim": "641 = 5*2^7+1 = 5^4+2^4 divides 2^32+1",
+    "python": "assert 641 == 5*2**7+1 == 5**4+2**4 and (2**32+1) % 641 == 0"
+   },
+   {
+    "claim": "Cancellation counterexamples: 8 = 2 mod 6, 6 = 0 mod 6, 1 = 9 mod 8, 2^5 mod 5 = 2",
+    "python": "assert (2*4-2*1) % 6 == 0 and (4-1) % 6 != 0 and (4-1) % 3 == 0 and (2*3) % 6 == 0\nassert (9-1) % 8 == 0 and 3 % 8 not in (1,7) and pow(2,5,5) == 2 and (2*4) % 7 == 1 and (-7) % 3 == 2"
+   },
+   {
+    "claim": "General cancellation: ac = bc (mod n) implies a = b mod n/gcd(c,n)",
+    "python": "from math import gcd\nfor n in range(1,40):\n    for c in range(n):\n        for a in range(n):\n            for b in range(n):\n                if (a*c-b*c) % n == 0:\n                    assert (a-b) % (n//gcd(c,n)) == 0"
+   },
+   {
+    "claim": "Congruence rules: sums and products respect congruence (random test)",
+    "python": "import random\nfor _ in range(5000):\n    n = random.randint(1,100); a,c = random.randint(-10**6,10**6), random.randint(-10**6,10**6)\n    b = a + n*random.randint(-50,50); d = c + n*random.randint(-50,50)\n    assert (a+c-b-d) % n == 0 and (a*c-b*d) % n == 0"
+   },
+   {
+    "claim": "Legendre's three-square theorem for n < 3000: n is a sum of three squares iff n is not of the form 4^a(8k+7)",
+    "python": "S={x*x+y*y+z*z for x in range(56) for y in range(56) for z in range(56)}\ndef bad(n):\n    while n % 4 == 0 and n: n//=4\n    return n % 8 == 7\nassert all((n in S) == (not bad(n)) for n in range(1,3000))"
+   },
+   {
+    "claim": "The ten multisets of three values from {0,1,4} have sums 0,1,2,3,4,5,6,8,9,12, i.e. residues 0,1,2,3,4,5,6,0,1,4 mod 8",
+    "python": "import itertools\nsums=sorted(sum(c) for c in itertools.combinations_with_replacement((0,1,4),3))\nassert sums == [0,1,2,3,4,5,6,8,9,12] and [s%8 for s in sums] == [0,1,2,3,4,5,6,0,1,4]"
+   },
+   {
+    "claim": "A number is congruent to its digit sum mod 9 and to its alternating digit sum mod 11",
+    "python": "import random\nfor _ in range(3000):\n    n=random.randint(0,10**15); d=[int(c) for c in reversed(str(n))]\n    assert (n-sum(d)) % 9 == 0 and (n-sum((-1)**i*x for i,x in enumerate(d))) % 11 == 0"
+   },
+   {
+    "claim": "Every composite n has zero divisors; x^2 = 1 mod 8 has solutions 1,3,5,7",
+    "python": "assert [x for x in range(8) if x*x%8 == 1] == [1,3,5,7]\nfor n in range(4,200):\n    comp = any(n%d==0 for d in range(2,n))\n    zd = any((a*b)%n==0 for a in range(1,n) for b in range(1,n))\n    assert comp == zd"
+   }
+  ]
+ },
+ {
+  "id": "mod-inverse",
+  "minutes": 15,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "In ordinary arithmetic you solve $11x = 5$ by dividing by $11$. Can you solve $11x \\equiv 5 \\pmod{26}$ the same way? You can, provided you find a number that behaves like $\\frac{1}{11}$ modulo $26$, that is, a number $u$ with $11u \\equiv 1 \\pmod{26}$. Then multiplying by $u$ undoes multiplication by $11$.\n\nSuch a $u$ is called an inverse. This lesson answers when inverses exist (exactly when the number is coprime to the modulus), how to compute them quickly with the extended Euclidean algorithm, and how to solve every linear congruence $ax \\equiv b \\pmod n$, including the cases where division is impossible."
+   },
+   {
+    "type": "definition",
+    "title": "Modular inverse",
+    "body": "Let $n \\ge 1$. An integer $u$ is an inverse of $a$ modulo $n$ if\n$$au \\equiv 1 \\pmod n.$$\nWhen it exists it is unique modulo $n$ and is written $a^{-1} \\bmod n$. An integer that has an inverse modulo $n$ is called a unit modulo $n$.\n\nAn inverse is the residue that undoes multiplication by $a$."
+   },
+   {
+    "type": "section",
+    "title": "Who has an inverse?",
+    "body": "Try small cases. Modulo $7$ every non-zero residue has an inverse:\n$$1 \\cdot 1 \\equiv 1, \\quad 2 \\cdot 4 = 8 \\equiv 1, \\quad 3 \\cdot 5 = 15 \\equiv 1, \\quad 6 \\cdot 6 = 36 \\equiv 1 \\pmod 7.$$\nModulo $10$ only $1, 3, 7, 9$ have inverses ($3 \\cdot 7 = 21$, $9 \\cdot 9 = 81$). The residue $2$ cannot have one: $2u$ is even, and an even number minus $1$ is odd, so it is never a multiple of $10$. The same argument, using the common factor $2$ or $5$ in place of $2$, rules out $4, 5, 6, 8$ and $0$. The pattern is that the units are exactly the residues sharing no factor with the modulus."
+   },
+   {
+    "type": "theorem",
+    "title": "Existence of inverses",
+    "body": "Let $n \\ge 1$ and let $a$ be an integer. Then\n$$a x \\equiv 1 \\pmod n \\text{ has a solution} \\iff \\gcd(a,n) = 1,$$\nand in that case the solution is unique modulo $n$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "If $ax \\equiv 1 \\pmod n$, then $ax - 1 = ny$ for some integer $y$, so $ax - ny = 1$. Any common divisor of $a$ and $n$ divides the left-hand side, hence divides $1$; so $\\gcd(a, n) = 1$.\n\nConversely, if $\\gcd(a, n) = 1$, Bézout's identity ([[bezout]]) gives integers $x, y$ with $ax + ny = 1$. Reducing modulo $n$ gives $ax \\equiv 1$.\n\nUniqueness: if $ax \\equiv 1$ and $ax' \\equiv 1$, then\n$$x \\equiv x \\cdot (ax') = (xa) \\cdot x' \\equiv x' \\pmod n.$$"
+   },
+   {
+    "type": "section",
+    "title": "Computing inverses",
+    "body": "The proof is also the algorithm: the coefficient of $a$ in a Bézout relation $ax + ny = 1$ is the inverse. For example, to invert $17$ modulo $43$:\n$$\\begin{aligned} 43 &= 2 \\cdot 17 + 9 \\\\ 17 &= 1 \\cdot 9 + 8 \\\\ 9 &= 1 \\cdot 8 + 1 \\end{aligned}$$\nand backwards,\n$$1 = 9 - 8 = 9 - (17 - 9) = 2 \\cdot 9 - 17 = 2(43 - 2\\cdot 17) - 17 = 2 \\cdot 43 - 5 \\cdot 17.$$\nSo $17 \\cdot (-5) \\equiv 1 \\pmod{43}$, and $17^{-1} \\equiv -5 \\equiv 38 \\pmod{43}$. Check: $17 \\cdot 38 = 646 = 15 \\cdot 43 + 1$.\n\nThis takes a number of steps proportional to the number of digits, so inverses modulo numbers with hundreds of digits are computed instantly. That speed is what makes modular inverses usable in cryptography. (In Python, pow(a, -1, n) does exactly this.)\n\nWhen the modulus is a prime $p$, every residue not divisible by $p$ is coprime to $p$ and so has an inverse. In other words, in $\\mathbb Z/p\\mathbb Z$ you can divide by anything non-zero: it is a field, just like the rationals. This is one of the main reasons primes are pleasant moduli. One small fact worth knowing: modulo a prime, the only residues equal to their own inverse are $\\pm 1$, since $x^2 \\equiv 1$ means $p \\mid (x-1)(x+1)$, and a prime dividing a product divides one of the factors."
+   },
+   {
+    "type": "theorem",
+    "title": "Linear congruences",
+    "body": "Let $n \\ge 1$, let $a, b$ be integers and $g = \\gcd(a, n)$. The congruence\n$$ax \\equiv b \\pmod n$$\nhas a solution if and only if $g \\mid b$. In that case it has exactly $g$ solutions modulo $n$: if $x_0$ is one of them, the solutions are\n$$x \\equiv x_0 + k\\,\\frac{n}{g} \\pmod n, \\qquad k = 0, 1, \\dots, g - 1.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "The congruence holds exactly when $ax - b = ny$ for some integer $y$, that is, when $ax - ny = b$ is solvable. By Bézout's identity the values of $ax - ny$ are precisely the multiples of $g$, so a solution exists if and only if $g \\mid b$.\n\nSuppose $g \\mid b$. Then $n \\mid ax - b$ if and only if $\\frac{n}{g} \\mid \\frac{a}{g}x - \\frac{b}{g}$, so the congruence is equivalent to\n$$\\frac{a}{g}\\, x \\equiv \\frac{b}{g} \\pmod{\\frac{n}{g}}.$$\nThe numbers $a/g$ and $n/g$ are coprime (dividing a Bézout relation $ax' + ny' = g$ by $g$ gives a combination equal to $1$). So $a/g$ has an inverse modulo $n/g$, and the reduced congruence has a unique solution $x \\equiv x_0 \\pmod{n/g}$.\n\nIt remains to count these modulo $n$. The integers congruent to $x_0$ modulo $n/g$ are $x_0 + k\\frac{n}{g}$ for $k \\in \\mathbb Z$, and two of them are congruent modulo $n$ exactly when their values of $k$ are congruent modulo $g$. So $k = 0, 1, \\dots, g-1$ gives each solution modulo $n$ exactly once."
+   },
+   {
+    "type": "example",
+    "title": "A unique solution",
+    "body": "Solve $11x \\equiv 5 \\pmod{26}$.",
+    "solution": "Since $\\gcd(11, 26) = 1$ there is exactly one solution modulo $26$. Find $11^{-1}$:\n$$26 = 2 \\cdot 11 + 4, \\qquad 11 = 2 \\cdot 4 + 3, \\qquad 4 = 1 \\cdot 3 + 1,$$\n$$1 = 4 - 3 = 4 - (11 - 2 \\cdot 4) = 3 \\cdot 4 - 11 = 3(26 - 2 \\cdot 11) - 11 = 3 \\cdot 26 - 7 \\cdot 11.$$\nSo $11^{-1} \\equiv -7 \\equiv 19 \\pmod{26}$ (check: $11 \\cdot 19 = 209 = 8 \\cdot 26 + 1$). Multiply the congruence by $19$:\n$$x \\equiv 19 \\cdot 5 = 95 \\equiv 17 \\pmod{26}.$$\nCheck: $11 \\cdot 17 = 187 = 7 \\cdot 26 + 5$."
+   },
+   {
+    "type": "example",
+    "title": "Several solutions, or none",
+    "body": "Solve $12x \\equiv 18 \\pmod{30}$, and show that $12x \\equiv 20 \\pmod{30}$ has no solution.",
+    "solution": "Here $g = \\gcd(12, 30) = 6$ and $6 \\mid 18$, so there are $6$ solutions modulo $30$. Divide everything, including the modulus, by $6$:\n$$2x \\equiv 3 \\pmod 5.$$\nThe inverse of $2$ modulo $5$ is $3$, so $x \\equiv 9 \\equiv 4 \\pmod 5$. Modulo $30$ the solutions are\n$$x \\equiv 4,\\ 9,\\ 14,\\ 19,\\ 24,\\ 29 \\pmod{30}.$$\nFor instance $12 \\cdot 9 = 108 = 3 \\cdot 30 + 18$.\n\nFor $12x \\equiv 20$: since $6 \\nmid 20$ there is no solution. Directly, $12x - 30y$ is always a multiple of $6$ and $20$ is not."
+   },
+   {
+    "type": "example",
+    "title": "Multiplying by a unit shuffles the residues",
+    "body": "Let $\\gcd(a, n) = 1$. Show that $a \\cdot 1, a \\cdot 2, \\dots, a \\cdot n$ leave all $n$ possible remainders on division by $n$, each exactly once. Use this to find which of $7, 14, 21, \\dots, 70$ ends in the digit $3$.",
+    "solution": "If $ai \\equiv aj \\pmod n$, multiply by $a^{-1}$ to get $i \\equiv j \\pmod n$. For $1 \\le i, j \\le n$ this forces $i = j$. So the $n$ numbers $a, 2a, \\dots, na$ lie in $n$ different residue classes, which means they hit every class once.\n\nFor the second part, $\\gcd(7, 10) = 1$, so exactly one of $7k$ with $1 \\le k \\le 10$ is $\\equiv 3 \\pmod{10}$. To find it, solve $7k \\equiv 3 \\pmod{10}$: since $7 \\cdot 3 = 21 \\equiv 1$, the inverse of $7$ is $3$, and $k \\equiv 9$. The number is $63$.\n\nThis \"multiplication by a unit permutes the residues\" fact is the key step in the proof of [[fermat-euler|Fermat's little theorem]]."
+   },
+   {
+    "type": "example",
+    "title": "A harmonic sum modulo p",
+    "body": "Let $p$ be an odd prime and write $1 + \\frac12 + \\frac13 + \\cdots + \\frac{1}{p-1} = \\frac{A}{B}$ in lowest terms. Prove that $p \\mid A$.",
+    "solution": "Put everything over the common denominator $(p-1)!$:\n$$1 + \\frac12 + \\cdots + \\frac{1}{p-1} = \\frac{N}{(p-1)!}, \\qquad N = \\sum_{k=1}^{p-1} \\frac{(p-1)!}{k}.$$\nEach $\\frac{(p-1)!}{k}$ is an integer, and $k \\cdot \\frac{(p-1)!}{k} = (p-1)!$. Multiplying by $k^{-1}$ modulo $p$ gives $\\frac{(p-1)!}{k} \\equiv (p-1)! \\cdot k^{-1} \\pmod p$. Hence\n$$N \\equiv (p-1)! \\sum_{k=1}^{p-1} k^{-1} \\pmod p.$$\nAs $k$ runs over $1, \\dots, p-1$, so does $k^{-1}$ (in some order), because inversion is a bijection on the non-zero residues: applying it twice gives back the residue you started with. So\n$$\\sum_{k=1}^{p-1} k^{-1} \\equiv \\sum_{k=1}^{p-1} k = \\frac{p(p-1)}{2} \\equiv 0 \\pmod p,$$\nusing that $p$ is odd so $\\frac{p-1}{2}$ is an integer. Thus $p \\mid N$.\n\nFinally $\\frac{A}{B}$ is $\\frac{N}{(p-1)!}$ reduced. The prime $p$ does not divide $(p-1)!$, so it does not divide $\\gcd(N, (p-1)!)$, and it survives in $A = N/\\gcd(N, (p-1)!)$. For $p = 5$: $1 + \\frac12 + \\frac13 + \\frac14 = \\frac{25}{12}$. In fact Wolstenholme proved that $p^2 \\mid A$ for every prime $p \\ge 5$, as $25$ illustrates."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $a^{-1} \\bmod n$ is an integer residue, not the fraction $1/a$. The inverse of $2$ modulo $7$ is $4$.\n- The inverse depends on the modulus: $3^{-1} \\equiv 5 \\pmod 7$ but $3^{-1} \\equiv 7 \\pmod{10}$.\n- When reducing $ax \\equiv b \\pmod n$ by $g$, divide the modulus too. Dividing $12x \\equiv 18 \\pmod{30}$ only on the left and right gives $2x \\equiv 3 \\pmod{30}$, which has no solutions at all (the left side is even, the right odd, and $30$ is even).\n- A linear congruence with $g > 1$ has $g$ solutions modulo $n$, not one. Saying \"$x \\equiv 4 \\pmod 5$\" is correct; saying \"$x \\equiv 4 \\pmod{30}$\" loses five solutions.\n- Units modulo composite $n$ can have square roots of $1$ other than $\\pm 1$: $4^2 = 16 \\equiv 1 \\pmod{15}$."
+   },
+   {
+    "type": "connection",
+    "body": "Inverses are the ingredient in the [[crt]], whose solution formula needs the inverse of one modulus modulo another. Pairing each residue with its inverse modulo $p$ proves [[wilson]], and lifting solutions from $p$ to $p^k$ in [[hensel]] uses an inverse at each step.\n\nIn [[rsa]], the private exponent is a single modular inverse, $d \\equiv e^{-1} \\pmod{\\varphi(n)}$, computed by exactly the extended Euclidean algorithm above. There is also a second way to invert modulo a prime: by [[fermat-euler]], $a^{p-1} \\equiv 1$ when $p \\nmid a$, so then $a^{-1} \\equiv a^{p-2} \\pmod p$.\n\nThe units modulo $n$ form a group under multiplication, written $(\\mathbb Z/n\\mathbb Z)^\\times$, and much of the later theory is about the structure of this group; see [[groups]] and [[order-primroot]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the inverse of $7$ modulo $31$.\n2. Solve $9x \\equiv 6 \\pmod{15}$, listing all solutions modulo $15$.\n3. List the units modulo $12$ and the inverse of each. What do you notice?\n4. For which $b$ is $10x \\equiv b \\pmod{35}$ solvable, and how many solutions does it then have modulo $35$?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 3"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Inverses mod 7: 2*4, 3*5, 6*6 are 1; units mod 10 are 1,3,7,9",
+    "python": "assert (2*4)%7 == (3*5)%7 == (6*6)%7 == 1\nfrom math import gcd\nassert [a for a in range(10) if any((a*u)%10 == 1 for u in range(10))] == [1,3,7,9]"
+   },
+   {
+    "claim": "17^{-1} mod 43 = 38 via 1 = 2*43 - 5*17",
+    "python": "assert 2*43-5*17 == 1 and 17*38 == 646 == 15*43+1 and pow(17,-1,43) == 38\nassert 43 == 2*17+9 and 17 == 9+8 and 9 == 8+1"
+   },
+   {
+    "claim": "11^{-1} mod 26 = 19 and 11x = 5 (mod 26) gives x = 17",
+    "python": "assert 3*26-7*11 == 1 and 11*19 == 209 == 8*26+1 and pow(11,-1,26) == 19\nassert 95 % 26 == 17 and 11*17 == 187 == 7*26+5\nassert [x for x in range(26) if (11*x-5) % 26 == 0] == [17]"
+   },
+   {
+    "claim": "12x = 18 (mod 30) has solutions 4,9,14,19,24,29; 12x = 20 and 2x = 3 (mod 30) have none",
+    "python": "assert [x for x in range(30) if (12*x-18)%30 == 0] == [4,9,14,19,24,29]\nassert not [x for x in range(30) if (12*x-20)%30 == 0]\nassert not [x for x in range(30) if (2*x-3)%30 == 0]\nassert 12*9 == 108 == 3*30+18"
+   },
+   {
+    "claim": "Linear congruence theorem: ax = b (mod n) solvable iff gcd | b, then gcd(a,n) solutions",
+    "python": "from math import gcd\nfor n in range(1,60):\n    for a in range(n):\n        g = gcd(a,n)\n        for b in range(n):\n            c = sum(1 for x in range(n) if (a*x-b) % n == 0)\n            assert c == (g if b % g == 0 else 0)"
+   },
+   {
+    "claim": "7k = 3 (mod 10) for k in 1..10 only at k = 9 (63)",
+    "python": "assert [7*k for k in range(1,11) if (7*k) % 10 == 3] == [63]"
+   },
+   {
+    "claim": "Numerator of H_{p-1} divisible by p for odd primes, by p^2 for p >= 5; H_4 = 25/12",
+    "python": "from fractions import Fraction as F\nimport sympy\nassert sum(F(1,k) for k in range(1,5)) == F(25,12)\nfor p in sympy.primerange(3,120):\n    A = sum(F(1,k) for k in range(1,p)).numerator\n    assert A % p == 0\n    if p >= 5: assert A % (p*p) == 0"
+   },
+   {
+    "claim": "Pitfalls: 3^{-1} is 5 mod 7 and 7 mod 10; 4^2 = 1 mod 15; only +-1 self-inverse mod primes",
+    "python": "import sympy\nassert pow(3,-1,7) == 5 and pow(3,-1,10) == 7 and 16 % 15 == 1\nfor p in sympy.primerange(2,300):\n    assert [x for x in range(1,p) if x*x % p == 1] == sorted({1, p-1})"
+   },
+   {
+    "claim": "Modulo a prime p, a^(p-2) is the inverse of a for p not dividing a",
+    "python": "import sympy\nfor p in sympy.primerange(2,200):\n    for a in range(1,p): assert a*pow(a,p-2,p) % p == 1"
+   },
+   {
+    "claim": "Non-units mod 10 are exactly the residues sharing the factor 2 or 5 with 10",
+    "python": "from math import gcd\nnon=[a for a in range(10) if not any(a*u%10==1 for u in range(10))]\nassert non == [0,2,4,5,6,8] and all(a%2==0 or a%5==0 for a in non)"
+   },
+   {
+    "claim": "Inversion permutes 1..p-1 and the inverses sum to 0 mod p for odd p; multiplying by a unit permutes residues",
+    "python": "import sympy\nfrom math import gcd\nfor p in sympy.primerange(3,200):\n    inv=[pow(k,-1,p) for k in range(1,p)]\n    assert sorted(inv) == list(range(1,p)) and sum(inv) % p == 0\nfor n in range(1,60):\n    for a in range(n):\n        if gcd(a,n)==1: assert sorted(a*i%n for i in range(1,n+1)) == list(range(n))"
+   }
+  ]
+ },
+ {
+  "id": "crt",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A problem in the Chinese text Sunzi Suanjing (written some time between the 3rd and 5th centuries) asks for a number of objects which leaves remainder $2$ when counted in threes, remainder $3$ when counted in fives, and remainder $2$ when counted in sevens. The answer given is $23$.\n\nWhy is there an answer at all, and how many are there? The Chinese remainder theorem says that if the moduli are pairwise coprime, a system of such conditions always has a solution, and the solution is unique modulo the product of the moduli. Behind this is a structural fact: computing modulo $mn$ is the same as computing modulo $m$ and modulo $n$ side by side."
+   },
+   {
+    "type": "section",
+    "title": "Sieving by hand",
+    "body": "Start with the first two conditions. The numbers $\\equiv 2 \\pmod 3$ are $2, 5, 8, 11, 14, 17, 20, 23, \\dots$. Among these, the ones $\\equiv 3 \\pmod 5$ are $8, 23, 38, 53, \\dots$, which go up in steps of $15$: once you have one, adding $15 = 3 \\cdot 5$ preserves both conditions, and nothing smaller does. Among $8, 23, 38, \\dots$ we want remainder $2$ modulo $7$; the remainders are $1, 2, \\dots$, so $23$ works, and the full solution set is $23 + 105k$.\n\nTwo things made this work. In each block of $15$ consecutive integers exactly one satisfies the first two conditions, and in each block of $105$ exactly one satisfies all three. The theorem says this always happens when the moduli share no common factors."
+   },
+   {
+    "type": "theorem",
+    "title": "Chinese remainder theorem",
+    "body": "Let $m_1, m_2, \\dots, m_k$ be pairwise coprime positive integers and $M = m_1 m_2 \\cdots m_k$. For any integers $a_1, \\dots, a_k$ the system\n$$x \\equiv a_1 \\pmod{m_1}, \\quad x \\equiv a_2 \\pmod{m_2}, \\quad \\dots, \\quad x \\equiv a_k \\pmod{m_k}$$\nhas a solution, and any two solutions are congruent modulo $M$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "We use two facts from [[bezout]]. First, if $u$ and $v$ are both coprime to $m$, so is $uv$: from $ux + my = 1$ and $vx' + my' = 1$, multiplying gives $uv(xx') + m(\\dots) = 1$. By induction a product of numbers coprime to $m$ is coprime to $m$. Second, if $\\gcd(m, m') = 1$ and both divide $z$, then $mm' \\mid z$.\n\nExistence. For each $i$ let $M_i = M / m_i$, the product of the other moduli. Each of those is coprime to $m_i$, so $\\gcd(M_i, m_i) = 1$ and $M_i$ has an inverse $y_i$ modulo $m_i$ ([[mod-inverse]]). Put\n$$x = a_1 M_1 y_1 + a_2 M_2 y_2 + \\cdots + a_k M_k y_k.$$\nModulo $m_j$, every term with $i \\neq j$ vanishes, because $m_j \\mid M_i$. The remaining term is $a_j M_j y_j \\equiv a_j \\cdot 1$. So $x \\equiv a_j \\pmod{m_j}$ for every $j$.\n\nUniqueness. If $x$ and $x'$ are solutions, each $m_i$ divides $z = x - x'$. We show by induction on $j$ that $m_1 \\cdots m_j \\mid z$. For $j = 1$ this is given. If $m_1 \\cdots m_{j-1} \\mid z$, note that $m_1 \\cdots m_{j-1}$ is coprime to $m_j$ (first fact) and $m_j \\mid z$, so by the second fact $m_1 \\cdots m_j \\mid z$. At $j = k$ we get $M \\mid x - x'$."
+   },
+   {
+    "type": "section",
+    "title": "The formula and the structure",
+    "body": "The proof gives a formula. For the Sunzi problem, $M = 105$ and\n$$M_1 = 35 \\equiv 2 \\pmod 3,\\ y_1 = 2; \\qquad M_2 = 21 \\equiv 1 \\pmod 5,\\ y_2 = 1; \\qquad M_3 = 15 \\equiv 1 \\pmod 7,\\ y_3 = 1.$$\nThen $x = 2 \\cdot 35 \\cdot 2 + 3 \\cdot 21 \\cdot 1 + 2 \\cdot 15 \\cdot 1 = 233 \\equiv 23 \\pmod{105}$. The numbers $M_i y_i$ (here $70, 21, 15$) depend only on the moduli; once computed, they solve the system for any remainders. By hand, however, it is often quicker to substitute one congruence into the next, as in the first example below.\n\nNow the structural version. For coprime $m$ and $n$, consider the map\n$$\\mathbb Z/mn\\mathbb Z \\to \\mathbb Z/m\\mathbb Z \\times \\mathbb Z/n\\mathbb Z, \\qquad x \\mapsto (x \\bmod m,\\ x \\bmod n).$$\nIt is well defined (if $mn \\mid x - x'$ then $m$ and $n$ divide $x - x'$), and it respects addition and multiplication, done coordinate by coordinate on the right. The theorem says it is a bijection. So, as rings,\n$$\\mathbb Z/mn\\mathbb Z \\;\\cong\\; \\mathbb Z/m\\mathbb Z \\times \\mathbb Z/n\\mathbb Z \\quad (\\gcd(m,n)=1).$$\nAny question about arithmetic modulo $mn$ splits into the same question modulo $m$ and modulo $n$. For example, $x^2 \\equiv 1 \\pmod{15}$ means $x \\equiv \\pm 1 \\pmod 3$ and $x \\equiv \\pm 1 \\pmod 5$: $2 \\times 2 = 4$ combinations, giving the solutions $1, 4, 11, 14$. Similarly, $x$ is a unit modulo $mn$ exactly when its two coordinates are units, so the number of units is multiplicative: $\\varphi(mn) = \\varphi(m)\\varphi(n)$ for coprime $m, n$, where $\\varphi$ counts units (see [[arithmetic-functions]])."
+   },
+   {
+    "type": "section",
+    "title": "When the moduli share a factor",
+    "body": "If the moduli are not coprime, a solution may or may not exist. For two congruences $x \\equiv a \\pmod m$ and $x \\equiv b \\pmod n$ with $g = \\gcd(m, n)$:\n\nThe system is solvable if and only if $g \\mid a - b$, and then the solution is unique modulo $\\operatorname{lcm}(m, n)$.\n\nProof: the first congruence means $x = a + mt$. The second becomes $mt \\equiv b - a \\pmod n$, a linear congruence in $t$, solvable exactly when $g \\mid b - a$ ([[mod-inverse]]). Its solutions form one class $t \\equiv t_0$ modulo $n/g$, so $x = a + mt$ is determined modulo $m \\cdot \\frac{n}{g} = \\operatorname{lcm}(m, n)$.\n\nFor instance $x \\equiv 1 \\pmod 4$, $x \\equiv 3 \\pmod 6$ is solvable since $2 \\mid 2$, with $x \\equiv 9 \\pmod{12}$; but $x \\equiv 1 \\pmod 4$, $x \\equiv 2 \\pmod 6$ is not, since the first makes $x$ odd and the second even."
+   },
+   {
+    "type": "example",
+    "title": "Successive substitution",
+    "body": "Solve $x \\equiv 3 \\pmod 4$, $x \\equiv 4 \\pmod 5$, $x \\equiv 1 \\pmod 9$.",
+    "solution": "The moduli are pairwise coprime, so there is a unique solution modulo $180$. Substitute step by step. From the second congruence $x = 4 + 5s$. Then $4 + 5s \\equiv s \\equiv 3 \\pmod 4$, so $s = 3 + 4u$ and $x = 19 + 20u$.\n\nNow impose the third: $19 + 20u \\equiv 1 + 2u \\equiv 1 \\pmod 9$, so $2u \\equiv 0 \\pmod 9$, and since $2$ is invertible modulo $9$, $u \\equiv 0 \\pmod 9$. Hence\n$$x \\equiv 19 \\pmod{180}.$$\nCheck: $19 = 4 \\cdot 4 + 3 = 3 \\cdot 5 + 4 = 2 \\cdot 9 + 1$."
+   },
+   {
+    "type": "example",
+    "title": "Numbers that reproduce their last digits",
+    "body": "Find all $x$ with $0 \\le x < 1000$ such that $x^2$ ends in the same three digits as $x$, i.e. $x^2 \\equiv x \\pmod{1000}$.",
+    "solution": "The condition is $1000 \\mid x(x-1)$, and $1000 = 8 \\cdot 125$ with $\\gcd(8, 125) = 1$. Consecutive integers $x$ and $x - 1$ are coprime, so one of them is odd, and $8$ must divide the other one. Likewise at most one of them is divisible by $5$, so all three factors of $5$ in $x(x-1)$ come from that one, and $125$ divides it. Hence the condition is\n$$x \\equiv 0 \\text{ or } 1 \\pmod 8 \\quad \\text{and} \\quad x \\equiv 0 \\text{ or } 1 \\pmod{125}.$$\nBy the CRT each of the four combinations gives exactly one $x$ modulo $1000$. Two are obvious: $(0, 0)$ gives $0$ and $(1, 1)$ gives $1$.\n\nFor $x \\equiv 1 \\pmod{125}$, $x \\equiv 0 \\pmod 8$: write $x = 1 + 125k$. Since $125 \\equiv 5 \\pmod 8$, we need $1 + 5k \\equiv 0$, i.e. $5k \\equiv 7 \\pmod 8$. The inverse of $5$ modulo $8$ is $5$, so $k \\equiv 35 \\equiv 3$, and $x = 376$.\n\nFor $x \\equiv 0 \\pmod{125}$, $x \\equiv 1 \\pmod 8$: $x = 125k$ with $5k \\equiv 1 \\pmod 8$, so $k \\equiv 5$ and $x = 625$.\n\nThe answers are $0, 1, 376, 625$. Indeed $376^2 = 141376$ and $625^2 = 390625$. Notice $376 + 625 = 1001 \\equiv 1$: in coordinates these two are $(0, 1)$ and $(1, 0)$, and they add to $(1, 1)$."
+   },
+   {
+    "type": "example",
+    "title": "Runs of non-squarefree numbers",
+    "body": "Show that for every $k$ there are $k$ consecutive positive integers each divisible by a perfect square greater than $1$. For $k = 3$, find the smallest positive $x$ with $4 \\mid x$, $9 \\mid x + 1$ and $25 \\mid x + 2$.",
+    "solution": "Take distinct primes $p_1, \\dots, p_k$. The squares $p_1^2, \\dots, p_k^2$ are pairwise coprime, so by the CRT there is a positive $x$ with\n$$x \\equiv -i \\pmod{p_{i+1}^2} \\qquad (i = 0, 1, \\dots, k-1).$$\nThen $p_{i+1}^2 \\mid x + i$ for each $i$, so $x, x+1, \\dots, x+k-1$ all work.\n\nFor $k = 3$ with $4, 9, 25$ we need $x \\equiv 0 \\pmod 4$, $x \\equiv -1 \\equiv 8 \\pmod 9$, $x \\equiv -2 \\equiv 23 \\pmod{25}$. From $x = 4s$ and $4s \\equiv 8 \\pmod 9$ we get $s \\equiv 2$ (cancel the unit $4$), so $x \\equiv 8 \\pmod{36}$. Then $x = 8 + 36t$ with $8 + 36t \\equiv 8 + 11t \\equiv 23 \\pmod{25}$, so $11t \\equiv 15$. Since $11 \\cdot 16 = 176 \\equiv 1 \\pmod{25}$, $t \\equiv 15 \\cdot 16 = 240 \\equiv 15$, and $x = 8 + 36 \\cdot 15 = 548$.\n\nSo $548 = 4 \\cdot 137$, $549 = 9 \\cdot 61$, $550 = 25 \\cdot 22$, and the general solution is $548 + 900n$. (The order in which the squares are assigned matters: $124 = 4 \\cdot 31$, $125 = 25 \\cdot 5$, $126 = 9 \\cdot 14$ is the smallest triple that uses $4, 9, 25$ in some order, and with other squares allowed the smallest triple is $48 = 16 \\cdot 3$, $49 = 7^2$, $50 = 25 \\cdot 2$. The CRT gives existence, not minimality.)"
+   },
+   {
+    "type": "pitfall",
+    "body": "- The theorem needs pairwise coprimality, not just that all the moduli together have gcd $1$. For $6, 10, 15$ the overall gcd is $1$, but $x \\equiv 0 \\pmod 6$ and $x \\equiv 1 \\pmod{10}$ already conflict (parity).\n- For non-coprime moduli the answer is unique modulo the lcm, not the product: $x \\equiv 1 \\pmod 4$, $x \\equiv 3 \\pmod 6$ gives $x \\equiv 9 \\pmod{12}$, not modulo $24$.\n- The formula $\\sum a_i M_i y_i$ usually produces a large number; reduce it modulo $M$ at the end.\n- The $y_i$ are inverses of $M_i$ modulo $m_i$, not modulo $M$."
+   },
+   {
+    "type": "connection",
+    "body": "The CRT is how one studies a modulus one prime power at a time. It reduces solving a polynomial congruence modulo $n$ to solving it modulo the prime powers dividing $n$, and [[hensel]] then often reduces each prime power to the prime itself. The multiplicativity of $\\varphi$ in [[arithmetic-functions]] is a direct consequence, as shown above, and [[dirichlet-characters]] modulo $n$ are built from characters modulo the prime powers of $n$. [[covering-systems]] are families of congruences that together cover every integer, and the CRT is the basic tool for checking whether a given family does.\n\nIn [[rsa]], decryption modulo $n = pq$ is typically done modulo $p$ and modulo $q$ separately and recombined with the CRT, which is several times faster. Residue number systems represent big integers by their residues modulo several small coprime numbers, so that addition and multiplication can be done in parallel. Threshold secret-sharing schemes such as those of Mignotte and Asmuth–Bloom use the integer CRT directly; Shamir's scheme uses Lagrange interpolation, which is the same theorem for polynomials, with the pairwise coprime moduli $x - x_1, \\dots, x - x_k$.\n\nIn algebra the theorem holds for any pairwise coprime [[ideals]] of a commutative ring, where $I$ and $J$ count as coprime when $I + J$ is the whole ring."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Solve $x \\equiv 2 \\pmod 5$, $x \\equiv 3 \\pmod 7$, $x \\equiv 4 \\pmod 9$.\n2. Is the system $x \\equiv 5 \\pmod{12}$, $x \\equiv 11 \\pmod{18}$ solvable? If so, modulo what is the solution unique?\n3. How many solutions does $x^2 \\equiv 1 \\pmod{1001}$ have? ($1001 = 7 \\cdot 11 \\cdot 13$.)\n4. Show that there are four consecutive positive integers each divisible by a perfect cube greater than $1$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 3"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Sunzi: 23 is the unique solution mod 105 of x=2 (3), x=3 (5), x=2 (7); hand sieve values",
+    "python": "assert [x for x in range(105) if x%3 == 2 and x%5 == 3 and x%7 == 2] == [23]\nassert [x for x in range(54) if x%3 == 2 and x%5 == 3] == [8,23,38,53]\nassert [8%7, 23%7] == [1,2]"
+   },
+   {
+    "claim": "CRT formula: 35*2 = 2 (mod 3) style inverses and 2*35*2+3*21+2*15 = 233 = 23 (mod 105)",
+    "python": "assert pow(35,-1,3) == 2 and pow(21,-1,5) == 1 and pow(15,-1,7) == 1\nassert 2*35*2+3*21*1+2*15*1 == 233 and 233 % 105 == 23"
+   },
+   {
+    "claim": "CRT existence/uniqueness and ring isomorphism for coprime m,n (brute force)",
+    "python": "from math import gcd\nfor m in range(1,30):\n    for n in range(1,30):\n        img = {(x%m, x%n) for x in range(m*n)}\n        assert (len(img) == m*n) == (gcd(m,n) == 1)"
+   },
+   {
+    "claim": "x^2 = 1 mod 15 has solutions 1,4,11,14; phi multiplicative for coprime m,n",
+    "python": "from math import gcd\nimport sympy\nassert [x for x in range(15) if x*x%15 == 1] == [1,4,11,14]\nfor m in range(1,40):\n    for n in range(1,40):\n        if gcd(m,n) == 1: assert sympy.totient(m*n) == sympy.totient(m)*sympy.totient(n)"
+   },
+   {
+    "claim": "Non-coprime moduli: solvable iff gcd | a-b, unique mod lcm; x=1 (4), x=3 (6) gives 9 mod 12",
+    "python": "from math import gcd, lcm\nfor m in range(1,25):\n    for n in range(1,25):\n        L = lcm(m,n)\n        for a in range(m):\n            for b in range(n):\n                s = [x for x in range(L) if x%m == a and x%n == b]\n                assert len(s) == (1 if (a-b) % gcd(m,n) == 0 else 0)\nassert [x for x in range(24) if x%4 == 1 and x%6 == 3] == [9,21]\nassert not [x for x in range(12) if x%4 == 1 and x%6 == 2]"
+   },
+   {
+    "claim": "x=3 (4), x=4 (5), x=1 (9) gives x = 19 mod 180",
+    "python": "assert [x for x in range(180) if x%4 == 3 and x%5 == 4 and x%9 == 1] == [19]"
+   },
+   {
+    "claim": "x^2 = x mod 1000 exactly for 0,1,376,625; 376^2 = 141376, 625^2 = 390625",
+    "python": "assert [x for x in range(1000) if (x*x-x) % 1000 == 0] == [0,1,376,625]\nassert 376**2 == 141376 and 625**2 == 390625 and pow(5,-1,8) == 5"
+   },
+   {
+    "claim": "548, 549, 550 divisible by 4, 9, 25; unique solution mod 900; 11*16 = 1 mod 25; 242, 243, 244 smaller triple",
+    "python": "assert [x for x in range(900) if x%4 == 0 and (x+1)%9 == 0 and (x+2)%25 == 0] == [548]\nassert 548 == 4*137 and 549 == 9*61 and 550 == 25*22 and (11*16) % 25 == 1 and 8+36*15 == 548\nassert 242 == 2*11**2 and 243 == 3**5 and 244 == 4*61"
+   },
+   {
+    "claim": "6, 10 conflict: no x with x=0 (6) and x=1 (10)",
+    "python": "assert not [x for x in range(30) if x%6 == 0 and x%10 == 1]"
+   },
+   {
+    "claim": "Smallest x with 4|x, 9|x+1, 25|x+2 is 548; over all orders of 4, 9, 25 the smallest triple is 124,125,126; smallest triple of consecutive non-squarefree numbers is 48,49,50",
+    "python": "import itertools\nbest=min(min(x for x in range(1,901) if all((x+i)%q[i]==0 for i in range(3))) for q in itertools.permutations((4,9,25)))\nassert best == 124 and 124 == 4*31 and 125 == 25*5 and 126 == 9*14\nassert min(x for x in range(1,901) if x%4==0 and (x+1)%9==0 and (x+2)%25==0) == 548\ndef nsf(n): return any(n%(p*p)==0 for p in range(2,int(n**.5)+1))\nassert min(x for x in range(1,1000) if nsf(x) and nsf(x+1) and nsf(x+2)) == 48\nassert 48 == 16*3 and 49 == 7**2 and 50 == 25*2"
+   },
+   {
+    "claim": "The numbers M_i y_i = 70, 21, 15 are 1 modulo their own modulus and 0 modulo the others",
+    "python": "for e,(m,others) in zip((70,21,15),((3,(5,7)),(5,(3,7)),(7,(3,5)))):\n    assert e % m == 1 and all(e % o == 0 for o in others)"
+   },
+   {
+    "claim": "376 and 625 have CRT coordinates (0,1) and (1,0) modulo (8,125), and 376+625 = 1001",
+    "python": "assert (376%8,376%125) == (0,1) and (625%8,625%125) == (1,0) and 376+625 == 1001"
+   },
+   {
+    "claim": "Generic CRT construction with M_i and inverses solves random pairwise coprime systems",
+    "python": "import random\nfrom math import gcd, prod\nfor _ in range(2000):\n    ms=[]\n    while len(ms)<4:\n        m=random.randint(2,60)\n        if all(gcd(m,x)==1 for x in ms): ms.append(m)\n    a=[random.randint(-100,100) for _ in ms]; M=prod(ms)\n    x=sum(ai*(M//mi)*pow(M//mi,-1,mi) for ai,mi in zip(a,ms))\n    assert all((x-ai)%mi==0 for ai,mi in zip(a,ms))"
+   }
+  ]
+ },
+ {
+  "id": "fermat-euler",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Compute the powers of $3$ modulo $7$: $3, 2, 6, 4, 5, 1$, and then the cycle repeats. Powers of $2$ modulo $7$: $2, 4, 1$, repeating. Powers of $5$ modulo $11$: $5, 3, 4, 9, 1$. In each case some power returns to $1$, and the cycle length divides $p - 1$.\n\nFermat noticed this in 1640: for a prime $p$ and any $a$ not divisible by $p$, $a^{p-1} \\equiv 1 \\pmod p$. Euler proved it and later extended it to every modulus. These two theorems are the main tool for taming huge exponents, and they are the mathematical core of both primality testing and RSA."
+   },
+   {
+    "type": "theorem",
+    "title": "Fermat's little theorem",
+    "body": "Let $p$ be a prime and $a$ an integer with $p \\nmid a$. Then\n$$a^{p-1} \\equiv 1 \\pmod p.$$\nEquivalently, $a^p \\equiv a \\pmod p$ for every integer $a$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Consider the $p - 1$ numbers $a, 2a, 3a, \\dots, (p-1)a$. None is divisible by $p$: if $p \\mid ia$ then $p \\mid i$ or $p \\mid a$ by Euclid's lemma ([[fta]]), and both are impossible since $1 \\le i \\le p - 1$. They are pairwise incongruent: $ia \\equiv ja$ implies $i \\equiv j \\pmod p$ by cancelling $a$, which is allowed because $\\gcd(a, p) = 1$ ([[congruences]]), and then $i = j$.\n\nSo $a, 2a, \\dots, (p-1)a$ are $p - 1$ different non-zero residues modulo $p$. There are only $p - 1$ non-zero residues, so these are $1, 2, \\dots, p - 1$ in some order. Multiplying all of them,\n$$a \\cdot 2a \\cdots (p-1)a \\equiv 1 \\cdot 2 \\cdots (p-1), \\quad \\text{i.e.} \\quad a^{p-1}(p-1)! \\equiv (p-1)! \\pmod p.$$\nThe number $(p-1)!$ is not divisible by $p$ (again by Euclid's lemma), so it is coprime to $p$ and can be cancelled, giving $a^{p-1} \\equiv 1$.\n\nFor the equivalent form, multiply by $a$ when $p \\nmid a$; when $p \\mid a$ both sides of $a^p \\equiv a$ are $\\equiv 0$."
+   },
+   {
+    "type": "definition",
+    "title": "Euler's totient function",
+    "body": "For a positive integer $n$, Euler's totient $\\varphi(n)$ is the number of integers $k$ with $1 \\le k \\le n$ and $\\gcd(k, n) = 1$.\n\nIt counts the residues that are units modulo $n$."
+   },
+   {
+    "type": "section",
+    "title": "Computing the totient",
+    "body": "Small values: $\\varphi(1) = 1$, $\\varphi(12) = 4$ (the units are $1, 5, 7, 11$), and $\\varphi(p) = p - 1$ for a prime $p$. For a prime power, a number is coprime to $p^k$ exactly when $p$ does not divide it (a common divisor greater than $1$ would have a prime factor dividing $p^k$, which must be $p$). Among $1, \\dots, p^k$ the multiples of $p$ are $p, 2p, \\dots, p^{k-1}\\cdot p$, so\n$$\\varphi(p^k) = p^k - p^{k-1}.$$\nIn general $\\varphi(n) = n \\prod_{p \\mid n}\\left(1 - \\frac1p\\right)$, which you can check directly for $100$: removing multiples of $2$ and of $5$ and adding back multiples of $10$ leaves $100 - 50 - 20 + 10 = 40 = 100 \\cdot \\frac12 \\cdot \\frac45$. The product formula is proved in [[arithmetic-functions]]."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler's theorem",
+    "body": "Let $n \\ge 1$ and $\\gcd(a, n) = 1$. Then\n$$a^{\\varphi(n)} \\equiv 1 \\pmod n.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Let $r_1, \\dots, r_{\\varphi(n)}$ be the integers in $[1, n]$ coprime to $n$. We repeat Fermat's argument with this list in place of $1, \\dots, p - 1$.\n\nEach $ar_i$ is coprime to $n$: a prime dividing both $ar_i$ and $n$ would divide $a$ or $r_i$ (Euclid's lemma), contradicting $\\gcd(a, n) = 1$ or $\\gcd(r_i, n) = 1$. Whether a number is coprime to $n$ depends only on its residue modulo $n$, so each $ar_i$ is congruent to some $r_j$. The $ar_i$ are pairwise incongruent, since $ar_i \\equiv ar_j$ implies $r_i \\equiv r_j$ by cancelling $a$. Hence $ar_1, \\dots, ar_{\\varphi(n)}$ are congruent to $r_1, \\dots, r_{\\varphi(n)}$ in some order, and\n$$a^{\\varphi(n)}\\, r_1 r_2 \\cdots r_{\\varphi(n)} \\equiv r_1 r_2 \\cdots r_{\\varphi(n)} \\pmod n.$$\nThe product $R = r_1 \\cdots r_{\\varphi(n)}$ is coprime to $n$ (no prime factor of $n$ divides any $r_i$, so by Euclid's lemma none divides $R$). Cancel $R$ to get $a^{\\varphi(n)} \\equiv 1$.\n\nFor $n = p$ prime, $\\varphi(p) = p - 1$ and this is Fermat's theorem."
+   },
+   {
+    "type": "section",
+    "title": "Reducing exponents",
+    "body": "The practical meaning: if $\\gcd(a, n) = 1$, exponents of $a$ can be reduced modulo $\\varphi(n)$. Write $k = q\\varphi(n) + r$; then\n$$a^k = \\left(a^{\\varphi(n)}\\right)^q a^r \\equiv a^r \\pmod n.$$\nFor example, $2^{1000000} \\bmod 7$: here $\\varphi(7) = 6$ and $1000000 = 6 \\cdot 166666 + 4$, so $2^{1000000} \\equiv 2^4 = 16 \\equiv 2 \\pmod 7$.\n\nTwo remarks. First, $\\varphi(n)$ is an exponent that always works, but not always the smallest one: $2^3 \\equiv 1 \\pmod 7$ already. The smallest such exponent is the order of $a$, and it always divides $\\varphi(n)$; this is the subject of [[order-primroot]]. Second, the converse of Fermat's theorem is false, which matters for primality testing. The composite number $341 = 11 \\cdot 31$ satisfies $2^{340} \\equiv 1 \\pmod{341}$, and $561 = 3 \\cdot 11 \\cdot 17$ satisfies $a^{560} \\equiv 1 \\pmod{561}$ for every $a$ coprime to $561$. Numbers like $561$ are called Carmichael numbers.\n\nHistorically, Fermat stated the theorem in a letter of 1640 without proof. Euler wrote a proof in 1736 (it appeared in print in 1741), and published the totient version in 1763. In group language, Euler's theorem is the statement that the order of any element of the group of units $(\\mathbb Z/n\\mathbb Z)^\\times$ divides the size $\\varphi(n)$ of the group, a special case of Lagrange's theorem."
+   },
+   {
+    "type": "example",
+    "title": "A direct application",
+    "body": "Find the remainder of $7^{222}$ on division by $11$.",
+    "solution": "Since $11$ is prime and $11 \\nmid 7$, Fermat gives $7^{10} \\equiv 1 \\pmod{11}$. As $222 = 10 \\cdot 22 + 2$,\n$$7^{222} \\equiv 7^2 = 49 = 4 \\cdot 11 + 5 \\equiv 5 \\pmod{11}.$$"
+   },
+   {
+    "type": "example",
+    "title": "Last two digits",
+    "body": "Find the last two digits of $3^{2026}$.",
+    "solution": "We need $3^{2026} \\bmod 100$. Since $\\gcd(3, 100) = 1$ and $\\varphi(100) = 40$, Euler gives $3^{40} \\equiv 1$. As $2026 = 40 \\cdot 50 + 26$, we need $3^{26} \\bmod 100$. Square repeatedly:\n$$3^5 = 243 \\equiv 43, \\qquad 3^{10} \\equiv 43^2 = 1849 \\equiv 49, \\qquad 3^{20} \\equiv 49^2 = 2401 \\equiv 1 \\pmod{100}.$$\n(So the order of $3$ modulo $100$ is actually at most $20$.) Then $3^{26} = 3^{20} \\cdot 3^6 \\equiv 729 \\equiv 29$. The last two digits are $29$."
+   },
+   {
+    "type": "example",
+    "title": "A universal divisor",
+    "body": "Prove that $n^{13} - n$ is divisible by $2730$ for every integer $n$.",
+    "solution": "Factor $2730 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 13$. These are distinct primes, so by unique factorisation it suffices to show that each of them divides $n^{13} - n$.\n\nLet $p \\in \\{2, 3, 5, 7, 13\\}$. Then $p - 1 \\in \\{1, 2, 4, 6, 12\\}$, and in every case $p - 1 \\mid 12$. If $p \\mid n$, then $p$ divides $n^{13} - n = n(n^{12} - 1)$ trivially. Otherwise Fermat gives $n^{p-1} \\equiv 1$, and raising to the power $12/(p-1)$ gives $n^{12} \\equiv 1 \\pmod p$, so $n^{13} \\equiv n$.\n\nThe idea generalises: $n^k - n$ is divisible by every prime $p$ with $p - 1 \\mid k - 1$."
+   },
+   {
+    "type": "example",
+    "title": "An exponent collapses",
+    "body": "Find all primes $p$ such that $p$ divides $2^p + 1$.",
+    "solution": "By Fermat in the form $a^p \\equiv a$, we have $2^p \\equiv 2 \\pmod p$ for every prime $p$. So $2^p + 1 \\equiv 3 \\pmod p$, and $p \\mid 2^p + 1$ holds exactly when $p \\mid 3$, that is $p = 3$. Indeed $2^3 + 1 = 9$.\n\nThe point is that Fermat collapses an exponential condition into a condition on a small constant. Many olympiad problems start with exactly this reduction."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The hypothesis $p \\nmid a$ matters: $3^{2} \\equiv 0 \\pmod 3$, not $1$. Only the form $a^p \\equiv a$ holds for all $a$.\n- Reduce exponents modulo $\\varphi(n)$, never modulo $n$. Modulo $7$, $10 \\equiv 3$ but $2^{10} = 1024 \\equiv 2$ while $2^3 = 8 \\equiv 1$. The correct reduction is $10 \\equiv 4 \\pmod 6$, and $2^4 = 16 \\equiv 2$.\n- Euler's theorem needs $\\gcd(a, n) = 1$: $\\varphi(12) = 4$ but $2^4 = 16 \\equiv 4 \\pmod{12}$.\n- The converse fails: $2^{340} \\equiv 1 \\pmod{341}$ although $341 = 11 \\cdot 31$. Passing the Fermat test does not prove primality.\n- $\\varphi(n)$ need not be the smallest exponent that works; the order can be a proper divisor."
+   },
+   {
+    "type": "connection",
+    "body": "Its companion result [[wilson]], $(p-1)! \\equiv -1 \\pmod p$, is proved by pairing each residue with its inverse, much as Fermat's proof multiplies all the non-zero residues together. The exact cycle length of powers is the [[order-primroot|order]], and the question of whether some $a$ has order exactly $p - 1$ leads to primitive roots. Euler's criterion, that for an odd prime $p$ and $p \\nmid a$ the power $a^{(p-1)/2}$ is $\\equiv 1$ or $\\equiv -1 \\pmod p$ according to whether or not $a$ is a square modulo $p$, is the gateway to [[quadratic-residues]]. Finer information about the exact power of $p$ dividing $a^n - b^n$ is [[p-adic-valuation|lifting the exponent]].\n\nIn computing, the Fermat test declares $n$ probably prime if $a^{n-1} \\equiv 1 \\pmod n$ for random $a$; Carmichael numbers defeat it, and the Miller–Rabin test repairs it (see [[primality]]). In [[rsa]], with $n = pq$ and $ed \\equiv 1 \\pmod{\\varphi(n)}$, Euler's theorem shows $m^{ed} \\equiv m \\pmod n$ for messages $m$ coprime to $n$ (combining Fermat's theorem modulo $p$ and $q$ with the CRT extends this to every $m$), so decryption undoes encryption. The theorem is also the simplest case of Lagrange's theorem in [[groups]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Compute $\\varphi(36)$ and $\\varphi(1001)$.\n2. Find the last digit of $7^{7^7}$.\n3. Let $p > 5$ be prime. Show that $p$ divides the number $111\\ldots1$ written with $p - 1$ ones.\n4. Show that $1^{p-1} + 2^{p-1} + \\cdots + (p-1)^{p-1} \\equiv -1 \\pmod p$ for every prime $p$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 2"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Chapter 3"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Powers of 3 mod 7: 3,2,6,4,5,1; of 2 mod 7: 2,4,1; of 5 mod 11: 5,3,4,9,1",
+    "python": "assert [pow(3,k,7) for k in range(1,7)] == [3,2,6,4,5,1]\nassert [pow(2,k,7) for k in range(1,4)] == [2,4,1]\nassert [pow(5,k,11) for k in range(1,6)] == [5,3,4,9,1]"
+   },
+   {
+    "claim": "Fermat and Euler theorems hold (brute force)",
+    "python": "import sympy\nfrom math import gcd\nfor p in sympy.primerange(2,400):\n    for a in range(1,p): assert pow(a,p-1,p) == 1\nfor n in range(1,300):\n    t = int(sympy.totient(n))\n    for a in range(n):\n        if gcd(a,n) == 1: assert pow(a,t,n) == 1 % n"
+   },
+   {
+    "claim": "phi(12) = 4 with units 1,5,7,11; phi(p^k) = p^k - p^(k-1); phi(100) = 40 = 100-50-20+10",
+    "python": "import sympy\nfrom math import gcd\nassert [k for k in range(1,13) if gcd(k,12) == 1] == [1,5,7,11] and sympy.totient(12) == 4\nfor p in sympy.primerange(2,30):\n    for k in range(1,5): assert sympy.totient(p**k) == p**k - p**(k-1)\nassert sympy.totient(100) == 40 == 100-50-20+10 and sympy.totient(1) == 1"
+   },
+   {
+    "claim": "2^1000000 mod 7 = 2; 1000000 = 6*166666+4; 2^3 = 1 mod 7",
+    "python": "assert pow(2,10**6,7) == 2 and 10**6 == 6*166666+4 and pow(2,3,7) == 1"
+   },
+   {
+    "claim": "341 = 11*31 is a base-2 Fermat pseudoprime; 561 = 3*11*17 is a Carmichael number",
+    "python": "from math import gcd\nassert 341 == 11*31 and pow(2,340,341) == 1\nassert 561 == 3*11*17 and all(pow(a,560,561) == 1 for a in range(1,561) if gcd(a,561) == 1)"
+   },
+   {
+    "claim": "7^222 mod 11 = 5; 3^2026 mod 100 = 29 with intermediate values 43, 49, 1",
+    "python": "assert pow(7,222,11) == 5 and 222 == 10*22+2\nassert pow(3,2026,100) == 29 and 2026 == 40*50+26 and pow(3,5,100) == 43 and pow(3,10,100) == 49 and pow(3,20,100) == 1 and 729 % 100 == 29"
+   },
+   {
+    "claim": "2730 = 2*3*5*7*13 divides n^13 - n for all n",
+    "python": "assert 2730 == 2*3*5*7*13\nassert all((n**13-n) % 2730 == 0 for n in range(-2000,2000))"
+   },
+   {
+    "claim": "The only prime p with p | 2^p + 1 (p < 5000) is 3",
+    "python": "import sympy\nassert [p for p in sympy.primerange(2,5000) if (pow(2,p,p)+1) % p == 0] == [3]"
+   },
+   {
+    "claim": "Pitfalls: 2^10 mod 7 = 2, 2^4 mod 12 = 4, 3^2 mod 3 = 0",
+    "python": "assert pow(2,10,7) == 2 and 1024 % 7 == 2 and 8 % 7 == 1 and 10 % 6 == 4 and 16 % 7 == 2 and pow(2,4,12) == 4 and 9 % 3 == 0"
+   },
+   {
+    "claim": "phi(n) = n * prod(1 - 1/p) over primes p | n (n < 2000)",
+    "python": "import sympy\nfrom fractions import Fraction as F\nfor n in range(1,2000):\n    v=F(n)\n    for p in sympy.primefactors(n): v*=1-F(1,p)\n    assert v == sympy.totient(n)"
+   },
+   {
+    "claim": "Euler's criterion: for odd p and p not dividing a, a^((p-1)/2) is 1 mod p iff a is a square mod p, else -1",
+    "python": "import sympy\nfor p in sympy.primerange(3,200):\n    sq={x*x%p for x in range(1,p)}\n    for a in range(1,p): assert pow(a,(p-1)//2,p) == (1 if a in sq else p-1)"
+   },
+   {
+    "claim": "RSA: with n = pq and ed = 1 mod phi(n), m^(ed) = m mod n for every m, coprime or not",
+    "python": "import sympy, random\nfor _ in range(200):\n    p,q=random.sample(list(sympy.primerange(3,80)),2); n=p*q; ph=(p-1)*(q-1)\n    e=next(e for e in range(3,ph,2) if sympy.gcd(e,ph)==1); d=pow(e,-1,ph)\n    assert all(pow(m,e*d,n) == m for m in range(n))"
+   },
+   {
+    "claim": "The order of 3 mod 100 is exactly 20; n^k - n is divisible by every prime p with p-1 | k-1",
+    "python": "import sympy\nassert min(k for k in range(1,41) if pow(3,k,100)==1) == 20\nfor k in range(1,30):\n    for p in sympy.primerange(2,60):\n        if (k-1) % (p-1) == 0: assert all((n**k-n) % p == 0 for n in range(-60,60))"
+   }
+  ]
+ }
+]

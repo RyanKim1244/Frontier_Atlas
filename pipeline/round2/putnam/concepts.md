@@ -1,0 +1,190 @@
+# Concept ids (id — title)
+
+- divisibility — Divisibility and the Euclidean algorithm
+- bezout — Bézout's identity and linear Diophantine equations
+- fta — Primes and the fundamental theorem of arithmetic
+- congruences — Congruences and modular arithmetic
+- mod-inverse — Modular inverses and linear congruences
+- crt — Chinese remainder theorem
+- fermat-euler — Fermat's little theorem and Euler's theorem
+- wilson — Wilson's theorem
+- arithmetic-functions — Arithmetic functions φ, σ, τ
+- mobius — Möbius inversion and Dirichlet convolution
+- order-primroot — Order and primitive roots
+- p-adic-valuation — p-adic valuation and lifting the exponent
+- lucas — Binomial coefficients modulo p (Lucas's theorem)
+- quadratic-residues — Quadratic residues and reciprocity
+- hensel — Hensel's lemma and prime-power moduli
+- sums-of-squares — Sums of two squares
+- pythagorean — Pythagorean triples
+- continued-fractions — Continued fractions
+- pell — Pell's equation
+- quadratic-forms — Binary quadratic forms
+- series — Series and convergence
+- asymptotics — Asymptotic notation
+- partial-summation — Abel summation and Euler–Maclaurin
+- complex-numbers — Complex numbers and functions
+- holomorphic — Holomorphic functions and Cauchy's theorem
+- residues — Residues and the argument principle
+- continuation — Analytic continuation
+- gamma — The gamma function
+- fourier-poisson — Fourier analysis and Poisson summation
+- mellin — The Mellin transform and Perron's formula
+- dirichlet-series — Dirichlet series and Euler products
+- zeta — The Riemann zeta function
+- functional-equation — Functional equation and trivial zeros
+- chebyshev — Chebyshev and von Mangoldt functions
+- mertens — Mertens' theorems
+- pnt — The prime number theorem
+- nontrivial-zeros — Nontrivial zeros and the Riemann–von Mangoldt formula
+- explicit-formula — The explicit formula
+- zero-free-region — Zero-free regions
+- dirichlet-characters — Dirichlet characters
+- gauss-sums — Gauss sums
+- l-functions — Dirichlet L-functions and primes in progressions
+- class-number-formula — Dirichlet's class number formula
+- siegel-zeros — Siegel zeros and the Landau–Siegel problem
+- siegel-walfisz — The Siegel–Walfisz theorem
+- sieve-basics — Sieves from Eratosthenes to Brun
+- selberg-sieve — The Selberg sieve
+- large-sieve — The large sieve
+- bombieri-vinogradov — The Bombieri–Vinogradov theorem
+- bounded-gaps — Bounded gaps between primes
+- exponential-sums — Exponential sums and Weyl differencing
+- circle-method — The Hardy–Littlewood circle method
+- ternary-goldbach — Ternary Goldbach
+- waring — Waring's problem
+- moments — Moments, mollifiers and amplifiers
+- zero-density — Zero-density estimates
+- lindelof — Lindelöf hypothesis and subconvexity
+- pair-correlation — Pair correlation and random matrices
+- gaussian-integers — Gaussian integers
+- eisenstein-integers — Eisenstein integers
+- ideals — Ideals and rings of integers
+- class-group — Class groups
+- cyclotomic — Cyclotomic fields
+- cubic-characters — Cubic characters and cubic reciprocity
+- dedekind-zeta — Dedekind zeta functions
+- hecke-l — Hecke L-functions
+- elliptic-curves — Elliptic curves
+- primality — Primality testing
+- rsa — RSA and public-key cryptography
+- discrete-log — Discrete logarithms and Diffie–Hellman
+- rh — The Riemann hypothesis
+- grh — The generalized Riemann hypothesis
+- quasi-rh — The quasi-Riemann hypothesis
+- no-siegel — Exclusion of Siegel zeros
+- twin-primes — The twin prime conjecture
+- goldbach — Goldbach's conjecture
+- diophantine — Elementary Diophantine equations
+- digits-bases — Digits and base representations
+- vieta-jumping — Vieta jumping
+- lte-zsigmondy — Lifting the exponent and Zsigmondy's theorem
+- binomial-factorial — Primes in factorials and binomial coefficients
+- integer-polynomials — Polynomials with integer coefficients
+- integer-functional-eq — Functional equations on the integers
+- combinatorial-nt — Combinatorial number theory
+- additive-combinatorics — Sumsets and additive combinatorics
+- ramsey-arithmetic — Arithmetic Ramsey theory
+- arithmetic-progressions — Arithmetic progressions in dense sets
+- sidon-sets — Sidon sets
+- additive-bases — Additive bases and complete sequences
+- unit-fractions — Egyptian fractions
+- covering-systems — Covering systems
+- primitive-sets — Primitive sets
+- discrepancy — Discrepancy
+- diophantine-approx — Diophantine approximation and irrationality
+- smooth-powerful — Smooth, powerful and squarefree numbers
+- prime-patterns — Primes in sequences and gaps
+- probabilistic-nt — Probabilistic number theory
+- counting — Counting and bijections
+- pigeonhole — Pigeonhole and double counting
+- invariants — Invariants and monovariants
+- comb-games — Combinatorial games and strategies
+- generating-functions — Generating functions and recurrences
+- graph-basics — Graphs, trees and paths
+- cycles-matchings — Cycles, matchings and Hamiltonicity
+- graph-coloring — Graph colouring
+- extremal-graphs — Extremal graph theory
+- ramsey — Ramsey theory
+- probabilistic-method — The probabilistic method
+- set-systems — Extremal set theory
+- hypergraphs — Hypergraphs
+- grids-tilings — Grids, tilings and board colourings
+- discrete-geometry — Combinatorial geometry
+- infinite-combinatorics — Infinite combinatorics and partition calculus
+- amgm — AM–GM and power means
+- cauchy-schwarz — Cauchy–Schwarz, Hölder and rearrangement
+- convexity — Convexity, Jensen and majorization
+- symmetric-ineq — Symmetric and polynomial inequalities
+- real-functional-eq — Functional equations over the reals
+- polynomials-roots — Polynomials, roots and Vieta's formulas
+- sequences — Sequences, recurrences and limits
+- floor-functions — Floor functions and fractional parts
+- groups — Groups and symmetry
+- linear-algebra — Linear algebra methods
+- euclid-basics — Angles, triangles and similarity
+- circles — Circles and power of a point
+- triangle-centres — Triangle centres and classical configurations
+- geo-transformations — Transformations and inversion
+- analytic-geometry — Coordinates, vectors and complex numbers
+- geo-inequalities — Geometric inequalities and extremal geometry
+- bsd — The Birch and Swinnerton-Dyer conjecture
+- p-vs-np — P versus NP
+- navier-stokes — Navier–Stokes existence and smoothness
+- yang-mills — Yang–Mills existence and mass gap
+- hodge — The Hodge conjecture
+- poincare — The Poincaré conjecture
+- functions — Functions and their graphs
+- exp-log — Exponentials and logarithms
+- trig — Trigonometric functions
+- ap-gp — Arithmetic and geometric sequences
+- vectors-plane — Vectors in the plane and in space
+- limits — Limits of functions
+- continuity — Continuity and the intermediate value theorem
+- derivative — The derivative
+- diff-rules — Rules of differentiation
+- mvt — The mean value theorem
+- deriv-applications — Applications of the derivative
+- lhopital — Indeterminate forms and L'Hôpital's rule
+- riemann-integral — The definite integral
+- ftc — The fundamental theorem of calculus
+- integration-techniques — Techniques of integration
+- improper-integrals — Improper integrals
+- taylor — Taylor polynomials and Taylor's theorem
+- power-series — Power series
+- partial-derivatives — Partial derivatives and the gradient
+- multiple-integrals — Multiple integrals and change of variables
+- vector-calculus — Line integrals and the theorems of Green, Stokes and Gauss
+- lagrange-multipliers — Constrained optimisation and Lagrange multipliers
+- ode-first — First-order differential equations
+- ode-linear — Linear differential equations
+- real-numbers — The real numbers and completeness
+- seq-limits — Convergence of sequences
+- metric-spaces — Metric spaces
+- compactness — Compactness
+- uniform-convergence — Uniform convergence
+- lebesgue — Measure and the Lebesgue integral
+- linear-systems — Systems of linear equations and Gaussian elimination
+- matrices — Matrices and matrix multiplication
+- vector-spaces — Vector spaces and subspaces
+- basis-dimension — Linear independence, bases and dimension
+- linear-maps — Linear maps and the rank–nullity theorem
+- determinants — Determinants
+- eigen — Eigenvalues and eigenvectors
+- diagonalization — Diagonalisation
+- inner-products — Inner products and orthogonality
+- spectral-theorem — The spectral theorem
+- svd — The singular value decomposition
+- jordan — Jordan normal form
+- group-homomorphisms — Homomorphisms, normal subgroups and quotient groups
+- group-actions — Group actions and the Sylow theorems
+- rings — Rings, ideals and quotient rings
+- fields-ext — Fields and field extensions
+- finite-fields — Finite fields
+- galois — Galois theory
+- probability-basics — Probability spaces and conditional probability
+- random-variables — Random variables and expectation
+- distributions — Discrete and continuous distributions
+- limit-theorems — The law of large numbers and the central limit theorem
+- markov-chains — Markov chains

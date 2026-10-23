@@ -1,0 +1,1061 @@
+[
+ {
+  "file": "Imo2019P3",
+  "source": "IMO",
+  "year": 2019,
+  "num": "3",
+  "q": "A social network has $2019$ users, some pairs of whom are friends. Whenever user $A$ is friends with user $B$, user $B$ is also friends with user $A$. Events of the following kind may happen repeatedly, one at a time: three users $A$, $B$ and $C$ such that $A$ is friends with both $B$ and $C$, but $B$ and $C$ are not friends, change their friendship statuses such that $B$ and $C$ are now friends, but $A$ is no longer friends with $B$, and no longer friends with $C$. All other friendship statuses are unchanged. Initially, $1010$ users have $1009$ friends each, and $1009$ users have $1010$ friends each. Prove that there exists a sequence of such events after which each user is friends with at most one other user.",
+  "concepts": [
+   "graph-basics",
+   "invariants"
+  ],
+  "check": "docstring had the counts 1009/1010 swapped; used official statement (matches Lean)"
+ },
+ {
+  "file": "Imo2019P5",
+  "source": "IMO",
+  "year": 2019,
+  "num": "5",
+  "q": "The Bank of Bath issues coins with an H on one side and a T on the other. Harry has $n$ of these coins arranged in a line from left to right. He repeatedly performs the following operation: if there are exactly $k > 0$ coins showing H, then he turns over the $k$-th coin from the left; otherwise, all coins show T and he stops. For example, if $n = 3$ the process starting with the configuration THT would be THT $\\to$ HHT $\\to$ HTT $\\to$ TTT, which stops after three operations.\n\n(a) Show that, for each initial configuration, Harry stops after a finite number of operations.\n\n(b) For each initial configuration $C$, let $L(C)$ be the number of operations before Harry stops. For example, $L(\\mathrm{THT}) = 3$ and $L(\\mathrm{TTT}) = 0$. Determine the average value of $L(C)$ over all $2^n$ possible initial configurations $C$.",
+  "concepts": [
+   "invariants",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2020P2",
+  "source": "IMO",
+  "year": 2020,
+  "num": "2",
+  "q": "The real numbers $a, b, c, d$ are such that $a \\ge b \\ge c \\ge d > 0$ and $a + b + c + d = 1$. Prove that\n$$(a + 2b + 3c + 4d)\\, a^a b^b c^c d^d < 1.$$",
+  "concepts": [
+   "convexity",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2020P3",
+  "source": "IMO",
+  "year": 2020,
+  "num": "3",
+  "q": "There are $4n$ pebbles of weights $1, 2, 3, \\dots, 4n$. Each pebble is coloured in one of $n$ colours and there are four pebbles of each colour. Show that we can arrange the pebbles into two piles so that the following two conditions are both satisfied:\n\nThe total weights of both piles are the same.\n\nEach pile contains two pebbles of each colour.",
+  "concepts": [
+   "graph-basics",
+   "cycles-matchings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2020P4",
+  "source": "IMO",
+  "year": 2020,
+  "num": "4",
+  "q": "There is an integer $n > 1$. There are $n^2$ stations on a slope of a mountain, all at different altitudes. Each of two cable car companies, $A$ and $B$, operates $k$ cable cars; each cable car provides a transfer from one of the stations to a higher one (with no intermediate stops). The $k$ cable cars of $A$ have $k$ different starting points and $k$ different finishing points, and a cable car which starts higher also finishes higher. The same conditions hold for $B$. We say that two stations are linked by a company if one can start from the lower station and reach the higher one by using one or more cars of that company (no other movements between stations are allowed). Determine the smallest positive integer $k$ for which one can guarantee that there are two stations that are linked by both companies.",
+  "concepts": [
+   "pigeonhole",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2020P5",
+  "source": "IMO",
+  "year": 2020,
+  "num": "5",
+  "q": "A deck of $n > 1$ cards is given. A positive integer is written on each card. The deck has the property that the arithmetic mean of the numbers on each pair of cards is also the geometric mean of the numbers on some collection of one or more cards. For which $n$ does it follow that the numbers on the cards are all equal?",
+  "concepts": [
+   "p-adic-valuation",
+   "fta",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2020P6",
+  "source": "IMO",
+  "year": 2020,
+  "num": "6",
+  "q": "Prove that there exists a positive constant $c$ such that the following statement is true:\n\nConsider an integer $n > 1$, and a set $S$ of $n$ points in the plane such that the distance between any two different points in $S$ is at least $1$. It follows that there is a line $\\ell$ separating $S$ such that the distance from any point of $S$ to $\\ell$ is at least $cn^{-1/3}$.\n\n(A line $\\ell$ separates a set of points $S$ if some segment joining two points in $S$ crosses $\\ell$.)",
+  "concepts": [
+   "discrete-geometry",
+   "geo-inequalities"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2021P1",
+  "source": "IMO",
+  "year": 2021,
+  "num": "1",
+  "q": "Let $n \\ge 100$ be an integer. Ivan writes the numbers $n, n+1, \\dots, 2n$ each on different cards. He then shuffles these $n+1$ cards, and divides them into two piles. Prove that at least one of the piles contains two cards such that the sum of their numbers is a perfect square.",
+  "concepts": [
+   "graph-coloring",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2021P2",
+  "source": "IMO",
+  "year": 2021,
+  "num": "2",
+  "q": "Show that the inequality\n$$\\sum_{i=1}^{n} \\sum_{j=1}^{n} \\sqrt{|x_i - x_j|} \\le \\sum_{i=1}^{n} \\sum_{j=1}^{n} \\sqrt{|x_i + x_j|}$$\nholds for all real numbers $x_1, \\dots, x_n$.",
+  "concepts": [
+   "symmetric-ineq",
+   "convexity"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2021P3",
+  "source": "IMO",
+  "year": 2021,
+  "num": "3",
+  "q": "Let $D$ be an interior point of the acute triangle $ABC$ with $AB > AC$ so that $\\angle DAB = \\angle CAD$. The point $E$ on the segment $AC$ satisfies $\\angle ADE = \\angle BCD$, the point $F$ on the segment $AB$ satisfies $\\angle FDA = \\angle DBC$, and the point $X$ on the line $AC$ satisfies $CX = BX$. Let $O_1$ and $O_2$ be the circumcentres of the triangles $ADC$ and $EXD$, respectively. Prove that the lines $BC$, $EF$, and $O_1O_2$ are concurrent.",
+  "concepts": [
+   "circles",
+   "geo-transformations",
+   "triangle-centres"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2021P5",
+  "source": "IMO",
+  "year": 2021,
+  "num": "5",
+  "q": "Two squirrels, Bushy and Jumpy, have collected $2021$ walnuts for the winter. Jumpy numbers the walnuts from $1$ through $2021$, and digs $2021$ little holes in a circular pattern in the ground around their favourite tree. The next morning Jumpy notices that Bushy had placed one walnut into each hole, but had paid no attention to the numbering. Unhappy, Jumpy decides to reorder the walnuts by performing a sequence of $2021$ moves. In the $k$-th move, Jumpy swaps the positions of the two walnuts adjacent to walnut $k$.\n\nProve that there exists a value of $k$ such that, on the $k$-th move, Jumpy swaps some walnuts $a$ and $b$ such that $a < k < b$.",
+  "concepts": [
+   "invariants"
+  ],
+  "check": "docstring typo '2001 walnuts' corrected to 2021 (official)"
+ },
+ {
+  "file": "Imo2021P6",
+  "source": "IMO",
+  "year": 2021,
+  "num": "6",
+  "q": "Let $m \\ge 2$ be an integer, $A$ a finite set of (not necessarily positive) integers, and $B_1, B_2, B_3, \\dots, B_m$ subsets of $A$. Suppose that, for every $k = 1, 2, \\dots, m$, the sum of the elements of $B_k$ is $m^k$. Prove that $A$ contains at least $m/2$ elements.",
+  "concepts": [
+   "pigeonhole",
+   "digits-bases",
+   "combinatorial-nt"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2022P1",
+  "source": "IMO",
+  "year": 2022,
+  "num": "1",
+  "q": "The Bank of Oslo issues two types of coin: aluminium (denoted A) and bronze (denoted B). Marianne has $n$ aluminium coins and $n$ bronze coins arranged in a row in some arbitrary initial order. A chain is any subsequence of consecutive coins of the same type. Given a fixed positive integer $k \\le 2n$, Gilberty repeatedly performs the following operation: he identifies the longest chain containing the $k$-th coin from the left and moves all coins in that chain to the left end of the row. For example, if $n = 4$ and $k = 4$, the process starting from the ordering AABBBABA would be\n$$\\mathrm{AABBBABA} \\to \\mathrm{BBBAAABA} \\to \\mathrm{AAABBBBA} \\to \\mathrm{BBBBAAAA} \\to \\mathrm{BBBBAAAA} \\to \\cdots.$$\nFind all pairs $(n, k)$ with $1 \\le k \\le 2n$ such that for every initial ordering, at some moment during the process, the leftmost $n$ coins will all be of the same type.",
+  "concepts": [
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2022P2",
+  "source": "IMO",
+  "year": 2022,
+  "num": "2",
+  "q": "Let $\\mathbb{R}_{>0}$ be the set of positive real numbers. Find all functions $f \\colon \\mathbb{R}_{>0} \\to \\mathbb{R}_{>0}$ such that, for every $x \\in \\mathbb{R}_{>0}$, there exists exactly one $y \\in \\mathbb{R}_{>0}$ satisfying\n$$x f(y) + y f(x) \\le 2.$$",
+  "concepts": [
+   "real-functional-eq",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2022P6",
+  "source": "IMO",
+  "year": 2022,
+  "num": "6",
+  "q": "Let $n$ be a positive integer. A Nordic square is an $n \\times n$ board containing all the integers from $1$ to $n^2$ so that each cell contains exactly one number. Two different cells are considered adjacent if they share a common side. Every cell that is adjacent only to cells containing larger numbers is called a valley. An uphill path is a sequence of one or more cells such that:\n\n(i) the first cell in the sequence is a valley,\n\n(ii) each subsequent cell in the sequence is adjacent to the previous cell, and\n\n(iii) the numbers written in the cells in the sequence are in increasing order.\n\nFind, as a function of $n$, the smallest possible total number of uphill paths in a Nordic square.",
+  "concepts": [
+   "grids-tilings",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2023P2",
+  "source": "IMO",
+  "year": 2023,
+  "num": "2",
+  "q": "Let $ABC$ be an acute-angled triangle with $AB < AC$. Let $\\Omega$ be the circumcircle of $ABC$. Let $S$ be the midpoint of the arc $CB$ of $\\Omega$ containing $A$. The perpendicular from $A$ to $BC$ meets $BS$ at $D$ and meets $\\Omega$ again at $E \\ne A$. The line through $D$ parallel to $BC$ meets line $BE$ at $L$. Denote the circumcircle of triangle $BDL$ by $\\omega$. Let $\\omega$ meet $\\Omega$ again at $P \\ne B$. Prove that the line tangent to $\\omega$ at $P$ meets line $BS$ on the internal angle bisector of $\\angle BAC$.",
+  "concepts": [
+   "circles",
+   "euclid-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2023P4",
+  "source": "IMO",
+  "year": 2023,
+  "num": "4",
+  "q": "Let $x_1, x_2, \\dots, x_{2023}$ be pairwise different positive real numbers such that\n$$a_n = \\sqrt{(x_1 + x_2 + \\cdots + x_n)\\left(\\frac{1}{x_1} + \\frac{1}{x_2} + \\cdots + \\frac{1}{x_n}\\right)}$$\nis an integer for every $n = 1, 2, \\dots, 2023$. Prove that $a_{2023} \\ge 3034$.",
+  "concepts": [
+   "cauchy-schwarz",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2023P5",
+  "source": "IMO",
+  "year": 2023,
+  "num": "5",
+  "q": "Let $n$ be a positive integer. A Japanese triangle consists of $1 + 2 + \\cdots + n$ circles arranged in an equilateral triangular shape such that for each $i = 1, 2, \\dots, n$, the $i$-th row contains exactly $i$ circles, exactly one of which is coloured red. A ninja path in a Japanese triangle is a sequence of $n$ circles obtained by starting in the top row, then repeatedly going from a circle to one of the two circles immediately below it and finishing in the bottom row.\n\nIn terms of $n$, find the greatest $k$ such that in each Japanese triangle there is a ninja path containing at least $k$ red circles.",
+  "concepts": [
+   "pigeonhole",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2023P6",
+  "source": "IMO",
+  "year": 2023,
+  "num": "6",
+  "q": "Let $ABC$ be an equilateral triangle. Let $A_1, B_1, C_1$ be interior points of $ABC$ such that $BA_1 = A_1C$, $CB_1 = B_1A$, $AC_1 = C_1B$, and\n$$\\angle BA_1C + \\angle CB_1A + \\angle AC_1B = 480^\\circ.$$\nLet $BC_1$ and $CB_1$ meet at $A_2$, let $CA_1$ and $AC_1$ meet at $B_2$, and let $AB_1$ and $BA_1$ meet at $C_2$.\n\nProve that if triangle $A_1B_1C_1$ is scalene, then the three circumcircles of triangles $AA_1A_2$, $BB_1B_2$ and $CC_1C_2$ all pass through two common points.\n\n(Note: a scalene triangle is one where no two sides have equal length.)",
+  "concepts": [
+   "circles",
+   "geo-transformations"
+  ],
+  "check": "docstring typo in angle condition (wrote angle C1B) corrected to angle AC1B (official, matches Lean)"
+ },
+ {
+  "file": "Imo2024P1",
+  "source": "IMO",
+  "year": 2024,
+  "num": "1",
+  "q": "Determine all real numbers $\\alpha$ such that, for every positive integer $n$, the integer\n$$\\lfloor \\alpha \\rfloor + \\lfloor 2\\alpha \\rfloor + \\cdots + \\lfloor n\\alpha \\rfloor$$\nis a multiple of $n$. (Note that $\\lfloor z \\rfloor$ denotes the greatest integer less than or equal to $z$. For example, $\\lfloor -\\pi \\rfloor = -4$ and $\\lfloor 2 \\rfloor = \\lfloor 2.9 \\rfloor = 2$.)",
+  "concepts": [
+   "floor-functions",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2024P3",
+  "source": "IMO",
+  "year": 2024,
+  "num": "3",
+  "q": "Let $a_1, a_2, a_3, \\dots$ be an infinite sequence of positive integers, and let $N$ be a positive integer. Suppose that, for each $n > N$, $a_n$ is equal to the number of times $a_{n-1}$ appears in the list $a_1, a_2, \\dots, a_{n-1}$.\n\nProve that at least one of the sequences $a_1, a_3, a_5, \\dots$ and $a_2, a_4, a_6, \\dots$ is eventually periodic.\n\n(An infinite sequence $b_1, b_2, b_3, \\dots$ is eventually periodic if there exist positive integers $p$ and $M$ such that $b_{m+p} = b_m$ for all $m \\ge M$.)",
+  "concepts": [
+   "sequences",
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2024P5",
+  "source": "IMO",
+  "year": 2024,
+  "num": "5",
+  "q": "Turbo the snail plays a game on a board with $2024$ rows and $2023$ columns. There are hidden monsters in $2022$ of the cells. Initially, Turbo does not know where any of the monsters are, but he knows that there is exactly one monster in each row except the first row and the last row, and that each column contains at most one monster.\n\nTurbo makes a series of attempts to go from the first row to the last row. On each attempt, he chooses to start on any cell in the first row, then repeatedly moves to an adjacent cell sharing a common side. (He is allowed to return to a previously visited cell.) If he reaches a cell with a monster, his attempt ends and he is transported back to the first row to start a new attempt. The monsters do not move, and Turbo remembers whether or not each cell he has visited contains a monster. If he reaches any cell in the last row, his attempt ends and the game is over.\n\nDetermine the minimum value of $n$ for which Turbo has a strategy that guarantees reaching the last row on the $n$-th attempt or earlier, regardless of the locations of the monsters.",
+  "concepts": [
+   "comb-games",
+   "grids-tilings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2024P6",
+  "source": "IMO",
+  "year": 2024,
+  "num": "6",
+  "q": "Let $\\mathbb{Q}$ be the set of rational numbers. A function $f \\colon \\mathbb{Q} \\to \\mathbb{Q}$ is called aquaesulian if the following property holds: for every $x, y \\in \\mathbb{Q}$,\n$$f(x + f(y)) = f(x) + y \\quad \\text{or} \\quad f(f(x) + y) = x + f(y).$$\nShow that there exists an integer $c$ such that for any aquaesulian function $f$ there are at most $c$ different rational numbers of the form $f(r) + f(-r)$ for some rational number $r$, and find the smallest possible value of $c$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2025P1",
+  "source": "IMO",
+  "year": 2025,
+  "num": "1",
+  "q": "A line in the plane is called sunny if it is not parallel to any of the $x$-axis, the $y$-axis, and the line $x + y = 0$.\n\nLet $n \\ge 3$ be a given integer. Determine all nonnegative integers $k$ such that there exist $n$ distinct lines in the plane satisfying both of the following:\n\nfor all positive integers $a$ and $b$ with $a + b \\le n + 1$, the point $(a, b)$ is on at least one of the lines; and\n\nexactly $k$ of the $n$ lines are sunny.",
+  "concepts": [
+   "discrete-geometry"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2025P2",
+  "source": "IMO",
+  "year": 2025,
+  "num": "2",
+  "q": "Let $\\Omega$ and $\\Gamma$ be circles with centres $M$ and $N$, respectively, such that the radius of $\\Omega$ is less than the radius of $\\Gamma$. Suppose circles $\\Omega$ and $\\Gamma$ intersect at two distinct points $A$ and $B$. Line $MN$ intersects $\\Omega$ at $C$ and $\\Gamma$ at $D$, such that points $C$, $M$, $N$ and $D$ lie on the line in that order. Let $P$ be the circumcentre of triangle $ACD$. Line $AP$ intersects $\\Omega$ again at $E \\ne A$. Line $AP$ intersects $\\Gamma$ again at $F \\ne A$. Let $H$ be the orthocentre of triangle $PMN$.\n\nProve that the line through $H$ parallel to $AP$ is tangent to the circumcircle of triangle $BEF$.",
+  "concepts": [
+   "circles",
+   "triangle-centres",
+   "analytic-geometry"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2025P4",
+  "source": "IMO",
+  "year": 2025,
+  "num": "4",
+  "q": "A proper divisor of a positive integer $N$ is a positive divisor of $N$ other than $N$ itself.\n\nThe infinite sequence $a_1, a_2, \\dots$ consists of positive integers, each of which has at least three proper divisors. For each $n \\ge 1$, the integer $a_{n+1}$ is the sum of the three largest proper divisors of $a_n$. Determine all possible values of $a_1$.",
+  "concepts": [
+   "divisibility",
+   "p-adic-valuation",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2025P5",
+  "source": "IMO",
+  "year": 2025,
+  "num": "5",
+  "q": "Alice and Bazza are playing the inekoalaty game, a two-player game whose rules depend on a positive real number $\\lambda$ which is known to both players. On the $n$-th turn of the game (starting with $n = 1$) the following happens:\n\nIf $n$ is odd, Alice chooses a nonnegative real number $x_n$ such that\n$$x_1 + x_2 + \\cdots + x_n \\le \\lambda n.$$\n\nIf $n$ is even, Bazza chooses a nonnegative real number $x_n$ such that\n$$x_1^2 + x_2^2 + \\cdots + x_n^2 \\le n.$$\n\nIf a player cannot choose a suitable number $x_n$, the game ends and the other player wins. If the game goes on forever, neither player wins. All chosen numbers are known to both players.\n\nDetermine all values of $\\lambda$ for which Alice has a winning strategy and all those for which Bazza has a winning strategy.",
+  "concepts": [
+   "comb-games",
+   "cauchy-schwarz"
+  ],
+  "check": "docstring typo 'suitable n' corrected to 'suitable number x_n' (official)"
+ },
+ {
+  "file": "Imo2025P6",
+  "source": "IMO",
+  "year": 2025,
+  "num": "6",
+  "q": "Consider a $2025 \\times 2025$ grid of unit squares. Matilda wishes to place on the grid some rectangular tiles, possibly of different sizes, such that each side of every tile lies on a grid line and every unit square is covered by at most one tile.\n\nDetermine the minimum number of tiles Matilda needs to place so that each row and each column of the grid has exactly one unit square that is not covered by any tile.",
+  "concepts": [
+   "grids-tilings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo2026P3",
+  "source": "IMO",
+  "year": 2026,
+  "num": "3",
+  "q": "Let $n$ be a positive integer. Liu Bang and Xiang Yu have a stick of length $1$ and want to divide it between themselves. Liu marks at most $n$ points on the stick, and then Xiang marks at most $n$ points on the stick. The marked points are distinct. Then, the stick is cut at all marked points, creating a number of pieces. Afterwards, they take turns claiming any unclaimed piece of the stick, with Liu going first. Each player's goal is to maximise the total length of their own pieces.\n\nFor each $n$, determine the largest value $c$ such that Liu may guarantee a total length of at least $c$, regardless of Xiang's play.",
+  "concepts": [
+   "comb-games"
+  ],
+  "check": "IMO 2026 is after my knowledge; statement taken from docstring only, not verified against official wording"
+ },
+ {
+  "file": "Imo2026P4",
+  "source": "IMO",
+  "year": 2026,
+  "num": "4",
+  "q": "Shan-Yu and Mulan are playing a game. Let $\\theta$ be an angle with $0^\\circ < \\theta < 180^\\circ$ known to both players. Initially, Shan-Yu makes a paper triangle $T$ with measurements of his choice. Then, they repeatedly perform the following steps:\n\nIf $T$ has at least one angle measuring exactly $\\theta$, then the game stops and Mulan wins.\n\nOtherwise, Mulan chooses a point $P$ on the perimeter of $T$, different from its three vertices. She then makes a straight cut from $P$ to the opposite vertex of $T$, splitting it into two triangles.\n\nShan-Yu discards one of the two triangles. The remaining triangle becomes the new $T$.\n\nFor which real values of $\\theta$ can Mulan guarantee her victory in finitely many steps, no matter how Shan-Yu plays?",
+  "concepts": [
+   "comb-games",
+   "euclid-basics"
+  ],
+  "check": "IMO 2026 is after my knowledge; statement taken from docstring only, not verified against official wording"
+ },
+ {
+  "file": "Imo2026P5",
+  "source": "IMO",
+  "year": 2026,
+  "num": "5",
+  "q": "Let $\\mathbb{R}_{>0}$ be the set of positive real numbers. Determine all functions $f \\colon \\mathbb{R}_{>0} \\to \\mathbb{R}_{>0}$ such that\n$$\\sqrt{\\frac{x^2 + f(y)^2}{2}} \\ge \\frac{f(x) + y}{2} \\ge \\sqrt{x f(y)}$$\nfor every $x, y \\in \\mathbb{R}_{>0}$.",
+  "concepts": [
+   "real-functional-eq",
+   "amgm"
+  ],
+  "check": "IMO 2026 is after my knowledge; statement taken from docstring only, not verified against official wording"
+ },
+ {
+  "file": "India1998P1",
+  "source": "India MO",
+  "year": 1998,
+  "num": "1",
+  "q": "(a) Show that the product of two numbers of the form $a^2 + 3b^2$, where $a$ and $b$ are integers, is again of that form.\n\n(b) If an integer $n$ is such that $7n$ is of the form $a^2 + 3b^2$, prove that $n$ is also of that form.",
+  "concepts": [
+   "quadratic-forms",
+   "divisibility"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and recalled INMO 1998 P1"
+ },
+ {
+  "file": "IntegersInACircle",
+  "source": "Classic",
+  "year": null,
+  "num": "Integers in a circle",
+  "q": "There are $101$ positive integers arranged in a circle, and their sum is $300$. Prove that there is a block of consecutive numbers around the circle whose sum is exactly $200$.",
+  "concepts": [
+   "pigeonhole"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement"
+ },
+ {
+  "file": "Iran1998P3",
+  "source": "Iran MO",
+  "year": 1998,
+  "num": "3",
+  "q": "Let $x_1, x_2, x_3, x_4$ be positive real numbers such that $x_1 x_2 x_3 x_4 = 1$. Prove that\n$$x_1^3 + x_2^3 + x_3^3 + x_4^3 \\ge \\max\\left(x_1 + x_2 + x_3 + x_4,\\ \\frac{1}{x_1} + \\frac{1}{x_2} + \\frac{1}{x_3} + \\frac{1}{x_4}\\right).$$",
+  "concepts": [
+   "amgm",
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Iran1998P9",
+  "source": "Iran MO",
+  "year": 1998,
+  "num": "9",
+  "q": "Let $x, y, z > 1$ and $\\dfrac{1}{x} + \\dfrac{1}{y} + \\dfrac{1}{z} = 2$. Prove that\n$$\\sqrt{x + y + z} \\ge \\sqrt{x - 1} + \\sqrt{y - 1} + \\sqrt{z - 1}.$$",
+  "concepts": [
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "KolmogorovStreams",
+  "source": "Classic",
+  "year": null,
+  "num": "Kolmogorov's streams",
+  "q": "Let $a_0 a_1 a_2 \\cdots$ be an infinite sequence (stream) of letters from some alphabet. Every finite word over the alphabet is classified as either decent or indecent. Prove that the sequence can be broken into consecutive nonempty finite words $w_0, w_1, w_2, \\dots$, so that $a_0 a_1 a_2 \\cdots = w_0 w_1 w_2 \\cdots$, in such a way that the words $w_1, w_2, w_3, \\dots$ (all words after the first) are either all decent or all indecent.",
+  "concepts": [
+   "infinite-combinatorics",
+   "ramsey"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement"
+ },
+ {
+  "file": "Poland1998P4",
+  "source": "Poland MO",
+  "year": 1998,
+  "num": "4",
+  "q": "Prove that the sequence $(a_n)$ defined by $a_1 = 1$ and\n$$a_n = a_{n-1} + a_{\\lfloor n/2 \\rfloor} \\quad \\text{for } n = 2, 3, 4, \\dots$$\ncontains infinitely many integers divisible by $7$.",
+  "concepts": [
+   "congruences",
+   "sequences"
+  ],
+  "check": "docstring empty and Lean definition of a_n not shown; reconstructed from recalled official statement, verify recurrence"
+ },
+ {
+  "file": "Poland2016S1P8",
+  "source": "Poland MO",
+  "year": 2016,
+  "num": "S1P8",
+  "q": "Let $a$, $b$, $c$ be integers. Prove that there exists a positive integer $n$ such that the number $n^3 + an^2 + bn + c$ is not a perfect square.",
+  "concepts": [
+   "integer-polynomials",
+   "congruences"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement"
+ },
+ {
+  "file": "Romania1998P12",
+  "source": "Romania MO",
+  "year": 1998,
+  "num": "12",
+  "q": "Find all functions $u \\colon \\mathbb{R} \\to \\mathbb{R}$ for which there exists a strictly monotonic function $f \\colon \\mathbb{R} \\to \\mathbb{R}$ such that\n$$f(x + y) = f(x)u(y) + f(y) \\quad \\text{for all } x, y \\in \\mathbb{R}.$$",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Russia1995P10",
+  "source": "Russia MO",
+  "year": 1995,
+  "num": "10",
+  "q": "Let $m$ and $n$ be positive integers such that\n$$\\gcd(m, n) + \\operatorname{lcm}(m, n) = m + n.$$\nShow that one of the two numbers is divisible by the other.",
+  "concepts": [
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Russia1998P42",
+  "source": "Russia MO",
+  "year": 1998,
+  "num": "42",
+  "q": "A binary operation $\\star$ on the real numbers has the property that $(a \\star b) \\star c = a + b + c$ for all real numbers $a$, $b$, $c$. Prove that $a \\star b = a + b$ for all real numbers $a$, $b$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement (domain assumed to be the reals)"
+ },
+ {
+  "file": "Singapore2019P11",
+  "source": "Singapore MO",
+  "year": 2019,
+  "num": "R1P11",
+  "q": "Find the value of\n$$\\frac{448 \\sin 12^\\circ \\sin 39^\\circ \\sin 51^\\circ}{\\sin 24^\\circ}.$$",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Singapore2019P2",
+  "source": "Singapore MO",
+  "year": 2019,
+  "num": "R1P2",
+  "q": "Simplify $(\\sqrt{10} - \\sqrt{2})^{1/3} (\\sqrt{10} + \\sqrt{2})^{7/3}$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Singapore2019P4",
+  "source": "Singapore MO",
+  "year": 2019,
+  "num": "R1P4",
+  "q": "If $\\log_{21} 3 = x$, express $\\log_7 9$ in terms of $x$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Singapore2019P7",
+  "source": "Singapore MO",
+  "year": 2019,
+  "num": "R1P7",
+  "q": "Suppose that $\\tan x = 5$. Find the value of $\\dfrac{6 + \\sin 2x}{1 + \\cos 2x}$.",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "UK2024R1P1",
+  "source": "BMO",
+  "year": 2024,
+  "num": "R1P1",
+  "q": "An unreliable typist can guarantee that when they try to type a word with different letters, every letter of the word will appear exactly once in what they type, and each letter will occur at most one letter late (though it may occur more than one letter early). Thus, when trying to type MATHS, the typist may type MATHS, MTAHS or TMASH, but not ATMSH.\n\nDetermine, with proof, the number of possible spellings of OLYMPIADS that might be typed.",
+  "concepts": [
+   "counting",
+   "generating-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "UK2024R1P2",
+  "source": "BMO",
+  "year": 2024,
+  "num": "R1P2",
+  "q": "The sequence of integers $a_0, a_1, \\dots$ has the property that for each $i \\ge 2$, $a_i$ is either $2a_{i-1} - a_{i-2}$, or $2a_{i-2} - a_{i-1}$.\n\nGiven that $a_{2023}$ and $a_{2024}$ are consecutive integers, prove that $a_0$ and $a_1$ are consecutive.",
+  "concepts": [
+   "invariants",
+   "divisibility",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "UK2024R1P4",
+  "source": "BMO",
+  "year": 2024,
+  "num": "R1P4",
+  "q": "Find all positive integers $n$ such that $n \\times 2^n + 1$ is a square.",
+  "concepts": [
+   "diophantine",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "UpperLowerContinuous",
+  "source": "Classic",
+  "year": null,
+  "num": "Upper and lower continuity",
+  "q": "Equip $\\mathbb{R}$ with the upper topology, generated by the open rays $(a, \\infty)$, and with the lower topology, generated by the open rays $(-\\infty, a)$. Let $f \\colon \\mathbb{R} \\to \\mathbb{R}$ be a function that is continuous as a map from $\\mathbb{R}$ with the upper topology to $\\mathbb{R}$ with the upper topology, and also continuous as a map from $\\mathbb{R}$ with the lower topology to $\\mathbb{R}$ with the lower topology. Prove that $f$ is continuous with respect to the standard topology on $\\mathbb{R}$ and that $f$ is monotone (non-decreasing).",
+  "concepts": [
+   "sequences"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement; definitions of upper/lower topology assumed (generated by open rays)"
+ },
+ {
+  "file": "Usa1972P1",
+  "source": "USAMO",
+  "year": 1972,
+  "num": "1",
+  "q": "The symbols $(a, b, \\dots, g)$ and $[a, b, \\dots, g]$ denote the greatest common divisor and least common multiple, respectively, of the positive integers $a, b, \\dots, g$. For example, $(3, 6, 18) = 3$ and $[6, 15] = 30$. Prove that\n$$\\frac{[a, b, c]^2}{[a, b][b, c][c, a]} = \\frac{(a, b, c)^2}{(a, b)(b, c)(c, a)}.$$",
+  "concepts": [
+   "p-adic-valuation",
+   "fta",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1972P3",
+  "source": "USAMO",
+  "year": 1972,
+  "num": "3",
+  "q": "A random number selector can only select one of the nine integers $1, 2, \\dots, 9$, and it makes these selections with equal probability. Determine the probability that after $n$ selections ($n > 1$), the product of the $n$ numbers selected will be divisible by $10$.",
+  "concepts": [
+   "counting",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1972P4",
+  "source": "USAMO",
+  "year": 1972,
+  "num": "4",
+  "q": "Let $R$ denote a non-negative rational number. Determine a fixed set of integers $a, b, c, d, e, f$ such that for every choice of $R$,\n$$\\left| \\frac{aR^2 + bR + c}{dR^2 + eR + f} - \\sqrt[3]{2} \\right| < \\left| R - \\sqrt[3]{2} \\right|.$$",
+  "concepts": [
+   "diophantine-approx",
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1973P2",
+  "source": "USAMO",
+  "year": 1973,
+  "num": "2",
+  "q": "Let $\\{X_n\\}$ and $\\{Y_n\\}$ denote two sequences of integers defined as follows:\n$$X_0 = 1,\\quad X_1 = 1,\\quad X_{n+1} = X_n + 2X_{n-1} \\quad (n = 1, 2, 3, \\dots),$$\n$$Y_0 = 1,\\quad Y_1 = 7,\\quad Y_{n+1} = 2Y_n + 3Y_{n-1} \\quad (n = 1, 2, 3, \\dots).$$\nThus, the first few terms of the sequences are:\n$$X\\colon 1, 1, 3, 5, 11, 21, \\dots, \\qquad Y\\colon 1, 7, 17, 55, 161, 487, \\dots.$$\nProve that, except for the \"1\", there is no term which occurs in both sequences.",
+  "concepts": [
+   "congruences",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1973P4",
+  "source": "USAMO",
+  "year": 1973,
+  "num": "4",
+  "q": "Determine all the roots, real or complex, of the system of simultaneous equations\n$$x + y + z = 3,$$\n$$x^2 + y^2 + z^2 = 3,$$\n$$x^3 + y^3 + z^3 = 3.$$",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1973P5",
+  "source": "USAMO",
+  "year": 1973,
+  "num": "5",
+  "q": "Show that the cube roots of three distinct prime numbers cannot be three terms (not necessarily consecutive) of an arithmetic progression.",
+  "concepts": [
+   "diophantine-approx",
+   "fta"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1974P1",
+  "source": "USAMO",
+  "year": 1974,
+  "num": "1",
+  "q": "Let $a$, $b$, and $c$ denote three distinct integers, and let $P$ denote a polynomial having all integral coefficients. Show that it is impossible that $P(a) = b$, $P(b) = c$, and $P(c) = a$.",
+  "concepts": [
+   "integer-polynomials"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1974P2",
+  "source": "USAMO",
+  "year": 1974,
+  "num": "2",
+  "q": "Prove that if $a$, $b$, and $c$ are positive real numbers, then\n$$a^a b^b c^c \\ge (abc)^{(a+b+c)/3}.$$",
+  "concepts": [
+   "cauchy-schwarz",
+   "convexity"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1974P4",
+  "source": "USAMO",
+  "year": 1974,
+  "num": "4",
+  "q": "A father, a mother and son hold a family tournament, playing a two person board game with no ties. The tournament rules are:\n\n(i) The weakest player chooses the first two contestants.\n\n(ii) The winner of any game plays the next game against the person left out.\n\n(iii) The first person to win two games wins the tournament.\n\nThe father is the weakest player, the son the strongest, and it is assumed that any player's probability of winning an individual game from another player does not change during the tournament. Prove that the father's optimal strategy for winning the tournament is to play the first game with his wife.",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1975P1",
+  "source": "USAMO",
+  "year": 1975,
+  "num": "1",
+  "q": "(a) Prove that\n$$\\lfloor 5x \\rfloor + \\lfloor 5y \\rfloor \\ge \\lfloor 3x + y \\rfloor + \\lfloor 3y + x \\rfloor,$$\nwhere $x, y \\ge 0$ and $\\lfloor u \\rfloor$ denotes the greatest integer $\\le u$ (e.g., $\\lfloor \\sqrt{2} \\rfloor = 1$).\n\n(b) Using (a) or otherwise, prove that\n$$\\frac{(5m)!\\,(5n)!}{m!\\,n!\\,(3m + n)!\\,(3n + m)!}$$\nis integral for all positive integral $m$ and $n$.",
+  "concepts": [
+   "floor-functions",
+   "binomial-factorial"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1975P3",
+  "source": "USAMO",
+  "year": 1975,
+  "num": "3",
+  "q": "If $P(x)$ denotes a polynomial of degree $n$ such that $P(k) = \\dfrac{k}{k+1}$ for $k = 0, 1, 2, \\dots, n$, determine $P(n+1)$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1975P5",
+  "source": "USAMO",
+  "year": 1975,
+  "num": "5",
+  "q": "A deck of $n$ playing cards, which contains three aces, is shuffled at random (it is assumed that all possible card distributions are equally likely). The cards are then turned up one by one from the top until the second ace appears. Prove that the expected (average) number of cards to be turned up is $(n+1)/2$.",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1976P1",
+  "source": "USAMO",
+  "year": 1976,
+  "num": "1",
+  "q": "(a) Suppose that each square of a $4 \\times 7$ chessboard is colored either black or white. Prove that with any such coloring, the board must contain a rectangle (formed by the horizontal and vertical lines of the board) whose four distinct unit corner squares are all of the same color.\n\n(b) Exhibit a black-white coloring of a $4 \\times 6$ board in which the four corner squares of every rectangle, as described above, are not all of the same color.",
+  "concepts": [
+   "pigeonhole",
+   "grids-tilings",
+   "ramsey"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1976P3",
+  "source": "USAMO",
+  "year": 1976,
+  "num": "3",
+  "q": "Determine all integral solutions of $a^2 + b^2 + c^2 = a^2 b^2$.",
+  "concepts": [
+   "diophantine",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1976P5",
+  "source": "USAMO",
+  "year": 1976,
+  "num": "5",
+  "q": "If $P(x)$, $Q(x)$, $R(x)$, and $S(x)$ are all polynomials such that\n$$P(x^5) + xQ(x^5) + x^2 R(x^5) = (x^4 + x^3 + x^2 + x + 1)S(x),$$\nprove that $x - 1$ is a factor of $P(x)$.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1977P1",
+  "source": "USAMO",
+  "year": 1977,
+  "num": "1",
+  "q": "Determine all pairs of positive integers $(m, n)$ such that\n$$1 + x^n + x^{2n} + \\cdots + x^{mn}$$\nis divisible by\n$$1 + x + x^2 + \\cdots + x^m.$$",
+  "concepts": [
+   "polynomials-roots",
+   "divisibility"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1977P3",
+  "source": "USAMO",
+  "year": 1977,
+  "num": "3",
+  "q": "If $a$ and $b$ are two of the roots of $x^4 + x^3 - 1 = 0$, prove that $ab$ is a root of $x^6 + x^4 + x^3 - x^2 - 1 = 0$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "used official wording (any two roots); Lean/docstring restrict to the two distinct real roots"
+ },
+ {
+  "file": "Usa1977P5",
+  "source": "USAMO",
+  "year": 1977,
+  "num": "5",
+  "q": "If $a, b, c, d, e$ are positive numbers bounded by $p$ and $q$, i.e., if they lie in $[p, q]$, $0 < p$, prove that\n$$(a + b + c + d + e)\\left(\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{d} + \\frac{1}{e}\\right) \\le 25 + 6\\left(\\sqrt{\\frac{p}{q}} - \\sqrt{\\frac{q}{p}}\\right)^2$$\nand determine when there is equality.",
+  "concepts": [
+   "convexity",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1978P1",
+  "source": "USAMO",
+  "year": 1978,
+  "num": "1",
+  "q": "Given that $a, b, c, d, e$ are real numbers such that\n$$a + b + c + d + e = 8,$$\n$$a^2 + b^2 + c^2 + d^2 + e^2 = 16,$$\ndetermine the maximum value of $e$.",
+  "concepts": [
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1978P3",
+  "source": "USAMO",
+  "year": 1978,
+  "num": "3",
+  "q": "An integer $n$ will be called good if we can write\n$$n = a_1 + a_2 + \\cdots + a_k,$$\nwhere $a_1, a_2, \\dots, a_k$ are positive integers (not necessarily distinct) satisfying\n$$\\frac{1}{a_1} + \\frac{1}{a_2} + \\cdots + \\frac{1}{a_k} = 1.$$\nGiven the information that the integers $33$ through $73$ are good, prove that every integer $\\ge 33$ is good.",
+  "concepts": [
+   "unit-fractions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1978P5",
+  "source": "USAMO",
+  "year": 1978,
+  "num": "5",
+  "q": "Nine mathematicians meet at an international conference and discover that among any three of them, at least two speak a common language. If each of the mathematicians speaks at most three languages, prove that at least three of the mathematicians can speak the same language.",
+  "concepts": [
+   "pigeonhole",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1979P1",
+  "source": "USAMO",
+  "year": 1979,
+  "num": "1",
+  "q": "Determine all non-negative integral solutions $(n_1, n_2, \\dots, n_{14})$ if any, apart from permutations, of the Diophantine equation\n$$n_1^4 + n_2^4 + \\cdots + n_{14}^4 = 1599.$$",
+  "concepts": [
+   "congruences",
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1979P3",
+  "source": "USAMO",
+  "year": 1979,
+  "num": "3",
+  "q": "$a_1, a_2, \\dots, a_n$ is an arbitrary sequence of positive integers. A member of the sequence is picked at random. Its value is $a$. Another member is picked at random, independently of the first. Its value is $b$. Then a third, value $c$. Show that the probability that $a + b + c$ is divisible by $3$ is at least $1/4$.",
+  "concepts": [
+   "counting",
+   "congruences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1979P5",
+  "source": "USAMO",
+  "year": 1979,
+  "num": "5",
+  "q": "A set $X$ has $n$ members. Given $n + 1$ subsets of $X$, each with $3$ members, show that we can always find two which have just one member in common.",
+  "concepts": [
+   "set-systems",
+   "linear-algebra"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1980P1",
+  "source": "USAMO",
+  "year": 1980,
+  "num": "1",
+  "q": "A two-pan balance is inaccurate since its balance arms are of different lengths and its pans are of different weights. Three objects of different weights $A$, $B$ and $C$ are each weighed separately. When placed on the left pan, they are balanced by weights $A_1$, $B_1$, $C_1$, respectively. When $A$ and $B$ are placed on the right pan, they are balanced by $A_2$ and $B_2$, respectively. Determine the true weight of $C$ in terms of $A_1$, $B_1$, $C_1$, $A_2$, and $B_2$.",
+  "concepts": [
+   "linear-algebra"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1980P2",
+  "source": "USAMO",
+  "year": 1980,
+  "num": "2",
+  "q": "Find the maximum possible number of three-term arithmetic progressions in a monotone sequence of $n$ distinct real numbers.",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1980P3",
+  "source": "USAMO",
+  "year": 1980,
+  "num": "3",
+  "q": "$A + B + C$ is an integral multiple of $\\pi$. $x$, $y$, and $z$ are real numbers. If\n$$x \\sin A + y \\sin B + z \\sin C = x^2 \\sin 2A + y^2 \\sin 2B + z^2 \\sin 2C = 0,$$\nshow that $x^n \\sin nA + y^n \\sin nB + z^n \\sin nC = 0$ for any positive integer $n$.",
+  "concepts": [
+   "complex-numbers",
+   "polynomials-roots"
+  ],
+  "check": "docstring typo 'sin n^B' corrected to sin nB"
+ },
+ {
+  "file": "Usa1980P5",
+  "source": "USAMO",
+  "year": 1980,
+  "num": "5",
+  "q": "Prove that for numbers $a$, $b$, $c$ in the interval $[0, 1]$,\n$$\\frac{a}{b + c + 1} + \\frac{b}{c + a + 1} + \\frac{c}{a + b + 1} + (1 - a)(1 - b)(1 - c) \\le 1.$$",
+  "concepts": [
+   "convexity",
+   "symmetric-ineq"
+  ],
+  "check": "used official statement (LHS + (1-a)(1-b)(1-c) <= 1); docstring and Lean state the weaker form <= 1 + (1-x)(1-y)(1-z)"
+ },
+ {
+  "file": "Usa1981P2",
+  "source": "USAMO",
+  "year": 1981,
+  "num": "2",
+  "q": "Every pair of communities in a county are linked directly by exactly one mode of transportation: bus, train, or airplane. All three modes of transportation are used in the county with no community being serviced by all three modes and no three communities being linked pairwise by the same mode. Determine the largest number of communities in this county.",
+  "concepts": [
+   "ramsey",
+   "graph-coloring"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1981P5",
+  "source": "USAMO",
+  "year": 1981,
+  "num": "5",
+  "q": "If $x$ is a positive real number, and $n$ is a positive integer, prove that\n$$\\lfloor nx \\rfloor \\ge \\frac{\\lfloor x \\rfloor}{1} + \\frac{\\lfloor 2x \\rfloor}{2} + \\frac{\\lfloor 3x \\rfloor}{3} + \\cdots + \\frac{\\lfloor nx \\rfloor}{n},$$\nwhere $\\lfloor t \\rfloor$ denotes the greatest integer less than or equal to $t$.",
+  "concepts": [
+   "floor-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1982P1",
+  "source": "USAMO",
+  "year": 1982,
+  "num": "1",
+  "q": "In a party with $1982$ persons, among any group of four there is at least one person who knows each of the other three. What is the minimum number of people in the party who know everyone else?",
+  "concepts": [
+   "graph-basics",
+   "extremal-graphs"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1982P2",
+  "source": "USAMO",
+  "year": 1982,
+  "num": "2",
+  "q": "Let $S_r = x^r + y^r + z^r$ with $x$, $y$, $z$ real. It is known that if $S_1 = 0$,\n$$(*) \\qquad \\frac{S_{m+n}}{m+n} = \\frac{S_m}{m} \\cdot \\frac{S_n}{n}$$\nfor $(m, n) = (2, 3), (3, 2), (2, 5)$, or $(5, 2)$. Determine all other pairs of integers $(m, n)$ if any, so that $(*)$ holds for all real numbers $x$, $y$, $z$ such that $x + y + z = 0$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1982P4",
+  "source": "USAMO",
+  "year": 1982,
+  "num": "4",
+  "q": "Prove that there exists a positive integer $k$ such that $k \\cdot 2^n + 1$ is composite for every positive integer $n$.",
+  "concepts": [
+   "covering-systems",
+   "crt",
+   "order-primroot"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1983P1",
+  "source": "USAMO",
+  "year": 1983,
+  "num": "1",
+  "q": "Six points are chosen sequentially at random on the circumference of a circle. What is the probability that the triangle formed by the first three is disjoint from that formed by the second three?",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1983P2",
+  "source": "USAMO",
+  "year": 1983,
+  "num": "2",
+  "q": "Prove that the roots of\n$$x^5 + ax^4 + bx^3 + cx^2 + dx + e = 0$$\ncannot all be real if $2a^2 < 5b$.",
+  "concepts": [
+   "polynomials-roots",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1983P3",
+  "source": "USAMO",
+  "year": 1983,
+  "num": "3",
+  "q": "Each set of a finite family of subsets of a line is a union of two closed intervals. Moreover, any three of the sets of the family have a point in common. Prove that there is a point which is common to at least half the sets of the family.",
+  "concepts": [
+   "discrete-geometry",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1983P5",
+  "source": "USAMO",
+  "year": 1983,
+  "num": "5",
+  "q": "Consider an open interval of length $1/n$ on the real number line, where $n$ is a positive integer. Prove that the number of irreducible fractions $p/q$, with $1 \\le q \\le n$, contained in the given interval is at most $(n+1)/2$.",
+  "concepts": [
+   "diophantine-approx",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1984P1",
+  "source": "USAMO",
+  "year": 1984,
+  "num": "1",
+  "q": "In the polynomial\n$$x^4 - 18x^3 + kx^2 + 200x - 1984 = 0,$$\nthe product of two of its four zeros is $-32$. Determine the value of $k$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1984P2",
+  "source": "USAMO",
+  "year": 1984,
+  "num": "2",
+  "q": "The geometric mean of any set of $m$ non-negative numbers is the $m$-th root of their product.\n\n(i) For which positive integers $n$ is there a finite set $S_n$ of $n$ distinct positive integers such that the geometric mean of any subset of $S_n$ is an integer?\n\n(ii) Is there an infinite set $S$ of distinct positive integers such that the geometric mean of any finite subset of $S$ is an integer?",
+  "concepts": [
+   "fta",
+   "p-adic-valuation"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1984P4",
+  "source": "USAMO",
+  "year": 1984,
+  "num": "4",
+  "q": "A difficult mathematical competition consisted of a Part I and a Part II with a combined total of $28$ problems. Each contestant solved $7$ problems altogether. For each pair of problems, there were exactly two contestants who solved both of them. Prove that there was a contestant who, in Part I, solved either no problems or at least four problems.",
+  "concepts": [
+   "pigeonhole",
+   "set-systems"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Usa1984P5",
+  "source": "USAMO",
+  "year": 1984,
+  "num": "5",
+  "q": "$P(x)$ is a polynomial of degree $3n$ such that\n$$P(0) = P(3) = \\cdots = P(3n) = 2,$$\n$$P(1) = P(4) = \\cdots = P(3n - 2) = 1,$$\n$$P(2) = P(5) = \\cdots = P(3n - 1) = 0,$$\nand\n$$P(3n + 1) = 730.$$\nDetermine $n$.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ }
+]

@@ -1,0 +1,332 @@
+[
+ {
+  "id": "integration-techniques",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.why",
+    "problem": "Overclaim: 'these few methods handle almost every integral that has an elementary answer' is not true in any precise sense (many elementary antiderivatives need other tricks or the Risch algorithm).",
+    "fix": "Weakened to 'most of the integrals with elementary answers that one meets in practice'."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links / probability",
+    "problem": "The note claimed that normalising constants of continuous distributions are found by integration by parts; this is false in general (the normal constant, for instance, needs a double integral).",
+    "fix": "Rewritten to a true, specific statement: the mean 1/lambda of an exponential variable comes from one integration by parts (added a check)."
+   },
+   {
+    "severity": "unclear",
+    "where": "example / The reflection trick (solution)",
+    "problem": "The solution asserted that the antiderivative of x sin x/(1+cos^2 x) is not elementary. This is stated without any justification and I cannot vouch for it; 'leads nowhere' for integration by parts was also vague.",
+    "fix": "Replaced by verifiable statements: parts with u = x reduces the problem to the integral of arctan(cos x), which the lesson's methods cannot handle; the trick avoids needing any antiderivative. Added a check of the parts identity."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "One bullet joined two unrelated mistakes (absolute value in ln|x|, and using an antiderivative across a singularity), and the example given (1/x^2) only illustrates the second.",
+    "fix": "Split into two bullets."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "The pitfall said the cover-up rule is 'only valid for a linear factor that appears once'. That is wrong: for a repeated factor (x-r)^m the cover-up computation still correctly gives the coefficient of 1/(x-r)^m; what it does not give are the lower-order coefficients.",
+    "fix": "Restated correctly; added a check on 1/((x-1)^2(x+2))."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Called both Abel summation and Euler–Maclaurin 'its discrete analogue'; only Abel (partial) summation is the discrete analogue of integration by parts, while Euler–Maclaurin is obtained by repeated integration by parts.",
+    "fix": "Reworded to separate the two."
+   }
+  ]
+ },
+ {
+  "id": "improper-integrals",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Garbled phrase 'The definite integral of [[riemann-integral]]' (the link renders as the concept title, giving 'The definite integral of The definite integral').",
+    "fix": "Changed to 'The [[riemann-integral|definite integral]] only makes sense'."
+   },
+   {
+    "severity": "style",
+    "where": "section / The p-test and some first examples",
+    "problem": "Array column specification c|ccccc declared six columns for five entries per row.",
+    "fix": "Changed to c|cccc."
+   },
+   {
+    "severity": "error",
+    "where": "example / A borderline family of series (solution)",
+    "problem": "Claimed that for p <= 0 every term 1/(n (ln n)^p) is at least 1/n. This fails at n = 2 for p < 0, since ln 2 < 1 makes (ln 2)^(-p) < 1.",
+    "fix": "Restricted to n >= 3, where ln n > 1; the conclusion is unchanged. Added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "example / Moments of the exponential (solution)",
+    "problem": "Gamma function introduced for 'a real number s - 1' without the condition s > 0 needed for convergence.",
+    "fix": "Added 's > 0'."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "26A42 (integrals of Riemann, Stieltjes and Lebesgue type) is acceptable but the specific MSC2020 code for convergence of improper integrals is 40A10 (convergence and divergence of integrals).",
+    "fix": "Added 40A10; kept 26A42."
+   }
+  ]
+ },
+ {
+  "id": "taylor",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "Summary said the error 'is of size |x - a|^{n+1}', which is imprecise (it is at most a constant times that, and only when the (n+1)-st derivative is bounded).",
+    "fix": "Replaced by the exact bound M|x-a|^{n+1}/(n+1)! with M a bound for |f^{(n+1)}|."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "'every holomorphic function equals its Taylor series on discs' omits the condition that the disc lies in the domain (false otherwise, e.g. 1/(1-z) on a disc of radius 2 about 0).",
+    "fix": "Added 'on every disc contained in its domain'."
+   }
+  ]
+ },
+ {
+  "id": "power-series",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.links / complex-analysis",
+    "problem": "'the radius of convergence is the distance to the nearest singularity' is only a slogan; 'singularity' is undefined and the statement can fail as written (e.g. for a branch of log on a slit plane the radius exceeds the distance to the boundary of the domain).",
+    "fix": "Replaced by the exact statement: the Taylor series converges on the largest disc about the point to which the function extends holomorphically."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links / differential-equations",
+    "problem": "Implied that Bessel functions come from ordinary power-series solutions; Bessel's equation has a regular singular point at 0 and needs Frobenius series x^r times a power series.",
+    "fix": "Distinguished ordinary points (power series) from regular singular points (Frobenius series)."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Same imprecise 'distance to the nearest singularity' slogan in the connection block.",
+    "fix": "Replaced by the exact statement and tied it to the 1/(1+x^2) pitfall."
+   }
+  ]
+ },
+ {
+  "id": "partial-derivatives",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "Summary said the gradient points in the direction of steepest increase without the condition that it is nonzero.",
+    "fix": "Added '(when nonzero)'."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padding sentence repeating the temperature example.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Higher derivatives and critical points",
+    "problem": "Clairaut/Schwarz theorem was stated without proof but the text did not say so, and it did not say which continuity is actually needed.",
+    "fix": "Said explicitly that it is stated without proof and gave the sharper correct hypothesis (mixed partials exist and are continuous on the open set)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Higher derivatives and critical points",
+    "problem": "Second-derivative test: hypotheses were loose ('with continuous second partials', not saying where) and the text did not say the test is stated without proof; 'saddle point' was not explained.",
+    "fix": "Restated with continuous second partials on a disc around the critical point, all quantities evaluated at the point, saddle explained, inconclusive case kept and cross-referenced; marked as stated without proof."
+   },
+   {
+    "severity": "style",
+    "where": "example / The chain rule along a path (solution)",
+    "problem": "Padding sentence.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "example / Euler's theorem on homogeneous functions (solution)",
+    "problem": "Padding remark about competition normalisation (and about three variables in a two-variable example).",
+    "fix": "Removed."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Two statements lacked needed hypotheses: Cauchy-Riemann equations alone (for merely existing partials) do not imply holomorphy (e.g. exp(-1/z^4) type examples), and 'positive semidefinite Hessian everywhere implies convex' needs a convex domain and C^2 (false on a non-convex domain).",
+    "fix": "Added continuity of partials for Cauchy-Riemann; for convexity required C^2 on a convex open set and stated the equivalence."
+   },
+   {
+    "severity": "style",
+    "where": "lesson.minutes",
+    "problem": "Reading time 22 minutes after trimming is overstated.",
+    "fix": "Set to 20."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Pitfall repeated the theorem just proved.",
+    "fix": "Removed the repeated sentence."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Padding link sentence.",
+    "fix": "Removed."
+   }
+  ]
+ },
+ {
+  "id": "multiple-integrals",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.why",
+    "problem": "Vague 'is the reason the normal distribution has the constant it has'.",
+    "fix": "Made specific: it is how the constant 1/sqrt(2 pi) of the normal density is found."
+   },
+   {
+    "severity": "error",
+    "where": "theorem / Change of variables",
+    "problem": "Change-of-variables hypotheses were inconsistent with the lesson's own use. The main statement required T one-to-one with det DT != 0 on an open U containing the closure of D, which excludes polar coordinates on a disc (and spherical coordinates on a ball), the main applications; the patch 'unaffected if one-to-one or det DT != 0 fails only on a set of zero area' was too vague to be exactly right as stated (it did not say where T must still be C^1, or that the exceptional set must lie in the boundary/a closed null set).",
+    "fix": "Restated in the standard form: T has continuous partial derivatives on an open set containing the closure of D, is one-to-one with nonzero Jacobian determinant on the interior of D, f continuous on T(closure of D). Noted that this boundary exception is what permits polar/spherical coordinates."
+   },
+   {
+    "severity": "error",
+    "where": "section / Polar, cylindrical and spherical coordinates",
+    "problem": "Said the polar map fails to be one-to-one only 'where r = 0, a single point'. In the (r, theta) domain r = 0 is a whole segment (mapped to one point), and injectivity also fails between theta = 0 and theta = 2 pi.",
+    "fix": "Described the correct domain (open rectangle) and where injectivity fails (its boundary), matching the corrected theorem."
+   }
+  ]
+ },
+ {
+  "id": "vector-calculus",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.why",
+    "problem": "Hype ('the starting point of differential geometry and topology').",
+    "fix": "Toned down."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links / topology",
+    "problem": "'the first example' is vague.",
+    "fix": "Changed to 'the simplest example'."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Hype and loose history ('the surprising discovery of the nineteenth century').",
+    "fix": "Replaced by a plain statement."
+   },
+   {
+    "severity": "error",
+    "where": "section / Curl and divergence",
+    "problem": "Said the length of the curl is 'the rate of rotation'. For a rigid rotation with angular velocity omega the curl is 2 omega, so the length is twice the angular speed (the lesson's own example (-y, x) has curl 2 with angular speed 1).",
+    "fix": "Corrected to 'twice the angular speed' with the lesson's example; added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem / Green's theorem",
+    "problem": "Green's theorem is stated for arbitrary bounded regions with piecewise smooth boundary, but the proof only covers regions that can be cut into finitely many pieces of both types; this was not acknowledged.",
+    "fix": "Said so at the end of the proof (see next item)."
+   },
+   {
+    "severity": "error",
+    "where": "proof / Proof for regions that can be sliced both ways",
+    "problem": "The proof claimed that 'a general region is cut into finitely many such pieces'. This is false for general regions with piecewise smooth boundary (a smooth boundary can oscillate infinitely often, e.g. near the graph of x^3 sin(1/x)), so the stated theorem was not fully proved. Also the proof assumed g_1, g_2 continuously differentiable on [a, b], which excludes the disc it then cited (the semicircle has vertical tangents at the ends).",
+    "fix": "Weakened the claim to 'most regions met in practice', stated that the general case is omitted, and relaxed the hypothesis on g_1, g_2 to continuous with piecewise smooth graphs (with a one-line justification of the boundary contribution), so discs are covered."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Green's theorem at work",
+    "problem": "Converse statement omitted the C^1 hypothesis and connectedness, and presented 'every closed line integral vanishes' as following from Green's theorem, which only handles simple closed curves bounding admissible regions.",
+    "fix": "Added hypotheses (continuous partials, connected simply connected open region) and noted that Green gives the simple-curve case, general closed curves needing more."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Flux, and the theorems of Stokes and Gauss",
+    "problem": "Flux formula equated F.n dS with F.(r_u x r_v) du dv without requiring r_u x r_v to point to the chosen side (otherwise the sign is wrong).",
+    "fix": "Added that requirement."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Flux, and the theorems of Stokes and Gauss",
+    "problem": "Stokes' theorem was stated without proof without saying so; boundedness of S and simplicity/piecewise smoothness of the boundary curve were missing, 'fingers along dS' was an unclear statement of the orientation rule, and 'near S' did not say the field must be C^1 on a neighbourhood of S together with its boundary.",
+    "fix": "Restated with all hypotheses, a clear orientation rule, and an explicit note that it is stated without proof."
+   },
+   {
+    "severity": "error",
+    "where": "section / Flux, and the theorems of Stokes and Gauss",
+    "problem": "Claimed 'general solids are built from boxes as in Green's theorem'; general solids (a ball, say) cannot be built from finitely many boxes, so this did not justify the theorem. The theorem was also not marked as stated without full proof, and 'continuous partial derivatives near E' was imprecise.",
+    "fix": "Replaced by the correct Fubini argument for solids lying between two graphs in each coordinate direction plus cutting into such pieces; marked as stated without full proof; field required C^1 on an open set containing E and its boundary; allowed several boundary surfaces (cavities)."
+   },
+   {
+    "severity": "style",
+    "where": "example / Flux out of a sphere (solution)",
+    "problem": "Padding.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Two pitfalls about orientation repeated each other.",
+    "fix": "Merged into one bullet."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'Zero curl implies conservative only on regions without holes' is logically wrong as written: on regions with holes many curl-free fields are still conservative (e.g. any gradient); what fails is the general implication.",
+    "fix": "Restated: zero curl guarantees a potential on simply connected regions, but not in general, with the winding field as counterexample."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Padding link sentence unrelated to the lesson's content.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Cauchy's theorem via Green stated without the domain condition (f must be holomorphic on the region bounded by C, not just on C).",
+    "fix": "Added the condition."
+   },
+   {
+    "severity": "style",
+    "where": "lesson.minutes",
+    "problem": "22 minutes overstated after trimming.",
+    "fix": "Set to 20."
+   },
+   {
+    "severity": "style",
+    "where": "section / Green's theorem at work",
+    "problem": "Padding aside.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "example / Green's theorem on a disc (solution)",
+    "problem": "Long direct re-verification in the solution; the lesson is long.",
+    "fix": "Shortened to one line."
+   },
+   {
+    "severity": "style",
+    "where": "section / First computations",
+    "problem": "Padding sentence.",
+    "fix": "Removed."
+   }
+  ]
+ }
+]

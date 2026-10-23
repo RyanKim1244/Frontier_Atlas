@@ -1,0 +1,1251 @@
+[
+ {
+  "id": "determinants",
+  "entry": {
+   "sum": "The determinant $\\det A$ of a square matrix is a single number that measures how the linear map $x \\mapsto Ax$ scales volume, with a sign recording whether orientation is kept or reversed. It is the unique function of the columns that is linear in each column, is zero whenever two columns are equal, and equals $1$ on the identity; the one fact to remember is that $A$ is invertible exactly when $\\det A \\neq 0$.",
+   "key": [
+    "\\det A=\\sum_{\\sigma\\in S_n}\\operatorname{sgn}(\\sigma)\\prod_{i=1}^{n} a_{\\sigma(i)\\,i}",
+    "\\det(AB)=\\det A\\,\\det B",
+    "A\\ \\text{invertible}\\iff \\det A\\neq 0"
+   ],
+   "why": "Determinants decide invertibility in one computation, define the characteristic polynomial $\\det(\\lambda I-A)$ whose roots are the eigenvalues, and supply the Jacobian factor in the change-of-variables formula for multiple integrals.",
+   "msc": [
+    "15A15"
+   ],
+   "links": [
+    {
+     "field": "calculus",
+     "note": "The Jacobian determinant is the local volume-scaling factor in the change-of-variables formula for multiple integrals."
+    },
+    {
+     "field": "geometry",
+     "note": "Signed areas and volumes, orientation, and tests for collinearity or coplanarity of points are all determinants."
+    },
+    {
+     "field": "combinatorics",
+     "note": "The matrix-tree theorem counts spanning trees of a graph as a determinant, and Lindström–Gessel–Viennot counts non-intersecting lattice paths the same way."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Strang, Introduction to Linear Algebra",
+    "Hoffman & Kunze, Linear Algebra"
+   ],
+   "aliases": [
+    "determinant",
+    "det",
+    "Leibniz formula",
+    "Laplace expansion",
+    "cofactor expansion",
+    "signed volume"
+   ]
+  },
+  "lesson": {
+   "minutes": 17,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A square [[matrices|matrix]] $A$ either has an inverse or it does not, and Gaussian elimination will tell you which. But it would be useful to have a single number, computed from the entries, that answers the question, and that changes in a predictable way when the matrix is multiplied by another. The determinant is that number.\n\nIt also has a geometric meaning that makes all its rules natural: $|\\det A|$ is the factor by which the map $x \\mapsto Ax$ multiplies areas (in the plane) or volumes (in space), and the sign of $\\det A$ says whether the map preserves or reverses orientation. A map that squashes space flat multiplies volume by $0$, and that is exactly the case where it cannot be undone."
+    },
+    {
+     "type": "section",
+     "title": "Signed area in the plane",
+     "body": "Take a $2\\times 2$ matrix with columns $u = (a, c)$ and $v = (b, d)$. The unit square is sent to the parallelogram spanned by $u$ and $v$, and its signed area is\n$$\\det\\begin{pmatrix} a & b\\\\ c & d\\end{pmatrix} = ad - bc.$$\nFor example, $u = (3, 1)$ and $v = (1, 2)$ span a parallelogram of area $3\\cdot 2 - 1\\cdot 1 = 5$. Swapping $u$ and $v$ gives $-5$: the same area, traversed the other way round. If $v$ is a multiple of $u$ the parallelogram is flat and $ad - bc = 0$.\n\nThree properties of signed area pin it down completely.\n\n1. It is linear in each column separately: stretching $u$ by a factor $t$ multiplies the area by $t$, and the area for $u + u'$ (with $v$ fixed) is the sum of the areas for $u$ and for $u'$, because the parallelograms share the base $v$ and heights add.\n2. It is alternating: if the two columns are equal, the area is $0$.\n3. It is normalised: the unit square has area $1$.\n\nFrom 1 and 2 a fourth rule follows: swapping two columns changes the sign. Indeed, with $D$ denoting signed area,\n$$0 = D(u + v, u + v) = D(u, u) + D(u, v) + D(v, u) + D(v, v) = D(u, v) + D(v, u).$$\nThe determinant of an $n \\times n$ matrix is the function of its $n$ columns with exactly these three properties. Below we write a formula for it and then show that the three properties force that formula."
+    },
+    {
+     "type": "definition",
+     "title": "Determinant",
+     "body": "A permutation $\\sigma$ of $\\{1, \\dots, n\\}$ has an inversion at each pair $i < j$ with $\\sigma(i) > \\sigma(j)$; its sign is $\\operatorname{sgn}(\\sigma) = (-1)^{\\text{number of inversions}}$. The determinant of an $n\\times n$ matrix $A = (a_{ij})$ is\n$$\\det A = \\sum_{\\sigma \\in S_n} \\operatorname{sgn}(\\sigma) \\prod_{i=1}^{n} a_{\\sigma(i)\\, i},$$\nthe sum over all $n!$ permutations $\\sigma$ (this is the Leibniz formula).\n\nEach term picks exactly one entry from every column and every row, multiplies them, and attaches a sign; for $n = 2$ the two terms are $a_{11}a_{22}$ and $-a_{21}a_{12}$."
+    },
+    {
+     "type": "section",
+     "title": "The formula has the three properties",
+     "body": "Every term of the Leibniz formula contains exactly one entry from column $k$, so for fixed other columns $\\det A$ is a linear function of column $k$: property 1. Plugging in $A = I$, only $\\sigma = \\mathrm{id}$ gives a nonzero product, so $\\det I = 1$: property 3.\n\nFor property 2 we need one fact about permutations. Let $k < l$ and let $\\sigma' = \\sigma \\circ (k\\ l)$, the permutation with $\\sigma'(k) = \\sigma(l)$, $\\sigma'(l) = \\sigma(k)$ and $\\sigma'(i) = \\sigma(i)$ otherwise. Then $\\operatorname{sgn}\\sigma' = -\\operatorname{sgn}\\sigma$. Indeed, compare the inversions of the two lists $\\sigma(1), \\dots, \\sigma(n)$ and $\\sigma'(1), \\dots, \\sigma'(n)$. The pair of positions $(k, l)$ changes status. For each position $m$ strictly between $k$ and $l$, the two pairs $(k, m)$ and $(m, l)$ either both change status or both keep it. For a position $i$ outside that range, the pairs formed by $i$ with $k$ and with $l$ simply exchange their statuses. Pairs not involving $k$ or $l$ are untouched. So the number of inversions changes by an odd number.\n\nIf columns $k$ and $l$ of $A$ are equal, pair each $\\sigma$ with $\\sigma' = \\sigma \\circ (k\\ l)$. The two products contain the same entries (one from each of the two equal columns is exchanged for the matching entry of the other), but the signs are opposite, so the terms cancel in pairs and $\\det A = 0$.\n\nTwo further facts are used constantly; both follow from the Leibniz formula with a little bookkeeping.\n\n- Transpose: $\\det A^{\\mathsf T} = \\det A$ (a permutation and its inverse have the same number of inversions). Hence everything said about columns holds for rows too.\n- Triangular matrices: if all entries below (or all above) the diagonal are $0$, then $\\det A = a_{11}a_{22}\\cdots a_{nn}$, because every $\\sigma \\ne \\mathrm{id}$ uses at least one entry from the zero part."
+    },
+    {
+     "type": "theorem",
+     "title": "Uniqueness and the product rule",
+     "body": "Let $D$ be any function of $n$ vectors in $F^n$ (here $F$ is $\\mathbb R$ or $\\mathbb C$) that is linear in each argument and vanishes whenever two arguments are equal. Then for every $n\\times n$ matrix $B$ with columns $b_1, \\dots, b_n$,\n$$D(b_1, \\dots, b_n) = D(e_1, \\dots, e_n)\\,\\det B.$$\nConsequently, for all $n \\times n$ matrices $A$ and $B$,\n$$\\det(AB) = \\det A \\, \\det B.$$"
+    },
+    {
+     "type": "proof",
+     "body": "As in the $2\\times 2$ case, $D$ changes sign when two arguments are swapped. Write each column as $b_j = \\sum_i b_{ij} e_i$ and expand using linearity in every argument:\n$$D(b_1, \\dots, b_n) = \\sum_{i_1, \\dots, i_n} b_{i_1 1} b_{i_2 2} \\cdots b_{i_n n}\\, D(e_{i_1}, \\dots, e_{i_n}).$$\nIf two of the indices $i_1, \\dots, i_n$ coincide, the term is $0$. The remaining index lists are permutations: $i_j = \\sigma(j)$. Now sort the list $e_{\\sigma(1)}, \\dots, e_{\\sigma(n)}$ into $e_1, \\dots, e_n$ by repeatedly swapping two neighbours that are in the wrong order. Each such swap removes exactly one inversion and multiplies the value of $D$ by $-1$, so after as many swaps as $\\sigma$ has inversions we get $D(e_{\\sigma(1)}, \\dots, e_{\\sigma(n)}) = \\operatorname{sgn}(\\sigma)\\, D(e_1, \\dots, e_n)$. Substituting,\n$$D(b_1, \\dots, b_n) = D(e_1, \\dots, e_n) \\sum_{\\sigma} \\operatorname{sgn}(\\sigma) \\prod_j b_{\\sigma(j)\\, j} = D(e_1, \\dots, e_n)\\det B.$$\n\nFor the product rule, fix $A$ and set $D(b_1, \\dots, b_n) = \\det(Ab_1, \\dots, Ab_n)$, the determinant of the matrix $AB$ (whose $j$-th column is $Ab_j$). Since $b \\mapsto Ab$ is linear and $\\det$ is linear in each column, $D$ is linear in each argument, and it vanishes when two arguments are equal. Also $D(e_1, \\dots, e_n) = \\det(Ae_1, \\dots, Ae_n) = \\det A$. The first part gives $\\det(AB) = \\det A \\det B$."
+    },
+    {
+     "type": "theorem",
+     "title": "The invertibility test",
+     "body": "A square matrix $A$ is invertible if and only if $\\det A \\neq 0$, and then $\\det(A^{-1}) = 1/\\det A$."
+    },
+    {
+     "type": "proof",
+     "body": "If $A$ is invertible, the product rule gives $\\det A \\cdot \\det A^{-1} = \\det I = 1$, so $\\det A \\neq 0$ and $\\det A^{-1} = 1/\\det A$.\n\nIf $A$ is not invertible, its columns are linearly dependent (see [[linear-maps]]), so some column is a combination of the others, say $a_k = \\sum_{j \\ne k} c_j a_j$. By linearity in column $k$, $\\det A = \\sum_{j\\ne k} c_j \\det(\\dots, a_j, \\dots)$, where in the $j$-th term column $k$ has been replaced by $a_j$. Each of these matrices has two equal columns, so every term is $0$ and $\\det A = 0$."
+    },
+    {
+     "type": "section",
+     "title": "Computing determinants",
+     "body": "The Leibniz formula has $n!$ terms and is hopeless beyond $n = 4$ or so. In practice one uses the rules for row operations, which follow from the three properties (applied to rows, via $\\det A^{\\mathsf T} = \\det A$):\n\n- adding a multiple of one row to another row does not change $\\det A$;\n- swapping two rows multiplies $\\det A$ by $-1$;\n- multiplying a row by $t$ multiplies $\\det A$ by $t$.\n\nGaussian elimination ([[linear-systems]]) turns any matrix into a triangular one, keeping track of these factors, and the determinant of the triangular matrix is the product of its diagonal. This takes about $n^3$ operations instead of $n!$.\n\nFor small or sparse matrices, cofactor (Laplace) expansion is convenient: for any fixed row $i$,\n$$\\det A = \\sum_{j=1}^{n} (-1)^{i+j} a_{ij} \\det A_{ij},$$\nwhere $A_{ij}$ is $A$ with row $i$ and column $j$ deleted. It comes from grouping the Leibniz terms according to which entry of row $i$ they use; checking that the signs come out as $(-1)^{i+j}$ is a bookkeeping exercise that we omit. The signs follow a chessboard pattern starting with $+$ in the top left corner, and the same expansion works along any column.\n\nThe geometric meaning extends to all $n$: the image of the unit cube under $x \\mapsto Ax$ is a parallelepiped of volume $|\\det A|$, and more generally $x\\mapsto Ax$ multiplies the volume of every region by $|\\det A|$. The product rule then just says that scaling factors multiply when maps are composed."
+    },
+    {
+     "type": "example",
+     "title": "A 3 by 3 determinant",
+     "body": "Compute $\\det A$ for\n$$A = \\begin{pmatrix} 2 & 1 & 3\\\\ 0 & -1 & 4\\\\ 1 & 2 & 0\\end{pmatrix}$$\nin two ways: by row reduction and by cofactor expansion.",
+     "solution": "Row reduction. Swap rows 1 and 3 to get a leading $1$ (the determinant changes sign):\n$$\\det A = -\\det\\begin{pmatrix} 1 & 2 & 0\\\\ 0 & -1 & 4\\\\ 2 & 1 & 3\\end{pmatrix}.$$\nSubtract twice row 1 from row 3, giving row 3 $= (0, -3, 3)$, then subtract $3$ times row 2, giving $(0, 0, -9)$. Neither operation changes the determinant, and the matrix is now triangular with diagonal $1, -1, -9$. So $\\det A = -(1 \\cdot (-1) \\cdot (-9)) = -9$.\n\nCofactor expansion along row 1:\n$$\\det A = 2\\det\\begin{pmatrix} -1 & 4\\\\ 2 & 0\\end{pmatrix} - 1\\det\\begin{pmatrix} 0 & 4\\\\ 1 & 0\\end{pmatrix} + 3\\det\\begin{pmatrix} 0 & -1\\\\ 1 & 2\\end{pmatrix} = 2(-8) - (-4) + 3(1) = -9.$$\nSince $\\det A \\ne 0$, $A$ is invertible, and $x\\mapsto Ax$ multiplies volumes by $9$ while reversing orientation."
+    },
+    {
+     "type": "example",
+     "title": "The Vandermonde determinant",
+     "body": "Let $x_1, \\dots, x_n$ be numbers and let $V$ be the Vandermonde matrix whose $i$-th row is $(1, x_i, x_i^2, \\dots, x_i^{n-1})$. Show that\n$$\\det V = \\prod_{1 \\le i < j \\le n} (x_j - x_i).$$",
+     "solution": "Induction on $n$; for $n = 1$ both sides are $1$ (the empty product). For $n \\ge 2$, perform the column operations \"column $k+1$ minus $x_1$ times column $k$\" for $k = n-1, n-2, \\dots, 1$, in that order. Each uses a column that has not yet been changed, and none changes the determinant. Entry $(i, k+1)$ becomes $x_i^{k} - x_1 x_i^{k-1} = x_i^{k-1}(x_i - x_1)$, so the new matrix has first row $(1, 0, \\dots, 0)$ and, for $i \\ge 2$, row $i$ equal to\n$$\\big(1,\\ (x_i - x_1),\\ x_i(x_i - x_1),\\ \\dots,\\ x_i^{n-2}(x_i - x_1)\\big).$$\nExpand along the first row: only the $(1,1)$ entry survives, leaving the $(n-1)\\times(n-1)$ matrix with rows $(x_i - x_1)(1, x_i, \\dots, x_i^{n-2})$ for $i = 2, \\dots, n$. Pulling the factor $x_i - x_1$ out of each row,\n$$\\det V(x_1, \\dots, x_n) = \\prod_{j=2}^{n} (x_j - x_1) \\cdot \\det V(x_2, \\dots, x_n),$$\nand the induction hypothesis finishes the proof.\n\nA consequence: $\\det V \\ne 0$ when the $x_i$ are distinct, so for any values $y_1, \\dots, y_n$ there is exactly one polynomial of degree less than $n$ with $p(x_i) = y_i$ (its coefficient vector solves $Vc = y$). For instance, with $x = (1, 2, 3)$ the determinant is $(2-1)(3-1)(3-2) = 2$."
+    },
+    {
+     "type": "example",
+     "title": "A parity argument",
+     "body": "Let $A$ be an $n\\times n$ matrix with integer entries such that every diagonal entry is odd and every off-diagonal entry is even. Prove that $A$ is invertible.",
+     "solution": "Use the Leibniz formula and work modulo $2$. The term for $\\sigma = \\mathrm{id}$ is $a_{11}a_{22}\\cdots a_{nn}$, a product of odd numbers, hence odd. Every other permutation $\\sigma$ has some $i$ with $\\sigma(i) \\ne i$, so its product contains the off-diagonal entry $a_{\\sigma(i)\\, i}$, which is even; that whole term is even. Therefore\n$$\\det A \\equiv 1 \\pmod 2,$$\nso $\\det A$ is an odd integer, in particular nonzero, and $A$ is invertible.\n\nNo entry needed to be computed. Since the Leibniz formula is a polynomial with integer coefficients in the entries, reducing it modulo a prime ([[congruences]]) is a standard way to show that an integer determinant is nonzero."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The determinant is not additive: $\\det(A + B) \\ne \\det A + \\det B$ in general. With $A = \\operatorname{diag}(1, 0)$ and $B = \\operatorname{diag}(0, 1)$ both determinants are $0$, but $\\det(A + B) = 1$.\n- Scaling the whole matrix scales every row: $\\det(tA) = t^n \\det A$ for an $n \\times n$ matrix, not $t\\det A$.\n- Determinants are defined only for square matrices. For a $2\\times 3$ matrix $M$, $\\det(M^{\\mathsf T} M)$ makes sense but there is no $\\det M$.\n- When row reducing, remember the factors: swaps flip the sign and scaling a row scales the determinant. Only \"add a multiple of another row\" is free.\n- The rule \"diagonals down minus diagonals up\" (Sarrus) works only for $3\\times 3$ matrices. The analogous recipe for $4 \\times 4$ matrices produces $8$ products instead of the $24$ terms of the Leibniz formula, and some of them with the wrong sign."
+    },
+    {
+     "type": "connection",
+     "body": "The determinant of $\\lambda I - A$ is a polynomial in $\\lambda$ whose roots are the [[eigen|eigenvalues]] of $A$. By the product rule, similar matrices $P^{-1}AP$ and $A$ have the same determinant, so the determinant belongs to the linear map, not to the basis. In several-variable calculus the factor $|\\det A|$ becomes the Jacobian $|\\det Df|$ in [[multiple-integrals|the change-of-variables formula]]; this is why polar coordinates bring in the factor $r$.\n\nThe product rule also says that $\\det$ is a homomorphism from the group of invertible matrices to the nonzero numbers under multiplication ([[groups]]); its kernel is the special linear group. For invertible $A$, Cramer's rule ([[linear-systems]]) writes the solution of $Ax = b$ as ratios of determinants; the Vandermonde determinant explains why polynomial interpolation works ([[polynomials-roots]]); and the matrix-tree theorem counts the spanning trees of a graph as a determinant ([[graph-basics]]). Determinants are also a frequent tool among the [[linear-algebra|linear algebra methods]] for olympiad problems."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Compute the determinant of the $4\\times 4$ matrix with $2$ on the diagonal, $1$ directly above and below the diagonal, and $0$ elsewhere.\n2. Show that a real $n \\times n$ matrix with $A^{\\mathsf T} = -A$ has $\\det A = 0$ when $n$ is odd.\n3. Find the area of the triangle with vertices $(1, 1)$, $(4, 2)$ and $(2, 5)$ using a determinant.\n4. Show that if $A$ has integer entries and $\\det A = \\pm 1$, then $A^{-1}$ also has integer entries. (Hint: cofactors.)"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Hoffman & Kunze, Linear Algebra"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "2x2 example: det [[3,1],[1,2]] = 5, swapping columns gives -5",
+     "python": "from sympy import Matrix\nassert Matrix([[3,1],[1,2]]).det() == 5 and Matrix([[1,3],[2,1]]).det() == -5"
+    },
+    {
+     "claim": "Leibniz formula with inversion-count sign agrees with sympy det on random 4x4 integer matrices",
+     "python": "import itertools, random\nfrom sympy import Matrix\ndef sgn(p):\n    inv = sum(1 for i in range(len(p)) for j in range(i+1,len(p)) if p[i] > p[j])\n    return (-1)**inv\ndef leib(A):\n    n = len(A); s = 0\n    for p in itertools.permutations(range(n)):\n        t = sgn(p)\n        for i in range(n): t *= A[p[i]][i]\n        s += t\n    return s\nfor _ in range(200):\n    A = [[random.randint(-9,9) for _ in range(4)] for _ in range(4)]\n    assert leib(A) == Matrix(A).det()"
+    },
+    {
+     "claim": "Composing with a transposition flips sgn; a permutation and its inverse have equal sign",
+     "python": "import itertools\ndef sgn(p):\n    return (-1)**sum(1 for i in range(len(p)) for j in range(i+1,len(p)) if p[i] > p[j])\nfor p in itertools.permutations(range(5)):\n    inv = [0]*5\n    for i,x in enumerate(p): inv[x] = i\n    assert sgn(p) == sgn(tuple(inv))\n    for k in range(5):\n        for l in range(k+1,5):\n            q = list(p); q[k], q[l] = q[l], q[k]\n            assert sgn(tuple(q)) == -sgn(p)"
+    },
+    {
+     "claim": "3x3 example: det = -9, row reduction steps give diagonal 1,-1,-9; cofactor terms -16+4+3",
+     "python": "from sympy import Matrix\nA = Matrix([[2,1,3],[0,-1,4],[1,2,0]])\nassert A.det() == -9\nR = Matrix([[1,2,0],[0,-1,4],[2,1,3]])\nR[2,:] = R[2,:] - 2*R[0,:]; assert list(R[2,:]) == [0,-3,3]\nR[2,:] = R[2,:] - 3*R[1,:]; assert list(R[2,:]) == [0,0,-9]\nassert 2*(-1*0-4*2) - 1*(0*0-4*1) + 3*(0*2-(-1)*1) == -9 == 2*(-8) + 4 + 3"
+    },
+    {
+     "claim": "Product rule, transpose rule and det(tA)=t^n det A on random integer matrices",
+     "python": "import random\nfrom sympy import Matrix\nfor _ in range(100):\n    n = random.randint(1,5)\n    A = Matrix(n,n,lambda i,j: random.randint(-5,5)); B = Matrix(n,n,lambda i,j: random.randint(-5,5))\n    assert (A*B).det() == A.det()*B.det() and A.T.det() == A.det() and (3*A).det() == 3**n*A.det()"
+    },
+    {
+     "claim": "Vandermonde determinant equals prod_{i<j}(x_j-x_i) symbolically for n=2..5; value 2 for x=(1,2,3)",
+     "python": "from sympy import symbols, Matrix, prod, expand\nfor n in range(2,6):\n    x = symbols('x1:%d' % (n+1))\n    V = Matrix(n,n,lambda i,j: x[i]**j)\n    assert expand(V.det() - prod(x[j]-x[i] for i in range(n) for j in range(i+1,n))) == 0\nassert Matrix(3,3,lambda i,j: [1,2,3][i]**j).det() == 2"
+    },
+    {
+     "claim": "Odd diagonal, even off-diagonal integer matrices have odd determinant (random test)",
+     "python": "import random\nfrom sympy import Matrix\nfor _ in range(300):\n    n = random.randint(1,6)\n    A = Matrix(n,n,lambda i,j: 2*random.randint(-5,5)+1 if i==j else 2*random.randint(-5,5))\n    assert A.det() % 2 == 1"
+    },
+    {
+     "claim": "Pitfall: det(diag(1,0)+diag(0,1)) = 1 while both summands have det 0; Sarrus misses terms for n=4 (24 vs 8)",
+     "python": "from sympy import diag\nfrom math import factorial\nassert diag(1,0).det() == 0 and diag(0,1).det() == 0 and (diag(1,0)+diag(0,1)).det() == 1\nassert factorial(4) == 24 and 2*4 == 8\ndef sgn(p):\n    return (-1)**sum(1 for i in range(len(p)) for j in range(i+1,len(p)) if p[i] > p[j])\nassert sgn((1,2,3,0)) == -1  # the wrap-around diagonal a12 a23 a34 a41 has sign -1, Sarrus would give +"
+    },
+    {
+     "claim": "Reviewer: swapping the values at positions k<l changes the inversion count by an odd number, with the pair-by-pair behaviour described in the proof (all permutations of 6)",
+     "python": "import itertools\ndef inv(p, i, j): return p[i] > p[j]\nn = 6\nfor p in itertools.permutations(range(n)):\n    for k in range(n):\n        for l in range(k+1, n):\n            q = list(p); q[k], q[l] = q[l], q[k]\n            assert inv(p,k,l) != inv(q,k,l)\n            for m in range(k+1, l):\n                assert (inv(p,k,m) != inv(q,k,m)) == (inv(p,m,l) != inv(q,m,l))\n            for i in list(range(k)) + list(range(l+1, n)):\n                a, b = (i, k) if i < k else (k, i)\n                c, d = (i, l) if i < l else (l, i)\n                assert inv(q,a,b) == inv(p,c,d) and inv(q,c,d) == inv(p,a,b)\n            tot = sum(inv(p,i,j) for i in range(n) for j in range(i+1,n)) - sum(inv(q,i,j) for i in range(n) for j in range(i+1,n))\n            assert tot % 2 == 1"
+    },
+    {
+     "claim": "Reviewer: Laplace expansion along every row and every column equals det (random 5x5 integer matrices, exact); row-operation rules; triangular det = product of diagonal",
+     "python": "import random\nfrom fractions import Fraction\ndef det(M):\n    n = len(M)\n    if n == 1: return M[0][0]\n    return sum((-1)**j * M[0][j] * det([r[:j]+r[j+1:] for r in M[1:]]) for j in range(n))\ndef minor(M, i, j): return [r[:j]+r[j+1:] for k, r in enumerate(M) if k != i]\nrandom.seed(7)\nfor _ in range(30):\n    M = [[random.randint(-6,6) for _ in range(5)] for _ in range(5)]\n    D = det(M)\n    for i in range(5):\n        assert sum((-1)**(i+j)*M[i][j]*det(minor(M,i,j)) for j in range(5)) == D\n    for j in range(5):\n        assert sum((-1)**(i+j)*M[i][j]*det(minor(M,i,j)) for i in range(5)) == D\n    S = [r[:] for r in M]; S[0], S[2] = S[2], S[0]; assert det(S) == -D\n    T = [r[:] for r in M]; T[3] = [T[3][c] + 4*T[1][c] for c in range(5)]; assert det(T) == D\n    U = [r[:] for r in M]; U[4] = [7*x for x in U[4]]; assert det(U) == 7*D\n    L = [[M[i][j] if j >= i else 0 for j in range(5)] for i in range(5)]\n    assert det(L) == M[0][0]*M[1][1]*M[2][2]*M[3][3]*M[4][4]"
+    },
+    {
+     "claim": "Reviewer: Vandermonde column operations give first row (1,0,...,0) and rows (1, (x_i-x_1), x_i(x_i-x_1), ..., x_i^{n-2}(x_i-x_1)); recursion det V(x1..xn) = prod_{j>=2}(x_j-x_1) det V(x2..xn) (n=4, symbolic)",
+     "python": "from sympy import symbols, Matrix, expand, prod\nn = 4\nx = symbols('x1:5')\nV = Matrix(n, n, lambda i, j: x[i]**j)\nW = V.copy()\nfor k in range(n-1, 0, -1):          # column k+1 minus x1 * column k (1-based)\n    W[:, k] = W[:, k] - x[0]*W[:, k-1]\nassert list(W[0, :]) == [1, 0, 0, 0]\nfor i in range(1, n):\n    target = [1] + [x[i]**(k-1)*(x[i]-x[0]) for k in range(1, n)]\n    assert all(expand(W[i, k] - target[k]) == 0 for k in range(n))\nassert expand(W.det() - V.det()) == 0\nV2 = Matrix(n-1, n-1, lambda i, j: x[i+1]**j)\nassert expand(V.det() - prod(x[j]-x[0] for j in range(1, n))*V2.det()) == 0"
+    },
+    {
+     "claim": "Reviewer: 3x3 example recomputed by Leibniz formula with fractions-free integers gives -9; the naive 4x4 'Sarrus' recipe (4 wrapped down-diagonals +, 4 up-diagonals -) disagrees with det",
+     "python": "import itertools\ndef sgn(p):\n    return (-1)**sum(1 for i in range(len(p)) for j in range(i+1, len(p)) if p[i] > p[j])\ndef leib(A):\n    n = len(A); s = 0\n    for p in itertools.permutations(range(n)):\n        t = sgn(p)\n        for i in range(n): t *= A[p[i]][i]\n        s += t\n    return s\nassert leib([[2,1,3],[0,-1,4],[1,2,0]]) == -9\nA = [[1,2,3,4],[5,6,7,8],[9,10,11,13],[2,3,5,7]]\ndown = sum(A[0][c%4]*A[1][(c+1)%4]*A[2][(c+2)%4]*A[3][(c+3)%4] for c in range(4))\nup = sum(A[3][c%4]*A[2][(c+1)%4]*A[1][(c+2)%4]*A[0][(c+3)%4] for c in range(4))\nassert down - up != leib(A)\nassert len(list(itertools.permutations(range(4)))) == 24"
+    }
+   ]
+  }
+ },
+ {
+  "id": "eigen",
+  "entry": {
+   "sum": "An eigenvector of a square matrix $A$ is a nonzero vector $v$ that $A$ only stretches: $Av = \\lambda v$ for a number $\\lambda$, the eigenvalue. The eigenvalues are exactly the roots of the characteristic polynomial $\\det(\\lambda I - A)$ (for a real matrix, the non-real roots are its eigenvalues over $\\mathbb C$), and along eigenvectors the matrix acts like plain multiplication, so powers and other functions of $A$ become easy there.",
+   "key": [
+    "Av=\\lambda v,\\qquad v\\neq 0",
+    "\\lambda \\text{ is an eigenvalue of } A \\iff p_A(\\lambda)=\\det(\\lambda I-A)=0",
+    "\\operatorname{tr}A=\\lambda_1+\\dots+\\lambda_n,\\qquad \\det A=\\lambda_1\\lambda_2\\cdots\\lambda_n\\qquad(\\lambda_i\\in\\mathbb C \\text{ with algebraic multiplicity})"
+   ],
+   "why": "Eigenvalues and eigenvectors govern long-run behaviour: the growth rate of a linear recurrence such as Fibonacci, the stability of a linear system $x' = Ax$, the stationary distribution of a Markov chain and the vibration frequencies of a mechanical system are all read off from them.",
+   "msc": [
+    "15A18"
+   ],
+   "links": [
+    {
+     "field": "differential-equations",
+     "note": "The system $x' = Ax$ has solutions $e^{\\lambda t}v$ for each eigenpair, and every solution tends to $0$ exactly when every eigenvalue has negative real part."
+    },
+    {
+     "field": "probability",
+     "note": "A stationary distribution of a Markov chain is a left eigenvector of the transition matrix for the eigenvalue $1$, and the second-largest eigenvalue modulus controls the speed of mixing."
+    },
+    {
+     "field": "physics",
+     "note": "Normal modes of vibration and the energy levels of a quantum system are eigenvectors and eigenvalues of the governing linear operator."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Strang, Introduction to Linear Algebra",
+    "Horn & Johnson, Matrix Analysis"
+   ],
+   "aliases": [
+    "eigenvalue",
+    "eigenvector",
+    "characteristic polynomial",
+    "eigenspace",
+    "spectrum",
+    "characteristic root",
+    "latent root"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Most vectors change direction when you multiply them by a matrix. Take\n$$A = \\begin{pmatrix} 2 & 1\\\\ 1 & 2\\end{pmatrix}.$$\nIt sends $(1, 0)$ to $(2, 1)$, a different direction. But $A(1, 1) = (3, 3)$ and $A(1, -1) = (1, -1)$: along the line through $(1,1)$ the matrix simply multiplies by $3$, and along the line through $(1, -1)$ it does nothing at all. Since these two vectors form a basis, the whole map is understood: stretch by $3$ in one direction, keep the perpendicular direction fixed.\n\nSuch special directions are called eigenvectors, and the stretch factors are eigenvalues. Finding them turns a matrix, which mixes coordinates, into a list of independent one-dimensional multiplications. That is what makes questions like \"what is $A^{100}$?\" or \"how fast does this recurrence grow?\" tractable."
+    },
+    {
+     "type": "definition",
+     "title": "Eigenvalue and eigenvector",
+     "body": "Let $F$ be $\\mathbb R$ or $\\mathbb C$, and let $A$ be an $n \\times n$ matrix with entries in $F$. A number $\\lambda \\in F$ is an eigenvalue of $A$ (over $F$) if there is a vector $v \\in F^n$, $v \\ne 0$, with\n$$Av = \\lambda v;$$\nsuch a $v$ is an eigenvector for $\\lambda$. The set $E_\\lambda = \\ker(A - \\lambda I)$, consisting of all eigenvectors for $\\lambda$ together with $0$, is the eigenspace of $\\lambda$. A real matrix is also a complex matrix, and over $\\mathbb C$ it may have additional, non-real eigenvalues (see below).\n\nSo an eigenvector spans a line that $A$ maps into itself, and the eigenvalue is the factor by which $A$ scales that line."
+    },
+    {
+     "type": "section",
+     "title": "The characteristic polynomial",
+     "body": "The equation $Av = \\lambda v$ can be rewritten as $(\\lambda I - A)v = 0$. A nonzero solution $v$ exists exactly when $\\lambda I - A$ is not invertible, which by the test in [[determinants]] means $\\det(\\lambda I - A) = 0$. So define the characteristic polynomial\n$$p_A(\\lambda) = \\det(\\lambda I - A).$$\nExpanding by the Leibniz formula shows it is a polynomial of degree $n$ with leading coefficient $1$. Its roots in $F$ are the eigenvalues over $F$. The recipe is therefore:\n\n1. compute $p_A$ and find its roots $\\lambda$;\n2. for each root, solve the linear system $(A - \\lambda I)v = 0$ by elimination; the solutions form $E_\\lambda$.\n\nFor a $2\\times 2$ matrix $\\begin{pmatrix} a & b\\\\ c & d\\end{pmatrix}$ the characteristic polynomial is\n$$\\lambda^2 - (a + d)\\lambda + (ad - bc) = \\lambda^2 - (\\operatorname{tr} A)\\lambda + \\det A,$$\nwhere the trace $\\operatorname{tr}A$ is the sum of the diagonal entries. For the matrix in the introduction this is $\\lambda^2 - 4\\lambda + 3 = (\\lambda - 1)(\\lambda - 3)$, as expected.\n\nTwo remarks. First, the multiplicity of $\\lambda$ as a root of $p_A$ is its algebraic multiplicity, while $\\dim E_\\lambda$ is its geometric multiplicity. They can differ: the shear $\\begin{pmatrix} 1 & 1\\\\ 0 & 1\\end{pmatrix}$ has $p_A(\\lambda) = (\\lambda - 1)^2$, so $\\lambda = 1$ has algebraic multiplicity $2$, but $E_1$ is only the line spanned by $(1, 0)$. One always has $1 \\le \\dim E_\\lambda \\le$ algebraic multiplicity; this is proved in [[diagonalization]].\n\nSecond, similar matrices have the same characteristic polynomial: if $B = P^{-1}AP$ then $\\lambda I - B = P^{-1}(\\lambda I - A)P$, and the product rule for determinants gives $p_B = p_A$. So eigenvalues belong to the linear map, not to the choice of basis."
+    },
+    {
+     "type": "section",
+     "title": "Complex eigenvalues",
+     "body": "A real matrix need not have real eigenvalues. Rotation of the plane by $90^\\circ$,\n$$R = \\begin{pmatrix} 0 & -1\\\\ 1 & 0\\end{pmatrix},$$\nmoves every nonzero vector off its own line, and indeed $p_R(\\lambda) = \\lambda^2 + 1$ has no real roots. Over the [[complex-numbers]] its eigenvalues are $\\pm i$, with eigenvectors $(1, \\mp i)$; for example $R(1, -i) = (i, 1) = i\\,(1, -i)$.\n\nThis is why eigenvalue theory is most comfortable over $\\mathbb C$. By the fundamental theorem of algebra, $p_A$ factors completely there,\n$$p_A(\\lambda) = (\\lambda - \\lambda_1)(\\lambda - \\lambda_2) \\cdots (\\lambda - \\lambda_n),$$\nwith the eigenvalues listed according to algebraic multiplicity. In particular every complex square matrix has at least one eigenvector. For a real matrix the non-real eigenvalues come in conjugate pairs, since $p_A$ has real coefficients."
+    },
+    {
+     "type": "theorem",
+     "title": "Trace and determinant from eigenvalues",
+     "body": "Let $A$ be an $n \\times n$ complex matrix with eigenvalues $\\lambda_1, \\dots, \\lambda_n$, listed with algebraic multiplicity. Then\n$$\\operatorname{tr} A = \\lambda_1 + \\lambda_2 + \\cdots + \\lambda_n, \\qquad \\det A = \\lambda_1 \\lambda_2 \\cdots \\lambda_n.$$"
+    },
+    {
+     "type": "proof",
+     "body": "Compare two coefficients of $p_A(\\lambda) = \\det(\\lambda I - A) = \\prod_i (\\lambda - \\lambda_i)$, using [[polynomials-roots|Vieta's formulas]] on the right.\n\nConstant term: put $\\lambda = 0$. The left side is $\\det(-A) = (-1)^n \\det A$ and the right side is $\\prod_i(-\\lambda_i) = (-1)^n \\lambda_1 \\cdots \\lambda_n$.\n\nCoefficient of $\\lambda^{n-1}$: on the right it is $-(\\lambda_1 + \\cdots + \\lambda_n)$. On the left, expand $\\det(\\lambda I - A)$ by the Leibniz formula. A permutation $\\sigma \\ne \\mathrm{id}$ moves at least two indices, so its term contains at most $n - 2$ diagonal entries $\\lambda - a_{ii}$ and has degree at most $n-2$ in $\\lambda$. Hence the $\\lambda^{n-1}$ coefficient comes only from $(\\lambda - a_{11})\\cdots(\\lambda - a_{nn})$, where it equals $-(a_{11} + \\cdots + a_{nn}) = -\\operatorname{tr} A$."
+    },
+    {
+     "type": "theorem",
+     "title": "Distinct eigenvalues give independent eigenvectors",
+     "body": "Eigenvectors $v_1, \\dots, v_k$ of $A$ belonging to pairwise distinct eigenvalues $\\lambda_1, \\dots, \\lambda_k$ are linearly independent."
+    },
+    {
+     "type": "proof",
+     "body": "Suppose not, and among all nontrivial linear relations between some of the $v_i$ choose one with the fewest nonzero coefficients; after renumbering, $c_1 v_1 + \\cdots + c_m v_m = 0$ with all $c_i \\ne 0$. Since eigenvectors are nonzero, $m \\ge 2$. Apply $A - \\lambda_m I$, which sends $v_i$ to $(\\lambda_i - \\lambda_m)v_i$:\n$$c_1(\\lambda_1 - \\lambda_m)v_1 + \\cdots + c_{m-1}(\\lambda_{m-1} - \\lambda_m)v_{m-1} = 0.$$\nThe coefficients are nonzero because the eigenvalues are distinct, so this is a nontrivial relation with fewer terms, a contradiction.\n\nIn particular an $n\\times n$ matrix with $n$ distinct eigenvalues has a basis of eigenvectors."
+    },
+    {
+     "type": "example",
+     "title": "A 2 by 2 computation",
+     "body": "Find the eigenvalues and eigenvectors of $A = \\begin{pmatrix} 4 & 1\\\\ 2 & 3\\end{pmatrix}$.",
+     "solution": "Here $\\operatorname{tr} A = 7$ and $\\det A = 12 - 2 = 10$, so $p_A(\\lambda) = \\lambda^2 - 7\\lambda + 10 = (\\lambda - 2)(\\lambda - 5)$.\n\nFor $\\lambda = 5$: $A - 5I = \\begin{pmatrix} -1 & 1\\\\ 2 & -2\\end{pmatrix}$, whose kernel is spanned by $(1, 1)$. Check: $A(1,1) = (5, 5)$.\n\nFor $\\lambda = 2$: $A - 2I = \\begin{pmatrix} 2 & 1\\\\ 2 & 1\\end{pmatrix}$, whose kernel is spanned by $(1, -2)$. Check: $A(1, -2) = (2, -4)$.\n\nAs the theorem promises, $2 + 5 = 7 = \\operatorname{tr} A$ and $2 \\cdot 5 = 10 = \\det A$, and the two eigenvectors are independent. This matrix reappears in [[diagonalization]], where these eigenvectors are used to compute $A^n$."
+    },
+    {
+     "type": "example",
+     "title": "The all-ones matrix",
+     "body": "Let $J$ be the $n\\times n$ matrix of all ones and let $a, b$ be numbers. Find the eigenvalues of $M = aI + bJ$ and deduce $\\det M$.",
+     "solution": "Let $\\mathbf 1 = (1, \\dots, 1)$. Every row of $J$ sums to $n$, so $J\\mathbf 1 = n\\mathbf 1$. If $x$ has coordinate sum $0$, then every entry of $Jx$ is that sum, so $Jx = 0$. The vectors with coordinate sum $0$ form a subspace of dimension $n - 1$ (the kernel of the nonzero linear map $x \\mapsto x_1 + \\cdots + x_n$, by rank–nullity).\n\nNow $M\\mathbf 1 = (a + nb)\\mathbf 1$, and $Mx = ax$ whenever $x$ has coordinate sum $0$. Taking $\\mathbf 1$ together with a basis of the sum-zero subspace gives $n$ independent eigenvectors ($\\mathbf 1$ is not in that subspace). In that basis $M$ is diagonal with entries $a + nb, a, \\dots, a$, and similar matrices have the same characteristic polynomial, so\n$$p_M(\\lambda) = (\\lambda - a - nb)(\\lambda - a)^{n-1}, \\qquad \\det M = a^{n-1}(a + nb).$$\nFor example, the $3\\times 3$ matrix with $2$ on the diagonal and $1$ elsewhere is $I + J$, with eigenvalues $4, 1, 1$ and determinant $4$."
+    },
+    {
+     "type": "example",
+     "title": "Fibonacci numbers",
+     "body": "The Fibonacci numbers satisfy $F_0 = 0$, $F_1 = 1$, $F_{n+1} = F_n + F_{n-1}$. Use eigenvectors of $\\begin{pmatrix} 1 & 1\\\\ 1 & 0\\end{pmatrix}$ to find a closed formula for $F_n$.",
+     "solution": "Let $Q = \\begin{pmatrix} 1 & 1\\\\ 1 & 0\\end{pmatrix}$. The recurrence says $Q(F_n, F_{n-1}) = (F_{n+1}, F_n)$, so $(F_{n+1}, F_n) = Q^n(1, 0)$.\n\nThe characteristic polynomial is $\\lambda^2 - \\lambda - 1$, with roots $\\varphi = \\frac{1 + \\sqrt 5}{2}$ and $\\psi = \\frac{1 - \\sqrt 5}{2}$. Since $\\lambda^2 = \\lambda + 1$ for both roots, $Q(\\lambda, 1) = (\\lambda + 1, \\lambda) = (\\lambda^2, \\lambda) = \\lambda(\\lambda, 1)$, so $(\\varphi, 1)$ and $(\\psi, 1)$ are eigenvectors. Because $\\varphi - \\psi = \\sqrt 5$,\n$$(1, 0) = \\frac{1}{\\sqrt 5}\\big((\\varphi, 1) - (\\psi, 1)\\big).$$\nApplying $Q^n$ multiplies each eigenvector by the $n$-th power of its eigenvalue:\n$$(F_{n+1}, F_n) = \\frac{1}{\\sqrt5}\\big(\\varphi^n(\\varphi, 1) - \\psi^n(\\psi, 1)\\big).$$\nThe second coordinate gives Binet's formula\n$$F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt 5}.$$\nSince $|\\psi| < 1$, the second term tends to $0$, so $F_n$ is the integer nearest to $\\varphi^n/\\sqrt5$ and grows like $\\varphi^n$: the dominant eigenvalue is the growth rate."
+    },
+    {
+     "type": "example",
+     "title": "AB and BA",
+     "body": "Let $A$ and $B$ be $n\\times n$ matrices. Show that $AB$ and $BA$ have the same nonzero eigenvalues.",
+     "solution": "Let $\\lambda \\ne 0$ be an eigenvalue of $AB$, with $ABv = \\lambda v$ and $v \\ne 0$. Put $w = Bv$. Then $w \\ne 0$, since otherwise $\\lambda v = A(Bv) = 0$ would force $v = 0$. And\n$$BA\\,w = B(ABv) = B(\\lambda v) = \\lambda w,$$\nso $\\lambda$ is an eigenvalue of $BA$. Exchanging the roles of $A$ and $B$ gives the converse.\n\nThe condition $\\lambda \\ne 0$ was needed only to make $w$ nonzero, and for square matrices $0$ is shared too: $\\det(AB) = \\det A \\det B = \\det(BA)$, so both are singular or neither is. In fact $AB$ and $BA$ have the same characteristic polynomial (a standard fact that we do not prove here), though possibly different eigenspaces. For example with $A = \\begin{pmatrix} 1 & 0\\\\ 0 & 0\\end{pmatrix}$ and $B = \\begin{pmatrix} 0 & 1\\\\ 0 & 0\\end{pmatrix}$ we get $AB = B \\ne 0$ but $BA = 0$: the eigenspace for $0$ is a line for $AB$ and the whole plane for $BA$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- An eigenvector must be nonzero; $0$ satisfies $A0 = \\lambda 0$ for every $\\lambda$ and carries no information. The eigenvalue $\\lambda = 0$, on the other hand, is allowed and means $A$ is singular.\n- Row reduction changes eigenvalues. Eliminate only when solving $(A - \\lambda I)v = 0$ for an already known $\\lambda$, never on $A$ itself before finding $p_A$.\n- Eigenvalues do not add or multiply in general: the eigenvalues of $A + B$ or $AB$ are not obtained from those of $A$ and $B$, unless $A$ and $B$ share a basis of eigenvectors.\n- $A$ and $A^{\\mathsf T}$ have the same eigenvalues (since $\\det(\\lambda I - A^{\\mathsf T}) = \\det(\\lambda I - A)$) but usually different eigenvectors.\n- A real matrix may have no real eigenvector at all, as rotations show; work over $\\mathbb C$ when the characteristic polynomial does not split."
+    },
+    {
+     "type": "connection",
+     "body": "When $A$ has a basis of eigenvectors it can be written as $PDP^{-1}$ with $D$ diagonal, which is [[diagonalization]]; when it does not, [[jordan|Jordan normal form]] is the replacement. For real symmetric matrices the eigenvectors can be chosen perpendicular, which is [[spectral-theorem|the spectral theorem]]. The system $x' = Ax$ is solved by $e^{\\lambda t}v$ for each eigenpair, the starting point of [[ode-linear]], and linear recurrences such as Fibonacci are handled the same way (compare [[generating-functions]]).\n\nIn probability, the stationary distribution of a [[markov-chains|Markov chain]] is a left eigenvector of the transition matrix (an eigenvector of its transpose) for the eigenvalue $1$. In graph theory, eigenvalues of the adjacency matrix of a graph ([[graph-basics]]) count closed walks via $\\operatorname{tr} A^k = \\sum \\lambda_i^k$. The spacing statistics of eigenvalues of large random matrices appear in [[pair-correlation]], where they are compared with the spacings between zeros of the zeta function."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find the eigenvalues and eigenvectors of $\\begin{pmatrix} 1 & 2\\\\ 2 & 1\\end{pmatrix}$.\n2. Show that if $A^2 = A$, every eigenvalue of $A$ is $0$ or $1$; and that if $A^k = 0$ for some $k$, then $0$ is the only eigenvalue.\n3. Show that the eigenvalues of a triangular matrix are its diagonal entries.\n4. If $Av = \\lambda v$, show that $p(A)v = p(\\lambda)v$ for every polynomial $p$, and that $A^{-1}v = \\lambda^{-1}v$ when $A$ is invertible."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 5"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Horn & Johnson, Matrix Analysis"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Intro: [[2,1],[1,2]] maps (1,1)->(3,3), (1,-1)->(1,-1), (1,0)->(2,1); char poly l^2-4l+3",
+     "python": "from sympy import Matrix, symbols, factor, expand\nl = symbols('l')\nA = Matrix([[2,1],[1,2]])\nassert A*Matrix([1,1]) == Matrix([3,3]) and A*Matrix([1,-1]) == Matrix([1,-1]) and A*Matrix([1,0]) == Matrix([2,1])\nassert expand(A.charpoly(l).as_expr() - (l**2-4*l+3)) == 0"
+    },
+    {
+     "claim": "2x2 char poly formula l^2 - tr l + det (symbolic)",
+     "python": "from sympy import symbols, Matrix, eye, expand\na,b,c,d,l = symbols('a b c d l')\nA = Matrix([[a,b],[c,d]])\nassert expand((l*eye(2)-A).det() - (l**2-(a+d)*l+(a*d-b*c))) == 0"
+    },
+    {
+     "claim": "Shear [[1,1],[0,1]]: char poly (l-1)^2, eigenspace of 1 has dimension 1; rotation R has eigenvalues +-i with R(1,-i)=i(1,-i)",
+     "python": "from sympy import Matrix, symbols, I, eye, expand\nl = symbols('l')\nS = Matrix([[1,1],[0,1]])\nassert expand(S.charpoly(l).as_expr() - (l-1)**2) == 0 and len((S-eye(2)).nullspace()) == 1\nR = Matrix([[0,-1],[1,0]])\nassert set(R.eigenvals()) == {I,-I}\nassert R*Matrix([1,-I]) == I*Matrix([1,-I]) and R*Matrix([1,I]) == -I*Matrix([1,I])"
+    },
+    {
+     "claim": "Trace = sum and det = product of eigenvalues (numpy, random complex matrices); similar matrices have equal char poly",
+     "python": "import numpy as np\nrng = np.random.default_rng(1)\nfor _ in range(200):\n    n = rng.integers(1,7)\n    A = rng.normal(size=(n,n)) + 1j*rng.normal(size=(n,n))\n    ev = np.linalg.eigvals(A)\n    assert abs(ev.sum()-np.trace(A)) < 1e-8 and abs(np.prod(ev)-np.linalg.det(A)) < 1e-8*max(1,abs(np.linalg.det(A)))\n    P = rng.normal(size=(n,n))\n    assert np.allclose(np.poly(np.linalg.inv(P)@A@P), np.poly(A), atol=1e-6)"
+    },
+    {
+     "claim": "[[4,1],[2,3]]: char poly (l-2)(l-5); eigenvectors (1,1) for 5 and (1,-2) for 2",
+     "python": "from sympy import Matrix, symbols, expand\nl = symbols('l')\nA = Matrix([[4,1],[2,3]])\nassert expand(A.charpoly(l).as_expr() - (l-2)*(l-5)) == 0\nassert A*Matrix([1,1]) == 5*Matrix([1,1]) and A*Matrix([1,-2]) == 2*Matrix([1,-2])\nassert A.trace() == 7 and A.det() == 10"
+    },
+    {
+     "claim": "aI+bJ has char poly (l-a-nb)(l-a)^(n-1) and det a^(n-1)(a+nb), n=1..6; I+J (3x3) has eigenvalues 4,1,1",
+     "python": "from sympy import symbols, ones, eye, expand, factor\na,b,l = symbols('a b l')\nfor n in range(1,7):\n    M = a*eye(n) + b*ones(n,n)\n    assert expand(M.charpoly(l).as_expr() - (l-a-n*b)*(l-a)**(n-1)) == 0\n    assert expand(M.det() - a**(n-1)*(a+n*b)) == 0\nM = eye(3)+ones(3,3)\nassert M.eigenvals() == {4:1, 1:2} and M.det() == 4"
+    },
+    {
+     "claim": "Binet: F_n = (phi^n - psi^n)/sqrt5 exactly for n<=40; F_n = round(phi^n/sqrt5); Q^n (1,0) = (F_{n+1},F_n)",
+     "python": "from sympy import sqrt, Rational, simplify, Matrix, fibonacci, nsimplify, expand\nphi = (1+sqrt(5))/2; psi = (1-sqrt(5))/2\nassert expand(phi**2 - phi - 1) == 0 and expand(psi**2-psi-1) == 0 and simplify(phi-psi-sqrt(5)) == 0\nQ = Matrix([[1,1],[1,0]])\nfor n in range(0,41):\n    assert expand((phi**n - psi**n)/sqrt(5)) == fibonacci(n)\n    assert Q**n*Matrix([1,0]) == Matrix([fibonacci(n+1), fibonacci(n)])\nimport math\np = (1+math.sqrt(5))/2\nassert all(round(p**n/math.sqrt(5)) == fibonacci(n) for n in range(0,60))"
+    },
+    {
+     "claim": "AB and BA have the same characteristic polynomial (random integer matrices); counterexample AB=B, BA=0",
+     "python": "import random\nfrom sympy import Matrix, symbols, zeros\nl = symbols('l')\nfor _ in range(100):\n    n = random.randint(1,5)\n    A = Matrix(n,n,lambda i,j: random.randint(-4,4)); B = Matrix(n,n,lambda i,j: random.randint(-4,4))\n    assert (A*B).charpoly(l) == (B*A).charpoly(l)\nA = Matrix([[1,0],[0,0]]); B = Matrix([[0,1],[0,0]])\nassert A*B == B and B*A == zeros(2,2)"
+    },
+    {
+     "claim": "Reviewer: for a symbolic 3x3 matrix, det(lambda I - A) has leading coefficient 1, lambda^2-coefficient -tr A and constant term -det A",
+     "python": "from sympy import symbols, Matrix, eye, Poly, expand\nl = symbols('l')\na = symbols('a0:9')\nA = Matrix(3, 3, a)\np = Poly((l*eye(3) - A).det(), l)\nc = p.all_coeffs()\nassert c[0] == 1 and expand(c[1] + A.trace()) == 0 and expand(c[3] + A.det()) == 0"
+    },
+    {
+     "claim": "Reviewer: Fibonacci eigen-decomposition: (1,0) = ((phi,1)-(psi,1))/sqrt5, Q(lam,1)=lam(lam,1), and |psi^n/sqrt5| < 1/2 for all n >= 0",
+     "python": "from sympy import sqrt, Matrix, simplify\nphi = (1+sqrt(5))/2; psi = (1-sqrt(5))/2\nQ = Matrix([[1,1],[1,0]])\nfor lam in (phi, psi):\n    assert simplify(Q*Matrix([lam,1]) - lam*Matrix([lam,1])) == Matrix([0,0])\nassert simplify((Matrix([phi,1]) - Matrix([psi,1]))/sqrt(5) - Matrix([1,0])) == Matrix([0,0])\nassert abs(float(psi)) < 1 and 1/float(sqrt(5)) < 0.5"
+    },
+    {
+     "claim": "Reviewer: AB and BA example: dim ker(AB) = 1, dim ker(BA) = 2; aI+bJ eigenvectors: J*1 = n*1 and Jx = 0 for coordinate-sum-zero x",
+     "python": "from sympy import Matrix, ones\nA = Matrix([[1,0],[0,0]]); B = Matrix([[0,1],[0,0]])\nassert len((A*B).nullspace()) == 1 and len((B*A).nullspace()) == 2\nfor n in range(1, 7):\n    J = ones(n, n)\n    assert J*ones(n,1) == n*ones(n,1)\n    for i in range(n-1):\n        x = Matrix([1 if k == i else (-1 if k == i+1 else 0) for k in range(n)])\n        assert J*x == Matrix.zeros(n,1)"
+    }
+   ]
+  }
+ },
+ {
+  "id": "diagonalization",
+  "entry": {
+   "sum": "A square matrix $A$ is diagonalisable if $A = PDP^{-1}$ with $D$ diagonal and $P$ invertible; the columns of $P$ are then a basis of eigenvectors and the diagonal of $D$ lists the eigenvalues. In that basis $A$ just scales each coordinate, so $A^k = PD^kP^{-1}$; over $\\mathbb C$ the only obstruction is an eigenvalue whose eigenspace is smaller than its algebraic multiplicity.",
+   "key": [
+    "A=PDP^{-1},\\qquad D=\\operatorname{diag}(\\lambda_1,\\dots,\\lambda_n)",
+    "A^k=PD^kP^{-1}",
+    "A\\ \\text{diagonalisable over }\\mathbb C\\iff \\dim\\ker(A-\\lambda I)=\\text{algebraic multiplicity of }\\lambda\\ \\text{for every eigenvalue }\\lambda"
+   ],
+   "why": "Diagonalisation turns powers, exponentials and other functions of a matrix into the same functions of numbers, which gives closed formulas for linear recurrences, explicit solutions of systems $x' = Ax$, and the long-run behaviour of Markov chains.",
+   "msc": [
+    "15A18",
+    "15A21"
+   ],
+   "links": [
+    {
+     "field": "differential-equations",
+     "note": "If $A = PDP^{-1}$, the system $x' = Ax$ decouples in the coordinates $y = P^{-1}x$ into independent equations $y_i' = \\lambda_i y_i$."
+    },
+    {
+     "field": "combinatorics",
+     "note": "Closed formulas for linear recurrences and for the number of walks of length $k$ in a graph come from diagonalising the companion or adjacency matrix."
+    },
+    {
+     "field": "probability",
+     "note": "Diagonalising a transition matrix gives its $k$-step transition probabilities and shows how fast a Markov chain approaches equilibrium."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Strang, Introduction to Linear Algebra",
+    "Hoffman & Kunze, Linear Algebra"
+   ],
+   "aliases": [
+    "diagonalization",
+    "diagonalizable matrix",
+    "eigendecomposition",
+    "eigenbasis",
+    "similar to a diagonal matrix",
+    "geometric multiplicity",
+    "algebraic multiplicity"
+   ]
+  },
+  "lesson": {
+   "minutes": 17,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Computing $A^{100}$ for a $2\\times 2$ matrix by repeated multiplication is tedious; for a diagonal matrix it is trivial, since $\\operatorname{diag}(a, b)^{100} = \\operatorname{diag}(a^{100}, b^{100})$. Diagonalisation is the art of making a matrix diagonal by choosing better coordinates.\n\nThe better coordinates are given by eigenvectors. If $A$ has a basis of [[eigen|eigenvectors]], then written in that basis $A$ simply multiplies each coordinate by its eigenvalue. This lesson makes that precise, shows how to use it, and pins down exactly when such a basis exists."
+    },
+    {
+     "type": "definition",
+     "title": "Diagonalisable matrix",
+     "body": "Let $F$ be $\\mathbb R$ or $\\mathbb C$. An $n \\times n$ matrix $A$ with entries in $F$ is diagonalisable (over $F$) if there are an invertible matrix $P$ and a diagonal matrix $D = \\operatorname{diag}(\\lambda_1, \\dots, \\lambda_n)$, both with entries in $F$, such that\n$$A = PDP^{-1}, \\qquad \\text{equivalently} \\qquad P^{-1}AP = D.$$\n\nIn words: $A$ is similar to a diagonal matrix, that is, after a change of basis the map $x \\mapsto Ax$ becomes coordinatewise multiplication."
+    },
+    {
+     "type": "theorem",
+     "title": "Diagonalisation means an eigenbasis",
+     "body": "$A = PDP^{-1}$ with $D = \\operatorname{diag}(\\lambda_1, \\dots, \\lambda_n)$ if and only if the columns $p_1, \\dots, p_n$ of $P$ form a basis of $F^n$ and $Ap_i = \\lambda_i p_i$ for each $i$. So $A$ is diagonalisable exactly when $F^n$ has a basis consisting of eigenvectors of $A$."
+    },
+    {
+     "type": "proof",
+     "body": "$A = PDP^{-1}$ is the same as $AP = PD$ with $P$ invertible. The $i$-th column of $AP$ is $Ap_i$, and the $i$-th column of $PD$ is $\\lambda_i p_i$, because multiplying by a diagonal matrix on the right scales the columns. So $AP = PD$ says exactly that $Ap_i = \\lambda_i p_i$ for all $i$. Finally, an $n\\times n$ matrix is invertible exactly when its columns form a basis of $F^n$."
+    },
+    {
+     "type": "section",
+     "title": "Why it helps: powers and functions",
+     "body": "Once $A = PDP^{-1}$, all the $P$'s in the middle of a product cancel:\n$$A^k = (PDP^{-1})(PDP^{-1})\\cdots(PDP^{-1}) = PD^kP^{-1}, \\qquad D^k = \\operatorname{diag}(\\lambda_1^k, \\dots, \\lambda_n^k).$$\nThe same holds for any polynomial, $q(A) = P\\, q(D)\\, P^{-1}$ with $q(D) = \\operatorname{diag}(q(\\lambda_1), \\dots, q(\\lambda_n))$, and, by taking limits of polynomials, for power series such as the matrix exponential\n$$e^{tA} = \\sum_{k \\ge 0} \\frac{t^k A^k}{k!} = P \\operatorname{diag}(e^{\\lambda_1 t}, \\dots, e^{\\lambda_n t}) P^{-1}.$$\nThere is a cleaner way to say the same thing without matrices: write a vector in the eigenbasis, $x = c_1p_1 + \\cdots + c_np_n$; then $A^kx = c_1\\lambda_1^kp_1 + \\cdots + c_n\\lambda_n^kp_n$. The coordinates $c = P^{-1}x$ evolve independently. In particular, if $|\\lambda_1|$ is strictly larger than the other $|\\lambda_i|$ and $c_1 \\ne 0$, then as $k$ grows the direction of $A^kx$ approaches the line through $p_1$, and $\\|A^kx\\|$ is of order $|\\lambda_1|^k$.\n\nFrom [[eigen]] we already know one sufficient condition: if $A$ has $n$ distinct eigenvalues, the corresponding eigenvectors are independent, hence a basis, and $A$ is diagonalisable. Repeated eigenvalues need more care."
+    },
+    {
+     "type": "section",
+     "title": "What can go wrong",
+     "body": "The shear $S = \\begin{pmatrix} 1 & 1\\\\ 0 & 1 \\end{pmatrix}$ is the basic example of failure. Its only eigenvalue is $1$, with algebraic multiplicity $2$, and the eigenspace $\\ker(S - I)$ is the line spanned by $(1, 0)$. There is no second independent eigenvector, so no eigenbasis. (If $S$ were $PDP^{-1}$, then $D$ would have both diagonal entries equal to $1$, so $D = I$ and $S = PIP^{-1} = I$, which is false.)\n\nA different kind of failure is the rotation $\\begin{pmatrix} 0 & -1\\\\ 1 & 0\\end{pmatrix}$: it has no real eigenvalues, so it is not diagonalisable over $\\mathbb R$, but it has the distinct eigenvalues $\\pm i$ and is diagonalisable over $\\mathbb C$. So the field matters, and from now on we work over $\\mathbb C$, where the characteristic polynomial always factors into linear factors.\n\nFor each eigenvalue $\\lambda$ write $a_\\lambda$ for its algebraic multiplicity (as a root of $p_A$) and $g_\\lambda = \\dim\\ker(A - \\lambda I)$ for its geometric multiplicity. For the shear $a_1 = 2$ and $g_1 = 1$."
+    },
+    {
+     "type": "theorem",
+     "title": "The multiplicity criterion",
+     "body": "Let $A$ be an $n \\times n$ complex matrix with distinct eigenvalues $\\mu_1, \\dots, \\mu_s$.\n\n1. For each eigenvalue, $1 \\le g_\\lambda \\le a_\\lambda$.\n2. $A$ is diagonalisable if and only if $g_{\\mu_j} = a_{\\mu_j}$ for every $j$, that is, if and only if $g_{\\mu_1} + \\cdots + g_{\\mu_s} = n$."
+    },
+    {
+     "type": "proof",
+     "body": "Part 1. Since $\\lambda$ is an eigenvalue, $g_\\lambda \\ge 1$. Let $g = g_\\lambda$, choose a basis $v_1, \\dots, v_g$ of $\\ker(A - \\lambda I)$ and extend it to a basis $v_1, \\dots, v_n$ of $\\mathbb C^n$ ([[basis-dimension]]). Let $P$ have these columns. Since $Av_i = \\lambda v_i$ for $i \\le g$, the first $g$ columns of $P^{-1}AP$ are $\\lambda e_1, \\dots, \\lambda e_g$, so\n$$P^{-1}AP = \\begin{pmatrix} \\lambda I_g & C\\\\ 0 & E \\end{pmatrix}$$\nfor some blocks $C$, $E$. Similar matrices have the same characteristic polynomial, and $tI - P^{-1}AP$ has top-left block $(t - \\lambda)I_g$ with only zeros below it; expanding $g$ times along the first column gives $p_A(t) = (t - \\lambda)^g\\, p_E(t)$. Hence $\\lambda$ is a root of multiplicity at least $g$: $g_\\lambda \\le a_\\lambda$.\n\nPart 2. Since $p_A$ has degree $n$ and splits over $\\mathbb C$, $\\sum_j a_{\\mu_j} = n$. By part 1, $\\sum_j g_{\\mu_j} = n$ holds exactly when every $g_{\\mu_j} = a_{\\mu_j}$.\n\nIf $A$ is diagonalisable, an eigenbasis contains, for each $j$, some number $m_j$ of independent vectors lying in $E_{\\mu_j}$, so $m_j \\le g_{\\mu_j}$ and $n = \\sum m_j \\le \\sum g_{\\mu_j} \\le \\sum a_{\\mu_j} = n$. Hence $\\sum g_{\\mu_j} = n$.\n\nConversely, suppose $\\sum g_{\\mu_j} = n$. Take a basis of each eigenspace $E_{\\mu_j}$ and put them all together: $n$ vectors. They are independent. Indeed, group a linear relation among them by eigenvalue as $w_1 + \\cdots + w_s = 0$ with $w_j \\in E_{\\mu_j}$. The nonzero $w_j$ would be eigenvectors for distinct eigenvalues, which are independent by the theorem in [[eigen]], so no $w_j$ can be nonzero. Then each $w_j = 0$ is a relation among the basis vectors of $E_{\\mu_j}$, so all its coefficients vanish. Thus we have $n$ independent eigenvectors, a basis of $\\mathbb C^n$, and $A$ is diagonalisable."
+    },
+    {
+     "type": "example",
+     "title": "A closed formula for powers",
+     "body": "Diagonalise $A = \\begin{pmatrix} 4 & 1\\\\ 2 & 3\\end{pmatrix}$ and find a formula for $A^n$.",
+     "solution": "In [[eigen]] we found the eigenvalues $5$ and $2$ with eigenvectors $(1, 1)$ and $(1, -2)$. So\n$$P = \\begin{pmatrix} 1 & 1\\\\ 1 & -2\\end{pmatrix}, \\quad D = \\begin{pmatrix} 5 & 0\\\\ 0 & 2\\end{pmatrix}, \\quad P^{-1} = \\frac13\\begin{pmatrix} 2 & 1\\\\ 1 & -1\\end{pmatrix},$$\nand $A = PDP^{-1}$. (The order of the columns of $P$ must match the order of the eigenvalues in $D$.) Multiplying out $PD^nP^{-1}$,\n$$A^n = \\frac13\\begin{pmatrix} 2\\cdot 5^n + 2^n & 5^n - 2^n\\\\ 2\\cdot 5^n - 2\\cdot 2^n & 5^n + 2\\cdot 2^n\\end{pmatrix}.$$\nCheck $n = 1$: the entries are $\\frac{12}{3}, \\frac33, \\frac63, \\frac93$, that is $4, 1, 2, 3$. For large $n$, $A^n \\approx \\frac{5^n}{3}\\begin{pmatrix} 2 & 1 \\\\ 2 & 1\\end{pmatrix}$: the eigenvalue $5$ dominates and every column lines up with the eigenvector $(1,1)$."
+    },
+    {
+     "type": "example",
+     "title": "A linear recurrence",
+     "body": "The sequence $a_0 = 0$, $a_1 = 1$, $a_{n+2} = a_{n+1} + 2a_n$ begins $0, 1, 1, 3, 5, 11, 21, \\dots$ Find a closed formula for $a_n$.",
+     "solution": "Put $x_n = (a_{n+1}, a_n)$. Then $x_{n+1} = Mx_n$ with $M = \\begin{pmatrix} 1 & 2\\\\ 1 & 0\\end{pmatrix}$, so $x_n = M^n x_0$ and $x_0 = (1, 0)$.\n\n$p_M(\\lambda) = \\lambda^2 - \\lambda - 2 = (\\lambda - 2)(\\lambda + 1)$, with eigenvectors $(2, 1)$ for $2$ and $(-1, 1)$ for $-1$ (check: $M(2,1) = (4, 2)$ and $M(-1, 1) = (1, -1)$). Write the starting vector in the eigenbasis:\n$$(1, 0) = \\tfrac13 (2, 1) - \\tfrac13(-1, 1).$$\nThen $x_n = \\frac13 2^n (2, 1) - \\frac13 (-1)^n(-1, 1)$, and the second coordinate gives\n$$a_n = \\frac{2^n - (-1)^n}{3}.$$\nCheck: $a_5 = (32 + 1)/3 = 11$. The same method works for any linear recurrence with constant coefficients whose characteristic polynomial has distinct roots; repeated roots are where [[jordan|Jordan form]] enters."
+    },
+    {
+     "type": "example",
+     "title": "Using the criterion",
+     "body": "Decide which of these matrices are diagonalisable:\n$$B = \\begin{pmatrix} 2 & 1 & 0\\\\ 0 & 2 & 0\\\\ 0 & 0 & 3\\end{pmatrix}, \\qquad C = \\begin{pmatrix} 2 & 0 & 1\\\\ 0 & 2 & 0\\\\ 0 & 0 & 3\\end{pmatrix}.$$",
+     "solution": "Both are upper triangular with diagonal $2, 2, 3$, so both have $p(t) = (t - 2)^2(t - 3)$: eigenvalue $2$ with $a_2 = 2$ and eigenvalue $3$ with $a_3 = 1$. For a simple eigenvalue $g = a = 1$ automatically, so everything depends on $g_2$.\n\nFor $B$: $B - 2I = \\begin{pmatrix} 0 & 1 & 0\\\\ 0 & 0 & 0\\\\ 0 & 0 & 1\\end{pmatrix}$ has rank $2$, so $g_2 = 3 - 2 = 1 < 2$. $B$ is not diagonalisable.\n\nFor $C$: $C - 2I = \\begin{pmatrix} 0 & 0 & 1\\\\ 0 & 0 & 0\\\\ 0 & 0 & 1\\end{pmatrix}$ has rank $1$, so $g_2 = 2 = a_2$. $C$ is diagonalisable. Explicitly, $E_2$ is spanned by $(1, 0, 0)$ and $(0, 1, 0)$, and solving $(C - 3I)v = 0$ gives $v = (1, 0, 1)$, so with $P$ having columns $(1,0,0), (0,1,0), (1,0,1)$ we get $P^{-1}CP = \\operatorname{diag}(2, 2, 3)$.\n\nSame eigenvalues, different answers: the characteristic polynomial alone cannot decide diagonalisability."
+    },
+    {
+     "type": "example",
+     "title": "Projections",
+     "body": "Let $A$ be a square matrix with $A^2 = A$ (a projection). Prove that $A$ is diagonalisable and that $\\operatorname{tr} A = \\operatorname{rank} A$.",
+     "solution": "Every vector splits as\n$$v = Av + (v - Av).$$\nThe first part satisfies $A(Av) = A^2v = Av$, so it lies in $E_1 = \\ker(A - I)$. The second satisfies $A(v - Av) = Av - A^2v = 0$, so it lies in $E_0 = \\ker A$. Hence every vector is a sum of a vector of $E_1$ and a vector of $E_0$, so $\\dim E_1 + \\dim E_0 \\ge n$. Bases of $E_1$ and $E_0$ together are independent (as in the proof of the criterion), so $\\dim E_1 + \\dim E_0 = n$ and these bases together form an eigenbasis. Thus $A = P\\operatorname{diag}(1, \\dots, 1, 0, \\dots, 0)P^{-1}$ with $r = \\dim E_1$ ones.\n\nThe trace is similarity invariant (it is a coefficient of $p_A$), so $\\operatorname{tr}A = r$. And the image of $A$ is exactly $E_1$: every $Av$ lies in $E_1$, and every $u \\in E_1$ equals $Au$. So $\\operatorname{rank} A = \\dim E_1 = r = \\operatorname{tr} A$.\n\nThe same idea proves a general fact: if $q(A) = 0$ for some polynomial $q$ with distinct roots, then $A$ is diagonalisable. Here $q(t) = t^2 - t = t(t-1)$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Diagonalisable and invertible are unrelated. The zero matrix is diagonal but not invertible; the shear $\\begin{pmatrix} 1 & 1\\\\ 0 & 1\\end{pmatrix}$ is invertible but not diagonalisable.\n- The columns of $P$ must be listed in the same order as the eigenvalues on the diagonal of $D$. $P$ is not unique: each column can be rescaled, and within a repeated eigenvalue any basis of the eigenspace works.\n- Repeated eigenvalues do not automatically prevent diagonalisation (the identity matrix has only the eigenvalue $1$). What matters is whether each eigenspace is as large as the multiplicity.\n- A real matrix can be diagonalisable over $\\mathbb C$ but not over $\\mathbb R$; say which field you mean. A real matrix is diagonalisable over $\\mathbb R$ exactly when all its eigenvalues are real and $g_\\lambda = a_\\lambda$ for each of them.\n- $A = PDP^{-1}$ gives $A^k = PD^kP^{-1}$, not $P^kD^kP^{-k}$."
+    },
+    {
+     "type": "connection",
+     "body": "Not every matrix is diagonalisable, and [[jordan|Jordan normal form]] describes what one can always achieve over $\\mathbb C$ instead: a block diagonal matrix whose blocks have a single eigenvalue on the diagonal and $1$s just above it, with as many blocks as the maximal number of independent eigenvectors. For real symmetric matrices the situation is better than diagonalisable: the eigenbasis can be taken orthonormal, so $P^{-1} = P^{\\mathsf T}$. That is [[spectral-theorem|the spectral theorem]].\n\nThe formula $e^{tA} = Pe^{tD}P^{-1}$ solves the system $x' = Ax$ of [[ode-linear|linear differential equations]], and $A^k = PD^kP^{-1}$ gives the $k$-step transition probabilities of a [[markov-chains|Markov chain]]. Closed formulas for recurrences like the one above are also obtained from [[generating-functions]], and solutions of [[pell|Pell's equation]] are generated by powers of a $2\\times 2$ matrix whose eigenvalues are $x_1 \\pm y_1\\sqrt d$."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Diagonalise $\\begin{pmatrix} 1 & 2\\\\ 2 & 1\\end{pmatrix}$ and compute its $n$-th power.\n2. For which real numbers $c$ is $\\begin{pmatrix} 1 & c\\\\ 0 & 2\\end{pmatrix}$ diagonalisable? For which $c$ is $\\begin{pmatrix} 1 & c\\\\ 0 & 1\\end{pmatrix}$?\n3. Find a matrix $B$ with $B^2 = \\begin{pmatrix} 5 & 4\\\\ 4 & 5\\end{pmatrix}$.\n4. Show that if $A$ is diagonalisable and its only eigenvalue is $\\lambda$, then $A = \\lambda I$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 5"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Hoffman & Kunze, Linear Algebra"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "[[4,1],[2,3]] = P D P^-1 with P=[[1,1],[1,-2]], D=diag(5,2), P^-1 = (1/3)[[2,1],[1,-1]]",
+     "python": "from sympy import Matrix, Rational, diag\nA = Matrix([[4,1],[2,3]]); P = Matrix([[1,1],[1,-2]]); D = diag(5,2)\nassert P.inv() == Rational(1,3)*Matrix([[2,1],[1,-1]])\nassert P*D*P.inv() == A"
+    },
+    {
+     "claim": "Closed formula for A^n, n = 0..30, and n=1 entries 12/3,3/3,6/3,9/3",
+     "python": "from sympy import Matrix, Rational\nA = Matrix([[4,1],[2,3]])\nfor n in range(31):\n    F = Rational(1,3)*Matrix([[2*5**n+2**n, 5**n-2**n],[2*5**n-2*2**n, 5**n+2*2**n]])\n    assert A**n == F"
+    },
+    {
+     "claim": "Recurrence a_{n+2}=a_{n+1}+2a_n: terms 0,1,1,3,5,11,21; a_n=(2^n-(-1)^n)/3; eigenvectors (2,1),(-1,1); (1,0)=(1/3)(2,1)-(1/3)(-1,1)",
+     "python": "from sympy import Matrix, Rational\na = [0,1]\nfor _ in range(50): a.append(a[-1]+2*a[-2])\nassert a[:7] == [0,1,1,3,5,11,21]\nassert all(3*a[n] == 2**n-(-1)**n for n in range(52))\nM = Matrix([[1,2],[1,0]])\nassert M*Matrix([2,1]) == 2*Matrix([2,1]) and M*Matrix([-1,1]) == -1*Matrix([-1,1])\nassert Rational(1,3)*Matrix([2,1]) - Rational(1,3)*Matrix([-1,1]) == Matrix([1,0])"
+    },
+    {
+     "claim": "B not diagonalisable (rank(B-2I)=2), C diagonalisable (rank(C-2I)=1) with P^-1 C P = diag(2,2,3)",
+     "python": "from sympy import Matrix, eye, diag\nB = Matrix([[2,1,0],[0,2,0],[0,0,3]]); C = Matrix([[2,0,1],[0,2,0],[0,0,3]])\nassert (B-2*eye(3)).rank() == 2 and not B.is_diagonalizable()\nassert (C-2*eye(3)).rank() == 1 and C.is_diagonalizable()\nP = Matrix([[1,0,1],[0,1,0],[0,0,1]])\nassert P.inv()*C*P == diag(2,2,3) and (C-3*eye(3))*Matrix([1,0,1]) == Matrix([0,0,0])"
+    },
+    {
+     "claim": "Shear not diagonalisable; rotation diagonalisable over C only; zero matrix diagonal",
+     "python": "from sympy import Matrix\nassert not Matrix([[1,1],[0,1]]).is_diagonalizable()\nR = Matrix([[0,-1],[1,0]])\nassert R.is_diagonalizable() and not R.is_diagonalizable(reals_only=True)"
+    },
+    {
+     "claim": "Projections A^2=A: diagonalisable with trace = rank (random projections P D P^-1 with 0/1 diagonal, and oblique ones)",
+     "python": "import random\nfrom sympy import Matrix, diag\nfor _ in range(60):\n    n = random.randint(1,5)\n    while True:\n        P = Matrix(n,n,lambda i,j: random.randint(-3,3))\n        if P.det() != 0: break\n    d = [random.randint(0,1) for _ in range(n)]\n    A = P*diag(*d)*P.inv()\n    assert A*A == A and A.is_diagonalizable() and A.trace() == A.rank() == sum(d)"
+    },
+    {
+     "claim": "Block triangular determinant: det [[X,C],[0,E]] = det X det E (random)",
+     "python": "import random\nfrom sympy import Matrix, zeros\nfor _ in range(100):\n    g = random.randint(1,3); h = random.randint(1,3)\n    X = Matrix(g,g,lambda i,j: random.randint(-4,4)); E = Matrix(h,h,lambda i,j: random.randint(-4,4)); C = Matrix(g,h,lambda i,j: random.randint(-4,4))\n    M = X.row_join(C).col_join(zeros(h,g).row_join(E))\n    assert M.det() == X.det()*E.det()"
+    },
+    {
+     "claim": "Matrix exponential: e^{tA} = P diag(e^{5t}, e^{2t}) P^-1 for A=[[4,1],[2,3]]",
+     "python": "from sympy import Matrix, symbols, exp, diag, simplify\nt = symbols('t')\nA = Matrix([[4,1],[2,3]]); P = Matrix([[1,1],[1,-2]])\nassert simplify((A*t).exp() - P*diag(exp(5*t),exp(2*t))*P.inv()) == Matrix.zeros(2,2)"
+    },
+    {
+     "claim": "Reviewer: A^n/5^n -> (1/3)[[2,1],[2,1]] for A=[[4,1],[2,3]] (exact error is (2/5)^n times a fixed matrix)",
+     "python": "from sympy import Matrix, Rational\nA = Matrix([[4,1],[2,3]])\nL = Rational(1,3)*Matrix([[2,1],[2,1]])\nE = Rational(1,3)*Matrix([[1,-1],[-2,2]])\nfor n in range(0, 25):\n    assert A**n/Rational(5)**n == L + Rational(2,5)**n*E"
+    },
+    {
+     "claim": "Reviewer: Pell matrix [[x1, d y1],[y1, x1]] for d=2, (x1,y1)=(3,2) has eigenvalues 3 +- 2 sqrt2 and its powers applied to (1,0) give solutions of x^2-2y^2=1",
+     "python": "from sympy import Matrix, sqrt\nM = Matrix([[3,4],[2,3]])\nassert set(M.eigenvals()) == {3+2*sqrt(2), 3-2*sqrt(2)}\nfor k in range(1, 12):\n    x, y = M**k*Matrix([1,0])\n    assert x**2 - 2*y**2 == 1"
+    },
+    {
+     "claim": "Reviewer: diagonalisable over R iff real eigenvalues and g=a: [[1,2],[3,4]] (real distinct) diagonalises with real P; rotation does not; [[0,1],[-1,0]] diagonalisable over C",
+     "python": "from sympy import Matrix\nA = Matrix([[1,2],[3,4]])\nP, D = A.diagonalize()\nfrom sympy import simplify\nassert A.is_diagonalizable(reals_only=True) and simplify(P*D*P.inv() - A) == Matrix.zeros(2, 2)\nassert all(x.is_real for x in list(P) + list(D))\nR = Matrix([[0,-1],[1,0]])\nassert not R.is_diagonalizable(reals_only=True) and R.is_diagonalizable()"
+    },
+    {
+     "claim": "Reviewer: oblique projection A=[[1,1],[0,0]]: A^2=A, image = E_1 = span(1,0), trace = rank = 1; v = Av + (v-Av) with v-Av in ker A",
+     "python": "from sympy import Matrix, symbols\nA = Matrix([[1,1],[0,0]])\nassert A*A == A and A.trace() == A.rank() == 1\nassert A.columnspace()[0] == Matrix([1,0]) and (A - Matrix.eye(2))*Matrix([1,0]) == Matrix([0,0])\na, b = symbols('a b'); v = Matrix([a,b])\nassert A*(v - A*v) == Matrix([0,0])"
+    }
+   ]
+  }
+ },
+ {
+  "id": "inner-products",
+  "entry": {
+   "sum": "An inner product $\\langle u, v\\rangle$ on a vector space generalises the dot product: it is linear in the first argument, symmetric (conjugate-symmetric over $\\mathbb C$) and positive definite, and it defines lengths $\\|v\\| = \\sqrt{\\langle v, v\\rangle}$ and angles. Orthogonality, $\\langle u, v\\rangle = 0$, is the key notion: in an orthonormal basis coordinates are just inner products, and the closest point of a subspace is the orthogonal projection.",
+   "key": [
+    "|\\langle u,v\\rangle|\\le \\|u\\|\\,\\|v\\|",
+    "v=\\sum_{i=1}^{n}\\langle v,e_i\\rangle\\, e_i\\quad\\text{for an orthonormal basis } e_1,\\dots,e_n",
+    "V=W\\oplus W^{\\perp},\\qquad \\|v-P_Wv\\|=\\min_{w\\in W}\\|v-w\\|"
+   ],
+   "why": "Inner products bring Euclidean geometry (length, angle, perpendicularity, best approximation) into any vector space, including spaces of functions, which is the basis of least-squares fitting, Fourier series and the state spaces of quantum mechanics.",
+   "msc": [
+    "15A63",
+    "46C05"
+   ],
+   "links": [
+    {
+     "field": "harmonic-analysis",
+     "note": "Fourier series expand a function in the orthonormal system $e^{2\\pi i k x}$ with respect to $\\langle f, g\\rangle = \\int_0^1 f\\bar g$, and Parseval's identity is Pythagoras in infinitely many dimensions."
+    },
+    {
+     "field": "quantum-computing",
+     "note": "Quantum states are unit vectors in a complex inner product space, and the probability of a measurement outcome is $|\\langle \\phi, \\psi\\rangle|^2$."
+    },
+    {
+     "field": "probability",
+     "note": "Covariance is an inner product on mean-zero random variables with finite variance (identifying variables that are equal with probability $1$), so correlation is the cosine of an angle and uncorrelated means orthogonal."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Strang, Introduction to Linear Algebra",
+    "Halmos, Finite-Dimensional Vector Spaces"
+   ],
+   "aliases": [
+    "inner product space",
+    "dot product",
+    "scalar product",
+    "orthogonality",
+    "orthonormal basis",
+    "Gram–Schmidt",
+    "orthogonal projection",
+    "orthogonal complement",
+    "least squares"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "In $\\mathbb R^3$ the dot product $u \\cdot v = u_1v_1 + u_2v_2 + u_3v_3$ gives lengths ($\\|v\\|^2 = v\\cdot v$), angles ($u \\cdot v = \\|u\\|\\|v\\|\\cos\\theta$) and the notion of perpendicular vectors ($u \\cdot v = 0$). An abstract vector space has none of this: it knows how to add and scale, but not how long a vector is.\n\nAn inner product is the extra structure that supplies geometry. Once you have one, you can ask which polynomial of degree $1$ is closest to $x^2$ on $[0, 1]$, or find coordinates without solving a linear system, using the same pictures as in the plane. This lesson builds that toolkit: the axioms, the Cauchy–Schwarz inequality, orthonormal bases, Gram–Schmidt, and orthogonal projection."
+    },
+    {
+     "type": "definition",
+     "title": "Inner product",
+     "body": "Let $V$ be a vector space over $\\mathbb R$. An inner product on $V$ is a function $\\langle\\cdot,\\cdot\\rangle : V \\times V \\to \\mathbb R$ such that for all $u, v, w \\in V$ and scalars $a, b$:\n\n1. linearity: $\\langle au + bv, w\\rangle = a\\langle u, w\\rangle + b\\langle v, w\\rangle$;\n2. symmetry: $\\langle u, v\\rangle = \\langle v, u\\rangle$;\n3. positivity: $\\langle v, v\\rangle > 0$ for $v \\ne 0$.\n\nOver $\\mathbb C$ the values are complex, symmetry is replaced by $\\langle u, v\\rangle = \\overline{\\langle v, u\\rangle}$ (so $\\langle v, v\\rangle$ is real), and linearity is required in the first slot only. The norm is $\\|v\\| = \\sqrt{\\langle v, v\\rangle}$, and $u, v$ are orthogonal, written $u \\perp v$, if $\\langle u, v\\rangle = 0$.\n\nSo an inner product is a rule for multiplying two vectors to get a number that behaves like the dot product."
+    },
+    {
+     "type": "section",
+     "title": "Examples",
+     "body": "The standard examples:\n\n- $\\mathbb R^n$ with the dot product $\\langle u, v\\rangle = \\sum u_iv_i = u^{\\mathsf T}v$, and $\\mathbb C^n$ with $\\langle u, v\\rangle = \\sum u_i\\overline{v_i}$. The conjugate is essential: without it, $\\langle (1, i), (1, i)\\rangle$ would be $1 + i^2 = 0$.\n- Weighted versions $\\sum c_iu_iv_i$ with all $c_i > 0$. Different inner products on the same space give different notions of perpendicular.\n- Continuous functions on $[0, 1]$ with $\\langle f, g\\rangle = \\int_0^1 f(x)g(x)\\,dx$. Positivity holds because a continuous $f \\ne 0$ has $f^2 > 0$ on some interval. Here $\\langle 1, x - \\frac12\\rangle = 0$: the functions $1$ and $x - \\frac12$ are orthogonal.\n- Real $m\\times n$ matrices with $\\langle A, B\\rangle = \\operatorname{tr}(A^{\\mathsf T}B) = \\sum_{i,j} a_{ij}b_{ij}$, the dot product of the matrices viewed as long vectors.\n\nExpanding $\\|u + v\\|^2 = \\langle u + v, u + v\\rangle$ gives $\\|u\\|^2 + 2\\langle u, v\\rangle + \\|v\\|^2$ in the real case. So Pythagoras holds: if $u \\perp v$ then $\\|u + v\\|^2 = \\|u\\|^2 + \\|v\\|^2$ (over $\\mathbb C$ the middle term is $2\\operatorname{Re}\\langle u, v\\rangle$, and the conclusion is the same)."
+    },
+    {
+     "type": "theorem",
+     "title": "Cauchy–Schwarz inequality",
+     "body": "For all $u, v$ in an inner product space,\n$$|\\langle u, v\\rangle| \\le \\|u\\|\\,\\|v\\|,$$\nwith equality if and only if $u$ and $v$ are linearly dependent. Consequently $\\|u + v\\| \\le \\|u\\| + \\|v\\|$ (the triangle inequality)."
+    },
+    {
+     "type": "proof",
+     "body": "If $v = 0$ both sides are $0$, and $u, v$ are dependent. Otherwise let $c = \\langle u, v\\rangle / \\langle v, v\\rangle$ and $w = u - cv$. This is the part of $u$ left after removing its component along $v$, and indeed\n$$\\langle w, v\\rangle = \\langle u, v\\rangle - c\\langle v, v\\rangle = 0.$$\nSo $u = w + cv$ with $w \\perp cv$, and Pythagoras gives\n$$\\|u\\|^2 = \\|w\\|^2 + |c|^2\\|v\\|^2 \\ge |c|^2\\|v\\|^2 = \\frac{|\\langle u, v\\rangle|^2}{\\|v\\|^2}.$$\nMultiplying by $\\|v\\|^2$ and taking square roots gives the inequality. Equality holds exactly when $w = 0$, that is $u = cv$; and if $u, v$ are dependent with $v \\neq 0$, then $u$ is a multiple of $v$, which forces $u = cv$.\n\nFor the triangle inequality, $\\|u + v\\|^2 = \\|u\\|^2 + 2\\operatorname{Re}\\langle u, v\\rangle + \\|v\\|^2 \\le \\|u\\|^2 + 2\\|u\\|\\|v\\| + \\|v\\|^2 = (\\|u\\| + \\|v\\|)^2$."
+    },
+    {
+     "type": "section",
+     "title": "Angles and orthonormal bases",
+     "body": "In a real inner product space, Cauchy–Schwarz says $-1 \\le \\frac{\\langle u, v\\rangle}{\\|u\\|\\|v\\|} \\le 1$ for nonzero $u, v$, so we may define the angle $\\theta \\in [0, \\pi]$ between them by $\\cos\\theta = \\frac{\\langle u, v\\rangle}{\\|u\\|\\|v\\|}$. Applied to $\\mathbb R^n$ it is the classical inequality $(\\sum u_iv_i)^2 \\le \\sum u_i^2 \\sum v_i^2$ of [[cauchy-schwarz]]; applied to functions it is $\\left(\\int fg\\right)^2 \\le \\int f^2 \\int g^2$.\n\nA list $e_1, \\dots, e_k$ is orthonormal if $\\langle e_i, e_j\\rangle = 0$ for $i \\ne j$ and $\\|e_i\\| = 1$. Orthonormal lists are automatically independent: if $\\sum c_ie_i = 0$, take the inner product with $e_j$ to get $c_j = 0$. The same computation shows why orthonormal bases are so convenient. If $v = \\sum c_ie_i$, then\n$$\\langle v, e_j\\rangle = \\sum_i c_i\\langle e_i, e_j\\rangle = c_j,$$\nso the coordinates are just inner products, with no linear system to solve:\n$$v = \\sum_{i=1}^{n} \\langle v, e_i\\rangle e_i, \\qquad \\|v\\|^2 = \\sum_{i=1}^n |\\langle v, e_i\\rangle|^2.$$\nThe second formula (Parseval's identity) is Pythagoras applied to the orthogonal pieces. In matrix language: a real square matrix $Q$ has orthonormal columns exactly when $Q^{\\mathsf T}Q = I$, so its inverse is just its transpose. Such matrices are called orthogonal; they preserve inner products, $\\langle Qx, Qy\\rangle = x^{\\mathsf T}Q^{\\mathsf T}Qy = \\langle x, y\\rangle$, and hence lengths and angles. Rotations and reflections are examples."
+    },
+    {
+     "type": "theorem",
+     "title": "Gram–Schmidt process",
+     "body": "Let $v_1, \\dots, v_k$ be linearly independent vectors in an inner product space. Define recursively\n$$u_j = v_j - \\sum_{i < j} \\langle v_j, e_i\\rangle e_i, \\qquad e_j = \\frac{u_j}{\\|u_j\\|}.$$\nThen $e_1, \\dots, e_k$ is orthonormal and, for each $j$, $\\operatorname{span}(e_1, \\dots, e_j) = \\operatorname{span}(v_1, \\dots, v_j)$. In particular every finite-dimensional inner product space has an orthonormal basis."
+    },
+    {
+     "type": "proof",
+     "body": "Induction on $j$. Suppose $e_1, \\dots, e_{j-1}$ are orthonormal with the same span as $v_1, \\dots, v_{j-1}$. Then $u_j \\ne 0$: otherwise $v_j$ would lie in $\\operatorname{span}(e_1, \\dots, e_{j-1}) = \\operatorname{span}(v_1, \\dots, v_{j-1})$, contradicting independence. So $e_j$ is defined and has norm $1$. For $l < j$,\n$$\\langle u_j, e_l\\rangle = \\langle v_j, e_l\\rangle - \\sum_{i<j}\\langle v_j, e_i\\rangle\\langle e_i, e_l\\rangle = \\langle v_j, e_l\\rangle - \\langle v_j, e_l\\rangle = 0,$$\nso $e_j$ is orthogonal to the earlier vectors. Finally $e_j$ is a combination of $v_j$ and $e_1, \\dots, e_{j-1}$, and $v_j$ is a combination of $e_j$ and $e_1, \\dots, e_{j-1}$, so the spans agree. Applying the process to any basis ([[basis-dimension]]) gives an orthonormal basis."
+    },
+    {
+     "type": "section",
+     "title": "Orthogonal projection and best approximation",
+     "body": "Let $W$ be a subspace with orthonormal basis $e_1, \\dots, e_k$. The orthogonal complement is $W^\\perp = \\{v : \\langle v, w\\rangle = 0 \\text{ for all } w \\in W\\}$, and the orthogonal projection onto $W$ is\n$$P_Wv = \\sum_{i=1}^{k} \\langle v, e_i\\rangle e_i.$$\nExactly as in the proof of Gram–Schmidt, $v - P_Wv$ is orthogonal to every $e_i$, hence lies in $W^\\perp$. So every $v$ splits as $v = P_Wv + (v - P_Wv)$ with the first part in $W$ and the second in $W^\\perp$. The split is unique, since a vector in both $W$ and $W^\\perp$ is orthogonal to itself and so is $0$. This is the decomposition $V = W \\oplus W^\\perp$ in finite dimensions, and it gives $\\dim W + \\dim W^\\perp = \\dim V$.\n\nThe projection is the best approximation from $W$. For any $w \\in W$, the vector $P_Wv - w$ lies in $W$ and $v - P_Wv$ lies in $W^\\perp$, so by Pythagoras\n$$\\|v - w\\|^2 = \\|v - P_Wv\\|^2 + \\|P_Wv - w\\|^2 \\ge \\|v - P_Wv\\|^2,$$\nwith equality only for $w = P_Wv$. In practice you rarely need an orthonormal basis: $P_Wv$ is characterised by $v - P_Wv \\perp w$ for every $w$ in a spanning set of $W$, which is a small linear system (the normal equations). This is the method of least squares."
+    },
+    {
+     "type": "example",
+     "title": "Gram–Schmidt in R^3",
+     "body": "Apply Gram–Schmidt to $v_1 = (1, 1, 0)$, $v_2 = (1, 0, 1)$, $v_3 = (0, 1, 1)$ in $\\mathbb R^3$ with the dot product.",
+     "solution": "First $e_1 = \\frac{1}{\\sqrt2}(1, 1, 0)$.\n\nNext $\\langle v_2, e_1\\rangle = \\frac{1}{\\sqrt2}$, so $u_2 = v_2 - \\frac12(1, 1, 0) = (\\frac12, -\\frac12, 1)$, with $\\|u_2\\|^2 = \\frac14 + \\frac14 + 1 = \\frac32$. Rescaling, $e_2 = \\frac{1}{\\sqrt6}(1, -1, 2)$.\n\nFinally $\\langle v_3, e_1\\rangle = \\frac{1}{\\sqrt2}$ and $\\langle v_3, e_2\\rangle = \\frac{-1 + 2}{\\sqrt 6} = \\frac{1}{\\sqrt6}$, so\n$$u_3 = (0, 1, 1) - \\tfrac12(1, 1, 0) - \\tfrac16(1, -1, 2) = \\left(-\\tfrac23, \\tfrac23, \\tfrac23\\right), \\qquad e_3 = \\tfrac{1}{\\sqrt3}(-1, 1, 1).$$\nCheck: $(1,1,0)\\cdot(1,-1,2) = 0$, $(1,1,0)\\cdot(-1,1,1) = 0$ and $(1,-1,2)\\cdot(-1,1,1) = 0$. Now, for example, the coordinates of $x = (2, 0, 0)$ are $\\langle x, e_i\\rangle = \\sqrt2, \\frac{2}{\\sqrt6}, -\\frac{2}{\\sqrt3}$, and indeed $2 + \\frac46 + \\frac43 = 4 = \\|x\\|^2$."
+    },
+    {
+     "type": "example",
+     "title": "Best linear approximation of a function",
+     "body": "Find the polynomial $a + bx$ that minimises $\\int_0^1 (x^2 - a - bx)^2\\,dx$, and the minimum value.",
+     "solution": "Work in continuous functions on $[0, 1]$ with $\\langle f, g\\rangle = \\int_0^1 fg$. We want the projection of $x^2$ onto $W = \\operatorname{span}(1, x)$, characterised by $x^2 - a - bx \\perp 1$ and $\\perp x$. Using $\\int_0^1 x^k\\,dx = \\frac{1}{k+1}$:\n$$\\tfrac13 - a - \\tfrac12 b = 0, \\qquad \\tfrac14 - \\tfrac12 a - \\tfrac13 b = 0.$$\nFrom the first, $a = \\frac13 - \\frac b2$; substituting, $\\frac14 - \\frac16 + \\frac b4 - \\frac b3 = 0$, i.e. $\\frac{1}{12} - \\frac{b}{12} = 0$. So $b = 1$, $a = -\\frac16$, and the best approximation is $x - \\frac16$.\n\nThe error is $r(x) = x^2 - x + \\frac16$, and since $r \\perp W$, $\\|r\\|^2 = \\langle r, x^2\\rangle = \\frac15 - \\frac14 + \\frac1{18} = \\frac{1}{180}$. Note that the answer is neither the chord $y = x$ nor any tangent line of $y = x^2$; it is the best fit in the averaged, squared sense."
+    },
+    {
+     "type": "example",
+     "title": "Pairwise obtuse vectors",
+     "body": "Vectors $v_1, \\dots, v_m \\in \\mathbb R^n$ satisfy $\\langle v_i, v_j\\rangle < 0$ for all $i \\ne j$. Prove that $m \\le n + 1$, and show that $m = n + 1$ is possible.",
+     "solution": "We show that $v_1, \\dots, v_{m-1}$ are linearly independent; then $m - 1 \\le n$.\n\nSuppose $\\sum_{i < m} c_iv_i = 0$. Move the terms with negative coefficients to the other side: with $P = \\{i : c_i > 0\\}$ and $N = \\{i : c_i < 0\\}$,\n$$w := \\sum_{i \\in P} c_iv_i = \\sum_{j \\in N} (-c_j)v_j.$$\nTaking the inner product of the two expressions for $w$,\n$$\\|w\\|^2 = \\sum_{i\\in P}\\sum_{j \\in N} c_i(-c_j)\\langle v_i, v_j\\rangle \\le 0,$$\nbecause every coefficient $c_i(-c_j)$ is positive and every $\\langle v_i, v_j\\rangle$ is negative (and $P \\cap N = \\varnothing$). So $w = 0$. If $P$ were nonempty, then\n$$0 = \\langle w, v_m\\rangle = \\sum_{i \\in P} c_i\\langle v_i, v_m\\rangle < 0,$$\na contradiction; so $P = \\varnothing$, and likewise (using the second expression for $w$) $N = \\varnothing$. All $c_i$ are $0$.\n\nFor $m = n + 1$, take the vertices of a regular simplex centred at the origin: in $\\mathbb R^{n+1}$ let $u_i = e_i - \\frac{1}{n+1}(1, \\dots, 1)$ for $i = 1, \\dots, n+1$. Then $\\langle u_i, u_j\\rangle = -\\frac{1}{n+1}$ for $i \\ne j$, and all $u_i$ lie in the $n$-dimensional subspace $x_1 + \\cdots + x_{n+1} = 0$, which is a copy of $\\mathbb R^n$ (choose an orthonormal basis of it). For $n = 2$ these are three vectors in a plane at $120^\\circ$ to each other."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Over $\\mathbb C$, forgetting the conjugate breaks positivity. Also, books differ on which slot is linear: here it is the first, while physics texts usually make the second slot linear. Formulas such as $P_Wv = \\sum\\langle v, e_i\\rangle e_i$ must then be rewritten as $\\sum \\langle e_i, v\\rangle e_i$.\n- An orthogonal matrix has orthonormal columns, not merely orthogonal ones: $\\begin{pmatrix} 2 & 0 \\\\ 0 & 1\\end{pmatrix}$ has orthogonal columns but does not satisfy $Q^{\\mathsf T}Q = I$.\n- The formula $P_Wv = \\sum \\langle v, w_i\\rangle w_i$ is valid only for an orthonormal basis $w_i$ of $W$; with a merely spanning or non-normalised set, solve the normal equations instead.\n- Orthogonality depends on the inner product. $(1, 1)$ and $(1, -1)$ are orthogonal for the dot product but not for $\\langle u, v\\rangle = 2u_1v_1 + u_2v_2$.\n- Gram–Schmidt depends on the order of the input vectors; different orders give different orthonormal bases of the same space."
+    },
+    {
+     "type": "connection",
+     "body": "The main theorem built on inner products is [[spectral-theorem|the spectral theorem]]: a real symmetric matrix has an orthonormal basis of eigenvectors. It in turn yields [[svd|the singular value decomposition]], which describes any matrix by two orthonormal bases. In matrix form, Gram–Schmidt is the factorisation $A = QR$ with $Q$ having orthonormal columns and $R$ upper triangular, which, computed in a numerically stable way, is a standard tool for least-squares problems arising from [[linear-systems]] with more equations than unknowns.\n\nWith $\\langle f, g\\rangle = \\int_0^1 f\\overline{g}$, the functions $e^{2\\pi i kx}$ are orthonormal, and expanding in them is Fourier series ([[fourier-poisson]]). Infinite-dimensional complete inner product spaces (Hilbert spaces) need the ideas of [[metric-spaces]] and [[lebesgue|the Lebesgue integral]]. In probability, $\\operatorname{Cov}(X, Y)$ is an inner product on mean-zero [[random-variables]] with finite variance (identifying variables that are equal with probability $1$), and the coordinate geometry of [[analytic-geometry]] is the dot product in $\\mathbb R^2$ and $\\mathbb R^3$."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find an orthonormal basis of the plane $x + y + z = 0$ in $\\mathbb R^3$, and the projection of $(1, 2, 6)$ onto it.\n2. Show that $\\langle p, q\\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$ is an inner product on polynomials of degree at most $2$, but not on polynomials of degree at most $3$.\n3. Prove the parallelogram law $\\|u + v\\|^2 + \\|u - v\\|^2 = 2\\|u\\|^2 + 2\\|v\\|^2$.\n4. Show that $W^\\perp$ is a subspace and that $(W^\\perp)^\\perp = W$ when $V$ is finite-dimensional."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 6"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Halmos, Finite-Dimensional Vector Spaces"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Conjugate needed: (1,i).(1,i) without conjugate = 0; with conjugate = 2; <1, x-1/2> = 0 on [0,1]",
+     "python": "from sympy import I, conjugate, integrate, symbols, Rational\nx = symbols('x')\nassert 1*1 + I*I == 0 and 1*conjugate(1) + I*conjugate(I) == 2\nassert integrate(1*(x-Rational(1,2)),(x,0,1)) == 0"
+    },
+    {
+     "claim": "Cauchy-Schwarz and triangle inequality hold for random complex vectors; tr(A^T B) = sum a_ij b_ij",
+     "python": "import numpy as np\nrng = np.random.default_rng(0)\nfor _ in range(2000):\n    n = rng.integers(1,8)\n    u = rng.normal(size=n)+1j*rng.normal(size=n); v = rng.normal(size=n)+1j*rng.normal(size=n)\n    ip = np.sum(u*np.conj(v))\n    assert abs(ip) <= np.linalg.norm(u)*np.linalg.norm(v)+1e-12\n    assert np.linalg.norm(u+v) <= np.linalg.norm(u)+np.linalg.norm(v)+1e-12\nA = rng.normal(size=(3,4)); B = rng.normal(size=(3,4))\nassert abs(np.trace(A.T@B) - np.sum(A*B)) < 1e-12"
+    },
+    {
+     "claim": "Gram-Schmidt example: e1=(1,1,0)/sqrt2, e2=(1,-1,2)/sqrt6, e3=(-1,1,1)/sqrt3, u2=(1/2,-1/2,1), u3=(-2/3,2/3,2/3), orthonormal; sympy GramSchmidt agrees",
+     "python": "from sympy import Matrix, sqrt, Rational as R, GramSchmidt, simplify\nv1,v2,v3 = Matrix([1,1,0]),Matrix([1,0,1]),Matrix([0,1,1])\ne1 = v1/sqrt(2); e2 = Matrix([1,-1,2])/sqrt(6); e3 = Matrix([-1,1,1])/sqrt(3)\nu2 = v2 - (v2.dot(e1))*e1; assert simplify(u2 - Matrix([R(1,2),R(-1,2),1])) == Matrix([0,0,0]) and simplify(u2.dot(u2)) == R(3,2)\nu3 = v3 - v3.dot(e1)*e1 - v3.dot(e2)*e2; assert simplify(u3 - Matrix([R(-2,3),R(2,3),R(2,3)])) == Matrix([0,0,0])\nassert simplify(v3.dot(e2) - 1/sqrt(6)) == 0\nE = [e1,e2,e3]\nfor i in range(3):\n    for j in range(3):\n        assert simplify(E[i].dot(E[j]) - (1 if i==j else 0)) == 0\nG = GramSchmidt([v1,v2,v3], True)\nassert all(simplify(G[i]-E[i]) == Matrix([0,0,0]) for i in range(3))\nx = Matrix([2,0,0]); c = [simplify(x.dot(e)) for e in E]\nassert [simplify(c[0]-sqrt(2)), simplify(c[1]-2/sqrt(6)), simplify(c[2]+2/sqrt(3))] == [0,0,0]\nassert simplify(sum(ci**2 for ci in c)) == 4"
+    },
+    {
+     "claim": "Least squares: best a+bx for x^2 on [0,1] is x - 1/6 with error integral 1/180; normal equations",
+     "python": "from sympy import symbols, integrate, Rational, solve, diff\nx,a,b = symbols('x a b')\nF = integrate((x**2-a-b*x)**2,(x,0,1))\nsol = solve([diff(F,a),diff(F,b)],[a,b])\nassert sol == {a: Rational(-1,6), b: 1}\nassert F.subs(sol) == Rational(1,180)\nr = x**2 - x + Rational(1,6)\nassert integrate(r,(x,0,1)) == 0 and integrate(r*x,(x,0,1)) == 0 and integrate(r*x**2,(x,0,1)) == Rational(1,180)\nassert Rational(1,5)-Rational(1,4)+Rational(1,18) == Rational(1,180)"
+    },
+    {
+     "claim": "Simplex vectors u_i = e_i - (1/(n+1))1 have pairwise inner product -1/(n+1) and lie in sum-zero hyperplane (rank n)",
+     "python": "from sympy import Matrix, Rational, eye, ones\nfor n in range(1,8):\n    U = eye(n+1) - Rational(1,n+1)*ones(n+1,n+1)\n    G = U.T*U\n    assert all(G[i,j] == Rational(-1,n+1) for i in range(n+1) for j in range(n+1) if i != j)\n    assert all(sum(U[:,i]) == 0 for i in range(n+1)) and U.rank() == n"
+    },
+    {
+     "claim": "Pairwise negative inner products: random search never finds n+2 such vectors in R^n is consistent; any m-1 of them independent (random sampled sets in R^3)",
+     "python": "import numpy as np\nrng = np.random.default_rng(5)\nfound = 0\nfor _ in range(20000):\n    V = rng.normal(size=(4,3))\n    G = V@V.T\n    if all(G[i,j] < 0 for i in range(4) for j in range(4) if i != j):\n        found += 1\n        for k in range(4):\n            assert np.linalg.matrix_rank(np.delete(V,k,axis=0)) == 3\nassert found > 0"
+    },
+    {
+     "claim": "Orthogonal matrices preserve inner products; diag(2,1) has orthogonal but not orthonormal columns; weighted product makes (1,1),(1,-1) non-orthogonal",
+     "python": "import numpy as np\nrng = np.random.default_rng(2)\nQ,_ = np.linalg.qr(rng.normal(size=(5,5)))\nx = rng.normal(size=5); y = rng.normal(size=5)\nassert np.allclose(Q.T@Q, np.eye(5)) and abs((Q@x)@(Q@y) - x@y) < 1e-12\nD = np.diag([2.,1.]); assert D[:,0]@D[:,1] == 0 and not np.allclose(D.T@D, np.eye(2))\nassert 2*1*1 + 1*(-1) == 1"
+    },
+    {
+     "claim": "Reviewer: simplex vectors have |u_i|^2 = n/(n+1) and pairwise cosine -1/n; for n=2 the angle is 120 degrees",
+     "python": "from sympy import Matrix, Rational, eye, ones, acos, pi\nfor n in range(1, 8):\n    U = eye(n+1) - Rational(1, n+1)*ones(n+1, n+1)\n    G = U.T*U\n    for i in range(n+1):\n        assert G[i,i] == Rational(n, n+1)\n        for j in range(n+1):\n            if i != j: assert G[i,j]/G[i,i] == Rational(-1, n)\nassert acos(Rational(-1,2)) == 2*pi/3"
+    },
+    {
+     "claim": "Reviewer: x - 1/6 is not the chord y=x and not tangent to y=x^2 (tangent lines are 2cx - c^2; slope 1 forces c=1/2, intercept -1/4)",
+     "python": "from sympy import Rational, symbols, solve\nc = symbols('c')\nsol = solve(2*c - 1, c)\nassert sol == [Rational(1,2)] and -sol[0]**2 == Rational(-1,4) != Rational(-1,6)"
+    },
+    {
+     "claim": "Reviewer: Cauchy-Schwarz equality exactly for dependent vectors (complex example u = (2-3i) v), strict for an independent pair; parallelogram law numerically",
+     "python": "import numpy as np\nv = np.array([1+2j, -1j, 3]); u = (2-3j)*v\nip = lambda a, b: np.sum(a*np.conj(b))\nassert abs(abs(ip(u,v)) - np.linalg.norm(u)*np.linalg.norm(v)) < 1e-12\nw = np.array([1, 1j, 0])\nassert abs(ip(w,v)) < np.linalg.norm(w)*np.linalg.norm(v) - 1e-6\nx = np.array([1.,2,-3]); y = np.array([0.5,-1,4])\nassert abs(np.linalg.norm(x+y)**2 + np.linalg.norm(x-y)**2 - 2*np.linalg.norm(x)**2 - 2*np.linalg.norm(y)**2) < 1e-12"
+    },
+    {
+     "claim": "Reviewer: pairwise-obtuse lemma, exact check of the key identity <sum_P c_i v_i, sum_N (-c_j) v_j> = sum c_i(-c_j)<v_i,v_j> on random rational data",
+     "python": "import random\nfrom fractions import Fraction as F\nrandom.seed(2)\ndot = lambda a, b: sum(x*y for x, y in zip(a, b))\nfor _ in range(200):\n    vs = [[F(random.randint(-5,5)) for _ in range(3)] for _ in range(5)]\n    c = [F(random.randint(-4,4)) for _ in range(5)]\n    Pi = [i for i in range(5) if c[i] > 0]; Ni = [i for i in range(5) if c[i] < 0]\n    wP = [sum(c[i]*vs[i][k] for i in Pi) for k in range(3)]\n    wN = [sum(-c[j]*vs[j][k] for j in Ni) for k in range(3)]\n    assert dot(wP, wN) == sum(c[i]*(-c[j])*dot(vs[i], vs[j]) for i in Pi for j in Ni)"
+    }
+   ]
+  }
+ },
+ {
+  "id": "spectral-theorem",
+  "entry": {
+   "sum": "The spectral theorem says that every real symmetric matrix $A$ can be diagonalised by an orthogonal change of basis: $A = QDQ^{\\mathsf T}$ with $Q$ orthogonal and $D$ real diagonal. Equivalently, its eigenvalues are real and it has an orthonormal basis of eigenvectors, so the map $x\\mapsto Ax$ is a stretch along perpendicular axes; the same holds for complex Hermitian matrices with a unitary $Q$.",
+   "key": [
+    "A=A^{\\mathsf T}\\ \\Longrightarrow\\ A=QDQ^{\\mathsf T},\\qquad Q^{\\mathsf T}Q=I,\\ D\\ \\text{real diagonal}",
+    "A=\\sum_{i=1}^{n}\\lambda_i\\, q_iq_i^{\\mathsf T}",
+    "\\max_{\\|x\\|=1} x^{\\mathsf T}Ax=\\lambda_{\\max},\\qquad \\min_{\\|x\\|=1}x^{\\mathsf T}Ax=\\lambda_{\\min}"
+   ],
+   "why": "Symmetric and Hermitian matrices are everywhere (Hessians, covariance matrices, adjacency matrices of graphs, quantum observables), and the spectral theorem reduces each of them to independent one-dimensional pieces: principal axes of a conic, principal components of data, normal modes of a vibrating system.",
+   "msc": [
+    "15A18",
+    "47B15"
+   ],
+   "links": [
+    {
+     "field": "calculus",
+     "note": "The second-derivative test in several variables diagonalises the symmetric Hessian matrix: a critical point is a local minimum when all its eigenvalues are positive."
+    },
+    {
+     "field": "probability",
+     "note": "A covariance matrix is symmetric and positive semidefinite, and its orthonormal eigenvectors are the principal components used in principal component analysis."
+    },
+    {
+     "field": "physics",
+     "note": "Observables in quantum mechanics are self-adjoint operators whose real eigenvalues are the possible measurement results, and the principal axes of inertia of a rigid body are the eigenvectors of its inertia tensor."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Strang, Introduction to Linear Algebra",
+    "Horn & Johnson, Matrix Analysis"
+   ],
+   "aliases": [
+    "spectral theorem for symmetric matrices",
+    "principal axis theorem",
+    "orthogonal diagonalisation",
+    "Hermitian matrix",
+    "self-adjoint operator",
+    "Rayleigh quotient",
+    "spectral decomposition"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "What does the curve $5x^2 + 4xy + 2y^2 = 1$ look like? The cross term $4xy$ hides the answer. If we could rotate the coordinate axes so that the cross term disappears, we would see an ellipse with its axes along the new coordinate directions. The spectral theorem says that such a rotation always exists, for any number of variables, and that the right axes are the eigenvectors of a symmetric matrix.\n\nGeneral matrices can fail to be diagonalisable, or have complex eigenvalues, or have eigenvectors at awkward angles. Symmetric matrices have none of these problems: their eigenvalues are real and their eigenvectors can be chosen perpendicular. This lesson proves that, using [[diagonalization]] and [[inner-products]], and shows what it buys."
+    },
+    {
+     "type": "definition",
+     "title": "Symmetric and self-adjoint",
+     "body": "A real $n\\times n$ matrix $A$ is symmetric if $A^{\\mathsf T} = A$, that is $a_{ij} = a_{ji}$. With the dot product $\\langle x, y\\rangle = x^{\\mathsf T}y$ this is equivalent to\n$$\\langle Ax, y\\rangle = \\langle x, Ay\\rangle \\quad \\text{for all } x, y \\in \\mathbb R^n,$$\nsince $\\langle Ax, y\\rangle = x^{\\mathsf T}A^{\\mathsf T}y$. A linear map with this property on an inner product space is called self-adjoint. A complex matrix with $\\overline{A}^{\\mathsf T} = A$ is called Hermitian; it is self-adjoint for $\\langle x, y\\rangle = \\sum x_i\\overline{y_i}$.\n\nSo a symmetric matrix is one that can be moved from one side of the inner product to the other."
+    },
+    {
+     "type": "theorem",
+     "title": "The spectral theorem",
+     "body": "Let $A$ be a real symmetric $n\\times n$ matrix. Then all eigenvalues of $A$ are real, and $\\mathbb R^n$ has an orthonormal basis $q_1, \\dots, q_n$ of eigenvectors of $A$. Equivalently, there are an orthogonal matrix $Q$ (with $Q^{\\mathsf T}Q = I$) and a real diagonal matrix $D$ with\n$$A = QDQ^{\\mathsf T}.$$\nConversely, every matrix of the form $QDQ^{\\mathsf T}$ with $Q$ orthogonal and $D$ real diagonal is symmetric. The analogous statement holds for complex Hermitian matrices, with $Q$ unitary ($\\overline{Q}^{\\mathsf T}Q = I$) and $D$ still real."
+    },
+    {
+     "type": "section",
+     "title": "Two key facts",
+     "body": "The proof rests on two short observations.\n\nEigenvalues are real. Let $Av = \\lambda v$ with $v \\in \\mathbb C^n$ nonzero (over $\\mathbb C$ an eigenvalue always exists). Write $v^* = \\overline{v}^{\\mathsf T}$ and consider the number $s = v^*Av$. On the one hand $s = \\lambda\\, v^*v = \\lambda\\sum|v_i|^2$. On the other hand, since $A$ is real and symmetric, $\\overline{s} = v^{\\mathsf T}A\\overline{v}$, and this $1\\times 1$ matrix equals its own transpose $\\overline{v}^{\\mathsf T}A^{\\mathsf T}v = v^*Av = s$. So $s$ is real, and $\\lambda = s/\\sum|v_i|^2$ is real. Then $A - \\lambda I$ is a real singular matrix, so it also has a nonzero real vector in its kernel: real eigenvalues have real eigenvectors.\n\nEigenvectors for different eigenvalues are perpendicular. If $Av = \\lambda v$ and $Aw = \\mu w$ with $\\lambda \\ne \\mu$, then\n$$\\lambda\\langle v, w\\rangle = \\langle Av, w\\rangle = \\langle v, Aw\\rangle = \\mu\\langle v, w\\rangle,$$\nso $(\\lambda - \\mu)\\langle v, w\\rangle = 0$ and $\\langle v, w\\rangle = 0$.\n\nThese two facts already prove the theorem when the eigenvalues are distinct: normalise one eigenvector for each eigenvalue. Repeated eigenvalues need an extra argument, because we must also show that each eigenspace is as large as the multiplicity. That is done by induction."
+    },
+    {
+     "type": "proof",
+     "body": "Proof of the spectral theorem. Induction on $n$; for $n = 1$ there is nothing to prove. Let $n \\ge 2$. By the first key fact, $A$ has a real eigenvalue $\\lambda_1$ with a real eigenvector, which we normalise to a unit vector $q_1$.\n\nLet $W = q_1^{\\perp} = \\{w : \\langle w, q_1\\rangle = 0\\}$, a subspace of dimension $n - 1$. The map $x \\mapsto Ax$ sends $W$ into itself: if $w \\in W$ then\n$$\\langle Aw, q_1\\rangle = \\langle w, Aq_1\\rangle = \\lambda_1\\langle w, q_1\\rangle = 0.$$\nChoose an orthonormal basis $f_1, \\dots, f_{n-1}$ of $W$ (Gram–Schmidt, see [[inner-products]]). The matrix $B$ of $A$ restricted to $W$ in this basis has entries $b_{ij} = \\langle Af_j, f_i\\rangle$, because coordinates in an orthonormal basis are inner products. Since $A$ is self-adjoint, $b_{ij} = \\langle f_j, Af_i\\rangle = b_{ji}$, so $B$ is a real symmetric $(n-1)\\times(n-1)$ matrix.\n\nBy the induction hypothesis, $\\mathbb R^{n-1}$ has an orthonormal basis of eigenvectors of $B$. Translating coordinates back through $f_1, \\dots, f_{n-1}$ (which preserves inner products), $W$ has an orthonormal basis $q_2, \\dots, q_n$ of eigenvectors of $A$. Each of these is orthogonal to $q_1$, so $q_1, \\dots, q_n$ is an orthonormal basis of $\\mathbb R^n$ consisting of eigenvectors of $A$.\n\nFinally let $Q$ have columns $q_1, \\dots, q_n$ and $D = \\operatorname{diag}(\\lambda_1, \\dots, \\lambda_n)$. Then $AQ = QD$ (column by column) and $Q^{\\mathsf T}Q = I$ (orthonormality), so $A = QDQ^{\\mathsf T}$. The converse is the computation $(QDQ^{\\mathsf T})^{\\mathsf T} = QD^{\\mathsf T}Q^{\\mathsf T} = QDQ^{\\mathsf T}$. The Hermitian case is the same proof with $\\overline{\\,\\cdot\\,}^{\\mathsf T}$ in place of ${}^{\\mathsf T}$."
+    },
+    {
+     "type": "section",
+     "title": "Principal axes and quadratic forms",
+     "body": "Multiplying out $QDQ^{\\mathsf T}$ column by row gives the spectral decomposition\n$$A = \\lambda_1q_1q_1^{\\mathsf T} + \\lambda_2q_2q_2^{\\mathsf T} + \\cdots + \\lambda_nq_nq_n^{\\mathsf T}.$$\nEach $q_iq_i^{\\mathsf T}$ is the orthogonal projection onto the line through $q_i$ (it sends $x$ to $\\langle x, q_i\\rangle q_i$). So a symmetric matrix is a weighted sum of projections onto perpendicular lines: decompose $x$ along the axes $q_i$, stretch the $i$-th piece by $\\lambda_i$, and add up. The unit sphere is mapped to an ellipsoid (flattened if some $\\lambda_i = 0$) whose semi-axes point along the $q_i$ and have lengths $|\\lambda_i|$.\n\nThe same decomposition simplifies quadratic forms. In the coordinates $y = Q^{\\mathsf T}x$ (a rotation, possibly composed with a reflection),\n$$x^{\\mathsf T}Ax = x^{\\mathsf T}QDQ^{\\mathsf T}x = y^{\\mathsf T}Dy = \\lambda_1y_1^2 + \\cdots + \\lambda_ny_n^2,$$\nand $\\|y\\| = \\|x\\|$. Two consequences follow at once.\n\n- $A$ is positive definite ($x^{\\mathsf T}Ax > 0$ for all $x \\ne 0$) if and only if all its eigenvalues are positive.\n- Rayleigh's principle: on the unit sphere, $x^{\\mathsf T}Ax = \\sum\\lambda_iy_i^2$ with $\\sum y_i^2 = 1$ is a weighted average of the eigenvalues. Hence\n$$\\lambda_{\\min} \\le x^{\\mathsf T}Ax \\le \\lambda_{\\max} \\quad \\text{for } \\|x\\| = 1,$$\nwith the maximum attained at a unit eigenvector for $\\lambda_{\\max}$ and the minimum at one for $\\lambda_{\\min}$."
+    },
+    {
+     "type": "example",
+     "title": "Orthogonal diagonalisation with a repeated eigenvalue",
+     "body": "Find an orthogonal matrix $Q$ with $Q^{\\mathsf T}AQ$ diagonal, where\n$$A = \\begin{pmatrix} 2 & 1 & 1\\\\ 1 & 2 & 1\\\\ 1 & 1 & 2\\end{pmatrix}.$$",
+     "solution": "$A = I + J$ with $J$ the all-ones matrix, so (see [[eigen]]) the eigenvalues are $4$, with eigenvector $(1, 1, 1)$, and $1$, with eigenspace the plane $x + y + z = 0$.\n\nThe unit vector $q_1 = \\frac{1}{\\sqrt3}(1, 1, 1)$ handles $\\lambda = 4$. For $\\lambda = 1$, any two independent vectors in the plane are eigenvectors, but they need not be orthogonal: $(1, -1, 0)$ and $(1, 0, -1)$ have inner product $1$. Apply Gram–Schmidt inside the eigenspace: $q_2 = \\frac{1}{\\sqrt2}(1, -1, 0)$, then\n$$(1, 0, -1) - \\tfrac12(1, -1, 0) = \\left(\\tfrac12, \\tfrac12, -1\\right), \\qquad q_3 = \\tfrac{1}{\\sqrt6}(1, 1, -2).$$\nWith $Q = (q_1\\ q_2\\ q_3)$ we get $Q^{\\mathsf T}AQ = \\operatorname{diag}(4, 1, 1)$. The key point: eigenvectors for different eigenvalues came out orthogonal for free; within a repeated eigenvalue we had to orthogonalise by hand."
+    },
+    {
+     "type": "example",
+     "title": "Principal axes of a conic",
+     "body": "Identify the curve $5x^2 + 4xy + 2y^2 = 1$.",
+     "solution": "Write the left side as $x^{\\mathsf T}Ax$ with $x = (x, y)$ and\n$$A = \\begin{pmatrix} 5 & 2\\\\ 2 & 2\\end{pmatrix}$$\n(the cross coefficient $4$ is split equally between the two off-diagonal entries so that $A$ is symmetric). Here $\\operatorname{tr} A = 7$ and $\\det A = 6$, so the eigenvalues are $6$ and $1$. Solving $(A - 6I)v = 0$ gives $v = (2, 1)$; solving $(A - I)v = 0$ gives $v = (1, -2)$. These are orthogonal, as they must be.\n\nIn the rotated coordinates $u = \\frac{2x + y}{\\sqrt5}$, $w = \\frac{x - 2y}{\\sqrt5}$ the equation becomes\n$$6u^2 + w^2 = 1,$$\nan ellipse with semi-axis $\\frac{1}{\\sqrt6}$ in the direction $(2, 1)$ and semi-axis $1$ in the direction $(1, -2)$. Its area is $\\pi\\cdot\\frac{1}{\\sqrt6}\\cdot 1 = \\pi/\\sqrt{\\det A}$."
+    },
+    {
+     "type": "example",
+     "title": "An inequality from the Rayleigh principle",
+     "body": "Find the largest and smallest values of $xy + yz + zx$ over all real $x, y, z$ with $x^2 + y^2 + z^2 = 1$.",
+     "solution": "We have $xy + yz + zx = v^{\\mathsf T}Mv$ for $v = (x, y, z)$ and\n$$M = \\frac12\\begin{pmatrix} 0 & 1 & 1\\\\ 1 & 0 & 1\\\\ 1 & 1 & 0\\end{pmatrix} = \\frac12(J - I).$$\n$J$ has eigenvalues $3, 0, 0$, so $M$ has eigenvalues $\\frac{3-1}{2} = 1$ and $\\frac{0-1}{2} = -\\frac12$ (twice). By Rayleigh's principle the maximum is $1$, attained at $v = \\frac{1}{\\sqrt3}(1, 1, 1)$, and the minimum is $-\\frac12$, attained at any unit vector with $x + y + z = 0$, for instance $\\frac{1}{\\sqrt2}(1, -1, 0)$.\n\nEquivalently, for all real $x, y, z$,\n$$-\\tfrac12(x^2 + y^2 + z^2) \\le xy + yz + zx \\le x^2 + y^2 + z^2.$$\nBoth are classical olympiad inequalities, usually proved from $(x - y)^2 + (y - z)^2 + (z - x)^2 \\ge 0$ and $(x + y + z)^2 \\ge 0$. The eigenvalue method explains where these sums of squares come from and why the constants are sharp."
+    },
+    {
+     "type": "example",
+     "title": "Symmetric roots of the identity",
+     "body": "Let $A$ be a real symmetric matrix with $A^k = I$ for some $k \\ge 1$. Prove that $A^2 = I$.",
+     "solution": "Write $A = QDQ^{\\mathsf T}$. Then $A^k = QD^kQ^{\\mathsf T} = I$ gives $D^k = Q^{\\mathsf T}Q = I$, so every eigenvalue satisfies $\\lambda^k = 1$. The eigenvalues are real, and the only real $k$-th roots of unity are $\\pm1$, so $\\lambda^2 = 1$ for every eigenvalue. Hence $D^2 = I$ and $A^2 = QD^2Q^{\\mathsf T} = QQ^{\\mathsf T} = I$.\n\nWithout symmetry this fails: the rotation by $120^\\circ$ satisfies $R^3 = I$ but $R^2 \\ne I$. Its eigenvalues $e^{\\pm 2\\pi i/3}$ are not real, and that is exactly what the spectral theorem rules out."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The theorem needs symmetry, not just real eigenvalues. $\\begin{pmatrix} 1 & 1\\\\ 0 & 2\\end{pmatrix}$ has real eigenvalues $1, 2$ and is diagonalisable, but its eigenvectors $(1, 0)$ and $(1, 1)$ are not perpendicular, so no orthogonal $Q$ works.\n- Over $\\mathbb C$ the right condition is Hermitian, not symmetric. The complex symmetric matrix $\\begin{pmatrix} 1 & i\\\\ i & -1\\end{pmatrix}$ satisfies $A^2 = 0$ with $A \\ne 0$, so it is not diagonalisable at all. More generally, a complex matrix $A$ can be written $A = UDU^{-1}$ with $U$ unitary and $D$ diagonal (now possibly with non-real entries) if and only if it is normal, $A\\overline{A}^{\\mathsf T} = \\overline{A}^{\\mathsf T}A$; we do not prove this here. Hermitian, real orthogonal and unitary matrices are normal.\n- Eigenvectors for a repeated eigenvalue are not automatically orthogonal; orthogonalise inside each eigenspace.\n- In a quadratic form $ax^2 + bxy + cy^2$, the symmetric matrix has off-diagonal entries $b/2$, not $b$.\n- $Q^{\\mathsf T}AQ$ is diagonal; $QAQ^{\\mathsf T}$ in general is not. Keep track of which way the change of basis goes."
+    },
+    {
+     "type": "connection",
+     "body": "Applying the spectral theorem to the symmetric matrix $A^{\\mathsf T}A$ of an arbitrary matrix $A$ gives [[svd|the singular value decomposition]]. In several-variable calculus, the second-derivative test classifies a critical point by the eigenvalues of the symmetric Hessian matrix of [[partial-derivatives]], and maximising $x^{\\mathsf T}Ax$ on the unit sphere is the model case of [[lagrange-multipliers]]: the multiplier is the eigenvalue.\n\nInteger-valued versions of quadratic forms are the subject of [[quadratic-forms]], where orthogonal changes of variable are replaced by integer ones. The adjacency matrix of a graph is symmetric, and its eigenvalues bound the chromatic number and measure expansion ([[graph-basics]], [[graph-coloring]]). Random Hermitian matrices, and the spacings between their real eigenvalues, are the model behind [[pair-correlation]] for zeros of the zeta function. Infinite-dimensional versions, for self-adjoint operators on Hilbert spaces, underlie Fourier analysis ([[fourier-poisson]]) and quantum mechanics."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Orthogonally diagonalise $\\begin{pmatrix} 3 & 4\\\\ 4 & -3\\end{pmatrix}$ and describe the map geometrically.\n2. Show that $A^{\\mathsf T}A$ is symmetric with non-negative eigenvalues for every real matrix $A$.\n3. Find the maximum of $x^2 + 4xy + y^2$ on the circle $x^2 + y^2 = 1$.\n4. Show that a real symmetric matrix with all eigenvalues in $\\{0, 1\\}$ is the orthogonal projection onto a subspace."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 7"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Horn & Johnson, Matrix Analysis"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Real symmetric matrices: numpy eigh gives real eigenvalues, orthogonal Q, A = Q D Q^T and A = sum lambda_i q_i q_i^T; Rayleigh bounds",
+     "python": "import numpy as np\nrng = np.random.default_rng(3)\nfor _ in range(300):\n    n = rng.integers(1,7)\n    X = rng.normal(size=(n,n)); A = X + X.T\n    assert np.allclose(np.linalg.eigvals(A).imag, 0, atol=1e-9)\n    w, Q = np.linalg.eigh(A)\n    assert np.allclose(Q.T@Q, np.eye(n)) and np.allclose(Q@np.diag(w)@Q.T, A)\n    assert np.allclose(sum(w[i]*np.outer(Q[:,i],Q[:,i]) for i in range(n)), A)\n    x = rng.normal(size=n); x /= np.linalg.norm(x)\n    assert w.min()-1e-9 <= x@A@x <= w.max()+1e-9"
+    },
+    {
+     "claim": "I+J example: q1=(1,1,1)/sqrt3, q2=(1,-1,0)/sqrt2, q3=(1,1,-2)/sqrt6 give Q^T A Q = diag(4,1,1); (1,-1,0).(1,0,-1)=1; GS step gives (1/2,1/2,-1)",
+     "python": "from sympy import Matrix, sqrt, diag, simplify, Rational as R\nA = Matrix([[2,1,1],[1,2,1],[1,1,2]])\nQ = Matrix.hstack(Matrix([1,1,1])/sqrt(3), Matrix([1,-1,0])/sqrt(2), Matrix([1,1,-2])/sqrt(6))\nassert simplify(Q.T*Q) == Matrix.eye(3) and simplify(Q.T*A*Q) == diag(4,1,1)\nassert Matrix([1,-1,0]).dot(Matrix([1,0,-1])) == 1\nassert Matrix([1,0,-1]) - R(1,2)*Matrix([1,-1,0]) == Matrix([R(1,2),R(1,2),-1])"
+    },
+    {
+     "claim": "Conic 5x^2+4xy+2y^2: eigenvalues 6 (vector (2,1)) and 1 (vector (1,-2)); substitution gives 6u^2+w^2",
+     "python": "from sympy import Matrix, symbols, sqrt, expand, solve\nx,y,u,w = symbols('x y u w')\nA = Matrix([[5,2],[2,2]])\nassert A*Matrix([2,1]) == 6*Matrix([2,1]) and A*Matrix([1,-2]) == Matrix([1,-2])\n# inverse substitution: x = (2u + w)/sqrt5, y = (u - 2w)/sqrt5\nX = (2*u + w)/sqrt(5); Y = (u - 2*w)/sqrt(5)\nassert expand((2*X+Y)/sqrt(5) - u) == 0 and expand((X-2*Y)/sqrt(5) - w) == 0\nassert expand(5*X**2 + 4*X*Y + 2*Y**2 - (6*u**2 + w**2)) == 0"
+    },
+    {
+     "claim": "max/min of xy+yz+zx on unit sphere are 1 and -1/2 (eigenvalues of (J-I)/2), attained at the stated vectors; inequalities hold randomly",
+     "python": "from sympy import Matrix, ones, eye, Rational, sqrt, simplify\nM = (ones(3,3)-eye(3))/2\nassert M.eigenvals() == {1:1, Rational(-1,2):2}\nf = lambda v: v[0]*v[1]+v[1]*v[2]+v[2]*v[0]\nassert simplify(f([1/sqrt(3)]*3)) == 1 and simplify(f([1/sqrt(2),-1/sqrt(2),0])) == Rational(-1,2)\nimport random\nfor _ in range(10000):\n    a,b,c = [random.uniform(-5,5) for _ in range(3)]\n    s = a*a+b*b+c*c; p = a*b+b*c+c*a\n    assert -0.5*s - 1e-9 <= p <= s + 1e-9"
+    },
+    {
+     "claim": "120-degree rotation: R^3 = I, R^2 != I; symmetric A with A^k = I satisfies A^2 = I (random reflections Q diag(+-1) Q^T)",
+     "python": "import numpy as np\nc, s = np.cos(2*np.pi/3), np.sin(2*np.pi/3)\nR = np.array([[c,-s],[s,c]])\nassert np.allclose(np.linalg.matrix_power(R,3), np.eye(2)) and not np.allclose(R@R, np.eye(2))\nrng = np.random.default_rng(4)\nfor _ in range(100):\n    Q,_ = np.linalg.qr(rng.normal(size=(4,4)))\n    A = Q@np.diag(rng.choice([-1,1],size=4))@Q.T\n    assert np.allclose(A, A.T) and np.allclose(A@A, np.eye(4))"
+    },
+    {
+     "claim": "Pitfalls: [[1,1],[0,2]] eigenvectors (1,0),(1,1) not orthogonal; complex symmetric [[1,i],[i,-1]] squares to 0 and is not diagonalisable",
+     "python": "from sympy import Matrix, I, zeros\nB = Matrix([[1,1],[0,2]])\nassert B*Matrix([1,0]) == Matrix([1,0]) and B*Matrix([1,1]) == 2*Matrix([1,1]) and Matrix([1,0]).dot(Matrix([1,1])) != 0\nC = Matrix([[1,I],[I,-1]])\nassert C == C.T and C**2 == zeros(2,2) and C != zeros(2,2) and not C.is_diagonalizable()"
+    },
+    {
+     "claim": "Hermitian matrices have real eigenvalues and unitary eigenvector matrices (numpy, random)",
+     "python": "import numpy as np\nrng = np.random.default_rng(7)\nfor _ in range(200):\n    n = rng.integers(1,6)\n    X = rng.normal(size=(n,n))+1j*rng.normal(size=(n,n)); H = X + X.conj().T\n    assert np.allclose(np.linalg.eigvals(H).imag, 0, atol=1e-8)\n    w,U = np.linalg.eigh(H)\n    assert np.allclose(U.conj().T@U, np.eye(n)) and np.allclose(U@np.diag(w)@U.conj().T, H)"
+    },
+    {
+     "claim": "Reviewer: conic 5x^2+4xy+2y^2=1: det 6, eigenvectors (2,1),(1,-2) orthogonal, semi-axes 1/sqrt6 and 1, area pi/sqrt6",
+     "python": "from sympy import Matrix, sqrt, pi, symbols, expand\nA = Matrix([[5,2],[2,2]])\nassert A.det() == 6 and A.trace() == 7 and Matrix([2,1]).dot(Matrix([1,-2])) == 0\nt = symbols('t')\n# point at distance 1/sqrt6 along (2,1)/sqrt5 and at distance 1 along (1,-2)/sqrt5 lie on the curve\nfor p in (Matrix([2,1])/sqrt(5)/sqrt(6), Matrix([1,-2])/sqrt(5)):\n    assert expand((p.T*A*p)[0]) == 1\nassert pi*(1/sqrt(6))*1 == pi/sqrt(A.det())"
+    },
+    {
+     "claim": "Reviewer: normal matrices are unitarily diagonalisable (complex Schur form of a real rotation is diagonal), a non-normal matrix is not",
+     "python": "import numpy as np\ntry:\n    from scipy.linalg import schur\n    have = True\nexcept ImportError:\n    have = False\nc, s = np.cos(0.7), np.sin(0.7)\nRm = np.array([[c,-s],[s,c]])\nassert np.allclose(Rm@Rm.T, Rm.T@Rm)\nw, U = np.linalg.eig(Rm)\nassert np.allclose(U.conj().T@U, np.eye(2)) and np.allclose(U@np.diag(w)@U.conj().T, Rm)\nB = np.array([[1.,1],[0,2]])\nassert not np.allclose(B@B.T, B.T@B)\nif have:\n    T, Z = schur(B.astype(complex), output='complex')\n    assert abs(T[0,1]) > 1e-6"
+    },
+    {
+     "claim": "Reviewer: xy+yz+zx identities behind the two olympiad inequalities: s - p = ((x-y)^2+(y-z)^2+(z-x)^2)/2 and p + s/2 = (x+y+z)^2/2",
+     "python": "from sympy import symbols, expand\nx, y, z = symbols('x y z')\ns = x**2+y**2+z**2; p = x*y+y*z+z*x\nassert expand(s - p - ((x-y)**2+(y-z)**2+(z-x)**2)/2) == 0\nassert expand(p + s/2 - (x+y+z)**2/2) == 0"
+    },
+    {
+     "claim": "Reviewer: image of the unit circle under symmetric A has semi-axes |lambda_i| (singular values = |eigenvalues| for symmetric A, incl. a negative eigenvalue)",
+     "python": "import numpy as np\nfor A in (np.array([[5.,2],[2,2]]), np.array([[3.,4],[4,-3]]), np.array([[1.,2],[2,1]])):\n    ev = np.sort(np.abs(np.linalg.eigvalsh(A)))\n    sv = np.sort(np.linalg.svd(A, compute_uv=False))\n    assert np.allclose(ev, sv)"
+    }
+   ]
+  }
+ },
+ {
+  "id": "svd",
+  "entry": {
+   "sum": "Every real $m\\times n$ matrix factors as $A = U\\Sigma V^{\\mathsf T}$ with $U$, $V$ orthogonal and $\\Sigma$ an $m\\times n$ diagonal matrix with diagonal entries $\\sigma_1 \\ge \\sigma_2 \\ge \\dots \\ge 0$, the singular values. Geometrically, $A$ sends an orthonormal basis $v_i$ of the input space to perpendicular vectors $\\sigma_iu_i$; keeping only the $k$ largest singular values gives a best approximation of $A$ of rank at most $k$, in both the operator norm and the Frobenius norm (Eckart–Young).",
+   "key": [
+    "A=U\\Sigma V^{\\mathsf T},\\qquad Av_i=\\sigma_iu_i,\\qquad A=\\sum_{i=1}^{r}\\sigma_i\\,u_iv_i^{\\mathsf T}",
+    "\\sigma_i=\\sqrt{\\lambda_i(A^{\\mathsf T}A)},\\qquad \\|A\\|=\\max_{\\|x\\|=1}\\|Ax\\|=\\sigma_1",
+    "\\min_{\\operatorname{rank}B\\le k}\\|A-B\\|=\\sigma_{k+1}\\ \\ (0\\le k<\\min(m,n)),\\ \\text{attained at } A_k=\\sum_{i\\le k}\\sigma_iu_iv_i^{\\mathsf T}"
+   ],
+   "why": "The SVD is the workhorse of numerical linear algebra and data science: it computes ranks and least-squares solutions stably, compresses images and data by low-rank approximation, and underlies principal component analysis and recommender systems.",
+   "msc": [
+    "15A18",
+    "15A23"
+   ],
+   "links": [
+    {
+     "field": "probability",
+     "note": "Principal component analysis takes the SVD of a centred $N\\times d$ data matrix (one row per observation): the right singular vectors are the directions of greatest variance and $\\sigma_i^2/(N-1)$ are the variances along them."
+    },
+    {
+     "field": "quantum-computing",
+     "note": "The Schmidt decomposition of a two-part quantum state is the SVD of its coefficient matrix, and the state is entangled exactly when more than one singular value is nonzero."
+    },
+    {
+     "field": "ai-research",
+     "note": "Low-rank approximation by truncated SVD is used to compress neural-network weight matrices and to analyse the effective rank of learned representations."
+    }
+   ],
+   "refs": [
+    "Trefethen & Bau, Numerical Linear Algebra",
+    "Strang, Introduction to Linear Algebra",
+    "Golub & Van Loan, Matrix Computations"
+   ],
+   "aliases": [
+    "singular value decomposition",
+    "singular values",
+    "singular vectors",
+    "Eckart–Young theorem",
+    "low-rank approximation",
+    "Moore–Penrose pseudoinverse",
+    "truncated SVD"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "The spectral theorem gives a beautiful picture of a symmetric matrix: a stretch along perpendicular axes. Most matrices are not symmetric, and many are not even square. A $1000\\times 800$ matrix of pixel brightnesses, or of ratings that users gave to films, has no eigenvalues at all. Is there still a simple picture?\n\nThere is, and it is almost as simple. Any matrix $A$ maps some orthonormal set of input directions to perpendicular output directions, stretched by factors $\\sigma_1 \\ge \\sigma_2 \\ge \\cdots \\ge 0$. The only difference from the symmetric case is that the output axes need not be the same as the input axes. This is the singular value decomposition, and it is one of the most useful factorisations in applied mathematics."
+    },
+    {
+     "type": "section",
+     "title": "A picture in two dimensions",
+     "body": "Take $A = \\begin{pmatrix} 3 & 0\\\\ 4 & 5\\end{pmatrix}$. It sends the unit circle to an ellipse. Which unit vectors $x$ are stretched the most? The squared length is\n$$\\|Ax\\|^2 = x^{\\mathsf T}A^{\\mathsf T}Ax,$$\na quadratic form in the symmetric matrix $A^{\\mathsf T}A = \\begin{pmatrix} 25 & 20\\\\ 20 & 25\\end{pmatrix}$. By the Rayleigh principle of [[spectral-theorem]], its maximum on the unit circle is the largest eigenvalue $45$, attained at $x = \\frac{1}{\\sqrt2}(1, 1)$, and its minimum is $5$, at $x = \\frac{1}{\\sqrt2}(1, -1)$. So the ellipse has semi-axes of length $\\sqrt{45} = 3\\sqrt5$ and $\\sqrt5$, and $3\\sqrt5 \\cdot \\sqrt5 = 15 = |\\det A|$, the area-scaling factor.\n\nThe key observation is that the images of these two directions are perpendicular: $A(1, 1) = (3, 9)$ and $A(1, -1) = (3, -1)$, and $3\\cdot 3 + 9\\cdot(-1) = 0$. So $A$ takes one pair of perpendicular directions to another pair of perpendicular directions, stretching by $3\\sqrt5$ and $\\sqrt5$. This is no accident, as the proof below shows, and it works for every matrix."
+    },
+    {
+     "type": "theorem",
+     "title": "Singular value decomposition",
+     "body": "Let $A$ be a real $m\\times n$ matrix of rank $r$. There are orthonormal bases $v_1, \\dots, v_n$ of $\\mathbb R^n$ and $u_1, \\dots, u_m$ of $\\mathbb R^m$, and numbers $\\sigma_1 \\ge \\sigma_2 \\ge \\cdots \\ge \\sigma_r > 0$, such that\n$$Av_i = \\sigma_iu_i \\ (i \\le r), \\qquad Av_i = 0 \\ (i > r).$$\nIn matrix form, $A = U\\Sigma V^{\\mathsf T}$, where $U$ and $V$ are the orthogonal matrices with columns $u_i$ and $v_i$, and $\\Sigma$ is the $m\\times n$ matrix with $\\Sigma_{ii} = \\sigma_i$ for $i \\le r$ and all other entries $0$. The numbers $\\sigma_i$, the singular values, are the square roots of the nonzero eigenvalues of $A^{\\mathsf T}A$, and hence are uniquely determined by $A$."
+    },
+    {
+     "type": "proof",
+     "body": "The matrix $A^{\\mathsf T}A$ is $n\\times n$ and symmetric, and it has no negative eigenvalues: if $A^{\\mathsf T}Ax = \\lambda x$ with $\\|x\\| = 1$, then $\\lambda = x^{\\mathsf T}A^{\\mathsf T}Ax = \\|Ax\\|^2 \\ge 0$. By the spectral theorem there is an orthonormal basis $v_1, \\dots, v_n$ of $\\mathbb R^n$ with $A^{\\mathsf T}Av_i = \\lambda_iv_i$, ordered so that $\\lambda_1 \\ge \\cdots \\ge \\lambda_n \\ge 0$.\n\nLet $s$ be the number of positive $\\lambda_i$, and for $i \\le s$ put $\\sigma_i = \\sqrt{\\lambda_i}$ and $u_i = Av_i/\\sigma_i$. These $u_i$ are orthonormal:\n$$\\langle u_i, u_j\\rangle = \\frac{v_i^{\\mathsf T}A^{\\mathsf T}Av_j}{\\sigma_i\\sigma_j} = \\frac{\\lambda_j\\langle v_i, v_j\\rangle}{\\sigma_i\\sigma_j},$$\nwhich is $1$ if $i = j$ and $0$ otherwise. For $i > s$ we have $\\|Av_i\\|^2 = \\lambda_i = 0$, so $Av_i = 0$.\n\nThe image of $A$ is spanned by the images $Av_1, \\dots, Av_n$ of a basis, that is by $u_1, \\dots, u_s$; being orthonormal, these are a basis of the image, so $s = \\operatorname{rank} A = r$. Extend $u_1, \\dots, u_r$ to an orthonormal basis $u_1, \\dots, u_m$ of $\\mathbb R^m$ (Gram–Schmidt, [[inner-products]]). Then $Av_i = \\sigma_iu_i$ for $i \\le r$ and $Av_i = 0$ otherwise, which says $AV = U\\Sigma$ column by column. Since $V^{-1} = V^{\\mathsf T}$, this is $A = U\\Sigma V^{\\mathsf T}$.\n\nUniqueness of the $\\sigma_i$: from any such factorisation, $A^{\\mathsf T}A = V\\Sigma^{\\mathsf T}\\Sigma V^{\\mathsf T}$, so $A^{\\mathsf T}A$ is similar to the diagonal matrix $\\Sigma^{\\mathsf T}\\Sigma$ with entries $\\sigma_1^2, \\dots, \\sigma_r^2, 0, \\dots, 0$. These are therefore its eigenvalues."
+    },
+    {
+     "type": "section",
+     "title": "What the SVD tells you",
+     "body": "Multiplying out $U\\Sigma V^{\\mathsf T}$ gives the SVD as a sum of rank-one pieces,\n$$A = \\sigma_1u_1v_1^{\\mathsf T} + \\sigma_2u_2v_2^{\\mathsf T} + \\cdots + \\sigma_ru_rv_r^{\\mathsf T}.$$\nTo apply $A$ to $x$: find the components $\\langle x, v_i\\rangle$ along the input axes, multiply them by $\\sigma_i$, and use them as components along the output axes $u_i$. So $A$ maps the unit sphere of $\\mathbb R^n$ onto a (possibly flattened) ellipsoid in $\\mathbb R^m$ with semi-axes $\\sigma_iu_i$.\n\nSeveral quantities can be read off at once.\n\n- The rank is the number of nonzero singular values; $u_1, \\dots, u_r$ span the image and $v_{r+1}, \\dots, v_n$ span the kernel.\n- The operator norm $\\|A\\| = \\max_{\\|x\\| = 1}\\|Ax\\|$ equals $\\sigma_1$, since $\\|Ax\\|^2 = x^{\\mathsf T}A^{\\mathsf T}Ax \\le \\lambda_1\\|x\\|^2$ with equality at $x = v_1$.\n- For square $A$, $|\\det A| = \\sigma_1\\sigma_2\\cdots\\sigma_n$, because $\\det U$ and $\\det V$ are $\\pm1$.\n- For invertible square $A$, the ratio $\\sigma_1/\\sigma_n$ (the condition number) measures how much relative errors in $b$ can be amplified when solving $Ax = b$.\n\nLeast squares. To minimise $\\|Ax - b\\|$, write $y = V^{\\mathsf T}x$ and $c = U^{\\mathsf T}b$. Orthogonal matrices preserve length, so\n$$\\|Ax - b\\|^2 = \\|U^{\\mathsf T}(U\\Sigma V^{\\mathsf T}x - b)\\|^2 = \\|\\Sigma y - c\\|^2 = \\sum_{i \\le r}(\\sigma_iy_i - c_i)^2 + \\sum_{i > r}c_i^2.$$\nThis is smallest when $y_i = c_i/\\sigma_i$ for $i \\le r$; the $y_i$ with $i > r$ are free, and the shortest minimiser sets them to $0$. That minimiser is $x^+ = A^+b$, where $A^+ = V\\Sigma^+U^{\\mathsf T}$ is the pseudoinverse and $\\Sigma^+$ is the $n\\times m$ matrix with entries $1/\\sigma_1, \\dots, 1/\\sigma_r$ in its first $r$ diagonal positions and zeros elsewhere. When $A$ is square and invertible, $A^+ = A^{-1}$."
+    },
+    {
+     "type": "theorem",
+     "title": "Eckart–Young theorem",
+     "body": "Let $A = \\sum_{i=1}^r \\sigma_iu_iv_i^{\\mathsf T}$ be an SVD of a real $m\\times n$ matrix, set $\\sigma_i = 0$ for $r < i \\le \\min(m, n)$, and for $0 \\le k < \\min(m, n)$ let $A_k = \\sum_{i \\le k}\\sigma_iu_iv_i^{\\mathsf T}$ (the truncated SVD; $A_k = A$ when $k \\ge r$). Then for every $m\\times n$ matrix $B$ of rank at most $k$,\n$$\\|A - B\\| \\ge \\sigma_{k+1} = \\|A - A_k\\| \\qquad\\text{and}\\qquad \\|A - B\\|_F \\ge \\Big(\\sum_{i > k}\\sigma_i^2\\Big)^{1/2} = \\|A - A_k\\|_F,$$\nwhere $\\|M\\|_F = \\big(\\sum_{i,j} m_{ij}^2\\big)^{1/2}$ is the Frobenius norm. So $A_k$ is a best approximation of $A$ of rank at most $k$ in both the operator norm and the Frobenius norm. (The result is also called the Eckart–Young–Mirsky theorem.)"
+    },
+    {
+     "type": "proof",
+     "body": "First, $A - A_k = \\sum_{k < i \\le r}\\sigma_iu_iv_i^{\\mathsf T}$ is itself written in SVD form, with largest singular value $\\sigma_{k+1}$ (or $0$ if $k \\ge r$), so $\\|A - A_k\\| = \\sigma_{k+1}$ by the norm formula above.\n\nNow let $\\operatorname{rank}B \\le k$. By rank–nullity ([[linear-maps]]), $\\ker B$ has dimension at least $n - k$. The span $S$ of $v_1, \\dots, v_{k+1}$ has dimension $k + 1$. Since $(n - k) + (k + 1) > n$, the two subspaces share a unit vector $x$. Write $x = \\sum_{i \\le k+1}c_iv_i$ with $\\sum c_i^2 = 1$. Then $Bx = 0$, and\n$$\\|(A - B)x\\|^2 = \\|Ax\\|^2 = \\Big\\|\\sum_{i \\le k+1}\\sigma_ic_iu_i\\Big\\|^2 = \\sum_{i \\le k+1}\\sigma_i^2c_i^2 \\ge \\sigma_{k+1}^2\\sum_{i\\le k+1} c_i^2 = \\sigma_{k+1}^2.$$\nHence $\\|A - B\\| \\ge \\sigma_{k+1}$.\n\nThis proves the operator-norm statement. For the Frobenius norm, the equality $\\|A - A_k\\|_F^2 = \\sigma_{k+1}^2 + \\cdots + \\sigma_r^2$ follows from exercise 3 below applied to $A - A_k$; the inequality for an arbitrary $B$ needs a longer argument, which we omit (see the references)."
+    },
+    {
+     "type": "section",
+     "title": "Low rank in practice",
+     "body": "Eckart–Young is why the SVD compresses data. A grey-scale image is an $m\\times n$ matrix; storing $A_k$ needs only $k$ triples $(\\sigma_i, u_i, v_i)$, that is $k(m + n + 1)$ numbers instead of $mn$. For a $1000\\times 800$ image and $k = 50$ that is $90\\,050$ numbers instead of $800\\,000$, and because the singular values of natural images decay quickly, $A_{50}$ is often visually hard to tell apart from $A$.\n\nThe same mechanism drives principal component analysis: if the rows of $A$ are data points with the mean subtracted, then $v_1$ is the direction along which the data vary most, $v_2$ the next, and projecting onto $v_1, \\dots, v_k$ is the best $k$-dimensional summary in the least-squares sense. In recommender systems a ratings matrix is approximated by a low-rank matrix, on the theory that tastes are described by a few hidden factors.\n\nStable algorithms avoid forming $A^{\\mathsf T}A$ explicitly, because doing so squares the condition number and loses accuracy; they work on $A$ directly. For hand calculations with small matrices, however, the route through $A^{\\mathsf T}A$ (or $AA^{\\mathsf T}$, whichever is smaller) is the natural one."
+    },
+    {
+     "type": "example",
+     "title": "A full SVD by hand",
+     "body": "Find an SVD of $A = \\begin{pmatrix} 3 & 0\\\\ 4 & 5\\end{pmatrix}$.",
+     "solution": "$A^{\\mathsf T}A = \\begin{pmatrix} 25 & 20\\\\ 20 & 25\\end{pmatrix}$ has trace $50$ and determinant $625 - 400 = 225$, so its eigenvalues are $45$ and $5$, with unit eigenvectors $v_1 = \\frac{1}{\\sqrt2}(1, 1)$ and $v_2 = \\frac{1}{\\sqrt2}(1, -1)$. So $\\sigma_1 = 3\\sqrt5$ and $\\sigma_2 = \\sqrt5$.\n\nThen\n$$u_1 = \\frac{Av_1}{\\sigma_1} = \\frac{(3, 9)}{\\sqrt2\\cdot 3\\sqrt5} = \\frac{1}{\\sqrt{10}}(1, 3), \\qquad u_2 = \\frac{Av_2}{\\sigma_2} = \\frac{(3, -1)}{\\sqrt2\\cdot\\sqrt5} = \\frac{1}{\\sqrt{10}}(3, -1),$$\nwhich are indeed orthonormal. Hence\n$$A = \\underbrace{\\frac{1}{\\sqrt{10}}\\begin{pmatrix} 1 & 3\\\\ 3 & -1\\end{pmatrix}}_{U}\\begin{pmatrix} 3\\sqrt5 & 0\\\\ 0 & \\sqrt5\\end{pmatrix}\\underbrace{\\frac{1}{\\sqrt2}\\begin{pmatrix} 1 & 1\\\\ 1 & -1\\end{pmatrix}}_{V^{\\mathsf T}}.$$\nAs a check, $\\sigma_1\\sigma_2 = 15 = |\\det A|$. Note that $A$ has eigenvalues $3$ and $5$ (it is triangular), which are not its singular values."
+    },
+    {
+     "type": "example",
+     "title": "Rank-one approximation and least squares",
+     "body": "Let $A = \\begin{pmatrix} 1 & 1\\\\ 1 & 1\\\\ 1 & -1\\end{pmatrix}$ and $b = (1, 2, 3)$. Find the SVD of $A$, its best rank-one approximation, and the least-squares solution of $Ax = b$.",
+     "solution": "$A^{\\mathsf T}A = \\begin{pmatrix} 3 & 1\\\\ 1 & 3\\end{pmatrix}$ has eigenvalues $4$ and $2$ with unit eigenvectors $v_1 = \\frac{1}{\\sqrt2}(1, 1)$ and $v_2 = \\frac{1}{\\sqrt2}(1, -1)$. So $\\sigma_1 = 2$, $\\sigma_2 = \\sqrt2$, and\n$$u_1 = \\frac{Av_1}{2} = \\frac{(2, 2, 0)}{2\\sqrt2} = \\tfrac{1}{\\sqrt2}(1, 1, 0), \\qquad u_2 = \\frac{Av_2}{\\sqrt2} = \\frac{(0, 0, 2)}{2} = (0, 0, 1).$$\n(A full $U$ needs a third vector, $u_3 = \\frac{1}{\\sqrt2}(1, -1, 0)$.)\n\nBest rank-one approximation:\n$$A_1 = \\sigma_1u_1v_1^{\\mathsf T} = 2\\cdot\\tfrac12\\begin{pmatrix} 1 & 1\\\\ 1 & 1\\\\ 0 & 0\\end{pmatrix} = \\begin{pmatrix} 1 & 1\\\\ 1 & 1\\\\ 0 & 0\\end{pmatrix}, \\qquad A - A_1 = \\begin{pmatrix} 0 & 0\\\\ 0 & 0\\\\ 1 & -1\\end{pmatrix},$$\nand $\\|A - A_1\\| = \\sqrt2 = \\sigma_2$, as Eckart–Young predicts.\n\nLeast squares: $c_1 = \\langle b, u_1\\rangle = \\frac{3}{\\sqrt2}$ and $c_2 = \\langle b, u_2\\rangle = 3$, so\n$$x^+ = \\frac{c_1}{\\sigma_1}v_1 + \\frac{c_2}{\\sigma_2}v_2 = \\frac{3}{2\\sqrt2}\\cdot\\frac{(1,1)}{\\sqrt2} + \\frac{3}{\\sqrt2}\\cdot\\frac{(1,-1)}{\\sqrt2} = \\left(\\tfrac34, \\tfrac34\\right) + \\left(\\tfrac32, -\\tfrac32\\right) = \\left(\\tfrac94, -\\tfrac34\\right).$$\nCheck with the normal equations $A^{\\mathsf T}Ax = A^{\\mathsf T}b$: here $A^{\\mathsf T}b = (6, 0)$, and $\\begin{pmatrix} 3 & 1\\\\ 1 & 3\\end{pmatrix}\\left(\\frac94, -\\frac34\\right) = (6, 0)$. The residual is $b - Ax^+ = (-\\frac12, \\frac12, 0)$, of length $\\frac{1}{\\sqrt2} = |c_3|$ with $c_3 = \\langle b, u_3\\rangle$."
+    },
+    {
+     "type": "example",
+     "title": "Eigenvalues are trapped by singular values",
+     "body": "Let $A$ be a real $n\\times n$ matrix with singular values $\\sigma_1 \\ge \\cdots \\ge \\sigma_n \\ge 0$ (padding with zeros if the rank is less than $n$). Show that every eigenvalue $\\lambda$ of $A$, real or complex, satisfies $\\sigma_n \\le |\\lambda| \\le \\sigma_1$, and that $|\\lambda_1\\cdots\\lambda_n| = \\sigma_1\\cdots\\sigma_n$.",
+     "solution": "Let $Av = \\lambda v$ with $v = a + ib \\ne 0$, where $a, b$ are real vectors. Since $A$ is real, $Aa + iAb = \\lambda v$, and\n$$|\\lambda|^2(\\|a\\|^2 + \\|b\\|^2) = \\|Av\\|^2 = \\|Aa\\|^2 + \\|Ab\\|^2.$$\nFor a real vector $x$, $\\|Ax\\|^2 = x^{\\mathsf T}A^{\\mathsf T}Ax$ lies between $\\sigma_n^2\\|x\\|^2$ and $\\sigma_1^2\\|x\\|^2$ by the Rayleigh principle for $A^{\\mathsf T}A$, whose eigenvalues are the $\\sigma_i^2$. Applying this to $a$ and $b$ and adding,\n$$\\sigma_n^2(\\|a\\|^2 + \\|b\\|^2) \\le |\\lambda|^2(\\|a\\|^2 + \\|b\\|^2) \\le \\sigma_1^2(\\|a\\|^2 + \\|b\\|^2),$$\nand dividing by $\\|a\\|^2 + \\|b\\|^2 > 0$ gives the claim. For the products, $|\\lambda_1\\cdots\\lambda_n| = |\\det A| = \\sigma_1\\cdots\\sigma_n$.\n\nThe bounds can be far apart. For $\\begin{pmatrix} 1 & t\\\\ 0 & 1\\end{pmatrix}$ both eigenvalues are $1$, but $\\sigma_1 \\to \\infty$ and $\\sigma_2 = 1/\\sigma_1 \\to 0$ as $t \\to \\infty$. Eigenvalues describe long-run behaviour of powers; singular values describe how much a single application can stretch."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Singular values are not absolute values of eigenvalues, except for symmetric (more generally, normal) matrices. $\\begin{pmatrix} 0 & 1\\\\ 0 & 0\\end{pmatrix}$ has eigenvalues $0, 0$ but singular values $1, 0$.\n- The $u_i$ cannot be chosen independently of the $v_i$. Computing eigenvectors of $AA^{\\mathsf T}$ and $A^{\\mathsf T}A$ separately can produce sign mismatches; define $u_i = Av_i/\\sigma_i$ instead.\n- $U$ and $V$ are not unique: signs can be flipped in pairs, and for repeated singular values any orthonormal basis of the corresponding space may be used. The singular values themselves are unique.\n- For an $m\\times n$ matrix, $\\Sigma$ has the shape $m\\times n$, not square; in the compact form only the $r$ nonzero singular values and the first $r$ columns of $U$ and $V$ are kept.\n- Truncating the SVD is optimal for the operator and Frobenius norms, not for every measure of error (for example, not for the largest entry of $A - B$: for $A = \\operatorname{diag}(2, 1)$ and $k = 1$ the truncated SVD leaves an entry $1$, while a suitable rank-one $B$ makes every entry of $A - B$ smaller than $0.75$)."
+    },
+    {
+     "type": "connection",
+     "body": "The SVD is the [[spectral-theorem|spectral theorem]] applied to $A^{\\mathsf T}A$, and it refines [[linear-maps|rank–nullity]] by giving orthonormal bases of the image and kernel at once. It solves overdetermined and underdetermined [[linear-systems]] in the least-squares sense, and the ratio $\\sigma_1/\\sigma_n$ is the standard measure of how sensitive such a system is to errors. For square $A$, $|\\det A| = \\prod \\sigma_i$ (see [[determinants]]).\n\nIn statistics the SVD of a centred data matrix with $N$ rows (one per observation) gives the principal components: uncorrelated linear combinations of the variables ([[random-variables]]) with sample variances $\\sigma_i^2/(N-1)$. Low-rank approximation is also used in latent semantic indexing of documents and in collaborative filtering. The polar decomposition $A = (UV^{\\mathsf T})(V\\Sigma V^{\\mathsf T})$, writing a square matrix as an orthogonal matrix (a rotation, possibly combined with a reflection) times a symmetric positive semidefinite stretch, is an immediate corollary."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find the singular values of $\\begin{pmatrix} 1 & 1\\\\ 0 & 1\\end{pmatrix}$.\n2. Show that the singular values of a real symmetric matrix are the absolute values of its eigenvalues.\n3. Show that the Frobenius norm satisfies $\\|A\\|_F^2 = \\sigma_1^2 + \\cdots + \\sigma_r^2$. (Hint: $\\|A\\|_F^2 = \\operatorname{tr}(A^{\\mathsf T}A)$.)\n4. Find the shortest solution of the single equation $x + 2y + 2z = 9$ using the pseudoinverse."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Trefethen & Bau, Numerical Linear Algebra",
+     "where": "Lectures 4–5"
+    },
+    {
+     "ref": "Strang, Introduction to Linear Algebra"
+    },
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 7"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "A=[[3,0],[4,5]]: A^TA=[[25,20],[20,25]] eigenvalues 45,5; A(1,1)=(3,9), A(1,-1)=(3,-1) orthogonal; sigma1*sigma2=15=|det A|",
+     "python": "from sympy import Matrix, sqrt\nA = Matrix([[3,0],[4,5]])\nassert A.T*A == Matrix([[25,20],[20,25]]) and (A.T*A).eigenvals() == {45:1, 5:1}\nassert A*Matrix([1,1]) == Matrix([3,9]) and A*Matrix([1,-1]) == Matrix([3,-1]) and Matrix([3,9]).dot(Matrix([3,-1])) == 0\nassert sqrt(45)*sqrt(5) == 15 == abs(A.det()) and sqrt(45) == 3*sqrt(5)\nassert A.eigenvals() == {3:1, 5:1}"
+    },
+    {
+     "claim": "Full SVD of [[3,0],[4,5]]: U=(1/sqrt10)[[1,3],[3,-1]], Sigma=diag(3sqrt5,sqrt5), V^T=(1/sqrt2)[[1,1],[1,-1]] reproduce A, U and V orthogonal",
+     "python": "from sympy import Matrix, sqrt, diag, simplify, eye\nU = Matrix([[1,3],[3,-1]])/sqrt(10); S = diag(3*sqrt(5), sqrt(5)); Vt = Matrix([[1,1],[1,-1]])/sqrt(2)\nassert simplify(U*S*Vt - Matrix([[3,0],[4,5]])) == Matrix.zeros(2,2)\nassert simplify(U.T*U) == eye(2) and simplify(Vt*Vt.T) == eye(2)"
+    },
+    {
+     "claim": "A=[[1,1],[1,1],[1,-1]]: sigma = 2, sqrt2; u1=(1,1,0)/sqrt2, u2=(0,0,1); A_1 = [[1,1],[1,1],[0,0]], ||A-A_1|| = sqrt2",
+     "python": "import numpy as np\nfrom sympy import Matrix, sqrt, simplify\nA = Matrix([[1,1],[1,1],[1,-1]])\nassert (A.T*A).eigenvals() == {4:1, 2:1}\nv1 = Matrix([1,1])/sqrt(2); v2 = Matrix([1,-1])/sqrt(2)\nassert simplify(A*v1/2 - Matrix([1,1,0])/sqrt(2)) == Matrix([0,0,0]) and simplify(A*v2/sqrt(2) - Matrix([0,0,1])) == Matrix([0,0,0])\nA1 = simplify(2*(Matrix([1,1,0])/sqrt(2))*v1.T)\nassert A1 == Matrix([[1,1],[1,1],[0,0]])\nAn = np.array([[1,1],[1,1],[1,-1]],float)\nassert np.allclose(np.linalg.svd(An, compute_uv=False), [2, np.sqrt(2)])\nassert abs(np.linalg.norm(An - np.array([[1,1],[1,1],[0,0]]), 2) - np.sqrt(2)) < 1e-12"
+    },
+    {
+     "claim": "Least squares for A x = (1,2,3): x+ = (9/4,-3/4); A^T b=(6,0); residual (-1/2,1/2,0) of length 1/sqrt2; numpy pinv and lstsq agree",
+     "python": "import numpy as np\nfrom sympy import Matrix, Rational as R\nA = Matrix([[1,1],[1,1],[1,-1]]); b = Matrix([1,2,3])\nx = (A.T*A).inv()*A.T*b\nassert x == Matrix([R(9,4), R(-3,4)]) and A.T*b == Matrix([6,0])\nassert b - A*x == Matrix([R(-1,2), R(1,2), 0])\nAn = np.array(A.tolist(), float); bn = np.array([1.,2,3])\nassert np.allclose(np.linalg.pinv(An)@bn, [2.25,-0.75]) and np.allclose(np.linalg.lstsq(An,bn,rcond=None)[0], [2.25,-0.75])\nassert abs(abs(np.dot(bn, np.array([1,-1,0])/np.sqrt(2))) - 1/np.sqrt(2)) < 1e-12 and abs(np.linalg.norm([-0.5,0.5,0]) - 1/np.sqrt(2)) < 1e-12"
+    },
+    {
+     "claim": "SVD construction and Eckart-Young (operator norm) on random matrices: ||A-A_k|| = sigma_{k+1}, random rank-k B never beats it; Frobenius error formula",
+     "python": "import numpy as np\nrng = np.random.default_rng(11)\nfor _ in range(100):\n    m, n = rng.integers(2,7), rng.integers(2,7)\n    A = rng.normal(size=(m,n))\n    U, s, Vt = np.linalg.svd(A)\n    S = np.zeros((m,n)); S[:len(s),:len(s)] = np.diag(s)\n    assert np.allclose(U@S@Vt, A) and np.allclose(np.sqrt(np.clip(np.sort(np.linalg.eigvalsh(A.T@A))[::-1][:len(s)],0,None)), s)\n    assert abs(np.linalg.norm(A,2) - s[0]) < 1e-10\n    for k in range(min(m,n)):\n        Ak = U[:,:k]@np.diag(s[:k])@Vt[:k,:]\n        sk1 = s[k]\n        assert abs(np.linalg.norm(A-Ak,2) - sk1) < 1e-9\n        assert abs(np.linalg.norm(A-Ak,'fro') - np.sqrt(np.sum(s[k:]**2))) < 1e-9\n        for _ in range(5):\n            B = rng.normal(size=(m,k))@rng.normal(size=(k,n)) if k > 0 else np.zeros((m,n))\n            assert np.linalg.norm(A-B,2) >= sk1 - 1e-9"
+    },
+    {
+     "claim": "Eigenvalues satisfy sigma_n <= |lambda| <= sigma_1 and |det| = prod sigma (random real matrices); [[1,t],[0,1]] has sigma1*sigma2=1, sigma1 -> infinity",
+     "python": "import numpy as np\nrng = np.random.default_rng(12)\nfor _ in range(500):\n    n = rng.integers(1,7)\n    A = rng.normal(size=(n,n))\n    s = np.linalg.svd(A, compute_uv=False); ev = np.abs(np.linalg.eigvals(A))\n    assert np.all(ev <= s[0]+1e-9) and np.all(ev >= s[-1]-1e-9)\n    assert abs(np.prod(s) - abs(np.linalg.det(A))) < 1e-8*max(1,np.prod(s))\nfor t in [1.,10.,1000.]:\n    s = np.linalg.svd(np.array([[1,t],[0,1]]), compute_uv=False)\n    assert abs(s[0]*s[1]-1) < 1e-9 and s[0] >= t"
+    },
+    {
+     "claim": "Pitfall [[0,1],[0,0]]: eigenvalues 0,0, singular values 1,0; storage count k(m+n+1) for 1000x800, k=50 is 90050",
+     "python": "import numpy as np\nN = np.array([[0.,1],[0,0]])\nassert np.allclose(np.linalg.eigvals(N), [0,0]) and np.allclose(np.linalg.svd(N, compute_uv=False), [1,0])\nassert 50*(1000+800+1) == 90050 and 1000*800 == 800000"
+    },
+    {
+     "claim": "Reviewer: truncated SVD is not optimal for the max-entry error: A=diag(2,1), k=1: A-A_1 has max entry 1, but B=[[2,x],[x,x^2/2]] with x=sqrt3-1 has rank 1 and max entry < 0.75",
+     "python": "import numpy as np\nA = np.diag([2., 1.])\nU, s, Vt = np.linalg.svd(A)\nA1 = s[0]*np.outer(U[:,0], Vt[0])\nassert abs(np.abs(A - A1).max() - 1) < 1e-12\nx = np.sqrt(3) - 1\nB = np.array([[2, x], [x, x*x/2]])\nassert np.linalg.matrix_rank(B) == 1 and np.abs(A - B).max() < 0.75\nassert np.linalg.norm(A - B, 2) >= s[1] - 1e-12"
+    },
+    {
+     "claim": "Reviewer: polar decomposition A = (U V^T)(V Sigma V^T) with U V^T orthogonal and V Sigma V^T symmetric PSD (random square matrices)",
+     "python": "import numpy as np\nrng = np.random.default_rng(21)\nfor _ in range(100):\n    n = rng.integers(1, 6)\n    A = rng.normal(size=(n, n))\n    U, s, Vt = np.linalg.svd(A)\n    Wm = U@Vt; Pm = Vt.T@np.diag(s)@Vt\n    assert np.allclose(Wm.T@Wm, np.eye(n)) and np.allclose(Pm, Pm.T)\n    assert np.all(np.linalg.eigvalsh(Pm) >= -1e-10) and np.allclose(Wm@Pm, A)"
+    },
+    {
+     "claim": "Reviewer: pseudoinverse V Sigma^+ U^T equals numpy pinv and gives the shortest least-squares solution (random rank-deficient matrices); Frobenius error of random rank-k B never beats truncated SVD",
+     "python": "import numpy as np\nrng = np.random.default_rng(22)\nfor _ in range(60):\n    m, n, r = rng.integers(2, 6), rng.integers(2, 6), rng.integers(1, 3)\n    A = rng.normal(size=(m, r))@rng.normal(size=(r, n))\n    U, s, Vt = np.linalg.svd(A)\n    rk = int(np.sum(s > 1e-10))\n    Sp = np.zeros((n, m)); Sp[:rk, :rk] = np.diag(1/s[:rk])\n    Ap = Vt.T@Sp@U.T\n    assert np.allclose(Ap, np.linalg.pinv(A))\n    b = rng.normal(size=m); x = Ap@b\n    z = Vt[rk:].T@rng.normal(size=n-rk) if rk < n else np.zeros(n)\n    assert abs(np.linalg.norm(A@(x+z)-b) - np.linalg.norm(A@x-b)) < 1e-9 and np.linalg.norm(x+z) >= np.linalg.norm(x) - 1e-12\n    for k in range(min(m, n)):\n        err = np.sqrt(np.sum(s[k:]**2))\n        for _ in range(5):\n            B = rng.normal(size=(m, k))@rng.normal(size=(k, n)) if k else np.zeros((m, n))\n            assert np.linalg.norm(A - B, 'fro') >= err - 1e-9"
+    },
+    {
+     "claim": "Reviewer: exercise facts used in the text: ||A||_F^2 = tr(A^T A) = sum sigma_i^2, and A - A_k has singular values sigma_{k+1},...,sigma_r",
+     "python": "import numpy as np\nrng = np.random.default_rng(23)\nA = rng.normal(size=(5, 4))\nU, s, Vt = np.linalg.svd(A)\nassert abs(np.sum(A*A) - np.trace(A.T@A)) < 1e-10 and abs(np.trace(A.T@A) - np.sum(s**2)) < 1e-10\nfor k in range(4):\n    Ak = U[:, :k]@np.diag(s[:k])@Vt[:k]\n    s2 = np.linalg.svd(A - Ak, compute_uv=False)\n    assert np.allclose(np.sort(s2)[::-1][:4-k], s[k:])"
+    }
+   ]
+  }
+ },
+ {
+  "id": "jordan",
+  "entry": {
+   "sum": "Every complex square matrix is similar to a Jordan matrix: a block diagonal matrix whose blocks $J_k(\\lambda)$ have an eigenvalue $\\lambda$ on the diagonal and $1$s just above it. The Jordan form is unique up to the order of the blocks, so it classifies matrices up to similarity; it is diagonal exactly when the matrix is diagonalisable, and the block sizes are read off from the dimensions of $\\ker(A-\\lambda I)^j$.",
+   "key": [
+    "P^{-1}AP=J=\\operatorname{diag}\\big(J_{k_1}(\\lambda_1),\\dots,J_{k_s}(\\lambda_s)\\big),\\qquad J_k(\\lambda)=\\lambda I_k+N,\\ N^k=0",
+    "\\#\\{\\text{blocks } J_k(\\lambda) \\text{ with } k\\ge j\\}=\\dim\\ker(A-\\lambda I)^j-\\dim\\ker(A-\\lambda I)^{j-1}",
+    "J_k(\\lambda)^m=\\sum_{j=0}^{k-1}\\binom{m}{j}\\lambda^{m-j}N^j"
+   ],
+   "why": "Jordan form is the complete answer to the question of when two matrices represent the same linear map in different bases, and it explains the terms $t^je^{\\lambda t}$ and $m^j\\lambda^m$ that appear in differential equations and recurrences with repeated characteristic roots.",
+   "msc": [
+    "15A21"
+   ],
+   "links": [
+    {
+     "field": "differential-equations",
+     "note": "A Jordan block of size $k$ in $x' = Ax$ produces solutions $t^je^{\\lambda t}$ with $j < k$, which is why repeated characteristic roots give polynomial factors."
+    },
+    {
+     "field": "dynamics",
+     "note": "The iterates $A^m x$ of a linear map tend to $0$ for every $x$ exactly when all eigenvalues satisfy $|\\lambda| < 1$, and Jordan blocks show the transient polynomial growth $m^j|\\lambda|^m$ along the way."
+    },
+    {
+     "field": "algebra",
+     "note": "Jordan form is the structure theorem for finitely generated modules over the principal ideal domain $\\mathbb C[t]$, applied to $\\mathbb C^n$ with $t$ acting as $A$; it also lists the conjugacy classes of the group $GL_n(\\mathbb C)$."
+    }
+   ],
+   "refs": [
+    "Axler, Linear Algebra Done Right",
+    "Hoffman & Kunze, Linear Algebra",
+    "Horn & Johnson, Matrix Analysis"
+   ],
+   "aliases": [
+    "Jordan canonical form",
+    "Jordan normal form",
+    "Jordan block",
+    "generalized eigenvector",
+    "generalised eigenspace",
+    "nilpotent matrix",
+    "similarity classification"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "[[diagonalization|Diagonalisation]] fails for matrices like the shear $\\begin{pmatrix} 1 & 1\\\\ 0 & 1\\end{pmatrix}$, which have too few eigenvectors. Is there still a simplest form that every matrix can be brought to by a change of basis? And how can one tell whether two matrices are similar, that is, describe the same linear map in different bases?\n\nJordan normal form answers both questions over $\\mathbb C$. The shear turns out to be the typical obstruction: every matrix is similar to a block diagonal matrix made of eigenvalues on the diagonal and some $1$s just above it, and the pattern of blocks is a complete similarity invariant. The final answer is concrete and computable by rank calculations."
+    },
+    {
+     "type": "definition",
+     "title": "Jordan block and Jordan matrix",
+     "body": "For a number $\\lambda$ and $k \\ge 1$, the Jordan block $J_k(\\lambda)$ is the $k\\times k$ matrix with $\\lambda$ in every diagonal position, $1$ in every position directly above the diagonal, and $0$ elsewhere:\n$$J_1(\\lambda) = (\\lambda), \\qquad J_2(\\lambda) = \\begin{pmatrix} \\lambda & 1\\\\ 0 & \\lambda\\end{pmatrix}, \\qquad J_3(\\lambda) = \\begin{pmatrix} \\lambda & 1 & 0\\\\ 0 & \\lambda & 1\\\\ 0 & 0 & \\lambda\\end{pmatrix}.$$\nA Jordan matrix is a block diagonal matrix $\\operatorname{diag}(J_{k_1}(\\lambda_1), \\dots, J_{k_s}(\\lambda_s))$ whose diagonal blocks are Jordan blocks (the $\\lambda_i$ need not be distinct). A Jordan normal form of a matrix $A$ is a Jordan matrix $J$ with $A = PJP^{-1}$ for some invertible $P$.\n\nSo a Jordan matrix is a diagonal matrix with some $1$s allowed just above the diagonal, but only inside blocks of equal diagonal entries."
+    },
+    {
+     "type": "section",
+     "title": "Anatomy of a single block",
+     "body": "Write $J_k(\\lambda) = \\lambda I + N$, where $N = J_k(0)$ has $1$s just above the diagonal. In the standard basis $e_1, \\dots, e_k$,\n$$Ne_1 = 0, \\quad Ne_2 = e_1, \\quad \\dots, \\quad Ne_k = e_{k-1},$$\nso $N$ pushes each basis vector one step down a chain $e_k \\to e_{k-1} \\to \\cdots \\to e_1 \\to 0$. Hence $N^k = 0$, and $N^j$ has $1$s on the $j$-th diagonal above the main one, so\n$$\\dim\\ker N^j = \\min(j, k).$$\nSuch a chain is called a Jordan chain. A vector $v$ with $(A - \\lambda I)^j v = 0$ for some $j \\ge 1$ is called a generalised eigenvector for $\\lambda$; for instance the top vector $e_k$ satisfies $(J_k(\\lambda) - \\lambda I)^k e_k = N^ke_k = 0$, although $Ne_k = e_{k-1} \\ne 0$ when $k \\ge 2$.\n\nConsequences for a single block: its only eigenvalue is $\\lambda$, with algebraic multiplicity $k$ but only a one-dimensional eigenspace (spanned by $e_1$). Since $\\lambda I$ and $N$ commute and $N^k = 0$, the binomial theorem gives the powers\n$$J_k(\\lambda)^m = \\sum_{j=0}^{k-1}\\binom{m}{j}\\lambda^{m-j}N^j, \\qquad \\text{e.g.}\\quad J_2(\\lambda)^m = \\begin{pmatrix} \\lambda^m & m\\lambda^{m-1}\\\\ 0 & \\lambda^m\\end{pmatrix}.$$\nThe extra factor $m$ is the signature of a non-diagonalisable block."
+    },
+    {
+     "type": "theorem",
+     "title": "Jordan normal form",
+     "body": "Let $A$ be an $n\\times n$ complex matrix. Then $A$ has a Jordan normal form: there is an invertible $P$ with\n$$P^{-1}AP = \\operatorname{diag}\\big(J_{k_1}(\\lambda_1), \\dots, J_{k_s}(\\lambda_s)\\big).$$\nThe $\\lambda_i$ are the eigenvalues of $A$, and for each eigenvalue $\\lambda$ and each $j \\ge 1$,\n$$\\#\\{i : \\lambda_i = \\lambda,\\ k_i \\ge j\\} = \\dim\\ker(A - \\lambda I)^j - \\dim\\ker(A - \\lambda I)^{j-1}.$$\nIn particular the Jordan form is unique up to the order of the blocks, and two complex matrices are similar if and only if they have the same Jordan form.\n\nThe same holds, with $P$ and $J$ over the smaller field, for a matrix over any field in which its characteristic polynomial splits into linear factors; for example, a real matrix whose eigenvalues are all real has a Jordan normal form $J$ with real entries and a real $P$. We prove only the complex case, where splitting is automatic."
+    },
+    {
+     "type": "section",
+     "title": "Plan of the proof",
+     "body": "The proof has three steps.\n\n1. Split $\\mathbb C^n$ into pieces $W_1, \\dots, W_s$, each mapped into itself by $A$, on which $A$ has a single eigenvalue $\\mu_j$. Then $A - \\mu_jI$ is nilpotent on $W_j$ (some power of it is $0$).\n2. Show that for a nilpotent map $N$ there is a basis made of Jordan chains $w, Nw, \\dots, N^{k-1}w$. In such a basis the matrix of $N$ is a Jordan matrix with zeros on the diagonal.\n3. Count: the formula for the number of blocks shows the block sizes are determined by $A$.\n\nTwo facts are used. Rank–nullity ([[linear-maps]]), and the polynomial version of [[bezout|Bézout's identity]]: if polynomials $q_1, \\dots, q_s$ have no common complex root, there are polynomials $r_1, \\dots, r_s$ with $r_1q_1 + \\cdots + r_sq_s = 1$. (This follows from the Euclidean algorithm for polynomials, exactly as for integers; compare [[polynomials-roots]].)"
+    },
+    {
+     "type": "proof",
+     "body": "Step 1. The $n^2 + 1$ matrices $I, A, A^2, \\dots, A^{n^2}$ lie in the $n^2$-dimensional space of $n\\times n$ matrices, so they are linearly dependent: some nonzero polynomial $m$ has $m(A) = 0$. Factor it as $m(t) = c\\prod_{j=1}^{s}(t - \\mu_j)^{b_j}$ with distinct $\\mu_j$, and put $W_j = \\ker(A - \\mu_jI)^{b_j}$. Each $W_j$ is mapped into itself by $A$, because $A$ commutes with $(A - \\mu_jI)^{b_j}$.\n\nLet $q_j(t) = \\prod_{i \\ne j}(t - \\mu_i)^{b_i}$. These have no common root, so $\\sum_j r_jq_j = 1$ for some polynomials $r_j$. Put $E_j = r_j(A)q_j(A)$; then $\\sum_j E_j = I$. For every $v$, $(A - \\mu_jI)^{b_j}E_jv = r_j(A)\\,m(A)v/c = 0$, so $E_jv \\in W_j$, and $v = \\sum_j E_jv$ shows $\\mathbb C^n = W_1 + \\cdots + W_s$. The sum is direct: if $w_i \\in W_i$, then $E_jw_i = 0$ for $i \\ne j$, since $q_j$ contains the factor $(t - \\mu_i)^{b_i}$. So if $w_1 + \\cdots + w_s = 0$, applying $E_j$ gives $E_jw_j = 0$, while $w_j = \\sum_iE_iw_j = E_jw_j$. Hence $w_j = 0$. Discard the $W_j$ that are $\\{0\\}$. On each remaining $W_j$, $N_j = A - \\mu_jI$ satisfies $N_j^{b_j} = 0$.\n\nStep 2. Let $N$ be nilpotent on a space $W$. We show by induction on $\\dim W$ that $W$ has a basis of Jordan chains (a chain of length $k$ is $w, Nw, \\dots, N^{k-1}w$ with $N^kw = 0$). If $W = 0$ there is nothing to do. Otherwise $N$ is not injective (a power of it is $0$), so $N(W)$ is a smaller space, mapped into itself by $N$. By induction it has a basis of chains $u_j, Nu_j, \\dots, N^{k_j-1}u_j$ ($j = 1, \\dots, p$) with $N^{k_j}u_j = 0$. Choose $w_j$ with $Nw_j = u_j$. The chain ends $N^{k_j-1}u_j$ lie in $\\ker N$ and are independent; extend them by $z_1, \\dots, z_t$ to a basis of $\\ker N$. We claim that the longer chains $w_j, Nw_j, \\dots, N^{k_j}w_j$ together with the length-one chains $z_1, \\dots, z_t$ form a basis of $W$.\n\nTheir number is $\\sum_j(k_j + 1) + t = \\dim N(W) + \\dim\\ker N = \\dim W$ by rank–nullity, so it suffices to prove independence. Suppose $\\sum_j\\sum_{l=0}^{k_j}a_{jl}N^lw_j + \\sum_id_iz_i = 0$. Applying $N$ kills the $z_i$ and the terms $N^{k_j}w_j$, and turns $N^lw_j$ into $N^lu_j$, leaving $\\sum_j\\sum_{l < k_j}a_{jl}N^lu_j = 0$. These are basis vectors of $N(W)$, so $a_{jl} = 0$ for $l < k_j$. What remains is $\\sum_ja_{jk_j}N^{k_j-1}u_j + \\sum_id_iz_i = 0$, a relation in a basis of $\\ker N$, so all remaining coefficients vanish.\n\nOrdering each chain as $N^{k-1}w, \\dots, Nw, w$, the map $N$ sends each vector to the previous one and the first to $0$, which is exactly $J_k(0)$. So on $W_j$, in a chain basis, $A = \\mu_jI + N_j$ is a Jordan matrix with diagonal $\\mu_j$. Putting the bases of all $W_j$ together gives $P$ with $P^{-1}AP$ a Jordan matrix. Its diagonal entries are the eigenvalues of $A$, since similar matrices have the same characteristic polynomial.\n\nStep 3. Let $J = P^{-1}AP$ be any Jordan matrix similar to $A$. Since $(A - \\lambda I)^j = P(J - \\lambda I)^jP^{-1}$, the kernels have equal dimensions, and $\\ker(J - \\lambda I)^j$ is computed block by block. A block $J_k(\\mu)$ with $\\mu \\ne \\lambda$ gives the invertible triangular block $(J_k(\\mu) - \\lambda I)^j$, contributing $0$. A block $J_k(\\lambda)$ gives $N^j$, contributing $\\min(j, k)$. So $\\dim\\ker(A - \\lambda I)^j = \\sum\\min(j, k_i)$ over the blocks with $\\lambda_i = \\lambda$. Each such block adds $1$ to the difference between the values at $j$ and $j - 1$ if $k_i \\ge j$, and $0$ otherwise. This is the counting formula. Its right side depends only on $A$, so the numbers of blocks of each size are determined by $A$. This proves uniqueness, and with it the similarity criterion."
+    },
+    {
+     "type": "section",
+     "title": "Reading off the Jordan form",
+     "body": "In practice one rarely runs the proof; one computes ranks. For an eigenvalue $\\lambda$ put $d_j = \\dim\\ker(A - \\lambda I)^j = n - \\operatorname{rank}(A - \\lambda I)^j$. Then:\n\n- the number of blocks for $\\lambda$ is $d_1$, the geometric multiplicity;\n- the total size of the blocks for $\\lambda$ is its algebraic multiplicity;\n- the number of blocks of size exactly $j$ is $2d_j - d_{j-1} - d_{j+1}$;\n- the largest block size for $\\lambda$ is the smallest $j$ with $d_j = d_{j+1}$.\n\nSome consequences. $A$ is diagonalisable exactly when all blocks have size $1$. Each block $J_k(\\lambda)$ satisfies $(J_k(\\lambda) - \\lambda I)^k = 0$ and $k$ is at most the algebraic multiplicity of $\\lambda$, so $p_A(A) = 0$: this is the Cayley–Hamilton theorem. The smallest-degree monic polynomial killing $A$ (the minimal polynomial) is $\\prod_\\lambda(t - \\lambda)^{k_\\lambda}$, with $k_\\lambda$ the largest block size for $\\lambda$; so $A$ is diagonalisable if and only if some polynomial with distinct roots kills it.\n\nFor powers and exponentials, the block formula above gives\n$$e^{tJ_k(\\lambda)} = e^{\\lambda t}\\sum_{j=0}^{k-1}\\frac{t^j}{j!}N^j.$$\nThis is the source of the solutions $te^{\\lambda t}, t^2e^{\\lambda t}, \\dots$ of [[ode-linear|linear differential equations]] with repeated characteristic roots, and of terms $m\\lambda^m$ in linear recurrences. It also shows that $A^m \\to 0$ as $m \\to \\infty$ exactly when every eigenvalue has $|\\lambda| < 1$, because $\\binom{m}{j}\\lambda^{m-j} \\to 0$ for each fixed $j$ when $|\\lambda| < 1$; conversely, if $Av = \\lambda v$ with $v \\ne 0$ and $|\\lambda| \\ge 1$, then $A^mv = \\lambda^mv$ does not tend to $0$."
+    },
+    {
+     "type": "example",
+     "title": "A 2 by 2 example",
+     "body": "Find the Jordan form of $A = \\begin{pmatrix} 3 & 1\\\\ -1 & 1\\end{pmatrix}$, a matrix $P$ with $P^{-1}AP = J$, and a formula for $A^m$.",
+     "solution": "$\\operatorname{tr}A = 4$ and $\\det A = 3 + 1 = 4$, so $p_A(t) = t^2 - 4t + 4 = (t - 2)^2$. Since $A - 2I = \\begin{pmatrix} 1 & 1\\\\ -1 & -1\\end{pmatrix}$ is not zero, $d_1 = 1$: one block, so $J = J_2(2)$.\n\nFor $P$ we need a chain of length $2$: any $w$ with $(A - 2I)w \\ne 0$. Take $w = (1, 0)$; then $(A - 2I)w = (1, -1)$ and $(A - 2I)(1, -1) = 0$. Ordering the chain as $(A - 2I)w, w$,\n$$P = \\begin{pmatrix} 1 & 1\\\\ -1 & 0\\end{pmatrix}, \\qquad P^{-1} = \\begin{pmatrix} 0 & -1\\\\ 1 & 1\\end{pmatrix}, \\qquad P^{-1}AP = \\begin{pmatrix} 2 & 1\\\\ 0 & 2\\end{pmatrix}.$$\nThen $A^m = PJ^mP^{-1}$ with $J^m = \\begin{pmatrix} 2^m & m2^{m-1}\\\\ 0 & 2^m\\end{pmatrix}$, and multiplying out,\n$$A^m = 2^{m-1}\\begin{pmatrix} 2 + m & m\\\\ -m & 2 - m\\end{pmatrix}.$$\nFor $m = 1$ this is $\\begin{pmatrix} 3 & 1\\\\ -1 & 1\\end{pmatrix}$, as it should be. The entries grow like $m2^m$, faster than $2^m$, which no diagonalisable matrix with eigenvalue $2$ only could do."
+    },
+    {
+     "type": "example",
+     "title": "Nilpotent matrices and partitions",
+     "body": "List the possible Jordan forms of a nilpotent $4\\times 4$ matrix, show how to tell them apart, and find the Jordan form of\n$$N = \\begin{pmatrix} 0 & 1 & 1 & 0\\\\ 0 & 0 & 0 & 1\\\\ 0 & 0 & 0 & -1\\\\ 0 & 0 & 0 & 0\\end{pmatrix}.$$",
+     "solution": "A nilpotent matrix has only the eigenvalue $0$, so its Jordan form is determined by block sizes adding up to $4$, that is, by a partition of $4$. There are five, and the ranks of $N, N^2, N^3$ (use $\\operatorname{rank}J_k(0)^j = \\max(k - j, 0)$) are:\n$$\\begin{aligned} &(4): && 3, 2, 1 \\qquad &&(3, 1): && 2, 1, 0 \\qquad &&(2, 2): && 2, 0, 0\\\\ &(2, 1, 1): && 1, 0, 0 \\qquad &&(1,1,1,1): && 0, 0, 0. \\end{aligned}$$\nNote that $(3, 1)$ and $(2, 2)$ have the same characteristic polynomial $t^4$ and the same number of blocks; only $\\operatorname{rank}N^2$ separates them.\n\nFor the given $N$: rows $2$ and $3$ are negatives of each other and row $4$ is zero, so $\\operatorname{rank}N = 2$. Computing $N^2$, each row of $N$ times $N$ gives zero (row $1$ gives row $2$ plus row $3$ of $N$, which is $0$), so $N^2 = 0$. The partition is $(2, 2)$: $N$ is similar to $\\operatorname{diag}(J_2(0), J_2(0))$.\n\nExplicit chains: $Ne_2 = e_1$ and $Ne_4 = e_2 - e_3$, and both images are killed by $N$. So in the basis $e_1, e_2, e_2 - e_3, e_4$ the matrix of $N$ is $\\operatorname{diag}(J_2(0), J_2(0))$."
+    },
+    {
+     "type": "example",
+     "title": "A matrix and its transpose",
+     "body": "Prove that every complex square matrix $A$ is similar to its transpose $A^{\\mathsf T}$.",
+     "solution": "First a single block. Let $R$ be the $k\\times k$ reversal matrix, with $1$s on the anti-diagonal, so $Re_i = e_{k+1-i}$ and $R^{-1} = R$. Conjugating by $R$ reverses the order of the basis, which turns \"$1$s just above the diagonal\" into \"$1$s just below the diagonal\":\n$$RJ_k(\\lambda)R = J_k(\\lambda)^{\\mathsf T}.$$\nNow let $A = PJP^{-1}$ with $J = \\operatorname{diag}(J_{k_1}(\\lambda_1), \\dots)$. Let $S = \\operatorname{diag}(R_{k_1}, R_{k_2}, \\dots)$, built from reversal matrices of the block sizes; then $SJS = J^{\\mathsf T}$ and $S^{-1} = S$. Transposing $A = PJP^{-1}$ gives\n$$A^{\\mathsf T} = (P^{\\mathsf T})^{-1}J^{\\mathsf T}P^{\\mathsf T} = (P^{\\mathsf T})^{-1}S\\,J\\,S\\,P^{\\mathsf T} = (P^{\\mathsf T})^{-1}S P^{-1}\\,A\\,P S P^{\\mathsf T} = Q^{-1}AQ$$\nwith $Q = PSP^{\\mathsf T}$. So $A^{\\mathsf T}$ is similar to $A$.\n\nAlternatively, use the counting formula: $(A^{\\mathsf T} - \\lambda I)^j$ is the transpose of $(A - \\lambda I)^j$, so it has the same rank, and $A$ and $A^{\\mathsf T}$ have the same numbers $d_j$, hence the same Jordan form."
+    },
+    {
+     "type": "example",
+     "title": "Square roots of matrices",
+     "body": "Show that every invertible complex matrix has a square root (a matrix $B$ with $B^2 = A$), but that $\\begin{pmatrix} 0 & 1\\\\ 0 & 0\\end{pmatrix}$ has none.",
+     "solution": "If $A = PJP^{-1}$, it suffices to find a square root $S_i$ of each block, since then $B = P\\operatorname{diag}(S_1, S_2, \\dots)P^{-1}$ satisfies $B^2 = A$.\n\nTake a block $J_k(\\lambda) = \\lambda(I + M)$ with $\\lambda \\ne 0$ (as $A$ is invertible) and $M = N/\\lambda$, so $M^k = 0$. Choose a complex number $\\mu$ with $\\mu^2 = \\lambda$. The binomial series satisfies $\\big(\\sum_{j\\ge0}\\binom{1/2}{j}x^j\\big)^2 = 1 + x$ as power series, so the truncation $T(x) = \\sum_{j < k}\\binom{1/2}{j}x^j$ satisfies $T(x)^2 = 1 + x + (\\text{terms of degree} \\ge k)$. Substituting $M$ and using $M^k = 0$,\n$$S = \\mu\\,T(M) \\quad\\text{satisfies}\\quad S^2 = \\lambda(I + M) = J_k(\\lambda).$$\nFor example, for $J_2(4)$: $\\mu = 2$, $T(x) = 1 + \\frac x2$ and $S = 2(I + \\frac{N}{8}) = \\begin{pmatrix} 2 & \\frac14\\\\ 0 & 2\\end{pmatrix}$, and indeed $S^2 = \\begin{pmatrix} 4 & 1\\\\ 0 & 4\\end{pmatrix}$.\n\nNow suppose $B^2 = N = \\begin{pmatrix} 0 & 1\\\\ 0 & 0\\end{pmatrix}$. Then $B^4 = N^2 = 0$, so $B$ is nilpotent, and its only eigenvalue is $0$. A $2\\times 2$ matrix with only the eigenvalue $0$ has Jordan form $0$ or $J_2(0)$, and both square to $0$; so $B^2 = 0 \\ne N$, a contradiction."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The characteristic polynomial and the eigenspace dimensions do not determine the Jordan form in general: the partitions $(3, 1)$ and $(2, 2)$ above agree on both. You need the ranks of all powers $(A - \\lambda I)^j$.\n- Jordan form is numerically unstable. $\\begin{pmatrix} 0 & 1\\\\ \\varepsilon & 0\\end{pmatrix}$ has distinct eigenvalues $\\pm\\sqrt\\varepsilon$ and is diagonalisable for every $\\varepsilon \\ne 0$, but for $\\varepsilon = 0$ it is $J_2(0)$. In floating point one uses the Schur form or the SVD instead.\n- Real matrices with non-real eigenvalues have a complex Jordan form. There is a real version with $2\\times 2$ rotation-scaling blocks, but it is a different normal form.\n- The matrix $P$ is far from unique, and the top vector of a chain must satisfy $(A - \\lambda I)^{k-1}w \\ne 0$; picking an arbitrary vector of $\\ker(A - \\lambda I)^k$ may give a chain that is too short."
+    },
+    {
+     "type": "connection",
+     "body": "Jordan form completes [[diagonalization]] and explains the repeated-root cases of [[ode-linear|linear differential equations]] and of linear recurrences ([[generating-functions]], [[sequences]]): a block of size $k$ produces $t^je^{\\lambda t}$ or $m^j\\lambda^m$ for $j < k$.\n\nAlgebraically, the theorem is a special case of the classification of finitely generated modules over a principal ideal domain, applied to $\\mathbb C^n$ viewed as a module over the polynomial ring $\\mathbb C[t]$, with $t$ acting as $A$ (see [[rings]]). In the language of [[group-actions]], similarity is the conjugation action of the invertible matrices on all matrices, and Jordan forms label its orbits. Over fields where the characteristic polynomial need not split, such as $\\mathbb R$ or the rational numbers, the rational canonical form takes over the role of Jordan form."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find the Jordan form of $\\begin{pmatrix} 2 & 1 & 1\\\\ 0 & 2 & 1\\\\ 0 & 0 & 2\\end{pmatrix}$.\n2. How many similarity classes are there of $5\\times 5$ complex matrices whose only eigenvalue is $3$?\n3. Show that a matrix $A$ with $A^3 = A$ is diagonalisable.\n4. Compute $e^{tJ_3(\\lambda)}$ explicitly as a $3\\times 3$ matrix."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Axler, Linear Algebra Done Right",
+     "where": "Chapter 8"
+    },
+    {
+     "ref": "Hoffman & Kunze, Linear Algebra"
+    },
+    {
+     "ref": "Horn & Johnson, Matrix Analysis"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Single block: N^k = 0, dim ker N^j = min(j,k), and J_k(l)^m = sum_j binom(m,j) l^(m-j) N^j (symbolic, k<=5, m<=8)",
+     "python": "from sympy import symbols, zeros, eye, binomial, expand, Matrix\nl = symbols('l')\nfor k in range(1,6):\n    N = zeros(k,k)\n    for i in range(k-1): N[i,i+1] = 1\n    assert N**k == zeros(k,k)\n    for j in range(0,k+2):\n        assert k - (N**j).rank() == min(j,k)\n    J = l*eye(k) + N\n    for m in range(0,9):\n        S = zeros(k,k)\n        for j in range(k): S += binomial(m,j)*l**(m-j)*N**j if m-j >= 0 else zeros(k,k)\n        assert (J**m - S).applyfunc(expand) == zeros(k,k)"
+    },
+    {
+     "claim": "2x2 example: p=(t-2)^2, chain (1,0)->(1,-1)->0, P=[[1,1],[-1,0]], P^-1=[[0,-1],[1,1]], P^-1AP=J_2(2), A^m = 2^(m-1)[[2+m,m],[-m,2-m]]",
+     "python": "from sympy import Matrix, symbols, expand, Rational, eye\nt = symbols('t')\nA = Matrix([[3,1],[-1,1]])\nassert expand(A.charpoly(t).as_expr() - (t-2)**2) == 0\nN = A - 2*eye(2)\nassert N*Matrix([1,0]) == Matrix([1,-1]) and N*Matrix([1,-1]) == Matrix([0,0])\nP = Matrix([[1,1],[-1,0]])\nassert P.inv() == Matrix([[0,-1],[1,1]]) and P.inv()*A*P == Matrix([[2,1],[0,2]])\nfor m in range(0,25):\n    assert A**m == Rational(2)**(m-1)*Matrix([[2+m,m],[-m,2-m]])"
+    },
+    {
+     "claim": "Rank table for nilpotent 4x4 Jordan matrices by partition; example N has rank 2, N^2=0, Jordan form J2(0)+J2(0), chain basis e1,e2,e2-e3,e4",
+     "python": "from sympy import Matrix, zeros, diag, eye\ndef Jn(k):\n    N = zeros(k,k)\n    for i in range(k-1): N[i,i+1] = 1\n    return N\ntable = {(4,):(3,2,1),(3,1):(2,1,0),(2,2):(2,0,0),(2,1,1):(1,0,0),(1,1,1,1):(0,0,0)}\nfor part, ranks in table.items():\n    M = diag(*[Jn(k) for k in part])\n    assert tuple((M**j).rank() for j in (1,2,3)) == ranks\nN = Matrix([[0,1,1,0],[0,0,0,1],[0,0,0,-1],[0,0,0,0]])\nassert N.rank() == 2 and N**2 == zeros(4,4)\nP = Matrix.hstack(Matrix([1,0,0,0]), Matrix([0,1,0,0]), Matrix([0,1,-1,0]), Matrix([0,0,0,1]))\nassert P.inv()*N*P == diag(Jn(2), Jn(2))\nPj, J = N.jordan_form()\nassert sorted([J[i,i+1] for i in range(3)]) == [0,1,1]"
+    },
+    {
+     "claim": "Counting formula: blocks of size >= j equal d_j - d_{j-1}; sympy jordan_form agrees on random conjugated Jordan matrices",
+     "python": "import random\nfrom sympy import Matrix, zeros, eye, diag\ndef Jb(lam,k):\n    M = lam*eye(k)\n    for i in range(k-1): M[i,i+1] = 1\n    return M\nrandom.seed(3)\nfor _ in range(25):\n    blocks = [(random.choice([1,2,-1]), random.randint(1,3)) for _ in range(random.randint(1,3))]\n    J = diag(*[Jb(l,k) for l,k in blocks]); n = J.shape[0]\n    while True:\n        P = Matrix(n,n,lambda i,j: random.randint(-2,2))\n        if P.det() != 0: break\n    A = P*J*P.inv()\n    for lam in set(l for l,_ in blocks):\n        d = [n - ((A-lam*eye(n))**j).rank() for j in range(0,n+2)]\n        for j in range(1,n+1):\n            assert d[j]-d[j-1] == sum(1 for l,k in blocks if l == lam and k >= j)\n    _, J2 = A.jordan_form()\n    # compare multiset of (eigenvalue, block size) read off from J2\n    def blocks_of(M):\n        res=[]; i=0; n=M.shape[0]\n        while i < n:\n            k=1\n            while i+k < n and M[i+k-1,i+k] == 1: k+=1\n            res.append((M[i,i],k)); i+=k\n        return sorted(res)\n    assert blocks_of(J2) == sorted(blocks)"
+    },
+    {
+     "claim": "Reversal matrix R: R J_k(l) R = J_k(l)^T; A^T = Q^-1 A Q with Q = P S P^T (random example)",
+     "python": "import random\nfrom sympy import Matrix, zeros, eye, diag, symbols\nl = symbols('l')\nfor k in range(1,6):\n    R = Matrix(k,k,lambda i,j: 1 if i+j == k-1 else 0)\n    J = l*eye(k)\n    for i in range(k-1): J[i,i+1] = 1\n    assert R*R == eye(k) and R*J*R == J.T\ndef Jb(lam,k):\n    M = lam*eye(k)\n    for i in range(k-1): M[i,i+1] = 1\n    return M\ndef Rk(k): return Matrix(k,k,lambda i,j: 1 if i+j == k-1 else 0)\nrandom.seed(1)\nJ = diag(Jb(2,3), Jb(-1,2)); S = diag(Rk(3), Rk(2))\nassert S*J*S == J.T\nwhile True:\n    P = Matrix(5,5,lambda i,j: random.randint(-2,2))\n    if P.det() != 0: break\nA = P*J*P.inv(); Q = P*S*P.T\nassert Q.inv()*A*Q == A.T"
+    },
+    {
+     "claim": "Square roots: S = [[2,1/4],[0,2]] squares to J_2(4); mu*T(M) squares to J_k(lambda) for k<=5; [[0,1],[0,0]] has no square root (symbolic)",
+     "python": "from sympy import Matrix, Rational, binomial, zeros, eye, sqrt, simplify, symbols, solve\nS = Matrix([[2,Rational(1,4)],[0,2]])\nassert S**2 == Matrix([[4,1],[0,4]])\nfor lam in [4, -3, 2]:\n    for k in range(1,6):\n        N = zeros(k,k)\n        for i in range(k-1): N[i,i+1] = 1\n        M = N/lam; mu = sqrt(lam)\n        T = zeros(k,k)\n        for j in range(k): T += binomial(Rational(1,2), j)*M**j\n        B = mu*T\n        assert simplify(B**2 - (lam*eye(k)+N)) == zeros(k,k)\na,b,c,d = symbols('a b c d')\nB = Matrix([[a,b],[c,d]])\nassert solve(list(B**2 - Matrix([[0,1],[0,0]])), [a,b,c,d], dict=True) == []"
+    },
+    {
+     "claim": "Instability: [[0,1],[eps,0]] has eigenvalues +-sqrt(eps) and is diagonalisable for eps != 0; A^m -> 0 when spectral radius < 1 even with a Jordan block",
+     "python": "from sympy import Matrix, symbols, sqrt, Rational\nimport numpy as np\ne = symbols('e', positive=True)\nM = Matrix([[0,1],[e,0]])\nassert M.eigenvals() == {sqrt(e):1, -sqrt(e):1}\nassert Matrix([[0,1],[Rational(1,100),0]]).is_diagonalizable() and not Matrix([[0,1],[0,0]]).is_diagonalizable()\nJ = np.array([[0.9,1.0],[0,0.9]])\nP = np.linalg.matrix_power(J,400)\nassert np.abs(P).max() < 1e-12 and np.linalg.matrix_power(J,20)[0,1] > 1"
+    },
+    {
+     "claim": "Exponential of a Jordan block: e^{tJ_k(l)} = e^{lt} sum t^j N^j / j! (k=2,3)",
+     "python": "from sympy import symbols, Matrix, zeros, eye, exp, factorial, simplify\nt,l = symbols('t l')\nfor k in (2,3):\n    N = zeros(k,k)\n    for i in range(k-1): N[i,i+1] = 1\n    J = l*eye(k)+N\n    R = exp(l*t)*sum((t**j*N**j/factorial(j) for j in range(k)), zeros(k,k))\n    assert simplify((J*t).exp() - R) == zeros(k,k)"
+    },
+    {
+     "claim": "Reviewer: blocks of size exactly j = 2d_j - d_{j-1} - d_{j+1}; largest block = smallest j with d_j = d_{j+1}; number of blocks = d_1 (random Jordan matrices conjugated by integer P)",
+     "python": "import random\nfrom sympy import Matrix, eye, diag\ndef Jb(lam, k):\n    M = lam*eye(k)\n    for i in range(k-1): M[i, i+1] = 1\n    return M\nrandom.seed(11)\nfor _ in range(25):\n    blocks = [(random.choice([0, 2]), random.randint(1, 3)) for _ in range(random.randint(1, 4))]\n    J = diag(*[Jb(l, k) for l, k in blocks]); n = J.shape[0]\n    while True:\n        P = Matrix(n, n, lambda i, j: random.randint(-2, 2))\n        if P.det() != 0: break\n    A = P*J*P.inv()\n    for lam in set(l for l, _ in blocks):\n        d = [n - ((A - lam*eye(n))**j).rank() for j in range(0, n+3)]\n        sizes = [k for l, k in blocks if l == lam]\n        assert d[1] == len(sizes)\n        for j in range(1, n+2):\n            assert 2*d[j] - d[j-1] - d[j+1] == sizes.count(j)\n        assert min(j for j in range(1, n+2) if d[j] == d[j+1]) == max(sizes)"
+    },
+    {
+     "claim": "Reviewer: Cayley-Hamilton p_A(A)=0 (random integer matrices) and minimal polynomial prod (t-lam)^{largest block} for a Jordan matrix",
+     "python": "import random\nfrom sympy import Matrix, symbols, eye, zeros, diag\nt = symbols('t')\nrandom.seed(5)\nfor _ in range(30):\n    n = random.randint(1, 5)\n    A = Matrix(n, n, lambda i, j: random.randint(-4, 4))\n    c = A.charpoly(t).all_coeffs()\n    S = zeros(n, n)\n    for co in c: S = S*A + co*eye(n)\n    assert S == zeros(n, n)\ndef Jb(lam, k):\n    M = lam*eye(k)\n    for i in range(k-1): M[i, i+1] = 1\n    return M\nJ = diag(Jb(2, 3), Jb(2, 1), Jb(-1, 2))\nm = (J - 2*eye(6))**3*(J + eye(6))**2\nassert m == zeros(6, 6)\nassert (J - 2*eye(6))**2*(J + eye(6))**2 != zeros(6, 6) and (J - 2*eye(6))**3*(J + eye(6)) != zeros(6, 6)"
+    },
+    {
+     "claim": "Reviewer: A and A^T have the same Jordan form (sympy) and rank((A^T - lam I)^j) = rank((A - lam I)^j) for a matrix with a nontrivial block structure",
+     "python": "from sympy import Matrix, eye, diag\nJ = diag(Matrix([[3,1,0],[0,3,1],[0,0,3]]), Matrix([[3]]), Matrix([[5,1],[0,5]]))\nP = Matrix([[1,2,0,0,1,0],[0,1,1,0,0,0],[0,0,1,3,0,1],[1,0,0,1,0,0],[0,1,0,0,1,2],[0,0,0,1,0,1]])\nassert P.det() != 0\nA = P*J*P.inv()\nfor lam in (3, 5):\n    for j in range(1, 5):\n        assert ((A.T - lam*eye(6))**j).rank() == ((A - lam*eye(6))**j).rank()\n_, J1 = A.jordan_form(); _, J2 = A.T.jordan_form()\ndef blocks_of(M):\n    res = []; i = 0; n = M.shape[0]\n    while i < n:\n        k = 1\n        while i+k < n and M[i+k-1, i+k] == 1: k += 1\n        res.append((M[i, i], k)); i += k\n    return sorted(res)\nassert blocks_of(J1) == blocks_of(J2) == sorted([(3,3),(3,1),(5,2)])"
+    },
+    {
+     "claim": "Reviewer: real matrix with real eigenvalues has real (rational) P and J; 4x4 nilpotent partitions number 5; A^m v = lam^m v does not tend to 0 when |lam| >= 1",
+     "python": "from sympy import Matrix, Rational\nfrom sympy.utilities.iterables import partitions\nA = Matrix([[3,1],[-1,1]])\nP, J = A.jordan_form()\nassert all(x.is_rational for x in list(P) + list(J)) and P*J*P.inv() == A\nassert sum(1 for _ in partitions(4)) == 5\nB = Matrix([[1, 1], [0, Rational(1, 2)]])\nv = Matrix([1, 0])\nassert B*v == v and all(B**m*v == v for m in range(1, 20))"
+    }
+   ]
+  }
+ }
+]

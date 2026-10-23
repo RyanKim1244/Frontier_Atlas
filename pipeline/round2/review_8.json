@@ -1,0 +1,194 @@
+[
+ {
+  "id": "random-variables",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Independence, products and variance",
+    "problem": "Additivity Var(X+Y)=Var(X)+Var(Y) for independent X, Y was stated without requiring finite variances, and the product rule was applied to the centred variables without saying they are independent.",
+    "fix": "Added 'with finite variances' and noted that X-EX and Y-EY are again independent."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Independence, products and variance",
+    "problem": "Variance defined with no finiteness condition (E[X^2] may be infinite or E[X] undefined).",
+    "fix": "Variance now defined when E[X^2] is finite, noting this forces E|X| finite."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Says the probabilistic method starts from 'a random variable must sometimes be at least its mean', but the illustration (fewer than one monochromatic triangle on average, so some colouring has none) uses the opposite fact, that it is sometimes at most its mean.",
+    "fix": "Now states both: sometimes at least, and sometimes at most, its mean."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/The long-run average",
+    "problem": "E[g(X)] = sum g(x)Pr(X=x) stated without the absolute-convergence proviso used in the definition.",
+    "fix": "Added the proviso for infinite sums."
+   },
+   {
+    "severity": "style",
+    "where": "definition/Expectation",
+    "problem": "School-stage reader may not know 'converge absolutely'.",
+    "fix": "Added a short gloss: the sum of absolute values must be finite."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Coupon-collector check relied on a fixed-seed simulation; claim is argued exactly.",
+    "fix": "Replaced by exact checks: the stage sum and an independent inclusion-exclusion computation of sum P(T>k), both 147/10. Added an exact tail-sum/geometric and St Petersburg check."
+   }
+  ]
+ },
+ {
+  "id": "distributions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Central limit theorem described as holding for 'almost any distribution'; the hypothesis is finite positive variance.",
+    "fix": "Replaced by 'any distribution with finite positive variance'."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Gallagher's result stated loosely (random interval 'approximately Poisson'); conditional nature not emphasised and the interval/limit not specified.",
+    "fix": "Now: assuming a uniform Hardy-Littlewood prime tuples conjecture, for n <= x random the number of primes in (n, n + lambda ln x] tends in distribution to Poisson(lambda) as x -> infinity; added that the result is conditional since the conjecture is unproved. Entry link note rewritten the same way."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'A density is what the Radon-Nikodym theorem provides' suggests every distribution has a density, contradicting the traffic-light example in the lesson.",
+    "fix": "Now says a distribution has a density exactly when it gives probability 0 to every set of length 0."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Continuous-time Markov chain holding times called 'a direct consequence of memorylessness' (logic reversed).",
+    "fix": "Now: the Markov property forces the holding time to be memoryless, hence exponential."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition/Density",
+    "problem": "'f integrable' with Riemann-integral prerequisite, yet the chi-squared density in an example is unbounded near 0.",
+    "fix": "Added 'possibly as an improper integral'."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links/computer-science",
+    "problem": "'Random number generators produce samples from any distribution' overstated.",
+    "fix": "Reworded: simulation software generates samples from a prescribed distribution by transforming uniforms, e.g. inverse transform sampling."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Inverse-transform and broken-stick checks used fixed-seed simulations.",
+    "fix": "Replaced with exact checks (symbolic event equivalence for -ln(U)/lambda; exact area by integration and shoelace plus exact rational grid count). Added exact checks for exponential moments n!/lambda^n = Gamma(n+1)/lambda^n and the traffic-light distribution."
+   }
+  ]
+ },
+ {
+  "id": "limit-theorems",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "CLT claim 'whatever the distribution' with only 'variance sigma^2' assumed; needs 0 < sigma^2 < infinity.",
+    "fix": "Sum now assumes finite variance sigma^2 > 0."
+   },
+   {
+    "severity": "error",
+    "where": "section/The square-root law; pitfall",
+    "problem": "'any distribution with finite variance' omits positivity (Z_n undefined if sigma = 0).",
+    "fix": "Changed to 'finite positive variance' in both places."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Why the normal curve: a sketch",
+    "problem": "The sketch listed two omissions but not that the MGF assumption itself excludes many finite-variance distributions, so the sketch does not cover the theorem as stated.",
+    "fix": "Says explicitly 'this is not a proof' and lists three omissions, with an example of a finite-variance density, proportional to (1+|x|)^(-4), that has no MGF (checked)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Why the normal curve: a sketch",
+    "problem": "Berry-Esseen bound: quantifier over n and the standing hypotheses (i.i.d., sigma > 0) implicit; not marked as stated without proof.",
+    "fix": "Now 'under the hypotheses of the CLT ... for every n and every x', constant < 1/2, stated without proof."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "Claimed the lesson 'explains why the normal distribution has to appear', overstating a heuristic sketch.",
+    "fix": "Now 'sketches (without a full proof) why the normal distribution appears'."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Markov-chain ergodic theorem stated with no hypothesis.",
+    "fix": "Restricted to irreducible finite chains."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection; entry.links/number-theory",
+    "problem": "Erdős-Kac stated only as 'approximately normal with mean and variance ln ln x'.",
+    "fix": "Stated precisely: for n uniform in 1..x, Pr((omega(n) - ln ln x)/sqrt(ln ln x) <= t) -> Phi(t); entry note mentions distinct prime factors, mean and variance ln ln x."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "No check for the new (1+|x|)^(-4) example or Hoeffding remark.",
+    "fix": "Added exact checks: normalising constant 3/2, variance 1, divergent MGF; Hoeffding bound 3.9e-22 exceeds the exact 1.27e-23; 1.96 quantile; 50000/9604; exercise 2 inputs."
+   }
+  ]
+ },
+ {
+  "id": "markov-chains",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Hitting times and first-step analysis",
+    "problem": "Uniqueness claim 'if the target can be reached from every state' was ambiguous for the absorption-probability system, whose relevant set is A union B.",
+    "fix": "Stated separately: h unique if A reachable from every state; u unique if A union B reachable from every state."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Hitting times and first-step analysis",
+    "problem": "Ergodic theorem and mean return time 1/pi_i: starting state not mentioned, not explicitly marked as unproved, and no remark that infinite chains need positive recurrence.",
+    "fix": "Added 'whatever the starting state', 'we state them without proof', and a parenthesis that on infinite state spaces positive recurrence is also needed (automatic for finite irreducible chains)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Stationary distributions",
+    "problem": "Equivalence of irreducible + aperiodic with regularity used without saying it is unproved.",
+    "fix": "Marked as a standard fact not proved here."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Random walks on graphs",
+    "problem": "PageRank: 'every entry of P positive' ignores pages without links, whose rows are otherwise undefined.",
+    "fix": "Added that the walker always jumps uniformly from a page without links."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Bayer-Diaconis 'about seven' stated without the deck size or shuffle model.",
+    "fix": "Now: 52 cards, Gilbert-Shannon-Reeds model of the riffle shuffle."
+   },
+   {
+    "severity": "style",
+    "where": "lesson length",
+    "problem": "Lesson long; 'Two days ahead' example repeated section 2 (s_2 = 0.7, limit 5/6); intro and one pitfall repeated other text.",
+    "fix": "Removed that example (its one new point, the long-run fraction 5/6 via the ergodic theorem, moved to the ergodic paragraph), tightened the intro, removed the pitfall duplicating the 'two things can go wrong' paragraph; minutes 22 -> 21."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Knight return time verified by floating-point solve; HH/HT and contraction lemma checks used simulations.",
+    "fix": "Knight: exact rational solve of the 63 hitting-time equations gives return time exactly 168, plus exact stationarity of deg/336, degree table, central 4x4 block degree 8, period 2. HH/HT: exact first-step solve, fundamental matrix, and Fibonacci tail sum with brute-force verification. Contraction lemma: exact Fraction arithmetic. Added gambler's-ruin k=1, N=100 check."
+   }
+  ]
+ }
+]

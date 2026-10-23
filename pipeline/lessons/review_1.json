@@ -1,0 +1,164 @@
+[
+ {
+  "id": "divisibility",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/How fast is it?",
+    "problem": "The claim r_{i+2} < r_i/2 is stated for all inputs, but for i = 0 it is false when a < b: then r_2 = a mod b = a = r_0. The argument \"r_{i+1} fits into r_i exactly once\" silently needs r_{i+1} <= r_i, which only holds from i = 1 on unless a >= b.",
+    "fix": "Added the hypothesis a >= b > 0 at the start of the section (the case a < b costs one extra step that swaps the pair)."
+   },
+   {
+    "severity": "error",
+    "where": "section/How fast is it?",
+    "problem": "Says that for consecutive Fibonacci numbers \"every quotient is 1\"; the final quotient is 2 (e.g. 2 = 2*1 + 0), since a quotient of 1 can never produce remainder 0 with a smaller divisor.",
+    "fix": "Changed to \"every quotient except the last is 1\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/A gcd that depends on parity",
+    "problem": "Garbled sentence: \"n^2+1 and n+1 differ by a multiple of n+1 from 2\".",
+    "fix": "Rewrote as \"n^2+1 and 2 differ by a multiple of n+1\"."
+   }
+  ]
+ },
+ {
+  "id": "bezout",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/The extended Euclidean algorithm",
+    "problem": "Forward reference \"the subject of the next theorem\" points at Euclid's lemma, which is the next theorem; the step between solutions is the Diophantine theorem after it.",
+    "fix": "Pointed the reference at \"the theorem on linear Diophantine equations below\"."
+   }
+  ]
+ },
+ {
+  "id": "fta",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/Euclid's idea with a twist",
+    "problem": "The letter k is used both for the length of the list p_1..p_k and inside the form 4k+3, so \"p_k\" and \"4k+3\" refer to different k in the same sentence.",
+    "fix": "Renamed the list length to m throughout the solution."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Says unique factorisation \"is equivalent to\" the Euler product identity; the lesson only shows (and only needs) that the identity follows from unique factorisation, and the equivalence claim is not explained.",
+    "fix": "Rephrased as \"can be packaged as an identity\", which is what the following sentence actually justifies."
+   }
+  ]
+ },
+ {
+  "id": "congruences",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Writes P(a) = P(b) (mod a-b), but the lesson defines congruence only for a positive modulus, and a-b can be zero or negative.",
+    "fix": "Restricted to a != b and used the modulus |a-b|."
+   }
+  ]
+ },
+ {
+  "id": "mod-inverse",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Who has an inverse?",
+    "problem": "\"The same argument rules out 4, 5, 6, 8 and 0\" - the evenness argument does not apply to 5; there one needs the common factor 5.",
+    "fix": "Said explicitly that the argument uses the common factor 2 or 5."
+   },
+   {
+    "severity": "style",
+    "where": "example/A harmonic sum modulo p",
+    "problem": "\"it is its own reverse\" is vague.",
+    "fix": "Rephrased: inverting twice returns the original residue, which is why inversion is a bijection."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "States a^{-1} = a^{p-2} (mod p) without the hypothesis p does not divide a (for a = 0 there is no inverse).",
+    "fix": "Added \"when p does not divide a\"."
+   }
+  ]
+ },
+ {
+  "id": "crt",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example/Runs of non-squarefree numbers",
+    "problem": "The problem asks for \"the smallest such triple for k = 3 using the squares 4, 9, 25\", and the solution answers 548, 549, 550. That is only the smallest triple for one fixed order of the squares. Allowing any order of 4, 9, 25 gives 124 = 4*31, 125 = 25*5, 126 = 9*14, which is smaller. The closing remark (\"a smaller triple exists if you allow other square factors, e.g. 242, 243, 244\") was therefore misleading too, and the overall smallest triple is 48, 49, 50.",
+    "fix": "Restated the problem as the fixed-order system 4 | x, 9 | x+1, 25 | x+2 (answer 548 unchanged), and rewrote the closing remark: other orders give 124, 125, 126 (the smallest using 4, 9, 25), and the smallest triple overall is 48, 49, 50. CRT gives existence, not minimality."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Numbers that reproduce their last digits",
+    "problem": "The step \"at most one of them is divisible by 5, so 125 divides that one\" skips why the full 125 must sit in a single factor.",
+    "fix": "Spelled out that all three factors of 5 come from the one factor divisible by 5."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Two overstatements: (1) \"combined with Hensel it reduces a polynomial congruence modulo n to solving it modulo primes\" - Hensel lifting needs a non-singular root, so the reduction to primes is not unconditional; (2) \"multiplicative functions such as phi are multiplicative because of it\" is circular and false in general (sigma and tau are multiplicative because of unique factorisation, not the CRT).",
+    "fix": "CRT reduces to prime powers; Hensel \"often\" reduces further; only the multiplicativity of phi is credited to the CRT."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "\"a question the CRT makes precise\" is vague.",
+    "fix": "Replaced with a concrete statement of how the CRT is used for covering systems."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Secret-sharing remark (flagged by the author) checked: Mignotte and Asmuth-Bloom threshold schemes are CRT-based, and Lagrange interpolation is the CRT in a polynomial ring. The statement is correct but the link to the CRT was left implicit.",
+    "fix": "Kept the remark and named the moduli x - x_i that make interpolation an instance of the CRT."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "\"pairwise coprime ideals\" is undefined for this audience.",
+    "fix": "Added the meaning I + J = R in words."
+   }
+  ]
+ },
+ {
+  "id": "fermat-euler",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Reducing exponents",
+    "problem": "Author-flagged dates checked. Fermat 1640 (letter to Frenicle) and Euler 1763 (Theoremata arithmetica nova methodo demonstrata) are right; Euler's 1736 paper on Fermat's theorem was written/presented in 1736 but published in 1741 (Commentarii Acad. Petropolitanae 8), so \"published a proof in 1736\" is imprecise.",
+    "fix": "Now says the proof was written in 1736 and appeared in print in 1741."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Says Fermat's theorem \"combines with inverses to give\" Wilson's theorem. The standard proof (and the one the mod-inverse lesson points to) uses only inverse pairing, not Fermat's theorem.",
+    "fix": "Described Wilson as proved by pairing residues with inverses, analogous to the product argument here."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Euler's criterion was stated without its hypotheses (p odd, p not dividing a); for p | a the power is 0, and for p = 2 the exponent (p-1)/2 is not an integer.",
+    "fix": "Added \"for an odd prime p and p not dividing a\" and made the +1/-1 correspondence explicit."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Says Euler's theorem shows m^{ed} = m (mod n); Euler's theorem needs gcd(m, n) = 1, and the extension to all m needs a separate argument via p and q.",
+    "fix": "Stated the coprime case and noted how the general case follows."
+   }
+  ]
+ }
+]

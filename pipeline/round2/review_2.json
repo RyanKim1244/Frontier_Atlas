@@ -1,0 +1,260 @@
+[
+ {
+  "id": "derivative",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "\"a positive derivative means increasing, a zero derivative means constant\" omits the essential hypothesis that the condition holds on an interval (x/|x| on R\\{0} is a counterexample, as the mvt lesson itself notes).",
+    "fix": "Added \"on an interval\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Convexity described as \"about the derivative itself increasing\"; convexity is defined by chords and is equivalent to f' increasing only for differentiable functions.",
+    "fix": "Now \"which for a differentiable function amounts to the derivative itself increasing\"."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links[physics]",
+    "problem": "\"Newton's laws are statements about derivatives\" is vague.",
+    "fix": "Rewritten: velocity and acceleration are the first and second derivatives of position, so F = ma involves a second derivative."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Checked Spivak, Calculus, Chapter 9 (Derivatives); the chapter numbering 9-14 (Derivatives, Differentiation, Significance of the Derivative, Inverse Functions, Integrals, Fundamental Theorem) is the same in the standard editions.",
+    "fix": "Kept `where`. All numbers (falling-stone table, sqrt(4.1), tangent lines through (1,-3), discriminant count, x^3 tangent factorisation, functional equation) recomputed; added a reviewer check."
+   }
+  ]
+ },
+ {
+  "id": "diff-rules",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "d/dx x^r = r x^(r-1) and d/dx ln x = 1/x stated with no domain; for non-integer r (as proved in the lesson) and for ln they hold only for x > 0.",
+    "fix": "Added \"(x > 0)\" after both formulas."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: The basic functions (inverse functions)",
+    "problem": "Inverse function rule stated on \"an interval\" with x possibly an endpoint, and silent on the continuity of the inverse (the key step) or why f'(x) != 0 is needed.",
+    "fix": "Restated: f continuous and strictly monotone on an open interval I, x in I, f'(x) != 0; f^{-1} is defined and automatically continuous on f(I) and (f^{-1})'(f(x)) = 1/f'(x). Said explicitly that it is a standard theorem used without proof, and added the counterexample x^3 / x^(1/3) at 0."
+   },
+   {
+    "severity": "style",
+    "where": "example: Three derivatives (b)",
+    "problem": "Domain of sin x/(1+cos x) not stated.",
+    "fix": "Added \"where cos x != -1\"."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "L'Hôpital mentioned only for 0/0.",
+    "fix": "Added \"or both to infinity\"."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links[physics]",
+    "problem": "Related-rates note is a generic calculus exercise rather than a use in physics.",
+    "fix": "Replaced by a specific use: differentiating E = ½mv² + V(x) by the chain rule gives E' = v(ma + V'(x)), so Newton's law ma = -V'(x) gives conservation of energy (verified in a new check)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Reciprocal step of the quotient rule, Leibniz formula and the energy identity were unchecked.",
+    "fix": "Added a reviewer check covering them; all chain-rule-proof steps, the three worked derivatives, x^x and both binomial sums recomputed."
+   }
+  ]
+ },
+ {
+  "id": "mvt",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: The picture",
+    "problem": "Ruler heuristic says to move the ruler \"in one direction\"; moved away from the graph it leaves at once and the last contact is at the endpoints, not strictly inside.",
+    "fix": "Ruler now moves towards a side of the chord on which part of the graph lies (with the case graph = chord noted)."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof of Rolle's theorem",
+    "problem": "Extreme value theorem used without saying it is quoted rather than proved (it is outside the listed prerequisites' scope).",
+    "fix": "Stated as a standard result quoted without proof, with the exact hypotheses (continuous on the closed bounded interval [a, b]); kept the pointers to [[continuity]] and [[compactness]]."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links[complex-analysis] and connection",
+    "problem": "Claim that the theorem's failure for complex functions is \"one reason\" complex analysis works with integrals is not accurate (the integral methods come from Cauchy's theorem).",
+    "fix": "Replaced with a true statement: the equality fails (e^{it} on [0, 2π]) but |f(b) - f(a)| <= |b - a| max|f'| along a segment survives, and for holomorphic functions it is proved by writing f(b) - f(a) as an integral of f'."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Calls the extreme value theorem \"a genuine property of the real numbers\"; it is a theorem resting on completeness.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links[physics], entry.links[differential-equations]",
+    "problem": "Speed-camera note is a motivating story, not a use in physics; DE note was vague.",
+    "fix": "Physics replaced by number theory (Liouville's approximation theorem is proved with the MVT applied to the minimal polynomial); DE note now says the MVT turns a bound on the y-partial derivative into the Lipschitz hypothesis of the uniqueness theorem."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Spivak Chapter 11 (Significance of the Derivative) and Rudin Chapter 5 (Differentiation) verified.",
+    "fix": "Kept. Recomputed x^3 on [0,2], sqrt(101) bounds, x^5 + x - 1, Cauchy auxiliary function, Stolz-type pitfall f = x + 2x² sin(1/x); added checks for Cauchy MVT with x³/x², root interlacing and |sin x - sin y| <= |x - y|."
+   }
+  ]
+ },
+ {
+  "id": "deriv-applications",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: Rising, falling and turning",
+    "problem": "\"A differentiable function can only turn around at points where f' changes sign\" is false in general (a differentiable function can have a strict extremum at c with f' taking both signs on every one-sided neighbourhood), and the next sentence, about points where f' does not exist, contradicts the word \"differentiable\".",
+    "fix": "Replaced by the correct statement: f can turn around only at points where f' is zero or does not exist (which Fermat's theorem in the next paragraph makes precise)."
+   },
+   {
+    "severity": "style",
+    "where": "section: Global extremes on a closed interval",
+    "problem": "Closed-interval method relies on the extreme value theorem without saying it is quoted.",
+    "fix": "Now says it is a standard result about continuous functions used without proof."
+   },
+   {
+    "severity": "style",
+    "where": "example: Sketching a rational function",
+    "problem": "Closing sentence \"It is a good habit to look for both kinds of argument\" is padding.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Claims that the origin is the steepest point, the value at -sqrt3, Snell's law from least time and the fast convergence of Newton's method were unchecked.",
+    "fix": "Added a reviewer check (critical points of f', Snell derivative identity, quadratic convergence for x² - 2). First/second derivative tests, farmer, open box, e^π vs π^e and the endpoint pitfall recomputed; all correct."
+   }
+  ]
+ },
+ {
+  "id": "lhopital",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "\"whenever the right-hand limit exists\" is ambiguous (reads as a one-sided limit) and does not say infinite limits are allowed.",
+    "fix": "Now \"whenever the limit of f'/g' exists (finite or infinite)\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.key[0]",
+    "problem": "\"the right side exists\" does not say that ±∞ is allowed, which the theorem in the lesson covers.",
+    "fix": "Now \"the right side exists in [-∞, ∞]\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof",
+    "problem": "Case 2 (|g| → ∞) was only sketched with a pointer to Rudin, although the intro says the lesson proves the rule; the reduction of x → ∞ to a finite endpoint invoked \"the finite case\", which at that point covered only case 1.",
+    "fix": "Wrote out a complete proof of case 2 (Cauchy MVT on [x, y], identity f/g = f(y)/g + (1 - g(y)/g)Q, finite L with an ε-argument, L = +∞ with the 3/4·2M - M/2 bound, L = -∞ via -f) and moved the x → ∞ substitution after it so that it covers both cases; noted that left-hand limits follow by x ↦ -x. Statement already had the exact hypotheses (g' ≠ 0 on the interval, limit of f'/g' in the extended reals)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Why 0/0 says nothing",
+    "problem": "Simple case divides by g(x) without justifying g(x) ≠ 0 near a; and \"it only asks about f'/g' near a\" drops the hypothesis g' ≠ 0.",
+    "fix": "Added the one-line reason g(x) ≠ 0 and rephrased: the rule needs only g' ≠ 0 near a and a limit of f'/g'."
+   },
+   {
+    "severity": "style",
+    "where": "minutes",
+    "problem": "Reading time unchanged after adding the proof.",
+    "fix": "Raised from 15 to 16."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "New proof identity and Stolz growth claims unchecked.",
+    "fix": "Added a reviewer check; all limits (x - sin x)/x³, growth rates, (1 + a/x)^x, 1/sin² - 1/x², Stolz derivatives, li(x) ~ x/ln x recomputed and correct. Stolz attribution and the 1696 date are standard."
+   }
+  ]
+ },
+ {
+  "id": "riemann-integral",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "definition: Upper and lower sums",
+    "problem": "sup and inf used without explanation in a school-stage lesson whose only prerequisite is limits.",
+    "fix": "Added a two-sentence explanation of supremum/infimum (least upper / greatest lower bound, existing by completeness because f is bounded)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Which functions are integrable",
+    "problem": "Uniform continuity stated without the quantifier \"for all x, y in [a, b]\" (one δ for the whole interval), and the Heine–Cantor fact used without saying it is quoted.",
+    "fix": "Added the quantifier and stated that the theorem is used without proof (it follows from [[compactness]])."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Which functions are integrable",
+    "problem": "\"Functions with finitely many jumps are integrable\" is imprecise (other discontinuities are not excluded); this and the mesh → 0 Riemann-sum theorem are stated without saying they are unproved.",
+    "fix": "Now \"bounded functions with only finitely many points of discontinuity\" (proof omitted), and the Riemann-sum convergence is flagged as a standard fact stated without proof, for any sample points."
+   },
+   {
+    "severity": "style",
+    "where": "section: Properties of the integral",
+    "problem": "Only monotonicity is proved, without saying so; additivity silently uses integrability on the subintervals.",
+    "fix": "Said that only monotonicity is proved; additivity now states that f is integrable on [a, c] and [c, b]. Removed one sentence of padding."
+   },
+   {
+    "severity": "style",
+    "where": "examples: x cubed, A sum in disguise",
+    "problem": "Forward references to [[ftc]] did not say the theorem is proved there.",
+    "fix": "Now \"the fundamental theorem of calculus, proved in [[ftc]]\"."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Lower sums for x³ and the decreasing-function bracket for 1/(1+x²) unchecked.",
+    "fix": "Added a reviewer check. Table L_n, R_n for x² (n = 10, 100, 1000), gap 1/n, U_n for x³, e^x sums (U_100 = 1.7268...), π/4 limit and harmonic bounds recomputed; all correct."
+   }
+  ]
+ },
+ {
+  "id": "ftc",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: Using the theorem",
+    "problem": "\"Up to scaling, ∫_0^x e^{-t²} dt is the normal distribution function\" is wrong: Φ needs an additive constant 1/2 and a rescaled argument as well.",
+    "fix": "Replaced by the exact formula Φ(x) = 1/2 + (1/√π)∫_0^{x/√2} e^{-t²} dt (verified: derivative is the normal density, Φ(0) = 1/2, Φ(∞) = 1)."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links[probability] and connection",
+    "problem": "\"The density is the derivative of the distribution function\" is false at points where the density is discontinuous (e.g. the endpoints of a uniform distribution); the first form only gives it at continuity points.",
+    "fix": "Both places now say \"at every point where the density is continuous\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "\"An analogue for integrals along curves leads to Cauchy's theorem\" is vague and suggests the wrong logical direction.",
+    "fix": "Rewritten: ∫_γ F'(z) dz = F(γ(1)) - F(γ(0)), so functions with an antiderivative integrate to 0 around closed curves, and Cauchy's theorem shows that on a disc every holomorphic function has one."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Φ formula, general Leibniz rule for variable limits and the contour statement unchecked.",
+    "fix": "Added a reviewer check. Both forms of the theorem and their proofs checked line by line; 65/12, 1/6, 2e^{-4x²} - e^{-x²}, 2x sin(x⁴), ln 2 (0.6906... at n = 100), the integral equation and all pitfalls recomputed; Spivak Chapter 14 verified."
+   }
+  ]
+ }
+]

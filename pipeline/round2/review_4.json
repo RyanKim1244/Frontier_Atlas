@@ -1,0 +1,278 @@
+[
+ {
+  "id": "lagrange-multipliers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "proof (Lagrange multiplier theorem)",
+    "problem": "The implicit-function-theorem fact was not marked as assumed without proof, and it said S is a 'smooth hypersurface', although g is only assumed C^1.",
+    "fix": "Now says the fact is taken on trust, states it exactly (g has continuous partials and grad g(a) != 0 give, for each v with grad g(a).v = 0, a C^1 curve in S with gamma(0)=a and gamma'(0)=v), says this is the only place the regularity hypothesis is used, and points to the cusp pitfall."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "The summary said to look only where the gradients are parallel, leaving out points where grad g = 0. It also gave the meaning of lambda with no smoothness condition.",
+    "fix": "Added the points where grad g = 0, and made the 'rate of change of the optimal value' reading depend on the optimum varying smoothly with c."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "90C30 (nonlinear programming) is not clearly the right class for this calculus-level topic, and the author flagged it as uncertain.",
+    "fix": "Removed it, leaving msc empty as the writer spec says to do when unsure."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: The method in practice",
+    "problem": "The several-constraint condition was 'valid wherever the gradients are linearly independent'. It holds only at constrained local extrema. The existence step also left out that the set must be nonempty.",
+    "fix": "Reworded to 'at every constrained local extremum where the gradients are linearly independent', and added 'nonempty'."
+   },
+   {
+    "severity": "style",
+    "where": "section: The method in practice",
+    "problem": "It referred to 'the fence example', but the example was never given that name.",
+    "fix": "Now reads 'the first example (a rectangle with sides x, y and x + y = c)'."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "'Exponential family' for maximum entropy with a fixed mean was vague, and KKT was called 'the basis of convex optimisation'.",
+    "fix": "Now 'the exponential and geometric distributions' and 'a central tool of convex optimisation'."
+   }
+  ]
+ },
+ {
+  "id": "ode-first",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "theorem: Existence and uniqueness (Picard–Lindelöf)",
+    "problem": "It was not said that the theorem is stated without proof. The existence part did not say the solution's graph stays in the rectangle, although the uniqueness part needs that. The link to the usual Lipschitz form was missing.",
+    "fix": "The rectangle is now named R, the existence part gives a solution whose graph lies in R, the text says 'stated without proof', and it notes that continuity of dF/dy gives a Lipschitz condition on closed sub-rectangles by the MVT."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Separable equations",
+    "problem": "It claimed that y = Ae^{kx} gives all solutions of y' = ky without justification. A solution vanishing at some points but not others is only ruled out by uniqueness.",
+    "fix": "Added that the uniqueness theorem rules out other solutions."
+   },
+   {
+    "severity": "style",
+    "where": "section: When initial values decide the future",
+    "problem": "'The theorem is proved by...' read as if the proof were given. The contraction setting was not named.",
+    "fix": "Now 'The standard proof...', and it names the setting: a short interval, continuous functions, sup metric."
+   }
+  ]
+ },
+ {
+  "id": "ode-linear",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.links (dynamics)",
+    "problem": "It claimed that the signs of the real parts of the eigenvalues of the linearisation decide stability. That is false when some eigenvalue has zero real part, where linearisation is inconclusive.",
+    "fix": "Added the condition that no eigenvalue has zero real part."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Initial conditions determine the solution",
+    "problem": "The quoted existence/uniqueness theorem for linear equations did not restate its hypotheses and was not marked as unproved. The later proof also uses its complex-valued version, which was never stated.",
+    "fix": "It now states the hypotheses (a_i and f continuous on I, a_n never zero), says 'stated here without proof', and adds that it holds for complex-valued coefficients and solutions."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof (Solutions from the characteristic roots), real case",
+    "problem": "It went from 'spans the same complex space' to 'basis of the real solutions' without saying that independence over C gives independence over R, or using the dimension count.",
+    "fix": "Spelled out both steps."
+   },
+   {
+    "severity": "style",
+    "where": "section: Forcing and resonance",
+    "problem": "'Grows without bound as the driving frequency 1 approaches the natural frequency' reversed which quantity varies.",
+    "fix": "Now: the amplitude 1/|omega^2 - 1| grows without bound as omega approaches 1."
+   }
+  ]
+ },
+ {
+  "id": "real-numbers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: Equivalent forms of completeness",
+    "problem": "It said the Archimedean property is needed only for Cauchy completeness (item 4). The nested-interval property (item 2) also fails to imply completeness without it: there are non-Archimedean ordered fields with the nested-interval property.",
+    "fix": "Now says the Archimedean property must be added for items 2 and 4, gives the reason, and says only 1 => 2 is proved."
+   },
+   {
+    "severity": "error",
+    "where": "section: Equivalent forms of completeness (proof that 1 implies 2)",
+    "problem": "The reason given for a_n <= b_m ('both lie in the smaller of the two intervals') is wrong. For n < m, a_n need not lie in [a_m, b_m].",
+    "fix": "Replaced it with the case split: n <= m gives a_n <= a_m <= b_m, and n > m gives a_n <= b_n <= b_m."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "It claimed every claim is proved from the axioms. In fact the well-ordering of the integers, the equivalence of the forms of completeness and the uniqueness of complete ordered fields are used or quoted without proof.",
+    "fix": "The intro now names the well-ordering assumption and says quoted facts are marked. The uniqueness theorem is now marked as quoted without proof."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Dirichlet's approximation argument",
+    "problem": "It said the argument 'shows' that the fractional parts of n*sqrt2 (n natural) are dense in [0,1]. The argument as given may produce a negative multiplier q, so it only shows that {q*alpha + p} is dense.",
+    "fix": "Now says a refinement that keeps the multiplier positive gives this."
+   },
+   {
+    "severity": "style",
+    "where": "proof (Existence of the square root of 2)",
+    "problem": "'The same argument produces k-th roots' overstated it, since the algebra changes.",
+    "fix": "Now 'A similar argument, with (s +- h)^k in place of (s +- h)^2'."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The wording of the approximation-property pitfall was garbled ('the inequality must hold for every eps'). Two pitfalls repeated earlier text.",
+    "fix": "Reworded the first. Removed the two redundant items to trim length."
+   },
+   {
+    "severity": "style",
+    "where": "intro, example: Supremum of a sum of sets",
+    "problem": "Padding.",
+    "fix": "Trimmed."
+   }
+  ]
+ },
+ {
+  "id": "seq-limits",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: First consequences (Order)",
+    "problem": "The order rule did not say that a_n -> A and b_n -> B.",
+    "fix": "Added these hypotheses."
+   },
+   {
+    "severity": "style",
+    "where": "example: The number e",
+    "problem": "Hype: 'a number that no finite computation could produce'.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "It said Bolzano–Weierstrass 'becomes the definition of compactness'. In fact its conclusion becomes the definition of sequential compactness.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (computer-science)",
+    "problem": "'Doubles the number of correct digits' is only approximately true.",
+    "fix": "Now 'roughly doubles'."
+   },
+   {
+    "severity": "style",
+    "where": "minutes",
+    "problem": "20 minutes is too long for about 1350 words.",
+    "fix": "Set to 17."
+   }
+  ]
+ },
+ {
+  "id": "metric-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "The metric axioms in the summary ('positive between distinct points, symmetric, triangle inequality') left out d(x,x) = 0.",
+    "fix": "Now 'zero exactly when the two points coincide (and positive otherwise)'."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition: Cauchy sequence and completeness",
+    "problem": "Completeness of C[a,b] was identified with 'a uniform limit of continuous functions is continuous'. That is only the last step. It also did not state what C[a,b] is (real-valued, closed bounded interval).",
+    "fix": "Added the full argument: pointwise Cauchy, a pointwise limit, uniform convergence by letting m -> infinity, then continuity of the uniform limit. Added the hypotheses."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall (completeness depends on the metric)",
+    "problem": "The example compared two different sets, (0,1) and R, so it did not show that completeness depends on the metric on one set.",
+    "fix": "Replaced it with (0,1) under rho(x,y) = |tan(pi x - pi/2) - tan(pi y - pi/2)|. This metric is complete and has the same convergent sequences as |x - y|."
+   },
+   {
+    "severity": "style",
+    "where": "section: Convergence, open sets and continuity",
+    "problem": "The Lipschitz argument delta = eps/K needs K > 0. The sequential characterisation of closed sets was stated without comment.",
+    "fix": "Added K > 0, and noted that the characterisation is a short exercise."
+   },
+   {
+    "severity": "style",
+    "where": "entry.why",
+    "problem": "Hype: 'the contraction principle alone proves...'.",
+    "fix": "Now 'is the core of the standard proofs of...'."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "L^p was called complete with no range for p.",
+    "fix": "Added 1 <= p <= infinity."
+   },
+   {
+    "severity": "style",
+    "where": "definition: Cauchy sequence and completeness",
+    "problem": "The sequence 1/n starts at 1, which is not in (0,1).",
+    "fix": "Now '1/n, n >= 2'."
+   }
+  ]
+ },
+ {
+  "id": "compactness",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example: Heine–Borel fails in infinite dimensions",
+    "problem": "From d(x^n, x^{2n}) = 1/4 it concluded 'the terms never cluster'. That does not follow: a subsequence that skips terms could still be Cauchy, and indeed d(x^n, x^{n+1}) -> 0.",
+    "fix": "Now uses the subsequence x^{2^k}, whose terms are pairwise at least 1/4 apart (substitute t = x^{2^j} and take t = 1/2). Notes that consecutive powers do get close."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'Closed and bounded implies compact only in R^n (and other finite-dimensional spaces)' is false as stated. It also holds, for example, in any compact metric space.",
+    "fix": "Now: it holds in R^n and in every finite-dimensional normed space, but not in a general metric space."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Examples and the open-cover definition",
+    "problem": "The equivalence of sequential and open-cover compactness was credited to 'Rudin, Chapter 2'. Rudin proves only one direction there and leaves the converse as an exercise. The text also did not say that the equivalence needs a metric.",
+    "fix": "Now marked as quoted without proof, credited to Munkres, Topology, which proves it for metrizable spaces. Added that in general topological spaces the two notions differ and the open-cover form is the definition."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: A fixed-point theorem without a contraction constant",
+    "problem": "For the sin example it did not check that sin maps [0,1] into itself, which the hypothesis f: K -> K needs.",
+    "fix": "Added sin([0,1]) = [0, sin 1], a subset of [0,1]."
+   },
+   {
+    "severity": "style",
+    "where": "proof (Compact sets are closed and bounded)",
+    "problem": "'Fix p in K' assumes K is nonempty.",
+    "fix": "Treats the empty set separately."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (combinatorics)",
+    "problem": "The colouring statement was vague, since the number of colours was not fixed.",
+    "fix": "Now 'k-colourings of every finite subgraph to a k-colouring'."
+   },
+   {
+    "severity": "style",
+    "where": "section: Images and uniform continuity, pitfall",
+    "problem": "Padding (an opening sentence, and a marginal pitfall about preimages).",
+    "fix": "Trimmed."
+   }
+  ]
+ }
+]

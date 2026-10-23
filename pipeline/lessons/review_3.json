@@ -1,0 +1,284 @@
+[
+ {
+  "id": "hensel",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section / When the derivative vanishes",
+    "problem": "The strong form of Hensel's lemma was stated vaguely ('a lifts to a root in the limit ... agreeing with a to within p^(...)'), and v_p was used before it was explained; v_p is not among the lesson's prerequisites.",
+    "fix": "Stated the conclusion concretely (for every k a root modulo p^k congruent to a modulo p^(v_p(f(a)) - v_p(f'(a)))) and glossed v_p(m) as the exponent of p in m."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall / inverse modulo the wrong number",
+    "problem": "Said doubling the precision needs an inverse modulo p^(2k) (an inverse modulo p^k suffices) and ended with the vague 'mixing the two carelessly gives wrong digits'.",
+    "fix": "Stated precisely: doubling from p^k to p^(2k) needs an inverse modulo p^k; an inverse modulo p only gains one digit. Added a check."
+   },
+   {
+    "severity": "error",
+    "where": "connection / first sentence",
+    "problem": "Claimed that whether f(x) = 0 is solvable modulo every n 'can be decided from finitely many primes plus a lifting check'. False as stated: solvability modulo every n needs a root modulo every one of the infinitely many primes (x^2 + 1 already fails modulo 3); Hensel only removes the prime-power question for primes not dividing the leading coefficient and discriminant.",
+    "fix": "Replaced by the correct statement: for p not dividing the leading coefficient or the discriminant, solvability modulo p implies solvability modulo every p^k."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection / computer algebra",
+    "problem": "Unsupported claim that Hensel lifting drives 'many algorithms in primality testing'.",
+    "fix": "Replaced with a concrete, accurate use (square roots modulo p^k); removed the [[primality]] link."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Author flagged the section number NZM §2.6 as from memory.",
+    "fix": "Verified against the published table of contents (NZM 5th ed. §2.6 'Prime Power Moduli'); kept. Gouvêa's 'p-adic Numbers: An Introduction' and Ireland & Rosen are real; kept."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The 'lifting only one root' bullet repeated the workflow paragraph in 'Counting roots modulo n'.",
+    "fix": "Removed it to shorten the lesson."
+   }
+  ]
+ },
+ {
+  "id": "sums-of-squares",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "'Every prime in the first group is 1 more than a multiple of 4', but the first group contains 2.",
+    "fix": "Changed to 'every odd prime in the first group'."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro / history",
+    "problem": "'Euler gave the first published proof in 1749': Euler's proof was sent in a 1749 letter and published later, so 'published in 1749' is doubtful.",
+    "fix": "Reworded to 'Euler proved it in 1749', matching the brief."
+   },
+   {
+    "severity": "style",
+    "where": "section / Counting representations",
+    "problem": "'The simplest nontrivial Dirichlet character' is a vague superlative (the character modulo 3 is just as simple).",
+    "fix": "Changed to 'the nontrivial Dirichlet character modulo 4'."
+   },
+   {
+    "severity": "error",
+    "where": "connection / Gauss circle problem",
+    "problem": "The sum of r_2(n) for n <= x, where r_2 is only defined for n >= 1, misses the origin, so it does not count all lattice points in the closed disc.",
+    "fix": "Wrote 1 + sum over 1 <= n <= x of r_2(n), noting that the 1 is the origin. Added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Said the Pythagorean-triple parametrisation 'uses' the Gaussian-integer factorisation; the linked lesson proves it with ordinary unique factorisation.",
+    "fix": "Changed to 'can also be derived from factorisation in Z[i]'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Hardy & Wright 'Chapter 20' was from memory; NZM had no section.",
+    "fix": "Verified H&W Chapter 20 ('The Representation of a Number by Two or Four Squares') against the OUP contents; added NZM §3.6 'Sums of Two Squares' after checking that contents list."
+   }
+  ]
+ },
+ {
+  "id": "pythagorean",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro / history",
+    "problem": "Claimed the specific triangles 3,4,5 and 5,12,13 'have been known for about four thousand years' and that the tablet lists the triangle 12709, 13500, 18541; the tablet records only the short side and the diagonal, and the question 'how did its authors find them' is never answered.",
+    "fix": "Reworded: integer right triangles have been studied for about 4000 years; the row gives the short side 12709 and hypotenuse 18541, the third side being 13500. Dropped the unanswered question."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / The same formula from geometry",
+    "problem": "Linked [[analytic-geometry]] ('Coordinates, vectors and complex numbers') as if it covered rational points on conics.",
+    "fix": "Removed the misleading link."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall / conditions on (m, n)",
+    "problem": "Claimed that without the conditions 'some triples are hit more than once'. False: m^2 = (c+a)/2 and n^2 = (c-a)/2 recover (m, n), so the map (m, n) -> (m^2-n^2, 2mn, m^2+n^2) is injective for all m > n > 0, as the theorem's own proof shows. The example (3,1) -> (8,6,10) shows a non-primitive triple, not a repeat.",
+    "fix": "Kept only the correct point (non-primitive output) with examples (3,1) -> (8,6,10) and (4,2) -> (12,16,20). Added a check of injectivity."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Said the sums-of-two-squares theorem 'shows' which numbers are hypotenuses of primitive triples; that needs more (a representation c = m^2 + n^2 with m, n coprime and of opposite parity), not just the criterion.",
+    "fix": "Changed to 'a refinement of the theorem'. The characterisation itself is checked numerically (existing check)."
+   },
+   {
+    "severity": "error",
+    "where": "connection / x^4 + y^4 = z^2",
+    "problem": "'there are no solutions' is false as stated (x = 0, y = z = 1 is one).",
+    "fix": "Added 'in positive integers'."
+   }
+  ]
+ },
+ {
+  "id": "continued-fractions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem + proof / Recurrence for convergents",
+    "problem": "The formula was stated only for real x > 0, but the 'in particular' case k = 0 uses x = a_0, which may be zero or negative, and the induction step from k = 0 applies the hypothesis to a_0 + 1/x, which may also be <= 0. So the proof used the statement outside its stated range. The phrase 'the last two levels a_k + 1/x are the same in both' was also unclear.",
+    "fix": "Stated the formula for any real x when k = 0 (it is trivially [x] = x), noted in the induction step why a_k + 1/x is admissible, and reworded the unclear phrase."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Best approximations",
+    "problem": "Claimed specifically that both stated-without-proof results are in Hardy and Wright.",
+    "fix": "Pointed to the listed sources in general (H&W Ch. 10, NZM Ch. 7, Khinchin). Checked both statements numerically: the best-approximation property for several numbers and many k, and Legendre's criterion. Both hypotheses (alpha irrational; 0 < q < q_{k+1}; |alpha - p/q| < 1/(2q^2)) are correct."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Best approximations",
+    "problem": "'Badly approximable' was used without a definition.",
+    "fix": "Added the definition and a pointer to the sqrt 2 example."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Quadratic irrationals are periodic / history",
+    "problem": "Credited the whole 'if and only if' to Lagrange (1770); the easy direction is Euler's, and Lagrange proved the converse.",
+    "fix": "Attributed each direction correctly; the summary's '(Lagrange, 1770)' still holds for the periodicity result."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / Quadratic irrationals are periodic / easy direction",
+    "problem": "The eventually periodic case was dismissed as 'a rational Möbius transformation of a purely periodic one' without saying why that preserves being a quadratic irrational, and the purely periodic case did not note that the equation really has degree 2 or that alpha is irrational.",
+    "fix": "Completed the argument in three sentences: q_{n-1} >= 1, alpha is irrational, and the eventually periodic case written out explicitly."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall / floating point",
+    "problem": "'After roughly fifteen terms the digits ... are meaningless' is vague, and for pi it is already too late: the 14th partial quotient from a double-precision computation is wrong.",
+    "fix": "Replaced with the checked, concrete statement about pi."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Author flagged H&W 'Chapter 10' and NZM 'Chapter 7' as from memory, and Khinchin as an extra reference.",
+    "fix": "Verified H&W Ch. 10 'Continued Fractions' (OUP contents) and NZM Ch. 7 'Simple Continued Fractions' (NZM contents); kept. Khinchin, 'Continued Fractions' is a real standard monograph; kept."
+   }
+  ]
+ },
+ {
+  "id": "pell",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro / history",
+    "problem": "'which is why Fermat chose d = 61 when he challenged English mathematicians' asserts a motive and a specific audience.",
+    "fix": "Reworded to the documented fact: Fermat posed d = 61 (with d = 109) as a challenge in 1657."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition / Fundamental solution",
+    "problem": "The claimed equivalence of the two definitions skipped the step that a norm-1 number x + y sqrt d > 1 must have x, y > 0.",
+    "fix": "Added that step, with a pointer to the argument in the proof (a = (v + 1/v)/2 > 0, b sqrt d = (v - 1/v)/2 > 0)."
+   },
+   {
+    "severity": "style",
+    "where": "section / Finding the fundamental solution",
+    "problem": "Hypotheses of the result stated without proof: d had to be positive and non-square, and item 1 did not say which numbers take the values +-1. Checked items 1 to 3 and the parity criterion for negative Pell; they are correct.",
+    "fix": "Made 'positive non-square d' explicit, said that item 1 is about p_k^2 - d q_k^2 for k >= 0, and pointed to NZM Chapter 7 (§7.8 is 'Pell's Equation')."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall / negative equation",
+    "problem": "The pitfall solved exercise 2 (x^2 - 3y^2 = -1) in advance.",
+    "fix": "Used d = 7 as the example instead."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall / cattle problem",
+    "problem": "'a Pell equation whose relevant solution has over two hundred thousand digits' is wrong: the smallest solution of the cattle Pell equation x^2 - 410286423278424 y^2 = 1 has 103,273 digits. It is the herd size derived from it that has about 206,545 digits.",
+    "fix": "Stated the equation and that its smallest solution has more than 100,000 digits. Added a check that computes it exactly: 410286423278424 = 4729494 * 9314^2, and the solution is the 2329th power of the fundamental unit for 4729494."
+   },
+   {
+    "severity": "error",
+    "where": "connection / regulator",
+    "problem": "Called log(epsilon) of the Pell fundamental solution 'the regulator' in the class number formula. In general that is wrong: the regulator uses the fundamental unit of the ring of integers of Q(sqrt d), which can be a proper root of epsilon. For d = 13 it is (3 + sqrt 13)/2, and epsilon = 649 + 180 sqrt 13 is its sixth power.",
+    "fix": "Rewrote the sentence to say this, with the d = 13 example. Added a check."
+   },
+   {
+    "severity": "style",
+    "where": "connection / fundamental unit vs its square",
+    "problem": "Author asked to verify 'the fundamental solution is the fundamental unit of Z[sqrt d], or its square when a unit of norm -1 exists'.",
+    "fix": "Correct: if the smallest unit eta > 1 has norm -1, the units > 1 are eta^k with norm (-1)^k, so the smallest one of norm 1 is eta^2; otherwise it is eta. Checked for all non-square d < 300. Wording made explicit."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "NZM 'Chapter 7' was from memory; Barbeau was an extra reference.",
+    "fix": "Verified NZM Ch. 7 (it contains §7.8 'Pell's Equation'); kept. Barbeau, 'Pell's Equation' (Springer Problem Books) is a real book; kept."
+   }
+  ]
+ },
+ {
+  "id": "quadratic-forms",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof / Reduction theorem (uniqueness)",
+    "problem": "The theorem claims each class has exactly one reduced form, but the proof only outlined uniqueness and deferred to Cox; the outline's 'c is the smallest value at a vector independent of one where a is attained' was also left unjustified. So the stated theorem was not proved.",
+    "fix": "Replaced the outline with a complete short proof: the bound f(x,y) >= (a - |b| + c) min(x^2, y^2), then a case split on the lower-left entry of the transforming matrix. Retitled the block 'Proof of the reduction theorem'. Added numerical checks (the bound, and that random SL2(Z) images of every reduced form reduce back to it)."
+   },
+   {
+    "severity": "error",
+    "where": "section / Composition and the class group",
+    "problem": "Said composition makes 'the set of proper classes of primitive forms of discriminant D' a group 'of order h(D)' for every D. But h(D) was defined only for positive definite forms, and for D < 0 the negative definite classes must be excluded. The section also said 'Gauss conjectured that h(D) = 1 for exactly thirteen negative discriminants'. Gauss worked with forms having an even middle coefficient, so this misattributes the precise list.",
+    "fix": "Restricted the group statement to primitive positive definite forms with D < 0. Stated the thirteen class-number-one discriminants as a fact (checked) whose completeness was a problem going back to Gauss. Trimmed the section, as the author asked, and removed the repeat of 'cyclic of order 3', which is already in the example."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The last bullet about indefinite reduction repeated the connection block.",
+    "fix": "Removed it and merged the point into the connection block."
+   },
+   {
+    "severity": "error",
+    "where": "connection / class number formula",
+    "problem": "Stated h(D) = -(1/|D|) sum chi_D(a) a 'for D < -4'. That holds only for fundamental D: for D = -12 the right side is 2/3. chi_D was also undefined.",
+    "fix": "Restricted the formula to fundamental D < -4, defined chi_D as the Kronecker symbol, and shortened the block."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Author flagged Cox 'Chapter 1, §2–§3' as from memory and Buell as an extra reference.",
+    "fix": "Verified Cox Ch. 1 §2 'Lagrange, Legendre and Quadratic Forms' and §3 'Gauss, Composition and Genera' (Wiley contents); kept. Buell, 'Binary Quadratic Forms' (Springer, 1989) is real; kept. Added NZM Chapter 3 (§3.4–3.7 cover forms; contents verified)."
+   },
+   {
+    "severity": "style",
+    "where": "intro, example / Reducing a form",
+    "problem": "Lesson ran long (about 1990 words after the uniqueness proof was added).",
+    "fix": "Trimmed padding: shortened the intro's second paragraph and dropped the repeated discriminant remark in the reduction example. Together with the shorter composition and connection blocks, this offsets most of the full uniqueness proof."
+   }
+  ]
+ },
+ {
+  "id": "diophantine",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "The moves were listed in a different order from the sections (Move 2 is the modulus, Move 3 is bounding), and Hilbert's tenth problem was credited to Matiyasevich alone.",
+    "fix": "Matched the order to the sections and credited the Davis–Putnam–Robinson groundwork."
+   },
+   {
+    "severity": "style",
+    "where": "sources / history",
+    "problem": "Author flagged Selmer's cubic, Mihăilescu/Catalan and the Mordell reference as unchecked.",
+    "fix": "Selmer (1951), 3x^3+4y^3+5z^3 = 0: correct. Added a check that it has nonzero solutions modulo every m <= 40 and no small nontrivial integer solutions. Mihăilescu (2002), Catalan's conjecture with 9 - 8 the only consecutive perfect powers: correct. Mordell, 'Diophantine Equations' (Academic Press, 1969): real. Added NZM Chapter 5 'Some Diophantine Equations' after checking the contents."
+   }
+  ]
+ }
+]

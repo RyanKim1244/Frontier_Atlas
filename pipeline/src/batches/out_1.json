@@ -1,0 +1,1043 @@
+[
+ {
+  "file": "Bulgaria1998P1",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "1",
+  "q": "We will be considering colorings in $2$ colors of $n$ (distinct) points $A_1, A_2, \\ldots, A_n$. Call such a coloring \"good\" if there exist three points $A_i, A_j, A_{2j-i}$, $1 \\le i < 2j-i \\le n$, which are colored the same color.\n\nFind the least natural number $n$ ($n \\ge 3$) such that all colorings of $n$ points are good.",
+  "concepts": [
+   "ramsey-arithmetic",
+   "arithmetic-progressions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Bulgaria1998P11",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "11",
+  "q": "Let $m$ and $n$ be natural numbers such that $$A = \\dfrac{(m+3)^n + 1}{3m}$$ is an integer. Prove that $A$ is odd.",
+  "concepts": [
+   "congruences",
+   "quadratic-residues"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and official problem"
+ },
+ {
+  "file": "Bulgaria1998P2",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "2",
+  "q": "A convex quadrilateral $ABCD$ has $AD = CD$ and $\\angle DAB = \\angle ABC < 90^\\circ$. The line through $D$ and the midpoint of $BC$ intersects line $AB$ in point $E$. Prove that $\\angle BEC = \\angle DAC$.",
+  "concepts": [
+   "euclid-basics",
+   "circles"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Bulgaria1998P3",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "3",
+  "q": "Let $\\mathbb{R}^+$ be the set of positive real numbers. Prove that there does not exist a function $f\\colon \\mathbb{R}^+ \\to \\mathbb{R}^+$ such that $$(f(x))^2 \\ge f(x+y)\\,(f(x) + y)$$ for every $x, y \\in \\mathbb{R}^+$.",
+  "concepts": [
+   "real-functional-eq",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Bulgaria1998P6",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "6",
+  "q": "Prove that the equation $$x^2y^2 = z^2(z^2 - x^2 - y^2)$$ has no solutions in positive integers.",
+  "concepts": [
+   "diophantine",
+   "pythagorean"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Bulgaria1998P8",
+  "source": "Bulgaria",
+  "year": 1998,
+  "num": "8",
+  "q": "The polynomials $P_n(x,y)$ for $n = 1, 2, \\ldots$ are defined by $P_1(x,y) = 1$ and $$P_{n+1}(x,y) = (x+y-1)(y+1)P_n(x,y+2) + (y-y^2)P_n(x,y).$$ Prove that $P_n(x,y) = P_n(y,x)$ for all $x$, $y$, $n$.",
+  "concepts": [
+   "polynomials-roots",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "CIIM2022P6",
+  "source": "CIIM",
+  "year": 2022,
+  "num": "6",
+  "q": "Given a positive integer $m$, let $d(m)$ be the number of positive divisors of $m$. Show that for every positive integer $n$, one has $$d((n+1)!) \\le 2\\,d(n!).$$",
+  "concepts": [
+   "arithmetic-functions",
+   "binomial-factorial"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Canada1998P3",
+  "source": "Canada MO",
+  "year": 1998,
+  "num": "3",
+  "q": "Let $n$ be a natural number such that $n \\ge 2$. Show that $$\\dfrac{1}{n+1}\\left(1 + \\dfrac{1}{3} + \\cdots + \\dfrac{1}{2n-1}\\right) > \\dfrac{1}{n}\\left(\\dfrac{1}{2} + \\dfrac{1}{4} + \\cdots + \\dfrac{1}{2n}\\right).$$",
+  "concepts": [
+   "cauchy-schwarz",
+   "sequences"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and official problem"
+ },
+ {
+  "file": "Canada1998P5",
+  "source": "Canada MO",
+  "year": 1998,
+  "num": "5",
+  "q": "Let $m$ be a positive integer. Define the sequence $a_0, a_1, a_2, \\ldots$ by $a_0 = 0$, $a_1 = m$, and $$a_{n+1} = m^2 a_n - a_{n-1} \\quad \\text{for } n = 1, 2, 3, \\ldots.$$ Prove that an ordered pair $(a, b)$ of non-negative integers, with $a \\le b$, gives a solution to the equation $$\\dfrac{a^2 + b^2}{ab + 1} = m^2$$ if and only if $(a, b)$ is of the form $(a_n, a_{n+1})$ for some $n \\ge 0$.",
+  "concepts": [
+   "vieta-jumping",
+   "sequences"
+  ],
+  "check": "docstring empty; reconstructed from Lean statement and official problem"
+ },
+ {
+  "file": "Egmo2023P1",
+  "source": "EGMO",
+  "year": 2023,
+  "num": "1",
+  "q": "There are $n \\ge 3$ positive real numbers $a_1, a_2, \\ldots, a_n$. For each $1 \\le i \\le n$ we let $b_i = \\dfrac{a_{i-1} + a_{i+1}}{a_i}$ (here we define $a_0$ to be $a_n$ and $a_{n+1}$ to be $a_1$). Assume that for all $i$ and $j$ in the range $1$ to $n$, we have $a_i \\le a_j$ if and only if $b_i \\le b_j$.\n\nProve that $a_1 = a_2 = \\cdots = a_n$.",
+  "concepts": [
+   "amgm",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Hungary1998P6",
+  "source": "Hungary MO",
+  "year": 1998,
+  "num": "6",
+  "q": "Let $x, y, z$ be integers with $z > 1$. Show that $$(x+1)^2 + (x+2)^2 + \\cdots + (x+99)^2 \\ne y^z.$$",
+  "concepts": [
+   "congruences",
+   "p-adic-valuation"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1959P2",
+  "source": "IMO",
+  "year": 1959,
+  "num": "2",
+  "q": "For what real values of $x$ is $$\\sqrt{x + \\sqrt{2x-1}} + \\sqrt{x - \\sqrt{2x-1}} = A,$$ given\n\n(a) $A = \\sqrt{2}$,\n\n(b) $A = 1$,\n\n(c) $A = 2$,\n\nwhere only non-negative real numbers are admitted for square roots?",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1959P3",
+  "source": "IMO",
+  "year": 1959,
+  "num": "3",
+  "q": "Let $a, b, c$ be real numbers. Consider the quadratic equation in $\\cos x$: $$a\\cos^2 x + b\\cos x + c = 0.$$ Using the numbers $a, b, c$, form a quadratic equation in $\\cos 2x$ whose roots are the same as those of the original equation. Compare the equations in $\\cos x$ and $\\cos 2x$ for $a = 4$, $b = 2$, $c = -1$.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1960P2",
+  "source": "IMO",
+  "year": 1960,
+  "num": "2",
+  "q": "For what values of the variable $x$ does the following inequality hold: $$\\dfrac{4x^2}{(1 - \\sqrt{2x+1})^2} < 2x + 9\\,?$$",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1961P1",
+  "source": "IMO",
+  "year": 1961,
+  "num": "1",
+  "q": "Given constants $a$ and $b$, solve the system of equations $$\\begin{aligned} x + y + z &= a,\\\\ x^2 + y^2 + z^2 &= b^2,\\\\ xy &= z^2 \\end{aligned}$$ for $x, y, z$. Give the conditions that $a$ and $b$ must satisfy so that the solutions $x, y, z$ are distinct positive numbers.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1961P2",
+  "source": "IMO",
+  "year": 1961,
+  "num": "2",
+  "q": "Let $a, b, c$ be the sides of a triangle, and $T$ its area. Prove that $$a^2 + b^2 + c^2 \\ge 4\\sqrt{3}\\,T.$$ In what case does equality hold?",
+  "concepts": [
+   "geo-inequalities",
+   "amgm"
+  ],
+  "check": "docstring stated the equality case (equilateral); restored the official question 'In what case does equality hold?'"
+ },
+ {
+  "file": "Imo1961P3",
+  "source": "IMO",
+  "year": 1961,
+  "num": "3",
+  "q": "Solve the equation $$\\cos^n x - \\sin^n x = 1,$$ where $n$ is a given positive integer.",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1962P2",
+  "source": "IMO",
+  "year": 1962,
+  "num": "2",
+  "q": "Determine all real numbers $x$ which satisfy $$\\sqrt{3 - x} - \\sqrt{x + 1} > \\dfrac{1}{2}.$$",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1962P4",
+  "source": "IMO",
+  "year": 1962,
+  "num": "4",
+  "q": "Solve the equation $$\\cos^2 x + \\cos^2 2x + \\cos^2 3x = 1.$$",
+  "concepts": [
+   "complex-numbers",
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1963P1",
+  "source": "IMO",
+  "year": 1963,
+  "num": "1",
+  "q": "Find all real roots of the equation $$\\sqrt{x^2 - p} + 2\\sqrt{x^2 - 1} = x,$$ where $p$ is a real parameter.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1963P4",
+  "source": "IMO",
+  "year": 1963,
+  "num": "4",
+  "q": "Find all solutions $x_1, x_2, x_3, x_4, x_5$ of the system $$\\begin{aligned} x_5 + x_2 &= y x_1,\\\\ x_1 + x_3 &= y x_2,\\\\ x_2 + x_4 &= y x_3,\\\\ x_3 + x_5 &= y x_4,\\\\ x_4 + x_1 &= y x_5, \\end{aligned}$$ where $y$ is a parameter.",
+  "concepts": [
+   "linear-algebra",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1963P5",
+  "source": "IMO",
+  "year": 1963,
+  "num": "5",
+  "q": "Prove that $$\\cos\\dfrac{\\pi}{7} - \\cos\\dfrac{2\\pi}{7} + \\cos\\dfrac{3\\pi}{7} = \\dfrac{1}{2}.$$",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1963P6",
+  "source": "IMO",
+  "year": 1963,
+  "num": "6",
+  "q": "Five students $A, B, C, D, E$ were placed $1$ to $5$ in a contest with no ties. One prediction was that the result would be the order $A, B, C, D, E$. But no student finished in the position predicted, and no two students predicted to finish consecutively did so. For example, the outcome for $C$ and $D$ was not $1, 2$ (respectively), or $2, 3$, or $3, 4$, or $4, 5$. Another prediction was the order $D, A, E, C, B$. Exactly two students finished in the places predicted, and two disjoint pairs of students predicted to finish consecutively did so. Determine the outcome.",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1964P2",
+  "source": "IMO",
+  "year": 1964,
+  "num": "2",
+  "q": "Suppose that $a, b, c$ are the side lengths of a triangle. Prove that $$a^2(b + c - a) + b^2(c + a - b) + c^2(a + b - c) \\le 3abc.$$",
+  "concepts": [
+   "symmetric-ineq",
+   "geo-inequalities"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1964P4",
+  "source": "IMO",
+  "year": 1964,
+  "num": "4",
+  "q": "Seventeen people correspond by mail with one another, each one with all the rest. In their letters only three different topics are discussed. Each pair of correspondents deals with only one of the topics. Prove that there are at least three people who write to each other about the same topic.",
+  "concepts": [
+   "ramsey",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1965P1",
+  "source": "IMO",
+  "year": 1965,
+  "num": "1",
+  "q": "Determine all values $x$ in the interval $0 \\le x \\le 2\\pi$ which satisfy the inequality $$2\\cos x \\le \\left|\\sqrt{1 + \\sin 2x} - \\sqrt{1 - \\sin 2x}\\right| \\le \\sqrt{2}.$$",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1965P2",
+  "source": "IMO",
+  "year": 1965,
+  "num": "2",
+  "q": "Suppose that $$\\begin{aligned} a_{11}x_1 + a_{12}x_2 + a_{13}x_3 &= 0,\\\\ a_{21}x_1 + a_{22}x_2 + a_{23}x_3 &= 0,\\\\ a_{31}x_1 + a_{32}x_2 + a_{33}x_3 &= 0, \\end{aligned}$$ where\n\n(A) $a_{11}, a_{22}, a_{33}$ are positive;\n\n(B) the remaining $a_{ij}$ are negative;\n\n(C) in each row $i$, the sum of the coefficients $a_{ij}$ is positive.\n\nProve that $x_1 = x_2 = x_3 = 0$.",
+  "concepts": [
+   "linear-algebra"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1965P4",
+  "source": "IMO",
+  "year": 1965,
+  "num": "4",
+  "q": "Find all sets of four real numbers $x_1, x_2, x_3, x_4$ such that the sum of any one and the product of the other three is equal to $2$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1966P1",
+  "source": "IMO",
+  "year": 1966,
+  "num": "1",
+  "q": "In a mathematical contest, three problems, $A$, $B$, $C$ were posed. Among the participants there were $25$ students who solved at least one problem each. Of all the contestants who did not solve problem $A$, the number who solved $B$ was twice the number who solved $C$. The number of students who solved only problem $A$ was one more than the number of students who solved $A$ and at least one other problem. Of all students who solved just one problem, half did not solve problem $A$. How many students solved only problem $B$?",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1966P4",
+  "source": "IMO",
+  "year": 1966,
+  "num": "4",
+  "q": "Prove that for every natural number $n$ and for every real number $x$ that is not of the form $k\\pi/2^t$ for $t$ a non-negative integer and $k$ any integer, $$\\dfrac{1}{\\sin 2x} + \\dfrac{1}{\\sin 4x} + \\cdots + \\dfrac{1}{\\sin 2^n x} = \\cot x - \\cot 2^n x.$$",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1966P5",
+  "source": "IMO",
+  "year": 1966,
+  "num": "5",
+  "q": "Solve the system of equations $$\\begin{aligned} |a_1 - a_2|\\,x_2 + |a_1 - a_3|\\,x_3 + |a_1 - a_4|\\,x_4 &= 1,\\\\ |a_2 - a_1|\\,x_1 + |a_2 - a_3|\\,x_3 + |a_2 - a_4|\\,x_4 &= 1,\\\\ |a_3 - a_1|\\,x_1 + |a_3 - a_2|\\,x_2 + |a_3 - a_4|\\,x_4 &= 1,\\\\ |a_4 - a_1|\\,x_1 + |a_4 - a_2|\\,x_2 + |a_4 - a_3|\\,x_3 &= 1, \\end{aligned}$$ where $a_1, a_2, a_3, a_4$ are four different real numbers.",
+  "concepts": [
+   "linear-algebra"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1967P5",
+  "source": "IMO",
+  "year": 1967,
+  "num": "5",
+  "q": "Consider the sequence $\\{c_n\\}$, where $$\\begin{aligned} c_1 &= a_1 + a_2 + \\cdots + a_8,\\\\ c_2 &= a_1^2 + a_2^2 + \\cdots + a_8^2,\\\\ &\\ \\ \\vdots\\\\ c_n &= a_1^n + a_2^n + \\cdots + a_8^n,\\\\ &\\ \\ \\vdots \\end{aligned}$$ in which $a_1, a_2, \\ldots, a_8$ are real numbers not all equal to zero. Suppose that an infinite number of terms of the sequence $\\{c_n\\}$ are equal to zero. Find all natural numbers $n$ such that $c_n = 0$.",
+  "concepts": [
+   "sequences",
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1967P6",
+  "source": "IMO",
+  "year": 1967,
+  "num": "6",
+  "q": "In a sports contest, there were $m$ medals awarded on $n$ successive days ($n > 1$). On the first day, one medal and $1/7$ of the remaining $m - 1$ medals were awarded. On the second day, two medals and $1/7$ of the now remaining medals were awarded; and so on. On the $n$-th and last day, the remaining $n$ medals were awarded. How many days did the contest last, and how many medals were awarded altogether?",
+  "concepts": [
+   "sequences",
+   "diophantine"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1968P3",
+  "source": "IMO",
+  "year": 1968,
+  "num": "3",
+  "q": "Let $a, b, c$ be real numbers with $a \\ne 0$. The real numbers $x_1, x_2, \\ldots, x_n$ satisfy the $n$ equations $$\\begin{aligned} a x_i^2 + b x_i + c &= x_{i+1} \\quad \\text{for } 1 \\le i < n,\\\\ a x_n^2 + b x_n + c &= x_1. \\end{aligned}$$ Prove that the system has zero, one or more than one real solution according as $(b-1)^2 - 4ac$ is $< 0$, $= 0$ or $> 0$.",
+  "concepts": [
+   "sequences",
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1968P5",
+  "source": "IMO",
+  "year": 1968,
+  "num": "5",
+  "q": "Let $f$ be a real-valued function defined for all real numbers $x$ such that, for some positive constant $a$, the equation $$f(x + a) = \\dfrac{1}{2} + \\sqrt{f(x) - (f(x))^2}$$ holds for all $x$.\n\n(a) Prove that the function $f$ is periodic.\n\n(b) For $a = 1$, give an example of a non-constant function with the required properties.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1968P6",
+  "source": "IMO",
+  "year": 1968,
+  "num": "6",
+  "q": "For every natural number $n$, evaluate the sum $$\\sum_{k=0}^{\\infty} \\left\\lfloor \\dfrac{n + 2^k}{2^{k+1}} \\right\\rfloor,$$ where $\\lfloor x \\rfloor$ denotes the greatest integer less than or equal to $x$.",
+  "concepts": [
+   "floor-functions",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1969P2",
+  "source": "IMO",
+  "year": 1969,
+  "num": "2",
+  "q": "Let $a_1, a_2, \\ldots, a_n$ be real constants, $x$ be a real variable, and $$f(x) = \\cos(a_1 + x) + \\dfrac{1}{2}\\cos(a_2 + x) + \\dfrac{1}{4}\\cos(a_3 + x) + \\cdots + \\dfrac{1}{2^{n-1}}\\cos(a_n + x).$$ Given that $f(x_1) = f(x_2) = 0$ for some $x_1, x_2$, prove that $x_2 - x_1 = m\\pi$ for some integer $m$.",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1969P6",
+  "source": "IMO",
+  "year": 1969,
+  "num": "6",
+  "q": "Given real numbers $x_1, x_2, y_1, y_2, z_1, z_2$ satisfying $x_1 > 0$, $x_2 > 0$, $x_1y_1 > z_1^2$, and $x_2y_2 > z_2^2$, prove that $$\\dfrac{8}{(x_1 + x_2)(y_1 + y_2) - (z_1 + z_2)^2} \\le \\dfrac{1}{x_1y_1 - z_1^2} + \\dfrac{1}{x_2y_2 - z_2^2}.$$ Give necessary and sufficient conditions for equality.",
+  "concepts": [
+   "amgm",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1970P2",
+  "source": "IMO",
+  "year": 1970,
+  "num": "2",
+  "q": "Let $a$, $b$ and $n$ be integers greater than $1$, and let $a$ and $b$ be the bases of two number systems. $A_{n-1}$ and $A_n$ are numbers in the system with base $a$, and $B_{n-1}$ and $B_n$ are numbers in the system with base $b$; these are related as follows: $$A_n = x_n x_{n-1} \\cdots x_0, \\qquad A_{n-1} = x_{n-1} x_{n-2} \\cdots x_0,$$ $$B_n = x_n x_{n-1} \\cdots x_0, \\qquad B_{n-1} = x_{n-1} x_{n-2} \\cdots x_0$$ (written as digit strings in the respective systems), with $x_n \\ne 0$ and $x_{n-1} \\ne 0$.\n\nProve that $\\dfrac{A_{n-1}}{A_n} < \\dfrac{B_{n-1}}{B_n}$ if and only if $a > b$.",
+  "concepts": [
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1970P3",
+  "source": "IMO",
+  "year": 1970,
+  "num": "3",
+  "q": "The real numbers $a_0, a_1, a_2, \\ldots$ satisfy $1 = a_0 \\le a_1 \\le a_2 \\le \\cdots$. The numbers $b_1, b_2, b_3, \\ldots$ are defined by $$b_n = \\sum_{k=1}^{n} \\dfrac{1 - \\dfrac{a_{k-1}}{a_k}}{\\sqrt{a_k}}.$$\n\n(a) Prove that $0 \\le b_n < 2$.\n\n(b) Given $c$ satisfying $0 \\le c < 2$, prove that we can find $a_n$ so that $b_n > c$ for all sufficiently large $n$.",
+  "concepts": [
+   "series",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1970P6",
+  "source": "IMO",
+  "year": 1970,
+  "num": "6",
+  "q": "In a plane there are $100$ points, no three of which are collinear. Consider all possible triangles having these points as vertices. Prove that no more than $70\\%$ of these triangles are acute.",
+  "concepts": [
+   "discrete-geometry",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1971P1",
+  "source": "IMO",
+  "year": 1971,
+  "num": "1",
+  "q": "Prove that the following assertion is true for $n = 3$ and $n = 5$, and that it is false for every other natural number $n > 2$:\n\nIf $a_1, a_2, \\ldots, a_n$ are arbitrary real numbers, then $$(a_1 - a_2)(a_1 - a_3)\\cdots(a_1 - a_n) + (a_2 - a_1)(a_2 - a_3)\\cdots(a_2 - a_n) + \\cdots + (a_n - a_1)(a_n - a_2)\\cdots(a_n - a_{n-1}) \\ge 0.$$",
+  "concepts": [
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1971P5",
+  "source": "IMO",
+  "year": 1971,
+  "num": "5",
+  "q": "Prove that for every natural number $m$ there exists a nonempty finite set $S$ of points in the plane with the following property: for every point $s$ in $S$, there are exactly $m$ points of $S$ which are at unit distance from $s$.",
+  "concepts": [
+   "discrete-geometry"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1971P6",
+  "source": "IMO",
+  "year": 1971,
+  "num": "6",
+  "q": "Let $A = (a_{ij})$ be an $n \\times n$ matrix with non-negative integer entries. Suppose that for all $i, j$, if $a_{ij} = 0$, then the sum of the elements in the $i$-th row plus the sum of the elements in the $j$-th column is at least $n$. Prove that the sum of all elements in the matrix is at least $n^2/2$.",
+  "concepts": [
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1972P1",
+  "source": "IMO",
+  "year": 1972,
+  "num": "1",
+  "q": "Prove that from a set of ten distinct two-digit numbers (in decimal), it is possible to select two disjoint subsets whose members have the same sum.",
+  "concepts": [
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1972P4",
+  "source": "IMO",
+  "year": 1972,
+  "num": "4",
+  "q": "Find all positive real solutions to $$\\begin{aligned} (x_1^2 - x_3x_5)(x_2^2 - x_3x_5) &\\le 0,\\\\ (x_2^2 - x_4x_1)(x_3^2 - x_4x_1) &\\le 0,\\\\ (x_3^2 - x_5x_2)(x_4^2 - x_5x_2) &\\le 0,\\\\ (x_4^2 - x_1x_3)(x_5^2 - x_1x_3) &\\le 0,\\\\ (x_5^2 - x_2x_4)(x_1^2 - x_2x_4) &\\le 0. \\end{aligned}$$",
+  "concepts": [
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1972P5",
+  "source": "IMO",
+  "year": 1972,
+  "num": "5",
+  "q": "Let $f$ and $g$ be real-valued functions defined on the real line such that, for all $x$ and $y$, $$f(x + y) + f(x - y) = 2f(x)g(y).$$ Suppose that $f$ is not identically zero and $|f(x)| \\le 1$ for all $x$. Prove that $|g(x)| \\le 1$ for all $x$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1973P3",
+  "source": "IMO",
+  "year": 1973,
+  "num": "3",
+  "q": "Let $a$ and $b$ be real numbers for which the equation $$x^4 + ax^3 + bx^2 + ax + 1 = 0$$ has at least one real solution. For all such pairs $(a, b)$, find the minimum value of $a^2 + b^2$.",
+  "concepts": [
+   "polynomials-roots",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1973P5",
+  "source": "IMO",
+  "year": 1973,
+  "num": "5",
+  "q": "$G$ is a set of non-constant functions of the real variable $x$ of the form $$f(x) = ax + b, \\quad a \\text{ and } b \\text{ real numbers},$$ and $G$ has the following properties:\n\n(a) If $f$ and $g$ are in $G$, then $g \\circ f$ is in $G$; here $(g \\circ f)(x) = g[f(x)]$.\n\n(b) If $f$ is in $G$, then its inverse $f^{-1}$ is in $G$; here the inverse of $f(x) = ax + b$ is $f^{-1}(x) = (x - b)/a$.\n\n(c) For every $f$ in $G$, there exists a real number $x_f$ such that $f(x_f) = x_f$.\n\nProve that there exists a real number $k$ such that $f(k) = k$ for all $f$ in $G$.",
+  "concepts": [
+   "groups",
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1973P6",
+  "source": "IMO",
+  "year": 1973,
+  "num": "6",
+  "q": "Let $a_1, a_2, \\ldots, a_n$ be $n$ positive numbers, and let $q$ be a given real number such that $0 < q < 1$. Find $n$ numbers $b_1, b_2, \\ldots, b_n$ for which\n\n(a) $a_k < b_k$ for $k = 1, 2, \\ldots, n$,\n\n(b) $q < \\dfrac{b_{k+1}}{b_k} < \\dfrac{1}{q}$ for $k = 1, 2, \\ldots, n-1$,\n\n(c) $b_1 + b_2 + \\cdots + b_n < \\dfrac{1+q}{1-q}(a_1 + a_2 + \\cdots + a_n)$.",
+  "concepts": [
+   "sequences",
+   "series"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1974P1",
+  "source": "IMO",
+  "year": 1974,
+  "num": "1",
+  "q": "Three players $A$, $B$ and $C$ play the following game. On each of three cards an integer is written. These three numbers $p, q, r$ satisfy $0 < p < q < r$. The three cards are shuffled and one is dealt to each player. Each then receives the number of counters indicated by the card he holds. Then the cards are shuffled again; the counters remain with the players.\n\nThis process (shuffling, dealing, giving out counters) takes place for at least two rounds. After the last round, $A$ has $20$ counters in all, $B$ has $10$ and $C$ has $9$. At the last round $B$ received $r$ counters.\n\nWho received $q$ counters on the first round?",
+  "concepts": [
+   "diophantine",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1974P2",
+  "source": "IMO",
+  "year": 1974,
+  "num": "2",
+  "q": "In the triangle $ABC$, prove that there is a point $D$ on side $AB$ such that $CD$ is the geometric mean of $AD$ and $DB$ if and only if $$\\sin A \\sin B \\le \\sin^2 \\dfrac{C}{2}.$$",
+  "concepts": [
+   "circles",
+   "euclid-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1974P4",
+  "source": "IMO",
+  "year": 1974,
+  "num": "4",
+  "q": "Consider decompositions of an $8 \\times 8$ chessboard into $p$ non-overlapping rectangles, subject to the following conditions:\n\n(i) Each rectangle has as many white squares as black squares.\n\n(ii) If $a_i$ is the number of white squares in the $i$-th rectangle, then $a_1 < a_2 < \\cdots < a_p$.\n\nFind the maximum value of $p$ for which such a decomposition is possible. For this value of $p$, determine all possible sequences $a_1, a_2, \\ldots, a_p$.",
+  "concepts": [
+   "grids-tilings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1974P5",
+  "source": "IMO",
+  "year": 1974,
+  "num": "5",
+  "q": "What are the possible values of $$\\dfrac{a}{a+b+d} + \\dfrac{b}{a+b+c} + \\dfrac{c}{b+c+d} + \\dfrac{d}{a+c+d}$$ as $a, b, c, d$ range over the positive real numbers?",
+  "concepts": [
+   "symmetric-ineq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1974P6",
+  "source": "IMO",
+  "year": 1974,
+  "num": "6",
+  "q": "Let $P$ be a non-constant polynomial with integer coefficients. If $n(P)$ is the number of different integers $k$ such that $(P(k))^2 = 1$, prove that $$n(P) - \\deg(P) \\le 2.$$",
+  "concepts": [
+   "integer-polynomials"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1975P1",
+  "source": "IMO",
+  "year": 1975,
+  "num": "1",
+  "q": "Let $x_1, x_2, \\ldots, x_n$ and $y_1, y_2, \\ldots, y_n$ be two sequences of real numbers such that $x_1 \\ge x_2 \\ge \\cdots \\ge x_n$ and $y_1 \\ge y_2 \\ge \\cdots \\ge y_n$. Prove that if $z_1, z_2, \\ldots, z_n$ is any permutation of $y_1, y_2, \\ldots, y_n$, then $$\\sum_{i=1}^{n} (x_i - y_i)^2 \\le \\sum_{i=1}^{n} (x_i - z_i)^2.$$",
+  "concepts": [
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1975P2",
+  "source": "IMO",
+  "year": 1975,
+  "num": "2",
+  "q": "Let $a_1 < a_2 < a_3 < \\cdots$ be positive integers. Prove that for every $i \\ge 1$, there are infinitely many $a_n$ that can be written in the form $a_n = r a_i + s a_j$, with $r, s$ positive integers and $j > i$.",
+  "concepts": [
+   "bezout",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1975P5",
+  "source": "IMO",
+  "year": 1975,
+  "num": "5",
+  "q": "Determine, with proof, whether or not one can find $1975$ points on the circumference of a circle with unit radius such that the distance between any two of them is a rational number.",
+  "concepts": [
+   "pythagorean",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1975P6",
+  "source": "IMO",
+  "year": 1975,
+  "num": "6",
+  "q": "Find all polynomials $P$, in two variables, with the following properties:\n\n(i) for a positive integer $n$ and all real $t, x, y$, $$P(tx, ty) = t^n P(x, y)$$ (that is, $P$ is homogeneous of degree $n$);\n\n(ii) for all real $a, b, c$, $$P(b + c, a) + P(c + a, b) + P(a + b, c) = 0;$$\n\n(iii) $P(1, 0) = 1$.",
+  "concepts": [
+   "polynomials-roots"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1976P2",
+  "source": "IMO",
+  "year": 1976,
+  "num": "2",
+  "q": "Let $P_1(x) = x^2 - 2$ and $P_j(x) = P_1(P_{j-1}(x))$ for $j = 2, 3, \\ldots$. Show that for any positive integer $n$, the roots of the equation $P_n(x) = x$ are real and distinct.",
+  "concepts": [
+   "polynomials-roots",
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1976P5",
+  "source": "IMO",
+  "year": 1976,
+  "num": "5",
+  "q": "Let $n$ be a positive integer and $m = 2n$. Let $a_{ij} = 0$, $1$ or $-1$ for $1 \\le i \\le n$, $1 \\le j \\le m$. The $m$ unknowns $x_1, x_2, \\ldots, x_m$ satisfy the $n$ equations $$a_{i1}x_1 + a_{i2}x_2 + \\cdots + a_{im}x_m = 0, \\qquad i = 1, 2, \\ldots, n.$$ Prove that the system has a solution in integers of absolute value at most $m$, not all zero.",
+  "concepts": [
+   "pigeonhole",
+   "linear-algebra"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1976P6",
+  "source": "IMO",
+  "year": 1976,
+  "num": "6",
+  "q": "The sequence $u_0, u_1, u_2, \\ldots$ is defined by $u_0 = 2$, $u_1 = \\dfrac{5}{2}$, and $$u_{n+1} = u_n(u_{n-1}^2 - 2) - u_1 \\quad \\text{for } n = 1, 2, \\ldots.$$ Prove that $$\\lfloor u_n \\rfloor = 2^{(2^n - (-1)^n)/3}$$ for all positive $n$, where $\\lfloor x \\rfloor$ denotes the greatest integer less than or equal to $x$.",
+  "concepts": [
+   "sequences",
+   "floor-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1977P2",
+  "source": "IMO",
+  "year": 1977,
+  "num": "2",
+  "q": "In a finite sequence of real numbers the sum of any seven successive terms is negative and the sum of any eleven successive terms is positive. Determine the maximum number of terms in the sequence.",
+  "concepts": [
+   "sequences",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1977P4",
+  "source": "IMO",
+  "year": 1977,
+  "num": "4",
+  "q": "Define $$f(x) = 1 - a\\cos x - b\\sin x - A\\cos 2x - B\\sin 2x,$$ where $a, b, A, B$ are real constants. Suppose that $f(x) \\ge 0$ for all real $x$. Prove that $a^2 + b^2 \\le 2$ and $A^2 + B^2 \\le 1$.",
+  "concepts": [
+   "complex-numbers"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1977P6",
+  "source": "IMO",
+  "year": 1977,
+  "num": "6",
+  "q": "Let $f$ be a function from the positive integers to the positive integers such that $f(f(n)) < f(n + 1)$ for every positive integer $n$. Prove that $f(n) = n$ for every $n$.",
+  "concepts": [
+   "integer-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1978P3",
+  "source": "IMO",
+  "year": 1978,
+  "num": "3",
+  "q": "The set of all positive integers is the union of two disjoint subsets $\\{f(1), f(2), \\ldots, f(n), \\ldots\\}$ and $\\{g(1), g(2), \\ldots, g(n), \\ldots\\}$, where $$f(1) < f(2) < \\cdots < f(n) < \\cdots, \\qquad g(1) < g(2) < \\cdots < g(n) < \\cdots,$$ and $g(n) = f(f(n)) + 1$ for all $n \\ge 1$.\n\nDetermine $f(240)$.",
+  "concepts": [
+   "integer-functional-eq",
+   "floor-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1978P5",
+  "source": "IMO",
+  "year": 1978,
+  "num": "5",
+  "q": "Let $a_1, a_2, a_3, \\ldots$ be a sequence of distinct positive integers. Prove that for all natural numbers $n$, $$\\sum_{k=1}^{n} \\dfrac{a_k}{k^2} \\ge \\sum_{k=1}^{n} \\dfrac{1}{k}.$$",
+  "concepts": [
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1978P6",
+  "source": "IMO",
+  "year": 1978,
+  "num": "6",
+  "q": "An international society has its members from six different countries. The list of members has $1978$ names, numbered $1, 2, \\ldots, 1978$. Prove that there is at least one member whose number is the sum of the numbers of two (not necessarily distinct) members from his own country.",
+  "concepts": [
+   "ramsey-arithmetic",
+   "pigeonhole"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1979P2",
+  "source": "IMO",
+  "year": 1979,
+  "num": "2",
+  "q": "A prism with pentagons $A_1A_2A_3A_4A_5$ and $B_1B_2B_3B_4B_5$ as the top and bottom faces is given. Each side of the two pentagons and each of the $25$ segments $A_iB_j$ is colored red or green. Every triangle whose vertices are vertices of the prism and whose sides have all been colored has two sides of a different color. Prove that all $10$ sides of the top and bottom faces have the same color.",
+  "concepts": [
+   "ramsey",
+   "graph-coloring"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1979P5",
+  "source": "IMO",
+  "year": 1979,
+  "num": "5",
+  "q": "Find all real numbers $a$ for which there exist non-negative real numbers $x_1, x_2, x_3, x_4, x_5$ satisfying $$\\begin{aligned} x_1 + 2x_2 + 3x_3 + 4x_4 + 5x_5 &= a,\\\\ x_1 + 2^3x_2 + 3^3x_3 + 4^3x_4 + 5^3x_5 &= a^2,\\\\ x_1 + 2^5x_2 + 3^5x_3 + 4^5x_4 + 5^5x_5 &= a^3. \\end{aligned}$$",
+  "concepts": [
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1979P6",
+  "source": "IMO",
+  "year": 1979,
+  "num": "6",
+  "q": "Let $A$ and $E$ be opposite vertices of an octagon. A frog starts at vertex $A$. From any vertex except $E$ it jumps to one of the two adjacent vertices. When it reaches $E$ it stops. Let $a_n$ be the number of distinct paths of exactly $n$ jumps ending at $E$. Prove that, for $n = 1, 2, 3, \\ldots$, $$a_{2n-1} = 0, \\qquad a_{2n} = \\dfrac{(2+\\sqrt{2})^{n-1} - (2-\\sqrt{2})^{n-1}}{\\sqrt{2}}.$$",
+  "concepts": [
+   "generating-functions",
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1981P2",
+  "source": "IMO",
+  "year": 1981,
+  "num": "2",
+  "q": "Let $1 \\le r \\le n$ and consider all subsets of $r$ elements of the set $\\{1, 2, \\ldots, n\\}$. Each of these subsets has a smallest member. Let $F(n, r)$ denote the arithmetic mean of these smallest numbers; prove that $$F(n, r) = \\dfrac{n+1}{r+1}.$$",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1981P3",
+  "source": "IMO",
+  "year": 1981,
+  "num": "3",
+  "q": "Determine the maximum value of $m^2 + n^2$, where $m$ and $n$ are integers in $\\{1, 2, \\ldots, 1981\\}$ and $(n^2 - mn - m^2)^2 = 1$.",
+  "concepts": [
+   "vieta-jumping",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1981P6",
+  "source": "IMO",
+  "year": 1981,
+  "num": "6",
+  "q": "The function $f(x, y)$ satisfies $$\\begin{aligned} &(1)\\quad f(0, y) = y + 1,\\\\ &(2)\\quad f(x + 1, 0) = f(x, 1),\\\\ &(3)\\quad f(x + 1, y + 1) = f(x, f(x + 1, y)) \\end{aligned}$$ for all non-negative integers $x, y$. Determine $f(4, 1981)$.",
+  "concepts": [
+   "integer-functional-eq",
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1982P1",
+  "source": "IMO",
+  "year": 1982,
+  "num": "1",
+  "q": "The function $f(n)$ is defined for all positive integers $n$ and takes on non-negative integer values. Also, for all positive integers $m, n$, $$f(m + n) - f(m) - f(n) = 0 \\text{ or } 1,$$ and $f(2) = 0$, $f(3) > 0$, $f(9999) = 3333$. Determine $f(1982)$.",
+  "concepts": [
+   "integer-functional-eq",
+   "floor-functions"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1982P3",
+  "source": "IMO",
+  "year": 1982,
+  "num": "3",
+  "q": "Consider infinite sequences $\\{x_n\\}$ of positive reals such that $x_0 = 1$ and $x_0 \\ge x_1 \\ge x_2 \\ge \\cdots$.\n\n(a) Prove that for every such sequence there is an $n \\ge 1$ such that $$\\dfrac{x_0^2}{x_1} + \\dfrac{x_1^2}{x_2} + \\cdots + \\dfrac{x_{n-1}^2}{x_n} \\ge 3.999.$$\n\n(b) Find such a sequence for which $$\\dfrac{x_0^2}{x_1} + \\dfrac{x_1^2}{x_2} + \\cdots + \\dfrac{x_{n-1}^2}{x_n} < 4$$ for all $n$.",
+  "concepts": [
+   "cauchy-schwarz",
+   "sequences"
+  ],
+  "check": "docstring had typo x_0 = 0; corrected to official x_0 = 1 (matches Lean)"
+ },
+ {
+  "file": "Imo1983P1",
+  "source": "IMO",
+  "year": 1983,
+  "num": "1",
+  "q": "Let $\\mathbb{R}^+$ be the set of positive real numbers. Determine all functions $f\\colon \\mathbb{R}^+ \\to \\mathbb{R}^+$ which satisfy:\n\n(i) $f(xf(y)) = yf(x)$ for all $x, y \\in \\mathbb{R}^+$;\n\n(ii) $f(x) \\to 0$ as $x \\to \\infty$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1983P5",
+  "source": "IMO",
+  "year": 1983,
+  "num": "5",
+  "q": "Is it possible to choose $1983$ distinct positive integers, all less than or equal to $10^5$, no three of which are consecutive terms of an arithmetic progression? Justify your answer.",
+  "concepts": [
+   "ramsey-arithmetic",
+   "digits-bases"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1983P6",
+  "source": "IMO",
+  "year": 1983,
+  "num": "6",
+  "q": "Suppose that $a, b, c$ are the side lengths of a triangle. Prove that $$a^2b(a - b) + b^2c(b - c) + c^2a(c - a) \\ge 0.$$ Determine when equality occurs.",
+  "concepts": [
+   "symmetric-ineq",
+   "geo-inequalities"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1984P1",
+  "source": "IMO",
+  "year": 1984,
+  "num": "1",
+  "q": "Let $x, y, z$ be nonnegative real numbers with $x + y + z = 1$. Show that $$0 \\le xy + yz + zx - 2xyz \\le \\dfrac{7}{27}.$$",
+  "concepts": [
+   "symmetric-ineq",
+   "amgm"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1984P3",
+  "source": "IMO",
+  "year": 1984,
+  "num": "3",
+  "q": "In the plane two different points $O$ and $A$ are given. For each point $X$ of the plane, other than $O$, denote by $a(X)$ the measure of the angle between $OA$ and $OX$ in radians, counterclockwise from $OA$ ($0 \\le a(X) < 2\\pi$). Let $C(X)$ be the circle with center $O$ and radius of length $OX + \\dfrac{a(X)}{OX}$. Each point of the plane is colored by one of a finite number of colors. Prove that there exists a point $Y$ for which $a(Y) > 0$ such that its color appears on the circumference of the circle $C(Y)$.",
+  "concepts": [
+   "pigeonhole",
+   "discrete-geometry"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1985P2",
+  "source": "IMO",
+  "year": 1985,
+  "num": "2",
+  "q": "Fix a natural number $n \\ge 3$ and define $N = \\{1, 2, 3, \\ldots, n-1\\}$. Fix another natural number $j \\in N$ coprime to $n$. Each number in $N$ is now colored with one of two colors, say red or black, so that:\n\n(1) $i$ and $n - i$ always receive the same color, and\n\n(2) $i$ and $|j - i|$ receive the same color for all $i \\in N$, $i \\ne j$.\n\nProve that all numbers in $N$ must receive the same color.",
+  "concepts": [
+   "congruences",
+   "graph-basics"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1985P3",
+  "source": "IMO",
+  "year": 1985,
+  "num": "3",
+  "q": "For any polynomial $P(x) = a_0 + a_1x + \\cdots + a_kx^k$ with integer coefficients, the number of odd coefficients is denoted by $o(P)$. For $i = 0, 1, 2, \\ldots$ let $Q_i(x) = (1 + x)^i$. Prove that if $i_1, i_2, \\ldots, i_n$ are integers satisfying $0 \\le i_1 < i_2 < \\cdots < i_n$, then $$o(Q_{i_1} + Q_{i_2} + \\cdots + Q_{i_n}) \\ge o(Q_{i_1}).$$",
+  "concepts": [
+   "lucas",
+   "integer-polynomials"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1985P6",
+  "source": "IMO",
+  "year": 1985,
+  "num": "6",
+  "q": "For every real number $x_1$, construct the sequence $x_1, x_2, \\ldots$ by setting $$x_{n+1} = x_n\\left(x_n + \\dfrac{1}{n}\\right)$$ for each $n \\ge 1$. Prove that there exists exactly one value of $x_1$ for which $0 < x_n < x_{n+1} < 1$ for every $n$.",
+  "concepts": [
+   "sequences"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1986P3",
+  "source": "IMO",
+  "year": 1986,
+  "num": "3",
+  "q": "To each vertex of a regular pentagon an integer is assigned, in such a way that the sum of all five numbers is positive. If three consecutive vertices are assigned the numbers $x, y, z$ respectively and $y < 0$, then the following operation is allowed: $x, y, z$ are replaced by $x + y, -y, z + y$ respectively. Such an operation is performed repeatedly as long as at least one of the five numbers is negative. Determine whether this procedure necessarily comes to an end after a finite number of steps.",
+  "concepts": [
+   "invariants"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1986P5",
+  "source": "IMO",
+  "year": 1986,
+  "num": "5",
+  "q": "Find all functions $f$, defined on the non-negative real numbers and taking non-negative real values, such that:\n\n(i) $f(xf(y))f(y) = f(x + y)$ for all $x, y \\ge 0$;\n\n(ii) $f(2) = 0$;\n\n(iii) $f(x) \\ne 0$ for $0 \\le x < 2$.",
+  "concepts": [
+   "real-functional-eq"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1986P6",
+  "source": "IMO",
+  "year": 1986,
+  "num": "6",
+  "q": "Given a finite set of points in the plane, each with integer coordinates, is it always possible to color the points red or white so that for any straight line $L$ parallel to one of the coordinate axes the difference (in absolute value) between the numbers of white and red points on $L$ is not greater than $1$?",
+  "concepts": [
+   "graph-coloring",
+   "cycles-matchings"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1987P1",
+  "source": "IMO",
+  "year": 1987,
+  "num": "1",
+  "q": "Let $p_{n,k}$ be the number of permutations of a set of cardinality $n \\ge 1$ that fix exactly $k$ elements. Prove that $$\\sum_{k=0}^{n} k\\,p_{n,k} = n!.$$",
+  "concepts": [
+   "counting"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1987P3",
+  "source": "IMO",
+  "year": 1987,
+  "num": "3",
+  "q": "Let $x_1, x_2, \\ldots, x_n$ be real numbers satisfying $x_1^2 + x_2^2 + \\cdots + x_n^2 = 1$. Prove that for every integer $k \\ge 2$ there are integers $a_1, a_2, \\ldots, a_n$, not all zero, such that $|a_i| \\le k - 1$ for all $i$, and $$|a_1x_1 + a_2x_2 + \\cdots + a_nx_n| \\le \\dfrac{(k-1)\\sqrt{n}}{k^n - 1}.$$",
+  "concepts": [
+   "pigeonhole",
+   "cauchy-schwarz"
+  ],
+  "check": "ok"
+ },
+ {
+  "file": "Imo1987P4",
+  "source": "IMO",
+  "year": 1987,
+  "num": "4",
+  "q": "Prove that there is no function $f$ from the set of non-negative integers into itself such that $f(f(n)) = n + 1987$ for every $n$.",
+  "concepts": [
+   "integer-functional-eq"
+  ],
+  "check": "ok"
+ }
+]

@@ -1,0 +1,151 @@
+[
+ {
+  "id": "digits-bases",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "vieta-jumping",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Why it works: symmetries of a conic",
+    "problem": "Claimed the jumps are 'exactly the automorphisms that produce infinitely many solutions of Pell equations', which overstates the link.",
+    "fix": "Now says automorphisms of this kind also generate infinitely many Pell solutions."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/The recipe",
+    "problem": "The f(y) < 0 trick concluded 'the other root is smaller than y' without saying that this needs the jumped root to be the one above y.",
+    "fix": "Added that the root being jumped is the larger variable, so it is the root above y."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The second bullet said that in a^2+b^2=k(ab+1) a zero root really occurs and is where the descent stops. That is the key base case of IMO 1988/6, which the lesson promises not to solve.",
+    "fix": "Made the bullet generic: the new root may be zero or negative, and each case must be analysed."
+   },
+   {
+    "severity": "style",
+    "where": "section/The jump",
+    "problem": "'Take the condition from the summary of this concept' points to page furniture the reader may not see.",
+    "fix": "Changed to 'Take the condition'."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Called Vieta jumping 'one of the few descent methods... that works directly on quadratic equations in several variables'. The claim is unsupported.",
+    "fix": "Now calls it a descent method suited to equations that are quadratic in each variable."
+   }
+  ]
+ },
+ {
+  "id": "lte-zsigmondy",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/From a - b to a^n - b^n",
+    "problem": "Stated without restriction that for n = p the factor S_p is divisible by p exactly once. This is false for p = 2 (a=3, b=1: S_2 = 4). It also omitted p ∤ a when concluding p ∤ n a^{n-1}.",
+    "fix": "Added 'for odd p' and 'and p ∤ a'."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Said the primitive prime divisors of 2^{nj}-1 for j = 1, 2, 3, ... give infinitely many primes ≡ 1 mod n. That ignores the Zsigmondy exceptions nj = 1 and nj = 6, where no primitive divisor exists (for example n = 6, j = 1).",
+    "fix": "Restricted to j ≥ 1 with nj ≠ 1, 6, and stated that the primes are distinct because the order of 2 differs."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem/Lifting the exponent lemma (odd p)",
+    "problem": "The degenerate cases a = b (and a = -b in the plus version) were not excluded, and the lesson never defines ν_p(0).",
+    "fix": "Added a ≠ b, and a ≠ -b for the a^n + b^n statement. The hypotheses are now: p odd, p | a-b, p ∤ ab, n ≥ 1, and for the plus form n odd with p | a+b."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem/Lifting the exponent lemma (p = 2)",
+    "problem": "The degenerate cases a = ±b were not excluded. The commonly used special case 4 | a-b was missing.",
+    "fix": "Added a ≠ ±b. Added the consequence that if 4 | a-b then ν_2(a^n-b^n) = ν_2(a-b)+ν_2(n), which is checked."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Why the theorem is true",
+    "problem": "'A primitive prime exists as soon as Φ_n(a,b) exceeds the largest prime factor of n' relies on the non-primitive prime dividing only once, which holds only for n > 2. The n = 1 exception was also not confirmed.",
+    "fix": "Restricted the claim to n > 2, confirmed the n = 1 exception, and replaced the misleading 'Conversely' with 'In the other direction'."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "LTE was described as working for 'a prime dividing a-b', without the hypothesis p ∤ ab.",
+    "fix": "Added p ∤ ab."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "'Zsigmondy promises a new prime, not a prime power or a prime' is hard to parse.",
+    "fix": "Now says it promises one new prime factor and nothing about its exponent or how many new primes there are."
+   }
+  ]
+ },
+ {
+  "id": "binomial-factorial",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "The squarefree result was attributed only to Granville and Ramaré ('completed'), and Erdős's question was misphrased. Erdős conjectured that C(2n,n) is never squarefree for n > 4; Sárközy proved it for all large n, and Granville and Ramaré finished the proof.",
+    "fix": "Restated the conjecture and credited Sárközy (large n) and Granville and Ramaré (all n > 4). Years are omitted."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/First consequences",
+    "problem": "'Factor the base into primes and take the bottleneck' ignored the prime exponents in the base (for example 12 = 2^2·3).",
+    "fix": "Spelled out: divide each exponent in n! by the exponent in the base, round down, and take the minimum. Checked for base 12."
+   },
+   {
+    "severity": "style",
+    "where": "section/What Kummer's theorem tells you",
+    "problem": "The intro asks why C(2n,n) is even for n ≥ 1, but the lesson never answers it.",
+    "fix": "Added a one-sentence answer from Kummer: n + n in base 2 carries out of the leading digit's column."
+   }
+  ]
+ },
+ {
+  "id": "integer-polynomials",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/Iterating a polynomial",
+    "problem": "Said the proof of IMO 2006/5 'is in the site's problem bank'. The bank holds problems, and the lesson should not point to a solution.",
+    "fix": "Now says the problem is in the bank and leaves the proof to the reader. No solution is given."
+   }
+  ]
+ },
+ {
+  "id": "integer-functional-eq",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/The rational case",
+    "problem": "The extension to Q skipped the step f(kx) = k f(x) for integer k and rational x, and did not say that f maps Q to Q.",
+    "fix": "Stated it for additive f:Q→Q and derived f(1/n) = c/n and f(m/n) = cm/n through f(kx) = k f(x)."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "'A size comparison needs a nonzero quotient' should say nonzero multiple (dividend).",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'Every integer is reached from 1 by adding' is inaccurate for nonpositive integers.",
+    "fix": "Now says every integer is a sum of copies of 1 or of -1."
+   }
+  ]
+ }
+]

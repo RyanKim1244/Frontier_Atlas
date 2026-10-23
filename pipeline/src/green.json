@@ -1,0 +1,728 @@
+{
+"1": {
+"q": "Let $A$ be a set of $n$ positive integers. Does $A$ contain a sum-free set\nof size at least $\\frac n 3 + Ω(n)$, where $Ω(n) → ∞$ as $n → ∞$?",
+"notes": "Bedert [Be25] proved that every set of $n$ integers contains a sum-free subset of size at least\n$\\frac n 3 + c \\log\\log n$ for some absolute constant $c > 0$, so the answer is yes.",
+"refs": [
+"[Ben Green's Open Problem 1](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#section.1 Problem 1)",
+"[Be25] Bedert, Benjamin, Large sum-free subsets of sets of integers via $L^1$-estimates for trigonometric series. [arXiv:2502.08624](https://arxiv.org/abs/2502.08624) (2025)."
+],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"2": {
+"q": "Let $A \\subset \\mathbf{Z}$ be a set of $n$ integers. Is there a set $S \\subset A$ of size\n$(\\log n)^{100}$ such that the restricted sumset$S \\hat{+} S$ is disjoint from $A$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"3": {
+"q": "Suppose that $A \\subset [0,1]$ is open and has measure greater than $\\frac{1}{3}$. Is there a\nsolution to $xy = z$ with $x, y, z \\in A$?",
+"notes": "The answer is yes. [FGY26] prove that an open product-free subset of $(0,1)$ has measure strictly\nless than $\\frac{1}{3}$.",
+"refs": [
+"[Ben Green's Open Problem 3](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#section.3 Problem 3)",
+"[FGY26] Franchi, Leonardo and Gowers, W. T. and Yip, Fredy, *Product-free subsets of $(0,1)$*, [arXiv:2607.06073](https://arxiv.org/abs/2607.06073), Theorem 1.1."
+],
+"status": "solved",
+"ams": [
+"11"
+],
+"lean": null
+},
+"4": {
+"q": "What is the largest product-free set in the alternating group $A_n$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"20"
+],
+"lean": null
+},
+"5": {
+"q": "Which finite groups have the smallest biggest product-free sets?",
+"notes": "We formalise this as: determine the supremum of exponents $\\alpha$ such that every nontrivial\nfinite group of order $n$ contains a product-free set of size $\\geq c n^{\\alpha}$ for some\nabsolute constant $c > 0$. (The trivial group is excluded since its only product-free subset\nis empty.) Kedlaya [Ke97] showed that $\\alpha = 11/14$ is admissible, and Green suggests this\nexponent may well be sharp; the candidate extremal family is the Ree groups ${}^2G_2(q)$,\n$q = 3^{2m+1}$.",
+"refs": [
+"[Gr24] [Green, Ben. \"100 open problems.\" (2024).](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.5)",
+"[BaSo85] Babai L, Sós VT. Sidon sets in groups and induced subgraphs of Cayley graphs. European Journal of Combinatorics. 1985 Jun 1;6(2):101-14.",
+"[Ke97] Kedlaya, K. S., *Large product-free subsets of finite groups*, J. Combin. Theory Ser. A 77 (1997), no. 2, 339–343.",
+"[Ke09] Kedlaya, K. S., *Product-free subsets of groups, then and now*, Contemp. Math., 479, American Mathematical Society, Providence, RI, 2009, 169–177.",
+"[Go08] Gowers, W. T., *Quasirandom groups*, Combin. Probab. Comput. 17 (2008), no. 3, 363–387."
+],
+"status": "open",
+"ams": [
+"5",
+"20"
+],
+"lean": null
+},
+"9": {
+"q": "Problem 9 (i): is $r_3(N) \\ll N(\\log N)^{-10}$?",
+"notes": "Solved in [BlSi20].",
+"refs": [],
+"status": "solved",
+"ams": [
+"5"
+],
+"lean": null
+},
+"12": {
+"q": "Let $G$ be an abelian group of size $N$, and suppose that $A \\subset G$ has density $\\alpha$.\nAre there at least $\\alpha^{15} N^{10}$ tuples $(x_1, \\dots, x_5, y_1, \\dots, y_5) \\in G^{10}$\nsuch that $x_i + y_j \\in A$ whenever $j \\in \\{i, i+1, i+2\\}$?",
+"notes": "Note: We interpret indices modulo 5.",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"14": {
+"q": "Is $W(k, r)$ a polynomial in $r$, for fixed $k$?",
+"notes": "We formulate this as asking if $W(k, r)$ has polynomial growth in $r$.\nThe answer is no, already for $k = 4$. Every red $k$-term progression with $k \\ge 3$ contains a\nred $3$-term progression, so `mixedMonoAPGuaranteeSet k r ⊆ mixedMonoAPGuaranteeSet 3 r`, and\nboth sets are nonempty by van der Waerden's theorem, so $W(3, r) \\le W(k, r)$. Polynomial\ngrowth for one $k \\ge 4$ would therefore force polynomial growth for $k = 3$, contradicting\n`green_14_polynomial_k_eq_3` [Gr21, p.3].",
+"refs": [
+"[Gr24] [Green, Ben. \"100 open problems.\" (2024).](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.14)",
+"[AKS14] Ahmed, Tanbir, Oliver Kullmann, and Hunter Snevily. \"On the van der Waerden numbers w (2; 3, t).\" Discrete Applied Mathematics 174 (2014): 27-51.",
+"[KeMe23] Kelley, Zander, and Raghu Meka. \"Strong bounds for 3-progressions.\" 2023 IEEE 64th Annual Symposium on Foundations of Computer Science (FOCS). IEEE, 2023.",
+"[Hu22] Hunter, Zach. \"Improved lower bounds for van der Waerden numbers.\" Combinatorica 42. Suppl 2 (2022): 1231-1252.",
+"[Gr21] Green, Ben. \"New lower bounds for van der Waerden numbers.\" Forum of Mathematics, Pi. Vol. 10. Cambridge University Press, 2022.",
+"[Sc20] Schoen, Tomasz. \"A subexponential upper bound for van der Waerden numbers W (3, k).\" arXiv preprint arXiv:2006.02877 (2020).",
+"[BLR08] Brown, Tom, Bruce M. Landman, and Aaron Robertson. \"Bounds on some van der Waerden numbers.\" Journal of Combinatorial Theory, Series A 115.7 (2008): 1304-1309.",
+"[LiSh10] Li, Yusheng, and Jinlong Shu. \"A lower bound for off-diagonal van der Waerden numbers.\" Advances in Applied Mathematics 44.3 (2010): 243-247.",
+"[Ko15] Kouril, Michal. \"Leveraging FPGA clusters for SAT computations.\" Parallel Computing: On the Road to Exascale (2015): 525-532.",
+"[CCH23] Chowdhury, Md Solimul, Cayden R. Codel, and Marijn J. H. Heule. \"A linear weight transfer rule for local search.\" NASA Formal Methods (NFM 2023), Springer (2023)."
+],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"15": {
+"q": "Does there exist a Lipschitz function $f : \\mathbb{N} \\to \\mathbb{Z}$ whose graph\n$\\Gamma = \\{(n, f(n)) : n \\in \\mathbb{N}\\} \\subseteq \\mathbb{Z}^2$ is free of 3-term progressions?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"16": {
+"q": "What is the largest subset of $[N]$ with no solution to $x + 3y = 2z + 2w$ in distinct integers $x, y, z, w$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"18": {
+"q": "Suppose that $G$ is a finite group, and let $A \\subset G \\times G$ be a subset of density $\\alpha$.\nIs it true that there are $\\gg_\\alpha |G|^3$ triples $x, y, g$ such that $(x, y), (gx, y), (x, gy)$\nall lie in $A$?",
+"notes": "Note: A is taken as $\\alpha$-dense, i.e. $|A| \\ge \\alpha |G|^2$ [Au16, Question 2]",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11",
+"20"
+],
+"lean": null
+},
+"19": {
+"q": "What is $C$, the infimum of all exponents $c$ for which the following is true, uniformly for\n$0 < \\alpha < 1$? Suppose that $A \\subset \\mathbb{F}_2^n \\times \\mathbb{F}_2^n$ is a set of density\n$\\alpha$. Write $N := 2^n$. Then there is some $d \\neq 0$ such that $A$ contains $\\gg \\alpha^c N^2$\ncorners $(x,y), (x,y+d), (x+d,y)$.",
+"notes": "This question has been resolved by [FSS20], showing that $C = 4$.",
+"refs": [
+"[Gr26] [Ben Green's Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.19)",
+"[FSS20] Fox, Jacob, et al. \"Triforce and corners.\" Mathematical Proceedings of the Cambridge Philosophical Society. Vol. 169. No. 1. Cambridge University Press, 2020.",
+"[Ma21] Mandache, Matei. \"A variant of the Corners theorem.\" Mathematical Proceedings of the Cambridge Philosophical Society. Vol. 171. No. 3. Cambridge University Press, 2021.",
+"[Ch11] Chu, Qing. \"Multiple recurrence for two commuting transformations.\" Ergodic Theory and Dynamical Systems 31.3 (2011): 771-792."
+],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"21": {
+"q": "Suppose that $a_1, \\dots, a_k$ are integers which do not satisfy Rado's condition: thus if\n$\\sum_{i \\in I} a_i = 0$ then $I = \\emptyset$. It then follows from Rado's theorem that the\nequation $a_1x_1 + \\cdots + a_kx_k = 0$ is not partition regular. Write $c(a_1, \\dots, a_k)$ for\nthe least number of colours required in order to colour $\\mathbb{N}$ so that there is no\nmonochromatic solution to $a_1x_1 + \\cdots + a_kx_k = 0$. Is $c(a_1, \\dots, a_k)$ bounded in\nterms of $k$ only?",
+"notes": "This problem, which is known as Rado's boundedness conjecture, dates back to 1933 [Ra33]. It is\nopen for all $k \\geq 4$.",
+"refs": [
+"[Gr24] [Green, Ben. \"100 open problems.\" (2024).](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.21)",
+"[Ra33] Rado, Richard, *Studien zur Kombinatorik*. Math. Zeit. 36 (1933), 424-480.",
+"[FoKl06] Fox, Jacob and Kleitman, Daniel, *On Rado's boundedness conjecture*. J. Combin. Theory Ser. A 113 (2006), no. 1, 84-100.",
+"[ElJo23] Ellis, David and Johnson, Robert (editors), *A collection of open problems in celebration of Imre Leader's 60th birthday*. arXiv preprint arXiv:2310.18163 (2023)."
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"22": {
+"q": "If $\\{1, \\ldots, N\\}$ is $r$-coloured then, for $N \\geqslant N_0(r)$, there are integers\n$x, y \\geqslant 3$ such that $x + y, xy$ have the same colour.",
+"notes": "Find reasonable bounds for $N_0(r)$. The goal is to improve upon the Green-Sawhney bound.",
+"refs": [
+"[Gr26] [Ben Green's Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.22)",
+"[Mo17] Moreira, Joel. \"Monochromatic sums and products in N.\" Annals of Mathematics 185.3 (2017): 1069-1090.",
+"[GrSa25] Green, Ben, and Mehtaab Sawhney. \"Bounds for monochromatic solutions to $\\{x+ y, xy\\} $.\" arXiv preprint arXiv:2511.09365 (2025).",
+"[Ri25] Richter, Florian K. \"Sums and products in sets of positive density.\" arXiv preprint arXiv:2507.00515 (2025).",
+"[BoSa24] Bowen, Matt, and Marcin Sabok. \"Monochromatic products and sums in the rationals.\" Forum of Mathematics, Pi. Vol. 12. Cambridge University Press, 2024.",
+"[Bo25] Bowen, Matt. \"Monochromatic products and sums in 2-colorings of N.\" Advances in Mathematics 462 (2025): 110095.",
+"[Al23] Alweiss, Ryan. \"Monochromatic Sums and Products over $\\mathbb {Q} $.\" arXiv preprint arXiv:2307.08901 (2023)."
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"23": {
+"q": "Suppose that $\\mathbb{N}$ is finitely coloured. Are there $x,y$ of the same colour such that $x^2 +\n y^2$ is a square?",
+"notes": "Solved in [FrKlMo25].",
+"refs": [],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"24": {
+"q": "If $A$ is a set of $n$ integers, what is the maximum number of affine translates of the set\n$\\lbrace 0,1,3 \\rbrace$ that $A$ can contain?",
+"notes": "Conjectured in [Aa19] p.579: $\\left(\\frac{1}{3} + o(1)\\right) n^2$.",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"25": {
+"q": "For which values of $k$ is the following true: whenever we partition $[N] = A_1 \\cup \\dots \\cup A_k$,\n$\\left|\\bigcup^k_{i=1} (A_i \\hat{+} A_i)\\right| \\geq \\frac{1}{10} N$?\n\nFor which values of $k$ is the following true: whenever we partition $[N] = A_1 \\cup \\dots \\cup A_k$,\n$\\left|\\bigcup^k_{i=1} (A_i \\hat{+} A_i)\\right| \\geq \\frac{1}{10} N$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"26": {
+"q": "Let $A_1, \\dots, A_{100}$ be \"cubes\" in $\\mathbb{F}^n_3$.\nIs it true that $A_1 + \\dots + A_{100} = \\mathbb{F}^n_3$?",
+"notes": "",
+"refs": [],
+"status": "solved",
+"ams": [
+"5",
+"11",
+"15"
+],
+"lean": null
+},
+"27": {
+"q": "What is the size of the smallest set $A \\subset \\mathbb{Z} / p\\mathbb{Z}$ (with at least two elements)\nfor which no element in the sumset $A + A$ has a unique representation?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"28": {
+"q": "Suppose that $X, Y$ are two finitely-supported independent random variables taking integer values,\nand such that $X + Y$ is uniformly distributed on its range. Are $X$ and $Y$ themselves uniformly\ndistributed on their ranges?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"60"
+],
+"lean": null
+},
+"29": {
+"q": "Suppose that $A$ is a $K$-approximate group (not necessarily abelian). Is there $S \\subset A$,\n$|S| \\gg K^{-O(1)} |A|$, with $S^8 \\subset A^4$?",
+"notes": "The answer is negative. A counterexample is given, for arbitrarily large finite groups `H`, by\n`A = ({-1} × H) ∪ ({1} × H) ∪ {(0, 1)}` in `Multiplicative ℤ × H`.",
+"refs": [
+"[Ben Green's Open Problem 29](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.29)",
+"[Gr12] Green, Ben. \"What is... an approximate group.\" Notices Amer. Math. Soc 59.5 (2012): 655-656.",
+"[Br13] Breuillard, Emmanuel, Ben Green, and Terence Tao. \"Small doubling in groups.\" Erdős Centennial. Berlin, Heidelberg: Springer Berlin Heidelberg, 2013. 129-151.",
+"[Sa10] Sanders, Tom. \"On a nonabelian Balog–Szemerédi-type lemma.\" Journal of the Australian Mathematical Society 89.1 (2010): 127-132.",
+"[CrSi10] Croot, Ernie, and Olof Sisask. \"A probabilistic technique for finding almost-periods of convolutions.\" Geometric and functional analysis 20.6 (2010): 1367-1396."
+],
+"status": "solved",
+"ams": [
+"20"
+],
+"lean": "https://github.com/KitaKen1/green-29-counterexample/blob/1cbf80c3d5a333b2b79c203c0d60129924c8c712/lean/Green29FC.lean#L280-L287"
+},
+"31": {
+"q": "Let $F(N)$ be the largest Sidon subset of $[N]$.\n\nCan we improve the lower bound $N^{1/2} + O(1)$, at least for infinitely many $N$?",
+"notes": "",
+"refs": [
+"[Gr24] [Ben Green's Open Problem 31](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#section.7 Problem 31)",
+"[Gr01] Green, Ben. \"The number of squares and $ B_h [g] $ sets.\" Acta Arithmetica 100.4 (2001): 365-390.",
+"[BFR23] Balogh, József, Zoltán Füredi, and Souktik Roy. \"An upper bound on the size of Sidon sets.\" The American Mathematical Monthly 130.5 (2023): 437-445.",
+"[CHO25] Carter, Daniel, Zach Hunter, and Kevin O’Bryant. \"On the diameter of finite Sidon sets.\" Acta Mathematica Hungarica 175.1 (2025): 108-126.",
+"[HZ26] Hou, Jianfeng, and Hongbin Zhao. \"An Improved Upper Bound for Finite Sidon Sets via Vector-Valued Smoothing.\" [arXiv:2607.01169](https://arxiv.org/abs/2607.01169) (2026).",
+"[ET41] Erdos, Paul, and Pál Turán. \"On a problem of Sidon in additive number theory, and on some related problems.\" J. London Math. Soc 16.4 (1941): 212-215.",
+"[Li69] Lindström, Bernt. “A remark on B4-Sequences.” Journal of Combinatorial Theory, Series A 7 (1969): 276-277.",
+"[CLZ01] Cohen, G.D., Litsyn, S., & Zémor, G. (2001). Binary B2-Sequences : A New Upper Bound. J. Comb. Theory A, 94, 152-155.",
+"[BS85] Babai, László, and Vera T. Sós. \"Sidon sets in groups and induced subgraphs of Cayley graphs.\" European Journal of Combinatorics 6.2 (1985): 101-114. [doi:10.1016/S0195-6698(85)80001-9](https://doi.org/10.1016/S0195-6698%2885%2980001-9)"
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"32": {
+"q": "Let $p$ be a prime and let $A \\subset \\mathbb{Z}/p\\mathbb{Z}$ be a set of size $\\lfloor \\sqrt{p} \\rfloor$.\nIs there a dilate of $A$ containing a gap of length $100\\sqrt{p}$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"33": {
+"q": "Are there infinitely many $q$ for which there is a set $A \\subset \\mathbb{Z}/q\\mathbb{Z}$,\n$|A| = (\\sqrt{2} + o(1))q^{1/2}$, with $A + A = \\mathbb{Z}/q\\mathbb{Z}$? [Gr24]",
+"notes": "",
+"refs": [
+"[Gr24] [Ben Green's Open Problem 33](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.33)",
+"[CaHa20] Caprace, Pierre-Emmanuel, and Pierre de la Harpe. \"Groups with irreducibly unfaithful subsets for unitary representations.\" Confluentes Mathematici 12.1 (2020): 31-68.",
+"[CrLe07] Croot, Ernie, and Vsevolod F. Lev. \"Open problems in additive combinatorics.\" Additive combinatorics 43.207-233 (2007): 1."
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"35": {
+"q": "Lower bound for $c(p)$ for $1 < p \\le \\infty$, improving the known value $\\sqrt{4/7}$ at\n$p = 2$ or the known value $0.64$ at $p = \\infty$.",
+"notes": "",
+"refs": [
+"[Ben Green's Open Problem 35](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.35)",
+"[Gr01](https://people.maths.ox.ac.uk/greenbj/papers/number-of-squares-and-Bh%5Bg%5D.pdf) B. J. Green, *The number of squares and $B_h[g]$-sets*, Acta Arith. 100 (2001), no. 4, 365-390.",
+"[CS17](https://arxiv.org/abs/1403.7988) A. Cloninger and S. Steinerberger, *On suprema of autoconvolutions with an application to Sidon sets*, Proc. Amer. Math. Soc. 145 (2017), no. 8, 3191-3200.",
+"[MV10](https://arxiv.org/abs/0907.1379) M. Matolcsi and C. Vinuesa, *Improved bounds on the supremum of autoconvolutions*, J. Math. Anal. Appl. 372 (2010), 439-447.",
+"[AE25](https://arxiv.org/abs/2506.13131) A. Novikov et al., *AlphaEvolve: A coding agent for scientific and algorithmic discovery*, arXiv:2506.13131 (2025), Appendix B.1.",
+"[GGTW25](https://arxiv.org/abs/2511.02864) B. Georgiev, J. Gómez-Serrano, T. Tao and A. Z. Wagner, *Mathematical exploration and discovery at scale*, arXiv:2511.02864 (2025), Section 6.2. The constants of [CS17], [MV10], [AE25] and [GGTW25] are stated for functions supported on $[-1/4, 1/4]$; rescaling to $[0, 1]$ halves them."
+],
+"status": "open",
+"ams": [
+"26",
+"28",
+"42"
+],
+"lean": null
+},
+"36": {
+"q": "Do the following exist, for arbitrarily large $n$? An abelian group $H$ with $|H| = n^{2+o(1)}$,\ntogether with subsets $A_1, ..., A_n, B_1, ..., B_n$ satisfying $|A_i||B_i| \\ge n^{2-o(1)}$ and\n$|A_i + B_i| = |A_i||B_i|$, such that the sets $A_i + B_i$ are disjoint from the sets $A_j + B_k$\n($j \\neq k$)?",
+"notes": "NOTE: according to [CKS05, 4.1], the conditions should be $A_i + B_j$ disjoint from $A_j + B_k$ for\n$i \\neq k$. See `green_36.variants.cks05`.",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"20"
+],
+"lean": null
+},
+"37": {
+"q": "Given a natural number `N`, what is the smallest size of a subset of `ℕ` that contains, for each `d = 1, …, N`,\nan arithmetic progression of length `k` with common difference `d`.",
+"notes": "",
+"refs": [
+"[Ben Green's Open Problem 37](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.37)",
+"[Green & Tao, *The primes contain arbitrarily long arithmetic progressions* (arXiv:math/0404188)](https://arxiv.org/abs/math/0404188)"
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"38": {
+"q": "Can we improve the lower bound? The answer sequence must be eventually nonnegative, since\n`=O` compares norms.",
+"notes": "Yes. Itty, Rosin, Carstensen and Reichman [IRCR26] found a valid set of size $134753$ in\n$\\mathbb{F}_7^{10}$ (an independent set in the tenth strong power of $C_7$). Taking products\ngives valid sets of size $134753^{\\lfloor n/10 \\rfloor}$ in $\\mathbb{F}_7^n$, see\n`green_38.variants.lower_itty_rosin_carstensen_reichman`, so the growth rate is at least\n$134753^{1/10} > 3.258020 > C_1$ (note $134753 > 367^2 = 134689$). Gao [Ga26] and then Buys,\nPolak and Zuiddam [BPZ26] improved the rate further, to $3.258789\\ldots$ and $3.2588\\ldots$\nrespectively; the latter is formalised in Lean. The exact growth rate remains open.",
+"refs": [
+"[100 open problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.38)",
+"[La79] Lovász, László. \"On the Shannon capacity of a graph.\" IEEE Transactions on Information theory 25.1 (1979): 1-7.",
+"[Po20] Polak, Sven. \"New methods in coding theory: Error-correcting codes and the Shannon capacity.\" arXiv preprint arXiv:2005.02945 (2020).",
+"[IRCR26] Itty, Nathaniel and Rosin, Christopher D. and Carstensen, Chase and Reichman, Daniel. \"Improved lower bounds for the Shannon capacity of odd cycles.\" arXiv:2607.21517 (2026).",
+"[Ga26] Gao, Yu. \"A recursive construction improving the lower bound on the Shannon capacity of $C_7$.\" arXiv:2607.27869 (2026).",
+"[BPZ26] Buys, Pjotr and Polak, Sven and Zuiddam, Jeroen. \"Lean-verified lower bounds for the Shannon capacity of odd cycles.\" arXiv:2607.29681 (2026). Lean formalisation: https://github.com/spectra-research/shannon-capacity-lean"
+],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"39": {
+"q": "If $A \\subset \\mathbb{Z}/p\\mathbb{Z}$ is random, $|A| = \\sqrt{p}$, can we almost surely cover\n$\\mathbb{Z}/p\\mathbb{Z}$ with $100\\sqrt{p}$ translates of $A$? [Gr24]",
+"notes": "",
+"refs": [
+"[Gr24] [Green, Ben. \"100 open problems.\" (2024).](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.39)",
+"[BJR11] Bollobás, Béla, Svante Janson, and Oliver Riordan. \"On covering by translates of a set.\" Random Structures & Algorithms 38.1‐2 (2011): 33-67."
+],
+"status": "open",
+"ams": [
+"5",
+"60"
+],
+"lean": null
+},
+"40": {
+"q": "Let $f(r)$ be the smallest constant such that there exists an infinite sequence of $n$'s together\nwith subspaces $V_n \\leq \\mathbb{F}_2^n$ with $V_n + H(r) = \\mathbb{F}_2^n$ and\n$|V_n| = \\left(f(r) + o(1)\\right) \\frac{2^n}{|H(r)|}$.\n\nDoes $f(r) \\to \\infty$? [Gr24]",
+"notes": "",
+"refs": [
+"[Gr24] [Ben Green's Open Problem 40](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.40)",
+"[Da90] Davydov, Alexander Abramovich. \"Construction of linear covering codes.\" Problemy Peredachi Informatsii 26.4 (1990): 38-55.",
+"[CHL97] Cohen, G., Honkala, I., Litsyn, S., & Lobstein, A. (1997). Covering codes (Vol. 54). Elsevier.",
+"[St94] R. Struik, Covering codes, PhD Thesis, Eindhoven University of Technology, the Netherlands, 106 pp, 1994."
+],
+"status": "open",
+"ams": [
+"5",
+"94"
+],
+"lean": null
+},
+"41": {
+"q": "[Ma15] proved that for any $\\varepsilon > 0$, finitely many rotations of the pyjama set of width\n$\\varepsilon$ cover the plane. This implies that the set we are taking the infimum over in `minCopies`\nis non-empty.",
+"notes": "",
+"refs": [],
+"status": "solved",
+"ams": [
+"51",
+"52"
+],
+"lean": null
+},
+"42": {
+"q": "Can the Cohn-Elkies scheme be used to prove the optimal bound for circle-packings in 2 dimensions?",
+"notes": "The answer is \"yes\". This was proved by an internal OpenAI model in September 2026 [OAI26a]; see\nthe linked Lean proof, which constructs a radial Schwartz certificate normalised to minimum\ndistance $1$.",
+"refs": [
+"[Gr24] [Green, Ben. \"100 open problems.\" (2024).](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.42)",
+"[CoEl03] Cohn, Henry, and Noam Elkies. \"New upper bounds on sphere packings I.\" Annals of Mathematics (2003): 689-714.",
+"[Vi17] Viazovska, Maryna S. \"The sphere packing problem in dimension 8.\" Annals of mathematics (2017): 991-1015.",
+"[CKM17] Cohn, H., Kumar, A., Miller, S., Radchenko, D., & Viazovska, M. (2017). The sphere packing problem in dimension 24. Annals of mathematics, 185(3), 1017-1033.",
+"[Sa21] Sardari, Naser Talebizadeh. \"Higher Fourier interpolation on the plane.\" arXiv preprint arXiv:2102.08753 (2021).",
+"[OAI26a] OpenAI, *A sharp Fourier certificate for planar circle packing*. OpenAI Math Release preprint (2026). https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf"
+],
+"status": "solved",
+"ams": [
+"51",
+"52"
+],
+"lean": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/lean/OAI/Analysis/PlanarPacking/Main.lean#L32"
+},
+"44": {
+"q": "Sieve $[N]$ by removing half the residue classes mod $p_i$, for primes\n$2 \\leqslant p_1 < p_2 < \\dots < p_{1000} < N^{9/10}$. Does the remaining set have size at most\n$\\frac{1}{10} N$?",
+"notes": "We interpret \"half the residue classes\" as $\\lfloor p_i / 2 \\rfloor$.",
+"refs": [
+"[Gr24] [Ben Green's 100 Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.44)",
+"[Er80] Erdős, Paul. \"A survey of problems in combinatorial number theory.\" Annals of Discrete Mathematics 6 (1980): 89-115."
+],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"45": {
+"q": "Can we pick residue classes $a_p \\pmod{p}$, one for each prime $p \\leq N$, such that every\ninteger $\\leq N$ lies in at least $10$ of them?",
+"notes": "Erdős remarks that he does not know how to answer it with $10$ replaced by $2$;\nthis is `Erdos689.erdos_689`.",
+"refs": [
+"[Ben Green's Open Problem 45](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.45)",
+"[erdosproblems.com/689](https://www.erdosproblems.com/689) The version of this problem with $10$ replaced by $2$ is `Erdos689.erdos_689` in `FormalConjectures.ErdosProblems.«689»`."
+],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"46": {
+"q": "Given $x$ and $y$, can we cover the interval $[1, y]$ by residue classes $a_p \\pmod p$\nfor each prime $p \\le x$?\n\nWe conjecture that the best-known lower bound can be improved.",
+"notes": "",
+"refs": [
+"[Gr24] [Ben Green's Open Problem 46](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.46)",
+"[FGK18] Ford, K., Green, B., Konyagin, S., Maynard, J., & Tao, T. (2018). Long gaps between primes. Journal of the American Mathematical Society, 31(1), 65-105.",
+"[Iw78] Iwaniec, Henryk. \"On the problem of Jacobsthal.\" Demonstratio Mathematica 11.1 (1978): 225-232.",
+"[OAI26a] OpenAI, *A quadratic bound for Jacobsthal's function*. OpenAI Math Release preprint (2026). https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/paper.pdf",
+"[Ra38] Rankin, R. A., *The difference between consecutive prime numbers*. J. London Math. Soc. (1938), 242--247. This is the same problem as Erdős Problem 687."
+],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"47": {
+"q": "Suppose that a large sieve process leaves a set of quadratic size. Is that set quadratic?",
+"notes": "The following very particular instance is probably the simplest [Gr24]:\nSuppose that $A \\subset \\mathbb{N}$ is a set with the property that\n$|A \\pmod p| \\leqslant \\frac{1}{2}(p + 1)$ for all sufficiently large $p$.\nIs it true that either $|A \\cap [X]| \\ll X^{1/2} / \\log^{100} X$, or $A$ is contained in the\nimage of $\\mathbb{Z}$ under a quadratic map $\\phi : \\mathbb{Q} \\to \\mathbb{Q}$?",
+"refs": [
+"[Gr24] [Ben Green's 100 Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.47)",
+"[GH14] Green, Ben, and Adam J. Harper. \"Inverse questions for the large sieve.\" Geometric and Functional Analysis 24.4 (2014): 1167-1203.",
+"[HV09] Helfgott, Harald Andrés, and Akshay Venkatesh. \"How small must ill-distributed sets be.\" Analytic number theory 2 (2009): 224-234.",
+"[Wa12] Walsh, Miguel N. \"The inverse sieve problem in high dimensions.\" (2012): 2001-2022.",
+"[Wa14] Walsh, Miguel N. \"The algebraicity of ill-distributed sets.\" Geometric and Functional Analysis 24.3 (2014): 959-967."
+],
+"status": "solved",
+"ams": [
+"11"
+],
+"lean": "https://github.com/KitaKen1/green-47-exact-containment-counterexample/blob/d6912b65cd04463ca81d2e7dfb52367718a3e3b2/lean/Green47ExactContainmentFC.lean#L19-L25"
+},
+"49": {
+"q": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set with $|A + A| \\leq K|A|$. Is it true that $A$\nis covered by $K^{O(1)}$ translates of a subspace of size $\\leq |A|$?",
+"notes": "Solved by [GGM25], with at most $2K^{12}$ translates. The factor $2$ cannot be omitted: for\n$A = \\mathbb{F}_2^n \\setminus \\{0\\}$ one has $K = 2^n / (2^n - 1)$, so $K^C \\to 1$ as\n$n \\to \\infty$, while every subspace of size at most $|A|$ is proper and two translates are needed.",
+"refs": [
+"[Gr24] [Ben Green's 100 Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.49)",
+"[Aa19] Aaronson, James. \"A counterexample to a strong variant of the Polynomial Freiman-Ruzsa conjecture.\" arXiv preprint arXiv:1902.00353 (2019).",
+"[Fa00] I. Farah, Approximate homomorphisms. II. Group homomorphisms, Combinatorica 20 (2000), no. 1, 47–60.",
+"[GGM25] W. T. Gowers, B. J. Green, F. Manners and T. C. Tao, On a conjecture of Marton, Ann. of Math. (2) 201 (2025), no. 2, 515–549.",
+"[Gr05] B. J. Green, Finite field models in additive combinatorics, Surveys in combinatorics 2005, 1–27, London Math. Soc. Lecture Note Ser., 327, Cambridge Univ. Press, Cambridge, 2005.",
+"[GrTa10] B. J. Green and T. C. Tao An equivalence between inverse sumset theorems and inverse conjectures for the U3 norm, Math. Proc. Cambridge Philos. Soc. 149 (2010), no. 1, 1–19.",
+"[Lo12] S. Lovett, Equivalence of polynomial conjectures in additive combinatorics, Combinatorica 32 (2012), no. 5, 607–618.",
+"[LoRe17] S. Lovett and O. Regev, A counterexample to a strong variant of the Polynomial Freiman Ruzsa conjecture in Euclidean space, Discrete Anal.(2017), Paper No. 8, 6 pp.",
+"[Ma19] F. R. W. M. Manners, Formulations of the PFR conjecture over Z, Math. Proc. Cambridge Philos. Soc. 166 (2019), no. 2, 243–245.",
+"[Sa12] T. Sanders, On the Bogolyubov-Ruzsa lemma, Anal. PDE 5 (2012), no. 3, 627–655.",
+"[Ta08] T. C. Tao, A counterexample to a strong polynomial Freiman-Ruzsa conjecture, blog post November 2008, available at http://tinyurl.com/36j6hyxv."
+],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"50": {
+"q": "Let $A \\subset \\mathbb{F}_2^n$ be a set of density $\\alpha > 0$. Does $10A$ contain a coset\nof some subspace of dimension at least $n - O(\\log(1/\\alpha))$?",
+"notes": "More precisely: does there exist an absolute constant $C > 0$ such that for all $n \\geq 1$ and all\nnonempty $A \\subseteq \\mathbb{F}_2^n$ with density $\\alpha > 0$, the sumset $10A$ contains a coset\nof some subspace of dimension at least $n - C \\log_2(1/\\alpha)$?\n\nThe sumset $10A$ is defined as $\\{a_1 + a_2 + \\cdots + a_{10} : a_i \\in A\\}$, using the pointwise\nscalar multiplication notation `10 • A` where `•` denotes the iterated addition of a set.\n\nNote: We model $\\mathbb{F}_2^n$ as `Fin n → ZMod 2`, which is an $n$-dimensional vector space\nover $\\mathbb{F}_2$.",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"51": {
+"q": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set of density $\\alpha$. What is the largest size of coset\nguaranteed to be contained in $2A$?",
+"notes": "We phrase this by asking for the exact function $F(\\alpha, n)$ giving the maximum dimension\nof a guaranteed coset.",
+"refs": [
+"[Gr24] [Green's Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.51)",
+"[Gr13] B. J. Green, Restriction and Kakeya phenomena, notes from a 2003 course. Available at http://people.maths.ox.ac.uk/greenbj/papers/rkp.pdf",
+"[Sa11] Sanders, Tom. \"Green's sumset problem at density one half.\" Acta Arithmetica 146.1 (2011): 91-101.",
+"[Gr02] Green, Ben. \"Arithmetic progressions in sumsets.\" Geometric & Functional Analysis GAFA 12.3 (2002): 584-597.",
+"[Ruz91] Ruzsa, Imre Z. \"Arithmetic progressions in sumsets.\" Acta Arithmetica 60.2 (1991): 191-202."
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"52": {
+"q": "Suppose that $A \\subset \\mathbb{F}_2^n$ is a set with an additive complement of size $K$.\nDoes $2A$ contain a coset of codimension $O_K(1)$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"53": {
+"q": "Suppose that $\\mathbb{F}_2^n$ is partitioned in to sets $A_1, ..., A_K$.\nDoes $2A_i$ contain a coset of codimension $O_K(1)$ for some $i$?",
+"notes": "",
+"refs": [
+"[Gr24] [Green's Open Problems](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.53)"
+],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"54": {
+"q": "Let $K \\subset \\mathbb{R}^{\\mathbb{N}}$ be a balanced compact set (that is, $\\lambda K \\subseteq K$\nwhenever $|\\lambda| \\leq 1$) and suppose that the normalised Gaussian measure\n$\\gamma_\\infty(K) \\geq 0.99$. Does the sumset $10K = K + \\cdots + K$ ($10$ times) contain a compact\nconvex set $C$ with $\\gamma_\\infty(C) \\geq 0.01$?",
+"notes": "The answer is yes: Hua, Song and Tudose proved that if $\\gamma_n(A) > 5/6$ then $3(A + A + A)$\ncontains a symmetric convex body $C$ with $\\gamma_n(C) \\geq 1/4$, uniformly in $n$.",
+"refs": [
+"[Ben Green's Open Problem 54](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.54)",
+"Original formulation: M. Talagrand, *Are All Sets of Positive Measure Essentially Convex?*, in Operator Theory: Advances and Applications, 77, 1995 Birkhäuser Verlag Basel/Switzerland.",
+"[Hua–Song–Tudose, *On Talagrand's convexity conjecture*](https://arxiv.org/abs/2605.10908) (2026)",
+"[M. Talagrand, *Some open problems*](https://michel.talagrand.net/Korea15.pdf), §2 Here $nK = K + \\cdots + K$ ($n$ times) is the $n$-fold sumset of $K$, written `n • K` for `n : ℕ` with `open scoped Pointwise`."
+],
+"status": "solved",
+"ams": [
+"46",
+"52",
+"60"
+],
+"lean": null
+},
+"57": {
+"q": "Is it true that for every finite abelian group $G$ the spaces $\\Phi(G)$ and $\\Phi'(G)$,\nobtained from kernels $\\phi(g) = \\mathbb{E}_{x_1 + x_2 + x_3 = g} f_1(x_2, x_3)\n      f_2(x_1, x_3) f_3(x_1, x_2)$ with $\\lVert f_i \\rVert_\\infty \\le 1$\n(where $f_i : G \\times G \\to \\mathbb{C}$), still coincide when the\nthird kernel is required to depend only on $x_1 + x_2$?",
+"notes": "Green guesses that the answer is probably 'no'.",
+"refs": [],
+"status": "solved",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"58": {
+"q": "Suppose $A, B ⊆ \\{1, \\dots, N\\}$ both have size at least $N^{0.49}$. Must the sumset $A + B$\ncontain a composite number?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"11"
+],
+"lean": null
+},
+"60": {
+"q": "Is there an absolute constant $c > 0$ such that, whenever $A ⊆ \\mathbb{N}$ is a set of squares\nwith $|A| ≥ 2$, the sumset $A + A$ satisfies $|A + A| ≥ |A|^{1 + c}$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"61": {
+"q": "Suppose that $A + A$ contains the first $n$ squares. Is $|A| \\geq n^{1 - o(1)}$?",
+"notes": "It is known that necessarily $|A| \\geq n^{2/3 - o(1)}$, whilst in the other direction there do\nexist such $A$ with $|A| \\ll_C n / \\log^C n$ for any $C$.",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"62": {
+"q": "Let $p$ be a large prime, and let $A$ be the set of all primes less than $p$.\nIs every $x \\in \\{1, \\ldots, p-1\\}$ congruent to some product $a_1 a_2$ where $a_1, a_2 \\in A$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"64": {
+"q": "Do there exist infinitely many primes $p$ for which $p - 2$ has an odd number of prime factors,\ncounted with multiplicity (i.e. $\\Omega(p - 2)$ is odd)?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"66": {
+"q": "Is there always a sum of two squares between $X - \\frac{1}{10}X^{1/4}$ and $X$?\nWe formalize this as an eventual statement for sufficiently large real $X$.",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"11"
+],
+"lean": null
+},
+"72": {
+"q": "The **no-k-in-line problem**:\nFor which $k > 2$ does every $N \\times N$ grid with $N \\geq k$ contain a set of $(k - 1) N$ points\nwith no $k$ on a line, so that `AllowedSetSize k N` is the pigeonhole bound $(k - 1) N$?",
+"notes": "[GK2025] proves that every $k > 10^{37}$ has this property, which is `no_k_in_line_big` below,\nand does not optimise this constant. At $k = 3$ it is the property that Green expects to fail\nfor large $N$, see `green_72`.",
+"refs": [
+"[Ben Green's Open Problem 72](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.72)",
+"[Wikipedia](https://en.wikipedia.org/wiki/No-three-in-line_problem)",
+"[GK2025] Grebennikov, A. Kwan, M. No $(k + 1)$-in-line problem for large constant $k$. https://arxiv.org/abs/2510.17743"
+],
+"status": "open",
+"ams": [
+"5",
+"52"
+],
+"lean": null
+},
+"77": {
+"q": "Given $n$ points in the unit disc, must there be a triangle of area at most $n^{-2+o(1)}$\ndetermined by them?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"5",
+"52"
+],
+"lean": null
+},
+"82": {
+"q": "Let $A \\subset \\mathbb{Z}$ be a set of size $n$. For how many $\\theta \\in \\mathbb{R}/\\mathbb{Z}$\nmust we have $\\sum_{a \\in A} \\cos(2\\pi a\\theta) = 0$? The answer is the function `minZeros`.",
+"notes": "",
+"refs": [
+"[Ben Green's Open Problem 82](https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf#problem.82)",
+"[An improved lower bound for a problem of Littlewood on the zeros of cosine polynomials](https://arxiv.org/abs/2407.16075) (Bedert, 2025)",
+"[Cosine polynomials with few zeros](https://arxiv.org/abs/2005.01695) (Juškevičius & Sahasrabudhe, 2020)"
+],
+"status": "open",
+"ams": [
+"11",
+"42"
+],
+"lean": null
+},
+"85": {
+"q": "Suppose that $A$ is an open subset of $[0, 1]^2$ with measure $\\alpha$. Are there four points in\n$A$ determining an axis-parallel rectangle with area $\\gt c \\alpha^2$?",
+"notes": "",
+"refs": [],
+"status": "open",
+"ams": [
+"28",
+"52"
+],
+"lean": null
+},
+"94": {
+"q": "Let `A ⊂ R` be a set of positive outer measure. Does $A$ contain an affine copy of `{1, 1/2, 1/4, . . . }`?",
+"notes": "The answer is \"no\".",
+"refs": [],
+"status": "solved",
+"ams": [
+"28"
+],
+"lean": null
+}
+}

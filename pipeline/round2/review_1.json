@@ -1,0 +1,182 @@
+[
+ {
+  "id": "functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padded opening (three scenarios plus a paragraph of motivation).",
+    "fix": "Shortened to two short paragraphs."
+   },
+   {
+    "severity": "error",
+    "where": "section/Composing and undoing",
+    "problem": "Claimed that applying f(x) = 1/(1-x) three times \"brings every number back to where it started\"; false for x = 1 (not in the domain) and for x = 0 (f(0) = 1, then f(1) is undefined).",
+    "fix": "Restricted the claim to numbers other than 0 and 1, with the reason."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,360 words, too long for a school-stage lesson; repetition in pitfalls and connection.",
+    "fix": "Trimmed every block (no definition, proof step or example removed); now about 1,850 words."
+   },
+   {
+    "severity": "error",
+    "where": "entry.msc",
+    "problem": "26A09 (Elementary functions) classifies work on specific elementary functions (exponential, logarithmic, trigonometric, algebraic); it is not the code for the general notion of a function and its graph.",
+    "fix": "Removed; msc left empty rather than guessing."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links[computer-science]",
+    "problem": "Said injective and bijective maps \"make encodings and compression reversible\"; vague, and lossless compression maps are not bijections in general.",
+    "fix": "Rephrased: injective maps are exactly the encodings that can be decoded without loss."
+   }
+  ]
+ },
+ {
+  "id": "exp-log",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padding (history of logarithm tables, cooling tea).",
+    "fix": "Shortened."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/The number e",
+    "problem": "Read off from a numerical table that \"for base e it is exactly 1\"; a table cannot show an exact value, and e was defined only as the limit of (1 + 1/n)^n, so this is a theorem the lesson does not prove.",
+    "fix": "Said the table suggests it and that the exact statement is proved in [[derivative]] / [[diff-rules]]."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 1,900 words with padding in intro, growth section, pitfalls and connection.",
+    "fix": "Trimmed to about 1,750 words; all definitions, proofs and examples kept."
+   }
+  ]
+ },
+ {
+  "id": "trig",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,070 words; padding in intro, the right-triangle and unit-circle sections, pitfalls and connection.",
+    "fix": "Trimmed to about 1,850 words; all definitions, proofs and examples kept."
+   }
+  ]
+ },
+ {
+  "id": "ap-gp",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Sums in practice",
+    "problem": "Binary remark \"n ones followed by adding 1 gives a 1 followed by n zeros\" was garbled.",
+    "fix": "Rewrote: the number written with n ones, plus 1, is 1 followed by n zeros."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,050 words; padding in the intro, the general-term and sums sections, pitfalls and connection.",
+    "fix": "Trimmed to about 1,850 words; all definitions, proofs and examples kept."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links[combinatorics]",
+    "problem": "Said van der Waerden guarantees long arithmetic progressions \"in every finite colouring of the integers\"; the theorem gives a monochromatic progression (inside one colour class), and Szemerédi needs positive upper density.",
+    "fix": "Restated both theorems precisely."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links[real-analysis]",
+    "problem": "Listed the general comparison test as comparing with a geometric series; only the ratio and root tests are built on that comparison.",
+    "fix": "Restricted the note to the ratio and root tests."
+   }
+  ]
+ },
+ {
+  "id": "vectors-plane",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "theorem+proof/Dot product and angle",
+    "problem": "The proof rests on the law of cosines and the cosine function, neither of which is a prerequisite (the brief lists only euclid-basics); the link to [[trig]] did not say that the result is imported from there.",
+    "fix": "Stated explicitly that cos and the law of cosines are taken from [[trig]], where the law of cosines is proved."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,370 words, too long for a school-stage lesson; repetition in definitions, sections, pitfalls and connection.",
+    "fix": "Trimmed every block to about 1,850 words; all definitions, proofs and examples kept."
+   }
+  ]
+ },
+ {
+  "id": "limits",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/The limit of sin x over x",
+    "problem": "The proof uses the unit-circle definitions of sin, cos, tan, radian measure and the double-angle formula, none of which is a prerequisite of this lesson (the brief lists only functions); only the double-angle step was linked.",
+    "fix": "Added an opening sentence saying these facts are taken from [[trig]]."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,430 words, too long for a school-stage lesson; repetition between intro, sections and pitfalls.",
+    "fix": "Trimmed every block to about 1,850 words; all definitions, proofs and examples kept."
+   }
+  ]
+ },
+ {
+  "id": "continuity",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Building continuous functions",
+    "problem": "Used |sin t| <= |t| without saying where it comes from (it is not a prerequisite fact), and listed sqrt, a^x, log, sin, cos as continuous without saying this is assumed.",
+    "fix": "Explained |sin t| <= |t| from sin t < t (proved in [[limits]]) and |sin t| <= 1; said the other continuity facts are accepted without proof."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Bisection, and why the real numbers matter",
+    "problem": "The IVT proof rests on the least upper bound property, which is not proved in this lesson or in its prerequisite (limits); the text linked [[real-numbers]] without saying it is assumed.",
+    "fix": "Stated explicitly that the property is an axiom of the real numbers, taken as given, and pointed to [[real-numbers]]."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Half the distance in half the time",
+    "problem": "Named \"the universal chord theorem of Paul Levy\" without stating it, and asserted that pace plans with no 24-minute 4 km window exist without giving one; the 1/n generalisation was only gestured at.",
+    "fix": "Stated the theorem exactly (continuous f on [0,1], f(0) = f(1), horizontal chord of length 1/n for every positive integer n, not necessarily for other lengths), showed how the runner problem is the case f(s) = d(60s) - 10s, spelled out the n-piece argument, and gave an explicit increasing pace plan d(t) = 19t/120 + (1/2)sin^2(pi t/24) whose every 24-minute window covers exactly 3.8 km."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2,330 words, too long for a school-stage lesson; the extreme value theorem was restated in the pitfalls and bisection was described three times.",
+    "fix": "Trimmed every block (to about 1,900 words including the added universal chord material); all definitions, proofs and examples kept."
+   },
+   {
+    "severity": "error",
+    "where": "entry.msc",
+    "problem": "26A03 (Foundations: limits and generalizations, elementary topology of the line) is the code for the limits concept; continuity and the intermediate value theorem belong to 26A15.",
+    "fix": "Removed 26A03; kept 26A15."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links[differential-equations]",
+    "problem": "Said Peano guarantees \"a local solution of y' = f(x, y) whenever f is continuous\"; the theorem is about an initial value problem and needs continuity near the initial point, and gives no uniqueness.",
+    "fix": "Restated with the initial condition, local continuity hypothesis and the non-uniqueness caveat."
+   }
+  ]
+ }
+]

@@ -1,0 +1,934 @@
+[
+ {
+  "id": "hensel",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Solving $x^2 \\equiv 2 \\pmod 7$ is a finite search: try the seven residues and find $x \\equiv 3$ or $x \\equiv 4$. Solving $x^2 \\equiv 2 \\pmod{7^{10}}$ by trial would mean checking about 282 million residues. Yet the answer is just as structured: there are again exactly two solutions, and each one can be computed from the solutions modulo $7$ by a few lines of arithmetic.\n\nHensel's lemma explains why. A root modulo $p$ at which the derivative does not vanish modulo $p$ can be refined, one digit in base $p$ at a time, into a root modulo $p^2, p^3, \\dots$, and the refinement is forced at every step. Together with the [[crt|Chinese remainder theorem]], this reduces any polynomial congruence modulo $n$ to congruences modulo the primes dividing $n$."
+   },
+   {
+    "type": "section",
+    "title": "Lifting a root by hand",
+    "body": "Start with $f(x) = x^2 - 2$ and the root $x_1 = 3$ modulo $7$. Any root modulo $49$ that reduces to $3$ modulo $7$ has the form $3 + 7t$ with $t \\in \\{0, 1, \\dots, 6\\}$. Expand:\n\n$$f(3 + 7t) = 9 + 42t + 49t^2 - 2 = 7 + 42t + 49t^2.$$\n\nModulo $49$ the last term vanishes, so we need $7 + 42t \\equiv 0 \\pmod{49}$, that is $1 + 6t \\equiv 0 \\pmod 7$. Since $6$ is invertible modulo $7$ (it is its own inverse), $t \\equiv -6 \\equiv 1 \\pmod 7$, and $x_2 = 10$. Indeed $10^2 = 100 = 2 \\cdot 49 + 2$.\n\nThree features of this computation are completely general. First, the square term $49t^2$ dropped out, so the condition on $t$ was linear. Second, the coefficient of $t$ was $7 \\cdot f'(3) = 7 \\cdot 6$, so solving for $t$ required exactly that $f'(3)$ be invertible modulo $7$ (see [[mod-inverse]]). Third, because $f'(3) \\not\\equiv 0$, the value of $t$ was unique: exactly one of the seven candidates works.\n\nRepeating the step gives $x_3 = 108$ modulo $343$, and so on forever. This is the same idea as Newton's method $x \\mapsto x - f(x)/f'(x)$ for real roots, with \"close to a root\" meaning \"divisible by a high power of $p$\"."
+   },
+   {
+    "type": "theorem",
+    "title": "Hensel's lemma (simple root version)",
+    "body": "Let $f$ be a polynomial with integer coefficients, $p$ a prime and $k \\ge 1$. Suppose $f(x_k) \\equiv 0 \\pmod{p^k}$ and $f'(x_k) \\not\\equiv 0 \\pmod p$. Then there is exactly one residue $x_{k+1}$ modulo $p^{k+1}$ with\n\n$$x_{k+1} \\equiv x_k \\pmod{p^k} \\quad\\text{and}\\quad f(x_{k+1}) \\equiv 0 \\pmod{p^{k+1}},$$\n\nand it is given by\n\n$$x_{k+1} = x_k - f(x_k)\\, f'(x_k)^{-1} \\pmod{p^{k+1}}.$$\n\nMoreover $f'(x_{k+1}) \\equiv f'(x_k) \\not\\equiv 0 \\pmod p$, so the step can be repeated. Consequently a root $a$ modulo $p$ with $f'(a) \\not\\equiv 0 \\pmod p$ determines, for every $k$, exactly one root modulo $p^k$ that is congruent to $a$ modulo $p$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of Hensel's lemma",
+    "body": "First an algebraic fact. For any integers $a$ and $h$ there is an integer $g$ with\n\n$$f(a + h) = f(a) + h f'(a) + h^2 g.$$\n\nIt suffices to check this for $f(x) = x^n$, since both sides are additive in $f$. By the binomial theorem $(a+h)^n = a^n + n a^{n-1} h + \\sum_{j \\ge 2} \\binom{n}{j} a^{n-j} h^j$, and every term of the last sum is an integer multiple of $h^2$.\n\nNow write $f(x_k) = p^k m$ with $m$ an integer, and look for roots of the form $x_k + t p^k$. Taking $h = t p^k$ above,\n\n$$f(x_k + t p^k) = p^k m + t p^k f'(x_k) + t^2 p^{2k} g.$$\n\nSince $k \\ge 1$ we have $2k \\ge k+1$, so modulo $p^{k+1}$ this is $p^k\\bigl(m + t f'(x_k)\\bigr)$. It is divisible by $p^{k+1}$ exactly when $m + t f'(x_k) \\equiv 0 \\pmod p$. Because $f'(x_k)$ is invertible modulo $p$, this linear congruence has exactly one solution $t \\equiv -m\\, f'(x_k)^{-1} \\pmod p$. Different $t$ modulo $p$ give different residues $x_k + tp^k$ modulo $p^{k+1}$, and every residue modulo $p^{k+1}$ that is congruent to $x_k$ modulo $p^k$ has this form, so the lift exists and is unique.\n\nThe formula: if $u$ is any integer with $u f'(x_k) \\equiv 1 \\pmod{p^{k+1}}$, then $f(x_k) u = p^k m u$ and $m u \\equiv m f'(x_k)^{-1} \\pmod p$, so $x_k - f(x_k) u \\equiv x_k + t p^k \\pmod{p^{k+1}}$. (In particular an inverse of $f'(x_k)$ modulo $p$ is already enough, since only $mu$ modulo $p$ matters.)\n\nFinally $x_{k+1} \\equiv x_k \\pmod p$ gives $f'(x_{k+1}) \\equiv f'(x_k) \\pmod p$, because $f'$ also has integer coefficients. For the last sentence, argue by induction on $k$: a root modulo $p^{k+1}$ congruent to $a$ modulo $p$ is in particular a root modulo $p^k$ congruent to $a$, hence congruent to the unique such root $x_k$ modulo $p^k$, and the uniqueness part above then pins it down modulo $p^{k+1}$."
+   },
+   {
+    "type": "section",
+    "title": "When the derivative vanishes",
+    "body": "The hypothesis $f'(a) \\not\\equiv 0 \\pmod p$ is not decoration. If it fails, the coefficient of $t$ in the proof disappears and the condition becomes $m \\equiv 0 \\pmod p$, which is either always true or never true. So a singular root either branches into $p$ lifts or has none.\n\nBoth happen already for $p = 2$. Take $f(x) = x^2 - 1$, so $f'(x) = 2x \\equiv 0 \\pmod 2$. Modulo $2$ there is one root, modulo $4$ there are two ($1, 3$), and modulo $2^k$ for $k \\ge 3$ there are four ($\\pm 1$ and $2^{k-1} \\pm 1$). On the other hand $x^2 \\equiv 3 \\pmod 2$ has the root $1$, but $x^2 \\equiv 3 \\pmod 4$ has none, since odd squares are $1$ modulo $4$.\n\nFor square roots modulo powers of $2$ the full answer is: an odd number $c$ is a square modulo every $2^k$ if and only if $c \\equiv 1 \\pmod 8$. The necessity comes from $(2j+1)^2 = 4j(j+1) + 1 \\equiv 1 \\pmod 8$. The sufficiency follows from a stronger form of Hensel's lemma, which allows singular roots provided $f(a)$ is divisible by a high enough power of $p$: if $v_p(f(a)) > 2\\,v_p(f'(a))$, then for every $k$ there is a root modulo $p^k$ that is congruent to $a$ modulo $p^{v_p(f(a)) - v_p(f'(a))}$. Here $v_p(m)$ is the exponent of $p$ in $m$ (the [[p-adic-valuation]]). For $f(x) = x^2 - c$ and $a$ odd, $v_2(f'(a)) = 1$, so one needs $8 \\mid a^2 - c$, which is exactly $c \\equiv 1 \\pmod 8$."
+   },
+   {
+    "type": "section",
+    "title": "Counting roots modulo n",
+    "body": "Let $N_f(n)$ be the number of residues $x$ modulo $n$ with $f(x) \\equiv 0 \\pmod n$. By the Chinese remainder theorem, $N_f(mn) = N_f(m) N_f(n)$ whenever $\\gcd(m,n) = 1$: a root modulo $mn$ is the same thing as a pair of roots modulo $m$ and modulo $n$. So it suffices to count roots modulo prime powers.\n\nHensel's lemma handles prime powers in the common case. If every root of $f$ modulo $p$ is simple (that is, $f'$ does not vanish there), then $N_f(p^k) = N_f(p)$ for all $k \\ge 1$. This always happens when $p$ divides neither the leading coefficient nor the discriminant of $f$, since a common root of $f$ and $f'$ modulo $p$ is exactly what the discriminant detects. For example, $x^2 + 1$ has two simple roots modulo every prime $p \\equiv 1 \\pmod 4$ (the derivative $2x$ is nonzero because $x \\not\\equiv 0$), so it has exactly two roots modulo every power of such a prime.\n\nThe workflow for a polynomial congruence modulo $n$ is therefore: factor $n$, solve modulo each prime, lift with Hensel's lemma (treating singular roots by hand), and glue with the CRT."
+   },
+   {
+    "type": "example",
+    "title": "Square roots of 2 modulo 343",
+    "body": "Find all solutions of $x^2 \\equiv 2 \\pmod{343}$.",
+    "solution": "Here $343 = 7^3$ and $f(x) = x^2 - 2$, $f'(x) = 2x$. Modulo $7$ the roots are $3$ and $4$, and $f'(3) = 6$, $f'(4) = 8 \\equiv 1$ are both nonzero modulo $7$, so each root lifts uniquely and there are exactly two solutions modulo $343$.\n\nLift $x_1 = 3$. We computed $x_2 = 10$ above. For the next step, $f(10) = 98 = 49 \\cdot 2$, so $m = 2$, and $f'(10) = 20 \\equiv 6 \\pmod 7$ with inverse $6$. Then $t \\equiv -2 \\cdot 6 = -12 \\equiv 2 \\pmod 7$ and\n\n$$x_3 = 10 + 2 \\cdot 49 = 108.$$\n\nCheck: $108^2 = 11664 = 34 \\cdot 343 + 2$.\n\nThe other root needs no new work: if $x$ is a root then so is $-x$, and $-108 \\equiv 235 \\pmod{343}$ reduces to $4$ modulo $7$. So the solutions are $x \\equiv 108$ and $x \\equiv 235 \\pmod{343}$."
+   },
+   {
+    "type": "example",
+    "title": "A cube root modulo 125",
+    "body": "Solve $x^3 \\equiv 2 \\pmod{125}$.",
+    "solution": "Modulo $5$ the cubes are $0, 1, 8 \\equiv 3, 27 \\equiv 2, 64 \\equiv 4$, so the only root is $x \\equiv 3$. The derivative is $f'(x) = 3x^2$, and $f'(3) = 27 \\equiv 2 \\not\\equiv 0 \\pmod 5$, so there is exactly one solution modulo $125$.\n\nModulo $25$: $f(3) = 27 - 2 = 25 \\equiv 0 \\pmod{25}$, so $x_2 = 3$ already (the correction $t$ is $0$; lifts need not change the number).\n\nModulo $125$: $f(3) = 25 = 25 \\cdot 1$, so $m = 1$. The inverse of $f'(3) \\equiv 2$ modulo $5$ is $3$, so $t \\equiv -1 \\cdot 3 \\equiv 2 \\pmod 5$ and $x_3 = 3 + 2 \\cdot 25 = 53$.\n\nCheck: $53^3 = 148877 = 1191 \\cdot 125 + 2$. The unique solution is $x \\equiv 53 \\pmod{125}$."
+   },
+   {
+    "type": "example",
+    "title": "Numbers that end in their own square",
+    "body": "The number $376$ has the property that $376^2 = 141376$ ends in $376$. How many residues $x$ modulo $10^k$ satisfy $x^2 \\equiv x \\pmod{10^k}$, and why do the nontrivial ones always add up to $10^k + 1$?",
+    "solution": "Let $f(x) = x^2 - x = x(x-1)$, with $f'(x) = 2x - 1$. By the CRT, solutions modulo $10^k$ correspond to pairs of solutions modulo $2^k$ and modulo $5^k$.\n\nModulo $2$ the roots are $0$ and $1$, and $f'(0) = -1$, $f'(1) = 1$ are odd, so both roots are simple. By Hensel's lemma there are exactly two roots modulo $2^k$ for every $k$; since $0$ and $1$ are obviously roots, they are the only ones. The same argument modulo $5$ ($f'(0) = -1$, $f'(1) = 1$, both nonzero modulo $5$) gives exactly the roots $0, 1$ modulo $5^k$.\n\nSo there are exactly $2 \\cdot 2 = 4$ solutions modulo $10^k$: the pairs $(0,0)$ and $(1,1)$ give $x = 0$ and $x = 1$, and the mixed pairs give two nontrivial solutions $e$ and $e'$, where\n\n$$e \\equiv 1 \\pmod{2^k},\\ e \\equiv 0 \\pmod{5^k}, \\qquad e' \\equiv 0 \\pmod{2^k},\\ e' \\equiv 1 \\pmod{5^k}.$$\n\nThen $e + e' \\equiv 1$ modulo both $2^k$ and $5^k$, so $e + e' \\equiv 1 \\pmod{10^k}$. Both lie strictly between $0$ and $10^k$ and are not equal to $1$, so $e + e' = 10^k + 1$.\n\nFor $k = 3$: $625 \\equiv 1 \\pmod 8$ and $625 = 5^4 \\equiv 0 \\pmod{125}$, while $376 = 8 \\cdot 47$ and $376 = 3 \\cdot 125 + 1$. Indeed $376 + 625 = 1001$. For $k = 6$ the pair is $109376$ and $890625$. The uniqueness in Hensel's lemma is why these digit strings extend consistently to the left: the solution modulo $10^{k+1}$ always reduces to the solution modulo $10^k$ (when $e$ modulo $10^{k+1}$ has a leading zero, as $9376 \\to 09376$, the printed number simply looks shorter)."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Forgetting the derivative condition. A root modulo $p$ with $f'(a) \\equiv 0 \\pmod p$ may have no lift ($x^2 \\equiv 3$ modulo $4$) or several ($x^2 \\equiv 1$ modulo $8$ has four roots).\n- Assuming the number of roots modulo $p^k$ is always the number modulo $p$. That is true only when all roots modulo $p$ are simple; the prime $2$ and primes dividing the discriminant need separate care.\n- Inverting $f'(x_k)$ modulo the wrong number. An inverse modulo $p$ gains one base-$p$ digit per step. Newton-style doubling, from a root modulo $p^k$ to a root modulo $p^{2k}$, needs an inverse modulo $p^k$; with only an inverse modulo $p$, the extra digits are wrong."
+   },
+   {
+    "type": "connection",
+    "body": "Hensel's lemma shows that, for every prime $p$ dividing neither the leading coefficient nor the discriminant of $f$, the congruence $f(x) \\equiv 0$ is solvable modulo every power of $p$ as soon as it is solvable modulo $p$. It is used constantly with [[crt]] and [[quadratic-residues]]: for instance, $x^2 \\equiv c \\pmod{p^k}$ with $p$ odd and $p \\nmid c$ is solvable exactly when $c$ is a quadratic residue modulo $p$.\n\nKurt Hensel introduced the $p$-adic numbers in 1897 precisely to make this lifting into a limit: the compatible roots $3, 10, 108, \\dots$ of $x^2 = 2$ define a genuine square root of $2$ in the $7$-adic integers. The [[p-adic-valuation]] is the measure of size in that world, and the stronger form of the lemma above is the statement that Newton's method converges $p$-adically. Closely related lifting arguments appear in the [[lte-zsigmondy|lifting the exponent lemma]] and in the proof that a suitable primitive root modulo $p$ remains a primitive root modulo every $p^k$ (see [[order-primroot]]).\n\nIn computer algebra, Hensel lifting is the engine of fast factorisation of integer polynomials (factor modulo a small prime, lift the factorisation to a high power of $p$, then recombine), and of many other computations modulo prime powers, such as extracting square roots modulo $p^k$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find both solutions of $x^2 \\equiv -1 \\pmod{125}$, starting from $x \\equiv 2 \\pmod 5$.\n2. Show that $x^2 \\equiv 5 \\pmod{25}$ has no solution, even though $x^2 \\equiv 5 \\pmod 5$ does. Which hypothesis of Hensel's lemma fails?\n3. Prove that $x^3 \\equiv 1 \\pmod{7^k}$ has exactly three solutions for every $k \\ge 1$.\n4. How many solutions does $x^2 \\equiv 1 \\pmod{2^{10} \\cdot 3^5}$ have?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "§2.6"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+   },
+   {
+    "ref": "Gouvêa, p-adic Numbers: An Introduction"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "x^2 ≡ 2 mod 7 has roots 3 and 4 only",
+    "python": "assert [x for x in range(7) if (x*x-2)%7==0] == [3,4]"
+   },
+   {
+    "claim": "lifting 3 gives 10 mod 49 and 108 mod 343; the roots mod 343 are 108 and 235",
+    "python": "assert (10**2-2)%49==0 and (108**2-2)%343==0 and 108**2==34*343+2\nassert [x for x in range(343) if (x*x-2)%343==0]==[108,235]\nassert (10-98*pow(20,-1,343))%343==108"
+   },
+   {
+    "claim": "x^2 ≡ 2 mod 7^10 has exactly two solutions (checked via the lifting count) and 7^10 is about 282 million",
+    "python": "p=7\nroots=[3,4]\nfor k in range(1,10):\n    M=p**(k+1)\n    roots=[r+t*p**k for r in roots for t in range(p) if ((r+t*p**k)**2-2)%M==0]\nassert len(roots)==2 and all((r*r-2)%7**10==0 for r in roots)\nassert 282_000_000 < 7**10 < 283_000_000"
+   },
+   {
+    "claim": "x^3 ≡ 2 mod 125 has the unique solution 53; 53^3 = 1191*125+2",
+    "python": "assert [x for x in range(125) if (x**3-2)%125==0]==[53] and 53**3==148877==1191*125+2\nassert (3**3-2)%25==0"
+   },
+   {
+    "claim": "x^2 ≡ 1 mod 2^k has 1,2,4,4,... solutions; x^2 ≡ 3 mod 4 has none",
+    "python": "c=[sum(1 for x in range(2**k) if (x*x-1)%2**k==0) for k in range(1,12)]\nassert c[0]==1 and c[1]==2 and all(v==4 for v in c[2:])\nassert all((x*x-3)%4 for x in range(4))"
+   },
+   {
+    "claim": "an odd c is a square mod 2^k for all k (tested k=12) iff c ≡ 1 mod 8",
+    "python": "M=2**12\nsq={x*x%M for x in range(M)}\nassert all(((c%M) in sq)==(c%8==1) for c in range(1,400,2))"
+   },
+   {
+    "claim": "idempotents mod 10^k: exactly 4, nontrivial ones sum to 10^k+1; 376 and 625 for k=3, 109376 and 890625 for k=6",
+    "python": "for k in range(1,7):\n    M=10**k\n    s=[x for x in range(M) if (x*x-x)%M==0]\n    assert len(s)==4 and s[2]+s[3]==M+1\nassert 376**2==141376\nM=10**6\nassert (109376**2-109376)%M==0 and (890625**2-890625)%M==0"
+   },
+   {
+    "claim": "x^2 ≡ 5 mod 25 has no solution; x^3 ≡ 1 mod 7^k has 3 solutions for k=1..4",
+    "python": "assert all((x*x-5)%25 for x in range(25))\nfor k in range(1,5):\n    assert sum(1 for x in range(7**k) if (x**3-1)%7**k==0)==3"
+   },
+   {
+    "claim": "exercise data: x^2 = -1 mod 125 has exactly the roots 57, 68 (57 = 2 mod 5); x^2 = 1 mod 2^10*3^5 has 8 solutions",
+    "python": "assert [x for x in range(125) if (x*x+1)%125==0]==[57,68] and 57%5==2\nM=2**10*3**5\nassert sum(1 for x in range(M) if (x*x-1)%M==0)==8"
+   },
+   {
+    "claim": "Newton doubling: from the root 108 mod 7^3, an inverse of f'(108) mod 7^3 gives a root mod 7^6; an inverse mod 7 only does not",
+    "python": "f=lambda x:x*x-2\nx=108; assert f(x)%7**3==0\nu=pow(2*x,-1,7**3); y=(x-f(x)*u)%7**6\nassert f(y)%7**6==0\nu1=pow(2*x%7,-1,7); z=(x-f(x)*u1)%7**6\nassert f(z)%7**4==0 and f(z)%7**6!=0"
+   },
+   {
+    "claim": "strong form with c=17, a=1: v_2(1-17)=4 > 2*v_2(2)=2, and 17 has a square root mod 2^k congruent to 1 mod 2^3 for k<=14",
+    "python": "assert (1-17)%16==0 and (1-17)%32!=0\nfor k in range(1,15):\n    M=2**k\n    assert any((x*x-17)%M==0 and x%8==1 for x in range(M))"
+   },
+   {
+    "claim": "x^2+1 has exactly two roots modulo 5, 25, 125, 13, 169, 2197 (simple roots lift uniquely)",
+    "python": "for p in (5,13):\n    for k in (1,2,3):\n        M=p**k\n        assert sum(1 for x in range(M) if (x*x+1)%M==0)==2"
+   }
+  ]
+ },
+ {
+  "id": "sums-of-squares",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "List the numbers up to $50$ that can be written as $x^2 + y^2$ with integers $x, y$:\n\n$$0, 1, 2, 4, 5, 8, 9, 10, 13, 16, 17, 18, 20, 25, 26, 29, 32, 34, 36, 37, 40, 41, 45, 49, 50.$$\n\nThe primes in the list are $2, 5, 13, 17, 29, 37, 41$, and the missing odd primes are $3, 7, 11, 19, 23, 31, 43, 47$. Every odd prime in the first group is $1$ more than a multiple of $4$; every prime in the second is $3$ more. Fermat announced in 1640 that this pattern continues forever, and Euler proved it in 1749.\n\nThis lesson proves Fermat's theorem, extends it to a complete description of which integers are sums of two squares, and then counts the number of representations with a formula that is the first example of a character governing arithmetic."
+   },
+   {
+    "type": "section",
+    "title": "Two easy observations",
+    "body": "The first observation is an obstruction. Every square is $0$ or $1$ modulo $4$, so $x^2 + y^2$ is $0$, $1$ or $2$ modulo $4$, never $3$. In particular no prime $p \\equiv 3 \\pmod 4$ is a sum of two squares.\n\nThe second observation is a multiplication rule, often called the Brahmagupta–Fibonacci identity:\n\n$$(a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2.$$\n\nExpanding both sides checks it. A cleaner way to see it: $a^2 + b^2 = |a + bi|^2$ and $|zw|^2 = |z|^2 |w|^2$ for complex numbers. So products of sums of two squares are again sums of two squares. This reduces the question to primes and to the behaviour of primes $q \\equiv 3 \\pmod 4$, which can still appear, as $9 = 3^2 + 0^2$ and $45 = 3^2 + 6^2$ show."
+   },
+   {
+    "type": "theorem",
+    "title": "Fermat's two-square theorem",
+    "body": "An odd prime $p$ is a sum of two squares if and only if $p \\equiv 1 \\pmod 4$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of Fermat's two-square theorem",
+    "body": "If $p = x^2 + y^2$ then $p \\not\\equiv 3 \\pmod 4$ by the observation above, so $p \\equiv 1 \\pmod 4$.\n\nConversely let $p \\equiv 1 \\pmod 4$. By the first supplementary law in [[quadratic-residues]], $-1$ is a quadratic residue modulo $p$; choose $a$ with $a^2 \\equiv -1 \\pmod p$. (Alternatively, [[wilson|Wilson's theorem]] shows that $a = \\bigl(\\tfrac{p-1}{2}\\bigr)!$ works.)\n\nLet $s = \\lfloor \\sqrt p \\rfloor$. Since $p$ is not a perfect square, $s < \\sqrt p$. Consider the $(s+1)^2$ numbers $ax - y$ with $0 \\le x, y \\le s$. Because $(s+1)^2 > p$, two of them, coming from different pairs $(x_1, y_1) \\neq (x_2, y_2)$, are congruent modulo $p$ (the [[pigeonhole]] principle). Put $u = x_1 - x_2$ and $v = y_1 - y_2$. Then\n\n$$a u \\equiv v \\pmod p, \\qquad |u| \\le s, \\quad |v| \\le s.$$\n\nThe pair $(u, v)$ is not $(0, 0)$, and in fact $u \\neq 0$: if $u = 0$ then $p \\mid v$ with $|v| < p$, so $v = 0$ too. Now square: $v^2 \\equiv a^2 u^2 \\equiv -u^2$, so $p$ divides $u^2 + v^2$. Finally\n\n$$0 < u^2 + v^2 \\le 2s^2 < 2p,$$\n\nand the only multiple of $p$ in that range is $p$ itself. Hence $p = u^2 + v^2$."
+   },
+   {
+    "type": "section",
+    "title": "The general criterion",
+    "body": "The key lemma about primes $q \\equiv 3 \\pmod 4$ is that they cannot divide a sum of two squares \"partially\".\n\nLemma. If $q \\equiv 3 \\pmod 4$ is prime and $q \\mid x^2 + y^2$, then $q \\mid x$ and $q \\mid y$.\n\nProof: if $q \\nmid x$, then $x$ is invertible modulo $q$ and $(y x^{-1})^2 \\equiv -1 \\pmod q$, so $-1$ would be a quadratic residue modulo $q$, which it is not for $q \\equiv 3 \\pmod 4$. So $q \\mid x$, and then $q \\mid y^2$, so $q \\mid y$.\n\nConsequently, if $n = x^2 + y^2$ and $q \\mid n$, then $q^2 \\mid n$ and $n/q^2 = (x/q)^2 + (y/q)^2$ is again a sum of two squares. Repeating, the exponent of $q$ in $n$ drops by $2$ each time while the number stays a sum of two squares; if the exponent were odd we would reach a sum of two squares divisible by $q$ exactly once, contradicting the lemma."
+   },
+   {
+    "type": "theorem",
+    "title": "Sums of two squares",
+    "body": "A positive integer $n$ is a sum of two squares if and only if every prime $q \\equiv 3 \\pmod 4$ divides $n$ to an even power."
+   },
+   {
+    "type": "proof",
+    "body": "Necessity is the argument just given. For sufficiency, write $n = 2^e \\cdot \\prod p_i^{e_i} \\cdot \\prod q_j^{2 f_j}$ with $p_i \\equiv 1$ and $q_j \\equiv 3 \\pmod 4$ (using [[fta]]). Each factor is a sum of two squares: $2 = 1^2 + 1^2$, each $p_i$ by Fermat's theorem, and $q_j^2 = q_j^2 + 0^2$. By the Brahmagupta–Fibonacci identity, so is the product."
+   },
+   {
+    "type": "section",
+    "title": "Counting representations",
+    "body": "Let $r_2(n)$ be the number of integer pairs $(x, y)$ with $x^2 + y^2 = n$, counting signs and order. For example $r_2(5) = 8$, from $(\\pm 1, \\pm 2)$ and $(\\pm 2, \\pm 1)$, and $r_2(25) = 12$, from $(\\pm 5, 0)$, $(0, \\pm 5)$, $(\\pm 3, \\pm 4)$, $(\\pm 4, \\pm 3)$.\n\nDefine $\\chi_{-4}(d) = 0$ if $d$ is even, $1$ if $d \\equiv 1 \\pmod 4$, and $-1$ if $d \\equiv 3 \\pmod 4$. This function is completely multiplicative: $\\chi_{-4}(de) = \\chi_{-4}(d)\\chi_{-4}(e)$. It is the nontrivial [[dirichlet-characters|Dirichlet character]] modulo $4$. Jacobi's two-square formula states\n\n$$r_2(n) = \\#\\{(x,y)\\in\\mathbb Z^2 : x^2 + y^2 = n\\} = 4 \\sum_{d \\mid n} \\chi_{-4}(d).$$\n\nIn words: four times the number of divisors $\\equiv 1 \\pmod 4$ minus the number of divisors $\\equiv 3 \\pmod 4$. Check: the divisors of $25$ are $1, 5, 25$, all $\\equiv 1$, giving $4 \\cdot 3 = 12$; the divisors of $3$ are $1, 3$, giving $4(1 - 1) = 0$.\n\nThe standard proof uses unique factorisation in the [[gaussian-integers]] $\\mathbb{Z}[i]$: a representation $n = x^2 + y^2$ is a factorisation $n = (x + yi)(x - yi)$, and counting Gaussian integers of norm $n$ amounts to distributing the Gaussian prime factors of each rational prime. We will not reproduce it here, but we can see that the formula is consistent with the criterion. Since $\\chi_{-4}$ is multiplicative, so is $n \\mapsto \\sum_{d\\mid n}\\chi_{-4}(d)$ (see [[arithmetic-functions]]), and on prime powers it equals\n\n$$\\sum_{j=0}^{e} \\chi_{-4}(p)^j = \\begin{cases} e + 1 & p \\equiv 1 \\pmod 4,\\\\ 1 & p = 2, \\\\ 1 & p \\equiv 3 \\pmod 4,\\ e \\text{ even}, \\\\ 0 & p \\equiv 3 \\pmod 4,\\ e \\text{ odd}. \\end{cases}$$\n\nSo $r_2(n) = 0$ exactly when some $q \\equiv 3 \\pmod 4$ appears to an odd power, as the theorem says, and otherwise $r_2(n) = 4 \\prod_{p \\equiv 1 (4)} (e_p + 1)$. For a prime $p \\equiv 1 \\pmod 4$ this gives $r_2(p) = 8$: the eight sign and order variants of a single pair $\\{a, b\\}$."
+   },
+   {
+    "type": "example",
+    "title": "Two representations of 65",
+    "body": "Using $5 = 1^2 + 2^2$ and $13 = 2^2 + 3^2$, write $65$ as a sum of two squares in two essentially different ways, and confirm with the counting formula that there are no others.",
+    "solution": "Apply the identity with $(a, b, c, d) = (1, 2, 2, 3)$:\n\n$$65 = (1\\cdot 2 - 2 \\cdot 3)^2 + (1 \\cdot 3 + 2 \\cdot 2)^2 = 4^2 + 7^2.$$\n\nReplacing $b$ by $-b$ (that is, using $5 = 1^2 + (-2)^2$) gives the other combination:\n\n$$65 = (1 \\cdot 2 + 2 \\cdot 3)^2 + (1\\cdot 3 - 2 \\cdot 2)^2 = 8^2 + 1^2.$$\n\nThe divisors of $65$ are $1, 5, 13, 65$, all $\\equiv 1 \\pmod 4$, so $r_2(65) = 4 \\cdot 4 = 16$. Each of the unordered pairs $\\{4, 7\\}$ and $\\{1, 8\\}$ accounts for $8$ ordered signed pairs, and $8 + 8 = 16$, so these are all of them."
+   },
+   {
+    "type": "example",
+    "title": "Three consecutive years",
+    "body": "Which of $2024$, $2025$, $2026$ are sums of two squares? For those that are, find $r_2$ and all representations with $0 \\le x \\le y$.",
+    "solution": "$2024 = 2^3 \\cdot 11 \\cdot 23$. The prime $11 \\equiv 3 \\pmod 4$ appears to the first power, so $2024$ is not a sum of two squares.\n\n$2025 = 3^4 \\cdot 5^2$. The only prime $\\equiv 3 \\pmod 4$ is $3$, to an even power, so $2025$ is a sum of two squares. The formula gives $r_2(2025) = 4 \\cdot 1 \\cdot (2 + 1) = 12$. The obvious representation $45^2 + 0^2$ accounts for $4$ of these (namely $(\\pm 45, 0), (0, \\pm 45)$), so there are $8$ more, which must come from a single pair with $0 < x < y$. Since $2025 = 81 \\cdot 25$ and $25 = 3^2 + 4^2$, scaling by $9$ gives $2025 = 27^2 + 36^2$. So the representations with $0 \\le x \\le y$ are $0^2 + 45^2$ and $27^2 + 36^2$.\n\n$2026 = 2 \\cdot 1013$, and $1013$ is a prime with $1013 \\equiv 1 \\pmod 4$. So $2026$ is a sum of two squares with $r_2(2026) = 4 \\cdot 1 \\cdot 2 = 8$, a single unordered pair. It is easy to spot: $2026 = 45^2 + 1^2$."
+   },
+   {
+    "type": "example",
+    "title": "Uniqueness for primes",
+    "body": "Prove directly (without the counting formula) that a prime $p \\equiv 1 \\pmod 4$ has only one representation $p = a^2 + b^2$ with $0 < a < b$.",
+    "solution": "Suppose $p = a^2 + b^2 = c^2 + d^2$ with all of $a, b, c, d$ positive. (None is zero, since $p$ is not a square.) Compute\n\n$$(ac - bd)(ac + bd) = a^2 c^2 - b^2 d^2 = a^2 c^2 - (p - a^2) d^2 = a^2(c^2 + d^2) - p d^2 = p(a^2 - d^2).$$\n\nSo $p$ divides $ac + bd$ or $ac - bd$. Multiplying the two representations with the identity gives\n\n$$p^2 = (ac + bd)^2 + (ad - bc)^2 = (ac - bd)^2 + (ad + bc)^2.$$\n\nCase 1: $p \\mid ac + bd$. Since $0 < ac + bd$ and $(ac + bd)^2 \\le p^2$, we get $ac + bd = p$, hence $ad - bc = 0$, so $a/b = c/d$. Any common divisor $g$ of $a$ and $b$ has $g^2 \\mid p$, so $\\gcd(a, b) = 1$ and likewise $\\gcd(c,d) = 1$. Two equal fractions in lowest terms with positive entries are identical, so $a = c$, $b = d$.\n\nCase 2: $p \\mid ac - bd$. Here $0 < ac < p$ and $0 < bd < p$ because each of $a, b, c, d$ is less than $\\sqrt p$, so $|ac - bd| < p$ and therefore $ac = bd$. Then $a/b = d/c$, and as before $a = d$, $b = c$.\n\nIn both cases the two representations are the same up to order."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The condition is about primes $\\equiv 3 \\pmod 4$ appearing to odd powers, not about $n$ itself being $\\equiv 3 \\pmod 4$. For example $21 \\equiv 1 \\pmod 4$ but $21 = 3 \\cdot 7$ is not a sum of two squares.\n- A product of two non-representable numbers can be representable: $3 \\cdot 3 = 3^2 + 0^2$ and $3 \\cdot 7 \\cdot 3 \\cdot 7 = 21^2 + 0^2$.\n- $r_2(n)$ counts ordered pairs with signs, including zero. A count of \"ways with $0 < x \\le y$\" is a different (smaller) number, and one must be careful with representations involving $0$ or $x = y$.\n- The prime $2$ never obstructs, and contributes a factor $1$ to $r_2(n)/4$ no matter its exponent."
+   },
+   {
+    "type": "connection",
+    "body": "Geometrically, $1 + \\sum_{1 \\le n \\le x} r_2(n)$ counts the lattice points in the closed disc of radius $\\sqrt x$ (the $1$ is the origin), and this is approximately the area $\\pi x$. Gauss showed the error is $O(\\sqrt x)$; finding the true size of the error is Gauss's circle problem, still open (the conjectured exponent is $\\tfrac14 + \\varepsilon$). Comparing with the divisor formula gives $4\\bigl(1 - \\tfrac13 + \\tfrac15 - \\dots\\bigr) = \\pi$, Leibniz's series, which is the value $L(1, \\chi_{-4}) = \\pi/4$ of a [[l-functions|Dirichlet L-function]].\n\nAlgebraically, the theorem is the statement that a rational prime splits in the [[gaussian-integers]] exactly when $p \\equiv 1 \\pmod 4$. Asking which primes are $x^2 + 2y^2$, $x^2 + 3y^2$ or $x^2 + 5y^2$ leads to [[quadratic-forms|binary quadratic forms]] and eventually to the [[class-number-formula]]. Allowing four squares gives Lagrange's theorem that every positive integer is a sum of four squares, the first case of [[waring|Waring's problem]], and the parametrisation of [[pythagorean]] triples can also be derived from factorisation in $\\mathbb Z[i]$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Express $1105 = 5 \\cdot 13 \\cdot 17$ as a sum of two squares in every possible way with $0 < x < y$. How many ways should there be?\n2. Find $r_2(1000)$ and $r_2(3^3 \\cdot 5)$.\n3. Use the method of the proof of Fermat's theorem with $p = 13$ and $a = 5$ to find $u, v$ with $13 = u^2 + v^2$.\n4. Show that if $n$ is a sum of two squares of rational numbers, then $n$ is a sum of two squares of integers. (Hint: clear denominators and use the criterion.)"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers",
+    "where": "Chapter 20"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "§3.6"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "the sums of two squares up to 50 are exactly the listed numbers",
+    "python": "S=sorted({x*x+y*y for x in range(8) for y in range(8) if x*x+y*y<=50})\nassert S==[0,1,2,4,5,8,9,10,13,16,17,18,20,25,26,29,32,34,36,37,40,41,45,49,50]"
+   },
+   {
+    "claim": "for primes p<10000: p odd is a sum of two squares iff p ≡ 1 mod 4",
+    "python": "from sympy import primerange\nfrom math import isqrt\ndef rep(n):\n    return any(isqrt(n-x*x)**2==n-x*x for x in range(isqrt(n)+1))\nassert all(rep(p)==(p%4==1) for p in primerange(3,10000))"
+   },
+   {
+    "claim": "criterion: n is a sum of two squares iff every q ≡ 3 mod 4 has even exponent (n<5000)",
+    "python": "from sympy import factorint\nfrom math import isqrt\ndef rep(n):\n    return any(isqrt(n-x*x)**2==n-x*x for x in range(isqrt(n)+1))\nassert all(rep(n)==all(e%2==0 for q,e in factorint(n).items() if q%4==3) for n in range(1,5000))"
+   },
+   {
+    "claim": "r_2(n) = 4 * sum_{d|n} chi_{-4}(d) for n<3000; r_2(5)=8, r_2(25)=12, r_2(3)=0",
+    "python": "from sympy import divisors\nfrom math import isqrt\ndef r2(n):\n    R=isqrt(n)\n    return sum(1 for x in range(-R,R+1) for y in range(-R,R+1) if x*x+y*y==n)\nchi=lambda d: 0 if d%2==0 else (1 if d%4==1 else -1)\nassert all(r2(n)==4*sum(chi(d) for d in divisors(n)) for n in range(1,3000))\nassert r2(5)==8 and r2(25)==12 and r2(3)==0"
+   },
+   {
+    "claim": "65 = 4^2+7^2 = 8^2+1^2 and r_2(65)=16",
+    "python": "assert 4**2+7**2==65==8**2+1**2\nassert (1*2-2*3)**2+(1*3+2*2)**2==65 and (1*2+2*3)**2+(1*3-2*2)**2==65\nassert sum(1 for x in range(-9,10) for y in range(-9,10) if x*x+y*y==65)==16"
+   },
+   {
+    "claim": "2024 not a sum of two squares; 2025: r_2=12, reps 0^2+45^2, 27^2+36^2; 1013 prime ≡1 mod 4, 2026=45^2+1^2, r_2=8",
+    "python": "from sympy import isprime, factorint\nfrom math import isqrt\nR=lambda n: sum(1 for x in range(-isqrt(n),isqrt(n)+1) for y in range(-isqrt(n),isqrt(n)+1) if x*x+y*y==n)\nassert factorint(2024)=={2:3,11:1,23:1} and R(2024)==0\nassert factorint(2025)=={3:4,5:2} and R(2025)==12 and 27**2+36**2==2025\nassert sorted((x,y) for x in range(46) for y in range(x,46) if x*x+y*y==2025)==[(0,45),(27,36)]\nassert isprime(1013) and 1013%4==1 and 45**2+1==2026 and R(2026)==8"
+   },
+   {
+    "claim": "primes p ≡ 1 mod 4 below 5000 have exactly one representation with 0<a<b",
+    "python": "from sympy import primerange\nfrom math import isqrt\nfor p in primerange(5,5000):\n    if p%4==1:\n        assert sum(1 for a in range(1,isqrt(p)+1) for b in range(a+1,isqrt(p)+1) if a*a+b*b==p)==1"
+   },
+   {
+    "claim": "lattice points in the disc of radius 100: 31417, close to pi*10^4; Leibniz sum tends to pi/4",
+    "python": "import math\nN=sum(1 for x in range(-100,101) for y in range(-100,101) if x*x+y*y<=10000)\nassert N==31417 and abs(N-math.pi*10**4) < 4*100\nassert abs(4*sum((-1)**k/(2*k+1) for k in range(10**6))-math.pi)<1e-5"
+   },
+   {
+    "claim": "Wilson: ((p-1)/2)!^2 = -1 mod p for primes p = 1 mod 4 below 400",
+    "python": "from math import factorial\nfrom sympy import primerange\nassert all(pow(factorial((p-1)//2),2,p)==p-1 for p in primerange(5,400) if p%4==1)"
+   },
+   {
+    "claim": "proof method for p=13, a=5: 5^2 = -1 mod 13 and the pigeonhole pair gives 13 = u^2+v^2 with |u|,|v| <= 3",
+    "python": "p,a,s=13,5,3\nassert (a*a+1)%p==0\nsol=[(u,v) for u in range(-s,s+1) for v in range(-s,s+1) if u!=0 and (a*u-v)%p==0]\nassert sol and all(u*u+v*v==13 for u,v in sol)"
+   },
+   {
+    "claim": "exercise data: 1105 has exactly 4 representations with 0<x<y and r_2(1105)=32; r_2(1000)=16; r_2(135)=0",
+    "python": "from math import isqrt\nR=lambda n: sum(1 for x in range(-isqrt(n),isqrt(n)+1) for y in range(-isqrt(n),isqrt(n)+1) if x*x+y*y==n)\nassert sorted((x,y) for x in range(1,34) for y in range(x+1,34) if x*x+y*y==1105)==[(4,33),(9,32),(12,31),(23,24)]\nassert R(1105)==32 and R(1000)==16 and R(135)==0"
+   },
+   {
+    "claim": "r_2(n) = 4*prod_{p=1 mod 4}(e_p+1) when every q=3 mod 4 has even exponent, else 0 (n<3000); 1 + sum_{n<=100} r_2(n) = lattice points in the disc of radius 10",
+    "python": "from sympy import factorint\nfrom math import isqrt, prod\nR=lambda n: sum(1 for x in range(-isqrt(n),isqrt(n)+1) for y in range(-isqrt(n),isqrt(n)+1) if x*x+y*y==n)\nfor n in range(1,3000):\n    F=factorint(n)\n    pred=0 if any(q%4==3 and e%2 for q,e in F.items()) else 4*prod(e+1 for p,e in F.items() if p%4==1)\n    assert R(n)==pred\nassert 1+sum(R(n) for n in range(1,101))==sum(1 for x in range(-10,11) for y in range(-10,11) if x*x+y*y<=100)"
+   }
+  ]
+ },
+ {
+  "id": "pythagorean",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Right triangles with integer sides, such as $3, 4, 5$ and $5, 12, 13$, have been studied for about four thousand years. The Babylonian clay tablet Plimpton 322, written around 1800 BC, has fifteen rows of numbers from which such triangles can be read off; one row gives the short side $12709$ and the hypotenuse $18541$ of the triangle whose third side is $13500$. Is there a recipe that produces every integer right triangle?\n\nThere is, and it is short. Every solution of $a^2 + b^2 = c^2$ in positive integers comes from the formula $(m^2 - n^2,\\ 2mn,\\ m^2 + n^2)$ by choosing $m, n$ suitably and possibly scaling. The proof is a model of how unique factorisation is used on a Diophantine equation, and the same formula drops out of a piece of coordinate geometry."
+   },
+   {
+    "type": "definition",
+    "title": "Pythagorean triple",
+    "body": "A Pythagorean triple is a triple $(a, b, c)$ of positive integers with $a^2 + b^2 = c^2$. It is primitive if $\\gcd(a, b, c) = 1$.\n\nEvery triple is a multiple $(da', db', dc')$ of a unique primitive one, with $d = \\gcd(a,b,c)$, so it is enough to find the primitive triples."
+   },
+   {
+    "type": "section",
+    "title": "First constraints",
+    "body": "In a primitive triple, any two of $a, b, c$ are already coprime: if a prime $p$ divides $a$ and $b$, then $p^2 \\mid c^2$, so $p \\mid c$, contradicting primitivity (and similarly for the other pairs).\n\nNext, parity. Squares are $0$ or $1$ modulo $4$. The legs cannot both be even (they are coprime), and they cannot both be odd, since then $c^2 = a^2 + b^2 \\equiv 2 \\pmod 4$, which is impossible. So exactly one leg is even and $c$ is odd. We will always name the legs so that $b$ is the even one; the triple $(4, 3, 5)$ is then written $(3, 4, 5)$.\n\nThe tool for the main proof is a consequence of the [[fta|fundamental theorem of arithmetic]]:\n\nLemma. If $u$ and $v$ are coprime positive integers and $uv$ is a perfect square, then $u$ and $v$ are both perfect squares.\n\nIndeed, in $uv = w^2$ every prime exponent on the right is even, and since $u$ and $v$ share no prime, each prime's full exponent sits in just one of them. So every exponent in $u$, and every exponent in $v$, is even."
+   },
+   {
+    "type": "theorem",
+    "title": "Parametrisation of primitive triples",
+    "body": "The primitive Pythagorean triples $(a, b, c)$ with $b$ even are exactly\n\n$$(m^2 - n^2,\\ 2mn,\\ m^2 + n^2)$$\n\nwith $m > n > 0$ integers, $\\gcd(m, n) = 1$, and $m, n$ of opposite parity. Different pairs $(m, n)$ give different triples."
+   },
+   {
+    "type": "proof",
+    "body": "Let $(a, b, c)$ be primitive with $b$ even, so $a$ and $c$ are odd. Rewrite the equation as\n\n$$b^2 = c^2 - a^2 = (c - a)(c + a).$$\n\nBoth $c - a$ and $c + a$ are even and positive, so we may write $b = 2k$ and\n\n$$k^2 = \\frac{c + a}{2} \\cdot \\frac{c - a}{2}.$$\n\nAny common divisor of $\\tfrac{c+a}{2}$ and $\\tfrac{c-a}{2}$ divides their sum $c$ and their difference $a$, and $\\gcd(a, c) = 1$, so the two factors are coprime. By the lemma, $\\tfrac{c+a}{2} = m^2$ and $\\tfrac{c-a}{2} = n^2$ for positive integers $m > n$. Then\n\n$$c = m^2 + n^2, \\qquad a = m^2 - n^2, \\qquad b = 2k = 2mn.$$\n\nHere $\\gcd(m,n) = 1$ because $m^2$ and $n^2$ are coprime, and $m, n$ have opposite parity because $c = m^2 + n^2$ is odd.\n\nConversely, given such $m, n$, the identity $(m^2 - n^2)^2 + (2mn)^2 = (m^2 + n^2)^2$ holds by expansion. If a prime $p$ divided both $a = m^2 - n^2$ and $c = m^2 + n^2$, it would divide $2m^2$ and $2n^2$; $p \\ne 2$ because $c$ is odd, so $p \\mid m$ and $p \\mid n$, which is impossible. So the triple is primitive. Finally $m$ and $n$ are recovered from the triple as $m^2 = \\tfrac{c+a}{2}$, $n^2 = \\tfrac{c-a}{2}$, so distinct pairs give distinct triples."
+   },
+   {
+    "type": "section",
+    "title": "The same formula from geometry",
+    "body": "Dividing $a^2 + b^2 = c^2$ by $c^2$ gives a point $(a/c, b/c)$ with rational coordinates on the unit circle $x^2 + y^2 = 1$. Conversely a rational point on the circle, written over a common denominator, gives a triple. So finding triples is the same as finding rational points on the circle.\n\nHere is a way to find all of them. Start from the known rational point $P = (-1, 0)$. A line through $P$ with slope $t$, namely $y = t(x + 1)$, meets the circle in $P$ and one more point. Substituting,\n\n$$x^2 + t^2 (x+1)^2 = 1 \\iff (x + 1)\\bigl((1 + t^2) x - (1 - t^2)\\bigr) = 0,$$\n\nso the second point is\n\n$$\\left( \\frac{1 - t^2}{1 + t^2},\\ \\frac{2t}{1 + t^2} \\right).$$\n\nIf $t$ is rational, so is this point. Conversely, if the second point $Q$ is rational and $Q \\ne P$, the slope of $PQ$ is rational. So the rational points other than $P$ correspond exactly to rational slopes $t$. Writing $t = n/m$ and clearing denominators gives\n\n$$\\left(\\frac{m^2 - n^2}{m^2 + n^2},\\ \\frac{2mn}{m^2 + n^2}\\right),$$\n\nwhich is the parametrisation again. The geometric argument is quicker but hides the bookkeeping about primitivity and parity, which the algebraic proof handles. The method works for any conic with one known rational point."
+   },
+   {
+    "type": "example",
+    "title": "All primitive triples with hypotenuse below 50",
+    "body": "List every primitive Pythagorean triple with $c < 50$.",
+    "solution": "We need $m > n > 0$, coprime, opposite parity, with $m^2 + n^2 < 50$, so $m \\le 6$. Going through the pairs:\n\n- $(2,1)$: $(3, 4, 5)$\n- $(3,2)$: $(5, 12, 13)$\n- $(4,1)$: $(15, 8, 17)$\n- $(4,3)$: $(7, 24, 25)$\n- $(5,2)$: $(21, 20, 29)$\n- $(5,4)$: $(9, 40, 41)$\n- $(6,1)$: $(35, 12, 37)$\n\nThe pairs $(3,1)$ and $(5,1)$, $(5,3)$ are excluded because both entries are odd (for instance $(3,1)$ gives $(8, 6, 10)$, which is not primitive), $(4,2)$, $(6,2)$, $(6,3)$ and $(6,4)$ are not coprime, and $(6,5)$ gives $c = 61$. So there are exactly seven primitive triples with $c < 50$. (Remember that $b$ is the even leg, so $(15, 8, 17)$ is the triangle with legs $8$ and $15$.)"
+   },
+   {
+    "type": "example",
+    "title": "Triangles with a leg of 12",
+    "body": "Find all Pythagorean triples, primitive or not, in which one leg equals $12$.",
+    "solution": "Rather than using the formula, factor directly. If the legs are $12$ and $x$ and the hypotenuse is $z$, then\n\n$$144 = z^2 - x^2 = (z - x)(z + x).$$\n\nThe factors $z - x$ and $z + x$ have the same parity (their sum $2z$ is even), and their product is even, so both are even. Also $0 < z - x < z + x$. The factorisations of $144$ into two even factors $u < v$ are\n\n$$2 \\cdot 72,\\quad 4 \\cdot 36,\\quad 6 \\cdot 24,\\quad 8 \\cdot 18.$$\n\n(The pair $12 \\cdot 12$ would give $x = 0$.) Solving $z = (u + v)/2$, $x = (v - u)/2$ gives\n\n$$(12, 35, 37),\\quad (12, 16, 20),\\quad (12, 9, 15),\\quad (12, 5, 13).$$\n\nOf these, $(12, 35, 37)$ and $(5, 12, 13)$ are primitive (from $(m,n) = (6,1)$ and $(3,2)$), while $(12, 16, 20) = 4\\cdot(3,4,5)$ and $(9, 12, 15) = 3 \\cdot (3, 4, 5)$ are not. This direct factoring is often faster than the parametrisation when one side is fixed."
+   },
+   {
+    "type": "example",
+    "title": "A divisibility that always holds",
+    "body": "Prove that $60$ divides $abc$ for every Pythagorean triple $(a, b, c)$.",
+    "solution": "If $(a, b, c) = d(a', b', c')$ with $(a', b', c')$ primitive, then $abc = d^3 a'b'c'$, so it suffices to treat primitive triples. Write $a = m^2 - n^2$, $b = 2mn$, $c = m^2 + n^2$ as in the theorem. We show $4$, $3$ and $5$ all divide $abc$; since they are pairwise coprime, so does $60$.\n\nDivisibility by $4$: one of $m, n$ is even, so $4 \\mid 2mn = b$.\n\nDivisibility by $3$: if $3 \\mid m$ or $3 \\mid n$ then $3 \\mid b$. Otherwise $m^2 \\equiv n^2 \\equiv 1 \\pmod 3$ and $3 \\mid m^2 - n^2 = a$.\n\nDivisibility by $5$: if $5 \\mid mn$ then $5 \\mid b$. Otherwise $m^2$ and $n^2$ are each $1$ or $4$ modulo $5$. If they are equal, $5 \\mid a$; if they differ, $m^2 + n^2 \\equiv 1 + 4 \\equiv 0$ and $5 \\mid c$.\n\nThe bound is sharp: for $(3, 4, 5)$ we get $abc = 60$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Forgetting the conditions on $(m, n)$. Without coprimality and opposite parity the formula still gives triples, but not primitive ones: $(3, 1)$ gives $(8, 6, 10)$ and $(4, 2)$ gives $(12, 16, 20)$.\n- Forgetting the scaling factor. Not every triple has the form $(m^2 - n^2, 2mn, m^2 + n^2)$ for some $m, n$: the triple $(9, 12, 15)$ does not, because $\\tfrac{c+a}{2} = 12$ is not a square. All triples are $d \\cdot (m^2 - n^2, 2mn, m^2 + n^2)$, with the legs possibly swapped.\n- Forgetting the swap. The formula always makes the second leg even. When matching a given triangle, the odd leg is $m^2 - n^2$.\n- Using the coprime-product lemma without checking coprimality: $4 \\cdot 9 = 36$ is a square with both factors squares, but $2 \\cdot 18 = 36$ is a square with neither factor a square."
+   },
+   {
+    "type": "connection",
+    "body": "The hypotenuse $c = m^2 + n^2$ is a sum of two squares, and a refinement of the theorem on [[sums-of-squares]] shows that the possible hypotenuses of primitive triples are exactly the numbers greater than $1$ all of whose prime factors are $\\equiv 1 \\pmod 4$. In the [[gaussian-integers]] the parametrisation is a single line, $(m + ni)^2 = (m^2 - n^2) + 2mn\\, i$, and the proof above is unique factorisation in $\\mathbb{Z}[i]$ in disguise.\n\nThe factor-and-use-coprimality technique is the standard opening move for [[diophantine|Diophantine equations]] such as $x^2 + y^2 = z^3$ or $x^4 + y^4 = z^2$; for the latter, Fermat's method of infinite descent built on this parametrisation shows there are no solutions in positive integers, which settles the exponent $4$ case of Fermat's Last Theorem. Asking which integers are areas of rational right triangles (the congruent number problem) leads to the curves $y^2 = x^3 - N^2 x$, which are [[elliptic-curves]], and to the [[bsd|Birch and Swinnerton-Dyer conjecture]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the two primitive triples with hypotenuse $65$.\n2. Show that the inradius $(a + b - c)/2$ of a primitive triple equals $n(m - n)$, so it is always an integer.\n3. Show that every integer $k \\ge 3$ is a leg of at least one Pythagorean triple.\n4. Use a line through the point $(1, 1)$ to find all rational points on the circle $x^2 + y^2 = 2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Stillwell, Elements of Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "parametrisation: primitive triples with b even and c<=2000 are in bijection with valid (m,n)",
+    "python": "from math import gcd, isqrt\nT=set()\nfor c in range(1,2001):\n    for a in range(1,c):\n        b2=c*c-a*a; b=isqrt(b2)\n        if b>0 and b*b==b2 and b%2==0 and gcd(a,b)==1: T.add((a,b,c))\nP=[(m*m-n*n,2*m*n,m*m+n*n) for m in range(2,50) for n in range(1,m) if gcd(m,n)==1 and (m-n)%2==1 and m*m+n*n<=2000]\nassert len(P)==len(set(P)) and set(P)==T"
+   },
+   {
+    "claim": "exactly seven primitive triples with c<50, as listed",
+    "python": "from math import gcd\nL=sorted((m*m-n*n,2*m*n,m*m+n*n) for m in range(2,8) for n in range(1,m) if gcd(m,n)==1 and (m-n)%2 and m*m+n*n<50)\nassert L==sorted([(3,4,5),(5,12,13),(15,8,17),(7,24,25),(21,20,29),(9,40,41),(35,12,37)])\nassert (6*6+5*5)==61"
+   },
+   {
+    "claim": "triples with a leg 12: (12,35,37),(12,16,20),(12,9,15),(12,5,13) only",
+    "python": "from math import isqrt\nS=sorted((x,isqrt(144+x*x)) for x in range(1,200) if isqrt(144+x*x)**2==144+x*x)\nassert S==[(5,13),(9,15),(16,20),(35,37)]"
+   },
+   {
+    "claim": "60 | abc for all triples with c<=500, and abc=60 for (3,4,5)",
+    "python": "from math import isqrt\nfor c in range(1,501):\n    for a in range(1,c):\n        b=isqrt(c*c-a*a)\n        if b>0 and a*a+b*b==c*c: assert (a*b*c)%60==0\nassert 3*4*5==60"
+   },
+   {
+    "claim": "hypotenuses of primitive triples below 1000 are exactly the n>1 whose prime factors are all 1 mod 4",
+    "python": "from math import gcd\nfrom sympy import primefactors\nH={m*m+n*n for m in range(2,32) for n in range(1,m) if gcd(m,n)==1 and (m-n)%2 and m*m+n*n<1000}\nassert H=={c for c in range(2,1000) if all(p%4==1 for p in primefactors(c))}"
+   },
+   {
+    "claim": "Plimpton 322 row (12709,13500,18541) is a Pythagorean triple",
+    "python": "assert 12709**2+13500**2==18541**2"
+   },
+   {
+    "claim": "the line through (-1,0) with slope t meets the circle at ((1-t^2)/(1+t^2), 2t/(1+t^2))",
+    "python": "import sympy as sp\nt,x=sp.symbols('t x')\nX=(1-t**2)/(1+t**2); Y=2*t/(1+t**2)\nassert sp.simplify(X**2+Y**2-1)==0 and sp.simplify(Y-t*(X+1))==0\nassert sp.expand(x**2+t**2*(x+1)**2-1-(x+1)*((1+t**2)*x-(1-t**2)))==0"
+   },
+   {
+    "claim": "(9,12,15) is not of the form (m^2-n^2,2mn,m^2+n^2) (in either leg order); (3,1) gives (8,6,10)",
+    "python": "F={(m*m-n*n,2*m*n,m*m+n*n) for m in range(1,20) for n in range(1,m)}\nassert (9,12,15) not in F and (12,9,15) not in F and (8,6,10) in F"
+   },
+   {
+    "claim": "inradius of a primitive triple is n(m-n); hypotenuse 65 has two primitive triples",
+    "python": "from math import gcd\nfor m in range(2,40):\n    for n in range(1,m):\n        if gcd(m,n)==1 and (m-n)%2:\n            a,b,c=m*m-n*n,2*m*n,m*m+n*n\n            assert a+b-c==2*n*(m-n)\nassert sorted((m*m-n*n,2*m*n) for m in range(2,9) for n in range(1,m) if gcd(m,n)==1 and (m-n)%2 and m*m+n*n==65)==[(33,56),(63,16)]"
+   },
+   {
+    "claim": "(m,n) -> (m^2-n^2, 2mn, m^2+n^2) is injective on all m>n>0 (no coprimality or parity needed), m<200; (4,2) gives (12,16,20)",
+    "python": "T=[(m*m-n*n,2*m*n,m*m+n*n) for m in range(2,200) for n in range(1,m)]\nassert len(T)==len(set(T))\nassert (4*4-2*2,2*4*2,4*4+2*2)==(12,16,20)"
+   },
+   {
+    "claim": "exercise data: every k from 3 to 300 is a leg of some Pythagorean triple; 12709 < 13500",
+    "python": "from math import isqrt\nfor k in range(3,301):\n    assert any(isqrt(k*k+x*x)**2==k*k+x*x for x in range(1,k*k))\nassert 12709<13500"
+   }
+  ]
+ },
+ {
+  "id": "continued-fractions",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The fraction $355/113$ agrees with $\\pi$ to six decimal places, although its denominator is only $113$. A decimal approximation of the same quality, $3.141593$, needs a denominator of a million. Why does such a fraction exist, how would anyone find it, and is it the best possible for its size?\n\nContinued fractions answer all three questions. They encode a real number as a sequence of integers obtained by repeatedly taking the integer part and inverting what is left. For rational numbers the process is exactly the [[divisibility|Euclidean algorithm]]; for irrational numbers it runs forever and produces the sequence of best rational approximations, and for square roots it becomes periodic, which is the key to [[pell|Pell's equation]]."
+   },
+   {
+    "type": "section",
+    "title": "The Euclidean algorithm in disguise",
+    "body": "Run the Euclidean algorithm on $43$ and $19$:\n\n$$43 = 2 \\cdot 19 + 5, \\quad 19 = 3 \\cdot 5 + 4, \\quad 5 = 1 \\cdot 4 + 1, \\quad 4 = 4 \\cdot 1.$$\n\nEach line can be read as a statement about fractions: $\\frac{43}{19} = 2 + \\frac{5}{19} = 2 + \\frac{1}{19/5}$, then $\\frac{19}{5} = 3 + \\frac{1}{5/4}$, and so on. Nesting them,\n\n$$\\frac{43}{19} = 2 + \\cfrac{1}{3 + \\cfrac{1}{1 + \\cfrac{1}{4}}}.$$\n\nWe abbreviate this as $[2; 3, 1, 4]$. The entries are precisely the quotients of the Euclidean algorithm.\n\nThe same procedure makes sense for any real $\\alpha$. Set $\\alpha_0 = \\alpha$ and repeat\n\n$$a_k = \\lfloor \\alpha_k \\rfloor, \\qquad \\alpha_{k+1} = \\frac{1}{\\alpha_k - a_k},$$\n\nstopping if $\\alpha_k$ is an integer. For example $\\sqrt 2 = 1 + (\\sqrt 2 - 1)$ and $\\frac{1}{\\sqrt 2 - 1} = \\sqrt 2 + 1 = 2 + (\\sqrt 2 - 1)$, so the same remainder recurs and $\\sqrt 2 = [1; 2, 2, 2, \\dots]$."
+   },
+   {
+    "type": "definition",
+    "title": "Simple continued fraction",
+    "body": "For an integer $a_0$ and positive integers $a_1, a_2, \\dots$, the finite simple continued fraction $[a_0; a_1, \\dots, a_n]$ is $a_0 + 1/[a_1; a_2, \\dots, a_n]$ with $[a_n] = a_n$. The infinite one $[a_0; a_1, a_2, \\dots]$ is the limit of $[a_0; a_1, \\dots, a_k]$ as $k \\to \\infty$. The numbers $a_k$ are the partial quotients, and $p_k/q_k = [a_0; a_1, \\dots, a_k]$ in lowest terms is the $k$-th convergent.\n\nThe algorithm above produces an expansion of every real number. It stops if and only if $\\alpha$ is rational (for rationals it is the Euclidean algorithm, which terminates; and a finite expansion is clearly rational), and for irrational $\\alpha$ the convergents tend to $\\alpha$, as the theorems below show."
+   },
+   {
+    "type": "theorem",
+    "title": "Recurrence for convergents",
+    "body": "Define $p_{-2} = 0,\\ p_{-1} = 1,\\ q_{-2} = 1,\\ q_{-1} = 0$ and, for $k \\ge 0$,\n\n$$p_k = a_k p_{k-1} + p_{k-2}, \\qquad q_k = a_k q_{k-1} + q_{k-2}.$$\n\nThen for every $k \\ge 0$ and every real $x > 0$ (any real $x$ if $k = 0$),\n\n$$[a_0; a_1, \\dots, a_{k-1}, x] = \\frac{x\\, p_{k-1} + p_{k-2}}{x\\, q_{k-1} + q_{k-2}}, \\qquad\\text{in particular}\\qquad [a_0; \\dots, a_k] = \\frac{p_k}{q_k},$$\n\nand\n\n$$p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}.$$\n\nThe last identity shows $\\gcd(p_k, q_k) = 1$, so $p_k/q_k$ is already in lowest terms."
+   },
+   {
+    "type": "proof",
+    "body": "Induction on $k$. For $k = 0$ the left side is just $x$, and the right side is $(x \\cdot 1 + 0)/(x \\cdot 0 + 1) = x$.\n\nSuppose the formula holds for $k$ (for all choices of partial quotients). Then\n\n$$[a_0; \\dots, a_{k-1}, a_k, x] = [a_0; \\dots, a_{k-1}, a_k + \\tfrac1x],$$\n\nbecause in both expressions the innermost part is $a_k + \\tfrac{1}{x}$. By the induction hypothesis with $a_k + 1/x$ in place of $x$ (allowed: it is positive when $k \\ge 1$, and any real works when $k = 0$), this equals\n\n$$\\frac{(a_k + \\frac1x) p_{k-1} + p_{k-2}}{(a_k + \\frac1x) q_{k-1} + q_{k-2}} = \\frac{p_k + \\frac1x p_{k-1}}{q_k + \\frac1x q_{k-1}} = \\frac{x p_k + p_{k-1}}{x q_k + q_{k-1}},$$\n\nwhich is the formula for $k+1$. Taking $x = a_k$ gives $[a_0; \\dots, a_k] = p_k / q_k$.\n\nFor the determinant, substitute the recurrence:\n\n$$p_k q_{k-1} - p_{k-1} q_k = (a_k p_{k-1} + p_{k-2}) q_{k-1} - p_{k-1}(a_k q_{k-1} + q_{k-2}) = -(p_{k-1} q_{k-2} - p_{k-2} q_{k-1}).$$\n\nSo the quantity changes sign at each step, and at $k = -1$ it is $p_{-1} q_{-2} - p_{-2} q_{-1} = 1$. Hence it equals $(-1)^{k-1}$. Any common divisor of $p_k$ and $q_k$ divides $\\pm 1$."
+   },
+   {
+    "type": "theorem",
+    "title": "Convergents approximate well",
+    "body": "Let $\\alpha$ be irrational with convergents $p_k / q_k$. Then\n\n$$\\alpha - \\frac{p_k}{q_k} = \\frac{(-1)^k}{q_k\\,(\\alpha_{k+1} q_k + q_{k-1})}, \\qquad\\text{so}\\qquad \\Bigl|\\alpha - \\frac{p_k}{q_k}\\Bigr| < \\frac{1}{q_k q_{k+1}} \\le \\frac{1}{q_k^2}.$$\n\nThe convergents lie alternately below ($k$ even) and above ($k$ odd) $\\alpha$, and they converge to $\\alpha$."
+   },
+   {
+    "type": "proof",
+    "body": "By construction $\\alpha = [a_0; a_1, \\dots, a_k, \\alpha_{k+1}]$, so the previous theorem with $x = \\alpha_{k+1}$ gives\n\n$$\\alpha = \\frac{\\alpha_{k+1} p_k + p_{k-1}}{\\alpha_{k+1} q_k + q_{k-1}}.$$\n\nSubtract $p_k / q_k$ and use the determinant identity:\n\n$$\\alpha - \\frac{p_k}{q_k} = \\frac{q_k p_{k-1} - p_k q_{k-1}}{q_k(\\alpha_{k+1} q_k + q_{k-1})} = \\frac{(-1)^k}{q_k(\\alpha_{k+1} q_k + q_{k-1})}.$$\n\nSince $\\alpha$ is irrational, $\\alpha_{k+1}$ is not an integer, so $\\alpha_{k+1} > a_{k+1}$ and the denominator exceeds $q_k(a_{k+1} q_k + q_{k-1}) = q_k q_{k+1}$. Finally $q_{k+1} = a_{k+1} q_k + q_{k-1} \\ge q_k$. The $q_k$ grow at least as fast as Fibonacci numbers, so the error tends to $0$."
+   },
+   {
+    "type": "section",
+    "title": "Best approximations and the digits of pi",
+    "body": "The theorem says every irrational has infinitely many fractions with $|\\alpha - p/q| < 1/q^2$. Much more is true; we state two classical facts without proof (proofs are in the sources listed below).\n\nBest approximation. If $0 < q < q_{k+1}$, then $|q\\alpha - p| \\ge |q_k \\alpha - p_k|$ for every integer $p$. So no fraction with a smaller denominator than the next convergent does better, in this strong sense, than $p_k/q_k$.\n\nLegendre's criterion. If $|\\alpha - p/q| < \\dfrac{1}{2q^2}$, then $p/q$ is one of the convergents of $\\alpha$.\n\nFor $\\pi = [3; 7, 15, 1, 292, 1, 1, \\dots]$ the recurrence gives the convergents\n\n$$3, \\quad \\frac{22}{7}, \\quad \\frac{333}{106}, \\quad \\frac{355}{113}, \\quad \\frac{103993}{33102}, \\dots$$\n\nThe error formula explains why $355/113$ is so good: its error is about $1/(q_3 \\cdot q_4)$, and $q_4 = 292 \\cdot 113 + 106$ is huge because the next partial quotient is $292$. Large partial quotients mean exceptionally good approximations; a number whose partial quotients stay bounded (such as $\\sqrt 2$ or the golden ratio $[1; 1, 1, \\dots]$) is badly approximable: there is a constant $c > 0$ with $|\\alpha - p/q| > c/q^2$ for every fraction $p/q$ (see the last example below)."
+   },
+   {
+    "type": "section",
+    "title": "Quadratic irrationals are periodic",
+    "body": "Computing a few expansions suggests a pattern:\n\n$$\\sqrt 2 = [1; \\overline{2}], \\qquad \\sqrt 3 = [1; \\overline{1, 2}], \\qquad \\sqrt 7 = [2; \\overline{1, 1, 1, 4}], \\qquad \\frac{1 + \\sqrt 5}{2} = [1; \\overline{1}].$$\n\nA bar marks the repeating block. The pattern is a theorem: a real number has an eventually periodic continued fraction if and only if it is a quadratic irrational, that is, an irrational root of a quadratic equation with integer coefficients. Euler showed that periodic expansions give quadratic irrationals; the converse is Lagrange's theorem (1770).\n\nOne direction is quick. If $\\alpha = [\\overline{a_0; a_1, \\dots, a_{n-1}}]$ is purely periodic, then $\\alpha = [a_0; \\dots, a_{n-1}, \\alpha]$, and the recurrence theorem gives\n\n$$\\alpha = \\frac{\\alpha\\, p_{n-1} + p_{n-2}}{\\alpha\\, q_{n-1} + q_{n-2}}, \\qquad\\text{i.e.}\\qquad q_{n-1}\\alpha^2 + (q_{n-2} - p_{n-1})\\alpha - p_{n-2} = 0,$$\n\na quadratic equation with leading coefficient $q_{n-1} \\ge 1$, and $\\alpha$ is irrational because its expansion is infinite. If the expansion becomes periodic only after $j$ terms, then $\\alpha = [a_0; \\dots, a_{j-1}, \\beta]$ with $\\beta$ purely periodic, so $\\alpha = (\\beta p_{j-1} + p_{j-2})/(\\beta q_{j-1} + q_{j-2})$. Writing $\\beta = r + s\\sqrt N$ with $r, s$ rational and rationalising the denominator gives $\\alpha = r' + s'\\sqrt N$ with $r', s'$ rational, and such an irrational number is a root of $(x - r')^2 = s'^2 N$, a quadratic equation with rational coefficients (clear denominators to make them integers). The converse takes more work: one shows that the complete quotients $\\alpha_k$ of a quadratic irrational all have the shape $(m_k + \\sqrt N)/d_k$ with integers $m_k, d_k$ that stay bounded, so some $\\alpha_k$ must repeat.\n\nFor $\\sqrt N$ with $N$ a positive integer that is not a square, the expansion has the special form $\\sqrt N = [a_0; \\overline{a_1, a_2, \\dots, a_{r-1}, 2a_0}]$, with the block before $2a_0$ a palindrome. This is what makes continued fractions solve Pell's equation."
+   },
+   {
+    "type": "example",
+    "title": "A linear Diophantine equation",
+    "body": "Find the continued fraction of $43/19$, list its convergents, and use them to solve $43x - 19y = 1$ in integers.",
+    "solution": "From the Euclidean algorithm, $43/19 = [2; 3, 1, 4]$. The recurrence gives\n\n$$\\begin{aligned} p_0 &= 2, & p_1 &= 3 \\cdot 2 + 1 = 7, & p_2 &= 1 \\cdot 7 + 2 = 9, & p_3 &= 4 \\cdot 9 + 7 = 43,\\\\ q_0 &= 1, & q_1 &= 3 \\cdot 1 + 0 = 3, & q_2 &= 1 \\cdot 3 + 1 = 4, & q_3 &= 4 \\cdot 4 + 3 = 19. \\end{aligned}$$\n\nSo the convergents are $2, 7/3, 9/4, 43/19$. The determinant identity with $k = 3$ says $p_3 q_2 - p_2 q_3 = (-1)^2 = 1$, that is,\n\n$$43 \\cdot 4 - 9 \\cdot 19 = 172 - 171 = 1.$$\n\nSo $(x, y) = (4, 9)$ is a solution, and the general solution is $x = 4 + 19t$, $y = 9 + 43t$ for $t \\in \\mathbb Z$. This is the same answer the extended Euclidean algorithm gives for [[bezout|Bézout's identity]]; the convergent recurrence is a tidy way to organise it."
+   },
+   {
+    "type": "example",
+    "title": "The expansion of the square root of 7",
+    "body": "Compute the continued fraction of $\\sqrt 7$ and its first few convergents. What do you notice about $p_k^2 - 7 q_k^2$?",
+    "solution": "Since $2 < \\sqrt 7 < 3$, $a_0 = 2$. Rationalising at each step:\n\n$$\\begin{aligned} \\alpha_1 &= \\frac{1}{\\sqrt 7 - 2} = \\frac{\\sqrt 7 + 2}{3} \\approx 1.55, & a_1 &= 1,\\\\ \\alpha_2 &= \\frac{1}{\\alpha_1 - 1} = \\frac{3}{\\sqrt 7 - 1} = \\frac{\\sqrt 7 + 1}{2} \\approx 1.82, & a_2 &= 1,\\\\ \\alpha_3 &= \\frac{1}{\\alpha_2 - 1} = \\frac{2}{\\sqrt 7 - 1} = \\frac{\\sqrt 7 + 1}{3} \\approx 1.22, & a_3 &= 1,\\\\ \\alpha_4 &= \\frac{1}{\\alpha_3 - 1} = \\frac{3}{\\sqrt 7 - 2} = \\sqrt 7 + 2 \\approx 4.65, & a_4 &= 4. \\end{aligned}$$\n\nThen $\\alpha_4 - 4 = \\sqrt 7 - 2$, which is where we started, so $\\sqrt 7 = [2; \\overline{1, 1, 1, 4}]$, period $4$, ending in $2a_0 = 4$.\n\nThe convergents are $2, 3, 5/2, 8/3, 37/14, 45/17, 82/31, 127/48, \\dots$, and\n\n$$p_k^2 - 7q_k^2 = -3,\\ 2,\\ -3,\\ 1,\\ -3,\\ 2,\\ -3,\\ 1, \\dots$$\n\nThe value $1$ appears at the end of each period: $8^2 - 7 \\cdot 3^2 = 1$ and $127^2 - 7 \\cdot 48^2 = 1$. These are solutions of Pell's equation $x^2 - 7y^2 = 1$."
+   },
+   {
+    "type": "example",
+    "title": "The square root of 2 is badly approximable",
+    "body": "Prove that $\\Bigl|\\sqrt 2 - \\dfrac pq\\Bigr| > \\dfrac{1}{3q^2}$ for all integers $p$ and $q \\ge 1$.",
+    "solution": "If $q = 1$, the nearest integers to $\\sqrt 2$ are $1$ and $2$, at distances $\\sqrt 2 - 1 > 0.41$ and $2 - \\sqrt 2 > 0.58$, both more than $1/3$.\n\nLet $q \\ge 2$ and suppose, for contradiction, that $|\\sqrt 2 - p/q| \\le 1/(3q^2) \\le 1/12$. Then $p > 0$ and $p/q + \\sqrt 2 \\le 2\\sqrt 2 + 1/12 < 2.92$. Since $\\sqrt 2$ is irrational, $p^2 - 2q^2$ is a nonzero integer, so\n\n$$\\Bigl|\\sqrt 2 - \\frac pq\\Bigr| = \\frac{|p^2 - 2q^2|}{q^2\\,(p/q + \\sqrt 2)} \\ge \\frac{1}{q^2 (p/q + \\sqrt 2)} > \\frac{1}{2.92\\, q^2} > \\frac{1}{3q^2},$$\n\na contradiction.\n\nSo for $\\sqrt 2$ the exponent $2$ in $1/q^2$ cannot be improved, and even the constant can only be improved slightly: along the convergents, $q^2 |\\sqrt 2 - p/q|$ tends to $1/(2\\sqrt 2) \\approx 0.354$. The same argument shows every quadratic irrational is badly approximable, matching the bounded (periodic) partial quotients."
+   },
+   {
+    "type": "pitfall",
+    "body": "- A rational number has two expansions, since $[a_0; \\dots, a_n] = [a_0; \\dots, a_n - 1, 1]$ when $a_n \\ge 2$. The algorithm produces the one with last quotient at least $2$ (unless the number is an integer).\n- Negative numbers: only $a_0$ may be negative. For instance $-1.5 = -2 + \\tfrac12 = [-2; 2]$, not $[-1; 2]$.\n- The inequality $|\\alpha - p/q| < 1/q^2$ does not force $p/q$ to be a convergent. Legendre's criterion needs the constant $\\tfrac12$.\n- Computing many partial quotients in floating point is unreliable: rounding errors are amplified at each inversion. In double precision the expansion of $\\pi$ already goes wrong at the fourteenth partial quotient. Use exact or high-precision arithmetic (or the integer recurrence for $\\sqrt N$)."
+   },
+   {
+    "type": "connection",
+    "body": "The periodic expansion of $\\sqrt d$ produces the fundamental solution of [[pell|Pell's equation]] $x^2 - dy^2 = 1$, as the example with $d = 7$ already showed. The approximation theorems are the starting point of [[diophantine-approx|Diophantine approximation]]: Liouville, Thue, Siegel and Roth asked how much better than $1/q^2$ algebraic numbers can be approximated, and continued fractions give one route to irrationality: an infinite expansion with a provable pattern, such as $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, \\dots]$, is itself a proof that the number is irrational. Reduction of indefinite [[quadratic-forms|binary quadratic forms]] is a continued-fraction algorithm in disguise.\n\nIn dynamics, the digits are generated by the Gauss map $x \\mapsto \\{1/x\\}$ on $(0,1)$, the fractional part of $1/x$ (see [[floor-functions]]). Gauss discovered that the measure $\\dfrac{dx}{(1 + x)\\ln 2}$ is invariant under this map. This leads to the Gauss–Kuzmin distribution: for almost every $\\alpha$, the proportion of partial quotients equal to $k$ is $\\log_2\\bigl(1 + \\frac{1}{k(k+2)}\\bigr)$, so about $41.5\\%$ of the digits are $1$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the continued fraction of $\\dfrac{1001}{365}$ and its convergents.\n2. Show that $\\sqrt{n^2 + 1} = [n; \\overline{2n}]$ for every positive integer $n$.\n3. Which number has continued fraction $[1; \\overline{2, 3}]$? Find the quadratic equation it satisfies.\n4. Prove that the denominators satisfy $q_k \\ge F_{k+1}$, the $(k+1)$-st Fibonacci number (with $F_1 = F_2 = 1$)."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers",
+    "where": "Chapter 10"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 7"
+   },
+   {
+    "ref": "Khinchin, Continued Fractions"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "43/19 = [2;3,1,4] with convergents 2, 7/3, 9/4, 43/19 and 43*4-9*19=1",
+    "python": "from sympy import Rational\nfrom sympy.ntheory.continued_fraction import continued_fraction, continued_fraction_convergents\nassert continued_fraction(Rational(43,19))==[2,3,1,4]\nassert list(continued_fraction_convergents([2,3,1,4]))==[2,Rational(7,3),Rational(9,4),Rational(43,19)]\nassert 43*4-9*19==1"
+   },
+   {
+    "claim": "determinant identity p_k q_{k-1} - p_{k-1} q_k = (-1)^(k-1) on random sequences",
+    "python": "import random\nfor _ in range(200):\n    a=[random.randint(-5,5)]+[random.randint(1,9) for _ in range(12)]\n    p=[0,1]; q=[1,0]\n    for k,ak in enumerate(a):\n        p.append(ak*p[-1]+p[-2]); q.append(ak*q[-1]+q[-2])\n        assert p[-1]*q[-2]-p[-2]*q[-1]==(-1)**(k-1)"
+   },
+   {
+    "claim": "pi = [3;7,15,1,292,...], convergents 3, 22/7, 333/106, 355/113, 103993/33102, and |pi-355/113| < 1/(113*33102)",
+    "python": "import mpmath as mp\nmp.mp.dps=50\nx=mp.pi; a=[]\nfor _ in range(5):\n    ai=int(mp.floor(x)); a.append(ai); x=1/(x-ai)\nassert a==[3,7,15,1,292]\np=[0,1]; q=[1,0]\nfor ai in a:\n    p.append(ai*p[-1]+p[-2]); q.append(ai*q[-1]+q[-2])\nassert list(zip(p[2:],q[2:]))==[(3,1),(22,7),(333,106),(355,113),(103993,33102)]\nassert abs(mp.pi-mp.mpf(355)/113) < mp.mpf(1)/(113*33102)\nassert abs(mp.pi-mp.mpf(355)/113) < 5e-7 and abs(mp.pi-3.141593) < 5e-7"
+   },
+   {
+    "claim": "periodic expansions of sqrt2, sqrt3, sqrt7 and the golden ratio",
+    "python": "from sympy import continued_fraction_periodic as cfp\nassert cfp(0,1,2)==[1,[2]] and cfp(0,1,3)==[1,[1,2]] and cfp(0,1,7)==[2,[1,1,1,4]] and cfp(1,2,5)==[[1]]  # purely periodic [1;1,1,...]"
+   },
+   {
+    "claim": "convergents of sqrt7 and p^2-7q^2 pattern",
+    "python": "a=[2,1,1,1,4,1,1,1]\np=[0,1]; q=[1,0]\nfor ai in a:\n    p.append(ai*p[-1]+p[-2]); q.append(ai*q[-1]+q[-2])\nP,Q=p[2:],q[2:]\nassert list(zip(P,Q))==[(2,1),(3,1),(5,2),(8,3),(37,14),(45,17),(82,31),(127,48)]\nassert [x*x-7*y*y for x,y in zip(P,Q)]==[-3,2,-3,1,-3,2,-3,1]"
+   },
+   {
+    "claim": "|sqrt2 - p/q| > 1/(3q^2) for all q<=20000 (nearest p), and q^2|sqrt2-p/q| -> 1/(2 sqrt2)",
+    "python": "from fractions import Fraction\nfrom math import isqrt\nimport mpmath as mp\nmp.mp.dps=40\nfor q in range(1,20001):\n    for p in (isqrt(2*q*q), isqrt(2*q*q)+1):\n        # 3q^2|sqrt2 - p/q| > 1  <=> 3q|p - q sqrt2| > 1\n        assert 3*q*abs(p-q*mp.sqrt(2)) > 1\np,q=1,1\nfor _ in range(30): p,q=p+2*q,p+q\nassert abs(q*q*abs(mp.sqrt(2)-mp.mpf(p)/q)-1/(2*mp.sqrt(2)))<1e-10"
+   },
+   {
+    "claim": "Gauss-Kuzmin probability of digit 1 is log2(4/3) ~ 0.415",
+    "python": "import math\nassert abs(math.log2(1+1/3)-0.415)<0.001"
+   },
+   {
+    "claim": "e = [2;1,2,1,1,4,1,1,6,...]",
+    "python": "import mpmath as mp\nmp.mp.dps=60\nx=mp.e; a=[]\nfor _ in range(9):\n    ai=int(mp.floor(x)); a.append(ai); x=1/(x-ai)\nassert a==[2,1,2,1,1,4,1,1,6]"
+   },
+   {
+    "claim": "best approximation: for 0<q<q_{k+1} and every p, |q a - p| >= |q_k a - p_k| (sqrt2, sqrt7, pi, e, golden ratio, cbrt 2; k<=7)",
+    "python": "import mpmath as mp\nmp.mp.dps=60\nfor al in [mp.sqrt(2),mp.sqrt(7),mp.pi,mp.e,(1+mp.sqrt(5))/2,mp.cbrt(2)]:\n    x=al; a=[]\n    for _ in range(10):\n        ai=int(mp.floor(x)); a.append(ai); x=1/(x-ai)\n    P=[0,1]; Q=[1,0]\n    for ai in a:\n        P.append(ai*P[-1]+P[-2]); Q.append(ai*Q[-1]+Q[-2])\n    P,Q=P[2:],Q[2:]\n    for k in range(8):\n        best=abs(Q[k]*al-P[k])\n        for q in range(1,Q[k+1]):\n            pp=int(mp.nint(q*al))\n            assert abs(q*al-pp)>=best\n"
+   },
+   {
+    "claim": "Legendre: every p/q (q<=3000) with |a - p/q| < 1/(2q^2) is a convergent, for a = sqrt7, pi, e",
+    "python": "import mpmath as mp\nfrom fractions import Fraction\nmp.mp.dps=60\nfor al in [mp.sqrt(7),mp.pi,mp.e]:\n    x=al; a=[]\n    for _ in range(20):\n        ai=int(mp.floor(x)); a.append(ai); x=1/(x-ai)\n    P=[0,1]; Q=[1,0]\n    for ai in a:\n        P.append(ai*P[-1]+P[-2]); Q.append(ai*Q[-1]+Q[-2])\n    conv={Fraction(P[i],Q[i]) for i in range(2,len(P))}\n    for q in range(1,3001):\n        pp=int(mp.nint(q*al))\n        if abs(al-mp.mpf(pp)/q) < mp.mpf(1)/(2*q*q):\n            assert Fraction(pp,q) in conv"
+   },
+   {
+    "claim": "double-precision CF of pi agrees with the true one for 13 terms and differs at the 14th; 355/113 and pi agree to 6 decimals",
+    "python": "import math, mpmath as mp\nmp.mp.dps=60\ndef cf(x,n,fl):\n    a=[]\n    for _ in range(n):\n        ai=math.floor(x) if fl else int(mp.floor(x)); a.append(ai); x=1/(x-ai)\n    return a\nA=cf(math.pi,14,True); B=cf(mp.pi,14,False)\nassert A[:13]==B[:13] and A[13]!=B[13]\nassert round(355/113,6)==round(math.pi,6)==3.141593"
+   },
+   {
+    "claim": "exercise data: sqrt(n^2+1) = [n; 2n, 2n, ...] for n<=50; q_k >= F_{k+1} for random partial quotients",
+    "python": "from sympy import continued_fraction_periodic as cfp\nimport random\nassert all(cfp(0,1,n*n+1)==[n,[2*n]] for n in range(1,51))\nF=[0,1,1]\nfor _ in range(40): F.append(F[-1]+F[-2])\nfor _ in range(100):\n    a=[random.randint(-3,3)]+[random.randint(1,4) for _ in range(30)]\n    q=[1,0]\n    for ai in a: q.append(ai*q[-1]+q[-2])\n    assert all(q[k+2]>=F[k+1] for k in range(len(a)))"
+   }
+  ]
+ },
+ {
+  "id": "pell",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The equation $x^2 - 2y^2 = 1$ has the solutions $(3, 2)$, $(17, 12)$, $(99, 70)$, $(577, 408)$, and they keep coming. The equation $x^2 - 61y^2 = 1$ also has solutions, but the smallest one with $y > 0$ is\n\n$$x = 1766319049, \\qquad y = 226153980,$$\n\nand Fermat set exactly this case, together with $d = 109$, as a challenge to other mathematicians in 1657. Brahmagupta had already solved $x^2 - 92y^2 = 1$ in 628 (smallest solution $1151^2 - 92 \\cdot 120^2 = 1$) and had discovered how to combine two solutions into a third.\n\nFor a positive integer $d$ that is not a perfect square, $x^2 - dy^2 = 1$ is called Pell's equation. This lesson shows that it always has a nontrivial solution, that all solutions are powers of a single fundamental one, and that the [[continued-fractions|continued fraction]] of $\\sqrt d$ finds it."
+   },
+   {
+    "type": "section",
+    "title": "Composing solutions",
+    "body": "Factor the left side over the real numbers: $x^2 - dy^2 = (x + y\\sqrt d)(x - y\\sqrt d)$. For numbers $\\xi = x + y\\sqrt d$ with integers $x, y$ define the conjugate $\\bar\\xi = x - y\\sqrt d$ and the norm\n\n$$N(\\xi) = \\xi \\bar\\xi = x^2 - dy^2.$$\n\nBecause $\\sqrt d$ is irrational, the integers $x, y$ are determined by $\\xi$. Conjugation respects products, $\\overline{\\xi\\eta} = \\bar\\xi\\, \\bar\\eta$, as one checks by expanding, so the norm is multiplicative: $N(\\xi\\eta) = N(\\xi) N(\\eta)$. Written out, this is Brahmagupta's identity\n\n$$(x_1^2 - d y_1^2)(x_2^2 - d y_2^2) = (x_1 x_2 + d y_1 y_2)^2 - d (x_1 y_2 + x_2 y_1)^2.$$\n\nSo if $(x_1, y_1)$ and $(x_2, y_2)$ solve Pell's equation, so does $(x_1x_2 + dy_1y_2,\\ x_1y_2 + x_2y_1)$. In particular, from one solution $\\varepsilon = x_1 + y_1\\sqrt d$ we get infinitely many, the powers $\\varepsilon^k$. For $d = 2$ and $\\varepsilon = 3 + 2\\sqrt 2$:\n\n$$\\varepsilon^2 = 17 + 12\\sqrt 2, \\qquad \\varepsilon^3 = 99 + 70\\sqrt 2, \\qquad \\varepsilon^4 = 577 + 408\\sqrt 2.$$\n\nAlso $\\varepsilon^{-1} = \\bar\\varepsilon = x_1 - y_1\\sqrt d$ when $N(\\varepsilon) = 1$, so negative powers have integer coordinates too."
+   },
+   {
+    "type": "definition",
+    "title": "Fundamental solution",
+    "body": "The fundamental solution of $x^2 - dy^2 = 1$ is the solution $(x_1, y_1)$ in positive integers with $x_1$ as small as possible. Equivalently, $\\varepsilon = x_1 + y_1\\sqrt d$ is the smallest number greater than $1$ of the form $x + y\\sqrt d$ with $x^2 - dy^2 = 1$.\n\nThe two descriptions agree because, among positive solutions, $y = \\sqrt{(x^2 - 1)/d}$ increases with $x$, and so does $x + y\\sqrt d$; and, as the proof below shows, every such number greater than $1$ has $x > 0$ and $y > 0$."
+   },
+   {
+    "type": "theorem",
+    "title": "Structure of the solutions",
+    "body": "Let $d > 0$ be a non-square. Then $x^2 - dy^2 = 1$ has a solution with $y \\ne 0$ (Lagrange, 1768). If $(x_1, y_1)$ is the fundamental solution, then the solutions in positive integers are exactly the pairs $(x_k, y_k)$, $k \\ge 1$, given by\n\n$$x_k + y_k\\sqrt d = (x_1 + y_1 \\sqrt d)^k,$$\n\nand all integer solutions are given by $x + y\\sqrt d = \\pm (x_1 + y_1\\sqrt d)^k$ with $k \\in \\mathbb{Z}$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof that every solution is a power",
+    "body": "We prove existence in the next section; here assume a positive solution exists, so the fundamental one $\\varepsilon = x_1 + y_1\\sqrt d > 1$ exists too.\n\nLet $(x, y)$ be a positive solution and $u = x + y\\sqrt d > 1$. Since $\\varepsilon > 1$, the powers $\\varepsilon^k$ increase to infinity, so there is $k \\ge 0$ with $\\varepsilon^k \\le u < \\varepsilon^{k+1}$. Put $v = u\\, \\varepsilon^{-k}$. Because $\\varepsilon^{-1} = x_1 - y_1\\sqrt d$, the number $v$ has the form $a + b\\sqrt d$ with integers $a, b$, and by multiplicativity $N(v) = N(u) N(\\varepsilon)^{-k} = 1$. Also $1 \\le v < \\varepsilon$.\n\nSuppose $v > 1$. Its conjugate is $\\bar v = 1/v \\in (0, 1)$, so\n\n$$a = \\frac{v + \\bar v}{2} > 0, \\qquad b\\sqrt d = \\frac{v - \\bar v}{2} > 0.$$\n\nThen $(a, b)$ is a positive solution with $a + b\\sqrt d < \\varepsilon$, contradicting the minimality of $\\varepsilon$. Hence $v = 1$ and $u = \\varepsilon^k$ (with $k \\ge 1$, since $u > 1$).\n\nFor an arbitrary integer solution $(x, y)$, the number $\\xi = x + y\\sqrt d$ has $\\xi \\bar\\xi = 1$, and one of the four numbers $\\pm\\xi, \\pm\\bar\\xi$ equals $|x| + |y|\\sqrt d$. That number is $1$ if $y = 0$, and otherwise it is $\\varepsilon^k$ with $k \\ge 1$ by what we just proved. Undoing the sign and conjugation (recall $\\bar\\varepsilon = \\varepsilon^{-1}$) gives $\\xi = \\pm \\varepsilon^k$ for some $k \\in \\mathbb Z$."
+   },
+   {
+    "type": "section",
+    "title": "Why a solution always exists",
+    "body": "The idea is that very good rational approximations $p/q$ to $\\sqrt d$ make $p^2 - dq^2$ small, and a pigeonhole argument turns many small values into the value $1$.\n\nStep 1: many small norms. The convergents $p/q$ of $\\sqrt d$ satisfy $|\\sqrt d - p/q| < 1/q^2$, i.e. $|p - q\\sqrt d| < 1/q$. Then $|p + q\\sqrt d| < 2q\\sqrt d + 1/q$, so\n\n$$|p^2 - dq^2| = |p - q\\sqrt d|\\,|p + q\\sqrt d| < 2\\sqrt d + \\frac{1}{q^2} \\le 2\\sqrt d + 1.$$\n\nThere are infinitely many convergents and only finitely many integers in this range, and $p^2 - dq^2 \\ne 0$ because $\\sqrt d$ is irrational. So some nonzero integer $N$ equals $p^2 - dq^2$ for infinitely many convergents.\n\nStep 2: pigeonhole on residues. Among these infinitely many pairs $(p, q)$, there are only $N^2$ possibilities for $(p \\bmod |N|,\\ q \\bmod |N|)$, so we can pick two different convergents $(p_1, q_1) \\ne (p_2, q_2)$ with $p_1 \\equiv p_2$ and $q_1 \\equiv q_2 \\pmod{|N|}$.\n\nStep 3: divide. Consider\n\n$$\\xi = \\frac{(p_1 + q_1 \\sqrt d)(p_2 - q_2 \\sqrt d)}{N} = \\frac{p_1 p_2 - d q_1 q_2}{N} + \\frac{q_1 p_2 - p_1 q_2}{N}\\sqrt d.$$\n\nModulo $|N|$ we have $p_1p_2 - dq_1q_2 \\equiv p_1^2 - dq_1^2 = N \\equiv 0$ and $q_1 p_2 - p_1 q_2 \\equiv q_1p_1 - p_1q_1 = 0$, so $\\xi = x + y\\sqrt d$ with integers $x, y$. Its norm is $N \\cdot N / N^2 = 1$. Finally $y \\ne 0$, because $q_1p_2 = p_1q_2$ would mean $p_1/q_1 = p_2/q_2$, and distinct convergents are distinct fractions. So $(|x|, |y|)$ is a positive solution."
+   },
+   {
+    "type": "section",
+    "title": "Finding the fundamental solution",
+    "body": "The existence proof is not a practical algorithm, but continued fractions are. As noted in the lesson on continued fractions, for a positive non-square $d$\n\n$$\\sqrt d = [a_0; \\overline{a_1, \\dots, a_{r-1}, 2a_0}]$$\n\nwith period length $r$. Let $p_k/q_k$ be the convergents. The classical result (proved in Chapter 7 of Niven, Zuckerman and Montgomery) is:\n\n1. $p_{r-1}^2 - d\\, q_{r-1}^2 = (-1)^r$, and among the numbers $p_k^2 - dq_k^2$ with $k \\ge 0$ the values $\\pm 1$ occur only at indices $k \\equiv -1 \\pmod r$.\n2. If $r$ is even, the fundamental solution of $x^2 - dy^2 = 1$ is $(p_{r-1}, q_{r-1})$.\n3. If $r$ is odd, $(p_{r-1}, q_{r-1})$ solves $x^2 - dy^2 = -1$ instead, and the fundamental solution of $x^2 - dy^2 = 1$ is $(p_{2r-1}, q_{2r-1})$, which is also obtained by squaring: $(p_{r-1} + q_{r-1}\\sqrt d)^2$.\n\nIn particular the negative Pell equation $x^2 - dy^2 = -1$ is solvable exactly when the period is odd. For $d = 61$ the period is $11$, and this explains the size of the answer: the convergent at index $10$ solves the $-1$ equation, and its square is the solution quoted in the introduction."
+   },
+   {
+    "type": "example",
+    "title": "The case d = 7",
+    "body": "Use the continued fraction $\\sqrt 7 = [2; \\overline{1, 1, 1, 4}]$ to find the fundamental solution of $x^2 - 7y^2 = 1$, then the next two solutions.",
+    "solution": "The period is $r = 4$, which is even, so the answer is the convergent $p_3/q_3$. From the recurrence $p_k = a_k p_{k-1} + p_{k-2}$, $q_k = a_k q_{k-1} + q_{k-2}$:\n\n$$\\frac{p_0}{q_0} = \\frac21, \\quad \\frac{p_1}{q_1} = \\frac31, \\quad \\frac{p_2}{q_2} = \\frac52, \\quad \\frac{p_3}{q_3} = \\frac83.$$\n\nCheck: $8^2 - 7 \\cdot 3^2 = 64 - 63 = 1$. So $\\varepsilon = 8 + 3\\sqrt 7$. Then\n\n$$\\varepsilon^2 = 64 + 63 + 48\\sqrt 7 = 127 + 48\\sqrt 7, \\qquad \\varepsilon^3 = (8 + 3\\sqrt 7)(127 + 48\\sqrt 7) = 2024 + 765\\sqrt 7.$$\n\nCheck: $127^2 - 7\\cdot 48^2 = 16129 - 16128 = 1$ and $2024^2 - 7 \\cdot 765^2 = 4096576 - 4096575 = 1$. In general, the $x$-coordinates satisfy $x_{k+1} = 16x_k - x_{k-1}$, since $\\varepsilon$ and $\\bar\\varepsilon$ are roots of $t^2 - 16t + 1$."
+   },
+   {
+    "type": "example",
+    "title": "An odd period: d = 13",
+    "body": "Given $\\sqrt{13} = [3; \\overline{1, 1, 1, 1, 6}]$, find the smallest positive solutions of $x^2 - 13y^2 = -1$ and of $x^2 - 13y^2 = 1$.",
+    "solution": "The convergents are\n\n$$\\frac31,\\quad \\frac41,\\quad \\frac72,\\quad \\frac{11}{3},\\quad \\frac{18}{5}, \\dots$$\n\nThe period is $r = 5$, which is odd, so $p_4/q_4 = 18/5$ gives $18^2 - 13 \\cdot 5^2 = 324 - 325 = -1$.\n\nSquaring, $(18 + 5\\sqrt{13})^2 = 324 + 325 + 180\\sqrt{13} = 649 + 180\\sqrt{13}$, and indeed $649^2 - 13 \\cdot 180^2 = 421201 - 421200 = 1$. So $(649, 180)$ is the fundamental solution of the Pell equation, and $(18, 5)$ the smallest solution of the negative one. Note that the convergents up to $p_4/q_4$ give norms $-4, 3, -3, 4, -1$; none of the small ones is $+1$, which is why trying small $y$ by hand would take $180$ steps."
+   },
+   {
+    "type": "example",
+    "title": "Square triangular numbers",
+    "body": "For which positive integers $n$ is the triangular number $1 + 2 + \\dots + n = \\dfrac{n(n+1)}{2}$ a perfect square?",
+    "solution": "We need $n(n+1)/2 = m^2$. Multiply by $8$ and add $1$:\n\n$$4n^2 + 4n + 1 = 8m^2 + 1 \\iff (2n+1)^2 - 8m^2 = 1.$$\n\nSo $(X, Y) = (2n + 1, m)$ is a positive solution of $X^2 - 8Y^2 = 1$. Conversely every positive solution has $X$ odd (since $X^2 = 8Y^2 + 1$ is odd), so it gives $n = (X-1)/2 \\ge 1$ and $m = Y$.\n\nThe fundamental solution of $X^2 - 8Y^2 = 1$ is $(3, 1)$, as $Y = 1$ already works. By the structure theorem all positive solutions are $X_k + Y_k\\sqrt 8 = (3 + \\sqrt 8)^k$, i.e.\n\n$$X_{k+1} = 3X_k + 8Y_k, \\qquad Y_{k+1} = X_k + 3Y_k.$$\n\nThis gives $(3, 1), (17, 6), (99, 35), (577, 204), (3363, 1189), \\dots$, so\n\n$$n = 1,\\ 8,\\ 49,\\ 288,\\ 1681,\\ \\dots, \\qquad \\frac{n(n+1)}{2} = 1^2,\\ 6^2,\\ 35^2,\\ 204^2,\\ 1189^2,\\ \\dots$$\n\nand these are all of them. For example $\\tfrac{49 \\cdot 50}{2} = 1225 = 35^2$ and $\\tfrac{288 \\cdot 289}{2} = 41616 = 204^2$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- If $d$ is a perfect square, say $d = c^2$, then $(x - cy)(x + cy) = 1$ forces $y = 0$: only trivial solutions. If $d < 0$ there are finitely many. The theory here needs $d > 0$ non-square.\n- The negative equation $x^2 - dy^2 = -1$ is often unsolvable: for $d = 7$, it would need $x^2 \\equiv -1 \\equiv 6 \\pmod 7$, but the squares modulo $7$ are $0, 1, 2, 4$. Do not assume the $\\pm$ versions behave alike.\n- The fundamental solution can be enormous relative to $d$ ($d = 61$ above). Archimedes' cattle problem leads to $x^2 - 410286423278424\\,y^2 = 1$, whose smallest solution has more than a hundred thousand digits. Searching small $y$ is not a method.\n- For $x^2 - dy^2 = N$ with $|N| > 1$ the solutions fall into finitely many families, each of the form $\\xi\\, \\varepsilon^k$, but there can be several families or none. Multiplying by powers of $\\varepsilon$ does not generate them from a single one in general."
+   },
+   {
+    "type": "connection",
+    "body": "The numbers $x + y\\sqrt d$ with $x^2 - dy^2 = \\pm 1$ are exactly the units (invertible elements) of the ring $\\mathbb{Z}[\\sqrt d]$, and the structure theorem says the units of norm $1$ form the group $\\{\\pm \\varepsilon^k\\}$. The fundamental solution is the fundamental unit of $\\mathbb{Z}[\\sqrt d]$ (its smallest unit greater than $1$), or the square of that unit when it has norm $-1$, as for $d = 13$, where $18 + 5\\sqrt{13}$ has norm $-1$. This is the simplest case of Dirichlet's unit theorem in the theory of [[ideals|rings of integers]]. A related number, the regulator, appears in the [[class-number-formula]] for the real quadratic field $\\mathbb Q(\\sqrt d)$. It is the logarithm of the fundamental unit of the full ring of integers, which can be a root of $\\varepsilon$: for $d = 13$ that unit is $\\tfrac{3 + \\sqrt{13}}{2}$, whose sixth power is $649 + 180\\sqrt{13}$.\n\nPell equations arise whenever a [[diophantine]] problem reduces to a quadratic in two variables: square triangular numbers, Pythagorean triangles with legs differing by $1$, and many olympiad problems. They also appear in [[vieta-jumping]], where the descent moves along the same hyperbolas, and in the study of indefinite [[quadratic-forms|binary quadratic forms]], whose automorphisms are built from Pell solutions. The fact that solutions grow like $\\varepsilon^k$ ties back to [[diophantine-approx|Diophantine approximation]]: $x/y$ approximates $\\sqrt d$ with error about $1/(2\\sqrt d\\, y^2)$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find the fundamental solutions of $x^2 - dy^2 = 1$ for $d = 3, 5, 6, 10$.\n2. Prove that $x^2 - 3y^2 = -1$ has no integer solutions, and determine whether $x^2 - 5y^2 = -1$ does.\n3. Show that there are infinitely many Pythagorean triples whose legs are consecutive integers, and find the first three.\n4. If $(x_1, y_1)$ is the fundamental solution, show that $x_{k+1} = 2x_1 x_k - x_{k-1}$ for $k \\ge 1$, with $x_0 = 1$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 7"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Barbeau, Pell's Equation"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "fundamental solutions: d=61 -> (1766319049, 226153980), d=92 -> (1151,120), d=7 -> (8,3), d=13 -> (649,180), d=8 -> (3,1), d=2 -> (3,2)",
+    "python": "from sympy.solvers.diophantine.diophantine import diop_DN\nassert diop_DN(61,1)==[(1766319049,226153980)] and diop_DN(92,1)==[(1151,120)]\nassert diop_DN(7,1)==[(8,3)] and diop_DN(13,1)==[(649,180)] and diop_DN(8,1)==[(3,1)] and diop_DN(2,1)==[(3,2)]\nassert 1151**2-92*120**2==1"
+   },
+   {
+    "claim": "Brahmagupta's identity",
+    "python": "import sympy as sp\nx1,y1,x2,y2,d=sp.symbols('x1 y1 x2 y2 d')\nassert sp.expand((x1**2-d*y1**2)*(x2**2-d*y2**2)-((x1*x2+d*y1*y2)**2-d*(x1*y2+x2*y1)**2))==0"
+   },
+   {
+    "claim": "powers of 3+2sqrt2: 17+12sqrt2, 99+70sqrt2, 577+408sqrt2",
+    "python": "import sympy as sp\nr=sp.sqrt(2)\nassert [sp.expand((3+2*r)**k) for k in (2,3,4)]==[17+12*r,99+70*r,577+408*r]"
+   },
+   {
+    "claim": "positive solutions of x^2-7y^2=1 with x<10^5 are exactly powers of 8+3sqrt7: (8,3),(127,48),(2024,765)",
+    "python": "from math import isqrt\nS=[(x,isqrt((x*x-1)//7)) for x in range(2,10**5) if (x*x-1)%7==0 and isqrt((x*x-1)//7)**2*7==x*x-1]\nassert S==[(8,3),(127,48),(2024,765),(32257,12192)]\nassert all(S[i+1][0]==16*S[i][0]-(S[i-1][0] if i else 1) for i in range(len(S)-1))"
+   },
+   {
+    "claim": "sqrt13 convergents 3,4,7/2,11/3,18/5 with norms -4,3,-3,4,-1; (18+5sqrt13)^2=649+180sqrt13",
+    "python": "import sympy as sp\na=[3,1,1,1,1]\np=[0,1]; q=[1,0]\nfor ai in a:\n    p.append(ai*p[-1]+p[-2]); q.append(ai*q[-1]+q[-2])\nassert list(zip(p[2:],q[2:]))==[(3,1),(4,1),(7,2),(11,3),(18,5)]\nassert [x*x-13*y*y for x,y in zip(p[2:],q[2:])]==[-4,3,-3,4,-1]\nr=sp.sqrt(13)\nassert sp.expand((18+5*r)**2)==649+180*r"
+   },
+   {
+    "claim": "CF rule: fundamental solution is (p_{r-1},q_{r-1}) for even r, (p_{2r-1},q_{2r-1}) for odd r; -1 solvable iff r odd (d<300)",
+    "python": "from sympy import continued_fraction_periodic as cfp\nfrom sympy.solvers.diophantine.diophantine import diop_DN\nfrom math import isqrt\nfor d in range(2,300):\n    if isqrt(d)**2==d: continue\n    a0,per=cfp(0,1,d); r=len(per)\n    a=[a0]+per*2\n    p=[0,1]; q=[1,0]\n    for ai in a:\n        p.append(ai*p[-1]+p[-2]); q.append(ai*q[-1]+q[-2])\n    P,Q=p[2:],q[2:]\n    assert P[r-1]**2-d*Q[r-1]**2==(-1)**r\n    assert all((abs(P[k]**2-d*Q[k]**2)==1)==((k+1)%r==0) for k in range(2*r))\n    fund=(P[r-1],Q[r-1]) if r%2==0 else (P[2*r-1],Q[2*r-1])\n    assert diop_DN(d,1)==[fund]\n    assert (len(diop_DN(d,-1))>0)==(r%2==1)\nassert len(cfp(0,1,61)[1])==11"
+   },
+   {
+    "claim": "square triangular numbers below 10^7: n = 1, 8, 49, 288, 1681, 9800, 57121, 332928, 1940449",
+    "python": "from math import isqrt\nL=[n for n in range(1,2*10**6) if isqrt(n*(n+1)//2)**2==n*(n+1)//2]\nassert L==[1,8,49,288,1681,9800,57121,332928,1940449]\nX,Y=3,1; seq=[]\nfor _ in range(9):\n    seq.append((X-1)//2); X,Y=3*X+8*Y,X+3*Y\nassert seq==L and 49*50//2==35**2 and 288*289//2==204**2==41616"
+   },
+   {
+    "claim": "x^2-3y^2=-1 has no solutions mod 3; x^2-61y^2=-1 is solvable and its smallest solution squares to the fundamental solution",
+    "python": "assert all((x*x+1)%3 for x in range(3))\nfrom sympy.solvers.diophantine.diophantine import diop_DN\nimport sympy as sp\n(x,y),=diop_DN(61,-1)\nassert x*x-61*y*y==-1\nr=sp.sqrt(61)\nassert sp.expand((x+y*r)**2)==1766319049+226153980*r"
+   },
+   {
+    "claim": "cattle problem: 410286423278424 = 4729494*9314^2; the smallest solution of x^2-410286423278424y^2=1 is the 2329th power of the fundamental solution for 4729494 and has 103273 digits",
+    "python": "from sympy.solvers.diophantine.diophantine import diop_DN\nd,m=4729494,9314\nassert d*m*m==410286423278424\n(x1,y1),=diop_DN(d,1)\nX,Y=x1%m,y1%m; k=1\nwhile Y%m:\n    X,Y=(X*x1+d*Y*y1)%m,(X*y1+Y*x1)%m; k+=1\nassert k==2329\ndef mul(u,v): return (u[0]*v[0]+d*u[1]*v[1],u[0]*v[1]+u[1]*v[0])\nr=(1,0); b=(x1,y1); n=k\nwhile n:\n    if n&1: r=mul(r,b)\n    b=mul(b,b); n>>=1\nx,y=r\nassert y%m==0 and x*x-410286423278424*(y//m)**2==1\nimport sys\nsys.set_int_max_str_digits(0)\nassert len(str(x))==103273"
+   },
+   {
+    "claim": "d=13: (3+sqrt13)/2 has norm -1, its cube is 18+5sqrt13 and its sixth power is 649+180sqrt13; d=61: the convergent with index 10 is (29718,3805), norm -1",
+    "python": "import sympy as sp\nr=sp.sqrt(13); eta=(3+r)/2\nassert sp.expand(eta*(3-r)/2)==-1 and sp.expand(eta**3)==18+5*r and sp.expand(eta**6)==649+180*r\nfrom sympy import continued_fraction_periodic as cfp\na0,per=cfp(0,1,61)\na=[a0]+per\np=[0,1]; q=[1,0]\nfor ai in a[:11]:\n    p.append(ai*p[-1]+p[-2]); q.append(ai*q[-1]+q[-2])\nassert (p[-1],q[-1])==(29718,3805) and 29718**2-61*3805**2==-1"
+   },
+   {
+    "claim": "for non-square d<300 the Pell fundamental solution equals eta (norm 1) or eta^2 (norm -1), eta the smallest unit > 1 of Z[sqrt d]",
+    "python": "from sympy.solvers.diophantine.diophantine import diop_DN\nfrom math import isqrt\nfor d in range(2,300):\n    if isqrt(d)**2==d: continue\n    (x1,y1),=diop_DN(d,1)\n    neg=diop_DN(d,-1)\n    if neg:\n        (a,b),=neg\n        assert (a*a+d*b*b,2*a*b)==(x1,y1)\n        assert (a,b)<(x1,y1)"
+   },
+   {
+    "claim": "exercise data: fundamental solutions d=3,5,6,10 are (2,1),(9,4),(5,2),(19,6); x^2-5y^2=-1 has (2,1); squares mod 7 are {0,1,2,4}; consecutive-leg triples (3,4,5),(20,21,29),(119,120,169); x_{k+1}=2x_1x_k-x_{k-1}",
+    "python": "from sympy.solvers.diophantine.diophantine import diop_DN\nassert [diop_DN(d,1)[0] for d in (3,5,6,10)]==[(2,1),(9,4),(5,2),(19,6)]\nassert 2**2-5*1==-1 and {x*x%7 for x in range(7)}=={0,1,2,4}\nT=[(a,a+1,c) for a in range(1,200) for c in range(1,300) if a*a+(a+1)**2==c*c]\nassert T==[(3,4,5),(20,21,29),(119,120,169)]\nx1,y1=8,3; xs=[1,8]; X,Y=8,3\nfor _ in range(6):\n    X,Y=X*x1+7*Y*y1,X*y1+Y*x1; xs.append(X)\nassert all(xs[k+1]==2*x1*xs[k]-xs[k-1] for k in range(1,len(xs)-1))"
+   }
+  ]
+ },
+ {
+  "id": "quadratic-forms",
+  "minutes": 24,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Fermat knew that the odd primes of the form $x^2 + y^2$ are those $\\equiv 1 \\pmod 4$, and that the primes of the form $x^2 + 2y^2$ are $2$ and those $\\equiv 1, 3 \\pmod 8$. For $x^2 + 5y^2$ something new happens. The primes it represents are $5$ and those $\\equiv 1, 9 \\pmod{20}$, while the primes $\\equiv 3, 7 \\pmod{20}$, such as $3$ and $7$, are missed, even though for them $-5$ is still a square modulo $p$. They are caught instead by a second form, $2x^2 + 2xy + 3y^2$: indeed, writing $f(x,y) = 2x^2 + 2xy + 3y^2$, we have $3 = f(0, 1)$ and $7 = f(1, 1)$.\n\nLagrange and Gauss explained this by studying all forms $ax^2 + bxy + cy^2$ at once. Forms related by an invertible integer change of variables represent the same numbers, so the real objects are equivalence classes. For each discriminant there are finitely many classes, each with one reduced representative, and their number $h(D)$ counts the essentially different forms; $h(-20) = 2$."
+   },
+   {
+    "type": "definition",
+    "title": "Binary quadratic form",
+    "body": "A binary quadratic form is $f(x, y) = ax^2 + bxy + cy^2$ with integers $a, b, c$, written $(a, b, c)$. Its discriminant is $D = b^2 - 4ac$. The form is primitive if $\\gcd(a, b, c) = 1$, and positive definite if $D < 0$ and $a > 0$; then $f(x, y) > 0$ for all $(x, y) \\ne (0, 0)$, since $4a f(x,y) = (2ax + by)^2 - D y^2$.\n\nNote that $D \\equiv b^2 \\pmod 4$, so every discriminant is $\\equiv 0$ or $1 \\pmod 4$."
+   },
+   {
+    "type": "section",
+    "title": "Equivalence of forms",
+    "body": "If $\\begin{pmatrix} \\alpha & \\beta \\\\ \\gamma & \\delta \\end{pmatrix} \\in \\mathrm{SL}_2(\\mathbb Z)$, that is, the entries are integers and $\\alpha\\delta - \\beta\\gamma = 1$, then\n\n$$g(x, y) = f(\\alpha x + \\beta y,\\ \\gamma x + \\delta y)$$\n\nis again a binary quadratic form, and $f$ can be recovered from $g$ by the inverse matrix, which also has integer entries. We call $f$ and $g$ properly equivalent. Equivalent forms represent exactly the same integers, because the substitution is a bijection of $\\mathbb Z^2$.\n\nThey also have the same discriminant. Write $f(v) = v^{\\mathsf T} M v$ with $M = \\begin{pmatrix} a & b/2 \\\\ b/2 & c\\end{pmatrix}$, so $D = -4\\det M$. The substitution $v = A w$ replaces $M$ by $A^{\\mathsf T} M A$, whose determinant is $\\det(A)^2 \\det M = \\det M$.\n\nTwo substitutions generate everything we need:\n\n- $S: (x, y) \\mapsto (-y, x)$ sends $(a, b, c)$ to $(c, -b, a)$.\n- $T^k: (x, y) \\mapsto (x + ky, y)$ sends $(a, b, c)$ to $(a,\\ b + 2ak,\\ ak^2 + bk + c)$.\n\nFor example $T^1$ turns $x^2 + y^2$ into $(x+y)^2 + y^2 = x^2 + 2xy + 2y^2$. The middle coefficient can be shifted by any multiple of $2a$; this is the key to reduction."
+   },
+   {
+    "type": "section",
+    "title": "Which numbers does some form represent?",
+    "body": "Say $f$ properly represents $n$ if $n = f(x, y)$ with $\\gcd(x, y) = 1$. A prime represented by a form is automatically properly represented, since $g = \\gcd(x,y)$ gives $g^2 \\mid f(x,y)$.\n\nLemma. The integer $n \\ne 0$ is properly represented by some form of discriminant $D$ if and only if $D \\equiv b^2 \\pmod{4n}$ for some integer $b$.\n\nProof. If $f(p, q) = n$ with $\\gcd(p, q) = 1$, choose integers $r, s$ with $ps - qr = 1$ (by [[bezout|Bézout's identity]]). The equivalent form $g(x, y) = f(px + ry,\\ qx + sy)$ has $g(1, 0) = f(p, q) = n$, so $g = (n, b, c)$ for some $b, c$, and $D = b^2 - 4nc \\equiv b^2 \\pmod{4n}$. Conversely, if $D = b^2 - 4nc$ then $(n, b, c)$ is a form of discriminant $D$ with $f(1, 0) = n$.\n\nNow take $n = p$ an odd prime not dividing $D$. Since $D \\equiv 0$ or $1 \\pmod 4$, the condition $D \\equiv b^2 \\pmod 4$ just says $b \\equiv D \\pmod 2$, and by the [[crt]] it can be combined with any condition modulo $p$. So: an odd prime $p \\nmid D$ is represented by some primitive form of discriminant $D$ if and only if the Legendre symbol $\\bigl(\\frac{D}{p}\\bigr) = 1$. (The form $(p, b, c)$ is primitive because a common factor would have to be $p$, and $p \\mid b, c$ would give $p \\mid D$.)\n\nThis is where [[quadratic-residues|quadratic reciprocity]] enters: it turns the condition $\\bigl(\\frac Dp\\bigr) = 1$ into congruence conditions on $p$ modulo $|D|$. The remaining question, which form of discriminant $D$ represents $p$, is easy when there is only one class."
+   },
+   {
+    "type": "definition",
+    "title": "Reduced form",
+    "body": "A primitive positive definite form $(a, b, c)$ is reduced if\n\n$$|b| \\le a \\le c,\\qquad b \\ge 0 \\text{ if } |b| = a \\text{ or } a = c.$$\n\nThe boundary conditions break the ties between $(a, b, c)$ and the equivalent forms $(a, -b, c)$ that occur when $|b| = a$ or $a = c$."
+   },
+   {
+    "type": "theorem",
+    "title": "Reduction theorem",
+    "body": "Every primitive positive definite form is properly equivalent to exactly one reduced form. A reduced form of discriminant $D$ satisfies $a \\le \\sqrt{|D|/3}$, so there are finitely many, and the class number $h(D)$, the number of proper equivalence classes of primitive positive definite forms of discriminant $D$, is finite."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of the reduction theorem",
+    "body": "Existence. Start with any positive definite $(a, b, c)$ and repeat the following.\n\n1. Apply $T^k$ with $k$ chosen so that $b + 2ak$ lies in the interval $(-a, a]$. This is possible because the interval has length $2a$. It does not change $a$.\n2. If now $a > c$, apply $S$ to get $(c, -b, a)$, whose first coefficient is strictly smaller, and go back to step 1.\n\nEach pass through step 2 strictly decreases the positive integer $a$, so the process stops, at a form with $-a < b \\le a \\le c$. If $a < c$, or $a = c$ and $b \\ge 0$, it is reduced. In the remaining case $a = c$ and $b < 0$, apply $S$ once more: $(a, b, a) \\mapsto (a, -b, a)$ is reduced. Primitivity is preserved by equivalence, since the coefficients of each form are integer combinations of those of the other.\n\nFiniteness. If $(a,b,c)$ is reduced, then\n\n$$|D| = 4ac - b^2 \\ge 4a^2 - a^2 = 3a^2,$$\n\nso $a \\le \\sqrt{|D|/3}$. Then $|b| \\le a$ is bounded, and $c = (b^2 - D)/(4a)$ is determined by $a$ and $b$.\n\nUniqueness. First a lower bound for a reduced form $f = (a, b, c)$. If $|x| \\ge |y|$, then $|bxy| \\le |b|x^2$, so\n\n$$f(x, y) \\ge (a - |b|)x^2 + cy^2 \\ge (a - |b| + c)\\,y^2,$$\n\nusing $a - |b| \\ge 0$. Symmetrically, $f(x, y) \\ge (a - |b| + c)\\,x^2$ when $|y| \\ge |x|$. Since $a - |b| + c \\ge c$, we get $f(x, y) \\ge c$ whenever $xy \\ne 0$, while $f(x, 0) = ax^2$ and $f(0, y) = cy^2$. Hence $a$ is the smallest nonzero value of $f$, and $f(x, y) = a$ with $y \\ne 0$ is possible only if $a = c$.\n\nNow let $f = (a, b, c)$ and $g = (a', b', c')$ be reduced, with $g(x, y) = f(\\alpha x + \\beta y, \\gamma x + \\delta y)$ for a matrix in $\\mathrm{SL}_2(\\mathbb Z)$. They take the same values, so $a' = a$, and $f(\\alpha, \\gamma) = g(1, 0) = a$.\n\nIf $\\gamma = 0$, then $\\alpha\\delta = 1$, so $\\alpha = \\delta = \\pm 1$. Since $f(-x, -y) = f(x, y)$, the substitution acts as $T^k$ with $k = \\alpha\\beta$, so $b' = b + 2ak$. Both $b$ and $b'$ lie in $[-a, a]$, so either $b' = b$ or $\\{b, b'\\} = \\{-a, a\\}$, and the second option is excluded because a reduced form with $|b| = a$ has $b = a$. So $b' = b$, and $c' = c$ because the discriminants agree.\n\nIf $\\gamma \\ne 0$, then $f(\\alpha, \\gamma) = a$ forces $a = c$ by the first paragraph. The inverse matrix $\\begin{pmatrix} \\delta & -\\beta \\\\ -\\gamma & \\alpha \\end{pmatrix}$ sends $g$ back to $f$ and also has a nonzero lower-left entry, so the same reasoning applied to $g$ gives $a' = c'$. Then $b^2 = D + 4a^2 = b'^2$, and the boundary condition for $a = c$ makes $b, b' \\ge 0$, so $b' = b$ and $c' = c$. In both cases $g = f$."
+   },
+   {
+    "type": "example",
+    "title": "Reducing a form",
+    "body": "Reduce the form $10x^2 + 34xy + 29y^2$.",
+    "solution": "The discriminant is $34^2 - 4 \\cdot 10 \\cdot 29 = 1156 - 1160 = -4$, and $a = 10 > 0$, so the form is positive definite.\n\nStep 1: shift $b = 34$ into $(-10, 10]$ using $T^k$ with $k = -2$: the new middle coefficient is $34 - 40 = -6$ and the new last coefficient is $10 \\cdot 4 + 34 \\cdot (-2) + 29 = 1$. We now have $(10, -6, 1)$.\n\nStep 2: $a = 10 > c = 1$, so apply $S$: $(1, 6, 10)$.\n\nStep 1 again: shift $6$ into $(-1, 1]$ with $k = -3$: middle coefficient $6 - 6 = 0$, last coefficient $9 - 18 + 10 = 1$. We reach $(1, 0, 1)$, which is reduced.\n\nSo $10x^2 + 34xy + 29y^2$ is equivalent to $x^2 + y^2$, and represents exactly the sums of two squares. Since $(1, 0, 1)$ is the only reduced form of discriminant $-4$, we have $h(-4) = 1$, and every positive definite form of discriminant $-4$ behaves like this one."
+   },
+   {
+    "type": "example",
+    "title": "Class numbers of -20 and -23",
+    "body": "List the reduced forms of discriminants $-20$ and $-23$.",
+    "solution": "For $D = -20$ we need $a \\le \\sqrt{20/3} < 2.6$, so $a \\in \\{1, 2\\}$, and $b$ even (since $b \\equiv D \\pmod 2$).\n\n- $a = 1$: $|b| \\le 1$ and even, so $b = 0$ and $c = 20/4 = 5$. Form $(1, 0, 5)$.\n- $a = 2$: $b \\in \\{0, 2\\}$ ($b = -2$ is excluded because $|b| = a$ requires $b \\ge 0$). For $b = 0$, $c = 20/8$ is not an integer. For $b = 2$, $c = 24/8 = 3$. Form $(2, 2, 3)$.\n\nSo $h(-20) = 2$, with classes represented by $x^2 + 5y^2$ and $2x^2 + 2xy + 3y^2$.\n\nFor $D = -23$ we need $a \\le \\sqrt{23/3} < 2.8$, and $b$ odd.\n\n- $a = 1$: $b = 1$ (as $b = -1$ has $|b| = a$), $c = 24/4 = 6$. Form $(1, 1, 6)$.\n- $a = 2$: $b = \\pm 1$, $c = 24/8 = 3$. Forms $(2, 1, 3)$ and $(2, -1, 3)$, both reduced because $|b| < a < c$.\n\nSo $h(-23) = 3$. The forms $(2, 1, 3)$ and $(2, -1, 3)$ are related by $(x, y) \\mapsto (x, -y)$, which has determinant $-1$, but they are not properly equivalent. This is why proper equivalence is the right notion: with it, the classes form a group, and here it is cyclic of order $3$."
+   },
+   {
+    "type": "example",
+    "title": "Primes of the form x^2 + 2y^2",
+    "body": "Prove that a prime $p$ can be written as $x^2 + 2y^2$ if and only if $p = 2$ or $p \\equiv 1, 3 \\pmod 8$.",
+    "solution": "The form $x^2 + 2y^2$ has discriminant $-8$. For reduced forms of discriminant $-8$ we need $a \\le \\sqrt{8/3} < 2$, so $a = 1$, $b = 0$ (even, $|b| \\le 1$), $c = 2$. Hence $h(-8) = 1$: every primitive positive definite form of discriminant $-8$ is equivalent to $x^2 + 2y^2$, and they all represent the same numbers.\n\n$p = 2 = 0^2 + 2 \\cdot 1^2$. For odd $p$, note $p \\nmid 8$. By the lemma, $p$ is represented by some form of discriminant $-8$, hence by $x^2 + 2y^2$, if and only if $\\bigl(\\frac{-8}{p}\\bigr) = 1$. Since $-8 = -2 \\cdot 2^2$, this is $\\bigl(\\frac{-2}{p}\\bigr) = \\bigl(\\frac{-1}{p}\\bigr)\\bigl(\\frac{2}{p}\\bigr) = 1$. By the supplementary laws, $\\bigl(\\frac{-1}{p}\\bigr) = 1$ iff $p \\equiv 1 \\pmod 4$ and $\\bigl(\\frac{2}{p}\\bigr) = 1$ iff $p \\equiv \\pm 1 \\pmod 8$. Checking the four odd classes modulo $8$:\n\n$$p \\equiv 1: (+)(+) = +, \\quad p \\equiv 3: (-)(-) = +, \\quad p \\equiv 5: (+)(-) = -, \\quad p \\equiv 7: (-)(+) = -.$$\n\nSo $p = x^2 + 2y^2$ exactly when $p \\equiv 1, 3 \\pmod 8$. For example $3 = 1 + 2$, $11 = 9 + 2$, $17 = 9 + 8$, $19 = 1 + 18$.\n\nThe same argument with $h(-4) = 1$ reproves Fermat's theorem on [[sums-of-squares]]. For $D = -20$ it only shows that primes $p \\ne 2, 5$ with $\\bigl(\\frac{-20}{p}\\bigr) = 1$, namely $p \\equiv 1, 3, 7, 9 \\pmod{20}$, are represented by one of the two reduced forms; separating $1, 9$ from $3, 7$ needs genus theory."
+   },
+   {
+    "type": "section",
+    "title": "Composition and the class group",
+    "body": "For $D = -20$, the non-principal form $f = 2x^2 + 2xy + 3y^2$ satisfies $2f(x,y) = (2x + y)^2 + 5y^2$, and expanding shows\n\n$$f(x, y)\\, f(u, v) = X^2 + 5Y^2, \\qquad X = 2xu + xv + yu - 2yv,\\quad Y = xv + yu + yv.$$\n\nSo a product of two values of $f$ is a value of the principal form $x^2 + 5y^2$ (for instance $2 \\cdot 3 = 6 = 1^2 + 5 \\cdot 1^2$): the class of $f$ behaves like an element of order $2$.\n\nGauss (1801) defined such a composition for every discriminant. For $D < 0$ it makes the $h(D)$ proper classes of primitive positive definite forms into a finite abelian group, the form class group. Its identity is the class of the principal form $x^2 - \\frac D4 y^2$ (if $D \\equiv 0 \\pmod 4$) or $x^2 + xy + \\frac{1 - D}{4} y^2$ (if $D \\equiv 1 \\pmod 4$). This was the first class group, decades before groups were defined.\n\nThe negative discriminants with $h(D) = 1$ are exactly the thirteen\n\n$$D = -3, -4, -7, -8, -11, -12, -16, -19, -27, -28, -43, -67, -163.$$\n\nProving that the list is complete was a problem going back to Gauss. It was solved by Heegner (1952) and, independently, by Baker and Stark (1966–1967)."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Proper versus improper equivalence. Matrices of determinant $-1$ also preserve the set of represented numbers, but using them merges $(2, 1, 3)$ with $(2, -1, 3)$ and destroys the group structure. The class number $h(D)$ counts $\\mathrm{SL}_2(\\mathbb Z)$ classes.\n- Forgetting the boundary conditions in the definition of reduced form, which leads to counting $(a, -a, c)$ and $(a, a, c)$ (or $(a, b, a)$ and $(a, -b, a)$) twice; these pairs are properly equivalent.\n- Being represented by some form of discriminant $D$ is not the same as being represented by a given form, unless $h(D) = 1$. The congruence $\\bigl(\\frac{-5}{3}\\bigr) = 1$ does not make $3$ a value of $x^2 + 5y^2$.\n- Counting non-primitive forms: $(2, 0, 2)$ has discriminant $-16$ but is twice $(1, 0, 1)$; it is not counted in $h(-16)$."
+   },
+   {
+    "type": "connection",
+    "body": "Geometrically, a positive definite form measures squared lengths in a lattice: $f(x, y) = a\\,|x + y\\tau|^2$ with $\\tau = \\frac{b + \\sqrt D}{2a}$ in the upper half plane. Changing the basis by $\\mathrm{SL}_2(\\mathbb Z)$ changes the form. The reduced form corresponds to a shortest basis, with $\\tau$ in the standard fundamental domain $|\\mathrm{Re}\\,\\tau| \\le \\tfrac12$, $|\\tau| \\ge 1$.\n\nAlgebraically, for fundamental $D < 0$ the form class group is isomorphic to the [[class-group|ideal class group]] of $\\mathbb{Q}(\\sqrt D)$, the form $(a, b, c)$ matching the ideal with basis $a, \\frac{-b + \\sqrt D}{2}$ (see [[ideals]]). Class number one for $D = -4$ and $D = -3$ is unique factorisation in the [[gaussian-integers]] and [[eisenstein-integers]]. Dirichlet's [[class-number-formula]] computes $h(D)$ from $L(1, \\chi_D)$, where $\\chi_D(n)$ is the Kronecker symbol $\\bigl(\\frac{D}{n}\\bigr)$. For fundamental $D < -4$ it becomes $h(D) = -\\frac{1}{|D|}\\sum_{a=1}^{|D|} \\chi_D(a)\\, a$. Indefinite forms ($D > 0$) have their own reduction theory, with cycles of reduced forms that are computed by the [[continued-fractions|continued fraction]] of a quadratic irrational, and their automorphisms come from [[pell|Pell's equation]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Reduce the form $(7, 24, 21)$ and identify the reduced form you reach.\n2. Find all reduced forms of discriminant $-56$ and show that $h(-56) = 4$.\n3. Show that $h(-3) = 1$ and deduce that an odd prime $p \\ne 3$ is of the form $x^2 + xy + y^2$ if and only if $p \\equiv 1 \\pmod 3$.\n4. Verify the composition formula for $2x^2 + 2xy + 3y^2$ above by expanding both sides."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Cox, Primes of the Form x² + ny²",
+    "where": "Chapter 1, §2–§3"
+   },
+   {
+    "ref": "Buell, Binary Quadratic Forms: Classical Theory and Modern Computations"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 3"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "primes p<3000, p != 2,5: p = x^2+5y^2 iff p ≡ 1,9 mod 20; p = 2x^2+2xy+3y^2 iff p ≡ 3,7 mod 20",
+    "python": "from sympy import primerange\ndef vals(a,b,c,N):\n    S=set(); R=int((N)**0.5)+2\n    for x in range(-R,R+1):\n        for y in range(-R,R+1):\n            v=a*x*x+b*x*y+c*y*y\n            if v<=N: S.add(v)\n    return S\nA=vals(1,0,5,3000); B=vals(2,2,3,3000)\nfor p in primerange(3,3000):\n    if p==5: continue\n    assert (p in A)==(p%20 in (1,9)) and (p in B)==(p%20 in (3,7))\nassert 3==2*0**2+2*0*1+3*1**2 and 7==2+2+3 and 5 in A"
+   },
+   {
+    "claim": "S and T^k act as stated on (a,b,c); discriminant is invariant",
+    "python": "import sympy as sp\nx,y,a,b,c,k=sp.symbols('x y a b c k')\nf=lambda X,Y: a*X**2+b*X*Y+c*Y**2\nassert sp.expand(f(-y,x)-(c*x**2-b*x*y+a*y**2))==0\nassert sp.expand(f(x+k*y,y)-(a*x**2+(b+2*a*k)*x*y+(a*k**2+b*k+c)*y**2))==0\nassert sp.expand((b+2*a*k)**2-4*a*(a*k**2+b*k+c)-(b*b-4*a*c))==0\nassert sp.expand((x+y)**2+y**2-(x**2+2*x*y+2*y**2))==0"
+   },
+   {
+    "claim": "reduction of (10,34,29): (10,-6,1) -> (1,6,10) -> (1,0,1), D=-4",
+    "python": "def T(f,k):\n    a,b,c=f; return (a,b+2*a*k,a*k*k+b*k+c)\nS=lambda f:(f[2],-f[1],f[0])\nf=(10,34,29)\nassert 34**2-4*10*29==-4\nf1=T(f,-2); assert f1==(10,-6,1)\nf2=S(f1); assert f2==(1,6,10)\nf3=T(f2,-3); assert f3==(1,0,1)"
+   },
+   {
+    "claim": "reduced forms: D=-20 -> (1,0,5),(2,2,3); D=-23 -> (1,1,6),(2,1,3),(2,-1,3); D=-8 -> (1,0,2); D=-4 -> (1,0,1); h(-56)=4",
+    "python": "from math import gcd, isqrt\ndef red(D):\n    out=[]\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            out.append((a,b,c))\n    return sorted(out)\nassert red(-20)==[(1,0,5),(2,2,3)]\nassert red(-23)==sorted([(1,1,6),(2,1,3),(2,-1,3)])\nassert red(-8)==[(1,0,2)] and red(-4)==[(1,0,1)] and len(red(-56))==4\nassert all(3*f[0]**2<=-D for D in range(-3,-2000,-1) if D%4 in (0,1) for f in red(D))"
+   },
+   {
+    "claim": "number of reduced forms equals the analytic class number -(1/|D|) sum chi_D(a) a for fundamental D in (-1500,-4)",
+    "python": "from math import gcd, isqrt\nfrom sympy import jacobi_symbol, factorint\ndef red(D):\n    out=0\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            out+=1\n    return out\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    return r*(jacobi_symbol(D%n,n) if n>1 else 1)\ndef sqfree(m): return all(e==1 for e in factorint(abs(m)).values())\ndef fund(D):\n    if D%4==1: return sqfree(D)\n    return D%4==0 and (D//4)%4 in (2,3) and sqfree(D//4)\nfor D in range(-5,-1500,-1):\n    if fund(D):\n        s=sum(kron(D,a)*a for a in range(1,-D))\n        assert s%(-D)==0 and red(D)==(-s)//(-D)"
+   },
+   {
+    "claim": "class number one discriminants with |D|<3000 are exactly the 13 listed",
+    "python": "from math import gcd, isqrt\ndef h(D):\n    n=0\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            n+=1\n    return n\nassert [D for D in range(-3,-3000,-1) if D%4 in (0,1) and h(D)==1]==[-3,-4,-7,-8,-11,-12,-16,-19,-27,-28,-43,-67,-163]"
+   },
+   {
+    "claim": "composition identity f(x,y) f(u,v) = X^2+5Y^2 for f=(2,2,3); 2f=(2x+y)^2+5y^2",
+    "python": "import sympy as sp\nx,y,u,v=sp.symbols('x y u v')\nf=lambda X,Y:2*X**2+2*X*Y+3*Y**2\nX=2*x*u+x*v+y*u-2*y*v; Y=x*v+y*u+y*v\nassert sp.expand(f(x,y)*f(u,v)-(X**2+5*Y**2))==0\nassert sp.expand(2*f(x,y)-((2*x+y)**2+5*y**2))==0"
+   },
+   {
+    "claim": "f(x,y) = a|x+y tau|^2 with tau=(b+sqrt D)/(2a); (-20/p)=1 iff p ≡ 1,3,7,9 mod 20",
+    "python": "import sympy as sp\nfrom sympy import primerange, legendre_symbol\nx,y=sp.symbols('x y', real=True)\nfor (a,b,c) in [(2,2,3),(1,1,6),(3,-2,5)]:\n    D=b*b-4*a*c; tau=(b+sp.sqrt(D))/(2*a)\n    z=x+y*tau\n    assert sp.simplify(sp.expand(a*z*sp.conjugate(z))-(a*x**2+b*x*y+c*y**2))==0\nassert all((legendre_symbol(-20%p,p)==1)==(p%20 in (1,3,7,9)) for p in primerange(7,3000))"
+   },
+   {
+    "claim": "primes p<5000: p = x^2+2y^2 iff p=2 or p ≡ 1,3 mod 8; 3,11,17,19 examples",
+    "python": "from sympy import primerange\nfrom math import isqrt\nrep=lambda p: any(isqrt(p-2*y*y)**2==p-2*y*y for y in range(isqrt(p//2)+1))\nassert all(rep(p)==(p==2 or p%8 in (1,3)) for p in primerange(2,5000))\nassert 3==1+2 and 11==9+2 and 17==9+8 and 19==1+18"
+   },
+   {
+    "claim": "uniqueness lemma: f(x,y) >= (a-|b|+c) min(x^2,y^2) for all reduced forms with |D|<400 and |x|,|y|<=12",
+    "python": "from math import gcd, isqrt\ndef red(D):\n    out=[]\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            out.append((a,b,c))\n    return out\nfor D in range(-3,-400,-1):\n    if D%4 not in (0,1): continue\n    for a,b,c in red(D):\n        for x in range(-12,13):\n            for y in range(-12,13):\n                assert a*x*x+b*x*y+c*y*y >= (a-abs(b)+c)*min(x*x,y*y)"
+   },
+   {
+    "claim": "uniqueness in practice: random SL2(Z) images of every reduced form with |D|<300 reduce back to that same form",
+    "python": "import random\nfrom math import gcd, isqrt\ndef red(D):\n    out=[]\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            out.append((a,b,c))\n    return out\ndef T(f,k):\n    a,b,c=f; return (a,b+2*a*k,a*k*k+b*k+c)\nS=lambda f:(f[2],-f[1],f[0])\ndef reduce(f):\n    while True:\n        a,b,c=f\n        f=T(f,(a-b)//(2*a)); a,b,c=f\n        if a>c: f=S(f); continue\n        if a==c and b<0: f=S(f)\n        return f\nrandom.seed(1)\nfor D in range(-3,-300,-1):\n    if D%4 not in (0,1): continue\n    for g in red(D):\n        for _ in range(20):\n            h=g\n            for _ in range(6):\n                h=T(h,random.randint(-4,4))\n                if random.random()<0.5: h=S(h)\n            assert reduce(h)==g"
+   },
+   {
+    "claim": "exercise data: (7,24,21) has D=-12 and reduces to (1,0,3); reduced forms of D=-56 are (1,0,14),(2,0,7),(3,-2,5),(3,2,5); h(-3)=1 and odd primes p != 3 are x^2+xy+y^2 iff p = 1 mod 3",
+    "python": "from math import gcd, isqrt\nfrom sympy import primerange\ndef T(f,k):\n    a,b,c=f; return (a,b+2*a*k,a*k*k+b*k+c)\nS=lambda f:(f[2],-f[1],f[0])\ndef reduce(f):\n    while True:\n        a,b,c=f\n        f=T(f,(a-b)//(2*a)); a,b,c=f\n        if a>c: f=S(f); continue\n        if a==c and b<0: f=S(f)\n        return f\nassert 24**2-4*7*21==-12 and reduce((7,24,21))==(1,0,3)\ndef red(D):\n    out=[]\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (-b==a or a==c): continue\n            out.append((a,b,c))\n    return sorted(out)\nassert red(-56)==[(1,0,14),(2,0,7),(3,-2,5),(3,2,5)] and red(-3)==[(1,1,1)]\nV={x*x+x*y+y*y for x in range(-60,61) for y in range(-60,61)}\nassert all((p in V)==(p%3==1) for p in primerange(5,3000))"
+   },
+   {
+    "claim": "lemma: n properly represented by a form of discriminant D iff D = b^2 mod 4n (D in {-20,-23,-56}, 1<=n<=60)",
+    "python": "from math import gcd, isqrt\ndef red(D):\n    out=[]\n    for a in range(1,isqrt(-D//3)+2):\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a): continue\n            c=(b*b-D)//(4*a)\n            if c<a: continue\n            if b<0 and (-b==a or a==c): continue\n            out.append((a,b,c))\n    return out\nfor D in (-20,-23,-56):\n    P=set()\n    for a,b,c in red(D):\n        for x in range(-40,41):\n            for y in range(-40,41):\n                if gcd(x,y)==1: P.add(a*x*x+b*x*y+c*y*y)\n    for n in range(1,61):\n        assert (n in P)==any((b*b-D)%(4*n)==0 for b in range(2*n))"
+   },
+   {
+    "claim": "the short formula -(1/|D|) sum chi_D(a) a fails for the non-fundamental D=-12 (gives 2/3, while h(-12)=1)",
+    "python": "from fractions import Fraction\nfrom sympy import jacobi_symbol\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*=1 if D%8 in (1,7) else -1\n    return r*(jacobi_symbol(D%n,n) if n>1 else 1)\nassert Fraction(-sum(kron(-12,a)*a for a in range(1,13)),12)==Fraction(2,3)"
+   }
+  ]
+ },
+ {
+  "id": "diophantine",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A Diophantine equation is an equation in which only integer (sometimes only positive integer) solutions count. Over the real numbers, $x^2 - y^2 = 6$ is a hyperbola with infinitely many points; over the integers it has no points at all. Over the reals, $3^a = 2^b + 1$ has a solution for every $b$; over the integers only $(a, b) = (1, 1)$ and $(2, 3)$ survive. The difference comes entirely from arithmetic: divisibility, parity, remainders.\n\nThere is no general algorithm for such equations (this is the negative solution of Hilbert's tenth problem, completed by Matiyasevich in 1970 on the basis of work by Davis, Putnam and Robinson), but a short list of moves solves a remarkable share of them, including most of those met in olympiads. This lesson covers the three most important, in the order they appear below: factor the equation, reduce modulo a well-chosen number to rule out cases, and bound one variable in terms of another. A fourth, infinite descent, appears at the end."
+   },
+   {
+    "type": "section",
+    "title": "Move 1: factor",
+    "body": "If an equation can be written as a product of integer expressions equal to a fixed integer $n$, then each factor must be a divisor of $n$, and there are only finitely many cases to check. The standard example is\n\n$$x^2 - y^2 = n \\iff (x-y)(x+y) = n.$$\n\nFor $n = 45$ in positive integers: $x - y$ and $x + y$ are positive divisors of $45$ with product $45$ and $x - y < x + y$, so $(x - y, x + y) \\in \\{(1, 45), (3, 15), (5, 9)\\}$, giving $(x, y) = (23, 22), (9, 6), (7, 2)$. The two factors always have the same parity, since they differ by $2y$; this is what rules out some $n$ completely.\n\nOften the factorisation is not visible and must be created. For an equation of the form $xy + ax + by = c$, adding $ab$ to both sides gives\n\n$$(x + b)(y + a) = c + ab.$$\n\nThe move uses only [[divisibility]] and the [[fta|fundamental theorem of arithmetic]] (to list divisors), but it is the first thing to try whenever the equation is quadratic or has a product of variables."
+   },
+   {
+    "type": "theorem",
+    "title": "Differences of two squares",
+    "body": "An integer $n$ can be written as $x^2 - y^2$ with integers $x, y$ if and only if $n \\not\\equiv 2 \\pmod 4$."
+   },
+   {
+    "type": "proof",
+    "body": "Every square is $0$ or $1$ modulo $4$: $(2k)^2 = 4k^2$ and $(2k+1)^2 = 4(k^2 + k) + 1$. So $x^2 - y^2$ is congruent to $0 - 0$, $1 - 1$, $1 - 0$ or $0 - 1$, that is, to $0$, $1$ or $3$ modulo $4$, never $2$.\n\nConversely, if $n$ is odd, then\n\n$$n = \\Bigl(\\frac{n+1}{2}\\Bigr)^2 - \\Bigl(\\frac{n-1}{2}\\Bigr)^2,$$\n\nand if $4 \\mid n$, then\n\n$$n = \\Bigl(\\frac{n}{4} + 1\\Bigr)^2 - \\Bigl(\\frac{n}{4} - 1\\Bigr)^2.$$\n\nBoth identities are checked by expanding, and both work for negative $n$ too."
+   },
+   {
+    "type": "section",
+    "title": "Move 2: reduce modulo m",
+    "body": "If an equation has an integer solution, then it has a solution modulo every $m$ (see [[congruences]]). Contrapositively, if for some $m$ no choice of residues satisfies the congruence, there is no integer solution. The art is to choose $m$ so that the terms of the equation take few values.\n\nPowers are the main source of such moduli:\n\n- squares modulo $4$ are $\\{0, 1\\}$, so $y^2 \\equiv 2, 3 \\pmod 4$ has no solution; squares modulo $8$ are $\\{0, 1, 4\\}$;\n- cubes modulo $9$ are $\\{0, 1, 8\\}$, and cubes modulo $7$ are $\\{0, 1, 6\\}$;\n- fourth powers modulo $16$ are $\\{0, 1\\}$;\n- fifth powers modulo $11$ are $\\{0, 1, 10\\}$.\n\nThe pattern behind the last three: $k$-th powers take few values modulo $m$ when $k$ shares a large factor with $\\varphi(m)$, by [[fermat-euler|Euler's theorem]]. For example $a^5 \\equiv \\pm 1 \\pmod{11}$ for $11 \\nmid a$, because $(a^5)^2 = a^{10} \\equiv 1$.\n\nSome typical consequences. A sum of two squares is never $\\equiv 3 \\pmod 4$. A sum of three squares is never $\\equiv 7 \\pmod 8$, since three elements of $\\{0, 1, 4\\}$ cannot add to $7$ modulo $8$. A sum of three cubes is never $\\equiv 4$ or $5 \\pmod 9$, because sums of three elements of $\\{0, 1, -1\\}$ lie in $\\{-3, \\dots, 3\\}$.\n\nTwo warnings about what this move can and cannot do. It proves non-existence only; finding that a congruence is solvable for one $m$ proves nothing. And even solvability modulo every $m$ is not enough: Selmer showed in 1951 that $3x^3 + 4y^3 + 5z^3 = 0$ has nonzero solutions modulo every integer $m$ (and over the reals), but no solution in integers other than $(0,0,0)$."
+   },
+   {
+    "type": "section",
+    "title": "Move 3: bound",
+    "body": "If the equation forces one variable to be small, finitely many cases remain. Two common forms:\n\nOrdering. If the equation is symmetric, assume $x \\le y \\le z$. For instance, in $\\frac1x + \\frac1y + \\frac1z = 1$ with positive integers, $1 \\le \\frac{3}{x}$ gives $x \\le 3$, and $x = 1$ is impossible. With $x = 2$, $\\frac1y + \\frac1z = \\frac12$ and $\\frac{2}{y} \\ge \\frac12$ give $y \\le 4$, yielding $(2, 3, 6)$ and $(2, 4, 4)$; with $x = 3$, $y = z = 3$. That is the complete list up to order.\n\nSqueezing between consecutive powers. If you can show $k^2 < N < (k+1)^2$, then $N$ is not a perfect square. This turns an equation $y^2 = P(x)$ with a polynomial $P$ into a finite check, as in the second example below. Combined with growth rates (an exponential eventually beats any polynomial), squeezing is how many equations mixing powers and polynomials are finished."
+   },
+   {
+    "type": "example",
+    "title": "Creating a factorisation",
+    "body": "Find all pairs of positive integers with $xy = 2x + 3y$.",
+    "solution": "Move everything to one side and complete the product: $xy - 2x - 3y = 0$, and adding $6$,\n\n$$(x - 3)(y - 2) = 6.$$\n\nSince $x \\ge 1$ and $y \\ge 1$, we have $x - 3 \\ge -2$ and $y - 2 \\ge -1$. If both factors were negative, their product $6$ would need $|x - 3| \\cdot |y - 2| = 6$ with $|x-3| \\le 2$ and $|y - 2| \\le 1$, which is impossible. So both are positive divisors of $6$:\n\n$$(x - 3, y - 2) \\in \\{(1, 6), (2, 3), (3, 2), (6, 1)\\},$$\n\ngiving $(x, y) = (4, 8), (5, 5), (6, 4), (9, 3)$. Each checks: for instance $9 \\cdot 3 = 27 = 18 + 9$."
+   },
+   {
+    "type": "example",
+    "title": "Squeezing between squares",
+    "body": "Find all integers $x, y$ with $x^2 + x + 1 = y^2$.",
+    "solution": "If $x \\ge 1$, then\n\n$$x^2 < x^2 + x + 1 < x^2 + 2x + 1 = (x + 1)^2,$$\n\nso $x^2 + x + 1$ lies strictly between consecutive squares and is not a square. If $x \\le -2$, put $x = -t$ with $t \\ge 2$; then $x^2 + x + 1 = t^2 - t + 1$, and\n\n$$(t - 1)^2 = t^2 - 2t + 1 < t^2 - t + 1 < t^2,$$\n\nagain strictly between consecutive squares. So $x \\in \\{-1, 0\\}$, where $x^2 + x + 1 = 1$, and the solutions are\n\n$$(x, y) \\in \\{(0, 1), (0, -1), (-1, 1), (-1, -1)\\}.$$\n\nAlternative by factoring: multiply by $4$ to get $(2x + 1)^2 + 3 = (2y)^2$, that is $(2y - 2x - 1)(2y + 2x + 1) = 3$, and check the four factor pairs $(\\pm 1, \\pm 3), (\\pm 3, \\pm 1)$. The two methods agree, and on harder problems one of them often works when the other does not."
+   },
+   {
+    "type": "example",
+    "title": "Powers of 2 and 3",
+    "body": "Find all nonnegative integers $a, b$ with $3^a = 2^b + 1$.",
+    "solution": "Small cases: $b = 0$ gives $3^a = 2$, impossible; $b = 1$ gives $3^a = 3$, so $(a, b) = (1, 1)$.\n\nNow let $b \\ge 2$. Reduce modulo $4$: the right side is $\\equiv 1$, while $3^a \\equiv (-1)^a \\pmod 4$. So $a$ is even, say $a = 2c$ with $c \\ge 1$. Now factor:\n\n$$2^b = 3^{2c} - 1 = (3^c - 1)(3^c + 1).$$\n\nBoth factors divide a power of $2$, so both are powers of $2$ (by unique factorisation). They differ by $2$, and the only powers of $2$ differing by $2$ are $2$ and $4$. Hence $3^c - 1 = 2$, so $c = 1$, $a = 2$, and $2^b = 8$, $b = 3$.\n\nThe solutions are $(a, b) = (1, 1)$ and $(2, 3)$, that is, $3 = 2 + 1$ and $9 = 8 + 1$. The pattern (a modulus forces a parity condition, which creates a factorisation) is one of the most common in olympiad number theory, and $9 - 8 = 1$ is the only instance of consecutive perfect powers, as Mihăilescu proved in 2002 (Catalan's conjecture)."
+   },
+   {
+    "type": "example",
+    "title": "Infinite descent",
+    "body": "Prove that $x^2 + y^2 = 3z^2$ has no integer solutions other than $x = y = z = 0$.",
+    "solution": "Suppose there is a solution with $(x, y, z) \\ne (0, 0, 0)$. Then $z \\ne 0$ (if $z = 0$ then $x^2 + y^2 = 0$ forces $x = y = 0$), so among all nontrivial solutions choose one with $|z| \\ge 1$ as small as possible.\n\nReduce modulo $3$: squares are $0$ or $1$ modulo $3$, and $x^2 + y^2 \\equiv 0 \\pmod 3$ forces $x^2 \\equiv y^2 \\equiv 0$, so $3 \\mid x$ and $3 \\mid y$. Write $x = 3x'$, $y = 3y'$. Then $9(x'^2 + y'^2) = 3z^2$, so $z^2 = 3(x'^2 + y'^2)$ and $3 \\mid z$. Writing $z = 3z'$,\n\n$$x'^2 + y'^2 = 3z'^2,$$\n\na nontrivial solution with $0 < |z'| = |z|/3 < |z|$. This contradicts minimality, so no nontrivial solution exists.\n\nThe same argument works for $x^2 + y^2 = qz^2$ with any prime $q \\equiv 3 \\pmod 4$, using the fact that such $q$ dividing $x^2 + y^2$ must divide both $x$ and $y$ (see [[sums-of-squares]]). It also shows that the circle $x^2 + y^2 = 3$ has no rational points, in contrast to $x^2 + y^2 = 1$ (see [[pythagorean]])."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Forgetting negative divisors, or zero. When factoring $(x - 3)(y - 2) = 6$ over all integers, the pairs $(-1, -6)$, $(-2, -3)$, $(-3, -2)$, $(-6, -1)$ must be checked too; here they gave nothing positive, but in general they give solutions.\n- Treating a successful congruence check as a proof of existence. Solvability modulo $m$ is necessary, not sufficient.\n- Testing small values, finding nothing, and declaring there are no solutions. A proof needs a reason that works for all values, such as a modulus or a bound.\n- Dividing by an expression that might be zero, for instance dividing $xy = 2x$ by $x$ and losing the solutions with $x = 0$.\n- Choosing a modulus that cannot help. Modulo $3$, every residue is a sum of two squares, so modulo $3$ says nothing about $x^2 + y^2 = n$ unless combined with a descent."
+   },
+   {
+    "type": "connection",
+    "body": "Each move grows into a theory. Factoring over larger rings, such as the [[gaussian-integers]] $\\mathbb Z[i]$ or the [[eisenstein-integers]] $\\mathbb Z[\\omega]$, solves equations like $x^2 + 1 = y^3$ or the cubic case of Fermat's Last Theorem, and when unique factorisation fails the right language is [[ideals]] and [[class-group|class groups]]. Linear equations are completely solved by [[bezout|Bézout's identity]], quadratic ones in two variables lead to [[pythagorean|Pythagorean triples]], [[sums-of-squares|sums of two squares]] and [[pell|Pell's equation]], and descent in its most effective olympiad form is [[vieta-jumping]]. For exponential equations like the example with $3^a$ and $2^b$, the systematic tools are the [[p-adic-valuation|lifting the exponent lemma]] and [[lte-zsigmondy|Zsigmondy's theorem]].\n\nThe same moves appear in research. Modular obstructions generalise to local conditions ($p$-adic solvability via [[hensel|Hensel's lemma]]), and their failure in examples like Selmer's cubic is measured by objects attached to [[elliptic-curves]]. The abc conjecture would give strong bounds for equations such as $x^n + y^n = z^n$ or $3^a - 2^b = 1$, of exactly the \"size versus divisibility\" kind that bounding and factoring exploit."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find all integer solutions of $x^2 - y^2 = 2027$ and prove that $x^2 - y^2 = 2026$ has none.\n2. Prove that $x^3 + y^3 + z^3 = 2029$ has no integer solutions.\n3. Find all pairs of positive integers with $\\dfrac1x + \\dfrac1y = \\dfrac16$.\n4. Show that $n^2 + 3n + 5$ is never a perfect square for $n \\ge 2$, and find the integers $n$ for which it is."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers",
+    "where": "Chapter 5"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Mordell, Diophantine Equations"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "x^2-y^2=45 in positive integers: (23,22),(9,6),(7,2)",
+    "python": "assert sorted((x,y) for x in range(1,50) for y in range(1,50) if x*x-y*y==45)==[(7,2),(9,6),(23,22)]"
+   },
+   {
+    "claim": "n is a difference of two squares iff n not ≡ 2 mod 4 (|n|<=400), and the explicit identities",
+    "python": "S={x*x-y*y for x in range(0,402) for y in range(0,402)}\nassert all((n in S)==(n%4!=2) for n in range(-400,401))\nfor n in range(-401,402,2): assert ((n+1)//2)**2-((n-1)//2)**2==n\nfor n in range(-400,401,4): assert (n//4+1)**2-(n//4-1)**2==n"
+   },
+   {
+    "claim": "power residues: squares mod 4 {0,1}, mod 8 {0,1,4}; cubes mod 9 {0,1,8}, mod 7 {0,1,6}; 4th powers mod 16 {0,1}; 5th powers mod 11 {0,1,10}",
+    "python": "R=lambda k,m:{pow(a,k,m) for a in range(m)}\nassert R(2,4)=={0,1} and R(2,8)=={0,1,4} and R(3,9)=={0,1,8} and R(3,7)=={0,1,6} and R(4,16)=={0,1} and R(5,11)=={0,1,10}"
+   },
+   {
+    "claim": "sums of three squares avoid 7 mod 8; sums of three cubes avoid 4,5 mod 9; 2029 ≡ 4 mod 9; every residue mod 3 is a sum of two squares",
+    "python": "assert 7 not in {(a+b+c)%8 for a in (0,1,4) for b in (0,1,4) for c in (0,1,4)}\nT={(a+b+c)%9 for a in (0,1,8) for b in (0,1,8) for c in (0,1,8)}\nassert 4 not in T and 5 not in T and 2029%9==4\nassert {(x*x+y*y)%3 for x in range(3) for y in range(3)}=={0,1,2}"
+   },
+   {
+    "claim": "1/x+1/y+1/z=1 with x<=y<=z: (2,3,6),(2,4,4),(3,3,3) only",
+    "python": "from fractions import Fraction as F\nassert [(x,y,z) for x in range(1,50) for y in range(x,50) for z in range(y,50) if F(1,x)+F(1,y)+F(1,z)==1]==[(2,3,6),(2,4,4),(3,3,3)]"
+   },
+   {
+    "claim": "xy=2x+3y positive solutions: (4,8),(5,5),(6,4),(9,3)",
+    "python": "assert [(x,y) for x in range(1,200) for y in range(1,200) if x*y==2*x+3*y]==[(4,8),(5,5),(6,4),(9,3)]"
+   },
+   {
+    "claim": "x^2+x+1=y^2: only (0,±1),(-1,±1) for |x|<=10^4",
+    "python": "from math import isqrt\nS=sorted((x,s*isqrt(x*x+x+1)) for x in range(-10**4,10**4+1) for s in (1,-1) if isqrt(x*x+x+1)**2==x*x+x+1)\nassert S==[(-1,-1),(-1,1),(0,-1),(0,1)]"
+   },
+   {
+    "claim": "3^a=2^b+1 for a,b<=200: only (1,1),(2,3)",
+    "python": "assert [(a,b) for a in range(0,201) for b in range(0,201) if 3**a==2**b+1]==[(1,1),(2,3)]"
+   },
+   {
+    "claim": "x^2+y^2=3z^2 has no nontrivial solutions with |x|,|y|,|z|<=200",
+    "python": "sq={}\nfor x in range(0,350):\n    sq[x*x]=x\nassert not any((3*z*z-y*y) in sq for z in range(1,201) for y in range(0,201) if 3*z*z-y*y>=0)"
+   },
+   {
+    "claim": "Selmer's cubic 3x^3+4y^3+5z^3=0: a nonzero solution modulo every m<=40, but no nontrivial integer solution with |x|,|y|,|z|<=40",
+    "python": "for m in range(2,41):\n    cu=[pow(x,3,m) for x in range(m)]\n    assert any((3*cu[x]+4*cu[y]+5*cu[z])%m==0 for x in range(m) for y in range(m) for z in range(m) if (x,y,z)!=(0,0,0))\nR=range(-40,41)\nC={5*z**3:z for z in R}\nassert not any(-(3*x**3+4*y**3) in C and (x,y,C[-(3*x**3+4*y**3)])!=(0,0,0) for x in R for y in R)"
+   },
+   {
+    "claim": "exercise data: 2027 is prime and x^2-y^2=2027 has exactly the solutions (+-1014,+-1013); 2026 = 2 mod 4; 1/x+1/y=1/6 has 9 positive solutions; n^2+3n+5 is a square exactly for n in {1,-4} (|n|<=10^4)",
+    "python": "from sympy import isprime\nfrom math import isqrt\nfrom fractions import Fraction as F\nassert isprime(2027) and 2026%4==2\nassert sorted((x,y) for x in range(-1100,1101) for y in (isqrt(abs(x*x-2027)),-isqrt(abs(x*x-2027))) if x*x-y*y==2027)==[(-1014,-1013),(-1014,1013),(1014,-1013),(1014,1013)]\nassert sum(1 for x in range(7,100) for y in range(7,100) if F(1,x)+F(1,y)==F(1,6))==9\nassert [n for n in range(-10**4,10**4) if n*n+3*n+5>=0 and isqrt(n*n+3*n+5)**2==n*n+3*n+5]==[-4,1]"
+   }
+  ]
+ }
+]

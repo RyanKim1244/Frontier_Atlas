@@ -1,0 +1,272 @@
+[
+ {
+  "id": "determinants",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: The formula has the three properties",
+    "problem": "The cancellation proof of the alternating property relied on 'composing sigma with a transposition changes its sign', which was used without proof and without saying so (the transpose-invariance remark is fine). The lesson defines sgn by counting inversions, so this is exactly the missing step.",
+    "fix": "Added a short complete proof: when the values in positions k<l are exchanged, the pair (k,l) changes status, each position m between them changes both pairs (k,m),(m,l) or neither, and positions outside exchange the statuses of their pairs with k and l, so the inversion count changes by an odd number. Verified pair by pair over all permutations of 6."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Computing determinants (Laplace expansion)",
+    "problem": "Cofactor expansion was justified only by 'grouping the Leibniz terms', which leaves the (-1)^{i+j} sign unproved and does not say so; later solutions (Vandermonde) use expansion along a row and the chessboard sign.",
+    "fix": "Now says explicitly that the sign bookkeeping is omitted, and that the expansion also works along any column. Added an exact check of expansion along every row and column."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "Characterised det as the unique function that 'changes sign when two columns are swapped', while the lesson's uniqueness theorem uses 'vanishes when two columns are equal'. Over R or C these are equivalent, but the card should match the theorem.",
+    "fix": "Card now says 'zero whenever two columns are equal'."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Cramer's rule stated without the hypothesis that A is invertible; paragraph was also padded.",
+    "fix": "Added 'For invertible A'; tightened the paragraph (same links)."
+   },
+   {
+    "severity": "style",
+    "where": "example: A parity argument",
+    "problem": "Closing remark wordy.",
+    "fix": "Shortened."
+   },
+   {
+    "severity": "style",
+    "where": "lesson.minutes",
+    "problem": "Length is long; trimmed only padding.",
+    "fix": "minutes 18 -> 17."
+   }
+  ]
+ },
+ {
+  "id": "eigen",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.why",
+    "problem": "Said the stationary distribution of a Markov chain (and the other listed quantities) 'are all eigenvalues'; a stationary distribution is an eigenvector, not an eigenvalue, and vibration frequencies are square roots of eigenvalues of the governing matrix.",
+    "fix": "Now says these are all read off from eigenvalues and eigenvectors."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "'The stationary distribution of a Markov chain is an eigenvector for the eigenvalue 1' is false for the transition matrix P with the usual row-stochastic convention: it is a left eigenvector (eigenvector of P^T). The entry link already said 'left'.",
+    "fix": "Now says left eigenvector of the transition matrix (an eigenvector of its transpose)."
+   },
+   {
+    "severity": "error",
+    "where": "definition: Eigenvalue and eigenvector",
+    "problem": "The field was not fixed: 'real or complex entries' and 'a number lambda' left unclear whether a real matrix can have a complex eigenvalue and where v lives, so 'the eigenvalues are the roots of p_A' was ambiguous (the rotation example has no real eigenvalues but complex ones).",
+    "fix": "Definition now fixes F = R or C with lambda in F and v in F^n, notes a real matrix may be viewed over C with extra non-real eigenvalues; 'roots in F are the eigenvalues over F'. Card summary and key 3 now say eigenvalues are taken in C with algebraic multiplicity."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: AB and BA",
+    "problem": "'AB and BA have the same characteristic polynomial' was stated without proof without saying so.",
+    "fix": "Marked as a standard fact not proved here (statement correct for square matrices; checked on random matrices). Added the eigenspace dimensions in the counterexample."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'For symmetric matrices the eigenvectors can be chosen perpendicular' omits 'real' (false for complex symmetric matrices); 'mysteriously match the zeros of the zeta function' is hype and imprecise.",
+    "fix": "'real symmetric'; zeta sentence rewritten as a comparison of spacing statistics."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links (differential-equations)",
+    "problem": "'signs of the real parts decide stability' is imprecise (zero real parts are not decided by signs).",
+    "fix": "Now: every solution tends to 0 exactly when every eigenvalue has negative real part."
+   },
+   {
+    "severity": "style",
+    "where": "example: The all-ones matrix",
+    "problem": "Vague closing sentence about olympiad problems.",
+    "fix": "Removed."
+   }
+  ]
+ },
+ {
+  "id": "diagonalization",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof of the multiplicity criterion, part 1",
+    "problem": "Claimed 'the determinant of a block triangular matrix is the product of the determinants of the diagonal blocks (expand repeatedly along the first column)'. The parenthetical justification is wrong for a general block triangular matrix; it only works here because the top-left block of tI - P^{-1}AP is (t-lambda)I_g. The use of similarity invariance of p_A was also implicit.",
+    "fix": "Rewritten to use the actual shape: similar matrices have the same characteristic polynomial, and expanding g times along the first column of tI - P^{-1}AP gives (t-lambda)^g p_E(t)."
+   },
+   {
+    "severity": "error",
+    "where": "definition: Diagonalisable matrix / theorem",
+    "problem": "The theorem used F^n but F was never introduced, and the definition did not say over which field P and D live, although the lesson then distinguishes diagonalisability over R and over C.",
+    "fix": "Definition now fixes F = R or C and requires P, D with entries in F ('diagonalisable over F')."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Why it helps",
+    "problem": "'A^k x lines up with p_1 and has size about |lambda_1|^k' is loose (only the direction converges to the line through p_1; the size is |lambda_1|^k up to a constant).",
+    "fix": "Reworded precisely."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall / entry.sum",
+    "problem": "The criterion was given only over C; the card's 'the obstruction is an eigenvalue whose eigenspace is smaller than its multiplicity' is false over R (rotations).",
+    "fix": "Card says 'over C the only obstruction ...'; pitfall adds the real criterion (all eigenvalues real and g = a). Added checks."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Description of Jordan form ('diagonal blocks with 1s just above the diagonal, one block per independent eigenvector') was garbled.",
+    "fix": "Rewritten: block diagonal, each block with a single eigenvalue on the diagonal and 1s just above, as many blocks as the maximal number of independent eigenvectors."
+   }
+  ]
+ },
+ {
+  "id": "inner-products",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection and entry.links (probability)",
+    "problem": "'Covariance is an inner product on random variables with mean zero' is false as stated: it needs finite variance, and positivity fails unless variables equal almost surely are identified.",
+    "fix": "Both now say: on mean-zero random variables with finite variance, identifying variables equal with probability 1."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'A symmetric matrix has an orthonormal basis of eigenvectors' omits 'real'; 'Gram-Schmidt ... is the standard numerically stable way' overstates (classical Gram-Schmidt is not numerically stable; stable QR uses other algorithms).",
+    "fix": "'real symmetric'; QR described as a standard tool when computed in a numerically stable way."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Best linear approximation",
+    "problem": "'differs from the tangent line or the chord' was vague (which tangent line?).",
+    "fix": "Now: neither the chord y = x nor any tangent line of y = x^2 (checked)."
+   },
+   {
+    "severity": "style",
+    "where": "entry.sum / section: Angles and orthonormal bases",
+    "problem": "'linear' without saying in which argument over C; 'Rotations and reflections are the examples' suggests these are all orthogonal matrices.",
+    "fix": "'linear in the first argument, conjugate-symmetric over C'; 'are examples'."
+   },
+   {
+    "severity": "style",
+    "where": "example: Pairwise obtuse vectors",
+    "problem": "Checked the m <= n+1 proof line by line (independence of v_1..v_{m-1} via the positive/negative split and pairing with v_m) and the regular-simplex construction: correct. No change.",
+    "fix": "Added independent checks (norms n/(n+1), cosine -1/n, 120 degrees for n=2; the key inner-product identity)."
+   }
+  ]
+ },
+ {
+  "id": "spectral-theorem",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "pitfall (complex case)",
+    "problem": "The complex picture stopped at Hermitian matrices; the precise statement for unitary diagonalisability (normal matrices, with complex D) was missing, so a reader could think Hermitian is the exact condition for unitary diagonalisation.",
+    "fix": "Added: a complex matrix is unitarily diagonalisable (D possibly non-real) iff it is normal, stated as not proved here; Hermitian, real orthogonal and unitary matrices are normal. Added check."
+   },
+   {
+    "severity": "style",
+    "where": "entry.why",
+    "problem": "Quantum observables listed among 'symmetric matrices' although they are Hermitian.",
+    "fix": "'Symmetric and Hermitian matrices'."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Real-eigenvalue argument, invariance of q_1-perp, symmetry of the restricted matrix, conic, Rayleigh example and A^k = I example all checked and correct.",
+    "fix": "Added independent checks (conic semi-axes and area, SOS identities, normal vs non-normal)."
+   }
+  ]
+ },
+ {
+  "id": "svd",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem: Eckart-Young / entry.sum",
+    "problem": "The Frobenius-norm optimality was asserted only in passing inside the proof block, and the card claimed the truncated SVD is 'the best low-rank approximation' without saying in which norm (it is not optimal for every norm, as the lesson's own pitfall notes) or that the minimiser need not be unique.",
+    "fix": "Theorem now states both inequalities exactly with the truncated SVD A_k (0 <= k < min(m,n), A_k = A for k >= r) and the Frobenius error (sum_{i>k} sigma_i^2)^{1/2}; the proof says the Frobenius inequality is omitted and how its equality case follows from exercise 3. Card: 'a best approximation of rank at most k in the operator and Frobenius norms'. Key 3 now gives the range of k."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Polar decomposition described as 'a rotation times a positive semidefinite stretch'; UV^T can be a reflection.",
+    "fix": "'an orthogonal matrix (a rotation, possibly combined with a reflection) times a symmetric positive semidefinite stretch'. Added check."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: What the SVD tells you",
+    "problem": "Condition number sigma_1/sigma_n used without restricting to invertible square A.",
+    "fix": "Added 'For invertible square A'."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall (max-entry error)",
+    "problem": "Claim that truncation is not optimal for the largest-entry error was unsupported.",
+    "fix": "Added an explicit example (A = diag(2,1), k = 1: truncation leaves an entry 1, a rank-one B achieves max entry sqrt3 - 1 < 0.75) with a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links",
+    "problem": "PCA note used N without defining it; Schmidt note 'number of nonzero singular values measures entanglement' was vague.",
+    "fix": "Defined the N x d data matrix; Schmidt: entangled exactly when more than one singular value is nonzero."
+   },
+   {
+    "severity": "style",
+    "where": "intro, section: Low rank in practice, connection",
+    "problem": "Hype ('probably the most useful single factorisation', 'usually looks almost identical'), 'one never forms A^T A', duplicated PCA sentence.",
+    "fix": "Toned down and tightened; PCA in connection now gives the sample variances sigma_i^2/(N-1)."
+   }
+  ]
+ },
+ {
+  "id": "jordan",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "theorem: Jordan normal form",
+    "problem": "Field hypothesis: the lesson works over C only and never says what happens over other fields; the connection said rational canonical form replaces Jordan form 'over fields where polynomials need not split, such as finite fields', which wrongly suggests Jordan form never exists there.",
+    "fix": "Added: the theorem holds over any field in which the characteristic polynomial splits (e.g. a real matrix with only real eigenvalues has real J and P), not proved here. Connection now says rational canonical form takes over where the characteristic polynomial need not split (e.g. over R or Q)."
+   },
+   {
+    "severity": "error",
+    "where": "section: Reading off the Jordan form",
+    "problem": "'A^m -> 0 exactly when every eigenvalue has |lambda| < 1' was justified in one direction only.",
+    "fix": "Added the converse (an eigenvector with |lambda| >= 1 gives A^m v = lambda^m v not tending to 0)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Anatomy of a single block",
+    "problem": "'Generalised eigenvector' was used without a definition, and written with J instead of J_k(lambda).",
+    "fix": "Defined generalised eigenvector; fixed notation."
+   },
+   {
+    "severity": "error",
+    "where": "example: A matrix and its transpose",
+    "problem": "Claimed 'a direct proof avoiding Jordan form is not easy'; that is unsupported, and the lesson's own counting formula gives an immediate second proof.",
+    "fix": "Replaced by that second proof (ranks of (A^T - lambda I)^j equal those of (A - lambda I)^j). Added check."
+   },
+   {
+    "severity": "style",
+    "where": "intro, example: Square roots, pitfall, connection",
+    "problem": "Long lesson; some padding (transposed-convention pitfall, 'halves' remark, Markov sentence).",
+    "fix": "Trimmed padding only; proofs untouched. Step 1 (primary decomposition via Bezout), Step 2 (chain basis by induction) and Step 3 (counting) checked line by line and are correct."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (algebra)",
+    "problem": "'Jordan form is the structure theorem for f.g. modules over C[t]' conflates the theorem with its application.",
+    "fix": "Now says it is that structure theorem applied to C^n with t acting as A."
+   }
+  ]
+ }
+]

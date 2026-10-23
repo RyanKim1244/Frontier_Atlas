@@ -1,0 +1,911 @@
+[
+ {
+  "id": "digits-bases",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Is $7382916$ divisible by $9$? What are the last two digits of $7^{2026}$? How many numbers in row $100$ of Pascal's triangle are odd? Each question is phrased in terms of how a number is written, but each is really a question about arithmetic. The bridge is one observation: writing $n$ in base $b$ means writing $n$ as a polynomial evaluated at $b$, and congruences let us replace $b$ by something simpler, such as $1$ or $-1$.\n\nThis lesson sets up base representations carefully, derives the tests for $9$ and $11$, explains what the last few digits of a number record, and ends with a less obvious fact: the carries you make when adding two numbers in base $2$ count the factors of $2$ in a binomial coefficient."
+   },
+   {
+    "type": "section",
+    "title": "Writing a number in base b",
+    "body": "Our usual notation is shorthand: $2026$ means $2\\cdot 10^3 + 0\\cdot 10^2 + 2\\cdot 10 + 6$. Nothing is special about ten. In base $2$ we have $13 = 8 + 4 + 1 = (1101)_2$, and you can find these digits by repeated division by $2$:\n\n$$13 = 2\\cdot 6 + 1,\\qquad 6 = 2\\cdot 3 + 0,\\qquad 3 = 2\\cdot 1 + 1,\\qquad 1 = 2\\cdot 0 + 1.$$\n\nReading the remainders from the last line up gives $1101$. The first remainder is the last digit, because $13 \\equiv 1 \\pmod 2$; dividing out removes that digit and shifts the rest one place to the right."
+   },
+   {
+    "type": "definition",
+    "title": "Base-b representation",
+    "body": "Fix an integer $b \\ge 2$. A base-$b$ representation of a positive integer $n$ is an expression\n\n$$n = \\sum_{i=0}^{k} a_i b^i = a_k b^k + a_{k-1}b^{k-1} + \\dots + a_1 b + a_0$$\n\nwith integers $0 \\le a_i < b$ and $a_k \\ne 0$. We write $n = (a_k a_{k-1}\\dots a_0)_b$, call the $a_i$ the digits, and write $s_b(n) = a_0 + a_1 + \\dots + a_k$ for the base-$b$ digit sum.\n\nIn words: the digits are the successive remainders when you keep dividing by $b$."
+   },
+   {
+    "type": "theorem",
+    "title": "Existence and uniqueness of digits",
+    "body": "Let $b \\ge 2$. Every positive integer has exactly one base-$b$ representation."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "We use strong induction on $n$. Divide: $n = bq + r$ with $0 \\le r < b$.\n\nIf $n < b$, then $n = a_0$ with $a_0 = n$ is a representation. It is the only one, since a representation with $k \\ge 1$ has value at least $a_k b^k \\ge b > n$.\n\nIf $n \\ge b$, then $1 \\le q < n$. By induction $q = \\sum_{i=0}^{j} c_i b^i$ for some digits $c_i$, and then $n = \\sum_{i=0}^{j} c_i b^{i+1} + r$ is a base-$b$ representation of $n$. For uniqueness, take any representation $n = \\sum_{i=0}^k a_i b^i$. Here $k \\ge 1$ because $n \\ge b$, and\n\n$$n = b\\,(a_1 + a_2 b + \\dots + a_k b^{k-1}) + a_0,\\qquad 0 \\le a_0 < b.$$\n\nQuotient and remainder in the division algorithm are unique, so $a_0 = r$ and $a_1 + a_2 b + \\dots + a_k b^{k-1} = q$. The right-hand side is a base-$b$ representation of $q$, which is unique by the induction hypothesis. So all the $a_i$ are determined by $n$."
+   },
+   {
+    "type": "section",
+    "title": "How many digits, and what the last ones mean",
+    "body": "Two quick consequences. First, $n$ has $k+1$ digits exactly when $b^k \\le n < b^{k+1}$, that is, the number of base-$b$ digits is $\\lfloor \\log_b n \\rfloor + 1$. For instance $2^{2026}$ has $\\lfloor 2026\\log_{10} 2\\rfloor + 1 = 610$ decimal digits.\n\nSecond, the last $m$ digits of $n$ are exactly the remainder of $n$ modulo $b^m$, because\n\n$$n = (a_{m-1}\\dots a_1 a_0)_b + b^m\\,(a_m + a_{m+1}b + \\dots).$$\n\nSo \"find the last two digits\" means \"compute modulo $100$\", and $n$ is divisible by $b^m$ exactly when its last $m$ digits are zero. In base $10$, divisibility by $2^m$ or $5^m$ depends only on the last $m$ digits, since both divide $10^m$. Computing modulo $100$ is a job for [[fermat-euler]] and, by splitting $100 = 4\\cdot 25$, for [[crt]]."
+   },
+   {
+    "type": "section",
+    "title": "Digit sums: working modulo b - 1 and b + 1",
+    "body": "Here is the main idea. Put $P(x) = a_k x^k + \\dots + a_1 x + a_0$, a polynomial with integer coefficients, so that $n = P(b)$. If $b \\equiv c \\pmod m$ then $P(b) \\equiv P(c) \\pmod m$, because congruences respect sums and products ([[congruences]]). Two choices of $m$ make $c$ very simple:\n\n1. $m = b - 1$: then $b \\equiv 1$, and $P(1) = a_0 + a_1 + \\dots + a_k$ is the digit sum.\n2. $m = b + 1$: then $b \\equiv -1$, and $P(-1) = a_0 - a_1 + a_2 - \\dots$ is the alternating digit sum, starting with a plus sign at the units digit.\n\nIn base $10$ this gives the familiar tests: $n$ and its digit sum leave the same remainder modulo $9$ (hence also modulo $3$), and $n$ and its alternating digit sum leave the same remainder modulo $11$. For $n = 7382916$ the digit sum is $36$, so $9 \\mid n$; the alternating sum is $6 - 1 + 9 - 2 + 8 - 3 + 7 = 24$, so $n \\equiv 24 \\equiv 2 \\pmod{11}$."
+   },
+   {
+    "type": "theorem",
+    "title": "Digit-sum congruences",
+    "body": "Let $n = \\sum_{i=0}^{k} a_i b^i$ be the base-$b$ representation of $n$. Then\n\n$$n \\equiv s_b(n) \\pmod{b-1},\\qquad n \\equiv \\sum_{i=0}^{k} (-1)^i a_i \\pmod{b+1}.$$\n\nIn particular $n \\equiv s_{10}(n) \\pmod 9$."
+   },
+   {
+    "type": "proof",
+    "body": "Since $b \\equiv 1 \\pmod{b-1}$, every power satisfies $b^i \\equiv 1$, so $\\sum a_i b^i \\equiv \\sum a_i$. Since $b \\equiv -1 \\pmod{b+1}$, we get $b^i \\equiv (-1)^i$, so $\\sum a_i b^i \\equiv \\sum (-1)^i a_i$."
+   },
+   {
+    "type": "section",
+    "title": "Carries and the digit sum",
+    "body": "Digit sums are not additive: $s_{10}(5) + s_{10}(7) = 12$ but $s_{10}(12) = 3$. The discrepancy is caused by carries, and it is easy to measure. When you add two numbers in base $b$ column by column, a carry happens when a column total $t$ is at least $b$: you write $t - b$ and pass $1$ to the next column. The digits of the answer lose $b$ in one column and gain $1$ in the next, a net loss of $b - 1$.\n\nTo make this exact, let $m$ and $n$ have digits $x_i$ and $y_i$, and let $\\varepsilon_i \\in \\{0,1\\}$ be the carry out of column $i$, with $\\varepsilon_{-1} = 0$. (A carry is at most $1$, since a column total is at most $(b-1)+(b-1)+1 = 2b-1$.) The digit of $m+n$ in column $i$ is $z_i = x_i + y_i + \\varepsilon_{i-1} - b\\,\\varepsilon_i$. Summing over all columns, including the one that receives the final carry, and writing $C$ for the number of carries:\n\n$$s_b(m+n) = s_b(m) + s_b(n) + C - bC,\\qquad\\text{so}\\qquad s_b(m) + s_b(n) - s_b(m+n) = (b-1)\\,C.$$\n\nIn base $2$, where $b - 1 = 1$, the loss in digit sum is exactly the number of carries. That is the link to binomial coefficients."
+   },
+   {
+    "type": "theorem",
+    "title": "Carries count factors of 2",
+    "body": "For integers $m, n \\ge 0$,\n\n$$\\nu_2\\!\\binom{m+n}{m} = \\#\\{\\text{carries when adding } m,n \\text{ in base } 2\\}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "First we compute $\\nu_2(N!)$, the exponent of $2$ in $N!$. An integer $j \\le N$ with $\\nu_2(j) = e$ is a multiple of $2, 4, \\dots, 2^e$ and of no higher power of $2$, so it is counted exactly $e$ times in the sum $\\sum_{k\\ge1} \\#\\{j \\le N : 2^k \\mid j\\}$. Hence $\\nu_2(N!) = \\sum_{k \\ge 1}\\lfloor N/2^k\\rfloor$. (This is Legendre's formula, treated for all primes in [[binomial-factorial]].)\n\nNow write $N = \\sum_i a_i 2^i$ in binary. Dividing by $2^k$ and discarding the fractional part removes the last $k$ digits, so $\\lfloor N/2^k\\rfloor = \\sum_{i \\ge k} a_i 2^{i-k}$. Summing over $k \\ge 1$, the digit $a_i$ is counted with weight $2^{i-1} + \\dots + 2 + 1 = 2^i - 1$, so\n\n$$\\nu_2(N!) = \\sum_i a_i(2^i - 1) = N - s_2(N).$$\n\nFinally\n\n$$\\nu_2\\!\\binom{m+n}{m} = \\nu_2((m+n)!) - \\nu_2(m!) - \\nu_2(n!) = s_2(m) + s_2(n) - s_2(m+n),$$\n\nwhich is the number of carries by the identity above with $b = 2$."
+   },
+   {
+    "type": "example",
+    "title": "Even palindromes",
+    "body": "Prove that every palindrome with an even number of decimal digits is divisible by $11$. Does the same hold for palindromes with an odd number of digits?",
+    "solution": "Let the digits be $a_0, a_1, \\dots, a_{2k-1}$ (from the units digit up), with $a_i = a_{2k-1-i}$ for every $i$. By the digit-sum congruences, $n \\equiv \\sum_i (-1)^i a_i \\pmod{11}$.\n\nPair index $i$ with index $2k-1-i$. Their sum $2k-1$ is odd, so one index is even and the other is odd: the two equal digits $a_i = a_{2k-1-i}$ enter the alternating sum with opposite signs and cancel. Every index is in exactly one pair, so the alternating sum is $0$ and $11 \\mid n$. For example $123321 = 11 \\cdot 11211$.\n\nFor an odd number of digits the middle digit has no partner, and the claim fails: $121 = 11^2$ is divisible by $11$, but $101$ is not."
+   },
+   {
+    "type": "example",
+    "title": "Last two digits",
+    "body": "Find the last two digits of $7^{2026}$ and of $2^{2026}$.",
+    "solution": "We work modulo $100$. For $7$ there is a shortcut: $7^2 = 49$ and $7^4 = 2401 \\equiv 1 \\pmod{100}$. Since $2026 = 4\\cdot 506 + 2$,\n\n$$7^{2026} = (7^4)^{506}\\cdot 7^2 \\equiv 49 \\pmod{100}.$$\n\nFor $2$ we cannot use Euler's theorem modulo $100$ directly, since $\\gcd(2,100) \\ne 1$, so we split $100 = 4 \\cdot 25$. Modulo $4$, $2^{2026} \\equiv 0$. Modulo $25$, Euler's theorem gives $2^{20} \\equiv 1$, and $2026 = 20\\cdot 101 + 6$, so $2^{2026} \\equiv 2^6 = 64 \\equiv 14 \\pmod{25}$. The numbers below $100$ that are $\\equiv 14 \\pmod{25}$ are $14, 39, 64, 89$, and the only multiple of $4$ among them is $64$.\n\nSo $7^{2026}$ ends in $49$ and $2^{2026}$ ends in $64$."
+   },
+   {
+    "type": "example",
+    "title": "A digit sum of a digit sum of a digit sum",
+    "body": "Let $A = s_{10}(2^{2026})$, $B = s_{10}(A)$ and $C = s_{10}(B)$. Find $C$ without computing $2^{2026}$.",
+    "solution": "The idea is that $C$ is congruent to $2^{2026}$ modulo $9$, and repeated digit sums shrink numbers so fast that $C$ must be small. We bound first, then reduce.\n\nBounds. As computed above, $2^{2026}$ has $610$ digits, each at most $9$, so $A \\le 9\\cdot 610 = 5490$. A number at most $5490$ has digit sum at most $31$: if its thousands digit is $5$, its hundreds digit is at most $4$ and the digit sum is at most $5+4+9+9 = 27$; otherwise the digit sum is at most $4+9+9+9 = 31$. So $B \\le 31$. A number at most $31$ has digit sum at most $11$ (attained at $29$). So $1 \\le C \\le 11$.\n\nCongruence. Taking digit sums preserves the remainder modulo $9$, so $C \\equiv 2^{2026} \\pmod 9$. Since $2^6 = 64 \\equiv 1 \\pmod 9$ and $2026 = 6\\cdot 337 + 4$, we get $2^{2026} \\equiv 2^4 = 16 \\equiv 7 \\pmod 9$.\n\nThe only integer in $[1, 11]$ that is $\\equiv 7 \\pmod 9$ is $7$. Hence $C = 7$."
+   },
+   {
+    "type": "example",
+    "title": "Odd entries of Pascal's triangle",
+    "body": "Show that the number of odd entries in row $N$ of Pascal's triangle, that is, the number of $m \\in \\{0, 1, \\dots, N\\}$ with $\\binom{N}{m}$ odd, equals $2^{s_2(N)}$. How many odd entries does row $100$ have, and which are they?",
+    "solution": "By the theorem on carries, $\\binom{N}{m}$ is odd exactly when adding $m$ and $N - m$ in binary produces no carries.\n\nClaim: there are no carries exactly when every binary digit $1$ of $m$ sits in a position where $N$ also has a $1$. If there are no carries, each binary digit of $N$ is the plain sum of the corresponding digits of $m$ and $N-m$; a digit of $N$ is at most $1$, so wherever $m$ has a $1$, $N$ has a $1$ (and $N-m$ has a $0$). Conversely, if the $1$s of $m$ are among the $1$s of $N$, then $N - m$ is the number whose binary $1$s are the remaining positions of $N$, and adding $m$ and $N - m$ never puts two $1$s in one column, so there are no carries.\n\nSo the valid $m$ correspond to subsets of the set of positions where $N$ has a $1$. There are $s_2(N)$ such positions and hence $2^{s_2(N)}$ subsets.\n\nFor $N = 100 = (1100100)_2 = 64 + 32 + 4$ we have $s_2(100) = 3$, so row $100$ has $2^3 = 8$ odd entries: those with $m$ a sum of a subset of $\\{4, 32, 64\\}$, namely $m = 0, 4, 32, 36, 64, 68, 96, 100$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The digit-sum test works modulo $9$ and its divisors only, not modulo $27$: $1899$ has digit sum $27$, but $1899 = 27\\cdot 70 + 9$ is not divisible by $27$. In base $b$ the digit sum controls only divisors of $b - 1$.\n- The alternating sum for $11$ starts with a plus sign at the units digit. Starting from the leading digit changes the sign when the number of digits is even; that is harmless for testing divisibility but gives the wrong remainder.\n- Uniqueness of digits needs $0 \\le a_i < b$. Allow a digit equal to $b$ and $10 = (10)_{10}$ could also be written as a single digit \"ten\".\n- Digit sums satisfy $s_b(m+n) \\le s_b(m) + s_b(n)$, with equality exactly when there are no carries. When counting carries, include the one out of the top column: adding $1 + 1$ in base $2$ makes one carry, matching $\\nu_2\\binom{2}{1} = 1$."
+   },
+   {
+    "type": "connection",
+    "body": "The carry theorem works for every prime $p$, not just $2$: the exponent of $p$ in $\\binom{m+n}{m}$ is the number of carries in base $p$ (Kummer's theorem), and $\\nu_p(N!) = (N - s_p(N))/(p-1)$. Both are in [[binomial-factorial]], built on [[p-adic-valuation]]. The digit-by-digit description of $\\binom{N}{m}$ modulo $p$ is [[lucas]]. The digit count $\\lfloor \\log_b n\\rfloor + 1$ is a typical use of [[floor-functions]], and expansions of real numbers in base $b$ have a cousin in [[continued-fractions]].\n\nIn computer science, base $2$ is how machines do arithmetic. Carries decide the cost of addition circuits, digit sums of binary numbers (population counts) appear throughout algorithm design, and the binary splitting of indices is what organises the Fast Fourier Transform."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Write $2026$ in base $2$ and in base $7$.\n2. Show that a number written in base $7$ is divisible by $6$ exactly when its digit sum is, and by $8$ exactly when its alternating digit sum is.\n3. Find the remainder of $918082$ modulo $11$ and modulo $9$ without dividing. Then find the smallest positive integer whose decimal digit sum is $2026$.\n4. For which $N$ are all of $\\binom{N}{0}, \\binom{N}{1}, \\dots, \\binom{N}{N}$ odd?"
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 4"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "7382916 has digit sum 36, is divisible by 9, and is 2 mod 11 (alternating sum 24)",
+    "python": "n=7382916; d=[int(c) for c in str(n)[::-1]]; assert sum(d)==36 and n%9==0; assert sum((-1)**i*x for i,x in enumerate(d))==24 and n%11==2"
+   },
+   {
+    "claim": "13 = (1101)_2, 2026 = (11111101010)_2 = (5623)_7",
+    "python": "from sympy.ntheory.digits import digits\nassert bin(13)=='0b1101' and bin(2026)=='0b11111101010'\nassert digits(2026,7)==[7,5,6,2,3]"
+   },
+   {
+    "claim": "2^2026 has 610 decimal digits, and floor(2026 log10 2)+1 = 610",
+    "python": "import math\nassert len(str(2**2026))==610 and math.floor(2026*math.log10(2))+1==610"
+   },
+   {
+    "claim": "7^2026 ends in 49 and 2^2026 ends in 64; 7^4=2401",
+    "python": "assert 7**4==2401 and pow(7,2026,100)==49 and pow(2,2026,100)==64 and pow(2,2026,25)==14"
+   },
+   {
+    "claim": "Iterated digit sum C of 2^2026 is 7, A <= 5490, B <= 31",
+    "python": "s=lambda n: sum(map(int,str(n)))\nA=s(2**2026); B=s(A); C=s(B)\nassert A<=5490 and B<=31 and C==7 and pow(2,2026,9)==7\nassert max(s(k) for k in range(1,5491))==31 and max(s(k) for k in range(1,32))==11"
+   },
+   {
+    "claim": "123321 = 11*11211; all even-length palindromes below 10^6 are divisible by 11; 101 is not",
+    "python": "assert 123321==11*11211 and 101%11!=0\nfor n in range(10,10**6):\n    t=str(n)\n    if len(t)%2==0 and t==t[::-1]: assert n%11==0"
+   },
+   {
+    "claim": "1899 has digit sum 27 but 1899 = 27*70 + 9",
+    "python": "assert sum(map(int,'1899'))==27 and 1899==27*70+9"
+   },
+   {
+    "claim": "nu_2(C(m+n,m)) equals the number of binary carries, for m,n < 128; s_2(m)+s_2(n)-s_2(m+n) is the carry count",
+    "python": "from math import comb\ndef v2(x):\n    c=0\n    while x%2==0: x//=2; c+=1\n    return c\ndef carries(m,n,b=2):\n    c=e=0\n    while m or n or e:\n        t=m%b+n%b+e; e=1 if t>=b else 0; c+=e; m//=b; n//=b\n    return c\ns2=lambda x: bin(x).count('1')\nfor m in range(128):\n    for n in range(128):\n        k=carries(m,n); assert v2(comb(m+n,m))==k==s2(m)+s2(n)-s2(m+n)"
+   },
+   {
+    "claim": "Row N of Pascal's triangle has 2^{s_2(N)} odd entries (N<300); row 100 has exactly the odd entries m = 0,4,32,36,64,68,96,100",
+    "python": "from math import comb\nfor N in range(300): assert sum(comb(N,m)%2 for m in range(N+1))==2**bin(N).count('1')\nassert [m for m in range(101) if comb(100,m)%2]==[0,4,32,36,64,68,96,100]"
+   },
+   {
+    "claim": "Digit-sum congruences: n = s_b(n) mod b-1 and n = alternating digit sum mod b+1, for 2 <= b <= 16 and 1 <= n < 3000",
+    "python": "def dig(n,b):\n    d=[]\n    while n: d.append(n%b); n//=b\n    return d\nfor b in range(2,17):\n    for n in range(1,3000):\n        d=dig(n,b)\n        assert (n-sum(d))%(b-1)==0 and (n-sum((-1)**i*x for i,x in enumerate(d)))%(b+1)==0"
+   },
+   {
+    "claim": "s_b(m)+s_b(n)-s_b(m+n) = (b-1) * (number of base-b carries) for 2 <= b <= 12, m,n < 200; s_10(5)+s_10(7)=12, s_10(12)=3",
+    "python": "def s(n,b):\n    t=0\n    while n: t+=n%b; n//=b\n    return t\ndef carries(m,n,b):\n    c=e=0\n    while m or n or e:\n        t=m%b+n%b+e; e=1 if t>=b else 0; c+=e; m//=b; n//=b\n    return c\nfor b in range(2,13):\n    for m in range(200):\n        for n in range(200):\n            assert s(m,b)+s(n,b)-s(m+n,b)==(b-1)*carries(m,n,b)\nassert s(5,10)+s(7,10)==12 and s(12,10)==3"
+   },
+   {
+    "claim": "Base-b representation found by repeated division is unique and reproduces n (b <= 16, n < 2000); 100 = (1100100)_2 = 64+32+4",
+    "python": "import itertools\nfor b in range(2,17):\n    reps={}\n    for k in range(1,4):\n        for ds in itertools.product(range(b),repeat=k):\n            if ds[0]==0: continue\n            v=sum(x*b**(k-1-i) for i,x in enumerate(ds))\n            assert v not in reps; reps[v]=ds\n    assert set(reps)==set(range(1,b**3))\nassert bin(100)=='0b1100100' and 64+32+4==100"
+   }
+  ]
+ },
+ {
+  "id": "vieta-jumping",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Some Diophantine conditions look hopeless at first sight. Find all positive integers $a, b$ such that $ab$ divides $a^2 + b^2 + 1$. There is nothing to factorise and no obvious modulus to try. But the condition is quadratic in each variable, and a quadratic equation with one integer root often has a second integer root. Vieta jumping uses that second root to move from one solution to a smaller one, again and again, until the descent reaches a solution so small that you can check it by hand.\n\nThe method became famous through olympiad problems in the late 1980s and is now a standard tool. It is more than a trick: the jumps are symmetries of a conic, and the same symmetries organise the Markov numbers, which appear in the theory of rational approximation."
+   },
+   {
+    "type": "section",
+    "title": "The jump",
+    "body": "Take the condition: positive integers $a, b$ and an integer $k$ with\n\n$$a^2 + b^2 = k(ab + 1).$$\n\nFreeze $b$ and $k$, and look at this as an equation in an unknown $x$:\n\n$$x^2 - kb\\,x + (b^2 - k) = 0.$$\n\nThe number $a$ is a root. By Vieta's formulas ([[polynomials-roots]]) the other root $a'$ satisfies\n\n$$a + a' = kb,\\qquad a a' = b^2 - k.$$\n\nThe two formulas do different jobs. The sum formula says $a' = kb - a$, so $a'$ is an integer. The product formula, $a' = (b^2 - k)/a$, tells you its sign and its size. Since $a'$ is a root of the same quadratic, $(a', b)$ satisfies the same equation with the same $k$. Replacing $(a, b)$ by $(a', b)$ is a jump; by symmetry you can also jump in the second coordinate.\n\nA numerical chain with $k = 4$: the pair $(30, 8)$ works, since $900 + 64 = 964 = 4\\cdot 241$. Jumping the larger entry gives $4\\cdot 8 - 30 = 2$, so $(2, 8)$, which we reorder as $(8, 2)$. Jumping again gives $4\\cdot 2 - 8 = 0$, and indeed $(0, 2)$ satisfies $0 + 4 = 4\\cdot(0 + 1)$. Showing that such a chain always reaches a pair of a particular shape, and reading off what that says about $k$, is the famous IMO 1988 Problem 6. We leave it to you (it is in the exercises) and instead carry out a complete argument for a close cousin."
+   },
+   {
+    "type": "theorem",
+    "title": "A complete descent",
+    "body": "If $a$ and $b$ are positive integers and $ab \\mid a^2 + b^2 + 1$, then\n\n$$\\frac{a^2 + b^2 + 1}{ab} = 3.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $k = (a^2 + b^2 + 1)/(ab)$, a positive integer, and keep $k$ fixed from now on. Let $S$ be the set of pairs of positive integers $(x, y)$ with $x^2 + y^2 + 1 = kxy$. It is nonempty, so we may choose $(x, y) \\in S$ with $x + y$ as small as possible. Since the equation is symmetric, we may assume $x \\ge y$.\n\nCase $x = y$. Then $2x^2 + 1 = kx^2$, so $x^2 \\mid 1$. Hence $x = y = 1$ and $k = 3$.\n\nCase $x > y$. The number $x$ is a root of $t^2 - ky\\,t + (y^2 + 1) = 0$. The other root $x' = ky - x$ is an integer, and $x x' = y^2 + 1 > 0$, so $x' > 0$. Thus $(x', y) \\in S$. Because $x \\ge y + 1$,\n\n$$x' = \\frac{y^2 + 1}{x} \\le \\frac{y^2 + 1}{y + 1} \\le y < x,$$\n\nwhere the middle inequality is $y^2 + 1 \\le y^2 + y$, true for $y \\ge 1$. Then $x' + y < x + y$, contradicting the choice of $(x, y)$.\n\nSo the minimal pair must be in the first case, and $k = 3$."
+   },
+   {
+    "type": "section",
+    "title": "The recipe",
+    "body": "Every Vieta jumping argument follows the same plan.\n\n1. Fix the parameter (here $k$) and consider all solutions with that value of the parameter.\n2. Write the condition as a quadratic in one variable. The sum of the roots shows the other root is an integer; the product shows it is positive (or zero, or negative, which must be handled).\n3. Use symmetry to order the variables, and jump the larger one.\n4. Show that the jump strictly decreases a positive integer quantity such as $x + y$, unless you are already at a base case.\n5. Analyse the base cases: equal variables, a variable equal to $0$, the smallest values.\n\nThere are two ways to finish. In the minimal-counterexample style, used in the proof above, you take the solution with the smallest sum and show it must be a base case. In the descent-and-climb style, you run the descent from an arbitrary solution down to a base case, then reverse the jumps; this describes all solutions, not just the value of $k$, as in the first example below.\n\nStep 4 is where the work lies. A useful trick is to evaluate the quadratic at the smaller variable: if $f(t) = t^2 - (\\text{sum})\\,t + (\\text{product})$ and $f(y) < 0$, then $y$ lies strictly between the two roots. The root you jump from is the larger variable, so it is the root above $y$, and the other root is smaller than $y$."
+   },
+   {
+    "type": "section",
+    "title": "Why it works: symmetries of a conic",
+    "body": "Fix $k > 2$ and consider $Q(x, y) = x^2 - kxy + y^2$. The condition of the theorem is $Q(x, y) = -1$, a hyperbola in the plane. The two jumps\n\n$$\\sigma_1(x, y) = (ky - x,\\ y),\\qquad \\sigma_2(x, y) = (x,\\ kx - y)$$\n\nboth preserve $Q$, as you can check by expanding. Geometrically, $\\sigma_1$ slides a point of the hyperbola horizontally to the other intersection of that horizontal line with the curve, and $\\sigma_2$ does the same vertically. Each is an involution, given by an integer matrix of determinant $-1$, and their composition is an integer matrix of determinant $1$ that preserves the quadratic form. Automorphisms of this kind are also what generate infinitely many solutions of Pell equations ([[pell]], [[quadratic-forms]]). Indeed, for $k = 3$,\n\n$$(2x - 3y)^2 - 5y^2 = 4\\,(x^2 - 3xy + y^2),$$\n\nso $x^2 + y^2 + 1 = 3xy$ is the same as the Pell-type equation $X^2 - 5y^2 = -4$ with $X = 2x - 3y$. The descent is then the search for a smallest point in each orbit of this symmetry group, and the base cases are those smallest points.\n\nThe same move works with three variables. In the Markov equation $x^2 + y^2 + z^2 = 3xyz$, the substitution $z \\mapsto 3xy - z$ is a jump, and every solution comes from $(1, 1, 1)$ by jumps (third example)."
+   },
+   {
+    "type": "example",
+    "title": "All solutions for k = 3",
+    "body": "Find all pairs of positive integers $(a, b)$ with $a^2 + b^2 + 1 = 3ab$.",
+    "solution": "Descent. Let $(a, b)$ be a solution with $a > b$. The jump $a \\mapsto a' = 3b - a = (b^2 + 1)/a$ gives a positive integer with $a' \\le b$, exactly as in the proof of the theorem. So $(b, a')$ is a solution whose first entry is at least its second, with a smaller sum. Repeating, the sum keeps decreasing, so we must reach a solution with equal entries, and $a = b$ forces $a = b = 1$ (from $2a^2 + 1 = 3a^2$).\n\nClimb. Reversing a descent step, a solution $(y, z)$ with $y \\ge z$ comes from the larger solution $(3y - z, y)$. Starting from $(1, 1)$ we get\n\n$$(1,1) \\to (2,1) \\to (5,2) \\to (13,5) \\to (34,13) \\to (89,34) \\to \\cdots$$\n\nEvery solution with $a \\ge b$ is on this list, because its descent ends at $(1,1)$ and each descent step is undone by exactly one climbing step.\n\nAnswer: with $u_0 = u_1 = 1$ and $u_{n+1} = 3u_n - u_{n-1}$, the sequence is $1, 1, 2, 5, 13, 34, 89, \\dots$, and the solutions are $(u_{n+1}, u_n)$ and $(u_n, u_{n+1})$ for $n \\ge 0$. The numbers $1, 2, 5, 13, 34, 89, \\dots$ are the Fibonacci numbers with odd index."
+   },
+   {
+    "type": "example",
+    "title": "Using the value of the quadratic",
+    "body": "Let $a, b$ be positive integers with $ab > 1$ such that $k = \\dfrac{a^2 + b^2}{ab - 1}$ is an integer. Prove that $k = 5$.",
+    "solution": "First, $k \\ge 3$: since $a^2 + b^2 \\ge 2ab > 2(ab - 1)$, we have $k > 2$.\n\nFix $k$ and choose a solution $(a, b)$ in positive integers, with $ab > 1$, minimising $a + b$; assume $a \\ge b$.\n\nIf $a = b$, then $k(a^2 - 1) = 2a^2$, so $a^2 - 1 \\mid 2a^2 - 2(a^2 - 1) = 2$, which is impossible for $a \\ge 2$ (and $a = 1$ is excluded by $ab > 1$). So $a > b$.\n\nThe number $a$ is a root of $f(t) = t^2 - kb\\,t + (b^2 + k)$. The other root $a' = kb - a$ is an integer with $a a' = b^2 + k > 0$, so $a' \\ge 1$.\n\nSuppose $b \\ge 2$. Then\n\n$$f(b) = (2 - k)b^2 + k \\le -4(k - 2) + k = 8 - 3k < 0,$$\n\nso $b$ lies strictly between the two roots. Since $a > b$, the other root satisfies $a' < b$. Then $(b, a')$ is a solution with $b \\cdot a' \\ge 2$ and smaller sum $a' + b < a + b$, a contradiction.\n\nHence $b = 1$, and $k(a - 1) = a^2 + 1 = (a-1)(a+1) + 2$. So $a - 1 \\mid 2$, giving $a = 2$ or $a = 3$. In both cases $k = 5$: $(4 + 1)/1 = 5$ and $(9 + 1)/2 = 5$."
+   },
+   {
+    "type": "example",
+    "title": "Markov triples",
+    "body": "Prove that every solution of the Markov equation $x^2 + y^2 + z^2 = 3xyz$ in positive integers can be reduced to $(1, 1, 1)$ by repeatedly sorting the entries and replacing the largest entry $z$ by $3xy - z$. Conclude that every solution is obtained from $(1,1,1)$ by such jumps.",
+    "solution": "Let $(x, y, z)$ be a solution with $x \\le y \\le z$. As a quadratic in $z$, the equation reads $f(t) = t^2 - 3xy\\,t + (x^2 + y^2) = 0$. Its other root is $z' = 3xy - z$, an integer, and $z z' = x^2 + y^2 > 0$, so $z' \\ge 1$ and $(x, y, z')$ is again a solution.\n\nNow evaluate at $y$:\n\n$$f(y) = 2y^2 + x^2 - 3xy^2 \\le 3y^2 - 3xy^2 = 3y^2(1 - x) \\le 0,$$\n\nusing $x^2 \\le y^2$ and $x \\ge 1$.\n\nIf $f(y) < 0$, then $y$ lies strictly between the roots; the larger root is $z$ (it is at least $y$), so $z' < y \\le z$. The jump strictly reduces $x + y + z$.\n\nIf $f(y) = 0$, both inequalities are equalities, so $x = y$ and $x = 1$. Then $z^2 - 3z + 2 = 0$, so $z = 1$ or $z = 2$. The triple $(1,1,2)$ jumps to $(1,1,1)$.\n\nSo every triple other than $(1,1,1)$ jumps to a triple with a smaller sum. Sums are positive integers, so the process stops, and it can only stop at $(1, 1, 1)$. Running the jumps backwards, every solution is reached from $(1,1,1)$. The first few, written in increasing order, are\n\n$$(1,1,1),\\ (1,1,2),\\ (1,2,5),\\ (1,5,13),\\ (2,5,29),\\ (1,13,34),\\ \\dots$$\n\nand the numbers that occur are the Markov numbers $1, 2, 5, 13, 29, 34, 89, 169, 194, \\dots$"
+   },
+   {
+    "type": "pitfall",
+    "body": "- The second root is an integer because of the sum formula $a' = kb - a$. The product formula $a' = (b^2 - k)/a$ only shows it is rational; use it for sign and size.\n- Check the sign of the new root. Depending on the equation it may be zero or negative, and each such case must be analysed, not ignored.\n- Jump the larger variable. Jumping the smaller one usually moves you up the tree instead of down.\n- Keep the parameter fixed. The minimal solution must be chosen among solutions with the same $k$; otherwise the contradiction proves nothing.\n- Do not forget the case of equal variables, where \"assume $a > b$\" is not available."
+   },
+   {
+    "type": "connection",
+    "body": "In algebra, each jump is a reflection in the automorphism group of the binary quadratic form $x^2 - kxy + y^2$, which is the setting of [[quadratic-forms]] and of [[pell]]. In geometry, each jump moves between integer points on a hyperbola, and the descent picks out a fundamental set of points.\n\nThe Markov equation is the best-known case with three variables. Markov numbers describe the badly approximable numbers in [[diophantine-approx]]: the irrationals that are hardest to approximate by rationals are tied to Markov triples, and a century-old conjecture that each Markov number is the largest entry of only one triple (up to order) is still open. More generally, Vieta jumping is a descent method in [[diophantine]] suited to equations that are quadratic in each variable separately."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find all pairs of positive integers with $a^2 + b^2 + 2 = 4ab$.\n2. Use Vieta jumping to prove that if $a, b$ are positive integers and $\\dfrac{a^2 + b^2}{ab + 1}$ is an integer, then it is a perfect square (IMO 1988).\n3. List all Markov triples whose largest entry is below $200$, by climbing from $(1,1,1)$.\n4. Show that if $x^2 + y^2 + z^2 = kxyz$ has a solution in positive integers, then $k = 1$ or $k = 3$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   },
+   {
+    "ref": "Aigner, Markov's Theorem and 100 Years of the Uniqueness Conjecture"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "The chain (30,8) -> (8,2) -> (0,2) satisfies a^2+b^2 = 4(ab+1), with jumps a' = kb - a",
+    "python": "k=4\nfor a,b in [(30,8),(2,8),(0,2)]: assert a*a+b*b==k*(a*b+1)\nassert k*8-30==2 and k*2-8==0 and 900+64==964==4*241"
+   },
+   {
+    "claim": "Vieta: if a is a root of x^2 - kbx + (b^2-k), the other root kb-a has product a(kb-a) = b^2-k on the curve",
+    "python": "import sympy as sp\na,b,k,x=sp.symbols('a b k x')\nrel=a**2+b**2-k*(a*b+1)\nexpr=sp.expand((x-a)*(x-(k*b-a)) - (x**2-k*b*x+b**2-k))\nassert sp.simplify(expr + rel)==0"
+   },
+   {
+    "claim": "Whenever ab | a^2+b^2+1 (a,b <= 600), the quotient is 3",
+    "python": "for a in range(1,601):\n    for b in range(1,601):\n        if (a*a+b*b+1)%(a*b)==0: assert (a*a+b*b+1)//(a*b)==3"
+   },
+   {
+    "claim": "Solutions of a^2+b^2+1 = 3ab with a,b <= 3000 are exactly consecutive terms of 1,1,2,5,13,34,..., which are odd-index Fibonacci numbers",
+    "python": "from sympy import fibonacci\nu=[1,1]\nwhile u[-1]<10**4: u.append(3*u[-1]-u[-2])\npairs=set()\nfor i in range(len(u)-1): pairs|={(u[i+1],u[i]),(u[i],u[i+1])}\nsols={(a,b) for a in range(1,3001) for b in range(1,3001) if a*a+b*b+1==3*a*b}\nassert sols=={p for p in pairs if max(p)<=3000}\nassert u[1:8]==[fibonacci(2*n-1) for n in range(1,8)]==[1,2,5,13,34,89,233]"
+   },
+   {
+    "claim": "Identity (2x-3y)^2 - 5y^2 = 4(x^2-3xy+y^2); the jump matrices have determinant -1 and preserve Q",
+    "python": "import sympy as sp\nx,y,k=sp.symbols('x y k')\nassert sp.expand((2*x-3*y)**2-5*y**2-4*(x**2-3*x*y+y**2))==0\nQ=lambda X,Y: X**2-k*X*Y+Y**2\nassert sp.expand(Q(k*y-x,y)-Q(x,y))==0 and sp.expand(Q(x,k*x-y)-Q(x,y))==0\nassert sp.Matrix([[-1,k],[0,1]]).det()==-1 and sp.Matrix([[1,0],[k,-1]]).det()==-1"
+   },
+   {
+    "claim": "If (a^2+b^2)/(ab-1) is an integer (a,b <= 600, ab>1), it equals 5; (2,1) and (3,1) give 5",
+    "python": "for a in range(1,601):\n    for b in range(1,601):\n        if a*b>1 and (a*a+b*b)%(a*b-1)==0: assert (a*a+b*b)//(a*b-1)==5\nassert (4+1)//1==5 and (9+1)//2==5"
+   },
+   {
+    "claim": "All Markov triples with entries <= 300 are generated from (1,1,1) by jumps; Markov numbers start 1,2,5,13,29,34,89,169,194",
+    "python": "brute={(x,y,z) for x in range(1,301) for y in range(x,301) for z in range(y,301) if x*x+y*y+z*z==3*x*y*z}\nseen={(1,1,1)}; stack=[(1,1,1)]\nwhile stack:\n    t=stack.pop()\n    for i in range(3):\n        l=list(t); o=[l[j] for j in range(3) if j!=i]; l[i]=3*o[0]*o[1]-l[i]\n        s=tuple(sorted(l))\n        if max(s)<=300 and s not in seen: seen.add(s); stack.append(s)\nassert seen==brute\nassert sorted({v for t in brute for v in t})[:9]==[1,2,5,13,29,34,89,169,194]"
+   },
+   {
+    "claim": "x^2+y^2+z^2 = kxyz has positive solutions with entries <= 60 only for k in {1,3}",
+    "python": "ks=set()\nfor x in range(1,61):\n    for y in range(x,61):\n        for z in range(y,61):\n            s=x*x+y*y+z*z\n            if s%(x*y*z)==0: ks.add(s//(x*y*z))\nassert ks=={1,3}"
+   },
+   {
+    "claim": "In the descent for x^2+y^2+1 = kxy with x > y >= 1, the other root x' = ky - x = (y^2+1)/x satisfies 1 <= x' <= y (all solutions with x,y <= 2000)",
+    "python": "sols=[(x,y) for y in range(1,2001) for x in range(y+1,2001) if (x*x+y*y+1)%(x*y)==0]\nassert sols\nfor x,y in sols:\n    k=(x*x+y*y+1)//(x*y); xp=k*y-x\n    assert xp*x==y*y+1 and 1<=xp<=y"
+   },
+   {
+    "claim": "The jumps sigma_1, sigma_2 are involutions preserving Q = x^2 - kxy + y^2, and their composition has determinant 1",
+    "python": "import sympy as sp\nk=sp.symbols('k')\nA=sp.Matrix([[-1,k],[0,1]]); B=sp.Matrix([[1,0],[k,-1]])\nassert sp.simplify(A*A-sp.eye(2))==sp.zeros(2) and sp.simplify(B*B-sp.eye(2))==sp.zeros(2)\nassert sp.simplify((A*B).det())==1\nG=sp.Matrix([[1,-k/2],[-k/2,1]])\nfor M in (A,B): assert sp.simplify(M.T*G*M-G)==sp.zeros(2)"
+   },
+   {
+    "claim": "Example (a^2+b^2)/(ab-1): for k >= 3 and b >= 2, f(b) = (2-k)b^2 + k <= 8 - 3k < 0",
+    "python": "for k in range(3,60):\n    for b in range(2,60):\n        assert (2-k)*b*b+k<=8-3*k<0"
+   },
+   {
+    "claim": "Markov triples ordered by largest entry begin (1,1,1),(1,1,2),(1,2,5),(1,5,13),(2,5,29),(1,13,34); in each, f(y) <= 0 and the jump of the largest entry decreases the sum except at (1,1,1)",
+    "python": "T=sorted([(x,y,z) for z in range(1,200) for y in range(1,z+1) for x in range(1,y+1) if x*x+y*y+z*z==3*x*y*z],key=lambda t:(t[2],t[1]))\nassert T[:6]==[(1,1,1),(1,1,2),(1,2,5),(1,5,13),(2,5,29),(1,13,34)]\nfor x,y,z in T:\n    assert 2*y*y+x*x-3*x*y*y<=0\n    if (x,y,z)!=(1,1,1): assert 3*x*y-z<z"
+   }
+  ]
+ },
+ {
+  "id": "lte-zsigmondy",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "How many factors of $7$ divide $9^{98} - 2^{98}$? For which $n$ is $3^n - 1$ divisible by $2^n$? Is $2^n + 1$ ever a power of $3$, apart from $3$ and $9$? Questions about the prime factors of $a^n - b^n$ come up all the time, and two tools settle most of them.\n\nThe lifting-the-exponent lemma (LTE) computes exactly how many times a prime $p$ with $p \\mid a - b$ and $p \\nmid ab$ divides $a^n - b^n$. Zsigmondy's theorem handles the opposite situation: as $n$ grows, $a^n - b^n$ keeps picking up primes that never appeared before. We use the valuation $\\nu_p(m)$, the exponent of $p$ in $m$, from [[p-adic-valuation]], and the multiplicative order from [[order-primroot]]."
+   },
+   {
+    "type": "section",
+    "title": "From a - b to a^n - b^n",
+    "body": "Take $a = 4$, $b = 1$, $p = 3$, so $p \\mid a - b = 3$. Then\n\n$$4^2 - 1 = 15 = 3\\cdot 5,\\qquad 4^3 - 1 = 63 = 3^2\\cdot 7,\\qquad 4^9 - 1 = 262143 = 3^3\\cdot 9709.$$\n\nRaising to a power prime to $3$ did not change the exponent of $3$. Each extra factor of $3$ in $n$ added exactly one. The reason is the factorisation\n\n$$a^n - b^n = (a - b)\\,(a^{n-1} + a^{n-2}b + \\dots + b^{n-1}).$$\n\nIf $a \\equiv b \\pmod p$, each of the $n$ terms in the second factor is congruent to $a^{n-1}$, so the second factor is $\\equiv n\\,a^{n-1} \\pmod p$. When $p \\nmid n$ and $p \\nmid a$ this is not divisible by $p$; when $n = p$ it is divisible by $p$, and for odd $p$ a closer look shows it is divisible by $p$ exactly once."
+   },
+   {
+    "type": "theorem",
+    "title": "Lifting the exponent lemma (odd p)",
+    "body": "Let $p$ be an odd prime and let $a \\ne b$ be integers with $p \\mid a - b$ and $p \\nmid ab$. Then for every $n \\ge 1$,\n\n$$\\nu_p(a^n - b^n) = \\nu_p(a - b) + \\nu_p(n).$$\n\nSimilarly, if $n$ is odd, $a \\ne -b$ and $p \\mid a + b$ (still with $p \\nmid ab$), then $\\nu_p(a^n + b^n) = \\nu_p(a + b) + \\nu_p(n)$."
+   },
+   {
+    "type": "proof",
+    "body": "Write $S_n = a^{n-1} + a^{n-2}b + \\dots + b^{n-1}$, so that $a^n - b^n = (a-b)S_n$.\n\nStep 1: if $p \\nmid n$, then $\\nu_p(a^n - b^n) = \\nu_p(a-b)$. Indeed $S_n \\equiv n a^{n-1} \\pmod p$ as explained above, and $p \\nmid n a^{n-1}$.\n\nStep 2: $\\nu_p(a^p - b^p) = \\nu_p(a - b) + 1$. Write $a = b + t$ with $p \\mid t$. Since $p^2 \\mid t^2$, the binomial theorem gives $(b + t)^j \\equiv b^j + j\\,t\\,b^{j-1} \\pmod{p^2}$. Hence\n\n$$S_p = \\sum_{i=0}^{p-1} a^{p-1-i} b^i \\equiv \\sum_{i=0}^{p-1}\\big(b^{p-1} + (p-1-i)\\,t\\,b^{p-2}\\big) = p\\,b^{p-1} + t\\,b^{p-2}\\cdot\\frac{p(p-1)}{2} \\pmod{p^2}.$$\n\nBecause $p$ is odd, $(p-1)/2$ is an integer, so the last term is a multiple of $p\\,t$ and therefore of $p^2$. Thus $S_p \\equiv p\\,b^{p-1} \\pmod{p^2}$, and since $p \\nmid b$ we get $\\nu_p(S_p) = 1$.\n\nStep 3: write $n = p^e m$ with $p \\nmid m$. Applying Step 2 to $(a, b)$, then to $(a^p, b^p)$, and so on $e$ times (the hypotheses $p \\mid a^{p^j} - b^{p^j}$ and $p \\nmid a^{p^j}b^{p^j}$ persist), gives $\\nu_p(a^{p^e} - b^{p^e}) = \\nu_p(a-b) + e$. Step 1 applied to $A = a^{p^e}$, $B = b^{p^e}$ and the exponent $m$ leaves this unchanged. Since $e = \\nu_p(n)$, we are done.\n\nFor the second statement, replace $b$ by $-b$: for odd $n$, $a^n + b^n = a^n - (-b)^n$."
+   },
+   {
+    "type": "section",
+    "title": "The prime 2",
+    "body": "Step 2 used that $(p-1)/2$ is an integer, and for $p = 2$ the formula really fails: $3^2 - 1^2 = 8$ has $\\nu_2 = 3$, while $\\nu_2(3 - 1) + \\nu_2(2) = 2$. The factor $a + b$, which is even when $a$ and $b$ are odd, contributes extra powers of $2$. The correct statement follows."
+   },
+   {
+    "type": "theorem",
+    "title": "Lifting the exponent lemma (p = 2)",
+    "body": "Let $a, b$ be odd integers with $a \\ne b$ and $a \\ne -b$, and let $n \\ge 1$. If $n$ is odd, then $\\nu_2(a^n - b^n) = \\nu_2(a - b)$. If $n$ is even, then\n\n$$\\nu_2(a^n - b^n) = \\nu_2(a - b) + \\nu_2(a + b) + \\nu_2(n) - 1.$$\n\nIn particular, if $4 \\mid a - b$ then $\\nu_2(a + b) = 1$, and $\\nu_2(a^n - b^n) = \\nu_2(a - b) + \\nu_2(n)$ for every $n \\ge 1$, exactly as for odd primes."
+   },
+   {
+    "type": "proof",
+    "body": "If $n$ is odd, $S_n$ is a sum of $n$ odd numbers, hence odd, and $\\nu_2(a^n - b^n) = \\nu_2(a - b)$.\n\nIf $n$ is even, write $n = 2^e m$ with $m$ odd and $e \\ge 1$. By the odd case applied to $a^{2^e}$ and $b^{2^e}$, $\\nu_2(a^n - b^n) = \\nu_2(a^{2^e} - b^{2^e})$. Repeatedly using $x^2 - y^2 = (x-y)(x+y)$,\n\n$$a^{2^e} - b^{2^e} = (a - b)(a + b)(a^2 + b^2)(a^4 + b^4)\\cdots(a^{2^{e-1}} + b^{2^{e-1}}).$$\n\nFor $j \\ge 1$, $a^{2^j}$ and $b^{2^j}$ are odd squares, hence $\\equiv 1 \\pmod 4$, so $a^{2^j} + b^{2^j} \\equiv 2 \\pmod 4$ contributes exactly one factor of $2$. There are $e - 1$ such factors, so $\\nu_2(a^n - b^n) = \\nu_2(a-b) + \\nu_2(a+b) + e - 1$."
+   },
+   {
+    "type": "section",
+    "title": "New primes in a^n - b^n",
+    "body": "Now look at all the primes. The numbers $2^n - 1$ for $n = 1, \\dots, 10$ are\n\n$$1,\\ 3,\\ 7,\\ 3\\cdot 5,\\ 31,\\ 3^2\\cdot 7,\\ 127,\\ 3\\cdot 5\\cdot 17,\\ 7\\cdot 73,\\ 3\\cdot 11\\cdot 31.$$\n\nAt almost every step a prime appears that was not there before: $5$ at $n = 4$, $17$ at $n = 8$, $73$ at $n = 9$, $11$ at $n = 10$. The exceptions are $n = 1$, where there is no prime at all, and $n = 6$, where $63 = 3^2 \\cdot 7$ only reuses $3$ and $7$.\n\nThere is a clean way to see which primes are new. Suppose $\\gcd(a, b) = 1$ and $p \\mid a^n - b^n$. Then $p \\nmid b$ (otherwise $p \\mid a$ too), so $b$ is invertible modulo $p$, and $p \\mid a^k - b^k$ exactly when $(ab^{-1})^k \\equiv 1 \\pmod p$, that is, when the order of $ab^{-1}$ modulo $p$ divides $k$. So $p$ is new at step $n$ exactly when that order is $n$. By Fermat's little theorem ([[fermat-euler]]) the order divides $p - 1$, so every new prime at step $n$ satisfies $p \\equiv 1 \\pmod n$. Check: $11 \\equiv 1 \\pmod{10}$, $73 \\equiv 1 \\pmod 9$, $17 \\equiv 1 \\pmod 8$."
+   },
+   {
+    "type": "definition",
+    "title": "Primitive prime divisor",
+    "body": "Let $a > b \\ge 1$ be coprime integers. A prime $p$ is a primitive prime divisor of $a^n - b^n$ if $p \\mid a^n - b^n$ but $p \\nmid a^k - b^k$ for every $1 \\le k < n$.\n\nEquivalently, $p \\nmid ab$ and $ab^{-1}$ has order exactly $n$ modulo $p$; in particular $p \\equiv 1 \\pmod n$."
+   },
+   {
+    "type": "theorem",
+    "title": "Zsigmondy's theorem",
+    "body": "Let $a > b \\ge 1$ be coprime integers and $n \\ge 1$. Then $a^n - b^n$ has a primitive prime divisor, except in the following cases:\n\n1. $n = 1$ and $a - b = 1$;\n2. $n = 2$ and $a + b$ is a power of $2$;\n3. $n = 6$, $a = 2$, $b = 1$ (that is, $2^6 - 1 = 63$).\n\nSimilarly, $a^n + b^n$ has a prime divisor that divides no $a^k + b^k$ with $1 \\le k < n$, except when $n = 3$, $a = 2$, $b = 1$ (that is, $2^3 + 1 = 9$)."
+   },
+   {
+    "type": "section",
+    "title": "Why the theorem is true",
+    "body": "The exceptions are easy to confirm. For $n = 1$ and $a - b = 1$ there is no prime factor at all. For $n = 2$, $a^2 - b^2 = (a - b)(a + b)$; if $a + b = 2^k$ then $a - b$ is even, so the prime $2$ already divides $a - b$, and every other prime factor also divides $a - b$. The case $63$ we saw above.\n\nThe full proof (by Bang in 1886 for $b = 1$ and by Zsigmondy in 1892 in general) takes a few pages, but the idea is worth knowing. Factor $a^n - b^n$ into homogenised cyclotomic polynomials,\n\n$$a^n - b^n = \\prod_{d \\mid n} \\Phi_d(a, b),$$\n\nas in [[cyclotomic]]. A primitive prime divisor must divide the last factor $\\Phi_n(a, b)$. In the other direction, one shows that a prime dividing $\\Phi_n(a, b)$ which is not primitive must be the largest prime factor of $n$, and for $n > 2$ it divides $\\Phi_n(a, b)$ only once. So for $n > 2$ a primitive prime exists as soon as $\\Phi_n(a, b)$ is larger than the largest prime factor of $n$, and a size estimate shows this fails only in the listed cases. For example $\\Phi_6(2, 1) = 2^2 - 2 + 1 = 3$, which is the largest prime factor of $6$, and that is why $63$ is an exception.\n\nIn problem solving the two tools complement each other. LTE gives the exact power of a prime you already know about; Zsigmondy guarantees a prime you did not know about, which often contradicts the hypothesis that a number is a power of a fixed prime."
+   },
+   {
+    "type": "example",
+    "title": "Two quick computations",
+    "body": "Compute $\\nu_7(9^{98} - 2^{98})$ and $\\nu_2(3^{100} - 1)$.",
+    "solution": "For the first, $p = 7$ divides $9 - 2 = 7$ exactly once and does not divide $9\\cdot 2$. Since $98 = 2\\cdot 7^2$, LTE gives $\\nu_7(9^{98} - 2^{98}) = 1 + 2 = 3$.\n\nFor the second we need the $p = 2$ version with $a = 3$, $b = 1$ and the even exponent $n = 100 = 4\\cdot 25$:\n\n$$\\nu_2(3^{100} - 1) = \\nu_2(2) + \\nu_2(4) + \\nu_2(100) - 1 = 1 + 2 + 2 - 1 = 4.$$\n\nSo $16$ divides $3^{100} - 1$ but $32$ does not."
+   },
+   {
+    "type": "example",
+    "body": "Show that for every $k \\ge 0$, the power of $3$ dividing $2^{3^k} + 1$ is exactly $3^{k+1}$.",
+    "solution": "Use the plus version of LTE with $a = 2$, $b = 1$, $p = 3$ and the odd exponent $n = 3^k$: $3 \\mid 2 + 1$ and $3 \\nmid 2$, so\n\n$$\\nu_3(2^{3^k} + 1) = \\nu_3(3) + \\nu_3(3^k) = 1 + k.$$\n\nFor instance $2^9 + 1 = 513 = 3^3\\cdot 19$."
+   },
+   {
+    "type": "example",
+    "body": "Find all positive integers $n$ such that $2^n$ divides $3^n - 1$.",
+    "solution": "We need $\\nu_2(3^n - 1) \\ge n$.\n\nIf $n$ is odd, $\\nu_2(3^n - 1) = \\nu_2(3 - 1) = 1$, so we need $n \\le 1$: only $n = 1$ works.\n\nIf $n$ is even, the $p = 2$ lemma gives $\\nu_2(3^n - 1) = 1 + 2 + \\nu_2(n) - 1 = 2 + \\nu_2(n)$. We need $2 + \\nu_2(n) \\ge n$. Since $2^{\\nu_2(n)} \\le n$, we have $\\nu_2(n) \\le \\log_2 n$, and $2 + \\log_2 n < n$ for every $n \\ge 5$. So only $n = 2$ and $n = 4$ remain, and both work: $3^2 - 1 = 8$ and $3^4 - 1 = 80 = 16\\cdot 5$.\n\nAnswer: $n \\in \\{1, 2, 4\\}$."
+   },
+   {
+    "type": "example",
+    "title": "A power of 3",
+    "body": "Find all positive integers $n, m$ with $2^n + 1 = 3^m$.",
+    "solution": "Solution with Zsigmondy. By the $a^n + b^n$ part of the theorem with $a = 2$, $b = 1$, for $n \\ge 2$ and $n \\ne 3$ the number $2^n + 1$ has a prime factor that does not divide $2^1 + 1 = 3$. Then $2^n + 1$ is not a power of $3$. The remaining cases are $n = 1$, giving $3 = 3^1$, and $n = 3$, giving $9 = 3^2$.\n\nSolution with LTE. If $n$ is even then $2^n \\equiv 1 \\pmod 3$, so $2^n + 1 \\equiv 2 \\pmod 3$ is not a power of $3$ (note $m \\ge 1$, since $2^n + 1 \\ge 3$). If $n$ is odd, LTE gives $m = \\nu_3(2^n + 1) = 1 + \\nu_3(n)$, so\n\n$$2^n + 1 = 3^m = 3\\cdot 3^{\\nu_3(n)} \\le 3n.$$\n\nBut $2^n + 1 > 3n$ for $n \\ge 4$, so $n \\in \\{1, 3\\}$.\n\nEither way the solutions are $(n, m) = (1, 1)$ and $(3, 2)$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The hypothesis $p \\nmid ab$ is essential. With $a = 6$, $b = 3$, $p = 3$: $6^2 - 3^2 = 27$ has $\\nu_3 = 3$, but the formula would give $1$.\n- So is $p \\mid a - b$. Here $3 \\nmid 2 - 1$, yet $3 \\mid 2^2 - 1$. In such cases first find the order $d$ of $ab^{-1}$ modulo $p$ and apply LTE to $a^d$ and $b^d$.\n- Never use the odd-prime formula for $p = 2$; the term $\\nu_2(a + b) - 1$ is easy to forget.\n- The $a^n + b^n$ version requires $n$ odd.\n- Zsigmondy promises one new prime factor and says nothing about its exponent or about how many new primes there are. And the exceptions must be checked by hand: forgetting $2^6 - 1 = 3^2\\cdot 7$ is the classic mistake."
+   },
+   {
+    "type": "connection",
+    "body": "Primitive prime divisors of $a^n - b^n$ are the primes $p$ for which $a/b$ has order exactly $n$ modulo $p$, so Zsigmondy's theorem is really a statement about the values of cyclotomic polynomials ([[cyclotomic]]). It gives an elementary proof that for each $n$ there are infinitely many primes $p \\equiv 1 \\pmod n$: for every $j \\ge 1$ with $nj \\ne 1, 6$, the number $2^{nj} - 1$ has a primitive prime divisor; these primes are distinct for different $j$ (the order of $2$ modulo them differs) and each is $\\equiv 1 \\pmod{nj}$, hence $\\equiv 1 \\pmod n$. The general statement about primes in progressions needs [[dirichlet-characters]].\n\nLTE is a concrete instance of lifting information from $p$ to higher powers of $p$, the theme of [[hensel]]. The orders that control primitive divisors are the subject of [[order-primroot]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Compute $\\nu_3(10^{81} - 1)$ and $\\nu_5(6^{125} - 1)$.\n2. Find the largest power of $2$ dividing $5^{1024} - 1$.\n3. List the primitive prime divisors of $2^n - 1$ for $n \\le 12$ and check that each satisfies $p \\equiv 1 \\pmod n$.\n4. Find all positive integers $n$ such that $3^n + 1$ is a power of $2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Zsigmondy, Zur Theorie der Potenzreste, Monatshefte für Mathematik und Physik 3 (1892)"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "4^2-1=3*5, 4^3-1=3^2*7, 4^9-1=262143=3^3*9709",
+    "python": "assert 4**2-1==15 and 4**3-1==63 and 4**9-1==262143==27*9709 and 9709%3!=0"
+   },
+   {
+    "claim": "LTE for odd p holds for p in {3,5,7,11}, |a|,|b| <= 30, n <= 40",
+    "python": "from sympy import multiplicity as nu\nfor p in [3,5,7,11]:\n    for a in range(-30,31):\n        for b in range(-30,31):\n            if (a-b)%p==0 and a*b%p!=0 and a!=b:\n                for n in range(1,41):\n                    assert nu(p,a**n-b**n)==nu(p,a-b)+nu(p,n)\n                    if n%2==1 and (a+b)%p==0 and a+b!=0: assert nu(p,a**n+b**n)==nu(p,a+b)+nu(p,n)"
+   },
+   {
+    "claim": "LTE for p=2 holds for odd a,b in [-41,41], n <= 40; 3^2-1 = 8 is the counterexample to the odd formula",
+    "python": "from sympy import multiplicity as nu\nassert 3**2-1==8 and nu(2,8)==3 and nu(2,2)+nu(2,2)==2\nfor a in range(-41,42,2):\n    for b in range(-41,42,2):\n        if a==b or a==-b: continue\n        for n in range(1,41):\n            v=nu(2,a**n-b**n)\n            if n%2: assert v==nu(2,a-b)\n            else: assert v==nu(2,a-b)+nu(2,a+b)+nu(2,n)-1"
+   },
+   {
+    "claim": "nu_7(9^98 - 2^98) = 3 and nu_2(3^100 - 1) = 4",
+    "python": "from sympy import multiplicity as nu\nassert nu(7,9**98-2**98)==3 and nu(2,3**100-1)==4"
+   },
+   {
+    "claim": "nu_3(2^(3^k)+1) = k+1 for k <= 7; 2^9+1 = 513 = 27*19",
+    "python": "from sympy import multiplicity as nu\nassert all(nu(3,2**(3**k)+1)==k+1 for k in range(8))\nassert 2**9+1==513==27*19"
+   },
+   {
+    "claim": "2^n | 3^n - 1 exactly for n in {1,2,4} (n <= 300); 3^4-1 = 80",
+    "python": "assert [n for n in range(1,301) if (3**n-1)%2**n==0]==[1,2,4] and 3**4-1==80"
+   },
+   {
+    "claim": "2^n + 1 is a power of 3 only for n = 1, 3 (n <= 300); 2^n+1 > 3n for n >= 4",
+    "python": "def is_pow3(x):\n    while x%3==0: x//=3\n    return x==1\nassert [n for n in range(1,301) if is_pow3(2**n+1)]==[1,3]\nassert all(2**n+1>3*n for n in range(4,300))"
+   },
+   {
+    "claim": "Factorisations of 2^n-1 for n<=10 as listed, and the primitive primes satisfy p = 1 mod n",
+    "python": "from sympy import factorint\nexp={1:{},2:{3:1},3:{7:1},4:{3:1,5:1},5:{31:1},6:{3:2,7:1},7:{127:1},8:{3:1,5:1,17:1},9:{7:1,73:1},10:{3:1,11:1,31:1}}\nfor n,f in exp.items(): assert factorint(2**n-1)==f\nassert 11%10==1 and 73%9==1 and 17%8==1"
+   },
+   {
+    "claim": "Zsigmondy (minus form) for coprime a>b>=1, a<=14, n<=30: no primitive prime exactly in the three listed exception cases",
+    "python": "from math import gcd\ndef has_prim(a,b,n):\n    g=a**n-b**n\n    for k in range(1,n):\n        h=a**k-b**k\n        while True:\n            d=gcd(g,h)\n            if d==1: break\n            g//=d\n    return g>1\nfor a in range(2,15):\n    for b in range(1,a):\n        if gcd(a,b)!=1: continue\n        for n in range(1,31):\n            exc=(n==1 and a-b==1) or (n==2 and (a+b)&(a+b-1)==0) or (n==6 and a==2 and b==1)\n            assert has_prim(a,b,n)==(not exc)"
+   },
+   {
+    "claim": "Zsigmondy (plus form) for coprime a>b>=1, a<=14, n<=30: only exception is 2^3+1",
+    "python": "from math import gcd\ndef has_prim(a,b,n):\n    g=a**n+b**n\n    for k in range(1,n):\n        h=a**k+b**k\n        while True:\n            d=gcd(g,h)\n            if d==1: break\n            g//=d\n    return g>1\nfor a in range(2,15):\n    for b in range(1,a):\n        if gcd(a,b)!=1: continue\n        for n in range(1,31):\n            assert has_prim(a,b,n)==(not (n==3 and a==2 and b==1))"
+   },
+   {
+    "claim": "For 3<=n<=40, a in 2..8, b=1: a non-primitive prime dividing Phi_n(a) is the largest prime factor of n and divides Phi_n(a) only once; Phi_6(2)=3",
+    "python": "from sympy import cyclotomic_poly, factorint, symbols, n_order\nx=symbols('x')\nassert cyclotomic_poly(6,x).subs(x,2)==3\nfor n in range(3,41):\n    for a in range(2,9):\n        v=int(cyclotomic_poly(n,x).subs(x,a))\n        for p,e in factorint(v).items():\n            if a%p==0: continue\n            if n_order(a,p)!=n:\n                assert p==max(factorint(n)) and e==1"
+   },
+   {
+    "claim": "Pitfall numbers: 6^2-3^2 = 27 has nu_3 = 3 while nu_3(6-3)+nu_3(2) = 1; 3 divides 2^2-1 but not 2-1",
+    "python": "from sympy import multiplicity as nu\nassert 6**2-3**2==27 and nu(3,27)==3 and nu(3,3)+nu(3,2)==1 and (2**2-1)%3==0 and (2-1)%3!=0"
+   },
+   {
+    "claim": "For p = 2: if 4 | a-b (a,b odd, a != b) then nu_2(a^n-b^n) = nu_2(a-b)+nu_2(n) for all n <= 40",
+    "python": "from sympy import multiplicity as nu\nfor a in range(-41,42,2):\n    for b in range(-41,42,2):\n        if a!=b and (a-b)%4==0:\n            for n in range(1,41): assert nu(2,a**n-b**n)==nu(2,a-b)+nu(2,n)"
+   },
+   {
+    "claim": "Every primitive prime divisor of a^n - b^n (coprime a > b >= 1, a <= 9, n <= 24) satisfies p = 1 mod n, and a^n - b^n = prod_{d|n} Phi_d(a,b)",
+    "python": "from math import gcd\nfrom sympy import primefactors, cyclotomic_poly, symbols, divisors, Poly\nx,y=symbols('x y')\nfor a in range(2,10):\n    for b in range(1,a):\n        if gcd(a,b)!=1: continue\n        for n in range(1,25):\n            for p in primefactors(a**n-b**n):\n                if all((a**k-b**k)%p for k in range(1,n)): assert p%n==1%n\n            prod=1\n            for d in divisors(n):\n                ph=Poly(cyclotomic_poly(d,x),x)\n                prod*=sum(int(c)*a**m*b**(ph.degree()-m) for (m,),c in ph.terms())\n            assert prod==a**n-b**n"
+   },
+   {
+    "claim": "For coprime a > b >= 1 (a <= 8) and 3 <= n <= 30, a non-primitive prime dividing Phi_n(a,b) is the largest prime factor of n and divides Phi_n(a,b) exactly once",
+    "python": "from math import gcd\nfrom sympy import cyclotomic_poly, symbols, Poly, factorint\nx=symbols('x')\nfor n in range(3,31):\n    ph=Poly(cyclotomic_poly(n,x),x); D=ph.degree()\n    for a in range(2,9):\n        for b in range(1,a):\n            if gcd(a,b)!=1: continue\n            v=sum(int(c)*a**m*b**(D-m) for (m,),c in ph.terms())\n            for p,e in factorint(v).items():\n                if any((a**k-b**k)%p==0 for k in range(1,n)):\n                    assert p==max(factorint(n)) and e==1"
+   },
+   {
+    "claim": "2^m - 1 has a primitive prime divisor for every m <= 60 except m = 1 and m = 6 (used for primes = 1 mod n)",
+    "python": "from sympy import primefactors\nbad=[m for m in range(1,61) if not any(all((2**k-1)%p for k in range(1,m)) for p in primefactors(2**m-1))]\nassert bad==[1,6]"
+   }
+  ]
+ },
+ {
+  "id": "binomial-factorial",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "How many zeros does $2026!$ end with? Why is $\\binom{2n}{n}$ even for every $n \\ge 1$, and when is it divisible by $3$? Is a given ratio of factorials an integer? Each question asks for the exponent of a prime in a product of many consecutive integers. Legendre's formula answers this with a short sum. Kummer's theorem turns the answer for binomial coefficients into a statement about carrying digits.\n\nThe prerequisite is the valuation $\\nu_p(m)$, the exponent of the prime $p$ in $m$ ([[p-adic-valuation]]). We use $\\nu_p(xy) = \\nu_p(x) + \\nu_p(y)$ throughout, and base-$p$ digits from [[digits-bases]]."
+   },
+   {
+    "type": "section",
+    "title": "Counting factors of p in n!",
+    "body": "Since $\\nu_p$ turns products into sums, $\\nu_p(n!) = \\nu_p(1) + \\nu_p(2) + \\dots + \\nu_p(n)$. Take $p = 2$ and $n = 10$. Instead of adding the $\\nu_2(j)$ one by one, count in layers: five of the numbers $1, \\dots, 10$ are even, each giving one factor of $2$; two of them ($4$ and $8$) are divisible by $4$, each giving a second factor; one ($8$) is divisible by $8$ and gives a third. So\n\n$$\\nu_2(10!) = 5 + 2 + 1 = 8,$$\n\nand indeed $10! = 3628800 = 2^8\\cdot 14175$ with $14175$ odd. The number of multiples of $p^k$ up to $n$ is $\\lfloor n/p^k\\rfloor$ ([[floor-functions]]), and that is the whole idea."
+   },
+   {
+    "type": "theorem",
+    "title": "Legendre's formula",
+    "body": "For every prime $p$ and every integer $n \\ge 0$,\n\n$$\\nu_p(n!) = \\sum_{k\\ge1}\\left\\lfloor \\frac{n}{p^k}\\right\\rfloor = \\frac{n - s_p(n)}{p-1},$$\n\nwhere $s_p(n)$ is the sum of the base-$p$ digits of $n$. The sum is finite, since its terms vanish once $p^k > n$."
+   },
+   {
+    "type": "proof",
+    "body": "First equality. For each $j$, $\\nu_p(j)$ is the number of $k \\ge 1$ with $p^k \\mid j$. Counting the pairs $(j, k)$ with $1 \\le j \\le n$, $k \\ge 1$, $p^k \\mid j$ in two ways,\n\n$$\\nu_p(n!) = \\sum_{j=1}^{n} \\#\\{k \\ge 1 : p^k \\mid j\\} = \\sum_{k \\ge 1} \\#\\{j \\le n : p^k \\mid j\\} = \\sum_{k\\ge1}\\left\\lfloor \\frac{n}{p^k}\\right\\rfloor.$$\n\nSecond equality. Write $n = \\sum_i a_i p^i$ in base $p$. For $k \\ge 1$,\n\n$$\\frac{n}{p^k} = \\sum_{i \\ge k} a_i p^{i-k} + \\frac{1}{p^k}\\sum_{i<k} a_i p^i,$$\n\nand the last term is less than $1$, because $\\sum_{i<k} a_i p^i \\le (p-1)(1 + p + \\dots + p^{k-1}) = p^k - 1$. So $\\lfloor n/p^k\\rfloor = \\sum_{i\\ge k} a_i p^{i-k}$. Summing over $k \\ge 1$, the digit $a_i$ appears with weight $p^{i-1} + \\dots + p + 1 = (p^i - 1)/(p-1)$. Hence\n\n$$\\nu_p(n!) = \\sum_i a_i\\,\\frac{p^i - 1}{p - 1} = \\frac{n - s_p(n)}{p-1}.$$"
+   },
+   {
+    "type": "section",
+    "title": "First consequences",
+    "body": "The digit form gives quick estimates. Since $s_p(n) \\ge 1$ for $n \\ge 1$, we get $\\nu_p(n!) < n/(p-1)$. For $p = 2$ this says $\\nu_2(n!) = n - s_2(n) \\le n - 1$, so $2^n$ never divides $n!$ for $n \\ge 1$, with equality $\\nu_2(n!) = n - 1$ exactly when $n$ is a power of $2$.\n\nTrailing zeros of $n!$ count the factors of $10 = 2\\cdot 5$. Every term $\\lfloor n/5^k\\rfloor$ is at most the corresponding $\\lfloor n/2^k\\rfloor$, so $\\nu_5(n!) \\le \\nu_2(n!)$, and the number of trailing zeros is $\\min(\\nu_2(n!), \\nu_5(n!)) = \\nu_5(n!)$. The same reasoning works for any composite base: factor the base into primes, divide the exponent of each prime in $n!$ by its exponent in the base, round down, and take the smallest result."
+   },
+   {
+    "type": "section",
+    "title": "From factorials to binomial coefficients",
+    "body": "For a binomial coefficient, Legendre's formula gives\n\n$$\\nu_p\\!\\binom{m+n}{m} = \\nu_p((m+n)!) - \\nu_p(m!) - \\nu_p(n!) = \\frac{s_p(m) + s_p(n) - s_p(m+n)}{p - 1}.$$\n\nThe numerator measures how much digit sum is lost when $m$ and $n$ are added in base $p$. A loss happens only at a carry: a column total $t \\ge p$ is written as $t - p$, and $1$ is passed to the next column, a net loss of $p - 1$. So the fraction counts the carries."
+   },
+   {
+    "type": "theorem",
+    "title": "Kummer's theorem",
+    "body": "For a prime $p$ and integers $m, n \\ge 0$, $\\nu_p\\binom{m+n}{m}$ equals the number of carries when $m$ and $n$ are added in base $p$."
+   },
+   {
+    "type": "proof",
+    "body": "Let $x_i, y_i, z_i$ be the base-$p$ digits of $m$, $n$, $m + n$, and let $\\varepsilon_i \\in \\{0, 1\\}$ be the carry out of column $i$, with $\\varepsilon_{-1} = 0$. (A carry is at most $1$ because a column total is at most $(p-1) + (p-1) + 1 = 2p - 1$.) Column addition says\n\n$$z_i = x_i + y_i + \\varepsilon_{i-1} - p\\,\\varepsilon_i.$$\n\nSum over all columns, far enough to include the one that receives the last carry, and let $C = \\sum_i \\varepsilon_i$ be the number of carries. Then $\\sum_i \\varepsilon_{i-1} = C$ as well, and\n\n$$s_p(m+n) = s_p(m) + s_p(n) + C - pC.$$\n\nHence $s_p(m) + s_p(n) - s_p(m+n) = (p-1)C$, and by the formula above $\\nu_p\\binom{m+n}{m} = C$."
+   },
+   {
+    "type": "section",
+    "title": "What Kummer's theorem tells you",
+    "body": "Kummer's theorem tells you exactly when $p \\nmid \\binom{N}{m}$: when adding $m$ and $N - m$ in base $p$ produces no carry, which happens exactly when every base-$p$ digit of $m$ is at most the corresponding digit of $N$. For instance, when $n \\ge 1$ the addition $n + n$ in base $2$ always carries out of the column of the leading digit of $n$, so $\\binom{2n}{n}$ is always even. Lucas's theorem ([[lucas]]) goes further and gives the residue: $\\binom{N}{m} \\equiv \\prod_i \\binom{N_i}{m_i} \\pmod p$, where $N_i, m_i$ are the digits.\n\nKummer also bounds the size of the prime power. When adding $m$ and $N - m$, a carry out of column $k$ means that the parts of the two numbers below $p^{k+1}$ already add up to at least $p^{k+1}$, which forces $N \\ge p^{k+1}$. So the number of carries is at most the number of $k \\ge 0$ with $p^{k+1} \\le N$, and therefore $p^{\\nu_p\\binom{N}{m}} \\le N$ for all $0 \\le m \\le N$. The full power of $p$ dividing a binomial coefficient is never larger than its top entry. The third example proves this directly from Legendre for $\\binom{2n}{n}$."
+   },
+   {
+    "type": "example",
+    "title": "Trailing zeros",
+    "body": "How many zeros does $2026!$ end with? What is $\\nu_2(100!)$?",
+    "solution": "The number of trailing zeros is $\\nu_5(2026!)$:\n\n$$\\left\\lfloor\\frac{2026}{5}\\right\\rfloor + \\left\\lfloor\\frac{2026}{25}\\right\\rfloor + \\left\\lfloor\\frac{2026}{125}\\right\\rfloor + \\left\\lfloor\\frac{2026}{625}\\right\\rfloor = 405 + 81 + 16 + 3 = 505,$$\n\nand $5^5 = 3125 > 2026$, so the sum stops there. Hence $2026!$ ends in $505$ zeros.\n\nFor $\\nu_2(100!)$ the digit form is fastest: $100 = 64 + 32 + 4 = (1100100)_2$ has $s_2(100) = 3$, so $\\nu_2(100!) = 100 - 3 = 97$. As a check, $50 + 25 + 12 + 6 + 3 + 1 = 97$."
+   },
+   {
+    "type": "example",
+    "body": "Find $\\nu_3\\binom{100}{50}$ in two ways.",
+    "solution": "By Kummer. In base $3$, $50 = 27 + 2\\cdot 9 + 3 + 2 = (1212)_3$. Add $(1212)_3 + (1212)_3$ column by column from the right:\n\n1. units: $2 + 2 = 4 = 1 + 3$, write $1$, carry;\n2. threes: $1 + 1 + 1 = 3$, write $0$, carry;\n3. nines: $2 + 2 + 1 = 5 = 2 + 3$, write $2$, carry;\n4. twenty-sevens: $1 + 1 + 1 = 3$, write $0$, carry;\n5. eighty-ones: write the carried $1$.\n\nThe result is $(10201)_3 = 81 + 18 + 1 = 100$, with $4$ carries. So $\\nu_3\\binom{100}{50} = 4$.\n\nBy Legendre. $\\nu_3(100!) = 33 + 11 + 3 + 1 = 48$ and $\\nu_3(50!) = 16 + 5 + 1 = 22$, so $\\nu_3\\binom{100}{50} = 48 - 2\\cdot 22 = 4$."
+   },
+   {
+    "type": "example",
+    "title": "Prime powers in the central binomial coefficient",
+    "body": "Let $n \\ge 1$ and let $p$ be a prime with $p^e$ exactly dividing $\\binom{2n}{n}$. Prove that $p^e \\le 2n$. Deduce that $\\binom{2n}{n} \\le (2n)^{\\pi(2n)}$, where $\\pi(x)$ is the number of primes up to $x$, and that every prime $p$ with $n < p \\le 2n$ divides $\\binom{2n}{n}$ exactly once.",
+    "solution": "By Legendre,\n\n$$e = \\nu_p\\!\\binom{2n}{n} = \\sum_{k \\ge 1}\\left(\\left\\lfloor\\frac{2n}{p^k}\\right\\rfloor - 2\\left\\lfloor\\frac{n}{p^k}\\right\\rfloor\\right).$$\n\nFor any real $x$, write $x = \\lfloor x\\rfloor + \\theta$ with $0 \\le \\theta < 1$; then $\\lfloor 2x\\rfloor - 2\\lfloor x\\rfloor = \\lfloor 2\\theta\\rfloor \\in \\{0, 1\\}$. So each term is $0$ or $1$. If $p^k > 2n$, both floors are $0$ and the term vanishes. Therefore $e$ is at most the number of $k \\ge 1$ with $p^k \\le 2n$; if $K$ is the largest such $k$, then $e \\le K$ and $p^e \\le p^K \\le 2n$.\n\nAll prime factors of $\\binom{2n}{n}$ are at most $2n$ (they divide $(2n)!$), and each contributes a prime power at most $2n$. Multiplying,\n\n$$\\binom{2n}{n} = \\prod_{p \\le 2n} p^{\\nu_p\\binom{2n}{n}} \\le (2n)^{\\pi(2n)}.$$\n\nIf $n < p \\le 2n$, then $p^2 > 2n$ (for $n \\ge 2$ because $p^2 > n^2 \\ge 2n$, and for $n = 1$ because $p = 2$), so only $k = 1$ contributes, giving $\\lfloor 2n/p\\rfloor - 2\\lfloor n/p\\rfloor = 1 - 0 = 1$.\n\nSince $\\binom{2n}{n}$ is the largest of the $2n + 1$ terms in $(1+1)^{2n} = 4^n$, we have $\\binom{2n}{n} \\ge 4^n/(2n+1)$, and taking logarithms gives the Chebyshev-type lower bound $\\pi(2n) \\ge \\dfrac{n\\log 4 - \\log(2n+1)}{\\log(2n)}$, of order $n/\\log n$."
+   },
+   {
+    "type": "example",
+    "body": "For which $n$ is $\\binom{2n}{n}$ not divisible by $3$? How many such $n$ are there with $0 \\le n < 3^k$?",
+    "solution": "By Kummer, $3 \\nmid \\binom{2n}{n}$ exactly when adding $n + n$ in base $3$ produces no carry. If there has been no carry so far, column $i$ has total $2d_i$, where $d_i$ is the $i$-th digit of $n$; this is below $3$ exactly when $d_i \\in \\{0, 1\\}$. So there is no carry anywhere exactly when every base-$3$ digit of $n$ is $0$ or $1$.\n\nThe first such $n$ are $0, 1, 3, 4, 9, 10, 12, 13, \\dots$. For example $\\binom{8}{4} = 70$ is not divisible by $3$ ($4 = (11)_3$), while $\\binom{4}{2} = 6$ is ($2 = (2)_3$).\n\nBelow $3^k$ the numbers have $k$ base-$3$ digits (allowing leading zeros), each chosen from $\\{0, 1\\}$, so there are $2^k$ of them."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Do not stop at $\\lfloor n/p\\rfloor$. The multiples of $p^2, p^3, \\dots$ contribute too: $\\nu_5(100!) = 20 + 4 = 24$, not $20$.\n- Legendre's formula is for primes. For a composite base, factor it: the largest power of $12 = 2^2\\cdot 3$ dividing $n!$ is $\\min(\\lfloor \\nu_2(n!)/2\\rfloor, \\nu_3(n!))$.\n- In Kummer's theorem the base must be the prime $p$ itself, and the carries are those in the addition $m + n$ where the binomial coefficient is $\\binom{m+n}{m}$. For $\\binom{N}{m}$, add $m$ and $N - m$.\n- $s_p(n)$ is the digit sum in base $p$, not in base $10$."
+   },
+   {
+    "type": "connection",
+    "body": "Binomial coefficients count subsets, and their arithmetic is a meeting point of combinatorics and number theory ([[combinatorial-nt]]). The estimate in the third example is the starting point of Chebyshev's bounds $\\pi(x) \\asymp x/\\log x$ ([[chebyshev]]) and of Erdős's proof of Bertrand's postulate, which shows that $\\binom{2n}{n}$ is too large to be built only from primes at most $n$. Chebyshev's sharper constants come from the same method applied to the factorial ratio $\\frac{(30n)!\\,n!}{(15n)!\\,(10n)!\\,(6n)!}$.\n\nMany problems of Erdős start here. For example, Erdős conjectured that $\\binom{2n}{n}$ is never squarefree for $n > 4$ (it is squarefree for $n = 1, 2, 4$). Sárközy proved this for all sufficiently large $n$, and Granville and Ramaré completed the proof for every $n > 4$. The digit-by-digit structure continues in [[lucas]] and [[digits-bases]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. How many zeros does $1000!$ end with? What is the largest power of $12$ dividing $100!$?\n2. Use carries to find $\\nu_2\\binom{1024}{512}$ and $\\nu_2\\binom{1023}{511}$.\n3. Show that for $0 < j < p^k$, the exponent of $p$ in $\\binom{p^k}{j}$ is $k - \\nu_p(j)$. In particular $p \\mid \\binom{p^k}{j}$.\n4. Prove that $\\dfrac{(2n)!}{n!\\,(n+1)!}$ is an integer for every $n \\ge 0$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+   },
+   {
+    "ref": "Graham, Knuth & Patashnik, Concrete Mathematics",
+    "where": "Chapter 4"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "nu_2(10!) = 8 and 10! = 2^8 * 14175",
+    "python": "import math\nassert math.factorial(10)==3628800==2**8*14175 and 14175%2==1"
+   },
+   {
+    "claim": "Legendre's formula, both forms, for p in {2,3,5,7,11} and n < 400",
+    "python": "import math\nfrom sympy import multiplicity\nfrom sympy.ntheory.digits import digits\nfor p in [2,3,5,7,11]:\n    for n in range(1,400):\n        v=multiplicity(p,math.factorial(n))\n        s=sum(n//p**k for k in range(1,20))\n        sp=sum(digits(n,p)[1:])\n        assert v==s and (p-1)*v==n-sp"
+   },
+   {
+    "claim": "2026! ends in 505 zeros (405+81+16+3)",
+    "python": "import math\nf=math.factorial(2026); z=0\nwhile f%10==0: f//=10; z+=1\nassert z==505==405+81+16+3"
+   },
+   {
+    "claim": "nu_2(100!) = 97 = 50+25+12+6+3+1; nu_5(100!) = 24",
+    "python": "import math\nfrom sympy import multiplicity\nassert multiplicity(2,math.factorial(100))==97==50+25+12+6+3+1 and multiplicity(5,math.factorial(100))==24"
+   },
+   {
+    "claim": "50 = (1212)_3, 100 = (10201)_3, nu_3(C(100,50)) = 4 = 48 - 2*22",
+    "python": "from math import comb, factorial\nfrom sympy import multiplicity\nfrom sympy.ntheory.digits import digits\nassert digits(50,3)==[3,1,2,1,2] and digits(100,3)==[3,1,0,2,0,1]\nassert multiplicity(3,comb(100,50))==4 and multiplicity(3,factorial(100))==48 and multiplicity(3,factorial(50))==22"
+   },
+   {
+    "claim": "Kummer: nu_p(C(m+n,m)) = base-p carries, p in {2,3,5,7}, m,n < 80",
+    "python": "from math import comb\nfrom sympy import multiplicity\ndef carries(m,n,b):\n    c=e=0\n    while m or n or e:\n        t=m%b+n%b+e; e=1 if t>=b else 0; c+=e; m//=b; n//=b\n    return c\nfor p in [2,3,5,7]:\n    for m in range(80):\n        for n in range(80):\n            assert multiplicity(p,comb(m+n,m))==carries(m,n,p)"
+   },
+   {
+    "claim": "p^{nu_p C(N,m)} <= N for all N <= 150; for C(2n,n): p^e <= 2n, primes in (n,2n] divide exactly once, C(2n,n) <= (2n)^pi(2n)",
+    "python": "from math import comb\nfrom sympy import factorint, primepi, primerange\nfor N in range(1,151):\n    for m in range(N+1):\n        for p,e in factorint(comb(N,m)).items(): assert p**e<=N\nfor n in range(1,301):\n    c=comb(2*n,n); f=factorint(c)\n    assert all(p**e<=2*n for p,e in f.items())\n    assert all(f.get(p,0)==1 for p in primerange(n+1,2*n+1))\n    assert c<=(2*n)**int(primepi(2*n)) and c*(2*n+1)>=4**n"
+   },
+   {
+    "claim": "3 does not divide C(2n,n) iff all base-3 digits of n are 0 or 1 (n<2000); count below 3^k is 2^k; C(8,4)=70, C(4,2)=6",
+    "python": "from math import comb\nfrom sympy.ntheory.digits import digits\nok=lambda n: all(d<2 for d in digits(n,3)[1:])\nfor n in range(2000): assert (comb(2*n,n)%3!=0)==ok(n)\nfor k in range(1,7): assert sum(ok(n) for n in range(3**k))==2**k\nassert comb(8,4)==70 and comb(4,2)==6"
+   },
+   {
+    "claim": "C(2n,n) is squarefree for n <= 400 only when n in {1,2,4}",
+    "python": "from math import comb\nfrom sympy import factorint\nassert [n for n in range(1,401) if all(e==1 for e in factorint(comb(2*n,n)).values())]==[1,2,4]"
+   },
+   {
+    "claim": "Exercise 3 relation nu_p(C(p^k,j)) = k - nu_p(j) for p in {2,3,5}, p^k <= 250",
+    "python": "from math import comb\nfrom sympy import multiplicity\nfor p in [2,3,5]:\n    k=1\n    while p**k<=250:\n        for j in range(1,p**k): assert multiplicity(p,comb(p**k,j))==k-multiplicity(p,j)\n        k+=1"
+   },
+   {
+    "claim": "nu_2(n!) = n-1 exactly when n is a power of 2, and nu_5(n!) <= nu_2(n!), for 1 <= n < 2000",
+    "python": "def nu(p,n):\n    s=0; q=p\n    while q<=n: s+=n//q; q*=p\n    return s\nfor n in range(1,2000):\n    assert (nu(2,n)==n-1)==(n&(n-1)==0) and nu(5,n)<=nu(2,n)"
+   },
+   {
+    "claim": "Largest power of 12 dividing n! is min(floor(nu_2/2), nu_3) for n < 300; for n=100 it is 48",
+    "python": "import math\nfrom sympy import multiplicity\nfor n in range(1,300):\n    f=math.factorial(n); e=0\n    while f%12==0: f//=12; e+=1\n    assert e==min(multiplicity(2,math.factorial(n))//2,multiplicity(3,math.factorial(n)))\nf=math.factorial(100); e=0\nwhile f%12**(e+1)==0: e+=1\nassert e==48"
+   },
+   {
+    "claim": "Chebyshev-type bound pi(2n) >= (n log 4 - log(2n+1))/log(2n) holds for 1 <= n <= 3000; C(2n,n) is even for n >= 1",
+    "python": "import math\nfrom sympy import primepi\nfor n in range(1,3001):\n    assert int(primepi(2*n))>=(n*math.log(4)-math.log(2*n+1))/math.log(2*n)\n    assert math.comb(2*n,n)%2==0"
+   },
+   {
+    "claim": "floor(2x) - 2 floor(x) is 0 or 1; the n with all base-3 digits in {0,1} begin 0,1,3,4,9,10,12,13",
+    "python": "from fractions import Fraction\nimport math\nfor a in range(-300,300):\n    x=Fraction(a,37); assert math.floor(2*x)-2*math.floor(x) in (0,1)\ndef ok(n):\n    while n:\n        if n%3==2: return False\n        n//=3\n    return True\nassert [n for n in range(14) if ok(n)]==[0,1,3,4,9,10,12,13]"
+   }
+  ]
+ },
+ {
+  "id": "integer-polynomials",
+  "minutes": 17,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Euler noticed that $n^2 + n + 41$ is prime for $n = 0, 1, \\dots, 39$. At $n = 40$ it equals $40^2 + 40 + 41 = 41^2$. Was that bad luck, or must every polynomial eventually produce a composite number? And if $P$ has integer coefficients, can $P(1) = 2$ and $P(3) = 5$? Both questions have short answers once you know the basic fact of this lesson: for a polynomial $P$ with integer coefficients, $a - b$ always divides $P(a) - P(b)$.\n\nThat fact, together with a few classical companions (the rational root test, Gauss's lemma and counting roots modulo a prime), drives most olympiad problems about such polynomials. We write $\\mathbb Z[x]$ for the set of polynomials with integer coefficients and use divisibility and congruences from [[divisibility]] and [[congruences]]."
+   },
+   {
+    "type": "section",
+    "title": "The basic divisibility",
+    "body": "Start with powers. $a^2 - b^2 = (a - b)(a + b)$ and $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$. In general\n\n$$a^k - b^k = (a - b)(a^{k-1} + a^{k-2}b + \\dots + ab^{k-2} + b^{k-1}),$$\n\nas you can check by multiplying out: all the middle terms cancel in pairs. If both $a$ and $b$ are integers, the second factor is an integer, so $a - b \\mid a^k - b^k$. A polynomial with integer coefficients is an integer combination of powers, so the divisibility passes to it."
+   },
+   {
+    "type": "theorem",
+    "title": "Difference divisibility",
+    "body": "Let $P \\in \\mathbb Z[x]$. For all integers $a, b$,\n\n$$a - b \\mid P(a) - P(b).$$\n\nEquivalently, if $a \\equiv b \\pmod m$, then $P(a) \\equiv P(b) \\pmod m$."
+   },
+   {
+    "type": "proof",
+    "body": "Write $P(x) = \\sum_{k=0}^{d} c_k x^k$ with $c_k \\in \\mathbb Z$. Then\n\n$$P(a) - P(b) = \\sum_{k=1}^{d} c_k\\,(a^k - b^k),$$\n\nsince the constant terms cancel. Each $a^k - b^k$ is a multiple of $a - b$ by the factorisation above, and each $c_k$ is an integer, so the sum is a multiple of $a - b$. For the congruence form: if $m \\mid a - b$, then $m \\mid P(a) - P(b)$."
+   },
+   {
+    "type": "section",
+    "title": "Integer and rational roots",
+    "body": "Three consequences are used constantly.\n\n1. $P(n) \\bmod m$ depends only on $n \\bmod m$. To understand $P$ modulo $m$, you only have to test $m$ residues.\n2. An integer root $r$ of $P$ divides $P(0)$, because $r - 0 \\mid P(r) - P(0) = -P(0)$.\n3. If $P(r) = 0$, then $r - a \\mid P(a)$ for every integer $a$. Knowing a few values of $P$ therefore restricts where its integer roots can be.\n\nThe same idea gives rational roots. Suppose $P(x) = c_d x^d + \\dots + c_1 x + c_0 \\in \\mathbb Z[x]$ and $u/v$ is a root in lowest terms. Multiplying $P(u/v) = 0$ by $v^d$ gives\n\n$$c_d u^d + c_{d-1}u^{d-1}v + \\dots + c_1 u v^{d-1} + c_0 v^d = 0.$$\n\nEvery term except the last is a multiple of $u$, so $u \\mid c_0 v^d$; since $\\gcd(u, v) = 1$, $u \\mid c_0$. Similarly every term except the first is a multiple of $v$, so $v \\mid c_d$. This is the rational root theorem: rational roots have numerators dividing the constant term and denominators dividing the leading coefficient."
+   },
+   {
+    "type": "definition",
+    "title": "Content and primitive polynomial",
+    "body": "The content $c(P)$ of a nonzero $P \\in \\mathbb Z[x]$ is the greatest common divisor of its coefficients. $P$ is primitive if $c(P) = 1$.\n\nEvery nonzero polynomial with rational coefficients can be written as a rational number times a primitive polynomial in $\\mathbb Z[x]$."
+   },
+   {
+    "type": "theorem",
+    "title": "Gauss's lemma",
+    "body": "The product of two primitive polynomials is primitive. Consequently, if $P \\in \\mathbb Z[x]$ is a product of two nonconstant polynomials with rational coefficients, then it is a product of two nonconstant polynomials in $\\mathbb Z[x]$ of the same degrees."
+   },
+   {
+    "type": "proof",
+    "body": "Let $f = \\sum a_i x^i$ and $g = \\sum b_j x^j$ be primitive, and suppose some prime $p$ divides every coefficient of $fg$. Because $f$ and $g$ are primitive, there is a smallest index $i_0$ with $p \\nmid a_{i_0}$ and a smallest index $j_0$ with $p \\nmid b_{j_0}$. The coefficient of $x^{i_0 + j_0}$ in $fg$ is\n\n$$\\sum_{i + j = i_0 + j_0} a_i b_j.$$\n\nIn every term other than $a_{i_0}b_{j_0}$, either $i < i_0$, so $p \\mid a_i$, or $j < j_0$, so $p \\mid b_j$. So the coefficient is congruent to $a_{i_0}b_{j_0} \\not\\equiv 0 \\pmod p$, a contradiction. Hence $fg$ is primitive.\n\nFor the second statement, suppose $P = FG$ with $F, G \\in \\mathbb Q[x]$ nonconstant. Write $F = \\alpha f$ and $G = \\beta g$ with $\\alpha, \\beta \\in \\mathbb Q$ and $f, g \\in \\mathbb Z[x]$ primitive, and write $\\alpha\\beta = u/v$ in lowest terms with $v > 0$. Then $vP = u\\,fg$. The content of the left side is $v\\,c(P)$; the content of the right side is $|u|$, because $fg$ is primitive. So $v\\,c(P) = |u|$, hence $v \\mid u$, and $\\gcd(u, v) = 1$ forces $v = 1$. Thus $P = (uf)\\cdot g$ with both factors in $\\mathbb Z[x]$."
+   },
+   {
+    "type": "section",
+    "title": "Factorisation and roots modulo primes",
+    "body": "Gauss's lemma means that to show an integer polynomial cannot be factored over $\\mathbb Q$, it is enough to rule out factorisations with integer coefficients. The most useful test of this kind is Eisenstein's criterion: if a prime $p$ divides every coefficient of $P$ except the leading one, and $p^2 \\nmid P(0)$, then $P$ is irreducible over $\\mathbb Q$. For example $x^n - 2$ is irreducible for every $n \\ge 1$. (The proof imitates the argument above: reduce a hypothetical integer factorisation modulo $p$.)\n\nModulo a prime, polynomials behave as over any field. If $p \\nmid c_d$, the congruence $P(x) \\equiv 0 \\pmod p$ has at most $d$ solutions modulo $p$ (Lagrange's theorem): each root $r$ lets you split off a factor $x - r$, and a product is $0$ modulo a prime only if a factor is. Modulo a composite number this fails: $x^2 \\equiv 1 \\pmod 8$ has the four solutions $1, 3, 5, 7$. Solutions modulo $p$ can often be lifted to solutions modulo $p^k$ by [[hensel]], and solutions modulo different primes combined by [[crt]].\n\nThe other direction asks which primes divide some value $P(n)$. For $P(n) = n^2 + 1$ these are $2$ and the primes $p \\equiv 1 \\pmod 4$, by [[quadratic-residues]]. For every nonconstant $P$ there are infinitely many such primes (the fourth example), and how they are distributed is described by Chebotarev's density theorem."
+   },
+   {
+    "type": "section",
+    "title": "Iterating a polynomial",
+    "body": "Iterating a polynomial gives another family of problems. Write $P^{(k)} = P\\circ P\\circ\\dots\\circ P$ ($k$ times); here the superscript means composition, not a derivative. An integer $t$ with $P^{(k)}(t) = t$ is a periodic point. The difference divisibility applied around an orbit $t \\to P(t) \\to P(P(t)) \\to \\dots$ is very restrictive, because consecutive differences must divide each other in a cycle. The outcome is the following theorem, which was IMO 2006 Problem 5. The problem is in the site's problem bank, so we leave the proof to you."
+   },
+   {
+    "type": "theorem",
+    "title": "Integer periodic points",
+    "body": "Let $P \\in \\mathbb Z[x]$ with $\\deg P > 1$, and let $k \\ge 1$. Then\n\n$$\\#\\{t \\in \\mathbb Z : P^{(k)}(t) = t\\} \\le \\deg P.$$"
+   },
+   {
+    "type": "section",
+    "title": "An extremal example",
+    "body": "The bound can be attained. For $P(x) = (x - 1)^2$ we have $P(0) = 1$ and $P(1) = 0$, an orbit of length $2$. The equation $P(P(t)) = t$ reads $t^2(t - 2)^2 = t$, that is, $t\\,(t - 1)(t^2 - 3t + 1) = 0$, whose integer solutions are exactly $0$ and $1$: two of them, equal to $\\deg P$. The hypothesis $\\deg P > 1$ is needed: $P(x) = -x$ satisfies $P(P(t)) = t$ for every integer $t$."
+   },
+   {
+    "type": "example",
+    "body": "Is there a polynomial $P \\in \\mathbb Z[x]$ with $P(1) = 2$ and $P(3) = 5$? Show also that if $P \\in \\mathbb Z[x]$ and both $P(0)$ and $P(1)$ are odd, then $P$ has no integer root.",
+    "solution": "No such $P$ exists: $3 - 1 = 2$ would have to divide $P(3) - P(1) = 3$.\n\nFor the second part, every integer $n$ is congruent to $0$ or $1$ modulo $2$, so $P(n) \\equiv P(0)$ or $P(n) \\equiv P(1) \\pmod 2$. Either way $P(n)$ is odd, hence $P(n) \\ne 0$."
+   },
+   {
+    "type": "example",
+    "body": "Find all rational roots of $P(x) = 2x^3 - 3x^2 - 3x + 2$ and factor $P$ over $\\mathbb Z$.",
+    "solution": "By the rational root theorem a root $u/v$ in lowest terms has $u \\mid 2$ and $v \\mid 2$, so the candidates are $\\pm 1, \\pm 2, \\pm\\tfrac12$. Testing:\n\n$$P(1) = -2,\\quad P(-1) = -2 - 3 + 3 + 2 = 0,\\quad P(2) = 16 - 12 - 6 + 2 = 0,\\quad P(\\tfrac12) = \\tfrac14 - \\tfrac34 - \\tfrac32 + 2 = 0.$$\n\nA cubic has at most three roots, so the rational roots are $-1$, $2$ and $\\tfrac12$, and\n\n$$2x^3 - 3x^2 - 3x + 2 = (x + 1)(x - 2)(2x - 1).$$\n\n(Expand $(x+1)(x-2) = x^2 - x - 2$ and multiply by $2x - 1$ to confirm.)"
+   },
+   {
+    "type": "example",
+    "title": "Polynomials cannot be all prime",
+    "body": "Prove that a nonconstant polynomial $P \\in \\mathbb Z[x]$ cannot take prime values at every positive integer.",
+    "solution": "Suppose $P(n)$ is prime for every $n \\ge 1$, and let $p = P(1)$. For every $k \\ge 0$, the difference $(1 + kp) - 1 = kp$ divides $P(1 + kp) - P(1)$, so $p \\mid P(1 + kp)$. A prime divisible by $p$ equals $p$, so $P(1 + kp) = p$ for all $k \\ge 0$.\n\nThen the polynomial $P(x) - p$ has the infinitely many roots $1, 1 + p, 1 + 2p, \\dots$, so it is the zero polynomial and $P$ is constant, a contradiction.\n\nFor Euler's polynomial, running the same argument from $n = 0$ points straight at a composite value: $41 = P(0)$ divides $P(41) = 41\\cdot 43$."
+   },
+   {
+    "type": "example",
+    "title": "Schur's theorem",
+    "body": "Let $P \\in \\mathbb Z[x]$ be nonconstant. Prove that infinitely many primes divide at least one nonzero value $P(n)$ with $n \\in \\mathbb Z$.",
+    "solution": "If $P(0) = 0$, then $n \\mid P(n)$ for every $n$ by the difference divisibility. A nonconstant polynomial has finitely many roots, so $P(p) \\ne 0$ for all large primes $p$, and each such $p$ divides $P(p)$.\n\nNow let $c = P(0) \\ne 0$ and suppose only the primes $p_1, \\dots, p_r$ divide nonzero values of $P$ (allow $r = 0$). Put $M = p_1 p_2\\cdots p_r$. Writing $P(x) = c + a_1 x + \\dots + a_d x^d$,\n\n$$P(cMx) = c + \\sum_{k=1}^{d} a_k c^k M^k x^k = c\\,Q(x),\\qquad Q(x) = 1 + \\sum_{k=1}^{d} a_k c^{k-1}M^k x^k.$$\n\nSo $Q \\in \\mathbb Z[x]$, $Q$ is nonconstant (its leading coefficient is $a_d c^{d-1}M^d \\ne 0$), and $Q(x) \\equiv 1 \\pmod{p_i}$ for every $i$ and every integer $x$.\n\nA nonconstant polynomial takes each of the values $0, 1, -1$ only finitely often, so there is an integer $x$ with $|Q(x)| \\ge 2$. Let $q$ be a prime factor of $Q(x)$. Then $q$ is none of the $p_i$, since $Q(x) \\equiv 1 \\pmod{p_i}$. But $q$ divides $c\\,Q(x) = P(cMx)$, which is nonzero. This contradicts the assumption."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The divisibility $a - b \\mid P(a) - P(b)$ needs integer coefficients, not just integer values. The polynomial $P(x) = x(x-1)/2$ takes integer values at all integers, but $2 - 0 = 2$ does not divide $P(2) - P(0) = 1$.\n- The rational root theorem only produces candidates; most of them usually fail.\n- Lagrange's bound on roots holds modulo a prime $p$, and only when $p$ does not divide the leading coefficient (if $p$ divides every coefficient, every residue is a root). Modulo composites a degree $2$ polynomial can have more than two roots.\n- Irreducible over $\\mathbb Z$ and over $\\mathbb Q$ differ by constants: $2x + 2 = 2(x + 1)$ factors in $\\mathbb Z[x]$ but is irreducible over $\\mathbb Q$. Gauss's lemma is about factorisations into nonconstant factors."
+   },
+   {
+    "type": "connection",
+    "body": "Gauss's lemma and irreducibility criteria are ring theory in $\\mathbb Z[x]$; the same argument shows that $\\mathbb Z[x]$ has unique factorisation. The basic facts about roots and coefficients are in [[polynomials-roots]].\n\nPrime divisors of values $P(n)$ are where this topic meets algebraic number theory. For the cyclotomic polynomial $\\Phi_n$, a prime dividing $\\Phi_n(m)$ either divides $n$ or is $\\equiv 1 \\pmod n$ ([[cyclotomic]]); combined with Schur's theorem this proves that there are infinitely many primes $\\equiv 1 \\pmod n$. In general, for irreducible $P$ and apart from finitely many exceptions, the primes dividing values of $P$ are the primes that have a degree $1$ factor in the ring of integers of a field generated by a root of $P$ ([[ideals]]), and Chebotarev's density theorem gives their density. Divisibility conditions of the form $m - n \\mid f(m) - f(n)$ for functions that are not polynomials appear in [[integer-functional-eq]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that no $P \\in \\mathbb Z[x]$ satisfies $P(7) = 5$ and $P(15) = 9$.\n2. Show that $x^5 + 6x^3 + 3$ is irreducible over $\\mathbb Q$.\n3. Let $P \\in \\mathbb Z[x]$ take the value $2$ at three distinct integers. Prove that $P(n) \\ne 3$ for every integer $n$.\n4. For each prime $p < 50$, decide whether $x^2 \\equiv -1 \\pmod p$ has a solution, and describe the pattern."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Andreescu, Andrica & Feng, 104 Number Theory Problems"
+   },
+   {
+    "ref": "Prasolov, Polynomials"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "n^2+n+41 is prime for n = 0..39 and equals 41^2 at n = 40; P(41) = 41*43",
+    "python": "from sympy import isprime\nP=lambda n: n*n+n+41\nassert all(isprime(P(n)) for n in range(40)) and P(40)==41**2 and P(41)==41*43"
+   },
+   {
+    "claim": "a - b divides P(a) - P(b) for random integer polynomials and integers",
+    "python": "import random\nrandom.seed(1)\nfor _ in range(2000):\n    c=[random.randint(-20,20) for _ in range(random.randint(1,7))]\n    P=lambda x: sum(ci*x**i for i,ci in enumerate(c))\n    a,b=random.randint(-100,100),random.randint(-100,100)\n    if a!=b: assert (P(a)-P(b))%(a-b)==0"
+   },
+   {
+    "claim": "No integer polynomial has P(1)=2, P(3)=5 (2 does not divide 3); none has P(7)=5, P(15)=9",
+    "python": "assert (5-2)%(3-1)!=0 and (9-5)%(15-7)!=0"
+   },
+   {
+    "claim": "2x^3-3x^2-3x+2 = (x+1)(x-2)(2x-1), rational roots -1, 2, 1/2",
+    "python": "import sympy as sp\nx=sp.symbols('x'); P=2*x**3-3*x**2-3*x+2\nassert sp.expand((x+1)*(x-2)*(2*x-1)-P)==0\nassert set(sp.roots(P,x))=={-1,2,sp.Rational(1,2)} and P.subs(x,1)==-2"
+   },
+   {
+    "claim": "Gauss's lemma: products of random primitive integer polynomials are primitive",
+    "python": "import random, sympy as sp\nfrom math import gcd\nfrom functools import reduce\nx=sp.symbols('x'); random.seed(2)\ncont=lambda c: reduce(gcd,c)\nfor _ in range(500):\n    f=[random.randint(-30,30) for _ in range(random.randint(2,5))]\n    g=[random.randint(-30,30) for _ in range(random.randint(2,5))]\n    if f[-1]==0 or g[-1]==0 or cont(f)!=1 or cont(g)!=1: continue\n    h=sp.Poly(sp.expand(sum(a*x**i for i,a in enumerate(f))*sum(b*x**i for i,b in enumerate(g))),x).all_coeffs()\n    assert cont([int(t) for t in h])==1"
+   },
+   {
+    "claim": "x^2 = 1 mod 8 has the four solutions 1,3,5,7; x^n - 2 and x^5+6x^3+3 are irreducible over Q (n<=8)",
+    "python": "import sympy as sp\nx=sp.symbols('x')\nassert [t for t in range(8) if (t*t-1)%8==0]==[1,3,5,7]\nassert all(sp.Poly(x**n-2,x).is_irreducible for n in range(1,9)) and sp.Poly(x**5+6*x**3+3,x).is_irreducible"
+   },
+   {
+    "claim": "For P=(x-1)^2: P(0)=1, P(1)=0, P(P(t)) - t = t(t-1)(t^2-3t+1), integer solutions {0,1}",
+    "python": "import sympy as sp\nt=sp.symbols('t'); P=lambda u: (u-1)**2\nassert P(0)==1 and P(1)==0\nassert sp.expand(P(P(t))-t - t*(t-1)*(t**2-3*t+1))==0\nassert sp.expand(P(P(t)) - t**2*(t-2)**2)==0\nassert {r for r in sp.roots(P(P(t))-t,t) if r.is_integer}=={0,1}"
+   },
+   {
+    "claim": "Periodic-point bound: random integer P of degree 2-3, k<=3, at most deg P integer solutions of P^(k)(t)=t with |t|<=40",
+    "python": "import random\nrandom.seed(3)\nfor _ in range(300):\n    d=random.randint(2,3)\n    c=[random.randint(-3,3) for _ in range(d)]+[random.choice([-1,1,2,-2])]\n    P=lambda u: sum(ci*u**i for i,ci in enumerate(c))\n    for k in range(1,4):\n        cnt=0\n        for s in range(-40,41):\n            u=s\n            for _ in range(k):\n                u=P(u)\n                if abs(u)>10**30: break\n            cnt+= (u==s)\n        assert cnt<=d"
+   },
+   {
+    "claim": "x(x-1)/2 is integer-valued but 2 does not divide P(2)-P(0) = 1",
+    "python": "P=lambda n: n*(n-1)//2\nassert all(n*(n-1)%2==0 for n in range(-50,50)) and P(2)-P(0)==1"
+   },
+   {
+    "claim": "Primes p<50 with x^2 = -1 mod p solvable are 2 and those = 1 mod 4",
+    "python": "from sympy import primerange\nsol=[p for p in primerange(2,50) if any((t*t+1)%p==0 for t in range(p))]\nassert sol==[p for p in primerange(2,50) if p==2 or p%4==1]"
+   },
+   {
+    "claim": "Schur construction: P(cMx) = c*Q(x) with Q(x) = 1 + sum a_k c^(k-1) M^k x^k (symbolic, degree 4)",
+    "python": "import sympy as sp\nx,c,M=sp.symbols('x c M'); a=sp.symbols('a1:5')\nP=lambda t: c+sum(a[k-1]*t**k for k in range(1,5))\nQ=1+sum(a[k-1]*c**(k-1)*M**k*x**k for k in range(1,5))\nassert sp.expand(P(c*M*x)-c*Q)==0"
+   },
+   {
+    "claim": "Lagrange: a polynomial of degree d with leading coefficient not divisible by p has at most d roots mod p (random tests, p <= 13)",
+    "python": "import random\nrandom.seed(7)\nfor _ in range(3000):\n    p=random.choice([2,3,5,7,11,13]); d=random.randint(1,4)\n    c=[random.randint(0,p-1) for _ in range(d)]+[random.randint(1,p-1)]\n    assert sum(1 for t in range(p) if sum(ci*t**i for i,ci in enumerate(c))%p==0)<=d"
+   },
+   {
+    "claim": "Rational root candidates of 2x^3-3x^2-3x+2: P(1/2)=0, P(-1/2) != 0, P(-2) != 0, P(1) = -2",
+    "python": "from fractions import Fraction as F\nP=lambda t: 2*t**3-3*t**2-3*t+2\nassert P(F(1,2))==0 and P(F(-1,2))!=0 and P(-2)!=0 and P(1)==-2 and P(-1)==0 and P(2)==0"
+   },
+   {
+    "claim": "Primes dividing some value of n^2+1 (p < 200) are 2 and the primes = 1 mod 4; primes dividing Phi_n(m) (n <= 20, m <= 10) divide n or are = 1 mod n",
+    "python": "from sympy import primerange, cyclotomic_poly, symbols, primefactors\nassert [p for p in primerange(2,200) if any((t*t+1)%p==0 for t in range(p))]==[p for p in primerange(2,200) if p==2 or p%4==1]\nx=symbols('x')\nfor n in range(1,21):\n    for m in range(2,11):\n        for p in primefactors(int(cyclotomic_poly(n,x).subs(x,m))): assert n%p==0 or p%n==1%n"
+   }
+  ]
+ },
+ {
+  "id": "integer-functional-eq",
+  "minutes": 15,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A functional equation asks for every function that satisfies a given identity. Over the real numbers the main tools are clever substitutions and regularity conditions such as continuity ([[real-functional-eq]]). Over the integers there is extra rigidity. Every integer is a sum of copies of $1$ or of $-1$, every positive integer factors into primes, and divisibility is a strong constraint, because a nonzero multiple of $d$ is at least $|d|$ in absolute value.\n\nA typical problem: find all $f:\\mathbb N\\to\\mathbb N$ such that $f(m) + f(n)$ divides $m + n$ for all $m, n$. The answer is $f(n) = n$, and the proof takes a few lines once you know where to look. This lesson collects the standard moves: induct from small values, treat the primes as building blocks, compare sizes in divisibility relations, and compare $p$-adic valuations. Throughout, $\\mathbb N = \\{1, 2, 3, \\dots\\}$."
+   },
+   {
+    "type": "section",
+    "title": "Additive equations: induction does the work",
+    "body": "Over the reals, Cauchy's equation $f(x + y) = f(x) + f(y)$ has wild solutions unless you assume some regularity. Over $\\mathbb Z$ there is nothing wild: the value at $1$ determines everything, because every integer is a sum of $1$s or of $-1$s."
+   },
+   {
+    "type": "theorem",
+    "title": "Cauchy's equation on the integers",
+    "body": "If $f:\\mathbb Z\\to\\mathbb Z$ satisfies $f(m + n) = f(m) + f(n)$ for all integers $m, n$, then $f(n) = cn$ for all $n$, where $c = f(1)$."
+   },
+   {
+    "type": "proof",
+    "body": "Putting $m = n = 0$ gives $f(0) = 2f(0)$, so $f(0) = 0$. Putting $m = 1$ gives $f(n + 1) = f(n) + c$, so by induction $f(n) = cn$ for all $n \\ge 0$. Finally $0 = f(0) = f(n + (-n)) = f(n) + f(-n)$, so $f(-n) = -cn$."
+   },
+   {
+    "type": "section",
+    "title": "The rational case",
+    "body": "The same holds for additive $f:\\mathbb Q\\to\\mathbb Q$. The integer argument gives $f(kx) = k f(x)$ for every integer $k$ and rational $x$. With $x = \\tfrac1n$ and $k = n$ this says $c = f(1) = n f(\\tfrac1n)$, so $f(\\tfrac1n) = \\tfrac{c}{n}$, and then $f(\\tfrac mn) = m f(\\tfrac1n) = \\tfrac{cm}{n}$. A common first step in a harder problem is to transform the given equation until it becomes additive, and then invoke this theorem."
+   },
+   {
+    "type": "definition",
+    "title": "Multiplicative and additive functions",
+    "body": "A function $f:\\mathbb N\\to\\mathbb C$ is completely multiplicative if $f(1) = 1$ and $f(mn) = f(m)f(n)$ for all $m, n$. It is multiplicative if $f(1) = 1$ and $f(mn) = f(m)f(n)$ whenever $\\gcd(m, n) = 1$. Similarly $g$ is completely additive if $g(mn) = g(m) + g(n)$ for all $m, n$.\n\nA completely multiplicative function is determined by its values at primes; a multiplicative one by its values at prime powers."
+   },
+   {
+    "type": "section",
+    "title": "Multiplicative equations: primes are the generators",
+    "body": "By the fundamental theorem of arithmetic ([[fta]]), every $n \\ge 1$ is $n = \\prod_p p^{\\nu_p(n)}$ in exactly one way. So a completely multiplicative $f$ satisfies\n\n$$f(n) = \\prod_p f(p)^{\\nu_p(n)},$$\n\nand conversely any choice of the values $f(p)$ defines a completely multiplicative function by this formula. A completely additive function satisfies $g(n) = \\sum_p \\nu_p(n)\\,g(p)$. Examples are $\\nu_q$ itself for a fixed prime $q$, the number $\\Omega(n)$ of prime factors counted with multiplicity, and $\\log n$.\n\nThe positive rationals behave the same way. Every $x \\in \\mathbb Q^+$ is $\\prod_p p^{\\nu_p(x)}$ with integer exponents, only finitely many nonzero. So $(\\mathbb Q^+, \\times)$ is a free abelian group on the primes, and the solutions of $f(xy) = f(x)f(y)$ with $f:\\mathbb Q^+\\to\\mathbb Q^+$ correspond exactly to arbitrary choices of $f(p) \\in \\mathbb Q^+$ for each prime $p$. For instance, the map that swaps the primes $2$ and $3$ in every factorisation is a solution, with $f(12) = f(2^2\\cdot 3) = 3^2\\cdot 2 = 18$. That is why problems on $\\mathbb Q^+$ often ask you to construct a solution rather than find all of them (fourth example)."
+   },
+   {
+    "type": "section",
+    "title": "Divisibility conditions: sizes and valuations",
+    "body": "When the condition is a divisibility, use these moves.\n\n1. Compare sizes. If $d \\mid N$ and $N \\ne 0$, then $|d| \\le |N|$. If $d \\mid N$ with $0 < N < 2d$, then $d = N$.\n2. Substitute special values: $m = n$, $n = 0$ or $n = 1$, $m = 2n$, and primes $p$, whose only positive divisors are $1$ and $p$.\n3. Combine. If $d$ divides several expressions, it divides their integer combinations, and in particular their gcd ([[divisibility]]).\n4. Look at valuations. Comparing $\\nu_p$ of both sides for each prime $p$ ([[p-adic-valuation]]) turns a multiplicative condition into an additive one, one prime at a time.\n5. Induct. Prove $f(n) = n$ (or whatever the answer is) for $1, \\dots, n$ and use the condition with one large and one small argument to get $n + 1$.\n\nA famous condition of this kind is that $f(m) - f(n)$ is divisible by $f(m - n)$ for all integers $m, n$, where $f:\\mathbb Z\\to\\mathbb N$. Constant functions satisfy it, and so does $f(n) = 2^{\\min(\\nu_2(n), K)}$ for any fixed $K \\ge 0$ (with $f(0) = 2^K$). IMO 2011 Problem 5 asks you to prove that every such function has a striking divisibility property; it is in the problem bank, so we stop here."
+   },
+   {
+    "type": "example",
+    "title": "Additive on products",
+    "body": "Find all functions $f:\\mathbb N\\to\\{0, 1, 2, \\dots\\}$ such that $f(mn) = f(m) + f(n)$ for all $m, n$, $f(10) = 0$, and $f(n) = 0$ whenever the last decimal digit of $n$ is $3$.",
+    "solution": "Since $f$ is completely additive, it is enough to find $f$ at the primes.\n\nFrom $f(10) = f(2) + f(5) = 0$ and $f \\ge 0$ we get $f(2) = f(5) = 0$. Now let $n$ be coprime to $10$. Then $n$ is invertible modulo $10$, so there is a $k \\ge 1$ with $nk \\equiv 3 \\pmod{10}$. The number $nk$ ends in $3$, so $0 = f(nk) = f(n) + f(k)$, and both terms are nonnegative, so $f(n) = 0$.\n\nEvery $n$ is $2^a 5^b n'$ with $n'$ coprime to $10$, so $f(n) = a f(2) + b f(5) + f(n') = 0$. The only solution is $f \\equiv 0$, and it clearly works."
+   },
+   {
+    "type": "example",
+    "body": "Let $f:\\mathbb N\\to\\mathbb N$ be strictly increasing and completely multiplicative, with $f(2) = 2$. Prove that $f(n) = n$ for all $n$.",
+    "solution": "First, $f(1) = f(1)^2$ and $f(1) \\ge 1$, so $f(1) = 1$. By complete multiplicativity, $f(2^k) = f(2)^k = 2^k$ for all $k \\ge 0$.\n\nFix $k$. The $2^k + 1$ numbers $2^k, 2^k + 1, \\dots, 2^{k+1}$ are mapped to strictly increasing integers\n\n$$2^k = f(2^k) < f(2^k + 1) < \\dots < f(2^{k+1}) = 2^{k+1}.$$\n\nThe interval $[2^k, 2^{k+1}]$ contains exactly $2^k + 1$ integers, so the values have no room to skip any: $f(2^k + j) = 2^k + j$ for $0 \\le j \\le 2^k$. Every positive integer lies in some interval $[2^k, 2^{k+1}]$, so $f(n) = n$ everywhere.\n\nNotice that multiplicativity was used only to get $f(2^k) = 2^k$; monotonicity did the rest."
+   },
+   {
+    "type": "example",
+    "title": "A size argument",
+    "body": "Find all functions $f:\\mathbb N\\to\\mathbb N$ such that $f(m) + f(n)$ divides $m + n$ for all $m, n \\in \\mathbb N$.",
+    "solution": "We show by induction that $f(n) = n$.\n\nBase case: with $m = n = 1$, $2f(1) \\mid 2$, so $f(1) = 1$.\n\nStep: suppose $f(k) = k$ for all $k \\le n$. Take $m = n + 1$ and the second argument $n$:\n\n$$f(n+1) + n \\mid 2n + 1.$$\n\nThe divisor is positive, so $f(n+1) + n \\le 2n + 1$. It is also at least $n + 1$, which is more than half of $2n + 1$. A divisor of $2n + 1$ that is larger than half of it must be $2n + 1$ itself, so $f(n+1) + n = 2n + 1$ and $f(n+1) = n + 1$.\n\nConversely $f(n) = n$ works, since $m + n \\mid m + n$. So $f(n) = n$ is the only solution."
+   },
+   {
+    "type": "example",
+    "title": "Building a solution on the positive rationals",
+    "body": "Prove that there is a function $f:\\mathbb Q^+\\to\\mathbb Q^+$ with $f(f(x)) = \\dfrac1x$ for all $x \\in \\mathbb Q^+$.",
+    "solution": "Look for a solution that is multiplicative: $f(xy) = f(x)f(y)$. Then $f$ is determined by its values at the primes, and so is $x \\mapsto f(f(x))$, which is also multiplicative. The map $x \\mapsto 1/x$ is multiplicative too. So it is enough to arrange $f(f(p)) = 1/p$ for every prime $p$.\n\nList the primes as $p_1 < p_2 < p_3 < \\dots$ and group them in pairs $(p_1, p_2), (p_3, p_4), \\dots$. In each pair $(q, r)$ set\n\n$$f(q) = r,\\qquad f(r) = \\frac1q,$$\n\nand extend multiplicatively: $f\\big(\\prod p^{e_p}\\big) = \\prod f(p)^{e_p}$ for integers $e_p$. This is well defined because factorisations in $\\mathbb Q^+$ are unique, and it is multiplicative, so $f(1/x) = 1/f(x)$. Now\n\n$$f(f(q)) = f(r) = \\frac1q,\\qquad f(f(r)) = f\\!\\left(\\frac1q\\right) = \\frac{1}{f(q)} = \\frac1r.$$\n\nSo $f\\circ f$ and $x \\mapsto 1/x$ are multiplicative and agree on every prime, hence they agree on all of $\\mathbb Q^+$.\n\nThe idea is to treat $(\\mathbb Q^+, \\times)$ as a free abelian group with the primes as a basis, and $f$ as a linear map that rotates each pair of basis vectors by a quarter turn."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Always check that your candidate actually satisfies the equation. Deriving \"if $f$ is a solution then $f(n) = n$\" is only half of the answer.\n- Multiplicative and completely multiplicative differ. For a multiplicative $f$, $f(4)$ need not equal $f(2)^2$.\n- On $\\mathbb Z$, do not divide by $f(x)$ before showing $f(x) \\ne 0$. A size comparison needs the multiple to be nonzero: $d \\mid 0$ says nothing about $d$.\n- The condition $m - n \\mid f(m) - f(n)$ does not force $f$ to be a polynomial. On the nonnegative integers, $f(n) = \\sum_{k=0}^{n} \\operatorname{lcm}(1, \\dots, k)\\binom{n}{k}$ satisfies it (use $\\binom{b + d}{k} - \\binom{b}{k} = \\sum_{j \\ge 1}\\binom{b}{k-j}\\binom{d}{j}$ and the fact that $d \\mid j\\binom{d}{j}$), but its $k$-th forward difference at $0$ is $\\operatorname{lcm}(1, \\dots, k) \\ne 0$ for every $k$, so it is not a polynomial.\n- The domain matters: $\\mathbb N$, $\\{0, 1, 2, \\dots\\}$, $\\mathbb Z$ and $\\mathbb Q^+$ give different answers to the same equation."
+   },
+   {
+    "type": "connection",
+    "body": "Solutions of these equations are often group homomorphisms, for example from $(\\mathbb Q^+, \\times)$ to itself, and the fourth example is linear algebra over $\\mathbb Z$ in disguise. Multiplicative functions such as Euler's $\\varphi$ and the divisor functions are the main objects of [[arithmetic-functions]] and [[mobius]].\n\nThe same habit of extracting structure from one identity is how Dirichlet characters are classified: they are the completely multiplicative functions that are periodic modulo $q$ and vanish exactly at the integers not coprime to $q$ ([[dirichlet-characters]]). Divisibility conditions of the form $a - b \\mid f(a) - f(b)$ are the starting point of [[integer-polynomials]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Find all $f:\\mathbb Z\\to\\mathbb Z$ with $f(m + n) = f(m) + f(n) + 2mn$ for all $m, n$.\n2. For the map $f$ on $\\mathbb Q^+$ that swaps the primes $2$ and $3$ in every factorisation, compute $f(12/5)$ and $f(f(x))$.\n3. Check that $f(n) = 2^{\\min(\\nu_2(n), K)}$ (with $f(0) = 2^K$) satisfies $f(m - n) \\mid f(m) - f(n)$ for all integers $m, n$.\n4. Find all $f:\\mathbb N\\to\\mathbb N$ with $f(f(n)) + f(n) = 2n$ for all $n$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   },
+   {
+    "ref": "Venkatachala, Functional Equations: A Problem Solving Approach"
+   },
+   {
+    "ref": "Niven, Zuckerman & Montgomery, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Every residue coprime to 10 can be multiplied by some k to give a number ending in 3",
+    "python": "for r in [1,3,7,9]: assert any((r*k)%10==3 for k in range(1,10))"
+   },
+   {
+    "claim": "Brute force: the only f:{1..7}->{1..14} with f(m)+f(n) | m+n is the identity",
+    "python": "N=7; M=14; sols=[]\ndef rec(f):\n    n=len(f)\n    if n==N: sols.append(tuple(f)); return\n    for v in range(1,M+1):\n        g=f+[v]\n        if all((i+1+n+1)%(g[i]+v)==0 for i in range(n+1)): rec(g)\nrec([])\nassert sols==[tuple(range(1,N+1))]"
+   },
+   {
+    "claim": "f(n)=2^min(v2(n),K) and constants satisfy f(m-n) | f(m)-f(n) for |m|,|n| <= 40",
+    "python": "def v2(n):\n    c=0\n    while n%2==0: n//=2; c+=1\n    return c\nfor K in range(5):\n    f=lambda n: 2**K if n==0 else 2**min(v2(n),K)\n    for m in range(-40,41):\n        for n in range(-40,41): assert (f(m)-f(n))%f(m-n)==0"
+   },
+   {
+    "claim": "Swapping 2 and 3 in factorisations: f(12)=18 and f(12/5)=18/5",
+    "python": "from sympy import factorint, Rational\ndef f(x):\n    x=Rational(x); r=Rational(1)\n    for p,e in factorint(x.p).items(): r*= {2:3,3:2}.get(p,p)**e\n    for p,e in factorint(x.q).items(): r/= {2:3,3:2}.get(p,p)**e\n    return r\nassert f(12)==18 and f(Rational(12,5))==Rational(18,5)"
+   },
+   {
+    "claim": "The paired-prime construction gives f(f(x)) = 1/x on many positive rationals",
+    "python": "from sympy import factorint, Rational, prime\nimport random\nP=[prime(i) for i in range(1,101)]\nimg={}\nfor i in range(0,100,2):\n    q,r=P[i],P[i+1]; img[q]=Rational(r); img[r]=Rational(1,q)\ndef f(x):\n    x=Rational(x); out=Rational(1)\n    for p,e in factorint(x.p).items(): out*=img[p]**e\n    for p,e in factorint(x.q).items(): out/=img[p]**e\n    return out\nrandom.seed(5)\nfor _ in range(500):\n    x=Rational(random.randint(1,300),random.randint(1,300))\n    assert f(f(x))==1/x"
+   },
+   {
+    "claim": "f(n)=sum_{k<=n} lcm(1..k) C(n,k) satisfies a-b | f(a)-f(b) for 0<=b<a<=40, and its k-th forward difference at 0 is lcm(1..k)",
+    "python": "from math import comb, lcm\nfrom functools import reduce\nL=lambda k: reduce(lcm,range(1,k+1),1)\nf=lambda n: sum(L(k)*comb(n,k) for k in range(n+1))\nfor a in range(41):\n    for b in range(a): assert (f(a)-f(b))%(a-b)==0\nfor k in range(15):\n    assert sum((-1)**(k-j)*comb(k,j)*f(j) for j in range(k+1))==L(k)"
+   },
+   {
+    "claim": "Increasing completely multiplicative f with f(2)=2: pigeonhole count, [2^k,2^(k+1)] has 2^k+1 integers",
+    "python": "assert all(len(range(2**k,2**(k+1)+1))==2**k+1 for k in range(20))"
+   },
+   {
+    "claim": "Every n < 500 coprime to 10 has a multiple nk with 1 <= k <= 9 ending in the digit 3",
+    "python": "for n in range(1,500):\n    if n%2 and n%5: assert any((n*k)%10==3 for k in range(1,10))"
+   },
+   {
+    "claim": "Vandermonde step in the non-polynomial example: C(b+d,k)-C(b,k) = sum_{j>=1} C(b,k-j)C(d,j), and d | lcm(1..k) C(d,j) for 1 <= j <= k",
+    "python": "from math import comb, lcm\nfrom functools import reduce\nL=lambda k: reduce(lcm,range(1,k+1),1)\nfor b in range(0,25):\n    for d in range(1,25):\n        for k in range(0,25):\n            assert comb(b+d,k)-comb(b,k)==sum(comb(b,k-j)*comb(d,j) for j in range(1,k+1))\n            for j in range(1,k+1): assert (L(k)*comb(d,j))%d==0"
+   },
+   {
+    "claim": "The map swapping 2 and 3 in factorisations is multiplicative on Q+ and satisfies f(f(x)) = x (random rationals)",
+    "python": "from sympy import factorint, Rational\nimport random\nsw={2:3,3:2}\ndef f(x):\n    r=Rational(1)\n    for p,e in factorint(x.p).items(): r*=sw.get(p,p)**e\n    for p,e in factorint(x.q).items(): r/=sw.get(p,p)**e\n    return r\nrandom.seed(11)\nfor _ in range(300):\n    x=Rational(random.randint(1,500),random.randint(1,500)); y=Rational(random.randint(1,500),random.randint(1,500))\n    assert f(x*y)==f(x)*f(y) and f(f(x))==x"
+   },
+   {
+    "claim": "If d | N with 0 < N < 2d then d = N (|N| < 500)",
+    "python": "for N in range(1,500):\n    for d in range(-600,601):\n        if d!=0 and N%d==0 and N<2*d: assert d==N"
+   }
+  ]
+ }
+]

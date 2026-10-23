@@ -1,0 +1,200 @@
+[
+ {
+  "id": "wilson",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Says the moduli where the product of units is -1 (4, p^k, 2p^k) are 'exactly the moduli with a primitive root'. But 1 and 2 also have primitive roots, so the claim is only true for n > 2.",
+    "fix": "Changed to 'exactly the moduli n > 2 that have a primitive root'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example (Liouville)",
+    "problem": "Goes from p-1 | m straight to m >= p-1 without ruling out m = 0.",
+    "fix": "Added: since p^m = (p-1)!+1 > 1, m >= 1, so m >= p-1."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "No checks for the pairing mod 7, the polynomial factorisation x^(p-1)-1 = prod(x-a) mod p, the Liouville inequality, or the exercise statements.",
+    "fix": "Added 4 checks."
+   }
+  ]
+ },
+ {
+  "id": "arithmetic-functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "definition/Arithmetic and multiplicative functions",
+    "problem": "'Completely multiplicative' did not require f(1) = 1, so the zero function counted as completely multiplicative but not multiplicative. The later claim that completely multiplicative periodic functions are Dirichlet characters also needs f to be nonzero.",
+    "fix": "Definition now requires f(1) = 1 and f(mn) = f(m)f(n) for all m, n."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Gauss's identity",
+    "problem": "Said that phi * 1 is 'the identity function', which can be confused with the convolution identity epsilon.",
+    "fix": "Now reads: the function n -> n."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Said Lambda 'counts primes', but it is nonzero on all prime powers.",
+    "fix": "Now says it counts primes and prime powers, giving each p^k the weight log p."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: phi(360) as the number of reduced fractions, the denominator tally for k/12, the divisors of 60, the exercise claims, and the definition of Lambda.",
+    "fix": "Added 4 checks."
+   }
+  ]
+ },
+ {
+  "id": "mobius",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Legendre sieve written as sum_d mu(d) floor(x/d) with d unrestricted. Summed over all d this equals 1, not the count of integers free of the given primes.",
+    "fix": "Restricted the sum to d | P, where P is the product of the finite set of primes, and stated what it counts."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Used the set S in mu(d) = (-1)^{|S|} without defining it.",
+    "fix": "Defined S as the set of primes dividing d, and said mu(d) is then the inclusion-exclusion sign."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Credited Rota (1964) with defining the poset Mobius function. Weisner and P. Hall defined it earlier, in the 1930s; Rota built the general theory.",
+    "fix": "Reworded: Rota, building on Weisner and Hall, developed the general theory. The Rota 1964 citation was checked and kept."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: the unwinding formulas in section 1, the recursive inverse, the Legendre sieve identity, 6/pi^2 ~ 0.608, G(4) and G(3), summatory inversion, and the exercise claims.",
+    "fix": "Added 6 checks."
+   }
+  ]
+ },
+ {
+  "id": "order-primroot",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Why some moduli have no primitive root",
+    "problem": "The lifting statements ('g or g+p is a primitive root mod p^2', 'a primitive root mod p^2 is one mod every p^k') were given without the hypothesis that p is odd. Both fail for p = 2: 3 is a primitive root mod 4 but not mod 8. The 2p^k step also left out the even case.",
+    "fix": "Stated p odd, added the counterexample 3 mod 4 vs 8, and added 'if g is even use g + p^k'."
+   },
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Artin's conjecture was stated with no hypotheses on a. The conjecture covers integers a other than -1 that are not perfect squares; squares and -1 are never primitive roots mod p > 3. 'Proved by Hooley under GRH' also needed the actual statement.",
+    "fix": "Rewrote: the full conjecture with its hypotheses, why they are needed, that no single a is known unconditionally, and that Hooley (1967) proved it assuming a form of GRH for certain number fields. Checked and kept the Hooley citation (J. reine angew. Math. 225, 1967)."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "In chi(g^k) = e^{2 pi i jk/(p-1)}, j was never introduced, and the value at multiples of p was not given.",
+    "fix": "Added 'for some fixed j in {0,...,p-2}' and chi(a) = 0 when p | a."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Finding primitive roots, and indices",
+    "problem": "The translation of x^m = a into a linear congruence of indices needs p not dividing a.",
+    "fix": "Added the condition p not dividing a."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: Lagrange's theorem and the mod 8 example, the primitive-root test, the intermediate powers mod 23 and 13, the lifting claims, the exercise claims, and the new statement about squares and -1.",
+    "fix": "Added 6 checks."
+   }
+  ]
+ },
+ {
+  "id": "p-adic-valuation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "'Without it the formula is meaningless' is inaccurate: the formula still makes sense, it just gives the wrong value.",
+    "fix": "Changed to 'can fail'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: the key congruence S = p a^(p-1) mod p^2 from LTE step 2, the valuation rules, and the exercise claims.",
+    "fix": "Added 3 checks. The mathematics was checked line by line; no errors found."
+   }
+  ]
+ },
+ {
+  "id": "lucas",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'For an odd prime p the picture is a fractal built from p(p+1)/2 scaled copies' did not say which picture (divisibility by p) or copies of what.",
+    "fix": "Restated precisely: the first p^(m+1) rows are p(p+1)/2 copies of the pattern in the first p^m rows. Verified for p = 2, 3, 5."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'First noted by Glaisher in 1899' makes a priority claim I cannot verify.",
+    "fix": "Softened to 'already given by Glaisher in 1899'. The Lucas 1878 (Amer. J. Math. 1) and Granville 1997 (CMS Conf. Proc. 20) citations were checked and kept."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: the carry counts (300+700, 1+3), the self-similarity statement, and the one-digit recursion in exercise 2.",
+    "fix": "Added 3 checks."
+   }
+  ]
+ },
+ {
+  "id": "quadratic-residues",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Computing with reciprocity",
+    "problem": "'(a/p) depends only on p mod 4|a|' was stated with no hypotheses. It needs a nonzero, p an odd prime, and p not dividing a.",
+    "fix": "Added the hypotheses."
+   },
+   {
+    "severity": "error",
+    "where": "example (Fermat numbers)",
+    "problem": "Claimed Euler found 641 in 1732 by using the fact that prime factors of F_n have the form 2^(n+1)k+1. Euler proved that fact later, and his 1732 note does not give his method.",
+    "fix": "Reworded: Euler found 641 in 1732 and later proved the 2^(n+1)k+1 form; the sharper 2^(n+2)k+1 form is due to Lucas."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Called the Legendre symbol 'the real Dirichlet character mod p', but the principal character is also real.",
+    "fix": "Now: the quadratic character, the only real-valued one besides the trivial character."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "The point count p + 1 + sum (f(x)/p) for y^2 = f(x) holds for odd p and includes the point at infinity; neither was said.",
+    "fix": "Added both conditions. Verified by brute force for p < 30."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Not checked: the mu count for a = 2 by residue class mod 8, the intermediate steps for (23/1009), the elliptic-curve count, exercise 3, and the 2^(n+1) step.",
+    "fix": "Added 5 checks."
+   }
+  ]
+ }
+]

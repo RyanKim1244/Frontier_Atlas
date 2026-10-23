@@ -1,0 +1,1256 @@
+[
+ {
+  "id": "integration-techniques",
+  "entry": {
+   "sum": "Techniques of integration are the methods for finding antiderivatives in closed form: substitution reverses the chain rule, integration by parts reverses the product rule, and partial fractions and trigonometric substitutions reduce harder integrands to a short table of known ones. Once an antiderivative $F$ of $f$ is found, the fundamental theorem of calculus gives $\\int_a^b f = F(b) - F(a)$.",
+   "key": [
+    "\\int_a^b f(g(x))\\,g'(x)\\,dx = \\int_{g(a)}^{g(b)} f(u)\\,du",
+    "\\int_a^b u\\,v'\\,dx = \\Big[u\\,v\\Big]_a^b - \\int_a^b u'\\,v\\,dx",
+    "\\frac{1}{(x-p)(x-q)} = \\frac{1}{p-q}\\left(\\frac{1}{x-p} - \\frac{1}{x-q}\\right), \\quad p \\ne q"
+   ],
+   "why": "Areas, volumes, probabilities, work and the solutions of differential equations all come down to evaluating integrals, and these few methods handle most of the integrals with elementary answers that one meets in practice. Integration by parts in particular reappears throughout analysis, from Taylor's remainder to the gamma function.",
+   "msc": [
+    "26A36"
+   ],
+   "links": [
+    {
+     "field": "differential-equations",
+     "note": "Solving separable and linear first-order equations amounts to computing two antiderivatives, usually by substitution or partial fractions."
+    },
+    {
+     "field": "physics",
+     "note": "Work, centres of mass, moments of inertia and potentials are computed as integrals that are evaluated with these techniques."
+    },
+    {
+     "field": "probability",
+     "note": "Expectations of continuous random variables are integrals; for example the mean $1/\\lambda$ of an exponential variable with rate $\\lambda$ comes from one integration by parts."
+    }
+   ],
+   "refs": [
+    "Spivak, Calculus",
+    "Apostol, Calculus, Vol. 1",
+    "Stewart, Calculus"
+   ],
+   "aliases": [
+    "antiderivatives",
+    "integration by substitution",
+    "u-substitution",
+    "integration by parts",
+    "partial fractions",
+    "trigonometric substitution",
+    "reduction formula"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Differentiation is a mechanical process: the rules for sums, products, quotients and compositions turn any formula into its derivative. Integration goes the other way, and there is no such mechanical procedure. Given $x \\cos x$, or $\\dfrac{1}{x^2 - 1}$, or $\\sqrt{1 - x^2}$, you have to find a function whose derivative it is, and the rules have to be run backwards.\n\nThis lesson collects the standard ways of doing that. Each one is a differentiation rule read in reverse: substitution undoes the chain rule, integration by parts undoes the product rule, and partial fractions is algebra that breaks a fraction into pieces whose antiderivatives are already known. By the [[ftc|fundamental theorem of calculus]], finding an antiderivative is all you need to evaluate a definite integral."
+    },
+    {
+     "type": "section",
+     "title": "Antiderivatives and the basic table",
+     "body": "A function $F$ is an antiderivative of $f$ on an interval if $F' = f$ there. Two antiderivatives of the same function on an interval differ by a constant (their difference has derivative $0$, so it is constant by the mean value theorem). That is why we write\n$$\\int f(x)\\,dx = F(x) + C.$$\nEvery entry of the basic table is a derivative from [[diff-rules]] read backwards:\n$$\\int x^n\\,dx = \\frac{x^{n+1}}{n+1} + C \\ (n \\ne -1), \\qquad \\int \\frac{dx}{x} = \\ln|x| + C, \\qquad \\int e^x\\,dx = e^x + C,$$\n$$\\int \\cos x\\,dx = \\sin x + C, \\qquad \\int \\sin x\\,dx = -\\cos x + C, \\qquad \\int \\frac{dx}{1 + x^2} = \\arctan x + C.$$\nThe absolute value in $\\ln|x|$ matters: for $x < 0$ the derivative of $\\ln(-x)$ is $\\frac{-1}{-x} = \\frac1x$, so the formula works on either side of $0$ (but never across it).\n\nIntegrals are linear, $\\int (af + bg) = a\\int f + b \\int g$, but there is no product rule: $\\int fg$ is not $\\int f \\cdot \\int g$. Whatever method you use, you can always check the answer by differentiating it."
+    },
+    {
+     "type": "theorem",
+     "title": "Substitution rule",
+     "body": "Let $g$ have a continuous derivative on $[a, b]$, and let $f$ be continuous on an interval containing $g([a, b])$. Then\n$$\\int_a^b f(g(x))\\,g'(x)\\,dx = \\int_{g(a)}^{g(b)} f(u)\\,du.$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "Since $f$ is continuous, it has an antiderivative $F$ by the fundamental theorem of calculus. By the chain rule, $(F \\circ g)'(x) = F'(g(x))\\,g'(x) = f(g(x))\\,g'(x)$, so $F \\circ g$ is an antiderivative of the left-hand integrand. Therefore the left side equals $F(g(b)) - F(g(a))$, and so does the right side."
+    },
+    {
+     "type": "section",
+     "title": "Using substitution",
+     "body": "In practice you spot an inner function $u = g(x)$ whose derivative also appears as a factor, and write $du = g'(x)\\,dx$. For example, with $u = 1 + x^2$, $du = 2x\\,dx$:\n$$\\int_0^2 \\frac{x}{1 + x^2}\\,dx = \\frac12 \\int_1^5 \\frac{du}{u} = \\frac12 \\ln 5.$$\nNote that the limits changed from $x = 0, 2$ to $u = 1, 5$. If you prefer to keep $x$, find the antiderivative $\\frac12 \\ln(1 + x^2)$ first and then use the original limits; what you must not do is mix the two.\n\nA substitution does not need the derivative to be visible in advance. For $\\int \\tan x\\,dx = \\int \\frac{\\sin x}{\\cos x}\\,dx$, the choice $u = \\cos x$ gives $du = -\\sin x\\,dx$ and\n$$\\int \\tan x\\,dx = -\\int \\frac{du}{u} = -\\ln|\\cos x| + C.$$"
+    },
+    {
+     "type": "theorem",
+     "title": "Integration by parts",
+     "body": "If $u$ and $v$ have continuous derivatives on $[a, b]$, then\n$$\\int_a^b u(x)\\,v'(x)\\,dx = \\Big[u(x)\\,v(x)\\Big]_a^b - \\int_a^b u'(x)\\,v(x)\\,dx.$$\nIn indefinite form: $\\int u\\,dv = uv - \\int v\\,du$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "By the product rule, $(uv)' = u'v + uv'$. All three functions are continuous, so integrating from $a$ to $b$ and using the fundamental theorem of calculus gives $\\big[uv\\big]_a^b = \\int_a^b u'v\\,dx + \\int_a^b uv'\\,dx$. Rearrange."
+    },
+    {
+     "type": "section",
+     "title": "Choosing the parts",
+     "body": "Integration by parts trades $\\int u\\,v'$ for $\\int u'\\,v$, so it helps when differentiating $u$ makes it simpler while integrating $v'$ does not make things worse. Polynomials are good choices for $u$ (each differentiation lowers the degree); $e^x$, $\\sin x$ and $\\cos x$ are good choices for $v'$. For instance, with $u = x$ and $v' = \\cos x$:\n$$\\int x \\cos x\\,dx = x \\sin x - \\int \\sin x\\,dx = x\\sin x + \\cos x + C.$$\nSometimes $v' = 1$ is the right choice. With $u = \\ln x$, $v = x$:\n$$\\int \\ln x\\,dx = x \\ln x - \\int x \\cdot \\frac1x\\,dx = x\\ln x - x + C.$$\nA third pattern is the boomerang. Let $I = \\int e^x \\sin x\\,dx$. Two integrations by parts, each time differentiating the trigonometric factor, give\n$$I = e^x \\sin x - \\int e^x \\cos x\\,dx = e^x \\sin x - e^x \\cos x - I,$$\nso $2I = e^x(\\sin x - \\cos x)$ and $I = \\frac12 e^x(\\sin x - \\cos x) + C$. The unknown integral came back, and we solved for it."
+    },
+    {
+     "type": "section",
+     "title": "Partial fractions",
+     "body": "A rational function $p(x)/q(x)$ can always be integrated in elementary terms, and the method is algebraic. First, if $\\deg p \\ge \\deg q$, divide to get a polynomial plus a fraction with $\\deg p < \\deg q$. Next factor $q$. If $q$ is a product of distinct linear factors $(x - r_1)\\cdots(x - r_k)$, there are constants with\n$$\\frac{p(x)}{(x - r_1)\\cdots(x - r_k)} = \\frac{A_1}{x - r_1} + \\cdots + \\frac{A_k}{x - r_k},$$\nand each piece integrates to $A_i \\ln|x - r_i|$. To find $A_i$, multiply both sides by $x - r_i$ and put $x = r_i$: every other term vanishes. (This is the cover-up rule.) For example,\n$$\\frac{1}{x^2 - 1} = \\frac{1}{(x-1)(x+1)} = \\frac{1/2}{x - 1} - \\frac{1/2}{x+1}, \\qquad \\int \\frac{dx}{x^2 - 1} = \\frac12 \\ln\\left|\\frac{x-1}{x+1}\\right| + C.$$\nA repeated factor $(x - r)^m$ contributes terms $\\frac{A}{x - r} + \\cdots + \\frac{A'}{(x - r)^m}$, and an irreducible quadratic factor contributes $\\frac{Bx + C}{x^2 + bx + c}$, which is handled by completing the square and using $\\ln$ and $\\arctan$. For instance $\\int \\frac{dx}{x^2 + 2x + 2} = \\int \\frac{dx}{(x+1)^2 + 1} = \\arctan(x + 1) + C$."
+    },
+    {
+     "type": "section",
+     "title": "Trigonometric substitution",
+     "body": "Square roots of quadratics are removed by a substitution that turns the quadratic into a perfect square. For $\\sqrt{1 - x^2}$ put $x = \\sin\\theta$ with $\\theta \\in [-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$; then $\\sqrt{1 - x^2} = \\cos\\theta$ (positive on this range) and $dx = \\cos\\theta\\,d\\theta$. So\n$$\\int_0^1 \\sqrt{1 - x^2}\\,dx = \\int_0^{\\pi/2} \\cos^2\\theta\\,d\\theta = \\int_0^{\\pi/2} \\frac{1 + \\cos 2\\theta}{2}\\,d\\theta = \\frac{\\pi}{4},$$\nwhich is the area of a quarter of the unit disc, as it should be. Here the substitution is used from right to left: we replaced $x$ by a function of a new variable. Similarly $x = \\tan\\theta$ handles $\\sqrt{1 + x^2}$ (since $1 + \\tan^2\\theta = \\sec^2\\theta$)."
+    },
+    {
+     "type": "example",
+     "title": "Repeated integration by parts",
+     "body": "Evaluate $\\displaystyle\\int_0^1 x^2 e^x\\,dx$.",
+     "solution": "Take $u = x^2$, $v' = e^x$: $\\int x^2 e^x\\,dx = x^2 e^x - 2\\int x e^x\\,dx$. Again with $u = x$: $\\int x e^x\\,dx = x e^x - e^x$. So an antiderivative is\n$$F(x) = x^2 e^x - 2(x e^x - e^x) = e^x(x^2 - 2x + 2).$$\nCheck: $F'(x) = e^x(x^2 - 2x + 2) + e^x(2x - 2) = x^2 e^x$. Hence\n$$\\int_0^1 x^2 e^x\\,dx = F(1) - F(0) = e - 2.$$"
+    },
+    {
+     "type": "example",
+     "title": "A partial fraction decomposition",
+     "body": "Find $\\displaystyle\\int \\frac{x + 5}{x^2 + x - 2}\\,dx$.",
+     "solution": "Factor: $x^2 + x - 2 = (x - 1)(x + 2)$. Write\n$$\\frac{x + 5}{(x - 1)(x + 2)} = \\frac{A}{x - 1} + \\frac{B}{x + 2}.$$\nCover-up at $x = 1$: $A = \\frac{1 + 5}{1 + 2} = 2$. At $x = -2$: $B = \\frac{-2 + 5}{-2 - 1} = -1$. Check: $2(x + 2) - (x - 1) = x + 5$. Therefore\n$$\\int \\frac{x + 5}{x^2 + x - 2}\\,dx = 2\\ln|x - 1| - \\ln|x + 2| + C.$$"
+    },
+    {
+     "type": "example",
+     "title": "A reduction formula",
+     "body": "Let $I_n = \\displaystyle\\int_0^{\\pi/2} \\sin^n x\\,dx$ for $n \\ge 0$. Show that $I_n = \\dfrac{n-1}{n} I_{n-2}$ for $n \\ge 2$, and compute $I_4$ and $I_5$.",
+     "solution": "Write $\\sin^n x = \\sin^{n-1} x \\cdot \\sin x$ and integrate by parts with $u = \\sin^{n-1} x$, $v = -\\cos x$:\n$$I_n = \\Big[-\\sin^{n-1}x \\cos x\\Big]_0^{\\pi/2} + (n-1)\\int_0^{\\pi/2} \\sin^{n-2} x \\cos^2 x\\,dx.$$\nThe bracket is $0$ at both ends. Replace $\\cos^2 x$ by $1 - \\sin^2 x$:\n$$I_n = (n - 1)(I_{n-2} - I_n), \\qquad\\text{so}\\qquad n I_n = (n-1) I_{n-2}.$$\nWith $I_0 = \\frac{\\pi}{2}$ and $I_1 = \\int_0^{\\pi/2}\\sin x\\,dx = 1$:\n$$I_4 = \\frac34 \\cdot \\frac12 \\cdot \\frac{\\pi}{2} = \\frac{3\\pi}{16}, \\qquad I_5 = \\frac45 \\cdot \\frac23 \\cdot 1 = \\frac{8}{15}.$$\nIn general $I_{2m} = \\frac{\\pi}{2}\\cdot\\frac{1 \\cdot 3 \\cdots (2m-1)}{2 \\cdot 4 \\cdots (2m)}$, and comparing $I_{2m}$ with its neighbours leads to Wallis's product for $\\pi$."
+    },
+    {
+     "type": "example",
+     "title": "The reflection trick",
+     "body": "Evaluate $\\displaystyle I = \\int_0^{\\pi} \\frac{x \\sin x}{1 + \\cos^2 x}\\,dx$.",
+     "solution": "The factor $x$ suggests integration by parts, but with $u = x$ that only trades the problem for $\\int \\arctan(\\cos x)\\,dx$, which none of our methods can do. Instead substitute $x = \\pi - t$. Since $\\sin(\\pi - t) = \\sin t$ and $\\cos^2(\\pi - t) = \\cos^2 t$, and the limits swap (which cancels the minus sign from $dx = -dt$),\n$$I = \\int_0^{\\pi} \\frac{(\\pi - t)\\sin t}{1 + \\cos^2 t}\\,dt = \\pi\\int_0^{\\pi} \\frac{\\sin t}{1 + \\cos^2 t}\\,dt - I.$$\nSo $2I = \\pi \\int_0^{\\pi} \\frac{\\sin t}{1 + \\cos^2 t}\\,dt$. Now $u = \\cos t$, $du = -\\sin t\\,dt$ turns the remaining integral into\n$$\\int_{-1}^{1} \\frac{du}{1 + u^2} = \\arctan 1 - \\arctan(-1) = \\frac{\\pi}{2}.$$\nHence $2I = \\frac{\\pi^2}{2}$ and $I = \\dfrac{\\pi^2}{4}$. The general principle, $\\int_a^b f(x)\\,dx = \\int_a^b f(a + b - x)\\,dx$, is one of the most useful tricks for definite integrals in competitions: here we never needed an antiderivative of $\\frac{x\\sin x}{1+\\cos^2 x}$ at all."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Changing variables without changing the limits (or changing them and then substituting back as well).\n- Dropping the absolute value in $\\int \\frac{dx}{x} = \\ln|x| + C$.\n- Using an antiderivative across a point where the integrand blows up: $\\int_{-1}^{1} \\frac{dx}{x^2}$ is not $\\big[-\\frac1x\\big]_{-1}^{1} = -2$ (a positive function cannot have a negative integral); it is an [[improper-integrals|improper integral]] that diverges.\n- Assuming $\\int f g = \\int f \\int g$, or $\\int \\frac{1}{f} = \\frac{1}{\\int f}$.\n- Expecting every integral to have an elementary answer. The antiderivatives of $e^{-x^2}$, $\\frac{\\sin x}{x}$ and $\\sqrt{1 + x^4}$ cannot be written with the usual functions (a theorem of Liouville). Definite integrals of such functions can still sometimes be computed by other means.\n- Using the cover-up rule on a repeated factor as if it gave everything: for $(x - r)^m$ it gives only the coefficient of $\\frac{1}{(x - r)^m}$, and the other coefficients must be found another way."
+    },
+    {
+     "type": "connection",
+     "body": "Integrals over unbounded intervals, such as $\\int_0^\\infty x^n e^{-x}\\,dx = n!$ (repeated integration by parts), are the subject of [[improper-integrals]] and lead to the [[gamma]] function. Separable [[ode-first|first-order differential equations]] are solved by computing two antiderivatives, often with partial fractions; the logistic equation is a typical case.\n\nIntegration by parts is the engine behind the integral form of the remainder in [[taylor|Taylor's theorem]]. Its discrete analogue is Abel summation, and repeated integration by parts gives the Euler–Maclaurin formula; both are in [[partial-summation]]. Integrating a [[power-series]] term by term gives series for $\\arctan$ and $\\ln(1 + x)$. Integrals over $\\mathbb R$ of rational functions, such as $\\int_{-\\infty}^{\\infty} \\frac{dx}{1 + x^4}$, are evaluated most easily with [[residues]] in complex analysis."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find $\\int x \\ln x\\,dx$.\n2. Find $\\int \\frac{dx}{x^2 + 4x + 5}$.\n3. Show that $\\int_0^1 \\frac{x^3}{x^2 + 1}\\,dx = \\frac{1 - \\ln 2}{2}$.\n4. Let $J_n = \\int_0^1 x^n e^x\\,dx$. Show that $J_n = e - n J_{n-1}$ for $n \\ge 1$, and deduce that $J_n = a_n e + (-1)^{n+1} n!$ for some integer $a_n$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Spivak, Calculus"
+    },
+    {
+     "ref": "Apostol, Calculus, Vol. 1"
+    },
+    {
+     "ref": "Stewart, Calculus"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Substitution examples: integral_0^2 x/(1+x^2) = ln(5)/2; antiderivative of tan x is -ln|cos x|",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nassert sp.simplify(sp.integrate(x/(1+x**2),(x,0,2)) - sp.log(5)/2) == 0\nassert sp.simplify(sp.diff(-sp.log(sp.cos(x)),x) - sp.tan(x)) == 0"
+    },
+    {
+     "claim": "Parts examples: x cos x, ln x, e^x sin x antiderivatives",
+     "python": "import sympy as sp\nx = sp.symbols('x', positive=True)\nassert sp.simplify(sp.diff(x*sp.sin(x)+sp.cos(x),x) - x*sp.cos(x)) == 0\nassert sp.simplify(sp.diff(x*sp.log(x)-x,x) - sp.log(x)) == 0\nassert sp.simplify(sp.diff(sp.exp(x)*(sp.sin(x)-sp.cos(x))/2,x) - sp.exp(x)*sp.sin(x)) == 0"
+    },
+    {
+     "claim": "Partial fractions: 1/(x^2-1) decomposition and antiderivative; arctan(x+1) for 1/(x^2+2x+2); (x+5)/(x^2+x-2) = 2/(x-1) - 1/(x+2)",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nassert sp.simplify(sp.apart(1/(x**2-1)) - (sp.Rational(1,2)/(x-1) - sp.Rational(1,2)/(x+1))) == 0\nassert sp.simplify(sp.diff(sp.log((x-1)/(x+1))/2, x) - 1/(x**2-1)) == 0\nassert sp.simplify(sp.diff(sp.atan(x+1),x) - 1/(x**2+2*x+2)) == 0\nassert sp.simplify(sp.apart((x+5)/(x**2+x-2)) - (2/(x-1) - 1/(x+2))) == 0\nassert sp.expand(2*(x+2)-(x-1)) == x+5"
+    },
+    {
+     "claim": "Quarter disc: integral_0^1 sqrt(1-x^2) = pi/4 and integral_0^{pi/2} cos^2 = pi/4",
+     "python": "import sympy as sp\nx, t = sp.symbols('x t')\nassert sp.simplify(sp.integrate(sp.sqrt(1-x**2),(x,0,1)) - sp.pi/4) == 0\nassert sp.simplify(sp.integrate(sp.cos(t)**2,(t,0,sp.pi/2)) - sp.pi/4) == 0"
+    },
+    {
+     "claim": "integral_0^1 x^2 e^x = e - 2 with antiderivative e^x(x^2-2x+2)",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nF = sp.exp(x)*(x**2-2*x+2)\nassert sp.simplify(sp.diff(F,x) - x**2*sp.exp(x)) == 0\nassert sp.simplify(sp.integrate(x**2*sp.exp(x),(x,0,1)) - (sp.E-2)) == 0"
+    },
+    {
+     "claim": "Reduction formula I_n = (n-1)/n I_{n-2} for sin^n on [0,pi/2]; I_4 = 3pi/16, I_5 = 8/15; Wallis double-factorial form",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nI = [sp.integrate(sp.sin(x)**n,(x,0,sp.pi/2)) for n in range(12)]\nassert I[0] == sp.pi/2 and I[1] == 1\nfor n in range(2,12):\n    assert sp.simplify(n*I[n] - (n-1)*I[n-2]) == 0\nassert sp.simplify(I[4]-3*sp.pi/16) == 0 and I[5] == sp.Rational(8,15)\nfor m in range(1,6):\n    assert sp.simplify(I[2*m] - sp.pi/2*sp.prod([sp.Rational(2*k-1,2*k) for k in range(1,m+1)])) == 0"
+    },
+    {
+     "claim": "integral_0^pi x sin x/(1+cos^2 x) = pi^2/4; integral_0^pi sin/(1+cos^2) = pi/2",
+     "python": "import sympy as sp, mpmath\nx = sp.symbols('x')\nassert sp.simplify(sp.integrate(sp.sin(x)/(1+sp.cos(x)**2),(x,0,sp.pi)) - sp.pi/2) == 0\nv = mpmath.quad(lambda t: t*mpmath.sin(t)/(1+mpmath.cos(t)**2), [0, mpmath.pi])\nassert abs(v - mpmath.pi**2/4) < 1e-12"
+    },
+    {
+     "claim": "Exercise 3 value (1 - ln 2)/2; exercise 4 recursion J_n = e - n J_{n-1}, J_0 = e - 1, and J_n = (-1)^(n+1) n! + e*integer",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nassert sp.simplify(sp.integrate(x**3/(x**2+1),(x,0,1)) - (1-sp.log(2))/2) == 0\nJ = [sp.integrate(x**n*sp.exp(x),(x,0,1)) for n in range(8)]\nfor n in range(1,8):\n    assert sp.simplify(J[n] - (sp.E - n*J[n-1])) == 0\n    c = sp.expand(J[n] - (-1)**(n+1)*sp.factorial(n))\n    k = sp.simplify(c/sp.E)\n    assert k.is_integer"
+    },
+    {
+     "claim": "Key identity 1/((x-p)(x-q)) = (1/(x-p) - 1/(x-q))/(p-q); FTC misuse [-1/x] from -1 to 1 equals -2",
+     "python": "import sympy as sp\nx, p, q = sp.symbols('x p q')\nassert sp.simplify(1/((x-p)*(x-q)) - (1/(x-p) - 1/(x-q))/(p-q)) == 0\nassert (-1/sp.Integer(1)) - (-1/sp.Integer(-1)) == -2"
+    },
+    {
+     "claim": "Cover-up on a repeated factor: 1/((x-1)^2(x+2)) = (1/9)/(x-1)... coefficient of 1/(x-1)^2 is 1/3 = value of 1/(x+2) at x=1, but the 1/(x-1) coefficient (-1/9) is not given by cover-up",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nd = sp.apart(1/((x-1)**2*(x+2)))\nassert sp.simplify(d - (sp.Rational(1,3)/(x-1)**2 - sp.Rational(1,9)/(x-1) + sp.Rational(1,9)/(x+2))) == 0\nassert (1/(x+2)).subs(x,1) == sp.Rational(1,3)"
+    },
+    {
+     "claim": "Reflection example: integration by parts with u = x gives -x arctan(cos x) + integral of arctan(cos x); mean of Exp(lambda) is 1/lambda",
+     "python": "import sympy as sp\nx = sp.symbols('x'); lam = sp.symbols('lambda', positive=True)\nassert sp.simplify(sp.diff(-x*sp.atan(sp.cos(x)), x) + sp.atan(sp.cos(x)) - x*sp.sin(x)/(1+sp.cos(x)**2)) == 0\nassert sp.simplify(sp.integrate(x*lam*sp.exp(-lam*x), (x, 0, sp.oo)) - 1/lam) == 0"
+    }
+   ]
+  }
+ },
+ {
+  "id": "improper-integrals",
+  "entry": {
+   "sum": "An improper integral is an integral over an unbounded interval, or of a function that is unbounded near an endpoint, defined as a limit of ordinary integrals: $\\int_a^\\infty f = \\lim_{b \\to \\infty} \\int_a^b f$. It converges when the limit exists and is finite. The basic yardstick is the $p$-test, and most convergence questions are settled by comparing with $x^{-p}$.",
+   "key": [
+    "\\int_a^\\infty f(x)\\,dx = \\lim_{b\\to\\infty} \\int_a^b f(x)\\,dx",
+    "\\int_1^\\infty \\frac{dx}{x^p} \\text{ converges} \\iff p > 1, \\qquad \\int_0^1 \\frac{dx}{x^p} \\text{ converges} \\iff p < 1",
+    "0 \\le f \\le g,\\ \\int_a^\\infty g < \\infty \\implies \\int_a^\\infty f < \\infty"
+   ],
+   "why": "Many of the most important integrals in mathematics run over infinite ranges: the Gaussian integral, the gamma function, Fourier and Laplace transforms, and the expected values of continuous random variables. The integral test also turns questions about infinite series into questions about integrals.",
+   "msc": [
+    "26A42",
+    "40A10"
+   ],
+   "links": [
+    {
+     "field": "probability",
+     "note": "A probability density must have total integral 1 over the real line, and expectations such as the mean of an exponential distribution are improper integrals."
+    },
+    {
+     "field": "special-functions",
+     "note": "The gamma, beta and zeta functions are defined or represented by convergent improper integrals."
+    },
+    {
+     "field": "number-theory",
+     "note": "The integral test and comparisons like the sum of 1/(n log n) against the integral of 1/(x log x) are basic tools for estimating sums over integers and primes."
+    }
+   ],
+   "refs": [
+    "Spivak, Calculus",
+    "Apostol, Mathematical Analysis",
+    "Abbott, Understanding Analysis"
+   ],
+   "aliases": [
+    "improper integral",
+    "integral over an infinite interval",
+    "convergent integral",
+    "p-test",
+    "comparison test for integrals",
+    "integral test",
+    "Dirichlet integral"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "The region under $y = 1/x^2$ to the right of $x = 1$ is infinitely long. Does it have a finite area? The integral from $1$ to $b$ is $1 - \\frac1b$, which approaches $1$ as $b$ grows, so it is natural to say the area is $1$. The same computation for $y = 1/x$ gives $\\ln b$, which grows without bound: that region has infinite area, even though $1/x$ also tends to $0$.\n\nThe [[riemann-integral|definite integral]] only makes sense for bounded functions on bounded intervals. Improper integrals extend it by taking limits, and the interesting questions are when the limit exists and how to tell without computing it. Many of the integrals that matter most, like $\\int_0^\\infty x^{s-1}e^{-x}\\,dx$ or $\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx$, are of this kind."
+    },
+    {
+     "type": "definition",
+     "title": "Improper integral",
+     "body": "Suppose $f$ is integrable on $[a, b]$ for every $b > a$. If the limit\n$$\\int_a^\\infty f(x)\\,dx = \\lim_{b \\to \\infty} \\int_a^b f(x)\\,dx$$\nexists and is finite, the improper integral converges and has this value; otherwise it diverges. Likewise, if $f$ is integrable on $[c, b]$ for every $c \\in (a, b)$ but possibly unbounded near $a$, then $\\int_a^b f = \\lim_{c \\to a^+} \\int_c^b f$. An integral over $(-\\infty, \\infty)$, or one with trouble at both ends, is split at an interior point, and it converges only if both pieces converge.\n\nIn words: integrate over a region where nothing goes wrong, then let the region grow to the whole thing."
+    },
+    {
+     "type": "section",
+     "title": "The p-test and some first examples",
+     "body": "For $p \\ne 1$ and $b > 1$,\n$$\\int_1^b \\frac{dx}{x^p} = \\frac{1 - b^{1-p}}{p - 1}.$$\nIf $p > 1$, then $b^{1-p} \\to 0$ and the integral converges to $\\frac{1}{p-1}$; if $p < 1$, then $b^{1-p} \\to \\infty$. For $p = 1$ the integral is $\\ln b \\to \\infty$. So $\\int_1^\\infty x^{-p}\\,dx$ converges exactly when $p > 1$. Near $0$ the roles are reversed: $\\int_c^1 x^{-p}\\,dx = \\frac{1 - c^{1-p}}{1-p}$ for $p \\ne 1$, which converges as $c \\to 0^+$ exactly when $p < 1$, to $\\frac{1}{1-p}$. For example $\\int_0^1 \\frac{dx}{\\sqrt x} = 2$ although the integrand is unbounded.\n\nA small table makes the difference between $p = 2$ and $p = 1$ concrete:\n$$\\begin{array}{c|cccc} b & 10 & 100 & 1000 & 10^6 \\\\ \\hline \\int_1^b x^{-2}\\,dx & 0.9 & 0.99 & 0.999 & 0.999999 \\\\ \\int_1^b x^{-1}\\,dx & 2.30 & 4.61 & 6.91 & 13.8 \\end{array}$$\nThe second row grows slowly, but it does grow past every bound.\n\nExponentials decay faster than any power, so integrals like $\\int_0^\\infty x^n e^{-x}\\,dx$ converge. Logarithms are milder than any power: $\\int_0^1 \\ln x\\,dx = \\lim_{c\\to 0^+}\\big[x\\ln x - x\\big]_c^1 = -1$, since $c \\ln c \\to 0$."
+    },
+    {
+     "type": "theorem",
+     "title": "Comparison tests",
+     "body": "Let $f$ and $g$ be integrable on every interval $[a, b]$ with $b > a$.\n\n1. If $0 \\le f(x) \\le g(x)$ for all $x \\ge a$ and $\\int_a^\\infty g$ converges, then $\\int_a^\\infty f$ converges and $\\int_a^\\infty f \\le \\int_a^\\infty g$. Equivalently, if $\\int_a^\\infty f$ diverges, so does $\\int_a^\\infty g$.\n2. If $f(x) > 0$, $g(x) > 0$ and $f(x)/g(x) \\to L$ with $0 < L < \\infty$ as $x \\to \\infty$, then $\\int_a^\\infty f$ and $\\int_a^\\infty g$ either both converge or both diverge.\n\nThe same statements hold for integrals that are improper at a finite endpoint."
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "1. Put $F(b) = \\int_a^b f$ and $G(b) = \\int_a^b g$. Because $f, g \\ge 0$, both are nondecreasing in $b$, and $F(b) \\le G(b) \\le M$, where $M = \\lim G = \\int_a^\\infty g$. So $F$ is nondecreasing and bounded above. Let $S = \\sup_{b > a} F(b)$, which exists by the completeness of the [[real-numbers]]. Given $\\varepsilon > 0$, there is $b_0$ with $F(b_0) > S - \\varepsilon$, and then $S - \\varepsilon < F(b) \\le S$ for all $b \\ge b_0$. Hence $F(b) \\to S \\le M$.\n\n2. Since $f/g \\to L$, there is $X \\ge a$ with $\\frac{L}{2} g(x) \\le f(x) \\le 2L\\,g(x)$ for $x \\ge X$. Convergence of $\\int_a^\\infty$ is the same as convergence of $\\int_X^\\infty$, because $\\int_a^X$ is an ordinary finite integral. If $\\int_X^\\infty g$ converges, then so does $\\int_X^\\infty 2Lg$, and part 1 gives convergence of $\\int_X^\\infty f$. If $\\int_X^\\infty f$ converges, apply part 1 to $\\frac{L}{2} g \\le f$."
+    },
+    {
+     "type": "section",
+     "title": "Absolute and conditional convergence",
+     "body": "For integrands that change sign, the comparison test applies to $|f|$. We say $\\int_a^\\infty f$ converges absolutely if $\\int_a^\\infty |f|$ converges. Absolute convergence implies convergence: since $0 \\le f + |f| \\le 2|f|$, the integral of $f + |f|$ converges by comparison, and $f = (f + |f|) - |f|$ is a difference of two convergent integrals. For example $\\int_1^\\infty \\frac{\\cos x}{x^2}\\,dx$ converges absolutely because $\\left|\\frac{\\cos x}{x^2}\\right| \\le \\frac{1}{x^2}$.\n\nThe famous example of an integral that converges but not absolutely is $\\int_1^\\infty \\frac{\\sin x}{x}\\,dx$. Integrating by parts on $[1, b]$,\n$$\\int_1^b \\frac{\\sin x}{x}\\,dx = \\cos 1 - \\frac{\\cos b}{b} - \\int_1^b \\frac{\\cos x}{x^2}\\,dx.$$\nAs $b \\to \\infty$, the middle term tends to $0$ and the last integral converges absolutely, so the left side has a limit. The cancellation between positive and negative humps is essential, because the humps alone are too big: on $[k\\pi, (k+1)\\pi]$ we have $\\frac1x \\ge \\frac{1}{(k+1)\\pi}$ and $\\int_{k\\pi}^{(k+1)\\pi} |\\sin x|\\,dx = 2$, so\n$$\\int_{\\pi}^{(N+1)\\pi} \\frac{|\\sin x|}{x}\\,dx \\ \\ge\\ \\frac{2}{\\pi}\\sum_{k=1}^{N} \\frac{1}{k+1} \\to \\infty.$$\n(The value $\\int_0^\\infty \\frac{\\sin x}{x}\\,dx = \\frac{\\pi}{2}$ is a classical result; it is not obtainable from an elementary antiderivative.)"
+    },
+    {
+     "type": "theorem",
+     "title": "Integral test",
+     "body": "Let $f$ be positive and nonincreasing on $[1, \\infty)$. Then $\\sum_{n=1}^\\infty f(n)$ converges if and only if $\\int_1^\\infty f(x)\\,dx$ converges. Moreover, for every $N \\ge 2$,\n$$\\sum_{n=2}^{N} f(n) \\ \\le\\ \\int_1^N f(x)\\,dx \\ \\le\\ \\sum_{n=1}^{N-1} f(n).$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "A monotone function is integrable on every bounded interval. For $k \\le x \\le k + 1$ we have $f(k+1) \\le f(x) \\le f(k)$, so integrating over $[k, k+1]$ gives $f(k+1) \\le \\int_k^{k+1} f \\le f(k)$. Summing over $k = 1, \\dots, N-1$ gives the displayed inequality. Both the partial sums and $\\int_1^b f$ are nondecreasing (in $N$ and in $b$), so each converges if and only if it is bounded. The left inequality shows that a bounded integral gives bounded partial sums, and the right inequality shows the converse; for non-integer $b$ use $\\int_1^b f \\le \\int_1^{\\lceil b \\rceil} f$."
+    },
+    {
+     "type": "example",
+     "title": "Moments of the exponential",
+     "body": "Show that $\\displaystyle\\int_0^\\infty x^n e^{-x}\\,dx = n!$ for every integer $n \\ge 0$.",
+     "solution": "For $n = 0$: $\\int_0^b e^{-x}\\,dx = 1 - e^{-b} \\to 1 = 0!$. For $n \\ge 1$, integrate by parts on $[0, b]$ with $u = x^n$, $v = -e^{-x}$:\n$$\\int_0^b x^n e^{-x}\\,dx = -b^n e^{-b} + n\\int_0^b x^{n-1} e^{-x}\\,dx.$$\nSince $b^n e^{-b} \\to 0$ as $b \\to \\infty$ (for instance by applying [[lhopital|L'Hôpital's rule]] $n$ times), letting $b \\to \\infty$ gives $J_n = n J_{n-1}$, where $J_n$ denotes the integral; the right side converges by induction, so the left side does too. With $J_0 = 1$, induction gives $J_n = n!$. Replacing $n$ by a real number $s - 1$ with $s > 0$ defines the [[gamma]] function, $\\Gamma(s) = \\int_0^\\infty x^{s-1} e^{-x}\\,dx$, which extends the factorial."
+    },
+    {
+     "type": "example",
+     "title": "Trouble at both ends",
+     "body": "Decide whether $\\displaystyle\\int_0^\\infty \\frac{dx}{\\sqrt{x}\\,(1 + x)}$ converges, and if so find its value.",
+     "solution": "The integrand is unbounded at $0$ and the interval is unbounded, so split at $1$. Near $0$ the integrand is comparable to $x^{-1/2}$ (their ratio tends to $1$), and $\\int_0^1 x^{-1/2}\\,dx$ converges since $\\frac12 < 1$. Near infinity it is comparable to $x^{-3/2}$, and $\\int_1^\\infty x^{-3/2}\\,dx$ converges since $\\frac32 > 1$. By the limit comparison test, both pieces converge.\n\nTo compute it, substitute $x = t^2$, $dx = 2t\\,dt$ on $[c, b]$ and then let $c \\to 0^+$, $b \\to \\infty$:\n$$\\int_{\\sqrt c}^{\\sqrt b} \\frac{2t\\,dt}{t(1 + t^2)} = 2\\big(\\arctan \\sqrt b - \\arctan \\sqrt c\\big) \\to 2\\cdot\\frac{\\pi}{2} = \\pi.$$"
+    },
+    {
+     "type": "example",
+     "title": "A borderline family of series",
+     "body": "For which real $p$ does $\\displaystyle\\sum_{n=2}^{\\infty} \\frac{1}{n(\\ln n)^p}$ converge?",
+     "solution": "For $p \\le 0$ the terms are at least $\\frac1n$ once $n \\ge 3$ (then $\\ln n > 1$), and the series diverges by comparison with the harmonic series. For $p > 0$ the function $f(x) = \\frac{1}{x(\\ln x)^p}$ is positive and decreasing on $[2, \\infty)$, so the integral test applies (starting at $2$ instead of $1$ changes nothing in the proof). With $u = \\ln x$, $du = dx/x$,\n$$\\int_2^b \\frac{dx}{x(\\ln x)^p} = \\int_{\\ln 2}^{\\ln b} \\frac{du}{u^p},$$\nand by the $p$-test this has a finite limit as $b \\to \\infty$ exactly when $p > 1$. So the series converges if and only if $p > 1$. For $p = 1$ the integral bound shows that the partial sums up to $N$ are at most $\\ln\\ln N + 1.1$: they diverge, but $N$ needs more than $3000$ digits before the sum passes $10$. This is the sort of slow divergence that appears with sums over primes, such as $\\sum_p \\frac1p$."
+    },
+    {
+     "type": "example",
+     "title": "A logarithmic integral by symmetry",
+     "body": "Show that $\\displaystyle\\int_0^{\\pi/2} \\ln(\\sin x)\\,dx$ converges and equals $-\\dfrac{\\pi}{2}\\ln 2$.",
+     "solution": "Convergence. On $(0, \\frac{\\pi}{2}]$ we have $\\frac{2x}{\\pi} \\le \\sin x \\le 1$ (the graph of $\\sin$ is concave there, so it lies above the chord from $(0,0)$ to $(\\frac{\\pi}{2}, 1)$). Hence $0 \\le -\\ln \\sin x \\le -\\ln\\frac{2x}{\\pi}$, and $\\int_0^{\\pi/2} -\\ln\\frac{2x}{\\pi}\\,dx$ converges because $\\int_0^1 \\ln x\\,dx = -1$ does. By comparison, $I = \\int_0^{\\pi/2} \\ln \\sin x\\,dx$ converges.\n\nValue. The substitution $x \\mapsto \\frac{\\pi}{2} - x$ shows $I = \\int_0^{\\pi/2} \\ln \\cos x\\,dx$. Adding the two forms and using $\\sin x \\cos x = \\frac12 \\sin 2x$,\n$$2I = \\int_0^{\\pi/2} \\ln\\Big(\\frac{\\sin 2x}{2}\\Big)\\,dx = -\\frac{\\pi}{2}\\ln 2 + \\int_0^{\\pi/2} \\ln \\sin 2x\\,dx.$$\nWith $t = 2x$ the last integral is $\\frac12\\int_0^{\\pi} \\ln \\sin t\\,dt$. Since $\\sin(\\pi - t) = \\sin t$, the integral over $[0, \\pi]$ is twice the integral over $[0, \\frac{\\pi}{2}]$, so the last term equals $\\frac12 \\cdot 2I = I$. Therefore $2I = -\\frac{\\pi}{2}\\ln 2 + I$, and $I = -\\frac{\\pi}{2} \\ln 2$. Every manipulation here is legitimate because all the integrals involved converge; with divergent integrals, the same algebra could produce nonsense."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Not noticing that an integral is improper. $\\int_{-1}^{1} \\frac{dx}{x^2}$ is not $\\big[-\\frac1x\\big]_{-1}^{1} = -2$: the integrand is unbounded at $0$ and the integral diverges.\n- Taking symmetric limits. $\\int_{-\\infty}^{\\infty} x\\,dx$ diverges even though $\\int_{-R}^{R} x\\,dx = 0$ for every $R$; both halves must converge separately. (The symmetric limit is called the Cauchy principal value, a different notion.)\n- Thinking $f(x) \\to 0$ is enough. $\\frac1x \\to 0$, but $\\int_1^\\infty \\frac{dx}{x}$ diverges.\n- Thinking $f(x) \\to 0$ is necessary. Unlike the terms of a convergent series, the integrand of a convergent integral need not tend to $0$: $\\int_0^\\infty \\sin(x^2)\\,dx$ converges (substitute $u = x^2$ and argue as for $\\frac{\\sin u}{\\sqrt u}$), although $\\sin(x^2)$ keeps oscillating between $-1$ and $1$.\n- Using comparison for functions of changing sign. The comparison test needs $0 \\le f \\le g$; for other functions compare $|f|$, and remember that this tests absolute convergence only."
+    },
+    {
+     "type": "connection",
+     "body": "The [[gamma]] function $\\Gamma(s) = \\int_0^\\infty x^{s-1}e^{-x}\\,dx$ converges for $s > 0$ by exactly the arguments above (compare with $x^{s-1}$ near $0$ and with $x^{-2}$ near infinity). The integral test links integrals with [[series]], and its refinement, Euler–Maclaurin summation in [[partial-summation]], estimates sums such as $\\sum_{n \\le N} \\frac1n = \\ln N + \\gamma + o(1)$, where $\\gamma \\approx 0.5772$ is Euler's constant.\n\nContinuous probability [[distributions]] are densities whose improper integral over $\\mathbb R$ is $1$; the normal density relies on $\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt\\pi$, which is computed in [[multiple-integrals]]. Fourier transforms ([[fourier-poisson]]) and the [[mellin]] transform are improper integrals depending on a parameter, and the [[zeta]] function has the representation $\\Gamma(s)\\zeta(s) = \\int_0^\\infty \\frac{x^{s-1}}{e^x - 1}\\,dx$ for $s > 1$. In the theory of the [[lebesgue]] integral, absolutely convergent improper integrals are integrable, while $\\int_0^\\infty \\frac{\\sin x}{x}\\,dx$ exists only as a limit."
+    },
+    {
+     "type": "exercise",
+     "body": "1. For which real $p$ does $\\int_0^\\infty \\frac{dx}{x^p(1 + x)}$ converge?\n2. For $a > 0$, compute $\\int_0^\\infty e^{-ax}\\cos x\\,dx$.\n3. Show that $\\int_0^\\infty \\frac{\\sin^2 x}{x^2}\\,dx$ converges.\n4. Does $\\sum_{n \\ge 3} \\frac{1}{n \\ln n \\,\\ln\\ln n}$ converge?"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Spivak, Calculus"
+    },
+    {
+     "ref": "Apostol, Mathematical Analysis"
+    },
+    {
+     "ref": "Abbott, Understanding Analysis"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "p-test: integral_1^b x^-p = (1-b^(1-p))/(p-1); values 1/(p-1) and 1/(1-p); integral_0^1 x^(-1/2) = 2; table values",
+     "python": "import sympy as sp, math\nx, b = sp.symbols('x b', positive=True)\nfor p in [sp.Rational(1,2), sp.Integer(2), sp.Integer(3), sp.Rational(5,2)]:\n    assert sp.simplify(sp.integrate(x**(-p),(x,1,b)) - (1-b**(1-p))/(p-1)) == 0\nfor p in [sp.Integer(2), sp.Integer(3), sp.Rational(3,2)]:\n    assert sp.simplify(sp.integrate(x**(-p),(x,1,sp.oo)) - 1/(p-1)) == 0\nfor p in [sp.Rational(1,2), sp.Rational(1,3)]:\n    assert sp.integrate(x**(-p),(x,0,1)) == 1/(1-p)\nassert sp.integrate(x**(-1),(x,1,sp.oo)) == sp.oo\nassert [round(1-1/bb,6) for bb in (10,100,1000,10**6)] == [0.9,0.99,0.999,0.999999]\nassert [round(math.log(bb),2) for bb in (10,100,1000)] == [2.30,4.61,6.91] and round(math.log(10**6),1) == 13.8"
+    },
+    {
+     "claim": "integral_0^1 ln x = -1; integral_0^inf x^n e^-x = n!",
+     "python": "import sympy as sp\nx = sp.symbols('x', positive=True)\nassert sp.integrate(sp.log(x),(x,0,1)) == -1\nfor n in range(8):\n    assert sp.integrate(x**n*sp.exp(-x),(x,0,sp.oo)) == sp.factorial(n)"
+    },
+    {
+     "claim": "sin x / x: integration by parts identity on [1,b]; Dirichlet integral pi/2; Fresnel integral of sin(x^2) converges (to sqrt(pi/8))",
+     "python": "import sympy as sp\nx, b = sp.symbols('x b', positive=True)\nlhs = sp.diff(sp.cos(1) - sp.cos(b)/b - sp.integrate(sp.cos(x)/x**2,(x,1,b)), b)\nassert sp.simplify(lhs - sp.sin(b)/b) == 0\nassert sp.integrate(sp.sin(x)/x,(x,0,sp.oo)) == sp.pi/2\nassert sp.simplify(sp.integrate(sp.sin(x**2),(x,0,sp.oo)) - sp.sqrt(sp.pi/8)) == 0"
+    },
+    {
+     "claim": "Lower bound for integral of |sin x|/x over [k pi,(k+1) pi] by 2/((k+1) pi)",
+     "python": "import mpmath\nfor k in range(1,30):\n    v = mpmath.quad(lambda t: abs(mpmath.sin(t))/t, [k*mpmath.pi,(k+1)*mpmath.pi])\n    assert v >= 2/((k+1)*mpmath.pi)\n    assert abs(mpmath.quad(lambda t: abs(mpmath.sin(t)), [k*mpmath.pi,(k+1)*mpmath.pi]) - 2) < 1e-12"
+    },
+    {
+     "claim": "Integral test inequality for f(x)=1/x^2 and 1/(x ln x) style examples",
+     "python": "from fractions import Fraction\nimport math\nfor N in range(2,200):\n    S2 = sum(1/n**2 for n in range(2,N+1)); S1 = sum(1/n**2 for n in range(1,N))\n    I = 1 - 1/N\n    assert S2 <= I + 1e-15 and I <= S1 + 1e-15"
+    },
+    {
+     "claim": "integral_0^inf dx/(sqrt(x)(1+x)) = pi",
+     "python": "import sympy as sp\nx = sp.symbols('x', positive=True)\nassert sp.simplify(sp.integrate(1/(sp.sqrt(x)*(1+x)),(x,0,sp.oo)) - sp.pi) == 0"
+    },
+    {
+     "claim": "integral_2^b dx/(x (ln x)^p) = integral_{ln 2}^{ln b} du/u^p (derivative check) ",
+     "python": "import sympy as sp\nx, b, u = sp.symbols('x b u', positive=True)\nfor p in [sp.Rational(1,2), 2, 3]:\n    G = sp.integrate(u**(-p),(u,sp.log(2),sp.log(b)))\n    assert sp.simplify(sp.diff(G,b) - 1/(b*sp.log(b)**p)) == 0\nassert sp.limit(sp.integrate(u**(-2),(u,sp.log(2),sp.log(b))), b, sp.oo) == 1/sp.log(2)"
+    },
+    {
+     "claim": "Sum_{n=2}^N 1/(n ln n) <= ln ln N + 1.1 (integral bound: 1/(2 ln 2) - ln ln 2 < 1.1); exceeding 10 needs ln ln N > 8.9, i.e. N > e^(e^8.9) which has > 3000 digits; Gamma(s)zeta(s) integral at s=2,3",
+     "python": "import math, mpmath\nc = 1/(2*math.log(2)) - math.log(math.log(2))\nassert c < 1.1\nS = 0.0\nfor n in range(2, 10**6+1):\n    S += 1/(n*math.log(n))\n    if n in (10, 1000, 10**6):\n        assert S <= math.log(math.log(n)) + c + 1e-12\nassert math.exp(10 - 1.1) > 3000*math.log(10)\nfor s in (2, 3):\n    v = mpmath.quad(lambda t: t**(s-1)/(mpmath.exp(t)-1), [0, mpmath.inf])\n    assert abs(v - mpmath.gamma(s)*mpmath.zeta(s)) < 1e-12"
+    },
+    {
+     "claim": "integral_0^{pi/2} ln sin x = -(pi/2) ln 2; sin x >= 2x/pi on [0,pi/2]",
+     "python": "import mpmath, numpy as np\nv = mpmath.quad(lambda t: mpmath.log(mpmath.sin(t)), [0, mpmath.pi/2])\nassert abs(v + mpmath.pi/2*mpmath.log(2)) < 1e-12\nxs = np.linspace(0, np.pi/2, 100001)\nassert np.all(np.sin(xs) >= 2*xs/np.pi - 1e-15)"
+    },
+    {
+     "claim": "Reviewer: for p <= 0, 1/(n (ln n)^p) >= 1/n for n >= 3 but not at n = 2 (p = -1); comparison integral of -ln(2x/pi) on (0, pi/2] equals pi/2",
+     "python": "import math, mpmath\nfor p in (0, -0.5, -1, -3):\n    assert all(1/(n*math.log(n)**p) >= 1/n for n in range(3, 5000))\nassert 1/(2*math.log(2)**(-1)) < 1/2\nassert abs(mpmath.quad(lambda x: -mpmath.log(2*x/mpmath.pi), [0, mpmath.pi/2]) - mpmath.pi/2) < 1e-12"
+    },
+    {
+     "claim": "Reviewer: H_N - ln N -> Euler's constant 0.5772...; Gaussian integral sqrt(pi) numerically; integral_1^b sin x/x by-parts identity at b = 50 numerically",
+     "python": "import mpmath\nmpmath.mp.dps = 25\nassert abs(mpmath.harmonic(10**6) - mpmath.log(10**6) - mpmath.euler) < 1e-6 and round(float(mpmath.euler), 4) == 0.5772\nassert abs(mpmath.quad(lambda x: mpmath.exp(-x**2), [-mpmath.inf, mpmath.inf]) - mpmath.sqrt(mpmath.pi)) < 1e-15\nb = 50\nlhs = mpmath.quad(lambda x: mpmath.sin(x)/x, [1, b])\nrhs = mpmath.cos(1) - mpmath.cos(b)/b - mpmath.quad(lambda x: mpmath.cos(x)/x**2, [1, b])\nassert abs(lhs - rhs) < 1e-18"
+    }
+   ]
+  }
+ },
+ {
+  "id": "taylor",
+  "entry": {
+   "sum": "The Taylor polynomial of degree $n$ of $f$ at $a$ is the unique polynomial of degree at most $n$ whose value and first $n$ derivatives at $a$ agree with those of $f$. Taylor's theorem measures the error: if $|f^{(n+1)}| \\le M$ between $a$ and $x$, the error is at most $\\frac{M}{(n+1)!}|x - a|^{n+1}$, so near $a$ the polynomial is a very good approximation.",
+   "key": [
+    "P_n(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k",
+    "f(x) - P_n(x) = \\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-a)^{n+1} \\quad \\text{for some } \\xi \\text{ between } a \\text{ and } x",
+    "f(x) = P_n(x) + o\\big((x-a)^n\\big) \\quad (x \\to a)"
+   ],
+   "why": "Taylor expansions are how functions such as $\\sin$, $e^x$ and $\\ln$ are computed, how limits and asymptotic formulas are found, and how physicists linearise a problem near equilibrium. The remainder estimate is what turns a heuristic approximation into a proof with an explicit error.",
+   "msc": [
+    "26A24",
+    "41A58"
+   ],
+   "links": [
+    {
+     "field": "physics",
+     "note": "Small-oscillation and linear approximations, such as replacing sin(theta) by theta for a pendulum, are first-order Taylor expansions with a controlled error."
+    },
+    {
+     "field": "computer-science",
+     "note": "Numerical methods for derivatives, integrals and differential equations are designed and analysed by matching Taylor expansions, and library routines evaluate functions by truncated expansions."
+    },
+    {
+     "field": "number-theory",
+     "note": "Taylor's theorem with remainder gives irrationality proofs, such as that of e, and asymptotic expansions used in analytic number theory."
+    }
+   ],
+   "refs": [
+    "Spivak, Calculus",
+    "Apostol, Calculus, Vol. 1",
+    "Rudin, Principles of Mathematical Analysis"
+   ],
+   "aliases": [
+    "Taylor polynomial",
+    "Maclaurin polynomial",
+    "Taylor expansion",
+    "Lagrange remainder",
+    "Peano remainder",
+    "Taylor's formula"
+   ]
+  },
+  "lesson": {
+   "minutes": 18,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Your calculator returns $\\sin(0.1) = 0.0998334\\ldots$ instantly, but $\\sin$ is not defined by a formula you can evaluate with additions and multiplications. Polynomials are. The tangent line $y = f(a) + f'(a)(x - a)$ is the best straight-line approximation to $f$ near $a$; the natural next step is to look for the best parabola, the best cubic, and so on.\n\nTaylor's theorem answers both halves of the question: which polynomial to use, and how far it can be from $f$. The answer to the second half is what makes the method useful in proofs and not just in numerical work."
+    },
+    {
+     "type": "section",
+     "title": "Matching derivatives",
+     "body": "The tangent line has the same value and the same first derivative as $f$ at $a$. To get a better fit, ask for a polynomial $P$ of degree at most $n$ with\n$$P(a) = f(a),\\quad P'(a) = f'(a),\\quad \\dots,\\quad P^{(n)}(a) = f^{(n)}(a).$$\nWrite $P(x) = \\sum_{j=0}^n c_j (x - a)^j$. Differentiating $(x-a)^j$ exactly $k$ times and setting $x = a$ gives $k!$ if $j = k$ and $0$ otherwise. So $P^{(k)}(a) = k!\\,c_k$, and the conditions force $c_k = f^{(k)}(a)/k!$. There is exactly one such polynomial.\n\nFor $f(x) = e^x$ at $a = 0$ every derivative equals $1$ at $0$, so $P_n(x) = 1 + x + \\frac{x^2}{2!} + \\cdots + \\frac{x^n}{n!}$. At $x = 0.5$, where $e^{0.5} = 1.6487213\\ldots$:\n$$\\begin{array}{c|cccc} n & 1 & 2 & 3 & 4 \\\\ \\hline P_n(0.5) & 1.5 & 1.625 & 1.6458333 & 1.6484375 \\\\ e^{0.5} - P_n(0.5) & 0.149 & 0.0237 & 0.00289 & 0.000284 \\end{array}$$\nEach extra term gains roughly one decimal digit, and the error is close to the first omitted term $\\frac{0.5^{n+1}}{(n+1)!}$. That is the pattern the theorem below makes precise."
+    },
+    {
+     "type": "definition",
+     "title": "Taylor polynomial",
+     "body": "Let $f$ be $n$ times differentiable at $a$. The Taylor polynomial of degree $n$ of $f$ at $a$ is\n$$P_n(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x - a)^k = f(a) + f'(a)(x-a) + \\frac{f''(a)}{2}(x-a)^2 + \\cdots + \\frac{f^{(n)}(a)}{n!}(x-a)^n,$$\nand $R_n(x) = f(x) - P_n(x)$ is the remainder. When $a = 0$ it is also called a Maclaurin polynomial.\n\nIt is the only polynomial of degree at most $n$ that agrees with $f$ to order $n$ at $a$."
+    },
+    {
+     "type": "section",
+     "title": "The standard expansions",
+     "body": "Computing derivatives at $0$ gives the expansions that are used constantly (each line shows $P_n$ for every $n$, by stopping anywhere):\n$$e^x:\\ 1 + x + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\cdots, \\qquad \\ln(1 + x):\\ x - \\frac{x^2}{2} + \\frac{x^3}{3} - \\cdots,$$\n$$\\sin x:\\ x - \\frac{x^3}{3!} + \\frac{x^5}{5!} - \\cdots, \\qquad \\cos x:\\ 1 - \\frac{x^2}{2!} + \\frac{x^4}{4!} - \\cdots,$$\n$$(1 + x)^\\alpha:\\ 1 + \\alpha x + \\frac{\\alpha(\\alpha - 1)}{2!}x^2 + \\frac{\\alpha(\\alpha-1)(\\alpha-2)}{3!}x^3 + \\cdots.$$\nSince $\\sin$ is odd, its expansion has only odd powers; in particular the degree-$3$ and degree-$4$ Taylor polynomials of $\\sin$ coincide, a fact we will use for sharper error bounds."
+    },
+    {
+     "type": "theorem",
+     "title": "Taylor's theorem with Lagrange remainder",
+     "body": "Let $n \\ge 0$ and $x \\ne a$. Suppose $f, f', \\dots, f^{(n)}$ are continuous on the closed interval between $a$ and $x$, and $f^{(n+1)}$ exists on the open interval between them. Then there is a point $\\xi$ strictly between $a$ and $x$ such that\n$$f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x - a)^k + \\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x - a)^{n+1}.$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "Fix $x$, and let $M$ be the number defined by $f(x) - P_n(x) = \\frac{M}{(n+1)!}(x - a)^{n+1}$. We must show $M = f^{(n+1)}(\\xi)$ for some $\\xi$. Treat the expansion point as a variable $t$:\n$$g(t) = f(x) - \\sum_{k=0}^{n} \\frac{f^{(k)}(t)}{k!}(x - t)^k - \\frac{M}{(n+1)!}(x - t)^{n+1}.$$\nThen $g(x) = f(x) - f(x) = 0$, and $g(a) = 0$ by the choice of $M$. By the hypotheses $g$ is continuous on the closed interval and differentiable on the open interval, so by Rolle's theorem (see [[mvt]]) there is $\\xi$ strictly between $a$ and $x$ with $g'(\\xi) = 0$.\n\nNow compute $g'$. For $k \\ge 1$, the product rule gives\n$$\\frac{d}{dt}\\left[\\frac{f^{(k)}(t)}{k!}(x - t)^k\\right] = \\frac{f^{(k+1)}(t)}{k!}(x - t)^k - \\frac{f^{(k)}(t)}{(k-1)!}(x - t)^{k-1},$$\nand for $k = 0$ the derivative is just $f'(t)$. Summing over $k = 0, \\dots, n$, the sum telescopes to $\\frac{f^{(n+1)}(t)}{n!}(x - t)^n$. Hence\n$$g'(t) = -\\frac{f^{(n+1)}(t)}{n!}(x - t)^n + \\frac{M}{n!}(x - t)^n.$$\nAt $t = \\xi$ this vanishes, and $(x - \\xi)^n \\ne 0$, so $M = f^{(n+1)}(\\xi)$.\n\nFor $n = 0$ the theorem is exactly the mean value theorem, $f(x) = f(a) + f'(\\xi)(x - a)$."
+    },
+    {
+     "type": "section",
+     "title": "Two other forms of the remainder",
+     "body": "If $f^{(n+1)}$ is continuous, the remainder can also be written as an integral:\n$$R_n(x) = \\frac{1}{n!}\\int_a^x f^{(n+1)}(t)\\,(x - t)^n\\,dt.$$\nFor $n = 0$ this is the fundamental theorem of calculus, $f(x) - f(a) = \\int_a^x f'$. To go from $n$ to $n+1$, integrate by parts with $u = f^{(n+1)}(t)$ and $v = -\\frac{(x-t)^{n+1}}{(n+1)!}$; the boundary term is $\\frac{f^{(n+1)}(a)}{(n+1)!}(x - a)^{n+1}$, which is exactly the next term of the Taylor polynomial, and what remains is the integral formula for $R_{n+1}$.\n\nFor limits, a qualitative form is often enough. If $f^{(n)}$ is continuous near $a$, apply the theorem with $n - 1$ in place of $n$: $f(x) = P_{n-1}(x) + \\frac{f^{(n)}(\\xi)}{n!}(x-a)^n$, so\n$$\\frac{f(x) - P_n(x)}{(x - a)^n} = \\frac{f^{(n)}(\\xi) - f^{(n)}(a)}{n!} \\to 0 \\quad (x \\to a),$$\nbecause $\\xi$ is squeezed towards $a$. In little-o notation, $f(x) = P_n(x) + o((x-a)^n)$: the error is small compared with the last term kept. (This Peano form holds even if $f$ is only $n$ times differentiable at $a$, but the proof is longer.)"
+    },
+    {
+     "type": "example",
+     "title": "An error bound",
+     "body": "Approximate $\\sin(0.1)$ by its Taylor polynomial of degree $3$ at $0$, and bound the error.",
+     "solution": "$P_3(x) = x - \\frac{x^3}{6}$, so $P_3(0.1) = 0.1 - \\frac{0.001}{6} = 0.09983333\\ldots$. Because $P_3 = P_4$ for $\\sin$, we may use the remainder of order $4$, which involves the fifth derivative $\\cos$:\n$$|\\sin(0.1) - P_3(0.1)| = \\left|\\frac{\\cos\\xi}{5!}(0.1)^5\\right| \\le \\frac{10^{-5}}{120} < 8.4 \\times 10^{-8}.$$\nThe actual error is $8.33 \\times 10^{-8}$, so the bound is nearly sharp. The degree-$3$ bound, $\\frac{(0.1)^4}{24} \\approx 4.2 \\times 10^{-6}$, would have been fifty times weaker."
+    },
+    {
+     "type": "example",
+     "title": "e is irrational",
+     "body": "Use Taylor's theorem to prove that $e$ is irrational.",
+     "solution": "Apply the theorem to $e^x$ at $a = 0$, $x = 1$: for each $n$ there is $\\xi_n \\in (0, 1)$ with\n$$e = \\sum_{k=0}^{n} \\frac{1}{k!} + \\frac{e^{\\xi_n}}{(n+1)!}.$$\nFirst, $e < 3$: with $n = 3$ the sum is $1 + 1 + \\frac12 + \\frac16 = \\frac83$ and $e^{\\xi_3} < e$, so $e < \\frac83 + \\frac{e}{24}$, which gives $e < \\frac{64}{23} < 3$.\n\nNow suppose $e = p/q$ with positive integers $p, q$, and take any $n \\ge \\max(q, 2)$. Multiply by $n!$:\n$$n!\\,e - \\sum_{k=0}^{n}\\frac{n!}{k!} = \\frac{e^{\\xi_n}}{n + 1}.$$\nThe left side is an integer, since $n!\\,e = n!\\,p/q$ and each $n!/k!$ is an integer. The right side satisfies $0 < \\frac{e^{\\xi_n}}{n+1} < \\frac{3}{n+1} \\le 1$. No integer lies strictly between $0$ and $1$, a contradiction. The proof works because the remainder is positive and shrinks faster than $1/n!$."
+    },
+    {
+     "type": "example",
+     "title": "A limit by expansion",
+     "body": "Find $\\displaystyle\\lim_{x \\to 0}\\left(\\frac{1}{\\sin^2 x} - \\frac{1}{x^2}\\right)$.",
+     "solution": "Both terms blow up, so expand. From $\\sin x = x - \\frac{x^3}{6} + O(x^5)$,\n$$\\sin^2 x = x^2 - \\frac{x^4}{3} + O(x^6) = x^2\\Big(1 - \\frac{x^2}{3} + O(x^4)\\Big).$$\nUsing $\\frac{1}{1 - u} = 1 + u + O(u^2)$ with $u = \\frac{x^2}{3} + O(x^4)$,\n$$\\frac{1}{\\sin^2 x} = \\frac{1}{x^2}\\Big(1 + \\frac{x^2}{3} + O(x^4)\\Big) = \\frac{1}{x^2} + \\frac13 + O(x^2).$$\nHence the limit is $\\frac13$. L'Hôpital's rule would also work after combining the fractions, but it needs four differentiations of an increasingly messy quotient; the expansion shows at a glance which terms matter."
+    },
+    {
+     "type": "section",
+     "title": "When does the Taylor series converge to f?",
+     "body": "If $f$ has derivatives of all orders, we can let $n \\to \\infty$ and ask whether $P_n(x) \\to f(x)$, that is, whether $R_n(x) \\to 0$. For $e^x$ the Lagrange form gives $|R_n(x)| \\le e^{|x|}\\frac{|x|^{n+1}}{(n+1)!}$, which tends to $0$ for every real $x$; so $e^x = \\sum_{k \\ge 0} \\frac{x^k}{k!}$ everywhere, and the same argument works for $\\sin$ and $\\cos$, whose derivatives are bounded by $1$.\n\nFor $\\ln(1 + x)$ at $x = 1$, the $(n+1)$-st derivative is $\\frac{(-1)^n n!}{(1 + t)^{n+1}}$, so $|R_n(1)| = \\frac{1}{(n+1)(1+\\xi)^{n+1}} \\le \\frac{1}{n+1} \\to 0$. Therefore\n$$\\ln 2 = 1 - \\frac12 + \\frac13 - \\frac14 + \\cdots.$$\nBut convergence can fail in two different ways. For $\\ln(1+x)$ at $x = 2$ the terms $\\frac{2^k}{k}$ grow, and the polynomials get worse as $n$ increases. More strikingly, the function $f(x) = e^{-1/x^2}$ (with $f(0) = 0$) has $f^{(k)}(0) = 0$ for every $k$, so all its Taylor polynomials at $0$ are identically zero, while $f(x) > 0$ for $x \\ne 0$. The remainder does not tend to zero, even though every derivative exists. Functions that do equal their Taylor series near each point are called analytic; they are the subject of [[power-series]]."
+    },
+    {
+     "type": "pitfall",
+     "body": "- A Taylor polynomial is local. Raising the degree improves the approximation near $a$ but may not help, or may make things worse, far away.\n- The point $\\xi$ depends on $x$ and on $n$; you cannot choose it, only bound $f^{(n+1)}$ over the whole interval.\n- Infinitely differentiable does not imply equal to the Taylor series: $e^{-1/x^2}$ is the standard counterexample.\n- Expand every term to the same order. In $\\frac{1}{\\sin^2 x} - \\frac{1}{x^2}$, keeping only $\\sin x \\approx x$ gives the wrong answer $0$.\n- An $O(x^n)$ or $o(x^n)$ term is not a fixed function: $o(x^2) - o(x^2)$ is $o(x^2)$, not $0$."
+    },
+    {
+     "type": "connection",
+     "body": "Letting $n \\to \\infty$ leads to [[power-series]], and analytic functions; in complex analysis every [[holomorphic]] function equals its Taylor series on every disc contained in its domain, which is false for real functions. The case $n = 1$ with the remainder gives the second-derivative test for maxima and minima in [[deriv-applications]], and expansions explain [[lhopital|L'Hôpital's rule]] and handle the same limits more transparently.\n\nAsymptotic expansions in the sense of [[asymptotics]] are Taylor expansions in a small parameter, such as $\\ln(1 + \\frac1n) = \\frac1n - \\frac{1}{2n^2} + O(n^{-3})$. The Euler–Maclaurin formula in [[partial-summation]] is a Taylor-like expansion of a sum in terms of derivatives. In several variables, the second-order expansion uses the Hessian matrix of [[partial-derivatives]], and its signs decide the nature of critical points."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Write down the Taylor polynomial of degree $4$ of $\\cos x$ at $0$, and bound its error at $x = 0.5$.\n2. Use expansions to find $\\lim_{x \\to 0} \\frac{x - \\sin x}{x - \\tan x}$.\n3. Show that $\\sqrt{1 + x} \\le 1 + \\frac{x}{2} - \\frac{x^2}{8} + \\frac{x^3}{16}$ for all $x \\ge 0$.\n4. How many terms of $\\sum 1/k!$ are needed to compute $e$ with error less than $10^{-10}$?"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Spivak, Calculus"
+    },
+    {
+     "ref": "Apostol, Calculus, Vol. 1"
+    },
+    {
+     "ref": "Rudin, Principles of Mathematical Analysis",
+     "where": "Chapter 5"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Table: P_n(0.5) for e^x and errors 0.149, 0.0237, 0.00289, 0.000284",
+     "python": "import math\ne = math.exp(0.5)\nP = [sum(0.5**k/math.factorial(k) for k in range(n+1)) for n in range(5)]\nassert P[1] == 1.5 and P[2] == 1.625 and round(P[3],7) == 1.6458333 and P[4] == 1.6484375\nerrs = [e - P[n] for n in (1,2,3,4)]\nassert [round(errs[0],3), round(errs[1],4), round(errs[2],5), round(errs[3],6)] == [0.149, 0.0237, 0.00289, 0.000284]\nassert round(e,7) == 1.6487213"
+    },
+    {
+     "claim": "Standard expansions match sympy series; P_3 = P_4 for sin",
+     "python": "import sympy as sp\nx, al = sp.symbols('x alpha')\nassert sp.series(sp.exp(x),x,0,5).removeO() == 1 + x + x**2/2 + x**3/6 + x**4/24\nassert sp.expand(sp.series(sp.log(1+x),x,0,4).removeO() - (x - x**2/2 + x**3/3)) == 0\nassert sp.series(sp.sin(x),x,0,5).removeO() == x - x**3/6\nassert sp.series(sp.cos(x),x,0,5).removeO() == 1 - x**2/2 + x**4/24\ns = sp.series((1+x)**al,x,0,4).removeO()\nassert sp.simplify(s - (1 + al*x + al*(al-1)/2*x**2 + al*(al-1)*(al-2)/6*x**3)) == 0"
+    },
+    {
+     "claim": "Telescoping derivative identity in the proof (symbolic, n = 0..5)",
+     "python": "import sympy as sp\nt, x = sp.symbols('t x')\nf = sp.Function('f')\nfor n in range(6):\n    S = sum(sp.diff(f(t),t,k)/sp.factorial(k)*(x-t)**k for k in range(n+1))\n    assert sp.simplify(sp.diff(S,t) - sp.diff(f(t),t,n+1)/sp.factorial(n)*(x-t)**n) == 0"
+    },
+    {
+     "claim": "Integral remainder formula, tested on f = exp and f = sin for n = 0..4",
+     "python": "import sympy as sp\nt, x = sp.symbols('t x')\nfor f in (sp.exp(t), sp.sin(t), sp.log(1+t)):\n    for n in range(5):\n        P = sum(sp.diff(f,t,k).subs(t,0)/sp.factorial(k)*x**k for k in range(n+1))\n        R = sp.integrate(sp.diff(f,t,n+1)*(x-t)**n,(t,0,x))/sp.factorial(n)\n        val = 0.37\n        assert abs(float((f.subs(t,x) - P - R).subs(x,val))) < 1e-12"
+    },
+    {
+     "claim": "sin(0.1): P_3 = 0.0998333..., actual error 8.33e-8 below bound 1e-5/120 < 8.4e-8; degree-3 bound 4.2e-6",
+     "python": "import math\nP3 = 0.1 - 0.001/6\nerr = math.sin(0.1) - P3\nassert 0 < err < 1e-5/120 < 8.4e-8 and round(err*1e8,2) == 8.33\nassert round(1e-4/24*1e6,1) == 4.2 and abs((1e-4/24)/(1e-5/120) - 50) < 1e-9"
+    },
+    {
+     "claim": "e < 64/23 < 3 from e < 8/3 + e/24; e^xi/(n+1) < 1 for n >= 2",
+     "python": "from fractions import Fraction as F\nimport math\nassert 1 + 1 + F(1,2) + F(1,6) == F(8,3)\nassert F(8,3) / (1 - F(1,24)) == F(64,23) and F(64,23) < 3 and math.e < 64/23"
+    },
+    {
+     "claim": "lim (1/sin^2 x - 1/x^2) = 1/3; 1/sin^2 x = 1/x^2 + 1/3 + O(x^2); exercise 2 limit = -1/2; lim (sin x - x)/x^3 = -1/6",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nassert sp.limit(1/sp.sin(x)**2 - 1/x**2, x, 0) == sp.Rational(1,3)\nassert sp.series(1/sp.sin(x)**2, x, 0, 2).removeO() == 1/x**2 + sp.Rational(1,3)\nassert sp.series(sp.sin(x)**2, x, 0, 6).removeO() == x**2 - x**4/3\nassert sp.limit((x-sp.sin(x))/(x-sp.tan(x)), x, 0) == -sp.Rational(1,2)\nassert sp.limit((sp.sin(x)-x)/x**3, x, 0) == -sp.Rational(1,6)"
+    },
+    {
+     "claim": "e^(-1/x^2): first derivatives at 0 vanish (difference quotients -> 0); ln 2 alternating series error <= 1/(n+1); sqrt(1+x) <= P_3 for x >= 0",
+     "python": "import sympy as sp, math\nx = sp.symbols('x', real=True)\nf = sp.exp(-1/x**2)\nd = f\nfor k in range(4):\n    assert sp.limit(d/x, x, 0, '+') == 0 and sp.limit(d/x, x, 0, '-') == 0\n    d = sp.diff(d, x)\nfor n in range(1,200):\n    Pn = sum((-1)**(k+1)/k for k in range(1,n+1))\n    assert abs(math.log(2) - Pn) <= 1/(n+1)\nimport numpy as np\nxs = np.linspace(0, 50, 200001)\nassert np.all(np.sqrt(1+xs) <= 1 + xs/2 - xs**2/8 + xs**3/16 + 1e-12)\nt = sp.symbols('t', positive=True)\nassert sp.simplify(sp.diff(sp.sqrt(1+t),t,4) + sp.Rational(15,16)*(1+t)**sp.Rational(-7,2)) == 0"
+    },
+    {
+     "claim": "Reviewer: (n+1)-st derivative of ln(1+t) is (-1)^n n!/(1+t)^(n+1); ln(1+1/n) = 1/n - 1/(2n^2) + O(n^-3); Taylor polynomials of ln(1+x) at x = 2 grow in size",
+     "python": "import sympy as sp\nt = sp.symbols('t'); n = sp.symbols('n', positive=True)\nfor k in range(7):\n    assert sp.simplify(sp.diff(sp.log(1+t), t, k+1) - (-1)**k*sp.factorial(k)/(1+t)**(k+1)) == 0\ns = sp.series(sp.log(1+1/n), n, sp.oo, 4).removeO()\nassert sp.simplify(s - (1/n - 1/(2*n**2) + 1/(3*n**3))) == 0\nP = lambda N: sum(sp.Rational((-1)**(k+1)*2**k, k) for k in range(1, N+1))\nassert abs(P(10)) < abs(P(20)) < abs(P(30))"
+    },
+    {
+     "claim": "Reviewer: errors e^0.5 - P_n(0.5) are within 25% of the first omitted term 0.5^(n+1)/(n+1)! for n = 1..4; sin(0.1) actual error 8.33e-8 (mpmath)",
+     "python": "import mpmath\nmpmath.mp.dps = 30\nfor n in range(1, 5):\n    err = mpmath.e**mpmath.mpf(0.5) - sum(mpmath.mpf(0.5)**k/mpmath.factorial(k) for k in range(n+1))\n    term = mpmath.mpf(0.5)**(n+1)/mpmath.factorial(n+1)\n    assert 1 < err/term < 1.25\ne = mpmath.sin(mpmath.mpf('0.1')) - (mpmath.mpf('0.1') - mpmath.mpf('0.001')/6)\nassert mpmath.mpf('8.33e-8') < e < mpmath.mpf('8.34e-8')"
+    }
+   ]
+  }
+ },
+ {
+  "id": "power-series",
+  "entry": {
+   "sum": "A power series $\\sum c_n (x - a)^n$ is a polynomial of infinite degree. It converges absolutely inside an interval $|x - a| < R$ and diverges outside it, where the radius $R$ is determined by how fast the coefficients grow. Inside that interval the sum can be differentiated and integrated term by term, so it behaves like a polynomial and is its own Taylor series.",
+   "key": [
+    "f(x) = \\sum_{n=0}^\\infty c_n (x - a)^n, \\qquad \\frac{1}{R} = \\limsup_{n\\to\\infty} |c_n|^{1/n}",
+    "f'(x) = \\sum_{n=1}^\\infty n\\,c_n (x - a)^{n-1} \\quad (|x - a| < R)",
+    "c_n = \\frac{f^{(n)}(a)}{n!}"
+   ],
+   "why": "Power series are how $e^x$, $\\sin x$ and $\\cos x$ are defined rigorously and computed, how many differential equations are solved, and, as generating functions, how sequences in combinatorics are counted. They are also the gateway to complex analysis, where they explain the radius of convergence completely.",
+   "msc": [
+    "30B10",
+    "40A30"
+   ],
+   "links": [
+    {
+     "field": "combinatorics",
+     "note": "Generating functions encode a sequence as the coefficients of a power series, so that recurrences become algebraic equations."
+    },
+    {
+     "field": "complex-analysis",
+     "note": "Holomorphic functions are exactly those given locally by convergent power series, and the Taylor series at a point converges on the largest disc about that point to which the function extends holomorphically."
+    },
+    {
+     "field": "differential-equations",
+     "note": "Linear equations with analytic coefficients have power-series solutions near ordinary points (and Frobenius series near regular singular points); this is how Legendre, Airy and Bessel functions arise."
+    }
+   ],
+   "refs": [
+    "Rudin, Principles of Mathematical Analysis",
+    "Spivak, Calculus",
+    "Abbott, Understanding Analysis"
+   ],
+   "aliases": [
+    "power series",
+    "radius of convergence",
+    "interval of convergence",
+    "Cauchy–Hadamard formula",
+    "termwise differentiation",
+    "analytic function",
+    "Maclaurin series"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "The geometric series gives the identity\n$$\\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \\cdots,$$\ntrue for $-1 < x < 1$ and false for every other $x$. Similarly $e^x = \\sum_{n \\ge 0} \\frac{x^n}{n!}$ holds for all real $x$. Expressions like these, polynomials that never stop, are power series. They let us treat many functions as if they were polynomials: add them, multiply them, differentiate them term by term.\n\nThree questions need answers before that is safe. For which $x$ does the series converge? Is the sum a continuous, differentiable function? And can the derivative of the sum be computed by differentiating each term? This lesson answers all three. It uses [[series|convergence tests for series]] and the [[taylor]] polynomial."
+    },
+    {
+     "type": "definition",
+     "title": "Power series",
+     "body": "A power series centred at $a$ is a series of the form\n$$\\sum_{n=0}^{\\infty} c_n (x - a)^n = c_0 + c_1(x - a) + c_2(x - a)^2 + \\cdots,$$\nwhere the coefficients $c_n$ are real (or complex) numbers and $x$ is a variable. Its sum $f(x)$ is defined at every $x$ where the series converges.\n\nReplacing $x - a$ by $x$ moves the centre to $0$, so in proofs we may take $a = 0$."
+    },
+    {
+     "type": "theorem",
+     "title": "Radius of convergence",
+     "body": "For every power series $\\sum c_n x^n$ there is $R$ with $0 \\le R \\le \\infty$, called the radius of convergence, such that the series converges absolutely for $|x| < R$ and diverges for $|x| > R$. It is given by the Cauchy–Hadamard formula\n$$\\frac{1}{R} = \\limsup_{n \\to \\infty} |c_n|^{1/n} \\quad (\\text{with } 1/0 = \\infty,\\ 1/\\infty = 0),$$\nand if the limit $L = \\lim |c_{n+1}/c_n|$ exists, then $R = 1/L$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof of the dichotomy",
+     "body": "The key step is a lemma: if the series converges at some $x_0 \\ne 0$, then it converges absolutely at every $x$ with $|x| < |x_0|$. Indeed, the terms of a convergent series tend to $0$, so they are bounded: $|c_n x_0^n| \\le M$ for all $n$. Then\n$$|c_n x^n| = |c_n x_0^n|\\left|\\frac{x}{x_0}\\right|^n \\le M q^n, \\qquad q = \\left|\\frac{x}{x_0}\\right| < 1,$$\nand $\\sum M q^n$ is a convergent geometric series, so the comparison test gives absolute convergence.\n\nNow let $R$ be the supremum of all $|y|$ such that the series converges at $y$ (it converges at $y = 0$, so the set is not empty; $R = \\infty$ if it is unbounded). If $|x| < R$, by definition of supremum there is a $y$ with $|y| > |x|$ at which the series converges, and the lemma gives absolute convergence at $x$. If $|x| > R$, the series cannot converge at $x$, by definition of $R$.\n\nThe formula $R = 1/L$ is the ratio test: $|c_{n+1}x^{n+1}| / |c_n x^n| \\to L|x|$, which is less than $1$ when $|x| < 1/L$ and greater than $1$ when $|x| > 1/L$. The Cauchy–Hadamard formula follows in the same way from the root test."
+    },
+    {
+     "type": "section",
+     "title": "Computing the radius; the endpoints",
+     "body": "The ratio formula settles most examples.\n\n- $\\sum \\frac{x^n}{n!}$: $\\frac{c_{n+1}}{c_n} = \\frac{1}{n+1} \\to 0$, so $R = \\infty$.\n- $\\sum n!\\,x^n$: the ratio is $n + 1 \\to \\infty$, so $R = 0$ and the series converges only at $x = 0$.\n- $\\sum x^n$, $\\sum \\frac{x^n}{n}$, $\\sum \\frac{x^n}{n^2}$: all have $R = 1$.\n\nThe theorem says nothing about $|x| = R$, and the last three examples show every possibility. At $x = 1$ they give $\\sum 1$, $\\sum \\frac1n$, $\\sum \\frac{1}{n^2}$: divergent, divergent, convergent. At $x = -1$ they give $\\sum (-1)^n$, $\\sum \\frac{(-1)^n}{n}$, $\\sum \\frac{(-1)^n}{n^2}$: divergent, convergent, convergent. So the set where a power series converges is an interval centred at $a$, but whether it contains its endpoints must be checked separately, with the tests from [[series]].\n\nWhen infinitely many coefficients are zero, as in $\\sum \\frac{x^{2n}}{4^n}$, the ratio $c_{n+1}/c_n$ is undefined. Either substitute $y = x^2$ (here $\\sum (y/4)^n$ has radius $4$, so $R = 2$ in $x$) or apply the ratio test directly to the terms."
+    },
+    {
+     "type": "theorem",
+     "title": "Termwise differentiation and integration",
+     "body": "Let $f(x) = \\sum_{n=0}^\\infty c_n x^n$ have radius of convergence $R > 0$. Then the series $\\sum_{n \\ge 1} n c_n x^{n-1}$ also has radius $R$, and for $|x| < R$, $f$ is differentiable with\n$$f'(x) = \\sum_{n=1}^{\\infty} n\\,c_n x^{n-1}, \\qquad \\int_0^x f(t)\\,dt = \\sum_{n=0}^{\\infty} \\frac{c_n}{n+1} x^{n+1}.$$\nConsequently $f$ has derivatives of all orders on $(-R, R)$ and $c_n = f^{(n)}(0)/n!$: a power series is the Taylor series of its sum. In particular, if two power series have the same sum on some interval $(-r, r)$, their coefficients are equal."
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "Radius of the derived series. Let $|x| < r < R$. The series converges at $r$, so $|c_n| r^n \\le M$ for some $M$. Then $n|c_n||x|^{n-1} \\le \\frac{M}{r}\\,n q^{n-1}$ with $q = |x|/r < 1$, and $\\sum n q^{n-1}$ converges by the ratio test. So the derived series converges absolutely for $|x| < R$; the same argument shows that $\\sum n(n-1)|c_n| \\rho^{n-2}$ converges for $0 \\le \\rho < R$. Conversely, if the derived series converged at some $x$ with $|x| > R$, it would converge absolutely at any $x'$ with $R < |x'| < |x|$ (by the lemma above), and $|c_n x'^n| \\le |x'| \\cdot n|c_n||x'|^{n-1}$ would make $\\sum c_n x'^n$ converge, contradicting $|x'| > R$.\n\nAn algebraic estimate. If $|x| \\le \\rho$ and $|y| \\le \\rho$ with $y \\ne x$, then\n$$\\left|\\frac{y^n - x^n}{y - x} - n x^{n-1}\\right| \\le \\frac{n(n-1)}{2}\\rho^{n-2}|y - x|.$$\nTo see this, write $\\frac{y^n - x^n}{y - x} = \\sum_{k=0}^{n-1} y^k x^{n-1-k}$ and subtract $n x^{n-1} = \\sum_{k=0}^{n-1} x^k x^{n-1-k}$ to get $\\sum_{k} (y^k - x^k)x^{n-1-k}$. Since $y^k - x^k = (y - x)\\sum_{j=0}^{k-1} y^j x^{k-1-j}$, we have $|y^k - x^k| \\le k\\rho^{k-1}|y - x|$, so the whole sum is at most $|y - x|\\rho^{n-2}\\sum_{k=0}^{n-1} k = \\frac{n(n-1)}{2}\\rho^{n-2}|y - x|$.\n\nDifferentiability. Fix $|x| < R$, choose $\\rho$ with $|x| < \\rho < R$, and let $h \\ne 0$ be so small that $|x + h| \\le \\rho$. Put $g(x) = \\sum n c_n x^{n-1}$. All three series below converge, so\n$$\\left|\\frac{f(x+h) - f(x)}{h} - g(x)\\right| = \\left|\\sum_{n} c_n\\left(\\frac{(x+h)^n - x^n}{h} - n x^{n-1}\\right)\\right| \\le |h| \\sum_{n} |c_n| \\frac{n(n-1)}{2}\\rho^{n-2}.$$\nThe last sum is a finite constant, so the left side tends to $0$ as $h \\to 0$, and $f'(x) = g(x)$.\n\nThe rest. Applying the result to $f'$, which is again a power series with radius $R$, and repeating, $f$ has all derivatives, and $f^{(k)}(0) = k!\\,c_k$ because every other term vanishes at $0$. For the integral, $F(x) = \\sum \\frac{c_n}{n+1}x^{n+1}$ has radius $R$ (its derived series is the original one), $F' = f$ and $F(0) = 0$, so $F(x) = \\int_0^x f$ by the fundamental theorem of calculus."
+    },
+    {
+     "type": "section",
+     "title": "Building new series from old",
+     "body": "The theorem turns a handful of known series into many more, with no new convergence work inside the radius. Substituting $-x^2$ into the geometric series and integrating:\n$$\\frac{1}{1 + x^2} = \\sum_{n=0}^\\infty (-1)^n x^{2n}, \\qquad \\arctan x = \\sum_{n=0}^\\infty \\frac{(-1)^n x^{2n+1}}{2n+1} \\qquad (|x| < 1).$$\nIntegrating $\\frac{1}{1 + x} = \\sum (-1)^n x^n$ gives $\\ln(1 + x) = \\sum_{n \\ge 1} \\frac{(-1)^{n+1}x^n}{n}$ for $|x| < 1$. Differentiating the geometric series and multiplying by $x$ gives $\\sum_{n \\ge 1} n x^n = \\frac{x}{(1-x)^2}$.\n\nTwo series with radii at least $R$ can be multiplied like polynomials, collecting powers: $\\big(\\sum a_n x^n\\big)\\big(\\sum b_n x^n\\big) = \\sum_n \\big(\\sum_{k=0}^n a_k b_{n-k}\\big)x^n$ for $|x| < R$. This is the Cauchy product theorem for absolutely convergent series.\n\nWhat happens at an endpoint is answered by Abel's theorem, which we state without proof: if $\\sum c_n$ converges, then $\\sum c_n x^n \\to \\sum c_n$ as $x \\to 1^-$. Since $\\sum \\frac{(-1)^n}{2n+1}$ converges (alternating series), letting $x \\to 1^-$ in the arctangent series gives Leibniz's formula $\\frac{\\pi}{4} = 1 - \\frac13 + \\frac15 - \\cdots$, and the same argument gives $\\ln 2 = 1 - \\frac12 + \\frac13 - \\cdots$. Leibniz's series converges far too slowly for computing; Machin's identity $\\frac{\\pi}{4} = 4\\arctan\\frac15 - \\arctan\\frac{1}{239}$, with $x = \\frac15$ well inside the radius, gives about $1.4$ correct digits per term."
+    },
+    {
+     "type": "example",
+     "title": "An interval of convergence",
+     "body": "Find the set of real $x$ for which $\\displaystyle\\sum_{n=1}^\\infty \\frac{(x - 2)^n}{n\\,3^n}$ converges.",
+     "solution": "Here $c_n = \\frac{1}{n 3^n}$ and $\\frac{c_{n+1}}{c_n} = \\frac{n}{3(n+1)} \\to \\frac13$, so $R = 3$: the series converges absolutely for $|x - 2| < 3$, that is $-1 < x < 5$, and diverges for $|x - 2| > 3$.\n\nEndpoints. At $x = 5$ the series is $\\sum \\frac{3^n}{n 3^n} = \\sum \\frac1n$, the harmonic series, which diverges. At $x = -1$ it is $\\sum \\frac{(-1)^n}{n}$, which converges by the alternating series test. So the set of convergence is $[-1, 5)$."
+    },
+    {
+     "type": "example",
+     "title": "Summing series by differentiating",
+     "body": "Evaluate $\\displaystyle\\sum_{n=1}^\\infty \\frac{n^2}{2^n}$ and $\\displaystyle\\sum_{n=1}^\\infty \\frac{1}{n\\,2^n}$.",
+     "solution": "Start from $\\sum_{n \\ge 1} n x^n = \\frac{x}{(1-x)^2}$ for $|x| < 1$. Differentiate (allowed inside the radius) and multiply by $x$:\n$$\\sum_{n=1}^\\infty n^2 x^n = x\\frac{d}{dx}\\left(\\frac{x}{(1-x)^2}\\right) = x\\cdot\\frac{(1-x) + 2x}{(1-x)^3} = \\frac{x(1+x)}{(1-x)^3}.$$\nAt $x = \\frac12$ this is $\\frac{\\frac12\\cdot\\frac32}{\\frac18} = 6$.\n\nFor the second sum integrate instead: $\\int_0^x \\frac{dt}{1 - t} = \\sum_{n \\ge 0}\\frac{x^{n+1}}{n+1}$, that is $-\\ln(1 - x) = \\sum_{n \\ge 1}\\frac{x^n}{n}$ for $|x| < 1$. At $x = \\frac12$: $\\sum \\frac{1}{n 2^n} = \\ln 2$. Compare with $\\ln 2 = 1 - \\frac12 + \\frac13 - \\cdots$: the new series converges much faster, since its terms shrink like $2^{-n}$."
+    },
+    {
+     "type": "example",
+     "title": "Fibonacci numbers from a power series",
+     "body": "Let $F_0 = 0$, $F_1 = 1$ and $F_{n} = F_{n-1} + F_{n-2}$ for $n \\ge 2$. Find the sum of $\\sum F_n x^n$ near $0$, and use it to derive a closed formula for $F_n$.",
+     "solution": "By induction $F_n \\le 2^n$, so the series has radius at least $\\frac12$. For $|x| < \\frac12$ let $F(x) = \\sum_{n \\ge 0} F_n x^n$. Shifting indices,\n$$F(x) - xF(x) - x^2F(x) = F_0 + (F_1 - F_0)x + \\sum_{n \\ge 2}(F_n - F_{n-1} - F_{n-2})x^n = x,$$\nso $F(x) = \\dfrac{x}{1 - x - x^2}$. Let $\\varphi = \\frac{1 + \\sqrt5}{2}$ and $\\psi = \\frac{1 - \\sqrt5}{2}$; then $\\varphi + \\psi = 1$ and $\\varphi\\psi = -1$, so $1 - x - x^2 = (1 - \\varphi x)(1 - \\psi x)$, and partial fractions give\n$$\\frac{x}{(1 - \\varphi x)(1 - \\psi x)} = \\frac{1}{\\sqrt5}\\left(\\frac{1}{1 - \\varphi x} - \\frac{1}{1 - \\psi x}\\right) = \\sum_{n \\ge 0} \\frac{\\varphi^n - \\psi^n}{\\sqrt5}x^n$$\nfor $|x| < 1/\\varphi$. Both series represent the same function on $|x| < \\frac12$, so by uniqueness of coefficients\n$$F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt5}.$$\nSince $|\\psi| < 1$, $F_{n+1}/F_n \\to \\varphi$, and the radius of $\\sum F_n x^n$ is exactly $1/\\varphi \\approx 0.618$. Notice what happened: a recurrence became an algebraic equation for a function. That is the method of [[generating-functions]]."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The radius says nothing about the endpoints; test them separately.\n- Termwise differentiation can lose convergence at an endpoint: $\\sum \\frac{x^n}{n^2}$ converges at $x = 1$, but its derivative series $\\sum \\frac{x^{n-1}}{n}$ does not.\n- The real graph does not reveal the radius. $\\frac{1}{1 + x^2}$ is smooth on all of $\\mathbb R$, yet its series at $0$ has radius $1$. The reason is complex: $1 + z^2 = 0$ at $z = \\pm i$, at distance $1$ from $0$ (see [[complex-numbers]]).\n- A function with derivatives of all orders need not equal any power series: $e^{-1/x^2}$ has Taylor series $0$ at the origin.\n- The converse of Abel's theorem is false: $\\sum (-1)^n x^n = \\frac{1}{1 + x} \\to \\frac12$ as $x \\to 1^-$, but $\\sum (-1)^n$ diverges."
+    },
+    {
+     "type": "connection",
+     "body": "In complex analysis the theory becomes complete: every [[holomorphic]] function is given by a power series on each disc inside its domain, the radius of convergence of its Taylor series at a point is the radius of the largest disc about that point to which the function extends holomorphically (which explains the radius $1$ for $\\frac{1}{1+x^2}$), and a power series can often be extended far beyond its disc by [[continuation|analytic continuation]]. The convergence on smaller closed intervals $|x| \\le \\rho < R$ is uniform, which is the viewpoint of [[uniform-convergence]].\n\nSolving [[ode-linear|linear differential equations]] by power series produces most special functions, and defining $e^x$, $\\sin x$ and $\\cos x$ by their series is the cleanest rigorous route to [[exp-log]] and [[trig]]. In combinatorics, [[generating-functions]] treat power series as bookkeeping devices for sequences, as in the Fibonacci example. Replacing $x^n$ by $n^{-s}$ gives [[dirichlet-series]], the analogue used in number theory."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find the radius of convergence of $\\sum_{n \\ge 1} \\frac{n^n}{n!}x^n$.\n2. Find the radius of convergence of $\\sum_{n \\ge 0} x^{n^2}$.\n3. Find the sum of $\\sum_{n \\ge 0}(n+1)x^n$ for $|x| < 1$.\n4. Let $E(x) = \\sum_{n \\ge 0}\\frac{x^n}{n!}$. Use the Cauchy product to prove $E(x + y) = E(x)E(y)$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rudin, Principles of Mathematical Analysis"
+    },
+    {
+     "ref": "Spivak, Calculus"
+    },
+    {
+     "ref": "Abbott, Understanding Analysis"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Example 1: ratio n/(3(n+1)) -> 1/3; endpoints harmonic diverges, alternating harmonic converges (sum -ln 2)",
+     "python": "import sympy as sp\nn = sp.symbols('n', positive=True, integer=True)\nc = 1/(n*3**n)\nassert sp.simplify(c.subs(n,n+1)/c - n/(3*(n+1))) == 0\nassert sp.limit(n/(3*(n+1)), n, sp.oo) == sp.Rational(1,3)\nassert sp.summation(1/n,(n,1,sp.oo)) == sp.oo\nassert sp.simplify(sp.summation((-1)**n/n,(n,1,sp.oo)) + sp.log(2)) == 0"
+    },
+    {
+     "claim": "Sum n x^n = x/(1-x)^2, sum n^2 x^n = x(1+x)/(1-x)^3; sum n^2/2^n = 6; sum 1/(n 2^n) = ln 2",
+     "python": "import sympy as sp\nx = sp.symbols('x'); n = sp.symbols('n', integer=True, positive=True)\nassert sp.simplify(x*sp.diff(x/(1-x)**2,x) - x*(1+x)/(1-x)**3) == 0\nassert sp.simplify(x*sp.diff(1/(1-x),x) - x/(1-x)**2) == 0\ns = sp.series(x*(1+x)/(1-x)**3, x, 0, 15).removeO()\nassert all(s.coeff(x,k) == k**2 for k in range(1,15))\nassert sp.summation(n**2/2**n,(n,1,sp.oo)) == 6\nassert sp.simplify(sp.summation(1/(n*2**n),(n,1,sp.oo)) - sp.log(2)) == 0"
+    },
+    {
+     "claim": "Series for 1/(1+x^2), arctan, ln(1+x) match Taylor coefficients",
+     "python": "import sympy as sp\nx = sp.symbols('x')\na = sp.series(sp.atan(x),x,0,14).removeO()\nassert sp.expand(a - sum((-1)**k*x**(2*k+1)/(2*k+1) for k in range(7))) == 0\nl = sp.series(sp.log(1+x),x,0,12).removeO()\nassert sp.expand(l - sum((-1)**(k+1)*x**k/sp.Integer(k) for k in range(1,12))) == 0\ng = sp.series(1/(1+x**2),x,0,14).removeO()\nassert sp.expand(g - sum((-1)**k*x**(2*k) for k in range(7))) == 0"
+    },
+    {
+     "claim": "Algebraic estimate |(y^n-x^n)/(y-x) - n x^(n-1)| <= n(n-1)/2 rho^(n-2)|y-x| (random tests), and sum_{k<n} k = n(n-1)/2",
+     "python": "import random\nfor _ in range(20000):\n    n = random.randint(0,25); rho = random.uniform(0.1,2)\n    x = random.uniform(-rho,rho); y = random.uniform(-rho,rho)\n    if abs(y-x) < 1e-6: continue\n    lhs = abs((y**n - x**n)/(y-x) - (n*x**(n-1) if n >= 1 else 0))\n    rhs = n*(n-1)/2*rho**(n-2)*abs(y-x) if n >= 2 else 0.0\n    assert lhs <= rhs*(1+1e-9) + 1e-9\nassert all(sum(range(n)) == n*(n-1)//2 for n in range(50))"
+    },
+    {
+     "claim": "Leibniz and Machin: pi/4 = 4 arctan(1/5) - arctan(1/239); about 1.4 digits per term",
+     "python": "import sympy as sp, mpmath, math\nassert abs(4*mpmath.atan(mpmath.mpf(1)/5) - mpmath.atan(mpmath.mpf(1)/239) - mpmath.pi/4) < mpmath.mpf(10)**-14\nz = sp.expand((5+sp.I)**4*(239-sp.I)); re, im = z.as_real_imag()\nassert re == im and re > 0\nassert 1.3 < 2*math.log10(5) < 1.45"
+    },
+    {
+     "claim": "Fibonacci: F(x) = x/(1-x-x^2) coefficients; Binet formula; F_n <= 2^n; radius 1/phi",
+     "python": "import sympy as sp\nx = sp.symbols('x')\nF = [0,1]\nfor i in range(2,40): F.append(F[-1]+F[-2])\ns = sp.series(x/(1-x-x**2),x,0,40).removeO()\nassert all(s.coeff(x,k) == F[k] for k in range(40))\nphi = (1+sp.sqrt(5))/2; psi = (1-sp.sqrt(5))/2\nassert sp.simplify(phi+psi-1) == 0 and sp.simplify(phi*psi+1) == 0\nassert all(sp.simplify((phi**k - psi**k)/sp.sqrt(5) - F[k]) == 0 for k in range(25))\nassert all(F[k] <= 2**k for k in range(40))\nassert sp.simplify(sp.expand((1-phi*x)*(1-psi*x)) - (1-x-x**2)) == 0\nassert sp.simplify(sp.together((1/(1-phi*x) - 1/(1-psi*x))/sp.sqrt(5)) - x/(1-x-x**2)) == 0\nassert abs(float(1/phi) - 0.618) < 0.001"
+    },
+    {
+     "claim": "Radii of exercises: n^n/n! ratio -> e (R = 1/e); sum x^(2n)/4^n has R = 2; sum (n+1)x^n = 1/(1-x)^2",
+     "python": "import sympy as sp\nn = sp.symbols('n', positive=True, integer=True); x = sp.symbols('x')\nr = sp.simplify(((n+1)**(n+1)/sp.factorial(n+1)) / (n**n/sp.factorial(n)))\nassert sp.limit(r, n, sp.oo) == sp.E\ns = sp.series(1/(1-x)**2, x, 0, 10).removeO()\nassert all(s.coeff(x,k) == k+1 for k in range(10))\nassert sp.summation((sp.Rational(3,2)**2/4)**n, (n,0,sp.oo)) == 1/(1-sp.Rational(9,16))"
+    },
+    {
+     "claim": "Reviewer: Leibniz pi/4 and ln 2 = sum 1/(n 2^n) numerically; Abel converse example sum (-x)^n -> 1/2; F_60/F_59 -> phi; endpoint x=-1 of example gives -ln 2",
+     "python": "import mpmath\nmpmath.mp.dps = 30\nassert abs(mpmath.nsum(lambda k: (-1)**k/(2*k+1), [0, mpmath.inf]) - mpmath.pi/4) < 1e-20\nassert abs(mpmath.nsum(lambda k: 1/(k*2**k), [1, mpmath.inf]) - mpmath.log(2)) < 1e-25\nfor xv in ('0.9', '0.99', '0.999'):\n    xv = mpmath.mpf(xv)\n    assert abs(mpmath.nsum(lambda k: (-xv)**k, [0, mpmath.inf]) - 1/(1+xv)) < 1e-20\nassert abs(1/(1+mpmath.mpf(1)) - 0.5) < 1e-30\nF = [0, 1]\nfor i in range(60): F.append(F[-1] + F[-2])\nphi = (1 + mpmath.sqrt(5))/2\nassert abs(mpmath.mpf(F[60])/F[59] - phi) < 1e-20\nassert abs(mpmath.nsum(lambda k: (-1)**k/k, [1, mpmath.inf]) + mpmath.log(2)) < 1e-20"
+    }
+   ]
+  }
+ },
+ {
+  "id": "partial-derivatives",
+  "entry": {
+   "sum": "A partial derivative of a function of several variables is its ordinary derivative in one variable while the others are held fixed. The partial derivatives assemble into the gradient vector $\\nabla f$, which, for a differentiable $f$, gives the rate of change in every direction by a dot product, points (when nonzero) in the direction of steepest increase, and is perpendicular to the level sets.",
+   "key": [
+    "\\frac{\\partial f}{\\partial x}(a,b) = \\lim_{h\\to 0}\\frac{f(a+h,b) - f(a,b)}{h}",
+    "\\nabla f = \\Big(\\frac{\\partial f}{\\partial x_1}, \\dots, \\frac{\\partial f}{\\partial x_n}\\Big), \\qquad D_{\\mathbf u} f(\\mathbf a) = \\nabla f(\\mathbf a)\\cdot\\mathbf u",
+    "\\frac{d}{dt} f(\\mathbf r(t)) = \\nabla f(\\mathbf r(t)) \\cdot \\mathbf r'(t)"
+   ],
+   "why": "Almost every quantity in science depends on more than one variable, and partial derivatives are how its sensitivity to each one is measured. Gradients drive optimisation, from Lagrange multipliers to the gradient descent that trains neural networks, and the laws of physics are written as partial differential equations.",
+   "msc": [
+    "26B05"
+   ],
+   "links": [
+    {
+     "field": "pde",
+     "note": "Partial differential equations such as the heat, wave and Laplace equations are relations between the partial derivatives of an unknown function."
+    },
+    {
+     "field": "ai-research",
+     "note": "Neural networks are trained by gradient descent, moving parameters against the gradient of a loss function computed by the multivariable chain rule (backpropagation)."
+    },
+    {
+     "field": "physics",
+     "note": "A conservative force is minus the gradient of a potential energy, and thermodynamics is largely a calculus of partial derivatives with specified variables held fixed."
+    }
+   ],
+   "refs": [
+    "Apostol, Calculus, Vol. 2",
+    "Marsden & Tromba, Vector Calculus",
+    "Courant & John, Introduction to Calculus and Analysis, Vol. 2"
+   ],
+   "aliases": [
+    "partial derivative",
+    "gradient",
+    "directional derivative",
+    "multivariable chain rule",
+    "tangent plane",
+    "Hessian",
+    "Clairaut's theorem",
+    "Schwarz's theorem",
+    "critical point"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "The temperature on a metal plate depends on two coordinates, $T(x, y)$. Standing at a point, you can ask how fast the temperature changes as you walk east, or north, or in any other direction, and which direction makes it rise fastest.\n\nThe first two questions are answered by partial derivatives: hold one variable fixed and differentiate in the other, exactly as in one variable. The answer to the others is the gradient, a vector built from the partial derivatives. The lesson assumes the [[diff-rules|rules of differentiation]] and the dot product of [[vectors-plane|vectors]]."
+    },
+    {
+     "type": "section",
+     "title": "Freezing all variables but one",
+     "body": "Take $f(x, y) = x^2 y + \\sin(xy)$. To differentiate with respect to $x$, treat $y$ as a constant:\n$$\\frac{\\partial f}{\\partial x} = 2xy + y\\cos(xy), \\qquad \\frac{\\partial f}{\\partial y} = x^2 + x\\cos(xy).$$\nGeometrically, the graph $z = f(x, y)$ is a surface. Cutting it with the vertical plane $y = b$ gives a curve $z = f(x, b)$, and $\\frac{\\partial f}{\\partial x}(a, b)$ is the slope of that curve at $x = a$: the slope of the surface in the $x$-direction. Other common notations are $f_x$, $\\partial_x f$ and $D_1 f$.\n\nPartial derivatives can be repeated. For the function above, $f_{xx} = \\frac{\\partial}{\\partial x}f_x = 2y - y^2\\sin(xy)$ and\n$$\\frac{\\partial^2 f}{\\partial y\\,\\partial x} = \\frac{\\partial}{\\partial y}\\big(2xy + y\\cos(xy)\\big) = 2x + \\cos(xy) - xy\\sin(xy),$$\nand the same expression results if you differentiate $f_y$ with respect to $x$. That is not a coincidence; see the section on higher derivatives below."
+    },
+    {
+     "type": "definition",
+     "title": "Partial derivative",
+     "body": "Let $f$ be defined near the point $\\mathbf a = (a_1, \\dots, a_n)$ of $\\mathbb R^n$, and let $\\mathbf e_i$ be the $i$-th standard basis vector. The partial derivative of $f$ with respect to $x_i$ at $\\mathbf a$ is\n$$\\frac{\\partial f}{\\partial x_i}(\\mathbf a) = \\lim_{h \\to 0} \\frac{f(\\mathbf a + h\\mathbf e_i) - f(\\mathbf a)}{h},$$\nif the limit exists. More generally, for a unit vector $\\mathbf u$ the directional derivative is $D_{\\mathbf u} f(\\mathbf a) = \\lim_{t \\to 0}\\frac{f(\\mathbf a + t\\mathbf u) - f(\\mathbf a)}{t}$.\n\nSo a partial derivative is a directional derivative along a coordinate axis."
+    },
+    {
+     "type": "section",
+     "title": "Partial derivatives are not enough",
+     "body": "In one variable, having a derivative at a point implies continuity there. In two variables, having both partial derivatives does not. Let\n$$f(x, y) = \\frac{xy}{x^2 + y^2} \\ \\text{ for } (x, y) \\ne (0,0), \\qquad f(0, 0) = 0.$$\nOn both axes $f$ is $0$, so $f_x(0, 0) = f_y(0,0) = 0$. But on the line $y = x$, $f(x, x) = \\frac12$ for every $x \\ne 0$, so $f$ is not even continuous at the origin. The partial derivatives only see two lines through the point and miss everything else.\n\nThe right notion of differentiability asks for a good linear approximation in all directions at once: the graph should have a tangent plane."
+    },
+    {
+     "type": "definition",
+     "title": "Differentiable function and gradient",
+     "body": "A function $f$ defined near $\\mathbf a \\in \\mathbb R^n$ is differentiable at $\\mathbf a$ if there is a vector $\\mathbf v$ such that\n$$\\lim_{\\mathbf h \\to \\mathbf 0} \\frac{f(\\mathbf a + \\mathbf h) - f(\\mathbf a) - \\mathbf v\\cdot\\mathbf h}{|\\mathbf h|} = 0.$$\nTaking $\\mathbf h = h\\mathbf e_i$ shows that then every partial derivative exists and $v_i = \\frac{\\partial f}{\\partial x_i}(\\mathbf a)$. This vector is the gradient,\n$$\\nabla f(\\mathbf a) = \\Big(\\frac{\\partial f}{\\partial x_1}(\\mathbf a), \\dots, \\frac{\\partial f}{\\partial x_n}(\\mathbf a)\\Big).$$\nIn words: near $\\mathbf a$, $f(\\mathbf a + \\mathbf h) \\approx f(\\mathbf a) + \\nabla f(\\mathbf a)\\cdot\\mathbf h$ with an error that is small compared with $|\\mathbf h|$. For $n = 2$, the graph of the approximation is the tangent plane $z = f(a, b) + f_x(a,b)(x - a) + f_y(a,b)(y - b)$."
+    },
+    {
+     "type": "theorem",
+     "title": "Continuous partial derivatives imply differentiability",
+     "body": "If all partial derivatives of $f$ exist in a neighbourhood of $\\mathbf a$ and are continuous at $\\mathbf a$, then $f$ is differentiable at $\\mathbf a$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof for two variables",
+     "body": "Let $\\mathbf a = (a, b)$ and $\\mathbf h = (h, k)$ small. Change one coordinate at a time:\n$$f(a + h, b + k) - f(a, b) = \\big[f(a + h, b + k) - f(a, b + k)\\big] + \\big[f(a, b + k) - f(a, b)\\big].$$\nIn the first bracket only $x$ changes, so by the [[mvt|mean value theorem]] it equals $f_x(a + \\theta h, b + k)\\,h$ for some $\\theta \\in (0,1)$. Likewise the second equals $f_y(a, b + \\phi k)\\,k$ for some $\\phi \\in (0, 1)$. Hence\n$$f(a+h, b+k) - f(a,b) - f_x(a,b)h - f_y(a,b)k = \\big[f_x(a + \\theta h, b + k) - f_x(a,b)\\big]h + \\big[f_y(a, b + \\phi k) - f_y(a,b)\\big]k.$$\nSince $|h|, |k| \\le |\\mathbf h|$, the absolute value of the right side is at most $|\\mathbf h|$ times the sum of the two brackets, and both brackets tend to $0$ as $\\mathbf h \\to \\mathbf 0$ by continuity of $f_x$ and $f_y$ at $(a, b)$. Dividing by $|\\mathbf h|$ gives the definition of differentiability. The same telescoping, one coordinate at a time, works in $n$ variables."
+    },
+    {
+     "type": "theorem",
+     "title": "Chain rule and directional derivatives",
+     "body": "Let $f$ be differentiable at $\\mathbf a$, and let $\\mathbf r(t)$ be a curve with $\\mathbf r(t_0) = \\mathbf a$ that is differentiable at $t_0$. Then $t \\mapsto f(\\mathbf r(t))$ is differentiable at $t_0$ and\n$$\\frac{d}{dt} f(\\mathbf r(t))\\Big|_{t = t_0} = \\nabla f(\\mathbf a)\\cdot\\mathbf r'(t_0).$$\nIn particular, for every unit vector $\\mathbf u$, $D_{\\mathbf u} f(\\mathbf a) = \\nabla f(\\mathbf a)\\cdot\\mathbf u$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "Define $\\varepsilon(\\mathbf h) = \\frac{f(\\mathbf a + \\mathbf h) - f(\\mathbf a) - \\nabla f(\\mathbf a)\\cdot\\mathbf h}{|\\mathbf h|}$ for $\\mathbf h \\ne \\mathbf 0$ and $\\varepsilon(\\mathbf 0) = 0$. Differentiability says $\\varepsilon(\\mathbf h) \\to 0$ as $\\mathbf h \\to \\mathbf 0$, and for all small $\\mathbf h$\n$$f(\\mathbf a + \\mathbf h) = f(\\mathbf a) + \\nabla f(\\mathbf a)\\cdot\\mathbf h + |\\mathbf h|\\,\\varepsilon(\\mathbf h).$$\nPut $\\mathbf h = \\mathbf r(t) - \\mathbf a$ and divide by $t - t_0$:\n$$\\frac{f(\\mathbf r(t)) - f(\\mathbf a)}{t - t_0} = \\nabla f(\\mathbf a)\\cdot\\frac{\\mathbf r(t) - \\mathbf a}{t - t_0} + \\frac{|\\mathbf r(t) - \\mathbf a|}{t - t_0}\\,\\varepsilon(\\mathbf r(t) - \\mathbf a).$$\nAs $t \\to t_0$, the first term tends to $\\nabla f(\\mathbf a)\\cdot\\mathbf r'(t_0)$. In the second, the fraction stays bounded (its absolute value tends to $|\\mathbf r'(t_0)|$), while $\\mathbf r(t) - \\mathbf a \\to \\mathbf 0$ so the factor $\\varepsilon$ tends to $0$. For the last statement take $\\mathbf r(t) = \\mathbf a + t\\mathbf u$, $t_0 = 0$."
+    },
+    {
+     "type": "section",
+     "title": "The gradient points uphill",
+     "body": "If $\\theta$ is the angle between $\\nabla f(\\mathbf a)$ and the unit vector $\\mathbf u$, then\n$$D_{\\mathbf u} f(\\mathbf a) = |\\nabla f(\\mathbf a)|\\cos\\theta.$$\nThis is largest when $\\theta = 0$. So, when $\\nabla f(\\mathbf a) \\ne \\mathbf 0$, the gradient points in the direction of fastest increase, its length is that fastest rate, $-\\nabla f$ is the direction of fastest decrease, and the rate is $0$ in the directions perpendicular to $\\nabla f$.\n\nThose perpendicular directions are the directions along the level set. If $\\mathbf r(t)$ is a curve on which $f$ is constant, the chain rule gives $0 = \\frac{d}{dt}f(\\mathbf r(t)) = \\nabla f\\cdot\\mathbf r'(t)$: the gradient is perpendicular to the level curves (in three variables, to the level surfaces). On a contour map, the steepest path crosses the contour lines at right angles. For $f(x, y) = x^2 + y^2$ the level curves are circles about the origin and $\\nabla f = (2x, 2y)$ points radially outward."
+    },
+    {
+     "type": "section",
+     "title": "Higher derivatives and critical points",
+     "body": "If $f$ has continuous second partial derivatives on an open set, then the mixed partials agree there:\n$$\\frac{\\partial^2 f}{\\partial x\\,\\partial y} = \\frac{\\partial^2 f}{\\partial y\\,\\partial x}.$$\nThis is Clairaut's (or Schwarz's) theorem, stated here without proof (it is enough that the two mixed partials exist and are continuous on the open set). Some continuity hypothesis is needed: for $g(x, y) = \\frac{xy(x^2 - y^2)}{x^2 + y^2}$, $g(0,0) = 0$, one computes $g_x(0, y) = -y$ and $g_y(x, 0) = x$, so $\\frac{\\partial}{\\partial y}g_x = -1$ but $\\frac{\\partial}{\\partial x}g_y = 1$ at the origin.\n\nAt an interior local maximum or minimum of a differentiable $f$, every partial derivative vanishes, because each one-variable slice has a maximum or minimum there; such a point, with $\\nabla f(\\mathbf a) = \\mathbf 0$, is a critical point. The second-derivative test, also stated without proof: suppose $f(x, y)$ has continuous second partials on a disc around a critical point $\\mathbf a$, and let $D = f_{xx}f_{yy} - f_{xy}^2$ at $\\mathbf a$. If $D > 0$ and $f_{xx}(\\mathbf a) > 0$, $\\mathbf a$ is a local minimum; if $D > 0$ and $f_{xx}(\\mathbf a) < 0$, a local maximum; if $D < 0$, a saddle point (neither). If $D = 0$ the test is inconclusive (see the pitfalls). The test comes from the second-order [[taylor|Taylor expansion]], whose quadratic part is governed by the Hessian matrix $\\begin{pmatrix} f_{xx} & f_{xy} \\\\ f_{xy} & f_{yy}\\end{pmatrix}$ and its [[eigen|eigenvalues]]."
+    },
+    {
+     "type": "example",
+     "title": "Gradient, directional derivative, tangent plane",
+     "body": "Let $f(x, y) = x e^{y} + y^2$. At $(2, 0)$ find the rate of change of $f$ in the direction of $(3, 4)$, the direction of fastest increase, and the tangent plane to the graph.",
+     "solution": "The partial derivatives $f_x = e^y$ and $f_y = xe^y + 2y$ are continuous, so $f$ is differentiable. At $(2, 0)$: $f = 2$, $f_x = 1$, $f_y = 2$, so $\\nabla f(2, 0) = (1, 2)$.\n\nThe unit vector in the direction $(3, 4)$ is $\\mathbf u = (\\frac35, \\frac45)$, and\n$$D_{\\mathbf u} f(2, 0) = (1, 2)\\cdot\\big(\\tfrac35, \\tfrac45\\big) = \\tfrac{3 + 8}{5} = \\tfrac{11}{5}.$$\nThe fastest increase is in the direction $\\frac{1}{\\sqrt5}(1, 2)$, at rate $|\\nabla f| = \\sqrt5 \\approx 2.236$, which is indeed more than $\\frac{11}{5} = 2.2$. The tangent plane is $z = 2 + (x - 2) + 2y$."
+    },
+    {
+     "type": "example",
+     "title": "The chain rule along a path",
+     "body": "A particle moves on the unit circle, $\\mathbf r(t) = (\\cos t, \\sin t)$, through the temperature field $T(x, y) = x^2 + 3xy$. Find $\\frac{d}{dt}T(\\mathbf r(t))$.",
+     "solution": "$\\nabla T = (2x + 3y,\\ 3x)$ and $\\mathbf r'(t) = (-\\sin t, \\cos t)$. By the chain rule,\n$$\\frac{dT}{dt} = (2\\cos t + 3\\sin t)(-\\sin t) + 3\\cos t\\cdot\\cos t = -2\\sin t\\cos t + 3(\\cos^2 t - \\sin^2 t).$$\nCheck by substituting first: $T(\\mathbf r(t)) = \\cos^2 t + 3\\cos t\\sin t = \\frac{1 + \\cos 2t}{2} + \\frac32\\sin 2t$, whose derivative is $-\\sin 2t + 3\\cos 2t$, the same thing."
+    },
+    {
+     "type": "example",
+     "title": "Classifying critical points",
+     "body": "Find and classify the critical points of $f(x, y) = x^3 - 3x + y^2$.",
+     "solution": "$\\nabla f = (3x^2 - 3,\\ 2y)$ vanishes at $(1, 0)$ and $(-1, 0)$. The second partials are $f_{xx} = 6x$, $f_{yy} = 2$, $f_{xy} = 0$, so $D = 12x$.\n\nAt $(1, 0)$: $D = 12 > 0$ and $f_{xx} = 6 > 0$, a local minimum with value $f(1, 0) = -2$. At $(-1, 0)$: $D = -12 < 0$, a saddle point: along the $x$-axis $f(x, 0) = x^3 - 3x$ has a local maximum at $x = -1$, while along the vertical line $x = -1$, $f(-1, y) = 2 + y^2$ has a minimum.\n\nThe local minimum is not a global one, since $f(x, 0) \\to -\\infty$ as $x \\to -\\infty$: the second-derivative test is purely local."
+    },
+    {
+     "type": "example",
+     "title": "Euler's theorem on homogeneous functions",
+     "body": "A function $f$ on $\\mathbb R^2 \\setminus \\{\\mathbf 0\\}$ is homogeneous of degree $k$ if $f(tx, ty) = t^k f(x, y)$ for all $t > 0$. Show that if such an $f$ is differentiable, then\n$$x\\frac{\\partial f}{\\partial x} + y\\frac{\\partial f}{\\partial y} = k f.$$",
+     "solution": "Fix $(x, y)$ and differentiate both sides of $f(tx, ty) = t^k f(x, y)$ with respect to $t$. On the left, the chain rule with the path $\\mathbf r(t) = (tx, ty)$, $\\mathbf r'(t) = (x, y)$, gives $\\nabla f(tx, ty)\\cdot(x, y)$. On the right we get $k t^{k-1}f(x, y)$. Setting $t = 1$:\n$$x f_x(x, y) + y f_y(x, y) = k f(x, y).$$\nFor example $f = \\sqrt{x^2 + y^2}$ has degree $1$, and indeed $x\\cdot\\frac{x}{\\sqrt{x^2+y^2}} + y\\cdot\\frac{y}{\\sqrt{x^2+y^2}} = \\sqrt{x^2 + y^2}$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Existence of partial derivatives does not imply continuity, let alone differentiability (see $\\frac{xy}{x^2 + y^2}$).\n- A partial derivative depends on which other variables are held fixed. With $x = r\\cos\\theta$, $y = r\\sin\\theta$ and $r = \\sqrt{x^2 + y^2}$: $\\frac{\\partial r}{\\partial x} = \\frac{x}{r} = \\cos\\theta$ (with $y$ fixed), while $\\frac{\\partial x}{\\partial r} = \\cos\\theta$ (with $\\theta$ fixed). So $\\frac{\\partial r}{\\partial x} \\ne 1\\big/\\frac{\\partial x}{\\partial r}$ in general.\n- $\\nabla f = \\mathbf 0$ does not mean an extremum: $x^2 - y^2$ has a saddle at the origin.\n- When $D = 0$ the second-derivative test is silent: $x^4 + y^4$, $-x^4 - y^4$ and $x^4 - y^4$ all have $D = 0$ at the origin, with a minimum, a maximum and a saddle.\n- The gradient lives in the domain, not on the graph: it is perpendicular to the level curves in the $xy$-plane, not to the surface $z = f(x, y)$."
+    },
+    {
+     "type": "connection",
+     "body": "Maximising $f$ subject to a constraint $g = c$ leads to the condition $\\nabla f = \\lambda\\nabla g$ of [[lagrange-multipliers]], a direct consequence of the fact that gradients are perpendicular to level sets. Changing variables in a double integral uses the matrix of partial derivatives and its determinant, the Jacobian, in [[multiple-integrals]]. Vector fields, divergence and curl, all built from partial derivatives, are the language of [[vector-calculus]].\n\nFor a complex function $u + iv$ whose real and imaginary parts have continuous partial derivatives, being [[holomorphic]] is equivalent to the Cauchy–Riemann equations $u_x = v_y$, $u_y = -v_x$. A function with continuous second partials on a convex open set is [[convexity|convex]] exactly when its Hessian is positive semidefinite at every point."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Compute all second partial derivatives of $f(x, y) = e^{xy}$ and check that the mixed ones agree.\n2. In which direction does $f(x, y) = x^2 - xy + 3y^2$ increase fastest at $(1, 1)$, and at what rate?\n3. Let $f(x, y) = \\frac{x^2 y}{x^2 + y^2}$ with $f(0, 0) = 0$. Show that every directional derivative exists at the origin but that $f$ is not differentiable there.\n4. Find and classify the critical points of $f(x, y) = x^4 + y^4 - 4xy$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Apostol, Calculus, Vol. 2"
+    },
+    {
+     "ref": "Marsden & Tromba, Vector Calculus"
+    },
+    {
+     "ref": "Courant & John, Introduction to Calculus and Analysis, Vol. 2"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Partials of x^2 y + sin(xy), f_xx, and equal mixed partials 2x + cos(xy) - xy sin(xy)",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y')\nf = x**2*y + sp.sin(x*y)\nassert sp.simplify(sp.diff(f,x) - (2*x*y + y*sp.cos(x*y))) == 0\nassert sp.simplify(sp.diff(f,y) - (x**2 + x*sp.cos(x*y))) == 0\nassert sp.simplify(sp.diff(f,x,x) - (2*y - y**2*sp.sin(x*y))) == 0\nm = 2*x + sp.cos(x*y) - x*y*sp.sin(x*y)\nassert sp.simplify(sp.diff(f,x,y) - m) == 0 and sp.simplify(sp.diff(f,y,x) - m) == 0"
+    },
+    {
+     "claim": "xy/(x^2+y^2): zero on axes (partials 0 at origin), equals 1/2 on y = x",
+     "python": "import sympy as sp\nx, y, h = sp.symbols('x y h', real=True)\nf = x*y/(x**2+y**2)\nassert sp.simplify(f.subs(y,0)) == 0 and sp.simplify(f.subs(x,0)) == 0\nassert sp.simplify(f.subs(y,x)) == sp.Rational(1,2)"
+    },
+    {
+     "claim": "Mixed partial counterexample g = xy(x^2-y^2)/(x^2+y^2): g_x(0,y) = -y, g_y(x,0) = x, so mixed partials at 0 are -1 and 1",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y', real=True)\ng = x*y*(x**2-y**2)/(x**2+y**2)\ngx = sp.diff(g,x); gy = sp.diff(g,y)\nyy = sp.symbols('yy', real=True, nonzero=True)\nassert sp.simplify(gx.subs({x:0, y:yy})) == -yy and sp.simplify(gy.subs({y:0, x:yy})) == yy\nh = sp.symbols('h', real=True, nonzero=True)\nassert sp.simplify(g.subs({x:h, y:0})/h) == 0 and sp.simplify(g.subs({x:0, y:h})/h) == 0"
+    },
+    {
+     "claim": "Example 1: grad f(2,0) = (1,2), D_u = 11/5, |grad| = sqrt 5 > 2.2; tangent plane",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y')\nf = x*sp.exp(y) + y**2\ng = [sp.diff(f,v).subs({x:2,y:0}) for v in (x,y)]\nassert g == [1,2] and f.subs({x:2,y:0}) == 2\nassert g[0]*sp.Rational(3,5) + g[1]*sp.Rational(4,5) == sp.Rational(11,5)\nassert sp.sqrt(5) > sp.Rational(11,5)\nt = sp.symbols('t')\nassert sp.diff(f.subs({x:2+3*t/5, y:4*t/5}), t).subs(t,0) == sp.Rational(11,5)"
+    },
+    {
+     "claim": "Example 2: chain rule gives -2 sin t cos t + 3(cos^2 t - sin^2 t) = -sin 2t + 3 cos 2t = d/dt T(r(t))",
+     "python": "import sympy as sp\nt = sp.symbols('t')\nT = sp.cos(t)**2 + 3*sp.cos(t)*sp.sin(t)\na = -2*sp.sin(t)*sp.cos(t) + 3*(sp.cos(t)**2 - sp.sin(t)**2)\nassert sp.simplify(sp.diff(T,t) - a) == 0 and sp.simplify(a - (-sp.sin(2*t) + 3*sp.cos(2*t))) == 0\nassert sp.simplify(T - ((1+sp.cos(2*t))/2 + sp.Rational(3,2)*sp.sin(2*t))) == 0"
+    },
+    {
+     "claim": "Example 3: critical points of x^3 - 3x + y^2 are (1,0) min with value -2 and (-1,0) saddle; D = 12x",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y', real=True)\nf = x**3 - 3*x + y**2\ncrit = sp.solve([sp.diff(f,x), sp.diff(f,y)], [x,y], dict=True)\nassert sorted((c[x],c[y]) for c in crit) == [(-1,0),(1,0)]\nD = sp.diff(f,x,2)*sp.diff(f,y,2) - sp.diff(f,x,y)**2\nassert sp.simplify(D - 12*x) == 0 and f.subs({x:1,y:0}) == -2"
+    },
+    {
+     "claim": "Euler's homogeneous identity for several homogeneous functions; polar pitfall dr/dx = x/r",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y', positive=True)\nfor f, k in [(sp.sqrt(x**2+y**2), 1), (x**2 + x*y, 2), (x**3*y/(x**2+y**2), 2), ((x**5+y**5)/(x+y), 4)]:\n    assert sp.simplify(x*sp.diff(f,x) + y*sp.diff(f,y) - k*f) == 0\nr = sp.sqrt(x**2+y**2)\nassert sp.simplify(sp.diff(r,x) - x/r) == 0"
+    },
+    {
+     "claim": "Exercise checks: x^2 y/(x^2+y^2) has D_u f(0) = u1^2 u2 (nonlinear); x^4+y^4-4xy critical points (0,0),(1,1),(-1,-1); D=0 examples",
+     "python": "import sympy as sp\nx, y, t = sp.symbols('x y t', real=True)\nu1, u2 = sp.symbols('u1 u2', real=True)\nf = x**2*y/(x**2+y**2)\nassert sp.simplify((f.subs({x:t*u1, y:t*u2})/t).subs(u1**2+u2**2, 1) - u1**2*u2/(u1**2+u2**2)) == 0\ng = x**4 + y**4 - 4*x*y\ncrit = sp.solve([sp.diff(g,x), sp.diff(g,y)], [x,y], dict=True)\nassert sorted((c[x],c[y]) for c in crit) == [(-1,-1),(0,0),(1,1)]\nfor h in (x**4+y**4, -x**4-y**4, x**4-y**4):\n    D = (sp.diff(h,x,2)*sp.diff(h,y,2) - sp.diff(h,x,y)**2).subs({x:0,y:0})\n    assert D == 0"
+    },
+    {
+     "claim": "Reviewer: saddle at (-1,0): f(-1,y) = 2 + y^2 and f(x,0) has f''(-1) = -6 < 0; Hessian determinants 12 and -12; mixed partials of the counterexample -1 and 1 by finite differences; polar dx/dr = cos(theta)",
+     "python": "import sympy as sp, mpmath\nx, y, r, th = sp.symbols('x y r theta', real=True)\nf = x**3 - 3*x + y**2\nassert sp.expand(f.subs(x, -1)) == 2 + y**2 and sp.diff(f.subs(y, 0), x, 2).subs(x, -1) == -6\nH = sp.hessian(f, (x, y))\nassert H.subs({x: 1, y: 0}).det() == 12 and H.subs({x: -1, y: 0}).det() == -12\nassert sp.diff(r*sp.cos(th), r) == sp.cos(th)\nmpmath.mp.dps = 40\nG = lambda a, b: a*b*(a*a - b*b)/(a*a + b*b) if (a, b) != (0, 0) else mpmath.mpf(0)\nh = mpmath.mpf('1e-15'); k = mpmath.mpf('1e-5')\ngx = lambda b: (G(h, b) - G(-h, b))/(2*h)\ngy = lambda a: (G(a, h) - G(a, -h))/(2*h)\nassert abs((gx(k) - gx(-k))/(2*k) + 1) < 1e-6 and abs((gy(k) - gy(-k))/(2*k) - 1) < 1e-6"
+    }
+   ]
+  }
+ },
+ {
+  "id": "multiple-integrals",
+  "entry": {
+   "sum": "A double or triple integral adds up a quantity over a region of the plane or of space, as a limit of sums over small rectangles or boxes. Fubini's theorem computes it as iterated one-variable integrals, and the change of variables formula lets you switch to coordinates adapted to the region, at the cost of a factor $|\\det DT|$ that measures how the substitution stretches area or volume.",
+   "key": [
+    "\\iint_{[a,b]\\times[c,d]} f\\,dA = \\int_a^b\\!\\!\\int_c^d f(x,y)\\,dy\\,dx = \\int_c^d\\!\\!\\int_a^b f(x,y)\\,dx\\,dy",
+    "\\iint_{T(D)} f(x,y)\\,dx\\,dy = \\iint_D f(T(u,v))\\,\\big|\\det DT(u,v)\\big|\\,du\\,dv",
+    "dx\\,dy = r\\,dr\\,d\\theta, \\qquad dV = \\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta"
+   ],
+   "why": "Masses, centres of mass, moments of inertia, probabilities of events involving several random variables, and fluxes are all multiple integrals. The polar-coordinate computation of $\\int_{-\\infty}^\\infty e^{-x^2}\\,dx = \\sqrt\\pi$ is how the constant $\\frac{1}{\\sqrt{2\\pi}}$ in the normal density is found.",
+   "msc": [
+    "26B15"
+   ],
+   "links": [
+    {
+     "field": "probability",
+     "note": "Probabilities and expectations for jointly continuous random variables are double or triple integrals of a joint density, and changes of variables give the densities of sums and ratios."
+    },
+    {
+     "field": "physics",
+     "note": "Mass, centre of mass, moments of inertia and gravitational or electric potentials of extended bodies are computed as triple integrals, usually in cylindrical or spherical coordinates."
+    },
+    {
+     "field": "special-functions",
+     "note": "Changing variables in a double integral proves Gamma(1/2) = sqrt(pi) and the relation between the beta and gamma functions."
+    }
+   ],
+   "refs": [
+    "Apostol, Calculus, Vol. 2",
+    "Marsden & Tromba, Vector Calculus",
+    "Spivak, Calculus on Manifolds"
+   ],
+   "aliases": [
+    "double integral",
+    "triple integral",
+    "iterated integral",
+    "Fubini's theorem",
+    "change of variables",
+    "Jacobian",
+    "polar coordinates",
+    "spherical coordinates",
+    "Gaussian integral"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A thin plate covers a region $D$ of the plane, and its density varies from point to point as $\\delta(x, y)$. What is its mass? Cut $D$ into tiny rectangles, multiply each area by the density there, and add up. The limit of such sums is the double integral $\\iint_D \\delta\\,dA$, exactly as the one-variable [[riemann-integral|definite integral]] is a limit of sums over small intervals.\n\nTwo theorems make double and triple integrals computable. Fubini's theorem turns them into repeated single integrals, which the [[ftc|fundamental theorem of calculus]] handles. The change of variables formula lets you use coordinates that fit the region, such as polar coordinates for a disc; the price is a stretching factor given by a [[determinants|determinant]]."
+    },
+    {
+     "type": "definition",
+     "title": "Double integral over a rectangle",
+     "body": "Let $f$ be bounded on $R = [a, b]\\times[c, d]$. Partition $[a, b]$ by $a = x_0 < \\cdots < x_m = b$ and $[c, d]$ by $c = y_0 < \\cdots < y_k = d$, giving subrectangles $R_{ij} = [x_{i-1}, x_i]\\times[y_{j-1}, y_j]$ of area $\\Delta A_{ij}$. With $m_{ij}$ and $M_{ij}$ the infimum and supremum of $f$ on $R_{ij}$, the lower and upper sums are\n$$L(f, P) = \\sum_{i,j} m_{ij}\\,\\Delta A_{ij}, \\qquad U(f, P) = \\sum_{i,j} M_{ij}\\,\\Delta A_{ij}.$$\nIf there is exactly one number $I$ with $L(f, P) \\le I \\le U(f, P)$ for every partition $P$, then $f$ is integrable on $R$ and $\\iint_R f\\,dA = I$.\n\nFor $f \\ge 0$ this is the volume under the graph $z = f(x, y)$. Every continuous $f$ on $R$ is integrable (by uniform continuity on the closed rectangle, see [[compactness]]). For a bounded region $D$ inside $R$, one sets $\\iint_D f = \\iint_R \\tilde f$, where $\\tilde f$ equals $f$ on $D$ and $0$ elsewhere; this works for all the regions in this lesson, whose boundaries are made of finitely many graphs of continuous functions."
+    },
+    {
+     "type": "theorem",
+     "title": "Fubini's theorem for continuous functions",
+     "body": "If $f$ is continuous on $R = [a, b]\\times[c, d]$, then\n$$\\iint_R f\\,dA = \\int_a^b\\left(\\int_c^d f(x, y)\\,dy\\right)dx = \\int_c^d\\left(\\int_a^b f(x, y)\\,dx\\right)dy.$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof",
+     "body": "Let $F(x) = \\int_c^d f(x, y)\\,dy$. Since $f$ is uniformly continuous on $R$, $|F(x) - F(x')| \\le (d - c)\\max_y|f(x, y) - f(x', y)|$ is small when $|x - x'|$ is, so $F$ is continuous and $\\int_a^b F$ exists.\n\nTake any partition $P$ as in the definition. For $x \\in [x_{i-1}, x_i]$ and $y \\in [y_{j-1}, y_j]$ we have $m_{ij} \\le f(x, y) \\le M_{ij}$. Integrating in $y$ over $[c, d]$, piece by piece,\n$$\\sum_j m_{ij}\\,(y_j - y_{j-1}) \\ \\le\\ F(x) \\ \\le\\ \\sum_j M_{ij}\\,(y_j - y_{j-1}) \\qquad (x_{i-1} \\le x \\le x_i).$$\nNow integrate in $x$ over $[x_{i-1}, x_i]$ and sum over $i$:\n$$L(f, P) \\ \\le\\ \\int_a^b F(x)\\,dx \\ \\le\\ U(f, P).$$\nThis holds for every partition. Since $f$ is integrable, $\\iint_R f$ is the only number between all lower and upper sums, so it equals $\\int_a^b F$. Swapping the roles of $x$ and $y$ gives the other order."
+    },
+    {
+     "type": "section",
+     "title": "Iterated integrals over general regions",
+     "body": "On a rectangle, Fubini makes computation routine:\n$$\\iint_{[0,1]\\times[0,2]} (x + y^2)\\,dA = \\int_0^1\\left(\\int_0^2 (x + y^2)\\,dy\\right)dx = \\int_0^1\\Big(2x + \\frac83\\Big)dx = 1 + \\frac83 = \\frac{11}{3}.$$\nFor a region lying between two graphs, $D = \\{(x, y) : a \\le x \\le b,\\ g_1(x) \\le y \\le g_2(x)\\}$ with $g_1 \\le g_2$ continuous, an extension of the same argument gives\n$$\\iint_D f\\,dA = \\int_a^b\\left(\\int_{g_1(x)}^{g_2(x)} f(x, y)\\,dy\\right)dx.$$\nPicture it as slicing $D$ by vertical lines: for each $x$, the inner integral runs over the slice. The inner limits may depend on the outer variable, never the other way round. Many regions can be sliced both vertically and horizontally, and the two orders can differ enormously in difficulty.\n\nTriple integrals work the same way with boxes in place of rectangles; for instance the volume of a solid $E$ is $\\iiint_E 1\\,dV$, computed as three nested single integrals."
+    },
+    {
+     "type": "section",
+     "title": "Why a determinant appears",
+     "body": "Suppose $x$ and $y$ are given in terms of new variables by a map $T(u, v) = (x(u, v), y(u, v))$. A tiny rectangle in the $uv$-plane with corner $(u, v)$ and sides $\\Delta u$, $\\Delta v$ is mapped to a curved quadrilateral. To first order it is the parallelogram spanned by\n$$T(u + \\Delta u, v) - T(u, v) \\approx \\frac{\\partial T}{\\partial u}\\Delta u, \\qquad T(u, v + \\Delta v) - T(u, v) \\approx \\frac{\\partial T}{\\partial v}\\Delta v,$$\nusing the [[partial-derivatives]] of $T$. The area of a parallelogram spanned by two vectors is the absolute value of the determinant of the matrix with those columns. So the image has area about $|\\det DT(u, v)|\\,\\Delta u\\,\\Delta v$, where\n$$DT = \\begin{pmatrix} x_u & x_v \\\\ y_u & y_v \\end{pmatrix}$$\nis the Jacobian matrix. Adding up $f \\cdot (\\text{area})$ over all the pieces leads to the formula below. A full proof controls the first-order errors uniformly; it can be found in the references."
+    },
+    {
+     "type": "theorem",
+     "title": "Change of variables",
+     "body": "Let $D$ be a bounded region in the $uv$-plane whose boundary consists of finitely many graphs of continuous functions, and let $\\bar D$ denote $D$ together with its boundary. Let $T$ be a map with continuous partial derivatives on an open set containing $\\bar D$, and suppose that $T$ is one-to-one on the interior of $D$ and that $\\det DT \\ne 0$ there. Then for every $f$ continuous on $T(\\bar D)$,\n$$\\iint_{T(D)} f(x, y)\\,dx\\,dy = \\iint_D f(T(u, v))\\,\\big|\\det DT(u, v)\\big|\\,du\\,dv.$$\nThe same holds in $\\mathbb R^3$ (and $\\mathbb R^n$), with volumes in place of areas. Allowing $T$ to fail to be one-to-one, or to have $\\det DT = 0$, on the boundary of $D$ is what makes polar and spherical coordinates usable."
+    },
+    {
+     "type": "section",
+     "title": "Polar, cylindrical and spherical coordinates",
+     "body": "For polar coordinates $x = r\\cos\\theta$, $y = r\\sin\\theta$,\n$$\\det\\begin{pmatrix} \\cos\\theta & -r\\sin\\theta \\\\ \\sin\\theta & r\\cos\\theta \\end{pmatrix} = r, \\qquad\\text{so}\\qquad dx\\,dy = r\\,dr\\,d\\theta.$$\nThe factor $r$ says that a small polar box $\\Delta r \\times \\Delta\\theta$ far from the origin is a wide arc, of area about $r\\,\\Delta r\\,\\Delta\\theta$. (On the open rectangle $0 < r < a$, $0 < \\theta < 2\\pi$ the polar map is one-to-one with determinant $r > 0$; it fails to be one-to-one only on the boundary, where $r = 0$ or $\\theta = 0, 2\\pi$, which the theorem allows.) For example, the area of the disc of radius $a$ is $\\int_0^{2\\pi}\\int_0^a r\\,dr\\,d\\theta = \\pi a^2$.\n\nIn space, cylindrical coordinates add $z$ unchanged, so $dV = r\\,dr\\,d\\theta\\,dz$. Spherical coordinates $x = \\rho\\sin\\varphi\\cos\\theta$, $y = \\rho\\sin\\varphi\\sin\\theta$, $z = \\rho\\cos\\varphi$ (with $\\varphi$ measured from the positive $z$-axis) have Jacobian determinant $\\rho^2\\sin\\varphi$, so the volume of the ball of radius $a$ is\n$$\\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^{a} \\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta = 2\\pi\\cdot 2\\cdot\\frac{a^3}{3} = \\frac43\\pi a^3.$$"
+    },
+    {
+     "type": "example",
+     "title": "A region between two curves",
+     "body": "Compute $\\iint_D xy\\,dA$, where $D$ is the region between $y = x^2$ and $y = x$.",
+     "solution": "The curves meet at $x = 0$ and $x = 1$, and $x^2 \\le x$ on $[0, 1]$. Slicing vertically,\n$$\\iint_D xy\\,dA = \\int_0^1\\int_{x^2}^{x} xy\\,dy\\,dx = \\int_0^1 x\\cdot\\frac{x^2 - x^4}{2}\\,dx = \\frac12\\Big(\\frac14 - \\frac16\\Big) = \\frac{1}{24}.$$\nSlicing horizontally instead, $y$ runs over $[0, 1]$ and $x$ from $y$ to $\\sqrt y$: $\\int_0^1\\int_y^{\\sqrt y} xy\\,dx\\,dy = \\int_0^1 y\\cdot\\frac{y - y^2}{2}\\,dy = \\frac{1}{24}$ as well."
+    },
+    {
+     "type": "example",
+     "title": "Reversing the order",
+     "body": "Evaluate $\\displaystyle\\int_0^1\\int_x^1 e^{y^2}\\,dy\\,dx$.",
+     "solution": "The inner integral has no elementary antiderivative, so read off the region instead: $0 \\le x \\le 1$ and $x \\le y \\le 1$, which is the triangle with vertices $(0,0)$, $(0,1)$, $(1,1)$. Described horizontally, it is $0 \\le y \\le 1$, $0 \\le x \\le y$. By Fubini,\n$$\\int_0^1\\int_0^y e^{y^2}\\,dx\\,dy = \\int_0^1 y\\,e^{y^2}\\,dy = \\Big[\\tfrac12 e^{y^2}\\Big]_0^1 = \\frac{e - 1}{2}.$$\nThe difficulty disappeared because in the new order the factor $y$, the length of the slice, appeared exactly where the substitution $u = y^2$ needed it."
+    },
+    {
+     "type": "example",
+     "title": "A linear change of variables",
+     "body": "Let $D$ be the parallelogram $\\{0 \\le x + y \\le 2,\\ 0 \\le x - y \\le 1\\}$. Compute $\\iint_D (x + y)\\,e^{x - y}\\,dA$.",
+     "solution": "The region and the integrand both suggest $u = x + y$, $v = x - y$. Solving, $x = \\frac{u + v}{2}$, $y = \\frac{u - v}{2}$, so the map $T(u, v) = (x, y)$ has\n$$\\det DT = \\det\\begin{pmatrix} \\frac12 & \\frac12 \\\\ \\frac12 & -\\frac12\\end{pmatrix} = -\\frac12, \\qquad |\\det DT| = \\frac12.$$\nThe parallelogram $D$ is the image of the rectangle $[0, 2]\\times[0, 1]$ in the $uv$-plane, so\n$$\\iint_D (x + y)e^{x - y}\\,dA = \\int_0^2\\int_0^1 u\\,e^{v}\\cdot\\frac12\\,dv\\,du = \\frac12\\cdot 2\\cdot(e - 1) = e - 1.$$\nNote the absolute value: the determinant is negative because this $T$ reverses orientation, but areas are positive."
+    },
+    {
+     "type": "example",
+     "title": "The Gaussian integral",
+     "body": "Prove that $\\displaystyle\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}$.",
+     "solution": "The integral converges as an [[improper-integrals|improper integral]] (compare $e^{-x^2} \\le e^{-|x|}$ for $|x| \\ge 1$). Let $I_R = \\int_{-R}^{R} e^{-x^2}\\,dx$. By Fubini on the square $S_R = [-R, R]^2$,\n$$I_R^2 = \\int_{-R}^{R}e^{-x^2}dx\\int_{-R}^{R}e^{-y^2}dy = \\iint_{S_R} e^{-(x^2 + y^2)}\\,dA.$$\nOn the disc $D_\\rho$ of radius $\\rho$, polar coordinates give\n$$\\iint_{D_\\rho} e^{-(x^2+y^2)}\\,dA = \\int_0^{2\\pi}\\int_0^{\\rho} e^{-r^2}r\\,dr\\,d\\theta = \\pi\\big(1 - e^{-\\rho^2}\\big).$$\nThe integrand is positive and $D_R \\subseteq S_R \\subseteq D_{R\\sqrt2}$, so\n$$\\pi\\big(1 - e^{-R^2}\\big) \\le I_R^2 \\le \\pi\\big(1 - e^{-2R^2}\\big).$$\nBoth bounds tend to $\\pi$ as $R \\to \\infty$, so $I_R^2 \\to \\pi$ and the integral is $\\sqrt\\pi$. Without the second variable there is no way in: $e^{-x^2}$ has no elementary antiderivative, but $r\\,e^{-r^2}$ does, and the factor $r$ came from the Jacobian."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Forgetting the Jacobian, especially the $r$ in $r\\,dr\\,d\\theta$, or using $\\det DT$ where $|\\det DT|$ is needed.\n- Writing outer limits that depend on an inner variable. In $\\int\\!\\int \\dots\\,dy\\,dx$ the limits for $y$ may involve $x$, but the limits for $x$ must be constants.\n- Reversing the order without redrawing the region: the new limits come from the picture, not from swapping the old ones.\n- Swapping the order when the integrand is not absolutely integrable. For $f = \\frac{x^2 - y^2}{(x^2 + y^2)^2}$ on $[0, 1]^2$, integrating first in $y$ gives $\\int_0^1\\frac{dx}{1 + x^2} = \\frac{\\pi}{4}$, while integrating first in $x$ gives $-\\frac{\\pi}{4}$. The function is unbounded near the origin, and Fubini does not apply."
+    },
+    {
+     "type": "connection",
+     "body": "Integrals over curves and surfaces, and the theorems of Green, Stokes and Gauss relating them to double and triple integrals, are the subject of [[vector-calculus]]. In probability, a joint density of two [[random-variables]] is integrated over regions to get probabilities, and the change of variables formula gives the densities of sums, products and ratios; the Gaussian integral is the normalisation of the normal distribution in [[distributions]].\n\nThe [[gamma]] function satisfies $\\Gamma(\\frac12) = \\sqrt\\pi$, which is the Gaussian integral after the substitution $x = t^2$, and a polar change of variables in $\\Gamma(a)\\Gamma(b)$ gives the beta integral. The modern theory is the [[lebesgue]] integral, where the Fubini–Tonelli theorem says exactly when the order of integration can be swapped."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Find the volume of the solid common to the cylinders $x^2 + y^2 \\le 1$ and $x^2 + z^2 \\le 1$. (Hint: slice perpendicular to the $x$-axis.)\n2. Evaluate $\\int_0^1\\int_{\\sqrt y}^{1} e^{x^3}\\,dx\\,dy$ by reversing the order.\n3. Use the substitution $x = ar\\cos\\theta$, $y = br\\sin\\theta$ to show that the ellipse $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} \\le 1$ has area $\\pi ab$.\n4. Compute $\\iint_{x^2 + y^2 \\le 1}\\sqrt{1 - x^2 - y^2}\\,dA$ and interpret the answer geometrically."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Apostol, Calculus, Vol. 2"
+    },
+    {
+     "ref": "Marsden & Tromba, Vector Calculus"
+    },
+    {
+     "ref": "Spivak, Calculus on Manifolds"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Rectangle example: integral of x + y^2 over [0,1]x[0,2] = 11/3 in both orders",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y')\nassert sp.integrate(sp.integrate(x+y**2,(y,0,2)),(x,0,1)) == sp.Rational(11,3)\nassert sp.integrate(sp.integrate(x+y**2,(x,0,1)),(y,0,2)) == sp.Rational(11,3)\nassert sp.integrate(x+y**2,(y,0,2)) == 2*x + sp.Rational(8,3)"
+    },
+    {
+     "claim": "Polar Jacobian r; spherical Jacobian rho^2 sin phi; disc area pi a^2; ball volume 4/3 pi a^3",
+     "python": "import sympy as sp\nr, th, rho, ph, a = sp.symbols('r theta rho phi a', positive=True)\nJ = sp.Matrix([r*sp.cos(th), r*sp.sin(th)]).jacobian([r, th])\nassert sp.simplify(J.det()) == r\nX = sp.Matrix([rho*sp.sin(ph)*sp.cos(th), rho*sp.sin(ph)*sp.sin(th), rho*sp.cos(ph)])\nassert sp.simplify(X.jacobian([rho, ph, th]).det() - rho**2*sp.sin(ph)) == 0\nassert sp.integrate(r,(r,0,a),(th,0,2*sp.pi)) == sp.pi*a**2\nassert sp.simplify(sp.integrate(rho**2*sp.sin(ph),(rho,0,a),(ph,0,sp.pi),(th,0,2*sp.pi)) - sp.Rational(4,3)*sp.pi*a**3) == 0"
+    },
+    {
+     "claim": "Region between y = x^2 and y = x: integral of xy = 1/24 in both orders",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y', positive=True)\nassert sp.integrate(x*y,(y,x**2,x),(x,0,1)) == sp.Rational(1,24)\nassert sp.integrate(x*y,(x,y,sp.sqrt(y)),(y,0,1)) == sp.Rational(1,24)"
+    },
+    {
+     "claim": "Reversing order: integral_0^1 integral_0^y e^{y^2} dx dy = (e-1)/2, and equals the original order numerically",
+     "python": "import sympy as sp\nimport mpmath, math\nx, y = sp.symbols('x y')\nassert sp.simplify(sp.integrate(sp.exp(y**2),(x,0,y),(y,0,1)) - (sp.E-1)/2) == 0\nv = mpmath.quad(lambda xx: mpmath.quad(lambda yy: mpmath.exp(yy**2), [xx, 1]), [0, 1])\nassert abs(v - (math.e-1)/2) < 1e-12"
+    },
+    {
+     "claim": "Linear change: det DT = -1/2; integral = e - 1, confirmed by direct integration over the parallelogram",
+     "python": "import sympy as sp\nu, v, x, y = sp.symbols('u v x y')\nT = sp.Matrix([(u+v)/2, (u-v)/2])\nassert T.jacobian([u,v]).det() == -sp.Rational(1,2)\nassert sp.simplify(sp.integrate(u*sp.exp(v)/2,(v,0,1),(u,0,2)) - (sp.E-1)) == 0\nimport mpmath\n# integrate over x in [0, 1.5]; for each x, y from max(-x, x-1) to min(2-x, x)\nval = mpmath.quad(lambda X: mpmath.quad(lambda Y: (X+Y)*mpmath.exp(X-Y), [max(-X, X-1), min(2-X, X)]) if max(-X,X-1) < min(2-X,X) else 0, [0, 0.5, 1, 1.5])\nassert abs(val - (mpmath.e - 1)) < 1e-10"
+    },
+    {
+     "claim": "Gaussian integral sqrt(pi); disc integral pi(1 - e^{-rho^2}); square bounds hold numerically",
+     "python": "import sympy as sp, math\nx, r, th, R = sp.symbols('x r theta R', positive=True)\nassert sp.integrate(sp.exp(-x**2),(x,-sp.oo,sp.oo)) == sp.sqrt(sp.pi)\nassert sp.simplify(sp.integrate(sp.exp(-r**2)*r,(r,0,R),(th,0,2*sp.pi)) - sp.pi*(1-sp.exp(-R**2))) == 0\nfor RR in [0.3, 0.7, 1.0, 1.5, 2.0, 3.0]:\n    I = math.sqrt(math.pi)*math.erf(RR)\n    assert math.pi*(1-math.exp(-RR**2)) <= I**2 <= math.pi*(1-math.exp(-2*RR**2))"
+    },
+    {
+     "claim": "Fubini counterexample: the two iterated integrals of (x^2-y^2)/(x^2+y^2)^2 on [0,1]^2 are pi/4 and -pi/4",
+     "python": "import sympy as sp\nx, y = sp.symbols('x y', positive=True)\nf = (x**2-y**2)/(x**2+y**2)**2\ninner_y = sp.simplify(sp.integrate(f,(y,0,1)))\nassert sp.simplify(inner_y - 1/(1+x**2)) == 0\nassert sp.integrate(inner_y,(x,0,1)) == sp.pi/4\ninner_x = sp.simplify(sp.integrate(f,(x,0,1)))\nassert sp.simplify(inner_x + 1/(1+y**2)) == 0\nassert sp.integrate(inner_x,(y,0,1)) == -sp.pi/4"
+    },
+    {
+     "claim": "Exercise values: Steinmetz solid 16/3; reversed-order integral (e-1)/3; ellipse pi a b; hemisphere 2 pi/3",
+     "python": "import sympy as sp\nx, y, r, th, a, b = sp.symbols('x y r theta a b', positive=True)\nassert sp.integrate(4*(1-x**2),(x,-1,1)) == sp.Rational(16,3)\nassert sp.simplify(sp.integrate(sp.exp(x**3),(y,0,x**2),(x,0,1)) - (sp.E-1)/3) == 0\nJ = sp.Matrix([a*r*sp.cos(th), b*r*sp.sin(th)]).jacobian([r,th]).det()\nassert sp.simplify(J - a*b*r) == 0\nassert sp.integrate(a*b*r,(r,0,1),(th,0,2*sp.pi)) == sp.pi*a*b\nassert sp.integrate(sp.sqrt(1-r**2)*r,(r,0,1),(th,0,2*sp.pi)) == 2*sp.pi/3"
+    },
+    {
+     "claim": "Reviewer: e^{-x^2} <= e^{-|x|} for |x| >= 1; Gamma(1/2) = sqrt(pi) via x = t^2; reversed-order and region integrals recomputed numerically",
+     "python": "import mpmath, math\nassert all(math.exp(-t*t) <= math.exp(-t) for t in [1 + i/100 for i in range(2000)])\nassert abs(mpmath.gamma(0.5) - mpmath.sqrt(mpmath.pi)) < 1e-15\nassert abs(mpmath.quad(lambda t: 2*mpmath.exp(-t*t), [0, mpmath.inf]) - mpmath.sqrt(mpmath.pi)) < 1e-14\nassert abs(mpmath.quad(lambda x: mpmath.quad(lambda y: x*y, [x**2, x]), [0, 1]) - mpmath.mpf(1)/24) < 1e-15\nassert abs(mpmath.quad(lambda y: mpmath.quad(lambda x: mpmath.exp(y**2), [0, y]), [0, 1]) - (mpmath.e - 1)/2) < 1e-14\nassert abs(mpmath.quad(lambda x: mpmath.quad(lambda y: mpmath.exp(x**3), [0, x**2]), [0, 1]) - (mpmath.e - 1)/3) < 1e-14"
+    }
+   ]
+  }
+ },
+ {
+  "id": "vector-calculus",
+  "entry": {
+   "sum": "Vector calculus integrates vector fields along curves (work, circulation) and across surfaces (flux), and its three great theorems, Green's, Stokes' and the divergence theorem of Gauss, each say that the integral of a derivative over a region equals an integral over the region's boundary. They are the higher-dimensional versions of the fundamental theorem of calculus.",
+   "key": [
+    "\\oint_{\\partial D} P\\,dx + Q\\,dy = \\iint_D \\Big(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\Big)\\,dA",
+    "\\oint_{\\partial S} \\mathbf F\\cdot d\\mathbf r = \\iint_S (\\nabla\\times\\mathbf F)\\cdot\\mathbf n\\,dS",
+    "\\iint_{\\partial E} \\mathbf F\\cdot\\mathbf n\\,dS = \\iiint_E \\nabla\\cdot\\mathbf F\\,dV"
+   ],
+   "why": "Maxwell's equations of electromagnetism, the conservation laws of fluid dynamics and the heat equation are all derived and usually stated with these theorems. In mathematics, Green's theorem gives Cauchy's theorem in complex analysis, and the general Stokes theorem for differential forms is a basic tool of differential geometry and topology.",
+   "msc": [
+    "26B20",
+    "26B12"
+   ],
+   "links": [
+    {
+     "field": "pde",
+     "note": "Conservation laws such as the heat, continuity and Navier–Stokes equations are derived by applying the divergence theorem to an arbitrary small region."
+    },
+    {
+     "field": "complex-analysis",
+     "note": "Green's theorem combined with the Cauchy–Riemann equations gives a short proof of Cauchy's integral theorem for functions with continuous derivative."
+    },
+    {
+     "field": "topology",
+     "note": "A curl-free field that is not a gradient, such as the winding field around a puncture, detects a hole in the domain; this is the simplest example of de Rham cohomology."
+    }
+   ],
+   "refs": [
+    "Marsden & Tromba, Vector Calculus",
+    "Schey, Div, Grad, Curl, and All That",
+    "Apostol, Calculus, Vol. 2"
+   ],
+   "aliases": [
+    "line integral",
+    "surface integral",
+    "flux",
+    "circulation",
+    "Green's theorem",
+    "Stokes' theorem",
+    "divergence theorem",
+    "Gauss's theorem",
+    "curl",
+    "divergence",
+    "conservative field"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A force field pushes on a particle that moves along a curved path. How much work does the field do? A fluid flows through a net. How much fluid crosses it per second? Both questions ask for an integral of a vector field: along a curve in the first case, across a surface in the second.\n\nThe theorems of Green, Gauss and Stokes say that such integrals over a closed boundary can be computed from what happens inside: the circulation around a loop equals the total spin of the field inside the loop, and the flux out of a closed surface equals the total source strength inside. Each theorem has the same shape as the [[ftc|fundamental theorem of calculus]], $\\int_a^b f' = f(b) - f(a)$: the integral of a derivative over a region is determined by the boundary. The lesson builds on [[multiple-integrals]] and [[partial-derivatives]]."
+    },
+    {
+     "type": "definition",
+     "title": "Line integral of a vector field",
+     "body": "Let $\\mathbf F$ be a continuous vector field on a region of $\\mathbb R^2$ or $\\mathbb R^3$, and let $C$ be an oriented curve with a parametrisation $\\mathbf r : [a, b] \\to \\mathbb R^n$ that has a continuous derivative (or is piecewise so) and traces $C$ in its direction. The line integral of $\\mathbf F$ along $C$ is\n$$\\int_C \\mathbf F\\cdot d\\mathbf r = \\int_a^b \\mathbf F(\\mathbf r(t))\\cdot\\mathbf r'(t)\\,dt.$$\nIn the plane, with $\\mathbf F = (P, Q)$, it is also written $\\int_C P\\,dx + Q\\,dy$. When $C$ is closed we write $\\oint_C$.\n\nIt is the work done by the field on a particle moving along $C$: the sum of (force component along the path) times (distance moved)."
+    },
+    {
+     "type": "section",
+     "title": "First computations",
+     "body": "The value does not depend on the parametrisation, only on the curve and its direction: if $t = \\phi(s)$ with $\\phi$ increasing, the substitution rule turns $\\int \\mathbf F(\\mathbf r(\\phi(s)))\\cdot\\mathbf r'(\\phi(s))\\phi'(s)\\,ds$ back into the original integral. Reversing the direction changes the sign.\n\nTake $\\mathbf F = (-y, x)$, a field that swirls counterclockwise around the origin, and the unit circle $\\mathbf r(t) = (\\cos t, \\sin t)$, $0 \\le t \\le 2\\pi$. Then $\\mathbf F(\\mathbf r(t))\\cdot\\mathbf r'(t) = (-\\sin t)(-\\sin t) + \\cos t\\cos t = 1$, so\n$$\\oint_C \\mathbf F\\cdot d\\mathbf r = 2\\pi.$$\nGoing round clockwise gives $-2\\pi$.\n\nFor some fields, though, the work depends only on the endpoints. If $\\mathbf F = \\nabla\\phi$ for a function $\\phi$ (a potential), then by the chain rule $\\frac{d}{dt}\\phi(\\mathbf r(t)) = \\nabla\\phi(\\mathbf r(t))\\cdot\\mathbf r'(t)$, and the fundamental theorem of calculus gives the theorem below."
+    },
+    {
+     "type": "theorem",
+     "title": "Fundamental theorem for line integrals",
+     "body": "If $\\phi$ has continuous partial derivatives on an open set containing the curve $C$ from $\\mathbf p$ to $\\mathbf q$, then\n$$\\int_C \\nabla\\phi\\cdot d\\mathbf r = \\phi(\\mathbf q) - \\phi(\\mathbf p).$$\nIn particular $\\oint_C \\nabla\\phi\\cdot d\\mathbf r = 0$ for every closed curve $C$."
+    },
+    {
+     "type": "section",
+     "title": "Curl and divergence",
+     "body": "A field that is a gradient is called conservative. If $\\mathbf F = (P, Q) = \\nabla\\phi$ with $\\phi$ twice continuously differentiable, then $P_y = \\phi_{xy} = \\phi_{yx} = Q_x$. So the quantity\n$$Q_x - P_y,$$\nthe scalar curl, must vanish for a conservative field. It measures the local rotation of the field: for $(-y, x)$ it equals $2$ everywhere. Its companion, the divergence $P_x + Q_y$, measures how much the field spreads out from a point; for the radial field $(x, y)$ it equals $2$.\n\nIn three dimensions, with $\\mathbf F = (P, Q, R)$ and the symbolic vector $\\nabla = (\\partial_x, \\partial_y, \\partial_z)$,\n$$\\nabla\\times\\mathbf F = \\big(R_y - Q_z,\\ P_z - R_x,\\ Q_x - P_y\\big), \\qquad \\nabla\\cdot\\mathbf F = P_x + Q_y + R_z.$$\nThe curl is a vector: its direction is the axis about which the field rotates near a point, and its length is twice the angular speed of that rotation (the rigid rotation $(-y, x, 0)$ has angular speed $1$ and curl $(0, 0, 2)$). Two identities follow from the equality of mixed partials: $\\nabla\\times(\\nabla\\phi) = \\mathbf 0$ and $\\nabla\\cdot(\\nabla\\times\\mathbf F) = 0$ for twice continuously differentiable $\\phi$ and $\\mathbf F$."
+    },
+    {
+     "type": "theorem",
+     "title": "Green's theorem",
+     "body": "Let $D$ be a bounded region in the plane whose boundary $\\partial D$ consists of finitely many simple closed piecewise smooth curves, oriented so that $D$ lies on the left as each curve is traversed (counterclockwise on the outside, clockwise around any holes). If $P$ and $Q$ have continuous partial derivatives on an open set containing $D$ and its boundary, then\n$$\\oint_{\\partial D} P\\,dx + Q\\,dy = \\iint_D \\left(\\frac{\\partial Q}{\\partial x} - \\frac{\\partial P}{\\partial y}\\right)dA.$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof for regions that can be sliced both ways",
+     "body": "It suffices to prove $\\oint_{\\partial D} P\\,dx = -\\iint_D P_y\\,dA$ and $\\oint_{\\partial D} Q\\,dy = \\iint_D Q_x\\,dA$ separately. We prove the first when $D = \\{a \\le x \\le b,\\ g_1(x) \\le y \\le g_2(x)\\}$ with $g_1 \\le g_2$ continuous and with graphs that are piecewise smooth curves.\n\nBy Fubini and the fundamental theorem of calculus in $y$,\n$$\\iint_D P_y\\,dA = \\int_a^b\\int_{g_1(x)}^{g_2(x)} P_y(x, y)\\,dy\\,dx = \\int_a^b \\big[P(x, g_2(x)) - P(x, g_1(x))\\big]dx.$$\nNow go around $\\partial D$ counterclockwise. The bottom curve, $(x, g_1(x))$ with $x$ from $a$ to $b$, contributes $\\int_a^b P(x, g_1(x))\\,dx$ to $\\oint P\\,dx$ (by the substitution rule, in any parametrisation). The top curve is traversed from right to left and contributes $-\\int_a^b P(x, g_2(x))\\,dx$. On the vertical sides (if any) $x$ is constant, so $dx = 0$ and they contribute nothing. Adding, $\\oint_{\\partial D} P\\,dx = -\\iint_D P_y\\,dA$.\n\nThe identity for $Q$ is proved the same way, slicing $D$ horizontally as $\\{c \\le y \\le d,\\ h_1(y) \\le x \\le h_2(y)\\}$. So the theorem holds for regions that can be described in both ways, such as rectangles, triangles and discs. Most regions met in practice, including regions with holes such as an annulus, can be cut into finitely many such pieces; on each internal cut the two neighbouring pieces traverse it in opposite directions, so those contributions cancel and only $\\partial D$ remains. The theorem in the full generality stated needs an approximation argument, which we omit."
+    },
+    {
+     "type": "section",
+     "title": "Green's theorem at work",
+     "body": "With $P = -\\frac{y}{2}$, $Q = \\frac{x}{2}$ we have $Q_x - P_y = 1$, so the area of $D$ is a boundary integral:\n$$\\operatorname{area}(D) = \\frac12\\oint_{\\partial D}(x\\,dy - y\\,dx).$$\nFor the ellipse $x = a\\cos t$, $y = b\\sin t$ the integrand is $ab(\\cos^2 t + \\sin^2 t)\\,dt$, and the area is $\\frac12\\cdot 2\\pi ab = \\pi ab$.\n\nGreen's theorem also explains the earlier calculation: for $(-y, x)$ the curl is $2$, and $2 \\times \\operatorname{area}(\\text{unit disc}) = 2\\pi$. And it points to a converse of the fundamental theorem for line integrals: if $P$ and $Q$ have continuous partial derivatives and $Q_x = P_y$ on a connected open region without holes (a simply connected region, such as a disc), then every closed line integral vanishes (Green's theorem gives this for simple closed curves; general ones need more work), so $\\phi(\\mathbf q) = \\int_{\\mathbf p}^{\\mathbf q}\\mathbf F\\cdot d\\mathbf r$, along any path from a fixed point $\\mathbf p$, is a well-defined potential."
+    },
+    {
+     "type": "section",
+     "title": "Flux, and the theorems of Stokes and Gauss",
+     "body": "A surface $S$ parametrised by $\\mathbf r(u, v)$, $(u, v) \\in D$, has at each point the normal vector $\\mathbf r_u\\times\\mathbf r_v$, whose length is the area stretching factor. The flux of $\\mathbf F$ through $S$ is\n$$\\iint_S \\mathbf F\\cdot\\mathbf n\\,dS = \\iint_D \\mathbf F(\\mathbf r(u, v))\\cdot(\\mathbf r_u\\times\\mathbf r_v)\\,du\\,dv,$$\nwhere $\\mathbf n$ is the unit normal on the chosen side and the parametrisation is chosen so that $\\mathbf r_u\\times\\mathbf r_v$ points to that side. If $\\mathbf F$ is the velocity of a fluid, this is the volume crossing $S$ per unit time.\n\nStokes' theorem (stated without proof). Let $S$ be a bounded oriented piecewise smooth surface with unit normal $\\mathbf n$, whose boundary $\\partial S$ is a simple closed piecewise smooth curve, oriented compatibly with $\\mathbf n$: walking along $\\partial S$ with your head pointing along $\\mathbf n$, you have the surface on your left. If $\\mathbf F$ has continuous partial derivatives on an open set containing $S$ and its boundary, then\n$$\\oint_{\\partial S}\\mathbf F\\cdot d\\mathbf r = \\iint_S(\\nabla\\times\\mathbf F)\\cdot\\mathbf n\\,dS.$$\nFor a flat surface in the $xy$-plane this is Green's theorem. Note that the right side depends only on the boundary curve: every surface spanning the same loop has the same flux of curl. For example, with $\\mathbf F = (-y, x, 0)$, $\\nabla\\times\\mathbf F = (0, 0, 2)$, and the flux through the upper unit hemisphere is $2\\pi$ (it equals $2$ times the area of its shadow, the unit disc), which matches the circulation around the equator computed earlier.\n\nThe divergence theorem (stated without a full proof). If $E$ is a bounded solid whose boundary $\\partial E$ is a closed piecewise smooth surface (or several, if $E$ has cavities) with outward unit normal $\\mathbf n$, and $\\mathbf F$ has continuous partial derivatives on an open set containing $E$ and its boundary, then\n$$\\iint_{\\partial E}\\mathbf F\\cdot\\mathbf n\\,dS = \\iiint_E\\nabla\\cdot\\mathbf F\\,dV.$$\nFor a box $E = [0, a]\\times[0, b]\\times[0, c]$ and the field $(0, 0, R)$ the proof is one line: $\\iiint_E R_z\\,dV = \\iint\\big[R(x, y, c) - R(x, y, 0)\\big]dx\\,dy$, which is exactly the flux out through the top face (normal $(0,0,1)$) plus the flux out through the bottom (normal $(0,0,-1)$), while the four side faces have normals perpendicular to the field. The components $P$ and $Q$ are handled in the same way. The same Fubini argument works for any solid that lies between two graphs in each of the three coordinate directions (a ball, for example), and solids met in practice are cut into such pieces, the fluxes through internal cuts cancelling as in Green's theorem."
+    },
+    {
+     "type": "example",
+     "title": "Path dependence and independence",
+     "body": "Compute the work done by $\\mathbf F = (y^2, 2xy)$ and by $\\mathbf G = (y, 0)$ from $(0,0)$ to $(1,1)$, along the line $y = x$ and along the parabola $y = x^2$.",
+     "solution": "Along the line, $\\mathbf r(t) = (t, t)$, $\\mathbf r' = (1, 1)$; along the parabola, $\\mathbf r(t) = (t, t^2)$, $\\mathbf r' = (1, 2t)$, with $0 \\le t \\le 1$ in both cases.\n\nFor $\\mathbf F$: on the line $\\mathbf F\\cdot\\mathbf r' = t^2 + 2t^2 = 3t^2$, with integral $1$; on the parabola $\\mathbf F\\cdot\\mathbf r' = t^4 + 2t^3\\cdot 2t = 5t^4$, with integral $1$. This is no accident: $\\mathbf F = \\nabla(xy^2)$, so the work is $1\\cdot 1^2 - 0 = 1$ along every path.\n\nFor $\\mathbf G$: on the line $\\mathbf G\\cdot\\mathbf r' = t$, with integral $\\frac12$; on the parabola $\\mathbf G\\cdot\\mathbf r' = t^2$, with integral $\\frac13$. The answers differ, so $\\mathbf G$ is not conservative, consistent with $Q_x - P_y = 0 - 1 = -1 \\ne 0$. Green's theorem even predicts the difference: the line followed by the parabola backwards is a clockwise loop around the region between them, of area $\\int_0^1 (x - x^2)\\,dx = \\frac16$, so the difference is $-(-1)\\cdot\\frac16 = \\frac16 = \\frac12 - \\frac13$."
+    },
+    {
+     "type": "example",
+     "title": "Green's theorem on a disc",
+     "body": "Compute $\\displaystyle\\oint_C (-y^3)\\,dx + x^3\\,dy$ where $C$ is the circle $x^2 + y^2 = 4$, counterclockwise.",
+     "solution": "Here $Q_x - P_y = 3x^2 + 3y^2 = 3r^2$. By Green's theorem and polar coordinates,\n$$\\oint_C = \\iint_{x^2+y^2 \\le 4} 3r^2\\,dA = \\int_0^{2\\pi}\\int_0^2 3r^2\\cdot r\\,dr\\,d\\theta = 2\\pi\\cdot\\frac{3\\cdot 16}{4} = 24\\pi.$$\n(A direct parametrisation gives $\\int_0^{2\\pi} 16(\\sin^4 t + \\cos^4 t)\\,dt = 24\\pi$ as well.)"
+    },
+    {
+     "type": "example",
+     "title": "Flux out of a sphere",
+     "body": "Find the flux of $\\mathbf F = (x^3, y^3, z^3)$ outward through the unit sphere.",
+     "solution": "$\\nabla\\cdot\\mathbf F = 3(x^2 + y^2 + z^2) = 3\\rho^2$. By the divergence theorem and spherical coordinates,\n$$\\iint_{\\partial E}\\mathbf F\\cdot\\mathbf n\\,dS = \\int_0^{2\\pi}\\int_0^{\\pi}\\int_0^1 3\\rho^2\\cdot\\rho^2\\sin\\varphi\\,d\\rho\\,d\\varphi\\,d\\theta = 3\\cdot\\frac15\\cdot 2\\cdot 2\\pi = \\frac{12\\pi}{5}.$$"
+    },
+    {
+     "type": "example",
+     "title": "The winding field",
+     "body": "Let $\\mathbf F = \\left(\\dfrac{-y}{x^2 + y^2}, \\dfrac{x}{x^2 + y^2}\\right)$ on the plane without the origin. Show that $Q_x - P_y = 0$, yet $\\oint_C\\mathbf F\\cdot d\\mathbf r = 2\\pi$ for every counterclockwise simple closed piecewise smooth curve $C$ around the origin.",
+     "solution": "Write $r^2 = x^2 + y^2$. Then $Q_x = \\frac{r^2 - 2x^2}{r^4} = \\frac{y^2 - x^2}{r^4}$ and $P_y = -\\frac{r^2 - 2y^2}{r^4} = \\frac{y^2 - x^2}{r^4}$, so $Q_x - P_y = 0$ wherever $\\mathbf F$ is defined.\n\nOn the circle $C_\\varepsilon$ of radius $\\varepsilon$, $\\mathbf r(t) = (\\varepsilon\\cos t, \\varepsilon\\sin t)$, we get $\\mathbf F\\cdot\\mathbf r' = \\frac{\\varepsilon^2\\sin^2 t + \\varepsilon^2\\cos^2 t}{\\varepsilon^2} = 1$, so $\\oint_{C_\\varepsilon}\\mathbf F\\cdot d\\mathbf r = 2\\pi$. Green's theorem cannot be applied to the inside of $C$, because $\\mathbf F$ is not defined at the origin. Instead choose $\\varepsilon$ so small that $C_\\varepsilon$ lies inside $C$, and apply it to the region $D$ between them, where $\\mathbf F$ is smooth. The boundary of $D$ is $C$ counterclockwise together with $C_\\varepsilon$ clockwise, so\n$$\\oint_C\\mathbf F\\cdot d\\mathbf r - \\oint_{C_\\varepsilon}\\mathbf F\\cdot d\\mathbf r = \\iint_D 0\\,dA = 0,$$\nand $\\oint_C\\mathbf F\\cdot d\\mathbf r = 2\\pi$. In particular $\\mathbf F$ is not a gradient on the punctured plane, although its curl is zero: the hole at the origin is what prevents it. Near any point other than the origin, $\\mathbf F$ is the gradient of the polar angle $\\theta$, which cannot be defined continuously all the way around. For a curve that winds $k$ times around the origin the integral is $2\\pi k$, which is why it is used to count windings."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Orientation matters everywhere: reversing a curve flips the sign of a line integral, and Green's theorem requires the region on the left, so for a region with holes the inner boundaries go clockwise. In the divergence theorem the normal is outward; in Stokes' theorem the normal and the boundary direction must match.\n- Green's, Stokes' and Gauss's theorems need the field to be smooth on the whole region, including the inside. The winding field above, and the inverse-square field $\\mathbf r/|\\mathbf r|^3$ in space, are the standard traps.\n- Zero curl guarantees a potential on regions without holes (simply connected regions), but not in general: on the punctured plane the winding field has zero curl and no potential.\n- Do not confuse $\\int_C\\mathbf F\\cdot d\\mathbf r$ (work, depends on direction) with $\\int_C f\\,ds = \\int_a^b f(\\mathbf r(t))|\\mathbf r'(t)|\\,dt$ (for instance mass of a wire, independent of direction)."
+    },
+    {
+     "type": "connection",
+     "body": "Applying the divergence theorem to an arbitrary small ball turns integral conservation laws into differential equations: conservation of mass becomes $\\partial_t\\rho + \\nabla\\cdot(\\rho\\mathbf u) = 0$, and the momentum balance of a viscous fluid becomes the equations of [[navier-stokes]]. Maxwell's equations are stated in exactly this language; Gauss's law follows because the inverse-square field $\\mathbf r/|\\mathbf r|^3$ has zero divergence away from the origin and flux $4\\pi$ through every closed surface around it, by the same argument as for the winding field.\n\nIn complex analysis, Green's theorem applied to $f = u + iv$ with the Cauchy–Riemann equations gives $\\oint_C f(z)\\,dz = 0$ for [[holomorphic]] $f$ with continuous derivative on an open set containing $C$ and the region it bounds, and the winding integral $\\frac{1}{2\\pi i}\\oint\\frac{dz}{z}$ is the starting point of [[residues]]. The general Stokes theorem $\\int_M d\\omega = \\int_{\\partial M}\\omega$ for differential forms unifies all three theorems with the fundamental theorem of calculus."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that $\\mathbf F = (2x + y,\\ x + 3y^2)$ is conservative, find a potential, and compute its work from $(0, 0)$ to $(1, 2)$ along any path.\n2. Use Green's theorem to find the area enclosed by the astroid $x = \\cos^3 t$, $y = \\sin^3 t$, $0 \\le t \\le 2\\pi$.\n3. Find the outward flux of $\\mathbf F = (x, y, 0)$ through the closed surface of the solid cylinder $x^2 + y^2 \\le 1$, $0 \\le z \\le 1$.\n4. Verify $\\nabla\\times(\\nabla\\phi) = \\mathbf 0$ and $\\nabla\\cdot(\\nabla\\times\\mathbf F) = 0$ for twice continuously differentiable $\\phi$ and $\\mathbf F$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Marsden & Tromba, Vector Calculus"
+    },
+    {
+     "ref": "Schey, Div, Grad, Curl, and All That"
+    },
+    {
+     "ref": "Apostol, Calculus, Vol. 2"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Circulation of (-y,x) around unit circle = 2 pi; scalar curl 2; divergence of (x,y) is 2",
+     "python": "import sympy as sp\nt, x, y = sp.symbols('t x y', real=True)\nr = sp.Matrix([sp.cos(t), sp.sin(t)])\nF = sp.Matrix([-r[1], r[0]])\nassert sp.simplify(F.dot(r.diff(t))) == 1\nassert sp.integrate(F.dot(r.diff(t)),(t,0,2*sp.pi)) == 2*sp.pi\nassert sp.diff(x,x) - sp.diff(-y,y) == 2 and sp.diff(x,x) + sp.diff(y,y) == 2"
+    },
+    {
+     "claim": "Example 1: F = grad(x y^2) gives work 1 on both paths; G = (y,0) gives 1/2 and 1/3; difference 1/6 = area between curves",
+     "python": "import sympy as sp\nt, x, y = sp.symbols('t x y', real=True)\ndef work(P, Q, path):\n    X, Y = path\n    return sp.integrate(P.subs({x:X,y:Y})*sp.diff(X,t) + Q.subs({x:X,y:Y})*sp.diff(Y,t), (t,0,1))\nassert sp.diff(x*y**2,x) == y**2 and sp.diff(x*y**2,y) == 2*x*y\nassert work(y**2, 2*x*y, (t,t)) == 1 and work(y**2, 2*x*y, (t,t**2)) == 1\nassert work(y, 0*x, (t,t)) == sp.Rational(1,2) and work(y, 0*x, (t,t**2)) == sp.Rational(1,3)\nassert sp.integrate(x-x**2,(x,0,1)) == sp.Rational(1,6)"
+    },
+    {
+     "claim": "Green area formula: ellipse area pi a b; astroid area 3 pi/8",
+     "python": "import sympy as sp\nt, a, b = sp.symbols('t a b', positive=True)\ndef area(X, Y):\n    return sp.simplify(sp.integrate(X*sp.diff(Y,t) - Y*sp.diff(X,t),(t,0,2*sp.pi))/2)\nassert sp.simplify(area(a*sp.cos(t), b*sp.sin(t)) - sp.pi*a*b) == 0\nassert sp.simplify(area(sp.cos(t)**3, sp.sin(t)**3) - 3*sp.pi/8) == 0"
+    },
+    {
+     "claim": "Example 2: line integral of -y^3 dx + x^3 dy around circle radius 2 = 24 pi both ways; integral of sin^4 over period = 3 pi/4",
+     "python": "import sympy as sp\nt, r, th = sp.symbols('t r theta', real=True)\nX, Y = 2*sp.cos(t), 2*sp.sin(t)\ndirect = sp.integrate(-Y**3*sp.diff(X,t) + X**3*sp.diff(Y,t),(t,0,2*sp.pi))\nassert sp.simplify(direct - 24*sp.pi) == 0\nassert sp.integrate(3*r**2*r,(r,0,2),(th,0,2*sp.pi)) == 24*sp.pi\nassert sp.integrate(sp.sin(t)**4,(t,0,2*sp.pi)) == 3*sp.pi/4"
+    },
+    {
+     "claim": "Example 3: flux of (x^3,y^3,z^3) out of unit sphere = 12 pi/5 via divergence and via direct surface integral",
+     "python": "import sympy as sp\nrho, ph, th = sp.symbols('rho phi theta', positive=True)\nvol = sp.integrate(3*rho**2*rho**2*sp.sin(ph),(rho,0,1),(ph,0,sp.pi),(th,0,2*sp.pi))\nassert sp.simplify(vol - 12*sp.pi/5) == 0\nR = sp.Matrix([sp.sin(ph)*sp.cos(th), sp.sin(ph)*sp.sin(th), sp.cos(ph)])\nN = R.diff(ph).cross(R.diff(th))\nF = sp.Matrix([R[0]**3, R[1]**3, R[2]**3])\nflux = sp.integrate(sp.simplify(F.dot(N)),(ph,0,sp.pi),(th,0,2*sp.pi))\nassert sp.simplify(flux - 12*sp.pi/5) == 0"
+    },
+    {
+     "claim": "Stokes check: curl(-y,x,0) = (0,0,2); its flux through upper unit hemisphere = 2 pi",
+     "python": "import sympy as sp\nx, y, z, ph, th = sp.symbols('x y z phi theta', real=True)\nP, Q, Rr = -y, x, 0*x\ncurl = sp.Matrix([sp.diff(Rr,y)-sp.diff(Q,z), sp.diff(P,z)-sp.diff(Rr,x), sp.diff(Q,x)-sp.diff(P,y)])\nassert list(curl) == [0,0,2]\nS = sp.Matrix([sp.sin(ph)*sp.cos(th), sp.sin(ph)*sp.sin(th), sp.cos(ph)])\nN = S.diff(ph).cross(S.diff(th))\nassert sp.simplify(sp.integrate(sp.simplify(curl.dot(N)),(ph,0,sp.pi/2),(th,0,2*sp.pi)) - 2*sp.pi) == 0"
+    },
+    {
+     "claim": "Winding field: Q_x - P_y = 0 off the origin; circulation 2 pi on circles; also 2 pi around an off-centre ellipse enclosing 0 (numerical)",
+     "python": "import sympy as sp, mpmath\nx, y, t, e = sp.symbols('x y t epsilon', real=True)\nP = -y/(x**2+y**2); Q = x/(x**2+y**2)\nassert sp.simplify(sp.diff(Q,x) - sp.diff(P,y)) == 0\nep = sp.symbols('ep', positive=True)\nX, Y = ep*sp.cos(t), ep*sp.sin(t)\nintegrand = sp.simplify(P.subs({x:X,y:Y})*sp.diff(X,t) + Q.subs({x:X,y:Y})*sp.diff(Y,t))\nassert integrand == 1\nf = lambda s: (lambda X, Y, dX, dY: (-Y*dX + X*dY)/(X**2+Y**2))(0.5+3*mpmath.cos(s), -0.2+mpmath.sin(s), -3*mpmath.sin(s), mpmath.cos(s))\nassert abs(mpmath.quad(f, [0, 2*mpmath.pi]) - 2*mpmath.pi) < 1e-10"
+    },
+    {
+     "claim": "Exercises: potential x^2 + xy + y^3 gives work 11; cylinder flux 2 pi; curl grad = 0 and div curl = 0 symbolically",
+     "python": "import sympy as sp\nx, y, z = sp.symbols('x y z')\nphi = x**2 + x*y + y**3\nassert sp.diff(phi,x) == 2*x + y and sp.diff(phi,y) == x + 3*y**2\nassert phi.subs({x:1,y:2}) - phi.subs({x:0,y:0}) == 11\nr, th, zz = sp.symbols('r theta zz', positive=True)\nassert sp.integrate(2*r,(r,0,1),(th,0,2*sp.pi),(zz,0,1)) == 2*sp.pi\nf = sp.Function('f')(x,y,z)\nP, Q, R = [sp.Function(n)(x,y,z) for n in 'PQR']\ngrad = [sp.diff(f,v) for v in (x,y,z)]\ncurl = lambda A: [sp.diff(A[2],y)-sp.diff(A[1],z), sp.diff(A[0],z)-sp.diff(A[2],x), sp.diff(A[1],x)-sp.diff(A[0],y)]\nassert all(sp.simplify(c) == 0 for c in curl(grad))\nC = curl([P,Q,R])\nassert sp.simplify(sp.diff(C[0],x)+sp.diff(C[1],y)+sp.diff(C[2],z)) == 0"
+    },
+    {
+     "claim": "Reviewer: curl of rigid rotation omega x r is 2 omega; winding field equals grad of atan2(y,x); winding integral 2 pi around an off-centre square, 4 pi for a doubly traversed circle, 0 for a circle not enclosing the origin; r/|r|^3 has zero divergence and flux 4 pi through a sphere",
+     "python": "import sympy as sp, mpmath\nx, y, z, a, b, c = sp.symbols('x y z a b c', real=True)\nw = sp.Matrix([a, b, c]); F = w.cross(sp.Matrix([x, y, z]))\ncurl = sp.Matrix([sp.diff(F[2], y) - sp.diff(F[1], z), sp.diff(F[0], z) - sp.diff(F[2], x), sp.diff(F[1], x) - sp.diff(F[0], y)])\nassert sp.simplify(curl - 2*w) == sp.zeros(3, 1)\nth = sp.atan2(y, x)\nassert sp.simplify(sp.diff(th, x) + y/(x**2 + y**2)) == 0 and sp.simplify(sp.diff(th, y) - x/(x**2 + y**2)) == 0\nr3 = (x*x + y*y + z*z)**sp.Rational(3, 2)\nassert sp.simplify(sp.diff(x/r3, x) + sp.diff(y/r3, y) + sp.diff(z/r3, z)) == 0\ndef wind(path, ab):\n    def g(t):\n        (X, Y), (dX, dY) = path(t)\n        return (-Y*dX + X*dY)/(X**2 + Y**2)\n    return mpmath.quad(g, ab)\nsq = lambda t: (((-0.7 + 2*t, -0.9), (2, 0)) if t < 1 else ((1.3, -0.9 + 2*(t-1)), (0, 2)) if t < 2 else ((1.3 - 2*(t-2), 1.1), (-2, 0)) if t < 3 else ((-0.7, 1.1 - 2*(t-3)), (0, -2)))\nassert abs(wind(sq, [0, 1, 2, 3, 4]) - 2*mpmath.pi) < 1e-10\nassert abs(wind(lambda t: ((mpmath.cos(2*t), mpmath.sin(2*t)), (-2*mpmath.sin(2*t), 2*mpmath.cos(2*t))), [0, 2*mpmath.pi]) - 4*mpmath.pi) < 1e-10\nassert abs(wind(lambda t: ((3 + mpmath.cos(t), mpmath.sin(t)), (-mpmath.sin(t), mpmath.cos(t))), [0, 2*mpmath.pi])) < 1e-10\n# flux of r/|r|^3 through sphere of radius R: integrand R^{-2} * R^2 sin(phi)\nassert abs(mpmath.quad(lambda p: 2*mpmath.pi*mpmath.sin(p), [0, mpmath.pi]) - 4*mpmath.pi) < 1e-14"
+    },
+    {
+     "claim": "Reviewer: direct surface integral of x^4+y^4+z^4 over the unit sphere is 12 pi/5 (matches divergence theorem); Green's prediction 1/2 - 1/3 = 1/6 for G = (y,0)",
+     "python": "import mpmath\nfrom fractions import Fraction\nv = 3*mpmath.quad(lambda p: 2*mpmath.pi*mpmath.cos(p)**4*mpmath.sin(p), [0, mpmath.pi])\nassert abs(v - 12*mpmath.pi/5) < 1e-14\nassert Fraction(1, 2) - Fraction(1, 3) == Fraction(1, 6) == -(-1)*(Fraction(1, 2) - Fraction(1, 3))"
+    }
+   ]
+  }
+ }
+]

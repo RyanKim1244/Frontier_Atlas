@@ -1,0 +1,218 @@
+[
+ {
+  "id": "uniform-convergence",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "Says uniform convergence 'lets limits pass through integrals' without restriction; the lesson's own pitfall ((1/n)e^{-x/n} on [0,∞)) shows this fails on unbounded intervals.",
+    "fix": "Restricted to 'integrals over bounded intervals'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Summing a series by integrating term by term",
+    "problem": "Said 'the missing step is Abel's theorem' for 1 - 1/2 + 1/3 - ... = ln 2, implying uniform convergence/Abel is needed. In fact the error can be integrated directly (≤ 1/(n+2)); uniform convergence is sufficient, not necessary. Cross-reference to Abel's theorem in [[power-series]] checked: that lesson states it (without proof) and derives ln 2 from it, so the link is accurate.",
+    "fix": "Added the two-line direct estimate |ln 2 - S| = ∫_0^1 t^{n+1}/(1+t) dt ≤ 1/(n+2) and kept Abel's theorem as the general tool; added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'Converges uniformly on every closed interval strictly inside its interval of convergence' is vague.",
+    "fix": "Stated as: a power series with radius R converges uniformly on [-r, r] for every 0 < r < R."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Last bullet (order of quantifiers) repeats the intro and definitions.",
+    "fix": "Removed; minor trims in intro and first proof; minutes 21 → 20."
+   }
+  ]
+ },
+ {
+  "id": "lebesgue",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof: Dominated convergence theorem",
+    "problem": "Reduction to 'everywhere' was incomplete: it did not say the exceptional set is a countable union of null sets, nor handle g = ∞ on a null set (needed so that g ± f_n are defined and ∫g can be cancelled), nor note f_n integrable; liminf/limsup sign step unstated.",
+    "fix": "Rewrote: defines the exceptional set N (non-convergence, |f_n| > g for some n, g = ∞), shows it is null, redefines all functions as 0 on N, notes f, f_n integrable, invokes linearity, and states liminf(-a_n) = -limsup a_n."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem: Monotone convergence and Fatou's lemma",
+    "problem": "Hypotheses slightly loose: value range [0, ∞] not stated; measurability of the limit f and of liminf f_n not mentioned.",
+    "fix": "Stated for measurable f_n with values in [0, ∞] on (X, F, μ); added that f and liminf f_n are measurable."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Where these come from",
+    "problem": "'MCT comes almost directly from the definition' understates the proof (it needs countable additivity); Fatou's derivation only gestured at.",
+    "fix": "Said what the MCT proof uses (sup over simple functions + countable additivity, Folland Ch. 2) and gave the complete short proof of Fatou from MCT via g_n = inf_{k≥n} f_k."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition: Measure space",
+    "problem": "'Null' and 'almost everywhere' were defined only for Lebesgue outer measure but used for a general measure μ in the DCT.",
+    "fix": "Added: a null set is a set in F of measure 0; a.e. means outside some null set."
+   },
+   {
+    "severity": "error",
+    "where": "section: Measuring sets: outer measure",
+    "problem": "Countable subadditivity proof covers A_k with length ≤ m*(A_k) + ε/2^k, which is meaningless when some m*(A_k) = ∞.",
+    "fix": "Added 'if the right side is finite' (otherwise trivial)."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Dominated convergence at work (Gauss product)",
+    "problem": "Gamma step did not state the dominating function's integrability (needs s > 0), did not say how the closed form arises, nor state the formula being proved.",
+    "fix": "Added 0 ≤ f_n x^{s-1} ≤ e^{-x}x^{s-1}, integrable since s > 0; 'integrating by parts n times'; displayed Γ(s) = lim n! n^s/(s(s+1)…(s+n)) for s > 0. Verified the integral identity symbolically and the limit numerically (new check)."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'Every set obtained from intervals by countably many unions, intersections and complements is measurable' misdescribes the Borel sets (the σ-algebra needs transfinite iteration, not 'countably many operations').",
+    "fix": "Replaced by 'every Borel set (a set in the smallest σ-algebra containing the intervals)'."
+   },
+   {
+    "severity": "style",
+    "where": "example: An uncountable null set / pitfall / connection",
+    "problem": "'No digit 7' example verified correct (9^k intervals of length 10^-k; 0/1-digit strings give distinct numbers; uncountable, null). Pitfall bullet 'null does not mean countable' duplicated it; Gamma mention duplicated in connection.",
+    "fix": "Moved the 'null ≠ countable' remark into the example, removed the duplicate bullet and duplicate Gamma mention; added a check on distinct 0/1 decimals and on exercise 3's dominating function."
+   },
+   {
+    "severity": "style",
+    "where": "entry.key",
+    "problem": "DCT key statement omitted measurability of f_n.",
+    "fix": "Added 'f_n measurable'."
+   }
+  ]
+ },
+ {
+  "id": "linear-systems",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson (school stage)",
+    "problem": "Over-long for a school lesson (author's count ~2,700 raw words); padding in intro, geometric aside, Gauss–Jordan paragraph, row-operation definition, examples' closing remarks, pitfalls and connection (factoring algorithms, combinatorics methods are beyond a 15-year-old's prerequisites).",
+    "fix": "Trimmed throughout to ~1,570 words of prose (excluding math); connection shortened to matrices/vector spaces/determinants/finite fields; pitfalls merged from 5 to 4 bullets; four-cycle discussion compressed; minutes 25 → 20."
+   },
+   {
+    "severity": "style",
+    "where": "example: A parabola through three points",
+    "problem": "Cross-reference '[[linear-maps]] proves the corresponding fact for polynomials of any degree' checked: the interpolation example there proves existence and uniqueness for degree ≤ n through n+1 distinct points. Accurate.",
+    "fix": "Kept, reworded."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "All numbers (café, 3×3 run, echelon example, parabola, parameter cases k ≠ 5 / k = 5, m ≠ 3 / m = 3, five- and four-cycle, exercises) recomputed independently; all correct.",
+    "fix": "Added checks for exercise 2 and for reversibility of row operations."
+   }
+  ]
+ },
+ {
+  "id": "matrices",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "'Every linear recurrence can be rewritten as a matrix power' is false for non-constant coefficients.",
+    "fix": "Restricted to linear recurrences with constant coefficients."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Claim that [[linear-maps]] proves AB = I ⇒ BA = I for square matrices checked against that lesson: it does (section 'What rank–nullity says'). Accurate.",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "RF/FR, inverse by Gauss–Jordan, Fibonacci identities, F_20 = 6765, Cassini, M^64 by six squarings recomputed; all correct.",
+    "fix": "Added checks for the elementary-matrix argument (row operation = left multiplication by E, E invertible) and for exercises 2–3."
+   }
+  ]
+ },
+ {
+  "id": "vector-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Two bullets ('operations are part of the structure', ''vector' does not mean arrow') repeat the gallery section.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Axioms for (R_{>0}, ⊕, ⊙), subspace examples, Binet formula, F_2^2 as union of three lines recomputed; all correct.",
+    "fix": "Added checks that every solution of the Fibonacci recurrence is a combination of φ^n, ψ^n (determinant -√5 ≠ 0) and for the even/odd decomposition."
+   }
+  ]
+ },
+ {
+  "id": "basis-dimension",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "sources",
+    "problem": "Babai & Frankl, 'Linear Algebra Methods in Combinatorics' is a well-known but formally unpublished preliminary manuscript (University of Chicago lecture notes), not a citable published book.",
+    "fix": "Replaced by Matoušek, Thirty-three Miniatures: Mathematical and Algorithmic Applications of Linear Algebra (AMS), which treats Oddtown; no section given."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Counting dimensions",
+    "problem": "'By the second theorem' was used for both 'extend to a basis' and 'contains a basis', which are different parts of the shrinking/extending theorem.",
+    "fix": "Now cites part 2 and part 1 respectively."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Oddtown",
+    "problem": "Statement and proof verified (F_2 vectors, odd sizes ⇒ v·v = 1, even pairwise intersections ⇒ v_C·v_D = 0, so independent, at most n). Final step said 'by the theorem' without naming which.",
+    "fix": "Made explicit: F_2^n is spanned by n standard vectors, and independent lists are no longer than spanning lists."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "First two bullets repeat the first example and 'quick cases'.",
+    "fix": "Merged into one bullet."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Row reduction of [[1,4,7],[2,5,8],[3,6,9]], coordinates (9,5,1), Oddtown brute force for n ≤ 5, exercise 2 (t ≠ -1), magic-square dimension 3 recomputed; all correct.",
+    "fix": "Added checks for exercise 4 and dim_R C = 2."
+   }
+  ]
+ },
+ {
+  "id": "linear-maps",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: What rank–nullity says (AB = I ⇒ BA = I)",
+    "problem": "Used without justification that the inverse of the bijective linear map x ↦ Bx is linear (needed to represent it by a matrix C).",
+    "fix": "Added the one-line verification."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'Surprising consequences' phrasing.",
+    "fix": "Reworded neutrally."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Matrix of D on P_3, kernel/image of the 3×4 example (rank 2, column relations, image b_3 = b_1 + b_2), p - p' = x^3, interpolation p(4) = 15 recomputed; all correct.",
+    "fix": "Added checks for im D = P_2, the kernel of p ↦ (p(1), p'(1)) (exercise 3), and the infinite-dimensional pitfall."
+   }
+  ]
+ }
+]
