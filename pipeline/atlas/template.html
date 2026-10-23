@@ -6,7 +6,7 @@
 <title>Frontier Atlas</title>
 <meta name="description" content="An atlas of mathematics from school to the research frontier: concepts shared across fields, AI-written lessons checked by a second model, and olympiad, textbook and research problems with their current status.">
 <meta property="og:title" content="Frontier Atlas">
-<meta property="og:description" content="Mathematics from first principles to what was claimed last week.">
+<meta property="og:description" content="Mathematics from first principles to the frontier.">
 <meta name="theme-color" content="#fbfaf6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='9.5' fill='%23fbfaf6' stroke='%231d1c19' stroke-width='1.3'/%3E%3Cpath d='M11 3.5 L13.2 11 L11 18.5 L8.8 11 Z' fill='%23a13d1d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -338,7 +338,7 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
 </header>
 <main class="wrap" id="app"></main>
 <footer class="wrap">
-  <p>Frontier Atlas is a working title. Compiled 23 October 2026. Olympiad statements come from the IMO, USAMO and national olympiads, checked against the compfiles Lean statements; Erdős and Green problems come from Google DeepMind's formal-conjectures, with Erdős status from the erdosproblems.com mirror at teorth/erdosproblems. Solutions for olympiad and research problems are not written yet. Anything marked <i>claimed</i> is an unreviewed result, often AI-produced.</p>
+  <p>Compiled 23 October 2026. Sources are credited on the <a href="#problems">Problems</a> page. Results marked <i>claimed</i> are unverified, often AI-produced.</p>
   <p class="flinks"><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></p>
 </footer>
 <div class="toast" id="toast" hidden></div>
@@ -436,7 +436,7 @@ function lessonView(c, tocEl) {
   const L = c.lesson, box = h("div", { class: "lesson" });
   const meta = h("div", { class: "lesson-meta" },
     h("span", { class: "tag ai" }, "AI-written"),
-    h("span", null, "Drafted by one model, then checked by a second model working separately" + (L.fixed ? ", which found and fixed " + L.fixed + " mathematical error" + (L.fixed > 1 ? "s" : "") : "") + ". " + L.checks + " numerical claims were re-computed in code. About " + L.minutes + " minutes to read."),
+    h("span", null, "Written by AI, checked by a second model" + (L.fixed ? " (" + L.fixed + " error" + (L.fixed > 1 ? "s" : "") + " fixed)" : "") + ". " + L.checks + " claims verified in code · " + L.minutes + " min read."),
     h("button", { class: "linkbtn", onclick: () => { const d = document.getElementById("discussion-sec"); if (d) { d.scrollIntoView({ behavior: "smooth" }); const t = d.querySelector("textarea"); if (t) setTimeout(() => t.focus(), 400); } } }, "Report a mistake"));
   const body = h("div", { class: "lesson-body" }, h("p", { class: "small muted" }, "Loading the lesson…"));
   box.append(meta, body);
@@ -526,9 +526,9 @@ function viewHome() {
   return h("div", null,
     h("section", { class: "hero" },
       h("div", null,
-        h("div", { class: "eyebrow" }, "Mathematics · from school to the research frontier"),
-        h("h1", { style: "margin-top:14px" }, "An atlas of mathematics, from ", h("em", null, "first principles"), " to what was claimed last week"),
-        h("p", { class: "lede" }, "Concepts are shared across fields, so the Fourier analysis behind the circle method is the same page a physicist would read. Each concept carries the problems that test it: olympiad problems, and research problems with their current status."),
+        h("div", { class: "eyebrow" }, "Mathematics · school to research"),
+        h("h1", { style: "margin-top:14px" }, "From ", h("em", null, "first principles"), " to the frontier"),
+        h("p", { class: "lede" }, "Concepts, lessons and problems, linked across fields."),
         h("form", { class: "search-big", onsubmit: go }, qin, h("button", { type: "submit" }, "Search"))),
       h("aside", { class: "frontier", "aria-label": "Latest on the frontier" },
         h("div", { class: "eyebrow" }, "On the frontier"),
@@ -538,19 +538,19 @@ function viewHome() {
       led(CAT.concepts.length, "concepts"), led(ST.total, "problems"), led(usedFields.length, "fields touched")),
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Areas"), h("a", { class: "small", href: "#concepts" }, "All concepts")),
-      h("p", { class: "sub" }, "An area is a cluster of concepts, not a field. Combinatorial & additive belongs to combinatorics and number theory at once."),
+      h("p", { class: "sub" }, "Clusters of related concepts. One area can span several fields."),
       h("div", { class: "areas" }, CAT.bands.map(areaCard))),
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "How the fields connect"), h("a", { class: "small", href: "#map", onclick: () => { S.mapMode = "fields"; } }, "Open the map")),
-      h("p", { class: "sub" }, "Each circle is a field, sized by the concepts it owns. Lines are concepts two fields share or pass to each other as prerequisites. Click a field to see its concept graph."),
+      h("p", { class: "sub" }, "Circles are fields, lines are shared concepts. Click a field to open it."),
       h("div", { class: "map-box", style: "margin-top:16px;padding:6px 0" }, fieldOverview(980, 460, true))),
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Claimed, not yet checked"), h("a", { class: "small", href: "#problems", onclick: () => { Object.assign(S.gp, { kind: "research", status: "claimed", page: 0 }); } }, "All " + ST.claimed)),
-      h("p", { class: "sub" }, "Research problems where a solution has been claimed but the problem list still marks them open, most from the October 2026 OpenAI release."),
+      h("p", { class: "sub" }, "Solutions have been claimed but not yet verified."),
       claimedList()),
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Fields")),
-      h("p", { class: "sub" }, "Every field a concept belongs to or feeds into. Fields without a strand of their own are where the next ones attach."),
+      h("p", { class: "sub" }, "Every field the atlas touches."),
       h("div", { class: "tags", style: "margin-top:14px" }, usedFields.map(f => h("a", { class: "tag", href: "#field-" + f.id }, f.name, h("span", { class: "mono muted" }, CAT.concepts.filter(c => touchesField(c, f.id)).length))))));
 }
 function led(n, label) { return h("div", null, h("b", { "data-count": n }, n.toLocaleString("en-US")), h("span", null, label)); }
@@ -728,7 +728,7 @@ function viewMap() {
   fsel.addEventListener("change", () => { S.mapField = fsel.value; draw(); });
   gsel.addEventListener("change", () => { S.goal = gsel.value; draw(); });
   draw();
-  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Map"), h("p", null, "One graph for every field, shown at three scales: how fields connect, the concepts inside one field, and the path to a single concept.")),
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Map"), h("p", null, "Fields, the concepts inside each, and the path to any concept.")),
     h("div", { class: "maptools" }, modeSeg, ctl), body, info);
 }
 
@@ -756,7 +756,7 @@ function viewConcepts() {
         && (!S.filters.status || (S.filters.status === "has" ? c.nprob > 0 : S.filters.status === "lesson" ? !!c.lesson : c.status === S.filters.status)));
     if (q) rows.sort((a, b) => b.m - a.m);
     const out = [h("p", { class: "small muted", style: "margin-top:18px" }, rows.length + " of " + CAT.concepts.length + " concepts")];
-    if (!rows.length) out.push(h("div", { class: "empty" }, h("b", null, "No concept matches."), "Try a shorter word, an alias such as \"LTE\" or \"Szemerédi\", or an MSC code such as 11B."));
+    if (!rows.length) out.push(h("div", { class: "empty" }, h("b", null, "No concept matches."), "Try a shorter word, an alias like \"LTE\", or an MSC code like 11B."));
     if (q) rows.forEach(r => out.push(conceptRow(r.c)));
     else CAT.bands.forEach(b => {
       const rs = rows.filter(r => r.c.band === b.id); if (!rs.length) return;
@@ -812,7 +812,7 @@ function viewConcept(r) {
 }
 function renderProgress(el, cid) {
   const c = CON[cid];
-  const draw = () => { const sv = solvedInConcept(cid); el.replaceChildren(h("div", { class: "small" }, sv + " of " + c.nprob + " problems marked solved"), h("div", { class: "meter" }, h("i", { style: "width:" + (c.nprob ? 100 * Math.min(1, sv / c.nprob) : 0) + "%" })), h("div", { class: "small muted" }, "You mark problems yourself; nothing is graded.")); };
+  const draw = () => { const sv = solvedInConcept(cid); el.replaceChildren(h("div", { class: "small" }, sv + " of " + c.nprob + " problems marked solved"), h("div", { class: "meter" }, h("i", { style: "width:" + (c.nprob ? 100 * Math.min(1, sv / c.nprob) : 0) + "%" })), h("div", { class: "small muted" }, "Self-marked. Nothing is graded.")); };
   draw(); if (c.nprob) loadFor(c).then(draw).catch(() => {});
 }
 
@@ -827,7 +827,7 @@ function problemBrowser(c) {
   const st = c ? (S.pstate[c.id] = S.pstate[c.id] || { kind: "", status: "", coll: "", hide: false, page: 0, sort: "default", field: "", q: "" }) : S.gp;
   const box = h("div"), tools = h("div", { class: "ptools" }), list = h("div"), pager = h("div", { class: "pager" });
   box.append(tools, list, pager);
-  const none = () => { tools.remove(); pager.remove(); list.replaceChildren(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No problems here yet."), "This concept is still waiting for olympiad or research problems. You can submit one below.")); };
+  const none = () => { tools.remove(); pager.remove(); list.replaceChildren(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No problems here yet."), "You can submit one below.")); };
   if (c && c.nprob === 0) { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); subsReady.then(() => { if (bank().length) draw(); else none(); }); }
   else { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); loadFor(c).then(draw).catch(() => list.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); }
   if (c) box.append(submitForm(c));
@@ -948,7 +948,7 @@ function problemPage(p, list) {
   const main = h("div", null,
     problemCard(p, null, "page"),
     h("section", { class: "block", id: "discussion-sec", style: "margin-top:36px" }, h("h2", null, "Solutions and discussion"),
-      h("p", { class: "small muted", style: "margin:-4px 0 14px" }, "Post your own solution or an approach. Posts marked as solutions stay folded until a reader opens them."),
+      h("p", { class: "small muted", style: "margin:-4px 0 14px" }, "Solutions stay folded until a reader opens them."),
       threadBox("problem:" + p.id, { solutions: true })));
   const aside = h("aside", { class: "aside" },
     h("section", { class: "block" }, h("h2", null, "Concepts"), h("ul", null, p.concepts.map(x => h("li", null, dot(CON[x].band), " ", conceptLink(x))))),
@@ -986,7 +986,7 @@ function submitForm(c) {
 function viewProblems() {
   const C = ST.collections;
   return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Problems"),
-    h("p", null, ST.textbook + " textbook exercises from openly licensed books, " + ST.olympiad + " olympiad problems (IMO " + C["IMO"] + ", USAMO " + C["USAMO"] + (C["Putnam"] ? ", Putnam " + C["Putnam"] : "") + ", and national olympiads), " + ST.research + " research problems (" + C["Erdős"] + " Erdős, " + C["Green"] + " from Ben Green's list, the " + C["Millennium"] + " Millennium Prize Problems; " + ST.open + " open, " + ST.claimed + " claimed, " + ST.solved + " solved). Solutions come from readers on each problem's page; mark what you solve yourself.")),
+    h("p", null, ST.total.toLocaleString("en") + " problems from open textbooks, olympiads and research lists. Solutions come from readers.")),
     problemBrowser(null), h("div", { class: "credit" }, CAT.credits.map(t => h("p", { style: "margin:0 0 4px" }, t))));
 }
 
@@ -999,7 +999,7 @@ function evRow(e) {
         e.url ? h("a", { class: "tag", href: e.url, target: "_blank", rel: "noopener" }, e.src + " ↗") : null)));
 }
 function viewTimeline() {
-  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Timeline"), h("p", null, "Research in order, each event tagged with the concepts it created or moved. The autumn 2026 entries are claims still being checked.")),
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Timeline"), h("p", null, "Research in order, tagged with the concepts it moved. Autumn 2026 entries are unverified claims.")),
     ERAS.map(([name, a, b]) => { const evs = CAT.events.filter(e => e.y >= a && e.y <= b).sort((x, y) => x.y - y.y); return evs.length ? h("section", { class: "era" }, h("div", { class: "era-h" }, h("h2", null, name), h("span", { class: "small muted" }, evs.length + " events")), evs.map(evRow)) : null; }));
 }
 function viewField(r) {
@@ -1150,8 +1150,8 @@ function pushProgress(pid, on) {
 function canPost() { return S.community === "on" && !!S.uid && !!S.me; }
 function participationNote() {
   if (S.community === "loading") return "Loading the discussion…";
-  if (S.community === "off") return "Discussion is not switched on for this copy of the site. What you mark as solved is kept in this browser.";
-  if (!S.uid) return ["Reading is open to everyone. ", h("button", { class: "linkbtn", onclick: openSignIn }, "Sign in"), " to post, vote or submit a problem."];
+  if (S.community === "off") return "Discussion is off on this copy of the site. Your marks are kept in this browser.";
+  if (!S.uid) return [h("button", { class: "linkbtn", onclick: openSignIn }, "Sign in"), " to post, vote or submit a problem."];
   if (!S.me) return "Your profile could not be loaded. Reload the page.";
   return null;
 }
@@ -1211,7 +1211,7 @@ async function renderThread(el, fresh) {
   const out = [], note = participationNote();
   if (note) out.push(h("div", { class: "note" }, note));
   if (failed) out.push(h("div", { class: "note" }, "The discussion could not be loaded. Reload the page to try again."));
-  if (!tops.length && S.community === "on" && !failed) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No posts yet."), target.startsWith("problem:") ? "Post an approach, a proof or a question about this problem." : "Ask a question, explain an idea, or point out a gap in the map."));
+  if (!tops.length && S.community === "on" && !failed) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No posts yet."), target.startsWith("problem:") ? "Share an approach, a proof or a question." : "Ask a question or point out a gap."));
   tops.forEach(t => out.push(postView(t, ps, items.filter(r => r.parent === t.id), opts)));
   if (canPost()) {
     const key = target, ta = h("textarea", { id: "c-" + target.replace(/[^a-z0-9]/gi, "-"), placeholder: "Plain text; math in $...$ or $$...$$." });
@@ -1225,7 +1225,7 @@ async function renderThread(el, fresh) {
 }
 function viewQuestions() {
   setTimeout(() => renderQuestions(true), 0);
-  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Research questions"), h("p", null, "Questions that came up while studying, gaps in the map, problems worth attacking next. Agree with the ones you want answered.")),
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Research questions"), h("p", null, "Questions worth answering next. Vote for the ones you want answered.")),
     h("div", { class: "cgrid" }, h("div", { class: "thread", id: "qlist" }), h("aside", { class: "aside" }, h("section", { class: "block" }, h("h2", null, "Propose a question"), h("div", { id: "qcomp" })))));
 }
 let qGen = 0;
@@ -1242,7 +1242,7 @@ async function renderQuestions(fresh) {
   props.sort((a, b) => votesFor(b.id).n - votesFor(a.id).n || b.createdAt.localeCompare(a.createdAt));
   const out = [], note = participationNote();
   if (note) out.push(h("div", { class: "note" }, note));
-  if (!props.length) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No research questions yet."), "Propose one here, or tick \"Propose as a research question\" when posting on a concept page."));
+  if (!props.length) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No questions yet."), "Propose the first one."));
   props.forEach(p => out.push(postView(p, ps, all.filter(r => r.parent === p.id), { showTarget: true })));
   list.replaceChildren(...out); typeset(list);
   if (!comp || comp.dataset.built === String(canPost())) return;
@@ -1255,7 +1255,7 @@ async function renderQuestions(fresh) {
 }
 function viewReview() {
   setTimeout(() => renderReviewList(true), 0);
-  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Review submissions"), h("p", null, "Accepted problems appear on their concept page right away, marked Community.")), h("div", { id: "rlist" }));
+  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Review submissions"), h("p", null, "Accepted problems appear on their concept page.")), h("div", { id: "rlist" }));
 }
 let rGen = 0;
 async function renderReviewList(fresh) {
@@ -1269,7 +1269,7 @@ async function renderReviewList(fresh) {
   if (!S.isAdmin) { el.replaceChildren(h("p", { class: "note" }, S.community === "loading" ? "Loading…" : "Only editors can review submissions.")); return; }
   const ps = await names(subs.map(i => i.author));
   if (gen !== rGen) return;
-  if (!subs.length) { el.replaceChildren(h("div", { class: "empty" }, h("b", null, "No submissions yet."), "Problems submitted from concept pages wait here.")); return; }
+  if (!subs.length) { el.replaceChildren(h("div", { class: "empty" }, h("b", null, "No submissions yet."), "Submissions from concept pages wait here.")); return; }
   el.replaceChildren(...subs.sort((a, b) => (S.reviews[a.id] ? 1 : 0) - (S.reviews[b.id] ? 1 : 0) || b.createdAt.localeCompare(a.createdAt)).map(it => {
     const rv = S.reviews[it.id], c = CON[it.target.slice(8)];
     const q = h("div", { class: "q" }); q.textContent = safeTex(it.body);
@@ -1303,10 +1303,10 @@ function openSignIn() {
   ok.addEventListener("change", () => btns.forEach(b => { b.disabled = !ok.checked; }));
   dlg = h("dialog", { id: "signin", class: "dlg", "aria-labelledby": "signin-h" },
     h("h2", { id: "signin-h" }, "Sign in to Frontier Atlas"),
-    h("p", { class: "small" }, "Signing in lets you post, vote, submit problems and keep your progress across devices. Reading needs no account."),
+    h("p", { class: "small" }, "Post, vote and keep your progress across devices. Reading needs no account."),
     h("label", { class: "consent", for: "signin-ok" }, ok, h("span", null, "I am 14 or older, and I agree to the ", h("a", { href: "#terms", onclick: () => dlg.close() }, "Terms"), " and the ", h("a", { href: "#privacy", onclick: () => dlg.close() }, "Privacy Policy"), ".")),
     h("div", { class: "provs" }, btns),
-    h("p", { class: "small muted" }, "Your public name starts as a neutral handle (your username if you use GitHub). You can change it on your account page."),
+    h("p", { class: "small muted" }, "You start with a neutral public name. Change it anytime."),
     h("form", { method: "dialog", class: "dlg-x" }, h("button", { class: "linkbtn" }, "Cancel")));
   document.body.append(dlg);
   dlg.showModal(); ok.focus();
@@ -1348,7 +1348,7 @@ function viewAccount() {
   const hasBio = Object.prototype.hasOwnProperty.call(me, "bio");
 
   const nameIn = h("input", { type: "text", id: "acct-name", value: me.display_name || "", maxlength: "40", autocomplete: "nickname" });
-  const bioIn = h("textarea", { id: "acct-bio", maxlength: "500", placeholder: "A line or two: what you study, what you are working toward. Math in $...$ works." });
+  const bioIn = h("textarea", { id: "acct-bio", maxlength: "500", placeholder: "What you study, what you are working toward. Math in $...$ works." });
   bioIn.value = me.bio || "";
   const left = h("span", { class: "small muted" });
   const upd = () => { left.textContent = (500 - bioIn.value.length) + " characters left"; };
@@ -1381,18 +1381,18 @@ function viewAccount() {
     h("header", { class: "page-h" }, h("h1", null, "Account")),
     profileCard(me, true),
     h("div", { class: "settings" },
-      settingRow("Profile", "Shown on your public page and next to your posts.",
+      settingRow("Profile", "Shown on your page and your posts.",
         h("label", { for: "acct-name", class: "flabel" }, "Public name"), nameIn,
-        h("p", { class: "small muted hint" }, "2 to 40 characters. Avoid your full real name if you prefer privacy."),
+        h("p", { class: "small muted hint" }, "2–40 characters."),
         hasBio ? [h("label", { for: "acct-bio", class: "flabel" }, "About"), bioIn, left] : null,
         h("div", { class: "srow-act" }, save)),
       settingRow("Sign-in", "Only you see this.",
         h("dl", { class: "kv" }, h("dt", null, "Provider"), h("dd", null, PROVIDERS[prov] || prov || "—"), user.email ? [h("dt", null, "Email"), h("dd", null, user.email)] : null, h("dt", null, "Joined"), h("dd", null, fmtJoined(me.created_at))),
         h("div", { class: "srow-act" }, h("button", { class: "btn ghost", onclick: signOut }, "Sign out"))),
-      S.isAdmin ? settingRow("Editor", "You can review problem submissions and remove posts.", h("a", { class: "btn ghost", href: "#review" }, "Open the review queue")) : null,
-      settingRow("Your data", "Profile, posts, votes and the problems you marked solved, as one JSON file.",
+      S.isAdmin ? settingRow("Editor", "Review submissions and remove posts.", h("a", { class: "btn ghost", href: "#review" }, "Open the review queue")) : null,
+      settingRow("Your data", "Everything you stored, as JSON.",
         h("div", { class: "srow-act" }, h("button", { class: "btn ghost", onclick: exportMine }, "Download my data"))),
-      settingRow("Delete account", "Removes your profile, posts, replies, votes and progress immediately. This cannot be undone.",
+      settingRow("Delete account", "Deletes your profile, posts, votes and progress. This cannot be undone.",
         h("div", { class: "formrow" }, h("label", { for: "acct-del", class: "sr" }, "Confirm"), delIn, del))));
   return box;
 }
@@ -1427,7 +1427,7 @@ function viewUser(r) {
       h("div", { style: "margin-top:14px" }, profileCard(p.data, p.data.id === S.uid)),
       stats,
       h("section", { class: "section", style: "margin-top:34px" }, h("div", { class: "section-h" }, h("h2", null, "Recent activity"), h("span", { class: "small muted" }, list.length ? list.length + (list.length === 100 ? "+" : "") : "")),
-        list.length ? list.map(activityRow) : h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "Nothing yet."), "Posts, solutions and questions will show up here.")));
+        list.length ? list.map(activityRow) : h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "Nothing yet."), "Posts and questions will show up here.")));
     typeset(box);
   };
   setTimeout(() => show().catch(() => box.replaceChildren(h("div", { class: "empty" }, h("b", null, "The profile could not be loaded."), "Reload the page to try again."))), 0);
