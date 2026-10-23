@@ -272,8 +272,29 @@ footer p { max-width: 62em; }
 .provs { display: grid; gap: 8px; } .provs .btn { width: 100%; padding: 10px 14px; }
 .dlg-x { text-align: right; margin-top: 4px; }
 .btn.danger { background: var(--accent); border-color: var(--accent); }
-.acct-block { max-width: 560px; margin-top: 26px; } .acct-block .formrow input { flex: 1; min-width: 180px; }
+.srow-b .formrow input { flex: 1; min-width: 160px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.av { display: inline-grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--sans); font-weight: 600; flex: none; object-fit: cover; }
+.acctpage { max-width: 760px; }
+.pcardx { display: flex; gap: 18px; align-items: flex-start; border: 1px solid var(--rule); background: var(--raise); border-radius: 6px; padding: 20px 22px; margin-top: 18px; }
+.pname { font-family: var(--serif); font-size: 26px; line-height: 1.2; }
+.pbio { margin-top: 8px; color: var(--ink-2); font-size: 16.5px; } .pbio p { margin: 0 0 6px; }
+.settings { margin-top: 10px; }
+.srow { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 10px 32px; padding: 26px 0; border-top: 1px solid var(--rule); }
+.srow:first-child { border-top: 0; }
+.srow-h h2 { font-size: 18px; } .srow-h p { font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin: 6px 0 0; line-height: 1.45; }
+.srow-b { display: grid; gap: 8px; align-content: start; } .srow-b input[type="text"] { width: 100%; }
+.flabel { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-2); } .srow-b .flabel ~ .flabel { margin-top: 10px; }
+.hint { margin: 0; }
+.srow-act { margin-top: 6px; } .srow-act .btn { text-decoration: none; display: inline-block; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; margin: 0; font-family: var(--sans); font-size: 14px; } .kv dt { color: var(--ink-3); } .kv dd { margin: 0; overflow-wrap: anywhere; }
+.pstats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.pstats div { border: 1px solid var(--rule); border-radius: 6px; padding: 14px 12px 12px; text-align: center; background: var(--raise); }
+.pstats b { display: block; font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1; } .pstats span { display: block; margin-top: 6px; font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.arow { border-top: 1px solid var(--rule); padding: 12px 0; } .arow-h { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+.abody { margin-top: 6px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; color: var(--ink-2); }
+.pauthor { color: var(--ink); font-weight: 600; text-decoration: none; } .pauthor:hover { text-decoration: underline; }
+@media (max-width: 700px) { .srow { grid-template-columns: minmax(0, 1fr); padding: 20px 0; } .pcardx { padding: 16px; gap: 14px; } .pname { font-size: 22px; } }
 .legal { max-width: 44em; } .legal h2 { font-size: 20px; margin-top: 28px; } .legal p { color: var(--ink-2); margin: 8px 0; }
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); background: var(--ink); color: var(--paper); padding: 8px 16px; border-radius: 4px; font-family: var(--sans); font-size: 14px; z-index: 30; }
 mjx-container { color: inherit; }
@@ -468,6 +489,7 @@ function toggleSolved(pid) { const on = !S.solved.has(pid); if (on) S.solved.add
 const PB = {}, PBload = {}, PIDX = {};
 function loadSrc(k) { if (PB[k]) return Promise.resolve(PB[k]); if (!PBload[k]) PBload[k] = fetch("data/problems/" + k + ".json").then(r => { if (!r.ok) throw new Error(k); return r.json(); }).then(x => { PB[k] = x; x.forEach(p => { PIDX[p.id] = p; }); return x; }); return PBload[k]; }
 /* Accepted community problems arrive from the backend; wait for the first load (at most 4 s) so lists include them. */
+let sbDone; const sbReady = new Promise(r => { sbDone = r; });
 let subsDone; const subsReady = new Promise(r => { subsDone = r; }); setTimeout(() => subsDone(), 4000);
 function loadFor(c) { return Promise.all([...KINDS.filter(k => !c || c.np[k]).map(loadSrc), subsReady]); }
 function allProblems() { return [].concat(PB.textbook || [], PB.olympiad || [], PB.research || [], PB.examples || [], communityProblems()); }
@@ -479,6 +501,7 @@ function parseRoute() {
   if (t.startsWith("concept-") && CON[t.slice(8)]) return { name: "concept", id: t.slice(8) };
   if (t.startsWith("field-") && FIELD[t.slice(6)]) return { name: "field", id: t.slice(6) };
   if (t.startsWith("problem-") && t.length > 8) return { name: "problem", id: t.slice(8) };
+  if (/^user-[0-9a-f-]{36}$/.test(t)) return { name: "user", id: t.slice(5) };
   if (["concepts", "problems", "map", "timeline", "questions", "review", "account", "privacy", "terms"].includes(t)) return { name: t };
   return { name: "home" };
 }
@@ -486,7 +509,7 @@ function route() {
   S.route = parseRoute();
   document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.r === S.route.name || (S.route.name === "problem" && a.dataset.r === "problems")));
   const app = document.getElementById("app");
-  const views = { home: viewHome, concepts: viewConcepts, problems: viewProblems, map: viewMap, timeline: viewTimeline, questions: viewQuestions, review: viewReview, account: viewAccount, privacy: viewPrivacy, terms: viewTerms, concept: viewConcept, field: viewField, problem: viewProblem };
+  const views = { home: viewHome, concepts: viewConcepts, problems: viewProblems, map: viewMap, timeline: viewTimeline, questions: viewQuestions, review: viewReview, account: viewAccount, user: viewUser, privacy: viewPrivacy, terms: viewTerms, concept: viewConcept, field: viewField, problem: viewProblem };
   app.replaceChildren(views[S.route.name](S.route));
   window.scrollTo(0, 0);
   typeset(app);
@@ -1163,7 +1186,7 @@ function postView(it, ps, replies, opts) {
     const del = h("button", { class: "linkbtn", onclick: () => { if (del.dataset.armed) deleteItem(it); else { del.dataset.armed = "1"; del.textContent = "Delete for good?"; setTimeout(() => { if (del.isConnected) { delete del.dataset.armed; del.textContent = "Delete"; } }, 4000); } } }, "Delete");
     acts.append(del);
   }
-  el.append(h("div", { class: "post-h" }, p.avatarUrl ? h("img", { src: p.avatarUrl, alt: "" }) : null, h("b", null, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
+  el.append(h("div", { class: "post-h" }, p.avatarUrl ? h("img", { src: p.avatarUrl, alt: "" }) : null, h("a", { class: "pauthor", href: "#user-" + it.author }, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
     it.kind === "proposal" ? h("span", { class: "tag claimed" }, "Research question") : null, it.spoiler ? h("span", { class: "tag solved" }, "Solution") : null, opts.showTarget ? targetLink(it.target) : null), shownBody, acts);
   if (!it.parent) {
     if (replies.length) el.append(h("div", { class: "replies" }, replies.map(r => postView(r, ps, [], opts))));
@@ -1298,7 +1321,7 @@ async function signOut() { if (S.sb) await S.sb.auth.signOut(); location.hash = 
 async function loadMe() {
   S.me = null; S.isAdmin = false;
   if (!S.uid) return;
-  const [p, a] = await Promise.all([S.sb.from("profiles").select("id,display_name,avatar_url,terms_accepted_at,created_at").eq("id", S.uid).maybeSingle(), S.sb.from("admins").select("user_id").eq("user_id", S.uid).maybeSingle()]);
+  const [p, a] = await Promise.all([S.sb.from("profiles").select("*").eq("id", S.uid).maybeSingle(), S.sb.from("admins").select("user_id").eq("user_id", S.uid).maybeSingle()]);
   if (!p.error) S.me = p.data;
   S.isAdmin = !a.error && !!a.data;
   let consent = null; try { consent = sessionStorage.getItem(CONSENT_KEY); sessionStorage.removeItem(CONSENT_KEY); } catch (e) {}
@@ -1307,24 +1330,43 @@ async function loadMe() {
     if (!r.error && r.data) S.me.terms_accepted_at = r.data.terms_accepted_at;
   }
 }
+function avatar(name, url, size) {
+  const st = "width:" + size + "px;height:" + size + "px;font-size:" + Math.round(size * 0.42) + "px";
+  return url ? h("img", { class: "av", src: url, alt: "", style: st }) : h("span", { class: "av", "aria-hidden": "true", style: st }, (name || "?").slice(0, 1).toUpperCase());
+}
+function fmtJoined(iso) { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { year: "numeric", month: "long" }); }
+function settingRow(title, note, ...body) {
+  return h("section", { class: "srow" }, h("div", { class: "srow-h" }, h("h2", null, title), note ? h("p", null, note) : null), h("div", { class: "srow-b" }, body));
+}
 function viewAccount() {
-  const box = h("div", null, h("header", { class: "page-h" }, h("h1", null, "Your account")));
-  if (S.community === "off") { box.append(h("p", { class: "note" }, "Accounts are not switched on for this copy of the site.")); return box; }
+  const box = h("div", { class: "acctpage" });
+  if (S.community === "off") { box.append(h("header", { class: "page-h" }, h("h1", null, "Account")), h("p", { class: "note" }, "Accounts are not switched on for this copy of the site.")); return box; }
   if (S.community === "loading") { box.append(h("p", { class: "small muted" }, "Loading…")); return box; }
-  if (!S.uid) { box.append(h("p", null, "You are not signed in."), h("button", { class: "btn", onclick: openSignIn }, "Sign in")); return box; }
-  const me = S.me || {};
+  if (!S.uid) { box.append(h("header", { class: "page-h" }, h("h1", null, "Account")), h("p", null, "You are not signed in."), h("button", { class: "btn", onclick: openSignIn }, "Sign in")); return box; }
+  const me = S.me || {}, user = (S.session && S.session.user) || {};
+  const prov = (user.app_metadata && user.app_metadata.provider) || "";
+  const hasBio = Object.prototype.hasOwnProperty.call(me, "bio");
+
   const nameIn = h("input", { type: "text", id: "acct-name", value: me.display_name || "", maxlength: "40", autocomplete: "nickname" });
+  const bioIn = h("textarea", { id: "acct-bio", maxlength: "500", placeholder: "A line or two: what you study, what you are working toward. Math in $...$ works." });
+  bioIn.value = me.bio || "";
+  const left = h("span", { class: "small muted" });
+  const upd = () => { left.textContent = (500 - bioIn.value.length) + " characters left"; };
+  bioIn.addEventListener("input", upd); upd();
   const save = h("button", { class: "btn", onclick: async () => {
-    const v = nameIn.value.trim();
-    if (v.length < 2 || v.length > 40) { toast("Use 2 to 40 characters."); return; }
+    const v = nameIn.value.trim(), bio = bioIn.value.trim();
+    if (v.length < 2 || v.length > 40) { toast("Use 2 to 40 characters for the name."); return; }
     save.disabled = true;
-    const { data, error } = await S.sb.from("profiles").update({ display_name: v }).eq("id", S.uid).select("display_name").maybeSingle();
+    const patch = { display_name: v }; if (hasBio) patch.bio = bio;
+    const { data, error } = await S.sb.from("profiles").update(patch).eq("id", S.uid).select("*").maybeSingle();
     save.disabled = false;
-    if (error || !data) { toast("Could not save the name."); return; }
-    S.me.display_name = data.display_name;
+    if (error || !data) { toast("Could not save your profile."); return; }
+    S.me = data;
     Object.values(S.posts).forEach(it => { if (it.author === S.uid) it.authorName = data.display_name; });
-    renderAcct(); toast("Saved.");
-  } }, "Save name");
+    renderAcct(); toast("Profile saved.");
+    const card = document.getElementById("acct-card"); if (card) card.replaceWith(profileCard(S.me, true));
+  } }, "Save profile");
+
   const delIn = h("input", { type: "text", id: "acct-del", placeholder: "Type delete", autocomplete: "off" });
   const del = h("button", { class: "btn danger", onclick: async () => {
     if (delIn.value.trim().toLowerCase() !== "delete") { toast("Type delete to confirm."); return; }
@@ -1334,21 +1376,70 @@ function viewAccount() {
     try { await S.sb.auth.signOut({ scope: "local" }); } catch (e) {}
     S.posts = {}; S.loads = {}; toast("Your account was deleted."); location.hash = "";
   } }, "Delete my account");
-  const exp = h("button", { class: "btn ghost", onclick: exportMine }, "Download my data");
-  const prov = (S.session && S.session.user && S.session.user.app_metadata && S.session.user.app_metadata.provider) || "";
+
   box.append(
-    h("section", { class: "block acct-block" }, h("h2", null, "Public name"),
-      h("p", { class: "small muted" }, "Shown next to your posts. Avoid your full real name if you prefer privacy."),
-      h("div", { class: "formrow" }, h("label", { for: "acct-name", class: "sr" }, "Public name"), nameIn, save)),
-    h("section", { class: "block acct-block" }, h("h2", null, "Signed in with"), h("p", null, PROVIDERS[prov] || prov || "—"),
-      h("button", { class: "btn ghost", onclick: signOut }, "Sign out")),
-    S.isAdmin ? h("section", { class: "block acct-block" }, h("h2", null, "Editor"), h("p", null, "You can review problem submissions. ", h("a", { href: "#review" }, "Open the review queue"))) : null,
-    h("section", { class: "block acct-block" }, h("h2", null, "Your data"),
-      h("p", { class: "small muted" }, "A JSON file with your profile, posts, votes and the problems you marked solved."), exp),
-    h("section", { class: "block acct-block" }, h("h2", null, "Delete account"),
-      h("p", { class: "small muted" }, "Removes your profile, posts, replies, votes and progress right away. This cannot be undone."),
-      h("div", { class: "formrow" }, h("label", { for: "acct-del", class: "sr" }, "Confirm"), delIn, del)));
+    h("header", { class: "page-h" }, h("h1", null, "Account")),
+    profileCard(me, true),
+    h("div", { class: "settings" },
+      settingRow("Profile", "Shown on your public page and next to your posts.",
+        h("label", { for: "acct-name", class: "flabel" }, "Public name"), nameIn,
+        h("p", { class: "small muted hint" }, "2 to 40 characters. Avoid your full real name if you prefer privacy."),
+        hasBio ? [h("label", { for: "acct-bio", class: "flabel" }, "About"), bioIn, left] : null,
+        h("div", { class: "srow-act" }, save)),
+      settingRow("Sign-in", "Only you see this.",
+        h("dl", { class: "kv" }, h("dt", null, "Provider"), h("dd", null, PROVIDERS[prov] || prov || "—"), user.email ? [h("dt", null, "Email"), h("dd", null, user.email)] : null, h("dt", null, "Joined"), h("dd", null, fmtJoined(me.created_at))),
+        h("div", { class: "srow-act" }, h("button", { class: "btn ghost", onclick: signOut }, "Sign out"))),
+      S.isAdmin ? settingRow("Editor", "You can review problem submissions and remove posts.", h("a", { class: "btn ghost", href: "#review" }, "Open the review queue")) : null,
+      settingRow("Your data", "Profile, posts, votes and the problems you marked solved, as one JSON file.",
+        h("div", { class: "srow-act" }, h("button", { class: "btn ghost", onclick: exportMine }, "Download my data"))),
+      settingRow("Delete account", "Removes your profile, posts, replies, votes and progress immediately. This cannot be undone.",
+        h("div", { class: "formrow" }, h("label", { for: "acct-del", class: "sr" }, "Confirm"), delIn, del))));
   return box;
+}
+function profileCard(p, mine) {
+  const card = h("div", { class: "pcardx", id: mine ? "acct-card" : null },
+    avatar(p.display_name, p.avatar_url, 64),
+    h("div", { style: "min-width:0" },
+      h("div", { class: "pname" }, p.display_name || "Member"),
+      h("div", { class: "small muted" }, p.created_at ? "Joined " + fmtJoined(p.created_at) : ""),
+      p.bio ? h("div", { class: "pbio" }, rich(p.bio)) : mine ? h("p", { class: "small muted", style: "margin:6px 0 0" }, "No introduction yet.") : null,
+      mine ? h("a", { class: "small", href: "#user-" + p.id }, "View your public page") : null));
+  setTimeout(() => typeset(card), 0);
+  return card;
+}
+function viewUser(r) {
+  const box = h("div", { class: "acctpage" }, h("p", { class: "small muted" }, "Loading…"));
+  const show = async () => {
+    await sbReady;
+    if (!S.sb) { box.replaceChildren(h("div", { class: "empty" }, h("b", null, "Profiles are not available."), "Accounts are not switched on for this copy of the site.")); return; }
+    const [p, posts] = await Promise.all([S.sb.from("profiles").select("*").eq("id", r.id).maybeSingle(),
+      S.sb.from("post_feed").select(FEED).eq("author", r.id).order("created_at", { ascending: false }).limit(100)]);
+    if (p.error || !p.data) { box.replaceChildren(h("div", { class: "empty" }, h("b", null, "No such member."), "The account may have been deleted.")); return; }
+    const rows = posts.error ? [] : posts.data.map(rowItem);
+    rows.forEach(it => { if (!S.posts[it.id]) S.posts[it.id] = it; });
+    const n = k => rows.filter(x => x.kind === k).length;
+    const stats = h("div", { class: "pstats" },
+      [["Posts", rows.filter(x => x.kind === "post").length], ["Research questions", n("proposal")], ["Problems contributed", rows.filter(x => x.kind === "problem" && S.reviews[x.id] && S.reviews[x.id].status === "accepted").length]]
+        .map(([l, v]) => h("div", null, h("b", null, v), h("span", null, l))));
+    const list = rows.filter(x => x.kind !== "problem" || x.author === S.uid || S.isAdmin || (S.reviews[x.id] && S.reviews[x.id].status === "accepted"));
+    box.replaceChildren(
+      h("div", { class: "crumbs" }, h("a", { href: "#" }, "Atlas"), " / Member"),
+      h("div", { style: "margin-top:14px" }, profileCard(p.data, p.data.id === S.uid)),
+      stats,
+      h("section", { class: "section", style: "margin-top:34px" }, h("div", { class: "section-h" }, h("h2", null, "Recent activity"), h("span", { class: "small muted" }, list.length ? list.length + (list.length === 100 ? "+" : "") : "")),
+        list.length ? list.map(activityRow) : h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "Nothing yet."), "Posts, solutions and questions will show up here.")));
+    typeset(box);
+  };
+  setTimeout(() => show().catch(() => box.replaceChildren(h("div", { class: "empty" }, h("b", null, "The profile could not be loaded."), "Reload the page to try again."))), 0);
+  return box;
+}
+function activityRow(it) {
+  const what = it.kind === "proposal" ? "Research question" : it.kind === "problem" ? "Problem submitted" : it.parent ? "Reply" : it.spoiler ? "Solution" : "Post";
+  const where = targetLink(it.target) || (it.target === "general" ? h("a", { href: "#questions" }, "Research questions") : null);
+  const body = h("div", { class: "abody" });
+  if (it.spoiler && it.author !== S.uid) body.append(h("span", { class: "small muted" }, "Solution hidden. Open the problem page to read it."));
+  else { const t = it.body.length > 280 ? it.body.slice(0, 280) + "…" : it.body; body.textContent = safeTex(t); }
+  return h("article", { class: "arow" }, h("div", { class: "arow-h" }, h("span", { class: "tag" + (it.spoiler ? " solved" : it.kind === "proposal" ? " claimed" : "") }, what), where ? h("span", null, "on ", where) : null, h("span", { class: "mono" }, fmtDate(it.createdAt))), body);
 }
 async function exportMine() {
   if (!S.sb || !S.uid) return;
@@ -1426,10 +1517,10 @@ function onRealtime(ev) {
 }
 async function connect() {
   const q = new URLSearchParams(location.search);
-  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey) { S.community = "off"; subsDone(); renderAcct(); refreshCommunity(); return; }
+  if (!CFG.supabaseUrl || !CFG.supabaseAnonKey) { S.community = "off"; subsDone(); sbDone(); renderAcct(); refreshCommunity(); return; }
   renderAcct();
   try { if (!window.supabase) await loadScript("vendor/supabase-2.117.3.js"); }
-  catch (e) { S.community = "off"; subsDone(); renderAcct(); refreshCommunity(); return; }
+  catch (e) { S.community = "off"; subsDone(); sbDone(); renderAcct(); refreshCommunity(); return; }
   S.sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { flowType: "pkce", detectSessionInUrl: true, persistSession: true, autoRefreshToken: true } });
   const { data } = await S.sb.auth.getSession();
   if (q.has("code") || q.has("error")) {
@@ -1439,6 +1530,7 @@ async function connect() {
     if (back) route();
   }
   await onSession(data && data.session);
+  sbDone();
   S.sb.auth.onAuthStateChange((event, session) => { setTimeout(() => onSession(session), 0); });
   S.sb.channel("posts").on("postgres_changes", { event: "*", schema: "public", table: "posts" }, onRealtime).subscribe();
 }
