@@ -1,0 +1,248 @@
+[
+ {
+  "id": "interpolation-quadrature",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/From interpolation to quadrature",
+    "problem": "Claimed Simpson's error formula 'is proved the same way with a little more work'; the trapezoid argument (integral mean value with a one-signed node polynomial) fails for Simpson because (x-a)(x-m)(x-b) changes sign.",
+    "fix": "Labelled the Simpson error formula as stated without proof and noted why the trapezoid proof does not transfer (standard proof uses m as a double node)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/From interpolation to quadrature",
+    "problem": "Composite error stated with xi in (a,b) while the proved theorem gives xi in [a,b].",
+    "fix": "Changed to [a,b] for consistency with the proof."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Sentence tied trigonometric interpolation, Fourier series and Euler-Maclaurin together loosely.",
+    "fix": "Rewrote: trapezoid error on a period involves only high-order Fourier coefficients."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Chapter range 6-10 included the approximation chapters 8-9.",
+    "fix": "Verified table of contents; cited Chapters 6, 7 and 10 (interpolation, integration I and II)."
+   },
+   {
+    "severity": "style",
+    "where": "intro/connection/example 1",
+    "problem": "Lesson 2212 words.",
+    "fix": "Tightened intro, Example 1 and connection wording. Now 2222 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "numerical-odes",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Euler's method: follow the tangent",
+    "problem": "Error at h = 0.25 is e - 1.25^4 = 0.2769, given as 'roughly 0.27'.",
+    "fix": "Changed to 0.28."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Local and global error",
+    "problem": "Order p => global O(h^p) asserted without the needed hypothesis on Phi.",
+    "fix": "Added 'If Phi is Lipschitz in y'."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem/Convergence of Euler's method",
+    "problem": "Bound on y'' assumed without saying y is twice differentiable.",
+    "fix": "Added the hypothesis explicitly."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Systems and long-time behaviour",
+    "problem": "'Orbits stay closed forever' is imprecise; the conserved form is positive definite only for h < 2.",
+    "fix": "Now: for h < 2 orbits stay on a fixed ellipse."
+   },
+   {
+    "severity": "style",
+    "where": "intro/example 4/connection",
+    "problem": "Lesson 2364 words.",
+    "fix": "Shortened intro, the closing paragraph of Example 4 and the connection. Now 2338 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "linear-programming",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "Said the primal and dual optimal values are equal for every linear program; false when either is infeasible or unbounded.",
+    "fix": "Now: if one has an optimum, so does the other, with the same value."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "'A bounded feasible region attains its optimum at a vertex' omitted nonemptiness.",
+    "fix": "Rephrased with 'nonempty bounded'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/The simplex method",
+    "problem": "Klee-Minty claim omitted that the exponential behaviour is for Dantzig's pivoting rule.",
+    "fix": "Added the pivot rule and the deformed-cube description."
+   },
+   {
+    "severity": "style",
+    "where": "theorem/Weak and strong duality",
+    "problem": "Strong duality not labelled as unproved in the theorem itself.",
+    "fix": "Added '(stated here without proof)'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Strang chapter number depends on edition.",
+    "fix": "Specified 6th ed., where Chapter 9 is Linear Algebra in Optimization (matches brief)."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (geometry)",
+    "problem": "Santos 2010 Hirsch counterexample verified (arXiv 1006.2814, June 2010; Annals 2012).",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "intro/duality/example 2",
+    "problem": "Lesson 2532 words.",
+    "fix": "Tightened intro, the renting interpretation and Example 2's closing paragraph. Now 2495 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "convex-optimisation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "'g = p* at the optimum under Slater' was vague.",
+    "fix": "Now: max over lambda >= 0, nu of g equals p* under Slater's condition."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof/Proof of (a)",
+    "problem": "Part (b) was presented as following from strong duality without flagging that the Slater theorem itself is unproved, and the attainment of the dual optimum was implicit.",
+    "fix": "States that (b) rests on Slater's theorem quoted without proof, which supplies a dual optimum since p* is finite."
+   },
+   {
+    "severity": "style",
+    "where": "section/Lagrangian duality",
+    "problem": "Slater theorem's omission of proof phrased as an aside.",
+    "fix": "Explicit 'We state this theorem without proof'."
+   },
+   {
+    "severity": "style",
+    "where": "section/main problem classes",
+    "problem": "Interior-point complexity bound quoted without comment.",
+    "fix": "Marked as a standard result not proved here."
+   },
+   {
+    "severity": "style",
+    "where": "intro/connection",
+    "problem": "Lesson 2519 words.",
+    "fix": "Tightened intro and the Legendre-Fenchel sentence. Now 2507 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "gradient-descent",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "exercise 3",
+    "problem": "With eta = 0.25 on x^4 - 2x^2 the linearised factor at the minimiser x = 1 is 1 - 0.25*8 = -1: iterates oscillate 0.875, 1.080, 0.900, ... and approach 1 only sublinearly, so the exercise was a poor test.",
+    "fix": "Changed to eta = 0.1 (factor 0.2); iterates 0.65, ... converge to 1; added check."
+   },
+   {
+    "severity": "style",
+    "where": "theorem/Convergence of gradient descent",
+    "problem": "Part 2 (O(1/k) rate) unproved but not labelled in the statement.",
+    "fix": "Labelled '(Stated without proof.)' and reworded the remark at the end of the proof."
+   },
+   {
+    "severity": "style",
+    "where": "section/Why badly scaled problems are slow",
+    "problem": "Nesterov optimality claims quoted without proof.",
+    "fix": "Marked as quoted without proof."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lesson 2208 words.",
+    "fix": "Removed the page-summary sentence. Now 2191 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "partitions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "'6 has 11 partitions, a 4-element set has 15' paired mismatched cases.",
+    "fix": "Now compares p(5) = 7 with B_4 = 15, continuing the p(4) = B_3 = 5 pattern."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Pentagonal numbers",
+    "problem": "Asserted MacMahon used this recurrence for his table; the table (n <= 200, Hardy-Ramanujan 1918) is verified but the method was not.",
+    "fix": "Kept only the verified fact: MacMahon hand-computed the table for n <= 200 in the 1918 paper."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "'There is no closed formula for p(n)' sits awkwardly against the lesson's own statement of Rademacher's exact formula.",
+    "fix": "Removed the item."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'Set partitions appear in [[probabilistic-method]] counting' was vague and unsupported.",
+    "fix": "Removed; kept the Poisson moment fact."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Lesson 2682 words.",
+    "fix": "Trimmed intro, connection, rank sentence and one pitfall. Now 2643 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ },
+ {
+  "id": "planar-graphs",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/Kuratowski's theorem",
+    "problem": "Kuratowski and Wagner theorems unproved; labelling was soft.",
+    "fix": "Explicitly 'stated here without proof'."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (formal-verification)",
+    "problem": "Gonthier's Coq formalisation of the four colour theorem verified (announced 2005).",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "example 2/connection",
+    "problem": "Lesson 2545 words.",
+    "fix": "Removed a redundant closing remark in Example 2 and the discrete-geometry aside. Now 2484 words (body+solutions); remaining length is examples and proofs, which were not cut."
+   }
+  ]
+ }
+]
