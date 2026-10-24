@@ -1,0 +1,70 @@
+[
+ {
+  "id": "localization",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "block 82 section 'Affine schemes in one paragraph'",
+    "problem": "'The two theorems above' became ambiguous after the split moved 'A domain is the intersection of its localisations' into the same section; it means the spectra theorem and the glueing theorem.",
+    "fix": "Named them: 'The theorem on spectra of localisations and the glueing theorem above'."
+   },
+   {
+    "severity": "style",
+    "where": "block 83 exercise",
+    "problem": "Item 5 (Basic), the one carried over from the arithmetic exercises, came after two Medium items.",
+    "fix": "Moved it up to item 3, so the items run from easiest to hardest; its 'Compare with exercise 1' still points to the right item."
+   },
+   {
+    "severity": "unclear",
+    "where": "brief.json prerequisites; block 0 intro",
+    "problem": "The page uses tensor products (Localisation is base change, the views on S^{-1}M, exercises), but the prerequisites listed only noetherian-rings and modules, and neither of those pages covers tensor products.",
+    "fix": "Added tensor-products to localization's prerequisites in brief.json, and named [[tensor-products]] in the intro's sentence about what the page assumes."
+   },
+   {
+    "severity": "style",
+    "where": "all_concepts.json",
+    "problem": "all_concepts.json still gives localization the title 'Localisation and local rings', which is out of date now that local rings have their own page (brief.json says 'Localisation').",
+    "fix": "Not changed here (file outside this task); the site title should be updated to 'Localisation'."
+   }
+  ],
+  "wide_math_fixed": 12,
+  "wide_math_left": []
+ },
+ {
+  "id": "local-rings",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 16 views 'What Nakayama's lemma says' (added by the splitter)",
+    "problem": "It was added only to satisfy the old two-views rule. Its three items repeat parts 1, 2-3 and 4 of the theorem above it, and the Gathmann sentence repeats the section text, so it gives no explanations that differ from one another.",
+    "fix": "Deleted. The page keeps its views block 'What a local ring is'; minutes 37 -> 35."
+   },
+   {
+    "severity": "error",
+    "where": "block 31 connection (new)",
+    "problem": "'A discrete valuation ring is a local principal ideal domain' is false as stated, because a field is a local PID but not a DVR.",
+    "fix": "Now reads '... a local principal ideal domain that is not a field'."
+   },
+   {
+    "severity": "style",
+    "where": "block 1 section 'Local rings' vs block 0 intro",
+    "problem": "The new intro copied, almost word for word, the section's sentences about papers beginning 'let (R, m, k) be a Noetherian local ring' and about global notions defined through localisations.",
+    "fix": "Rewrote the section opening as a short overview of what the section contains; the claim now appears only in the intro, which cites dieth. Section src is now stacks, wlocal."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 10 definition 'Locally ringed spaces'",
+    "problem": "It uses sheaves and 'morphism of ringed spaces', which neither this page nor its prerequisite page defines.",
+    "fix": "Added the gloss '(spaces with a sheaf of rings, see [[sheaves]])'."
+   },
+   {
+    "severity": "style",
+    "where": "block 31 connection",
+    "problem": "The description of the prerequisite listed exactness and the local-global principle, which this page never uses.",
+    "fix": "Now lists what the page does use: S^{-1}A and A_p, the universal property, and the maximal ideal and residue field of A_p."
+   }
+  ],
+  "wide_math_fixed": 1,
+  "wide_math_left": []
+ }
+]

@@ -15,7 +15,7 @@ C = [
  ("symplectic-geometry", "Symplectic manifolds and Hamiltonian flows", "Symplectic geometry", "diffgeo", ["differential-geometry", "physics", "dynamics"], "graduate", ["differential-forms", "smooth-manifolds"]),
  ("stochastic-calculus", "Stochastic integrals and Itô's formula", "Stochastic calculus", "probability", ["probability", "pde", "physics"], "graduate", ["brownian-motion", "martingales"]),
  # --- graduate core: algebra, topology, algebraic geometry, number theory, analysis ---
- ("localization", "Localisation", "Localisation", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["noetherian-rings", "modules"]),
+ ("localization", "Localisation", "Localisation", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["noetherian-rings", "modules", "tensor-products"]),
  ("local-rings", "Local rings and Nakayama's lemma", "Local rings", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["localization"]),
  ("dedekind-domains", "Dedekind domains", "Dedekind domains", "algebraic", ["number-theory", "algebra"], "graduate", ["ideals", "localization", "local-rings"]),
  ("homological-algebra", "Exact sequences, complexes and resolutions", "Exact sequences", "abstract", ["algebra", "topology", "category-theory"], "graduate", ["modules", "categories-functors"]),

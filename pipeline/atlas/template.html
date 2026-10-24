@@ -343,8 +343,6 @@ footer p { max-width: 62em; }
 .legal { max-width: 44em; } .legal h2 { font-size: 20px; margin-top: 28px; } .legal p { color: var(--ink-2); margin: 8px 0; }
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 22px); background: var(--ink); color: var(--paper); padding: 8px 16px; border-radius: 4px; font-family: var(--sans); font-size: 14px; z-index: 30; }
 mjx-container { color: inherit; }
-/* Computer Modern is much lighter than Newsreader; a hairline stroke brings the formulas to the text's weight. */
-mjx-container[jax="SVG"] svg use[data-c], mjx-container[jax="SVG"] svg path[data-c] { stroke-width: 16; }
 mjx-container.wide { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
 mjx-container.more { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
 mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
@@ -394,13 +392,13 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
 <script id="catalog" type="application/json">/*CATALOG*/</script>
 <script>
 window.MathJax = {
+  loader: { load: /[?&]nolazy\b/.test(location.search) ? [] : ["ui/lazy"] },   /* lazy: typeset formulas as they scroll into view; ?nolazy for checks */
   tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, packages: { "[-]": ["require", "autoload"] }, macros: { R: "\\mathbb{R}", N: "\\mathbb{N}", Z: "\\mathbb{Z}", Q: "\\mathbb{Q}", C: "\\mathbb{C}", RR: "\\mathbb{R}", NN: "\\mathbb{N}", ZZ: "\\mathbb{Z}", QQ: "\\mathbb{Q}", CC: "\\mathbb{C}", FF: "\\mathbb{F}", boldsymbol: ["\\mathbf{#1}", 1] } },
-  svg: { fontCache: "global" },
-  startup: { ready() { MathJax.startup.defaultReady(); MathJax.startup.input[0].preFilters.add(({ math }) => { if (!math.display) math.math = "\\displaystyle " + math.math; }); } },
-  options: { enableMenu: false, ignoreHtmlClass: "mathjax_ignore", skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "select", "input"] }
+  output: { font: "mathjax-stix2", displayOverflow: "linebreak", linebreaks: { inline: true, width: "100%" } },
+  options: { enableMenu: false, enableEnrichment: false, enableSpeech: false, enableBraille: false, enableExplorer: false, enableComplexity: false, menuOptions: { settings: { enrich: false, speech: false, braille: false, assistiveMml: true } }, ignoreHtmlClass: "mathjax_ignore", skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "select", "input"] }
 };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-chtml.js" defer></script>
 <script src="config.js"></script>
 <script>
 "use strict";
@@ -459,7 +457,20 @@ function fitWide(el) {
   const mark = m => { const upd = () => m.classList.toggle("more", m.scrollLeft + m.clientWidth < m.scrollWidth - 2); upd(); m.addEventListener("scroll", upd, { passive: true }); };
   el.querySelectorAll("mjx-container.wide, mjx-container[display=\"true\"]").forEach(m => { if (m.scrollWidth > m.clientWidth + 1) mark(m); });
 }
-function typeset(el) { if (!el || !window.MathJax || typeof window.MathJax.typesetPromise !== "function") return; mjChain = mjChain.then(() => el.isConnected ? window.MathJax.typesetPromise([el]).then(() => fitWide(el)) : null).catch(() => {}); }
+function keepTex(el) { try { MathJax.startup.document.getMathItemsWithin(el).forEach(m => { const r = m.typesetRoot; if (r && !r.dataset.tex) r.dataset.tex = m.display ? "$$" + m.math + "$$" : "$" + m.math + "$"; }); } catch (e) {} }
+function typeset(el) { if (!el || !window.MathJax || typeof window.MathJax.typesetPromise !== "function") return; mjChain = mjChain.then(() => window.MathJax.startup.promise).then(() => el.isConnected ? window.MathJax.typesetPromise([el]).then(() => { keepTex(el); fitWide(el); }) : null).catch(() => {}); }
+/* Copying text that contains formulas gives their TeX source, not the glyphs. */
+document.addEventListener("copy", e => {
+  keepTex(document.body);
+  const sel = getSelection(); if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+  const frag = sel.getRangeAt(0).cloneContents(); if (!frag.querySelector("mjx-container") && !sel.anchorNode?.parentElement?.closest("mjx-container")) return;
+  const one = sel.anchorNode?.parentElement?.closest("mjx-container");
+  if (one && one === sel.focusNode?.parentElement?.closest("mjx-container") && one.dataset.tex) { e.clipboardData.setData("text/plain", one.dataset.tex); e.preventDefault(); return; }
+  const box = document.createElement("div"); box.append(frag);
+  box.querySelectorAll("mjx-container").forEach(m => m.replaceWith(m.dataset.tex || m.textContent));
+  box.style.cssText = "position:fixed;left:-9999px;top:0;white-space:pre-wrap"; document.body.append(box);
+  const text = box.innerText; box.remove(); e.clipboardData.setData("text/plain", text); e.preventDefault();
+});
 function safeTex(x) { return String(x).replace(/\\(href|url|require|class|style|cssId|data|html|unicode)(?![a-zA-Z])/g, "∖$1"); }
 function plain(tex) { return String(tex).replace(/\$[^$]*\$/g, " ").replace(/\s+/g, " ").trim(); }
 /* Rich text for external strings: paragraphs, markdown links (https only) and `code`; everything else stays text. */

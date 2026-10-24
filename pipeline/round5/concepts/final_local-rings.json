@@ -1,0 +1,550 @@
+[
+{
+"id": "local-rings",
+"entry": {
+"sum": "A local ring is a commutative ring with exactly one maximal ideal $\\mathfrak m$; equivalently, it is nonzero and its non-units form an ideal. The localisations $A_{\\mathfrak p}$ are the basic examples, maps between local rings are required to be local ($\\varphi(\\mathfrak m_R) \\subseteq \\mathfrak m_S$), and Nakayama's lemma reduces questions about finitely generated modules over $(R, \\mathfrak m, k)$ to linear algebra over the residue field $k$.",
+"key": [
+"R \\text{ local} \\iff R \\ne 0 \\text{ and for every } x \\in R,\\ x \\text{ or } 1 - x \\text{ is a unit}",
+"M \\text{ finitely generated},\\ \\mathfrak m M = M \\implies M = 0",
+"\\dim_k B < \\infty,\\ B = k[x_1, \\dots, x_n]/I \\implies B \\cong B_{\\mathfrak m_1} \\times \\dots \\times B_{\\mathfrak m_r}"
+],
+"why": "Research papers in commutative algebra start from a Noetherian local ring $(R, \\mathfrak m, k)$, schemes are locally ringed spaces, and Nakayama's lemma is what gives minimal generators, minimal free resolutions and the freeness of projective modules over local rings.",
+"msc": [],
+"links": [
+{
+"field": "differential-geometry",
+"note": "Germs of smooth functions at a point of a manifold form a local ring whose maximal ideal is the germs vanishing at the point."
+},
+{
+"field": "number-theory",
+"note": "The local rings $\\mathbb Z_{(p)}$ are discrete valuation rings, and their completions are the $p$-adic integers."
+}
+],
+"refs": [
+"M. F. Atiyah and I. G. Macdonald, Introduction to Commutative Algebra, Addison-Wesley 1969, Ch. 1-3",
+"H. Matsumura, Commutative Ring Theory, Cambridge University Press 1986, §2",
+"D. Eisenbud, Commutative Algebra with a View Toward Algebraic Geometry, GTM 150, Springer 1995, Ch. 2 and §4.1",
+"D. Cox, J. Little and D. O'Shea, Using Algebraic Geometry, GTM 185, Springer, Ch. 4 (computation in local rings)"
+],
+"aliases": [
+"local ring",
+"local rings",
+"Stellenring",
+"quasi-local ring",
+"Nakayama's lemma",
+"Nakayama lemma",
+"local homomorphism",
+"locally ringed space"
+]
+},
+"lesson": {
+"v": 2,
+"minutes": 35,
+"sources": [
+{
+"k": "stacks",
+"ref": "The Stacks Project, Chapter 10 Commutative Algebra and Chapter 26 Schemes (online, ongoing)",
+"where": "§10.18 Local rings; §10.20 Nakayama's lemma; §26.2 (locally ringed spaces)",
+"url": "https://stacks.math.columbia.edu/tag/00CM",
+"kind": "reference"
+},
+{
+"k": "gathmann",
+"ref": "A. Gathmann, Commutative Algebra (lecture notes, Kaiserslautern), Chapter 6: Localization",
+"where": "Ch. 6, Remark 6.1 to Exercise 6.29",
+"url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+"kind": "notes"
+},
+{
+"k": "suth",
+"ref": "A. Sutherland, MIT 18.785 Number Theory I, Lecture 2: Localization and Dedekind domains (2025)",
+"where": "§2.1-2.4",
+"url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+"kind": "notes"
+},
+{
+"k": "am",
+"ref": "M. F. Atiyah and I. G. Macdonald, Introduction to Commutative Algebra (1969)",
+"where": "Ch. 1 (local rings), Ch. 2 (Nakayama) (not opened by the reviewer; cited at chapter level only)",
+"kind": "textbook"
+},
+{
+"k": "stan",
+"ref": "Anonymous handout 'Localization' for a Math 210B course (Winter 2008), hosted on ericmalm.net; the handout names no author, instructor or institution",
+"url": "https://ericmalm.net/ac/projects/math210b-w08/math210b-localization.pdf",
+"kind": "notes"
+},
+{
+"k": "wlocal",
+"ref": "Wikipedia, Local ring",
+"url": "https://en.wikipedia.org/wiki/Local_ring",
+"kind": "reference"
+},
+{
+"k": "armstrong",
+"ref": "J. Armstrong, 'Local Rings', The Unapologetic Mathematician (blog, 2011)",
+"url": "https://unapologetic.wordpress.com/2011/03/28/local-rings/",
+"kind": "blog"
+},
+{
+"k": "grossack",
+"ref": "C. Grossack, 'Why is the completion of a local ring more local than just localizing?' (blog, 2022)",
+"url": "https://grossack.site/2022/03/04/locality-in-alg-geom.html",
+"kind": "blog"
+},
+{
+"k": "chev",
+"ref": "C. Chevalley, On the notion of the ring of quotients of a prime ideal, Bull. AMS 50 (1944) 93-97",
+"where": "Introduction, Definition 1",
+"url": "https://www.ams.org/bull/1944-50-02/S0002-9904-1944-08087-7/S0002-9904-1944-08087-7.pdf",
+"kind": "paper"
+},
+{
+"k": "guanhu",
+"ref": "N. Guan and Y. Hu, Formalization of Auslander-Buchsbaum-Serre criterion in Lean4 (2025), arXiv:2510.24818",
+"where": "§3.1-3.3 (local rings as standing hypothesis); Lemma 5.9 (projective modules over local rings are free)",
+"url": "https://arxiv.org/abs/2510.24818",
+"kind": "paper"
+},
+{
+"k": "bds",
+"ref": "J. Boehm, W. Decker and F.-O. Schreyer, Commutative algebra and algebraic geometry using OSCAR (2024), arXiv:2404.12085",
+"where": "§2 (local orderings), §3 Def. 3.1, Ex. 3.2, Def. 3.3",
+"url": "https://arxiv.org/abs/2404.12085",
+"kind": "paper"
+},
+{
+"k": "xu",
+"ref": "L. Xu, Localization and affine schemes over F_1 (2026), arXiv:2607.04843",
+"where": "§2-3 (Def. 2.6, Thm 3.5), §5 (Thm 5.4, Prop. 5.8)",
+"url": "https://arxiv.org/abs/2607.04843",
+"kind": "paper"
+},
+{
+"k": "lomb",
+"ref": "H. Lombardi, The constructive content of a local-global principle with an application to the structure of a finitely generated projective module (2023, in French), arXiv:2308.09371",
+"where": "Def. 1.7; §1.3 Faits 1.12-1.16; Fait 1.17; Principes 1.18, 1.21; Fait 1.20",
+"url": "https://arxiv.org/abs/2308.09371",
+"kind": "paper"
+},
+{
+"k": "dieth",
+"ref": "R. Diethorn, A survey on the Koszul homology algebra (2021), arXiv:2103.07767",
+"where": "§1-2",
+"url": "https://arxiv.org/abs/2103.07767",
+"kind": "survey"
+},
+{
+"k": "sayrafi",
+"ref": "M. Sayrafi, Computations over local rings in Macaulay2 (2017), arXiv:1710.09830",
+"where": "§1",
+"url": "https://arxiv.org/abs/1710.09830",
+"kind": "paper"
+}
+],
+"requires": [
+{
+"item": "Localisation $S^{-1}A$, its universal property, and the local ring $A_{\\mathfrak p}$ with maximal ideal $\\mathfrak pA_{\\mathfrak p}$ and residue field $\\kappa(\\mathfrak p)$",
+"priority": "core",
+"where": "[[localization]]"
+},
+{
+"item": "Local rings: equivalent definitions, notation $(R, \\mathfrak m, k)$, quotients of local rings are local",
+"priority": "core",
+"where": "Local rings"
+},
+{
+"item": "Local homomorphisms; maps to local rings factor through $A_{\\mathfrak p}$; locally ringed spaces",
+"priority": "common",
+"where": "Local rings"
+},
+{
+"item": "Nakayama's lemma; minimal generators; finitely generated projective modules over local rings are free",
+"priority": "common",
+"where": "Nakayama's lemma and free modules over local rings"
+},
+{
+"item": "Local ring of affine space at a point; length and intersection multiplicity $\\dim_k \\mathcal O_o/(f,g)$",
+"priority": "specialised",
+"where": "Local rings at points: multiplicities and computation"
+},
+{
+"item": "Computing in local rings: local orderings, Mora's tangent cone algorithm, pruning",
+"priority": "specialised",
+"where": "not covered here; see [bds] and [sayrafi]"
+},
+{
+"item": "Graded analogue (homogeneous localisation, graded local rings)",
+"priority": "specialised",
+"where": "not covered here; see [dieth]"
+}
+],
+"blocks": [
+{
+"type": "intro",
+"src": [
+"wlocal",
+"chev",
+"stacks",
+"dieth",
+"lomb",
+"bds",
+"guanhu"
+],
+"body": "Localising a ring at a prime $\\mathfrak p$ produces a ring $A_{\\mathfrak p}$ with a single maximal ideal ([[localization]]). Rings with this property, local rings, are where a large part of commutative algebra happens: research papers routinely begin \"let $(R, \\mathfrak m, k)$ be a Noetherian local ring\", and global notions are often defined by asking that every localisation be a local ring of a given kind. Krull introduced such rings in 1938 under the name Stellenringe, rings of a point; Zariski's English name, local ring, is the one that stuck. Chevalley, in 1944, saw the localised ring $A_{\\mathfrak p}$ as the right tool for studying a neighbourhood of the subvariety cut out by $\\mathfrak p$.\n\nWhat is special about a ring with one maximal ideal? Everything outside the maximal ideal is a unit. So maps between local rings are asked to respect the maximal ideals, and spaces whose rings of functions near each point are local, the locally ringed spaces, become the setting of scheme theory. And Nakayama's lemma reduces questions about a finitely generated module $M$ over $(R, \\mathfrak m, k)$ to linear algebra over the residue field $k$: generating sets of $M$ are seen in $M/\\mathfrak mM$, and finitely generated projective modules are free. Diethorn's survey of Koszul homology, Guan and Hu's formalisation of the Auslander-Buchsbaum-Serre criterion and Lombardi's constructive study of projective modules all take this toolkit for granted.\n\nThis page gives the equivalent definitions of local rings, local homomorphisms and locally ringed spaces, proves Nakayama's lemma and the freeness of projective modules over local rings, and ends with the local ring of affine space at a point, where localising isolates one intersection point of two curves, as in the computations of Boehm, Decker and Schreyer. We use the notation of [[localization]]: $S^{-1}A$, $A_f$, $A_{\\mathfrak p}$, the maximal ideal $\\mathfrak pA_{\\mathfrak p}$ and the residue field $\\kappa(\\mathfrak p)$."
+},
+{
+"type": "section",
+"title": "Local rings",
+"body": "The rings $A_{\\mathfrak p}$ of [[localization]] have a single maximal ideal. This section takes that property as the definition: it collects the equivalent characterisations of local rings, the standard examples and non-examples, the maps between local rings that respect the maximal ideals, and the spaces whose stalks are local rings.",
+"src": [
+"stacks",
+"wlocal"
+]
+},
+{
+"type": "definition",
+"title": "Local ring",
+"body": "A ring $R$ is local if it has exactly one maximal ideal $\\mathfrak m$. One writes $(R, \\mathfrak m)$ or $(R, \\mathfrak m, k)$ with $k = R/\\mathfrak m$ the residue field. A ring with finitely many maximal ideals is called semi-local.\n\nA ring map $\\varphi\\colon (R, \\mathfrak m_R) \\to (S, \\mathfrak m_S)$ between local rings is a local homomorphism if $\\varphi(\\mathfrak m_R) \\subseteq \\mathfrak m_S$.",
+"src": [
+"stacks",
+"wlocal",
+"am"
+]
+},
+{
+"type": "theorem",
+"title": "Characterisations of local rings",
+"body": "For a ring $R$ the following are equivalent:\n\n1. $R$ is local;\n2. $R$ has a maximal ideal $\\mathfrak m$ such that every element of $R \\setminus \\mathfrak m$ is a unit;\n3. $R \\ne 0$ and the non-units of $R$ form an ideal;\n4. $R \\ne 0$ and for every $x \\in R$, $x$ or $1 - x$ is a unit.\n\nWhen these hold, the maximal ideal is the set of non-units.",
+"src": [
+"stacks",
+"wlocal"
+]
+},
+{
+"type": "proof",
+"body": "(1) implies (2). Let $\\mathfrak m$ be the maximal ideal. If $x \\notin \\mathfrak m$ were a non-unit, $(x)$ would be a proper ideal, hence contained in some maximal ideal (every proper ideal is, by Zorn's lemma), which must be $\\mathfrak m$; contradiction.\n\n(2) implies (3). Every non-unit lies in $\\mathfrak m$ by (2), and elements of $\\mathfrak m$ are non-units since $\\mathfrak m$ is proper. So the non-units are exactly $\\mathfrak m$, an ideal; and $R \\ne 0$ as it has a maximal ideal.\n\n(3) implies (4). If $x$ and $1-x$ were both non-units, their sum $1$ would be a non-unit.\n\n(4) implies (1). First, the non-units form an ideal $\\mathfrak m$. If $x$ is a non-unit, so is $rx$ (if $rxy = 1$ then $x$ is a unit). Let $x, y$ be non-units and suppose $x + y$ were a unit, with inverse $w$. Then $xw + yw = 1$. Now $xw$ is a non-unit, so by (4) $1 - xw = yw$ is a unit, making $y$ a unit; contradiction. So $\\mathfrak m$ is an ideal, proper since $1 \\notin \\mathfrak m$. Any proper ideal consists of non-units, so lies in $\\mathfrak m$; hence $\\mathfrak m$ is the unique maximal ideal.",
+"src": [
+"stacks",
+"wlocal"
+]
+},
+{
+"type": "views",
+"title": "What a local ring is",
+"items": [
+{
+"label": "Unique maximal ideal",
+"body": "The definition in the Stacks Project and Atiyah-Macdonald: exactly one maximal ideal, equivalently $\\operatorname{Spec} R$ has exactly one closed point.",
+"src": [
+"stacks",
+"am"
+]
+},
+{
+"label": "x or 1 − x a unit",
+"body": "Lombardi's constructive definition: for every $x$, either $x$ or $1 - x$ is invertible. It avoids quantifying over maximal ideals (whose existence needs Zorn's lemma), and with this definition the zero ring counts as local; in a nonzero local ring the non-units form the maximal ideal.",
+"src": [
+"lomb"
+]
+},
+{
+"label": "Germs at a point",
+"body": "Armstrong's example: germs of smooth functions at a point $p$ of a manifold. A germ not vanishing at $p$ is nonzero on a neighbourhood, so $1/f$ is a germ there; the non-invertible germs are those vanishing at $p$, an ideal, and evaluation at $p$ identifies the residue field with $\\mathbb R$. The algebraic local rings $\\mathcal O_{X, x}$ of geometry imitate this.",
+"src": [
+"armstrong",
+"wlocal"
+]
+},
+{
+"label": "Localisation at a prime",
+"body": "Gathmann (Corollary 6.10, Remark 6.11) and the Math 210B handout meet local rings through the rings $A_{\\mathfrak p}$; for the coordinate ring of a variety and the ideal of a point $a$, Gathmann reads $A_{\\mathfrak p}$ as the ring of functions defined near $a$. Every local ring arises this way trivially ($R = R_{\\mathfrak m}$), and every $A_{\\mathfrak p}$ is local.",
+"src": [
+"gathmann",
+"stan"
+]
+},
+{
+"label": "Rings of a point (history)",
+"body": "Krull introduced local rings in 1938 as Stellenringe, rings of a point; the English name is Zariski's. Chevalley's 1944 paper still assumes all rings Noetherian, and before about 1960 many authors kept the Noetherian hypothesis and called the general case quasi-local.",
+"src": [
+"wlocal",
+"chev"
+]
+}
+],
+"body": "Five explanations of the same notion, from five traditions."
+},
+{
+"type": "example",
+"title": "Which of these rings are local?",
+"body": "Decide for: $\\mathbb Z/n$; $k[x]/(x^n)$; $k[\\![x]\\!]$; $\\mathbb Z_{(2)}$; $k[x]$; $\\mathbb Z$; $\\mathbb Z/6$; and a quotient $R/I$ of a local ring by a proper ideal.",
+"solution": "$\\mathbb Z/n$ (with $n \\ge 2$) is local iff $n$ is a prime power. Its maximal ideals are $(p)/(n)$ for the primes $p \\mid n$, so there is one exactly when $n = p^e$, and then the non-units are the multiples of $p$. So $\\mathbb Z/p^e$ is local, while $\\mathbb Z/6$ (two maximal ideals) is not.\n\n$k[x]/(x^n)$ is local with maximal ideal $(x)$: an element $c_0 + c_1x + \\dots$ with $c_0 \\ne 0$ is a unit because $x$ is nilpotent ($c_0(1 + y)$ with $y$ nilpotent has inverse $c_0^{-1}(1 - y + y^2 - \\cdots)$). For $n = 2$ this is the ring of dual numbers.\n\n$k[\\![x]\\!]$ is local with maximal ideal $(x)$: a power series with nonzero constant term has an inverse computed coefficient by coefficient.\n\n$\\mathbb Z_{(2)}$, the rationals with odd denominator, is local with maximal ideal $2\\mathbb Z_{(2)}$.\n\n$k[x]$ and $\\mathbb Z$ are not local: $x$ and $1 - x$ are both non-units in $k[x]$, and in $\\mathbb Z$ both $3$ and $1 - 3 = -2$ are non-units.\n\nA quotient $R/I$ of a local ring $(R, \\mathfrak m)$ by a proper ideal $I$ is local with maximal ideal $\\mathfrak m/I$: the maximal ideals of $R/I$ correspond to maximal ideals of $R$ containing $I$, and there is only one.",
+"src": [
+"wlocal"
+]
+},
+{
+"type": "theorem",
+"title": "Local homomorphisms",
+"body": "For a ring map $\\varphi\\colon R \\to S$ of local rings, the following are equivalent: (1) $\\varphi$ is local, $\\varphi(\\mathfrak m_R) \\subseteq \\mathfrak m_S$; (2) $\\varphi^{-1}(\\mathfrak m_S) = \\mathfrak m_R$; (3) $\\varphi$ reflects units: if $\\varphi(x)$ is a unit then $x$ is a unit.\n\nMoreover, for any ring $A$, any ring map $\\varphi\\colon A \\to B$ to a local ring $B$ factors uniquely as $A \\to A_{\\mathfrak p} \\to B$ with $\\mathfrak p = \\varphi^{-1}(\\mathfrak m_B)$, and $A_{\\mathfrak p} \\to B$ is local.",
+"src": [
+"stacks",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "(1) implies (2): $\\varphi^{-1}(\\mathfrak m_S)$ is a proper ideal containing $\\mathfrak m_R$, and $\\mathfrak m_R$ is maximal. (2) implies (3): if $x$ is a non-unit then $x \\in \\mathfrak m_R = \\varphi^{-1}(\\mathfrak m_S)$, so $\\varphi(x)$ is a non-unit. (3) implies (1): if $x \\in \\mathfrak m_R$ then $x$ is a non-unit, so $\\varphi(x)$ is a non-unit, i.e. lies in $\\mathfrak m_S$.\n\nFor the factorisation, $\\mathfrak p = \\varphi^{-1}(\\mathfrak m_B)$ is a prime, being the preimage of a prime. If $s \\notin \\mathfrak p$ then $\\varphi(s) \\notin \\mathfrak m_B$, so $\\varphi(s)$ is a unit of the local ring $B$. By the universal property of localisation ([[localization]]) $\\varphi$ factors uniquely through $A_{\\mathfrak p}$, by $a/s \\mapsto \\varphi(a)\\varphi(s)^{-1}$, and this sends $\\mathfrak pA_{\\mathfrak p}$ into $\\mathfrak m_B$.",
+"src": [
+"stacks",
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "A localisation map that is not local",
+"body": "Let $R = \\mathbb Z_{(p)}$, a local ring, and let $\\mathfrak q = (0)$, a non-maximal prime. Is $R \\to R_{(0)} = \\mathbb Q$ a local homomorphism?",
+"solution": "No. The maximal ideal of $\\mathbb Q$ is $0$, while $p \\in p\\mathbb Z_{(p)}$ maps to the unit $p \\in \\mathbb Q$. The map does not reflect units. This is the Stacks Project's example: for a local ring $R$ and a non-maximal prime $\\mathfrak q$, the map $R \\to R_{\\mathfrak q}$ is never local. In contrast $A \\to A_{\\mathfrak p}$ composed with any local map is governed by the factorisation theorem.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "definition",
+"title": "Locally ringed spaces",
+"body": "A locally ringed space is a topological space $X$ with a sheaf of rings $\\mathcal O_X$ all of whose stalks $\\mathcal O_{X,x}$ are local rings. A morphism of locally ringed spaces $(f, f^\\sharp)\\colon (X, \\mathcal O_X) \\to (Y, \\mathcal O_Y)$ is a morphism of ringed spaces (spaces with a sheaf of rings, see [[sheaves]]) such that every induced map of stalks $\\mathcal O_{Y, f(x)} \\to \\mathcal O_{X,x}$ is a local homomorphism. Affine schemes, built from the localisations $A_f$ and $A_{\\mathfrak p}$ (see [[localization|the paragraph on affine schemes in Localisation]]), are the basic examples; Xu builds the analogous theory for $\\mathbb F_1$-algebras, where the stalk maps are required to be local in the same sense.",
+"src": [
+"stacks",
+"xu"
+]
+},
+{
+"type": "conventions",
+"title": "Conventions for local rings",
+"rows": [
+{
+"who": "Modern standard (Stacks, Atiyah-Macdonald)",
+"text": "Local means exactly one maximal ideal; no Noetherian hypothesis; the zero ring is not local.",
+"src": [
+"stacks",
+"am"
+]
+},
+{
+"who": "Older usage (before about 1960)",
+"text": "Many authors required local rings to be Noetherian, and called the general case quasi-local (Wikipedia, Local ring). Chevalley's 1944 paper works with Noetherian rings throughout and defines semi-local rings as Noetherian rings with finitely many maximal ideals.",
+"src": [
+"wlocal",
+"chev"
+]
+},
+{
+"who": "Constructive algebra (Lombardi)",
+"text": "Local means: for all $x$, $x$ or $1 - x$ is invertible. Lombardi states explicitly that the trivial ring is then local, with trivial residue field; his Fait 1.20 accordingly speaks of a nontrivial local ring when it characterises the localisations $A_{\\mathfrak p}$.",
+"src": [
+"lomb"
+]
+},
+{
+"who": "Koszul homology survey (Diethorn)",
+"text": "Works with \"a commutative local (or graded) ring\" $R$ with residue field $k$, writes out the definitions for standard graded $k$-algebras and says the local case is similar; the maximal ideal $\\mathfrak m$ enters only later.",
+"src": [
+"dieth"
+]
+}
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that $\\mathbb Z_{(p)}/p^e\\mathbb Z_{(p)} \\cong \\mathbb Z/p^e$, and that this ring is local.\n2. (Basic) Show that a ring in which every element is a unit or nilpotent is local, and find such a ring that is not a field.\n3. (Medium) Show that the composite of local homomorphisms is local, and that a ring map $A \\to B$ induces a local homomorphism $A_{\\varphi^{-1}(\\mathfrak q)} \\to B_{\\mathfrak q}$ for every prime $\\mathfrak q$ of $B$.\n4. (Medium) Show that a ring $R$ is local if and only if $\\operatorname{Spec} R$ has exactly one closed point.\n5. (Harder) Let $k$ be a field of characteristic $p$ and $G$ a cyclic group of order $p$. Show that the group algebra $kG \\cong k[t]/(t^p - 1) = k[t]/((t-1)^p)$ is local."
+},
+{
+"type": "section",
+"title": "Nakayama's lemma and free modules over local rings",
+"body": "Over a local ring $(R, \\mathfrak m, k)$ a finitely generated module is controlled by the vector space $M/\\mathfrak mM$ over the residue field. This is Nakayama's lemma, the single most used tool once a problem has been localised: minimal free resolutions, Betti numbers, the statement that projective equals free, and the reduction of many questions to linear algebra over $k$ all rest on it. The Stacks Project states a dozen variants; we prove the general one by the determinant trick and deduce the local versions, which Gathmann sets as an exercise.",
+"src": [
+"stacks",
+"gathmann",
+"dieth"
+]
+},
+{
+"type": "theorem",
+"title": "Nakayama's lemma",
+"body": "Let $R$ be a ring, $I$ an ideal and $M$ a finitely generated $R$-module.\n\n1. If $IM = M$, there is $f \\in 1 + I$ with $fM = 0$.\n2. If $(R, \\mathfrak m)$ is local, $I \\subseteq \\mathfrak m$ and $IM = M$, then $M = 0$.\n3. If $(R, \\mathfrak m)$ is local, $N \\subseteq M$ a submodule and $N + \\mathfrak mM = M$, then $N = M$.\n4. If $(R, \\mathfrak m, k)$ is local, elements $x_1, \\dots, x_n \\in M$ generate $M$ if and only if their images span the $k$-vector space $M/\\mathfrak mM$. Hence every minimal generating set of $M$ has exactly $\\dim_k M/\\mathfrak mM$ elements.",
+"src": [
+"stacks",
+"gathmann",
+"am"
+]
+},
+{
+"type": "proof",
+"body": "1. Let $y_1, \\dots, y_m$ generate $M$. Since $M = IM$, each $y_i = \\sum_j z_{ij}y_j$ with $z_{ij} \\in I$. So the matrix $T = (\\delta_{ij} - z_{ij})$ satisfies $T\\,y = 0$, where $y$ is the column of the $y_j$. Multiply on the left by the adjugate matrix of $T$: since $\\operatorname{adj}(T)\\,T = \\det(T)\\cdot\\mathrm{Id}$, we get $\\det(T)\\,y_j = 0$ for all $j$, so $f = \\det T$ kills $M$. Expanding the determinant, $T \\equiv \\mathrm{Id}$ modulo $I$, so $f \\equiv 1 \\pmod I$.\n\n2. Here $f \\in 1 + I \\subseteq 1 + \\mathfrak m$, and $f \\notin \\mathfrak m$ (else $1 \\in \\mathfrak m$), so $f$ is a unit by the characterisation of local rings. Then $M = f^{-1}fM = 0$.\n\n3. Apply (2) to the finitely generated module $M/N$: $\\mathfrak m(M/N) = (\\mathfrak mM + N)/N = M/N$, so $M/N = 0$.\n\n4. If the images span $M/\\mathfrak mM$, let $N = \\sum Rx_i$; then $N + \\mathfrak mM = M$, so $N = M$ by (3). The converse is clear. A generating set is minimal iff no proper subset generates, iff (by what we just proved) its image in $M/\\mathfrak mM$ is a basis, which has $\\dim_k M/\\mathfrak mM$ elements.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "theorem",
+"title": "Projective modules over a local ring are free",
+"body": "Let $(R, \\mathfrak m, k)$ be local and $P$ a finitely generated projective $R$-module, that is, a direct summand of some $R^n$. Then $P \\cong R^r$ with $r = \\dim_k P/\\mathfrak mP$.",
+"src": [
+"lomb",
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "By Nakayama choose $x_1, \\dots, x_r \\in P$ whose images form a basis of $P/\\mathfrak mP$; they generate $P$, giving a surjection $\\pi\\colon R^r \\to P$ with kernel $K$. Because $P$ is projective, $\\pi$ splits: $R^r \\cong P \\oplus K$. In particular $K$ is a quotient of $R^r$, so finitely generated. Reducing modulo $\\mathfrak m$ (that is, applying $k \\otimes_R -$, which preserves direct sums),\n$$k^r \\cong P/\\mathfrak mP \\oplus K/\\mathfrak mK .$$\nThe first summand already has dimension $r$, so $K/\\mathfrak mK = 0$, and $K = 0$ by Nakayama. Thus $\\pi$ is an isomorphism. Lombardi gives three proofs of this \"local freeness lemma\"; the first two, like the one above, use that the residue field is discrete (one can decide whether an element is zero), and the third, Azumaya's, does not, which matters constructively.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "Minimal generators of an ideal",
+"body": "Let $R = k[x,y]_{(x,y)}$ with maximal ideal $\\mathfrak m = (x, y)R$. Find the minimal number of generators of the ideal $I = (x + y^2,\\ y + x^2,\\ x^3 - y^3)R$, and of $\\mathfrak m$ itself.",
+"solution": "For $\\mathfrak m$: $\\mathfrak m/\\mathfrak m^2$ has basis the images of $x, y$, so $\\mathfrak m$ needs exactly $2$ generators.\n\nFor $I$: compute $I/\\mathfrak mI$. All three generators lie in $\\mathfrak m$, and modulo $\\mathfrak m^2$ they are $x$, $y$, $0$. So $I + \\mathfrak m^2 = \\mathfrak m$, and since $\\mathfrak m$ is finitely generated, Nakayama (part 3, with $N = I$ and $M = \\mathfrak m$, using $\\mathfrak m\\cdot\\mathfrak m = \\mathfrak m^2$) gives $I = \\mathfrak m$. Hence $I$ also needs exactly $2$ generators, for instance $x + y^2$ and $y + x^2$, and the third generator is redundant: $x^3 - y^3$ is an $R$-combination of the first two. Note that the analogous statement fails in the polynomial ring $k[x,y]$ itself: there $(x + y^2, y + x^2)$ is not $(x,y)$, since the two curves also pass through $(-1,-1)$ (substitute: $-1 + 1 = 0$ twice); after localising at the origin the other intersection points are forgotten.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "pitfall",
+"body": "- Finite generation is essential. $\\mathbb Q$ is a $\\mathbb Z_{(p)}$-module with $p\\mathbb Q = \\mathbb Q$, yet $\\mathbb Q \\ne 0$. Nakayama does not apply because $\\mathbb Q$ is not finitely generated over $\\mathbb Z_{(p)}$.\n- The hypothesis $I \\subseteq \\mathfrak m$ (more generally $I$ inside the Jacobson radical) is essential: over $\\mathbb Z$, $2\\cdot(\\mathbb Z/3) = \\mathbb Z/3 \\ne 0$.\n- \"Minimal generating set\" in a non-local ring need not have a well-defined size: $\\mathbb Z = (1) = (2, 3)$, and $\\{2,3\\}$ is a minimal generating set (neither element alone generates). Over a local ring all minimal generating sets have the same size.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Let $(R, \\mathfrak m)$ be local and $u \\in R$. Show that if $u \\equiv 1 \\pmod{\\mathfrak m}$ then $u$ is a unit, and deduce part 2 of Nakayama from part 1.\n2. (Basic) Find the minimal number of generators of $(x^2, xy, y^2)$ in $k[x,y]_{(x,y)}$.\n3. (Medium) Let $(R, \\mathfrak m)$ be local Noetherian and $\\varphi\\colon M \\to M$ a surjective endomorphism of a finitely generated module. Show $\\varphi$ is injective (make $M$ a module over $R[t]$ with $t$ acting as $\\varphi$ and apply part 1 with $I = (t)$).\n4. (Medium) Show that a finitely generated module $M$ over a local ring with $M \\otimes_R k = 0$ is zero.\n5. (Harder) Let $R$ be local and $F_1 \\to F_0 \\to M \\to 0$ a presentation by finite free modules with $F_0 \\to M$ inducing an isomorphism $F_0/\\mathfrak mF_0 \\cong M/\\mathfrak mM$. Show that the image of $F_1$ lies in $\\mathfrak mF_0$. (This is the first step towards minimal free resolutions.)"
+},
+{
+"type": "section",
+"title": "Local rings at points: multiplicities and computation",
+"body": "In computational algebraic geometry localisation appears in its most literal form. For a point $o$ of affine space $\\mathbb A^n_k$, Boehm, Decker and Schreyer work with the local ring\n$$\\mathcal O_o = k[x_1, \\dots, x_n]_{\\mathfrak m_o} = \\{g/h : h(o) \\ne 0\\},$$\nwhere $\\mathfrak m_o$ is the maximal ideal of polynomials vanishing at $o$; after a translation one may assume $o$ is the origin. Local invariants of curves and surfaces, such as intersection multiplicities and the delta invariant of a singular point, are defined by finite-dimensional quotients of $\\mathcal O_o$. The point of localising is that it isolates one point: a quotient $k[x]/I$ supported at finitely many points splits into a product of local pieces, and localising at one of them picks out its piece.",
+"src": [
+"bds",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "A finite-dimensional quotient is the product of its localisations",
+"body": "Let $B = k[x_1, \\dots, x_n]/I$ be finite-dimensional over $k$. Then $B$ has finitely many maximal ideals $\\mathfrak m_1, \\dots, \\mathfrak m_r$, each localisation $B_{\\mathfrak m_i}$ is finite-dimensional, and\n$$\\begin{gathered}B \\cong B_{\\mathfrak m_1} \\times \\dots \\times B_{\\mathfrak m_r},\\\\ \\dim_k B = \\sum_i \\dim_k B_{\\mathfrak m_i}.\\end{gathered}$$",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "proof",
+"body": "A finite-dimensional algebra is Artinian: descending chains of ideals are chains of subspaces, which stop. Every prime $\\mathfrak p$ of $B$ is maximal, because $B/\\mathfrak p$ is a finite-dimensional domain, hence a field (multiplication by a nonzero element is an injective linear map, hence surjective). If $\\mathfrak m_1, \\dots, \\mathfrak m_{r}$ are distinct maximal ideals, the Chinese remainder theorem makes $B \\to \\prod B/\\mathfrak m_i$ surjective, so $r \\le \\dim_k B$; hence there are finitely many. The nilradical $N = \\mathfrak m_1 \\cap \\dots \\cap \\mathfrak m_r$ is nilpotent (it is a finitely generated ideal of nilpotent elements in a Noetherian ring), say $N^e = 0$. The ideals $\\mathfrak m_i^e$ are pairwise comaximal and $\\prod_i \\mathfrak m_i^e \\subseteq N^e = 0$, so by the Chinese remainder theorem $B \\cong \\prod_i B/\\mathfrak m_i^e$. Each factor $B/\\mathfrak m_i^e$ is local (its only maximal ideal is $\\mathfrak m_i/\\mathfrak m_i^e$), and localising the product at $\\mathfrak m_i$ kills the other factors (in each of them some element of $\\mathfrak m_j \\setminus \\mathfrak m_i$ is nilpotent, and it becomes a unit) and leaves $B/\\mathfrak m_i^e$ unchanged. So $B_{\\mathfrak m_i} \\cong B/\\mathfrak m_i^e$. Compare Gathmann's Example 6.25 and Corollary 6.26, which show more generally that the length of a module of finite length is the sum of the lengths of its localisations at the maximal ideals."
+},
+{
+"type": "definition",
+"title": "Intersection multiplicity",
+"body": "Let $f, g \\in k[x, y]$ be non-constant square-free polynomials without common factor, defining plane curves $C = V(f)$ and $D = V(g)$. Their intersection multiplicity at the origin $o$ is\n$$i(C, D; o) = \\dim_k \\mathcal O_o/(f, g)\\mathcal O_o,$$\nand at another point it is defined after translating that point to the origin (possibly after enlarging $k$). This is Definition 3.1 of Boehm-Decker-Schreyer; their Definition 3.3 defines the delta invariant of a curve singularity through the normalisation of the local ring $\\mathcal O_o/f\\mathcal O_o$, and normalisation commutes with localisation by the theorem 'What localisation preserves' in [[localization]].",
+"src": [
+"bds"
+]
+},
+{
+"type": "example",
+"title": "Two tangential cusps (Boehm-Decker-Schreyer, Example 3.2)",
+"body": "Compute $i(C, D; o)$ for $C = V(y^2 - x^3)$ and $D = V(2y^2 - x^3)$.",
+"solution": "The ideal $(y^2 - x^3, 2y^2 - x^3)$ contains $(2y^2 - x^3) - (y^2 - x^3) = y^2$ and then $x^3$, so it equals $(x^3, y^2)$. This ideal is supported only at the origin: $k[x,y]/(x^3, y^2)$ is already local, with basis $1, x, x^2, y, xy, x^2y$. Localising changes nothing, so $i(C, D; o) = 6$. (The paper computes this both by localising in OSCAR and with a built-in command; the hand computation gives $6$, confirmed in the checks.)",
+"src": [
+"bds"
+]
+},
+{
+"type": "example",
+"title": "Localising separates intersection points",
+"body": "Let $C = V(y)$ (the $x$-axis) and $D = V(y - x^3 + x^2)$. Find all intersection points and their multiplicities, and compare with $\\dim_k k[x,y]/(f, g)$.",
+"solution": "Modulo $y$, the second equation becomes $x^3 - x^2 = x^2(x - 1)$, so\n$$B = k[x,y]/(y,\\ y - x^3 + x^2) \\cong k[x]/(x^2(x-1)), \\qquad \\dim_k B = 3 .$$\nThe maximal ideals of $B$ are $(x)$ and $(x - 1)$: the points $o = (0,0)$ and $a = (1,0)$. At $o$, the factor $x - 1$ is a unit (it equals $-1$ at $o$), so $B_{(x)} \\cong k[x]_{(x)}/(x^2) \\cong k[x]/(x^2)$, of dimension $2$: the cubic is tangent to the axis at the origin. At $a$, $x^2$ is a unit and $B_{(x-1)} \\cong k[x]/(x-1) \\cong k$, dimension $1$: a transversal crossing. The total $2 + 1 = 3$ is the dimension of the global quotient, as the product theorem says; and $3 = \\deg C \\cdot \\deg D$, as Bézout's theorem predicts once no intersection points escape to infinity. By the Chinese remainder theorem $B \\cong k[x]/(x^2) \\times k[x]/(x-1)$, and the two factors are the two localisations.",
+"src": [
+"bds",
+"gathmann"
+]
+},
+{
+"type": "figure",
+"engine": "plot",
+"code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(5.4, 3.4)\nax = plt.gca()\nx = np.linspace(-0.75, 1.45, 400)\nax.axhline(0, color='#1f4e79', lw=2.0, label='$C: y=0$')\nax.plot(x, x**3 - x**2, color='#c55a11', lw=2.0, label='$D: y=x^3-x^2$')\nax.plot([0], [0], 'o', color='black', ms=7); ax.plot([1], [0], 'o', color='black', ms=7)\nax.annotate('$o=(0,0)$: multiplicity 2', (0, 0), (-0.72, 0.42), fontsize=10, arrowprops=dict(arrowstyle='->', color='gray'))\nax.annotate('$a=(1,0)$: multiplicity 1', (1, 0), (0.45, -0.62), fontsize=10, arrowprops=dict(arrowstyle='->', color='gray'))\nax.set_xlim(-0.8, 1.5); ax.set_ylim(-0.8, 0.8)\nax.legend(loc='upper left', fontsize=9, frameon=False)\nax.set_xlabel('$x$'); ax.set_ylabel('$y$')\nfor s in ['top', 'right']: ax.spines[s].set_visible(False)\n",
+"caption": "The line $y = 0$ and the cubic $y = x^3 - x^2$ meet at the origin, where they are tangent, and at $(1,0)$, where they cross. Localising $k[x,y]/(y, y - x^3 + x^2)$ at each point gives the local multiplicities $2$ and $1$; they add up to the dimension $3$ of the global quotient.",
+"alt": "A horizontal line y = 0 and a cubic curve y = x cubed minus x squared. The cubic touches the line at the origin, labelled multiplicity 2, and crosses it at (1,0), labelled multiplicity 1.",
+"src": [
+"bds"
+]
+},
+{
+"type": "connection",
+"body": "How computer algebra handles local rings. The ring $\\mathcal O_o$ is not finitely generated as a $k[x]$-algebra, so it cannot be fed to a Gröbner basis algorithm directly. Two strategies appear in the papers. Boehm, Decker and Schreyer use local monomial orderings, in which $1 > x_i$ for every variable (so that the \"leading term\" of $1 - x$ is $1$, matching the fact that $1 - x$ is a unit in $\\mathcal O_o$), and division with respect to such orderings; this works at points. Sayrafi notes that no suitable monomial orders are known for local rings in general, the exception being localisation at a maximal ideal, where Mora's tangent cone algorithm gives a minimal basis. Sayrafi's Macaulay2 packages, which handle localisations at arbitrary primes, instead compute over the polynomial ring (free resolutions, syzygies) and only at the end localise, pruning the resulting complexes; minimal generators, length and the Hilbert-Samuel function over $R_{\\mathfrak p}$ are computed this way. The algorithms are not covered on this page; see Boehm-Decker-Schreyer §2-3 and Sayrafi §1.",
+"src": [
+"bds",
+"sayrafi"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Compute $i(C, D; o)$ for $C = V(y - x^2)$ and $D = V(y)$, and for $C = V(y^2 - x^3)$ and $D = V(y)$.\n2. (Basic) Find all points of $V(x^2 + y^2 - 1) \\cap V(x - y)$ over $\\mathbb R$ and their multiplicities, and check that they add up to $\\dim_{\\mathbb R} \\mathbb R[x,y]/(x^2 + y^2 - 1, x - y)$.\n3. (Medium) Compute $\\dim_k \\mathcal O_o/(x^2 - y^3, x^3 - y^2)\\mathcal O_o$ and compare with $\\dim_k k[x,y]/(x^2 - y^3, x^3 - y^2)$ over $k = \\mathbb C$. Which other points contribute?\n4. (Medium) Show that in a local monomial ordering ($1 > x$) the polynomial $1 - x + x^5$ has leading term $1$, and explain why this is consistent with its being a unit of $k[x]_{(x)}$.\n5. (Harder) Let $B$ be a finite-dimensional $k$-algebra. Show that $B$ is local if and only if every element of $B$ is a unit or nilpotent."
+},
+{
+"type": "connection",
+"src": [
+"stacks",
+"xu",
+"dieth",
+"guanhu",
+"bds",
+"suth",
+"grossack"
+],
+"body": "Prerequisite: [[localization]] (the rings $S^{-1}A$ and $A_{\\mathfrak p}$, the universal property, and the maximal ideal and residue field of $A_{\\mathfrak p}$).\n\n- [[schemes]]: schemes are locally ringed spaces, and their morphisms are required to be local on stalks; Xu imposes the same condition over $\\mathbb F_1$.\n- [[dedekind-domains]]: a discrete valuation ring is a local principal ideal domain that is not a field, and Dedekind domains are the Noetherian domains whose local rings at nonzero primes are discrete valuation rings.\n- [[homological-algebra]]: minimal free resolutions over a local ring, built with Nakayama's lemma, are the starting point of Diethorn's survey of Koszul homology and of Guan and Hu's formalisation of the Auslander-Buchsbaum-Serre criterion, which also uses that projective modules over local rings are free.\n- [[algebraic-varieties]] and [[sheaves]]: the local ring of a variety at a point is the stalk of its structure sheaf, and intersection multiplicities are dimensions of its finite-dimensional quotients.\n- [[p-adic-numbers]]: the $p$-adic integers are the completion of the local ring $\\mathbb Z_{(p)}$; Grossack explains why completion is \"more local\" than localisation."
+}
+],
+"checks": [
+{
+"claim": "Z/n is local (non-units form an ideal) iff n is a prime power, for 2 <= n <= 60",
+"python": "\nfrom math import gcd\nfrom sympy import factorint\nfor n in range(2, 61):\n    nonunits = {a for a in range(n) if gcd(a, n) != 1}\n    ideal = all((x + y) % n in nonunits for x in nonunits for y in nonunits)\n    assert ideal == (len(factorint(n)) == 1), n\n"
+},
+{
+"claim": "Nakayama example: x^3 - y^3 lies in (x + y^2, y + x^2) after inverting an element not vanishing at 0; images of generators mod m^2 are x, y; (-1,-1) is a common zero",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\ng1, g2, g3 = x + y**2, y + x**2, x**3 - y**3\n# modulo m^2 = (x^2, xy, y^2)\nG2 = sp.groebner([x**2, x*y, y**2], x, y, order='grevlex')\nassert G2.reduce(g1)[1] == x and G2.reduce(g2)[1] == y and G2.reduce(g3)[1] == 0\nassert g1.subs({x: -1, y: -1}) == 0 and g2.subs({x: -1, y: -1}) == 0\nG = sp.groebner([g1, g2], x, y, order='lex')\nassert G.exprs == [x + y**2, y**4 + y]\n# y^4 + y = y (y^3 + 1) has a simple root at 0: the origin contributes colength 1, so (g1, g2) = m locally\nassert sp.diff(y**4 + y, y).subs(y, 0) == 1\n"
+},
+{
+"claim": "Intersection multiplicity of y^2 - x^3 and 2y^2 - x^3 at the origin is 6: the ideal is (x^3, y^2)",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([y**2 - x**3, 2*y**2 - x**3], x, y, order='grevlex')\nassert sp.groebner([x**3, y**2], x, y, order='grevlex').exprs == G.exprs\nstd = [x**i * y**j for i in range(10) for j in range(10) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 6\n"
+},
+{
+"claim": "y = 0 and y = x^3 - x^2: global quotient has dimension 3; local pieces k[x]/(x^2) (dim 2) and k[x]/(x-1) (dim 1); CRT idempotents exist",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([y, y - x**3 + x**2], x, y, order='lex')\nstd = [x**i * y**j for i in range(6) for j in range(3) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 3\nf = x**2 * (x - 1)\nassert sp.gcd(x**2, x - 1) == 1\ns, t, h = sp.gcdex(x**2, x - 1, x)\nassert sp.expand(s * x**2 + t * (x - 1)) == 1\ne = sp.expand(s * x**2)  # idempotent: 1 mod (x-1), 0 mod x^2\nassert sp.rem(sp.expand(e**2 - e), f, x) == 0 and sp.rem(e - 1, x - 1, x) == 0 and sp.rem(e, x**2, x) == 0\n"
+},
+{
+"claim": "x^2 - y^3 and x^3 - y^2 over C: total colength 9 = 4 at the origin + 5 simple points x^5 = 1, y = x^4",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([x**2 - y**3, x**3 - y**2], x, y, order='grevlex')\nstd = [x**i * y**j for i in range(12) for j in range(12) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 9\n# local colength at origin: add a high power of m to cut off the other points\nGl = sp.groebner([x**2 - y**3, x**3 - y**2] + [x**i * y**(8 - i) for i in range(9)], x, y, order='grevlex')\nstdl = [x**i * y**j for i in range(12) for j in range(12) if Gl.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(stdl) == 4\nz = sp.exp(2 * sp.pi * sp.I / 5)\nfor k in range(5):\n    X = z**k; Y = X**4\n    assert abs(complex(sp.N(X**2 - Y**3))) < 1e-12 and abs(complex(sp.N(X**3 - Y**2))) < 1e-12\n"
+},
+{
+"claim": "Minimal number of generators of (x^2, xy, y^2) at the origin is 3: dim of I/mI",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\n# I/mI with I = m^2, m I = m^3: monomials of degree exactly 2\nG = sp.groebner([x**3, x**2*y, x*y**2, y**3], x, y, order='grevlex')\ngens = [x**2, x*y, y**2]\nM = sp.Matrix([[sp.Poly(G.reduce(g)[1], x, y).coeff_monomial(m) for m in gens] for g in gens])\nassert M.rank() == 3\n"
+},
+{
+"claim": "Determinant trick: adj(T) T = det(T) I, and det(I - Z) is 1 modulo the entries of Z (3x3 symbolic)",
+"python": "import sympy as sp\nz = sp.symbols('z0:9'); Z = sp.Matrix(3, 3, z); T = sp.eye(3) - Z\nassert sp.simplify(T.adjugate() * T - T.det() * sp.eye(3)) == sp.zeros(3, 3)\nassert sp.expand(T.det()).subs({v: 0 for v in z}) == 1\n"
+},
+{
+"claim": "Units in k[x]/(x^n): (1 + y)(1 - y + ... + (-y)^(n-1)) = 1 - (-y)^n, which is 1 when y is nilpotent of order n",
+"python": "import sympy as sp\ny = sp.symbols('y')\nfor n in range(1, 8):\n    assert sp.expand((1 + y) * sum((-y) ** k for k in range(n)) - (1 - (-y) ** n)) == 0\n"
+},
+{
+"claim": "Local multiplicities in the separation example by truncating with a high power of the maximal ideal: 2 at the origin, 1 at (1,0); for the two cusps 6; total 3",
+"python": "import sympy as sp\nx, y = sp.symbols('x y')\ndef colen(gens, cx=0, N=8):\n    X = x - cx\n    G = sp.groebner(gens + [X**i * y**(N - i) for i in range(N + 1)], x, y, order='grevlex')\n    return sum(1 for i in range(14) for j in range(14) if G.reduce(x**i * y**j)[1] == x**i * y**j)\ng = [y, y - x**3 + x**2]\nassert colen(g, 0) == 2 and colen(g, 1) == 1\nassert colen([y**2 - x**3, 2*y**2 - x**3], 0) == 6\n"
+}
+]
+}
+}
+]

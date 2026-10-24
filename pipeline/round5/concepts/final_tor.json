@@ -1,0 +1,432 @@
+[
+{
+"id": "tor",
+"entry": {
+"sum": "$\\mathrm{Tor}_n^R(A,B) = H_n(P_\\bullet\\otimes_RB)$, the left derived functors of the tensor product, measure how far $-\\otimes_RB$ is from exact; they can be computed by resolving either variable, from flat resolutions, and locally. Over $\\mathbb{Z}$, $\\mathrm{Tor}_1(\\mathbb{Z}/n,B)$ is the $n$-torsion of $B$; in general a module is flat exactly when $\\mathrm{Tor}_1$ against it vanishes, and Tor is the correction term in the Künneth formula.",
+"key": [
+"\\mathrm{Tor}_n^R(A,B) = H_n(P_\\bullet\\otimes_R B)\\quad (P_\\bullet\\to A \\text{ projective resolution})",
+"\\mathrm{Tor}_1^R(R/I,R/J)\\cong (I\\cap J)/IJ,\\qquad \\mathrm{Tor}_1^{\\mathbb{Z}}(\\mathbb{Z}/m,\\mathbb{Z}/n)\\cong\\mathbb{Z}/\\gcd(m,n)",
+"0\\to\\bigoplus_{p+q=n}H_p(P)\\otimes H_q(Q)\\to H_n(P\\otimes Q)\\to\\bigoplus_{p+q=n-1}\\mathrm{Tor}(H_p(P),H_q(Q))\\to0"
+],
+"why": "Vanishing of Tor is the standard test for flatness in commutative algebra, Tor computes Betti numbers and intersection multiplicities, and it is the correction term in the Künneth and universal coefficient theorems of topology.",
+"msc": [
+"18G15",
+"13D07"
+],
+"links": [
+{
+"field": "algebraic-geometry",
+"note": "Serre's intersection multiplicity is an alternating sum of lengths of $\\mathrm{Tor}_i(A/I,A/J)$."
+}
+],
+"refs": [
+"C. A. Weibel, An Introduction to Homological Algebra",
+"J. J. Rotman, An Introduction to Homological Algebra",
+"A. Hatcher, Algebraic Topology"
+],
+"aliases": [
+"Tor",
+"Tor functor",
+"flat module",
+"flatness criterion",
+"flat resolution",
+"Koszul complex",
+"Künneth formula",
+"Serre's intersection formula"
+]
+},
+"lesson": {
+"v": 2,
+"minutes": 26,
+"sources": [
+{
+"k": "weibel",
+"ref": "C. A. Weibel, An Introduction to Homological Algebra (1994)",
+"where": "Ch. 3 (Tor and Ext), incl. §3.6 (Thms 3.6.1-3.6.5)",
+"url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+"kind": "textbook"
+},
+{
+"k": "cb",
+"ref": "W. Crawley-Boevey, Homological Algebra, lecture notes, Bielefeld (2024/25)",
+"where": "§1.6-1.7, §2.1-2.4",
+"url": "https://www.math.uni-bielefeld.de/~wcrawley/2425HA/Homological-algebra-WS2425.pdf",
+"kind": "notes"
+},
+{
+"k": "arapura",
+"ref": "D. Arapura, Algebra notes, Ch. 5 Derived functors and Tor (Purdue)",
+"where": "§5.1-5.31 (Thm 5.8, 5.22, 5.25, 5.27, Lemma 5.29, Thm 5.31)",
+"url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+"kind": "notes"
+},
+{
+"k": "tornotes",
+"ref": "The functor Tor, lecture notes for Math 615, University of Michigan (2014), hosted on M. Hochster's course page",
+"url": "https://dept.math.lsa.umich.edu/~hochster/615W14/Tor.pdf",
+"kind": "notes"
+},
+{
+"k": "quick17",
+"ref": "G. Quick, MA3403 Algebraic Topology, Lecture 17: Tor and the universal coefficient theorem (NTNU 2018)",
+"url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture17.pdf",
+"kind": "notes"
+},
+{
+"k": "w-tor",
+"ref": "Wikipedia, Tor functor",
+"url": "https://en.wikipedia.org/wiki/Tor_functor",
+"kind": "reference"
+},
+{
+"k": "w-int",
+"ref": "Wikipedia, Intersection number (Serre's Tor formula)",
+"url": "https://en.wikipedia.org/wiki/Intersection_number",
+"kind": "reference"
+},
+{
+"k": "nlab-tor",
+"ref": "nLab, Tor",
+"url": "https://ncatlab.org/nlab/show/Tor",
+"kind": "reference"
+},
+{
+"k": "hm",
+"ref": "R. Holanda and C. B. Miranda-Neto, Vanishing of (co)homology, freeness criteria, and the Auslander-Reiten conjecture for Cohen-Macaulay Burch rings, arXiv:2212.05521 (2022)",
+"where": "§1-2",
+"url": "https://arxiv.org/abs/2212.05521",
+"kind": "paper"
+},
+{
+"k": "tang",
+"ref": "J. Tang, Profinite and Solid Cohomology, arXiv:2410.08933 (2024)",
+"where": "§1-3",
+"url": "https://arxiv.org/abs/2410.08933",
+"kind": "paper"
+},
+{
+"k": "sg",
+"ref": "S. Shekhar and A. Gupta, On Tor-vanishing of local rings, arXiv:2506.21764 (2025)",
+"where": "§1 (Tor-vanishing property), §2 (Definition 2.1)",
+"url": "https://arxiv.org/abs/2506.21764",
+"kind": "paper"
+}
+],
+"requires": [
+{
+"item": "$\\mathrm{Tor}_n$ via resolutions; long exact Tor sequences; flat resolutions; Tor and localisation",
+"priority": "core",
+"where": "Computing Tor in practice"
+},
+{
+"item": "$\\mathrm{Tor}$ of $R/x$ for a non-zero-divisor; $\\mathrm{Tor}_1(R/I,R/J) = (I\\cap J)/IJ$; Koszul complex in two variables",
+"priority": "common",
+"where": "Tor: definition and first computations; Computing Tor in practice"
+},
+{
+"item": "Tor and intersection multiplicity (Serre's formula)",
+"priority": "specialised",
+"where": "Computing Tor in practice"
+},
+{
+"item": "standard computations over $\\mathbb{Z}$: $\\mathrm{Tor}$ of cyclic groups, $\\mathrm{Tor}_1(\\mathbb{Z}/n,A) = A[n]$",
+"priority": "core",
+"where": "Tor: definition and first computations"
+},
+{
+"item": "vanishing criterion: flat iff $\\mathrm{Tor}_1(-,M) = 0$ (ideal criterion)",
+"priority": "common",
+"where": "Tor: definition and first computations"
+},
+{
+"item": "Künneth formula",
+"priority": "common",
+"where": "Künneth formula for complexes"
+},
+{
+"item": "vanishing $\\mathrm{Tor}_i^R(M,N) = 0$ for $i>\\mathrm{pd}_RM$ (or $i>\\mathrm{pd}_RN$), and the Tor-vanishing property as its converse",
+"priority": "core",
+"where": "Computing Tor in practice"
+},
+{
+"item": "Betti numbers $\\beta_n^R(M) = \\dim_k\\mathrm{Tor}_n^R(k,M)$ from a minimal free resolution over a local ring; projective dimension",
+"priority": "core",
+"where": "[[ext]]"
+},
+{
+"item": "Koszul complex on a minimal generating set of the maximal ideal and its homology",
+"priority": "specialised",
+"where": "not covered here beyond two variables (Tor over a polynomial ring: the Koszul complex); see [sg]"
+},
+{
+"item": "Poincaré series and curvature, Golod and generalised Golod rings, DG algebras and Massey operations",
+"priority": "specialised",
+"where": "not covered here; see [sg]"
+}
+],
+"blocks": [
+{
+"type": "intro",
+"src": [
+"quick17",
+"w-tor",
+"weibel",
+"tornotes",
+"w-int",
+"hm",
+"tang",
+"sg"
+],
+"body": "Tensoring the injection $2\\colon\\mathbb{Z}\\to\\mathbb{Z}$ with $\\mathbb{Z}/2$ gives the zero map $\\mathbb{Z}/2\\to\\mathbb{Z}/2$: the tensor product is right exact but not exact. The groups $\\mathrm{Tor}_n^R(A,B)$, the left derived functors of $\\otimes$ ([[derived-functors]]), measure this failure; $\\mathrm{Tor}_1$ is the kernel that is lost when an injection is tensored. Čech introduced Tor in 1935. Over $\\mathbb{Z}$ only $\\mathrm{Tor}_1$ is interesting and it measures torsion, which is where the name comes from; over other rings every degree can be non-zero.\n\nThis page defines Tor, computes it on cyclic modules and through the Koszul complex, proves that Tor detects flatness, collects the tools used in practice (colimits, flat resolutions, localisation), shows Serre's reading of Tor as a derived intersection, and proves the Künneth formula for a tensor product of complexes, in which Tor is the correction term. Commutative algebra papers such as Holanda-Miranda-Neto's state their hypotheses as vanishing of Tor between finitely generated modules over a local ring, Shekhar-Gupta ask when vanishing of all high Tor groups forces finite projective dimension, and Tang's paper has to check how Tor and flatness behave in a setting where projective modules need not be flat."
+},
+{
+"type": "section",
+"title": "Tor: definition and first computations",
+"src": [
+"weibel",
+"w-tor",
+"quick17"
+],
+"body": "Tor is the left derived functor of the tensor product. Over $\\mathbb{Z}$ it only has one interesting degree, $\\mathrm{Tor}_1 = \\mathrm{Tor}$, which is the kernel lost when an injection is tensored; over general rings all degrees can be non-zero, as the $\\mathbb{Z}/4$ computation in the dimension-shifting example of [[derived-functors]] showed. This section defines Tor, computes it on cyclic modules, and proves that it detects flatness; the next collects the tools used in practice."
+},
+{
+"type": "definition",
+"title": "Tor",
+"src": [
+"weibel",
+"w-tor",
+"arapura"
+],
+"body": "Let $A$ be a right $R$-module and $B$ a left $R$-module (for commutative $R$ the distinction disappears). Choose a projective resolution $P_\\bullet\\to A$ and set\n$$\\begin{aligned}\\mathrm{Tor}_n^R(A,B) &= H_n(P_\\bullet\\otimes_RB)\\\\ &= L_n(-\\otimes_RB)(A).\\end{aligned}$$\nSo $\\mathrm{Tor}_0^R(A,B) = A\\otimes_RB$, $\\mathrm{Tor}_n = 0$ for $n<0$, and $\\mathrm{Tor}_n^R(P,B) = 0$ for $n>0$ when $P$ is projective. By the balancing theorem of [[derived-functors]], the same groups are obtained by resolving $B$ instead: $\\mathrm{Tor}_n^R(A,B)\\cong H_n(A\\otimes_RQ_\\bullet)$ for a projective resolution $Q_\\bullet\\to B$. When $R$ is commutative, $\\mathrm{Tor}_n^R(A,B)$ is an $R$-module, $\\mathrm{Tor}_n^R(A,B)\\cong\\mathrm{Tor}_n^R(B,A)$, and multiplication by $r$ on $\\mathrm{Tor}$ agrees with multiplication by $r$ on either argument, so $\\mathrm{Tor}$ is killed by $\\mathrm{Ann}(A)+\\mathrm{Ann}(B)$."
+},
+{
+"type": "theorem",
+"title": "Tor against a non-zero-divisor",
+"src": [
+"tornotes",
+"weibel",
+"w-tor"
+],
+"body": "Let $R$ be commutative, $x\\in R$ a non-zero-divisor and $M$ an $R$-module. Then\n$$\\begin{gathered}\\mathrm{Tor}_0^R(R/xR,M) = M/xM,\\\\ \\mathrm{Tor}_1^R(R/xR,M) = \\{m\\in M: xm = 0\\},\\\\ \\mathrm{Tor}_n^R(R/xR,M) = 0\\ (n\\ge2).\\end{gathered}$$\nIn particular, over $\\mathbb{Z}$: $\\mathrm{Tor}_1(\\mathbb{Z}/m,B) = B[m]$, the $m$-torsion of $B$, and $\\mathrm{Tor}_1(\\mathbb{Z}/m,\\mathbb{Z}/n)\\cong\\mathbb{Z}/\\gcd(m,n)$. This is where the name comes from: $\\mathrm{Tor}_1$ measures torsion."
+},
+{
+"type": "proof",
+"src": [
+"tornotes",
+"quick17"
+],
+"body": "Since $x$ is a non-zero-divisor, $0\\to R\\xrightarrow{x}R\\to R/xR\\to0$ is a free resolution. Tensoring the complex $R\\xrightarrow{x}R$ with $M$ gives $M\\xrightarrow{x}M$ in degrees $1, 0$. Its homology is $M/xM$ in degree $0$, the kernel of multiplication by $x$ in degree $1$, and $0$ above. For $M = \\mathbb{Z}/n$ and $x = m$, the elements of $\\mathbb{Z}/n$ killed by $m$ are the multiples of $n/d$ where $d = \\gcd(m,n)$, a cyclic group of order $d$."
+},
+{
+"type": "theorem",
+"title": "Tor of two cyclic modules",
+"src": [
+"tornotes"
+],
+"body": "Let $R$ be commutative and $I,J$ ideals. Then $\\mathrm{Tor}_0^R(R/I,R/J) = R/(I+J)$ and\n$$\\mathrm{Tor}_1^R(R/I,R/J)\\cong(I\\cap J)/IJ.$$"
+},
+{
+"type": "proof",
+"src": [
+"tornotes"
+],
+"body": "$R/I\\otimes R/J\\cong R/(I+J)$ by right exactness. For $\\mathrm{Tor}_1$, apply the long exact Tor sequence (in the first variable) to $0\\to I\\to R\\to R/I\\to0$, tensored with $R/J$:\n$$\\begin{aligned}&\\mathrm{Tor}_1(R,R/J) = 0\\to\\mathrm{Tor}_1(R/I,R/J)\\to{}\\\\ &\\qquad I\\otimes R/J\\to R\\otimes R/J\\to\\cdots.\\end{aligned}$$\nHere $I\\otimes R/J\\cong I/IJ$ (right exactness applied to $0\\to J\\to R\\to R/J\\to0$ tensored with $I$, whose image of $I\\otimes J$ in $I$ is $IJ$), and $R\\otimes R/J = R/J$. The map $I/IJ\\to R/J$ is induced by inclusion, so its kernel is $(I\\cap J)/IJ$."
+},
+{
+"type": "theorem",
+"title": "Tor detects flatness",
+"src": [
+"weibel",
+"w-tor"
+],
+"body": "Let $R$ be commutative and $M$ an $R$-module. The following are equivalent:\n\n1. $M$ is flat;\n2. $\\mathrm{Tor}_n^R(N,M) = 0$ for all $N$ and all $n\\ge1$;\n3. $\\mathrm{Tor}_1^R(N,M) = 0$ for all $N$;\n4. $\\mathrm{Tor}_1^R(R/I,M) = 0$ for every ideal $I$, i.e. $I\\otimes M\\to M$ is injective for every ideal $I$.\n\nOver $\\mathbb{Z}$ (or any PID), a module is flat if and only if it is torsion-free."
+},
+{
+"type": "proof",
+"src": [
+"weibel",
+"cb"
+],
+"body": "(1) implies (2): if $M$ is flat, $-\\otimes M$ is exact, so applying it to a projective resolution $P_\\bullet\\to N$ gives an exact sequence $\\cdots\\to P_1\\otimes M\\to P_0\\otimes M\\to N\\otimes M\\to0$, whose homology in positive degrees is $\\mathrm{Tor}_n(N,M)$. (2) implies (3) implies (4) trivially; for the reformulation of (4), the long exact sequence of $0\\to I\\to R\\to R/I\\to0$ gives\n$$\\begin{aligned}0 = \\mathrm{Tor}_1(R,M)&\\to\\mathrm{Tor}_1(R/I,M)\\\\ &\\to I\\otimes M\\to M.\\end{aligned}$$\n\n(4) implies (1). Write $X^+ = \\mathrm{Hom}_{\\mathbb{Z}}(X,\\mathbb{Q}/\\mathbb{Z})$. Two facts are needed. First, a homomorphism $u\\colon X\\to Y$ of abelian groups is injective if and only if $u^+\\colon Y^+\\to X^+$ is surjective: if $u$ is injective, $u^+$ is onto because $\\mathbb{Q}/\\mathbb{Z}$ is injective; if $u(x) = 0$ with $x\\ne0$, pick a non-zero map $\\mathbb{Z}x\\to\\mathbb{Q}/\\mathbb{Z}$ (possible for a cyclic group), extend it to $X$ by injectivity, and observe that it is not of the form $\\psi\\circ u$. Second, Hom-tensor adjunction gives $(X\\otimes_RM)^+\\cong\\mathrm{Hom}_R(X,M^+)$ naturally in the $R$-module $X$.\n\nNow assume (4). For an ideal $I$, injectivity of $I\\otimes M\\to R\\otimes M$ means, by the first fact, that $(R\\otimes M)^+\\to(I\\otimes M)^+$ is onto, i.e. $\\mathrm{Hom}_R(R,M^+)\\to\\mathrm{Hom}_R(I,M^+)$ is onto. By Baer's criterion ([[homological-algebra]]) $M^+$ is an injective $R$-module. Then for any injection $X\\to Y$, the map $\\mathrm{Hom}_R(Y,M^+)\\to\\mathrm{Hom}_R(X,M^+)$, which is $(Y\\otimes M)^+\\to(X\\otimes M)^+$, is onto, so $X\\otimes M\\to Y\\otimes M$ is injective by the first fact. So $M$ is flat.\n\nOver a PID every ideal is $(r)$, and $(r)\\otimes M\\to M$ is identified with multiplication by $r$ on $M$ (for $r\\ne0$, since $(r)\\cong R$). It is injective for all $r\\neq 0$ exactly when $M$ is torsion-free."
+},
+{
+"type": "section",
+"title": "Computing Tor in practice",
+"src": [
+"weibel",
+"w-tor",
+"tornotes",
+"sg"
+],
+"body": "Besides resolutions and long exact sequences, four properties do most of the work.\n\n1. Additivity and colimits. Tor commutes with direct sums in each variable and, more generally, with filtered colimits (Wikipedia, Tor functor), because tensor products and homology do. For finitely generated abelian groups this reduces everything to cyclic groups: $\\mathrm{Tor}_1(\\mathbb{Z}^r\\oplus\\bigoplus\\mathbb{Z}/a_i,\\ B) = \\bigoplus B[a_i]$.\n2. Flat resolutions. By the acyclic resolution argument of [[derived-functors]], $\\mathrm{Tor}_n(A,B) = H_n(F_\\bullet\\otimes B)$ for any flat resolution $F_\\bullet\\to A$, and similarly in the other variable (Weibel's Flat Resolution Lemma 3.2.8).\n3. Localisation. For commutative $R$ and a multiplicative set $S$, $S^{-1}R$ is flat over $R$ and $S^{-1}\\mathrm{Tor}_n^R(A,B)\\cong\\mathrm{Tor}_n^{S^{-1}R}(S^{-1}A,S^{-1}B)$ (Weibel Theorem 3.2.2, and the flat base change Corollary 3.2.10 with $T = S^{-1}R$): localise a projective resolution of $A$, which stays a projective resolution because localisation is exact. So vanishing of Tor can be tested locally.\n4. Finite projective dimension. If $A$ has a projective resolution $P_\\bullet$ of length $n$, that is, projective dimension at most $n$ in the sense of [[ext]], then $P_\\bullet\\otimes B$ vanishes above degree $n$, so $\\mathrm{Tor}_i(A,B) = 0$ for all $i>n$ and all $B$. Resolving the second variable instead (balancing) gives the same conclusion when $B$ has a projective resolution of length $n$. Over a Noetherian local ring, papers on Tor-vanishing ask for the converse: Shekhar and Gupta say that $R$ has the Tor-vanishing property if, for finitely generated $M$ and $N$, $\\mathrm{Tor}_i^R(M,N) = 0$ for all large $i$ forces $\\mathrm{pd}_RM<\\infty$ or $\\mathrm{pd}_RN<\\infty$.\n\nWeibel's Proposition 3.1.3 is a typical application of the colimit property: $\\mathrm{Tor}_1(\\mathbb{Q}/\\mathbb{Z},B)$ is the torsion subgroup of $B$. Indeed $\\mathbb{Q}/\\mathbb{Z}$ is the union of its subgroups $\\frac1n\\mathbb{Z}/\\mathbb{Z}\\cong\\mathbb{Z}/n$, and the inclusion $\\mathbb{Z}/n\\to\\mathbb{Z}/nm$ (sending $1$ to $m$) lifts to the resolutions $\\mathbb{Z}\\xrightarrow{n}\\mathbb{Z}$, $\\mathbb{Z}\\xrightarrow{nm}\\mathbb{Z}$ by the identity in degree $1$ and multiplication by $m$ in degree $0$. On $\\mathrm{Tor}_1$ it therefore induces the inclusion $B[n]\\subseteq B[nm]$, and the colimit is $\\bigcup_nB[n]$, the torsion subgroup."
+},
+{
+"type": "example",
+"title": "Tor over a polynomial ring: the Koszul complex",
+"src": [
+"w-tor",
+"weibel"
+],
+"body": "Let $k$ be a field, $R = k[x,y]$ and $k = R/(x,y)$. Show that\n$$0\\to R\\xrightarrow{\\begin{pmatrix}-y\\\\ x\\end{pmatrix}}R^2\\xrightarrow{(x\\ \\ y)}R\\to k\\to0$$\nis a free resolution, and compute $\\mathrm{Tor}_i^R(k,k)$ and $\\mathrm{Tor}_i^R(k,R/(x))$.",
+"solution": "The composite of the two matrices is $-xy+yx = 0$. Exactness at $R$: the image of $(x\\ y)$ is the ideal $(x,y)$, the kernel of $R\\to k$. Exactness at $R^2$: if $xf+yg = 0$ then $x\\mid g$ because $x,y$ are coprime in the UFD $R$; writing $g = xh$ gives $f = -yh$, so $(f,g) = h(-y,x)$. The left map is injective since $R$ is a domain.\n\nTensor with $k$: every entry of both matrices lies in $(x,y)$, so all differentials become zero, and\n$$\\mathrm{Tor}_0(k,k) = k,\\quad\\mathrm{Tor}_1(k,k) = k^2,\\quad\\mathrm{Tor}_2(k,k) = k,$$\nwith dimensions $\\binom{2}{i}$: the exterior algebra on two generators, as Wikipedia notes for the polynomial ring in $n$ variables (where the Koszul complex has $\\binom{n}{i}$ free summands in degree $i$).\n\nTensor with $R/(x)\\cong k[y]$ instead: the complex becomes $k[y]\\xrightarrow{(-y,\\ 0)^T}k[y]^2\\xrightarrow{(0\\ \\ y)}k[y]$. Homology: in degree $0$, $k[y]/(y) = k$; in degree $1$, the kernel of $(f,g)\\mapsto yg$ is $\\{(f,0)\\}$, and the image of the first map is $\\{(-yh,0)\\}$, so $\\mathrm{Tor}_1 = k[y]/(y) = k$; in degree $2$, the first map is injective, so $\\mathrm{Tor}_2 = 0$. This agrees with the non-zero-divisor theorem applied with the roles swapped: $\\mathrm{Tor}_i(R/(x),k)$ is $k/xk = k$, the $x$-torsion of $k$, which is $k$, and $0$."
+},
+{
+"type": "example",
+"title": "Tor as a derived intersection",
+"src": [
+"w-int"
+],
+"body": "Serre's formula defines the intersection multiplicity of two subvarieties $V(I), V(J)$ at a point as $\\sum_i(-1)^i\\,\\mathrm{length}\\,\\mathrm{Tor}_i^A(A/I,A/J)$, with $A$ the local ring at the point. Compute the terms for the parabola $y = x^2$ and its tangent line $y = 0$ in $R = k[x,y]$ (localising at the origin changes nothing here), and for the line $x = 0$ against itself.",
+"solution": "Let $I = (y)$, $J = (y-x^2)$. Then $\\mathrm{Tor}_0 = R/(y,\\,y-x^2) = k[x]/(x^2)$, of length $2$. For the higher terms, $y-x^2$ is a non-zero-divisor on $R/(y)\\cong k[x]$ (it acts as $-x^2$), so by the non-zero-divisor theorem $\\mathrm{Tor}_1(R/J,R/I)$ is the $(y-x^2)$-torsion of $k[x]$, which is $0$, and the higher Tor vanish. The multiplicity is $2$, the expected answer for a tangency, and here the naive length of $A/I\\otimes A/J$ is already right.\n\nFor $I = J = (x)$: $\\mathrm{Tor}_0 = R/(x) = k[y]$ and, by the cyclic-module theorem, $\\mathrm{Tor}_1 = (x)/(x^2)\\cong R/(x)$, which is non-zero. The two copies of the line do not meet properly: these groups have infinite length, so Serre's formula does not apply, and the non-zero $\\mathrm{Tor}_1$ records the excess intersection. When both subvarieties are locally cut out by regular sequences and meet properly, all higher Tor vanish and only $\\mathrm{Tor}_0$ survives, as in the first computation."
+},
+{
+"type": "figure",
+"engine": "plot",
+"src": [
+"w-int"
+],
+"caption": "The parabola y = x^2 and its tangent line y = 0 meet at one point with multiplicity 2, the length of Tor_0 = k[x]/(x^2); all higher Tor vanish. A nearby line y = c (c > 0) meets the parabola in two distinct points.",
+"alt": "Graph of the parabola y equals x squared, the horizontal line y equals 0 touching it at the origin marked with a dot labelled multiplicity 2, and a dashed horizontal line y equals 0.25 crossing the parabola at two points.",
+"code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(5.2, 3.4)\nax = plt.gca()\nx = np.linspace(-1.2, 1.2, 400)\nax.plot(x, x**2, color='#1f5fa8', lw=2, label=r'$y = x^2$')\nax.axhline(0, color='#b03a2e', lw=2, label=r'$y = 0$')\nax.axhline(0.25, color='#555555', lw=1.2, ls='--', label=r'$y = 1/4$')\nax.plot([0], [0], 'ko', ms=6)\nax.plot([-0.5, 0.5], [0.25, 0.25], 'o', color='#555555', ms=5)\nax.annotate(r'$\\mathrm{length}\\,k[x]/(x^2) = 2$', xy=(0, 0), xytext=(0.25, -0.35), arrowprops=dict(arrowstyle='->'))\nax.set_xlim(-1.2, 1.2); ax.set_ylim(-0.5, 1.3)\nax.set_xlabel(r'$x$'); ax.set_ylabel(r'$y$')\nax.legend(loc='upper center', fontsize=9, frameon=False)\n"
+},
+{
+"type": "views",
+"title": "What Tor measures",
+"body": "Four sources, four pictures of the same groups.",
+"items": [
+{
+"label": "Torsion",
+"body": "$\\mathrm{Tor}_1(R/x,M)$ is the $x$-torsion of $M$, $\\mathrm{Tor}_1(\\mathbb{Z}/n,A) = A[n]$ and $\\mathrm{Tor}_1(\\mathbb{Q}/\\mathbb{Z},B)$ is the whole torsion subgroup; and $\\mathrm{Tor}_1(A,-) = 0$ exactly for torsion-free $A$ over $\\mathbb{Z}$. This is the origin of the name.",
+"src": [
+"weibel",
+"w-tor",
+"arapura"
+]
+},
+{
+"label": "Lost injectivity",
+"body": "Tensoring an injection can produce a non-injective map, and Tor records the kernel: for $0\\to F_1\\to F_0\\to A\\to0$ free, $\\mathrm{Tor}(A,M) = \\ker(F_1\\otimes M\\to F_0\\otimes M)$. Quick's lecture shows that multiplication by $2$ on $\\mathbb{Z}$ becomes zero after $\\otimes\\mathbb{Z}/2$, and defines Tor over $\\mathbb{Z}$ as exactly this kind of kernel.",
+"src": [
+"quick17"
+]
+},
+{
+"label": "Derived intersection",
+"body": "For ideals $I,J$, $A/I\\otimes A/J = A/(I+J)$ is the ring of the naive intersection; the higher $\\mathrm{Tor}_i(A/I,A/J)$ correct it, and Serre's alternating sum of their lengths is the intersection multiplicity.",
+"src": [
+"w-int"
+]
+},
+{
+"label": "Balanced bifunctor",
+"body": "Tor is the homology of the total complex of $P_\\bullet\\otimes Q_\\bullet$, which treats both variables alike; nLab presents Tor as the homology of the derived tensor product, and the Michigan notes use the double complex to prove the symmetry $\\mathrm{Tor}_n(M,N)\\cong\\mathrm{Tor}_n(N,M)$.",
+"src": [
+"nlab-tor",
+"tornotes"
+]
+}
+]
+},
+{
+"type": "exercise",
+"body": "1. Compute $\\mathrm{Tor}_1^{\\mathbb{Z}}(\\mathbb{Z}/12\\oplus\\mathbb{Z}/18,\\ \\mathbb{Z}/8\\oplus\\mathbb{Z})$.\n2. Show that $\\mathrm{Tor}_1^{\\mathbb{Z}}(A,B)$ is a torsion group for all $A,B$ (write $A$ as a filtered colimit of finitely generated subgroups).\n3. Let $R = k[x,y]$ and $I = (x)$, $J = (y)$. Compute $\\mathrm{Tor}_i^R(R/I,R/J)$ for all $i$, and compare with $(I\\cap J)/IJ$.\n4. Over $R = k[x]/(x^2)$, compute $\\mathrm{Tor}_n^R(k,k)$ for all $n$ and compare with the $\\mathbb{Z}/4$ example on [[derived-functors]].\n5. Show that $\\mathrm{Tor}^{\\mathbb{Z}}_1(\\mathbb{Q}/\\mathbb{Z},\\mathbb{Q}/\\mathbb{Z})\\cong\\mathbb{Q}/\\mathbb{Z}$."
+},
+{
+"type": "section",
+"title": "Künneth formula for complexes",
+"src": [
+"weibel",
+"quick17"
+],
+"body": "Tor first appeared as a correction term in topology. The homology of a tensor product of two complexes is not the tensor product of their homologies, and the Künneth formula identifies the difference as a sum of Tor groups. With one of the complexes a single module in degree $0$, it is the first universal coefficient theorem for homology with coefficients, which is proved together with its cohomological partner on [[ext]]."
+},
+{
+"type": "theorem",
+"title": "Künneth formula for a tensor product of complexes",
+"src": [
+"weibel"
+],
+"body": "Let $P$ be a chain complex of free abelian groups and $Q$ any chain complex of abelian groups. The tensor product complex has $(P\\otimes Q)_n = \\bigoplus_{p+q=n}P_p\\otimes Q_q$ and $d(a\\otimes b) = da\\otimes b+(-1)^pa\\otimes db$ for $a\\in P_p$. For every $n$ there is a short exact sequence\n$$\\begin{aligned}&0\\to\\bigoplus_{p+q=n}H_p(P)\\otimes H_q(Q)\\to H_n(P\\otimes Q){}\\\\ &\\qquad\\to\\bigoplus_{p+q=n-1}\\mathrm{Tor}(H_p(P),H_q(Q))\\to0,\\end{aligned}$$\nand it splits, though not naturally. (Weibel Theorem 3.6.3, stated there over any ring for $P$ with $P_n$ and $d(P_n)$ flat; the splitting is asserted for free complexes over $\\mathbb{Z}$.) Taking $Q = M$ in degree $0$ recovers the first universal coefficient sequence (see [[ext]])."
+},
+{
+"type": "proof",
+"src": [
+"weibel"
+],
+"body": "Weibel's proof is that of the universal coefficient theorem ([[ext]]) with $Q$ in place of $M$. Put $Z_p = \\ker d_p$ and $B_p = \\operatorname{im}d_{p+1}\\subseteq Z_p$, both free as subgroups of free groups. Give $Z$ and $B$ the zero differential, and let $B^-$ denote $B$ moved up one degree, $B^-_p = B_{p-1}$. Then $d$ defines a chain map $P\\to B^-$, and $0\\to Z\\to P\\to B^-\\to0$ is a short exact sequence of complexes, split in each degree because $B_{p-1}$ is free. Tensoring with $Q$ therefore keeps it exact:\n$$0\\to Z\\otimes Q\\to P\\otimes Q\\to B^-\\otimes Q\\to0.$$\nAs $Z$ has zero differential, $Z\\otimes Q$ is the direct sum over $p$ of the complexes $Z_p\\otimes Q$ (shifted by $p$, with differential $\\pm1\\otimes d$), and $Z_p\\otimes-$ is exact because $Z_p$ is free, so it commutes with homology: $H_n(Z\\otimes Q) = \\bigoplus_{p+q=n}Z_p\\otimes H_q(Q)$. In the same way $H_{n+1}(B^-\\otimes Q) = \\bigoplus_{p+q=n}B_p\\otimes H_q(Q)$.\n\nThe connecting map $H_{n+1}(B^-\\otimes Q)\\to H_n(Z\\otimes Q)$ is $\\iota\\otimes1$ on each summand, for the inclusion $\\iota\\colon B_p\\to Z_p$: given $b\\otimes z$ with $b\\in B_p$ and $z$ a cycle of $Q_q$, lift it to $c\\otimes z$ with $dc = b$, and apply $d$ to get $b\\otimes z\\pm c\\otimes dz = b\\otimes z$. By the long exact sequence, $H_n(P\\otimes Q)$ sits in a short exact sequence between the cokernel of $\\bigoplus_{p+q=n}\\iota\\otimes1$ and the kernel of $\\bigoplus_{p+q=n-1}\\iota\\otimes1$ (the splicing lemma of [[homological-algebra]]). Since $0\\to B_p\\to Z_p\\to H_p(P)\\to0$ is a free resolution, the cokernel of $\\iota\\otimes1\\colon B_p\\otimes H_q(Q)\\to Z_p\\otimes H_q(Q)$ is $H_p(P)\\otimes H_q(Q)$ by right exactness, and its kernel is $\\mathrm{Tor}(H_p(P),H_q(Q))$ by definition. For the splitting (exercise), first suppose $Q$ is free too. Retractions $P_p\\to Z_p$ and $Q_q\\to Z_q(Q)$ exist because the boundaries are free, and composing them with the projections to homology gives chain maps $P\\to H(P)$ and $Q\\to H(Q)$ into complexes with zero differential; their tensor product induces $H_n(P\\otimes Q)\\to\\bigoplus_{p+q=n}H_p(P)\\otimes H_q(Q)$, which is a left inverse of the first map. For general $Q$, choose for each $q$ a free resolution $0\\to R_q\\to E_q\\to H_q(Q)\\to0$, lift $E_q\\to H_q(Q)$ to $E_q\\to Z_q(Q)$ and then $R_q\\to Q_{q+1}$; this gives a complex of free groups $Q'$ with a quasi-isomorphism $Q'\\to Q$, and by naturality of the sequence and the five lemma $H_n(P\\otimes Q')\\cong H_n(P\\otimes Q)$ compatibly with both outer terms. A retraction of $P_p\\to Z_p$ alone does not suffice when $Q$ is not free, because $H_p(P)\\otimes H_q(Q)\\to H_q(H_p(P)\\otimes Q)$ need not be injective."
+},
+{
+"type": "example",
+"title": "A tensor square with a Tor class",
+"src": [
+"weibel",
+"quick17"
+],
+"body": "Let $C$ be the complex $\\mathbb{Z}\\xrightarrow{2}\\mathbb{Z}\\xrightarrow{0}\\mathbb{Z}$ in degrees $2,1,0$, the cellular chain complex of $\\mathbb{RP}^2$ (used again in the universal coefficient exercises on [[ext]]), with $H_0 = \\mathbb{Z}$, $H_1 = \\mathbb{Z}/2$, $H_2 = 0$. Compute $H_n(C\\otimes C)$.",
+"solution": "By the Künneth formula, the tensor part in degree $n$ is $\\bigoplus_{p+q=n}H_p\\otimes H_q$ and the Tor part is $\\bigoplus_{p+q=n-1}\\mathrm{Tor}(H_p,H_q)$; only $\\mathrm{Tor}(H_1,H_1) = \\mathrm{Tor}(\\mathbb{Z}/2,\\mathbb{Z}/2) = \\mathbb{Z}/2$ is non-zero among the Tor groups, since $H_0$ is free and $H_2 = 0$.\n\n$H_0 = \\mathbb{Z}\\otimes\\mathbb{Z} = \\mathbb{Z}$. $H_1 = H_0\\otimes H_1\\oplus H_1\\otimes H_0 = (\\mathbb{Z}/2)^2$. $H_2 = H_1\\otimes H_1 = \\mathbb{Z}/2$, with no Tor contribution. $H_3$: the tensor part $H_1\\otimes H_2\\oplus H_2\\otimes H_1$ is $0$, and the Tor part is $\\mathrm{Tor}(H_1,H_1) = \\mathbb{Z}/2$. $H_4 = 0$.\n\nSo $H_\\bullet(C\\otimes C) = \\mathbb{Z},(\\mathbb{Z}/2)^2,\\mathbb{Z}/2,\\mathbb{Z}/2,0$. The class in degree $3$ is invisible to $H_\\bullet(C)\\otimes H_\\bullet(C)$: with $e_i$ the generator of $C_i$, the element $e_2\\otimes e_1+e_1\\otimes e_2$ has boundary $2e_1\\otimes e_1-2e_1\\otimes e_1 = 0$ by the sign rule, while $d(e_2\\otimes e_2) = 2(e_1\\otimes e_2+e_2\\otimes e_1)$, so it is a cycle of order $2$. The checks confirm the whole computation with a Smith normal form. The topological Künneth theorem for a product of spaces needs, in addition, that the chains on $X\\times Y$ are chain equivalent to the tensor product of the chains; that belongs to the [[cohomology]] page."
+},
+{
+"type": "exercise",
+"body": "1. Use the Künneth formula to compute $H_\\bullet(C\\otimes D)$ for $C = (\\mathbb{Z}\\xrightarrow{4}\\mathbb{Z})$ and $D = (\\mathbb{Z}\\xrightarrow{6}\\mathbb{Z})$, both in degrees $1,0$, and compare with the total-complex example in the balancing section of [[derived-functors]].\n2. Prove that the Künneth sequence splits when $P$ is a complex of free abelian groups."
+},
+{
+"type": "section",
+"title": "Reading the papers",
+"src": [
+"hm",
+"tang",
+"sg"
+],
+"body": "Three of the papers in this series use Tor directly.\n\n1. Holanda and Miranda-Neto, Cohen-Macaulay Burch rings. Tor of finitely generated modules over a Noetherian local ring, and its vanishing as a hypothesis (Tor: definition and first computations; computing Tor in practice). The freeness criterion through $\\mathrm{Tor}_1(M,k)$ and Betti numbers is in the section on minimal resolutions of [[ext]], and their Ext-Tor dualities are in the tools for Ext there.\n2. Tang, profinite and solid cohomology. Tor requires resolutions and flatness, and the remark that projective modules need not be flat in non-classical settings, so that Tor must be computed by resolving both variables (pitfalls below; the balancing theorem itself is on [[derived-functors]]).\n3. Shekhar and Gupta, Tor-vanishing of local rings. Tor of finitely generated modules over a Noetherian local ring and its symmetry (Tor: definition and first computations), the fact that $\\mathrm{Tor}_i^R(M,N) = 0$ for $i>\\mathrm{pd}_RM$ and the Tor-vanishing property (computing Tor in practice, item 4), the Betti numbers $\\beta_n^R(M) = \\dim_k\\mathrm{Tor}_n^R(k,M)$ of a minimal free resolution and the projective dimension (the section on minimal resolutions of [[ext]]; use the symmetry of Tor to swap the arguments), and the Koszul complex, here only in two variables (the Koszul complex example). Not here: Poincaré series and curvature, the Koszul complex on a minimal generating set of the maximal ideal in general, Golod and generalised Golod rings, DG algebras and Massey operations, complete intersections and Gorenstein rings."
+},
+{
+"type": "pitfall",
+"src": [
+"tang",
+"weibel",
+"arapura"
+],
+"body": "- Projective implies flat for modules, but Tang points out that this can fail in non-classical settings such as solid modules, where Tor must then be computed by resolving both variables.\n- Flat is weaker than projective: $\\mathbb{Q}$ is flat over $\\mathbb{Z}$ but not projective. Finitely presented flat modules are projective (Weibel Theorem 3.2.7).\n- The symmetry $\\mathrm{Tor}_n(A,B)\\cong\\mathrm{Tor}_n(B,A)$ is not formal. It needs the balancing theorem, and Arapura remarks that the argument in one standard textbook is incomplete and points to Weibel's Theorem 2.7.2 instead. For non-commutative $R$ the correct statement is $\\mathrm{Tor}^R_n(A,B)\\cong\\mathrm{Tor}^{R^{op}}_n(B,A)$."
+},
+{
+"type": "connection",
+"body": "Tor is the left derived functor of the tensor product, so this page builds on [[derived-functors]], and on its balancing theorem for the symmetry of Tor and for resolving the second variable. [[localization]] is the basic example of a flat base change, which is what makes Tor computable locally. The Künneth formula is the algebraic half of the Künneth theorem for spaces on the [[cohomology]] page. [[ext]] uses Tor for minimal resolutions, Betti numbers and Ext-Tor dualities, and the universal coefficient theorem there is the special case of the Künneth formula with a module in place of the second complex."
+}
+],
+"checks": [
+{
+"claim": "Tor_1(Z/m,Z/n) (kernel of m on Z/n) and Ext^1(Z/m,Z/n) (cokernel of m on Z/n) both have order gcd(m,n); Tor(Z/4,Z/6)=Z/2",
+"python": "\nfrom math import gcd\nfor m in range(1,31):\n    for n in range(1,31):\n        ker=[x for x in range(n) if (m*x)%n==0]\n        img=set((m*x)%n for x in range(n))\n        assert len(ker)==gcd(m,n)\n        assert n//len(img)==gcd(m,n)\n        # kernel is cyclic: generated by n/d\n        d=gcd(m,n); assert sorted(ker)==sorted(set((k*(n//d))%n for k in range(d)))\nassert len([x for x in range(6) if (4*x)%6==0])==2\n"
+},
+{
+"claim": "Koszul resolution of k over k[x,y]: composite is zero, exact (Hilbert series check), and Tor_i(k,k) has dimensions 1,2,1",
+"python": "\nimport sympy as sp\nx,y,t=sp.symbols('x y t')\nd1=sp.Matrix([[x,y]]); d2=sp.Matrix([[-y],[x]])\nassert sp.expand(d1*d2)==sp.zeros(1,1)\n# graded Euler characteristic: H(k)= H(R) - 2t H(R) + t^2 H(R) with H(R)=1/(1-t)^2\nHR=1/(1-t)**2\nassert sp.simplify(HR*(1-2*t+t**2)-1)==0\n# tensor with k: set x=y=0, all differentials vanish\nassert d1.subs({x:0,y:0})==sp.zeros(1,2) and d2.subs({x:0,y:0})==sp.zeros(2,1)\nassert [sp.binomial(2,i) for i in range(3)]==[1,2,1]\n# exactness at R^2 in low degrees by linear algebra: kernel of (f,g)->xf+yg in degree<=4 equals image of h->(-yh,xh)\nfrom itertools import product\ndef monos(deg): return [x**i*y**(deg-i) for i in range(deg+1)]\nfor D in range(0,5):\n    # (f,g) of degree D maps to degree D+1; h of degree D-1\n    basis=[(m,0) for m in monos(D)]+[(0,m) for m in monos(D)]\n    tgt=monos(D+1)\n    M=sp.Matrix([[sp.Poly(x*f+y*g,x,y).coeff_monomial(mm) for (f,g) in basis] for mm in tgt]) if D>=0 else None\n    kerdim=len(basis)-M.rank()\n    imdim=len(monos(D-1)) if D>=1 else 0\n    assert kerdim==imdim\n"
+},
+{
+"claim": "Tor over k[x,y] of k with R/(x): complex k[y] -> k[y]^2 -> k[y] with matrices (-y,0)^T and (0,y) has homology k, k, 0",
+"python": "\nimport sympy as sp\ny=sp.symbols('y')\na=sp.Matrix([[-y],[0]]); b=sp.Matrix([[0,y]])\nassert b*a==sp.zeros(1,1)\n# degree-wise over k in degrees <= 6 of the source: H0 = k[y]/(y) dim 1; H1 = {(f,0)}/{(-yh,0)} dim 1; H2 = ker a = 0\ndef dimH(deg):\n    # H0 in degree deg: k[y]_deg modulo y*k[y]_{deg-1}\n    h0 = 1 - (1 if deg>=1 else 0)\n    # H1: kernel of (f,g)->y g in degree deg is {(f,0)} dim 1; image of h (deg-1) -> (-y h,0) has dim 1 if deg>=1\n    h1 = 1 - (1 if deg>=1 else 0)\n    return h0,h1\ntot0=sum(dimH(d)[0] for d in range(7)); tot1=sum(dimH(d)[1] for d in range(7))\nassert tot0==1 and tot1==1\n"
+},
+{
+"claim": "Tor_1(Z/4,Z/6) = (I cap J)/IJ for I=(4), J=(6): (12)/(24) has order 2; Tor_0 = Z/(4,6) = Z/2",
+"python": "\nfrom math import gcd\nI,J=4,6\nlcm=I*J//gcd(I,J)\nassert (I*J)//lcm==2 and gcd(I,J)==2\nfor a in range(1,20):\n    for b in range(1,20):\n        l=a*b//gcd(a,b); assert (a*b)//l==gcd(a,b)\n"
+},
+{
+"claim": "Intersection multiplicity: dim_k k[x,y]/(y, y-x^2) = 2, and y-x^2 is a non-zero-divisor on k[x,y]/(y)=k[x]",
+"python": "\nimport sympy as sp\nx,y=sp.symbols('x y')\nG=sp.groebner([y, y-x**2], x, y, order='lex')\n# standard monomials: those not divisible by leading terms\nlts=[sp.Poly(g,x,y).monoms()[0] for g in G.exprs]\nstd=[(i,j) for i in range(5) for j in range(5) if not any(i>=a and j>=b for (a,b) in lts)]\nassert len(std)==2\n# on k[x], y-x^2 acts as -x^2 which is injective (degree raises)\nf=sp.Poly(-x**2,x)\nfor d in range(5):\n    assert (f*sp.Poly(x**d,x)).degree()==d+2\n"
+},
+{
+"claim": "Tor^{k[x,y]}_i(k, k[x,y]/(x)): the complex k[y] -> k[y]^2 -> k[y] with maps h->(-yh,0) and (f,g)->yg has homology dimensions 1,1,0, computed degree by degree",
+"python": "\nimport sympy as sp\ny=sp.symbols('y')\ndef vec(p,deg):\n    P=sp.Poly(p,y); return [P.coeff_monomial(y**i) for i in range(deg)]\n# truncate: C2 = polys of degree < D, C1 = pairs of degree <= D, C0 = degree <= D+1 (maps raise degree by one, so the truncation is a subcomplex with the same homology)\nD=6\ndef basis(n): return [y**i for i in range(n)]\n# C2 = k[y]_{<D}, C1 = (k[y]_{<D+1})^2, C0 = k[y]_{<D+2}\nM2=sp.zeros(2*(D+1),D)\nfor j,h in enumerate(basis(D)):\n    v=vec(-y*h,D+1);\n    for i in range(D+1): M2[i,j]=v[i]\nM1=sp.zeros(D+2,2*(D+1))\nfor j in range(D+1):\n    v=vec(y*y**j,D+2)\n    for i in range(D+2): M1[i,(D+1)+j]=v[i]\nassert M1*M2==sp.zeros(D+2,D)\nh2=D-M2.rank()\nh1=(2*(D+1)-M1.rank())-M2.rank()\nh0=(D+2)-M1.rank()\nassert (h2,h1,h0)==(0,1,1)\n"
+},
+{
+"claim": "Kunneth: for C = (Z -2-> Z -0-> Z) in degrees 2,1,0, the total complex C tensor C (with the sign (-1)^p) has homology Z, (Z/2)^2, Z/2, Z/2, 0 in degrees 0..4, matching sum H_p tensor H_q plus sum Tor(H_p,H_q) over p+q=n-1",
+"python": "\nimport sympy as sp\nfrom sympy.matrices.normalforms import smith_normal_form\nfrom sympy import ZZ\nd={2:2,1:0}   # d_2: C_2 -> C_1 is 2, d_1 = 0\ndef dC(p): return d.get(p,0)\n# basis of (C tensor C)_n: pairs (p,q), p+q=n, 0<=p,q<=2\nB={n:[(p,n-p) for p in range(3) if 0<=n-p<=2] for n in range(-1,6)}\ndef D(n):\n    M=sp.zeros(len(B[n-1]),len(B[n]))\n    for c,(p,q) in enumerate(B[n]):\n        if p>=1 and dC(p): M[B[n-1].index((p-1,q)),c]+=dC(p)\n        if q>=1 and dC(q): M[B[n-1].index((p,q-1)),c]+=(-1)**p*dC(q)\n    return M\nfor n in range(1,5): assert (D(n)*D(n+1)).is_zero_matrix if D(n).shape[1] and D(n+1).shape[1] and D(n).shape[0] else True\ndef homology(n):\n    out=D(n); inn=D(n+1)\n    rk_out=out.rank() if out.shape[0] and out.shape[1] else 0\n    free=len(B[n])-rk_out\n    if inn.shape[0] and inn.shape[1]:\n        S=smith_normal_form(inn,domain=ZZ)\n        diag=[abs(S[i,i]) for i in range(min(S.shape)) if S[i,i]!=0]\n    else: diag=[]\n    rank=free-len(diag)\n    tors=sorted(x for x in diag if x!=1)\n    return (rank,tors)\nH=[homology(n) for n in range(5)]\nassert H==[(1,[]),(0,[2,2]),(0,[2]),(0,[2]),(0,[])], H\n# prediction from the Kunneth formula with H(C) = Z, Z/2, 0 (degrees 0,1,2)\nimport math\nh={0:(1,[]),1:(0,[2]),2:(0,[])}\ndef tens(a,b):\n    r=a[0]*b[0]; t=[]\n    t+= b[1]*a[0] + a[1]*b[0]\n    t+=[math.gcd(u,v) for u in a[1] for v in b[1]]\n    return (r,[z for z in t if z!=1])\ndef tor(a,b): return (0,[z for z in [math.gcd(u,v) for u in a[1] for v in b[1]] if z!=1])\ndef add(*gs): return (sum(g[0] for g in gs), sorted(sum((g[1] for g in gs),[])))\npred=[]\nfor n in range(5):\n    t=add(*[tens(h[p],h[n-p]) for p in range(3) if 0<=n-p<=2]) if any(0<=n-p<=2 for p in range(3)) else (0,[])\n    s=add(*[tor(h[p],h[n-1-p]) for p in range(3) if 0<=n-1-p<=2]) if n>=1 else (0,[])\n    pred.append(add(t,s))\nassert pred==H, pred\n"
+},
+{
+"claim": "The splitting remark after the Kunneth proof: for Q = (Z/4 -> Z/2) in degrees 1,0 and A = Z/2, the map H_1(Q) tensor A = Z/2 -> H_1(Q tensor A) = 0 is not injective; and for A = Z + Z/2 the torsion of Hom(A,C^x) is infinite while Ext^1(A,Z) = Z/2",
+"python": "\n# Q: Q_1 = Z/4 -> Q_0 = Z/2 (reduction), A = Z/2.  H_1(Q) = ker = {0,2} = Z/2, so H_1(Q) (x) A = Z/2.\n# Q (x) A: Z/4 (x) Z/2 = Z/2 -> Z/2 (x) Z/2 = Z/2, induced map is the identity, so H_1(Q (x) A) = 0.\nH1=[a for a in range(4) if a%2==0]\nassert len(H1)==2                      # H_1(Q) = Z/2, and Z/2 (x) Z/2 = Z/2 is nonzero\n# Z/m (x) Z/n = Z/gcd; the induced map Z/4(x)Z/2 -> Z/2(x)Z/2 sends class of 1 to class of 1\nimport math\nassert math.gcd(4,2)==2 and math.gcd(2,2)==2\nf={a%2:(a%2) for a in range(4)}        # on Z/4 (x) Z/2 = Z/2: a mod 2 -> a mod 2\nker=[k for k in f if f[k]==0]\nassert ker==[0]                         # injective, so H_1(Q (x) Z/2) = 0\n# hence H_1(Q) (x) Z/2 = Z/2 -> H_1(Q (x) Z/2) = 0 is not injective\n# Krulewski's form vs Ext for A = Z + Z/2: Ext^1(A,Z) = Z/2 (2 elements), while Tors Hom(A, C^x) contains\n# mu_k x {+-1} for every k, so it is infinite\nimport cmath\nelts=set()\nfor k in range(1,30):\n    z=cmath.exp(2j*cmath.pi/k)\n    for s in (1,-1): elts.add((round(z.real,9),round(z.imag,9),s))\nassert len(elts)>2\n"
+}
+]
+}
+}
+]

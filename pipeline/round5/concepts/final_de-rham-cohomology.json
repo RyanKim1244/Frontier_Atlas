@@ -42,7 +42,7 @@
 },
 "lesson": {
 "v": 2,
-"minutes": 175,
+"minutes": 125,
 "sources": [
 {
 "k": "BT",
@@ -142,12 +142,6 @@
 "kind": "notes"
 },
 {
-"k": "Me",
-"ref": "E. Meinrenken, Equivariant cohomology and the Cartan model (survey article)",
-"url": "https://www.math.utoronto.ca/mein/research/enc.pdf",
-"kind": "survey"
-},
-{
 "k": "NS",
 "ref": "Notman and Sanabani, Localisation in Equivariant Cohomology (arXiv:2309.11405, 2023)",
 "where": "§2.1, §2.3, §2.5, §2.7, §3.1, §3.3",
@@ -188,26 +182,6 @@
 "where": "§2.2-§2.5",
 "url": "https://arxiv.org/pdf/2210.07952",
 "kind": "paper"
-},
-{
-"k": "Li",
-"ref": "M. Libine, Lecture Notes on Equivariant Cohomology (arXiv:0709.3615, 2007)",
-"where": "Cartan model (Defs. 13-21), §5.4, §7 (Prop. 42, Lemma 45, Thm. 46)",
-"url": "https://arxiv.org/pdf/0709.3615",
-"kind": "notes"
-},
-{
-"k": "Pa",
-"ref": "G. Pastras, Four Lectures on Weierstrass Elliptic Function and Applications in Classical and Quantum Mechanics (arXiv:1706.07371, 2017)",
-"where": "§1-§2, eqs. (1.18), (1.28), (2.1)-(2.7)",
-"url": "https://arxiv.org/pdf/1706.07371",
-"kind": "notes"
-},
-{
-"k": "WLeg",
-"ref": "Wikipedia, Legendre's relation",
-"url": "https://en.wikipedia.org/wiki/Legendre%27s_relation",
-"kind": "reference"
 }
 ],
 "requires": [
@@ -262,11 +236,6 @@
 "where": "Good covers and finite dimensionality"
 },
 {
-"item": "Compactly supported cohomology, Poincaré duality, Poincaré dual of a submanifold",
-"priority": "common",
-"where": "Compact supports and Poincaré duality"
-},
-{
 "item": "Künneth formula",
 "priority": "common",
 "where": "The Künneth formula and tori"
@@ -317,16 +286,6 @@
 "where": "Curvature and characteristic classes"
 },
 {
-"item": "Equivariant de Rham cohomology (Cartan model) and localisation",
-"priority": "specialised",
-"where": "Equivariant cohomology: the Cartan model"
-},
-{
-"item": "Algebraic de Rham cohomology, Grothendieck comparison, periods, Tate twists",
-"priority": "specialised",
-"where": "Algebraic de Rham cohomology and periods"
-},
-{
 "item": "Dolbeault cohomology and $d=\\partial+\\bar\\partial$",
 "priority": "specialised",
 "where": "not covered here; see [Lim] §2.2-§2.3 and [[hodge-theory]]"
@@ -337,29 +296,14 @@
 "where": "Closed forms in physics"
 },
 {
-"item": "Sign and normalisation conventions (Leibniz signs, Mayer–Vietoris, homotopy operators, codifferential, Chern classes, Cartan differential)",
+"item": "Sign and normalisation conventions (Leibniz signs, Mayer–Vietoris, homotopy operators, codifferential, Chern classes)",
 "priority": "common",
 "where": "Signs in Mayer–Vietoris and in boundary orientations"
 },
 {
-"item": "Equivariant integration, $H_G(\\mathrm{pt})=S(\\mathfrak g^*)^G$, restriction to fixed points, the localisation (Atiyah–Bott–Berline–Vergne) formula and its normalisations",
-"priority": "specialised",
-"where": "Equivariant integration, the point and fixed points"
-},
-{
-"item": "Periods of elliptic curves, forms of the second kind, Legendre's relation; the period criterion for de Rham–Betti classes",
-"priority": "specialised",
-"where": "De Rham–Betti classes and the period criterion"
-},
-{
-"item": "Thom isomorphism, Thom form, Euler class of an oriented vector bundle and integration along the fibre (used for equivariant Euler classes of normal bundles)",
-"priority": "specialised",
-"where": "not covered here; see [BT] Ch. I §6 and Ch. II, [NS] §2.7, [Me] §8, and [[curvature-forms]]"
-},
-{
-"item": "Hodge filtration and Hodge classes on algebraic de Rham cohomology (used in KSV §4)",
-"priority": "specialised",
-"where": "not covered here; see [[hodge-theory]] and [Ke]"
+"item": "Compactly supported cohomology and Poincaré duality (used here for $\\int_M:H^n(M)\\cong\\mathbb{R}$ on compact connected oriented $M$ and for $b_k=b_{n-k}$)",
+"priority": "common",
+"where": "separate page: [[poincare-duality]]"
 }
 ],
 "blocks": [
@@ -369,7 +313,7 @@
 "LN",
 "Pe"
 ],
-"body": "In one variable, the fundamental theorem of calculus has a quiet corollary: a function whose derivative vanishes is constant. Already on $\\mathbb{R}\\setminus\\{0\\}$ this fails, since a function can be $1$ on the positive half-line and $0$ on the negative one. The failure is caused by the shape of the domain, not by the function. In several variables the same thing happens one degree up. A curl-free vector field on a star-shaped region is a gradient, but on $\\mathbb{R}^3$ minus the $z$-axis the field $(-y,x,0)/(x^2+y^2)$ is curl-free and is not a gradient: its line integral around the axis is $2\\pi$, while the integral of a gradient around any closed loop is $0$. On $\\mathbb{R}^3$ minus a point, which is simply connected, every curl-free field is a gradient, but there are divergence-free fields that are not curls.\n\nDe Rham cohomology turns these observations into invariants. In each degree $k$ one takes the solutions of $d\\omega=0$ (closed forms) and divides out by the solutions that are there for a trivial reason, the forms $d\\eta$ (exact forms). The quotient $H^k(M)$ is a real vector space, and its size measures how badly \"closed implies exact\" fails on $M$. The page [[differential-forms]] ended with the angle form on the punctured plane, which is closed and not exact; that single example already contains the main idea. Here we build the theory: the groups and their ring structure, homotopy invariance, the Mayer–Vietoris sequence, compact supports and Poincaré duality, the Künneth formula, and de Rham's theorem identifying $H^k(M)$ with the real singular cohomology dual to [[homology]]. The later sections give the parts of Hodge theory, characteristic classes, equivariant and algebraic de Rham cohomology, discrete versions and the physics vocabulary that current papers assume.\n\nThroughout, $M$ is a smooth manifold as on [[smooth-manifolds]] (Hausdorff, second countable, so smooth partitions of unity exist), $\\Omega^k(M)$ is the real vector space of smooth $k$-forms on $M$, and $d:\\Omega^k(M)\\to\\Omega^{k+1}(M)$ is the exterior derivative, with $d\\circ d=0$ and $d(\\alpha\\wedge\\beta)=d\\alpha\\wedge\\beta+(-1)^k\\alpha\\wedge d\\beta$ for $\\alpha\\in\\Omega^k(M)$. Pullback $F^*$ along a smooth map commutes with $d$ and with $\\wedge$. All of this is on [[differential-forms]], where it was done on open subsets of $\\mathbb{R}^n$; on a manifold one works chart by chart, because the coordinate formula for $d$ is compatible with pullback."
+"body": "In one variable, the fundamental theorem of calculus has a quiet corollary: a function whose derivative vanishes is constant. Already on $\\mathbb{R}\\setminus\\{0\\}$ this fails, since a function can be $1$ on the positive half-line and $0$ on the negative one. The failure is caused by the shape of the domain, not by the function. In several variables the same thing happens one degree up. A curl-free vector field on a star-shaped region is a gradient, but on $\\mathbb{R}^3$ minus the $z$-axis the field $(-y,x,0)/(x^2+y^2)$ is curl-free and is not a gradient: its line integral around the axis is $2\\pi$, while the integral of a gradient around any closed loop is $0$. On $\\mathbb{R}^3$ minus a point, which is simply connected, every curl-free field is a gradient, but there are divergence-free fields that are not curls.\n\nDe Rham cohomology turns these observations into invariants. In each degree $k$ one takes the solutions of $d\\omega=0$ (closed forms) and divides out by the solutions that are there for a trivial reason, the forms $d\\eta$ (exact forms). The quotient $H^k(M)$ is a real vector space, and its size measures how badly \"closed implies exact\" fails on $M$. The page [[differential-forms]] ended with the angle form on the punctured plane, which is closed and not exact; that single example already contains the main idea. Here we build the theory: the groups and their ring structure, homotopy invariance, the Mayer–Vietoris sequence, the Künneth formula, and de Rham's theorem identifying $H^k(M)$ with the real singular cohomology dual to [[homology]]. Compactly supported cohomology and Poincaré duality, which are built from these tools, are on the next page, [[poincare-duality|Compact supports and Poincaré duality]]. The later sections give the parts of Hodge theory, characteristic classes, discrete versions and the physics vocabulary that current papers assume.\n\nThroughout, $M$ is a smooth manifold as on [[smooth-manifolds]] (Hausdorff, second countable, so smooth partitions of unity exist), $\\Omega^k(M)$ is the real vector space of smooth $k$-forms on $M$, and $d:\\Omega^k(M)\\to\\Omega^{k+1}(M)$ is the exterior derivative, with $d\\circ d=0$ and $d(\\alpha\\wedge\\beta)=d\\alpha\\wedge\\beta+(-1)^k\\alpha\\wedge d\\beta$ for $\\alpha\\in\\Omega^k(M)$. Pullback $F^*$ along a smooth map commutes with $d$ and with $\\wedge$. All of this is on [[differential-forms]], where it was done on open subsets of $\\mathbb{R}^n$; on a manifold one works chart by chart, because the coordinate formula for $d$ is compatible with pullback."
 },
 {
 "type": "section",
@@ -535,14 +479,14 @@
 "Gu",
 "NS"
 ],
-"body": "Let $M$ be a compact oriented $n$-manifold without boundary. Then integration $\\int_M:\\Omega^n(M)\\to\\mathbb{R}$ vanishes on exact forms and so defines a linear map $\\int_M:H^n(M)\\to\\mathbb{R}$. It is surjective; in particular a nowhere-vanishing $n$-form compatible with the orientation (a volume form) represents a nonzero class, and $H^n(M)\\ne0$. If $M$ is also connected, $\\int_M:H^n(M)\\to\\mathbb{R}$ is an isomorphism (proved in the Poincaré duality section)."
+"body": "Let $M$ be a compact oriented $n$-manifold without boundary. Then integration $\\int_M:\\Omega^n(M)\\to\\mathbb{R}$ vanishes on exact forms and so defines a linear map $\\int_M:H^n(M)\\to\\mathbb{R}$. It is surjective; in particular a nowhere-vanishing $n$-form compatible with the orientation (a volume form) represents a nonzero class, and $H^n(M)\\ne0$. If $M$ is also connected, $\\int_M:H^n(M)\\to\\mathbb{R}$ is an isomorphism (proved on [[poincare-duality|Compact supports and Poincaré duality]])."
 },
 {
 "type": "proof",
 "src": [
 "Gu"
 ],
-"body": "For $\\eta\\in\\Omega^{n-1}(M)$, Stokes with $\\partial M=\\varnothing$ gives $\\int_Md\\eta=0$; every form on a compact manifold has compact support. A volume form $\\mu$ is positive in every oriented chart, so $\\int_M\\mu>0$, and scaling $\\mu$ hits every real number. The last statement is the case $k=n$ of Poincaré duality for connected $M$: $H^n(M)\\cong H^0(M)^*=\\mathbb{R}$, with the isomorphism given by pairing against the constant function $1$, which is $\\int_M$."
+"body": "For $\\eta\\in\\Omega^{n-1}(M)$, Stokes with $\\partial M=\\varnothing$ gives $\\int_Md\\eta=0$; every form on a compact manifold has compact support. A volume form $\\mu$ is positive in every oriented chart, so $\\int_M\\mu>0$, and scaling $\\mu$ hits every real number. The last statement is the case $k=n$ of [[poincare-duality|Poincaré duality]] for connected $M$: $H^n(M)\\cong H^0(M)^*=\\mathbb{R}$, with the isomorphism given by pairing against the constant function $1$, which is $\\int_M$."
 },
 {
 "type": "example",
@@ -565,7 +509,7 @@
 "Gu",
 "NS"
 ],
-"body": "Homotopy operators, flows and the equivariant theory of later sections are written with two more operations on forms. For a vector field $X$, the interior product $\\iota_X:\\Omega^k(M)\\to\\Omega^{k-1}(M)$ inserts $X$ in the first slot:\n$$(\\iota_X\\omega)(v_1,\\dots,v_{k-1})=\\omega(X,v_1,\\dots,v_{k-1}),\\qquad \\iota_Xf=0\\ \\text{for functions}.$$\nIt is $C^\\infty$-linear in $X$ and in $\\omega$, satisfies $\\iota_X\\iota_Y=-\\iota_Y\\iota_X$ (so $\\iota_X\\iota_X=0$), and is an antiderivation of degree $-1$: $\\iota_X(\\alpha\\wedge\\beta)=\\iota_X\\alpha\\wedge\\beta+(-1)^k\\alpha\\wedge\\iota_X\\beta$ for $\\alpha\\in\\Omega^k$. In coordinates, $\\iota_X(dx_{i_1}\\wedge\\cdots\\wedge dx_{i_k})=\\sum_p(-1)^{p-1}X^{i_p}\\,dx_{i_1}\\wedge\\cdots\\widehat{dx_{i_p}}\\cdots\\wedge dx_{i_k}$, and $\\iota_X(df)=Xf$. Gualtieri introduces $\\iota_X$ by exactly these two rules (a graded derivation with $\\iota_Xf=0$ and $\\iota_Xdf=X(f)$).\n\nIf $\\varphi_t$ is the (local) flow of $X$, the Lie derivative of a form is\n$$L_X\\omega=\\frac{d}{dt}\\Big|_{t=0}\\varphi_t^*\\omega .$$\nIt preserves degree, is a derivation ($L_X(\\alpha\\wedge\\beta)=L_X\\alpha\\wedge\\beta+\\alpha\\wedge L_X\\beta$, by differentiating $\\varphi_t^*(\\alpha\\wedge\\beta)=\\varphi_t^*\\alpha\\wedge\\varphi_t^*\\beta$), commutes with $d$ (because each $\\varphi_t^*$ does), and on functions $L_Xf=Xf$. A remark for readers of Notman–Sanabani: their Theorem 2.45(iii) lists $\\iota_X\\circ\\iota_Y=[X,Y]$; that cannot be right as written, since the left side is antisymmetric under $X\\leftrightarrow Y$ and vanishes for $X=Y$. What their later computations need is the anticommutation $\\iota_X\\iota_Y=-\\iota_Y\\iota_X$, and the correct commutator rule is $L_X\\iota_Y-\\iota_YL_X=\\iota_{[X,Y]}$."
+"body": "Homotopy operators, flows and (on a later page) equivariant cohomology are written with two more operations on forms. For a vector field $X$, the interior product $\\iota_X:\\Omega^k(M)\\to\\Omega^{k-1}(M)$ inserts $X$ in the first slot:\n$$(\\iota_X\\omega)(v_1,\\dots,v_{k-1})=\\omega(X,v_1,\\dots,v_{k-1}),\\qquad \\iota_Xf=0\\ \\text{for functions}.$$\nIt is $C^\\infty$-linear in $X$ and in $\\omega$, satisfies $\\iota_X\\iota_Y=-\\iota_Y\\iota_X$ (so $\\iota_X\\iota_X=0$), and is an antiderivation of degree $-1$: $\\iota_X(\\alpha\\wedge\\beta)=\\iota_X\\alpha\\wedge\\beta+(-1)^k\\alpha\\wedge\\iota_X\\beta$ for $\\alpha\\in\\Omega^k$. In coordinates, $\\iota_X(dx_{i_1}\\wedge\\cdots\\wedge dx_{i_k})=\\sum_p(-1)^{p-1}X^{i_p}\\,dx_{i_1}\\wedge\\cdots\\widehat{dx_{i_p}}\\cdots\\wedge dx_{i_k}$, and $\\iota_X(df)=Xf$. Gualtieri introduces $\\iota_X$ by exactly these two rules (a graded derivation with $\\iota_Xf=0$ and $\\iota_Xdf=X(f)$).\n\nIf $\\varphi_t$ is the (local) flow of $X$, the Lie derivative of a form is\n$$L_X\\omega=\\frac{d}{dt}\\Big|_{t=0}\\varphi_t^*\\omega .$$\nIt preserves degree, is a derivation ($L_X(\\alpha\\wedge\\beta)=L_X\\alpha\\wedge\\beta+\\alpha\\wedge L_X\\beta$, by differentiating $\\varphi_t^*(\\alpha\\wedge\\beta)=\\varphi_t^*\\alpha\\wedge\\varphi_t^*\\beta$), commutes with $d$ (because each $\\varphi_t^*$ does), and on functions $L_Xf=Xf$. A remark for readers of Notman–Sanabani: their Theorem 2.45(iii) lists $\\iota_X\\circ\\iota_Y=[X,Y]$; that cannot be right as written, since the left side is antisymmetric under $X\\leftrightarrow Y$ and vanishes for $X=Y$. What their later computations need is the anticommutation $\\iota_X\\iota_Y=-\\iota_Y\\iota_X$, and the correct commutator rule is $L_X\\iota_Y-\\iota_YL_X=\\iota_{[X,Y]}$."
 },
 {
 "type": "theorem",
@@ -598,7 +542,7 @@
 "Lee",
 "BT"
 ],
-"body": "The single most useful property of de Rham cohomology is that it does not see smooth deformations. The proof is a formula: an explicit operator $h$ that lowers degree by one and measures the difference between the two ends of a cylinder. Guzmán–Hirani–Liu–Potu quote it from Lee (Lemma 17.9 and Proposition 17.10 of the second edition) as the starting point of their discrete constructions, and Gualtieri proves the same identity by splitting forms on $M\\times[0,1]$ into two types.\n\nSetup. Let $I=[0,1]$ and, for $t\\in I$, let $i_t:M\\to M\\times I$ be $i_t(p)=(p,t)$. (Forms on $M\\times I$ are smooth up to the boundary; nothing changes if one uses $M\\times\\mathbb{R}$ instead.) Let $S=\\partial/\\partial t$, the vector field on $M\\times I$ along the interval factor. Define\n$$h:\\Omega^k(M\\times I)\\to\\Omega^{k-1}(M),\\qquad h\\omega=\\int_0^1 i_t^*\\big(\\iota_S\\,\\omega\\big)\\,dt,$$\nwhere the integral of a $t$-dependent form on $M$ is taken coefficient by coefficient in any chart."
+"body": "The single most useful property of de Rham cohomology is that it does not see smooth deformations. The proof is a formula: an explicit operator $h$ that lowers degree by one and measures the difference between the two ends of a cylinder. Guzmán–Hirani–Liu–Potu quote it from Lee (Lemma 17.9 and Proposition 17.10 of the second edition) as the starting point of their discrete constructions, and Gualtieri proves the same identity by splitting forms on $M\\times[0,1]$ into two types.\n\nSetup. Let $I=[0,1]$ and, for $t\\in I$, let $i_t:M\\to M\\times I$ be $i_t(p)=(p,t)$. (Forms on $M\\times I$ are smooth up to the boundary; nothing changes if one uses $M\\times\\mathbb{R}$ instead.) Let $S=\\partial/\\partial t$, the vector field on $M\\times I$ along the interval factor. Define\n$$\\begin{aligned}h&:\\Omega^k(M\\times I)\\to\\Omega^{k-1}(M),\\\\ h\\omega&=\\int_0^1 i_t^*\\big(\\iota_S\\,\\omega\\big)\\,dt,\\end{aligned}$$\nwhere the integral of a $t$-dependent form on $M$ is taken coefficient by coefficient in any chart."
 },
 {
 "type": "theorem",
@@ -738,7 +682,7 @@
 "BT",
 "Pe"
 ],
-"body": "A short exact sequence of cochain complexes $0\\to A\\xrightarrow{f}B\\xrightarrow{g}C\\to0$ induces a long exact sequence\n$$\\cdots\\to H^k(A)\\xrightarrow{f^*}H^k(B)\\xrightarrow{g^*}H^k(C)\\xrightarrow{\\delta}H^{k+1}(A)\\xrightarrow{f^*}H^{k+1}(B)\\to\\cdots$$\nwhere the connecting map is $\\delta[c]=[a]$ for any $a$ with $f(a)=d b$ and $g(b)=c$."
+"body": "A short exact sequence of cochain complexes $0\\to A\\xrightarrow{f}B\\xrightarrow{g}C\\to0$ induces a long exact sequence\n$$\\begin{aligned}\\cdots\\to H^k(A)&\\xrightarrow{f^*}H^k(B)\\xrightarrow{g^*}H^k(C)\\\\&\\xrightarrow{\\delta}H^{k+1}(A)\\xrightarrow{f^*}H^{k+1}(B)\\to\\cdots\\end{aligned}$$\nwhere the connecting map is $\\delta[c]=[a]$ for any $a$ with $f(a)=d b$ and $g(b)=c$."
 },
 {
 "type": "proof",
@@ -755,7 +699,7 @@
 "Gu",
 "Pe"
 ],
-"body": "Let $M=U\\cup V$ with $U,V$ open. With the restriction maps, the sequence\n$$0\\to\\Omega^*(M)\\xrightarrow{\\ r\\ }\\Omega^*(U)\\oplus\\Omega^*(V)\\xrightarrow{\\ s\\ }\\Omega^*(U\\cap V)\\to0,\\qquad r(\\omega)=(\\omega|_U,\\omega|_V),\\quad s(\\alpha,\\beta)=\\beta|_{U\\cap V}-\\alpha|_{U\\cap V},$$\nis a short exact sequence of complexes. Hence there is a long exact sequence\n$$\\cdots\\to H^k(M)\\to H^k(U)\\oplus H^k(V)\\to H^k(U\\cap V)\\xrightarrow{\\delta}H^{k+1}(M)\\to\\cdots$$\nIf $\\{\\rho_U,\\rho_V\\}$ is a partition of unity subordinate to $\\{U,V\\}$ and $\\omega$ is a closed form on $U\\cap V$, then $\\delta[\\omega]$ is represented by the global form equal to $-d(\\rho_V\\omega)$ on $U$ and to $d(\\rho_U\\omega)$ on $V$. (Here $\\rho_V\\omega$, defined on $U\\cap V$, is extended by zero to $U$, and similarly for $\\rho_U\\omega$.)"
+"body": "Let $M=U\\cup V$ with $U,V$ open. With the restriction maps, the sequence\n$$\\begin{gathered}0\\to\\Omega^*(M)\\xrightarrow{\\ r\\ }\\Omega^*(U)\\oplus\\Omega^*(V)\\xrightarrow{\\ s\\ }\\Omega^*(U\\cap V)\\to0,\\\\ r(\\omega)=(\\omega|_U,\\omega|_V),\\qquad s(\\alpha,\\beta)=\\beta|_{U\\cap V}-\\alpha|_{U\\cap V},\\end{gathered}$$\nis a short exact sequence of complexes. Hence there is a long exact sequence\n$$\\cdots\\to H^k(M)\\to H^k(U)\\oplus H^k(V)\\to H^k(U\\cap V)\\xrightarrow{\\delta}H^{k+1}(M)\\to\\cdots$$\nIf $\\{\\rho_U,\\rho_V\\}$ is a partition of unity subordinate to $\\{U,V\\}$ and $\\omega$ is a closed form on $U\\cap V$, then $\\delta[\\omega]$ is represented by the global form equal to $-d(\\rho_V\\omega)$ on $U$ and to $d(\\rho_U\\omega)$ on $V$. (Here $\\rho_V\\omega$, defined on $U\\cap V$, is extended by zero to $U$, and similarly for $\\rho_U\\omega$.)"
 },
 {
 "type": "proof",
@@ -903,127 +847,6 @@
 },
 {
 "type": "section",
-"title": "Compact supports and Poincaré duality",
-"src": [
-"BT",
-"GH",
-"Pe"
-],
-"body": "On a non-compact manifold, integration of top forms only makes sense for forms with compact support, and duality statements need them. Let $\\Omega^k_c(M)$ be the smooth $k$-forms with compact support; $d$ preserves compact support, and the compactly supported cohomology is\n$$H^k_c(M)=\\frac{\\ker(d:\\Omega^k_c\\to\\Omega^{k+1}_c)}{d(\\Omega^{k-1}_c)} .$$\nThe quotient is by $d$ of compactly supported forms, so a compactly supported form can be exact in $\\Omega^*(M)$ but not in $\\Omega^*_c(M)$. If $M$ is compact, $H^*_c(M)=H^*(M)$.\n\nFunctoriality is different. Pullback of a compactly supported form need not have compact support, so $H_c^*$ is contravariant only for proper maps. On the other hand, for an open subset $j:U\\hookrightarrow M$, extension by zero $j_*:\\Omega_c^*(U)\\to\\Omega_c^*(M)$ is a cochain map, so $H^*_c$ is covariant for open inclusions (Bott–Tu, §1–2). For $M=U\\cup V$ this gives the compactly supported Mayer–Vietoris sequence: the sequence\n$$0\\to\\Omega_c^*(U\\cap V)\\to\\Omega_c^*(U)\\oplus\\Omega_c^*(V)\\to\\Omega_c^*(M)\\to0,\\qquad\\sigma\\mapsto(-\\sigma,\\sigma),\\quad(\\alpha,\\beta)\\mapsto\\alpha+\\beta$$\n(all maps extension by zero) is exact; surjectivity is $\\tau=\\rho_U\\tau+\\rho_V\\tau$, and if $\\alpha+\\beta=0$ then $\\alpha=-\\beta$ has compact support inside $U\\cap V$. Its connecting map $H^k_c(M)\\to H^{k+1}_c(U\\cap V)$ sends $[\\tau]$ to $[d\\rho_V\\wedge\\tau]$: lift $\\tau$ to $(\\rho_U\\tau,\\rho_V\\tau)$, apply $d$, and note $d\\rho_U=-d\\rho_V$."
-},
-{
-"type": "theorem",
-"title": "Poincaré lemma for compact supports",
-"src": [
-"BT",
-"GH"
-],
-"body": "$H^k_c(\\mathbb{R}^n)=\\mathbb{R}$ for $k=n$ and $0$ otherwise, and the isomorphism $H^n_c(\\mathbb{R}^n)\\to\\mathbb{R}$ is $[\\omega]\\mapsto\\int_{\\mathbb{R}^n}\\omega$. Equivalently, a compactly supported $n$-form on $\\mathbb{R}^n$ is $d$ of a compactly supported $(n-1)$-form if and only if its integral is $0$. (Guillemin–Haine prove the last statement for every connected open subset of $\\mathbb{R}^n$.)"
-},
-{
-"type": "proof",
-"src": [
-"BT"
-],
-"body": "Write $\\mathbb{R}^n=\\mathbb{R}^{n-1}\\times\\mathbb{R}$ with coordinates $(x,t)$ and $\\pi(x,t)=x$. Every compactly supported form is a sum of forms of two types: type I, $f(x,t)\\,\\varphi$, and type II, $f(x,t)\\,\\varphi\\wedge dt$, with $\\varphi=dx_I$ and $f$ compactly supported. Integration along the fibre $\\pi_*:\\Omega^q_c(\\mathbb{R}^n)\\to\\Omega^{q-1}_c(\\mathbb{R}^{n-1})$ kills type I and sends $f\\varphi\\wedge dt\\mapsto\\big(\\int_{\\mathbb{R}}f(x,t)\\,dt\\big)\\varphi$. Fix a compactly supported $e(t)$ with $\\int e=1$, put $E(t)=\\int_{-\\infty}^te$, and let $e_*\\varphi=\\varphi\\wedge e(t)\\,dt$. Then $\\pi_*e_*=\\mathrm{id}$, and $\\pi_*$, $e_*$ commute with $d$: for type II, $\\pi_*d(f\\varphi\\wedge dt)=\\pi_*\\big(\\sum_j\\partial_jf\\,dx_j\\wedge\\varphi\\wedge dt\\big)=d\\big((\\int f\\,dt)\\varphi\\big)$, and for type I, $\\pi_*d(f\\varphi)=(-1)^{|I|}\\big(\\int\\partial_tf\\,dt\\big)\\varphi=0$.\n\nDefine $K$ by $K(f\\varphi)=0$ and $K(f\\varphi\\wedge dt)=g\\,\\varphi$ with $g(x,t)=\\int_{-\\infty}^tf(x,u)\\,du-E(t)\\int_{\\mathbb{R}}f(x,u)\\,du$; $g$ has compact support because for $t$ large both terms equal $\\int f$, and for $t$ very negative both vanish. We claim\n$$1-e_*\\pi_*=(-1)^{q-1}(dK-Kd)\\quad\\text{on }\\Omega^q_c(\\mathbb{R}^n).$$\nType I, $\\omega=f\\varphi$, $q=|I|$: $e_*\\pi_*\\omega=0$, $K\\omega=0$, and the $dt$-part of $d\\omega$ is $(-1)^q\\partial_tf\\,\\varphi\\wedge dt$, so $Kd\\omega=(-1)^q\\big(\\int_{-\\infty}^t\\partial_tf-E\\int_{\\mathbb{R}}\\partial_tf\\big)\\varphi=(-1)^qf\\varphi$. Hence $(-1)^{q-1}(dK-Kd)\\omega=\\omega$. Type II, $\\omega=f\\varphi\\wedge dt$, $q=|I|+1$: $dK\\omega=\\sum_j\\partial_jg\\,dx_j\\wedge\\varphi+(f-eF)\\,dt\\wedge\\varphi$ with $F=\\int_{\\mathbb{R}}f$, and $Kd\\omega=K\\big(\\sum_j\\partial_jf\\,dx_j\\wedge\\varphi\\wedge dt\\big)=\\sum_j\\partial_jg\\,dx_j\\wedge\\varphi$. So $dK\\omega-Kd\\omega=(-1)^{|I|}(f\\varphi\\wedge dt-F\\varphi\\wedge e\\,dt)=(-1)^{q-1}(\\omega-e_*\\pi_*\\omega)$.\n\nSo $e_*\\pi_*$ is homotopic to the identity, $\\pi_*e_*=\\mathrm{id}$, and $\\pi_*:H^q_c(\\mathbb{R}^n)\\to H^{q-1}_c(\\mathbb{R}^{n-1})$ is an isomorphism. By induction, $H^q_c(\\mathbb{R}^n)\\cong H^{q-n}_c(\\mathbb{R}^0)$, which is $\\mathbb{R}$ for $q=n$ and $0$ otherwise. Iterating $\\pi_*$ in degree $n$ is integration over all variables, which identifies the isomorphism with $\\int_{\\mathbb{R}^n}$."
-},
-{
-"type": "theorem",
-"title": "Poincaré duality",
-"src": [
-"BT",
-"GH",
-"Pe"
-],
-"body": "Let $M$ be an oriented $n$-manifold with a finite good cover. The pairing\n$$H^q(M)\\times H^{n-q}_c(M)\\to\\mathbb{R},\\qquad([\\omega],[\\tau])\\mapsto\\int_M\\omega\\wedge\\tau,$$\nis well defined and nondegenerate, so $H^q(M)\\cong\\big(H^{n-q}_c(M)\\big)^*$ and, all spaces being finite dimensional, $H^{n-q}_c(M)\\cong H^q(M)^*$. If $M$ is compact, $H^q(M)\\cong H^{n-q}(M)^*$, so $b_q=b_{n-q}$; if $M$ is moreover connected, $\\int_M:H^n(M)\\to\\mathbb{R}$ is an isomorphism."
-},
-{
-"type": "proof",
-"src": [
-"BT"
-],
-"body": "Well defined: $\\omega\\wedge\\tau$ has compact support, and changing $\\omega$ by $d\\eta$ or $\\tau$ by $d\\sigma$ ($\\sigma$ compactly supported) changes the integrand by $d(\\eta\\wedge\\tau)$ or $\\pm d(\\omega\\wedge\\sigma)$, which integrate to $0$ by Stokes. Write $PD_M:H^q(M)\\to H^{n-q}_c(M)^*$ for the induced map.\n\nBase case: $M\\cong\\mathbb{R}^n$. Both sides vanish unless $q=0$; for $q=0$, $PD(1)([\\tau])=\\int\\tau$, which is an isomorphism $H^0=\\mathbb{R}\\to H^n_c(\\mathbb{R}^n)^*$ by the compact Poincaré lemma.\n\nComparison of the two Mayer–Vietoris sequences. For $M=U\\cup V$, place the Mayer–Vietoris sequence of $H^*$ above the dual of the compactly supported one (dualising an exact sequence of vector spaces keeps it exact), with the maps $PD$ as vertical arrows:\n$$\\begin{array}{ccccccc}H^q(M)&\\to&H^q(U)\\oplus H^q(V)&\\to&H^q(U\\cap V)&\\xrightarrow{\\delta}&H^{q+1}(M)\\\\ \\downarrow&&\\downarrow&&\\downarrow&&\\downarrow\\\\ H^{n-q}_c(M)^*&\\to&H^{n-q}_c(U)^*\\oplus H^{n-q}_c(V)^*&\\to&H^{n-q}_c(U\\cap V)^*&\\xrightarrow{d_*^{\\,*}}&H^{n-q-1}_c(M)^*\\end{array}$$\nThe first two squares commute: $\\int_M\\omega\\wedge j_*\\alpha=\\int_U\\omega|_U\\wedge\\alpha$, and similarly with the signs $(b-a)$ against $(-\\sigma,\\sigma)$. For the third, take $\\omega$ closed on $U\\cap V$ and $\\tau\\in\\Omega^{n-q-1}_c(M)$ closed. The form representing $\\delta\\omega$ is $-d\\rho_V\\wedge\\omega$ (supported in $U\\cap V$), and $d_*\\tau=d\\rho_V\\wedge\\tau$. So\n$$\\int_M\\delta\\omega\\wedge\\tau=-\\int d\\rho_V\\wedge\\omega\\wedge\\tau,\\qquad\\int_{U\\cap V}\\omega\\wedge d_*\\tau=(-1)^q\\int d\\rho_V\\wedge\\omega\\wedge\\tau,$$\nand the square commutes up to the sign $(-1)^{q+1}$. Changing the sign of some vertical maps makes every square commute without affecting which of them are isomorphisms.\n\nFive lemma. In a commutative diagram of vector spaces with exact rows $A_1\\to A_2\\to A_3\\to A_4\\to A_5$ over $B_1\\to\\cdots\\to B_5$, if the vertical maps at positions $1,2,4,5$ are isomorphisms, so is the one at position $3$. (Injectivity: if $a_3\\mapsto0$, its image in $A_4$ maps to $0$ in $B_4$, so is $0$; then $a_3$ comes from $a_2$, whose image $b_2$ maps to $0$ in $B_3$, so $b_2$ is the image of some $b_1$, which is the image of some $a_1$; then $a_2$ minus the image of $a_1$ maps to $0$ in $B_2$, hence is $0$, so $a_2$ comes from $A_1$ and $a_3=0$. Surjectivity is the dual chase.)\n\nInduction. Suppose $PD$ is an isomorphism, in all degrees, for every oriented manifold with a good cover of at most $p$ sets, and let $M$ have a good cover $U_1,\\dots,U_{p+1}$. With $U=U_1\\cup\\cdots\\cup U_p$ and $V=U_{p+1}$, the manifolds $U$, $V$, $U\\cap V$ have good covers of at most $p$ sets. In the ladder around $H^q(M)$, namely $H^{q-1}(U)\\oplus H^{q-1}(V)\\to H^{q-1}(U\\cap V)\\to H^q(M)\\to H^q(U)\\oplus H^q(V)\\to H^q(U\\cap V)$, the four outer vertical maps are isomorphisms, so $PD_M$ is one. The statements for compact and connected $M$ follow from $H^*_c=H^*$, finite dimensionality and $H^0(M)=\\mathbb{R}$, where $PD(1)=\\int_M$."
-},
-{
-"type": "figure",
-"engine": "tikz",
-"src": [
-"BT",
-"Pe",
-"Ch"
-],
-"caption": "The comparison ladder used twice on this page: the Mayer–Vietoris sequences of two cohomology theories $H$ and $h$ joined by a natural map $\\Phi$ (for Poincaré duality, $h^q=(H^{n-q}_c)^*$ and $\\Phi=PD$; for de Rham's theorem, $h^q=H^q(\\,\\cdot\\,;\\mathbb{R})$ and $\\Phi=I$). If $\\Phi$ is an isomorphism for $U$, $V$ and $U\\cap V$, the five lemma makes it one for $U\\cup V$.",
-"alt": "Two horizontal exact sequences, each with five terms: H^{q-1}(U) plus H^{q-1}(V), H^{q-1}(U cap V), H^q(U cup V), H^q(U) plus H^q(V), H^q(U cap V). Vertical arrows Phi join corresponding terms; the four outer ones are marked as isomorphisms and the middle one is the conclusion.",
-"code": "\\begin{tikzcd}[column sep=small, row sep=large]\nH^{q-1}(U)\\oplus H^{q-1}(V) \\arrow[r]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q-1}(U\\cap V) \\arrow[r,\"\\delta\"]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q}(U\\cup V) \\arrow[r]\\arrow[d,\"\\Phi\", dashed] & H^{q}(U)\\oplus H^{q}(V) \\arrow[r]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q}(U\\cap V)\\arrow[d,\"\\cong\"',\"\\Phi\"]\\\\\nh^{q-1}(U)\\oplus h^{q-1}(V) \\arrow[r] & h^{q-1}(U\\cap V) \\arrow[r] & h^{q}(U\\cup V) \\arrow[r] & h^{q}(U)\\oplus h^{q}(V) \\arrow[r] & h^{q}(U\\cap V)\n\\end{tikzcd}"
-},
-{
-"type": "definition",
-"title": "Poincaré dual of a submanifold",
-"src": [
-"BT",
-"BhGS"
-],
-"body": "Let $M$ be a compact oriented $n$-manifold and $i:S\\hookrightarrow M$ a closed oriented $k$-dimensional submanifold. The functional $[\\omega]\\mapsto\\int_Si^*\\omega$ on $H^k(M)$ is linear, so by Poincaré duality there is a unique class $\\eta_S\\in H^{n-k}(M)$ with\n$$\\int_Si^*\\omega=\\int_M\\omega\\wedge\\eta_S\\qquad\\text{for all closed }\\omega\\in\\Omega^k(M).$$\nThis is the Poincaré dual of $S$ (Bott–Tu, §5). It can be represented by a closed form supported in any given tubular neighbourhood of $S$, a bump form concentrated near $S$; physicists call such representatives delta-forms, and Bhardwaj et al. write $\\delta^{d-p}(M_p)$ for the form dual to a $p$-dimensional submanifold $M_p$ of spacetime. The order $\\omega\\wedge\\eta_S$ is a convention; using $\\eta_S\\wedge\\omega$ changes $\\eta_S$ by $(-1)^{k(n-k)}$.\n\nIn words: integrating over $S$ is the same as wedging with $\\eta_S$ and integrating over all of $M$."
-},
-{
-"type": "example",
-"title": "Poincaré duals of circles on the torus",
-"src": [
-"BT"
-],
-"body": "On $T^2$ with orientation $d\\theta_1\\wedge d\\theta_2$, let $S=\\{\\theta_1=0\\}$ (oriented by $\\theta_2$) and $T=\\{\\theta_2=0\\}$ (oriented by $\\theta_1$). Find $\\eta_S$ and $\\eta_T$ and compute $\\int_{T^2}\\eta_S\\wedge\\eta_T$ and $\\int_T\\eta_S$.",
-"solution": "By the Künneth computation below, $H^1(T^2)$ has basis $[d\\theta_1],[d\\theta_2]$, so test against $\\omega=a\\,d\\theta_1+b\\,d\\theta_2$. On $S$, $i^*\\omega=b\\,d\\theta_2$, so $\\int_S\\omega=2\\pi b$. Try $\\eta_S=c\\,d\\theta_1$: then $\\omega\\wedge\\eta_S=bc\\,d\\theta_2\\wedge d\\theta_1=-bc\\,d\\theta_1\\wedge d\\theta_2$, with integral $-4\\pi^2bc$. So $c=-\\frac1{2\\pi}$ and $\\eta_S=-\\frac1{2\\pi}[d\\theta_1]$. The bump representative is $-\\rho(\\theta_1)\\,d\\theta_1$ with $\\int\\rho=1$ and $\\rho$ supported near $\\theta_1=0$, which is cohomologous to it (both have period $0$ over $S$ and $-1$ over $T$, so they agree by the period criterion). Similarly $\\int_T\\omega=2\\pi a$, and $\\eta_T=c'\\,d\\theta_2$ gives $\\int a c'\\,d\\theta_1\\wedge d\\theta_2=4\\pi^2ac'$, so $\\eta_T=\\frac1{2\\pi}[d\\theta_2]$.\n\nThen $\\int_{T^2}\\eta_S\\wedge\\eta_T=-\\frac1{4\\pi^2}\\cdot4\\pi^2=-1$, and directly $\\int_T\\eta_S=\\int_0^{2\\pi}-\\frac1{2\\pi}\\,d\\theta_1=-1$, as the defining property with $\\omega=\\eta_S$ predicts. The value $\\pm1$ is the signed count of the single intersection point of $S$ and $T$; at that point the tangent vectors of $S$ then $T$, namely $(\\partial_{\\theta_2},\\partial_{\\theta_1})$, form a negatively oriented basis, which accounts for the sign. Guillemin–Haine obtain intersection numbers of submanifolds as a consequence of Poincaré duality, through Thom classes (§5.5)."
-},
-{
-"type": "views",
-"title": "Poincaré duality, four ways",
-"items": [
-{
-"label": "Nondegenerate integration pairing",
-"src": [
-"BT",
-"GH"
-],
-"body": "Bott–Tu and Guillemin–Haine state duality as the nondegeneracy of $\\int_M\\omega\\wedge\\tau$ between $H^q$ and $H^{n-q}_c$; Bott–Tu prove it by the Mayer–Vietoris ladder and the five lemma, starting from the two Poincaré lemmas on $\\mathbb{R}^n$."
-},
-{
-"label": "An isomorphism with a dual",
-"src": [
-"Pe"
-],
-"body": "Petrov states it as $H^k(M)\\cong H^{n-k}_c(M)^*$ for connected oriented $M$, and warns that the reverse statement $H^k_c\\cong(H^{n-k})^*$ is not always true: dualising turns a direct sum into a direct product, but the dual of a direct product is not a direct sum, so the argument cannot be run backwards when the spaces are infinite dimensional."
-},
-{
-"label": "Submanifolds as forms",
-"src": [
-"BT",
-"BhGS"
-],
-"body": "Every closed oriented submanifold $S$ defines a class $\\eta_S$ with $\\int_S=\\int_M(\\,\\cdot\\,)\\wedge\\eta_S$. Intersections of submanifolds become wedge products of their duals, and in field theory a charged defect on $M_p$ enters the conservation law through its delta-form, $dj=q\\,\\delta(M_p)$."
-},
-{
-"label": "Integration to a point",
-"src": [
-"NS"
-],
-"body": "Notman–Sanabani phrase top-degree integration as a linear map $\\int_M:H^\\bullet(M)\\to H^\\bullet(\\mathrm{pt})$, nonzero only in degree $n$. In this form it generalises to the equivariant setting, where it lands in the equivariant cohomology of a point, and that is the language of their localisation theorems."
-}
-]
-},
-{
-"type": "pitfall",
-"src": [
-"Pe",
-"BT"
-],
-"body": "- On a non-compact manifold, Poincaré duality pairs $H^q$ with compactly supported $H^{n-q}_c$, not with $H^{n-q}$. For $\\mathbb{R}^n$: $H^0=\\mathbb{R}$ while $H^n=0$; the partner of $H^0$ is $H^n_c=\\mathbb{R}$.\n- $H^*_c$ is not a homotopy invariant: $\\mathbb{R}^n$ is contractible but $H^n_c(\\mathbb{R}^n)=\\mathbb{R}\\ne H^n_c(\\mathrm{pt})$ for $n\\ge1$. It is invariant under proper homotopies, and covariant (not contravariant) for open inclusions.\n- A compactly supported form can be exact without being compactly exact: a bump $n$-form on $\\mathbb{R}^n$ with integral $1$ is $d$ of some $(n-1)$-form, but of no compactly supported one.\n- Orientation is needed. Without it $\\int_M$ is not defined, and for the non-orientable compact Klein bottle $H^2=0$ (see the de Rham theorem section), so $H^0\\not\\cong(H^2)^*$.\n- Sign and order conventions for $\\eta_S$ ($\\omega\\wedge\\eta_S$ versus $\\eta_S\\wedge\\omega$, orientation of the normal bundle) differ between sources; check one example such as the torus above before comparing formulas."
-},
-{
-"type": "exercise",
-"body": "1. Compute $H^*_c(\\mathbb{R}\\setminus\\{0\\})$ and $H^*_c$ of the open Möbius band, and compare with $H^*$ of these spaces.\n2. Show that $H^1_c(\\mathbb{R})\\cong\\mathbb{R}$ by integration, directly from the definition (a compactly supported $f\\,dx$ is $dg$ with $g$ compactly supported iff $\\int f=0$).\n3. Use Poincaré duality to show that every compact connected orientable $3$-manifold has $\\chi=0$.\n4. On $S^2\\times S^2$ let $A=S^2\\times\\{p\\}$ and $B=\\{p\\}\\times S^2$. Express $\\eta_A,\\eta_B$ in terms of the normalised area forms of the two factors and compute $\\int\\eta_A\\wedge\\eta_B$, $\\int\\eta_A\\wedge\\eta_A$.\n5. Let $M$ be compact oriented and $f:M\\to M$ smooth. Show that $\\int_M f^*\\mu$ for a normalised volume form $\\mu$ is a well-defined number depending only on the homotopy class of $f$ (this is the degree of $f$)."
-},
-{
-"type": "section",
 "title": "The Künneth formula and tori",
 "src": [
 "BT",
@@ -1046,7 +869,7 @@
 "src": [
 "BT"
 ],
-"body": "Fix $F$ and argue by induction on the number of sets in a good cover of $M$. If $M\\cong\\mathbb{R}^n$, then $M\\times F$ deformation retracts to $\\{0\\}\\times F$, $H^*(M)=\\mathbb{R}$ in degree $0$, and $\\psi$ reduces to $\\rho^*:H^*(F)\\to H^*(\\mathbb{R}^n\\times F)$, an isomorphism by homotopy invariance.\n\nFor $M=U\\cup V$, the Mayer–Vietoris sequence of $M$ tensored with the fixed vector space $H^q(F)$ stays exact (tensoring over a field is exact), and summing over $p+q=k$ gives an exact sequence of the left-hand sides for $U$, $V$, $U\\cap V$, $M$. The Mayer–Vietoris sequence of $M\\times F=(U\\times F)\\cup(V\\times F)$ gives one for the right-hand sides. The maps $\\psi$ commute with restrictions, and with the connecting maps: using the partition of unity $\\pi^*\\rho_U,\\pi^*\\rho_V$ on $M\\times F$,\n$$\\delta[\\pi^*\\omega\\wedge\\rho^*\\varphi]=\\big[-d(\\pi^*\\rho_V\\,\\pi^*\\omega\\wedge\\rho^*\\varphi)\\big]=\\big[\\pi^*(-d(\\rho_V\\omega))\\wedge\\rho^*\\varphi\\big]=\\psi(\\delta[\\omega]\\otimes[\\varphi])$$\non $U\\times F$ (similarly on $V\\times F$), since $d\\rho^*\\varphi=0$. The five lemma and the same induction as in the duality proof finish the argument. The statement about Poincaré polynomials is the dimension count of the direct sum of tensor products."
+"body": "Fix $F$ and argue by induction on the number of sets in a good cover of $M$. If $M\\cong\\mathbb{R}^n$, then $M\\times F$ deformation retracts to $\\{0\\}\\times F$, $H^*(M)=\\mathbb{R}$ in degree $0$, and $\\psi$ reduces to $\\rho^*:H^*(F)\\to H^*(\\mathbb{R}^n\\times F)$, an isomorphism by homotopy invariance.\n\nFor $M=U\\cup V$, the Mayer–Vietoris sequence of $M$ tensored with the fixed vector space $H^q(F)$ stays exact (tensoring over a field is exact), and summing over $p+q=k$ gives an exact sequence of the left-hand sides for $U$, $V$, $U\\cap V$, $M$. The Mayer–Vietoris sequence of $M\\times F=(U\\times F)\\cup(V\\times F)$ gives one for the right-hand sides. The maps $\\psi$ commute with restrictions, and with the connecting maps: using the partition of unity $\\pi^*\\rho_U,\\pi^*\\rho_V$ on $M\\times F$,\n$$\\delta[\\pi^*\\omega\\wedge\\rho^*\\varphi]=\\big[-d(\\pi^*\\rho_V\\,\\pi^*\\omega\\wedge\\rho^*\\varphi)\\big]=\\big[\\pi^*(-d(\\rho_V\\omega))\\wedge\\rho^*\\varphi\\big]=\\psi(\\delta[\\omega]\\otimes[\\varphi])$$\non $U\\times F$ (similarly on $V\\times F$), since $d\\rho^*\\varphi=0$. The [[homological-algebra|five lemma]] and the same induction on the number of sets as in the proof of finite dimensionality finish the argument. The statement about Poincaré polynomials is the dimension count of the direct sum of tensor products."
 },
 {
 "type": "example",
@@ -1056,7 +879,7 @@
 "BT"
 ],
 "body": "Compute $H^*(T^n)$ for $T^n=S^1\\times\\cdots\\times S^1$, with basis and ring structure, and the Betti numbers of $T^3$.",
-"solution": "$S^1$ is compact, so it has a finite good cover, and by induction Künneth applies to $T^n=T^{n-1}\\times S^1$. With $P_{S^1}(t)=1+t$, $P_{T^n}(t)=(1+t)^n$, so $b_k(T^n)=\\binom nk$. Unwinding $\\psi$, a basis of $H^k(T^n)$ is $[d\\theta_I]=[d\\theta_{i_1}\\wedge\\cdots\\wedge d\\theta_{i_k}]$ for increasing multi-indices $I$, where $\\theta_i$ is the angle on the $i$-th factor. The ring is the exterior algebra $\\Lambda(x_1,\\dots,x_n)$ with $x_i=[d\\theta_i]$ in degree $1$; nonvanishing of $x_1\\cdots x_n$ is confirmed by $\\int_{T^n}d\\theta_1\\wedge\\cdots\\wedge d\\theta_n=(2\\pi)^n$. For $T^3$: $b=(1,3,3,1)$, $\\chi=0$, and Poincaré duality is visible as $b_k=b_{3-k}$. Wikipedia describes the same answer: Betti numbers $\\binom nk$ and classes represented by wedges of the degree-one forms."
+"solution": "$S^1$ is compact, so it has a finite good cover, and by induction Künneth applies to $T^n=T^{n-1}\\times S^1$. With $P_{S^1}(t)=1+t$, $P_{T^n}(t)=(1+t)^n$, so $b_k(T^n)=\\binom nk$. Unwinding $\\psi$, a basis of $H^k(T^n)$ is $[d\\theta_I]=[d\\theta_{i_1}\\wedge\\cdots\\wedge d\\theta_{i_k}]$ for increasing multi-indices $I$, where $\\theta_i$ is the angle on the $i$-th factor. The ring is the exterior algebra $\\Lambda(x_1,\\dots,x_n)$ with $x_i=[d\\theta_i]$ in degree $1$; nonvanishing of $x_1\\cdots x_n$ is confirmed by $\\int_{T^n}d\\theta_1\\wedge\\cdots\\wedge d\\theta_n=(2\\pi)^n$. For $T^3$: $b=(1,3,3,1)$, $\\chi=0$, and [[poincare-duality|Poincaré duality]] is visible as $b_k=b_{3-k}$. Wikipedia describes the same answer: Betti numbers $\\binom nk$ and classes represented by wedges of the degree-one forms."
 },
 {
 "type": "example",
@@ -1065,7 +888,7 @@
 "BT"
 ],
 "body": "Compute $H^*(S^2\\times S^2)$ with its ring structure, and $H^*(S^1\\times S^2)$.",
-"solution": "$P_{S^2\\times S^2}=(1+t^2)^2=1+2t^2+t^4$, so $b=(1,0,2,0,1)$ with $H^2$ spanned by $a=[\\pi^*\\mu_1]$ and $b=[\\rho^*\\mu_2]$ for normalised area forms $\\mu_i$ (integral $1$). Then $a^2=b^2=0$ (pullbacks of $4$-forms on $S^2$) and $ab$ generates $H^4$ with $\\int ab=1$. $P_{S^1\\times S^2}=(1+t)(1+t^2)=1+t+t^2+t^3$. In the basis $a,b$ the pairing $(x,y)\\mapsto\\int_{S^2\\times S^2}xy$ on $H^2$ has matrix $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, nondegenerate as Poincaré duality requires."
+"solution": "$P_{S^2\\times S^2}=(1+t^2)^2=1+2t^2+t^4$, so $b=(1,0,2,0,1)$ with $H^2$ spanned by $a=[\\pi^*\\mu_1]$ and $b=[\\rho^*\\mu_2]$ for normalised area forms $\\mu_i$ (integral $1$). Then $a^2=b^2=0$ (pullbacks of $4$-forms on $S^2$) and $ab$ generates $H^4$ with $\\int ab=1$. $P_{S^1\\times S^2}=(1+t)(1+t^2)=1+t+t^2+t^3$. In the basis $a,b$ the pairing $(x,y)\\mapsto\\int_{S^2\\times S^2}xy$ on $H^2$ has matrix $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, nondegenerate as [[poincare-duality|Poincaré duality]] requires."
 },
 {
 "type": "exercise",
@@ -1121,7 +944,19 @@
 "Gi",
 "Ch"
 ],
-"body": "We follow the argument that Petrov and Ginory take from Lee, who credits it to Bredon; Chua outlines the same steps. Call $M$ a de Rham manifold if $I$ is an isomorphism in every degree, and call an open cover a de Rham cover if every finite intersection of its members is a de Rham manifold. The multiplicativity is not proved here; Chua and Wikipedia state it, and it is not needed for the dimension statements used on this page.\n\nStep 0: compatibility with Mayer–Vietoris. For $M=U\\cup V$, the integration maps for $U$, $V$, $U\\cap V$, $M$ form a map from the de Rham Mayer–Vietoris sequence to the singular one. The squares involving restrictions commute by naturality. The square with the connecting maps commutes too; this is a direct check with the formula for $\\delta$ and a decomposition of cycles into $U$-small and $V$-small pieces, done in Petrov, Proposition 5.3(b), and in Lee, Chapter 18. We take it from there.\n\nStep 1: convex open subsets of $\\mathbb{R}^n$ are de Rham. For $k\\ge1$ both sides vanish (Poincaré lemma; contractible spaces have the homology of a point). For $k=0$ both sides are $\\mathbb{R}$, and $I$ sends the constant function $1$ to the functional taking the value $1$ on the class of a point, which is nonzero.\n\nStep 2: disjoint unions. If $M=\\bigsqcup_jM_j$ with each $M_j$ de Rham, then both sides are products over $j$ (for singular cohomology, $H_k(M)=\\bigoplus_jH_k(M_j)$ and $\\operatorname{Hom}(\\bigoplus,\\mathbb{R})=\\prod\\operatorname{Hom}$), and $I$ is the product of the $I_j$.\n\nStep 3: finite de Rham covers. If $U$, $V$ and $U\\cap V$ are de Rham, the ladder of the two Mayer–Vietoris sequences (the figure in the duality section, with $\\Phi=I$) and the five lemma show that $U\\cup V$ is de Rham. By induction on the number of sets, a manifold with a finite de Rham cover is de Rham: for $U_1,\\dots,U_{p+1}$, put $U=U_1\\cup\\cdots\\cup U_p$ and $V=U_{p+1}$; then $U$ and $U\\cap V$ have de Rham covers of $p$ sets.\n\nStep 4: de Rham bases. Suppose $M$ has a de Rham cover that is a basis of its topology. Choose a smooth proper exhaustion function $f:M\\to[0,\\infty)$ and set $A_m=f^{-1}([m,m+1])$ (compact) and $A'_m=f^{-1}\\big((m-\\tfrac12,m+\\tfrac32)\\big)$. Cover $A_m$ by finitely many basis sets inside $A'_m$ and let $B_m$ be their union; it is covered by finitely many basis sets, all of whose finite intersections are de Rham by assumption, so $B_m$ is de Rham by Step 3. Since $B_m\\subseteq A'_m$, $B_m$ meets only $B_{m-1}$ and $B_{m+1}$. Let $U=\\bigcup_{m\\text{ odd}}B_m$ and $V=\\bigcup_{m\\text{ even}}B_m$. Each is a disjoint union of de Rham manifolds, hence de Rham by Step 2, and $U\\cap V=\\bigsqcup_m(B_m\\cap B_{m+1})$ is a disjoint union of manifolds with finite de Rham covers (by the pairwise intersections of the chosen basis sets), hence de Rham. Step 3 applied to $M=U\\cup V$ finishes this step.\n\nStep 5: open subsets of $\\mathbb{R}^n$ have the basis of convex balls, and finite intersections of convex sets are convex, so by Steps 1 and 4 they are de Rham. Every manifold has a basis consisting of open sets diffeomorphic to open subsets of $\\mathbb{R}^n$ (chart domains), whose finite intersections are again of that kind, so Step 4 applies to every manifold."
+"body": "We follow the argument that Petrov and Ginory take from Lee, who credits it to Bredon; Chua outlines the same steps. Call $M$ a de Rham manifold if $I$ is an isomorphism in every degree, and call an open cover a de Rham cover if every finite intersection of its members is a de Rham manifold. The multiplicativity is not proved here; Chua and Wikipedia state it, and it is not needed for the dimension statements used on this page.\n\nStep 0: compatibility with Mayer–Vietoris. For $M=U\\cup V$, the integration maps for $U$, $V$, $U\\cap V$, $M$ form a map from the de Rham Mayer–Vietoris sequence to the singular one. The squares involving restrictions commute by naturality. The square with the connecting maps commutes too; this is a direct check with the formula for $\\delta$ and a decomposition of cycles into $U$-small and $V$-small pieces, done in Petrov, Proposition 5.3(b), and in Lee, Chapter 18. We take it from there.\n\nStep 1: convex open subsets of $\\mathbb{R}^n$ are de Rham. For $k\\ge1$ both sides vanish (Poincaré lemma; contractible spaces have the homology of a point). For $k=0$ both sides are $\\mathbb{R}$, and $I$ sends the constant function $1$ to the functional taking the value $1$ on the class of a point, which is nonzero.\n\nStep 2: disjoint unions. If $M=\\bigsqcup_jM_j$ with each $M_j$ de Rham, then both sides are products over $j$ (for singular cohomology, $H_k(M)=\\bigoplus_jH_k(M_j)$ and $\\operatorname{Hom}(\\bigoplus,\\mathbb{R})=\\prod\\operatorname{Hom}$), and $I$ is the product of the $I_j$.\n\nStep 3: finite de Rham covers. If $U$, $V$ and $U\\cap V$ are de Rham, the ladder of the two Mayer–Vietoris sequences (the figure below, with $\\Phi=I$) and the [[homological-algebra|five lemma]] show that $U\\cup V$ is de Rham. By induction on the number of sets, a manifold with a finite de Rham cover is de Rham: for $U_1,\\dots,U_{p+1}$, put $U=U_1\\cup\\cdots\\cup U_p$ and $V=U_{p+1}$; then $U$ and $U\\cap V$ have de Rham covers of $p$ sets.\n\nStep 4: de Rham bases. Suppose $M$ has a de Rham cover that is a basis of its topology. Choose a smooth proper exhaustion function $f:M\\to[0,\\infty)$ and set $A_m=f^{-1}([m,m+1])$ (compact) and $A'_m=f^{-1}\\big((m-\\tfrac12,m+\\tfrac32)\\big)$. Cover $A_m$ by finitely many basis sets inside $A'_m$ and let $B_m$ be their union; it is covered by finitely many basis sets, all of whose finite intersections are de Rham by assumption, so $B_m$ is de Rham by Step 3. Since $B_m\\subseteq A'_m$, $B_m$ meets only $B_{m-1}$ and $B_{m+1}$. Let $U=\\bigcup_{m\\text{ odd}}B_m$ and $V=\\bigcup_{m\\text{ even}}B_m$. Each is a disjoint union of de Rham manifolds, hence de Rham by Step 2, and $U\\cap V=\\bigsqcup_m(B_m\\cap B_{m+1})$ is a disjoint union of manifolds with finite de Rham covers (by the pairwise intersections of the chosen basis sets), hence de Rham. Step 3 applied to $M=U\\cup V$ finishes this step.\n\nStep 5: open subsets of $\\mathbb{R}^n$ have the basis of convex balls, and finite intersections of convex sets are convex, so by Steps 1 and 4 they are de Rham. Every manifold has a basis consisting of open sets diffeomorphic to open subsets of $\\mathbb{R}^n$ (chart domains), whose finite intersections are again of that kind, so Step 4 applies to every manifold."
+},
+{
+"type": "figure",
+"engine": "tikz",
+"src": [
+"BT",
+"Pe",
+"Ch"
+],
+"caption": "The comparison ladder in the proof of de Rham's theorem: the Mayer–Vietoris sequences of two cohomology theories $H$ and $h$ joined by a natural map $\\Phi$, here $h^q=H^q(\\,\\cdot\\,;\\mathbb{R})$ and $\\Phi=I$ (the proof of Poincaré duality on [[poincare-duality|Compact supports and Poincaré duality]] uses the same ladder with $h^q=(H^{n-q}_c)^*$ and $\\Phi=PD$). If $\\Phi$ is an isomorphism for $U$, $V$ and $U\\cap V$, the five lemma makes it one for $U\\cup V$.",
+"alt": "Two horizontal exact sequences, each with five terms: H^{q-1}(U) plus H^{q-1}(V), H^{q-1}(U cap V), H^q(U cup V), H^q(U) plus H^q(V), H^q(U cap V). Vertical arrows Phi join corresponding terms; the four outer ones are marked as isomorphisms and the middle one is the conclusion.",
+"code": "\\begin{tikzcd}[column sep=small, row sep=large]\nH^{q-1}(U)\\oplus H^{q-1}(V) \\arrow[r]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q-1}(U\\cap V) \\arrow[r,\"\\delta\"]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q}(U\\cup V) \\arrow[r]\\arrow[d,\"\\Phi\", dashed] & H^{q}(U)\\oplus H^{q}(V) \\arrow[r]\\arrow[d,\"\\cong\"',\"\\Phi\"] & H^{q}(U\\cap V)\\arrow[d,\"\\cong\"',\"\\Phi\"]\\\\\nh^{q-1}(U)\\oplus h^{q-1}(V) \\arrow[r] & h^{q-1}(U\\cap V) \\arrow[r] & h^{q}(U\\cup V) \\arrow[r] & h^{q}(U)\\oplus h^{q}(V) \\arrow[r] & h^{q}(U\\cap V)\n\\end{tikzcd}"
 },
 {
 "type": "views",
@@ -1208,11 +1043,11 @@
 "Pe",
 "Gi"
 ],
-"body": "- De Rham cohomology is real cohomology. It loses all torsion of $H^*(M;\\mathbb{Z})$: the Klein bottle has $H^1_{dR}=\\mathbb{R}$, like a circle, and $\\mathbb{RP}^{2}$ has the de Rham cohomology of a point. Statements about integral classes (Chern classes in $H^2(M;\\mathbb{Z})$, flux quantisation) need extra input beyond forms.\n- Singular simplices are only continuous, and a form cannot be integrated over a continuous simplex. The smoothing theorem is a genuine step of the proof, not a formality.\n- The isomorphism goes to cohomology, not homology: de Rham classes are functionals on cycles. On a compact oriented manifold Poincaré duality identifies $H^k$ with $H^{n-k}$, which is why papers sometimes blur the two, but on non-compact manifolds they differ.\n- Homotopy invariance of de Rham cohomology does not require de Rham's theorem (it was proved directly above), but topological invariance under homeomorphisms that are not smooth does."
+"body": "- De Rham cohomology is real cohomology. It loses all torsion of $H^*(M;\\mathbb{Z})$: the Klein bottle has $H^1_{dR}=\\mathbb{R}$, like a circle, and $\\mathbb{RP}^{2}$ has the de Rham cohomology of a point. Statements about integral classes (Chern classes in $H^2(M;\\mathbb{Z})$, flux quantisation) need extra input beyond forms.\n- Singular simplices are only continuous, and a form cannot be integrated over a continuous simplex. The smoothing theorem is a genuine step of the proof, not a formality.\n- The isomorphism goes to cohomology, not homology: de Rham classes are functionals on cycles. On a compact oriented manifold [[poincare-duality|Poincaré duality]] identifies $H^k$ with the dual of $H^{n-k}$, hence, by de Rham's theorem, with $H_{n-k}(M;\\mathbb{R})$, which is why papers sometimes blur the two, but on non-compact manifolds they differ.\n- Homotopy invariance of de Rham cohomology does not require de Rham's theorem (it was proved directly above), but topological invariance under homeomorphisms that are not smooth does."
 },
 {
 "type": "exercise",
-"body": "1. Show directly from the definitions that $I:H^0(M)\\to H^0(M;\\mathbb{R})$ is an isomorphism for every $M$.\n2. Using $H_1(\\Sigma_g)=\\mathbb{Z}^{2g}$ for the closed orientable surface of genus $g$, compute $H^*_{dR}(\\Sigma_g)$, and check Poincaré duality and $\\chi=2-2g$.\n3. Let $\\omega$ be a closed $1$-form on $\\mathbb{R}^2\\setminus\\{p,q\\}$ with $\\int_{\\gamma_p}\\omega=\\int_{\\gamma_q}\\omega=0$. Show that $\\omega$ is exact, and write $\\omega_p-\\omega_q$ plus an exact form for a form with periods $(2\\pi,-2\\pi)$.\n4. For the nonorientable surface $N_k$ with $H_1(N_k)=\\mathbb{Z}^{k-1}\\oplus\\mathbb{Z}/2$, $H_2=0$, compute $H^*_{dR}(N_k)$.\n5. Show that the class of the area form of $S^2$ divided by $4\\pi$ is integral, and that the class of $\\Phi/(4\\pi)$ on $\\mathbb{R}^3\\setminus\\{0\\}$ (with $\\Phi$ from the flux example) is a generator of the integral lattice."
+"body": "1. Show directly from the definitions that $I:H^0(M)\\to H^0(M;\\mathbb{R})$ is an isomorphism for every $M$.\n2. Using $H_1(\\Sigma_g)=\\mathbb{Z}^{2g}$ for the closed orientable surface of genus $g$, compute $H^*_{dR}(\\Sigma_g)$, and check [[poincare-duality|Poincaré duality]] and $\\chi=2-2g$.\n3. Let $\\omega$ be a closed $1$-form on $\\mathbb{R}^2\\setminus\\{p,q\\}$ with $\\int_{\\gamma_p}\\omega=\\int_{\\gamma_q}\\omega=0$. Show that $\\omega$ is exact, and write $\\omega_p-\\omega_q$ plus an exact form for a form with periods $(2\\pi,-2\\pi)$.\n4. For the nonorientable surface $N_k$ with $H_1(N_k)=\\mathbb{Z}^{k-1}\\oplus\\mathbb{Z}/2$, $H_2=0$, compute $H^*_{dR}(N_k)$.\n5. Show that the class of the area form of $S^2$ divided by $4\\pi$ is integral, and that the class of $\\Phi/(4\\pi)$ on $\\mathbb{R}^3\\setminus\\{0\\}$ (with $\\Phi$ from the flux example) is a generator of the integral lattice."
 },
 {
 "type": "section",
@@ -1459,7 +1294,7 @@
 },
 {
 "type": "conventions",
-"title": "Normalising Chern classes and equivariant differentials",
+"title": "Normalising Chern classes",
 "body": "These conventions change signs and factors of $2\\pi$ and $i$ in formulas that papers quote without comment.",
 "rows": [
 {
@@ -1482,21 +1317,6 @@
 "WCW"
 ],
 "text": "Defines Chern classes through the characteristic polynomial in a variable $t$ and notes that its source uses $t^{-1}$ in place of $t$; the two choices reorder the coefficients."
-},
-{
-"who": "Notman–Sanabani; Meinrenken",
-"src": [
-"NS",
-"Me"
-],
-"text": "Cartan differential $d_G=1\\otimes d-\\sum_i\\xi^i\\otimes\\iota_{\\xi_i}$, equivalently $(d_G\\alpha)(\\xi)=d(\\alpha(\\xi))-\\iota_{\\xi}\\alpha(\\xi)$. Meinrenken defines the generating vector field of $\\xi\\in\\mathfrak g$ using $\\exp(-t\\xi)$, and puts a factor $2\\pi$ inside his equivariant Euler form; signs in localisation formulas depend on both choices."
-},
-{
-"who": "Kreutz–Shen–Vial",
-"src": [
-"KSV"
-],
-"text": "Tate twist $\\mathbb{Q}(k)=(2\\pi i)^k\\mathbb{Q}\\subset\\mathbb{C}$; a de Rham class of degree $2k$ is compared with Betti classes after dividing periods by $(2\\pi i)^k$, which is what makes algebraic cycle classes rational on both sides."
 }
 ]
 },
@@ -1506,219 +1326,11 @@
 },
 {
 "type": "section",
-"title": "Equivariant cohomology: the Cartan model",
-"src": [
-"NS",
-"Me"
-],
-"body": "When a compact Lie group $G$ acts on $M$ (see [[lie-groups]] and [[lie-algebras]]), each $\\xi\\in\\mathfrak g$ gives a vector field $\\xi_M$ on $M$. Notman–Sanabani and Meinrenken define the Cartan complex\n$$\\Omega_G(M)=\\big(S(\\mathfrak g^*)\\otimes\\Omega(M)\\big)^G,$$\nthe $G$-invariant polynomial maps $\\alpha:\\mathfrak g\\to\\Omega(M)$, graded so that elements of $\\mathfrak g^*$ have degree $2$, with differential\n$$(d_G\\alpha)(\\xi)=d\\big(\\alpha(\\xi)\\big)-\\iota_{\\xi_M}\\alpha(\\xi).$$\nIts cohomology is the equivariant cohomology $H_G(M)$; Cartan's theorem identifies it with the cohomology of the Borel construction $(M\\times EG)/G$ (Notman–Sanabani, Theorem 3.10; Meinrenken, Theorem 6.1, for compact connected $G$) and with the Weil model (Meinrenken, Theorem 5.3). We do not prove this. What one can see directly is why the invariance condition is needed."
-},
-{
-"type": "theorem",
-"title": "The Cartan differential squares to zero on invariant forms",
-"src": [
-"NS",
-"Me"
-],
-"body": "For $\\alpha\\in S(\\mathfrak g^*)\\otimes\\Omega(M)$, $(d_G^2\\alpha)(\\xi)=-L_{\\xi_M}\\big(\\alpha(\\xi)\\big)$. In particular $d_G^2=0$ on the $G$-invariant subcomplex."
-},
-{
-"type": "proof",
-"src": [
-"NS"
-],
-"body": "Fix $\\xi$ and write $\\iota=\\iota_{\\xi_M}$, a fixed vector field, so $d_G$ acts as $d-\\iota$ on the form $\\alpha(\\xi)$. Then $(d-\\iota)^2=d^2-(d\\iota+\\iota d)+\\iota^2=-L_{\\xi_M}$ by Cartan's formula, since $d^2=0$ and $\\iota^2=0$. Invariance under the connected group $G$ implies infinitesimal invariance, $L_{\\xi_M}\\alpha(\\xi)=0$ (the $G$-action on $\\Omega_G$ combines the action on forms with the coadjoint action on polynomials, and evaluated at $\\xi$ the latter contributes nothing for the derivative in the direction $\\xi$ itself). Notman–Sanabani's Proposition 3.6 states $d_G^2=0$; the computation above shows that the invariance restriction is essential."
-},
-{
-"type": "example",
-"title": "The rotating sphere: an equivariantly closed form and localisation",
-"src": [
-"NS",
-"Me"
-],
-"body": "Let $S^1$ rotate $S^2$ about the $z$-axis, with generating field $X=\\partial_\\varphi$ (angle $\\varphi$ around the axis), and use $u$ for the degree-$2$ generator of $S(\\mathfrak g^*)$, so $d_X=d-u\\,\\iota_X$. Let $\\mu=d\\varphi\\wedge dz$, the area form in cylindrical coordinates $(\\varphi,z)$. Show that $\\mu+u\\,z$ is equivariantly closed, and compute $\\int_{S^2}e^{tz}\\mu$ to see the shape of the Duistermaat–Heckman formula.",
-"solution": "$\\mu=d\\varphi\\wedge dz$ is the area form with the outward orientation (at $(1,0,0)$, the frame (normal, $\\partial_\\varphi$, $\\partial_z$) is the standard basis), and by Archimedes' observation its integral is $2\\pi\\cdot2=4\\pi$. Since $\\iota_X(d\\varphi\\wedge dz)=dz$,\n$$d_X(\\mu+uz)=d\\mu+u\\,dz-u\\,\\iota_X\\mu-u^2\\iota_Xz=0+u\\,dz-u\\,dz-0=0 .$$\nSo $\\mu+uz$ is equivariantly closed: the height $z$ is a Hamiltonian (moment map) for the rotation. Now\n$$\\int_{S^2}e^{tz}\\mu=\\int_0^{2\\pi}\\!\\!\\int_{-1}^1e^{tz}\\,dz\\,d\\varphi=\\frac{2\\pi}{t}\\big(e^{t}-e^{-t}\\big)=\\frac{2\\pi\\,e^{t\\cdot1}}{t}+\\frac{2\\pi\\,e^{t\\cdot(-1)}}{-t}.$$\nThe right side is a sum over the two fixed points of the rotation, the poles $z=\\pm1$, of $e^{t\\,z(p)}$ divided by a weight $\\pm t/2\\pi$ of the action at $p$. This is exactly the shape of the Duistermaat–Heckman theorem quoted by Notman–Sanabani (Theorem 3.30), $\\int_M\\frac{\\omega^n}{n!}e^{\\mu(X)}=\\sum_{p}\\frac{e^{\\mu(p)(X)}}{e^T(\\nu_p,X)}$; the factor $2\\pi$ and the signs belong to the normalisation of the equivariant Euler class, which Meinrenken builds into his Euler form. The integral of an equivariantly closed form is determined by the fixed points, and the computation is exact, not an approximation."
-},
-{
-"type": "exercise",
-"body": "1. With the same action, show that $d_X(z\\,\\mu)\\ne0$ and find a function $f$ with $d_X(\\mu+uf)=0$ if $\\mu$ is replaced by $2\\mu$.\n2. For $S^1$ acting on $\\mathbb{R}^2$ by rotation with $X=-y\\,\\partial_x+x\\,\\partial_y$, show that $dx\\wedge dy-\\tfrac u2(x^2+y^2)$ is equivariantly closed with $d_X=d-u\\iota_X$.\n3. In the rotating-sphere example, check that $\\frac{2\\pi}{t}(e^t-e^{-t})\\to4\\pi$ as $t\\to0$, although each of the two fixed-point terms has a pole at $t=0$, and expand both sides to order $t^2$."
-},
-{
-"type": "section",
-"title": "Equivariant integration, the point and fixed points",
-"src": [
-"NS",
-"Li",
-"Me"
-],
-"body": "Papers that use the Cartan model do three things with it besides writing down equivariantly closed forms: they compute the equivariant cohomology of a point, they restrict classes to fixed points, and they integrate. Each is a short consequence of the definitions of the previous section. We keep its conventions, $d_G=d-\\iota$ with elements of $\\mathfrak g^*$ in degree $2$; Libine's notes (Definitions 16 and 19) use the same sign and grading.\n\nThe point. For $M=\\mathrm{pt}$ the only forms are constants in degree $0$, and $d$ and every $\\iota_{\\xi_M}$ vanish. So $\\Omega_G(\\mathrm{pt})=S(\\mathfrak g^*)^G$ with zero differential, and\n$$H_G(\\mathrm{pt})=S(\\mathfrak g^*)^G,$$\nas in Notman–Sanabani, Example 3.13, and Libine, §5.4. For a torus $T$ of rank $r$ the coadjoint action is trivial, so $H_T(\\mathrm{pt})=\\mathbb{R}[u_1,\\dots,u_r]$ with $\\deg u_j=2$; this is the real form of the topological answer $H^*(BT;\\mathbb{Z})=\\mathbb{Z}[x_1,\\dots,x_r]$ in Notman–Sanabani's Example 2.77. For the circle we write $u$ for the generator, as before.\n\nModule structure. If $q\\in S(\\mathfrak g^*)^G$ and $\\alpha\\in\\Omega_G(M)$, then $q\\alpha\\in\\Omega_G(M)$ and $d_G(q\\alpha)=q\\,d_G\\alpha$, because $d$ and $\\iota$ act only on the form factor. Hence cocycles and coboundaries are stable under multiplication by $S(\\mathfrak g^*)^G$, and $H_G(M)$ is a module over $H_G(\\mathrm{pt})$. This is the Cartan-model form of the module structure in Notman–Sanabani, Theorem 2.78, and in Meinrenken, §2, where it comes from the map $M\\to\\mathrm{pt}$.\n\nRestriction to a fixed point. If $p\\in M$ is fixed by $G$, every generating field vanishes at $p$. The inclusion $i_p:\\mathrm{pt}\\to M$ kills forms of positive degree, and $i_p^*(\\iota_{\\xi_M}\\beta)=0$: in positive degree because $i_p^*$ kills such forms, and in degree $0$ because $(\\iota_{\\xi_M}\\beta)(p)=\\beta_p(\\xi_M(p))=0$. Also $i_p^*(d\\beta)=0=d(i_p^*\\beta)$, since $d\\beta$ has positive degree and $d=0$ on a point. So $i_p^*$ commutes with $d_G$ and gives a ring homomorphism\n$$i_p^*:H_G(M)\\to S(\\mathfrak g^*)^G,\\qquad \\alpha\\mapsto\\alpha_{[0]}(p),$$\nevaluation of the form-degree-$0$ component at $p$. For the equivariant symplectic form $\\omega+\\mu$ of Notman–Sanabani's Proposition 3.14 it gives $\\mu(p)$, the value of the moment map: this is their Lemma 3.16 at an isolated fixed point.\n\nIntegration. Let $M$ be compact, oriented, without boundary, of dimension $n$. For $\\alpha\\in S(\\mathfrak g^*)\\otimes\\Omega(M)$ define $\\int_M\\alpha\\in S(\\mathfrak g^*)$ coefficientwise: write $\\alpha=\\sum_Iq_I\\otimes\\alpha_I$ with $(q_I)$ a basis of polynomials and set $\\int_M\\alpha=\\sum_Iq_I\\int_M(\\alpha_I)_{[n]}$, keeping only the top-degree part of each form. Equivalently, $\\big(\\int_M\\alpha\\big)(\\xi)=\\int_M\\alpha(\\xi)_{[n]}$; Libine integrates in this way, and Notman–Sanabani's Remark 2.80 calls the corresponding push-forward to a point the equivariant integral. Everything rests on the following lemma."
-},
-{
-"type": "theorem",
-"title": "Equivariant Stokes theorem",
-"src": [
-"Li"
-],
-"body": "Let $G$ act on a compact oriented $n$-manifold $M$ without boundary. For every $\\beta\\in S(\\mathfrak g^*)\\otimes\\Omega(M)$, $\\int_Md_G\\beta=0$. Consequently integration is well defined on $H_G(M)$, and it is $S(\\mathfrak g^*)^G$-linear."
-},
-{
-"type": "proof",
-"src": [
-"Li"
-],
-"body": "Both sides are polynomials in $\\xi$, so it suffices to fix $\\xi\\in\\mathfrak g$ and regard $\\beta(\\xi)$ as an ordinary form. The top-degree part of $(d_G\\beta)(\\xi)=d\\beta(\\xi)-\\iota_{\\xi_M}\\beta(\\xi)$ is\n$$d\\big(\\beta(\\xi)_{[n-1]}\\big)-\\iota_{\\xi_M}\\big(\\beta(\\xi)_{[n+1]}\\big)=d\\big(\\beta(\\xi)_{[n-1]}\\big),$$\nbecause there are no $(n+1)$-forms on an $n$-manifold. By Stokes' theorem on the closed manifold $M$, its integral is $0$. So if $\\alpha'=\\alpha+d_G\\beta$, then $\\int_M\\alpha'=\\int_M\\alpha$, and $\\int_M$ descends to cohomology (Libine's Remark 47 draws the same conclusion for the localisation formula). Linearity over $S(\\mathfrak g^*)^G$ is immediate from the coefficientwise definition."
-},
-{
-"type": "theorem",
-"title": "Localisation for a circle action on a surface",
-"src": [
-"Li",
-"NS"
-],
-"body": "Let the circle $\\mathbb{R}/2\\pi\\mathbb{Z}$ act smoothly on a compact connected oriented surface $M$ without boundary by the flow $\\varphi_s$ of a vector field $X$ (so $\\varphi_{2\\pi}=\\mathrm{id}$), preserving the orientation, with finite fixed-point set $F$ (the zeros of $X$). Let $d_X=d-u\\,\\iota_X$ on $\\Omega(M)^{S^1}[u]$.\n\n1. At each $p\\in F$ there is an integer $w_p\\neq0$, the weight at $p$, such that for every $S^1$-invariant inner product on $T_pM$ the map $(d\\varphi_s)_p$ is rotation by the angle $w_ps$ in a positively oriented orthonormal basis.\n2. For every $d_X$-closed $\\alpha=\\alpha_{[0]}+\\alpha_{[2]}$ of even form degree (coefficients polynomial in $u$),\n$$\\int_M\\alpha=\\sum_{p\\in F}\\frac{2\\pi\\,\\alpha_{[0]}(p)}{u\\,w_p}\\qquad\\text{in }\\mathbb{R}[u,u^{-1}].$$\n3. $\\sum_{p\\in F}1/w_p=0$.\n\nThis is the two-dimensional case of the Berline–Vergne theorem in Libine's notes (Theorem 46) and of the Atiyah–Bott–Berline–Vergne formula quoted by Notman–Sanabani (Theorem 3.28), which allow higher dimensions (both), a general compact group acting with isolated zeros of the generating field (Libine) and non-isolated fixed components for Hamiltonian torus actions (Notman–Sanabani); the normalisations are compared in the conventions block below."
-},
-{
-"type": "proof",
-"src": [
-"Li"
-],
-"body": "We follow the strategy of Libine's §7 (an invariant metric, an invariant $1$-form $\\theta$ with $\\iota_X\\theta\\ne0$ off the fixed points, exactness of the top-degree part there, and a local model at each fixed point), writing out the surface case in full. Libine takes $\\theta_X=g(X,\\cdot)$, so that $\\iota_X\\theta_X=g(X,X)$, and divides by $(d-\\iota_X)\\theta_X$; on a surface we may instead normalise $\\theta$ so that $\\iota_X\\theta=1$, which makes the division explicit. The text of Libine's proof of his Theorem 46 that we could read stops before the final Stokes step, so Steps 3 and 4 below are our own argument.\n\nStep 1: an invariant metric and the form $\\theta$. Average any Riemannian metric $g_0$ over the circle, $g=\\frac1{2\\pi}\\int_0^{2\\pi}\\varphi_s^*g_0\\,ds$, as in Libine's §7.1; then $\\varphi_s^*g=g$ for all $s$. A flow preserves its own generator, $(\\varphi_s)_*X=X$. On $M\\setminus F$ put $\\theta=g(X,\\cdot)/g(X,X)$. Then $\\varphi_s^*\\theta=\\theta$, so $L_X\\theta=0$, and $\\iota_X\\theta=1$. By Cartan's formula $\\iota_Xd\\theta=L_X\\theta-d(\\iota_X\\theta)=0$. On a surface, a $2$-form that vanishes when one slot is filled with a nonzero vector is zero (if $X_q\\neq0$, extend it to a basis $X_q,v$ of $T_qM$; then $d\\theta(X_q,v)=0$). Hence $d\\theta=0$ on $M\\setminus F$.\n\nStep 2: the top part is exact off $F$. Write $\\alpha_{[0]}=\\sum_{k\\ge0}u^ka_k$ and $\\alpha_{[2]}=\\sum_{k\\ge0}u^kb_k$ with functions $a_k$ and $2$-forms $b_k$. The odd part of $d_X\\alpha$ is $d\\alpha_{[0]}-u\\,\\iota_X\\alpha_{[2]}$, so $d_X\\alpha=0$ says $da_0=0$ and $da_{k+1}=\\iota_Xb_k$ for $k\\ge0$. On $M\\setminus F$, $\\theta\\wedge b_k$ is a $3$-form on a surface, hence $0$, so $0=\\iota_X(\\theta\\wedge b_k)=(\\iota_X\\theta)\\,b_k-\\theta\\wedge\\iota_Xb_k$, that is $\\theta\\wedge\\iota_Xb_k=b_k$. Therefore, using $d\\theta=0$,\n$$d(a_{k+1}\\theta)=da_{k+1}\\wedge\\theta=\\iota_Xb_k\\wedge\\theta=-\\theta\\wedge\\iota_Xb_k=-b_k\\qquad\\text{on }M\\setminus F.$$\nThis is Libine's Proposition 42 (the top-degree part of a closed equivariant form is exact off the zeros of $X$), with his formula $\\alpha=(d-\\iota_X)\\big(\\theta_X\\wedge\\alpha/(d-\\iota_X)\\theta_X\\big)$ written out in dimension $2$ for the normalised $\\theta$, for which $(d-u\\,\\iota_X)\\theta=-u$.\n\nStep 3: the local model at a fixed point. Fix $p\\in F$. Each $\\varphi_s$ is an isometry of $g$ fixing $p$, so it maps geodesics from $p$ to geodesics from $p$: $\\varphi_s(\\exp_pv)=\\exp_p\\big((d\\varphi_s)_pv\\big)$. Thus $s\\mapsto(d\\varphi_s)_p$ is a continuous homomorphism from $\\mathbb{R}/2\\pi\\mathbb{Z}$ to the orientation-preserving isometries of $(T_pM,g_p)$, that is to $SO(2)$, and every such homomorphism is $s\\mapsto$ rotation by $w_ps$ with $w_p\\in\\mathbb{Z}$. If $w_p=0$, every point $\\exp_pv$ near $p$ would be fixed, contradicting that $p$ is isolated; so $w_p\\ne0$. (The angle of an orientation-preserving rotation $R$ of an oriented Euclidean plane is determined by $R$ alone: its cosine is $\\frac12\\operatorname{tr}R$, and the sign of its sine is positive exactly when $(v,Rv)$ is a positive basis for some, equivalently every, $v\\neq0$ not fixed by $R$. So any invariant inner product gives the same angles $w_ps$, which proves item 1. Libine's Lemma 45, the invertibility of the linearised action, is the higher-dimensional version of $w_p\\neq0$.)\n\nFor small $\\varepsilon>0$ let $D_\\varepsilon(p)=\\exp_p\\{|v|<\\varepsilon\\}$, a disc containing no other fixed point, and $C_\\varepsilon(p)$ its boundary circle with the boundary orientation of the disc, which is counterclockwise in the oriented chart $\\exp_p$. By the formula above, $C_\\varepsilon(p)$ is an orbit: for $q\\in C_\\varepsilon(p)$, $s\\mapsto\\varphi_s(q)$, $0\\le s\\le2\\pi/|w_p|$, runs once around it, counterclockwise if $w_p>0$ and clockwise if $w_p<0$, with velocity $X$. Since $\\theta(X)=1$, for a continuous function $f$\n$$\\oint_{C_\\varepsilon(p)}f\\,\\theta=\\operatorname{sign}(w_p)\\int_0^{2\\pi/|w_p|}f(\\varphi_s(q))\\,ds .$$\nIn particular $\\oint_{C_\\varepsilon(p)}\\theta=2\\pi/w_p$, and\n$$\\Big|\\oint_{C_\\varepsilon(p)}f\\,\\theta-\\frac{2\\pi f(p)}{w_p}\\Big|\\le\\frac{2\\pi}{|w_p|}\\max_{C_\\varepsilon(p)}|f-f(p)|\\longrightarrow0\\quad(\\varepsilon\\to0).$$\n\nStep 4: Stokes. Let $M_\\varepsilon=M\\setminus\\bigcup_{p\\in F}D_\\varepsilon(p)$, a compact surface whose boundary is $\\bigsqcup_pC_\\varepsilon(p)$ with the opposite orientation. By Step 2 and Stokes' theorem,\n$$\\int_{M_\\varepsilon}b_k=-\\int_{M_\\varepsilon}d(a_{k+1}\\theta)=\\sum_{p\\in F}\\oint_{C_\\varepsilon(p)}a_{k+1}\\theta .$$\nAs $\\varepsilon\\to0$ the left side tends to $\\int_Mb_k$ (the discs shrink and $b_k$ is smooth on $M$), and the right side to $\\sum_p2\\pi a_{k+1}(p)/w_p$ by Step 3. In the same way $0=\\int_{M_\\varepsilon}d\\theta=-\\sum_p\\oint_{C_\\varepsilon(p)}\\theta=-2\\pi\\sum_p1/w_p$, which is item 3. Finally $a_0$ is a closed function on the connected $M$, hence a constant, and\n$$\\int_M\\alpha=\\sum_{k\\ge0}u^k\\int_Mb_k=\\sum_{p\\in F}\\frac{2\\pi}{w_p}\\sum_{k\\ge0}u^ka_{k+1}(p)=\\sum_{p\\in F}\\frac{2\\pi\\big(\\alpha_{[0]}(p)-a_0\\big)}{u\\,w_p}=\\sum_{p\\in F}\\frac{2\\pi\\,\\alpha_{[0]}(p)}{u\\,w_p},$$\nthe $a_0$ terms cancelling by item 3. If $F$ is empty the same argument (with $M_\\varepsilon=M$) gives $\\int_M\\alpha=0$."
-},
-{
-"type": "example",
-"title": "Localisation on the rotating sphere, degree by degree",
-"src": [
-"NS",
-"Li"
-],
-"body": "For the rotation of $S^2$ in the earlier example ($X=\\partial_\\varphi$, $\\mu=d\\varphi\\wedge dz$, and $\\mu+uz$ equivariantly closed), find the weights at the poles and check the localisation theorem for $\\alpha=(\\mu+uz)^k$, $k\\ge0$. Which of these classes does the formula show to be nonzero, and what does it say about the others?",
-"solution": "Near the north pole the chart $(x,y)$ is positively oriented (the outward normal there is $+\\partial_z$), and $X=x\\,\\partial_y-y\\,\\partial_x$ rotates it counterclockwise at unit speed, so $w_N=1$. Near the south pole the outward normal is $-\\partial_z$, so $(x,y)$ is negatively oriented there and $(y,x)$ is positively oriented; in that chart the same field rotates clockwise, so $w_S=-1$. As item 3 requires, $1/w_N+1/w_S=0$.\n\nSince $\\mu\\wedge\\mu=0$, the binomial theorem gives $(\\mu+uz)^k=u^kz^k+k\\,u^{k-1}z^{k-1}\\mu$, so $\\alpha_{[0]}=u^kz^k$ and $\\alpha_{[2]}=ku^{k-1}z^{k-1}\\mu$. For $k\\ge1$,\n$$\\int_{S^2}\\alpha=k\\,u^{k-1}\\int_0^{2\\pi}\\!\\!\\int_{-1}^1z^{k-1}\\,dz\\,d\\varphi=2\\pi u^{k-1}\\big(1-(-1)^k\\big),$$\nand for $k=0$ the integral is $0$. The fixed-point side is\n$$\\frac{2\\pi u^k\\cdot1^k}{u\\cdot1}+\\frac{2\\pi u^k(-1)^k}{u\\cdot(-1)}=2\\pi u^{k-1}\\big(1-(-1)^k\\big),$$\nwhich agrees for every $k$, including $k=0$. For $k=1$ this is the area $4\\pi$, obtained from the values $\\pm1$ of the moment map at the two poles, which is the computation of Notman–Sanabani's §1.2. Since $\\int$ is defined on $H_{S^1}(S^2)$, the classes $(\\mu+uz)^k$ with $k$ odd are nonzero. For even $k$ both sides vanish, so $\\int_{S^2}(\\mu+uz)^{2j}=0$; this says nothing about whether the class is zero. In fact it is not: $(\\mu+uz)^2$ and $u^2$ have the same restrictions to both poles (exercise 5 below), and $u^2\\ne0$ in $H_{S^1}(S^2)$ because its restriction to a pole is $u^2\\ne0$ in $H_{S^1}(\\mathrm{pt})$. Integration detects only part of a class."
-},
-{
-"type": "conventions",
-"title": "Normalising the localisation formula",
-"body": "The same theorem appears with different constants. Before using a formula from a paper, test it on the rotating sphere, whose area $4\\pi$ must come out of two poles with opposite weights.",
-"rows": [
-{
-"who": "This page",
-"src": [
-"Li"
-],
-"text": "$d_X=d-u\\,\\iota_X$, $X$ the velocity field of a $2\\pi$-periodic flow, integer weights $w_p$ read in positively oriented charts; on a surface $\\int_M\\alpha=\\sum_p2\\pi\\,\\alpha_{[0]}(p)/(u\\,w_p)$."
-},
-{
-"who": "Libine",
-"src": [
-"Li"
-],
-"text": "$d_{eq}=d-\\iota_X$ (Definition 16), generating fields defined through $\\exp(-tX)$; Theorem 46: $\\int_M\\alpha(X)=(-2\\pi)^{\\dim M/2}\\sum_p\\alpha(X)_{[0]}(p)/\\det^{1/2}(L(X,p))$, with $\\det^{1/2}$ the Pfaffian $c_1\\cdots c_{n/2}$ of his local model $L_X=\\sum_jc_j(x_{2j}\\partial_{2j-1}-x_{2j-1}\\partial_{2j})$. Read in terms of the vector field itself: on a surface $L_X=-c\\,(x_1\\partial_2-x_2\\partial_1)$, so a field rotating counterclockwise with speed $w$ has $c=-w$, and $-2\\pi/c=2\\pi/w$ agrees with this page."
-},
-{
-"who": "Notman–Sanabani",
-"src": [
-"NS"
-],
-"text": "Theorem 3.28: $\\int_M\\overline\\omega(X)=\\sum_F\\int_F\\iota_F^*\\overline\\omega(X)/e^T(\\nu_F,X)$ with $e^T(\\nu_F,X)=\\prod_j\\big(c_1(\\nu_{F,j})+\\beta_{F,j}(X)\\big)$ (Remark 3.25), which at an isolated fixed point is the product of the weights $\\beta_{F,j}(X)$ (Remark 3.26). No $2\\pi$ is written; in their §1.2 example the generator is taken to be $X=-2\\pi\\,\\partial_\\theta$."
-},
-{
-"who": "Meinrenken",
-"src": [
-"Me"
-],
-"text": "Theorem 9.1 sums over fixed components with the equivariant Euler form, normalised through $\\det^{1/2}(\\zeta/2\\pi)$ (eq. (32)); his isolated-point and Duistermaat–Heckman formulas (Remark 9.4, eq. (51)) carry a sign $(-1)^{\\dim M/2}$ and no explicit $2\\pi$, and his generating fields use $\\exp(-t\\xi)$."
-}
-]
-},
-{
-"type": "pitfall",
-"src": [
-"NS"
-],
-"body": "Orientations and the sign of the generator enter every localisation computation, and printed examples are not always internally consistent, so recompute them. In spherical coordinates with polar angle $\\phi$ and azimuth $\\theta$, the outward-oriented area form of the unit sphere is $\\sin\\phi\\,d\\phi\\wedge d\\theta$: at a point of the equator, (outward normal, $\\partial_\\phi$, $\\partial_\\theta$) is a positive basis of $\\mathbb{R}^3$. So $\\int_{S^2}\\sin\\phi\\,d\\theta\\wedge d\\phi=-4\\pi$ as an integral of a form. Notman–Sanabani's §1.2 writes the area of the sphere as $\\int_{S^2}\\sin\\phi\\,d\\theta\\wedge d\\phi$ over $0\\le\\theta\\le2\\pi$, $0\\le\\phi\\le\\pi$ and obtains $4\\pi$ from the localisation formula as $2\\pi-(-2\\pi)$; read as the integral of a $2$-form on the outward-oriented sphere, that integrand gives $-4\\pi$. The same section prints $\\iota_X\\omega=2\\pi\\sin\\phi\\,d\\phi=d(2\\pi\\cos\\phi)$ for $X=-2\\pi\\partial_\\theta$, although $d(2\\pi\\cos\\phi)=-2\\pi\\sin\\phi\\,d\\phi$. If $\\omega$ is taken to be the printed integrand $\\sin\\phi\\,d\\theta\\wedge d\\phi$, then $\\iota_X\\omega=-2\\pi\\sin\\phi\\,d\\phi$ and the moment map $2\\pi\\cos\\phi$ is right; if $\\omega$ is the outward area form $\\sin\\phi\\,d\\phi\\wedge d\\theta$, then $\\iota_X\\omega=2\\pi\\sin\\phi\\,d\\phi$ and the moment map is $-2\\pi\\cos\\phi$. The final answer survives, but a reader who copies one line at a time gets a sign wrong."
-},
-{
-"type": "exercise",
-"src": [
-"Li",
-"NS"
-],
-"body": "1. Show that the restriction map $i_p^*$ to a fixed point is a ring homomorphism $H_G(M)\\to S(\\mathfrak g^*)^G$, and compute it on $\\mu+uz\\in H_{S^1}(S^2)$ at both poles.\n2. Let the circle act on $S^2$ by $\\varphi_s$ = rotation about the $z$-axis by the angle $ms$, with $m$ a nonzero integer. Find $X$, a function $f$ with $\\mu+uf$ equivariantly closed, the weights at the poles, and check the localisation theorem for $(\\mu+uf)^k$.\n3. Use item 3 of the theorem to show that a circle action on a compact connected oriented surface with finitely many fixed points cannot have exactly one fixed point.\n4. On $M\\setminus F$, with $\\theta$ as in Step 1, show that $d_X\\theta=-u$ and that $\\alpha=d_X\\big(-u^{-1}\\theta\\,\\alpha\\big)$ for every $d_X$-closed even $\\alpha$, with coefficients in $\\mathbb{R}[u,u^{-1}]$. Explain why this does not make $\\alpha$ exact on $M$, and compare with Libine's formula $\\alpha=(d-\\iota_X)\\big(\\theta\\wedge\\alpha/(d-\\iota_X)\\theta\\big)$.\n5. With $m=1$ in exercise 2, show that $(\\mu+uz)^2-u^2$ restricts to $0$ at both poles, deduce from the theorem that $\\int_{S^2}\\big((\\mu+uz)^2-u^2\\big)(\\mu+uz)^j=0$ for every $j\\ge0$, and verify this directly."
-},
-{
-"type": "section",
-"title": "Algebraic de Rham cohomology and periods",
-"src": [
-"KSV",
-"Ke",
-"nLab"
-],
-"body": "Arithmetic geometers use a version of de Rham cohomology built from algebraic differential forms. For a smooth variety $X$ over a field $K$ (see [[algebraic-varieties]]), the algebraic de Rham complex $\\Omega^\\bullet_{X/K}$ consists of the sheaves of algebraic (Kähler) differential forms with the algebraic $d$, and $H^n_{dR}(X/K)$ is its hypercohomology (nLab; for singular varieties Grothendieck's more subtle definition is needed). When $X$ is affine, hypercohomology is simply the cohomology of the complex of global algebraic forms.\n\nFor $K\\subseteq\\mathbb{C}$ and $X$ smooth projective, Grothendieck's comparison theorem, which Kreutz–Shen–Vial cite through GAGA and the analytic Poincaré lemma, gives a canonical isomorphism\n$$H^n_{dR}(X/K)\\otimes_K\\mathbb{C}\\cong H^n_B(X^{an},\\mathbb{Q})\\otimes_{\\mathbb{Q}}\\mathbb{C},$$\nwhere $H_B$ is singular (Betti) cohomology of the complex manifold $X^{an}$; over $\\mathbb{C}$ this is de Rham's theorem with Dolbeault's theorem, as Kedlaya explains. The two sides carry different rational structures: a $K$-structure from algebraic forms and a $\\mathbb{Q}$-structure from integral cycles. The entries of the matrix of the comparison isomorphism in such bases are the periods $\\int_\\gamma\\omega$ of algebraic forms over rational cycles. Kedlaya adds that the Hodge filtration descends to $K$ while the Hodge decomposition does not, and that in characteristic $p$ the Poincaré lemma fails (\"too many constants\": $d(f^p)=0$), which is one starting point for crystalline and prismatic cohomology. Dolbeault cohomology and the Hodge decomposition $d=\\partial+\\bar\\partial$ are not covered here; see Lim, §2.2 to §2.3, and [[hodge-theory]]."
-},
-{
-"type": "example",
-"title": "The multiplicative group and its period",
-"src": [
-"KSV",
-"Ke"
-],
-"body": "Let $X=\\mathbb{G}_m=\\operatorname{Spec}\\mathbb{Q}[z,z^{-1}]$, the affine line minus the origin over $\\mathbb{Q}$. Compute $H^*_{dR}(X/\\mathbb{Q})$ from global algebraic forms, compute the period of the generator over the unit circle, and explain the role of the twist $\\mathbb{Q}(1)$. What changes in characteristic $p$?",
-"solution": "Global functions are Laurent polynomials $\\sum a_nz^n$ and global $1$-forms are $f\\,dz$ with $f$ a Laurent polynomial. Since $d(z^n)=nz^{n-1}dz$, the image of $d$ contains $z^m\\,dz$ for every $m\\ne-1$ and nothing involving $z^{-1}dz$. So $H^1_{dR}(X/\\mathbb{Q})=\\mathbb{Q}\\cdot[dz/z]$, and $H^0=\\mathbb{Q}$ (the kernel of $d$ is the constants, since $nz^{n-1}=0$ forces $n=0$ in characteristic $0$). The complex points form $\\mathbb{C}^\\times$, homotopy equivalent to the circle, and the period of $dz/z$ over the unit circle is $\\int_0^{2\\pi}i\\,dt=2\\pi i$. So the comparison isomorphism identifies the $\\mathbb{Q}$-line spanned by $[dz/z]$ with $2\\pi i$ times the rational Betti line, which is why de Rham classes are compared with Betti classes twisted by $\\mathbb{Q}(1)=2\\pi i\\,\\mathbb{Q}$; in degree $2k$ the twist is $\\mathbb{Q}(k)$, as in Kreutz–Shen–Vial. In characteristic $p$ the same computation over $\\mathbb{F}_p$ gives $d(z^{p})=pz^{p-1}dz=0$, so $z^p$ is a non-constant closed $0$-form and $z^{p-1}dz$ is no longer exact: $H^0$ and $H^1$ become infinite dimensional, the failure of the Poincaré lemma that Kedlaya describes."
-},
-{
-"type": "exercise",
-"body": "1. Compute $H^*_{dR}$ of the affine line $\\operatorname{Spec}\\mathbb{Q}[z]$ and of $\\operatorname{Spec}\\mathbb{Q}[z,(z-1)^{-1},z^{-1}]$ (the line minus two points), and the periods of the generators over small circles.\n2. Over $\\mathbb{F}_p$, find a basis of $H^1$ of the complex $\\mathbb{F}_p[z]\\xrightarrow{d}\\mathbb{F}_p[z]\\,dz$.\n3. Show that the period of $dz/(z^2+1)$ over a small loop around $i$ in $\\mathbb{C}\\setminus\\{\\pm i\\}$ is $\\pi$, by writing $\\frac1{z^2+1}=\\frac1{2i}\\big(\\frac1{z-i}-\\frac1{z+i}\\big)$ over $\\mathbb{Q}(i)$ and using the period $2\\pi i$ of $dz/(z-i)$."
-},
-{
-"type": "section",
-"title": "De Rham–Betti classes and the period criterion",
-"src": [
-"KSV",
-"WdRT"
-],
-"body": "Kreutz–Shen–Vial package the comparison isomorphism into triples\n$$H^n_{dRB}(X,\\mathbb{Q}(k))=\\big(H^n_{dR}(X/K),\\ H^n_B(X^{an},\\mathbb{Q}(k)),\\ c^n_X\\big),$$\nwhere $\\mathbb{Q}(k)=(2\\pi i)^k\\mathbb{Q}\\subset\\mathbb{C}$ and $H^n_B(X^{an},\\mathbb{Q}(k))=H^n_B(X^{an},\\mathbb{Q})\\otimes_{\\mathbb{Q}}\\mathbb{Q}(k)$, a $\\mathbb{Q}$-subspace of $H^n_B(X^{an},\\mathbb{C})$. A de Rham–Betti class is a pair $(\\alpha_{dR},\\alpha_B)$ with $c_X(\\alpha_{dR}\\otimes1)=\\alpha_B\\otimes1$; letting $\\alpha_B$ have coefficients in a field $L'$ with $\\mathbb{Q}\\subseteq L'\\subseteq\\overline{\\mathbb{Q}}$ gives their $L'$-de Rham–Betti classes (Definitions 2.1 and 2.3, in the language of an abstract category of such triples). The basic examples are cycle classes: for an algebraic cycle $Z$ of codimension $k$, the de Rham and Betti cycle classes of $Z$ correspond under $c^{2k}_X$, up to a sign (their equation (2) and the sentence before it). The paper's conjectures ask whether every de Rham–Betti class is of this kind.\n\nWhether a given de Rham class is part of such a pair is a statement about its periods. To see this one needs only how $c_X$ looks to a homology class. By de Rham's theorem and the universal coefficient theorem over a field, a complex Betti class is the same as a homomorphism $H_n(X^{an};\\mathbb{Q})\\to\\mathbb{C}$, and $c_X$ sends the class of $\\omega$ to $\\gamma\\mapsto\\int_\\gamma\\omega$: this is how the paper defines the periods of $X$, and how the comparison was described in the previous section (for affine $X$, as for $\\mathbb{G}_m$, $\\omega$ is literally a closed holomorphic form on $X^{an}$). We take this description of $c_X$ as given. The paper's remark after its equation (2), made there 'by Poincaré duality', then becomes the following elementary statement (the paper asks for the normalised periods to lie in the base field $K$; the argument works for any subfield $L\\subseteq\\mathbb{C}$)."
-},
-{
-"type": "theorem",
-"title": "Period criterion for de Rham–Betti classes",
-"src": [
-"KSV",
-"WdRT"
-],
-"body": "Let $X$ be a smooth projective variety over $K\\subseteq\\mathbb{C}$, let $L\\subseteq\\mathbb{C}$ be a subfield, and let $\\omega\\in H^n_{dR}(X/K)$. There is $\\beta\\in H^n_B(X^{an},\\mathbb{Q})\\otimes_{\\mathbb{Q}}(2\\pi i)^kL$ with $c_X(\\omega\\otimes1)=\\beta$ if and only if\n$$\\frac{1}{(2\\pi i)^k}\\int_\\gamma\\omega\\in L\\qquad\\text{for every }\\gamma\\in H_n(X^{an};\\mathbb{Q}),$$\nand it suffices to test $\\gamma$ in a basis of $H_n(X^{an};\\mathbb{Q})$. The class $\\beta$ is then unique."
-},
-{
-"type": "proof",
-"src": [
-"WdRT"
-],
-"body": "$X^{an}$ is a compact manifold, so $H_n(X^{an};\\mathbb{Q})$ is finite dimensional; let $\\gamma_1,\\dots,\\gamma_m$ be a basis. By the universal coefficient theorem over a field, $H^n_B(X^{an};F)=\\operatorname{Hom}_{\\mathbb{Q}}\\big(H_n(X^{an};\\mathbb{Q}),F\\big)$ for $F=\\mathbb{Q}$ and $F=\\mathbb{C}$, compatibly with $\\otimes_{\\mathbb{Q}}\\mathbb{C}$. Let $\\gamma^1,\\dots,\\gamma^m$ be the dual basis of $H^n_B(X^{an};\\mathbb{Q})$. Every complex class is uniquely $\\sum_jc_j\\gamma^j$ with $c_j\\in\\mathbb{C}$ its value on $\\gamma_j$, and the subspace $H^n_B(X^{an},\\mathbb{Q})\\otimes_{\\mathbb{Q}}(2\\pi i)^kL$ consists exactly of the classes with all $c_j\\in(2\\pi i)^kL$, because the $\\gamma^j$ form a $\\mathbb{Q}$-basis. For $c_X(\\omega\\otimes1)$ the coefficients are $c_j=\\int_{\\gamma_j}\\omega$. This proves the criterion for basis elements and the uniqueness of $\\beta$; for an arbitrary rational $\\gamma=\\sum_jq_j\\gamma_j$ the period is $\\sum_jq_j\\int_{\\gamma_j}\\omega$, and $L\\supseteq\\mathbb{Q}$ is closed under such combinations."
-},
-{
-"type": "example",
-"title": "Periods of an elliptic curve and Legendre's relation",
-"src": [
-"KSV",
-"Pa",
-"WLeg"
-],
-"body": "Kreutz–Shen–Vial's first example: for an elliptic curve $E$ over $\\overline{\\mathbb{Q}}$, $H^1_{dR}(E/\\overline{\\mathbb{Q}})$ is spanned by the classes of $\\omega=dx/y$ and of the second-kind form $\\eta=x\\,dx/y$, and for a basis $\\gamma_1,\\gamma_2$ of $H_1(E^{an};\\mathbb{Q})$ the four periods $\\omega_j=\\int_{\\gamma_j}\\omega$, $\\eta_j=\\int_{\\gamma_j}\\eta$ satisfy Legendre's relation in the form $\\omega_1\\eta_2-\\omega_2\\eta_1\\in\\mathbb{Q}^\\times\\cdot2\\pi i$. Prove this for the Weierstrass curve $y^2=4x^3-g_2x-g_3$ of a lattice $\\Lambda=\\mathbb{Z}\\Omega_1+\\mathbb{Z}\\Omega_2$ with $\\operatorname{Im}(\\Omega_2/\\Omega_1)>0$, show that the number is then exactly $2\\pi i$, and explain why $\\eta$, which has a pole, defines a class in the de Rham cohomology of the compact surface $E^{an}$. Then recover the same number from the wedge pairing on the torus.",
-"solution": "Setup. The Weierstrass function $\\wp$ of $\\Lambda$ (Pastras (1.18)) is $\\Lambda$-periodic with double poles exactly at $\\Lambda$, is even, and satisfies $\\wp'^2=4\\wp^3-g_2\\wp-g_3$ (Pastras (1.28)). The zeta function is defined by $\\zeta'=-\\wp$ with $\\zeta(z)-1/z\\to0$ at $0$ (Pastras (2.1)-(2.2)); it is meromorphic with a simple pole of residue $1$ at each lattice point. The function $\\zeta(z+\\Omega_j)-\\zeta(z)$ has derivative $-\\wp(z+\\Omega_j)+\\wp(z)=0$, so it is a constant $H_j$, the quasi-period (Pastras (2.5), with full periods $\\Omega_j=2\\omega_j$ and $H_j=2\\zeta(\\omega_j)$ in his half-period notation). We use the standard fact that $z\\mapsto(\\wp(z),\\wp'(z))$ identifies $(\\mathbb{C}/\\Lambda)\\setminus\\{0\\}$ with the affine curve, so that $E^{an}$ is the torus $\\mathbb{C}/\\Lambda$ and\n$$\\frac{dx}{y}=\\frac{\\wp'(z)\\,dz}{\\wp'(z)}=dz,\\qquad\\frac{x\\,dx}{y}=\\wp(z)\\,dz .$$\nChoose a base point $a$ with no lattice point on the boundary of the parallelogram $P$ with vertices $a,\\ a+\\Omega_1,\\ a+\\Omega_1+\\Omega_2,\\ a+\\Omega_2$, and let $\\gamma_j$ be the image of the segment from $a$ to $a+\\Omega_j$. Under the linear isomorphism $\\mathbb{R}^2\\to\\mathbb{C}$, $e_j\\mapsto\\Omega_j$, these are the two standard circles of the torus, so they form a basis of $H_1(E^{an};\\mathbb{Z})$. Then $\\omega_j=\\int_a^{a+\\Omega_j}dz=\\Omega_j$ and $\\eta_j=\\int_a^{a+\\Omega_j}\\wp\\,dz=-\\big(\\zeta(a+\\Omega_j)-\\zeta(a)\\big)=-H_j$.\n\nLegendre's relation by residues. This is the proof that the Wikipedia article on Legendre's relation describes (integrate $\\zeta$ around a fundamental region) and that Pastras carries out for (2.7). The hypothesis $\\operatorname{Im}(\\Omega_2/\\Omega_1)>0$ means that $a\\to a+\\Omega_1\\to a+\\Omega_1+\\Omega_2\\to a+\\Omega_2\\to a$ runs around $P$ counterclockwise. Pairing opposite sides,\n$$\\oint_{\\partial P}\\zeta\\,dz=\\int_a^{a+\\Omega_1}\\big(\\zeta(z)-\\zeta(z+\\Omega_2)\\big)dz+\\int_a^{a+\\Omega_2}\\big(\\zeta(z+\\Omega_1)-\\zeta(z)\\big)dz=-H_2\\Omega_1+H_1\\Omega_2 .$$\n$P$ contains exactly one point of $\\Lambda$, where $\\zeta$ has residue $1$, so the residue theorem gives $H_1\\Omega_2-H_2\\Omega_1=2\\pi i$; in Pastras's half-periods this is his $\\omega_2\\zeta(\\omega_1)-\\omega_1\\zeta(\\omega_2)=\\pi i/2$ multiplied by $4$. In the paper's notation,\n$$\\omega_1\\eta_2-\\omega_2\\eta_1=-\\Omega_1H_2+\\Omega_2H_1=2\\pi i .$$\nFor another equation, such as $y'^2=x^3-ax-b$, put $y=2y'$: then $y^2=4x^3-4ax-4b$ is of Weierstrass form, the forms $dx/y'$ and $x\\,dx/y'$ are $2\\,dx/y$ and $2x\\,dx/y$, and the combination becomes $4\\cdot2\\pi i$, still a nonzero rational multiple of $2\\pi i$.\n\nThe class of $\\eta$. The form $\\wp\\,dz$ is holomorphic, hence closed, on $E\\setminus\\{0\\}$: $d(f\\,dz)=\\partial_{\\bar z}f\\,d\\bar z\\wedge dz=0$ for holomorphic $f$. Its residue at $0$ is $0$ because $\\wp$ is even. Let $\\chi$ be a smooth function on $E$ equal to $1$ near $0$ and supported in a small disc $D$ around $0$, and put\n$$\\tilde\\eta=\\wp\\,dz+d(\\chi\\zeta)\\quad\\text{on }E\\setminus\\{0\\}.$$\nNear $0$, $\\tilde\\eta=\\wp\\,dz+\\zeta'\\,dz=0$, so $\\tilde\\eta$ extends to a smooth closed $1$-form on $E$; outside $D$ it equals $\\wp\\,dz$. Choosing $a$ so that the $\\gamma_j$ avoid $D$, $\\int_{\\gamma_j}\\tilde\\eta=\\eta_j$, and by the theorem that periods determine classes, $[\\tilde\\eta]\\in H^1_{dR}(E;\\mathbb{C})$ is the unique class with periods $\\eta_1,\\eta_2$. Another cutoff $\\chi'$ changes $\\tilde\\eta$ by $d\\big((\\chi'-\\chi)\\zeta\\big)$, where $(\\chi'-\\chi)\\zeta$ is smooth because $\\chi'-\\chi$ vanishes near $0$; so the class is independent of $\\chi$. The pole is harmless precisely because its residue vanishes: a loop around $0$ has period $2\\pi i\\operatorname{res}_0=0$.\n\nThe same number from the pairing. Use real coordinates $z=x_1\\Omega_1+x_2\\Omega_2$ with $x_j\\in\\mathbb{R}/\\mathbb{Z}$; since $(\\Omega_1,\\Omega_2)$ is a positively oriented real basis of $\\mathbb{C}$, $(x_1,x_2)$ are oriented coordinates and $\\int_Edx_1\\wedge dx_2=1$. A closed $1$-form $\\alpha$ with periods $A_j=\\int_{\\gamma_j}\\alpha$ is $A_1dx_1+A_2dx_2+df$ (periods determine classes), so for closed $\\alpha,\\beta$\n$$\\int_E\\alpha\\wedge\\beta=A_1(\\alpha)A_2(\\beta)-A_2(\\alpha)A_1(\\beta),$$\nthe exact parts contributing $0$ by Stokes, as in the torus computations of the Poincaré duality section. Hence $\\int_Edz\\wedge\\tilde\\eta=\\omega_1\\eta_2-\\omega_2\\eta_1$. Directly: $dz\\wedge\\wp\\,dz=0$ and $dz\\wedge d(\\chi\\zeta)=-d(\\chi\\zeta\\,dz)$ on $E\\setminus\\{0\\}$, so with $D_\\varepsilon$ a small disc around $0$ (where $\\chi=1$),\n$$\\int_Edz\\wedge\\tilde\\eta=\\lim_{\\varepsilon\\to0}\\Big(-\\int_{E\\setminus D_\\varepsilon}d(\\chi\\zeta\\,dz)\\Big)=\\oint_{\\partial D_\\varepsilon}\\zeta\\,dz=2\\pi i,$$\nbecause $\\partial(E\\setminus D_\\varepsilon)$ is $\\partial D_\\varepsilon$ with the reversed orientation. The two computations agree: Legendre's relation says that the wedge pairing of the two de Rham classes is $2\\pi i$, the period of $\\mathbb{Q}(1)$, consistent with the twist $\\mathbb{Q}(1)$ that the paper attaches to $H^2$."
-},
-{
-"type": "exercise",
-"src": [
-"KSV",
-"Pa"
-],
-"body": "1. For $X=\\mathbb{G}_m$ over $\\mathbb{Q}$ (not projective, but the proof of the criterion only uses that $H_1$ is finite dimensional), show that $[dz/z]$ is the de Rham part of a de Rham–Betti class in $H^1_{dRB}(X,\\mathbb{Q}(1))$, and, using that $\\pi$ is transcendental, that it is not the de Rham part of any $\\overline{\\mathbb{Q}}$-de Rham–Betti class with Betti part in $H^1_B(X^{an},\\mathbb{Q})\\otimes\\overline{\\mathbb{Q}}$ (twist $k=0$).\n2. For the square lattice $\\Lambda=\\mathbb{Z}+i\\mathbb{Z}$, use $\\Lambda=i\\Lambda$ to show $\\wp(iz)=-\\wp(z)$ and $\\zeta(iz)=-i\\zeta(z)$, deduce $H_2=-iH_1$, and conclude from Legendre's relation that $H_1=\\pi$.\n3. Show that the periods $\\eta_j$ do not depend on the base point $a$ (as long as the segments avoid the lattice). Compute $\\oint_{\\partial P}\\wp\\,dz$ and explain the answer by the residue of $\\wp$ at $0$.\n4. Apply the pairing formula to $\\alpha=dz$, $\\beta=d\\bar z$ and show $\\int_Edz\\wedge d\\bar z=\\Omega_1\\overline{\\Omega_2}-\\Omega_2\\overline{\\Omega_1}=-2i\\operatorname{area}(\\mathbb{C}/\\Lambda)$.\n5. Show that $\\omega=dz$ and $\\tilde\\eta$ are linearly independent in $H^1_{dR}(E;\\mathbb{C})$ using only Legendre's relation."
-},
-{
-"type": "section",
 "title": "Closed forms in physics",
 "src": [
 "BhGS"
 ],
-"body": "Bhardwaj et al.'s lectures on generalised symmetries assume this page's material under a physics dictionary. Spacetime is a $d$-manifold.\n- A conserved current for a continuous symmetry is a closed $(d-1)$-form $j$ (the Hodge dual of a divergence-free vector current); for a $p$-form symmetry it is a closed $(d-p-1)$-form.\n- The symmetry operator on a closed oriented submanifold $\\Sigma$ is $U_g(\\Sigma)=\\exp\\big(i\\alpha\\int_\\Sigma j\\big)$. It is topological: deforming $\\Sigma$ to $\\Sigma'$ with $\\Sigma-\\Sigma'=\\partial\\Sigma_d$ changes the exponent by $\\int_{\\Sigma_d}dj=0$. So charges are periods of closed forms, and only the homology class of $\\Sigma$ matters.\n- In Maxwell theory $F=dA$ locally, the Bianchi identity $dF=0$ gives a magnetic symmetry with current $F$, and the equation of motion $d\\star F=0$ an electric one with current $\\star F$. Gauge transformations shift $A$ by exact forms, $A\\mapsto A-\\frac{1}{2\\pi}d\\theta$ in their normalisation, which leave $F$ unchanged.\n- Fluxes through closed surfaces are quantised: in their normalisation $\\int_{S^2}F=q\\in\\mathbb{Z}$ around an 't Hooft line, so $[F]$ is an integral class in the sense of the de Rham section, and the field of a monopole is a closed, non-exact form on the complement of its worldline, like $\\Phi$ above.\n- A charged defect on $M_p$ appears in the conservation law as $dj=q\\,\\delta(M_p)$, the Poincaré dual delta-form; linking of $\\Sigma$ with $M_p$ then gives the phase $e^{iq\\alpha}$ by Stokes.\n- In discrete gauge theories, forms are replaced by cochains and wedge products by cup products, with actions such as $2\\pi\\int a\\cup\\delta b$, the cochain analogue of $B\\wedge dA$."
+"body": "Bhardwaj et al.'s lectures on generalised symmetries assume this page's material under a physics dictionary. Spacetime is a $d$-manifold.\n- A conserved current for a continuous symmetry is a closed $(d-1)$-form $j$ (the Hodge dual of a divergence-free vector current); for a $p$-form symmetry it is a closed $(d-p-1)$-form.\n- The symmetry operator on a closed oriented submanifold $\\Sigma$ is $U_g(\\Sigma)=\\exp\\big(i\\alpha\\int_\\Sigma j\\big)$. It is topological: deforming $\\Sigma$ to $\\Sigma'$ with $\\Sigma-\\Sigma'=\\partial\\Sigma_d$ changes the exponent by $\\int_{\\Sigma_d}dj=0$. So charges are periods of closed forms, and only the homology class of $\\Sigma$ matters.\n- In Maxwell theory $F=dA$ locally, the Bianchi identity $dF=0$ gives a magnetic symmetry with current $F$, and the equation of motion $d\\star F=0$ an electric one with current $\\star F$. Gauge transformations shift $A$ by exact forms, $A\\mapsto A-\\frac{1}{2\\pi}d\\theta$ in their normalisation, which leave $F$ unchanged.\n- Fluxes through closed surfaces are quantised: in their normalisation $\\int_{S^2}F=q\\in\\mathbb{Z}$ around an 't Hooft line, so $[F]$ is an integral class in the sense of the de Rham section, and the field of a monopole is a closed, non-exact form on the complement of its worldline, like $\\Phi$ above.\n- A charged defect on $M_p$ appears in the conservation law as $dj=q\\,\\delta(M_p)$, the [[poincare-duality|Poincaré dual]] delta-form; linking of $\\Sigma$ with $M_p$ then gives the phase $e^{iq\\alpha}$ by Stokes.\n- In discrete gauge theories, forms are replaced by cochains and wedge products by cup products, with actions such as $2\\pi\\int a\\cup\\delta b$, the cochain analogue of $B\\wedge dA$."
 },
 {
 "type": "example",
@@ -1727,7 +1339,7 @@
 "BhGS"
 ],
 "body": "In $\\mathbb{R}^{3}$ (a time slice), a static point charge at the origin gives the electric flux form $\\star E=\\frac{q}{4\\pi}\\Phi$ with $\\Phi$ from the flux example. Show that the charge measured by $\\int_\\Sigma\\star E$ is $q$ for every closed surface $\\Sigma$ enclosing the origin once (homologous to the unit sphere in $\\mathbb{R}^3\\setminus\\{0\\}$) and $0$ for surfaces not enclosing it, and phrase the source equation with a delta-form.",
-"solution": "$\\Phi$ is closed on $\\mathbb{R}^3\\setminus\\{0\\}$, and $H_2(\\mathbb{R}^3\\setminus\\{0\\})=\\mathbb{Z}$ is generated by the unit sphere $S$. If $\\Sigma$ is homologous to $S$, then $\\Sigma-S=\\partial c$ for a $3$-chain $c$ avoiding the origin, and $\\int_\\Sigma\\Phi-\\int_S\\Phi=\\int_cd\\Phi=0$, so $\\int_\\Sigma\\star E=\\frac q{4\\pi}4\\pi=q$. A surface not enclosing the origin bounds in $\\mathbb{R}^3\\setminus\\{0\\}$, so the integral is $0$. On all of $\\mathbb{R}^3$, $d\\star E$ is not zero but concentrated at the origin: $d\\star E=q\\,\\delta^3(x)$, where $\\delta^3$ is the $3$-form Poincaré dual to the point (the delta function times $dx\\wedge dy\\wedge dz$), and Stokes on a ball $B$ around the origin gives $\\int_{\\partial B}\\star E=\\int_Bq\\,\\delta^3=q$, the same answer."
+"solution": "$\\Phi$ is closed on $\\mathbb{R}^3\\setminus\\{0\\}$, and $H_2(\\mathbb{R}^3\\setminus\\{0\\})=\\mathbb{Z}$ is generated by the unit sphere $S$. If $\\Sigma$ is homologous to $S$, then $\\Sigma-S=\\partial c$ for a $3$-chain $c$ avoiding the origin, and $\\int_\\Sigma\\Phi-\\int_S\\Phi=\\int_cd\\Phi=0$, so $\\int_\\Sigma\\star E=\\frac q{4\\pi}4\\pi=q$. A surface not enclosing the origin bounds in $\\mathbb{R}^3\\setminus\\{0\\}$, so the integral is $0$. On all of $\\mathbb{R}^3$, $d\\star E$ is not zero but concentrated at the origin: $d\\star E=q\\,\\delta^3(x)$, where $\\delta^3$ is the $3$-form [[poincare-duality|Poincaré dual]] to the point (the delta function times $dx\\wedge dy\\wedge dz$), and Stokes on a ball $B$ around the origin gives $\\int_{\\partial B}\\star E=\\int_Bq\\,\\delta^3=q$, the same answer."
 },
 {
 "type": "exercise",
@@ -1766,13 +1378,6 @@
 "NS"
 ],
 "text": "$H(M;\\mathbb{R})=\\bigoplus H^i(M;\\mathbb{R})$ for de Rham cohomology, with $Z^k$, $B^k$ for closed and exact forms."
-},
-{
-"who": "Kreutz–Shen–Vial",
-"src": [
-"KSV"
-],
-"text": "$H^n_{dR}(X/K)$ for algebraic de Rham cohomology over $K$, $H^n_B(X,\\mathbb{Q})$ for Betti cohomology."
 },
 {
 "who": "Wikipedia, exterior derivative",
@@ -1838,7 +1443,7 @@
 },
 {
 "type": "connection",
-"body": "On [[hodge-theory]], the harmonic representatives of this page become the starting point: on a compact Kähler manifold they split by type, giving the Hodge decomposition $H^k(M;\\mathbb{C})=\\bigoplus_{p+q=k}H^{p,q}$, and the [[hodge|Hodge conjecture]] asks which rational classes of type $(p,p)$ come from subvarieties. On [[curvature-forms]], the mechanism of the characteristic-class section is developed in general (Chern–Weil theory), with Chern classes and their relatives; the [[gauss-bonnet]] theorem is the first instance of a curvature integral computing a topological number. The Čech–de Rham double complex leads to [[spectral-sequences]], developed in the later chapters of Bott–Tu; [[sheaf-cohomology]] puts the sheaf view of this page in general form, and [[morse-theory]] bounds the same Betti numbers by counts of critical points of a function. Integral refinements and torsion lead to [[cohomology]] with integer coefficients and to [[k-theory]]; equivariant cohomology and moment maps belong to [[symplectic-geometry]]; the physics dictionary continues in [[yang-mills]]."
+"body": "This page rests on [[differential-forms]] (forms, $d$, pullback, Stokes' theorem) and [[homology]] (chains, cycles, Betti numbers). The next page, [[poincare-duality|Compact supports and Poincaré duality]], continues it directly with compactly supported cohomology, the compact Poincaré lemma, Poincaré duality and Poincaré duals of submanifolds.\n\nOn [[hodge-theory]], the harmonic representatives of this page become the starting point: on a compact Kähler manifold they split by type, giving the Hodge decomposition $H^k(M;\\mathbb{C})=\\bigoplus_{p+q=k}H^{p,q}$, and the [[hodge|Hodge conjecture]] asks which rational classes of type $(p,p)$ come from subvarieties. On [[curvature-forms]], the mechanism of the characteristic-class section is developed in general (Chern–Weil theory), with Chern classes and their relatives; the [[gauss-bonnet]] theorem is the first instance of a curvature integral computing a topological number. The Čech–de Rham double complex leads to [[spectral-sequences]], developed in the later chapters of Bott–Tu; [[sheaf-cohomology]] puts the sheaf view of this page in general form, and [[morse-theory]] bounds the same Betti numbers by counts of critical points of a function. Integral refinements and torsion lead to [[cohomology]] with integer coefficients and to [[k-theory]]; equivariant cohomology and moment maps belong to [[symplectic-geometry]]; the physics dictionary continues in [[yang-mills]].\n\nEquivariant de Rham cohomology (the Cartan model, equivariant integration and the localisation formula) will be treated on a planned page, Equivariant cohomology and localisation. Algebraic de Rham cohomology, its comparison with Betti cohomology and the period criterion for de Rham–Betti classes will be treated on a planned page, Algebraic de Rham cohomology and periods."
 }
 ],
 "checks": [
@@ -1883,10 +1488,6 @@
 "python": "import sympy as sp, itertools\ndef _sort(idx):\n    idx=list(idx); s=1\n    for i in range(len(idx)):\n        for j in range(len(idx)-1-i):\n            if idx[j]>idx[j+1]: idx[j],idx[j+1]=idx[j+1],idx[j]; s=-s\n    if len(set(idx))<len(idx): return None,0\n    return tuple(idx),s\ndef clean(w): return {k:sp.simplify(v) for k,v in w.items() if sp.simplify(v)!=0}\ndef add(*ws):\n    r={}\n    for w in ws:\n        for k,v in w.items(): r[k]=r.get(k,0)+v\n    return clean(r)\ndef scale(c,w): return clean({k:c*v for k,v in w.items()})\ndef wedge(a,b):\n    r={}\n    for I,f in a.items():\n        for J,g in b.items():\n            K,s=_sort(I+J)\n            if K is not None: r[K]=r.get(K,0)+s*f*g\n    return clean(r)\ndef d(w,X):\n    r={}\n    for I,f in w.items():\n        for j,x in enumerate(X):\n            K,s=_sort((j,)+I)\n            if K is not None: r[K]=r.get(K,0)+s*sp.diff(f,x)\n    return clean(r)\ndef interior(V,w):\n    r={}\n    for I,f in w.items():\n        for p,i in enumerate(I):\n            J=I[:p]+I[p+1:]\n            r[J]=r.get(J,0)+(-1)**p*V[i]*f\n    return clean(r)\ndef pullback(w,X,Y,phi):\n    # phi: list of expressions in Y giving X-coordinates\n    sub=dict(zip(X,phi)); r={}\n    dphi=[{(j,):sp.diff(p,y) for j,y in enumerate(Y)} for p in phi]\n    for I,f in w.items():\n        t={():f.subs(sub,simultaneous=True)}\n        for i in I: t=wedge(t,dphi[i])\n        r=add(r,t)\n    return r\ndef lie(V,w,X): return add(d(interior(V,w),X),interior(V,d(w,X)))\n\n\nimport sympy as sp\nx,t,u=sp.symbols('x t u',real=True); M=[x,t]\nf=sp.exp(-x**2-t**2)*(1+x*t); g=sp.exp(-x**2-(t-1)**2)\ndef K(w):\n    r={}\n    for I,c in w.items():\n        if 1 in I:\n            J=tuple(i for i in I if i!=1); assert I[-1]==1\n            r[J]=r.get(J,0)+sp.integrate(c.subs(t,u),(u,0,t))\n    return clean(r)\ndef pis(w): return clean({k:v.subs(t,0) for k,v in w.items() if 1 not in k})\nfor w,q in [({():f},0),({(0,):f},1),({(1,):g},1),({(0,1):f},2)]:\n    lhs=add(w,scale(-1,pis(w)))\n    rhs=scale((-1)**(q-1),add(d(K(w),M),scale(-1,K(d(w,M)))))\n    assert add(lhs,scale(-1,rhs))=={}\n"
 },
 {
-"claim": "Compact-support homotopy identity 1 - e_* pi_* = (-1)^(q-1)(dK - Kd) on R x R (decaying test functions)",
-"python": "import sympy as sp, itertools\ndef _sort(idx):\n    idx=list(idx); s=1\n    for i in range(len(idx)):\n        for j in range(len(idx)-1-i):\n            if idx[j]>idx[j+1]: idx[j],idx[j+1]=idx[j+1],idx[j]; s=-s\n    if len(set(idx))<len(idx): return None,0\n    return tuple(idx),s\ndef clean(w): return {k:sp.simplify(v) for k,v in w.items() if sp.simplify(v)!=0}\ndef add(*ws):\n    r={}\n    for w in ws:\n        for k,v in w.items(): r[k]=r.get(k,0)+v\n    return clean(r)\ndef scale(c,w): return clean({k:c*v for k,v in w.items()})\ndef wedge(a,b):\n    r={}\n    for I,f in a.items():\n        for J,g in b.items():\n            K,s=_sort(I+J)\n            if K is not None: r[K]=r.get(K,0)+s*f*g\n    return clean(r)\ndef d(w,X):\n    r={}\n    for I,f in w.items():\n        for j,x in enumerate(X):\n            K,s=_sort((j,)+I)\n            if K is not None: r[K]=r.get(K,0)+s*sp.diff(f,x)\n    return clean(r)\ndef interior(V,w):\n    r={}\n    for I,f in w.items():\n        for p,i in enumerate(I):\n            J=I[:p]+I[p+1:]\n            r[J]=r.get(J,0)+(-1)**p*V[i]*f\n    return clean(r)\ndef pullback(w,X,Y,phi):\n    # phi: list of expressions in Y giving X-coordinates\n    sub=dict(zip(X,phi)); r={}\n    dphi=[{(j,):sp.diff(p,y) for j,y in enumerate(Y)} for p in phi]\n    for I,f in w.items():\n        t={():f.subs(sub,simultaneous=True)}\n        for i in I: t=wedge(t,dphi[i])\n        r=add(r,t)\n    return r\ndef lie(V,w,X): return add(d(interior(V,w),X),interior(V,d(w,X)))\n\n\nimport sympy as sp\nx,t,u=sp.symbols('x t u',real=True); M=[x,t]\ne=sp.exp(-t**2)/sp.sqrt(sp.pi)\nE=sp.integrate(e.subs(t,u),(u,-sp.oo,t))\nf=sp.exp(-x**2-t**2)*(1+t)\ndef F(c): return sp.integrate(c,(t,-sp.oo,sp.oo))\ndef K(w):\n    r={}\n    for I,c in w.items():\n        if 1 in I:\n            J=tuple(i for i in I if i!=1)\n            r[J]=r.get(J,0)+sp.integrate(c.subs(t,u),(u,-sp.oo,t))-E*F(c)\n    return clean(r)\ndef epi(w):\n    r={}\n    for I,c in w.items():\n        if 1 in I:\n            J=tuple(i for i in I if i!=1)\n            r[J+(1,)]=r.get(J+(1,),0)+F(c)*e\n    return clean(r)\nfor w,q in [({():f},0),({(0,):f},1),({(1,):f},1),({(0,1):f},2)]:\n    lhs=add(w,scale(-1,epi(w)))\n    rhs=scale((-1)**(q-1),add(d(K(w),M),scale(-1,K(d(w,M)))))\n    diff=add(lhs,scale(-1,rhs))\n    assert all(sp.simplify(v.rewrite(sp.erf))==0 for v in diff.values()), diff\n"
-},
-{
 "claim": "MV generator on S^1: with a smooth partition rho_U (1 near S, 0 near N), the integral of d rho_U over the right arc A is -1",
 "python": "\nimport math\ndef s(x): return math.exp(-1/x) if x>0 else 0.0\ndef step(x): return s(x)/(s(x)+s(1-x))   # 0 for x<=0, 1 for x>=1\ndef rhoU(th): return 1-step((math.sin(th)+0.5)/1.0)   # sin<=-1/2 ->1, sin>=1/2 ->0\nN=200000; a,b=-math.pi/2,math.pi/2; tot=0\nfor k in range(N):\n    t0=a+(b-a)*k/N; t1=a+(b-a)*(k+1)/N\n    tot+=rhoU(t1)-rhoU(t0)\nassert abs(tot+1)<1e-9\n# rho_U vanishes near N and rho_V=1-rho_U vanishes near S\nassert rhoU(math.pi/2-0.1)==0.0 and rhoU(-math.pi/2+0.1)==1.0\n"
 },
@@ -1897,14 +1498,6 @@
 {
 "claim": "Boundary orientation: det(-e_n, e_1, ..., e_{n-1}) = (-1)^n",
 "python": "\nimport numpy as np\nfor n in range(1,8):\n    M=np.zeros((n,n)); M[n-1,0]=-1\n    for i in range(1,n): M[i-1,i]=1\n    assert round(np.linalg.det(M))==(-1)**n\n"
-},
-{
-"claim": "Poincare duals on T^2 (orientation dth1^dth2, convention int_S w = int w ^ eta_S): eta_S=-dth1/2pi, eta_T=dth2/2pi, int eta_S^eta_T=-1",
-"python": "import sympy as sp, itertools\ndef _sort(idx):\n    idx=list(idx); s=1\n    for i in range(len(idx)):\n        for j in range(len(idx)-1-i):\n            if idx[j]>idx[j+1]: idx[j],idx[j+1]=idx[j+1],idx[j]; s=-s\n    if len(set(idx))<len(idx): return None,0\n    return tuple(idx),s\ndef clean(w): return {k:sp.simplify(v) for k,v in w.items() if sp.simplify(v)!=0}\ndef add(*ws):\n    r={}\n    for w in ws:\n        for k,v in w.items(): r[k]=r.get(k,0)+v\n    return clean(r)\ndef scale(c,w): return clean({k:c*v for k,v in w.items()})\ndef wedge(a,b):\n    r={}\n    for I,f in a.items():\n        for J,g in b.items():\n            K,s=_sort(I+J)\n            if K is not None: r[K]=r.get(K,0)+s*f*g\n    return clean(r)\ndef d(w,X):\n    r={}\n    for I,f in w.items():\n        for j,x in enumerate(X):\n            K,s=_sort((j,)+I)\n            if K is not None: r[K]=r.get(K,0)+s*sp.diff(f,x)\n    return clean(r)\ndef interior(V,w):\n    r={}\n    for I,f in w.items():\n        for p,i in enumerate(I):\n            J=I[:p]+I[p+1:]\n            r[J]=r.get(J,0)+(-1)**p*V[i]*f\n    return clean(r)\ndef pullback(w,X,Y,phi):\n    # phi: list of expressions in Y giving X-coordinates\n    sub=dict(zip(X,phi)); r={}\n    dphi=[{(j,):sp.diff(p,y) for j,y in enumerate(Y)} for p in phi]\n    for I,f in w.items():\n        t={():f.subs(sub,simultaneous=True)}\n        for i in I: t=wedge(t,dphi[i])\n        r=add(r,t)\n    return r\ndef lie(V,w,X): return add(d(interior(V,w),X),interior(V,d(w,X)))\n\n\nimport sympy as sp\na,b,c,cp=sp.symbols('a b c cp')\nw={(0,):a,(1,):b}\narea=4*sp.pi**2\ncs=sp.solve(sp.Eq(2*sp.pi*b, wedge(w,{(0,):c}).get((0,1),0)*area),c)\nassert cs==[-1/(2*sp.pi)]\nct=sp.solve(sp.Eq(2*sp.pi*a, wedge(w,{(1,):cp}).get((0,1),0)*area),cp)\nassert ct==[1/(2*sp.pi)]\nval=wedge({(0,):cs[0]},{(1,):ct[0]})[(0,1)]*area\nassert sp.simplify(val+1)==0\n# int_T eta_S with T parametrised by theta1\nassert sp.simplify(cs[0]*2*sp.pi+1)==0\n"
-},
-{
-"claim": "PD ladder sign: int dRho^w^tau vs int w^dRho^tau differ by (-1)^q, so the square commutes up to (-1)^(q+1)",
-"python": "import sympy as sp, itertools\ndef _sort(idx):\n    idx=list(idx); s=1\n    for i in range(len(idx)):\n        for j in range(len(idx)-1-i):\n            if idx[j]>idx[j+1]: idx[j],idx[j+1]=idx[j+1],idx[j]; s=-s\n    if len(set(idx))<len(idx): return None,0\n    return tuple(idx),s\ndef clean(w): return {k:sp.simplify(v) for k,v in w.items() if sp.simplify(v)!=0}\ndef add(*ws):\n    r={}\n    for w in ws:\n        for k,v in w.items(): r[k]=r.get(k,0)+v\n    return clean(r)\ndef scale(c,w): return clean({k:c*v for k,v in w.items()})\ndef wedge(a,b):\n    r={}\n    for I,f in a.items():\n        for J,g in b.items():\n            K,s=_sort(I+J)\n            if K is not None: r[K]=r.get(K,0)+s*f*g\n    return clean(r)\ndef d(w,X):\n    r={}\n    for I,f in w.items():\n        for j,x in enumerate(X):\n            K,s=_sort((j,)+I)\n            if K is not None: r[K]=r.get(K,0)+s*sp.diff(f,x)\n    return clean(r)\ndef interior(V,w):\n    r={}\n    for I,f in w.items():\n        for p,i in enumerate(I):\n            J=I[:p]+I[p+1:]\n            r[J]=r.get(J,0)+(-1)**p*V[i]*f\n    return clean(r)\ndef pullback(w,X,Y,phi):\n    # phi: list of expressions in Y giving X-coordinates\n    sub=dict(zip(X,phi)); r={}\n    dphi=[{(j,):sp.diff(p,y) for j,y in enumerate(Y)} for p in phi]\n    for I,f in w.items():\n        t={():f.subs(sub,simultaneous=True)}\n        for i in I: t=wedge(t,dphi[i])\n        r=add(r,t)\n    return r\ndef lie(V,w,X): return add(d(interior(V,w),X),interior(V,d(w,X)))\n\n\nimport sympy as sp, itertools\n# symbolic check of graded commutativity sign for a 1-form past a q-form in R^5\nfor q in range(0,4):\n    w={tuple(range(1,1+q)):1}\n    r={(0,):1}\n    assert wedge(w,r)==scale((-1)**q,wedge(r,w))\n"
 },
 {
 "claim": "Kunneth: Betti numbers of T^n are binomial(n,k); S^2xS^2 Poincare polynomial 1+2t^2+t^4; S^1xS^2 gives 1+t+t^2+t^3; chi multiplicative",
@@ -1959,14 +1552,6 @@
 "python": "\nimport sympy as sp\nfor k in range(1,6):\n    assert sp.simplify((1/(2*sp.pi*sp.I))**k-(-1)**k*(sp.I/(2*sp.pi))**k)==0\n"
 },
 {
-"claim": "Equivariant: d_X(mu + u z) = 0 for mu = dphi^dz, X = d/dphi; int e^{tz} mu = 2pi(e^t-e^{-t})/t; limit 4pi; disc example closed",
-"python": "import sympy as sp, itertools\ndef _sort(idx):\n    idx=list(idx); s=1\n    for i in range(len(idx)):\n        for j in range(len(idx)-1-i):\n            if idx[j]>idx[j+1]: idx[j],idx[j+1]=idx[j+1],idx[j]; s=-s\n    if len(set(idx))<len(idx): return None,0\n    return tuple(idx),s\ndef clean(w): return {k:sp.simplify(v) for k,v in w.items() if sp.simplify(v)!=0}\ndef add(*ws):\n    r={}\n    for w in ws:\n        for k,v in w.items(): r[k]=r.get(k,0)+v\n    return clean(r)\ndef scale(c,w): return clean({k:c*v for k,v in w.items()})\ndef wedge(a,b):\n    r={}\n    for I,f in a.items():\n        for J,g in b.items():\n            K,s=_sort(I+J)\n            if K is not None: r[K]=r.get(K,0)+s*f*g\n    return clean(r)\ndef d(w,X):\n    r={}\n    for I,f in w.items():\n        for j,x in enumerate(X):\n            K,s=_sort((j,)+I)\n            if K is not None: r[K]=r.get(K,0)+s*sp.diff(f,x)\n    return clean(r)\ndef interior(V,w):\n    r={}\n    for I,f in w.items():\n        for p,i in enumerate(I):\n            J=I[:p]+I[p+1:]\n            r[J]=r.get(J,0)+(-1)**p*V[i]*f\n    return clean(r)\ndef pullback(w,X,Y,phi):\n    # phi: list of expressions in Y giving X-coordinates\n    sub=dict(zip(X,phi)); r={}\n    dphi=[{(j,):sp.diff(p,y) for j,y in enumerate(Y)} for p in phi]\n    for I,f in w.items():\n        t={():f.subs(sub,simultaneous=True)}\n        for i in I: t=wedge(t,dphi[i])\n        r=add(r,t)\n    return r\ndef lie(V,w,X): return add(d(interior(V,w),X),interior(V,d(w,X)))\n\n\nimport sympy as sp\nph,z,u,t,x,y=sp.symbols('phi z u t x y',real=True)\nMc=[ph,z]\nmu={(0,1):sp.Integer(1)}\ndX=lambda w0,w2: (add(d({():w0},Mc),scale(-1,interior([1,0],w2))))   # u-coefficient of d_X(w2 + u w0) in degree 1\nassert dX(z,mu)=={}\nI=sp.integrate(sp.exp(t*z),(z,-1,1),conds='none')*2*sp.pi\nassert sp.simplify(I-2*sp.pi*(sp.exp(t)-sp.exp(-t))/t)==0\nassert sp.limit(I,t,0)==4*sp.pi\n# outward orientation at (1,0,0): (normal, d/dphi, d/dz) = identity\n# disc: d_X(dx^dy - u/2 (x^2+y^2)) = 0 with X=-y d/dx + x d/dy\nXc=[x,y]\nassert add(d({():-(x**2+y**2)/2},Xc),scale(-1,interior([-y,x],{(0,1):sp.Integer(1)})))=={}\n# z mu is not equivariantly closed: iota_X(z mu) = z dz != 0\nassert interior([1,0],scale(z,mu))=={(1,):z}\n"
-},
-{
-"claim": "Algebraic de Rham of G_m: d(z^n) covers z^m dz for m != -1; period of dz/z is 2 pi i; in char p d(z^p)=0; period of dz/(z^2+1) around i is pi",
-"python": "\nimport sympy as sp\nz,t=sp.symbols('z t')\nfor m in range(-6,7):\n    if m==-1: continue\n    n=m+1\n    assert sp.simplify(sp.diff(z**n,z)/n - z**m)==0\ngam=sp.exp(sp.I*t)\nassert sp.simplify(sp.integrate((1/gam)*sp.diff(gam,t),(t,0,2*sp.pi))-2*sp.pi*sp.I)==0\nfor p in (2,3,5,7):\n    assert (p*1)%p==0\nassert sp.simplify(sp.residue(1/(z**2+1),z,sp.I)*2*sp.pi*sp.I-sp.pi)==0\nassert sp.simplify(1/(z**2+1)-(1/(2*sp.I))*(1/(z-sp.I)-1/(z+sp.I)))==0\n"
-},
-{
 "claim": "Magnetic field of a line current as (I/2pi) dphi is closed on R^3 minus the axis with period I",
 "python": "\nimport sympy as sp\nx,y,I,t=sp.symbols('x y I t',real=True)\nP=I/(2*sp.pi)*(-y/(x**2+y**2)); Q=I/(2*sp.pi)*(x/(x**2+y**2))\nassert sp.simplify(sp.diff(Q,x)-sp.diff(P,y))==0\nX=sp.cos(t);Y=sp.sin(t)\nper=sp.integrate(sp.simplify(P.subs({x:X,y:Y})*sp.diff(X,t)+Q.subs({x:X,y:Y})*sp.diff(Y,t)),(t,0,2*sp.pi))\nassert sp.simplify(per-I)==0\n"
 },
@@ -1975,36 +1560,8 @@
 "python": "\nimport sympy as sp, random\nth,ph=sp.symbols('vartheta varphi',real=True)\nTheta=sp.diff(sp.I/2*(1-sp.cos(th)),th)   # coefficient of dvartheta^dvarphi\narea=lambda c: sp.integrate(sp.integrate(c,(th,0,sp.pi)),(ph,0,2*sp.pi))\nassert sp.simplify(area(sp.I/(2*sp.pi)*Theta)+1)==0\nassert sp.simplify(area(Theta/(2*sp.pi*sp.I))-1)==0\n# elementary symmetric coefficients: det(I+ tA) with t=i/2pi vs t=1/(2 pi i)\nx=sp.symbols('x0:3'); t=sp.symbols('t')\nA=sp.diag(*x)\nP=sp.expand((sp.eye(3)+t*A).det())\nfor k in range(4):\n    ek=P.coeff(t,k)\n    lim=(sp.I/(2*sp.pi))**k*ek; ns=ek/(2*sp.pi*sp.I)**k\n    assert sp.simplify(ns-(-1)**k*lim)==0\n"
 },
 {
-"claim": "Mayer-Vietoris generator on S^1 with the opposite difference map (alpha|-beta|, lift (rho_V w, -rho_U w)) integrates to +1; torus Poincare-dual bump -rho(theta1) dtheta1 has periods 0 over S={theta1=0} and -1 over T={theta2=0}, matching -dtheta1/2pi",
-"python": "\nimport math\ndef s(x): return math.exp(-1/x) if x>0 else 0.0\ndef step(x): return s(x)/(s(x)+s(1-x))\ndef rhoU(th): return 1-step(math.sin(th)+0.5)\nN=200000; a,b=-math.pi/2,math.pi/2\ntot=sum(rhoU(a+(b-a)*(k+1)/N)-rhoU(a+(b-a)*k/N) for k in range(N))\nassert abs(-tot-1)<1e-9          # opposite convention: delta alpha = -d rho_U on A\n# bump rho(theta1) with integral 1 supported near 0 (in (-0.5,0.5))\ndef bump(u): return s(0.25-u*u)\nM=40000; h=1.0/M\nZ=sum(bump(-0.5+(k+0.5)*h) for k in range(M))*h\nperT=-sum(bump(-0.5+(k+0.5)*h)/Z for k in range(M))*h   # integral over theta1 along T\nperS=0.0                                               # on S, theta1 is constant so dtheta1 pulls back to 0\nassert abs(perT+1)<1e-9 and perS==0.0\nassert abs((-1/(2*math.pi))*2*math.pi+1)<1e-12\n"
-},
-{
-"claim": "Legendre's relation H1*Omega2 - H2*Omega1 = 2 pi i for three lattices with Im(Omega2/Omega1)>0 (zeta by truncated lattice sums), and H1 = pi, H2 = -i pi for the square lattice",
-"python": "\nimport numpy as np, math\ndef zeta(z,O1,O2,N):\n    m=np.arange(-N,N+1); M,K=np.meshgrid(m,m); W=(M*O1+K*O2).ravel(); W=W[W!=0]\n    return 1/z+np.sum(1/(z-W)+1/W+z/W**2)\nfor O1,O2 in [(1,1j),(1.0,0.3+1.1j),(2.0-0.5j,0.7+1.6j)]:\n    assert (O2/O1).imag>0\n    z0=0.37*O1+0.41*O2; N=300\n    H1=zeta(z0+O1,O1,O2,N)-zeta(z0,O1,O2,N); H2=zeta(z0+O2,O1,O2,N)-zeta(z0,O1,O2,N)\n    assert abs(H1*O2-H2*O1-2j*math.pi)<1e-3\n    # opposite orientation flips the sign\n    assert abs(H2*O1-H1*O2+2j*math.pi)<1e-3\nz0=0.37+0.41j\nH1=zeta(z0+1,1,1j,300)-zeta(z0,1,1j,300); H2=zeta(z0+1j,1,1j,300)-zeta(z0,1,1j,300)\nassert abs(H1-math.pi)<1e-3 and abs(H2+1j*math.pi)<1e-3\n# rescaling y=2y' multiplies omega_j, eta_j by 2, the Legendre combination by 4\nassert (2*1)*(2*1)==4\n"
-},
-{
-"claim": "Pairing on E=C/Lambda: int dz^dzbar = Omega1*conj(Omega2)-Omega2*conj(Omega1) = -2i area; and dx1^dx2 positively oriented iff Im(Omega2/Omega1)>0",
-"python": "\nimport numpy as np\nfor O1,O2 in [(1,1j),(1.0,0.3+1.1j),(2.0-0.5j,0.7+1.6j)]:\n    area=(np.conj(O1)*O2).imag\n    det=O1.real*O2.imag-O1.imag*O2.real   # Jacobian of (x1,x2)->x1*O1+x2*O2\n    assert abs(det-area)<1e-12 and det>0 and (O2/O1).imag>0\n    # dz^dzbar = -2i dx^dy, and dx^dy = det dx1^dx2\n    lhs=-2j*det\n    rhs=O1*np.conj(O2)-O2*np.conj(O1)\n    assert abs(lhs-rhs)<1e-12\n"
-},
-{
-"claim": "Localisation on S^2: int (mu+uz)^k = 2pi u^(k-1)(1-(-1)^k) equals sum over poles of 2pi alpha0(p)/(u w_p) with weights +1 (north), -1 (south); the weights from orientation of charts",
-"python": "\nimport sympy as sp\nu,z,phi=sp.symbols('u z phi')\nfor k in range(0,9):\n    a2 = k*u**(k-1)*z**(k-1) if k>=1 else 0\n    lhs = sp.integrate(sp.integrate(a2,(z,-1,1)),(phi,0,2*sp.pi))\n    rhs = 2*sp.pi*(u**k*1**k)/(u*1) + 2*sp.pi*(u**k*(-1)**k)/(u*(-1))\n    assert sp.simplify(lhs-rhs)==0\n    assert sp.simplify(lhs-(2*sp.pi*u**(k-1)*(1-(-1)**k) if k>=1 else 0))==0\n# (mu+uz)^k = u^k z^k + k u^(k-1) z^(k-1) mu since mu^2=0: binomial with nilpotent\nm=sp.symbols('m')\nfor k in range(1,7):\n    e=sp.expand((m+u*z)**k)\n    e=sum(t for t in e.as_ordered_terms() if sp.degree(t,m)<=1)\n    assert sp.simplify(e-(u**k*z**k+k*u**(k-1)*z**(k-1)*m))==0\n# weights: chart orientation sign det[n, d/dx, d/dy] at poles, X=(-y,x,0)\nimport numpy as np\nfor zp,expected in ((1,1),(-1,-1)):\n    n=np.array([0,0,zp]); ex=np.array([1,0,0]); ey=np.array([0,1,0])\n    s=np.sign(np.linalg.det(np.array([n,ex,ey])))\n    A=np.array([[0,-1],[1,0]])          # X in (x,y) chart: counterclockwise rotation\n    w = 1 if s>0 else -1                # reversed chart turns it clockwise\n    assert w==expected\nassert 1/1+1/(-1)==0\n"
-},
-{
-"claim": "Surface identities used in the localisation proof: theta^(iota_X b) = (iota_X theta) b for 2-forms in dimension 2; d(a theta) = -b when da = iota_X b, iota_X theta=1, dtheta=0; for X = w(x d_y - y d_x) the form theta=(x dy - y dx)/(w r^2) is closed with circle integral 2pi/w",
-"python": "\nimport sympy as sp, math\nX1,X2,t1,t2,beta=sp.symbols('X1 X2 t1 t2 beta')\n# 1-forms as (coef dx, coef dy); wedge of p,q -> coefficient of dx^dy\nwedge=lambda p,q: p[0]*q[1]-p[1]*q[0]\niXb=(-beta*X2, beta*X1)              # iota_X (beta dx^dy)\nassert sp.expand(wedge((t1,t2),iXb)-(t1*X1+t2*X2)*beta)==0\nx,y,w=sp.symbols('x y w', nonzero=True)\nth=(-y/(w*(x**2+y**2)), x/(w*(x**2+y**2)))\nassert sp.simplify(sp.diff(th[1],x)-sp.diff(th[0],y))==0      # d theta = 0\nX=(-w*y, w*x)\nassert sp.simplify(th[0]*X[0]+th[1]*X[1]-1)==0                # iota_X theta = 1\ns=sp.symbols('s')\nfor wv in (1,-1,3,-2):\n    eps=sp.Rational(1,3)\n    cx,cy=eps*sp.cos(s),eps*sp.sin(s)                          # counterclockwise circle\n    integrand=(th[0].subs({x:cx,y:cy,w:wv})*sp.diff(cx,s)+th[1].subs({x:cx,y:cy,w:wv})*sp.diff(cy,s))\n    val=sp.integrate(sp.simplify(integrand),(s,0,2*sp.pi))\n    assert sp.simplify(val-2*sp.pi/wv)==0\n# d(a theta) = da^theta + a dtheta = (iota_X b)^theta = -theta^(iota_X b) = -b  (with iota_X theta = 1)\nassert sp.expand(wedge(iXb,(t1,t2))+wedge((t1,t2),iXb))==0\n"
-},
-{
-"claim": "Pitfall: outward area form on S^2 is sin(phi) dphi^dtheta (positive frame at equator), so sin(phi) dtheta^dphi integrates to -4pi; for X=-2pi d_theta, iota_X(sin phi dtheta^dphi) = -2pi sin phi dphi = d(2pi cos phi)",
-"python": "\nimport numpy as np, sympy as sp\nph,th=sp.symbols('phi theta')\nP=sp.Matrix([sp.sin(ph)*sp.cos(th),sp.sin(ph)*sp.sin(th),sp.cos(ph)])\nn=P; dph=P.diff(ph); dth=P.diff(th)\nD=sp.Matrix.hstack(n,dph,dth).det()\nassert sp.simplify(D-sp.sin(ph))==0          # (n, d_phi, d_theta) positive for 0<phi<pi\n# int of sin(phi) dtheta^dphi = - int sin(phi) dphi^dtheta = -4pi\nassert sp.integrate(sp.integrate(sp.sin(ph),(ph,0,sp.pi)),(th,0,2*sp.pi))==4*sp.pi\n# iota_X(f dtheta^dphi) with X = c d_theta gives c f dphi\nc=-2*sp.pi\ncontr=c*sp.sin(ph)                            # coefficient of dphi\nassert sp.simplify(contr-sp.diff(2*sp.pi*sp.cos(ph),ph))==0\nassert sp.simplify(sp.diff(2*sp.pi*sp.cos(ph),ph)+2*sp.pi*sp.sin(ph))==0\n"
-},
-{
-"claim": "Libine normalisation check on a surface: (-2pi)/c with c=-w equals 2pi/w; NS 1.2 shape 2pi-(-2pi)=4pi; G_m period criterion (2 pi i)^-1 * 2 pi i = 1",
-"python": "\nimport math\nfor w in (1,-1,2,-3):\n    c=-w\n    assert abs((-2*math.pi)/c-2*math.pi/w)<1e-15\nassert 2*math.pi-(-2*math.pi)==4*math.pi\nassert abs((2j*math.pi)/(2j*math.pi)-1)<1e-15\n"
-},
-{
-"claim": "Libine's normalisation on the rotating sphere: in positively oriented charts the field d_phi is -c(x1 d2 - x2 d1) with c=-1 at the north pole and c=+1 at the south pole; (-2pi)^1 * sum z(p)/c_p = 4pi. Even powers: (mu+uz)^2 and u^2 agree at both poles and both integrate to 0; ((mu+uz)^2-u^2)(mu+uz)^j integrates to 0",
-"python": "\nimport sympy as sp\n# north: chart (x1,x2)=(x,y); d_phi = x d_y - y d_x = -c(x1 d2 - x2 d1) => c=-1\n# south: positive chart (x1,x2)=(y,x); d_phi = x d_y - y d_x = x2 d1 - x1 d2 = -c(x1 d2 - x2 d1) with c=+1\ncN, cS = -1, 1\nassert (-2*sp.pi)*(sp.Integer(1)/cN + sp.Integer(-1)/cS) == 4*sp.pi\nu,z=sp.symbols('u z')\ndef integral(k):  # int_{S^2} (mu+uz)^k with mu = dphi^dz\n    if k==0: return 0\n    return sp.integrate(2*sp.pi*k*u**(k-1)*z**(k-1),(z,-1,1))\nfor zp in (1,-1):\n    assert sp.expand((u*zp)**2-u**2)==0\nassert integral(2)==0\nfor j in range(0,7):\n    tot = integral(j+2) - u**2*integral(j)\n    assert sp.simplify(tot)==0\n"
+"claim": "Mayer-Vietoris generator on S^1 with the opposite difference map (alpha|-beta|, lift (rho_V w, -rho_U w)) integrates to +1",
+"python": "\nimport math\ndef s(x): return math.exp(-1/x) if x>0 else 0.0\ndef step(x): return s(x)/(s(x)+s(1-x))\ndef rhoU(th): return 1-step(math.sin(th)+0.5)\nN=200000; a,b=-math.pi/2,math.pi/2\ntot=sum(rhoU(a+(b-a)*(k+1)/N)-rhoU(a+(b-a)*k/N) for k in range(N))\nassert abs(-tot-1)<1e-9          # opposite convention: delta alpha = -d rho_U on A\n"
 }
 ],
 "fixed": 2

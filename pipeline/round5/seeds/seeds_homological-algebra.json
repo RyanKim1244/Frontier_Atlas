@@ -1,0 +1,198 @@
+[
+{
+"for": "Depth and Cohen–Macaulay modules",
+"blocks": [
+{
+"type": "section",
+"title": "Depth and the Auslander-Buchsbaum formula",
+"src": [
+"weibel4",
+"stacks-depth",
+"hm"
+],
+"body": "Commutative algebra papers phrase their hypotheses through depth. Holanda and Miranda-Neto, for instance, fix the convention that the depth of a finite module over a local ring is its $\\mathfrak{m}$-depth, assume in their Theorem 2.1 that $N$ is maximal Cohen-Macaulay and deduce from the vanishing of $\\mathrm{Ext}^j(M,N)$ that modules built from $M$ and $N$ are again maximal Cohen-Macaulay; their freeness criteria are derived from such statements later in the paper. Depth is defined by regular sequences, but it is computed through Ext, and its main theorem, the Auslander-Buchsbaum formula, ties it to projective dimension. This section proves those homological facts. Canonical modules and local duality remain outside the page.\n\nThroughout, $(R,\\mathfrak{m},k)$ is a commutative Noetherian local ring and all modules are finitely generated. Two facts from commutative algebra are used without proof. First, Nakayama's lemma: if $M\\neq0$ then $\\mathfrak{m}M\\neq M$, so $M/xM\\neq0$ for every $x\\in\\mathfrak{m}$. Second, if $M\\neq0$ and every element of $\\mathfrak{m}$ is a zero-divisor on $M$, then some $0\\neq a\\in M$ satisfies $\\mathfrak{m}a = 0$; in other words $\\mathfrak{m}$ is an associated prime of $M$, which follows from the finiteness of the set of associated primes together with prime avoidance. Weibel records this second fact among the standard facts (4.4.7) on which his proof of Theorem 4.4.8 rests."
+},
+{
+"type": "definition",
+"title": "Regular sequences, depth, Cohen-Macaulay",
+"src": [
+"weibel4",
+"stacks-depth",
+"w-cm"
+],
+"body": "Let $M\\neq0$. A sequence $x_1,\\dots,x_n$ of elements of $\\mathfrak{m}$ is $M$-regular if $x_1$ is a non-zero-divisor on $M$ and, for $i\\ge2$, $x_i$ is a non-zero-divisor on $M/(x_1,\\dots,x_{i-1})M$ (Weibel Definition 4.4.3). By Nakayama all the quotients $M/(x_1,\\dots,x_i)M$ are non-zero. The depth of $M$, written $\\operatorname{depth}M$, is the supremum of the lengths of $M$-regular sequences; the theorem below shows that it is finite and that every regular sequence which cannot be extended has exactly this length.\n\nWeibel notes that $\\operatorname{depth}R\\le\\dim R$ for the Krull dimension, and calls $R$ Cohen-Macaulay when equality holds. Following Wikipedia's article, a module $M$ is Cohen-Macaulay if $\\operatorname{depth}M = \\dim M$, and maximal Cohen-Macaulay (MCM) if moreover $\\dim M = \\dim R$; so an MCM module has $\\operatorname{depth}M = \\dim R$. For example $R = k[x]/(x^2)$ has depth $0$, since $x$ kills $x\\neq0$ and so every element of $\\mathfrak{m} = (x)$ is a zero-divisor; as $\\dim R = 0$, it is Cohen-Macaulay. The ring $k[x,y]$ localised at $(x,y)$ has depth at least $2$, since $x,y$ is a regular sequence ($R$ is a domain and $y$ is a non-zero-divisor on $R/(x)$, a localisation of $k[y]$)."
+},
+{
+"type": "conventions",
+"title": "Depth or grade",
+"body": "The same number appears under two names, and with a choice of ideal.",
+"rows": [
+{
+"who": "Weibel",
+"text": "Calls the length of a maximal regular sequence on $A$ in $\\mathfrak{m}$ the grade $G(A)$ (Definition 4.4.3), and states the Auslander-Buchsbaum formula as $G(R) = G(A)+\\mathrm{pd}(A)$.",
+"src": [
+"weibel4"
+]
+},
+{
+"who": "Stacks Project",
+"text": "Writes $\\operatorname{depth}(M)$ for the same number, and states the formula as $\\operatorname{depth}(R) = \\mathrm{pd}_R(M)+\\operatorname{depth}(M)$.",
+"src": [
+"stacks-depth"
+]
+},
+{
+"who": "Holanda-Miranda-Neto",
+"text": "Say depth, and fix in their conventions that for finite modules it always means the $\\mathfrak{m}$-depth, so regular sequences are taken in the maximal ideal.",
+"src": [
+"hm"
+]
+}
+]
+},
+{
+"type": "theorem",
+"title": "Depth is the first non-vanishing Ext",
+"src": [
+"weibel4",
+"stacks-depth"
+],
+"body": "Let $M\\neq0$, and let $x_1,\\dots,x_n$ be an $M$-regular sequence that cannot be extended to a longer one. Then $\\mathrm{Ext}^i_R(k,M) = 0$ for $i<n$ and $\\mathrm{Ext}^n_R(k,M)\\neq0$. Consequently all non-extendable $M$-regular sequences have the same length, and\n$$\\operatorname{depth}M = \\min\\{i:\\mathrm{Ext}^i_R(k,M)\\neq0\\}.$$\n(Weibel Theorem 4.4.8; the Stacks Project uses the same description as its Lemma 10.72.5.)"
+},
+{
+"type": "proof",
+"src": [
+"weibel4"
+],
+"body": "Two observations first. (a) If some $x\\in\\mathfrak{m}$ is a non-zero-divisor on $M$, then $\\mathrm{Hom}(k,M) = 0$: a homomorphism $k\\to M$ sends $1$ to an element $a$ with $\\mathfrak{m}a = 0$, so $xa = 0$ and hence $a = 0$. (b) For $x\\in\\mathfrak{m}$, the map $\\mathrm{Ext}^i(k,M)\\to\\mathrm{Ext}^i(k,M)$ induced by multiplication by $x$ on $M$ is multiplication by $x$ in the $R$-module $\\mathrm{Ext}^i(k,M)$, and that module is killed by $\\mathrm{Ann}(k) = \\mathfrak{m}$ (the module-structure remark in the section on more tools for Ext). So the induced map is zero.\n\nInduct on $n$. If $n = 0$, no element of $\\mathfrak{m}$ is a non-zero-divisor on $M$, so by the second quoted fact some $a\\neq0$ has $\\mathfrak{m}a = 0$, and $1\\mapsto a$ is a non-zero homomorphism $k\\to M$. Thus $\\mathrm{Ext}^0(k,M)\\neq0$.\n\nLet $n\\ge1$, put $x = x_1$ and $\\bar M = M/xM$, which is non-zero. The sequence $x_2,\\dots,x_n$ is $\\bar M$-regular and cannot be extended, since an extension would extend $x_1,\\dots,x_n$. By induction $\\mathrm{Ext}^i(k,\\bar M) = 0$ for $i<n-1$ and $\\mathrm{Ext}^{n-1}(k,\\bar M)\\neq0$. Apply $\\mathrm{Hom}(k,-)$ to $0\\to M\\xrightarrow{x}M\\to\\bar M\\to0$. In the long exact sequence every map induced by $x$ is zero by (b), so the sequence breaks into short exact sequences\n$$0\\to\\mathrm{Ext}^i(k,M)\\to\\mathrm{Ext}^i(k,\\bar M)\\to\\mathrm{Ext}^{i+1}(k,M)\\to0\\qquad(i\\ge0).$$\nFor $i<n-1$ the middle term is zero, hence so are $\\mathrm{Ext}^i(k,M)$ and $\\mathrm{Ext}^{i+1}(k,M)$; together with $\\mathrm{Hom}(k,M) = 0$ from (a), this gives $\\mathrm{Ext}^j(k,M) = 0$ for all $j\\le n-1$. For $i = n-1$ the left term is therefore zero, so $\\mathrm{Ext}^n(k,M)\\cong\\mathrm{Ext}^{n-1}(k,\\bar M)\\neq0$.\n\nSo the length $n$ of any non-extendable regular sequence equals $\\min\\{i:\\mathrm{Ext}^i(k,M)\\neq0\\}$, a number that does not refer to the sequence. Finally, every $M$-regular sequence can be extended until it cannot be extended further: if $x_{i+1}$ is a non-zero-divisor on $M/(x_1,\\dots,x_i)M\\neq0$, then $x_{i+1}\\notin(x_1,\\dots,x_i)$, because elements of that ideal kill the quotient; so the ideals $(x_1,\\dots,x_i)$ increase strictly, and since $R$ is Noetherian the process stops. Hence no regular sequence is longer than $n$, and the depth, defined as a supremum, equals this minimum."
+},
+{
+"type": "theorem",
+"title": "Depth lemma",
+"src": [
+"stacks-depth"
+],
+"body": "Let $0\\to N'\\to N\\to N''\\to0$ be a short exact sequence of non-zero finitely generated $R$-modules. Then\n1. $\\operatorname{depth}N\\ge\\min\\{\\operatorname{depth}N',\\operatorname{depth}N''\\}$;\n2. $\\operatorname{depth}N''\\ge\\min\\{\\operatorname{depth}N,\\operatorname{depth}N'-1\\}$;\n3. $\\operatorname{depth}N'\\ge\\min\\{\\operatorname{depth}N,\\operatorname{depth}N''+1\\}$.\n(Stacks Lemma 10.72.6.)"
+},
+{
+"type": "proof",
+"src": [
+"stacks-depth"
+],
+"body": "As in the Stacks Project, apply $\\mathrm{Hom}(k,-)$ and use the Ext description of depth. The long exact sequence contains the segments\n$$\\mathrm{Ext}^i(k,N')\\to\\mathrm{Ext}^i(k,N)\\to\\mathrm{Ext}^i(k,N''),\\qquad \\mathrm{Ext}^i(k,N)\\to\\mathrm{Ext}^i(k,N'')\\to\\mathrm{Ext}^{i+1}(k,N'),$$\n$$\\mathrm{Ext}^{i-1}(k,N'')\\to\\mathrm{Ext}^i(k,N')\\to\\mathrm{Ext}^i(k,N),$$\nwith $\\mathrm{Ext}^{-1} = 0$. In each, if both outer terms vanish so does the middle one. For 1, take $i<\\min\\{\\operatorname{depth}N',\\operatorname{depth}N''\\}$ in the first segment. For 2, take $i<\\min\\{\\operatorname{depth}N,\\operatorname{depth}N'-1\\}$ in the second: then $i<\\operatorname{depth}N$ and $i+1<\\operatorname{depth}N'$. For 3, take $i<\\min\\{\\operatorname{depth}N,\\operatorname{depth}N''+1\\}$ in the third: then $i-1<\\operatorname{depth}N''$ and $i<\\operatorname{depth}N$. In each case all $\\mathrm{Ext}^i(k,-)$ of the module in question vanish below the stated bound, which is the claim."
+},
+{
+"type": "theorem",
+"title": "Auslander-Buchsbaum formula",
+"src": [
+"stacks-depth",
+"weibel4"
+],
+"body": "Let $M\\neq0$ be a finitely generated $R$-module of finite projective dimension. Then\n$$\\mathrm{pd}_RM+\\operatorname{depth}M = \\operatorname{depth}R.$$\n(Stacks Proposition 10.111.1; Weibel Theorem 4.4.15.) In particular $\\mathrm{pd}_RM\\le\\operatorname{depth}R$. If $R$ is Cohen-Macaulay and $\\mathrm{pd}_RM<\\infty$, then $M$ is maximal Cohen-Macaulay if and only if $M$ is free."
+},
+{
+"type": "proof",
+"src": [
+"stacks-depth",
+"weibel4"
+],
+"body": "Both sources argue by induction. The Stacks Project inducts on $\\operatorname{depth}M$: when it is positive it divides out an element regular on both $R$ and $M$, and in the base case $\\operatorname{depth}M = 0$ it splits a minimal free resolution into short exact sequences and applies the depth lemma to them. Weibel uses a double induction on $G(R)$ and $G(A)$, with his change-of-rings theorems. The argument given here is a different arrangement: it inducts on $\\mathrm{pd}M$, and uses only the Ext description of depth together with the fact that the differentials of a minimal resolution have entries in $\\mathfrak{m}$.\n\nWrite $d = \\operatorname{depth}R$ and $n = \\mathrm{pd}M$. Take a minimal free resolution $0\\to F_n\\to\\cdots\\to F_0\\to M\\to0$ as in the section on minimal resolutions: $F_i\\cong R^{\\beta_i}$ with $\\beta_i = \\dim_k\\mathrm{Tor}_i(M,k)$, so it has length $n$ and $F_n\\neq0$, and every differential has matrix entries in $\\mathfrak{m}$. Two remarks. Since $\\mathrm{Ext}^i(k,-)$ is additive, $\\mathrm{Ext}^i(k,R^b)\\cong\\mathrm{Ext}^i(k,R)^b$, which for $b\\ge1$ vanishes for $i<d$ and not for $i = d$. And a homomorphism $\\varphi\\colon R^b\\to R^c$ whose matrix has entries in $\\mathfrak{m}$ induces the zero map on each $\\mathrm{Ext}^i(k,-)$: the induced map is the matrix of the maps induced by multiplication by the entries, which vanish by observation (b) of the previous proof.\n\nCase $n = 0$. Then $M\\cong R^{\\beta_0}$ with $\\beta_0\\ge1$, and $\\operatorname{depth}M = d$.\n\nCase $n = 1$. The resolution is $0\\to F_1\\xrightarrow{\\varphi}F_0\\to M\\to0$ with $F_1\\neq0$ and $\\varphi$ having entries in $\\mathfrak{m}$. All maps induced by $\\varphi$ in the long exact Ext sequence vanish, so it breaks into short exact sequences\n$$0\\to\\mathrm{Ext}^i(k,F_0)\\to\\mathrm{Ext}^i(k,M)\\to\\mathrm{Ext}^{i+1}(k,F_1)\\to0\\qquad(i\\ge0),$$\nand moreover $\\mathrm{Hom}(k,F_1) = 0$, because $\\mathrm{Hom}(k,F_1)\\to\\mathrm{Hom}(k,F_0)$ is injective (left exactness) and zero. Since $F_1\\neq0$, this forces $d\\ge1$. Now $\\mathrm{Ext}^i(k,M) = 0$ exactly when $\\mathrm{Ext}^i(k,R)$ and $\\mathrm{Ext}^{i+1}(k,R)$ both vanish, that is, when $i+1<d$. Hence $\\operatorname{depth}M = d-1$.\n\nCase $n\\ge2$. Let $K = \\operatorname{im}(F_1\\to F_0)$. Then $K\\neq0$ (otherwise $M\\cong F_0$ would be free), $0\\to K\\to F_0\\to M\\to0$ is exact, and $0\\to F_n\\to\\cdots\\to F_1\\to K\\to0$ is a minimal free resolution of $K$ with $F_n\\neq0$, so $\\mathrm{pd}K = n-1$ by the Tor criterion for projective dimension. By induction $\\operatorname{depth}K = d-n+1$, so in particular $d\\ge n-1\\ge1$. In the exact segment\n$$\\mathrm{Ext}^i(k,F_0)\\to\\mathrm{Ext}^i(k,M)\\to\\mathrm{Ext}^{i+1}(k,K)\\to\\mathrm{Ext}^{i+1}(k,F_0)$$\nthe outer terms vanish when $i+1<d$, so $\\mathrm{Ext}^i(k,M)\\cong\\mathrm{Ext}^{i+1}(k,K)$ for $0\\le i\\le d-2$. The case $d = n-1$ is impossible: it would give $\\operatorname{depth}K = 0$, so $\\mathrm{Hom}(k,K)\\neq0$, whereas $\\mathrm{Hom}(k,K)$ embeds in $\\mathrm{Hom}(k,F_0)$, which is $0$ because $d\\ge1$. So $d\\ge n$, hence $d-n\\le d-2$, and for $0\\le i\\le d-n$ the isomorphism gives $\\mathrm{Ext}^i(k,M) = 0$ for $i<d-n$ and $\\mathrm{Ext}^{d-n}(k,M)\\neq0$. So $\\operatorname{depth}M = d-n$.\n\nConsequences. As $\\operatorname{depth}M\\ge0$, $\\mathrm{pd}M\\le d$. If $R$ is Cohen-Macaulay and $M$ is MCM of finite projective dimension, then $\\operatorname{depth}M = \\dim R = \\operatorname{depth}R$, so $\\mathrm{pd}M = 0$ and $M$ is projective, hence free over the local ring $R$. Conversely $R^b$ with $b\\ge1$ has depth $\\operatorname{depth}R = \\dim R$ and dimension $\\dim R$, so it is MCM."
+},
+{
+"type": "views",
+"title": "Three ways to compute depth",
+"body": "The sources give three descriptions of the same number for a finitely generated $M\\neq0$ over a Noetherian local ring.",
+"items": [
+{
+"label": "Regular sequences",
+"src": [
+"weibel4",
+"w-cm"
+],
+"body": "The length of a longest $M$-regular sequence in $\\mathfrak{m}$: how many successive non-zero-divisors one can divide out before every element of $\\mathfrak{m}$ becomes a zero-divisor. This is the definition, and it is the description in which the comparison $\\operatorname{depth}\\le\\dim$ and the notion of a Cohen-Macaulay ring are stated."
+},
+{
+"label": "First non-zero Ext",
+"src": [
+"stacks-depth",
+"weibel4"
+],
+"body": "The smallest $i$ with $\\mathrm{Ext}^i_R(k,M)\\neq0$. This is the form used in proofs, because Ext has long exact sequences: the depth lemma and the Auslander-Buchsbaum formula above are both read off from it."
+},
+{
+"label": "Local cohomology",
+"src": [
+"weibel4"
+],
+"body": "Weibel's Theorem 4.6.3: the depth is the smallest $n$ with $H^n_{\\mathfrak{m}}(M)\\neq0$, where $H^n_{\\mathfrak{m}}$ are the right derived functors of the $\\mathfrak{m}$-torsion functor $M\\mapsto\\{a: \\mathfrak{m}^ja = 0\\text{ for some }j\\}$. Weibel deduces it from the Ext description by comparing $\\mathrm{Ext}(R/\\mathfrak{m}^j,M)$ for growing $j$ and passing to the limit."
+}
+]
+},
+{
+"type": "example",
+"title": "Checking Auslander-Buchsbaum over k[x,y]",
+"src": [
+"weibel4",
+"stacks-depth"
+],
+"body": "Let $R = k[x,y]$ localised at $\\mathfrak{m} = (x,y)$. Compute depth and projective dimension of $R$, $R/(x)$, $k$ and $M = R/(x^2,xy)$, and check the formula.",
+"solution": "Depth via Ext: the Koszul complex $0\\to R\\to R^2\\to R\\to k\\to0$ of the Tor section is a free resolution of $k$, so $\\mathrm{Ext}^i(k,N)$ is the cohomology of $N\\to N^2\\to N$, $n\\mapsto(xn,yn)$, $(a,b)\\mapsto -ya+xb$. Its $H^0$ is the socle $\\{n:\\mathfrak{m}n = 0\\}$ and its $H^2$ is $N/\\mathfrak{m}N$.\n\n1. $R$: free, so $\\mathrm{pd} = 0$; $x,y$ is regular and $R/(x,y) = k$ has depth $0$, so $\\operatorname{depth}R = 2$. Formula: $0+2 = 2$.\n2. $R/(x)$: resolution $0\\to R\\xrightarrow{x}R\\to R/(x)\\to0$, so $\\mathrm{pd} = 1$ (it is not free, being killed by $x$). In the Koszul cochain complex for $N = R/(x)$, a localisation of $k[y]$, the socle is $0$ and $H^1 = \\{(0,b)\\}/\\{(0,yn)\\}\\cong k\\neq0$, so the depth is $1$ ($y$ is regular, and nothing more). Formula: $1+1 = 2$.\n3. $k$: the Koszul resolution has length $2$, and $\\mathrm{pd}k = 2$ as computed in the dimension examples; the socle of $k$ is $k$, so the depth is $0$. Formula: $2+0 = 2$.\n4. $M = R/(x^2,xy)$. The map $(a,b)\\mapsto x^2a+xyb = x(xa+yb)$ has kernel $\\{(a,b): xa+yb = 0\\} = R\\cdot(y,-x)$, since $R$ is a factorial domain and $x$, $y$ are coprime. So\n$$0\\to R\\xrightarrow{\\binom{y}{-x}}R^2\\xrightarrow{(x^2\\ \\ xy)}R\\to M\\to0$$\nis a minimal free resolution, and $\\mathrm{pd}M = 2$. The class of $x$ is non-zero in $M$ but $x\\cdot x$ and $y\\cdot x$ lie in $(x^2,xy)$, so $x$ spans a non-zero socle element and $\\operatorname{depth}M = 0$. Formula: $2+0 = 2$. Note that $M$ is not killed by any power of $\\mathfrak{m}$ (the powers of $y$ survive), so depth $0$ does not require finite length."
+},
+{
+"type": "exercise",
+"body": "1. Let $x\\in\\mathfrak{m}$ be a non-zero-divisor on $M\\neq0$. Show $\\operatorname{depth}M/xM = \\operatorname{depth}M-1$.\n2. Let $R = k[x,y,z]$ localised at $(x,y,z)$ and $M = R/(x,y)$. Compute $\\mathrm{pd}M$ and $\\operatorname{depth}M$ and check the Auslander-Buchsbaum formula.\n3. Let $0\\to K\\to F\\to M\\to0$ be exact with $F$ free and $\\operatorname{depth}M<\\operatorname{depth}R$. Use the depth lemma to show $\\operatorname{depth}K = \\operatorname{depth}M+1$.\n4. Suppose $\\operatorname{depth}R = 0$. Show, both from the Auslander-Buchsbaum formula and directly from a minimal free resolution and a non-zero socle element of $R$, that every finitely generated module of finite projective dimension is free.\n5. Let $R$ be Cohen-Macaulay and $M\\neq0$ of finite projective dimension. Show that for $0\\le j\\le\\mathrm{pd}M$ the $j$-th syzygy of $M$ in a minimal free resolution has depth $\\operatorname{depth}M+j$, and that it is maximal Cohen-Macaulay only for $j = \\mathrm{pd}M$."
+}
+],
+"sources": [
+{
+"k": "weibel4",
+"ref": "C. A. Weibel, An Introduction to Homological Algebra (1994), Ch. 4 Homological dimension",
+"where": "4.1.2, 4.1.6, 4.1.11, 4.3.11, 4.4.3, 4.4.8, 4.4.11-4.4.12, 4.4.15, 4.6.3",
+"url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+"kind": "textbook"
+},
+{
+"k": "hm",
+"ref": "R. Holanda and C. B. Miranda-Neto, Vanishing of (co)homology, freeness criteria, and the Auslander-Reiten conjecture for Cohen-Macaulay Burch rings, arXiv:2212.05521 (2022)",
+"where": "§1-2",
+"url": "https://arxiv.org/abs/2212.05521",
+"kind": "paper"
+},
+{
+"k": "stacks-depth",
+"ref": "The Stacks Project, Commutative Algebra, §10.72 Depth and §10.111 Auslander-Buchsbaum (2024)",
+"where": "Lemmas 10.72.5-10.72.6, Proposition 10.111.1",
+"url": "https://stacks.math.columbia.edu/tag/090U",
+"kind": "reference"
+},
+{
+"k": "w-cm",
+"ref": "Wikipedia, Cohen-Macaulay ring",
+"url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+"kind": "reference"
+}
+],
+"checks": [
+{
+"claim": "Depth via Ext: over R=k[x,y] (graded, localised at (x,y)), the Koszul complex computes Ext^i(k,M); dimensions for M=R, R/(x), R/(x^2,xy), k are (0,0,1), (0,1,1), (1,2,1), (1,2,1), so depths 2,1,0,0; x is a socle element of R/(x^2,xy)",
+"python": "\nimport sympy as sp\nx,y=sp.symbols('x y')\ndef monos(d): return [x**i*y**(d-i) for i in range(d+1)]\ndef make(ideal_gens):\n    # graded quotient R/I by monomial ideal: basis = monomials not divisible by any generator\n    def inI(m):\n        for g in ideal_gens:\n            q=sp.cancel(m/g)\n            if sp.Poly(sp.numer(q),x,y).is_monomial and sp.denom(q)==1: return True\n        return False\n    def basis(d): return [m for m in monos(d) if not inI(m)] if d>=0 else []\n    def coords(p,d):\n        B=basis(d); p=sp.expand(p); v=[0]*len(B)\n        for term in sp.Add.make_args(p):\n            if term==0: continue\n            c,m=term.as_coeff_Mul()\n            if m in B: v[B.index(m)]+=c\n            # else: m lies in I, so it is zero in R/I\n        return v\n    return basis,coords\ndef koszul_ext(gens, D):\n    basis,coords=make(gens)\n    # Hom(K,M): degree-j piece  M_j -> M_{j+1}^2 -> M_{j+2},  m -> (xm, ym), (a,b) -> -y a + x b\n    h=[0,0,0]\n    for j in range(-2,D):\n        B0=basis(j); B1=basis(j+1); B2=basis(j+2)\n        A=sp.zeros(2*len(B1),len(B0))\n        for c,m in enumerate(B0):\n            v=coords(x*m,j+1)+coords(y*m,j+1)\n            for r in range(len(v)): A[r,c]=v[r]\n        Bm=sp.zeros(len(B2),2*len(B1))\n        for c,m in enumerate(B1):\n            v1=coords(-y*m,j+2); v2=coords(x*m,j+2)\n            for r in range(len(B2)): Bm[r,c]=v1[r]; Bm[r,len(B1)+c]=v2[r]\n        if len(B0) and len(B1) and len(B2): assert Bm*A==sp.zeros(len(B2),len(B0))\n        rA=A.rank() if A.shape[0] and A.shape[1] else 0\n        rB=Bm.rank() if Bm.shape[0] and Bm.shape[1] else 0\n        # H^0 in degree j (source M_j), H^1 at M_{j+1}^2, H^2 at M_{j+2}\n        if j>=0: h[0]+=len(B0)-rA\n        h[1]+=(2*len(B1)-rB)-rA\n        h[2]+=len(B2)-rB\n    return tuple(h)\nD=7\nassert koszul_ext([],D)==(0,0,1)\nassert koszul_ext([x],D)==(0,1,1)\nassert koszul_ext([x**2,x*y],D)==(1,2,1)\nassert koszul_ext([x,y],D)==(1,2,1)\n# socle: x*x and y*x lie in (x^2,xy), x itself does not\nbasis,coords=make([x**2,x*y])\nassert x in basis(1) and coords(x*x,2)==[0]*len(basis(2)) and coords(y*x,2)==[0]*len(basis(2))\n"
+},
+{
+"claim": "Auslander-Buchsbaum on examples over k[x,y]: 0->R-(y,-x)->R^2-(x^2,xy)->R->R/(x^2,xy)->0 is exact (degreewise ranks), so pd=2 and depth=0=2-2; R/(x) has pd 1 and depth 1; k has pd 2 and depth 0",
+"python": "\nimport sympy as sp\nx,y=sp.symbols('x y')\ndef monos(d): return [x**i*y**(d-i) for i in range(d+1)] if d>=0 else []\ndef coords(p,d):\n    B=monos(d); v=[0]*len(B); p=sp.expand(p)\n    for t in sp.Add.make_args(p):\n        if t==0: continue\n        c,m=t.as_coeff_Mul(); v[B.index(m)]+=c\n    return v\ndef mat(cols_polys, src_degs, tgt_deg_shift, d):\n    pass\n# degree-d strand: F2 = R(-3) -> F1 = R(-2)^2 -> F0 = R\nfor d in range(0,9):\n    S2=monos(d-3); S1=monos(d-2); S0=monos(d)\n    A=sp.zeros(2*len(S1),len(S2))   # h -> (y h, -x h)\n    for c,h in enumerate(S2):\n        v=coords(y*h,d-2)+coords(-x*h,d-2)\n        for r in range(len(v)): A[r,c]=v[r]\n    Bm=sp.zeros(len(S0),2*len(S1))  # (a,b) -> x^2 a + x y b\n    for c,m in enumerate(S1):\n        v1=coords(x**2*m,d); v2=coords(x*y*m,d)\n        for r in range(len(S0)): Bm[r,c]=v1[r]; Bm[r,len(S1)+c]=v2[r]\n    rA=A.rank() if A.shape[0] and A.shape[1] else 0\n    rB=Bm.rank() if Bm.shape[0] and Bm.shape[1] else 0\n    if A.shape[0] and A.shape[1]: assert (Bm*A).is_zero_matrix\n    assert rA==len(S2)                    # injective on the left\n    assert 2*len(S1)-rB==rA               # exact in the middle\n    # cokernel = R/(x^2,xy) in degree d: basis {y^d} plus x when d=1\n    expect = 1 if d!=1 else 2\n    assert len(S0)-rB==expect, (d,len(S0)-rB)\n# depths from the Koszul check: R/(x^2,xy):0, R/(x):1, k:0, R:2 ; pd from resolutions: 2,1,2,0\nfor pd,depth in [(2,0),(1,1),(2,0),(0,2)]: assert pd+depth==2\n"
+}
+],
+"requires": [
+{
+"item": "depth over a Noetherian local ring: regular sequences, $\\operatorname{depth}M = \\min\\{i:\\mathrm{Ext}^i(k,M)\\neq0\\}$, the depth lemma, the Auslander-Buchsbaum formula, Cohen-Macaulay and maximal Cohen-Macaulay modules",
+"priority": "common",
+"where": "Depth and the Auslander-Buchsbaum formula"
+},
+{
+"item": "local duality and canonical modules; $\\mathrm{Ext}^{>0}(N,\\omega_R) = 0$ for maximal Cohen-Macaulay $N$",
+"priority": "specialised",
+"where": "not covered here; see [hm]"
+}
+]
+}
+]

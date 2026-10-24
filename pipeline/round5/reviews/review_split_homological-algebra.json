@@ -1,0 +1,126 @@
+[
+ {
+  "id": "homological-algebra",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "block 12 views 'Four descriptions of injective modules' (new)",
+    "problem": "Added by the splitter only to meet the old two-views rule. Its items repeat the extension-property definition, Baer's criterion (theorem 9) and the right-adjoint argument of 'Enough projectives and enough injectives' on the same page. 'Right adjoints' describes how injectives are constructed, not what an injective is, so the block gives no genuinely different explanations.",
+    "fix": "Deleted. The page keeps one views block (projective modules). The Ext characterisation of injectives is still on [[ext]] (theorem 'Ext detects projectives and injectives')."
+   },
+   {
+    "severity": "style",
+    "where": "block 8 views title",
+    "problem": "Titled 'Three descriptions of projective modules' but has four items.",
+    "fix": "Retitled 'Four descriptions of projective modules'."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Five lemma'",
+    "problem": "The 5-column array diagram was too wide for a phone (350px in a 298px column).",
+    "fix": "The ladder is now described in words in the theorem (rows, vertical maps phi_i), and a tikz-cd figure of it follows the theorem. I rendered the figure and checked it."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof of the long exact homology sequence",
+    "problem": "The 3x3 array diagram (413px) and three other formulas were too wide.",
+    "fix": "The diagram is now stacked: the top row and bottom row are displayed separately and the vertical maps are named in words, with one added sentence saying why the squares commute. The other formulas are broken with aligned/gathered."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 28-29 'Splicing'",
+    "problem": "Checked: the statement and proof are correct. The only src is stojanoska, a paper that uses the lemma in §2 for Anderson duality. That is acceptable, but no textbook is cited.",
+    "fix": "None needed. Cross-links from [[tor]] (Künneth proof) and [[ext]] (Anderson's sequence) point here and are correct."
+   }
+  ],
+  "wide_math_fixed": 12,
+  "wide_math_left": []
+ },
+ {
+  "id": "derived-functors",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "blocks 0 and 2",
+    "problem": "The inline long exact sequence 0 -> F(A') -> ... -> R^1F(A') -> ... (340px) appears twice, and both copies were too wide.",
+    "fix": "Split into two formulas joined by words ('begins ... and continues ...'), in both places."
+   },
+   {
+    "severity": "style",
+    "where": "blocks 2, 4, 7, 17, 21, 22",
+    "problem": "Long displays and inline equation chains were wider than a phone column.",
+    "fix": "Broken across lines with aligned/gathered, one step per line. The two inline chains in the acyclic-resolution proof are now displays."
+   }
+  ],
+  "wide_math_fixed": 9,
+  "wide_math_left": []
+ },
+ {
+  "id": "tor",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "block 9 views 'Four descriptions of flat modules' (new)",
+    "problem": "Added for the old two-views rule. All four items restate theorem 'Tor detects flatness' and its proof, which sit directly above it, so they are not independent explanations.",
+    "fix": "Deleted. The page keeps the views block 'What Tor measures'."
+   },
+   {
+    "severity": "source",
+    "where": "sources / validate",
+    "problem": "Only two papers (hm, tang), so validate.py failed with 'fewer than 3 papers'.",
+    "fix": "Opened arXiv:2506.21764 (Shekhar-Gupta, On Tor-vanishing of local rings, 2025) and read the abstract, §1 and §2, then added it as paper 'sg'. Its preliminaries use: vanishing of Tor_i(M,N) for i > pd, the Tor-vanishing property (the converse), Betti numbers as dim_k Tor_n(k,M) from minimal free resolutions, the Koszul complex on a minimal generating set of m, Poincaré series, Golod rings and DG algebras."
+   },
+   {
+    "severity": "source",
+    "where": "section 'Computing Tor in practice'",
+    "problem": "The page did not state the basic fact that the paper relies on: Tor_i(A,B) = 0 for i > pd A, or for i > pd B by balancing.",
+    "fix": "Added item 4 'Finite projective dimension' with a one-line proof and the paper's definition of the Tor-vanishing property, with src weibel and sg. Reading the papers now has an item 3 for sg. The intro mentions the paper. Requires gained two core items (the vanishing fact, taught here; Betti numbers and pd, which point to [[ext]]) and two specialised items (general Koszul complex; Poincaré series, curvature, Golod rings, DG algebras), marked 'not covered here; see [sg]'."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall block, intro and Reading the papers (Tang claims)",
+    "problem": "Needed to check that Tang really says projective solid modules need not be flat and that Tor must be computed by resolving both variables.",
+    "fix": "Confirmed in arXiv:2410.08933 §3.5 (it cites Efimov's example that a product of copies of Z is not flat). No change."
+   },
+   {
+    "severity": "source",
+    "where": "theorem 'Künneth formula for a tensor product of complexes'",
+    "problem": "Needed to check the attribution to Weibel 3.6.3 and the splitting claim.",
+    "fix": "Confirmed in Weibel Ch. 3: the hypothesis is P_n and d(P_n) flat, and the sequence is noncanonically split for free complexes over Z. No change."
+   }
+  ],
+  "wide_math_fixed": 5,
+  "wide_math_left": []
+ },
+ {
+  "id": "ext",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "block 26 views 'Four ways to measure projective dimension' (new)",
+    "problem": "Added for the old two-views rule. Its items restate theorem 'Dimension and vanishing of Ext' and definition 'Minimal resolutions over local rings', which sit directly above it. The 'Cyclic modules' item is about global dimension, not the projective dimension of a module, so it did not fit the title.",
+    "fix": "Deleted. The page keeps 'Five readings of Ext'."
+   },
+   {
+    "severity": "unclear",
+    "where": "requires 'Ext of R/x for a non-zero-divisor' (common)",
+    "problem": "This was only set as an exercise (12.4) and never taught.",
+    "fix": "Added a short paragraph to definition 'Ext' that computes Ext^0, Ext^1 and the higher groups of R/xR from the resolution 0 -> R -> R -> R/xR -> 0, linked to the matching Tor computation on [[tor]]."
+   },
+   {
+    "severity": "style",
+    "where": "block 48 exercise",
+    "problem": "This exercise set came after the closing connection block.",
+    "fix": "Moved it before 'Reading the papers', right after the group cohomology exercises."
+   },
+   {
+    "severity": "style",
+    "where": "blocks 2, 8, 14, 16, 29, 30, 36, 37, 41, 44",
+    "problem": "Twenty formulas were too wide, including the long exact Ext sequences (813px and 597px).",
+    "fix": "Displays are broken after arrows with aligned/gathered. Short inline formulas became displays, or were rewritten in words where the formula was 'X = coker(f)'. In Reading the papers, the Anderson sequence is now described by its three terms in words."
+   }
+  ],
+  "wide_math_fixed": 20,
+  "wide_math_left": []
+ }
+]

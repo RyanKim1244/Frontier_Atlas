@@ -1,0 +1,60 @@
+[
+ {
+  "id": "de-rham-cohomology",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "block 70 (pitfall, torsion/cohomology vs homology)",
+    "problem": "'Poincaré duality identifies H^k with H^{n-k}, which is why papers blur the two' did not explain blurring cohomology with homology",
+    "fix": "Now: PD identifies H^k with the dual of H^{n-k}, hence by de Rham's theorem with H_{n-k}(M;R)."
+   },
+   {
+    "severity": "style",
+    "where": "blocks 25, 36, 38 (display formulas)",
+    "problem": "Three display formulas wider than the 390px column (homotopy operator definition, long exact sequence, Mayer–Vietoris short exact sequence with its maps)",
+    "fix": "Broken with aligned/gathered (after an arrow, and the maps on a second line); mathematics unchanged."
+   }
+  ],
+  "checked_ok": "Changed blocks 0, 16, 17, 20, 55, 56, 57, 63, 64, 95, 97, 98, 100, 103 are correct; every same-page reference (figure below, flux example, first exercise below, sheaf section, induction from the finite-dimensionality proof) resolves on this page; links to moved material go to [[poincare-duality]]. Sources = cited keys plus papers; requires all land on this page or [[poincare-duality]]/[[hodge-theory]].",
+  "wide_math_fixed": 3,
+  "wide_math_left": []
+ },
+ {
+  "id": "poincare-duality",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 4 (views 'Compactly supported cohomology, three readings')",
+    "problem": "Padding block added only for the old two-views rule: items 1-2 restate blocks 1-3 and the pitfall (they're properties, not different explanations), and the claim attributed to Petrov in item 2 isn't stated explicitly in Petrov. Item 3 (GHLP) was close to the paper but inaccurate: GHLP's discrete Bogovskii operator keeps homogeneous boundary conditions (forms that extend by zero) on star-shaped domains, and the paper never mentions compact support or the compactly supported complex.",
+    "fix": "Block deleted. The verified GHLP point (checked against arXiv:2603.29018 §1 and §7), worded accurately, moved to the connection block with src GHLP."
+   },
+   {
+    "severity": "source",
+    "where": "block 11 (conventions), Petrov row",
+    "problem": "This is a statement, not a convention, and 'needs finite dimensionality' goes beyond Petrov, who says only that the reverse isomorphism is not always true (dual of a product is not a sum). The statement is already in the 'Poincaré duality, four ways' views block.",
+    "fix": "Row removed; the other three rows are accurate (they match Bott–Tu §2, §5 and the ladder sign in the proof)."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 0 (intro)",
+    "problem": "Said the pairing H^q x H^{n-q}_c is perfect, with no hypothesis",
+    "fix": "Added 'on an oriented manifold with a finite good cover'. Checked Petrov's 'four tools' (arXiv:2411.06296 §3, Thm 3.3) and KSV's appeal to PD for the period criterion (introduction): both correct."
+   },
+   {
+    "severity": "error",
+    "where": "block 12 (connection; formerly 13)",
+    "problem": "'Poincaré duality for singular cohomology is on [[cohomology]]': that page has no published lesson yet",
+    "fix": "Changed to 'belongs to [[cohomology]]'; src BT, GH, GHLP added for the new sentence."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "55M05 needed confirming",
+    "fix": "Confirmed: MSC2020 55M05 = Duality (55Mxx, classical topics in algebraic topology). Kept."
+   }
+  ],
+  "checked_ok": "Torus example (block 7) recomputed: eta_S=-dθ1/2π, eta_T=dθ2/2π, ∫eta_S∧eta_T=-1, ∫_T eta_S=-1, and the negative orientation of (∂θ2,∂θ1) is correct. The pitfall's cross-reference to the Klein bottle example resolves (H^2=0 is stated there). Sources: 4 papers (NS, GHLP, BhGS, KSV), all cited.",
+  "wide_math_fixed": 0,
+  "wide_math_left": []
+ }
+]
