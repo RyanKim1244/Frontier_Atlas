@@ -1,0 +1,980 @@
+{
+ "id": "depth-cohen-macaulay",
+ "papers": [
+  {
+   "arxiv": "2212.05521",
+   "title": "Vanishing of (co)homology, freeness criteria, and the Auslander-Reiten conjecture for Cohen-Macaulay Burch rings (R. Holanda, C. B. Miranda-Neto, 2022)",
+   "subfield": "homological commutative algebra",
+   "assumes": [
+    {
+     "item": "Standing conventions: rings commutative Noetherian, 'finite' = finitely generated; depth of a finite module always means the m-depth",
+     "where": "§1 conventions"
+    },
+    {
+     "item": "Maximal Cohen-Macaulay modules, CM local rings, canonical module omega_R, local duality: all taken from Bruns-Herzog [15] without explanation",
+     "where": "§1"
+    },
+    {
+     "item": "Notation pd_R, id_R, ht; duals M^* = Hom(M,R), Matlis dual M^vee, canonical dual M^dagger = Hom(M,omega_R)",
+     "where": "§1"
+    },
+    {
+     "item": "Gorenstein and complete intersection rings used without definition; G-dim <= CI-dim <= pd and their finiteness characterising Gorenstein / CI rings",
+     "where": "§1, after Cor. 2.8"
+    },
+    {
+     "item": "Ext vanishing against an MCM module: Ext^i_R(M,N)=0 type statements for N MCM (BH Prop. 3.3.3)",
+     "where": "§2, proof of Thm 2.1"
+    },
+    {
+     "item": "A CM module M of dimension d is MCM iff Ext^i_R(M,omega_R)=0 for i=1..d",
+     "where": "§2, remark after Cor. 2.6"
+    },
+    {
+     "item": "Ischebeck's theorem (BH Exercise 3.1.24) relating Ext vanishing, depth and dimension",
+     "where": "§2, Remark 2.12(ii)"
+    },
+    {
+     "item": "Auslander's depth formula for Tor-independent modules: depth M + depth N = depth R + depth(M tensor N)",
+     "where": "§2, (2.1)"
+    },
+    {
+     "item": "Isolated singularity: R_p regular for all non-maximal p; Artinian (d=0) case treated separately",
+     "where": "§2, Remark 2.2"
+    },
+    {
+     "item": "Serre's conditions (S_n) (defined only in §3)",
+     "where": "§3"
+    }
+   ]
+  },
+  {
+   "arxiv": "2510.24818",
+   "title": "Formalization of Auslander-Buchsbaum-Serre criterion in Lean4 (N. Guan, Y. Hu, 2025)",
+   "subfield": "formalized mathematics / commutative algebra",
+   "assumes": [
+    {
+     "item": "Depth defined as the least i with Ext^i(N,M) != 0 (infinite if none); depth_I(M) uses N=R/I; local depth uses the maximal ideal",
+     "where": "§3, definition after Thm 3.1"
+    },
+    {
+     "item": "Rees' theorem: equivalence of existence of an M-regular sequence of length n in I with vanishing of Ext^i(R/I,M) for i<n; depth = sup of lengths of M-regular sequences in I",
+     "where": "§3, Thm 3.1, Props 3.3-3.4"
+    },
+    {
+     "item": "Depth inequalities along a short exact sequence (depth lemma) from the long exact Ext sequence",
+     "where": "§3, Lemma 3.5"
+    },
+    {
+     "item": "depth(N, M/xM) + 1 = depth(N,M) for M-regular x in Ann N",
+     "where": "§3, Thm 3.6, Cor 3.7"
+    },
+    {
+     "item": "Auslander-Buchsbaum formula pd M + depth M = depth R, proved by reduction to pd = 1",
+     "where": "§1 Thm 1.1; §3 Thm 3.8"
+    },
+    {
+     "item": "Ischebeck: depth(M,N) >= depth M - dim N; depth M <= dim R/p for p in Ass M, hence depth M <= dim M <= dim R",
+     "where": "§3, Thm 3.12, Cor 3.13"
+    },
+    {
+     "item": "Module Krull dimension = dim Supp M; dim(M/xM)+1 = dim M for M-regular x",
+     "where": "§2.2, Lemma 2.3"
+    },
+    {
+     "item": "CM module: M = 0 or depth M = dim M (zero module CM by convention); CM local ring depth R = dim R; CM ring: all R_p CM, enough to check maximal ideals",
+     "where": "§4, Defs 4.1, 4.7, 4.11, Lemma 4.12"
+    },
+    {
+     "item": "CM modules have Ass = minimal primes of Ann M; CM passes to M/xM, M/(x)M and localisations",
+     "where": "§4, Lemmas 4.2-4.5, Cor 4.8"
+    },
+    {
+     "item": "In a CM local ring: x_1..x_n regular iff ht(x)=n iff part of s.o.p.; depth_I R = ht I; ht I + dim R/I = dim R; unmixedness theorem characterises CM",
+     "where": "§4, Thm 4.13, Lemma 4.18, Thm 4.19, Thm 4.21"
+    },
+    {
+     "item": "R CM implies R[X] CM",
+     "where": "§4.2"
+    },
+    {
+     "item": "MCM module: depth M = dim R; MCM modules over regular local rings are free",
+     "where": "§5, Def 5.6, Thm 5.7"
+    },
+    {
+     "item": "Auslander-Buchsbaum-Serre: regular iff finite global dimension; regular local rings are domains and CM; Hilbert syzygy theorem",
+     "where": "§1, §5 Thms 5.3, 5.16, 5.21"
+    },
+    {
+     "item": "Weakly regular vs regular sequences; regular sequences under flat / faithfully flat base change and localisation",
+     "where": "§2.4"
+    }
+   ]
+  },
+  {
+   "arxiv": "2505.02605",
+   "title": "Cohen-Macaulay squares of edge ideals (S. Faridi, T. Hibi, 2025)",
+   "subfield": "combinatorial commutative algebra",
+   "assumes": [
+    {
+     "item": "Cohen-Macaulay ideal / simplicial complex: Gamma is CM over K when S/I_Gamma is CM",
+     "where": "§1, Def. 1.4"
+    },
+    {
+     "item": "Stanley-Reisner correspondence between squarefree monomial ideals and simplicial complexes; flag complexes for edge ideals",
+     "where": "Intro; §1, Def. 1.3"
+    },
+    {
+     "item": "Reisner's criterion: Gamma CM iff reduced homology of every link lk(sigma) vanishes below its top dimension",
+     "where": "§1, Thm 1.5"
+    },
+    {
+     "item": "CM complexes are pure and connected, links of CM complexes are CM",
+     "where": "§1, Cor. 1.6"
+    },
+    {
+     "item": "Polarization: a monomial ideal is CM iff its polarization is (polarization is a deformation along a regular sequence)",
+     "where": "§1, Def. 1.7 and remark"
+    },
+    {
+     "item": "Stanley's use of Reisner's criterion in the upper bound conjecture (background)",
+     "where": "Intro"
+    }
+   ]
+  },
+  {
+   "arxiv": "2502.07483",
+   "title": "Higher-dimensional module factorizations and complete intersections (X.-W. Chen, 2025)",
+   "subfield": "representation theory / singularity categories",
+   "assumes": [
+    {
+     "item": "Complete intersection: R = S/(w_1..w_n) with S regular local and w a regular sequence; hypersurface when n=1",
+     "where": "§1.1"
+    },
+    {
+     "item": "MCM(R) is a Frobenius exact category whose stable category is triangulated; equivalent to the singularity category (Buchweitz) for Gorenstein R",
+     "where": "§1.1"
+    },
+    {
+     "item": "Eisenbud's theorem: over a hypersurface S/(w), MCM modules are cokernels of matrix factorizations; stable MCM equivalent to stable MF(S;w)",
+     "where": "§1.1"
+    },
+    {
+     "item": "Higher syzygies over complete intersections, higher matrix factorizations (Eisenbud-Peeva)",
+     "where": "§1.1"
+    },
+    {
+     "item": "Gorenstein projective modules as generalisation of MCM modules over Gorenstein local rings",
+     "where": "§1.1, §3 Ex. 3.2"
+    },
+    {
+     "item": "Normal regular sequences in noncommutative rings",
+     "where": "§1.2"
+    }
+   ]
+  },
+  {
+   "arxiv": "2106.08173",
+   "title": "Maximal Cohen-Macaulay complexes and their uses: a partial survey (S. B. Iyengar, L. Ma, K. Schwede, M. E. Walker, 2021)",
+   "subfield": "mixed characteristic commutative algebra / homological conjectures / birational geometry",
+   "assumes": [
+    {
+     "item": "Depth read off from local cohomology: depth M = least i with H^i_m(M) != 0; depth <= dim R",
+     "where": "Intro; §1.6"
+    },
+    {
+     "item": "Big Cohen-Macaulay module/algebra (not necessarily finitely generated) and MCM = big CM with finitely generated homology; existence of big CM algebras (Hochster-Huneke char p, Andre, Bhatt in mixed char); R^+ not big CM in char 0, dim >= 3",
+     "where": "Intro"
+    },
+    {
+     "item": "Hochster's homological conjectures: (improved) new intersection theorem, canonical element theorem, direct summand; André's proofs",
+     "where": "Intro"
+    },
+    {
+     "item": "Local cohomology RGamma_I via semi-injective resolutions, derived completion, Greenlees-May duality",
+     "where": "§1.1-1.2"
+    },
+    {
+     "item": "Koszul complexes K(r;M) and their relation to depth",
+     "where": "§1.4"
+    },
+    {
+     "item": "Rational singularities, Boutot's theorem; dualizing complexes",
+     "where": "§3-4"
+    }
+   ]
+  },
+  {
+   "arxiv": "2208.12072",
+   "title": "Singularities of local models (N. Fakhruddin, T. Haines, J. Lourenço, T. Richarz, 2022)",
+   "subfield": "arithmetic algebraic geometry (Shimura varieties)",
+   "assumes": [
+    {
+     "item": "Cohen-Macaulay schemes; the conjecture that local models are CM with reduced special fibre",
+     "where": "§1.1-1.2, Thm 1.2"
+    },
+    {
+     "item": "Pseudo-rational singularities are by definition normal, CM, with dualizing complex; resolution-rational schemes are CM (Kovács)",
+     "where": "§3.2-3.3"
+    },
+    {
+     "item": "F-rational implies pseudo-rational (Smith); F-injectivity defined through Frobenius on local cohomology H^i_m",
+     "where": "§3.1, Lemma 3.4"
+    },
+    {
+     "item": "CM of a total space deduced from a special fibre / deformation arguments (quotient by a non-zero-divisor pi)",
+     "where": "§1.3, §5, Lemma 3.5"
+    },
+    {
+     "item": "Frobenius splitting, Schubert varieties CM (normal, F-split)",
+     "where": "§4.1"
+    }
+   ]
+  },
+  {
+   "arxiv": "2602.17240",
+   "title": "Serre depth and local cohomology (A. Ficarra, 2026)",
+   "subfield": "commutative algebra / local cohomology",
+   "assumes": [
+    {
+     "item": "depth <= dim with equality iff CM; CM iff every s.o.p. is a regular sequence",
+     "where": "Intro"
+    },
+    {
+     "item": "depth M = min{j : H^j_m(M) != 0} (BH 3.5.7); Grothendieck vanishing H^j_m(M)=0 for j>dim M; H^j_m(M) Artinian",
+     "where": "§1, Prop. 1.4"
+    },
+    {
+     "item": "Serre's condition (S_r): depth M_P >= min{r, dim M_P} for P in Supp M; (S_1) iff no embedded primes; CM iff (S_r) for all r",
+     "where": "Intro; §3"
+    },
+    {
+     "item": "Module dimension = sup dim R/P over Supp M (dim 0 = -infinity); unmixed / equidimensional modules",
+     "where": "§1; §3"
+    },
+    {
+     "item": "Matlis duality, local duality D(H^j_m(M)) = Ext^{dim S - j}_S(M, omega_S) over Gorenstein S",
+     "where": "§1, Prop. 1.11"
+    },
+    {
+     "item": "Depth and dimension preserved by completion; Cohen structure theorem; Gorenstein rings are CM and universally catenary",
+     "where": "§1-3"
+    },
+    {
+     "item": "Sequentially Cohen-Macaulay modules (Stanley) and Peskine's characterisation",
+     "where": "§1, Ex. 1.2(iii)"
+    },
+    {
+     "item": "Finite-length modules have depth 0",
+     "where": "§1, Ex. 1.2(i)"
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "ref": "W. Bruns, J. Herzog, Cohen-Macaulay Rings (Cambridge, rev. ed. 1998)",
+   "url": "https://www.cambridge.org/core/books/cohenmacaulay-rings/regular-sequences-and-depth/1B04C495C2B4915A13633CD5E6780EA1",
+   "toc": [
+    "Ch. 1 Regular sequences and depth",
+    "Ch. 2 Cohen-Macaulay rings",
+    "Ch. 3 The canonical module. Gorenstein rings",
+    "Ch. 4 Hilbert functions and multiplicities",
+    "Ch. 5 Stanley-Reisner rings",
+    "Ch. 6 Semigroup rings and invariant theory",
+    "Ch. 7 Determinantal rings",
+    "Ch. 8 Big Cohen-Macaulay modules",
+    "Ch. 9 Homological theorems",
+    "(section level, unverified from memory, partly corroborated by M. Schulze's seminar plan https://agag-mschulze.math.rptu.de/teaching/13W-CMRingSem/CMRingSem.pdf): 1.1 Regular sequences; 1.2 Grade and depth; 1.3 Depth and projective dimension; 1.4 Some linear algebra; 1.5 Graded rings and modules; 1.6 The Koszul complex; 2.1 Cohen-Macaulay rings and modules; 2.2 Regular rings and normal rings; 2.3 Complete intersections; 2.4 Serre's conditions (?)"
+   ]
+  },
+  {
+   "ref": "H. Matsumura, Commutative Ring Theory (CUP 1986), Ch. 6-7",
+   "url": "https://vdoc.pub/documents/commutative-ring-theory-1gdp3e15p9mo",
+   "toc": [
+    "Ch. 5 Dimension theory: §13 Graded rings, the Hilbert function and the Samuel function; §14 Systems of parameters and multiplicity; §15 The dimension of extension rings",
+    "Ch. 6 Regular sequences: §16 Regular sequences and the Koszul complex; §17 Cohen-Macaulay rings; §18 Gorenstein rings",
+    "Ch. 7 Regular rings: §19 Regular rings; §20 UFDs; §21 Complete intersection rings"
+   ]
+  },
+  {
+   "ref": "D. Eisenbud, Commutative Algebra with a View Toward Algebraic Geometry (GTM 150, 1995)",
+   "url": "https://www.ebook.de/de/product/25252012/david_eisenbud_commutative_algebra.html",
+   "toc": [
+    "Ch. 17 Regular Sequences and the Koszul Complex",
+    "Ch. 18 Depth, Codimension, and Cohen-Macaulay Rings",
+    "Ch. 19 Homological Theory of Regular Local Rings",
+    "Ch. 21 Duality, Canonical Modules, and Gorenstein Rings",
+    "(section headings not obtained)"
+   ]
+  },
+  {
+   "ref": "C. A. Weibel, An Introduction to Homological Algebra (1994), Ch. 4 Homological dimension",
+   "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+   "toc": [
+    "4.1 Dimensions",
+    "4.2 Rings of Small Dimension",
+    "4.3 Change of Rings Theorems",
+    "4.4 Local Rings",
+    "4.5 Koszul Complexes",
+    "4.6 Local Cohomology"
+   ]
+  },
+  {
+   "ref": "The Stacks Project, Ch. 10 Commutative Algebra",
+   "url": "https://stacks.math.columbia.edu/tag/00AO",
+   "toc": [
+    "10.62 Support and dimension of modules",
+    "10.68 Regular sequences",
+    "10.69 Quasi-regular sequences",
+    "10.71 Ext groups",
+    "10.72 Depth",
+    "10.73 Functorialities for Ext",
+    "10.99 Criteria for flatness",
+    "10.103 Cohen-Macaulay modules",
+    "10.104 Cohen-Macaulay rings",
+    "10.105 Catenary rings",
+    "10.106 Regular local rings",
+    "10.109 Rings of finite global dimension",
+    "10.111 Auslander-Buchsbaum",
+    "(Serre's criterion / R_k S_k and Gorenstein (Dualizing Complexes chapter) sections later; not seen)"
+   ]
+  },
+  {
+   "ref": "M. Hochster, Math 615 (Winter 2016) supplement: depth, Cohen-Macaulay rings, flatness",
+   "url": "https://dept.math.lsa.umich.edu/~hochster/615W16/615supp.pdf",
+   "toc": [
+    "Quasilocal rings and Nakayama (incl. graded Nakayama)",
+    "Regular sequences (possibly improper), flat base change, permutability",
+    "Depth",
+    "Systems of parameters, homogeneous s.o.p.",
+    "Cohen-Macaulay rings and modules",
+    "Catenary/equidimensional, polynomial rings, flat local extensions",
+    "Graded CM rings and freeness over polynomial subrings",
+    "(headings paraphrased from content; the PDF has no formal TOC)"
+   ]
+  },
+  {
+   "ref": "C. Ji, Cohen-Macaulay rings and schemes (expository, Columbia, 2021)",
+   "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+   "toc": [
+    "1 Definitions and first examples: 1.1 Preliminary notions; 1.2 Depth and Cohen-Macaulay rings",
+    "2 Geometric properties: 2.1 Complete intersections and smoothness; 2.2 Catenary and equidimensional rings; 2.3 The unmixedness theorem and miracle flatness",
+    "3 Other applications: 3.1 Serre duality; 3.2 The Upper Bound Theorem"
+   ]
+  }
+ ],
+ "explanations": {
+  "intuition": [
+   {
+    "summary": "A regular sequence is a list of 'independent' equations: each new element avoids every zero-divisor left by the earlier ones, so each step cuts the module down as much as possible (dimension drops by exactly one).",
+    "source": "Hochster, Math 615 supplement; Wikipedia 'Regular sequence'",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W16/615supp.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth is a dimension-like invariant measured 'from big to small' (how many successive cuts one can make), always bounded by dimension; CM means this algebraic count agrees with the geometric dimension.",
+    "source": "C. Ji, Cohen-Macaulay rings and schemes, §1.2",
+    "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+    "verified": true
+   },
+   {
+    "summary": "CM rings share 'some of the algebro-geometric properties of a smooth variety', notably local equidimensionality; geometrically: no embedded points and no components of different dimension through a point, no 'fat' lower-dimensional parts.",
+    "source": "Wikipedia 'Cohen-Macaulay ring' (intro and Geometric interpretation); Ji §2.2",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Depth 0 at the maximal ideal means m is associated: some nonzero element is killed by m, i.e. the closed point is an embedded component; a line with an embedded point has depth 0 but dimension 1.",
+    "source": "Wikipedia 'Depth (ring theory)'",
+    "url": "https://en.wikipedia.org/wiki/Depth_(ring_theory)",
+    "verified": true
+   },
+   {
+    "summary": "Depth >= 2 is a Hartogs phenomenon: H^0_m and H^1_m vanish so M equals its sections on the punctured spectrum; S_2 modules are determined by their behaviour in codimension 1 (sections extend across codimension-2 closed sets).",
+    "source": "K. Schwede, Math 7830 notes 2/24/2017, Lemma 0.2, Thm 0.3, Remark 0.4",
+    "url": "https://www.math.utah.edu/~schwede/math7830-spring2017/Notes-2-24.pdf",
+    "verified": true
+   },
+   {
+    "summary": "'Hidden flatness': under mild hypotheses a local ring is CM iff it is a finite free module over a regular (e.g. polynomial / Noether normalisation) subring; geometrically all fibres of a finite map to affine space have the same degree.",
+    "source": "Wikipedia 'Cohen-Macaulay ring' (miracle flatness); Hochster 615 supplement §graded",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   }
+  ],
+  "motivation": [
+   {
+    "summary": "Origin is the unmixedness theorem: Macaulay (1916) for polynomial rings, Cohen (1946) for power series rings: an ideal generated by as many elements as its height has no embedded components. CM rings are exactly those where unmixedness holds.",
+    "source": "Encyclopedia of Mathematics 'Cohen-Macaulay ring'; Wikipedia 'Cohen-Macaulay ring' (History)",
+    "url": "https://encyclopediaofmath.org/wiki/Cohen-Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Terminology was unsettled in the 1950s-60s ('semi-regular', 'Macaulay', 'Macaulay-Cohen'); Northcott-Rees linked irreducibility of s.o.p. ideals to the CM property; homological methods of Auslander-Buchsbaum and Serre around 1956-57 gave the modern depth treatment.",
+    "source": "C. Huneke, Hyman Bass and ubiquity: Gorenstein rings, §'Commutative algebra circa 1960'",
+    "url": "https://arxiv.org/abs/math/0209199",
+    "verified": true
+   },
+   {
+    "summary": "Depth was introduced through homological algebra; Bruns-Herzog present it as the most basic invariant after dimension, defined via regular sequences but detected by Ext vanishing, linked to projective dimension, with grade as the global version via Koszul complexes.",
+    "source": "Bruns-Herzog, Ch. 1 summary (Cambridge Core chapter page)",
+    "url": "https://www.cambridge.org/core/books/cohenmacaulay-rings/regular-sequences-and-depth/1B04C495C2B4915A13633CD5E6780EA1",
+    "verified": true
+   },
+   {
+    "summary": "Auslander-Buchsbaum (1957, Trans. AMS 85, Thm 3.7) relating pd and depth; leads to Serre's homological characterisation of regular local rings (finite global dimension) and localisation of regular rings.",
+    "source": "Wikipedia 'Auslander-Buchsbaum formula'",
+    "url": "https://en.wikipedia.org/wiki/Auslander%E2%80%93Buchsbaum_formula",
+    "verified": true
+   },
+   {
+    "summary": "Geometric payoff: Serre duality holds in its clean form exactly for CM schemes (dualizing complex is a single sheaf); intersection multiplicity equals length when local rings are CM; Stanley used CM Stanley-Reisner rings (Reisner) to prove the Upper Bound Theorem for spheres.",
+    "source": "Ji §3.1-3.2; Wikipedia 'Cohen-Macaulay ring' (Intersection theory, Coherent duality)",
+    "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Modern drivers: existence of big / maximal CM modules and complexes is tied to Hochster's homological conjectures, settled in mixed characteristic via perfectoid methods (André, Bhatt), with applications to birational geometry.",
+    "source": "Iyengar-Ma-Schwede-Walker, arXiv:2106.08173, Intro",
+    "url": "https://arxiv.org/abs/2106.08173",
+    "verified": true
+   }
+  ],
+  "definitions": [
+   {
+    "summary": "M-regular sequence: x_1 non-zero-divisor on M, each x_i non-zero-divisor on M/(x_1..x_{i-1})M, and M/(x)M != 0. Hochster calls the version without the last condition 'possibly improper'; Wikipedia notes only some authors require the nonvanishing.",
+    "source": "Bruns-Herzog Def 1.1.1 (chapter page); Hochster 615 supplement; Wikipedia 'Regular sequence'",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W16/615supp.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth (grade) of M on I: common length of maximal M-regular sequences in I (Rees); equals min{i : Ext^i(R/I,M) != 0}. Proof: induction on a maximal sequence using the long exact Ext sequence and that Ext^i(R/I,M) is killed by I; base case uses that a module with I in a zero-divisor set has I inside an associated prime.",
+    "source": "Weibel Thm 4.4.8; Ogus notes Thm 0.2(2); Guan-Hu §3 Thm 3.1",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth via local cohomology: depth M = least n with H^n_m(M) != 0 (Weibel 4.6.3), and H^q_m(M) vanishes outside depth <= q <= dim; local cohomology is the colimit of Koszul cohomology on powers x^l, linking the Koszul and Ext definitions.",
+    "source": "Weibel §4.6 (4.6.3, 4.6.8, 4.6.9)",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth via Koszul complex: for x generating I (n elements), depth_I M = n - max{q : H_q(x;M) != 0}; acyclicity of the Koszul complex on a regular sequence (Weibel 4.5.4) is the key step. The exact formula is from memory; Ji Thm 1.12 and Weibel §4.5 were seen only in outline.",
+    "source": "Weibel §4.5; Ji Thm 1.12 (Koszul cohomology detects maximal regular sequence length)",
+    "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+    "verified": false
+   },
+   {
+    "summary": "Lean formalisation takes the Ext definition (least i with Ext^i(N,M) != 0, else infinity) as primary and proves equality with sup of regular-sequence lengths as a theorem.",
+    "source": "Guan-Hu, arXiv:2510.24818, §3",
+    "url": "https://arxiv.org/abs/2510.24818",
+    "verified": true
+   },
+   {
+    "summary": "CM local ring/module: depth = dim (dim of support for modules); equivalently some (every) system of parameters is a regular sequence; equivalently Ext^i(k,R) or H^i_m(R) vanish for i < dim R; equivalently there is a regular sequence a_1..a_k with R/(a) Artinian.",
+    "source": "Encyclopedia of Mathematics; Hochster 615 supplement §5; Stacks Def 10.103.1",
+    "url": "https://encyclopediaofmath.org/wiki/Cohen-Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Global: a Noetherian ring/module is CM if all localisations at maximal ideals (equivalently all primes) are CM; Stacks proves localisation preserves CM (Lemma 10.103.11) so the two agree.",
+    "source": "Stacks §10.103 (Def 10.103.12, Lemma 10.103.11); Guan-Hu Lemma 4.12",
+    "url": "https://stacks.math.columbia.edu/tag/00N2",
+    "verified": true
+   },
+   {
+    "summary": "Maximal Cohen-Macaulay: depth M = dim R (Stacks Def 10.103.8), equivalently CM with dim M = dim R; the IMSW survey extends to complexes and separates 'big CM' (no finiteness) from MCM (finitely generated homology).",
+    "source": "Stacks Def 10.103.8; IMSW arXiv:2106.08173 Intro",
+    "url": "https://stacks.math.columbia.edu/tag/00N2",
+    "verified": true
+   },
+   {
+    "summary": "Hilbert-Samuel characterisation: R CM iff length(R/Q) = e(Q) for every (equivalently some) parameter ideal Q.",
+    "source": "Wikipedia 'Cohen-Macaulay ring' (Theorems)",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Serre's conditions: (S_k) depth A_p >= min(k, dim A_p) for all p, (R_k) A_p regular for ht p <= k; reduced iff R0+S1, normal iff R1+S2 (Krull for domains, Serre in general), CM iff S_k for all k.",
+    "source": "Wikipedia 'Serre's criterion for normality'; Schwede notes Def 0.1",
+    "url": "https://en.wikipedia.org/wiki/Serre%27s_criterion_for_normality",
+    "verified": true
+   },
+   {
+    "summary": "Gorenstein glimpse: local ring of finite injective dimension; equivalently Ext^i(k,R)=0 for i != d and one-dimensional for i=d; Artinian reduction has simple socle; canonical module is R. Gorenstein implies CM (Weibel Cor 4.4.10); chain regular => c.i. => Gorenstein => CM, none reversible.",
+    "source": "Wikipedia 'Gorenstein ring'; Huneke §Definition; Weibel 4.4.10",
+    "url": "https://en.wikipedia.org/wiki/Gorenstein_ring",
+    "verified": true
+   }
+  ],
+  "viewpoints": [
+   {
+    "summary": "Element-wise/algebraic: regular sequences and systems of parameters (Matsumura §16-17, Hochster notes).",
+    "source": "Hochster 615 supplement",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W16/615supp.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Homological: depth as first non-vanishing Ext^i(k,M); Auslander-Buchsbaum pd M + depth M = depth R; regular iff finite global dimension (Weibel 4.4.15-16).",
+    "source": "Weibel §4.4",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Cohomological/geometric: depth via H^i_m, CM = local cohomology concentrated in degree dim; for projective X with ample L, the section ring is CM iff intermediate cohomology H^i(X,L^j) vanishes (arithmetically CM).",
+    "source": "Weibel §4.6; Wikipedia 'Cohen-Macaulay ring' (Section rings); EoM (arithmetically CM)",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Finite flat / Noether normalisation: CM iff free over a polynomial (regular) subring; graded case via homogeneous s.o.p.",
+    "source": "Hochster 711 notes 9/19/2005 §3; Wikipedia (miracle flatness)",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/711F05/L09.19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Duality: CM iff dualizing complex is a single sheaf (shifted canonical module); Gorenstein iff that sheaf is a line bundle.",
+    "source": "Wikipedia 'Cohen-Macaulay ring' (Coherent duality)",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Combinatorial: Stanley-Reisner ring K[Delta] has dim = dim Delta + 1; CM iff Reisner's link-homology criterion; h-vector of CM complex is an O-sequence.",
+    "source": "Faridi-Hibi arXiv:2505.02605 §1; Hochster 711 notes §4; Ji §3.2",
+    "url": "https://arxiv.org/abs/2505.02605",
+    "verified": true
+   },
+   {
+    "summary": "Categorical/representation-theoretic: MCM modules over Gorenstein rings form a Frobenius category whose stable category is the singularity category; over hypersurfaces MCM = matrix factorizations.",
+    "source": "Chen arXiv:2502.07483 §1.1",
+    "url": "https://arxiv.org/abs/2502.07483",
+    "verified": true
+   }
+  ],
+  "conventions": [
+   {
+    "summary": "Depth vs grade: Weibel writes G(A) ('grade') for the m-depth; Stacks/most papers write depth; Bruns-Herzog use grade(I,M) for the I-depth and depth M for the m-depth (BH split partly unverified).",
+    "source": "Weibel 4.4.3; Wikipedia 'Depth' ('commonly called the grade')",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Regular sequence nonvanishing condition M/(x)M != 0: required by Bruns-Herzog, Ogus, Hochster ('regular' vs 'possibly improper'); optional per Wikipedia; Guan-Hu/Mathlib distinguish 'weakly regular' (no condition) from 'regular'.",
+    "source": "Hochster 615 supplement; Ogus notes; Wikipedia 'Regular sequence'; Guan-Hu §2.4",
+    "url": "https://math.berkeley.edu/~ogus/Math_250B-2016/Notes/depth.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth of zero module / IM = M: Wikipedia and Ogus set depth = infinity (Ogus: infinity when E/IE = 0); Guan-Hu: depth infinity when all Ext vanish, and zero module is CM by convention; Wikipedia's CM article also declares 0 CM; Stacks Def 10.103.1 states no zero-module convention.",
+    "source": "Wikipedia 'Regular sequence'; Ogus; Guan-Hu §3-4; Wikipedia CM",
+    "url": "https://arxiv.org/abs/2510.24818",
+    "verified": true
+   },
+   {
+    "summary": "Serre (S_n): Schwede uses depth M_q >= min(n, dim R_q) and footnotes that some authors use dim M_q; Ficarra uses min(r, dim M_P) over Supp M; other sources phrase with ht p (equivalent for rings). Matters for modules without full support.",
+    "source": "Schwede notes Def 0.1 footnote; Ficarra arXiv:2602.17240 §3",
+    "url": "https://www.math.utah.edu/~schwede/math7830-spring2017/Notes-2-24.pdf",
+    "verified": true
+   },
+   {
+    "summary": "'Maximal Cohen-Macaulay': Stacks/Guan-Hu: finite with depth = dim R; IMSW: big CM complex with finitely generated homology; 'big CM' for non-finitely-generated modules (some require mM != M).",
+    "source": "Stacks Def 10.103.8; IMSW Intro",
+    "url": "https://arxiv.org/abs/2106.08173",
+    "verified": true
+   },
+   {
+    "summary": "CM for non-local rings: localisation at all maximal ideals (Wikipedia, Hochster) vs all primes (Guan-Hu Def 4.11, Stacks 10.103.12); equivalent because CM localises.",
+    "source": "Wikipedia CM; Guan-Hu Def 4.11, Lemma 4.12",
+    "url": "https://arxiv.org/abs/2510.24818",
+    "verified": true
+   },
+   {
+    "summary": "Module dimension: dim Supp M = dim R/Ann M; dimension of zero module -infinity (Ficarra) vs undefined/left out.",
+    "source": "Ficarra §1; Guan-Hu §2.2",
+    "url": "https://arxiv.org/abs/2602.17240",
+    "verified": true
+   }
+  ],
+  "examples": [
+   {
+    "summary": "CM: regular local rings (Z, k[x_1..x_n], power series), Artinian rings, reduced 1-dimensional rings, normal 2-dimensional rings, complete intersections, Gorenstein rings, invariant rings of linearly reductive groups (Hochster-Roberts), determinantal rings of expected codimension, normal toric/affine semigroup rings (Hochster), Grassmannians, Schubert varieties.",
+    "source": "Wikipedia 'Cohen-Macaulay ring' (Examples); EoM",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "k[x]/(x^2): depth 0 = dim 0, CM but not reduced; k[t^2,t^3] (cusp) Gorenstein non-regular; k[t^3,t^4,t^5] CM not Gorenstein; k[x,y]/(x,y)^2 CM, socle of dimension 2 so not Gorenstein.",
+    "source": "Wikipedia CM and Gorenstein articles; Huneke (monomial curves symmetric semigroup)",
+    "url": "https://en.wikipedia.org/wiki/Gorenstein_ring",
+    "verified": true
+   },
+   {
+    "summary": "Standard non-example: k[x,y]/(x^2,xy) (line with embedded point at origin): dim 1, depth 0 at origin. Used by Wikipedia (Depth, CM), Ji, Hochster.",
+    "source": "Wikipedia 'Depth'; Ji §1.2; Hochster 615 supplement",
+    "url": "https://en.wikipedia.org/wiki/Depth_(ring_theory)",
+    "verified": true
+   },
+   {
+    "summary": "Non-equidimensional: k[x,y,z]/(xy,xz) (= (x) cap (y,z): plane union line) reduced but not CM; Hochster's K[[x,y,z]]/((x,y) cap (z)) catenary but not equidimensional.",
+    "source": "Wikipedia CM (Non-examples); Hochster 615 supplement",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Two planes meeting in a point, k[w,x,y,z]/(wy,wz,xy,xz): reduced, equidimensional, still not CM (Hartshorne connectedness / depth 1). Affine cones over abelian varieties of dim >= 2 not CM; Segre products of CM rings need not be CM.",
+    "source": "Wikipedia CM (Non-examples)",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "Regular sequence order matters globally: x, y(1-x), z(1-x) regular in k[x,y,z] but y(1-x), z(1-x), x not (Wikipedia); Hochster's version x-1, xy, xz; permutation is fine in local or graded settings.",
+    "source": "Wikipedia 'Regular sequence'; Hochster 615 supplement",
+    "url": "https://en.wikipedia.org/wiki/Regular_sequence",
+    "verified": true
+   },
+   {
+    "summary": "Z_(p) has depth 1; k[x_1..x_n] localised at the origin has depth n; k[x,y,z]/(x^2,yz) is CM (Ji).",
+    "source": "Wikipedia 'Regular sequence'; Ji §1.2",
+    "url": "https://en.wikipedia.org/wiki/Regular_sequence",
+    "verified": true
+   },
+   {
+    "summary": "K[[x^2,x^3,y^2,y^3]] is CM but not normal; a Segre product (cubic cone x P^1) gives a normal domain that is not CM - so S2 (normal) does not imply CM in dim >= 3.",
+    "source": "Hochster 615 supplement §8",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W16/615supp.pdf",
+    "verified": true
+   }
+  ],
+  "computation": [
+   {
+    "summary": "Find an explicit maximal regular sequence (check each element is a non-zero-divisor modulo the previous; in graded/local case order is irrelevant); in practice a homogeneous s.o.p. of a graded ring is regular iff the ring is CM.",
+    "source": "Hochster 711 notes §3; Hochster 615 supplement",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/711F05/L09.19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Auslander-Buchsbaum: over a regular (polynomial) ring S, depth M = dim S - pd_S M, read off from the length of a minimal free resolution; Wikipedia calls it a practical way to compute depth; A CM iff pd_S A = codim A.",
+    "source": "Wikipedia 'Depth' and 'Auslander-Buchsbaum formula'; Stacks Prop 10.111.1",
+    "url": "https://en.wikipedia.org/wiki/Auslander%E2%80%93Buchsbaum_formula",
+    "verified": true
+   },
+   {
+    "summary": "Ext / Koszul computation: depth = first i with Ext^i(k,M) != 0, or n minus top nonvanishing Koszul homology on generators of m; local cohomology via Cech/Koszul colimit.",
+    "source": "Weibel §4.4-4.6; Ji (Koszul)",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/04-homological_dimension.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Depth lemma and quotient by regular element: depth drops by exactly 1 modulo a regular element; short exact sequences give inequalities depth B >= min(depth A, depth C) etc.; used to propagate depth through exact sequences (Ohtani-type decompositions in combinatorial papers).",
+    "source": "Guan-Hu Lemma 3.5, Thm 3.6; Stacks Lemma 10.72.6-10.72.7 cited in proof of 10.111.1",
+    "url": "https://stacks.math.columbia.edu/tag/090U",
+    "verified": true
+   },
+   {
+    "summary": "Graded/Hilbert series test: for CM graded K-algebras, Hilbert series times (1-t)^d is the h-polynomial with nonnegative coefficients (O-sequence); Stanley-Reisner rings via Reisner's criterion on links.",
+    "source": "Ji §3.2; Faridi-Hibi §1 Thm 1.5",
+    "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Software: Macaulay2 Depth package provides depth, isCM, isRegularSequence, regularSequenceCheck, systemOfParameters.",
+    "source": "Macaulay2 Depth package documentation",
+    "url": "https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Depth/html/toc.html",
+    "verified": true
+   }
+  ],
+  "confusions": [
+   {
+    "summary": "'Regular sequences can be permuted' is false in general (non-local, non-graded): Wikipedia's and Hochster's examples; true for elements of m over a local ring or homogeneous positive degree elements in graded case.",
+    "source": "Wikipedia 'Regular sequence'; Hochster 615 supplement",
+    "url": "https://en.wikipedia.org/wiki/Regular_sequence",
+    "verified": true
+   },
+   {
+    "summary": "Equidimensional + reduced does not imply CM (two planes meeting in a point); normal does not imply CM in dim >= 3 (Segre product example; affine cone over abelian surface).",
+    "source": "Wikipedia CM (Non-examples); Hochster 615 supplement",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": true
+   },
+   {
+    "summary": "depth <= dim M <= dim R, and more sharply depth M <= dim R/p for every associated prime p; so CM modules have no embedded primes and all associated primes are minimal (Ogus 0.2(3), Stacks 10.103.7, Guan-Hu Cor 3.13).",
+    "source": "Ogus notes; Stacks Lemma 10.103.7; Guan-Hu Cor 3.13",
+    "url": "https://math.berkeley.edu/~ogus/Math_250B-2016/Notes/depth.pdf",
+    "verified": true
+   },
+   {
+    "summary": "CM is not 'smooth': k[x]/(x^2) and the cusp are CM; smooth => regular => CM but the converses fail.",
+    "source": "Ji §1.2; Wikipedia CM (Examples)",
+    "url": "https://www.math.columbia.edu/~calebji/Cohen-Macaulay.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Global CM rings need not be equidimensional across components (e.g. k[x] x k[y,z]) - CM is a local condition; equidimensionality/catenarity hold locally. (unverified: this specific example is from memory)",
+    "source": "from memory",
+    "url": "https://en.wikipedia.org/wiki/Cohen%E2%80%93Macaulay_ring",
+    "verified": false
+   },
+   {
+    "summary": "MCM over regular local rings are free (Auslander-Buchsbaum), so the interesting theory of MCM modules lives over singular rings (hypersurfaces, matrix factorizations).",
+    "source": "Guan-Hu Thm 5.7; Chen arXiv:2502.07483 §1.1",
+    "url": "https://arxiv.org/abs/2510.24818",
+    "verified": true
+   },
+   {
+    "summary": "Depth of a module depends on the ideal: m-depth vs I-depth; papers fix m-depth for finite modules over local rings (Holanda-Miranda-Neto convention).",
+    "source": "Holanda-Miranda-Neto §1; Wikipedia 'Depth'",
+    "url": "https://arxiv.org/abs/2212.05521",
+    "verified": true
+   }
+  ]
+ },
+ "requirements": [
+  {
+   "item": "M-regular sequence (with M/(x)M != 0), weakly regular variant; quotient by a regular element lowers depth and dimension by 1",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2502.07483",
+    "2505.02605",
+    "Bruns-Herzog 1.1",
+    "Matsumura §16",
+    "Hochster 615",
+    "Stacks 10.68"
+   ]
+  },
+  {
+   "item": "Depth (m-depth, I-depth/grade): Rees theorem that maximal regular sequences have equal length; depth = min i with Ext^i(k,M) != 0",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2510.24818",
+    "2602.17240",
+    "2106.08173",
+    "Weibel 4.4.8",
+    "Bruns-Herzog 1.2",
+    "Stacks 10.72",
+    "seeds_homological-algebra"
+   ]
+  },
+  {
+   "item": "Depth via local cohomology H^i_m (and Grothendieck vanishing above dim, nonvanishing at dim)",
+   "priority": "common",
+   "needed_by": [
+    "2602.17240",
+    "2106.08173",
+    "2208.12072",
+    "Weibel 4.6.3",
+    "Bruns-Herzog 3.5"
+   ]
+  },
+  {
+   "item": "Depth via Koszul complex",
+   "priority": "common",
+   "needed_by": [
+    "2106.08173",
+    "Weibel 4.5",
+    "Matsumura §16",
+    "Bruns-Herzog 1.6",
+    "Ji"
+   ]
+  },
+  {
+   "item": "depth M <= dim R/p for p in Ass M; depth <= dim M <= dim R; depth 0 iff m associated",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2602.17240",
+    "Ogus",
+    "Wikipedia Depth",
+    "seeds_localization"
+   ]
+  },
+  {
+   "item": "Depth lemma (short exact sequences)",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2112.04835 (§4)",
+    "seeds_homological-algebra",
+    "Stacks 10.72"
+   ]
+  },
+  {
+   "item": "Auslander-Buchsbaum formula pd M + depth M = depth R; MCM over regular is free; CM iff pd_S A = codim A over regular S",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2112.04835 (§4)",
+    "Weibel 4.4.15",
+    "Bruns-Herzog 1.3",
+    "Stacks 10.111",
+    "seeds_homological-algebra"
+   ]
+  },
+  {
+   "item": "Krull dimension of a module (dim Supp M), systems of parameters",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2602.17240",
+    "Matsumura §14",
+    "Hochster 615"
+   ]
+  },
+  {
+   "item": "CM local ring/module: depth = dim; s.o.p. is regular sequence; global definition via localisations; zero-module convention",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2510.24818",
+    "2505.02605",
+    "2602.17240",
+    "2208.12072",
+    "Bruns-Herzog 2.1",
+    "Matsumura §17",
+    "Stacks 10.103-10.104"
+   ]
+  },
+  {
+   "item": "Maximal Cohen-Macaulay modules (finite, depth = dim R); big CM modules/algebras (non-finite)",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2502.07483",
+    "2106.08173",
+    "2510.24818",
+    "Stacks 10.103.8",
+    "Bruns-Herzog Ch. 8"
+   ]
+  },
+  {
+   "item": "Properties of CM: no embedded primes, unmixedness theorem, catenary and equidimensional locally, ht I + dim R/I = dim R, localisation, completion, R[x], quotient by regular sequence",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2602.17240",
+    "2208.12072",
+    "Matsumura §17",
+    "Stacks 10.103-10.105",
+    "Wikipedia CM"
+   ]
+  },
+  {
+   "item": "Standard examples and non-examples (k[x,y]/(x^2,xy), plane union line, two planes at a point, k[t^3,t^4,t^5], invariant rings, determinantal and Stanley-Reisner rings)",
+   "priority": "core",
+   "needed_by": [
+    "Wikipedia CM",
+    "Hochster 615",
+    "Ji",
+    "2505.02605"
+   ]
+  },
+  {
+   "item": "Miracle flatness / finite free over regular or polynomial subring; graded CM via homogeneous s.o.p.",
+   "priority": "common",
+   "needed_by": [
+    "Hochster 711",
+    "Wikipedia CM",
+    "Ji §2.3",
+    "2505.02605 (h-vectors background)"
+   ]
+  },
+  {
+   "item": "Complete intersections; regular => c.i. => Gorenstein => CM hierarchy",
+   "priority": "common",
+   "needed_by": [
+    "2502.07483",
+    "2212.05521",
+    "Bruns-Herzog 2.3, 3",
+    "Matsumura §18, §21",
+    "Huneke"
+   ]
+  },
+  {
+   "item": "Serre's conditions (S_n), (R_n), Serre's normality criterion R1+S2, CM iff S_n for all n; S2 Hartogs extension",
+   "priority": "common",
+   "needed_by": [
+    "2212.05521 (§3)",
+    "2602.17240",
+    "2208.12072 (normality)",
+    "Schwede notes",
+    "Bruns-Herzog 2.2"
+   ]
+  },
+  {
+   "item": "Gorenstein rings glimpse: finite injective dimension, Ext^i(k,R), socle, canonical module = R; canonical module and local duality (statement only)",
+   "priority": "common",
+   "needed_by": [
+    "2212.05521",
+    "2502.07483",
+    "2602.17240",
+    "Weibel 4.4.10",
+    "Bruns-Herzog Ch. 3",
+    "Matsumura §18"
+   ]
+  },
+  {
+   "item": "Stanley-Reisner rings and Reisner's criterion; polarization",
+   "priority": "specialised",
+   "needed_by": [
+    "2505.02605",
+    "Bruns-Herzog Ch. 5",
+    "Hochster 711",
+    "Ji §3.2"
+   ]
+  },
+  {
+   "item": "MCM modules and matrix factorizations; stable MCM = singularity category",
+   "priority": "specialised",
+   "needed_by": [
+    "2502.07483"
+   ]
+  },
+  {
+   "item": "Auslander depth formula, Ischebeck's theorem, Ext vanishing against MCM / canonical module",
+   "priority": "specialised",
+   "needed_by": [
+    "2212.05521",
+    "2510.24818"
+   ]
+  },
+  {
+   "item": "Rational / pseudo-rational / F-rational singularities are CM; CM of total space via special fibre",
+   "priority": "specialised",
+   "needed_by": [
+    "2208.12072",
+    "2106.08173",
+    "Wikipedia CM"
+   ]
+  },
+  {
+   "item": "Sequentially CM, generalized CM, Buchsbaum (names only)",
+   "priority": "specialised",
+   "needed_by": [
+    "2602.17240",
+    "Wikipedia CM"
+   ]
+  },
+  {
+   "item": "Regular local rings: Auslander-Buchsbaum-Serre criterion, regular local rings CM and domains",
+   "priority": "common",
+   "needed_by": [
+    "2510.24818",
+    "Weibel 4.4.16",
+    "Matsumura §19"
+   ]
+  }
+ ],
+ "notes": [
+  "Distinct neighbouring concepts (should be links, not re-taught): associated primes and primary decomposition (seeds_localization covers Ass and its localisation; CM page only uses 'depth 0 iff m in Ass' and 'Ass of CM module = minimal primes'); Krull dimension / systems of parameters / height theorem (dimension theory page); Ext and Koszul complex (ext / homological-algebra pages); local cohomology (only as a characterisation of depth); regular local rings and Auslander-Buchsbaum-Serre (local-rings page); canonical modules, local duality and Gorenstein rings (only a glimpse); Stanley-Reisner theory (combinatorial commutative algebra).",
+  "Already reviewed material in seeds_homological-algebra.json (for this page): regular sequences, depth via Ext with proof (Weibel 4.4.8), depth lemma, Auslander-Buchsbaum with proof, three ways to compute depth, k[x,y] example checks. seeds_localization.json: Ass under localisation, regular sequences under localisation and flat base change. The composer should reuse these and add: CM properties (unmixedness, no embedded primes, catenary), s.o.p. characterisation, MCM, examples/non-examples, Serre conditions, miracle flatness, Gorenstein glimpse.",
+  "7 papers listed (spec asks 4-6) because two (2212.05521, 2510.24818) are already used in the seeds; also inspected Jayanthan-Sarkar arXiv:2112.04835 (depth of binomial edge ideals, combinatorial CA): its §1-2 only cite depth bounds (d(G)+f(G) <= depth S/J_G <= n+2-kappa(G)) and use Tor sequences; depth lemma and Auslander-Buchsbaum appear in §4 (not opened).",
+  "Bruns-Herzog section-level headings and Eisenbud section headings not verified (only chapter titles opened). Matsumura TOC from vdoc.pub scrape, page numbers unreliable.",
+  "Serre's (S_n) convention differs: min(n, dim R_q) (Schwede) vs min(n, dim M_q) (Ficarra, some papers) vs ht-version; Wikipedia Serre-criterion formula did not render, so its exact form unverified.",
+  "Math StackExchange / MathOverflow not reachable; confusions are drawn from textbooks, notes and Wikipedia instead. The k[x] x k[y,z] example (CM but not equidimensional globally) is from memory.",
+  "Stacks section pages for 10.72 (depth definition, zero-module convention, list of lemmas) could not be opened beyond tag 090U/00N2; Stacks tag URLs other than those found by search were blocked.",
+  "Wikipedia 'Gorenstein ring' as extracted wrote k[x,y]/(x^2,y^2,xy) for the CM non-Gorenstein example (i.e. k[x,y]/(x,y)^2)."
+ ]
+}

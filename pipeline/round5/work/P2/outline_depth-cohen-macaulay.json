@@ -1,0 +1,208 @@
+{
+ "id": "depth-cohen-macaulay",
+ "title": "Depth and Cohen-Macaulay modules",
+ "verified_sources_opened": [
+  "Stacks 10.72 (tag 00LE), 10.103 (00N2), 10.104 (00N7), 10.111 (090U), 10.157 (031O)",
+  "Weibel Ch.4 PDF (4.4.3, 4.4.7, 4.4.8, 4.4.10, 4.4.15-16, 4.5.4, 4.6.3, 4.6.9)",
+  "Hochster 615 supplement",
+  "Ji, Cohen-Macaulay rings and schemes",
+  "Schwede 7830 notes 2/24",
+  "Ogus, depth notes",
+  "Wikipedia: Cohen-Macaulay ring, Gorenstein ring, Serre's criterion, Koszul complex",
+  "arXiv 2106.08173 (IMSW) Remark 1.7, Def 2.1, 3.1",
+  "arXiv 2510.24818 (Guan-Hu) §3-5",
+  "arXiv 2602.17240 (Ficarra) §1,3",
+  "arXiv 2212.05521 (Holanda-Miranda-Neto) §1-3",
+  "arXiv 2505.02605 (Faridi-Hibi) §1",
+  "arXiv 2502.07483 (Chen) §1.1",
+  "arXiv 2208.12072 (FHLR) abstract"
+ ],
+ "dropped_unverified": [
+  "k[x] x k[y,z] example (from memory, no source found): left out",
+  "Bruns-Herzog section numbers: cited at chapter level only (refs), not as a followed source",
+  "Matsumura theorem numbers (§17 TOC only): cited at section level in entry refs only",
+  "Koszul depth formula: kept, verified in IMSW Remark 1.7 (not in Weibel)"
+ ],
+ "subtopics": [
+  {
+   "subtopic": "Regular sequences (M-regular, weakly regular / possibly improper, nonvanishing condition; permutation in the local case; behaviour under localisation)",
+   "textbook_treatment": [
+    "Stacks 10.68 (Def 10.68.1, Ex 10.68.2, Lemma 10.68.4): one section",
+    "Hochster 615 §2,§4: two sections",
+    "Weibel 4.4.3: one definition",
+    "Matsumura §16 (TOC)",
+    "Bruns-Herzog 1.1 (chapter)"
+   ],
+   "serves_requirements": [
+    "M-regular sequence ... weakly regular variant"
+   ],
+   "decision": "on this page: section 'Regular sequences'",
+   "notes": "Associated primes recalled in one block (facts + pointer), not taught: separate new page proposed 'associated-primes' (Associated primes and primary decomposition)."
+  },
+  {
+   "subtopic": "Depth and I-depth (grade): Rees/Weibel theorem depth = min Ext, depth of M/xM, depth <= dim R/p for p in Ass, depth 0 iff m in Ass; Koszul and local cohomology descriptions",
+   "textbook_treatment": [
+    "Weibel 4.4.3-4.4.8 (2 pages), 4.5.4, 4.6.3, 4.6.9",
+    "Stacks 10.72 (11 lemmas)",
+    "Ogus notes Thm 0.2",
+    "Guan-Hu §3",
+    "IMSW §1.6 Remark 1.7",
+    "Hochster 615 §7"
+   ],
+   "serves_requirements": [
+    "Depth (m-depth, I-depth/grade)...",
+    "depth M <= dim R/p ...",
+    "Depth via local cohomology (statement)",
+    "Depth via Koszul complex (statement)"
+   ],
+   "decision": "on this page: section 'Depth'",
+   "notes": "Krull dimension, dim of modules and systems of parameters only recalled: separate new page proposed 'krull-dimension' (Krull dimension and systems of parameters). Local cohomology only as a characterisation: separate new page proposed 'local-cohomology'."
+  },
+  {
+   "subtopic": "Depth lemma, Auslander-Buchsbaum formula, computing depth from resolutions",
+   "textbook_treatment": [
+    "Stacks 10.72.6, 10.111.1",
+    "Weibel 4.4.15",
+    "Guan-Hu Lemma 3.5, Thm 3.8",
+    "Wikipedia Depth / AB (practical computation)"
+   ],
+   "serves_requirements": [
+    "Depth lemma",
+    "Auslander-Buchsbaum formula; MCM over regular is free; CM iff pd = codim over regular S"
+   ],
+   "decision": "on this page: section 'The depth lemma and the Auslander-Buchsbaum formula' (reviewed seeds reused)",
+   "notes": "Regular local rings / Auslander-Buchsbaum-Serre: only definition + statements used; separate new page proposed 'regular-local-rings'."
+  },
+  {
+   "subtopic": "Cohen-Macaulay modules and rings: definitions (local, global, MCM), first properties (no embedded primes, quotients by regular elements, s.o.p. regular), localisation, examples and non-examples, hidden freeness (graded)",
+   "textbook_treatment": [
+    "Stacks 10.103-10.104 (whole sections)",
+    "Hochster 615 §6, §9-10",
+    "Ji §1-2",
+    "Wikipedia CM (examples, non-examples, miracle flatness)",
+    "Guan-Hu §4",
+    "Matsumura §17 (TOC)",
+    "Bruns-Herzog Ch.2 (chapter)"
+   ],
+   "serves_requirements": [
+    "CM local ring/module ...",
+    "Standard examples and non-examples",
+    "Miracle flatness / graded CM via homogeneous s.o.p.",
+    "Properties of CM (localisation, quotient, R[x])"
+   ],
+   "decision": "on this page: section 'Cohen-Macaulay modules and rings'",
+   "notes": ""
+  },
+  {
+   "subtopic": "Height, dimension and unmixedness in CM local rings (grade = height, ht p + dim R/p = dim R, regular iff height iff part of s.o.p., unmixedness theorem, catenary/equidimensional)",
+   "textbook_treatment": [
+    "Guan-Hu Thm 4.13, Lemma 4.18, Thm 4.19, Thm 4.21",
+    "Stacks 10.104.2-10.104.4",
+    "Ji §2.2-2.3",
+    "Hochster 615 §13",
+    "Wikipedia CM (unmixedness, history)"
+   ],
+   "serves_requirements": [
+    "Properties of CM: no embedded primes, unmixedness theorem, catenary and equidimensional, ht I + dim R/I = dim R"
+   ],
+   "decision": "on this page: section 'Height and unmixedness'",
+   "notes": ""
+  },
+  {
+   "subtopic": "Maximal Cohen-Macaulay modules: free over regular rings, high syzygies are MCM, MCM over hypersurfaces = matrix factorizations (statement), big CM modules (statement)",
+   "textbook_treatment": [
+    "Stacks 10.103.8, 10.104.8-9",
+    "Guan-Hu Def 5.6, Thm 5.7",
+    "Chen §1.1",
+    "IMSW Intro, Def 2.1, 3.1"
+   ],
+   "serves_requirements": [
+    "Maximal Cohen-Macaulay modules; big CM (statement)",
+    "MCM modules and matrix factorizations (specialised)"
+   ],
+   "decision": "on this page: section 'Maximal Cohen-Macaulay modules'",
+   "notes": "Matrix factorizations / singularity categories: separate new page proposed 'matrix-factorizations'; only Eisenbud's statement and one example here."
+  },
+  {
+   "subtopic": "Serre's conditions (S_n), (R_n): definitions and convention differences, S_1 iff no embedded primes, CM iff all S_n, Serre's normality criterion (statement), S_2 and Hartogs (statement)",
+   "textbook_treatment": [
+    "Stacks 10.157 (Def 10.157.1, Lemmas 10.157.2-4)",
+    "Schwede notes Def 0.1, Lemma 0.2, Thm 0.3",
+    "Ficarra §3",
+    "Holanda-Miranda-Neto §3",
+    "Hochster 615 §11 (normal non-CM)"
+   ],
+   "serves_requirements": [
+    "Serre's conditions (S_n), (R_n), Serre's criterion, CM iff S_n all n; S2 Hartogs"
+   ],
+   "decision": "on this page: section 'Serre's conditions'",
+   "notes": "Normality itself is a separate concept; criterion stated with pointer."
+  },
+  {
+   "subtopic": "Beyond: Gorenstein rings and complete intersections (hierarchy, socle test), local cohomology characterisation, canonical module/local duality (statement), Stanley-Reisner rings and Reisner's criterion (statement + examples)",
+   "textbook_treatment": [
+    "Weibel 4.4.10, 4.6",
+    "Wikipedia Gorenstein",
+    "Huneke (arXiv math/0209199)",
+    "Ficarra Prop 1.4",
+    "Faridi-Hibi §1",
+    "Ji §3.2"
+   ],
+   "serves_requirements": [
+    "Complete intersections; hierarchy",
+    "Gorenstein glimpse",
+    "Stanley-Reisner (specialised)",
+    "Sequentially CM (names only)"
+   ],
+   "decision": "on this page as a glimpse: section 'Beyond Cohen-Macaulay: Gorenstein rings, local cohomology, Stanley-Reisner rings'",
+   "notes": "Separate new pages proposed: 'gorenstein-rings' (Gorenstein rings and canonical modules), 'local-cohomology', 'stanley-reisner-rings'."
+  },
+  {
+   "subtopic": "Reading the papers: conventions and how each paper uses depth/CM",
+   "textbook_treatment": [
+    "all papers"
+   ],
+   "serves_requirements": [
+    "Auslander depth formula, Ischebeck (specialised): pointer to [hm],[guanhu]",
+    "Rational singularities CM (specialised): pointer to [fhlr]"
+   ],
+   "decision": "on this page: section 'Reading the papers'",
+   "notes": ""
+  }
+ ],
+ "figures": [
+  "asy: three non-CM pictures (line with embedded point, plane with a line, two planes at a point)",
+  "plot: semigroup <3,4,5> split into three progressions mod 3 (freeness over k[t^3])",
+  "tikz-cd: regular => c.i. => Gorenstein => CM with counterexamples"
+ ],
+ "separate_pages_proposed": [
+  {
+   "id": "krull-dimension",
+   "title": "Krull dimension and systems of parameters"
+  },
+  {
+   "id": "associated-primes",
+   "title": "Associated primes and primary decomposition"
+  },
+  {
+   "id": "regular-local-rings",
+   "title": "Regular local rings and the Auslander-Buchsbaum-Serre theorem"
+  },
+  {
+   "id": "local-cohomology",
+   "title": "Local cohomology"
+  },
+  {
+   "id": "gorenstein-rings",
+   "title": "Gorenstein rings and canonical modules"
+  },
+  {
+   "id": "stanley-reisner-rings",
+   "title": "Stanley-Reisner rings"
+  },
+  {
+   "id": "matrix-factorizations",
+   "title": "Matrix factorizations and MCM modules over hypersurfaces"
+  }
+ ]
+}

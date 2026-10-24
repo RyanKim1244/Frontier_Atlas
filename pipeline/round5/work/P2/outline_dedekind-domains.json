@@ -1,0 +1,136 @@
+{
+ "id": "dedekind-domains",
+ "title": "Dedekind domains",
+ "prerequisites_used": ["ideals", "localization", "local-rings", "noetherian-rings", "ufds", "class-group", "gaussian-integers", "fields-ext", "modules"],
+ "subtopics": [
+  {
+   "topic": "Motivation: failure of unique factorisation of elements, Kummer/Dedekind/Noether; the two families (rings of integers, smooth curves)",
+   "sources": "ideals page (Z[sqrt-5]); Corry 2017 §2-6; Conrad 'Ideal factorization' §1, §5-6; Gathmann Ch.13 intro (short, 1-2 pages each)",
+   "serves": ["motivation"],
+   "decision": "on this page (intro)"
+  },
+  {
+   "topic": "Discrete valuation rings: definition via valuation, uniformiser, ideals pi^k, characterisations (Noetherian local domain with principal maximal ideal; integrally closed of dim 1)",
+   "sources": "Aitken §2 (Defs 2-4, Props 5-9, Thm 11; ~8 pages, the fullest treatment); Stacks Lemma 10.119.7 (one lemma, 5 equivalent conditions); Sutherland L2 quotes the characterisation (Thm 1.16 of L1); seeds_localization DVR block",
+   "serves": ["core: definitions and equivalence (DVR localisations)", "common: Z_(p) and DVRs as localisations; discrete valuations"],
+   "decision": "on this page (the localisation and local-rings pages point here for DVRs)"
+  },
+  {
+   "topic": "Fractional ideals, (A:I), invertible ideals; invertible implies finitely generated; invertibility is local; local: invertible iff principal; failures (Z+2iZ, (x,y) in k[x,y])",
+   "sources": "Sutherland L2 §2.5-2.6 (Def 2.13-Lemma 2.20, Ex 2.21; ~3 pages) and L3 §3.1 (Thm 3.2, Lemma 3.4, Cor 3.5); Conrad §2 (4 pages); Aitken §4-5, §7; Baanen et al. §5.2",
+   "serves": ["core: fractional ideals, (A:I), invertible ideals"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Definition of Dedekind domain and the equivalence theorem (Noetherian+integrally closed+dim<=1; DVR localisations; all nonzero fractional ideals invertible; unique factorisation into primes), with full proofs; examples and non-examples; conventions (fields, primary definition)",
+   "sources": "Sutherland L2 Prop 2.9 + L3 Thm 3.23 (statement; proof partly deferred to problem set); Conrad §3 and §6 (Lemma 3.1/6.2, Thm 3.2/6.6: invertibility of primes, ~4 pages); Stacks Lemma 10.120.17 (factorisation implies Noetherian and DVR); Aitken Thm 64, 69; Gathmann Def 13.1, Lemma 13.3; Baanen §5.1",
+   "serves": ["core: definition(s) and equivalence", "common: examples Z[sqrt-5], PIDs, k[x,y], Z[sqrt-3], orders"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Unique factorisation of ideals; the group of fractional ideals is free on the primes; valuations v_p; contain = divide; gcd = sum, lcm = intersection; primes <-> discrete valuations; geometric meaning (orders of vanishing)",
+   "sources": "Conrad §3-4 (Thm 3.6, Thm 4.3, Cor 4.5; ~5 pages); Sutherland L3 Thm 3.11, Cor 3.13 (local proof); Gathmann Prop 13.7 (primary decomposition proof), 13.13, Rem 13.11, Ex 13.12; Aitken §8 Thm 74",
+   "serves": ["core: unique factorisation, valuations, contain=divide", "common: discrete valuations <-> primes"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Chinese remainder theorem, approximation, ideals coprime to a given ideal in every class, two generators, semilocal Dedekind domains are PIDs, A/I principal ideal ring",
+   "sources": "Sutherland L3 Lemma 3.16, Cor 3.17, 3.18, 3.21, Thm 3.22 (~3 pages); Conrad §4 (Thm 4.7, Cor 4.9, Thm 4.11); Gathmann Prop 13.14",
+   "serves": ["common: two generators; approximation/CRT; every class contains an ideal prime to a given ideal"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Absolute ideal norm N(a) = |A/a|: a/ap = A/p, multiplicativity, N((alpha)) = |N(alpha)|",
+   "sources": "Conrad §7 (Def 7.1, Thm 7.2, Thm 7.5; ~4 pages)",
+   "serves": ["core: ideal norm (absolute part)"],
+   "decision": "on this page for the absolute norm; the relative norm N_{B/A} goes with the splitting page"
+  },
+  {
+   "topic": "Ideal class group of a domain / Dedekind domain: Pic = Cl; trivial iff PID iff UFD; Pic Z[sqrt-5] = Z/2 by a lattice argument; Claborn: every abelian group occurs; every class contains a prime for rings of integers but not in general",
+   "sources": "Sutherland L2 Def 2.22-2.23, L3 Cor 3.15; Gathmann Def 13.24, Prop 13.27, Ex 13.28; Baanen §8.1; Clark §1-2; Wikipedia",
+   "serves": ["core: class group, Cl trivial iff PID iff UFD", "common: every class contains primes (statement)", "specialised: Claborn"],
+   "decision": "on this page for general Dedekind domains; finiteness of Cl(O_K) via Minkowski, quadratic forms and class number tables are on the existing page [[class-group]]; equidistribution/Chebotarev on [[class-field-theory]]"
+  },
+  {
+   "topic": "Localisation of Dedekind domains: S^{-1}D Dedekind; Cl(S^{-1}D) = Cl(D)/<[p] : p meets S> (Claborn); D[1/alpha]; O_K[1/alpha] vs O_K[1/N(alpha)] (corrected reading of Coykendall-Kettinger Thm 4.2); Gilmer's formula; Galois conjugation of overrings",
+   "sources": "Clark Thm 5 (proof outline); Coykendall-Kettinger §4-5 (Thm 4.1, 4.2, Cor 4.4, Prop 5.2, Ex 5.1, Thm 5.8); localization page; seeds_localization (reviewed material)",
+   "serves": ["common: localisation of Dedekind domains and class group of a localisation"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Integral closure of a Dedekind domain in a finite separable extension is Dedekind (AKLB); rings of integers; Krull-Akizuki without separability; primes of B over primes of A and the factorisation pB = prod q^e (definitions only)",
+   "sources": "Sutherland 2015 L4 §4.5 (Props 4.55-4.60, Lemma 4.62, Thm 4.63, Rems 4.61, 4.64; ~4 pages); Baanen §7; Gathmann Prop 13.5 (Z case by finiteness of R/pR); Stacks Lemma 10.120.18",
+   "serves": ["core: rings of integers are Dedekind; integral closure in finite separable extension"],
+   "decision": "on this page"
+  },
+  {
+   "topic": "Splitting of primes in extensions: e, f, g, sum e_i f_i = n, Dedekind-Kummer with index/conductor hypothesis, discriminant and ramification, relative norm, Galois decomposition and inertia groups, Frobenius",
+   "sources": "Sutherland 2015 L5-L7 (three lectures); Milne Ch.3 'Factorization in extensions' to 'Eisenstein extensions'; Conrad 'Factoring after Dedekind'",
+   "serves": ["core: splitting of primes", "core: relative ideal norm", "common: Galois extensions", "common: Dedekind-Kummer"],
+   "decision": "separate new page: 'Splitting of primes in extensions' (proposed id splitting-of-primes). It has its own definitions (e, f, g, decomposition and inertia groups), its own main theorems (fundamental identity, Dedekind-Kummer, ramification and discriminant) and its own lectures/chapter in every text. This page gives only the definition of primes lying over p and of e, f, with one worked example; Dedekind-Kummer for quadratic fields is already stated on [[ideals]]."
+  },
+  {
+   "topic": "Finiteness of the class group of O_K (Minkowski bound), class group computations",
+   "sources": "Milne Ch.4; Sutherland 2015 L13; Conrad 'Class group calculations'; Baanen §8.2 (alternative)",
+   "serves": ["common: finiteness of the class group"],
+   "decision": "existing page [[class-group]] (Minkowski bound, reduced forms); this page states the theorem, explains why it is special to global fields (Claborn), and links"
+  },
+  {
+   "topic": "Finitely generated modules over a Dedekind domain: ideals projective, I + J = A + IJ, torsion-free = A^{n-1} + I, Steinitz class",
+   "sources": "UW Math 505 notes 'Lecture 2-26' (2025) (complete proofs); Gargava et al. §2 Def 7, Prop 9; Wikipedia",
+   "serves": ["specialised: modules and Steinitz class"],
+   "decision": "on this page, as a short final section with the key proofs (it is how papers such as Gargava et al. use the class group)"
+  },
+  {
+   "topic": "Geometric Dedekind domains: smooth affine curves, Pic and the group law of a cubic, Pic k[E] = E(k), non-replete domains",
+   "sources": "Gathmann Ex 13.4(b), 13.12, 13.29; Clark §2",
+   "serves": ["specialised: geometric Dedekind domains"],
+   "decision": "on this page as examples and a views item; the theory of curves belongs to [[algebraic-varieties]] / [[riemann-roch]]"
+  },
+  {
+   "topic": "Factorisation theory (Krull monoids, transfer to zero-sum sequences, half-factoriality, sets of lengths)",
+   "sources": "Chang-Geroldinger §2, §4; Coykendall-Kettinger §2",
+   "serves": ["specialised"],
+   "decision": "not covered here beyond a statement and an example of non-unique lengths; see [gg]. A future page 'Factorisation theory of Krull monoids' could take it."
+  },
+  {
+   "topic": "Narrow and ray class groups, Hilbert class field",
+   "sources": "Sutherland 2015 L20; Koymans-Pagano §1-2",
+   "serves": ["specialised"],
+   "decision": "existing page [[class-field-theory]]"
+  },
+  {
+   "topic": "Computational class groups (S-units, factor bases, Bach bound, Smith normal form); Ore/Montes",
+   "sources": "Elsenhans-Voight §4-7; Jakhar-Kaur-Kumar §2",
+   "serves": ["specialised"],
+   "decision": "not covered here; see [ev], [jkk]"
+  },
+  {
+   "topic": "Orders: non-invertible primes, conductor, Pic of an order",
+   "sources": "Conrad §8; Sutherland L2 Ex 2.21; Chang-Geroldinger §4 Cor 9",
+   "serves": ["specialised"],
+   "decision": "non-examples (Z+2iZ, Z[sqrt-3]) on this page; Pic of orders and the exact sequence not covered here, see [gg] §4 and [conrad] §8"
+  }
+ ],
+ "page_order": [
+  "intro",
+  "1 Discrete valuation rings",
+  "2 Fractional ideals and invertibility",
+  "3 Dedekind domains: definition, examples and the equivalence theorem",
+  "4 Unique factorisation of ideals and valuations",
+  "5 Chinese remainder theorem, approximation and two generators",
+  "6 The norm of an ideal",
+  "7 The class group",
+  "8 Localising a Dedekind domain",
+  "9 Rings of integers and integral closures",
+  "10 Modules over a Dedekind domain",
+  "connections"
+ ],
+ "notes": [
+  "Fields: we follow Sutherland/Gathmann-style statements but allow fields where harmless and say so in a conventions block.",
+  "Chang-Geroldinger do not state that Pic of a localisation is a quotient (checked); that statement is cited to Clark Thm 5 and Coykendall-Kettinger Thm 4.1 instead.",
+  "Coykendall-Kettinger Thm 4.2 is reproduced in its corrected reading (seeds_localization).",
+  "Coykendall-Kettinger Example 6.3 (36 primes in distinct classes) is not used.",
+  "Milne could not be read beyond Ch.2 and is not cited for content."
+ ]
+}

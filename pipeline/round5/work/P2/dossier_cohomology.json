@@ -1,0 +1,893 @@
+{
+ "id": "cohomology",
+ "papers": [
+  {
+   "arxiv": "2107.01553",
+   "title": "Persistent Cup-Length (Contessoto, Memoli, Stefanou, Zhou; SoCG 2022)",
+   "subfield": "applied/computational topology (TDA)",
+   "assumes": [
+    {
+     "item": "simplicial cochains over a field K, cocycles, representative cocycles of classes",
+     "where": "Sec. 1, 3.1"
+    },
+    {
+     "item": "cup product on an ordered simplicial complex, Z/2 formula via front face/back face (concatenation of simplices sharing last/first vertex)",
+     "where": "Sec. 3.1, Algorithm 1"
+    },
+    {
+     "item": "cohomology ring H*(X) as a graded ring, functorial (ring maps induced by maps), defined on Top",
+     "where": "Sec. 3.2, Defs 3.3-3.4"
+    },
+    {
+     "item": "cup-length: max number of positive-degree classes with nonzero product; lower bound for LS category",
+     "where": "Sec. 1, Def. 3.5"
+    },
+    {
+     "item": "cohomology rings of products, wedges, disjoint unions (Kunneth over a field; wedge = product ring with cross terms zero)",
+     "where": "Prop. 3.8, 3.11"
+    },
+    {
+     "item": "standard examples: T^2 vs S^1 v S^2 v S^1 (same groups, different rings), T^d exterior algebra, H*(S^{2l+1}), Klein bottle with Z/2",
+     "where": "Ex. 3.12-3.14"
+    },
+    {
+     "item": "restriction/extension of cochains to subcomplexes; cohomology is contravariant; duality with homology over a field",
+     "where": "Sec. 1, 3.1"
+    }
+   ]
+  },
+  {
+   "arxiv": "2106.05274",
+   "title": "Higher cup products on hypercubic lattices: application to lattice models of topological phases (Chen, Tata, 2021)",
+   "subfield": "mathematical physics / condensed matter (lattice topological phases)",
+   "assumes": [
+    {
+     "item": "Z/2 cochains on a triangulated manifold as functions on k-simplices; chain-cochain pairing",
+     "where": "Sec. II, Eq. 1"
+    },
+    {
+     "item": "coboundary as adjoint of boundary, formula on indicator cochains as sum over cofaces",
+     "where": "Sec. II, Eqs. 3-4"
+    },
+    {
+     "item": "cup product needs a vertex ordering (branching structure); Leibniz rule delta(a cup b)=delta a cup b + a cup delta b (mod 2)",
+     "where": "Sec. II, Eqs. 5-6; Prop. 1"
+    },
+    {
+     "item": "cellular cochains on cubical complexes",
+     "where": "Sec. III.B, Eqs. 18-19"
+    },
+    {
+     "item": "Poincare duality as cochain <-> dual-cellulation surface; cup product dual to intersection; dual cells F_p^vee = F_{d-p}",
+     "where": "Sec. II, III.A"
+    },
+    {
+     "item": "cohomology classes Z^1(M;Z2), H_1(M;Z2) in toric-code style models",
+     "where": "Sec. VII.A"
+    },
+    {
+     "item": "cup product commutative only up to homotopy at cochain level; Steenrod cup-i products and their coboundary formula; sign conventions for integer cup-i differ",
+     "where": "Sec. I, II (Eqs. 7, 9), V"
+    }
+   ]
+  },
+  {
+   "arxiv": "2404.11711",
+   "title": "The topological complexity of the ordered configuration space of disks in a strip (Wawrykow, 2024)",
+   "subfield": "applied algebraic topology (topological complexity, configuration spaces)",
+   "assumes": [
+    {
+     "item": "Kunneth isomorphism H*(X;R) tensor H*(X;R) = H*(X x X;R) (hypotheses not stated) and the cross product",
+     "where": "Sec. 2.2, 3.2, Lemma 3.8"
+    },
+    {
+     "item": "zero-divisors (kernel of cup product / restriction to diagonal), elements 1 x a - a x 1; Farber's zero-divisor cup-length bound for TC",
+     "where": "Sec. 2.2, Prop. 2.5"
+    },
+    {
+     "item": "graded commutativity of the cup product used to reorder products",
+     "where": "Lemma 3.8 proof"
+    },
+    {
+     "item": "Poincare-Lefschetz duality H^i(M) = H_{2n-i}(M, dM) for a compact manifold with boundary; cup product as transverse intersection",
+     "where": "Sec. 3.2"
+    },
+    {
+     "item": "cohomology vanishes above the dimension of a homotopy-equivalent cell complex; homotopy invariance",
+     "where": "Lemma 3.8, Sec. 2"
+    },
+    {
+     "item": "cup products of explicit basis classes (critical cells), computed via duality",
+     "where": "Props. 3.4-3.7"
+    }
+   ]
+  },
+  {
+   "arxiv": "2411.08775",
+   "title": "Algorithms in 4-manifold topology (Bastl, ..., Friedl, ..., Powell et al., 2024)",
+   "subfield": "geometric topology (4-manifolds)",
+   "assumes": [
+    {
+     "item": "fundamental class [X] in H_4(X, dX); relative cohomology H^2(X, dX)",
+     "where": "Sec. 2"
+    },
+    {
+     "item": "Poincare(-Lefschetz) duality via cap product with the fundamental class; H^2/Tors = H_2/Tors",
+     "where": "Sec. 2, 8.5"
+    },
+    {
+     "item": "intersection form defined by evaluating cup product of Poincare duals on [X]; unimodular iff closed or boundary is a homology sphere",
+     "where": "Sec. 2, Remark 3.4"
+    },
+    {
+     "item": "universal coefficient theorem (Z and Z/2) e.g. H_2 torsion-free for simply connected X",
+     "where": "Sec. 2, Lemma 8.22"
+    },
+    {
+     "item": "signature of the intersection form, Novikov additivity",
+     "where": "Sec. 5, 6, 8"
+    },
+    {
+     "item": "Mayer-Vietoris for decompositions",
+     "where": "Lemmas 3.10-3.11"
+    },
+    {
+     "item": "w_2 and the Wu formula <w_2,y> = y.y mod 2 (cohomology operations, distinct topic)",
+     "where": "Sec. 8.5"
+    }
+   ]
+  },
+  {
+   "arxiv": "2402.09103",
+   "title": "On the p-primary subgroups of the cohomology of the classifying spaces of PU_n (2024)",
+   "subfield": "homotopy theory (cohomology of classifying spaces)",
+   "assumes": [
+    {
+     "item": "integral cohomology rings H*(BU_n)=Z[c_1..c_n], H*(BT^n)=Z[v_1..v_n]; restriction to the torus sends c_i to elementary symmetric polynomials",
+     "where": "Sec. 2, Eqs. 2.4, 2.9-2.11"
+    },
+    {
+     "item": "p-localisation of cohomology, p-primary torsion subgroups",
+     "where": "Notation 1.1, Sec. 2.7"
+    },
+    {
+     "item": "cohomology of K(Z,3) in low degrees (Cartan-Serre); K(A,n) as representing spaces",
+     "where": "Prop. 2.1"
+    },
+    {
+     "item": "multiplicative Serre spectral sequence: E_2 = H*(B) tensor H*(F) when H*(F) free (Kunneth), differentials are derivations",
+     "where": "Sec. 2.1-2.2, Eqs. 2.5, 2.13"
+    },
+    {
+     "item": "cup product manipulations of monomials in Chern classes",
+     "where": "throughout"
+    }
+   ]
+  },
+  {
+   "arxiv": "2212.07201",
+   "title": "Toroidal Coordinates: Decorrelating Circular Coordinates with Lattice Reduction (Scoccola, Gakhar, Bush, Rask, Zhou, Perea; SoCG 2023)",
+   "subfield": "topological data analysis / dimensionality reduction",
+   "assumes": [
+    {
+     "item": "simplicial 1-cochains and cocycles with Z or R coefficients; coboundary of 0-cochains",
+     "where": "Sec. 2"
+    },
+    {
+     "item": "change of coefficients H^1(B;Z) -> H^1(B;R) induced by Z -> R; integral classes form a full lattice in real cohomology",
+     "where": "Sec. 2, 3.3, Lemma 22"
+    },
+    {
+     "item": "H^1(X;Z) = [X, S^1] (maps to the circle up to homotopy/rotation correspond to integral classes) used without being named",
+     "where": "Sec. 4, App. A.2 Prop. 12"
+    },
+    {
+     "item": "de Rham vs singular: integral closed 1-forms integrate to integers on loops",
+     "where": "App. A.2, Lemma 24"
+    },
+    {
+     "item": "persistent cohomology with Z/p coefficients and lifting to integral classes",
+     "where": "Sec. 6, App. C.1"
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "ref": "Hatcher, Algebraic Topology (2002), Chapter 3 Cohomology",
+   "url": "https://pi.math.cornell.edu/~hatcher/AT/at1-tc.html",
+   "toc": [
+    "3.1 Cohomology Groups: The Universal Coefficient Theorem; Cohomology of Spaces",
+    "3.2 Cup Product: The Cohomology Ring; A Kunneth Formula; Spaces with Polynomial Cohomology",
+    "3.3 Poincare Duality: Orientations and Homology; The Duality Theorem; Connection with Cup Product; Other Forms of Duality",
+    "Additional topics: 3.A Universal Coefficients for Homology; 3.B The General Kunneth Formula; 3.C H-Spaces and Hopf Algebras; 3.D The Cohomology of SO(n); 3.E Bockstein Homomorphisms; 3.F Limits and Ext; 3.G Transfer Homomorphisms; 3.H Local Coefficients"
+   ]
+  },
+  {
+   "ref": "May, A Concise Course in Algebraic Topology, Chs. 18-20, 22",
+   "url": "https://math.uchicago.edu/~chicagotopology2/ConciseRevised.pdf",
+   "toc": [
+    "Ch. 18 Axiomatic and cellular cohomology theory: axioms; cellular and singular cohomology; cup products; RP^n and Borsuk-Ulam; obstruction theory",
+    "Ch. 19 Derivations of properties from the axioms: reduced cohomology; axioms for reduced cohomology; Mayer-Vietoris; lim^1 and cohomology of colimits; uniqueness on CW complexes",
+    "Ch. 20 The Poincare duality theorem: statement; definition of cap product; orientations and fundamental classes; proof of the vanishing theorem; proof of Poincare duality; the orientation cover",
+    "Ch. 22 Homology, cohomology and K(pi,n)s: K(pi,n)s and cohomology; cup and cap products; Postnikov systems; cohomology operations"
+   ]
+  },
+  {
+   "ref": "Munkres, Elements of Algebraic Topology (Routledge ed.), Chs. 5, 7, 8",
+   "url": "https://www.routledge.com/Elements-of-Algebraic-Topology/Munkres-Krantz-Parks/p/book/9781032765549",
+   "toc": [
+    "Ch. 5 Cohomology: Hom functor; simplicial cohomology; relative cohomology; cohomology theory; cohomology of free chain complexes; chain equivalences; cohomology of CW complexes; cup products; cohomology rings of surfaces",
+    "Ch. 7 Homological algebra: Ext; universal coefficient theorem; torsion products; UCT for homology; tensor products of chain complexes; Kunneth theorem; Eilenberg-Zilber; Kunneth for cohomology; cohomology ring of a product space",
+    "Ch. 8 Duality in manifolds: join; homology manifolds; dual block complex; Poincare duality; cap products; second proof of Poincare duality; cohomology rings of manifolds; homotopy classification of lens spaces; Lefschetz duality; Alexander duality; natural versions of duality; Cech cohomology; Alexander-Pontryagin duality"
+   ]
+  },
+  {
+   "ref": "Miller, Lectures on Algebraic Topology (MIT 18.905-906), Chapter 3 Cohomology and duality",
+   "url": "https://math.mit.edu/~hrm/papers/lectures-905-906.pdf",
+   "toc": [
+    "24 Universal coefficient theorem",
+    "25 Kunneth and Eilenberg-Zilber",
+    "26 Coproducts, cohomology",
+    "27 Ext and UCT",
+    "28 Products in cohomology",
+    "29 Cup product, continued",
+    "30 Surfaces and nondegenerate symmetric bilinear forms",
+    "31 Local coefficients and orientations",
+    "32 Proof of the orientation theorem",
+    "33 A plethora of products",
+    "34 Cap product and Cech cohomology",
+    "35 Cech cohomology as a cohomology theory",
+    "36 Fully relative cap product",
+    "37 Poincare duality",
+    "38 Applications"
+   ]
+  },
+  {
+   "ref": "Bredon, Topology and Geometry (GTM 139), Chs. V-VI (chapter titles only verified)",
+   "url": "https://library.holycross.edu/Record/b3194252/TOC",
+   "toc": [
+    "Ch. V Cohomology",
+    "Ch. VI Products and Duality"
+   ]
+  },
+  {
+   "ref": "tom Dieck, Algebraic Topology (EMS 2008), Chs. 16-18 (chapter titles only verified)",
+   "url": "https://ems.press/books/etb/57/contents",
+   "toc": [
+    "15 Manifolds",
+    "16 Homology of Manifolds",
+    "17 Cohomology",
+    "18 Duality",
+    "19 Characteristic Classes"
+   ]
+  }
+ ],
+ "explanations": {
+  "intuition": [
+   {
+    "summary": "Cochains as measurements: a k-cochain assigns a number to each k-simplex; cocycles are locally consistent data, coboundaries are data that are trivially consistent, and cohomology measures the obstruction to globalising. Illustrated by the Mobius band twist detected by H^1 of the circle.",
+    "source": "Wikipedia, Cohomology",
+    "url": "https://en.wikipedia.org/wiki/Cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Degree-one cocycles on a surface can be represented by counting signed crossings with a transverse curve; a cup product of two such classes is nonzero exactly when the corresponding loops are forced to intersect. In the nonorientable case a curve cannot be pushed off itself, explaining why its square is nonzero mod 2.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Under Poincare duality, cup product corresponds to transverse intersection of dual submanifolds (codimensions add); on a lattice, a p-cochain is pictured as a (d-p)-dimensional surface on the dual cellulation.",
+    "source": "Chen, Tata, Higher cup products on hypercubic lattices, arXiv:2106.05274, Sec. II",
+    "url": "https://arxiv.org/pdf/2106.05274",
+    "verified": true
+   },
+   {
+    "summary": "Making intersection = cup product precise at the cochain level: intersection is commutative but only partially defined, the cubical cup product is total but commutative only up to homotopy; flowing one submanifold forward and the other backward along a canonical vector field makes the two agree.",
+    "source": "Friedman, Medina-Mardones, Sinha, Flowing from intersection product to cup product, arXiv:2106.05986, Sec. 1",
+    "url": "https://arxiv.org/pdf/2106.05986",
+    "verified": true
+   },
+   {
+    "summary": "Integral degree-one classes are circle-valued functions: a 1-cocycle with integer values integrates to a map to S^1 = R/Z; this is the basis of circular coordinates in data analysis.",
+    "source": "Scoccola et al., Toroidal coordinates, arXiv:2212.07201, Sec. 2-4, App. A.2",
+    "url": "https://arxiv.org/pdf/2212.07201",
+    "verified": true
+   },
+   {
+    "summary": "Cup-length as a count of how many classes can be multiplied nontrivially, a crude measure of the ring that bounds Lusternik-Schnirelmann category and distinguishes spaces with equal Betti numbers.",
+    "source": "Contessoto, Memoli, Stefanou, Zhou, Persistent cup-length, arXiv:2107.01553, Sec. 3",
+    "url": "https://arxiv.org/pdf/2107.01553v3",
+    "verified": true
+   }
+  ],
+  "motivation": [
+   {
+    "summary": "History: Poincare (1893-95) stated duality of Betti numbers, first via intersections and then via dual triangulations after Heegaard's criticism; the cohomological restatement with cup and cap products came from Cech and Whitney in the 1930s.",
+    "source": "Wikipedia, Poincare duality",
+    "url": "https://en.wikipedia.org/wiki/Poincar%C3%A9_duality",
+    "verified": true
+   },
+   {
+    "summary": "Timeline: Alexander-Lefschetz intersection theory (1920s) as precursor of the cup product; de Rham (1931); Kolmogorov and Alexander introduce cohomology (1935); Cech/Whitney cup and cap products (1936-38); Eilenberg's singular definition (1944); Eilenberg-Steenrod axioms (1945-52); Leray's sheaf cohomology (1946).",
+    "source": "Wikipedia, Cohomology",
+    "url": "https://en.wikipedia.org/wiki/Cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Why cohomology beyond homology: contravariance fits pullback of functions, and the cup product makes it a ring, a strictly stronger homotopy invariant (e.g. CP^2 vs S^2 v S^4, torus vs wedge).",
+    "source": "Wikipedia, Cohomology",
+    "url": "https://en.wikipedia.org/wiki/Cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Ring structure as a tool for nonexistence results: Hatcher uses cohomology rings of projective spaces to show R^n has a division algebra structure only for n a power of 2, and CP^2 is not S^2 v S^4.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "In applied work the motivation is extra discriminating power at low cost: persistent cup-length distinguishes filtrations (T^2 vs S^1 v S^2 v S^1) that barcodes cannot.",
+    "source": "Contessoto, Memoli, Stefanou, Zhou, Persistent cup-length, arXiv:2107.01553, Sec. 3",
+    "url": "https://arxiv.org/pdf/2107.01553v3",
+    "verified": true
+   }
+  ],
+  "definitions": [
+   {
+    "summary": "Singular cochains C^n(X;G)=Hom(C_n(X),G), coboundary dual to boundary, so arrows reverse; relative cochains vanish on chains in A.",
+    "source": "Wikipedia, Cohomology",
+    "url": "https://en.wikipedia.org/wiki/Cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Cup product via front and back faces: (phi cup psi)(sigma) = phi(sigma restricted to [v0..vk]) times psi(sigma restricted to [vk..vk+l]); Leibniz formula delta(phi cup psi)= delta phi cup psi + (-1)^k phi cup delta psi; descends to an associative unital ring.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Equivalent definition: cup product = cross product (Kunneth/Alexander-Whitney map) followed by pullback along the diagonal X -> X x X; the Alexander-Whitney map is unique up to chain homotopy by acyclic models, so the cohomology product does not depend on the choice; with the standard choice it is strictly associative.",
+    "source": "Topospaces subwiki, Cup product",
+    "url": "https://topospaces.subwiki.org/wiki/Cup_product",
+    "verified": true
+   },
+   {
+    "summary": "Categorical definition: precompose the external product of cocycles with the diagonal and apply a coefficient pairing A1 x A2 -> A3; singular case is Moore cochains on the singular simplicial set; cochains form an E-infinity algebra (Berger-Fresse).",
+    "source": "nLab, cup product",
+    "url": "https://ncatlab.org/nlab/show/cup+product",
+    "verified": true
+   },
+   {
+    "summary": "Representability: reduced H^n(X;G) is in natural bijection with based homotopy classes [X, K(G,n)], the class corresponding to pulling back the fundamental class; K(Z,1)=S^1, K(Z,2)=CP^infinity, K(Z/2,1)=RP^infinity.",
+    "source": "Wikipedia, Eilenberg-MacLane space",
+    "url": "https://en.wikipedia.org/wiki/Eilenberg%E2%80%93MacLane_space",
+    "verified": true
+   },
+   {
+    "summary": "Cap product: sigma cap phi = phi(front k-face) times back l-face; characterised by psi(alpha cap phi) = (phi cup psi)(alpha); boundary formula with sign (-1)^k; naturality f_*(alpha) cap phi = f_*(alpha cap f^* phi).",
+    "source": "Hatcher, Algebraic Topology, Section 3.3, cap product passage",
+    "url": "https://pi.math.cornell.edu/%7ehatcher/AT/ATcapprod.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Homological orientation: local orientation = generator of H_n(M, M-x) (infinite cyclic); orientation double cover; closed connected M orientable iff H_n(M)=Z, an orientation is a choice of generator (fundamental class).",
+    "source": "Wikipedia, Orientability (homological orientation section)",
+    "url": "https://en.wikipedia.org/wiki/Orientability",
+    "verified": true
+   },
+   {
+    "summary": "General Poincare duality: for compact K contained in an R-oriented n-manifold M, cap with [M]_K gives Cech H^p(K,L;R) -> H_{n-p}(M-L, M-K;R) isomorphisms; compact M gives H^p(M;R) = H_{n-p}(M;R). Proved by Mayer-Vietoris induction from convex sets in R^n plus a limit argument.",
+    "source": "Miller, MIT 18.905 Fall 2016 lecture 37: Poincare duality",
+    "url": "https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/6d0d50879f0d498ecd93ec54e7c94db3_MIT18_905F16_lec37.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Axiomatic definition: cohomology characterised by Eilenberg-Steenrod axioms; on CW complexes it is unique and computed cellularly; May develops singular and cellular cohomology as instances.",
+    "source": "May, A Concise Course in Algebraic Topology (revised), contents",
+    "url": "https://math.uchicago.edu/~chicagotopology2/ConciseRevised.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Cohomology UCT: natural short exact sequence 0 -> Ext(H_{n-1}(X),G) -> H^n(X;G) -> Hom(H_n(X),G) -> 0 over a PID, split but not naturally; over a field cohomology is the dual of homology.",
+    "source": "Wikipedia, Universal coefficient theorem",
+    "url": "https://en.wikipedia.org/wiki/Universal_coefficient_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Field case proved directly: Kronecker pairing descends to (co)homology and linear algebra on annihilators gives H^q = dual of H_q with field coefficients, including for pairs.",
+    "source": "UC Riverside Math 246A (2022) notes, Unit IV.2 'A weak Universal Coefficient Theorem', pp.115-117",
+    "url": "https://math.ucr.edu/~res/math246A-2022/week05/notes2022-10d.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Poincare duality spaces: finite(ly dominated) complexes with a class [X] such that cap product is an isomorphism for all local systems twisted by an orientation character; several inequivalent historical definitions (Browder, Spivak, Wall).",
+    "source": "Klein, Qin, Su, On the various notions of Poincare duality space, arXiv:1901.00145, Sec. 1, 8",
+    "url": "https://arxiv.org/pdf/1901.00145",
+    "verified": true
+   }
+  ],
+  "viewpoints": [
+   {
+    "summary": "Algebraic/combinatorial: explicit cochain formulas on ordered simplicial complexes and cubical complexes, implementable as algorithms.",
+    "source": "Contessoto, Memoli, Stefanou, Zhou, Persistent cup-length, arXiv:2107.01553, Sec. 3",
+    "url": "https://arxiv.org/pdf/2107.01553v3",
+    "verified": true
+   },
+   {
+    "summary": "Geometric: cohomology classes as Poincare duals of submanifolds; cup = intersection; mod 2 intersection on lattices.",
+    "source": "Chen, Tata, Higher cup products on hypercubic lattices, arXiv:2106.05274, Sec. II",
+    "url": "https://arxiv.org/pdf/2106.05274",
+    "verified": true
+   },
+   {
+    "summary": "Homotopical: H^n(-;G) represented by K(G,n); cohomology operations = H^n(K(G,m);H); cup product from maps K(A,p) x K(B,q) -> K(A tensor B, p+q).",
+    "source": "Wikipedia, Eilenberg-MacLane space",
+    "url": "https://en.wikipedia.org/wiki/Eilenberg%E2%80%93MacLane_space",
+    "verified": true
+   },
+   {
+    "summary": "Higher-structure: cochain cup product is only homotopy commutative; E-infinity algebra structure, Steenrod cup-i products.",
+    "source": "nLab, cup product",
+    "url": "https://ncatlab.org/nlab/show/cup+product",
+    "verified": true
+   },
+   {
+    "summary": "Analytic: with real coefficients singular cohomology agrees with de Rham, cup product = wedge of forms; integrality of periods.",
+    "source": "Wikipedia, Cup product",
+    "url": "https://en.wikipedia.org/wiki/Cup_product",
+    "verified": true
+   },
+   {
+    "summary": "Data-analytic: persistent cohomology of Vietoris-Rips filtrations, representative cocycles giving coordinates and cup-length invariants.",
+    "source": "Scoccola et al., Toroidal coordinates, arXiv:2212.07201, Sec. 2-4, App. A.2",
+    "url": "https://arxiv.org/pdf/2212.07201",
+    "verified": true
+   }
+  ],
+  "conventions": [
+   {
+    "summary": "Coboundary sign: Hatcher and Munkres use delta_n = (partial_{n+1})^*; Bredon uses delta_n = (-1)^{n+1} (partial_{n+1})^*. Cup product then differs by (-1)^{kl} and cap product by (-1)^{k(l-k)} between Hatcher and Bredon; consequent sign changes in Bockstein/duality diagrams and intersection forms.",
+    "source": "Conway, Friedl, Herrmann, Linking forms revisited, arXiv:1708.03754, Sec. 2",
+    "url": "https://arxiv.org/pdf/1708.03754",
+    "verified": true
+   },
+   {
+    "summary": "Dold's convention agrees with Koszul signs everywhere except the coboundary; Friedman-McClure follow Dold but add a sign (-1)^{in} to Poincare duality so it is a Koszul-compatible chain map of degree dim X; Appendix argues some sign issues are unavoidable.",
+    "source": "Friedman, McClure, Intersection homology duality and pairings: singular, PL and sheaf-theoretic, arXiv:1812.10585, Sec. 2 'Signs' and App. B",
+    "url": "https://arxiv.org/pdf/1812.10585",
+    "verified": true
+   },
+   {
+    "summary": "Dold-style coboundary with extra minus sign delta alpha(c) = -(-1)^{|alpha|} alpha(partial c), used in intersection-homology notes.",
+    "source": "Chriestenson, notes 'intersection, cup and cap products' (intersection homology), WOU-hosted pdf",
+    "url": "https://wou.edu/wp/chriestensonb/files/2015/12/intersection-cup-and-cap-products.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Cap product order: Hatcher writes the chain on the left (alpha cap phi) and uses psi(alpha cap phi) = (phi cup psi)(alpha); Wikipedia also writes chain on the left, making homology a right module over cohomology; other books put the cochain first (unverified which).",
+    "source": "Hatcher, Algebraic Topology, Section 3.3, cap product passage",
+    "url": "https://pi.math.cornell.edu/%7ehatcher/AT/ATcapprod.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Integer versions of cup-i products differ in sign conventions from Steenrod's original formulas.",
+    "source": "Chen, Tata, Higher cup products on hypercubic lattices, arXiv:2106.05274, Sec. II",
+    "url": "https://arxiv.org/pdf/2106.05274",
+    "verified": true
+   },
+   {
+    "summary": "Boundary orientation convention outward-normal-first gives partial[M]=[partial M]; intersection form sign Q(x,y) = -<PD(x),y> appears under Hatcher conventions.",
+    "source": "Conway, Friedl, Herrmann, Linking forms revisited, arXiv:1708.03754, Sec. 2",
+    "url": "https://arxiv.org/pdf/1708.03754",
+    "verified": true
+   },
+   {
+    "summary": "Front face/back face (Alexander-Whitney) is the standard cup product convention; cubical analog uses the Serre diagonal with shuffle signs; evaluation of tensor products of cochains differs from Dold's Koszul convention.",
+    "source": "Friedman, Medina-Mardones, Sinha, Flowing from intersection product to cup product, arXiv:2106.05986, Sec. 1",
+    "url": "https://arxiv.org/pdf/2106.05986",
+    "verified": true
+   }
+  ],
+  "examples": [
+   {
+    "summary": "Orientable genus g surface: classes a_i, b_i with a_i b_i = generator = -b_i a_i, all other products zero (symplectic form); nonorientable surfaces and RP^2 with Z/2: a^2 nonzero.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Same groups, different rings: torus vs S^1 v S^1 v S^2 (products of degree-one classes vanish in the wedge); CP^2 vs S^2 v S^4.",
+    "source": "Wikipedia, Cup product",
+    "url": "https://en.wikipedia.org/wiki/Cup_product",
+    "verified": true
+   },
+   {
+    "summary": "Projective spaces: H*(RP^n;Z/2)=Z/2[a]/(a^{n+1}), |a|=1; H*(CP^n;Z)=Z[a]/(a^{n+1}), |a|=2; HP^n with |a|=4; infinite versions polynomial; H*(RP^infinity;Z)=Z[a]/(2a), |a|=2.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Space with a 2-cell attached by degree m: Z/m coefficients see a nonzero square when m even, showing integer coefficients alone can hide ring structure.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Spheres Z[x]/(x^2), tori exterior algebra, point, contractible spaces; products of spheres via Kunneth.",
+    "source": "Wikipedia, Cohomology",
+    "url": "https://en.wikipedia.org/wiki/Cohomology",
+    "verified": true
+   },
+   {
+    "summary": "RP^n with integer coefficients computed from homology via UCT: torsion shifts up one degree.",
+    "source": "Wikipedia, Universal coefficient theorem",
+    "url": "https://en.wikipedia.org/wiki/Universal_coefficient_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Lens spaces and linking forms: the torsion linking form via Bockstein and PD; sign subtleties for lens spaces.",
+    "source": "Conway, Friedl, Herrmann, Linking forms revisited, arXiv:1708.03754, Sec. 2",
+    "url": "https://arxiv.org/pdf/1708.03754",
+    "verified": true
+   },
+   {
+    "summary": "Flag manifolds and classifying spaces: H*(BU(n))=Z[c_1..c_n], H*(BT^n) polynomial on degree-2 classes, Borel presentation of H*(Fl_n).",
+    "source": "arXiv:2402.09103 (Sec. 2) and arXiv:2106.09195 (Jana, Sec. 3.1)",
+    "url": "https://arxiv.org/pdf/2402.09103",
+    "verified": true
+   }
+  ],
+  "computation": [
+   {
+    "summary": "Compute cohomology groups from homology via the UCT (Ext term from torsion in degree n-1), or directly from cellular cochains.",
+    "source": "Wikipedia, Universal coefficient theorem",
+    "url": "https://en.wikipedia.org/wiki/Universal_coefficient_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Ring structure via Kunneth: H*(X x Y) = H*(X) tensor H*(Y) as rings with sign (a x b)(c x d)=(-1)^{|b||c|} ac x bd when H^k(Y;R) is finitely generated free (CW complexes); relative version for CW pairs.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Poincare duality forces products: in CP^n, nondegeneracy of the cup pairing in complementary degrees gives a^k generators inductively (Hatcher's proof of Theorem 3.19).",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Naturality/ring homomorphisms: pull back along maps (e.g. to a wedge of tori for surfaces, inclusion of torus in BU(n)) to detect products.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Explicit cochain-level algorithms for cup products on simplicial complexes, with complexity bounds; restriction to subcomplexes for filtrations.",
+    "source": "Contessoto, Memoli, Stefanou, Zhou, Persistent cup-length, arXiv:2107.01553, Sec. 3",
+    "url": "https://arxiv.org/pdf/2107.01553v3",
+    "verified": true
+   },
+   {
+    "summary": "Multiplicative spectral sequences (Serre) to compute rings of fibrations; differentials as derivations.",
+    "source": "arXiv:2402.09103, Sec. 2.1-2.2",
+    "url": "https://arxiv.org/pdf/2402.09103",
+    "verified": true
+   },
+   {
+    "summary": "Mayer-Vietoris induction (local-to-global) as the engine of the duality proof and of computations for decompositions.",
+    "source": "Miller, MIT 18.905 Fall 2016 lecture 37: Poincare duality",
+    "url": "https://ocw.mit.edu/courses/18-905-algebraic-topology-i-fall-2016/6d0d50879f0d498ecd93ec54e7c94db3_MIT18_905F16_lec37.pdf",
+    "verified": true
+   }
+  ],
+  "confusions": [
+   {
+    "summary": "H^n is not Hom(H_n,Z) in general: torsion of H_{n-1} appears in H^n (Ext term); the UCT splitting is not natural.",
+    "source": "Wikipedia, Universal coefficient theorem",
+    "url": "https://en.wikipedia.org/wiki/Universal_coefficient_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Cohomology groups do not determine the ring: torus vs wedge; same Betti numbers but different cup-length.",
+    "source": "Contessoto, Memoli, Stefanou, Zhou, Persistent cup-length, arXiv:2107.01553, Sec. 3",
+    "url": "https://arxiv.org/pdf/2107.01553v3",
+    "verified": true
+   },
+   {
+    "summary": "Graded commutativity forces 2a^2=0 for odd a, but a^2 need not be zero (RP^2 mod 2); cochain-level cup product is not commutative at all, only up to homotopy, which is the origin of Steenrod squares.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Cup and cap products determine each other on (co)homology only when the UCT maps are isomorphisms (field coefficients or free homology).",
+    "source": "Hatcher, Algebraic Topology, Section 3.3, cap product passage",
+    "url": "https://pi.math.cornell.edu/%7ehatcher/AT/ATcapprod.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Poincare duality hypotheses: needs R-orientation (always available mod 2), compactness for the plain form (otherwise compact supports or Borel-Moore homology), and is natural only for maps preserving fundamental classes.",
+    "source": "Wikipedia, Poincare duality",
+    "url": "https://en.wikipedia.org/wiki/Poincar%C3%A9_duality",
+    "verified": true
+   },
+   {
+    "summary": "Nonorientable manifolds: integral duality fails but twisted coefficients restore it, H_k(M;Z)=H_{n-k}(M;Z-tilde).",
+    "source": "Hatcher, correction notice for p.335 (Poincare duality with local coefficients, Thm 3H.6)",
+    "url": "https://pi.math.cornell.edu/%7Ehatcher/AT/Pduality.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Kunneth for cohomology rings needs freeness/finite generation hypotheses, which papers often leave implicit.",
+    "source": "Hatcher, Algebraic Topology, Section 3.2 Cup Product (pp. 206-229)",
+    "url": "https://pi.math.cornell.edu/~hatcher/AT/ATch3.2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Signs in duality/linking forms vary by book; authors warn signs should be taken with a grain of salt.",
+    "source": "Conway, Friedl, Herrmann, Linking forms revisited, arXiv:1708.03754, Sec. 2",
+    "url": "https://arxiv.org/pdf/1708.03754",
+    "verified": true
+   },
+   {
+    "summary": "Satisfying integral Poincare duality does not make a complex a Poincare space (local systems matter).",
+    "source": "Klein, Qin, Su, On the various notions of Poincare duality space, arXiv:1901.00145, Sec. 1, 8",
+    "url": "https://arxiv.org/pdf/1901.00145",
+    "verified": true
+   }
+  ]
+ },
+ "requirements": [
+  {
+   "item": "singular (and simplicial/cellular) cochains, coboundary, cocycles, cohomology groups, relative cohomology H^n(X,A), long exact sequence of a pair",
+   "priority": "core",
+   "needed_by": [
+    "2107.01553",
+    "2106.05274",
+    "2212.07201",
+    "2411.08775",
+    "Hatcher 3.1",
+    "Munkres ch.5",
+    "May ch.18"
+   ]
+  },
+  {
+   "item": "contravariant functoriality and homotopy invariance; Mayer-Vietoris and excision in cohomology",
+   "priority": "core",
+   "needed_by": [
+    "2107.01553",
+    "2404.11711",
+    "2411.08775",
+    "May ch.19",
+    "Miller lec.37"
+   ]
+  },
+  {
+   "item": "universal coefficient theorem for cohomology (Ext term, field case = dual), change of coefficients Z->R, Z->Z/p",
+   "priority": "core",
+   "needed_by": [
+    "2411.08775",
+    "2212.07201",
+    "Hatcher 3.1",
+    "Munkres 7.3",
+    "Miller 27",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "cup product: front/back face formula, Leibniz rule with signs, ring structure, unit, naturality",
+   "priority": "core",
+   "needed_by": [
+    "2107.01553",
+    "2106.05274",
+    "2404.11711",
+    "2402.09103",
+    "Hatcher 3.2",
+    "May 18.3",
+    "Munkres 5.9"
+   ]
+  },
+  {
+   "item": "graded commutativity and its consequences (odd classes square to 2-torsion)",
+   "priority": "core",
+   "needed_by": [
+    "2404.11711",
+    "2106.05274",
+    "Hatcher Thm 3.11"
+   ]
+  },
+  {
+   "item": "cross product and Kunneth theorem for cohomology rings, with hypotheses",
+   "priority": "core",
+   "needed_by": [
+    "2404.11711",
+    "2107.01553",
+    "2402.09103",
+    "Hatcher 3.2",
+    "Munkres 7.10-7.11",
+    "page: spectral-sequences",
+    "page: k-theory"
+   ]
+  },
+  {
+   "item": "standard ring computations: spheres, tori, surfaces, RP^n mod 2, CP^n, HP^n, RP^infinity, CP^infinity; torus vs wedge; CP^2 vs S^2 v S^4",
+   "priority": "core",
+   "needed_by": [
+    "2107.01553",
+    "Hatcher 3.2",
+    "Munkres 5.10",
+    "page: spectral-sequences",
+    "page: k-theory"
+   ]
+  },
+  {
+   "item": "cap product, its formula, boundary formula and relation to cup product",
+   "priority": "core",
+   "needed_by": [
+    "2411.08775",
+    "Hatcher 3.3",
+    "May ch.20",
+    "Miller 34-36"
+   ]
+  },
+  {
+   "item": "homological orientation, R-orientation, orientation double cover, fundamental class",
+   "priority": "core",
+   "needed_by": [
+    "2411.08775",
+    "Hatcher 3.3",
+    "May 20.3",
+    "Miller 31-32"
+   ]
+  },
+  {
+   "item": "Poincare duality for closed oriented topological manifolds (cap with [M]); mod 2 version; cup pairing nondegenerate mod torsion/over a field",
+   "priority": "core",
+   "needed_by": [
+    "2411.08775",
+    "2106.05274",
+    "2404.11711",
+    "Hatcher 3.3",
+    "Munkres 8.5",
+    "May ch.20"
+   ]
+  },
+  {
+   "item": "Poincare-Lefschetz duality for compact manifolds with boundary; H^k(M,dM)=H_{n-k}(M)",
+   "priority": "common",
+   "needed_by": [
+    "2404.11711",
+    "2411.08775",
+    "Hatcher 3.3",
+    "Munkres 8.10"
+   ]
+  },
+  {
+   "item": "intersection form, signature, unimodularity; cup product as intersection of Poincare duals",
+   "priority": "common",
+   "needed_by": [
+    "2411.08775",
+    "2106.05274",
+    "2404.11711",
+    "Miller 30"
+   ]
+  },
+  {
+   "item": "cohomology with compact supports / noncompact duality (direct limits)",
+   "priority": "common",
+   "needed_by": [
+    "Hatcher 3.3",
+    "Miller 37"
+   ]
+  },
+  {
+   "item": "Alexander duality and other forms of duality",
+   "priority": "specialised",
+   "needed_by": [
+    "Hatcher 3.3",
+    "Munkres 8.11",
+    "Miller 38"
+   ]
+  },
+  {
+   "item": "cup-length and zero-divisor cup-length (LS category, topological complexity)",
+   "priority": "specialised",
+   "needed_by": [
+    "2107.01553",
+    "2404.11711"
+   ]
+  },
+  {
+   "item": "representability H^n(X;G)=[X,K(G,n)], H^1(X;Z)=[X,S^1], H^2(X;Z)=[X,CP^infinity]",
+   "priority": "common",
+   "needed_by": [
+    "2212.07201",
+    "2402.09103",
+    "May ch.22",
+    "page: k-theory"
+   ]
+  },
+  {
+   "item": "integral vs real/rational cohomology: torsion, lattice of integral classes, p-localisation",
+   "priority": "common",
+   "needed_by": [
+    "2212.07201",
+    "2402.09103",
+    "2411.08775"
+   ]
+  },
+  {
+   "item": "explicit cochain-level computation on simplicial/cubical complexes (ordered vertices, branching structure)",
+   "priority": "common",
+   "needed_by": [
+    "2107.01553",
+    "2106.05274",
+    "2212.07201"
+   ]
+  },
+  {
+   "item": "cohomology rings of BU(n), BT^n and Chern classes as polynomial generators (statement only; characteristic classes are a separate page)",
+   "priority": "specialised",
+   "needed_by": [
+    "2402.09103",
+    "page: k-theory",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "multiplicative structure in spectral sequences (derivations, E_2 = H*(B) tensor H*(F))",
+   "priority": "specialised",
+   "needed_by": [
+    "2402.09103",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "torsion linking form via Bockstein and Poincare duality",
+   "priority": "specialised",
+   "needed_by": [
+    "2411.08775 (implicit)",
+    "Wikipedia Poincare duality",
+    "Conway-Friedl-Herrmann"
+   ]
+  },
+  {
+   "item": "twisted/local-coefficient Poincare duality for nonorientable manifolds",
+   "priority": "specialised",
+   "needed_by": [
+    "Hatcher 3.H",
+    "Miller 31"
+   ]
+  },
+  {
+   "item": "sign conventions (coboundary, cup, cap, boundary orientation) and how they propagate",
+   "priority": "common",
+   "needed_by": [
+    "Conway-Friedl-Herrmann",
+    "Friedman-McClure",
+    "2106.05274"
+   ]
+  },
+  {
+   "item": "Chern character / H^even(X;Q) and cellular cohomology as input to Atiyah-Hirzebruch (later page needs; from memory)",
+   "priority": "specialised",
+   "needed_by": [
+    "page: k-theory"
+   ]
+  }
+ ],
+ "notes": [
+  "Distinct neighbouring concepts (suggest separate pages or links rather than full treatment here): cohomology operations / Steenrod squares, Wu formula and Stiefel-Whitney classes (2411.08775 uses w_2 and Wu; 2106.05274 uses cup-i products); Thom isomorphism and Gysin sequence (Miller 18.906 secs 26, 35); characteristic classes (Chern classes of BU(n)); sheaf and Cech cohomology (Cech appears in the duality proof but as a tool); generalized cohomology theories/K-theory; intersection homology (Friedman-McClure); Massey products; persistent cohomology (TDA); group cohomology (2106.09195 uses H*(Sigma_3)); quantum/Floer cohomology (Gong 2111.15442 uses cup-length via intersection products); Poincare duality spaces and surgery (Klein-Qin-Su); torsion linking forms; Lefschetz and Alexander duality could be short sections here.",
+  "Hatcher Ch.3.1 and 3.3 main PDFs were not on the allowlist; 3.3 content verified only through the cap-product excerpt and the p.335 correction. Universal coefficient discussion verified through Wikipedia and UCR notes, not Hatcher 3.1 directly.",
+  "Bredon and tom Dieck TOC: only chapter titles could be verified, not section headings.",
+  "Wikipedia extraction dropped formulas; summaries are of described content.",
+  "The claim about books putting the cochain first in the cap product is unverified (marked).",
+  "nLab Poincare duality page and Math StackExchange/MathOverflow not reachable; confusions were drawn from textbooks/papers instead of MSE.",
+  "Extra papers looked at but not listed in papers[]: 2111.15442 (Gong, Lagrangian LS theory; cup-length via intersection product, Z/2 coefficients), 2106.09195 (Jana; Borel presentation, Kunneth, Serre SS for flag manifolds), 2608.23384 (Bibby-Ramsey; Orlik-Solomon algebras, abstract only).",
+  "Requirement on Chern character/AHSS for the k-theory page is from memory, not from an opened source."
+ ]
+}
