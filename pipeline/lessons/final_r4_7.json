@@ -1,0 +1,954 @@
+[
+ {
+  "id": "gaussian-integers",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Which primes are sums of two squares? Small cases suggest a pattern: $2 = 1^2+1^2$, $5 = 1^2+2^2$, $13 = 2^2+3^2$, $17 = 1^2+4^2$, $29 = 2^2+5^2$, while $3, 7, 11, 19, 23$ are not sums of two squares at all. Fermat stated the rule: an odd prime is a sum of two squares exactly when it leaves remainder $1$ on division by $4$.\n\nThe key is to factor: $a^2+b^2 = (a+bi)(a-bi)$ is a product in a larger number system, the Gaussian integers. Once we know that this ring has unique factorization, just like $\\mathbb Z$, the question \"is $p$ a sum of two squares?\" becomes \"does $p$ stay prime in the larger ring?\", and that question has a clean answer."
+   },
+   {
+    "type": "definition",
+    "title": "Gaussian integers",
+    "body": "The Gaussian integers are the complex numbers $\\mathbb Z[i] = \\{a+bi : a, b \\in \\mathbb Z\\}$, where $i^2 = -1$. They are closed under addition, subtraction and multiplication, since $(a+bi)(c+di) = (ac-bd) + (ad+bc)i$.\n\nGeometrically, $\\mathbb Z[i]$ is the square grid of points with integer coordinates in the complex plane."
+   },
+   {
+    "type": "definition",
+    "title": "Norm",
+    "body": "For $\\alpha = a+bi$ the norm is $N(\\alpha) = \\alpha\\bar\\alpha = a^2+b^2 = |\\alpha|^2$. It is a non-negative integer, it is $0$ only for $\\alpha = 0$, and it is multiplicative: $N(\\alpha\\beta) = N(\\alpha)N(\\beta)$, because $|\\alpha\\beta| = |\\alpha|\\,|\\beta|$.\n\nThe norm converts statements about Gaussian integers into statements about ordinary integers. In particular, if $\\alpha \\mid \\beta$ in $\\mathbb Z[i]$ then $N(\\alpha) \\mid N(\\beta)$ in $\\mathbb Z$. Multiplicativity, written out, is the old identity $(a^2+b^2)(c^2+d^2) = (ac-bd)^2 + (ad+bc)^2$."
+   },
+   {
+    "type": "section",
+    "title": "Units, associates and Gaussian primes",
+    "body": "Divisibility works as in $\\mathbb Z$: $\\alpha \\mid \\beta$ means $\\beta = \\alpha\\gamma$ for some $\\gamma \\in \\mathbb Z[i]$. A unit is an element that divides $1$. If $uv = 1$ then $N(u)N(v) = 1$, so $N(u) = 1$, and the only integer solutions of $a^2+b^2 = 1$ give the four units $1, -1, i, -i$.\n\nTwo elements are associates if one is a unit times the other. Associates divide each other and play the same role, just as $7$ and $-7$ do in $\\mathbb Z$. A nonzero $\\alpha$ has exactly four associates $\\alpha, -\\alpha, i\\alpha, -i\\alpha$: the quarter-turn rotations of $\\alpha$.\n\nA Gaussian prime is a nonzero non-unit $\\pi$ whose only divisors are units and associates of $\\pi$. The norm gives a quick test in one direction: if $N(\\alpha)$ is a rational prime, then $\\alpha$ is a Gaussian prime. Indeed, if $\\alpha = \\beta\\gamma$ then $N(\\beta)N(\\gamma) = N(\\alpha)$ is prime, so one factor has norm $1$ and is a unit. So $1+i$ (norm $2$), $2+i$ (norm $5$) and $3+2i$ (norm $13$) are Gaussian primes.\n\nTwo small experiments. First, $5 = (2+i)(2-i)$, so the rational prime $5$ is not a Gaussian prime. Second, suppose $3 = \\beta\\gamma$ with neither factor a unit. Then $N(\\beta)N(\\gamma) = 9$ with both norms greater than $1$, so $N(\\beta) = 3$, that is $a^2+b^2 = 3$, which has no integer solutions. So $3$ stays prime in $\\mathbb Z[i]$, even though its norm $9$ is not prime. The whole theory is about explaining this difference between $5$ and $3$."
+   },
+   {
+    "type": "theorem",
+    "title": "Division with remainder in Z[i]",
+    "body": "For any $\\alpha, \\beta \\in \\mathbb Z[i]$ with $\\beta \\ne 0$ there are $\\kappa, \\rho \\in \\mathbb Z[i]$ with $$\\alpha = \\kappa\\beta + \\rho, \\qquad N(\\rho) \\le \\tfrac12 N(\\beta) < N(\\beta).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Work in the complex numbers. The quotient $\\alpha/\\beta = \\alpha\\bar\\beta/N(\\beta)$ equals $x + yi$ with $x, y$ rational. Let $m, n$ be integers nearest to $x$ and $y$, so $|x-m| \\le \\tfrac12$ and $|y-n| \\le \\tfrac12$. Put $\\kappa = m + ni$ and $\\rho = \\alpha - \\kappa\\beta$. Then $\\rho$ is a Gaussian integer, and $\\rho = \\beta\\bigl((x-m) + (y-n)i\\bigr)$, so\n$$N(\\rho) = |\\beta|^2\\bigl((x-m)^2 + (y-n)^2\\bigr) \\le N(\\beta)\\Bigl(\\tfrac14 + \\tfrac14\\Bigr) = \\tfrac12 N(\\beta).$$\nGeometrically: every point of the plane lies within distance $\\tfrac{\\sqrt2}{2}$ of a grid point, and multiplying by $\\beta$ scales distances by $|\\beta|$."
+   },
+   {
+    "type": "theorem",
+    "title": "Unique factorization in Z[i]",
+    "body": "Every nonzero non-unit of $\\mathbb Z[i]$ is a product of Gaussian primes, and this factorization is unique apart from the order of the factors and replacing factors by associates."
+   },
+   {
+    "type": "proof",
+    "body": "Existence, by induction on the norm: if $\\alpha$ is not prime, write $\\alpha = \\beta\\gamma$ with $\\beta, \\gamma$ non-units. Then $1 < N(\\beta), N(\\gamma) < N(\\alpha)$, so $\\beta$ and $\\gamma$ are already products of primes.\n\nFor uniqueness we need Euclid's lemma: if a Gaussian prime $\\pi$ divides $\\alpha\\beta$, then $\\pi \\mid \\alpha$ or $\\pi \\mid \\beta$. Let $S = \\{\\mu\\pi + \\nu\\alpha : \\mu, \\nu \\in \\mathbb Z[i]\\}$ and choose a nonzero $\\delta \\in S$ of smallest norm. Divide $\\pi$ by $\\delta$: the remainder $\\pi - \\kappa\\delta$ again lies in $S$ and has smaller norm than $\\delta$, so it is $0$ and $\\delta \\mid \\pi$. In the same way $\\delta \\mid \\alpha$. As $\\pi$ is prime, $\\delta$ is a unit or an associate of $\\pi$. Suppose $\\pi \\nmid \\alpha$. Then $\\delta$ cannot be an associate of $\\pi$ (that would give $\\pi \\mid \\delta \\mid \\alpha$), so $\\delta$ is a unit, and multiplying by $\\delta^{-1}$ gives $1 = \\mu\\pi + \\nu\\alpha$ for some $\\mu, \\nu$. Multiply by $\\beta$: $\\beta = \\mu\\pi\\beta + \\nu\\alpha\\beta$, and $\\pi$ divides both terms on the right, so $\\pi \\mid \\beta$.\n\nNow let $\\pi_1\\cdots\\pi_r = \\pi'_1\\cdots\\pi'_s$ be two factorizations into primes. By Euclid's lemma $\\pi_1$ divides some $\\pi'_j$, so it is an associate of $\\pi'_j$. Cancel the two (absorbing a unit into another factor) and repeat. This is word for word the argument for $\\mathbb Z$ in [[fta]], with the norm playing the role of absolute value."
+   },
+   {
+    "type": "theorem",
+    "title": "How rational primes factor in Z[i]",
+    "body": "Every Gaussian prime divides exactly one rational prime $p$, and the rational primes factor as follows.\n\n1. $p = 2$: $2 = -i(1+i)^2$, a unit times the square of the prime $1+i$ ($2$ ramifies).\n2. $p \\equiv 1 \\pmod 4$: $p = \\pi\\bar\\pi$ with $\\pi = a+bi$, $N(\\pi) = p$, and $\\pi$, $\\bar\\pi$ are non-associate Gaussian primes ($p$ splits).\n3. $p \\equiv 3 \\pmod 4$: $p$ remains a Gaussian prime, of norm $p^2$ ($p$ is inert).\n\nUp to associates, these are all the Gaussian primes. In particular\n$$p = a^2+b^2 = (a+bi)(a-bi) \\text{ is solvable} \\iff p \\equiv 1 \\pmod 4 \\ \\text{or}\\ p = 2.$$"
+   },
+   {
+    "type": "proof",
+    "body": "A Gaussian prime $\\pi$ divides $\\pi\\bar\\pi = N(\\pi)$, a positive integer. Factor $N(\\pi)$ into rational primes; by Euclid's lemma $\\pi$ divides one of them, say $p$. It cannot divide a second prime $q \\ne p$: writing $1 = up + vq$ with integers $u, v$ would give $\\pi \\mid 1$. From $\\pi \\mid p$ we get $N(\\pi) \\mid N(p) = p^2$, so $N(\\pi) = p$ or $N(\\pi) = p^2$. In the second case $p/\\pi$ has norm $1$, so $p$ is an associate of $\\pi$ and is itself prime.\n\n$p = 2$: $(1+i)^2 = 1 + 2i + i^2 = 2i$, hence $-i(1+i)^2 = -i \\cdot 2i = 2$.\n\n$p \\equiv 3 \\pmod 4$: every square is $0$ or $1$ mod $4$, so $a^2 + b^2 \\not\\equiv 3 \\pmod 4$ and no Gaussian integer has norm $p$. Hence every prime factor of $p$ has norm $p^2$, and $p$ is prime.\n\n$p \\equiv 1 \\pmod 4$: by Euler's criterion $-1$ is a quadratic residue mod $p$ (see [[quadratic-residues]]), so there is an integer $m$ with $p \\mid m^2 + 1 = (m+i)(m-i)$. But $p$ divides neither factor, because $(m \\pm i)/p = m/p \\pm i/p$ is not a Gaussian integer. By Euclid's lemma $p$ is not a Gaussian prime, so it has a prime factor $\\pi = a + bi$ of norm $p$, and $p = a^2 + b^2 = \\pi\\bar\\pi$. Since $\\pi$ divides $(m+i)(m-i)$ it divides one factor; swapping $\\pi$ and $\\bar\\pi$ if necessary, $\\pi \\mid m+i$, and by conjugation $\\bar\\pi \\mid m - i$. If $\\pi$ and $\\bar\\pi$ were associates, $\\pi$ would divide both $m+i$ and $m-i$, hence their difference $2i$, and then $p = N(\\pi)$ would divide $N(2i) = 4$, which is absurd.\n\nFinally, every Gaussian prime divides some rational prime, so it is an associate of one of the primes found above. And $p = a^2 + b^2$ says precisely that $p$ is the norm of a Gaussian integer, which happens for $p = 2$ and $p \\equiv 1 \\pmod 4$ and never for $p \\equiv 3 \\pmod 4$."
+   },
+   {
+    "type": "section",
+    "title": "Counting representations",
+    "body": "Unique factorization gives more than existence. If $p \\equiv 1 \\pmod 4$ and $p = \\pi\\bar\\pi$, the Gaussian integers of norm $p$ are exactly the eight numbers $u\\pi$ and $u\\bar\\pi$ with $u$ a unit. So the representation $p = a^2 + b^2$ is unique apart from the order and the signs of $a$ and $b$.\n\nFor general $n$, a Gaussian integer $\\alpha$ with $N(\\alpha) = n$ is assembled prime by prime. Let $e_p$ be the exponent of $p$ in $n$.\n\n- For a split prime $p \\equiv 1 \\pmod 4$, $\\alpha$ contains $\\pi^j\\bar\\pi^{\\,e_p - j}$ for some $0 \\le j \\le e_p$: that is $e_p + 1$ choices.\n- For an inert prime $q \\equiv 3 \\pmod 4$, the norm of $q$ is $q^2$, so $e_q$ must be even and $\\alpha$ contains exactly $q^{e_q/2}$: one choice, or none if $e_q$ is odd.\n- The prime $2$ contributes $(1+i)^{e_2}$: one choice.\n- Finally multiply by one of the $4$ units.\n\nSo the number $r_2(n)$ of pairs $(a, b) \\in \\mathbb Z^2$ with $a^2 + b^2 = n$ is\n$$r_2(n) = 4\\prod_{p \\equiv 1 \\ (\\mathrm{mod}\\ 4)} (e_p + 1)$$\nwhen every prime $q \\equiv 3 \\pmod 4$ occurs to an even power in $n$, and $r_2(n) = 0$ otherwise. This is the complete answer to the question in [[sums-of-squares]]. It can be repackaged as $r_2(n) = 4\\bigl(d_1(n) - d_3(n)\\bigr)$, where $d_j(n)$ is the number of divisors of $n$ that are $\\equiv j \\pmod 4$."
+   },
+   {
+    "type": "example",
+    "title": "Two ways to write 65",
+    "body": "Factor $65$ into Gaussian primes and find all ways of writing $65$ as a sum of two squares.",
+    "solution": "$65 = 5 \\cdot 13$ with $5 = (2+i)(2-i)$ and $13 = (3+2i)(3-2i)$, all four factors having prime norm. A Gaussian integer of norm $65$ takes one prime above $5$ and one above $13$, times a unit. Up to units and conjugation there are two essentially different choices:\n$$(2+i)(3+2i) = 6 + 4i + 3i + 2i^2 = 4 + 7i, \\qquad (2+i)(3-2i) = 6 - 4i + 3i - 2i^2 = 8 - i.$$\nTaking norms, $65 = 4^2 + 7^2 = 8^2 + 1^2$. The other choices only change signs and order.\n\nCounting: $r_2(65) = 4 \\cdot (1+1)(1+1) = 16$, that is $8$ signed ordered pairs for each of the two representations. Also all four divisors $1, 5, 13, 65$ are $\\equiv 1 \\pmod 4$, so $4(d_1 - d_3) = 16$."
+   },
+   {
+    "type": "example",
+    "title": "Finding the square roots by the Euclidean algorithm",
+    "body": "Given that $12^2 = 144 \\equiv -1 \\pmod{29}$, find integers $a, b$ with $a^2 + b^2 = 29$ without trial and error.",
+    "solution": "From the proof above, the prime $\\pi$ of norm $29$ divides both $29$ and $12 + i$, so it is (up to a unit) their greatest common divisor. Run the Euclidean algorithm in $\\mathbb Z[i]$.\n\nDivide $29$ by $12+i$: $\\dfrac{29}{12+i} = \\dfrac{29(12-i)}{145} = \\dfrac{12 - i}{5} = 2.4 - 0.2i$, whose nearest Gaussian integer is $2$. The remainder is $29 - 2(12+i) = 5 - 2i$, of norm $29 < 145$.\n\nDivide $12 + i$ by $5 - 2i$: $\\dfrac{(12+i)(5+2i)}{29} = \\dfrac{60 + 24i + 5i - 2}{29} = \\dfrac{58 + 29i}{29} = 2 + i$, with remainder $0$.\n\nSo $\\gcd(29, 12+i) = 5 - 2i$, and $29 = N(5-2i) = 5^2 + 2^2$. The same computation works for any prime $p \\equiv 1 \\pmod 4$ once a square root of $-1$ mod $p$ is known."
+   },
+   {
+    "type": "example",
+    "title": "A cube one more than a square",
+    "body": "Find all integers $x, y$ with $x^2 + 1 = y^3$.",
+    "solution": "Parity first. If $x$ is odd then $x^2 + 1 \\equiv 2 \\pmod 4$, so $y$ is even and $y^3 \\equiv 0 \\pmod 8$, a contradiction. So $x$ is even and $x^2 + 1$ is odd.\n\nFactor in $\\mathbb Z[i]$: $(x+i)(x-i) = y^3$. A common divisor $\\delta$ of $x+i$ and $x-i$ divides their difference $2i = (1+i)^2$, so $\\delta$ is a unit times a power of $1+i$. But $1 + i \\nmid x + i$, since otherwise $2 = N(1+i)$ would divide $N(x+i) = x^2+1$, which is odd. So $x + i$ and $x - i$ have no common prime factor.\n\nBy unique factorization, each Gaussian prime dividing $y$ occurs in $y^3$ with exponent a multiple of $3$, and all of it sits in just one of the two coprime factors. Hence $x + i = u\\gamma^3$ for a unit $u$ and some $\\gamma \\in \\mathbb Z[i]$. Every unit is a cube ($1 = 1^3$, $-1 = (-1)^3$, $i = (-i)^3$, $-i = i^3$), so we may absorb $u$ and write $x + i = (a+bi)^3$. Expanding,\n$$(a+bi)^3 = (a^3 - 3ab^2) + (3a^2b - b^3)i,$$\nso $b(3a^2 - b^2) = 1$. Then $b = \\pm 1$. If $b = 1$ then $3a^2 = 2$, impossible; if $b = -1$ then $3a^2 - 1 = -1$, so $a = 0$. This gives $x = a^3 - 3ab^2 = 0$ and $y = 1$.\n\nThe only solution is $(x, y) = (0, 1)$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Uniqueness is only up to units and order. The factorizations $5 = (1+2i)(1-2i)$ and $5 = (2-i)(2+i)$ are the same, since $1 + 2i = i(2-i)$ and $1 - 2i = -i(2+i)$.\n- $\\pi$ and $\\bar\\pi$ are different primes for $p \\equiv 1 \\pmod 4$, but $1+i$ and $1-i = -i(1+i)$ are associates. That is exactly the difference between splitting and ramifying.\n- Unique factorization is not automatic for rings of this shape. In $\\mathbb Z[\\sqrt{-5}]$ one has $6 = 2\\cdot 3 = (1+\\sqrt{-5})(1-\\sqrt{-5})$ with four irreducible, pairwise non-associate factors. What saved $\\mathbb Z[i]$ was the division algorithm."
+   },
+   {
+    "type": "connection",
+    "body": "- The failure of unique factorization in rings like $\\mathbb Z[\\sqrt{-5}]$ is repaired by factoring ideals instead of numbers: see [[ideals]]. In that language, the theorem above says that $(2) = (1+i)^2$, $(p) = (\\pi)(\\bar\\pi)$ for $p \\equiv 1 \\pmod 4$, and $(q)$ is prime for $q \\equiv 3 \\pmod 4$.\n- The same programme with $\\omega = e^{2\\pi i/3}$ in place of $i$ gives the [[eisenstein-integers]] and the primes of the form $x^2 + 3y^2$.\n- Sums of two squares are the binary quadratic form of discriminant $-4$; see [[quadratic-forms]].\n- The counting formula $r_2(n) = 4(d_1(n) - d_3(n))$ is the coefficient form of the identity $\\zeta_{\\mathbb Q(i)}(s) = \\zeta(s)L(s,\\chi_{-4})$ for the [[dedekind-zeta]] function of $\\mathbb Q(i)$.\n- Biquadratic (fourth-power) reciprocity lives in $\\mathbb Z[i]$ the way cubic reciprocity lives in $\\mathbb Z[\\omega]$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Factor $30$ and $7 + i$ into Gaussian primes.\n2. Let $a, b$ be coprime integers. Show that every odd prime factor of $a^2 + b^2$ is $\\equiv 1 \\pmod 4$.\n3. Using $22^2 \\equiv -1 \\pmod{97}$ and the Euclidean algorithm in $\\mathbb Z[i]$, write $97$ as a sum of two squares.\n4. Compute $r_2(325)$ and list all representations of $325$ as $a^2 + b^2$ with $0 \\le a \\le b$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Ch. 1"
+   },
+   {
+    "ref": "Marcus, Number Fields"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "2 = -i(1+i)^2, 1+2i = i(2-i), 1-2i = -i(2+i)",
+    "python": "from sympy import I, expand\nassert expand(-I*(1+I)**2) == 2\nassert expand(I*(2-I)) == 1+2*I\nassert expand(-I*(2+I)) == 1-2*I"
+   },
+   {
+    "claim": "(2+i)(3+2i) = 4+7i, (2+i)(3-2i) = 8-i, and 65 = 4^2+7^2 = 8^2+1^2 are the only representations with 0<=a<=b",
+    "python": "from sympy import I, expand\nassert expand((2+I)*(3+2*I)) == 4+7*I\nassert expand((2+I)*(3-2*I)) == 8-I\nreps=[(a,b) for a in range(9) for b in range(a,9) if a*a+b*b==65]\nassert reps==[(1,8),(4,7)]"
+   },
+   {
+    "claim": "r_2(n) = 4(d_1(n)-d_3(n)) and equals the product formula, for n <= 1500; r_2(65)=16, r_2(325)=24",
+    "python": "from sympy import factorint, divisors\nimport math\ndef r2(n):\n    c=0; m=math.isqrt(n)\n    for a in range(-m,m+1):\n        b2=n-a*a; b=math.isqrt(b2)\n        if b*b==b2: c+= 1 if b==0 else 2\n    return c\nfor n in range(1,1501):\n    d=divisors(n)\n    assert r2(n)==4*(sum(1 for x in d if x%4==1)-sum(1 for x in d if x%4==3))\n    f=factorint(n)\n    pr=4\n    for p,e in f.items():\n        if p%4==1: pr*=e+1\n        if p%4==3 and e%2: pr=0\n    assert r2(n)==pr\nassert r2(65)==16 and r2(325)==24"
+   },
+   {
+    "claim": "A prime p < 20000 is a sum of two squares iff p = 2 or p = 1 mod 4",
+    "python": "from sympy import primerange\nimport math\nfor p in primerange(2,20000):\n    s=any(math.isqrt(p-a*a)**2==p-a*a for a in range(math.isqrt(p)+1))\n    assert s==(p==2 or p%4==1)"
+   },
+   {
+    "claim": "12^2 = -1 mod 29, 29 - 2(12+i) = 5-2i, (5-2i)(2+i) = 12+i, 29 = 5^2+2^2; 22^2 = -1 mod 97",
+    "python": "from sympy import I, expand\nassert pow(12,2,29)==28 and pow(22,2,97)==96\nassert expand(29-2*(12+I)) == 5-2*I\nassert expand((5-2*I)*(2+I)) == 12+I\nassert 5**2+2**2==29"
+   },
+   {
+    "claim": "x^2+1=y^3 has only the solution x=0, y=1 for |x| <= 10^6 (y^3 <= 10^12+1 < (10^4+1)^3); (a+bi)^3 expansion; every unit is a cube",
+    "python": "from sympy import I, expand, symbols, integer_nthroot\na,b=symbols('a b', real=True)\nassert expand((a+b*I)**3) == expand(a**3-3*a*b**2 + (3*a**2*b-b**3)*I)\nassert expand((-I)**3)==I and expand(I**3)==-I\ncubes={y**3:y for y in range(-10,10**4+1)}\nsol=[(x,cubes[x*x+1]) for x in range(-10**6,10**6+1) if x*x+1 in cubes]\nassert sol==[(0,1)]"
+   },
+   {
+    "claim": "7+i = -i(1+i)(2+i)^2 (consistent with exercise 1); 3 is not a norm",
+    "python": "from sympy import I, expand\nassert expand(-I*(1+I)*(2+I)**2) == 7+I\nassert not any(a*a+b*b==3 for a in range(-2,3) for b in range(-2,3))"
+   },
+   {
+    "claim": "30 = -i(1+i)^2 * 3 * (2+i)(2-i) up to the unit: 30 = -i(1+i)^2(2+i)(2-i)*3 with 3 inert; 325 = 1^2+18^2 = 6^2+17^2 = 10^2+15^2 are all representations with 0<=a<=b",
+    "python": "from sympy import I, expand\nassert expand(-I*(1+I)**2*(2+I)*(2-I)*3) == 30\nreps=[(a,b) for a in range(19) for b in range(a,19) if a*a+b*b==325]\nassert reps==[(1,18),(6,17),(10,15)]\nassert not any(a*a+b*b==3 for a in range(2) for b in range(2))"
+   },
+   {
+    "claim": "Division bound: for 2000 random pairs, rounding alpha/beta to the nearest Gaussian integer leaves a remainder of norm <= N(beta)/2; in Z[sqrt-5] no element has norm 2 or 3, so 2, 3, 1+-sqrt-5 are irreducible",
+    "python": "import random\nfrom fractions import Fraction as F\nrandom.seed(1)\ndef N(z): return z[0]**2+z[1]**2\nfor _ in range(2000):\n    a=(random.randint(-999,999),random.randint(-999,999)); b=(random.randint(-99,99),random.randint(-99,99))\n    if b==(0,0): continue\n    nb=N(b); x=F(a[0]*b[0]+a[1]*b[1],nb); y=F(a[1]*b[0]-a[0]*b[1],nb)\n    m=round(x); n=round(y)\n    r=(a[0]-(m*b[0]-n*b[1]), a[1]-(m*b[1]+n*b[0]))\n    assert 2*N(r)<=nb\nvals={a*a+5*b*b for a in range(-3,4) for b in range(-2,3)}\nassert 2 not in vals and 3 not in vals"
+   }
+  ]
+ },
+ {
+  "id": "eisenstein-integers",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Which primes can be written as $x^2 + 3y^2$? Try a few: $7 = 2^2 + 3\\cdot 1^2$, $13 = 1^2 + 3\\cdot 2^2$, $19 = 4^2 + 3 \\cdot 1^2$, $31 = 2^2 + 3\\cdot 3^2$, but $5, 11, 17, 23, 29$ cannot. The pattern is: $p = x^2 + 3y^2$ exactly when $p = 3$ or $p \\equiv 1 \\pmod 3$.\n\nAs with sums of two squares, the explanation is factorization in a bigger ring. Here the natural ring is not $\\mathbb Z[\\sqrt{-3}]$ but the slightly larger ring generated by a cube root of unity. It has six units instead of four, its elements form a triangular lattice instead of a square one, and it is the home of cubic reciprocity."
+   },
+   {
+    "type": "definition",
+    "title": "Eisenstein integers",
+    "body": "Let $\\omega = e^{2\\pi i/3} = \\dfrac{-1 + \\sqrt{-3}}{2}$, a root of $x^2 + x + 1 = 0$, so $\\omega^3 = 1$, $\\omega^2 = -1 - \\omega$ and $\\bar\\omega = \\omega^2$. The Eisenstein integers are\n$$\\mathbb Z[\\omega] = \\{a + b\\omega : a, b \\in \\mathbb Z\\}.$$\nThe relation $\\omega^2 = -1-\\omega$ shows that products stay in the set: $(a + b\\omega)(c + d\\omega) = (ac - bd) + (ad + bc - bd)\\omega$.\n\n$\\mathbb Z[\\omega]$ is the ring of integers of the field $\\mathbb Q(\\sqrt{-3})$: it consists of all numbers in that field that are roots of monic integer polynomials. Its elements form the triangular lattice in the plane. Note that $\\sqrt{-3} = 1 + 2\\omega$, so $\\mathbb Z[\\sqrt{-3}]$ is a proper subring."
+   },
+   {
+    "type": "definition",
+    "title": "Norm",
+    "body": "For $\\alpha = a + b\\omega$,\n$$N(a + b\\omega) = (a + b\\omega)(a + b\\bar\\omega) = a^2 + ab(\\omega + \\bar\\omega) + b^2\\omega\\bar\\omega = a^2 - ab + b^2,$$\nusing $\\omega + \\bar\\omega = -1$ and $\\omega\\bar\\omega = 1$. Since $N(\\alpha) = |\\alpha|^2$ it is multiplicative, and $4N(\\alpha) = (2a - b)^2 + 3b^2$, which shows it is positive for $\\alpha \\ne 0$.\n\nThe identity $4N = (2a-b)^2 + 3b^2$ is the bridge between this norm and the form $x^2 + 3y^2$."
+   },
+   {
+    "type": "section",
+    "title": "Six units",
+    "body": "A unit $u$ satisfies $N(u) = 1$, i.e. $(2a - b)^2 + 3b^2 = 4$. Then $b \\in \\{0, 1, -1\\}$: $b = 0$ gives $a = \\pm 1$; $b = 1$ gives $(2a-1)^2 = 1$, so $a \\in \\{0, 1\\}$; $b = -1$ gives $(2a+1)^2 = 1$, so $a \\in \\{0, -1\\}$. The six units are\n$$\\pm 1, \\quad \\pm\\omega, \\quad \\pm\\omega^2 \\ (\\text{note } 1 + \\omega = -\\omega^2),$$\nthe sixth roots of unity, at the corners of a regular hexagon. Each nonzero element has six associates, obtained by rotating through multiples of $60^\\circ$.\n\nHow do the coordinates change under rotation? Multiplying by $\\omega$ sends $a + b\\omega$ to $a\\omega + b\\omega^2 = -b + (a - b)\\omega$. Applying this twice, the second coordinates of $\\alpha$, $\\omega\\alpha$, $\\omega^2\\alpha$ are $b$, $a - b$, $-a$. We will use this below."
+   },
+   {
+    "type": "theorem",
+    "title": "Division with remainder in Z[ω]",
+    "body": "For $\\alpha, \\beta \\in \\mathbb Z[\\omega]$ with $\\beta \\ne 0$ there are $\\kappa, \\rho \\in \\mathbb Z[\\omega]$ with $\\alpha = \\kappa\\beta + \\rho$ and $N(\\rho) \\le \\tfrac34 N(\\beta)$. Consequently $\\mathbb Z[\\omega]$ has unique factorization into primes, up to order and units."
+   },
+   {
+    "type": "proof",
+    "body": "Write $\\alpha/\\beta = \\alpha\\bar\\beta/N(\\beta) = s + t\\omega$ with $s, t$ rational; this is possible because $\\alpha\\bar\\beta \\in \\mathbb Z[\\omega]$. Choose integers $m, n$ with $|s - m| \\le \\tfrac12$, $|t - n| \\le \\tfrac12$, put $\\kappa = m + n\\omega$ and $\\rho = \\alpha - \\kappa\\beta = \\beta\\,(u + v\\omega)$ with $u = s - m$, $v = t - n$. For real $u, v$ we still have $|u + v\\omega|^2 = u^2 - uv + v^2$, so\n$$N(\\rho) = N(\\beta)\\,(u^2 - uv + v^2) \\le N(\\beta)\\Bigl(\\tfrac14 + \\tfrac14 + \\tfrac14\\Bigr) = \\tfrac34 N(\\beta).$$\n\nUnique factorization now follows exactly as in $\\mathbb Z$ (see [[fta]], or the parallel argument for [[gaussian-integers]]): division with remainder gives, for a prime $\\pi$ not dividing $\\alpha$, elements $\\mu, \\nu$ with $\\mu\\pi + \\nu\\alpha = 1$; this gives Euclid's lemma ($\\pi \\mid \\alpha\\beta \\Rightarrow \\pi \\mid \\alpha$ or $\\pi \\mid \\beta$); and Euclid's lemma gives uniqueness."
+   },
+   {
+    "type": "section",
+    "title": "The special prime 1 − ω",
+    "body": "Let $\\lambda = 1 - \\omega$. Then $N(\\lambda) = 1 + 1 + 1 = 3$, so $\\lambda$ is prime, and\n$$\\lambda^2 = 1 - 2\\omega + \\omega^2 = 1 - 2\\omega - 1 - \\omega = -3\\omega, \\qquad\\text{so}\\qquad 3 = -\\omega^2\\lambda^2.$$\nThe rational prime $3$ is a unit times the square of a prime: it ramifies, just like $2 = -i(1+i)^2$ in $\\mathbb Z[i]$.\n\nSince $\\omega \\equiv 1 \\pmod\\lambda$, every $a + b\\omega$ is congruent to the integer $a + b$ modulo $\\lambda$, and since $3$ is divisible by $\\lambda$, every element is congruent to exactly one of $0, 1, -1$ modulo $\\lambda$. The residue ring $\\mathbb Z[\\omega]/(\\lambda)$ is the field with three elements."
+   },
+   {
+    "type": "theorem",
+    "title": "Primes of Z[ω]",
+    "body": "Up to the six units, the primes of $\\mathbb Z[\\omega]$ are:\n\n1. $\\lambda = 1 - \\omega$, with $3 = -\\omega^2\\lambda^2$;\n2. for each rational prime $p \\equiv 1 \\pmod 3$, two non-associate primes $\\pi, \\bar\\pi$ with $p = \\pi\\bar\\pi$ and $N(\\pi) = p$ ($p$ splits);\n3. each rational prime $q \\equiv 2 \\pmod 3$, which stays prime, with $N(q) = q^2$ ($q$ is inert).\n\nMoreover, for a prime $p$: $p = a^2 - ab + b^2$ is solvable $\\iff$ $p = x^2 + 3y^2$ is solvable $\\iff$ $p = 3$ or $p \\equiv 1 \\pmod 3$."
+   },
+   {
+    "type": "proof",
+    "body": "As for the Gaussian integers, a prime $\\pi$ divides $N(\\pi) = \\pi\\bar\\pi$, hence divides exactly one rational prime $p$, and $N(\\pi) \\in \\{p, p^2\\}$; if $N(\\pi) = p^2$ then $p$ is an associate of $\\pi$ and stays prime. The case $p = 3$ was done above.\n\n$q \\equiv 2 \\pmod 3$: from $4N = (2a - b)^2 + 3b^2$ we get $N \\equiv 4N \\equiv (2a - b)^2 \\equiv 0$ or $1 \\pmod 3$. So no element has norm $q$, and $q$ stays prime.\n\n$p \\equiv 1 \\pmod 3$: by quadratic reciprocity $\\left(\\frac{-3}{p}\\right) = \\left(\\frac{p}{3}\\right) = 1$ (see [[quadratic-residues]]), so $m^2 \\equiv -3 \\pmod p$ for some integer $m$. Then\n$$p \\mid m^2 + 3 = (m + \\sqrt{-3})(m - \\sqrt{-3}) = (m + 1 + 2\\omega)(m - 1 - 2\\omega),$$\nbut $p$ divides neither factor, since the coefficient $\\pm 2/p$ of $\\omega$ in the quotient is not an integer. So $p$ is not prime in $\\mathbb Z[\\omega]$ and has a prime factor $\\pi$ of norm $p$, giving $p = \\pi\\bar\\pi$. As $\\pi$ divides one of the two factors, we may choose $\\pi \\mid m + \\sqrt{-3}$ and then $\\bar\\pi \\mid m - \\sqrt{-3}$. If $\\pi$ and $\\bar\\pi$ were associates, $\\pi$ would divide the difference $2\\sqrt{-3}$, so $p$ would divide $N(2\\sqrt{-3}) = 12$, impossible for $p \\ge 7$.\n\nFinally the representations. We have shown that a prime $p$ is a norm $a^2 - ab + b^2$ exactly when $p = 3$ or $p \\equiv 1 \\pmod 3$. If $p = N(\\pi)$ with $\\pi = a + b\\omega$, at least one of the second coordinates $b$, $a - b$, $-a$ of the associates $\\pi, \\omega\\pi, \\omega^2\\pi$ is even: if $b$ or $a$ is even then $b$ or $-a$ is, and if both are odd then $a - b$ is even. Taking that associate, with $b = 2c$,\n$$p = a^2 - 2ac + 4c^2 = (a - c)^2 + 3c^2.$$\nConversely $x^2 + 3y^2 = N\\bigl((x + y) + 2y\\omega\\bigr)$, since $(x+y) + 2y\\omega = x + y\\sqrt{-3}$."
+   },
+   {
+    "type": "example",
+    "title": "Factoring 7, 13 and 21",
+    "body": "Factor $7$, $13$ and $21$ into primes of $\\mathbb Z[\\omega]$.",
+    "solution": "We need $a^2 - ab + b^2 = 7$: $a = 3$, $b = 1$ gives $9 - 3 + 1 = 7$. With $\\overline{3 + \\omega} = 3 + \\omega^2 = 2 - \\omega$,\n$$(3 + \\omega)(2 - \\omega) = 6 - 3\\omega + 2\\omega - \\omega^2 = 6 - \\omega - \\omega^2 = 7.$$\nFor $13$: $a = 4$, $b = 1$ gives $16 - 4 + 1 = 13$, and $13 = (4 + \\omega)(3 - \\omega)$.\n\nFor $21 = 3 \\cdot 7$: $21 = -\\omega^2(1-\\omega)^2(3+\\omega)(2-\\omega)$.\n\nTo read off $7 = x^2 + 3y^2$: for $3 + \\omega$ the second coordinates of the associates are $1$, $3 - 1 = 2$, $-3$. The even one belongs to $\\omega(3 + \\omega) = -1 + 2\\omega$, so $c = 1$ and $7 = (-1 - 1)^2 + 3\\cdot 1^2 = 4 + 3$."
+   },
+   {
+    "type": "example",
+    "title": "Splitting 31 with the Euclidean algorithm",
+    "body": "Given $11^2 = 121 \\equiv -3 \\pmod{31}$, find a prime of norm $31$ in $\\mathbb Z[\\omega]$ and write $31 = x^2 + 3y^2$.",
+    "solution": "A prime above $31$ divides $31$ and $11 + \\sqrt{-3} = 12 + 2\\omega$, so take their gcd.\n\nStep 1: $\\dfrac{31}{12 + 2\\omega} = \\dfrac{5}{2} - \\dfrac12\\omega$ (check: $(12 + 2\\omega)(5 - \\omega) = 60 + 10\\omega - 12\\omega - 2\\omega^2 = 62$). Round to $\\kappa = 2$; the remainder is $31 - 2(12 + 2\\omega) = 7 - 4\\omega$, of norm $49 + 28 + 16 = 93 < 124 = N(12+2\\omega)$.\n\nStep 2: $\\dfrac{12 + 2\\omega}{7 - 4\\omega} = \\dfrac43 + \\dfrac23\\omega$; round to $\\kappa = 1 + \\omega$. Since $(1 + \\omega)(7 - 4\\omega) = 11 + 7\\omega$, the remainder is $(12 + 2\\omega) - (11 + 7\\omega) = 1 - 5\\omega$, of norm $1 + 5 + 25 = 31$.\n\nStep 3: $7 - 4\\omega = (2 + \\omega)(1 - 5\\omega)$, remainder $0$.\n\nSo $\\pi = 1 - 5\\omega$ has norm $31$. Its associates have second coordinates $-5$, $1 - (-5) = 6$, $-1$; the even one belongs to $\\omega\\pi = 5 + 6\\omega$, giving $c = 3$ and $31 = (5 - 3)^2 + 3\\cdot 3^2 = 4 + 27$."
+   },
+   {
+    "type": "example",
+    "title": "Prime factors of n² + n + 1",
+    "body": "Show that every prime factor of $n^2 + n + 1$ is $3$ or $\\equiv 1 \\pmod 3$, and deduce that there are infinitely many primes $\\equiv 1 \\pmod 3$.",
+    "solution": "In $\\mathbb Z[\\omega]$, $n^2 + n + 1 = (n - \\omega)(n - \\bar\\omega) = N(n - \\omega)$. If a prime $q \\equiv 2 \\pmod 3$ divided $N(n - \\omega) = (n - \\omega)(n - \\bar\\omega)$, then since $q$ is prime in $\\mathbb Z[\\omega]$ it would divide $n - \\omega$ or $n - \\bar\\omega$; but $(n - \\omega)/q$ has $\\omega$-coefficient $-1/q$, not an integer (and similarly for $n - \\bar\\omega = n + 1 + \\omega$). So $q \\nmid n^2 + n + 1$. (An elementary version: $4(n^2 + n + 1) = (2n+1)^2 + 3$, so $p \\mid n^2 + n + 1$ with $p > 3$ makes $-3$ a quadratic residue mod $p$, forcing $p \\equiv 1 \\pmod 3$.)\n\nNow suppose $p_1, \\dots, p_k$ were all the primes $\\equiv 1 \\pmod 3$. Let $n = 3p_1\\cdots p_k$ and $M = n^2 + n + 1 > 1$. Then $M \\equiv 1 \\pmod 3$ and $M \\equiv 1 \\pmod{p_j}$, so no prime factor of $M$ is $3$ or any $p_j$. But all prime factors of $M$ are $3$ or $\\equiv 1 \\pmod 3$, a contradiction.\n\nFor example, $n = 3\\cdot 7 = 21$ gives $M = 463$, a prime $\\equiv 1 \\pmod 3$ not on the list."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $\\mathbb Z[\\sqrt{-3}]$ is the wrong ring: there $4 = 2\\cdot 2 = (1 + \\sqrt{-3})(1 - \\sqrt{-3})$ with all factors irreducible. The fix is to include $\\omega = (-1 + \\sqrt{-3})/2$.\n- There are six units, not four. Statements \"unique up to sign\" from $\\mathbb Z[i]$ become \"unique up to the six units\".\n- Some books write elements as $a - b\\omega$ or use $\\omega^2$ as the generator, so the norm appears as $a^2 + ab + b^2$; it takes the same values as $a^2 - ab + b^2$.\n- $3$ does not split: $3 = -\\omega^2(1 - \\omega)^2$ ramifies, so $\\lambda$ and $\\bar\\lambda = 1 - \\omega^2 = -\\omega^2\\lambda$ are associates.\n- The splitting rule is about $p \\bmod 3$, not $p \\bmod 4$; for instance $13$ splits in both $\\mathbb Z[i]$ and $\\mathbb Z[\\omega]$, while $7$ splits only in $\\mathbb Z[\\omega]$."
+   },
+   {
+    "type": "connection",
+    "body": "- For a prime $\\pi$ with $N(\\pi) = p \\equiv 1 \\pmod 3$, the field $\\mathbb Z[\\omega]/(\\pi)$ has $p$ elements, and for $\\alpha$ not divisible by $\\pi$, $\\alpha^{(p-1)/3}$ is congruent to one of $1, \\omega, \\omega^2$ modulo $\\pi$. This defines the cubic residue symbol and leads to [[cubic-characters]] and cubic reciprocity, proved by Eisenstein in 1844 in this ring.\n- $x^2 + xy + y^2$ is the reduced form of discriminant $-3$ in [[quadratic-forms]]; its class number is $1$, which is another way of saying $\\mathbb Z[\\omega]$ has unique factorization.\n- The [[dedekind-zeta]] function of $\\mathbb Q(\\sqrt{-3})$ factors as $\\zeta(s)L(s, \\chi_{-3})$, and Hecke characters of this field give [[hecke-l]] functions. A 2026 manuscript (see [[quasi-rh]]) claims a zero-free half-plane for all Dirichlet $L$-functions using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$; this is a claim, not an established result.\n- Fermat's Last Theorem for exponent $3$ is naturally proved in $\\mathbb Z[\\omega]$; Kummer's work on other exponents needed [[ideals]] and [[cyclotomic]] fields."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the six units of $\\mathbb Z[\\omega]$ are pairwise incongruent modulo $3$.\n2. Factor $91$ into primes of $\\mathbb Z[\\omega]$ and count the integer pairs $(a, b)$ with $a^2 - ab + b^2 = 91$.\n3. Prove that if $p \\equiv 1 \\pmod 3$ then the representation $p = x^2 + 3y^2$ with $x, y > 0$ is unique.\n4. Show that $\\mathbb Z[\\omega]/(2)$ is a field with four elements."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Ch. 1 and Ch. 9"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Cox, Primes of the Form x² + ny²"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "w^2+w+1=0, N(a+bw) = a^2-ab+b^2, 4N = (2a-b)^2+3b^2, sqrt(-3) = 1+2w, product formula for (a+bw)(c+dw)",
+    "python": "from sympy import symbols, expand, sqrt, I, Rational, simplify, conjugate\nw=Rational(-1,2)+sqrt(3)*I/2\nassert simplify(w**2+w+1)==0\na,b,c,d=symbols('a b c d', integer=True)\nassert simplify(expand((a+b*w)*(a+b*conjugate(w))) - (a*a-a*b+b*b))==0\nassert expand((2*a-b)**2+3*b**2 - 4*(a*a-a*b+b*b))==0\nassert simplify(1+2*w - sqrt(-3))==0\nassert simplify(expand((a+b*w)*(c+d*w)) - ((a*c-b*d)+(a*d+b*c-b*d)*w))==0"
+   },
+   {
+    "claim": "Exactly six solutions of a^2-ab+b^2=1; multiplying by w maps (a,b) to (-b,a-b)",
+    "python": "sols=sorted((a,b) for a in range(-3,4) for b in range(-3,4) if a*a-a*b+b*b==1)\nassert sols==sorted([(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1)])\nfrom sympy import Rational, sqrt, I, simplify, symbols\nw=Rational(-1,2)+sqrt(3)*I/2\na,b=symbols('a b')\nassert simplify(w*(a+b*w) - (-b+(a-b)*w))==0"
+   },
+   {
+    "claim": "(1-w)^2 = -3w, 3 = -w^2(1-w)^2, N(1-w)=3",
+    "python": "from sympy import Rational, sqrt, I, simplify\nw=Rational(-1,2)+sqrt(3)*I/2\nassert simplify((1-w)**2+3*w)==0\nassert simplify(-w**2*(1-w)**2-3)==0\nassert 1-1*(-1)+1==3"
+   },
+   {
+    "claim": "7 = (3+w)(2-w), 13 = (4+w)(3-w), w(3+w) = -1+2w, 21 = -w^2(1-w)^2(3+w)(2-w)",
+    "python": "from sympy import Rational, sqrt, I, simplify\nw=Rational(-1,2)+sqrt(3)*I/2\nassert simplify((3+w)*(2-w)-7)==0\nassert simplify((4+w)*(3-w)-13)==0\nassert simplify(w*(3+w)-(-1+2*w))==0\nassert simplify(-w**2*(1-w)**2*(3+w)*(2-w)-21)==0"
+   },
+   {
+    "claim": "Euclidean algorithm for 31 and 12+2w: (12+2w)(5-w)=62, remainders 7-4w (norm 93), 1-5w (norm 31), 7-4w=(2+w)(1-5w), w(1-5w)=5+6w, 31=2^2+3*3^2",
+    "python": "from sympy import Rational, sqrt, I, simplify\nw=Rational(-1,2)+sqrt(3)*I/2\nN=lambda a,b:a*a-a*b+b*b\nassert pow(11,2,31)==31-3\nassert simplify((12+2*w)*(5-w)-62)==0\nassert simplify(31-2*(12+2*w)-(7-4*w))==0 and N(7,-4)==93 and N(12,2)==124\nassert simplify((1+w)*(7-4*w)-(11+7*w))==0\nassert simplify((Rational(4,3)+Rational(2,3)*w)*(7-4*w)-(12+2*w))==0\nassert simplify((12+2*w)-(11+7*w)-(1-5*w))==0 and N(1,-5)==31\nassert simplify((2+w)*(1-5*w)-(7-4*w))==0\nassert simplify(w*(1-5*w)-(5+6*w))==0\nassert 2**2+3*3**2==31"
+   },
+   {
+    "claim": "For primes 3 < p < 20000: -3 is a QR mod p iff p = 1 mod 3 iff p = x^2+3y^2 iff p = a^2-ab+b^2",
+    "python": "from sympy import primerange, legendre_symbol\nimport math\nfor p in primerange(5,20000):\n    qr = legendre_symbol(-3 % p, p)==1\n    f1 = any(math.isqrt((p-3*y*y))**2==p-3*y*y for y in range(math.isqrt(p//3)+1))\n    f2 = any(math.isqrt(4*p-3*b*b)**2==4*p-3*b*b for b in range(math.isqrt(4*p//3)+1))\n    assert qr==(p%3==1)==f1==f2"
+   },
+   {
+    "claim": "Number of (a,b) with a^2-ab+b^2 = n equals 6(d_1(n)-d_2(n)) over divisors mod 3, for n<=600; it is 24 for n=91",
+    "python": "from sympy import divisors\ndef r(n):\n    B=int((4*n/3)**0.5)+2\n    return sum(1 for a in range(-B,B+1) for b in range(-B,B+1) if a*a-a*b+b*b==n)\nfor n in range(1,601):\n    d=divisors(n)\n    assert r(n)==6*(sum(1 for x in d if x%3==1)-sum(1 for x in d if x%3==2))\nassert r(91)==24"
+   },
+   {
+    "claim": "Prime factors of n^2+n+1 are 3 or 1 mod 3 (n<=3000); 21^2+21+1 = 463 is prime and 1 mod 3",
+    "python": "from sympy import primefactors, isprime\nfor n in range(1,3001):\n    assert all(p==3 or p%3==1 for p in primefactors(n*n+n+1))\nassert 21*21+21+1==463 and isprime(463) and 463%3==1"
+   },
+   {
+    "claim": "Units pairwise incongruent mod 3 (differences have norm 1, 3 or 4); lambda-bar = 1-w^2 = -w^2 lambda; in Z[sqrt-3] no element has norm 2 and 4 = (1+sqrt-3)(1-sqrt-3); Z[w]/(2) has 4 elements and 2 is inert (a^2-ab+b^2 never 2)",
+    "python": "from sympy import Rational, sqrt, I, simplify\nw=Rational(-1,2)+sqrt(3)*I/2\nU=[(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1)]\nN=lambda a,b:a*a-a*b+b*b\nfor x in U:\n    for y in U:\n        if x!=y:\n            d=(x[0]-y[0],x[1]-y[1]); assert N(*d) in (1,3,4)\nassert simplify((1-w**2)-(-w**2*(1-w)))==0\nassert not any(a*a+3*b*b==2 for a in range(-2,3) for b in range(-2,3))\nassert simplify((1+sqrt(-3))*(1-sqrt(-3))-4)==0\nassert not any(N(a,b)==2 for a in range(-3,4) for b in range(-3,4))"
+   },
+   {
+    "claim": "91 = 7*13: 91 = (3+w)(2-w)(4+w)(3-w); 7 = 3 mod 4 (inert in Z[i]) but 1 mod 3; 13 = 1 mod 4 and 1 mod 3; 463 = 1 mod 3",
+    "python": "from sympy import Rational, sqrt, I, simplify\nw=Rational(-1,2)+sqrt(3)*I/2\nassert simplify((3+w)*(2-w)*(4+w)*(3-w)-91)==0\nassert 7%4==3 and 7%3==1 and 13%4==1 and 13%3==1"
+   }
+  ]
+ },
+ {
+  "id": "ideals",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "In $\\mathbb Z[\\sqrt{-5}] = \\{a + b\\sqrt{-5} : a, b \\in \\mathbb Z\\}$ the number $6$ factors in two genuinely different ways:\n$$6 = 2\\cdot 3 = (1 + \\sqrt{-5})(1 - \\sqrt{-5}),$$\nand none of the four factors can be broken down further. Unique factorization, which carried the whole theory of [[gaussian-integers]], is simply false here.\n\nThe repair, found by Kummer and made precise by Dedekind, is to factor ideals instead of numbers. The four numbers above turn out to be products of four \"ideal\" prime factors, and the two factorizations of $6$ are two different ways of grouping the same four pieces. This lesson explains what that means and how to compute with it."
+   },
+   {
+    "type": "section",
+    "title": "Where unique factorization breaks",
+    "body": "Give $\\alpha = a + b\\sqrt{-5}$ the norm $N(\\alpha) = \\alpha\\bar\\alpha = a^2 + 5b^2$, which is multiplicative. The units are $\\pm 1$ (the only elements of norm $1$). The four factors above have norms\n$$N(2) = 4, \\quad N(3) = 9, \\quad N(1 \\pm \\sqrt{-5}) = 6.$$\nIf $2 = \\beta\\gamma$ with neither factor a unit, then $N(\\beta) = 2$, i.e. $a^2 + 5b^2 = 2$, which is impossible. Likewise no element has norm $3$. So $2$, $3$ and $1 \\pm\\sqrt{-5}$ are all irreducible, and since the only units are $\\pm 1$, no two of them are associates.\n\nSomething is missing: in a ring with unique factorization, $2$ would share a prime factor with $1 + \\sqrt{-5}$ (because $2$ divides $(1+\\sqrt{-5})(1-\\sqrt{-5})$). That common factor would have norm $2$, and no such number exists. Kummer's insight was to add the missing common factors as new \"ideal numbers\"; Dedekind's was to realize them as sets of ordinary numbers."
+   },
+   {
+    "type": "definition",
+    "title": "Ring of integers",
+    "body": "A number field $K$ is a field containing $\\mathbb Q$ of finite dimension over $\\mathbb Q$. An algebraic integer is a complex number that is a root of a monic polynomial with integer coefficients. The ring of integers $\\mathcal O_K$ is the set of algebraic integers in $K$; it is a ring, and $\\mathcal O_K \\cap \\mathbb Q = \\mathbb Z$.\n\nFor a quadratic field $K = \\mathbb Q(\\sqrt d)$ with $d \\ne 1$ squarefree,\n$$\\mathcal O_K = \\mathbb Z[\\sqrt d] \\ \\text{ if } d \\equiv 2, 3 \\pmod 4, \\qquad \\mathcal O_K = \\mathbb Z\\Bigl[\\tfrac{1 + \\sqrt d}{2}\\Bigr] \\ \\text{ if } d \\equiv 1 \\pmod 4.$$\nSo $\\mathbb Z[i]$, $\\mathbb Z[\\omega]$ and $\\mathbb Z[\\sqrt{-5}]$ are the rings of integers of $\\mathbb Q(i)$, $\\mathbb Q(\\sqrt{-3})$ and $\\mathbb Q(\\sqrt{-5})$. The ring of integers is the right place to do arithmetic: it is large enough that ideals factor uniquely."
+   },
+   {
+    "type": "definition",
+    "title": "Ideals, products and prime ideals",
+    "body": "In a commutative ring $R$ (see [[rings]]), an ideal is a nonempty subset $A$ closed under addition and under multiplication by arbitrary elements of $R$. The ideal generated by $a_1, \\dots, a_k$ is $(a_1, \\dots, a_k) = \\{r_1a_1 + \\dots + r_ka_k : r_j \\in R\\}$; an ideal $(a)$ with one generator is principal.\n\nThe product $AB$ of two ideals is the set of finite sums $\\sum a_jb_j$ with $a_j \\in A$, $b_j \\in B$. In terms of generators, $(a_1, \\dots, a_k)(b_1, \\dots, b_m)$ is generated by all products $a_ib_j$; in particular $(a)(b) = (ab)$.\n\nAn ideal $P \\ne R$ is prime if $ab \\in P$ implies $a \\in P$ or $b \\in P$, equivalently if $R/P$ is an integral domain. In a ring of integers every nonzero prime ideal is maximal, so $\\mathcal O_K/P$ is a finite field."
+   },
+   {
+    "type": "section",
+    "title": "To contain is to divide",
+    "body": "For principal ideals, $(a) \\supseteq (b)$ holds exactly when $b = ra$ for some $r$, that is when $a \\mid b$; and $(a) = (b)$ exactly when $a$ and $b$ are associates. So factoring numbers up to units is the same as factoring principal ideals. The new feature is that there may be ideals that are not principal, and these play the role of Kummer's ideal numbers.\n\nHere is the missing common factor of $2$ and $1 + \\sqrt{-5}$. Let $P_2 = (2, 1 + \\sqrt{-5})$. We claim\n$$P_2 = \\{a + b\\sqrt{-5} : a \\equiv b \\pmod 2\\}.$$\nThe map $a + b\\sqrt{-5} \\mapsto (a - b) \\bmod 2$ is a ring homomorphism onto $\\mathbb Z/2\\mathbb Z$ (it sends $\\sqrt{-5}$ to $1$, and $1^2 \\equiv -5 \\pmod 2$), so its kernel $Q = \\{a \\equiv b \\pmod 2\\}$ is an ideal with $\\mathbb Z[\\sqrt{-5}]/Q \\cong \\mathbb Z/2\\mathbb Z$. It contains $2$ and $1 + \\sqrt{-5}$, so $P_2 \\subseteq Q$; conversely, if $a \\equiv b \\pmod 2$ then $a + b\\sqrt{-5} = b(1 + \\sqrt{-5}) + (a - b)$ with $a - b \\in 2\\mathbb Z$, so $Q \\subseteq P_2$. Hence $P_2$ is a prime ideal of index $2$.\n\nIn exactly the same way, with $\\sqrt{-5} \\mapsto -1$ and $\\sqrt{-5} \\mapsto 1$ modulo $3$ (both square to $1 \\equiv -5$),\n$$P_3 = (3, 1 + \\sqrt{-5}) = \\{a \\equiv b \\ (\\mathrm{mod}\\ 3)\\}, \\qquad P_3' = (3, 1 - \\sqrt{-5}) = \\{a \\equiv -b \\ (\\mathrm{mod}\\ 3)\\}$$\nare prime ideals of index $3$.\n\nNone of these is principal. Multiplication by $\\alpha = a + b\\sqrt{-5}$ acts on the basis $1, \\sqrt{-5}$ by the matrix $\\begin{pmatrix} a & -5b \\\\ b & a\\end{pmatrix}$, so the index of $(\\alpha)$ is the determinant $a^2 + 5b^2 = N(\\alpha)$. A principal $P_2$ would need a generator of norm $2$, and a principal $P_3$ one of norm $3$; neither exists."
+   },
+   {
+    "type": "theorem",
+    "title": "Dedekind's theorem (1871)",
+    "body": "Let $K$ be a number field. Every nonzero ideal $A \\ne \\mathcal O_K$ is a product of prime ideals,\n$$A = P_1^{e_1}\\cdots P_r^{e_r},$$\nand this factorization is unique apart from the order of the factors. Moreover $A \\supseteq B$ if and only if $A \\mid B$ (that is, $B = AC$ for some ideal $C$), and the norm $N(A) = |\\mathcal O_K/A|$ is multiplicative, with $N((\\alpha)) = |N_{K/\\mathbb Q}(\\alpha)|$."
+   },
+   {
+    "type": "section",
+    "title": "About the proof",
+    "body": "The proof is omitted here; it takes a chapter in the books of Marcus or Neukirch listed below. The three properties of $\\mathcal O_K$ that make it work are: every ideal is finitely generated; $\\mathcal O_K$ is integrally closed (a fraction that is an algebraic integer already lies in $\\mathcal O_K$); and every nonzero prime ideal is maximal. Rings with these properties are called Dedekind domains. The heart of the argument is that every nonzero ideal $A$ has an inverse: there is a fractional ideal $A^{-1}$ with $AA^{-1} = \\mathcal O_K$. Cancellation of ideals then follows, and with it the \"contain means divide\" rule, from which existence and uniqueness of factorization follow much as for integers.\n\nIntegral closure is essential. In the smaller ring $\\mathbb Z[\\sqrt{-3}]$ the ideal $(2, 1 + \\sqrt{-3})$ satisfies $(2, 1+\\sqrt{-3})^2 = 2\\,(2, 1+\\sqrt{-3})$ although $(2, 1 + \\sqrt{-3}) \\ne (2)$, so ideals cannot be cancelled there."
+   },
+   {
+    "type": "theorem",
+    "title": "Dedekind–Kummer factorization of primes",
+    "body": "Suppose $\\mathcal O_K = \\mathbb Z[\\alpha]$ and $f$ is the minimal polynomial of $\\alpha$. Let $p$ be a prime and factor $f$ modulo $p$ into distinct monic irreducibles, $f \\equiv g_1^{e_1}\\cdots g_r^{e_r} \\pmod p$. Then\n$$p\\,\\mathcal O_K = P_1^{e_1}\\cdots P_r^{e_r}, \\qquad P_j = (p, g_j(\\alpha)), \\qquad N(P_j) = p^{\\deg g_j}.$$\n(The proof is omitted; it follows from $\\mathcal O_K/p\\mathcal O_K \\cong \\mathbb F_p[x]/(\\bar f)$.)"
+   },
+   {
+    "type": "section",
+    "title": "Primes in quadratic fields",
+    "body": "For $\\mathbb Z[\\sqrt{-5}]$ take $f = x^2 + 5$.\n\n- Mod $2$: $x^2 + 5 \\equiv (x + 1)^2$, so $(2) = (2, 1 + \\sqrt{-5})^2 = P_2^2$. The prime $2$ ramifies.\n- Mod $3$: $x^2 + 5 \\equiv x^2 - 1 = (x - 1)(x + 1)$, so $(3) = (3, \\sqrt{-5} - 1)(3, \\sqrt{-5} + 1) = P_3'P_3$. The prime $3$ splits.\n- Mod $7$: $3^2 = 9 \\equiv -5$, so $x^2 + 5 \\equiv (x - 3)(x + 3)$ and $(7) = P_7P_7'$ with $P_7 = (7, 3 + \\sqrt{-5})$, $P_7' = (7, 3 - \\sqrt{-5})$. Since $a^2 + 5b^2 = 7$ has no solutions, these are not principal either.\n- Mod $11$: $-5 \\equiv 6$ is not a square mod $11$ (the squares are $1, 3, 4, 5, 9$), so $x^2 + 5$ is irreducible and $(11)$ stays prime.\n\nIn general, for $K = \\mathbb Q(\\sqrt d)$ and an odd prime $p \\nmid d$, the prime $p$ splits into two distinct prime ideals when $\\left(\\frac dp\\right) = 1$ and stays prime when $\\left(\\frac dp\\right) = -1$; primes dividing the discriminant ramify. For $\\mathbb Q(i)$ this is exactly the rule found for the Gaussian integers: $(p)$ splits when $\\left(\\frac{-1}{p}\\right) = 1$, i.e. $p \\equiv 1 \\pmod 4$."
+   },
+   {
+    "type": "example",
+    "title": "The two factorizations of 6",
+    "body": "Verify that in $\\mathbb Z[\\sqrt{-5}]$\n$$(6) = (2, 1+\\sqrt{-5})^2\\,(3, 1+\\sqrt{-5})(3, 1-\\sqrt{-5}),$$\nand explain both factorizations $6 = 2 \\cdot 3 = (1+\\sqrt{-5})(1-\\sqrt{-5})$ in terms of these four prime ideals.",
+    "solution": "Write $s = \\sqrt{-5}$, so $s^2 = -5$, and use the generator rule for products.\n\n$P_2^2 = (4,\\ 2(1+s),\\ (1+s)^2) = (4,\\ 2 + 2s,\\ -4 + 2s)$. Every generator is divisible by $2$, so $P_2^2 \\subseteq (2)$. Conversely $(2 + 2s) - (-4 + 2s) = 6$ and $6 - 4 = 2$ lie in $P_2^2$. So $P_2^2 = (2)$.\n\n$P_3P_3' = (9,\\ 3(1 - s),\\ 3(1 + s),\\ (1+s)(1-s)) = (9,\\ 3 - 3s,\\ 3 + 3s,\\ 6)$. All generators are divisible by $3$, and $9 - 6 = 3$ is in the product. So $P_3P_3' = (3)$.\n\nMultiplying, $(6) = (2)(3) = P_2^2P_3P_3'$.\n\nNow regroup. $P_2P_3 = (6,\\ 2(1+s),\\ 3(1+s),\\ (1+s)^2)$. Each generator is a multiple of $1 + s$ (note $6 = (1+s)(1-s)$), and $3(1+s) - 2(1+s) = 1 + s$ is in the product, so $P_2P_3 = (1 + s)$. By conjugation, $P_2P_3' = (1 - s)$.\n\nSo the two factorizations of the number $6$ are\n$$(2)(3) = (P_2P_2)(P_3P_3'), \\qquad (1 + s)(1 - s) = (P_2P_3)(P_2P_3').$$\nThe same four prime ideals appear, grouped in two ways. Neither $2$ nor $1+s$ is prime as an element because each is a product of two non-principal prime ideals. As a check on norms: $N(P_2)^2N(P_3)N(P_3') = 4 \\cdot 9 = 36 = N(6)$."
+   },
+   {
+    "type": "example",
+    "title": "Factoring a principal ideal",
+    "body": "Factor the ideal $(3 + \\sqrt{-5})$ into prime ideals.",
+    "solution": "$N(3 + \\sqrt{-5}) = 9 + 5 = 14 = 2\\cdot 7$, so by multiplicativity of the norm $(3 + \\sqrt{-5})$ is a product of a prime ideal of norm $2$ and one of norm $7$. The only prime of norm $2$ is $P_2$, which contains $3 + \\sqrt{-5}$ (since $3 \\equiv 1 \\pmod 2$). The primes of norm $7$ are $P_7 = (7, 3 + \\sqrt{-5})$ and $P_7' = (7, 3 - \\sqrt{-5})$. Clearly $3 + \\sqrt{-5} \\in P_7$. It is not in $P_7'$: otherwise $P_7'$ would contain $(3 + \\sqrt{-5}) + (3 - \\sqrt{-5}) = 6$ and $7$, hence $1$.\n\nSince containing means dividing, $P_2 \\mid (3 + \\sqrt{-5})$ and $P_7 \\mid (3 + \\sqrt{-5})$, so\n$$(3 + \\sqrt{-5}) = P_2\\,P_7.$$\nSimilarly $(3 - \\sqrt{-5}) = P_2P_7'$, and $14 = (3 + \\sqrt{-5})(3 - \\sqrt{-5})$ corresponds to $(2)(7) = P_2^2P_7P_7'$."
+   },
+   {
+    "type": "example",
+    "title": "A gcd that is not a number",
+    "body": "Show that in $\\mathbb Z[\\sqrt{-5}]$ the only common divisors of $2$ and $1 + \\sqrt{-5}$ are $\\pm 1$, yet there are no $x, y \\in \\mathbb Z[\\sqrt{-5}]$ with $2x + (1+\\sqrt{-5})y = 1$.",
+    "solution": "If $\\delta$ divides both, then $N(\\delta)$ divides $N(2) = 4$ and $N(1 + \\sqrt{-5}) = 6$, so $N(\\delta) \\in \\{1, 2\\}$. No element has norm $2$, so $N(\\delta) = 1$ and $\\delta = \\pm 1$.\n\nNow write $x = a + b\\sqrt{-5}$ and $y = c + e\\sqrt{-5}$ with integers $a, b, c, e$. Then\n$$2x + (1 + \\sqrt{-5})y = (2a + c - 5e) + (2b + c + e)\\sqrt{-5}.$$\nFor this to equal $1$ we need $2a + c - 5e = 1$ and $2b + c + e = 0$. Subtracting, $2a - 2b - 6e = 1$, whose left side is even. Contradiction.\n\nIn $\\mathbb Z$ (and in $\\mathbb Z[i]$), coprime numbers always satisfy such a Bézout relation. Here they do not, because the set of all combinations $2x + (1 + \\sqrt{-5})y$ is the ideal $P_2$, which is neither the whole ring nor generated by a single number. The ideal $P_2$ is the honest greatest common divisor of $2$ and $1 + \\sqrt{-5}$."
+   },
+   {
+    "type": "section",
+    "title": "Kummer, Dedekind and Fermat",
+    "body": "The ideas grew out of Fermat's Last Theorem. For an odd prime $p$ and $\\zeta = e^{2\\pi i/p}$, the equation $x^p + y^p = z^p$ factors as\n$$\\prod_{k=0}^{p-1}(x + \\zeta^k y) = z^p$$\nin $\\mathbb Z[\\zeta]$. With unique factorization one could argue as in the Gaussian example $x^2 + 1 = y^3$: coprime factors whose product is a $p$-th power are $p$-th powers up to units. But unique factorization in $\\mathbb Z[\\zeta_p]$ fails for many $p$, the first being $p = 23$.\n\nIn 1847 Kummer introduced his ideal numbers, restoring unique factorization in these cyclotomic rings, and proved Fermat's Last Theorem for regular primes, those $p$ that do not divide the class number of $\\mathbb Q(\\zeta_p)$. In 1871 Dedekind replaced ideal numbers by ideals, sets of actual numbers, and proved unique factorization of ideals in every ring of integers. The extent to which ideals fail to be principal is measured by the [[class-group]]."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Irreducible is not the same as prime. In $\\mathbb Z[\\sqrt{-5}]$ the element $2$ is irreducible but not prime: it divides $(1+\\sqrt{-5})(1-\\sqrt{-5})$ and neither factor.\n- An ideal with two generators is not \"a pair of numbers\"; different generator sets can give the same ideal, e.g. $(2, 1 + \\sqrt{-5}) = (2, 1 - \\sqrt{-5})$ since $1 - \\sqrt{-5} = 2 - (1 + \\sqrt{-5})$.\n- The Dedekind–Kummer recipe requires $\\mathcal O_K = \\mathbb Z[\\alpha]$ (or at least $p \\nmid [\\mathcal O_K : \\mathbb Z[\\alpha]]$). Applied to $x^2 + 3$ and $p = 2$ it would give the wrong answer for $\\mathbb Q(\\sqrt{-3})$, where $2$ is actually inert."
+   },
+   {
+    "type": "connection",
+    "body": "- The quotient of all (fractional) ideals by the principal ones is the [[class-group]]; it is trivial exactly when $\\mathcal O_K$ has unique factorization of elements.\n- In [[cyclotomic]] fields, the Dedekind–Kummer theorem applied to the cyclotomic polynomial shows that a prime $p \\nmid n$ splits in $\\mathbb Q(\\zeta_n)$ according to the order of $p$ modulo $n$.\n- Summing $N(A)^{-s}$ over all nonzero ideals gives the [[dedekind-zeta]] function; unique factorization of ideals is exactly what gives it an Euler product over prime ideals.\n- Ideal classes and characters on ideals lead on to [[hecke-l]] functions.\n- The [[gaussian-integers]] and [[eisenstein-integers]] are the cases where every ideal is principal, so ideal factorization and element factorization agree."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $(2, 1+\\sqrt{-5})(3, 1-\\sqrt{-5}) = (1 - \\sqrt{-5})$ in $\\mathbb Z[\\sqrt{-5}]$.\n2. Use the Dedekind–Kummer theorem to factor $(29)$ in $\\mathbb Z[\\sqrt{-5}]$, and decide whether its prime factors are principal.\n3. Show that $(7, 3 + \\sqrt{-5})^2$ is principal by finding a generator. (Hint: look for an element of norm $49$ other than $\\pm 7$.)\n4. Factor $(2)$ and $(3)$ in $\\mathbb Z[\\sqrt{-6}]$ and show that the prime ideals above $2$ and $3$ are not principal."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Marcus, Number Fields",
+    "where": "Ch. 3"
+   },
+   {
+    "ref": "Neukirch, Algebraic Number Theory",
+    "where": "Ch. I"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Ch. 12"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "No elements of norm 2, 3 or 7 in Z[sqrt-5]; N(2)=4, N(3)=9, N(1+sqrt-5)=6, N(3+sqrt-5)=14",
+    "python": "N=lambda a,b:a*a+5*b*b\nvals={N(a,b) for a in range(-10,11) for b in range(-5,6)}\nassert 2 not in vals and 3 not in vals and 7 not in vals\nassert N(2,0)==4 and N(3,0)==9 and N(1,1)==6 and N(1,-1)==6 and N(3,1)==14"
+   },
+   {
+    "claim": "(6) = P2^2 P3 P3', P2^2 = (2), P3 P3' = (3), P2 P3 = (1+s), P2 P3' = (1-s), as lattices in Z[sqrt-5]",
+    "python": "from math import gcd\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1]))\n        a,b=nz[0],nz[1]; q=b[1]//a[1]\n        b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h, piv[0]%h, piv[1])\ndef ideal(gens):\n    vs=[]\n    for g in gens: vs+= [g, mul(g,(0,1))]\n    return hnf(vs)\ndef prod(A,B): return ideal([mul(a,b) for a in A for b in B])\ndef index(I): return I[0]*I[2]\nP2=[(2,0),(1,1)]; P3=[(3,0),(1,1)]; P3b=[(3,0),(1,-1)]\nassert prod(P2,P2)==ideal([(2,0)])\nassert prod(P3,P3b)==ideal([(3,0)])\nassert prod(P2,P3)==ideal([(1,1)])\nassert prod(P2,P3b)==ideal([(1,-1)])\nP22=[mul(a,b) for a in P2 for b in P2]\nP33=[mul(a,b) for a in P3 for b in P3b]\nassert prod(P22,P33)==ideal([(6,0)])"
+   },
+   {
+    "claim": "P2 = {a = b mod 2} has index 2; P3, P3' have index 3; P3 = {a = b mod 3}, P3' = {a = -b mod 3}; (2,1+s) = (2,1-s)",
+    "python": "from math import gcd\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1]))\n        a,b=nz[0],nz[1]; q=b[1]//a[1]\n        b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h, piv[0]%h, piv[1])\ndef ideal(gens):\n    vs=[]\n    for g in gens: vs+= [g, mul(g,(0,1))]\n    return hnf(vs)\ndef prod(A,B): return ideal([mul(a,b) for a in A for b in B])\ndef index(I): return I[0]*I[2]\nP2=ideal([(2,0),(1,1)]); P3=ideal([(3,0),(1,1)]); P3b=ideal([(3,0),(1,-1)])\nassert index(P2)==2 and index(P3)==3 and index(P3b)==3\nassert P2==hnf([(2,0),(1,1),(0,2)]) and P3==hnf([(3,0),(1,1),(0,3)]) and P3b==hnf([(3,0),(-1,1),(0,3)])\nassert ideal([(2,0),(1,-1)])==P2 and P3!=P3b"
+   },
+   {
+    "claim": "Index of (a+b sqrt-5) equals a^2+5b^2 (sample)",
+    "python": "from math import gcd\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1]))\n        a,b=nz[0],nz[1]; q=b[1]//a[1]\n        b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h, piv[0]%h, piv[1])\ndef ideal(gens):\n    vs=[]\n    for g in gens: vs+= [g, mul(g,(0,1))]\n    return hnf(vs)\ndef prod(A,B): return ideal([mul(a,b) for a in A for b in B])\ndef index(I): return I[0]*I[2]\nfor a in range(-6,7):\n    for b in range(-6,7):\n        if (a,b)!=(0,0): assert index(ideal([(a,b)]))==a*a+5*b*b"
+   },
+   {
+    "claim": "(3+s) = P2 P7, (7) = P7 P7', 3+s not in P7', P7 != P7'",
+    "python": "from math import gcd\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1]))\n        a,b=nz[0],nz[1]; q=b[1]//a[1]\n        b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h, piv[0]%h, piv[1])\ndef ideal(gens):\n    vs=[]\n    for g in gens: vs+= [g, mul(g,(0,1))]\n    return hnf(vs)\ndef prod(A,B): return ideal([mul(a,b) for a in A for b in B])\ndef index(I): return I[0]*I[2]\nP2=[(2,0),(1,1)]; P7=[(7,0),(3,1)]; P7b=[(7,0),(3,-1)]\nassert prod(P2,P7)==ideal([(3,1)])\nassert prod(P2,P7b)==ideal([(3,-1)])\nassert prod(P7,P7b)==ideal([(7,0)])\nassert ideal(P7)!=ideal(P7b)\nassert ideal(P7b+[(3,1)])==(1,0,1)"
+   },
+   {
+    "claim": "x^2+5 factors mod 2 as (x+1)^2, mod 3 as (x-1)(x+1), mod 7 as (x-3)(x+3), irreducible mod 11; squares mod 11 are 1,3,4,5,9",
+    "python": "from sympy import symbols, factor_list, Poly\nx=symbols('x')\nf=x**2+5\ndef fl(p):\n    return sorted((Poly(g,x,modulus=p).degree(),e) for g,e in factor_list(f,modulus=p)[1])\nassert fl(2)==[(1,2)] and fl(3)==[(1,1),(1,1)] and fl(7)==[(1,1),(1,1)] and fl(11)==[(2,1)]\nassert (9+5)%7==0 and sorted({a*a%11 for a in range(1,11)})==[1,3,4,5,9]"
+   },
+   {
+    "claim": "No x,y in Z[sqrt-5] (small range) with 2x+(1+s)y = 1; the combination formula",
+    "python": "from sympy import symbols, expand, sqrt, I\na,b,c,e=symbols('a b c e')\ns=sqrt(5)*I\nlhs=expand(2*(a+b*s)+(1+s)*(c+e*s))\nassert expand(lhs-((2*a+c-5*e)+(2*b+c+e)*s))==0\nR=range(-4,5)\nassert not any(2*A+C-5*E==1 and 2*B+C+E==0 for A in R for B in R for C in R for E in R)"
+   },
+   {
+    "claim": "In Z[sqrt-3]: (2,1+sqrt-3)^2 = 2(2,1+sqrt-3) but (2,1+sqrt-3) != (2); ring of integers criterion: (1+sqrt d)/2 has integral min poly iff d = 1 mod 4",
+    "python": "from math import gcd\nD=-3\ndef mul(x,y): return (x[0]*y[0]+D*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1])); a,b=nz[0],nz[1]; q=b[1]//a[1]; b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h,piv[0]%h,piv[1])\ndef ideal(g):\n    vs=[]\n    for x in g: vs+=[x,mul(x,(0,1))]\n    return hnf(vs)\nA=[(2,0),(1,1)]\nAA=ideal([mul(x,y) for x in A for y in A])\nassert AA==ideal([mul((2,0),x) for x in A])\nassert ideal(A)!=ideal([(2,0)])\nfrom fractions import Fraction\nfor d in [-7,-5,-3,-2,-1,2,3,5,6,7,10,13]:\n    c=Fraction(1-d,4)\n    assert (c.denominator==1)==(d%4==1)"
+   },
+   {
+    "claim": "Exercise data: -5 is a QR mod 29 and 29 = 3^2+5*2^2 (principal factors); N(2+3sqrt-5)=49 and (7,3+sqrt-5)^2 = (2-3sqrt-5) or (2+3sqrt-5); in Z[sqrt-6] no element has norm 2 or 3",
+    "python": "from math import gcd\nfrom sympy import legendre_symbol\nassert legendre_symbol((-5)%29,29)==1 and 3**2+5*2**2==29 and 4+45==49\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\ndef hnf(vecs):\n    vecs=[list(v) for v in vecs if tuple(v)!=(0,0)]\n    while sum(1 for v in vecs if v[1]!=0)>1:\n        nz=sorted([v for v in vecs if v[1]!=0], key=lambda v:abs(v[1])); a,b=nz[0],nz[1]; q=b[1]//a[1]; b[0]-=q*a[0]; b[1]-=q*a[1]\n    piv=[v for v in vecs if v[1]!=0][0]\n    if piv[1]<0: piv=[-piv[0],-piv[1]]\n    h=0\n    for v in vecs:\n        if v[1]==0: h=gcd(h,abs(v[0]))\n    return (h,piv[0]%h,piv[1])\ndef ideal(g):\n    vs=[]\n    for x in g: vs+=[x,mul(x,(0,1))]\n    return hnf(vs)\nP7=[(7,0),(3,1)]\nsq=ideal([mul(a,b) for a in P7 for b in P7])\nassert sq in (ideal([(2,3)]),ideal([(2,-3)]))\nassert not any(a*a+6*b*b in (2,3) for a in range(-2,3) for b in range(-1,2))"
+   },
+   {
+    "claim": "The map a+b sqrt-5 -> (a-b) mod 3 (sqrt-5 -> -1) kills 3 and 1+sqrt-5 and respects products; sqrt-5 -> 1 kills 1-sqrt-5; same for mod 2",
+    "python": "import itertools\ndef mul(x,y): return (x[0]*y[0]-5*x[1]*y[1], x[0]*y[1]+x[1]*y[0])\nfor m,r in [(2,-1),(3,-1),(3,1)]:\n    f=lambda z:(z[0]+r*z[1])%m\n    for x in itertools.product(range(-4,5),repeat=2):\n        for y in itertools.product(range(-4,5),repeat=2):\n            assert f(mul(x,y))==(f(x)*f(y))%m\nassert (1+(-1)*1)%3==0 and (1+1*(-1))%3==0 and (1-1)%2==0"
+   }
+  ]
+ },
+ {
+  "id": "class-group",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "In a ring of integers $\\mathcal O_K$, ideals factor uniquely into prime ideals (see [[ideals]]), but numbers may not. The two statements agree exactly when every ideal is principal. So the natural measure of how badly unique factorization fails is: how many ideals are not principal, and in how many essentially different ways?\n\nThe answer is a finite abelian group, the ideal class group, and its order is the class number $h_K$. Class numbers connect algebra (unique factorization), Gauss's theory of [[quadratic-forms]], analysis (values of $L$-functions) and some famous numerical coincidences, such as $e^{\\pi\\sqrt{163}}$ being within $10^{-12}$ of an integer."
+   },
+   {
+    "type": "definition",
+    "title": "Class group and class number",
+    "body": "A fractional ideal of $K$ is a set of the form $\\tfrac1d A$ with $A$ a nonzero ideal of $\\mathcal O_K$ and $d$ a nonzero integer. By Dedekind's theory the fractional ideals form an abelian group $I_K$ under multiplication, with identity $\\mathcal O_K$; the inverse of $A$ is $A^{-1} = \\{x \\in K : xA \\subseteq \\mathcal O_K\\}$. The principal fractional ideals $\\alpha\\mathcal O_K$, $\\alpha \\in K^\\times$, form a subgroup $P_K$. The class group and class number are\n$$\\mathrm{Cl}(K) = I_K/P_K, \\qquad h_K = |\\mathrm{Cl}(K)|.$$\n\nConcretely, two nonzero ideals $A, B$ of $\\mathcal O_K$ are in the same class exactly when $(\\alpha)A = (\\beta)B$ for some nonzero $\\alpha, \\beta \\in \\mathcal O_K$. The trivial class consists of the principal ideals."
+   },
+   {
+    "type": "theorem",
+    "title": "Class number one means unique factorization",
+    "body": "$h_K = 1$ if and only if $\\mathcal O_K$ has unique factorization of elements into primes (up to order and units)."
+   },
+   {
+    "type": "proof",
+    "body": "Suppose $h_K = 1$, so every ideal is principal. Every nonzero non-unit is a product of irreducibles, by induction on $|N(\\alpha)|$. If $\\pi$ is irreducible, $(\\pi)$ lies in some maximal ideal $P = (\\rho)$; then $\\rho \\mid \\pi$ and $\\rho$ is not a unit, so $\\rho$ is an associate of $\\pi$ and $(\\pi) = P$ is a prime ideal. Thus irreducibles are prime ($\\pi \\mid \\alpha\\beta$ implies $\\pi \\mid \\alpha$ or $\\pi \\mid \\beta$), and uniqueness follows as in $\\mathbb Z$.\n\nConversely, suppose $\\mathcal O_K$ has unique factorization, and let $P$ be a nonzero prime ideal. Pick a nonzero $\\alpha \\in P$ and factor it into primes, $\\alpha = \\pi_1\\cdots\\pi_r$. As $P$ is a prime ideal, some $\\pi_j$ lies in $P$. Since $\\pi_j$ is a prime element, $(\\pi_j)$ is a nonzero prime ideal, hence maximal, and $(\\pi_j) \\subseteq P \\ne \\mathcal O_K$ forces $(\\pi_j) = P$. So every prime ideal is principal, and since every nonzero ideal is a product of prime ideals, every ideal is principal."
+   },
+   {
+    "type": "theorem",
+    "title": "Finiteness of the class group (Minkowski bound)",
+    "body": "Let $K$ have degree $n$, discriminant $d_K$, and $r_2$ pairs of complex embeddings. Every ideal class contains an ideal $A \\subseteq \\mathcal O_K$ with\n$$N(A) \\le M_K = \\frac{n!}{n^n}\\Bigl(\\frac4\\pi\\Bigr)^{r_2}\\sqrt{|d_K|}.$$\nFor an imaginary quadratic field $M_K = \\tfrac2\\pi\\sqrt{|d_K|}$; for a real quadratic field $M_K = \\tfrac12\\sqrt{d_K}$. Since an ideal of norm $m$ contains $m$, and $\\mathcal O_K/(m)$ is finite, only finitely many ideals have norm at most $M_K$; hence $h_K$ is finite."
+   },
+   {
+    "type": "section",
+    "title": "About the proof, and a practical recipe",
+    "body": "The bound comes from Minkowski's geometry of numbers: a symmetric convex region of large enough volume contains a nonzero lattice point, and applied to the lattice $A^{-1}$ this produces an element of controlled norm. The proof is omitted here (see Marcus, Ch. 5).\n\nThe recipe it gives: list the prime ideals of norm at most $M_K$ (they lie above rational primes $p \\le M_K$ and are found by the Dedekind–Kummer theorem), decide which products of them are principal, and read off the group. For $K = \\mathbb Q(\\sqrt{-5})$, $d_K = -20$ and $M_K = \\tfrac2\\pi\\sqrt{20} \\approx 2.85$. The only ideals of norm $\\le 2$ are $\\mathcal O_K$ and $P_2 = (2, 1 + \\sqrt{-5})$, and $P_2$ is not principal because $a^2 + 5b^2 = 2$ has no solution. So $\\mathrm{Cl}(\\mathbb Q(\\sqrt{-5}))$ has order $2$, generated by the class of $P_2$, and indeed $P_2^2 = (2)$.\n\nFor $\\mathbb Q(\\sqrt{-7})$ ($d_K = -7$) the bound is $\\tfrac2\\pi\\sqrt 7 \\approx 1.68$, so every class contains $\\mathcal O_K$ and $h = 1$ with no further work."
+   },
+   {
+    "type": "section",
+    "title": "Ideals and binary quadratic forms",
+    "body": "For imaginary quadratic fields Gauss's older theory gives an efficient way to compute. Let $D = d_K < 0$. If an ideal $A$ has $\\mathbb Z$-basis $\\alpha, \\beta$ (suitably oriented), then\n$$f_A(x, y) = \\frac{N(x\\alpha + y\\beta)}{N(A)}$$\nis a primitive positive definite form $ax^2 + bxy + cy^2$ with integer coefficients and $b^2 - 4ac = D$; for instance $A = \\mathbb Z a + \\mathbb Z\\,\\tfrac{-b + \\sqrt D}{2}$ gives back $ax^2 + bxy + cy^2$. This sets up a bijection between $\\mathrm{Cl}(K)$ and proper equivalence classes of such forms, under which ideal multiplication becomes Gauss composition. (Proof omitted; see Cox's book.)\n\nEach class of forms contains exactly one reduced form: $|b| \\le a \\le c$, with $b \\ge 0$ if $|b| = a$ or $a = c$. For a reduced form $|D| = 4ac - b^2 \\ge 4a^2 - a^2 = 3a^2$, so $a \\le \\sqrt{|D|/3}$, and counting reduced forms is a finite search. This is how the class numbers in this lesson are computed. Write $h(D)$ for the class number of the field of discriminant $D$."
+   },
+   {
+    "type": "example",
+    "title": "h(−20) = 2 and the primes x² + 5y²",
+    "body": "Compute $h(-20)$ by reduced forms, and explain which primes are of the form $x^2 + 5y^2$.",
+    "solution": "We need $b^2 - 4ac = -20$, so $b$ is even, and $a \\le \\sqrt{20/3} \\approx 2.58$.\n\n- $a = 1$: $b = 0$ (since $|b| \\le 1$ and $b$ even), $c = 5$: the form $x^2 + 5y^2$.\n- $a = 2$: $b = 0$ gives $8c = 20$, no; $b = \\pm 2$ gives $4 - 8c = -20$, $c = 3$; as $|b| = a$ we keep only $b = 2$: the form $2x^2 + 2xy + 3y^2$.\n\nSo $h(-20) = 2$, agreeing with the Minkowski computation. The non-principal form comes from $P_2 = \\mathbb Z\\cdot 2 + \\mathbb Z(1 + \\sqrt{-5})$:\n$$\\frac{N(2x + (1+\\sqrt{-5})y)}{2} = \\frac{(2x+y)^2 + 5y^2}{2} = 2x^2 + 2xy + 3y^2.$$\n\nFor a prime $p \\ne 2, 5$: $p$ splits in $\\mathbb Q(\\sqrt{-5})$ iff $\\left(\\frac{-5}{p}\\right) = 1$, which happens iff $p \\equiv 1, 3, 7, 9 \\pmod{20}$. If $p = PP'$ with $P$ principal, $P = (x + y\\sqrt{-5})$ and $p = x^2 + 5y^2$; if $P$ is not principal, $p$ is represented by $2x^2 + 2xy + 3y^2$ instead. Which case occurs is decided by $p$ modulo $20$ (this is genus theory):\n$$p = x^2 + 5y^2 \\iff p \\equiv 1, 9 \\pmod{20}, \\qquad p = 2x^2 + 2xy + 3y^2 \\iff p \\equiv 3, 7 \\pmod{20}.$$\nFor example $29 \\equiv 9 \\pmod{20}$ and $29 = 3^2 + 5\\cdot 2^2$, while $3 = 2\\cdot 0^2 + 2\\cdot 0\\cdot 1 + 3\\cdot 1^2$ and $7 = 2\\cdot 1^2 + 2\\cdot 1\\cdot 1 + 3\\cdot 1^2$ are represented by the second form and not by $x^2 + 5y^2$."
+   },
+   {
+    "type": "example",
+    "title": "A class group of order 3",
+    "body": "Let $K = \\mathbb Q(\\sqrt{-23})$, with $\\mathcal O_K = \\mathbb Z[\\theta]$, $\\theta = \\tfrac{1 + \\sqrt{-23}}{2}$. Show that $h(-23) = 3$ and that a prime ideal above $2$ has order $3$ in the class group.",
+    "solution": "Reduced forms of discriminant $-23$: $b$ is odd and $a \\le \\sqrt{23/3} \\approx 2.77$. For $a = 1$, $b = 1$, $c = 6$. For $a = 2$, $b = \\pm 1$, $c = 3$, and both signs are allowed since $|b| < a < c$. So the reduced forms are $x^2 + xy + 6y^2$ and $2x^2 \\pm xy + 3y^2$, and $h(-23) = 3$; a group of order $3$ is cyclic.\n\nDirectly: $\\theta$ has minimal polynomial $x^2 - x + 6$, and $N(x + y\\theta) = x^2 + xy + 6y^2$, so $4N(x + y\\theta) = (2x + y)^2 + 23y^2$. Modulo $2$, $x^2 - x + 6 \\equiv x(x - 1)$, so $(2) = PP'$ with $P = (2, \\theta)$, $P' = (2, \\theta - 1)$, each of norm $2$. $P$ is not principal: an element of norm $2$ would need $y = 0$ (else $4N \\ge 23$) and then $x^2 = 2$.\n\nNow $N(1 + \\theta) = 1 + 1 + 6 = 8$, so $(1 + \\theta)$ is a product of three prime ideals of norm $2$, i.e. $P^aP'^b$ with $a + b = 3$. If both $a, b \\ge 1$, then $PP' = (2)$ would divide $(1 + \\theta)$, i.e. $2 \\mid 1 + \\theta = \\tfrac{3 + \\sqrt{-23}}{2}$, which is false since $\\tfrac{3 + \\sqrt{-23}}{4} \\notin \\mathcal O_K$. So $(1 + \\theta) = P^3$ or $P'^3$, and since $P' = P^{-1}$ up to the principal ideal $(2)$, in either case $P^3$ is principal while $P$ is not. The class of $P$ has order $3$."
+   },
+   {
+    "type": "example",
+    "title": "Euler's prime-producing polynomial",
+    "body": "Using $h(-163) = 1$, show that $n^2 + n + 41$ is prime for $n = 0, 1, \\dots, 39$.",
+    "solution": "Let $K = \\mathbb Q(\\sqrt{-163})$, $\\theta = \\tfrac{1 + \\sqrt{-163}}{2}$, so $\\mathcal O_K = \\mathbb Z[\\theta]$ and $\\theta$ has minimal polynomial $x^2 - x + 41$ (indeed $\\theta + \\bar\\theta = 1$ and $\\theta\\bar\\theta = \\tfrac{1 + 163}{4} = 41$). Then\n$$N(x + y\\theta) = x^2 + xy + 41y^2, \\qquad 4N(x + y\\theta) = (2x + y)^2 + 163y^2.$$\n\nFor $0 \\le n \\le 39$ we have $n^2 + n + 41 \\le 1601 < 41^2$, so it is enough to show that no prime $p < 41$ divides $n^2 + n + 41$. Suppose one did. Since $n^2 + n$ is even, $n^2 + n + 41$ is odd and $p$ is odd. The polynomial $x^2 - x + 41$ has the root $-n$ modulo $p$, so by the Dedekind–Kummer theorem $p$ is not inert: there is a prime ideal $P$ of norm $p$. As $h = 1$, $P = (x + y\\theta)$ and $x^2 + xy + 41y^2 = p$. If $y = 0$ then $p = x^2$, impossible; if $y \\ne 0$ then $4p \\ge 163$, so $p \\ge 41$. Contradiction.\n\nAt $n = 40$ the pattern stops: $40^2 + 40 + 41 = 41^2$. The same argument shows that $n^2 + n + A$ is prime for $0 \\le n \\le A - 2$ whenever $1 - 4A$ is one of the discriminants of class number one, giving $A = 2, 3, 5, 11, 17, 41$ (Rabinowitsch's criterion; the converse also holds)."
+   },
+   {
+    "type": "theorem",
+    "title": "Class number one (Heegner, Baker, Stark)",
+    "body": "For squarefree $d > 0$, the field $\\mathbb Q(\\sqrt{-d})$ has class number $1$ exactly for\n$$d = 1, 2, 3, 7, 11, 19, 43, 67, 163,$$\nequivalently for the discriminants $D = -3, -4, -7, -8, -11, -19, -43, -67, -163$."
+   },
+   {
+    "type": "section",
+    "title": "History, and the near-integer",
+    "body": "Gauss, in the language of forms, conjectured that his list of discriminants of class number one was complete. Heegner gave a proof in 1952 using modular functions; it was initially doubted and later accepted. Baker (1966) and Stark (1967) gave independent proofs by quite different methods.\n\nThe near-integer comes from the modular $j$-function, $j(\\tau) = q^{-1} + 744 + 196884q + \\cdots$ with $q = e^{2\\pi i\\tau}$. A deep fact of the theory of complex multiplication is that $j\\bigl(\\tfrac{1 + \\sqrt D}{2}\\bigr)$, for odd $D$, is an algebraic integer of degree $h(D)$. When $h = 1$ it is an ordinary integer; for $D = -163$ it is $-640320^3$. Here $q = e^{\\pi i}e^{-\\pi\\sqrt{163}} = -e^{-\\pi\\sqrt{163}}$, so\n$$e^{\\pi\\sqrt{163}} = 640320^3 + 744 - 196884\\,e^{-\\pi\\sqrt{163}} + \\cdots \\approx 640320^3 + 744 - 7.5\\times 10^{-13}.$$\nThe same happens, less spectacularly, for $67$ and $43$: $e^{\\pi\\sqrt{67}} \\approx 5280^3 + 744$ and $e^{\\pi\\sqrt{43}} \\approx 960^3 + 744$. The number $e^{\\pi\\sqrt{163}}$ is not an integer; by the Gelfond–Schneider theorem it is transcendental."
+   },
+   {
+    "type": "section",
+    "title": "How fast do class numbers grow?",
+    "body": "For imaginary quadratic fields, Dirichlet's class number formula links $h$ to a value of an $L$-function (see [[class-number-formula]]):\n$$h(D) = \\frac{w\\sqrt{|D|}}{2\\pi}L(1, \\chi_D),$$\nwhere $\\chi_D$ is the Kronecker symbol $\\left(\\frac Dn\\right)$ and $w$ is the number of roots of unity in $K$ ($w = 6$ for $D = -3$, $w = 4$ for $D = -4$, $w = 2$ otherwise). For $D < -4$ it can be rewritten as a finite sum, $h(D) = -\\frac{1}{|D|}\\sum_{a=1}^{|D|-1}\\chi_D(a)\\,a$.\n\nSince $L(1, \\chi_D) \\ll \\log|D|$, one gets $h(D) \\ll \\sqrt{|D|}\\log|D|$. In the other direction, Siegel proved in 1935 that for every $\\varepsilon > 0$ there is $c(\\varepsilon) > 0$ with $h(D) > c(\\varepsilon)|D|^{1/2 - \\varepsilon}$, so $h(D) \\to \\infty$. But $c(\\varepsilon)$ cannot be computed from the proof: it could only be small if $L(s, \\chi_D)$ had a real zero very close to $s = 1$, a Siegel zero, and the argument cannot rule such a zero out effectively. This is why class numbers and [[siegel-zeros]] are tied together. The effective lower bounds known today, from work of Goldfeld and of Gross and Zagier, grow only roughly like $\\log|D|$.\n\nFor real quadratic fields the situation is reversed: class numbers are often $1$, and Gauss's conjecture that infinitely many real quadratic fields have class number $1$ is still open."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $h(-163)$ refers to the discriminant $D = -163$, the field $\\mathbb Q(\\sqrt{-163})$. For $d \\equiv 1, 2 \\pmod 4$ the discriminant is $-4d$, not $-d$: $\\mathbb Q(\\sqrt{-5})$ has $D = -20$.\n- The list of nine is for imaginary quadratic fields. Many real quadratic fields have class number $1$ (for instance $\\mathbb Q(\\sqrt 2)$, $\\mathbb Q(\\sqrt 5)$), and $\\mathbb Q(\\sqrt{10})$ has class number $2$.\n- Class number $1$ does not mean the ring is Euclidean: $\\mathbb Z\\bigl[\\tfrac{1 + \\sqrt{-19}}{2}\\bigr]$ has unique factorization but no division algorithm with respect to any function.\n- Class numbers of forms of non-fundamental discriminant (for example $x^2 + 3y^2$, discriminant $-12$) belong to orders like $\\mathbb Z[\\sqrt{-3}]$, not to the full ring of integers; do not mix the two."
+   },
+   {
+    "type": "connection",
+    "body": "- The general analytic class number formula expresses $h_K$ through the residue of the [[dedekind-zeta]] function at $s = 1$; see [[class-number-formula]].\n- The ineffectivity in Siegel's bound is the same phenomenon as possible [[siegel-zeros]]; ruling them out (see [[no-siegel]]) would make the bound effective.\n- Characters of the class group are the simplest Hecke characters, and their $L$-functions are [[hecke-l]] functions; the trivial character gives back $\\zeta_K(s)$.\n- Kummer's regular primes are those $p$ not dividing the class number of the [[cyclotomic]] field $\\mathbb Q(\\zeta_p)$.\n- Reduced forms and Gauss composition are developed in [[quadratic-forms]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. List the reduced forms of discriminant $-56$ and find $h(-56)$, the class number of $\\mathbb Q(\\sqrt{-14})$.\n2. Use the Minkowski bound to show that $\\mathbb Q(\\sqrt{-2})$ and $\\mathbb Q(\\sqrt{-11})$ have class number $1$.\n3. Let $p, q$ be primes, each $\\equiv 3$ or $7 \\pmod{20}$. Using $h(-20) = 2$, show that $pq = x^2 + 5y^2$ for some integers $x, y$.\n4. Adapt the argument for $n^2 + n + 41$ to show that $n^2 + n + 17$ is prime for $0 \\le n \\le 15$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Cox, Primes of the Form x² + ny²"
+   },
+   {
+    "ref": "Marcus, Number Fields",
+    "where": "Ch. 5"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "h(-20)=2, h(-23)=3, h(-163)=1, h(-56)=4 by counting reduced forms",
+    "python": "from math import gcd\ndef h(D):\n    c=0; a=1\n    while 3*a*a<=-D:\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a)==0:\n                cc=(b*b-D)//(4*a)\n                if cc<a or gcd(gcd(a,abs(b)),cc)!=1: continue\n                if b<0 and (abs(b)==a or a==cc): continue\n                c+=1\n        a+=1\n    return c\nassert h(-20)==2 and h(-23)==3 and h(-163)==1 and h(-56)==4"
+   },
+   {
+    "claim": "Among fundamental discriminants -3000 < D < 0, class number 1 exactly for D = -3,-4,-7,-8,-11,-19,-43,-67,-163",
+    "python": "from math import gcd\ndef h(D):\n    c=0; a=1\n    while 3*a*a<=-D:\n        for b in range(-a,a+1):\n            if (b*b-D)%(4*a)==0:\n                cc=(b*b-D)//(4*a)\n                if cc<a or gcd(gcd(a,abs(b)),cc)!=1: continue\n                if b<0 and (abs(b)==a or a==cc): continue\n                c+=1\n        a+=1\n    return c\nfrom sympy import factorint\ndef fund(D):\n    if D%4==1: return all(e==1 for e in factorint(-D).values())\n    if D%4==0:\n        m=D//4\n        return m%4 in (2,3) and all(e==1 for e in factorint(-m).values())\n    return False\nL=[D for D in range(-3,-3000,-1) if fund(D) and h(D)==1]\nassert L==[-3,-4,-7,-8,-11,-19,-43,-67,-163]"
+   },
+   {
+    "claim": "Minkowski bounds: (2/pi)sqrt(20) ~ 2.85, (2/pi)sqrt(7) ~ 1.68, both < 3 and < 2 respectively",
+    "python": "import math\nb20=2/math.pi*math.sqrt(20); b7=2/math.pi*math.sqrt(7)\nassert 2.84<b20<2.86 and 1.68<b7<1.69"
+   },
+   {
+    "claim": "N(2x+(1+sqrt-5)y)/2 = 2x^2+2xy+3y^2; N(x+y theta) = x^2+xy+41y^2 for theta=(1+sqrt-163)/2; 4N = (2x+y)^2+163y^2",
+    "python": "from sympy import symbols, sqrt, I, expand, conjugate, simplify\nx,y=symbols('x y', real=True)\na=2*x+(1+sqrt(5)*I)*y\nassert simplify(expand(a*conjugate(a))/2-(2*x**2+2*x*y+3*y**2))==0\nt=(1+sqrt(163)*I)/2\nb=x+y*t\nassert simplify(expand(b*conjugate(b))-(x**2+x*y+41*y**2))==0\nassert expand((2*x+y)**2+163*y**2-4*(x**2+x*y+41*y**2))==0"
+   },
+   {
+    "claim": "For primes p < 5000 (p != 2,5): p = x^2+5y^2 iff p = 1,9 mod 20; p = 2x^2+2xy+3y^2 iff p = 3,7 mod 20; (-5/p)=1 iff p = 1,3,7,9 mod 20",
+    "python": "from sympy import primerange, legendre_symbol\nimport math\nfor p in primerange(3,5000):\n    if p==5: continue\n    f1=any(math.isqrt(p-5*y*y)**2==p-5*y*y for y in range(math.isqrt(p//5)+1))\n    f2=any(2*x*x+2*x*y+3*y*y==p for x in range(-60,61) for y in range(-60,61))\n    assert f1==(p%20 in (1,9)) and f2==(p%20 in (3,7))\n    assert (legendre_symbol(-5%p,p)==1)==(p%20 in (1,3,7,9))\nassert 29==3**2+5*2**2 and 3==3*1**2 and 7==2+2+3"
+   },
+   {
+    "claim": "Q(sqrt-23): x^2-x+6 = x(x-1) mod 2, N(1+theta)=8, x^2+xy+6y^2 never equals 2, (3+sqrt-23)/4 not integral",
+    "python": "assert all((t*t-t+6)%2==0 for t in (0,1))\nassert 1+1+6==8\nassert not any(x*x+x*y+6*y*y==2 for x in range(-5,6) for y in range(-5,6))\nfrom fractions import Fraction\n# (3+sqrt-23)/4 = a + b*theta with theta=(1+sqrt-23)/2 => b=1/2, not integral\nb=Fraction(1,2); a=Fraction(3,4)-b/2\nassert b.denominator!=1"
+   },
+   {
+    "claim": "n^2+n+41 prime for 0<=n<=39, 39^2+39+41=1601<1681, 40^2+40+41=41^2; Rabinowitsch values A=2,3,5,11,17,41 give primes for n<=A-2 and 1-4A in class number one list",
+    "python": "from sympy import isprime\nassert all(isprime(n*n+n+41) for n in range(40)) and 40*40+40+41==41**2 and 39*39+39+41==1601\nfor A in [2,3,5,11,17,41]:\n    assert all(isprime(n*n+n+A) for n in range(A-1))\n    assert 1-4*A in [-7,-11,-19,-43,-67,-163]\nassert all(isprime(n*n+n+17) for n in range(16)) and 15*15+15+17<17**2"
+   },
+   {
+    "claim": "e^{pi sqrt163} - (640320^3+744) ~ -7.5e-13; 196884 e^{-pi sqrt163} ~ 7.5e-13; j((1+sqrt-163)/2) = -640320^3; e^{pi sqrt67} ~ 5280^3+744, e^{pi sqrt43} ~ 960^3+744",
+    "python": "import mpmath as mp\nmp.mp.dps=60\nd=mp.e**(mp.pi*mp.sqrt(163))-(640320**3+744)\nassert -7.6e-13<d<-7.4e-13\nassert abs(196884*mp.e**(-mp.pi*mp.sqrt(163))-7.5e-13)<1e-14\nj=1728*mp.kleinj((1+mp.sqrt(-163))/2)\nassert abs(j+640320**3)<1e-20\nassert abs(mp.e**(mp.pi*mp.sqrt(67))-(5280**3+744))<1e-5\nassert abs(mp.e**(mp.pi*mp.sqrt(43))-(960**3+744))<1e-3"
+   },
+   {
+    "claim": "Finite class number formula h(D) = -(1/|D|) sum chi_D(a) a for D=-20,-23,-56,-163, and h = w sqrt|D| L(1,chi)/(2 pi) numerically for D=-23",
+    "python": "from sympy import jacobi_symbol\nimport mpmath as mp\ndef kron(D,n):\n    # Kronecker symbol (D/n), n>0\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    if n==1: return r\n    return r*jacobi_symbol(D%n,n)\nfor D,hh in [(-20,2),(-23,3),(-56,4),(-163,1)]:\n    s=sum(kron(D,a)*a for a in range(1,-D))\n    assert -s==hh*(-D)\nq=23\nL=-sum(kron(-23,a)*mp.digamma(mp.mpf(a)/q) for a in range(1,q))/q\nassert abs(2*mp.sqrt(23)*L/(2*mp.pi)-3)<1e-20"
+   },
+   {
+    "claim": "Minkowski bounds for exercise 2: (2/pi)sqrt8 < 2, (2/pi)sqrt11 < 3 and 2 is inert in Q(sqrt-11) (x^2-x+3 irreducible mod 2); reduced forms of discriminant -56 are x^2+14y^2, 2x^2+7y^2, 3x^2+-2xy+5y^2",
+    "python": "import math\nassert 2/math.pi*math.sqrt(8)<2 and 2/math.pi*math.sqrt(11)<3\nassert all((t*t-t+3)%2==1 for t in (0,1))\nfrom math import gcd\nforms=[]\na=1\nwhile 3*a*a<=56:\n    for b in range(-a,a+1):\n        if (b*b+56)%(4*a)==0:\n            c=(b*b+56)//(4*a)\n            if c<a or gcd(gcd(a,abs(b)),c)!=1: continue\n            if b<0 and (abs(b)==a or a==c): continue\n            forms.append((a,b,c))\n    a+=1\nassert sorted(forms)==sorted([(1,0,14),(2,0,7),(3,2,5),(3,-2,5)])"
+   },
+   {
+    "claim": "Products of two primes p,q = 3,7 mod 20 are of the form x^2+5y^2 (p,q < 300); e^{pi sqrt163} - 640320^3 - 744 lies within 1e-12 of 0",
+    "python": "from sympy import primerange\nimport math, mpmath as mp\nP=[p for p in primerange(3,300) if p%20 in (3,7)]\nfor p in P:\n    for q in P:\n        n=p*q\n        assert any(math.isqrt(n-5*y*y)**2==n-5*y*y for y in range(math.isqrt(n//5)+1))\nmp.mp.dps=50\nassert abs(mp.e**(mp.pi*mp.sqrt(163))-640320**3-744)<1e-12"
+   }
+  ]
+ },
+ {
+  "id": "cyclotomic",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The $n$-th roots of unity $1, \\zeta_n, \\zeta_n^2, \\dots, \\zeta_n^{n-1}$, with $\\zeta_n = e^{2\\pi i/n}$, are the corners of a regular $n$-gon. Adjoining them to $\\mathbb Q$ gives the cyclotomic field $\\mathbb Q(\\zeta_n)$ (\"circle-dividing\"). These fields are where Gauss found his ruler-and-compass construction of the regular $17$-gon, where Kummer attacked Fermat's Last Theorem, and, by the Kronecker–Weber theorem, they contain every abelian extension of $\\mathbb Q$.\n\nTwo facts organize everything: $\\mathbb Q(\\zeta_n)$ has degree $\\varphi(n)$, and a prime $p \\nmid n$ factors in it according to the order of $p$ modulo $n$. This lesson proves both."
+   },
+   {
+    "type": "definition",
+    "title": "Cyclotomic polynomial",
+    "body": "A primitive $n$-th root of unity is a complex number of multiplicative order exactly $n$; these are $\\zeta_n^k$ with $1 \\le k \\le n$ and $\\gcd(k, n) = 1$. The $n$-th cyclotomic polynomial is\n$$\\Phi_n(x) = \\prod_{\\substack{1 \\le k \\le n \\\\ \\gcd(k,n)=1}} \\bigl(x - e^{2\\pi i k/n}\\bigr),$$\na monic polynomial of degree $\\varphi(n)$. Its roots are exactly the primitive $n$-th roots of unity."
+   },
+   {
+    "type": "section",
+    "title": "First properties",
+    "body": "Every $n$-th root of unity is a primitive $d$-th root of unity for exactly one divisor $d$ of $n$ (its order). Grouping the roots of $x^n - 1$ by order gives\n$$x^n - 1 = \\prod_{d \\mid n}\\Phi_d(x).$$\nThis lets us compute $\\Phi_n$ recursively by polynomial division, and since we keep dividing monic integer polynomials by monic integer polynomials, every $\\Phi_n$ has integer coefficients. The first few:\n$$\\Phi_1 = x - 1,\\quad \\Phi_2 = x + 1,\\quad \\Phi_3 = x^2 + x + 1,\\quad \\Phi_4 = x^2 + 1,\\quad \\Phi_6 = x^2 - x + 1,\\quad \\Phi_{12} = x^4 - x^2 + 1,$$\nand for a prime $p$, $\\Phi_p = (x^p - 1)/(x - 1) = x^{p-1} + \\dots + x + 1$.\n\nComparing degrees in the product formula gives the identity $\\sum_{d \\mid n}\\varphi(d) = n$. Also $\\Phi_n(0) = 1$ for $n \\ge 2$, and $\\Phi_p(1) = p$.\n\nThe cyclotomic field $\\mathbb Q(\\zeta_n)$ is the smallest field containing $\\zeta_n$; its elements are polynomials in $\\zeta_n$ with rational coefficients. Its ring of integers is $\\mathbb Z[\\zeta_n]$ (a standard fact, which we use without proof)."
+   },
+   {
+    "type": "theorem",
+    "title": "Irreducibility of Φₙ",
+    "body": "$\\Phi_n(x)$ is irreducible over $\\mathbb Q$. Consequently\n$$[\\mathbb Q(\\zeta_n):\\mathbb Q] = \\varphi(n).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $f$ be the minimal polynomial of $\\zeta = \\zeta_n$ over $\\mathbb Q$. Since $f$ is monic and divides $x^n - 1$, Gauss's lemma gives $f \\in \\mathbb Z[x]$; write $x^n - 1 = f(x)g(x)$ with $g \\in \\mathbb Z[x]$ monic.\n\nClaim: if $\\eta$ is a root of $f$ and $p$ is a prime not dividing $n$, then $\\eta^p$ is also a root of $f$. Suppose not. Since $\\eta^p$ is an $n$-th root of unity, $g(\\eta^p) = 0$, so $\\eta$ is a root of $g(x^p)$, and as $f$ is the minimal polynomial of $\\eta$, $f(x) \\mid g(x^p)$ in $\\mathbb Z[x]$. Reduce modulo $p$ and write bars for reductions. In $\\mathbb F_p[x]$ we have $\\bar g(x^p) = \\bar g(x)^p$, because $(a + b)^p = a^p + b^p$ in characteristic $p$ and $c^p = c$ for $c \\in \\mathbb F_p$. So $\\bar f \\mid \\bar g^{\\,p}$, and some irreducible $\\bar h$ divides both $\\bar f$ and $\\bar g$. Then $\\bar h^2$ divides $\\bar f\\bar g = x^n - 1$ in $\\mathbb F_p[x]$. But $x^n - 1$ has no repeated factor modulo $p$: its derivative $nx^{n-1}$ is nonzero (as $p \\nmid n$) and has only the root $0$, which is not a root of $x^n - 1$. Contradiction.\n\nNow any primitive root $\\zeta^k$, $\\gcd(k, n) = 1$, is reached from $\\zeta$ by raising to primes not dividing $n$ one at a time (factor $k = p_1p_2\\cdots p_r$). By the claim each step stays among the roots of $f$. So all $\\varphi(n)$ primitive roots are roots of $f$, $\\deg f \\ge \\varphi(n) = \\deg\\Phi_n$, and since $f \\mid \\Phi_n$ we get $f = \\Phi_n$."
+   },
+   {
+    "type": "section",
+    "title": "The Galois group",
+    "body": "Because the conjugates of $\\zeta_n$ are its powers $\\zeta_n^a$ with $\\gcd(a, n) = 1$, each such $a$ gives a field automorphism $\\sigma_a$ of $\\mathbb Q(\\zeta_n)$ with $\\sigma_a(\\zeta_n) = \\zeta_n^a$, and $\\sigma_a\\sigma_b = \\sigma_{ab}$. So\n$$\\mathrm{Gal}(\\mathbb Q(\\zeta_n)/\\mathbb Q) \\cong (\\mathbb Z/n\\mathbb Z)^\\times,$$\nan abelian group (see [[galois]]). The automorphism $\\sigma_p$ attached to a prime $p \\nmid n$ is the Frobenius element at $p$, and its order, which is the order of $p$ modulo $n$, controls how $p$ factors."
+   },
+   {
+    "type": "theorem",
+    "title": "Splitting of primes in Q(ζₙ)",
+    "body": "Let $p$ be a prime with $p \\nmid n$, and let $f$ be the order of $p$ modulo $n$ (see [[order-primroot]]). Then\n$$p\\,\\mathbb Z[\\zeta_n] = P_1P_2\\cdots P_g, \\qquad g = \\frac{\\varphi(n)}{f},$$\nwith distinct prime ideals $P_j$, each of norm $N(P_j) = p^f$. In particular $p$ splits completely (into $\\varphi(n)$ primes of norm $p$) if and only if $p \\equiv 1 \\pmod n$. Primes dividing $n$ ramify; for instance $p\\,\\mathbb Z[\\zeta_p] = (1 - \\zeta_p)^{p-1}$."
+   },
+   {
+    "type": "proof",
+    "body": "By the Dedekind–Kummer theorem (see [[ideals]]), applied to $\\mathcal O = \\mathbb Z[\\zeta_n]$ and $\\Phi_n$, it suffices to show that $\\Phi_n$ modulo $p$ is a product of distinct irreducible factors, each of degree $f$. Distinctness holds because $\\Phi_n$ divides $x^n - 1$, which has no repeated factors modulo $p$ (shown in the previous proof).\n\nLet $\\bar h$ be an irreducible factor of $\\Phi_n$ modulo $p$, of degree $k$. Then $F = \\mathbb F_p[x]/(\\bar h)$ is a field with $p^k$ elements, and the class $\\beta$ of $x$ is a root of $\\Phi_n$ that generates $F$. Its order in $F^\\times$ is exactly $n$: certainly $\\beta^n = 1$, and if $\\beta^d = 1$ for a proper divisor $d$ of $n$, then $\\beta$ would be a root of some $\\Phi_e$ with $e \\mid d$ as well as of $\\Phi_n$, hence a repeated root of $x^n - 1 = \\prod_{e \\mid n}\\Phi_e$, which is impossible.\n\nSince $F^\\times$ has order $p^k - 1$, we get $n \\mid p^k - 1$, so $k \\ge f$. Conversely, $n \\mid p^f - 1$ gives $\\beta^{p^f} = \\beta$. The roots of $x^{p^f} - x$ in $F$ form a subfield (because $(a+b)^{p^f} = a^{p^f} + b^{p^f}$) with at most $p^f$ elements, and it contains the generator $\\beta$, so it is all of $F$ and $p^k \\le p^f$. Hence $k = f$, and $\\Phi_n$ splits modulo $p$ into $\\varphi(n)/f$ distinct factors of degree $f$.\n\nFor the ramified example: $p = \\Phi_p(1) = \\prod_{k=1}^{p-1}(1 - \\zeta_p^k)$, and each quotient $(1 - \\zeta_p^k)/(1 - \\zeta_p) = 1 + \\zeta_p + \\dots + \\zeta_p^{k-1}$ is a unit: choosing $m$ with $km \\equiv 1 \\pmod p$, its inverse is $(1 - \\zeta_p)/(1 - \\zeta_p^k) = 1 + \\zeta_p^k + \\zeta_p^{2k} + \\dots + \\zeta_p^{(m-1)k}$, also in $\\mathbb Z[\\zeta_p]$. So $(p) = (1 - \\zeta_p)^{p-1}$, and comparing norms, $(1 - \\zeta_p)$ is a prime ideal of norm $p$."
+   },
+   {
+    "type": "example",
+    "title": "Primes in Q(ζ₁₂)",
+    "body": "Describe how the primes $5, 7, 11, 13$ factor in $\\mathbb Q(\\zeta_{12})$, and check it against the factorization of $\\Phi_{12} = x^4 - x^2 + 1$ modulo these primes.",
+    "solution": "Here $\\varphi(12) = 4$. The group $(\\mathbb Z/12\\mathbb Z)^\\times = \\{1, 5, 7, 11\\}$ has every element of order at most $2$: $5^2 = 25$, $7^2 = 49$ and $11^2 = 121$ are all $\\equiv 1 \\pmod{12}$.\n\n- $p = 13 \\equiv 1$: $f = 1$, so $13$ splits into $4$ primes of norm $13$. Indeed $x^4 - x^2 + 1 \\equiv (x - 2)(x + 2)(x - 6)(x + 6) \\pmod{13}$; for example $2^4 - 2^2 + 1 = 13$.\n- $p = 5, 7, 11$: $f = 2$, so each splits into $2$ primes of norm $p^2$. Modulo $5$: $(x^2 + 2x - 1)(x^2 - 2x - 1)$. Modulo $7$: $(x^2 + 2)(x^2 - 3)$. Modulo $11$: $(x^2 + 5x + 1)(x^2 - 5x + 1)$.\n\nThe field is $\\mathbb Q(\\zeta_{12}) = \\mathbb Q(i, \\sqrt 3)$, since $\\zeta_{12} = \\tfrac{\\sqrt 3 + i}{2}$. Each $p \\ne 2, 3$ splits in exactly one or all three of the quadratic subfields $\\mathbb Q(i)$, $\\mathbb Q(\\sqrt{-3})$, $\\mathbb Q(\\sqrt 3)$, which is another way to see why it can never stay prime in $\\mathbb Q(\\zeta_{12})$."
+   },
+   {
+    "type": "example",
+    "title": "Gauss and the regular 17-gon",
+    "body": "Let $\\zeta = \\zeta_{17}$. Split the sixteen primitive roots into two sums of eight,\n$$\\eta_0 = \\sum_{r \\in R}\\zeta^r, \\qquad \\eta_1 = \\sum_{r \\in N}\\zeta^r,$$\nwhere $R = \\{1, 2, 4, 8, 9, 13, 15, 16\\}$ is the set of nonzero squares modulo $17$ and $N$ its complement. Show that $\\eta_0, \\eta_1$ are the roots of $x^2 + x - 4$, and explain why the $17$-gon is constructible.",
+    "solution": "First, $\\eta_0 + \\eta_1 = \\sum_{k=1}^{16}\\zeta^k = \\Phi_{17}(\\zeta) - 1 = -1$.\n\nSecond, since $-1 \\equiv 16$ is a square modulo $17$, the set $R$ is closed under $r \\mapsto -r$, so $\\eta_0 = 2\\bigl(\\cos\\tfrac{2\\pi}{17} + \\cos\\tfrac{4\\pi}{17} + \\cos\\tfrac{8\\pi}{17} + \\cos\\tfrac{16\\pi}{17}\\bigr) \\approx 1.5616$ is real, and similarly $\\eta_1 \\approx -2.5616$. The product $\\eta_0\\eta_1$ is a sum of $64$ terms $\\zeta^{r+s}$, $r \\in R$, $s \\in N$. None of them is $\\zeta^0$, because $r + s \\equiv 0$ would put $s = -r$ in $R$. Multiplying all $64$ exponents by a nonzero residue $a$ permutes this multiset of exponents: a square $a$ maps $R$ to $R$ and $N$ to $N$, a non-square swaps them, and either way the pairs $(r, s)$ are permuted. Since multiplication by suitable $a$ carries any nonzero residue to any other, each of the $16$ nonzero residues occurs equally often, four times. Hence $\\eta_0\\eta_1 = 4\\sum_{k=1}^{16}\\zeta^k = -4$.\n\nSo $\\eta_0, \\eta_1$ are the roots of $x^2 + x - 4$, namely $\\tfrac{-1 \\pm \\sqrt{17}}{2}$, with $\\eta_0 = \\tfrac{-1 + \\sqrt{17}}{2}$.\n\nThe Galois group $(\\mathbb Z/17\\mathbb Z)^\\times$ is cyclic of order $16 = 2^4$ (generated by $3$). Repeating the idea, the eight-term sums split into four-term sums that satisfy quadratics over $\\mathbb Q(\\sqrt{17})$, and those into two-term sums such as $\\zeta + \\zeta^{-1} = 2\\cos\\tfrac{2\\pi}{17}$, which is therefore reached after three quadratic steps (a fourth gives $\\zeta$ itself). Square roots can be constructed with ruler and compass, so $\\cos\\tfrac{2\\pi}{17}$ and the $17$-gon are constructible; Gauss found this in 1796. In general the regular $n$-gon is constructible exactly when $\\varphi(n)$ is a power of $2$ (Gauss and Wantzel)."
+   },
+   {
+    "type": "example",
+    "title": "Infinitely many primes ≡ 1 (mod n)",
+    "body": "Let $n \\ge 2$. Show that if a prime $q \\nmid n$ divides $\\Phi_n(a)$ for an integer $a$, then $q \\equiv 1 \\pmod n$. Deduce that there are infinitely many primes $q \\equiv 1 \\pmod n$.",
+    "solution": "Since $\\Phi_n(a) \\mid a^n - 1$, we have $a^n \\equiv 1 \\pmod q$, so $q \\nmid a$ and the order $d$ of $a$ modulo $q$ divides $n$. If $d < n$, then $a$ is a root modulo $q$ of $x^d - 1 = \\prod_{e \\mid d}\\Phi_e(x)$, hence of some $\\Phi_e$ with $e < n$, $e \\mid n$, as well as of $\\Phi_n$. Then $a$ would be a repeated root of $x^n - 1$ modulo $q$, impossible since $q \\nmid n$. So $d = n$, and by Fermat's little theorem $n \\mid q - 1$.\n\nNow suppose $p_1, \\dots, p_k$ were all the primes $\\equiv 1 \\pmod n$. Put $a = t\\,n\\,p_1\\cdots p_k$ with $t$ a positive integer large enough that $\\Phi_n(a) > 1$ (possible since $\\Phi_n$ is monic of positive degree). As $\\Phi_n$ has integer coefficients, $\\Phi_n(a) \\equiv \\Phi_n(0) = 1 \\pmod a$. Let $q$ be a prime factor of $\\Phi_n(a)$. Then $q \\nmid a$, so $q \\nmid n$ and $q \\ne p_j$; but by the first part $q \\equiv 1 \\pmod n$, a contradiction.\n\nIllustration: $\\Phi_5(5) = 625 + 125 + 25 + 5 + 1 = 781 = 11 \\cdot 71$, and both $11$ and $71$ are $\\equiv 1 \\pmod 5$."
+   },
+   {
+    "type": "section",
+    "title": "Kummer, regular primes, and Kronecker–Weber",
+    "body": "For an odd prime $p$, Fermat's equation $x^p + y^p = z^p$ becomes $\\prod_{k=0}^{p-1}(x + \\zeta_p^ky) = z^p$ in $\\mathbb Z[\\zeta_p]$. The ring $\\mathbb Z[\\zeta_p]$ has unique factorization only for $p \\le 19$; for $p = 23$ its class number is $3$. In 1847 Kummer introduced ideal numbers to handle this and proved Fermat's Last Theorem for regular primes, those $p$ not dividing the class number of $\\mathbb Q(\\zeta_p)$. He also gave a practical test: $p$ is regular if and only if $p$ divides none of the numerators of the Bernoulli numbers $B_2, B_4, \\dots, B_{p-3}$. The smallest irregular prime is $37$, which divides the numerator of $B_{32}$.\n\nEvery quadratic field sits inside a cyclotomic field. For an odd prime $p$, the quadratic Gauss sum $g = \\sum_{t=1}^{p-1}\\left(\\frac tp\\right)\\zeta_p^t$ satisfies $g^2 = \\left(\\frac{-1}{p}\\right)p$ (see [[gauss-sums]]), so $\\mathbb Q(\\sqrt{\\pm p}) \\subseteq \\mathbb Q(\\zeta_p)$, with the sign making $\\pm p \\equiv 1 \\pmod 4$. For example $\\zeta_5 - \\zeta_5^2 - \\zeta_5^3 + \\zeta_5^4 = \\sqrt 5$.\n\nThe Kronecker–Weber theorem says much more: every finite Galois extension of $\\mathbb Q$ with abelian Galois group is contained in some $\\mathbb Q(\\zeta_n)$. (Proof omitted; it is a cornerstone of class field theory.)"
+   },
+   {
+    "type": "pitfall",
+    "body": "- The splitting is governed by the order of $p$ modulo $n$, not by anything modulo $p$. For $n = 12$ and $p = 5$, $f = 2$ because $5^2 \\equiv 1 \\pmod{12}$.\n- Coefficients of $\\Phi_n$ are not always $0$ or $\\pm 1$. The first exception is $\\Phi_{105}$, which has a coefficient $-2$.\n- For odd $n$, $\\mathbb Q(\\zeta_n) = \\mathbb Q(\\zeta_{2n})$ because $-\\zeta_n$ is a primitive $2n$-th root of unity; consistently, $\\varphi(2n) = \\varphi(n)$. So one usually assumes $n \\not\\equiv 2 \\pmod 4$.\n- $\\mathbb Z[\\zeta_n]$ is the full ring of integers of $\\mathbb Q(\\zeta_n)$, but it rarely has unique factorization of elements; ideals are needed."
+   },
+   {
+    "type": "connection",
+    "body": "- Characters of the Galois group $(\\mathbb Z/n\\mathbb Z)^\\times$ are the [[dirichlet-characters]] modulo $n$. The [[dedekind-zeta]] function of $\\mathbb Q(\\zeta_n)$ is the product of the $L$-functions $L(s, \\chi)$ of the primitive characters inducing the characters modulo $n$, and its pole at $s = 1$ is one route to $L(1, \\chi) \\ne 0$ and Dirichlet's theorem (see [[l-functions]]).\n- Gauss and Jacobi sums are elements of cyclotomic fields; see [[gauss-sums]] and [[cubic-characters]].\n- Class numbers of cyclotomic fields measure the failure of unique factorization studied in [[class-group]].\n- The proofs above use the arithmetic of [[finite-fields]] and the language of [[galois]] theory."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Compute $\\Phi_{8}$, $\\Phi_{9}$ and $\\Phi_{10}$ from $x^n - 1 = \\prod_{d \\mid n}\\Phi_d(x)$.\n2. How does $2$ factor in $\\mathbb Q(\\zeta_7)$? Check your answer by factoring $x^6 + x^5 + \\dots + 1$ modulo $2$.\n3. Show that for $n \\ge 3$ the product of all primitive $n$-th roots of unity is $1$, and deduce $\\Phi_n(0) = 1$.\n4. Show that $\\mathbb Q(\\sqrt{-7}) \\subseteq \\mathbb Q(\\zeta_7)$ by computing $\\bigl(\\zeta + \\zeta^2 + \\zeta^4 - \\zeta^3 - \\zeta^5 - \\zeta^6\\bigr)^2$ for $\\zeta = \\zeta_7$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Washington, Introduction to Cyclotomic Fields"
+   },
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Ch. 13"
+   },
+   {
+    "ref": "Marcus, Number Fields"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "deg Phi_n = phi(n), x^n-1 = prod_{d|n} Phi_d, sum_{d|n} phi(d) = n, Phi_n(0)=1 for n>=2, Phi_p(1)=p, listed small Phi_n",
+    "python": "from sympy import symbols, cyclotomic_poly, totient, divisors, expand, prod, degree, prime\nx=symbols('x')\nfor n in range(1,80):\n    P=cyclotomic_poly(n,x)\n    assert degree(P,x)==totient(n)\n    assert expand(prod(cyclotomic_poly(d,x) for d in divisors(n)) - (x**n-1))==0\n    assert sum(totient(d) for d in divisors(n))==n\n    if n>=2: assert P.subs(x,0)==1\nfor k in range(1,15): assert cyclotomic_poly(prime(k),x).subs(x,1)==prime(k)\nassert expand(cyclotomic_poly(6,x)-(x**2-x+1))==0 and expand(cyclotomic_poly(12,x)-(x**4-x**2+1))==0"
+   },
+   {
+    "claim": "Phi_n irreducible over Q for n <= 60",
+    "python": "from sympy import symbols, cyclotomic_poly, Poly\nx=symbols('x')\nfor n in range(1,61):\n    assert Poly(cyclotomic_poly(n,x),x).is_irreducible"
+   },
+   {
+    "claim": "For n<=40 and primes p<=60 with p not dividing n: Phi_n mod p is squarefree with phi(n)/f irreducible factors all of degree f = ord_n(p)",
+    "python": "from sympy import symbols, cyclotomic_poly, factor_list, Poly, totient, primerange, n_order\nimport warnings; warnings.filterwarnings('ignore')\nx=symbols('x')\nfor n in range(2,41):\n    for p in primerange(2,61):\n        if n%p==0: continue\n        f=n_order(p,n) if n>1 else 1\n        fl=factor_list(cyclotomic_poly(n,x),modulus=p)[1]\n        assert all(e==1 for g,e in fl)\n        degs=[Poly(g,x,modulus=p).degree() for g,e in fl]\n        assert all(d==f for d in degs) and len(degs)==totient(n)//f"
+   },
+   {
+    "claim": "Phi_12 mod 13, 5, 7, 11 factor as stated; 2^4-2^2+1=13; (Z/12)^x elements square to 1; zeta_12 = (sqrt3+i)/2",
+    "python": "from sympy import symbols, expand, Poly, sqrt, I, exp, pi, simplify\nx=symbols('x')\nP=x**4-x**2+1\ndef eqmod(A,B,p): return Poly(expand(A-B),x,modulus=p).is_zero\nassert eqmod(P,(x-2)*(x+2)*(x-6)*(x+6),13)\nassert eqmod(P,(x**2+2*x-1)*(x**2-2*x-1),5)\nassert eqmod(P,(x**2+2)*(x**2-3),7)\nassert eqmod(P,(x**2+5*x+1)*(x**2-5*x+1),11)\nassert 2**4-2**2+1==13 and all(a*a%12==1 for a in (1,5,7,11))\nimport cmath, math\nassert abs(cmath.exp(1j*math.pi/6)-(math.sqrt(3)+1j)/2)<1e-12"
+   },
+   {
+    "claim": "17-gon periods: squares mod 17 = {1,2,4,8,9,13,15,16}; eta0+eta1=-1, eta0*eta1=-4, eta0=(-1+sqrt17)/2 ~ 1.5616; 3 is a primitive root mod 17",
+    "python": "import cmath, math\nfrom sympy import n_order\nR=sorted({r*r%17 for r in range(1,17)})\nassert R==[1,2,4,8,9,13,15,16]\nz=cmath.exp(2j*math.pi/17)\ne0=sum(z**r for r in R); e1=sum(z**r for r in range(1,17) if r not in R)\nassert abs(e0+e1+1)<1e-12 and abs(e0*e1+4)<1e-12\nassert abs(e0-(-1+math.sqrt(17))/2)<1e-12 and abs(e0-1.5616)<1e-4\nassert abs(e0-2*sum(math.cos(2*math.pi*k/17) for k in (1,2,4,8)))<1e-12\nfrom collections import Counter\nc=Counter((r+s)%17 for r in R for s in range(1,17) if s not in R)\nassert 0 not in c and all(c[k]==4 for k in range(1,17))\nassert n_order(3,17)==16"
+   },
+   {
+    "claim": "Primes q not dividing n that divide Phi_n(a) are 1 mod n (n<=20, a<=30); Phi_5(5) = 781 = 11*71",
+    "python": "from sympy import cyclotomic_poly, primefactors, symbols\nx=symbols('x')\nfor n in range(2,21):\n    P=cyclotomic_poly(n,x)\n    for a in range(2,31):\n        for q in primefactors(int(P.subs(x,a))):\n            if n%q: assert q%n==1\nassert cyclotomic_poly(5,x).subs(x,5)==781==11*71 and 11%5==1 and 71%5==1"
+   },
+   {
+    "claim": "p = prod (1-zeta^k) for p prime (numerically), and (1-zeta^k)/(1-zeta) has norm 1",
+    "python": "import cmath, math\nfor p in [3,5,7,11,13]:\n    z=cmath.exp(2j*math.pi/p)\n    pr=1\n    for k in range(1,p): pr*=1-z**k\n    assert abs(pr-p)<1e-9\n    for k in range(1,p):\n        u=(1-z**k)/(1-z)\n        nm=1\n        for a in range(1,p):\n            nm*=(1-z**(k*a))/(1-z**a)\n        assert abs(nm-1)<1e-9"
+   },
+   {
+    "claim": "First n with a cyclotomic coefficient outside {-1,0,1} is 105, coefficient -2; 37 is the smallest irregular prime and divides numer(B_32)",
+    "python": "from sympy import cyclotomic_poly, symbols, Poly, bernoulli, numer, primerange\nx=symbols('x')\nfirst=None\nfor n in range(1,106):\n    cs=Poly(cyclotomic_poly(n,x),x).all_coeffs()\n    if any(abs(c)>1 for c in cs): first=n; break\nassert first==105 and min(Poly(cyclotomic_poly(105,x),x).all_coeffs())==-2\nirr=[p for p in primerange(3,60) if any(numer(bernoulli(k))%p==0 for k in range(2,p-2,2))]\nassert irr[0]==37 and numer(bernoulli(32))%37==0"
+   },
+   {
+    "claim": "zeta5 - zeta5^2 - zeta5^3 + zeta5^4 = sqrt5; Gauss sum squares to (-1/p)p; quadratic Gauss sum for 7 squares to -7",
+    "python": "import cmath, math\nfrom sympy import legendre_symbol\nz=cmath.exp(2j*math.pi/5)\nassert abs(z-z**2-z**3+z**4-math.sqrt(5))<1e-12\nfor p in [3,5,7,11,13,17,19,23]:\n    w=cmath.exp(2j*math.pi/p)\n    g=sum(int(legendre_symbol(t,p))*w**t for t in range(1,p))\n    assert abs(g*g-(-1)**((p-1)//2)*p)<1e-9"
+   },
+   {
+    "claim": "Exercises: Phi_8=x^4+1, Phi_9=x^6+x^3+1, Phi_10=x^4-x^3+x^2-x+1; ord_7(2)=3 and Phi_7 mod 2 = two irreducible cubics; (zeta+zeta^2+zeta^4-zeta^3-zeta^5-zeta^6)^2 = -7; product of primitive n-th roots is 1 for n>=3",
+    "python": "from sympy import symbols, cyclotomic_poly, expand, factor_list, Poly, n_order\nimport cmath, math\nx=symbols('x')\nassert expand(cyclotomic_poly(8,x)-(x**4+1))==0\nassert expand(cyclotomic_poly(9,x)-(x**6+x**3+1))==0\nassert expand(cyclotomic_poly(10,x)-(x**4-x**3+x**2-x+1))==0\nassert n_order(2,7)==3\nfl=factor_list(cyclotomic_poly(7,x),modulus=2)[1]\nassert sorted(Poly(g,x,modulus=2).degree() for g,e in fl)==[3,3]\nz=cmath.exp(2j*math.pi/7)\ns=z+z**2+z**4-z**3-z**5-z**6\nassert abs(s*s+7)<1e-12\nfor n in range(3,40):\n    pr=1\n    for k in range(1,n+1):\n        if math.gcd(k,n)==1: pr*=cmath.exp(2j*math.pi*k/n)\n    assert abs(pr-1)<1e-9"
+   },
+   {
+    "claim": "17-gon: the four-term periods over the subgroup of fourth powers {1,4,13,16} and its cosets satisfy quadratics over Q(sqrt17); zeta+zeta^-1 is a two-term period, reached after three quadratic steps (degrees 2,4,8)",
+    "python": "import cmath, math\nfrom sympy import totient\nz=cmath.exp(2j*math.pi/17)\nH4=sorted({pow(r,4,17) for r in range(1,17)})\nassert H4==[1,4,13,16]\nH8=sorted({pow(r,8,17) for r in range(1,17)})\nassert H8==[1,16]\nR=sorted({r*r%17 for r in range(1,17)})\ne0=sum(z**r for r in R)\np1=sum(z**r for r in H4); p2=sum(z**(2*r%17) for r in H4)\n# p1, p2 are the two four-term periods inside eta0: p1+p2=eta0, p1*p2 should be -1\nassert abs(p1+p2-e0)<1e-12 and abs(p1*p2+1)<1e-12\nassert abs(sum(z**r for r in H8)-2*math.cos(2*math.pi/17))<1e-12\nassert totient(17)==16 and 16//2==8"
+   }
+  ]
+ },
+ {
+  "id": "cubic-characters",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Quadratic reciprocity answers \"is $a$ a square modulo $p$?\". The next question is \"is $a$ a cube modulo $p$?\". For example, $2$ is a cube modulo $31$ (since $4^3 = 64 \\equiv 2$) but not modulo $7$ (the only nonzero cubes mod $7$ are $1$ and $6$). Is there a rule?\n\nThe classical answer: for a prime $p \\equiv 1 \\pmod 3$, the number $2$ is a cube modulo $p$ exactly when $p = x^2 + 27y^2$; and $31 = 2^2 + 27\\cdot 1^2$. The natural home for such statements is the ring $\\mathbb Z[\\omega]$ of [[eisenstein-integers]], where Eisenstein proved the cubic reciprocity law in 1844. Along the way, cubic Gauss and Jacobi sums appear, and they encode the representation $4p = L^2 + 27M^2$ and the number of solutions of $x^3 + y^3 \\equiv 1 \\pmod p$."
+   },
+   {
+    "type": "section",
+    "title": "Cubes modulo p",
+    "body": "If $p \\equiv 2 \\pmod 3$, then $\\gcd(3, p - 1) = 1$ and the map $x \\mapsto x^3$ is a bijection of $(\\mathbb Z/p\\mathbb Z)^\\times$: every residue is a cube, and there is nothing to study.\n\nIf $p \\equiv 1 \\pmod 3$, let $g$ be a primitive root modulo $p$. Then $g^k$ is a cube exactly when $3 \\mid k$, so exactly $(p-1)/3$ of the nonzero residues are cubes, and\n$$a \\text{ is a cube mod } p \\iff a^{(p-1)/3} \\equiv 1 \\pmod p,$$\nthe cubic analogue of Euler's criterion: $a^{(p-1)/3} = g^{k(p-1)/3}$ equals $1$ exactly when $(p-1) \\mid k(p-1)/3$, i.e. $3 \\mid k$. For $p = 7$ the nonzero cubes are $\\{1, 6\\}$; for $p = 13$ they are $\\{1, 5, 8, 12\\}$. Since $-1 = (-1)^3$, the number $-1$ is always a cube."
+   },
+   {
+    "type": "definition",
+    "title": "Cubic character",
+    "body": "Let $p \\equiv 1 \\pmod 3$. A cubic character modulo $p$ is a nontrivial homomorphism $\\chi: (\\mathbb Z/p\\mathbb Z)^\\times \\to \\mathbb C^\\times$ with $\\chi^3 = 1$, extended by $\\chi(0) = 0$. Its values are $1, \\omega, \\omega^2$, where $\\omega = e^{2\\pi i/3}$.\n\nThere are exactly two: with a primitive root $g$, $\\chi(g^k) = \\omega^k$ and its conjugate $\\bar\\chi = \\chi^2$, $\\bar\\chi(g^k) = \\omega^{2k}$. For either one, $\\chi(a) = 1$ if and only if $a$ is a nonzero cube, and $\\chi(-1) = 1$."
+   },
+   {
+    "type": "section",
+    "title": "The cubic residue symbol in Z[ω]",
+    "body": "To get a reciprocity law we need characters indexed by primes, so that \"the character of $q$ evaluated at $p$\" and \"the character of $p$ evaluated at $q$\" both make sense. In $\\mathbb Z$ there is no natural choice between $\\chi$ and $\\bar\\chi$, but in $\\mathbb Z[\\omega]$ there is.\n\nLet $\\pi$ be a prime of $\\mathbb Z[\\omega]$ with $N(\\pi) \\ne 3$. The residue ring $\\mathbb Z[\\omega]/(\\pi)$ is a field with $N(\\pi)$ elements, and $N(\\pi) \\equiv 1 \\pmod 3$ (it is $p \\equiv 1$ or $q^2$ with $q \\equiv 2 \\pmod 3$). For $\\alpha$ not divisible by $\\pi$, the element $x = \\alpha^{(N(\\pi)-1)/3}$ satisfies $x^3 \\equiv 1$, so $\\pi$ divides $(x - 1)(x - \\omega)(x - \\omega^2)$ and hence one factor. The three values $1, \\omega, \\omega^2$ are distinct modulo $\\pi$, because their differences are associates of $\\lambda = 1 - \\omega$, of norm $3$. So we may define the cubic residue symbol\n$$\\chi_\\pi(\\alpha) = \\Bigl(\\frac{\\alpha}{\\pi}\\Bigr)_3 \\in \\{1, \\omega, \\omega^2\\}, \\qquad \\chi_\\pi(\\alpha) \\equiv \\alpha^{(N(\\pi)-1)/3} \\pmod\\pi,$$\nand $\\chi_\\pi(\\alpha) = 0$ if $\\pi \\mid \\alpha$. It is multiplicative in $\\alpha$, depends only on $\\alpha$ modulo $\\pi$, equals $1$ exactly when $\\alpha$ is a nonzero cube modulo $\\pi$, and satisfies $\\chi_{\\bar\\pi}(\\bar\\alpha) = \\overline{\\chi_\\pi(\\alpha)}$.\n\nWhen $N(\\pi) = p$, the natural map $\\mathbb Z/p\\mathbb Z \\to \\mathbb Z[\\omega]/(\\pi)$ is an isomorphism, so restricting $\\chi_\\pi$ to integers gives a cubic character modulo $p$. The two cubic characters modulo $p$ are $\\chi_\\pi$ and $\\chi_{\\bar\\pi} = \\overline{\\chi_\\pi}$ on $\\mathbb Z$."
+   },
+   {
+    "type": "definition",
+    "title": "Primary prime",
+    "body": "A prime $\\pi = a + b\\omega$ of $\\mathbb Z[\\omega]$ with $N(\\pi) \\ne 3$ is primary if $\\pi \\equiv 2 \\pmod 3$, that is, $a \\equiv 2$ and $b \\equiv 0 \\pmod 3$.\n\nEvery such prime has exactly one primary associate. Reason: $\\mathbb Z[\\omega]/(3)$ has $9$ elements, of which $6$ are not divisible by $\\lambda$; the six units are pairwise incongruent modulo $3$ (the difference of two distinct units has norm $1$, $3$ or $4$, never divisible by $N(3) = 9$), so they represent these $6$ classes, and as $u$ runs over the units, $u\\pi$ runs over the same $6$ classes. Exactly one $u\\pi$ is $\\equiv 2$. Rational primes $q \\equiv 2 \\pmod 3$ are already primary. Primary is the cubic analogue of choosing the positive sign for an odd prime."
+   },
+   {
+    "type": "theorem",
+    "title": "Cubic reciprocity (Eisenstein, 1844)",
+    "body": "Let $\\pi_1, \\pi_2$ be primary primes of $\\mathbb Z[\\omega]$ with $N(\\pi_1), N(\\pi_2) \\ne 3$ and $N(\\pi_1) \\ne N(\\pi_2)$. Then\n$$\\chi_{\\pi_1}(\\pi_2) = \\chi_{\\pi_2}(\\pi_1).$$\nThere are also supplementary laws for the units and for $\\lambda = 1 - \\omega$. (Proof omitted; the standard proof, in Ireland and Rosen, Ch. 9, uses the Gauss and Jacobi sums below.)"
+   },
+   {
+    "type": "theorem",
+    "title": "Cubic Gauss and Jacobi sums",
+    "body": "Let $\\chi$ be a cubic character modulo $p$, $\\zeta_p = e^{2\\pi i/p}$, and define\n$$g(\\chi) = \\sum_{t=0}^{p-1}\\chi(t)\\zeta_p^t, \\qquad J(\\chi, \\chi) = \\sum_{a=0}^{p-1}\\chi(a)\\chi(1 - a).$$\nThen\n$$g(\\chi)^3 = p\\,J(\\chi,\\chi), \\qquad |J(\\chi,\\chi)| = \\sqrt p.$$\nMoreover $J(\\chi,\\chi) \\in \\mathbb Z[\\omega]$, and if $\\pi$ is primary with $N(\\pi) = p$ then $J(\\chi_\\pi, \\chi_\\pi) = \\pi$."
+   },
+   {
+    "type": "proof",
+    "body": "We prove the two displayed identities; the evaluation $J(\\chi_\\pi, \\chi_\\pi) = \\pi$ is proved in Ireland and Rosen (Ch. 9) and is checked numerically below. That $J \\in \\mathbb Z[\\omega]$ is clear, since $J$ is a sum of values of $\\chi$.\n\nStep 1: for characters $\\chi, \\psi$ with $\\chi\\psi$ nontrivial, $g(\\chi)g(\\psi) = J(\\chi,\\psi)\\,g(\\chi\\psi)$, where $J(\\chi, \\psi) = \\sum_a \\chi(a)\\psi(1 - a)$. Expand:\n$$g(\\chi)g(\\psi) = \\sum_{x, y}\\chi(x)\\psi(y)\\zeta_p^{x+y} = \\sum_t \\zeta_p^t \\sum_{x + y = t}\\chi(x)\\psi(y).$$\nFor $t \\ne 0$ substitute $x = ta$, $y = t(1 - a)$: the inner sum is $(\\chi\\psi)(t)J(\\chi,\\psi)$. For $t = 0$ it is $\\sum_x \\chi(x)\\psi(-x) = \\psi(-1)\\sum_x(\\chi\\psi)(x) = 0$. Hence $g(\\chi)g(\\psi) = J(\\chi,\\psi)\\sum_t(\\chi\\psi)(t)\\zeta_p^t = J(\\chi,\\psi)g(\\chi\\psi)$.\n\nStep 2: take $\\psi = \\chi$. Since $\\chi^2 = \\bar\\chi$ is nontrivial, $g(\\chi)^2 = J(\\chi,\\chi)\\,g(\\bar\\chi)$, so $g(\\chi)^3 = J(\\chi,\\chi)\\,g(\\chi)g(\\bar\\chi)$.\n\nStep 3: conjugating, $\\overline{g(\\chi)} = \\sum_t\\bar\\chi(t)\\zeta_p^{-t} = \\bar\\chi(-1)g(\\bar\\chi) = g(\\bar\\chi)$, using $\\chi(-1) = 1$. So $g(\\chi)g(\\bar\\chi) = |g(\\chi)|^2 = p$ by the basic property of Gauss sums (see [[gauss-sums]]). This gives $g(\\chi)^3 = pJ(\\chi,\\chi)$.\n\nStep 4: taking absolute values, $p^{3/2} = |g(\\chi)|^3 = p\\,|J(\\chi,\\chi)|$, so $|J(\\chi,\\chi)| = \\sqrt p$."
+   },
+   {
+    "type": "example",
+    "title": "Everything for p = 7",
+    "body": "Take $p = 7$ and the primitive root $3$, and let $\\chi(3^k) = \\omega^k$. Compute $\\chi$, $J(\\chi, \\chi)$, and check the theorem.",
+    "solution": "The powers of $3$ modulo $7$ are $3^0 = 1$, $3^1 = 3$, $3^2 = 2$, $3^3 = 6$, $3^4 = 4$, $3^5 = 5$. So\n$$\\chi(1) = 1,\\ \\chi(3) = \\omega,\\ \\chi(2) = \\omega^2,\\ \\chi(6) = 1,\\ \\chi(4) = \\omega,\\ \\chi(5) = \\omega^2.$$\nThe cubes $1, 6$ get the value $1$, as they should.\n\nIn $J(\\chi,\\chi) = \\sum_a\\chi(a)\\chi(1 - a)$ the terms $a = 0, 1$ vanish. The others:\n$a = 2$: $\\chi(2)\\chi(6) = \\omega^2$; $a = 3$: $\\chi(3)\\chi(5) = 1$; $a = 4$: $\\chi(4)\\chi(4) = \\omega^2$; $a = 5$: $\\chi(5)\\chi(3) = 1$; $a = 6$: $\\chi(6)\\chi(2) = \\omega^2$. So\n$$J(\\chi,\\chi) = 2 + 3\\omega^2 = 2 + 3(-1 - \\omega) = -1 - 3\\omega.$$\nIts norm is $1 - 3 + 9 = 7$, so $|J| = \\sqrt 7$. It is primary ($-1 \\equiv 2$, $-3 \\equiv 0 \\pmod 3$), as the theorem predicts: this $\\chi$ is $\\chi_\\pi$ for $\\pi = -1 - 3\\omega$. Numerically $g(\\chi)^3 = 7(-1 - 3\\omega)$.\n\nWriting $J = a + b\\omega$, the identity $4N(J) = (2a - b)^2 + 3b^2$ with $b = 3M$ gives $4p = L^2 + 27M^2$ with $L = 2a - b \\equiv 1 \\pmod 3$. Here $L = -2 + 3 = 1$, $M = -1$, and $28 = 1 + 27$."
+   },
+   {
+    "type": "example",
+    "title": "When is 2 a cube?",
+    "body": "Using cubic reciprocity, show that for a prime $p \\equiv 1 \\pmod 3$, the number $2$ is a cube modulo $p$ if and only if $p = x^2 + 27y^2$ for some integers $x, y$.",
+    "solution": "Let $\\pi = a + b\\omega$ be primary with $N(\\pi) = p$. Since $\\mathbb Z/p\\mathbb Z \\cong \\mathbb Z[\\omega]/(\\pi)$, $2$ is a cube modulo $p$ iff $\\chi_\\pi(2) = 1$. The number $2$ is a rational prime $\\equiv 2 \\pmod 3$, hence a primary prime of norm $4 \\ne p$, so cubic reciprocity gives\n$$\\chi_\\pi(2) = \\chi_2(\\pi) \\equiv \\pi^{(4-1)/3} = \\pi \\pmod 2.$$\nSo $\\chi_\\pi(2) = 1$ iff $\\pi \\equiv 1 \\pmod 2$, i.e. $a$ odd and $b$ even. As $\\pi$ is primary, $3 \\mid b$; and $b$ even forces $a$ odd (else $2 \\mid \\pi$). So $2$ is a cube iff $b \\equiv 0 \\pmod 6$.\n\nIf $b = 6c$, then $p = a^2 - 6ac + 36c^2 = (a - 3c)^2 + 27c^2$. Conversely, if $p = x^2 + 27y^2$, replace $x$ by $-x$ if needed so that $x \\equiv 2 \\pmod 3$ (note $3 \\nmid x$). Then $\\pi_0 = x + 3y\\sqrt{-3} = (x + 3y) + 6y\\omega$ has norm $(x + 3y)^2 - 6y(x + 3y) + 36y^2 = x^2 + 27y^2 = p$, is primary, and has $b = 6y$. The primary primes of norm $p$ are $\\pi$ and $\\bar\\pi = (a - b) - b\\omega$, whose $b$-coordinates agree up to sign, so $b \\equiv 0 \\pmod 6$ for $\\pi$ as well.\n\nCheck: $31 = 2^2 + 27$, and $2 \\equiv 4^3 \\pmod{31}$. The primary prime of norm $31$ is $-1 - 6\\omega$, with $b = -6$. For $p = 7$, $\\pi = -1 - 3\\omega$ has $b$ odd, and indeed $2$ is not a cube modulo $7$."
+   },
+   {
+    "type": "example",
+    "title": "Counting solutions of x³ + y³ ≡ 1",
+    "body": "Let $p \\equiv 1 \\pmod 3$ and $4p = L^2 + 27M^2$ with $L \\equiv 1 \\pmod 3$. Show that the congruence $x^3 + y^3 \\equiv 1 \\pmod p$ has exactly $p - 2 + L$ solutions $(x, y)$, and deduce $\\bigl|\\#\\text{solutions} - (p - 2)\\bigr| \\le 2\\sqrt p$.",
+    "solution": "The number of $x$ with $x^3 \\equiv u$ is $1 + \\chi(u) + \\bar\\chi(u)$ for every $u$: it is $3$ for a nonzero cube, $0$ for a non-cube, and $1$ for $u = 0$. So the count is\n$$N = \\sum_{u + v = 1}\\bigl(1 + \\chi(u) + \\bar\\chi(u)\\bigr)\\bigl(1 + \\chi(v) + \\bar\\chi(v)\\bigr).$$\nExpand into nine sums over $u + v = 1$. The term $1\\cdot 1$ gives $p$. A term with exactly one character, such as $\\sum_u\\chi(u)$, is $0$. The remaining four are Jacobi sums: $J(\\chi,\\chi) + J(\\bar\\chi,\\bar\\chi) + J(\\chi,\\bar\\chi) + J(\\bar\\chi,\\chi)$.\n\nFor $J(\\chi, \\bar\\chi) = \\sum_{u \\ne 0, 1}\\chi\\bigl(u/(1-u)\\bigr)$, the map $u \\mapsto u/(1 - u)$ is a bijection from $\\{u \\ne 0, 1\\}$ onto $\\{c \\ne 0, -1\\}$, so $J(\\chi,\\bar\\chi) = \\sum_{c \\ne 0}\\chi(c) - \\chi(-1) = -1$. The same holds for $J(\\bar\\chi,\\chi)$. Hence\n$$N = p - 2 + 2\\,\\mathrm{Re}\\,J(\\chi,\\chi).$$\nWith $J = a + b\\omega$ primary (as in the theorem, taking $\\chi = \\chi_\\pi$), $2\\,\\mathrm{Re}\\,J = 2a - b = L$, the number with $L \\equiv 1 \\pmod 3$ in $4p = L^2 + 27M^2$. So $N = p - 2 + L$. Finally $L^2 \\le 4p$ gives $|L| \\le 2\\sqrt p$.\n\nFor $p = 7$: $L = 1$ and $N = 6$; the solutions are $(0, 1), (0, 2), (0, 4), (1, 0), (2, 0), (4, 0)$. For $p \\equiv 2 \\pmod 3$ cubing is a bijection, and $N = p$ exactly."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Conventions differ between books. The normalisation $\\pi \\equiv 2 \\equiv -1 \\pmod 3$ used here is sometimes relaxed to $\\pi \\equiv \\pm 1 \\pmod 3$. Since $-1$ is a cube, the sign does not affect cubic residue symbols, but it does affect identities such as $J(\\chi_\\pi,\\chi_\\pi) = \\pi$.\n- Which of the two characters is $\\chi$ and which is $\\bar\\chi$ depends on choices (a primitive root, or $\\pi$ versus $\\bar\\pi$). Statements that pick out one, like $J = \\pi$, depend on this; statements like $\\chi(a) = 1$ do not.\n- Cubic reciprocity needs both primes primary and of different norms. For $\\pi$ and $\\bar\\pi$ (same norm $p$) the law says nothing.\n- For $p \\equiv 2 \\pmod 3$ there are no cubic characters modulo $p$; the corresponding primes of $\\mathbb Z[\\omega]$ are the inert $q$ with $N(q) = q^2$, and $\\chi_q$ is trivial on ordinary integers coprime to $q$."
+   },
+   {
+    "type": "connection",
+    "body": "- The quadratic analogue is [[quadratic-residues]], with the quadratic Gauss sums of [[gauss-sums]]; quartic (biquadratic) reciprocity works the same way in the [[gaussian-integers]].\n- Viewed as a function of the prime $\\pi$, the Jacobi sum $J(\\chi_\\pi,\\chi_\\pi)$ is an example of a Hecke character of $\\mathbb Q(\\sqrt{-3})$, the kind of object whose $L$-functions are the [[hecke-l]] functions.\n- A manuscript dated 30 September 2026, attributed to an OpenAI internal model, claims that every Dirichlet $L$-function is zero-free in $\\mathrm{Re}\\,s > \\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums built from these characters, and a Mellin continuation; it was reported as Lean-verified. An October 2026 preprint (arXiv 2610.12234) claims to widen that half-plane by varying the parameters of the cubic theta argument. These are claims, not established results. A zero-free half-plane of this kind would go far beyond the classical [[zero-free-region]], which shrinks toward $\\mathrm{Re}\\,s = 1$ with the height; see [[quasi-rh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. For $p = 19$ and the primitive root $2$, compute the cubic character $\\chi(2^k) = \\omega^k$, the Jacobi sum $J(\\chi,\\chi)$, and verify $4\\cdot 19 = L^2 + 27M^2$.\n2. Decide whether $2$ is a cube modulo $43$ and modulo $37$, and confirm by finding a cube root or showing there is none.\n3. Show that $\\chi(-1) = 1$ for every cubic character, and deduce that $g(\\bar\\chi) = \\overline{g(\\chi)}$.\n4. Show that for $p \\equiv 2 \\pmod 3$ the congruence $x^3 + y^3 \\equiv 1 \\pmod p$ has exactly $p$ solutions."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Ireland & Rosen, A Classical Introduction to Modern Number Theory",
+    "where": "Ch. 8 and Ch. 9"
+   },
+   {
+    "ref": "Lemmermeyer, Reciprocity Laws: From Euler to Eisenstein"
+   },
+   {
+    "ref": "Berndt, Evans & Williams, Gauss and Jacobi Sums"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "For primes p<2000: if p=1 mod 3 there are (p-1)/3 nonzero cubes and a is a cube iff a^((p-1)/3)=1; if p=2 mod 3 cubing is a bijection. Cubes mod 7 = {1,6}, mod 13 = {1,5,8,12}",
+    "python": "from sympy import primerange\nfor p in primerange(5,2000):\n    C={pow(x,3,p) for x in range(1,p)}\n    if p%3==1:\n        assert len(C)==(p-1)//3\n        assert all((a in C)==(pow(a,(p-1)//3,p)==1) for a in range(1,p))\n    else: assert len(C)==p-1\nassert {pow(x,3,7) for x in range(1,7)}=={1,6} and {pow(x,3,13) for x in range(1,13)}=={1,5,8,12}\nassert pow(4,3,31)==2"
+   },
+   {
+    "claim": "p=7, primitive root 3: chi values as listed, J(chi,chi) = -1-3w, g(chi)^3 = 7J, N(J)=7; 28 = 1+27; x^3+y^3=1 mod 7 has the 6 listed solutions",
+    "python": "import cmath, math\nw=cmath.exp(2j*math.pi/3)\np=7\nchi={0:0}\nfor k in range(6): chi[pow(3,k,7)]=w**k\nexp={1:1,3:w,2:w**2,6:1,4:w,5:w**2}\nassert all(abs(chi[a]-exp[a])<1e-12 for a in exp)\nJ=sum(chi[a]*chi[(1-a)%p] for a in range(p))\nassert abs(J-(-1-3*w))<1e-12 and abs(abs(J)**2-7)<1e-9\nz=cmath.exp(2j*math.pi/p)\ng=sum(chi[t]*z**t for t in range(p))\nassert abs(g**3-7*J)<1e-9\nassert 1+27==28\nsols=sorted((x,y) for x in range(7) for y in range(7) if (x**3+y**3-1)%7==0)\nassert sols==[(0,1),(0,2),(0,4),(1,0),(2,0),(4,0)]"
+   },
+   {
+    "claim": "For p=1 mod 3, p<300: the primary prime pi of norm p is unique up to conjugation and J(chi_pi,chi_pi)=pi, g^3=pJ, |J|^2=p",
+    "python": "import cmath, math\nw=cmath.exp(2j*math.pi/3)\ndef primary(p):\n    out=[]\n    B=math.isqrt(4*p)+1\n    for a in range(-B,B+1):\n        for b in range(-B,B+1):\n            if a*a-a*b+b*b==p and a%3==2 and b%3==0: out.append((a,b))\n    return out\ndef chi_pi(pi,alpha):\n    # cubic residue symbol (alpha/pi)_3 for pi=a+b w of prime norm p, alpha=(c,d)\n    a,b=pi; p=a*a-a*b+b*b\n    r=(-a*pow(b,-1,p))%p\n    c,d=alpha; n=(c+d*r)%p\n    if n==0: return 0\n    v=pow(n,(p-1)//3,p)\n    for k in range(3):\n        if pow(r,k,p)==v: return k\n    raise Exception\nfrom sympy import primerange\nfor p in primerange(7,300):\n    if p%3!=1: continue\n    P=primary(p)\n    assert len(P)==2\n    for (a,b) in P:\n        ch=lambda n:0 if n%p==0 else w**chi_pi((a,b),(n,0))\n        J=sum(ch(t)*ch(1-t) for t in range(p))\n        assert abs(J-(a+b*w))<1e-8\n        z=cmath.exp(2j*math.pi/p)\n        g=sum(ch(t)*z**t for t in range(p))\n        assert abs(g**3-p*J)<1e-6*p**1.5 and abs(abs(J)**2-p)<1e-8"
+   },
+   {
+    "claim": "Each prime of norm p = 1 mod 3 has exactly one primary associate (p<500); the six units are distinct mod 3",
+    "python": "import math\nunits=[(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1)]\ndef mul(x,y): return (x[0]*y[0]-x[1]*y[1], x[0]*y[1]+x[1]*y[0]-x[1]*y[1])\nassert len({(u[0]%3,u[1]%3) for u in units})==6\nfrom sympy import primerange\nfor p in primerange(7,500):\n    if p%3!=1: continue\n    B=math.isqrt(4*p)+1\n    pi=next((a,b) for a in range(-B,B+1) for b in range(-B,B+1) if a*a-a*b+b*b==p)\n    prim=[mul(u,pi) for u in units if mul(u,pi)[0]%3==2 and mul(u,pi)[1]%3==0]\n    assert len(prim)==1"
+   },
+   {
+    "claim": "Cubic reciprocity chi_{pi1}(pi2) = chi_{pi2}(pi1) for primary split primes of distinct norms below 200",
+    "python": "import cmath, math\nw=cmath.exp(2j*math.pi/3)\ndef primary(p):\n    out=[]\n    B=math.isqrt(4*p)+1\n    for a in range(-B,B+1):\n        for b in range(-B,B+1):\n            if a*a-a*b+b*b==p and a%3==2 and b%3==0: out.append((a,b))\n    return out\ndef chi_pi(pi,alpha):\n    # cubic residue symbol (alpha/pi)_3 for pi=a+b w of prime norm p, alpha=(c,d)\n    a,b=pi; p=a*a-a*b+b*b\n    r=(-a*pow(b,-1,p))%p\n    c,d=alpha; n=(c+d*r)%p\n    if n==0: return 0\n    v=pow(n,(p-1)//3,p)\n    for k in range(3):\n        if pow(r,k,p)==v: return k\n    raise Exception\nfrom sympy import primerange\nPs=[]\nfor p in primerange(7,200):\n    if p%3==1: Ps+=primary(p)\nfor x in Ps:\n    for y in Ps:\n        nx=x[0]**2-x[0]*x[1]+x[1]**2; ny=y[0]**2-y[0]*y[1]+y[1]**2\n        if nx!=ny: assert chi_pi(x,y)==chi_pi(y,x)"
+   },
+   {
+    "claim": "For p = 1 mod 3, p < 6000: 2 is a cube mod p iff p = x^2+27y^2 iff the primary prime has b = 0 mod 6; 43 = 16+27 (2 is a cube), 37 not of that form (2 not a cube)",
+    "python": "from sympy import primerange\nimport math\nfor p in primerange(7,6000):\n    if p%3!=1: continue\n    cube = pow(2,(p-1)//3,p)==1\n    rep = any(math.isqrt(p-27*y*y)**2==p-27*y*y for y in range(1,math.isqrt(p//27)+1))\n    assert cube==rep\nassert 43==4**2+27 and pow(2,14,43)==1 and pow(2,12,37)!=1\nassert not any(math.isqrt(37-27*y*y)**2==37-27*y*y for y in range(1,2))\nassert any(pow(x,3,43)==2 for x in range(43)) and not any(pow(x,3,37)==2 for x in range(37))"
+   },
+   {
+    "claim": "Primary prime of norm 31 is -1-6w (b = -6), and pi0=(x+3y)+6y w has norm x^2+27y^2",
+    "python": "import cmath, math\nw=cmath.exp(2j*math.pi/3)\ndef primary(p):\n    out=[]\n    B=math.isqrt(4*p)+1\n    for a in range(-B,B+1):\n        for b in range(-B,B+1):\n            if a*a-a*b+b*b==p and a%3==2 and b%3==0: out.append((a,b))\n    return out\ndef chi_pi(pi,alpha):\n    # cubic residue symbol (alpha/pi)_3 for pi=a+b w of prime norm p, alpha=(c,d)\n    a,b=pi; p=a*a-a*b+b*b\n    r=(-a*pow(b,-1,p))%p\n    c,d=alpha; n=(c+d*r)%p\n    if n==0: return 0\n    v=pow(n,(p-1)//3,p)\n    for k in range(3):\n        if pow(r,k,p)==v: return k\n    raise Exception\nassert (-1,-6) in primary(31)\nfrom sympy import symbols, expand\nx,y=symbols('x y')\na=x+3*y; b=6*y\nassert expand(a*a-a*b+b*b-(x*x+27*y*y))==0"
+   },
+   {
+    "claim": "#{x^3+y^3=1 mod p} = p-2+L with 4p=L^2+27M^2, L=1 mod 3 (p=1 mod 3, p<400), = p for p=2 mod 3, and |L|<=2 sqrt p; J(chi,chibar) = -1",
+    "python": "import cmath, math\nw=cmath.exp(2j*math.pi/3)\ndef primary(p):\n    out=[]\n    B=math.isqrt(4*p)+1\n    for a in range(-B,B+1):\n        for b in range(-B,B+1):\n            if a*a-a*b+b*b==p and a%3==2 and b%3==0: out.append((a,b))\n    return out\ndef chi_pi(pi,alpha):\n    # cubic residue symbol (alpha/pi)_3 for pi=a+b w of prime norm p, alpha=(c,d)\n    a,b=pi; p=a*a-a*b+b*b\n    r=(-a*pow(b,-1,p))%p\n    c,d=alpha; n=(c+d*r)%p\n    if n==0: return 0\n    v=pow(n,(p-1)//3,p)\n    for k in range(3):\n        if pow(r,k,p)==v: return k\n    raise Exception\nfrom sympy import primerange\nfor p in primerange(5,400):\n    cnt=0\n    cubes=[0]*p\n    for x in range(p): cubes[pow(x,3,p)]+=1\n    cnt=sum(cubes[u]*cubes[(1-u)%p] for u in range(p))\n    if p%3==2: assert cnt==p; continue\n    Ls=[L for L in range(-2*p,2*p+1) if L%3==1 and (4*p-L*L)>=0 and (4*p-L*L)%27==0 and math.isqrt((4*p-L*L)//27)**2==(4*p-L*L)//27]\n    assert len(Ls)==1 and cnt==p-2+Ls[0] and abs(Ls[0])<=2*math.sqrt(p)\n    a,b=primary(p)[0]\n    assert 2*a-b==Ls[0]\n    ch=lambda n:0 if n%p==0 else w**chi_pi((a,b),(n,0))\n    Jb=sum(ch(t)*ch(1-t).conjugate() for t in range(p))\n    assert abs(Jb+1)<1e-8"
+   },
+   {
+    "claim": "Exercise data: for p=19, 4*19 = 7^2 + 27*1^2; 2 is a primitive root mod 19",
+    "python": "from sympy import n_order\nassert 4*19==7**2+27 and n_order(2,19)==18"
+   },
+   {
+    "claim": "For inert q = 2 mod 3 (q<200), a^((q^2-1)/3) = 1 mod q for integers a coprime to q, so chi_q is trivial on Z; the six units of Z[w] have differences of norm 1, 3 or 4",
+    "python": "from sympy import primerange\nfor q in primerange(2,200):\n    if q%3!=2: continue\n    e=(q*q-1)//3\n    assert all(pow(a,e,q)==1 for a in range(1,q))\nU=[(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1)]\nN=lambda a,b:a*a-a*b+b*b\nassert {N(x[0]-y[0],x[1]-y[1]) for x in U for y in U if x!=y}=={1,3,4}"
+   }
+  ]
+ },
+ {
+  "id": "dedekind-zeta",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The Riemann zeta function packages the primes of $\\mathbb Z$: $\\zeta(s) = \\sum_n n^{-s} = \\prod_p(1 - p^{-s})^{-1}$, and the Euler product is just unique factorization written analytically (see [[zeta]]). A number field $K$ has its own \"integers\" $\\mathcal O_K$ and its own primes, the prime ideals, and unique factorization of ideals (see [[ideals]]) gives an Euler product in exactly the same way. The result is the Dedekind zeta function $\\zeta_K(s)$.\n\nIts value lies in two facts. First, for quadratic fields (and more generally abelian fields) it factors into $\\zeta(s)$ times Dirichlet $L$-functions, so questions about primes and ideals in $K$ become questions about characters on $\\mathbb Z$. Second, its residue at $s = 1$ contains the class number, the regulator and the discriminant of $K$, which is how class numbers are computed and estimated."
+   },
+   {
+    "type": "definition",
+    "title": "Dedekind zeta function",
+    "body": "For a number field $K$ of degree $n$ and $\\mathrm{Re}\\,s > 1$,\n$$\\zeta_K(s) = \\sum_{\\mathfrak a \\ne 0} N\\mathfrak a^{-s} = \\sum_{m=1}^\\infty \\frac{a_K(m)}{m^s}, \\qquad a_K(m) = \\#\\{\\mathfrak a \\subseteq \\mathcal O_K : N\\mathfrak a = m\\},$$\nthe sum running over nonzero ideals of $\\mathcal O_K$, where $N\\mathfrak a = |\\mathcal O_K/\\mathfrak a|$.\n\nFor $K = \\mathbb Q$ the ideals are $(m)$, $m \\ge 1$, and $\\zeta_{\\mathbb Q} = \\zeta$. The coefficients count ideals, not elements."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler product",
+    "body": "For real $\\sigma > 1$ the series converges, with $\\zeta_K(\\sigma) \\le \\zeta(\\sigma)^n$, and for $\\mathrm{Re}\\,s > 1$ it converges absolutely and\n$$\\zeta_K(s) = \\prod_{\\mathfrak p}\\bigl(1 - N\\mathfrak p^{-s}\\bigr)^{-1},$$\nthe product running over nonzero prime ideals. In particular $\\zeta_K(s) \\ne 0$ for $\\mathrm{Re}\\,s > 1$."
+   },
+   {
+    "type": "proof",
+    "body": "Each nonzero prime ideal $\\mathfrak p$ contains exactly one rational prime $p$ (namely $\\mathfrak p \\cap \\mathbb Z = p\\mathbb Z$), so $\\mathfrak p$ divides $p\\mathcal O_K$ and $N\\mathfrak p = p^f$ with $f \\ge 1$. Writing $p\\mathcal O_K = \\prod\\mathfrak p_i^{e_i}$ and taking norms, $\\sum e_if_i = n$ because $N(p\\mathcal O_K) = p^n$. So at most $n$ prime ideals lie above $p$, and for real $\\sigma > 1$\n$$\\prod_{\\mathfrak p \\mid p}\\bigl(1 - N\\mathfrak p^{-\\sigma}\\bigr)^{-1} \\le \\bigl(1 - p^{-\\sigma}\\bigr)^{-n}.$$\n\nFix $x$ and expand the finite product over the prime ideals of norm at most $x$ into geometric series. By unique factorization of ideals and multiplicativity of the norm, every ideal $\\mathfrak a$ built from these primes appears exactly once, contributing $N\\mathfrak a^{-\\sigma}$; in particular every ideal of norm at most $x$ appears. Hence\n$$\\sum_{N\\mathfrak a \\le x} N\\mathfrak a^{-\\sigma} \\le \\prod_{N\\mathfrak p \\le x}\\bigl(1 - N\\mathfrak p^{-\\sigma}\\bigr)^{-1} \\le \\prod_{p \\le x}\\bigl(1 - p^{-\\sigma}\\bigr)^{-n} \\le \\zeta(\\sigma)^n.$$\nSo the series converges absolutely for $\\mathrm{Re}\\,s > 1$, and the difference between the partial product and the full series is bounded by the tail $\\sum_{N\\mathfrak a > x}N\\mathfrak a^{-\\sigma}$, which tends to $0$. A convergent product of nonzero factors with $\\sum |N\\mathfrak p^{-s}| < \\infty$ is nonzero."
+   },
+   {
+    "type": "section",
+    "title": "The Gaussian example",
+    "body": "Take $K = \\mathbb Q(i)$, $\\mathcal O_K = \\mathbb Z[i]$. From the factorization of primes in the [[gaussian-integers]], the Euler factors at a rational prime $p$ are:\n\n- $p = 2 = -i(1+i)^2$: one prime of norm $2$, factor $(1 - 2^{-s})^{-1}$;\n- $p \\equiv 1 \\pmod 4$, $p = \\pi\\bar\\pi$: two primes of norm $p$, factor $(1 - p^{-s})^{-2}$;\n- $p \\equiv 3 \\pmod 4$, inert: one prime of norm $p^2$, factor $(1 - p^{-2s})^{-1} = (1 - p^{-s})^{-1}(1 + p^{-s})^{-1}$.\n\nLet $\\chi_{-4}$ be the character modulo $4$ with $\\chi_{-4}(n) = 1, 0, -1, 0$ for $n \\equiv 1, 2, 3, 0$. In every case the Euler factor equals $(1 - p^{-s})^{-1}(1 - \\chi_{-4}(p)p^{-s})^{-1}$, so\n$$\\zeta_{\\mathbb Q(i)}(s) = \\zeta(s)\\,L(s, \\chi_{-4}).$$\nComparing Dirichlet coefficients, $a_K(m) = \\sum_{d \\mid m}\\chi_{-4}(d)$. Since every ideal of $\\mathbb Z[i]$ is principal with four generators, this says $r_2(m) = 4\\sum_{d \\mid m}\\chi_{-4}(d)$, the classical formula for the number of ways to write $m$ as a sum of two squares."
+   },
+   {
+    "type": "theorem",
+    "title": "Factorization for quadratic fields",
+    "body": "Let $K$ be a quadratic field of discriminant $D$ (so $K = \\mathbb Q(\\sqrt D)$, with $D = d$ if $d \\equiv 1 \\pmod 4$ and $D = 4d$ otherwise, $d$ squarefree), and let $\\chi_D(m) = \\left(\\frac Dm\\right)$ be the Kronecker symbol, a primitive real character modulo $|D|$. Then\n$$\\zeta_{\\mathbb Q(\\sqrt D)}(s) = \\zeta(s)\\, L(s, \\chi_D), \\qquad a_K(m) = \\sum_{d \\mid m}\\chi_D(d).$$"
+   },
+   {
+    "type": "proof",
+    "body": "The splitting law for quadratic fields says that a rational prime $p$ splits into two distinct primes of norm $p$ when $\\chi_D(p) = 1$, stays prime (norm $p^2$) when $\\chi_D(p) = -1$, and ramifies ($p\\mathcal O_K = \\mathfrak p^2$, $N\\mathfrak p = p$) when $\\chi_D(p) = 0$, i.e. $p \\mid D$. For odd $p$ this is the Dedekind–Kummer theorem applied to $x^2 - d$, since $\\chi_D(p) = \\left(\\frac dp\\right)$ (when $d \\equiv 1 \\pmod 4$, $\\mathbb Z[\\sqrt d]$ has index $2$ in $\\mathcal O_K$, which does not matter for odd $p$). For $p = 2$ and $D = 4d$, $x^2 - d$ is $x^2$ or $(x+1)^2$ modulo $2$, so $2$ ramifies, matching $\\chi_D(2) = 0$. For $p = 2$ and $D \\equiv 1 \\pmod 4$, apply it to $x^2 - x + \\tfrac{1-D}{4}$, the minimal polynomial of $\\tfrac{1 + \\sqrt D}{2}$: modulo $2$ this is $x(x-1)$ if $D \\equiv 1 \\pmod 8$ and the irreducible $x^2 + x + 1$ if $D \\equiv 5 \\pmod 8$, matching $\\chi_D(2) = 1$ or $-1$.\n\nThe Euler factor of $\\zeta_K$ at $p$ is therefore $(1 - p^{-s})^{-2}$, $(1 - p^{-2s})^{-1}$ or $(1 - p^{-s})^{-1}$ in the three cases, and each equals $(1 - p^{-s})^{-1}(1 - \\chi_D(p)p^{-s})^{-1}$. Multiplying over $p$ gives the identity, and multiplying the Dirichlet series $\\sum m^{-s}$ and $\\sum\\chi_D(m)m^{-s}$ gives the coefficient formula."
+   },
+   {
+    "type": "section",
+    "title": "Continuation, functional equation and zeros",
+    "body": "Hecke proved in 1917 that $\\zeta_K(s)$ extends to a meromorphic function on $\\mathbb C$ whose only pole is a simple pole at $s = 1$, and that it satisfies a functional equation. Let $r_1$ be the number of real embeddings of $K$, $r_2$ the number of pairs of complex ones, $\\Gamma_{\\mathbb R}(s) = \\pi^{-s/2}\\Gamma(s/2)$ and $\\Gamma_{\\mathbb C}(s) = 2(2\\pi)^{-s}\\Gamma(s)$. Then\n$$\\Lambda_K(s) = |d_K|^{s/2}\\,\\Gamma_{\\mathbb R}(s)^{r_1}\\,\\Gamma_{\\mathbb C}(s)^{r_2}\\,\\zeta_K(s) \\quad\\text{satisfies}\\quad \\Lambda_K(s) = \\Lambda_K(1 - s).$$\n(Proof omitted; Tate's thesis of 1950 gives the modern proof. For quadratic fields it follows from the factorization and the functional equations of $\\zeta$ and $L(s, \\chi_D)$, see [[functional-equation]].)\n\nThe gamma factors force trivial zeros. For an imaginary quadratic field ($r_1 = 0$, $r_2 = 1$), $\\zeta_K$ vanishes at every negative integer and $\\zeta_K(0) = -h/w$. For a real quadratic field ($r_1 = 2$), it has double zeros at $-2, -4, -6, \\dots$, a simple zero at $0$, and nonzero values at $-1, -3, \\dots$. In general $\\zeta_K$ has a zero of order $r_1 + r_2 - 1$ at $s = 0$, with leading coefficient $-h_KR_K/w_K$.\n\nAll other zeros lie in the critical strip $0 < \\mathrm{Re}\\,s < 1$, and the generalized Riemann hypothesis for $\\zeta_K$ predicts they lie on $\\mathrm{Re}\\,s = \\tfrac12$ (see [[grh]]). For a quadratic field, the nontrivial zeros of $\\zeta_K$ are those of $\\zeta$ together with those of $L(s, \\chi_D)$; a hypothetical [[siegel-zeros|Siegel zero]] of $L(s,\\chi_D)$ would be a real zero of $\\zeta_K$ very close to $1$."
+   },
+   {
+    "type": "theorem",
+    "title": "Analytic class number formula",
+    "body": "$$\\mathop{\\mathrm{Res}}_{s=1}\\zeta_K(s) = \\frac{2^{r_1}(2\\pi)^{r_2}\\,h_K\\,R_K}{w_K\\sqrt{|d_K|}},$$\nwhere $h_K$ is the class number, $R_K$ the regulator, $w_K$ the number of roots of unity in $K$, and $d_K$ the discriminant. For a quadratic field the residue is $L(1, \\chi_D)$, because $\\zeta$ has residue $1$, so\n$$L(1,\\chi_D) = \\frac{2\\pi h}{w\\sqrt{|D|}}\\ (D < 0), \\qquad L(1, \\chi_D) = \\frac{2h\\log\\varepsilon}{\\sqrt D}\\ (D > 0),$$\nwith $\\varepsilon > 1$ the fundamental unit. (Proof omitted; see Marcus or Neukirch. The idea: the residue equals the density of ideals, $\\#\\{\\mathfrak a : N\\mathfrak a \\le x\\} \\sim \\mathrm{Res}\\cdot x$, and counting ideals class by class reduces to counting lattice points in a region whose volume involves $R_K$ and $\\sqrt{|d_K|}$. See also [[class-number-formula]].)"
+   },
+   {
+    "type": "example",
+    "title": "Lattice points on circles and in discs",
+    "body": "(a) How many integer points lie on the circle $x^2 + y^2 = 225$? On $x^2 + y^2 = 5^{10}$?\n\n(b) Explain why the number of integer points $(x, y) \\ne (0, 0)$ with $x^2 + y^2 \\le X$ is asymptotic to $4L(1, \\chi_{-4})X$, and evaluate the constant.",
+    "solution": "(a) Use $r_2(m) = 4\\sum_{d \\mid m}\\chi_{-4}(d)$. The divisors of $225 = 3^2 5^2$ are $1, 3, 5, 9, 15, 25, 45, 75, 225$, with $\\chi_{-4}$-values $1, -1, 1, 1, -1, 1, 1, -1, 1$, summing to $3$. So there are $12$ points: $(\\pm 15, 0)$, $(0, \\pm 15)$, $(\\pm 9, \\pm 12)$, $(\\pm 12, \\pm 9)$. For $5^{10}$ all $11$ divisors $5^j$ are $\\equiv 1 \\pmod 4$, so there are $44$ points.\n\n(b) The count is $\\sum_{m \\le X} r_2(m) = 4\\sum_{m \\le X}a_K(m)$, and\n$$\\sum_{m \\le X}a_K(m) = \\sum_{m \\le X}\\sum_{d \\mid m}\\chi_{-4}(d) = \\sum_{d \\le X}\\chi_{-4}(d)\\Bigl\\lfloor\\frac Xd\\Bigr\\rfloor = X\\sum_{d \\le X}\\frac{\\chi_{-4}(d)}{d} + O(\\sqrt X).$$\n(The error estimate splits the sum at $d = \\sqrt X$ and uses that partial sums of $\\chi_{-4}$ are bounded.) So the count is $\\sim 4L(1, \\chi_{-4})X$ with $L(1, \\chi_{-4}) = 1 - \\tfrac13 + \\tfrac15 - \\dots = \\tfrac\\pi4$. The constant $4 \\cdot \\tfrac\\pi4 = \\pi$ is the area of the unit disc, as geometry demands; read backwards, the class number formula for $\\mathbb Q(i)$ ($h = 1$, $w = 4$, $|D| = 4$) predicts $L(1, \\chi_{-4}) = \\tfrac{2\\pi}{4 \\cdot 2} = \\tfrac\\pi4$, which is Leibniz's series."
+   },
+   {
+    "type": "example",
+    "title": "Seeing a class number of 2",
+    "body": "For $K = \\mathbb Q(\\sqrt{-5})$ ($D = -20$), compute $a_K(6)$ directly and from the formula, and use the density of ideals to estimate $h_K$ numerically.",
+    "solution": "Directly: the ideals of norm $6$ are products of a prime of norm $2$ and a prime of norm $3$. There is one prime of norm $2$, $P_2 = (2, 1 + \\sqrt{-5})$, and two of norm $3$, $P_3 = (3, 1 + \\sqrt{-5})$ and $P_3' = (3, 1 - \\sqrt{-5})$. So $a_K(6) = 2$: the ideals $P_2P_3 = (1 + \\sqrt{-5})$ and $P_2P_3' = (1 - \\sqrt{-5})$. From the formula, $\\chi_{-20}(1) = 1$, $\\chi_{-20}(2) = 0$, $\\chi_{-20}(3) = \\left(\\frac{-20}{3}\\right) = 1$, $\\chi_{-20}(6) = 0$, total $2$.\n\nDensity: as in the previous example, $\\#\\{\\mathfrak a : N\\mathfrak a \\le X\\} = \\sum_{d \\le X}\\chi_{-20}(d)\\lfloor X/d\\rfloor \\approx L(1,\\chi_{-20})X$. Numerically, for $X = 10^5$ the ratio is about $1.405$, while $\\tfrac{\\pi}{\\sqrt 5} \\approx 1.4050$. The class number formula with $w = 2$, $|D| = 20$ reads $L(1, \\chi_{-20}) = \\tfrac{2\\pi h}{2\\sqrt{20}} = \\tfrac{\\pi h}{2\\sqrt 5}$, so the measured density gives $h \\approx 2$, the class number found in [[class-group]]."
+   },
+   {
+    "type": "example",
+    "title": "Special values",
+    "body": "Compute $\\zeta_{\\mathbb Q(i)}(0)$ and $\\zeta_{\\mathbb Q(\\sqrt 5)}(-1)$, and compare $\\zeta_{\\mathbb Q(i)}(0)$ with $-h/w$.",
+    "solution": "We use $\\zeta(0) = -\\tfrac12$, $\\zeta(-1) = -\\tfrac1{12}$, and the formula $L(1 - k, \\chi) = -B_{k,\\chi}/k$ with generalized Bernoulli numbers $B_{k,\\chi} = q^{k-1}\\sum_{a=1}^{q}\\chi(a)B_k(a/q)$ for a character modulo $q$, where $B_1(x) = x - \\tfrac12$ and $B_2(x) = x^2 - x + \\tfrac16$.\n\nFor $\\chi_{-4}$: $B_{1,\\chi} = \\chi(1)B_1(\\tfrac14) + \\chi(3)B_1(\\tfrac34) = -\\tfrac14 - \\tfrac14 = -\\tfrac12$, so $L(0, \\chi_{-4}) = \\tfrac12$ and $\\zeta_{\\mathbb Q(i)}(0) = -\\tfrac12 \\cdot \\tfrac12 = -\\tfrac14$. This equals $-h/w = -\\tfrac14$, as it should.\n\nFor $\\chi_5$ (values $1, -1, -1, 1$ at $1, 2, 3, 4$): the constant terms of $B_2$ cancel since $\\sum\\chi(a) = 0$, and $\\sum\\chi(a)a = 1 - 2 - 3 + 4 = 0$, so $B_{2,\\chi} = 5\\cdot\\tfrac1{25}\\sum\\chi(a)a^2 = \\tfrac15(1 - 4 - 9 + 16) = \\tfrac45$. Hence $L(-1, \\chi_5) = -\\tfrac25$ and\n$$\\zeta_{\\mathbb Q(\\sqrt 5)}(-1) = \\Bigl(-\\frac1{12}\\Bigr)\\Bigl(-\\frac25\\Bigr) = \\frac1{30}.$$\nThat this value is rational is an instance of the Siegel–Klingen theorem for totally real fields."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The character is $\\chi_D$ for the discriminant $D$, not $\\left(\\frac d\\cdot\\right)$ for the squarefree $d$: for $\\mathbb Q(\\sqrt{-5})$ one needs the character modulo $20$, which is $0$ at $2$ because $2$ ramifies.\n- $\\zeta_K$ counts ideals, not elements. In $\\mathbb Q(\\sqrt{-5})$ the number of ideals of norm $m$ is not the number of solutions of $x^2 + 5y^2 = m$ divided by $2$; non-principal ideals are counted too (for $m = 3$ there are two ideals and no elements).\n- Factoring $\\zeta_K$ into Dirichlet $L$-functions works for abelian fields such as quadratic and cyclotomic ones, not in general. For $K = \\mathbb Q(\\sqrt[3]2)$, $\\zeta_K(s)/\\zeta(s)$ is an $L$-function attached to a cubic Hecke character of $\\mathbb Q(\\sqrt{-3})$, not a product of Dirichlet $L$-functions.\n- The functional equation relates $s$ and $1 - s$ for the completed function $\\Lambda_K$; $\\zeta_K$ itself is not symmetric."
+   },
+   {
+    "type": "connection",
+    "body": "- Replacing the norm by a character on ideals gives [[hecke-l]] functions; $\\zeta_K$ is the case of the trivial character, and $\\zeta_K(s)L(s, \\psi)$ products describe extensions of $K$. The example $\\mathbb Q(\\sqrt[3]2)$ above ties back to [[cubic-characters]]: a prime $p \\equiv 1 \\pmod 3$ splits completely in $\\mathbb Q(\\sqrt[3]2)$ exactly when $2$ is a cube modulo $p$.\n- The residue at $s = 1$ is the analytic class number formula ([[class-number-formula]]), the main tool for estimating class numbers ([[class-group]]) and the reason [[siegel-zeros]] matter.\n- For cyclotomic fields, $\\zeta_{\\mathbb Q(\\zeta_n)}$ is the product of the $L$-functions of the primitive characters behind the characters modulo $n$ (see [[cyclotomic]], [[l-functions]]); its pole at $s = 1$ is one way to prove $L(1, \\chi) \\ne 0$.\n- The generalized Riemann hypothesis for $\\zeta_K$ is part of [[grh]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Write down the Euler factors of $\\zeta_{\\mathbb Q(\\sqrt{-3})}$ at $p = 2, 3, 7$ and check that each equals $(1 - p^{-s})^{-1}(1 - \\chi_{-3}(p)p^{-s})^{-1}$.\n2. Deduce from $\\zeta_{\\mathbb Q(\\sqrt{-3})} = \\zeta(s)L(s,\\chi_{-3})$ that the number of integer pairs with $a^2 - ab + b^2 = m$ is $6\\sum_{d \\mid m}\\chi_{-3}(d)$.\n3. Show that the number of ideals of norm $p^k$ in a quadratic field is $k + 1$, $1$ or $0$, or $1$, according as $p$ splits, is inert ($k$ even or odd), or ramifies.\n4. Compute $L(1, \\chi_{-7})$ numerically and use the class number formula to confirm $h(-7) = 1$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Neukirch, Algebraic Number Theory",
+    "where": "Ch. VII"
+   },
+   {
+    "ref": "Marcus, Number Fields"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "r_2(m) = 4 sum_{d|m} chi_{-4}(d) for m <= 2000; 12 points on x^2+y^2=225, 44 on x^2+y^2=5^10",
+    "python": "import math\nfrom sympy import divisors\nchi=lambda d: [0,1,0,-1][d%4]\ndef r2(n):\n    c=0; m=math.isqrt(n)\n    for a in range(-m,m+1):\n        b2=n-a*a; b=math.isqrt(b2)\n        if b*b==b2: c+= 1 if b==0 else 2\n    return c\nfor m in range(1,2001): assert r2(m)==4*sum(chi(d) for d in divisors(m))\nassert r2(225)==12 and sum(chi(d) for d in divisors(225))==3\nassert 4*sum(chi(d) for d in divisors(5**10))==44"
+   },
+   {
+    "claim": "Euler factors: split (1-x)^-2, inert (1-x^2)^-1, ramified (1-x)^-1 each equal (1-x)^-1 (1-chi x)^-1 for chi = 1, -1, 0",
+    "python": "from sympy import symbols, simplify\nx=symbols('x')\nfor chi,f in [(1,(1-x)**-2),(-1,(1-x**2)**-1),(0,(1-x)**-1)]:\n    assert simplify(f-1/((1-x)*(1-chi*x)))==0"
+   },
+   {
+    "claim": "Kronecker chi_D(2) = 1 iff D = 1 mod 8 and -1 iff D = 5 mod 8 matches splitting of x^2-x+(1-D)/4 mod 2",
+    "python": "from sympy import jacobi_symbol\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    if n==1: return r\n    return r*jacobi_symbol(D%n,n)\nfor D in range(-199,200,4):\n    if D in (1,): continue\n    c=(1-D)//4\n    roots=[t for t in (0,1) if (t*t-t+c)%2==0]\n    assert (len(roots)==2)==(kron(D,2)==1) and (len(roots)==0)==(kron(D,2)==-1)\n    assert (D%8==1)==(kron(D,2)==1)"
+   },
+   {
+    "claim": "Ideals in Q(sqrt-5): a_K(m) = sum chi_{-20}(d) equals (r_{x^2+5y^2}(m) + r_{2x^2+2xy+3y^2}(m))/2 for m<=400; a_K(6)=2, a_K(3)=2",
+    "python": "from sympy import jacobi_symbol\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    if n==1: return r\n    return r*jacobi_symbol(D%n,n)\nfrom sympy import divisors\ndef rQ(a,b,c,m):\n    B=int((m)**0.5)+3\n    return sum(1 for x in range(-B,B+1) for y in range(-B,B+1) if a*x*x+b*x*y+c*y*y==m)\nfor m in range(1,401):\n    aK=sum(kron(-20,d) for d in divisors(m))\n    assert 2*aK==rQ(1,0,5,m)+rQ(2,2,3,m)\nassert sum(kron(-20,d) for d in divisors(6))==2 and sum(kron(-20,d) for d in divisors(3))==2\nassert rQ(1,0,5,3)==0 and kron(-20,3)==1"
+   },
+   {
+    "claim": "Ideal density for Q(sqrt-5) at X=10^5 is ~1.405 ~ pi/sqrt5, giving h ~ 2; for Q(i), lattice points in disc of radius sqrt X ~ pi X",
+    "python": "from sympy import jacobi_symbol\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    if n==1: return r\n    return r*jacobi_symbol(D%n,n)\nimport math\nX=10**5\nt=[kron(-20,a) for a in range(20)]\nS=sum(t[d%20]*(X//d) for d in range(1,X+1))\nassert abs(S/X-math.pi/math.sqrt(5))<5e-3 and abs(S/X-1.405)<1e-3\nassert abs(S/X*2*math.sqrt(20)/(2*math.pi)-2)<1e-2\nY=10**6; m=math.isqrt(Y)\ncnt=sum(2*math.isqrt(Y-a*a)+1 for a in range(-m,m+1))-1\nassert abs(cnt/Y-math.pi)<1e-2"
+   },
+   {
+    "claim": "Class number formula residues: L(1,chi_-4)=pi/4, L(1,chi_5)=2 log((1+sqrt5)/2)/sqrt5 ~ 0.4304, L(1,chi_-20)=pi/sqrt5, L(1,chi_-7)=pi/sqrt7 (h=1, w=2)",
+    "python": "from sympy import jacobi_symbol\ndef kron(D,n):\n    r=1\n    while n%2==0:\n        n//=2\n        if D%2==0: return 0\n        r*= 1 if D%8 in (1,7) else -1\n    if n==1: return r\n    return r*jacobi_symbol(D%n,n)\nimport mpmath as mp\nmp.mp.dps=30\nL=lambda chi: -sum(chi[a]*mp.digamma(mp.mpf(a)/len(chi)) for a in range(1,len(chi)))/len(chi)\nassert abs(L([0,1,0,-1])-mp.pi/4)<1e-20\nv=L([0,1,-1,-1,1])\nassert abs(v-2*mp.log((1+mp.sqrt(5))/2)/mp.sqrt(5))<1e-20 and abs(v-0.4304)<1e-4\nc20=[kron(-20,a) if a else 0 for a in range(20)]\nassert abs(L(c20)-mp.pi/mp.sqrt(5))<1e-20\nc7=[kron(-7,a) if a else 0 for a in range(7)]\nassert c7==[0,1,1,-1,1,-1,-1]\nassert abs(L(c7)-2*mp.pi/(2*mp.sqrt(7)))<1e-20"
+   },
+   {
+    "claim": "Functional equation Lambda_K(s)=Lambda_K(1-s) numerically for Q(i) and Q(sqrt5)",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nGR=lambda s: mp.pi**(-s/2)*mp.gamma(s/2)\nGC=lambda s: 2*(2*mp.pi)**(-s)*mp.gamma(s)\ndef Lam(s,chi,D,r1,r2): return abs(D)**(s/2)*GR(s)**r1*GC(s)**r2*mp.zeta(s)*mp.dirichlet(s,chi)\nfor s in [mp.mpf('0.3'), mp.mpc('0.2','5'), mp.mpc('-1.5','2')]:\n    for chi,D,r1,r2 in [([0,1,0,-1],-4,0,1),([0,1,-1,-1,1],5,2,0)]:\n        a=Lam(s,chi,D,r1,r2); b=Lam(1-s,chi,D,r1,r2)\n        assert abs(a-b)<1e-15*max(1,abs(a))"
+   },
+   {
+    "claim": "zeta_Q(i)(0) = -1/4 = -h/w; zeta_Q(i) vanishes at -1,-2,-3; zeta_Q(sqrt5)(-1) = 1/30, zeta_Q(sqrt5)(0)=0 with derivative -log(phi)/2 = -hR/w; B_{2,chi5} = 4/5, B_{1,chi-4} = -1/2",
+    "python": "import mpmath as mp\nfrom fractions import Fraction as F\nmp.mp.dps=30\nz=lambda s,chi: mp.zeta(s)*mp.dirichlet(s,chi)\nc4=[0,1,0,-1]; c5=[0,1,-1,-1,1]\nassert abs(z(0,c4)+0.25)<1e-25\nassert all(abs(z(-k,c4))<1e-20 for k in (1,2,3))\nassert abs(z(-1,c5)-mp.mpf(1)/30)<1e-25 and abs(z(0,c5))<1e-25\nd=mp.diff(lambda s: z(s,c5),0)\nassert abs(d+mp.log((1+mp.sqrt(5))/2)/2)<1e-10\nB1=lambda x:x-F(1,2); B2=lambda x:x*x-x+F(1,6)\nassert sum(c4[a%4]*B1(F(a,4)) for a in range(1,5))==F(-1,2)\nassert 5*sum(c5[a%5]*B2(F(a,5)) for a in range(1,6))==F(4,5)"
+   },
+   {
+    "claim": "A prime p = 1 mod 3 (p<3000) splits completely in Q(cbrt 2) (x^3-2 has 3 roots mod p) iff 2 is a cube mod p",
+    "python": "from sympy import primerange\nfor p in primerange(7,3000):\n    if p%3!=1: continue\n    roots=sum(1 for x in range(p) if (x**3-2)%p==0)\n    assert (roots==3)==(pow(2,(p-1)//3,p)==1)"
+   },
+   {
+    "claim": "Exercises: Euler factors of zeta_Q(sqrt-3) at 2 (inert), 3 (ramified), 7 (split) match chi_-3; #{a^2-ab+b^2=m} = 6 sum_{d|m} chi_-3(d) for m<=300; number of ideals of norm p^k is k+1 / (1 if k even else 0) / 1",
+    "python": "from sympy import divisors\nchi=lambda d:[0,1,-1][d%3]\nassert chi(2)==-1 and chi(3)==0 and chi(7)==1\nfor m in range(1,301):\n    B=int((4*m/3)**0.5)+2\n    r=sum(1 for a in range(-B,B+1) for b in range(-B,B+1) if a*a-a*b+b*b==m)\n    assert r==6*sum(chi(d) for d in divisors(m))\nfor k in range(0,8):\n    # ideals of norm p^k: coefficient sum_{j=0..k} chi(p)^j\n    assert sum(1**j for j in range(k+1))==k+1\n    assert sum((-1)**j for j in range(k+1))==(1 if k%2==0 else 0)\n    assert sum(0**j for j in range(k+1))==1"
+   },
+   {
+    "claim": "For D=4d with d = 2,3 mod 4, x^2-d is a square mod 2 (2 ramifies) and chi_D(2)=0; for odd p not dividing D, chi_D(p) = (d/p)",
+    "python": "from sympy import jacobi_symbol, primerange\nfor d in [-1,-2,-5,-6,2,3,6,7,-10,10,11,-13]:\n    if d%4 in (2,3):\n        assert sum(1 for t in (0,1) if (t*t-d)%2==0)==1\n        D=4*d\n        for p in primerange(3,60):\n            if D%p: assert jacobi_symbol(D%p,p)==jacobi_symbol(d%p,p)"
+   }
+  ]
+ }
+]

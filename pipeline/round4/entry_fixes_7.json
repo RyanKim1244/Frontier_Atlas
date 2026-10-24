@@ -1,0 +1,28 @@
+[
+ {
+  "id": "eisenstein-integers",
+  "field": "why",
+  "problem": "Refers to the 2026 quasi-RH manuscript as if its content were established; the timeline marks it as an AI claim.",
+  "corrected": "The arena of cubic reciprocity, and of the claimed 2026 quasi-RH proof."
+ },
+ {
+  "id": "cubic-characters",
+  "field": "why",
+  "problem": "Presents the 2026 quasi-RH manuscript without marking it as a claim (the timeline has ai_claim true).",
+  "corrected": "Cubic theta sums built from these characters drive the claimed 2026 quasi-RH proof."
+ },
+ {
+  "id": "class-group",
+  "field": "summary",
+  "problem": "'Imaginary quadratic fields with h = 1 are exactly d = 1,2,3,...' does not say what d is; read as a discriminant the list is wrong (there are no fields of discriminant -1 or -2). The list is of d in Q(sqrt(-d)).",
+  "corrected": "The ideal class group measures the failure of unique factorization; its order is the class number $h_K$. The imaginary quadratic fields $\\mathbb Q(\\sqrt{-d})$ with $h = 1$ are exactly $d = 1,2,3,7,11,19,43,67,163$."
+ },
+ {
+  "id": "dedekind-zeta",
+  "field": "key_statements",
+  "problem": "chi_D must be the Kronecker symbol of the field discriminant D. If D is read as the squarefree d (e.g. d = -5), the identity is false because the character modulo 20 is needed.",
+  "corrected": [
+   "\\zeta_{\\mathbb Q(\\sqrt D)}(s) = \\zeta(s)\\, L(s, \\chi_D) \\quad (D \\text{ the discriminant},\\ \\chi_D = (\\tfrac{D}{\\cdot}))"
+  ]
+ }
+]

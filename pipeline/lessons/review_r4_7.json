@@ -1,0 +1,182 @@
+[
+ {
+  "id": "gaussian-integers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example / A cube one more than a square",
+    "problem": "The closing remark said the same argument with n-th powers is 'the classical route' to x^2+1=y^n. That overstates it: for general n the units need not be n-th powers and extra work is needed (Lebesgue's argument).",
+    "fix": "Removed the remark."
+   },
+   {
+    "severity": "style",
+    "where": "intro, examples, pitfall",
+    "problem": "Padding. The intro repeated the lesson plan, and two pitfall bullets ('prime depends on the ring', 'prime norm forces a Gaussian prime, not conversely') repeated the 5-versus-3 discussion in the units section.",
+    "fix": "Tightened the intro and the endings of the 65 and 29 examples; removed the two duplicate pitfall bullets."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 1 (30), exercise 4 (325), the division-with-remainder bound and the irreducibility of the factors of 6 in Z[sqrt-5] were not checked.",
+    "fix": "Added 2 independent checks."
+   }
+  ]
+ },
+ {
+  "id": "eisenstein-integers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection / cubic residue symbol",
+    "problem": "The draft stated that alpha^((p-1)/3) is congruent to one of 1, w, w^2 mod pi with no hypothesis. This fails when pi divides alpha, where the power is 0.",
+    "fix": "Added 'for alpha not divisible by pi'."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "'Two conventions coexist: N(a+bw)=a^2-ab+b^2 and N(a-bw)=a^2+ab+b^2' presents a substitution as if it were a rival convention.",
+    "fix": "Reworded: some books write a - bw or use w^2, so the norm appears as a^2+ab+b^2, which takes the same values."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "'Euler's treatment of FLT for exponent 3' is historically loose: Euler's published proof had a gap.",
+    "fix": "Now says FLT for exponent 3 is naturally proved in Z[w]."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The exercise claims (units incongruent mod 3, 91, Z[w]/(2) a field), the Z[sqrt-3] factorization of 4 and lambda-bar = -w^2 lambda were not checked.",
+    "fix": "Added 2 checks."
+   }
+  ]
+ },
+ {
+  "id": "ideals",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section / To contain is to divide",
+    "problem": "The maps were listed as 'sqrt-5 -> 1 and sqrt-5 -> -1 modulo 3' for P3 and P3' in that order. In fact P3 = (3,1+sqrt-5) = {a = b mod 3} is the kernel of sqrt-5 -> -1, and P3' is the kernel of sqrt-5 -> 1.",
+    "fix": "Swapped the order and noted that both values square to 1 = -5 mod 3."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Two bullets repeated earlier text: 'needs the full ring of integers' repeated the Z[sqrt-3] paragraph, and 'containment goes the opposite way' repeated the section on containment.",
+    "fix": "Removed both; tightened the Kummer section a little."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercises 2 to 4 (29, the square of (7,3+sqrt-5), Z[sqrt-6]) and the homomorphism claims behind P2, P3, P3' were not checked.",
+    "fix": "Added 2 checks, including (7,3+sqrt-5)^2 = (2 +- 3 sqrt-5)."
+   }
+  ]
+ },
+ {
+  "id": "class-group",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section / Ideals and binary quadratic forms",
+    "problem": "The citation 'Cox, Ch. 1' was given for the bijection between ideal classes and form classes. Cox's Chapter 1 covers forms only; the ideal correspondence is in a later chapter.",
+    "fix": "Changed to 'see Cox's book' with no chapter number."
+   },
+   {
+    "severity": "style",
+    "where": "history section, pitfall",
+    "problem": "'1966 to 1967' was vague and 'far beyond this lesson' was padding. The pitfall 'nearly an integer is not an integer' repeated the history section.",
+    "fix": "Now says Baker (1966) and Stark (1967), dates checked against the literature. Removed the padding and the duplicate bullet."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercises 1 to 3 (reduced forms of -56, the Minkowski bounds for Q(sqrt-2) and Q(sqrt-11), the product pq) were not checked.",
+    "fix": "Added 2 checks."
+   }
+  ]
+ },
+ {
+  "id": "cyclotomic",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example / Gauss and the regular 17-gon",
+    "problem": "The draft said that zeta + zeta^-1 = 2cos(2pi/17) is reached after four quadratic steps. It is a two-term period of degree 8, so it is reached after three steps (degrees 2, 4, 8); the fourth step gives zeta itself.",
+    "fix": "Corrected to three steps, with a fourth giving zeta, and added a check of the four-term and two-term periods."
+   },
+   {
+    "severity": "error",
+    "where": "checks",
+    "problem": "Two of the author's checks failed. sympy simplify could not confirm exp(i pi/6) = (sqrt3+i)/2, and the Gauss-sum check mixed sympy integers with complex floats, which raised a TypeError.",
+    "fix": "Rewrote both numerically with cmath and int()."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The bullet 'g = phi(n)/f is for p not dividing n only' restated the theorem's hypothesis.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The exercise data (Phi_8, Phi_9, Phi_10, 2 in Q(zeta_7), the square -7, the product of primitive roots) were not checked.",
+    "fix": "Added 2 checks."
+   }
+  ]
+ },
+ {
+  "id": "cubic-characters",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "The bullet saying 'deciding which cube root g(chi) is was Kummer's problem' is historically imprecise: Kummer's conjecture concerned the distribution of the arguments of cubic Gauss sums. The point was not needed.",
+    "fix": "Removed the bullet."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The claims that chi_q is trivial on Z for inert q and that unit differences have norm 1, 3 or 4 were not checked.",
+    "fix": "Added 1 check."
+   }
+  ]
+ },
+ {
+  "id": "dedekind-zeta",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof / Factorization for quadratic fields",
+    "problem": "The proof handled odd p and p = 2 with D = 1 mod 4, but omitted p = 2 with D = 4d, where 2 ramifies. It also applied Dedekind-Kummer to x^2 - d when d = 1 mod 4, although Z[sqrt d] is not the ring of integers there.",
+    "fix": "Added the case p = 2, D = 4d (x^2 - d is x^2 or (x+1)^2 mod 2), and noted that the index [O_K : Z[sqrt d]] = 2 does not matter for odd p."
+   },
+   {
+    "severity": "error",
+    "where": "checks",
+    "problem": "Two of the author's checks failed. The residue check used mpmath dirichlet at s = 1, and kron(-7, 0) loops forever, so it never finished. The special-values check indexed c4[4], an IndexError.",
+    "fix": "Computed L(1,chi) with the digamma formula, set chi(0) = 0 explicitly, and indexed with a % 4."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "'Only for abelian fields does zeta_K factor into Dirichlet L-functions' was stated as a theorem without support.",
+    "fix": "Reworded: the factorization works for abelian fields such as quadratic and cyclotomic ones, not in general; the Q(cbrt 2) example follows. Also removed a bullet on Euler products that repeated earlier text."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercises 1 to 3 and the 2-adic and odd-p character facts used in the corrected proof were not checked.",
+    "fix": "Added 2 checks."
+   }
+  ]
+ }
+]
