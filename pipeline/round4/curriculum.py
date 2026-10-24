@@ -16,10 +16,10 @@ C = [
  ("automata", "Finite automata and regular languages", "Automata", "computation", ["computer-science", "logic"], "undergraduate", ["sets-relations", "induction"]),
  ("computability", "Turing machines and computability", "Computability", "computation", ["computer-science", "logic"], "undergraduate", ["automata"]),
  # functions and equations
- ("quadratics", "Quadratic equations and quadratic functions", "Quadratics", "functions", ["algebra"], "school", ["functions"]),
- ("solving-inequalities", "Solving inequalities", "Solving inequalities", "functions", ["algebra"], "school", ["quadratics"]),
- ("rational-functions", "Rational functions and partial fractions", "Rational functions", "functions", ["algebra", "calculus"], "school", ["polynomials-roots", "functions"]),
- ("hyperbolic-functions", "Hyperbolic functions", "Hyperbolic functions", "functions", ["calculus", "special-functions"], "school", ["exp-log", "diff-rules"]),
+ ("quadratics", "Quadratic equations and quadratic functions", "Quadratics", "precalc", ["algebra"], "school", ["functions"]),
+ ("solving-inequalities", "Solving inequalities", "Solving inequalities", "precalc", ["algebra"], "school", ["quadratics"]),
+ ("rational-functions", "Rational functions and partial fractions", "Rational functions", "precalc", ["algebra", "calculus"], "school", ["polynomials-roots", "functions"]),
+ ("hyperbolic-functions", "Hyperbolic functions", "Hyperbolic functions", "precalc", ["calculus", "special-functions"], "school", ["exp-log", "diff-rules"]),
  # calculus
  ("integral-applications", "Applications of the integral: area, volume, length and work", "Applications of integrals", "calculus", ["calculus", "physics"], "school", ["ftc"]),
  ("parametric-polar", "Parametric curves and polar coordinates", "Parametric & polar curves", "calculus", ["calculus", "geometry"], "school", ["trig", "derivative"]),

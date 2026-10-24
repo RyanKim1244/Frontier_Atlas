@@ -1,0 +1,145 @@
+[
+ {
+  "id": "algorithms",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "proof :: Proof (binary search)",
+    "problem": "The reduction to $C(n) = 1 + C(\\lfloor n/2\\rfloor)$ silently uses that $C$ is nondecreasing (otherwise the larger sub-range need not be the worse one).",
+    "fix": "Stated the monotonicity explicitly."
+   },
+   {
+    "severity": "error",
+    "where": "theorem :: Lower bound for comparison sorting",
+    "problem": "The estimate $\\log_2 n! \\ge \\frac n2\\log_2\\frac n2$ was stated without its range; the proof (factors at least $n/2$, raised to the power $n/2$) needs $n \\ge 2$.",
+    "fix": "Added \"for $n \\ge 2$\"."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Intro second paragraph wordy; lesson over 2000 words.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rosen section numbers (§3.1, §3.3, §4.4, §7.3) are those of the 6th edition and differ in later editions.",
+    "fix": "Named the 6th edition."
+   }
+  ]
+ },
+ {
+  "id": "automata",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.key[2]",
+    "problem": "Pumping-lemma key statement omitted the existential quantifier over the decomposition $x, y, z$ (and $p \\ge 1$), so as written it is ambiguous; the order of quantifiers is the whole point of the lemma.",
+    "fix": "Wrote $\\exists p \\ge 1\\ \\forall w\\ \\exists x,y,z$."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Regular expressions and Kleene's theorem",
+    "problem": "Star construction \"plus a way to accept ε\" is vague; the naive version (making the old start state accepting) is a known wrong construction.",
+    "fix": "Gave the correct construction with a new accepting start state."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rosen 'Chapter 12' (Modeling Computation) is the 6th-edition numbering; it is Chapter 13 in the 7th.",
+    "fix": "Named the 6th edition."
+   }
+  ]
+ },
+ {
+  "id": "computability",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "Rice key statement did not say what is undecidable (the set of machine codes whose language has the property) or that the property is of recognisable languages.",
+    "fix": "Stated it precisely, matching the lesson."
+   },
+   {
+    "severity": "style",
+    "where": "section :: Reductions and Rice's theorem",
+    "problem": "Date placement suggested the 1970 result was due to Davis, Putnam and Robinson.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rosen §12.5 is the 6th-edition numbering.",
+    "fix": "Named the 6th edition."
+   }
+  ]
+ },
+ {
+  "id": "quadratics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section :: Further: complex roots and the discriminant trick",
+    "problem": "Statement about solving quadratics mod an odd prime $p$ omitted the hypothesis $p \\nmid a$ (otherwise the equation is not quadratic mod $p$ and $2a$ is not invertible).",
+    "fix": "Added $p \\nmid a$; verified exhaustively for p up to 13."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Further: complex roots and the discriminant trick",
+    "problem": "The argument with real $t$ and $\\langle u+tv,u+tv\\rangle$ as a real quadratic works as written only in a real inner product space.",
+    "fix": "Said \"real\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Conic discriminant classification holds only for non-degenerate conics (e.g. $x^2 - y^2 = 0$ is a line pair).",
+    "fix": "Added \"non-degenerate\"."
+   }
+  ]
+ },
+ {
+  "id": "solving-inequalities",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section :: Further: inequalities in two variables",
+    "problem": "Claimed rules 1-4 \"are exactly the axioms of an ordered field\"; rules 3 and 4 (negative multipliers, squaring) are consequences, not axioms.",
+    "fix": "Changed to \"follow from the axioms of an ordered field\"."
+   }
+  ]
+ },
+ {
+  "id": "rational-functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example :: Sketching and the range",
+    "problem": "\"finds the range of any function (ax^2+bx+c)/(dx^2+ex+f)\" overstated: the values of y where the x^2 coefficient vanishes, and cancelled common factors (holes), need separate treatment.",
+    "fix": "Added the caveat."
+   },
+   {
+    "severity": "style",
+    "where": "example :: An irreducible quadratic",
+    "problem": "Integration constant $C$ clashed with the coefficient $C$ in $Bx + C$ used two lines earlier.",
+    "fix": "Wrote \"+ const\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Further: why partial fractions are everywhere",
+    "problem": "\"coefficients of a rational power series are sums of A alpha^n\" holds only for proper fractions (otherwise only from some index on).",
+    "fix": "Restricted to proper rational functions."
+   }
+  ]
+ },
+ {
+  "id": "hyperbolic-functions",
+  "verdict": "ok",
+  "issues": []
+ }
+]
