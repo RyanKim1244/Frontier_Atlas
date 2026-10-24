@@ -54,7 +54,7 @@ Each check: update the timeline events and research-problem statuses (erdosprobl
 item to its concepts, and move concepts needed to understand new results up the writing queue. Sources: arXiv math listings,
 erdosproblems.com, Quanta, mathematicians' blogs (e.g. Tao), formalisation projects (Lean/mathlib). Facts verified at the source.
 
-## Deadline: mathematics service complete by February 2027 (agreed 2026-10-24)
+## Target: February 2027 (owner starts university then); a soft target, quality first, delay is acceptable
 About 17 weeks. Expected size: roughly 1,500-2,500 concepts (school + olympiad + undergraduate + graduate core + tiers 1-3).
 Throughput needed: on the order of 100+ concepts per week; the pilot pipeline cost ~1M tokens per concept, far too slow.
 Next session must first redesign for throughput without dropping the checks that caught real errors:
