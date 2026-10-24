@@ -210,6 +210,7 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .lb-fig { margin: 24px 0; text-align: center; } .fig-svg { overflow-x: auto; } .fig-svg svg { max-width: 100%; height: auto; display: inline-block; vertical-align: top; } .lb-fig figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; } .lb-fig figcaption p { margin: 0; }
 .req { padding-left: 0; list-style: none; } .req li { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--rule); } .req li p { margin: 0; }
 .req-p { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); min-width: 82px; } .req-p.core { color: var(--accent); }
+.plinks { padding-left: 18px; } .plinks li { margin: 8px 0; }
 .soon { border-bottom: 1px dotted var(--ink-3); cursor: help; }
 .rlist { margin: 0 0 14px; padding-left: 22px; } .rlist li { margin: 3px 0; }
 .toc-block ul li { border: 0; padding: 3px 0; } .toc { text-align: left; font-size: 14px; text-decoration: none; }
@@ -927,6 +928,9 @@ function viewConcept(r) {
     c.lesson ? h("section", { class: "block" }, h("h2", null, "Lesson"), lessonView(c, tocEl)) : null,
     (pre.length || next.length) ? h("section", { class: "block" }, h("h2", null, "Where it sits"), graphSVG(neighbourhood(c.id), c.id), h("p", { class: "caption" }, "Prerequisites on the left, what it leads to on the right. ", h("a", { href: "#map", onclick: () => { S.mapMode = "path"; S.goal = c.id; } }, "Full path from scratch"), " · ", h("a", { href: "#map", onclick: () => { S.mapMode = "field"; S.mapField = c.fields[0]; } }, "See it in the " + FIELD[c.fields[0]].name.toLowerCase() + " map"))) : null,
     h("section", { class: "block", id: "problems-sec" }, h("h2", null, "Exercises"), problemBrowser(c)),
+    c.plinks && c.plinks.length ? h("section", { class: "block" }, h("h2", null, "More practice elsewhere"),
+      h("p", { class: "small muted", style: "margin:-4px 0 10px" }, "Past exams and problem sets we cannot reproduce here. They open on the original site."),
+      h("ul", { class: "plinks" }, c.plinks.map(l => h("li", null, h("a", { href: l.url, target: "_blank", rel: "noopener" }, l.title), l.kind ? h("span", { class: "tag", style: "margin-left:8px" }, l.kind) : null, l.note ? h("div", { class: "small muted" }, l.note) : null)))) : null,
     h("section", { class: "block", id: "discussion-sec" }, h("h2", null, "Discussion"), threadBox("concept:" + c.id, { allowProposal: true })));
   const aside = h("aside", { class: "aside" },
     c.lesson ? tocEl : null,

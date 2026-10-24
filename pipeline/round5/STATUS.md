@@ -67,3 +67,8 @@ Next session must first redesign for throughput without dropping the checks that
 The owner adds olympiad past problems himself (pipeline/src/olympiad_user/*.json, format in its README). Claude does not
 collect olympiad problems; for newly added ones Claude only tags concepts and decides attachment (easy positions only:
 IMO/USAMO P1, P4; Putnam A1, A2, B1, B2; other contests by judged difficulty), and checks the statements render.
+
+## Link-only practice (2026-10-25)
+Problems we cannot reproduce (university past exams, qualifying exams, NC/ND textbook exercises) are linked on the concept
+page under "More practice elsewhere" (round5/practice_links/, format in its README), clearly marked as external. Collected
+together with licensed exercises (specs/exercise_spec.md, "Link-only practice").

@@ -31,3 +31,8 @@ exercises_<batch>.json: [{"id": "STK-<tag>" | "NAP-<chapter>-<n>" | ..., "concep
  "license_url": "...", "level": "routine" | "standard" | "challenging" (used only to order the list easy -> hard; never shown), "why": "one line: which part of the concept it exercises"}]
 Every q must pass: balanced $; renders in MathJax 3/4 (no \newcommand). Also write sources_<batch>.json listing each source
 with the licence evidence URL. Reply briefly: counts per concept, sources used, sources rejected and why.
+
+## Link-only practice
+Also collect publicly reachable pages with practice the licence does not let us copy (university past exams, qualifying /
+prelim exams, course problem sets, exercise sections of NC/ND books) that directly fit the concept. Output
+practice_links_<batch>.json in the format of pipeline/round5/practice_links/README.md. Never copy their text.

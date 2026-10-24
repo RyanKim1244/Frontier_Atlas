@@ -368,6 +368,14 @@ for ps in ALL.values():
     for p in ps: colls[p["coll"]] = colls.get(p["coll"], 0) + 1
 stats = {"textbook": len(textbook), "olympiad": len(olympiad), "bridge": len(bridge), "research": len(research), "examples": len(examples), "total": sum(len(v) for v in ALL.values()),
          "open": sum(p["status"] == "open" for p in research), "solved": sum(p["status"] == "solved" for p in research), "claimed": sum(p["status"] == "claimed" for p in research), "collections": colls}
+# Practice we may not reproduce (past exams, qualifying exams, problem sets under restrictive licences): links only.
+PLINKS = {}
+for f in sorted(glob.glob(os.path.join(HERE, "..", "round5", "practice_links", "*.json"))):
+    for x in json.load(open(f, encoding="utf8")):
+        for cid in [x["concept"]] + x.get("also", []):
+            PLINKS.setdefault(cid, []).append({k: x[k] for k in ("title", "url", "kind", "note") if x.get(k)})
+for c in concepts:
+    if c["id"] in PLINKS: c["plinks"] = PLINKS[c["id"]]
 _pub = {c["id"] for c in concepts}
 planned = {c[0]: c[1] for c in catalog_r4._m5.C if c[0] not in _pub}
 catalog = {"planned": planned, "bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
