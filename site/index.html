@@ -257,7 +257,7 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .composer-big textarea { min-height: 150px; font-size: 16px; }
 .qhead { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; font-family: var(--sans); }
 .qhead label { display: inline-flex; gap: 8px; align-items: center; color: var(--ink-2); } .qhead select { max-width: 320px; }
-.qpage { max-width: 860px; } .qcomp { margin: 22px 0 18px; }
+.qpage { max-width: 860px; } .cm-title { font-size: 20px; margin: 6px 0 0; line-height: 1.3; } .qtitle { width: 100%; box-sizing: border-box; font-size: 17px !important; font-weight: 600; } .qcomp { margin: 22px 0 18px; }
 @media (max-width: 620px) { .cm { grid-template-columns: 12px minmax(0, 1fr); column-gap: 4px; } .cm-rail::before { left: 5px; } .cm-fold { margin-left: -18px; } .qhead select { max-width: 100%; } }
 .vote { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule-2); background: var(--raise); border-radius: 3px; padding: 1px 9px; cursor: pointer; }
 .vote.on { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); }
@@ -1066,13 +1066,13 @@ function viewField(r) {
 /* ---------- community: data (Supabase) ---------- */
 function rowItem(r) {
   return { id: r.id, author: r.author, kind: ["post", "proposal", "problem"].includes(r.kind) ? r.kind : "post", target: String(r.target || ""), parent: r.parent || null,
-    body: String(r.body || "").slice(0, 6000), createdAt: String(r.created_at || ""), spoiler: r.spoiler === true, sourceNote: r.source_note || "", solution: r.solution || "",
+    title: String(r.title || "").slice(0, 150), body: String(r.body || "").slice(0, 6000), createdAt: String(r.created_at || ""), spoiler: r.spoiler === true, sourceNote: r.source_note || "", solution: r.solution || "",
     authorName: r.author_name || "Member", authorAvatar: /^https:\/\//.test(r.author_avatar || "") ? r.author_avatar : "", votes: r.votes | 0 };
 }
 function allItems() { return Object.values(S.posts).sort((a, b) => a.createdAt.localeCompare(b.createdAt)); }
 function threadCount(t) { return S.counts[t] || 0; }
 function votesFor(id) { const it = S.posts[id]; return { n: it ? it.votes : 0, mine: S.myVotes.has(id) }; }
-const FEED = "id,author,kind,target,parent,body,spoiler,source_note,solution,created_at,author_name,author_avatar,votes";
+const FEED = "*";
 async function loadMyVotes(ids) {
   if (!S.sb || !S.uid || !ids.length) return;
   for (let i = 0; i < ids.length; i += 150) {
@@ -1138,6 +1138,7 @@ async function addItem(fields) {
   if (!canPost()) return false;
   const row = { kind: fields.kind || "post", target: fields.target, parent: fields.parent || null, body: String(fields.body).slice(0, 6000), spoiler: fields.spoiler === true };
   if (row.kind === "problem") { row.source_note = fields.sourceNote || null; row.solution = fields.solution || null; }
+  if (fields.title) row.title = String(fields.title).trim().slice(0, 150);
   const { data, error } = await S.sb.from("posts").insert(row).select("id,created_at").single();
   if (error) { saveError(error); return false; }
   S.posts[data.id] = rowItem(Object.assign({}, row, { id: data.id, author: S.uid, created_at: data.created_at, author_name: S.me && S.me.display_name, author_avatar: S.me && S.me.avatar_url, votes: 0 }));
@@ -1267,7 +1268,7 @@ function postView(it, ps, kids, opts, depth) {
     h("a", { class: "pauthor", href: "#user-" + it.author }, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
     it.kind === "proposal" ? h("span", { class: "tag claimed" }, "Research question") : null, it.spoiler ? h("span", { class: "tag solved" }, "Solution") : null,
     opts.showTarget && !depth ? targetLink(it.target) : null, more);
-  const content = h("div", { class: "cm-content" }, shownBody, acts, replyHost,
+  const content = h("div", { class: "cm-content" }, it.title && !depth ? h("h3", { class: "cm-title" }, it.title) : null, shownBody, acts, replyHost,
     children.length ? h("div", { class: "cm-kids" }, children.map(c => postView(c, ps, kids, opts, depth + 1))) : null);
   el.append(rail, h("div", { class: "cm-main" }, head, content));
   function toggle() { const c = !content.hidden; content.hidden = c; more.hidden = !c; el.classList.toggle("collapsed", c); fold.textContent = c ? "+" : "−"; fold.setAttribute("aria-expanded", c ? "false" : "true"); }
@@ -1331,10 +1332,12 @@ async function renderQuestions(fresh) {
   comp.dataset.built = String(canPost());
   if (!canPost()) { comp.replaceChildren(); return; }
   const sel = h("select", { id: "qt" }, h("option", { value: "general" }, "No specific concept"), CAT.concepts.map(c => h("option", { value: "concept:" + c.id }, c.title)));
+  const ti = h("input", { type: "text", id: "qtitle", class: "qtitle", maxlength: "150", placeholder: "Title: the question in one line" });
   comp.replaceChildren(composer({ id: "qb", big: true, draftKey: "question", label: "Post question",
-    placeholder: "Ask a question worth answering. Give the context and what you already know. Math in $...$ or $$...$$.",
-    head: h("div", { class: "qhead" }, h("b", null, "Propose a research question"), h("label", { for: "qt", class: "small" }, "Related concept", sel)),
-    onSend: async t => { const ok = await addItem({ kind: "proposal", target: sel.value, body: t }); if (ok) toast("Question posted."); return ok; } }));
+        head: [h("div", { class: "qhead" }, h("b", null, "Propose a research question"), h("label", { for: "qt", class: "small" }, "Related concept", sel)), ti],
+    placeholder: "Details: context, what you already know, why it matters. Math in $...$ or $$...$$.",
+    onSend: async t => { const tt = ti.value.trim(); if (!tt) { toast("Give the question a title."); ti.focus(); return false; }
+      const ok = await addItem({ kind: "proposal", target: sel.value, body: t, title: tt }); if (ok) { ti.value = ""; toast("Question posted."); } return ok; } }));
 }
 function viewReview() {
   setTimeout(() => renderReviewList(true), 0);
@@ -1521,7 +1524,7 @@ function activityRow(it) {
   const where = targetLink(it.target) || (it.target === "general" ? h("a", { href: "#questions" }, "Research questions") : null);
   const body = h("div", { class: "abody" });
   if (it.spoiler && it.author !== S.uid) body.append(h("span", { class: "small muted" }, "Solution hidden. Open the problem page to read it."));
-  else { const t = it.body.length > 280 ? it.body.slice(0, 280) + "…" : it.body; body.textContent = safeTex(t); }
+  else { const t = it.body.length > 280 ? it.body.slice(0, 280) + "…" : it.body; body.textContent = safeTex(t); if (it.title) body.prepend(h("b", { style: "display:block;color:var(--ink)" }, it.title)); }
   return h("article", { class: "arow" }, h("div", { class: "arow-h" }, h("span", { class: "tag" + (it.spoiler ? " solved" : it.kind === "proposal" ? " claimed" : "") }, what), where ? h("span", null, "on ", where) : null, h("span", { class: "mono" }, fmtDate(it.createdAt))), body);
 }
 async function exportMine() {
