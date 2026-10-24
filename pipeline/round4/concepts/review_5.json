@@ -1,0 +1,212 @@
+[
+ {
+  "id": "laplace-equation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example :: The hot side of a square",
+    "problem": "The centre value 1/4 relied on uniqueness for boundary data with jumps at the corners, asserted as an unproved \"standard extension of the maximum principle\"; the theorem on the page needs continuity on the closed square, which fails here.",
+    "fix": "Stated the facts about the series that are assumed, and proved the needed uniqueness with the barrier $h=\\sum_k\\ln(D/|x-c_k|)$ and a limsup form of the maximum principle (added a check that the four rotated series sum to 1 at sample points)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Equilibrium means averaging",
+    "problem": "\"An interior point can never be strictly hotter than all of its neighbours ... so the hottest point is on the boundary\" skips the plateau case (an interior maximum equal to its neighbours).",
+    "fix": "Spelled out the spreading argument."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "Weak maximum principle key statement omitted that $u$ is continuous on the closure.",
+    "fix": "Added $u\\in C(\\overline\\Omega)$."
+   },
+   {
+    "severity": "style",
+    "where": "section :: A glimpse further",
+    "problem": "Padding; lesson over 2000 words.",
+    "fix": "Trimmed this and other passages."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Checked chapter numbers: Evans §2.2 (Laplace's equation), Strauss ch. 6 (Harmonic functions), Boyce–DiPrima §10.8 (Laplace's equation) are correct.",
+    "fix": "Kept."
+   }
+  ]
+ },
+ {
+  "id": "calculus-of-variations",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section :: Constraints",
+    "problem": "\"if $y$ is an extremal\" was ambiguous (an extremal of what?); the multiplier rule is about stationarity of $J$ under the constraint.",
+    "fix": "Stated the hypothesis precisely."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "\"Euler–Lagrange equations of quadratic functionals are exactly Sturm–Liouville problems\" overstated (linear terms give inhomogeneous equations; the eigenvalue comes from a constraint).",
+    "fix": "Gave the precise functional, constraint and resulting equation."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lesson slightly over 2000 words.",
+    "fix": "Light trims."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Gelfand–Fomin ch. 1 (Elements of the theory: simplest problem, Euler–Lagrange, fundamental lemma) and Evans ch. 8 (Calculus of variations) checked.",
+    "fix": "Kept."
+   }
+  ]
+ },
+ {
+  "id": "inverse-function-theorem",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section :: Level sets and solving equations",
+    "problem": "Called the conclusion \"the definition of a regular level set\"; a regular level set is defined by the full-rank condition, and the theorem shows it is a manifold.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lesson over 2000 words; closing sentence of intro is padding.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rudin PMA ch. 9 and Spivak, Calculus on Manifolds ch. 2 contain both theorems (checked). Lee's appendix lettering (App. C, Review of calculus) is that of the 2nd edition.",
+    "fix": "Named the 2nd edition for Lee."
+   }
+  ]
+ },
+ {
+  "id": "contraction-mapping",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section :: Further",
+    "problem": "\"$T^n$ has Lipschitz constant $(Lh)^n/n!$\" referred to the short interval of length $h$, while the claim is about the whole interval $[t_0-a,t_0+a]$; also did not say why this suffices.",
+    "fix": "Stated the constant on the full interval and why it gives a fixed point."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lesson over 2000 words.",
+    "fix": "Light trims."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Kreyszig ch. 5 (Banach fixed point theorem and applications) and Süli–Mayers ch. 1 (iteration for equations) checked; Lee's App. D (Review of differential equations) is the 2nd-edition lettering.",
+    "fix": "Named the 2nd edition for Lee."
+   }
+  ]
+ },
+ {
+  "id": "arzela-ascoli",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "46E15 (Banach spaces of continuous, differentiable or analytic functions) is at best a loose fit for the Arzelà–Ascoli theorem; not sure enough to keep.",
+    "fix": "Removed; kept 41A10 (approximation by polynomials)."
+   },
+   {
+    "severity": "style",
+    "where": "entry.sum",
+    "problem": "\"Dually\" suggests a formal duality that does not exist.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Hype word; lesson over 2000 words.",
+    "fix": "Trimmed."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rudin PMA ch. 7, Folland ch. 4 (§4.6 Arzelà–Ascoli, §4.7 Stone–Weierstrass), Munkres Topology ch. 7 (Ascoli's theorem) checked.",
+    "fix": "Kept."
+   }
+  ]
+ },
+ {
+  "id": "lp-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section :: Density, duality, and beyond",
+    "problem": "\"Simple functions are dense in $L^p$ for $p<\\infty$ ... this fails for $L^\\infty$\" reads as saying simple functions are not dense in $L^\\infty$, which is false (they are); only density of $C_c$ fails. Non-separability was also stated for general $L^\\infty$, false e.g. for counting measure on a finite set.",
+    "fix": "Separated the two density statements and restricted non-separability to $L^\\infty(\\mathbb{R}^n)$."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Density, duality, and beyond",
+    "problem": "Non-reflexivity of $L^1$, $L^\\infty$ fails in finite-dimensional cases; the norming formula follows from Hölder's equality case, not from the duality theorem, and was stated without the range of $p$.",
+    "fix": "Added the qualifications."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "The standard proof of $(L^p)^*=L^q$ uses Radon–Nikodym (or uniform convexity), not Hahn–Banach.",
+    "fix": "Removed the Hahn–Banach attribution (Hahn–Banach is still linked in the previous section)."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition :: Lᵖ spaces",
+    "problem": "Definition fixed $1\\le p<\\infty$ at the start and then defined $L^p$ only implicitly for $p=\\infty$.",
+    "fix": "Stated the range $1\\le p\\le\\infty$."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Lesson over 2000 words.",
+    "fix": "Light trims."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Folland ch. 6, Brezis ch. 4 and Rudin RCA ch. 3 are each titled L^p spaces (checked).",
+    "fix": "Kept."
+   }
+  ]
+ },
+ {
+  "id": "entire-functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.key[2]",
+    "problem": "Hadamard key statement did not say the order is finite.",
+    "fix": "Added $\\rho<\\infty$."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Minor padding.",
+    "fix": "Trimmed."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Stein–Shakarchi ch. 5 (Entire functions) and Ahlfors ch. 5 (Series and product developments, including Jensen and Hadamard) checked.",
+    "fix": "Kept."
+   }
+  ]
+ }
+]

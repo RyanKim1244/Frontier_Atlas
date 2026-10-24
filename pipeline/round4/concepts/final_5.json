@@ -1,0 +1,1253 @@
+[
+ {
+  "id": "laplace-equation",
+  "entry": {
+   "sum": "Laplace's equation $\\Delta u = u_{xx}+u_{yy}(+u_{zz}) = 0$ describes equilibrium states: steady temperatures, electrostatic potentials in charge-free regions, ideal fluid potentials. Its solutions, harmonic functions, equal their own averages over circles and spheres, so they have no interior maxima and are uniquely determined by their boundary values.",
+   "key": [
+    "\\Delta u = \\sum_{i=1}^n \\frac{\\partial^2 u}{\\partial x_i^2} = 0",
+    "u(p) = \\frac{1}{2\\pi}\\int_0^{2\\pi} u\\big(p + r(\\cos\\theta,\\sin\\theta)\\big)\\,d\\theta",
+    "\\max_{\\overline{\\Omega}} u = \\max_{\\partial\\Omega} u \\quad (\\Omega \\text{ bounded},\\ u \\in C(\\overline{\\Omega}))"
+   ],
+   "why": "It is the model elliptic PDE: steady-state heat flow, electrostatics and gravitation are all governed by it, and in the plane harmonic functions are exactly the real parts of holomorphic functions, which ties PDE to complex analysis.",
+   "msc": [
+    "35J05",
+    "31A05",
+    "31B05"
+   ],
+   "links": [
+    {
+     "field": "probability",
+     "note": "The solution of the Dirichlet problem at a point is the expected boundary value where a Brownian motion started there first exits the domain."
+    },
+    {
+     "field": "numerical-analysis",
+     "note": "Finite-difference discretisation turns Laplace's equation into the 'average of the four neighbours' linear system, the standard test problem for Jacobi, Gauss–Seidel and multigrid iterations."
+    }
+   ],
+   "refs": [
+    "Evans, Partial Differential Equations",
+    "Strauss, Partial Differential Equations: An Introduction",
+    "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems"
+   ],
+   "aliases": [
+    "Laplace equation",
+    "harmonic function",
+    "Laplacian",
+    "Dirichlet problem",
+    "potential theory",
+    "mean value property",
+    "maximum principle",
+    "Poisson kernel",
+    "Poisson's equation"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Heat a metal plate along its edges, keep each edge at its own fixed temperature, and wait. Eventually the temperature stops changing. What does the final temperature distribution look like inside? The same question, with different words, describes the shape of a soap film stretched over a slightly bent wire, the electric potential in a region with no charge, and the velocity potential of a steady, swirl-free fluid flow.\n\nAll of these are governed by one equation, Laplace's equation $\\Delta u = 0$. Its solutions, the harmonic functions, are very rigid: each value is the average of nearby values, there is no maximum inside a region, and the boundary values determine everything."
+    },
+    {
+     "type": "section",
+     "title": "Equilibrium means averaging",
+     "body": "Imagine the plate replaced by a square grid of points spaced $h$ apart. In equilibrium no heat flows into or out of any interior point, which on a grid means each interior temperature equals the average of its four neighbours:\n\n$$u(x,y) = \\tfrac14\\big(u(x+h,y)+u(x-h,y)+u(x,y+h)+u(x,y-h)\\big).$$\n\nRearranged, this says\n\n$$\\frac{u(x+h,y)-2u(x,y)+u(x-h,y)}{h^2} + \\frac{u(x,y+h)-2u(x,y)+u(x,y-h)}{h^2} = 0.$$\n\nEach fraction is a second difference quotient. Letting $h \\to 0$ they become $u_{xx}$ and $u_{yy}$ (see [[partial-derivatives]]), and the averaging rule turns into $u_{xx}+u_{yy}=0$.\n\nTwo consequences can already be seen on the grid. First, an interior point is the average of its neighbours, so if it is a hottest point then all its neighbours are equally hot; spreading this from neighbour to neighbour reaches the boundary, so the maximum is attained on the boundary. Second, if two grid functions satisfy the averaging rule and agree on the boundary, their difference satisfies the rule and is zero on the boundary, so by the first remark its largest and smallest values are both $0$: the solution is unique. Both facts survive the limit."
+    },
+    {
+     "type": "definition",
+     "title": "Laplacian and harmonic function",
+     "body": "For a twice differentiable function $u$ on an open set $\\Omega \\subseteq \\mathbb{R}^n$, the Laplacian is\n\n$$\\Delta u = \\frac{\\partial^2 u}{\\partial x_1^2} + \\cdots + \\frac{\\partial^2 u}{\\partial x_n^2} = \\nabla \\cdot \\nabla u.$$\n\nA function $u \\in C^2(\\Omega)$ is harmonic on $\\Omega$ if $\\Delta u = 0$ at every point of $\\Omega$. The inhomogeneous equation $\\Delta u = f$ is Poisson's equation.\n\nIn words: $\\Delta u(x)$ measures how much $u(x)$ falls short of the average of $u$ on small spheres around $x$, and harmonic functions are exactly those with no shortfall."
+    },
+    {
+     "type": "section",
+     "title": "Examples and where they come from",
+     "body": "Some harmonic functions in the plane: any linear function $ax+by+c$; the quadratics $x^2-y^2$ and $xy$; the cubic $x^3-3xy^2$; $e^x\\cos y$; and $\\ln(x^2+y^2)$ away from the origin. In polar coordinates the Laplacian reads\n\n$$\\Delta u = u_{rr} + \\frac1r u_r + \\frac1{r^2}u_{\\theta\\theta},$$\n\nand one checks that $r^n\\cos n\\theta$ and $r^n\\sin n\\theta$ are harmonic for every integer $n \\ge 0$. In $\\mathbb{R}^3$ the function $1/|x|$ (the Coulomb or Newton potential of a point charge or mass) is harmonic away from $0$.\n\nIf $f = u + iv$ is holomorphic, the Cauchy–Riemann equations $u_x = v_y$, $u_y = -v_x$ give $u_{xx} = v_{yx} = -u_{yy}$, so $u$ and $v$ are harmonic. For instance $z^3 = (x^3-3xy^2) + i(3x^2y-y^3)$ and $e^z = e^x\\cos y + i e^x \\sin y$. Conversely, on a simply connected domain every harmonic $u$ is the real part of a holomorphic function; its imaginary part is called a harmonic conjugate. This ties two-dimensional potential theory to [[holomorphic|complex analysis]].\n\nPhysically, a steady temperature $u$ has heat flux $-k\\nabla u$; having no sources means the flux has zero divergence, which is $\\Delta u = 0$. Electrostatics is the same with $u$ the potential and $-\\nabla u$ the field."
+    },
+    {
+     "type": "theorem",
+     "title": "Mean value property",
+     "body": "Let $u$ be harmonic on an open set $\\Omega \\subseteq \\mathbb{R}^2$ and let the closed disc $\\overline{B}(p,R)$ lie in $\\Omega$. Then for every $0 < r \\le R$,\n\n$$u(p) = \\frac{1}{2\\pi}\\int_0^{2\\pi} u(p + r(\\cos\\theta,\\sin\\theta))\\,d\\theta,$$\n\nso $u(p)$ is the average of $u$ over every circle centred at $p$ inside the domain (and, integrating in $r$, over every such disc). The same holds in $\\mathbb{R}^n$ with spheres and balls."
+    },
+    {
+     "type": "proof",
+     "title": "Proof (in the plane)",
+     "body": "Write $p=(a,b)$ and $\\varphi(r) = \\frac{1}{2\\pi}\\int_0^{2\\pi} u(a + r\\cos\\theta, b + r\\sin\\theta)\\,d\\theta$ for $0 < r \\le R$. Since $u$ is $C^2$ we may differentiate under the integral sign:\n\n$$\\varphi'(r) = \\frac{1}{2\\pi}\\int_0^{2\\pi} \\nabla u \\cdot (\\cos\\theta,\\sin\\theta)\\,d\\theta = \\frac{1}{2\\pi r}\\oint_{\\partial B(p,r)} \\frac{\\partial u}{\\partial n}\\,ds,$$\n\nwhere $\\partial u/\\partial n$ is the outward normal derivative and $ds = r\\,d\\theta$. By the divergence theorem ([[vector-calculus]]) the boundary integral equals $\\iint_{B(p,r)} \\nabla\\cdot\\nabla u\\,dA = \\iint_{B(p,r)} \\Delta u\\,dA = 0$. So $\\varphi$ is constant on $(0,R]$. As $r \\to 0$, continuity of $u$ gives $\\varphi(r) \\to u(p)$. Hence $\\varphi(r) = u(p)$ for all $r$."
+    },
+    {
+     "type": "theorem",
+     "title": "Maximum principle and uniqueness",
+     "body": "Let $\\Omega$ be a bounded, connected, open set and let $u$ be harmonic on $\\Omega$ and continuous on $\\overline{\\Omega}$.\n\n1. (Strong maximum principle) If $u$ attains its maximum over $\\overline{\\Omega}$ at an interior point, then $u$ is constant.\n2. (Weak maximum principle) $\\max_{\\overline{\\Omega}} u = \\max_{\\partial\\Omega} u$ and $\\min_{\\overline{\\Omega}} u = \\min_{\\partial\\Omega} u$.\n3. (Uniqueness) The Dirichlet problem $\\Delta u = 0$ in $\\Omega$, $u = g$ on $\\partial\\Omega$, has at most one solution continuous on $\\overline{\\Omega}$."
+    },
+    {
+     "type": "proof",
+     "body": "1. Let $M$ be the maximum and $S = \\{x \\in \\Omega : u(x) = M\\}$, assumed non-empty. $S$ is closed in $\\Omega$ by continuity. It is also open: if $u(p) = M$ and $\\overline{B}(p,R) \\subset \\Omega$, the mean value property over the disc gives $M = u(p) = $ the average of $u$ over $B(p,R)$; since $u \\le M$ and $u$ is continuous, this forces $u = M$ throughout $B(p,R)$. A non-empty subset of a connected set that is both open and closed is everything, so $u \\equiv M$ in $\\Omega$, and on $\\overline{\\Omega}$ by continuity.\n\n2. $\\overline{\\Omega}$ is compact, so $u$ attains a maximum. If it is attained only inside, part 1 makes $u$ constant and then it is attained on $\\partial\\Omega$ as well. Applying this to $-u$ gives the statement about the minimum.\n\n3. If $u_1, u_2$ are two solutions, $w = u_1 - u_2$ is harmonic with $w = 0$ on $\\partial\\Omega$. By part 2, $0 \\le w \\le 0$, so $w \\equiv 0$. (If $\\Omega$ is not connected, apply this on each component.)"
+    },
+    {
+     "type": "section",
+     "title": "Solving the Dirichlet problem: rectangles and discs",
+     "body": "For simple shapes the solution can be found by separation of variables, as for the [[heat-equation]] and [[wave-equation]].\n\nRectangle. Take $0 < x < a$, $0 < y < b$, with $u = 0$ on the bottom and the two vertical sides and $u(x,b) = f(x)$ on top. Trying $u = X(x)Y(y)$ gives $X''/X = -Y''/Y = -\\lambda$. The conditions $X(0) = X(a) = 0$ force $\\lambda = (n\\pi/a)^2$ and $X = \\sin(n\\pi x/a)$; then $Y'' = \\lambda Y$ with $Y(0) = 0$ gives $Y = \\sinh(n\\pi y/a)$. Superposing,\n\n$$u(x,y) = \\sum_{n\\ge1} c_n \\sin\\frac{n\\pi x}{a}\\,\\sinh\\frac{n\\pi y}{a},\\qquad c_n\\sinh\\frac{n\\pi b}{a} = \\frac2a\\int_0^a f(x)\\sin\\frac{n\\pi x}{a}\\,dx,$$\n\nthe last formula being the [[fourier-series|Fourier sine coefficient]] of $f$. A general rectangle problem is the sum of four problems of this kind, one per side.\n\nDisc. In polar coordinates, $u = R(r)\\Theta(\\theta)$ with $\\Theta$ $2\\pi$-periodic gives $\\Theta = \\cos n\\theta, \\sin n\\theta$ and $R = r^n$ (the other solutions $r^{-n}$ and $\\ln r$ blow up at the centre). So the solution in the unit disc with boundary values $g(\\theta)$ is\n\n$$u(r,\\theta) = \\frac{a_0}{2} + \\sum_{n \\ge 1} r^n(a_n\\cos n\\theta + b_n\\sin n\\theta),$$\n\nwhere $a_n, b_n$ are the Fourier coefficients of $g$. Summing the series in closed form gives Poisson's formula\n\n$$u(r,\\theta) = \\frac{1}{2\\pi}\\int_0^{2\\pi} \\frac{1-r^2}{1-2r\\cos(\\theta-t)+r^2}\\,g(t)\\,dt \\qquad (0 \\le r < 1).$$\n\nThe kernel is positive, harmonic in $(r,\\theta)$, and integrates to $1$ over $t$; at $r = 0$ it reduces to the mean value property. For continuous $g$, Poisson's formula gives a harmonic function on the disc that tends to $g$ at the boundary, so the Dirichlet problem on a disc always has a solution."
+    },
+    {
+     "type": "section",
+     "title": "A glimpse further",
+     "body": "The mean value property implies that harmonic functions are automatically $C^\\infty$, indeed real-analytic. Liouville's theorem says a bounded harmonic function on all of $\\mathbb{R}^n$ is constant. The fundamental solution, $\\frac{1}{2\\pi}\\ln|x|$ in the plane and $-\\frac{1}{4\\pi|x|}$ in space, satisfies $\\Delta \\Phi = \\delta_0$ as a distribution, and convolving it with $f$ solves Poisson's equation $\\Delta u = f$. On general bounded domains, existence for the Dirichlet problem needs some regularity of the boundary; one proof minimises the Dirichlet energy $\\int |\\nabla u|^2$ ([[calculus-of-variations]])."
+    },
+    {
+     "type": "example",
+     "title": "Recognising harmonic functions",
+     "body": "(a) Which of $x^2+y^2$, $e^x\\sin y$, $\\ln(x^2+y^2)$ are harmonic where defined? (b) For which constant $c$ is $x^3 + cxy^2$ harmonic? Find a harmonic conjugate.",
+     "solution": "(a) $\\Delta(x^2+y^2) = 2 + 2 = 4 \\ne 0$, not harmonic. For $e^x\\sin y$: $u_{xx} = e^x\\sin y$, $u_{yy} = -e^x\\sin y$, sum $0$: harmonic (it is the imaginary part of $e^z$). For $\\ln(x^2+y^2)$: $u_x = 2x/(x^2+y^2)$, $u_{xx} = 2(y^2-x^2)/(x^2+y^2)^2$, and by symmetry $u_{yy} = 2(x^2-y^2)/(x^2+y^2)^2$; the sum is $0$, so it is harmonic on $\\mathbb{R}^2 \\setminus \\{0\\}$.\n\n(b) $\\Delta(x^3+cxy^2) = 6x + 2cx$, which vanishes identically exactly when $c = -3$. For $u = x^3-3xy^2$ we need $v_y = u_x = 3x^2-3y^2$, so $v = 3x^2y - y^3 + h(x)$; then $v_x = 6xy + h'(x)$ must equal $-u_y = 6xy$, so $h$ is constant. A harmonic conjugate is $v = 3x^2y - y^3$, and $u + iv = z^3$."
+    },
+    {
+     "type": "example",
+     "title": "A discrete plate",
+     "body": "A $4 \\times 4$ grid of points has four interior points arranged in a $2\\times2$ block. The two boundary points directly above the block are held at temperature $1$; every other boundary point is at $0$ (the corners are not neighbours of any interior point). Find the equilibrium temperatures from the averaging rule.",
+     "solution": "By left–right symmetry the two upper interior points share a value $t$ and the two lower ones a value $s$. An upper point has neighbours: the hot point above ($1$), its twin ($t$), the point below ($s$) and a side boundary point ($0$). So $4t = 1 + t + s$. A lower point has neighbours $t$, its twin $s$, and two cold boundary points, so $4s = t + s$, i.e. $t = 3s$. Substituting, $12s = 1 + 3s + s$, so $s = 1/8$ and $t = 3/8$.\n\nAs the maximum principle predicts, all interior values lie strictly between the boundary minimum $0$ and maximum $1$."
+    },
+    {
+     "type": "example",
+     "title": "A disc with trigonometric boundary data",
+     "body": "Solve $\\Delta u = 0$ in the unit disc with $u = \\cos^2\\theta$ on the unit circle. What is $u$ at the centre, and where is $u$ largest on the closed disc?",
+     "solution": "Write the boundary data as a Fourier series: $\\cos^2\\theta = \\tfrac12 + \\tfrac12\\cos 2\\theta$. The disc formula multiplies the $n$-th harmonic by $r^n$, so\n\n$$u(r,\\theta) = \\tfrac12 + \\tfrac12 r^2\\cos 2\\theta = \\tfrac12 + \\tfrac12(x^2 - y^2),$$\n\nusing $r^2\\cos 2\\theta = x^2 - y^2$. This is visibly harmonic and equals $\\cos^2\\theta$ when $r = 1$; by uniqueness it is the solution. At the centre $u = 1/2$, which is the average of $\\cos^2\\theta$ over the circle, as the mean value property requires. On the closed disc $u \\le \\tfrac12 + \\tfrac12 r^2 \\le 1$, with equality only at $(\\pm1, 0)$: the maximum sits on the boundary."
+    },
+    {
+     "type": "example",
+     "title": "The hot side of a square",
+     "body": "The square $0 < x, y < \\pi$ has its top side held at $u = 1$ and the other three sides at $u = 0$. Find the series solution, and find the exact value of $u$ at the centre without summing the series.",
+     "solution": "With $a = b = \\pi$ the rectangle formula gives $c_n \\sinh(n\\pi) = \\frac{2}{\\pi}\\int_0^\\pi \\sin nx\\,dx = \\frac{2(1-(-1)^n)}{n\\pi}$, which is $\\frac{4}{n\\pi}$ for odd $n$ and $0$ for even $n$. So\n\n$$u(x,y) = \\frac{4}{\\pi}\\sum_{n \\text{ odd}} \\frac{\\sin nx\\,\\sinh ny}{n\\,\\sinh n\\pi}.$$\n\nFor the centre, use symmetry instead. Let $u_1$ be the series above and $u_2, u_3, u_4$ its images under quarter turns of the square about its centre, so they have the value $1$ on the other three sides; all four take the same value at the centre. We take for granted the standard facts about the series: $u_1$ is harmonic, $0 \\le u_1 \\le 1$, and $u_1$ tends to its boundary value at every boundary point except the two top corners. Then $w = u_1 + u_2 + u_3 + u_4 - 1$ is harmonic, bounded, and tends to $0$ at every boundary point except the four corners $c_1, \\dots, c_4$. The uniqueness theorem does not apply directly ($w$ is not continuous at the corners), but a small trick repairs it.\n\nLet $D = \\pi\\sqrt2$ be the diameter of the square and $h(x) = \\sum_{k=1}^4 \\ln\\frac{D}{|x - c_k|}$. Each term is harmonic in the open square, non-negative there, and tends to $+\\infty$ at its corner. Fix $\\varepsilon > 0$ and put $v = w - \\varepsilon h$. Then $\\limsup v \\le 0$ at every boundary point: at a corner because $w$ is bounded and $h \\to \\infty$, elsewhere because $w \\to 0$ and $h \\ge 0$. If $\\sup v = m > 0$, points with $v(x_j) \\to m$ accumulate at some $x^*$ of the closed square; $x^*$ cannot be a boundary point, so it is an interior maximum, and the argument of part 1 of the maximum principle gives $v \\equiv m$, contradicting $\\limsup v \\le 0$ at the boundary. Hence $w \\le \\varepsilon h$ for every $\\varepsilon > 0$, so $w \\le 0$; the same argument for $-w$ gives $w \\ge 0$. So $u_1 + u_2 + u_3 + u_4 = 1$, and $u_1(\\pi/2,\\pi/2) = 1/4$.\n\nComparing with the series gives the curious identity $\\sum_{n\\text{ odd}} \\frac{(-1)^{(n-1)/2}}{n\\cosh(n\\pi/2)} = \\frac{\\pi}{8}$, using $\\sinh(n\\pi/2)/\\sinh(n\\pi) = 1/(2\\cosh(n\\pi/2))$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The maximum principle and uniqueness need a bounded domain. On the upper half-plane, $u = 0$ and $u = y$ are both harmonic and both vanish on the boundary $y = 0$.\n- The mean value property needs the whole closed disc inside the domain. $\\ln(x^2+y^2)$ is harmonic on the punctured plane, but its circle averages around $0$ are not a value at $0$; in fact $\\Delta \\ln|x| = 2\\pi\\delta_0$ as a distribution.\n- Products of harmonic functions are usually not harmonic: $x$ is harmonic but $x\\cdot x$ is not. Sums and constant multiples are.\n- The Neumann problem ($\\partial u/\\partial n = g$ prescribed) has a solution only if $\\oint_{\\partial\\Omega} g\\,ds = 0$, by the divergence theorem, and then only up to an added constant."
+    },
+    {
+     "type": "connection",
+     "body": "Laplace's equation is the time-independent limit of the [[heat-equation]] and of the [[wave-equation]] with no motion, and it is solved on simple shapes by [[fourier-series]] and, in cylinders and balls, by Bessel and Legendre expansions from [[sturm-liouville]] theory. In the plane it is the real part of [[holomorphic|complex analysis]]: harmonic functions are preserved by [[conformal-maps]], which is how the Dirichlet problem on a complicated simply connected region is reduced to the disc. Minimising the energy $\\int|\\nabla u|^2$ leads to Laplace's equation in the [[calculus-of-variations]], the boundary value problem is recast in [[hilbert-spaces]] via weak solutions, and [[brownian-motion]] gives the probabilistic solution formula."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that $u = r^n\\cos n\\theta$ is harmonic by using the polar form of the Laplacian, and write $r^3\\cos 3\\theta$ as a polynomial in $x$ and $y$.\n2. Find the harmonic function on the unit disc with boundary values $\\sin^3\\theta$. (Hint: $\\sin^3\\theta = \\tfrac34\\sin\\theta - \\tfrac14\\sin 3\\theta$.)\n3. Find all radial harmonic functions $u = F(r)$ on the annulus $1 < r < 2$, and the one with $u = 0$ on $r = 1$ and $u = 1$ on $r = 2$.\n4. Prove that if $u$ is harmonic on a bounded connected domain, continuous up to the boundary, and $u \\ge 0$ on the boundary, then either $u > 0$ everywhere inside or $u \\equiv 0$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Evans, Partial Differential Equations",
+     "where": "§2.2"
+    },
+    {
+     "ref": "Strauss, Partial Differential Equations: An Introduction",
+     "where": "Chapter 6"
+    },
+    {
+     "ref": "Boyce, DiPrima & Meade, Elementary Differential Equations and Boundary Value Problems",
+     "where": "§10.8"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "x^2-y^2, xy, x^3-3xy^2, e^x cos y, e^x sin y, ln(x^2+y^2) are harmonic; x^2+y^2 has Laplacian 4; x^3+cxy^2 has Laplacian (6+2c)x",
+     "python": "import sympy as sp\nx,y,c=sp.symbols('x y c',real=True)\nL=lambda u: sp.simplify(sp.diff(u,x,2)+sp.diff(u,y,2))\nfor u in [x**2-y**2,x*y,x**3-3*x*y**2,sp.exp(x)*sp.cos(y),sp.exp(x)*sp.sin(y),sp.log(x**2+y**2)]:\n    assert L(u)==0,u\nassert L(x**2+y**2)==4\nassert sp.expand(L(x**3+c*x*y**2)-(6+2*c)*x)==0"
+    },
+    {
+     "claim": "z^3 = (x^3-3xy^2)+i(3x^2y-y^3); v=3x^2y-y^3 satisfies Cauchy-Riemann with u=x^3-3xy^2",
+     "python": "import sympy as sp\nx,y=sp.symbols('x y',real=True)\nz=x+sp.I*y\nu=x**3-3*x*y**2;v=3*x**2*y-y**3\nassert sp.expand(z**3-(u+sp.I*v))==0\nassert sp.expand(sp.diff(u,x)-sp.diff(v,y))==0 and sp.expand(sp.diff(u,y)+sp.diff(v,x))==0"
+    },
+    {
+     "claim": "r^n cos(n theta), r^n sin(n theta) harmonic in polar form (n=0..6); 1/|x| harmonic in R^3; r^3 cos 3theta = x^3-3xy^2",
+     "python": "import sympy as sp\nr,t=sp.symbols('r t',positive=True)\nPL=lambda u: sp.simplify(sp.diff(u,r,2)+sp.diff(u,r)/r+sp.diff(u,t,2)/r**2)\nfor n in range(7):\n    assert PL(r**n*sp.cos(n*t))==0 and PL(r**n*sp.sin(n*t))==0\nx,y,z=sp.symbols('x y z',real=True)\nf=1/sp.sqrt(x**2+y**2+z**2)\nassert sp.simplify(sum(sp.diff(f,v,2) for v in (x,y,z)))==0\nX,Y=r*sp.cos(t),r*sp.sin(t)\nassert sp.simplify(sp.expand_trig(r**3*sp.cos(3*t))-(X**3-3*X*Y**2))==0"
+    },
+    {
+     "claim": "Mean value property numerically for e^x cos y on circles of several radii about (0.3,-0.7)",
+     "python": "from scipy.integrate import quad\nimport math\na,b=0.3,-0.7\nu=lambda X,Y: math.exp(X)*math.cos(Y)\nfor r in [0.1,1.0,2.5]:\n    m=quad(lambda t: u(a+r*math.cos(t),b+r*math.sin(t)),0,2*math.pi)[0]/(2*math.pi)\n    assert abs(m-u(a,b))<1e-10"
+    },
+    {
+     "claim": "Discrete plate: the 4x4 linear system gives upper values 3/8 and lower values 1/8",
+     "python": "import sympy as sp\na,b,c,d=sp.symbols('a b c d')\n# a,b upper row (left,right); c,d lower row\neqs=[4*a-(1+b+c+0),4*b-(1+a+d+0),4*c-(a+d+0+0),4*d-(b+c+0+0)]\ns=sp.solve(eqs,[a,b,c,d])\nassert s=={a:sp.Rational(3,8),b:sp.Rational(3,8),c:sp.Rational(1,8),d:sp.Rational(1,8)}"
+    },
+    {
+     "claim": "Disc example: u=1/2+(x^2-y^2)/2 is harmonic, equals cos^2 on r=1, centre value 1/2 = boundary average",
+     "python": "import sympy as sp\nx,y,t=sp.symbols('x y t',real=True)\nu=sp.Rational(1,2)+(x**2-y**2)/2\nassert sp.diff(u,x,2)+sp.diff(u,y,2)==0\nassert sp.simplify(u.subs({x:sp.cos(t),y:sp.sin(t)})-sp.cos(t)**2)==0\nassert sp.integrate(sp.cos(t)**2,(t,0,2*sp.pi))/(2*sp.pi)==sp.Rational(1,2)"
+    },
+    {
+     "claim": "Square example: sine coefficients 2(1-(-1)^n)/(n pi); centre value of the series is 1/4; the cosh identity equals pi/8",
+     "python": "import sympy as sp, mpmath as mp\nn=sp.symbols('n',integer=True,positive=True);x=sp.symbols('x')\nfor k in range(1,8):\n    assert sp.simplify(sp.Rational(2,1)/sp.pi*sp.integrate(sp.sin(k*x),(x,0,sp.pi))-2*(1-(-1)**k)/(k*sp.pi))==0\nmp.mp.dps=30\nS=mp.nsum(lambda j: 4/(mp.pi*(2*j+1))*mp.sin((2*j+1)*mp.pi/2)*mp.sinh((2*j+1)*mp.pi/2)/mp.sinh((2*j+1)*mp.pi),[0,mp.inf])\nassert abs(S-mp.mpf(1)/4)<mp.mpf(10)**-25\nT=mp.nsum(lambda j: (-1)**j/((2*j+1)*mp.cosh((2*j+1)*mp.pi/2)),[0,mp.inf])\nassert abs(T-mp.pi/8)<mp.mpf(10)**-25"
+    },
+    {
+     "claim": "Poisson kernel (1-r^2)/(1-2r cos t+r^2) is harmonic and averages to 1 over t; Fourier identities cos^2 and sin^3 used",
+     "python": "import sympy as sp\nfrom scipy.integrate import quad\nimport math\nr,t=sp.symbols('r t',positive=True)\nP=(1-r**2)/(1-2*r*sp.cos(t)+r**2)\nassert sp.simplify(sp.diff(P,r,2)+sp.diff(P,r)/r+sp.diff(P,t,2)/r**2)==0\nfor rr in [0.0,0.5,0.9,0.99]:\n    v=quad(lambda s:(1-rr*rr)/(1-2*rr*math.cos(s)+rr*rr),0,2*math.pi,limit=200)[0]/(2*math.pi)\n    assert abs(v-1)<1e-8\nassert sp.simplify(sp.cos(t)**2-(sp.Rational(1,2)+sp.cos(2*t)/2))==0\nassert sp.simplify(sp.sin(t)**3-(sp.Rational(3,4)*sp.sin(t)-sp.sin(3*t)/4))==0"
+    },
+    {
+     "claim": "Reviewer: the barrier terms ln(D/|x-c|) are harmonic; the four quarter-turn rotations of the top-side series sum to 1 at interior sample points, with 0<u_1<1; annulus exercise ln r/ln 2",
+     "python": "import sympy as sp, mpmath as mp\nx,y,a,b=sp.symbols('x y a b',real=True)\n# log barrier term ln(D/|x-c|) is harmonic away from c\nh=sp.log(sp.pi*sp.sqrt(2))-sp.log((x-a)**2+(y-b)**2)/2\nassert sp.simplify(sp.diff(h,x,2)+sp.diff(h,y,2))==0\n# diameter of the square is the largest distance from a corner, so each log term is >= 0\nassert abs(mp.sqrt(2)*mp.pi-mp.sqrt(mp.pi**2+mp.pi**2))<1e-25\n# u1+u2+u3+u4 = 1 at sample interior points (series solutions, rotated)\nmp.mp.dps=20\ndef u1(X,Y):\n    return 4/mp.pi*mp.nsum(lambda j:mp.sin((2*j+1)*X)*mp.sinh((2*j+1)*Y)/((2*j+1)*mp.sinh((2*j+1)*mp.pi)),[0,mp.inf])\nP=mp.pi\nfor (X,Y) in [(0.7,1.1),(2.5,0.4),(1.9,2.8),(0.3,0.2)]:\n    X=mp.mpf(X);Y=mp.mpf(Y)\n    s=u1(X,Y)+u1(Y,P-X)+u1(P-X,P-Y)+u1(P-Y,X)\n    assert abs(s-1)<1e-12\n    assert 0<u1(X,Y)<1\n# annulus exercise: ln r/ln 2 is radial harmonic with values 0 and 1\nr=sp.symbols('r',positive=True)\nF=sp.log(r)/sp.log(2)\nassert sp.simplify(sp.diff(F,r,2)+sp.diff(F,r)/r)==0 and F.subs(r,1)==0 and sp.simplify(F.subs(r,2))==1\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "calculus-of-variations",
+  "entry": {
+   "sum": "The calculus of variations finds functions that minimise or make stationary an integral $J[y] = \\int_a^b F(x, y, y')\\,dx$, such as a length, a travel time or an energy. The key fact is that any smooth minimiser must solve the Euler–Lagrange differential equation, which turns the search over all curves into solving an ODE (or a PDE for surfaces).",
+   "key": [
+    "\\frac{\\partial F}{\\partial y} - \\frac{d}{dx}\\frac{\\partial F}{\\partial y'} = 0",
+    "F_x = 0 \\;\\Longrightarrow\\; F - y'\\,\\frac{\\partial F}{\\partial y'} = \\text{const}",
+    "\\delta \\int_{t_0}^{t_1} \\big(T - V\\big)\\,dt = 0 \\;\\Longrightarrow\\; m\\ddot{x} = -V'(x)"
+   ],
+   "why": "It produces the shortest paths, minimal surfaces and equilibrium shapes of geometry and engineering, and it is the language of physics: Newton's laws, geodesics and field equations are Euler–Lagrange equations of an action.",
+   "msc": [
+    "49K05"
+   ],
+   "links": [
+    {
+     "field": "differential-geometry",
+     "note": "Geodesics on a surface or Riemannian manifold are the extremals of the length or energy functional, and minimal surfaces are critical points of area."
+    },
+    {
+     "field": "optimisation",
+     "note": "Discretising a variational problem gives a finite-dimensional optimisation problem, and convexity of the integrand is what guarantees that stationary points are global minima in both settings."
+    }
+   ],
+   "refs": [
+    "Gelfand & Fomin, Calculus of Variations",
+    "Evans, Partial Differential Equations"
+   ],
+   "aliases": [
+    "variational calculus",
+    "Euler-Lagrange equation",
+    "Euler–Lagrange equation",
+    "Beltrami identity",
+    "brachistochrone",
+    "principle of least action",
+    "Hamilton's principle",
+    "functional",
+    "first variation",
+    "isoperimetric problem",
+    "direct method"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Ordinary optimisation asks which number, or which point, makes a quantity smallest. The calculus of variations asks which function does. Which curve joining two points is shortest? Down which curve does a bead slide fastest between two points? What shape does a hanging chain take, or a soap film spanning a wire loop? In each case the unknown is a whole curve or surface, and the quantity to minimise is an integral computed from it.\n\nThe central result is that a minimising function must satisfy a differential equation, the Euler–Lagrange equation. This turns a minimisation over an infinite-dimensional set into an ODE or PDE you can solve, and it is also how most of physics is written: Newton's laws, geodesics and field equations are all Euler–Lagrange equations of some action."
+    },
+    {
+     "type": "section",
+     "title": "Functionals and a first experiment",
+     "body": "A functional assigns a number to a function. The standard one-dimensional problem is\n\n$$J[y] = \\int_a^b F\\big(x, y(x), y'(x)\\big)\\,dx, \\qquad y(a) = A,\\; y(b) = B,$$\n\nwhere $F(x,y,p)$ is a given smooth function of three variables (the Lagrangian) and we search over $C^2$ functions $y$ with the given endpoint values (admissible functions).\n\nA small example makes this concrete. Take $J[y] = \\int_0^1 y'(x)^2\\,dx$ with $y(0) = 0$, $y(1) = 1$, and try three admissible functions:\n\n- $y = x$: $J = \\int_0^1 1\\,dx = 1$.\n- $y = x^2$: $J = \\int_0^1 4x^2\\,dx = 4/3 \\approx 1.333$.\n- $y = \\sin(\\pi x/2)$: $J = \\frac{\\pi^2}{4}\\int_0^1\\cos^2(\\pi x/2)\\,dx = \\pi^2/8 \\approx 1.234$.\n\nThe straight line does best, and it is in fact the minimiser: writing any admissible $y = x + \\eta$ with $\\eta(0) = \\eta(1) = 0$, we get $J[y] = 1 + 2\\int_0^1\\eta'\\,dx + \\int_0^1\\eta'^2\\,dx = 1 + \\int_0^1 \\eta'^2\\,dx \\ge 1$, since $\\int_0^1 \\eta' = \\eta(1) - \\eta(0) = 0$. The general theory turns this trick into a method."
+    },
+    {
+     "type": "section",
+     "title": "The first variation",
+     "body": "Suppose $y$ minimises $J$. Pick any $C^2$ function $\\eta$ with $\\eta(a) = \\eta(b) = 0$; then $y + \\varepsilon\\eta$ is admissible for every real $\\varepsilon$, so the one-variable function $g(\\varepsilon) = J[y + \\varepsilon\\eta]$ has a minimum at $\\varepsilon = 0$ and $g'(0) = 0$. Differentiating under the integral sign with the chain rule ([[partial-derivatives]]):\n\n$$g'(0) = \\int_a^b \\Big(F_y\\,\\eta + F_p\\,\\eta'\\Big)\\,dx,$$\n\nwhere $F_y$ and $F_p$ are the partial derivatives of $F$ evaluated at $(x, y(x), y'(x))$. Integrating the second term by parts ([[integration-techniques]]) and using $\\eta(a) = \\eta(b) = 0$ to kill the boundary term,\n\n$$g'(0) = \\int_a^b \\Big(F_y - \\frac{d}{dx}F_p\\Big)\\eta\\,dx.$$\n\nThis quantity is the first variation of $J$ at $y$ in the direction $\\eta$. It must vanish for every such $\\eta$, and the next lemma says that forces the bracket to vanish identically."
+    },
+    {
+     "type": "theorem",
+     "title": "Fundamental lemma of the calculus of variations",
+     "body": "If $h$ is continuous on $[a,b]$ and $\\int_a^b h(x)\\eta(x)\\,dx = 0$ for every $C^2$ function $\\eta$ with $\\eta(a) = \\eta(b) = 0$, then $h \\equiv 0$ on $[a,b]$."
+    },
+    {
+     "type": "proof",
+     "body": "Suppose $h(c) \\ne 0$ for some $c$, say $h(c) > 0$. By continuity $h > 0$ on some interval $(c-\\delta, c+\\delta) \\cap (a,b)$; shrink it to an interval $(\\alpha,\\beta)$ with $a < \\alpha < \\beta < b$ on which $h > 0$. Let $\\eta(x) = (x-\\alpha)^3(\\beta-x)^3$ on $(\\alpha,\\beta)$ and $\\eta = 0$ elsewhere. This $\\eta$ is $C^2$ (its value and first two derivatives vanish at $\\alpha$ and $\\beta$ from both sides), vanishes at $a$ and $b$, and is positive on $(\\alpha,\\beta)$. Then $\\int_a^b h\\eta\\,dx = \\int_\\alpha^\\beta h\\eta\\,dx > 0$, a contradiction. The case $h(c) < 0$ is the same with $-h$."
+    },
+    {
+     "type": "theorem",
+     "title": "Euler–Lagrange equation",
+     "body": "Let $F$ be $C^2$ and let $y \\in C^2[a,b]$ minimise (or maximise) $J[y] = \\int_a^b F(x,y,y')\\,dx$ among all $C^2$ functions with $y(a) = A$, $y(b) = B$. Then $y$ satisfies\n\n$$\\frac{\\partial F}{\\partial y}\\big(x,y,y'\\big) - \\frac{d}{dx}\\left(\\frac{\\partial F}{\\partial y'}\\big(x,y,y'\\big)\\right) = 0 \\qquad \\text{on } [a,b].$$\n\nSolutions of this equation are called extremals of $J$."
+    },
+    {
+     "type": "proof",
+     "body": "Since $F$ and $y$ are $C^2$, the function $h = F_y - \\frac{d}{dx}F_p$ is continuous. The first-variation computation shows $\\int_a^b h\\eta\\,dx = g'(0) = 0$ for every $C^2$ function $\\eta$ vanishing at the endpoints. The fundamental lemma gives $h \\equiv 0$."
+    },
+    {
+     "type": "section",
+     "title": "A conserved quantity, and Newton's law",
+     "body": "When $F$ does not depend on $x$ explicitly, the Euler–Lagrange equation has a first integral, the Beltrami identity:\n\n$$F - y'\\,F_{y'} = C \\quad (\\text{constant}).$$\n\nIndeed, along any $C^2$ curve, $\\frac{d}{dx}\\big(F - y'F_p\\big) = F_y y' + F_p y'' - y''F_p - y'\\frac{d}{dx}F_p = y'\\Big(F_y - \\frac{d}{dx}F_p\\Big)$, which is $0$ on an extremal.\n\nIn mechanics, write $t$ for the independent variable and take the Lagrangian $L = T - V = \\tfrac12 m\\dot{x}^2 - V(x)$. The Euler–Lagrange equation is $-V'(x) - \\frac{d}{dt}(m\\dot{x}) = 0$, that is $m\\ddot{x} = -V'(x)$: Newton's second law. Hamilton's principle of stationary action says that physical motions are extremals of $\\int L\\,dt$, and the Beltrami identity becomes $L - \\dot{x}L_{\\dot x} = -(\\tfrac12 m\\dot{x}^2 + V) = C$, conservation of energy. (The word is stationary: the action of a real motion need not be a minimum, see the pitfalls.)"
+    },
+    {
+     "type": "section",
+     "title": "Constraints, and when an extremal really is a minimum",
+     "body": "Many classical problems carry a constraint written as another integral: among curves of given length enclosing the most area (Dido's problem), or a chain of given length hanging with the lowest centre of mass. To make $J[y]$ stationary subject to $K[y] = \\int_a^b G(x,y,y')\\,dx = \\ell$, the rule mirrors [[lagrange-multipliers]]: if $y$ makes $J$ stationary among admissible functions with $K[y] = \\ell$, and $y$ is not an extremal of $K$ itself, there is a constant $\\lambda$ such that $y$ satisfies the Euler–Lagrange equation for $F - \\lambda G$. For the hanging chain, $F = y\\sqrt{1+y'^2}$ and $G = \\sqrt{1+y'^2}$, and solving gives the catenary $y = \\lambda + c\\cosh\\big((x-x_0)/c\\big)$.\n\nThe Euler–Lagrange equation is only a necessary condition, like $f'(x) = 0$ in one variable. A clean sufficient condition is convexity: if $F(x,y,p)$ is convex in $(y,p)$ for each fixed $x$, then every admissible extremal is a global minimiser. The proof is two lines. Convexity gives $F(x, y+\\eta, y'+\\eta') \\ge F(x,y,y') + F_y\\eta + F_p\\eta'$; integrate over $[a,b]$, and the integral of the last two terms is the first variation, which vanishes on an extremal. Hence $J[y+\\eta] \\ge J[y]$ for every admissible $y + \\eta$."
+    },
+    {
+     "type": "section",
+     "title": "Several variables and the existence question",
+     "body": "For a function $u$ of several variables on a domain $\\Omega \\subset \\mathbb{R}^n$ with the functional $\\int_\\Omega F(x, u, \\nabla u)\\,dx$, the same argument (with the divergence theorem replacing integration by parts) gives the Euler–Lagrange PDE\n\n$$\\sum_{i=1}^n \\frac{\\partial}{\\partial x_i}\\Big(F_{p_i}(x,u,\\nabla u)\\Big) = F_u(x,u,\\nabla u).$$\n\nThe Dirichlet energy $\\tfrac12\\int|\\nabla u|^2$ gives $\\Delta u = 0$, which is [[laplace-equation|Laplace's equation]]; the area functional $\\int\\sqrt{1+|\\nabla u|^2}$ gives the minimal surface equation $\\nabla\\cdot\\big(\\nabla u/\\sqrt{1+|\\nabla u|^2}\\big) = 0$ that soap films obey.\n\nThe hard question, going the other way, is whether a minimiser exists at all. Riemann assumed the Dirichlet energy always has one (the Dirichlet principle); Weierstrass showed that this kind of reasoning can fail (see the pitfalls). The modern direct method takes a minimising sequence, uses compactness in a suitable function space (Sobolev spaces, built on [[lp-spaces]] and [[hilbert-spaces]]) to extract a limit, and lower semicontinuity of the functional to show the limit is a minimiser. Convexity of $F$ in $\\nabla u$ is what makes lower semicontinuity work. Whether minimisers exist and how smooth they are were the subjects of Hilbert's 20th and 19th problems; Evans, Chapter 8, develops the direct method."
+    },
+    {
+     "type": "example",
+     "title": "Shortest path in the plane",
+     "body": "Show that the shortest $C^2$ graph joining $(a,A)$ to $(b,B)$ is the straight line.",
+     "solution": "The length is $J[y] = \\int_a^b\\sqrt{1+y'^2}\\,dx$, so $F = \\sqrt{1+p^2}$ with $F_y = 0$ and $F_p = p/\\sqrt{1+p^2}$. The Euler–Lagrange equation is $\\frac{d}{dx}\\big(y'/\\sqrt{1+y'^2}\\big) = 0$, so $y'/\\sqrt{1+y'^2}$ is constant, hence $y'$ is constant and $y$ is linear: the straight line through the two points.\n\nThis is a minimum, not just an extremal: $\\partial^2F/\\partial p^2 = (1+p^2)^{-3/2} > 0$, so $F$ is convex in $p$ (and does not involve $y$), and the convexity criterion applies."
+    },
+    {
+     "type": "example",
+     "title": "An extremal you can solve exactly",
+     "body": "Minimise $J[y] = \\int_0^1 (y'^2 + y^2)\\,dx$ over $C^2$ functions with $y(0) = 0$, $y(1) = 1$, and find the minimum value. Compare with $y = x$.",
+     "solution": "Here $F = p^2 + y^2$, so $F_y = 2y$, $F_p = 2p$, and the Euler–Lagrange equation is $2y - 2y'' = 0$, i.e. $y'' = y$. The general solution is $c_1\\cosh x + c_2\\sinh x$; the boundary conditions give $c_1 = 0$, $c_2 = 1/\\sinh 1$, so\n\n$$y(x) = \\frac{\\sinh x}{\\sinh 1}.$$\n\n$F$ is convex in $(y,p)$ (a sum of squares), so this is the global minimiser. For its value, integrate $y'^2$ by parts: $\\int_0^1 y'^2\\,dx = [yy']_0^1 - \\int_0^1 yy''\\,dx = y(1)y'(1) - \\int_0^1 y^2\\,dx$, using $y'' = y$ and $y(0) = 0$. Hence\n\n$$J = y(1)y'(1) = \\frac{\\cosh 1}{\\sinh 1} = \\coth 1 \\approx 1.3130.$$\n\nFor $y = x$ we get $J = \\int_0^1 (1 + x^2)\\,dx = 4/3 \\approx 1.3333$, slightly larger, as it must be."
+    },
+    {
+     "type": "example",
+     "title": "The brachistochrone",
+     "body": "A bead slides without friction under gravity $g$ from rest at the origin to a lower point. Measure $y$ downward. Find the curve of fastest descent (the brachistochrone), and compare its time to the straight line when the endpoint is $(\\pi R, 2R)$.",
+     "solution": "Energy conservation gives speed $v = \\sqrt{2gy}$, and time is $\\int ds/v$, so we minimise\n\n$$T[y] = \\frac{1}{\\sqrt{2g}}\\int_0^{x_1}\\sqrt{\\frac{1+y'^2}{y}}\\,dx.$$\n\n$F = \\sqrt{(1+p^2)/y}$ does not depend on $x$, so the Beltrami identity applies: $F - pF_p = \\dfrac{1}{\\sqrt{y(1+y'^2)}} = C$, that is\n\n$$y\\,(1+y'^2) = 2R$$\n\nfor a constant $R > 0$. Try the cycloid $x = R(t - \\sin t)$, $y = R(1-\\cos t)$, traced by a point on a rolling circle of radius $R$. Then $y' = \\dfrac{dy/dt}{dx/dt} = \\dfrac{\\sin t}{1-\\cos t}$, and\n\n$$1 + y'^2 = \\frac{(1-\\cos t)^2 + \\sin^2 t}{(1-\\cos t)^2} = \\frac{2}{1-\\cos t}, \\qquad y(1+y'^2) = 2R.$$\n\nSo the cycloid solves the equation and starts at the origin; $R$ is chosen to hit the endpoint. For the endpoint $(\\pi R, 2R)$ the parameter runs over $0 \\le t \\le \\pi$. Along the cycloid $ds = R\\sqrt{2(1-\\cos t)}\\,dt$ and $v = \\sqrt{2gR(1-\\cos t)}$, so $ds/v = \\sqrt{R/g}\\,dt$ and the time is $\\pi\\sqrt{R/g} \\approx 3.14\\sqrt{R/g}$.\n\nOn the straight segment of length $L = R\\sqrt{\\pi^2+4}$, the acceleration along the line is $g\\sin\\alpha$ with $\\sin\\alpha = 2R/L$, so $L = \\tfrac12 g\\sin\\alpha\\,t^2$ gives $t = L/\\sqrt{gR} = \\sqrt{\\pi^2+4}\\,\\sqrt{R/g} \\approx 3.72\\sqrt{R/g}$. The cycloid is about $16\\%$ faster even though it is longer."
+    },
+    {
+     "type": "pitfall",
+     "body": "- An extremal need not be a minimum. For $J[y] = \\int_0^T (y'^2 - y^2)\\,dx$ with $y(0) = y(T) = 0$, the function $y = 0$ is an extremal with $J = 0$. If $T > \\pi$, the admissible $y = \\sin(\\pi x/T)$ gives $J = \\frac{T}{2}\\big(\\frac{\\pi^2}{T^2} - 1\\big) < 0$, so $y = 0$ is not a minimiser. ($F$ is not convex in $y$ here.) This is the oscillator's action, and it is why physicists say stationary action.\n- A minimum need not exist. For $J[y] = \\int_{-1}^1 x^2y'^2\\,dx$ with $y(-1) = -1$, $y(1) = 1$, every admissible $y$ has $J > 0$, but $y_\\varepsilon = \\arctan(x/\\varepsilon)/\\arctan(1/\\varepsilon)$ gives $J \\to 0$ as $\\varepsilon \\to 0$. The infimum $0$ would need $y' = 0$ away from $0$, which cannot join $-1$ to $1$ continuously. This is Weierstrass's example.\n- The Euler–Lagrange equation assumes the variations $\\eta$ vanish at the endpoints. If an endpoint value is free, you get an extra natural boundary condition $F_{y'} = 0$ there instead.\n- Do not forget the boundary term when integrating by parts in a problem where it does not vanish."
+    },
+    {
+     "type": "connection",
+     "body": "The calculus of variations is optimisation in function spaces: it extends the gradient condition and [[lagrange-multipliers]] from [[partial-derivatives|finite dimensions]] to curves and surfaces. Its Euler–Lagrange PDEs include [[laplace-equation|Laplace's equation]] and the minimal surface equation; in geometry, geodesics on [[surfaces-curvature|curved surfaces]] and in [[riemannian-geometry]] are extremals of length or energy. The existence theory lives in [[lp-spaces]] and [[hilbert-spaces]], and in one dimension the quadratic functional $\\int (p\\,y'^2 + q\\,y^2)\\,dx$ with the constraint $\\int w\\,y^2\\,dx = 1$ leads to the [[sturm-liouville]] eigenvalue problem $-(py')' + qy = \\lambda wy$, whose eigenvalues are minima of a Rayleigh quotient. Discretising a functional and minimising it numerically leads to the finite element method and connects to [[convex-optimisation]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Write the Euler–Lagrange equation for $J[y] = \\int_a^b \\big(y'^2 + 2xy\\big)\\,dx$ and find the extremal with $y(0) = 0$, $y(1) = 0$.\n2. Show that the extremals of $\\int_a^b y\\sqrt{1+y'^2}\\,dx$ (the area of the surface of revolution of a graph, up to $2\\pi$) satisfy $y = c\\cosh\\big((x - x_0)/c\\big)$, using the Beltrami identity.\n3. Prove that if $F = F(x, p)$ does not depend on $y$, then $F_{y'}$ is constant along every extremal.\n4. Among curves $y \\ge 0$ on $[-1,1]$ with $y(\\pm1) = 0$ and fixed length $\\ell \\in (2, \\pi)$, set up the Lagrange multiplier condition for maximising the area $\\int_{-1}^1 y\\,dx$ and show that the extremals are arcs of circles."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Gelfand & Fomin, Calculus of Variations",
+     "where": "Chapter 1"
+    },
+    {
+     "ref": "Evans, Partial Differential Equations",
+     "where": "Chapter 8"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Trial values: int_0^1 y'^2 is 1 for y=x, 4/3 for y=x^2, pi^2/8 for y=sin(pi x/2)",
+     "python": "import sympy as sp\nx=sp.symbols('x')\nJ=lambda y: sp.integrate(sp.diff(y,x)**2,(x,0,1))\nassert J(x)==1 and J(x**2)==sp.Rational(4,3)\nassert sp.simplify(J(sp.sin(sp.pi*x/2))-sp.pi**2/8)==0\nassert abs(float(sp.pi**2/8)-1.2337)<1e-4"
+    },
+    {
+     "claim": "eta(x)=(x-a)^3(b-x)^3 extended by 0 is C^2: value, first and second derivatives vanish at both ends",
+     "python": "import sympy as sp\nx,a,b=sp.symbols('x a b')\ne=(x-a)**3*(b-x)**3\nfor k in range(3):\n    d=sp.diff(e,x,k)\n    assert sp.simplify(d.subs(x,a))==0 and sp.simplify(d.subs(x,b))==0\nassert sp.simplify(sp.diff(e,x,3).subs(x,a))!=0"
+    },
+    {
+     "claim": "Euler-Lagrange equations: sqrt(1+y'^2) gives y''=0; y'^2+y^2 gives y''=y; (1/2)m x'^2 - V(x) gives m x''=-V'(x)",
+     "python": "import sympy as sp\nfrom sympy.calculus.euler import euler_equations\nx=sp.symbols('x');y=sp.Function('y')(x)\ne=euler_equations(sp.sqrt(1+y.diff(x)**2),y,x)[0].lhs\nassert sp.simplify(e*(1+y.diff(x)**2)**sp.Rational(3,2)+y.diff(x,2))==0\ne2=euler_equations(y.diff(x)**2+y**2,y,x)[0].lhs\nassert sp.simplify(e2-(2*y-2*y.diff(x,2)))==0\nt,m=sp.symbols('t m');q=sp.Function('q')(t);V=sp.Function('V')\ne3=euler_equations(m*q.diff(t)**2/2-V(q),q,t)[0].lhs\nassert sp.simplify(e3-(-sp.diff(V(q),q)-m*q.diff(t,2)))==0"
+    },
+    {
+     "claim": "Beltrami: d/dx(F - y'F_p) = y'(F_y - d/dx F_p) for F=F(y,p) generic",
+     "python": "import sympy as sp\nx,Y,P=sp.symbols('x Y P');y=sp.Function('y')(x);F=sp.Function('F')\nFe=F(Y,P)\nsub={Y:y,P:y.diff(x)}\nFy=sp.diff(Fe,Y).subs(sub);Fp=sp.diff(Fe,P).subs(sub);Fx=Fe.subs(sub)\nlhs=sp.diff(Fx-y.diff(x)*Fp,x)\nrhs=y.diff(x)*(Fy-sp.diff(Fp,x))\nassert sp.simplify(lhs-rhs)==0"
+    },
+    {
+     "claim": "y=sinh x/sinh 1 solves y''=y with y(0)=0,y(1)=1 and J=coth 1 ~1.3130 < 4/3 (value for y=x)",
+     "python": "import sympy as sp\nx=sp.symbols('x')\ny=sp.sinh(x)/sp.sinh(1)\nassert sp.simplify(y.diff(x,2)-y)==0 and y.subs(x,0)==0 and sp.simplify(y.subs(x,1))==1\nJ=sp.integrate(sp.diff(y,x)**2+y**2,(x,0,1))\nassert abs(float(J)-float(sp.coth(1)))<1e-12\nassert abs(float(sp.coth(1))-1.3130)<1e-4\nassert sp.integrate(1+x**2,(x,0,1))==sp.Rational(4,3) and float(sp.coth(1))<4/3"
+    },
+    {
+     "claim": "Brachistochrone: Beltrami quantity for F=sqrt((1+p^2)/y) is 1/sqrt(y(1+p^2)); cycloid satisfies y(1+y'^2)=2R; times pi*sqrt(R/g) vs sqrt(pi^2+4)*sqrt(R/g); ~16% faster",
+     "python": "import sympy as sp, math\nY,P=sp.symbols('Y P',positive=True)\nF=sp.sqrt((1+P**2)/Y)\nassert sp.simplify(F-P*sp.diff(F,P)-1/sp.sqrt(Y*(1+P**2)))==0\nt,R,g=sp.symbols('t R g',positive=True)\nX=R*(t-sp.sin(t));Yc=R*(1-sp.cos(t))\nyp=sp.diff(Yc,t)/sp.diff(X,t)\nassert sp.simplify(Yc*(1+yp**2)-2*R)==0\nfrom scipy.integrate import quad\nRv,gv=1.3,9.81\nds=lambda s: Rv*math.sqrt((1-math.cos(s))**2+math.sin(s)**2)\nv=lambda s: math.sqrt(2*gv*Rv*(1-math.cos(s)))\nTc=quad(lambda s: ds(s)/v(s),1e-12,math.pi)[0]\nassert abs(Tc-math.pi*math.sqrt(Rv/gv))<1e-6\nL=Rv*math.sqrt(math.pi**2+4);acc=gv*2*Rv/L;Tl=math.sqrt(2*L/acc)\nassert abs(Tl-math.sqrt(math.pi**2+4)*math.sqrt(Rv/gv))<1e-9\nassert abs(math.sqrt(math.pi**2+4)-3.72)<0.01 and 0.15<1-math.pi/math.sqrt(math.pi**2+4)<0.165"
+    },
+    {
+     "claim": "Pitfall: for J=int_0^T(y'^2-y^2), y=sin(pi x/T) gives J=(T/2)(pi^2/T^2-1), negative for T>pi",
+     "python": "import sympy as sp\nx,T=sp.symbols('x T',positive=True)\ny=sp.sin(sp.pi*x/T)\nJ=sp.integrate(sp.diff(y,x)**2-y**2,(x,0,T))\nassert sp.simplify(J-T/2*(sp.pi**2/T**2-1))==0\nassert J.subs(T,4)<0 and J.subs(T,3)>0"
+    },
+    {
+     "claim": "Weierstrass example: J[y_eps]=int_{-1}^1 x^2 y_eps'^2 -> 0 for y_eps=arctan(x/eps)/arctan(1/eps)",
+     "python": "from scipy.integrate import quad\nimport math\ndef J(e):\n    c=math.atan(1/e)\n    return quad(lambda x: x*x*(e/(e*e+x*x))**2/c**2,-1,1,points=[0],limit=200)[0]\nvals=[J(e) for e in [0.1,0.01,0.001]]\nassert vals[0]>vals[1]>vals[2] and vals[2]<1e-3"
+    },
+    {
+     "claim": "Catenary y=lam+c cosh((x-x0)/c) satisfies the Euler-Lagrange equation for (y-lam)sqrt(1+y'^2)",
+     "python": "import sympy as sp\nfrom sympy.calculus.euler import euler_equations\nx,c,x0,lam=sp.symbols('x c x0 lam',positive=True)\ny=sp.Function('y')(x)\ne=euler_equations((y-lam)*sp.sqrt(1+y.diff(x)**2),y,x)[0].lhs\nsol=lam+c*sp.cosh((x-x0)/c)\nr=e.subs(y,sol).doit()\nassert sp.simplify(r.rewrite(sp.exp))==0"
+    },
+    {
+     "claim": "Reviewer: F_pp=(1+p^2)^(-3/2)>0 for the length; exercise 1 Euler-Lagrange and extremal (x^3-x)/6; mechanical Beltrami constant -(T+V); random admissible perturbations do not lower J below coth 1",
+     "python": "import sympy as sp\np,y,x=sp.symbols('p y x',real=True)\nF=sp.sqrt(1+p**2)\nassert sp.simplify(sp.diff(F,p,2)-(1+p**2)**sp.Rational(-3,2))==0\n# Exercise 1: y''=x with y(0)=y(1)=0 gives y=(x^3-x)/6; Euler-Lagrange of y'^2+2xy is 2x-2y''=0\nfrom sympy.calculus.euler import euler_equations\nY=sp.Function('Y')(x)\ne=euler_equations(Y.diff(x)**2+2*x*Y,Y,x)[0].lhs\nassert sp.simplify(e-(2*x-2*Y.diff(x,2)))==0\ns=(x**3-x)/6\nassert sp.diff(s,x,2)==x and s.subs(x,0)==0 and s.subs(x,1)==0\n# Mechanics Beltrami: L - xdot L_xdot = -(T+V)\nm,v,V=sp.symbols('m v V')\nL=m*v**2/2-V\nassert sp.simplify(L-v*sp.diff(L,v)+(m*v**2/2+V))==0\n# convexity criterion sanity: J[y]-J[y*] >= 0 for random admissible perturbations of sinh x/sinh 1\nimport numpy as np\nt=np.linspace(0,1,4001);ys=np.sinh(t)/np.sinh(1)\nJ=lambda yy: np.trapezoid(np.gradient(yy,t)**2+yy**2,t) if hasattr(np,'trapezoid') else np.trapz(np.gradient(yy,t)**2+yy**2,t)\nJ0=J(ys);rng=np.random.default_rng(0)\nfor _ in range(50):\n    c=rng.normal(size=4);eta=sum(c[k]*np.sin((k+1)*np.pi*t) for k in range(4))\n    assert J(ys+0.3*eta)>=J0-1e-6\nassert abs(J0-1/np.tanh(1))<1e-5\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "inverse-function-theorem",
+  "entry": {
+   "sum": "If a $C^1$ map $f:\\mathbb{R}^n\\to\\mathbb{R}^n$ has an invertible derivative matrix at a point, then near that point it has a $C^1$ inverse, whose derivative is the inverse matrix. The implicit function theorem is the equation-solving form: $F(x,y)=0$ can be solved locally as $y=g(x)$ when $\\partial F/\\partial y$ is invertible. Both are local statements: an invertible linearisation controls the map only nearby.",
+   "key": [
+    "\\det Df(a)\\neq 0 \\;\\Longrightarrow\\; f \\text{ is a } C^1 \\text{ diffeomorphism near } a,\\quad D(f^{-1})(f(x)) = Df(x)^{-1}",
+    "F(a,b)=0,\\ \\det D_yF(a,b)\\neq 0 \\;\\Longrightarrow\\; F(x,y)=0 \\iff y=g(x) \\text{ near } (a,b)",
+    "Dg(x) = -\\big(D_yF(x,g(x))\\big)^{-1} D_xF(x,g(x))"
+   ],
+   "why": "They justify treating nondegenerate level sets as smooth curves and surfaces, underlie Lagrange multipliers and changes of variables, and are the basic tool for building charts on manifolds and for showing that solutions of equations depend smoothly on parameters.",
+   "msc": [
+    "26B10"
+   ],
+   "links": [
+    {
+     "field": "differential-geometry",
+     "note": "Regular level sets of submersions are smooth manifolds by the implicit function theorem, and the inverse function theorem produces local coordinates from immersions and submersions."
+    },
+    {
+     "field": "optimisation",
+     "note": "The Lagrange multiplier rule for equality-constrained optimisation is proved by using the implicit function theorem to write the constraint set locally as a graph."
+    }
+   ],
+   "refs": [
+    "Rudin, Principles of Mathematical Analysis",
+    "Spivak, Calculus on Manifolds",
+    "Lee, Introduction to Smooth Manifolds"
+   ],
+   "aliases": [
+    "inverse function theorem",
+    "implicit function theorem",
+    "Jacobian",
+    "local diffeomorphism",
+    "local inverse",
+    "regular value",
+    "implicit differentiation",
+    "constant rank theorem"
+   ]
+  },
+  "lesson": {
+   "minutes": 22,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "If $f'(a) \\ne 0$ for a function of one variable with continuous derivative, then $f$ is strictly monotonic near $a$, so it has an inverse there, and $(f^{-1})'(f(a)) = 1/f'(a)$. The inverse function theorem is the same statement for maps $f : \\mathbb{R}^n \\to \\mathbb{R}^n$: if the derivative matrix at a point is invertible, then near that point the map can be undone, and the inverse is as smooth as the map.\n\nIts companion, the implicit function theorem, says when an equation $F(x,y) = 0$ can be solved for some variables as smooth functions of the others, even if no formula exists. Together they justify change of variables, Lagrange multipliers, and the idea that a nondegenerate level set is a smooth curve or surface."
+    },
+    {
+     "type": "section",
+     "title": "Linearisation, and what can go wrong",
+     "body": "Near a point $a$, a $C^1$ map is approximately affine: $f(a+h) \\approx f(a) + Df(a)\\,h$, where $Df(a)$ is the Jacobian matrix of partial derivatives ([[partial-derivatives]]). If the matrix $Df(a)$ is invertible, the affine approximation is a bijection of $\\mathbb{R}^n$ (see [[linear-maps]]), and the theorem says the true map inherits this, but only near $a$.\n\nPolar coordinates show both the power and the limit of the statement. Let $f(r,\\theta) = (r\\cos\\theta, r\\sin\\theta)$. Its Jacobian is\n\n$$Df(r,\\theta) = \\begin{pmatrix}\\cos\\theta & -r\\sin\\theta\\\\ \\sin\\theta & r\\cos\\theta\\end{pmatrix}, \\qquad \\det Df = r.$$\n\nSo $f$ has a smooth local inverse around every point with $r > 0$. It has no global inverse on $\\{r > 0\\}$, because $f(r,\\theta) = f(r,\\theta + 2\\pi)$: invertibility of the derivative everywhere gives local injectivity everywhere, not global injectivity. At $r = 0$ the determinant vanishes, and indeed the whole line $r = 0$ is squashed to a single point.\n\nA one-variable table shows why continuity of the derivative matters. The map $f(x) = x + 2x^2\\sin(1/x)$ (with $f(0) = 0$) has $f'(0) = 1$, but $f'(x) = 1 + 4x\\sin(1/x) - 2\\cos(1/x)$ equals $-1$ at every $x = 1/(2\\pi k)$ and $3$ at every $x = 1/((2k+1)\\pi)$. So $f$ goes up and down infinitely often near $0$ and is not injective on any interval around $0$. The theorem needs $f \\in C^1$."
+    },
+    {
+     "type": "definition",
+     "title": "C¹ maps and diffeomorphisms",
+     "body": "Let $U \\subseteq \\mathbb{R}^n$ be open. A map $f : U \\to \\mathbb{R}^m$ is $C^1$ if all partial derivatives $\\partial f_i/\\partial x_j$ exist and are continuous on $U$; then $f$ is differentiable with derivative the $m \\times n$ Jacobian matrix $Df(x)$. A $C^1$ bijection $f : V \\to W$ between open sets whose inverse is also $C^1$ is a $C^1$ diffeomorphism.\n\nWe use the operator norm $\\|A\\| = \\sup_{|h| = 1}|Ah|$ for matrices, and the fact that if $A$ is invertible and $\\|B - A\\|\\,\\|A^{-1}\\| < 1$ then $B$ is invertible too (invertible matrices form an open set)."
+    },
+    {
+     "type": "theorem",
+     "title": "Inverse function theorem",
+     "body": "Let $U \\subseteq \\mathbb{R}^n$ be open, $f : U \\to \\mathbb{R}^n$ a $C^1$ map, and $a \\in U$ a point where $Df(a)$ is invertible. Then there are open sets $V \\ni a$ and $W \\ni f(a)$ such that $f$ maps $V$ bijectively onto $W$, the inverse $g : W \\to V$ is $C^1$, and\n\n$$Dg\\big(f(x)\\big) = Df(x)^{-1} \\qquad (x \\in V).$$\n\nIf $f$ is $C^k$ for some $k \\ge 1$, so is $g$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof via contractions",
+     "body": "The idea is to solve $f(x) = y$ by a fixed-point iteration and use the [[contraction-mapping|contraction mapping principle]].\n\nSet $A = Df(a)$ and choose $\\lambda > 0$ with $2\\lambda\\|A^{-1}\\| = 1$. Since $Df$ is continuous, there is an open ball $V$ around $a$ in $U$ on which $\\|Df(x) - A\\| < \\lambda$. For each $y \\in \\mathbb{R}^n$ define\n\n$$\\varphi_y(x) = x + A^{-1}\\big(y - f(x)\\big).$$\n\nThen $f(x) = y$ exactly when $\\varphi_y(x) = x$. Also $D\\varphi_y(x) = A^{-1}\\big(A - Df(x)\\big)$, so $\\|D\\varphi_y(x)\\| < \\|A^{-1}\\|\\lambda = \\tfrac12$ on $V$. Since $V$ is convex, the mean value inequality gives $|\\varphi_y(x_1) - \\varphi_y(x_2)| \\le \\tfrac12|x_1 - x_2|$ for $x_1, x_2 \\in V$.\n\nInjectivity. A contraction has at most one fixed point, so for each $y$ there is at most one $x \\in V$ with $f(x) = y$. Let $W = f(V)$; then $f : V \\to W$ is a bijection.\n\n$W$ is open. Let $y_0 = f(x_0)$ with $x_0 \\in V$, pick $r > 0$ with the closed ball $\\overline{B} = \\overline{B}(x_0, r) \\subset V$, and let $|y - y_0| < \\lambda r$. For $x \\in \\overline{B}$,\n\n$$|\\varphi_y(x) - x_0| \\le |\\varphi_y(x) - \\varphi_y(x_0)| + |\\varphi_y(x_0) - x_0| \\le \\tfrac{r}{2} + \\|A^{-1}\\|\\,|y - y_0| < \\tfrac r2 + \\tfrac r2 = r.$$\n\nSo $\\varphi_y$ is a contraction of the complete metric space $\\overline{B}$ into itself, and has a fixed point there: $y \\in f(\\overline{B}) \\subseteq W$. Thus $B(y_0, \\lambda r) \\subseteq W$.\n\n$g$ is differentiable. Fix $y \\in W$, $x = g(y)$, and for small $k$ put $h = g(y + k) - x$. Then $\\varphi_y(x + h) - \\varphi_y(x) = h - A^{-1}k$, whose length is at most $|h|/2$; hence $|A^{-1}k| \\ge |h|/2$ and $|h| \\le 2\\|A^{-1}\\|\\,|k| = |k|/\\lambda$. In particular $h \\to 0$ as $k \\to 0$. Since $\\|Df(x) - A\\|\\,\\|A^{-1}\\| < \\tfrac12$, the matrix $Df(x)$ is invertible; call its inverse $T$. Now\n\n$$g(y+k) - g(y) - Tk = h - Tk = -T\\big(f(x+h) - f(x) - Df(x)h\\big),$$\n\nso\n\n$$\\frac{|g(y+k) - g(y) - Tk|}{|k|} \\le \\frac{\\|T\\|}{\\lambda}\\cdot\\frac{|f(x+h) - f(x) - Df(x)h|}{|h|} \\to 0 \\quad (k \\to 0)$$\n\n(when $h = 0$ the left side is $0$). So $Dg(y) = T = Df(g(y))^{-1}$. This is continuous in $y$, being the composition of the continuous maps $g$, $Df$ and matrix inversion; so $g$ is $C^1$. If $f$ is $C^k$, the formula $Dg = (Df)^{-1}\\circ g$ and induction on $k$ show $g$ is $C^k$."
+    },
+    {
+     "type": "theorem",
+     "title": "Implicit function theorem",
+     "body": "Write points of $\\mathbb{R}^{n+m}$ as $(x,y)$ with $x \\in \\mathbb{R}^n$, $y \\in \\mathbb{R}^m$. Let $F$ be a $C^1$ map from an open subset of $\\mathbb{R}^{n+m}$ to $\\mathbb{R}^m$ with $F(a,b) = 0$, and suppose the $m \\times m$ matrix $D_yF(a,b) = \\big(\\partial F_i/\\partial y_j\\big)$ is invertible. Then there are open sets $U \\ni a$ in $\\mathbb{R}^n$ and $V \\ni b$ in $\\mathbb{R}^m$ and a $C^1$ map $g : U \\to V$ such that for $(x,y) \\in U \\times V$,\n\n$$F(x,y) = 0 \\iff y = g(x),$$\n\nand $Dg(x) = -\\big(D_yF(x,g(x))\\big)^{-1}D_xF(x,g(x))$."
+    },
+    {
+     "type": "proof",
+     "body": "Define $\\Phi(x,y) = (x, F(x,y))$, a $C^1$ map from an open subset of $\\mathbb{R}^{n+m}$ to $\\mathbb{R}^{n+m}$. Its Jacobian at $(a,b)$ is the block matrix\n\n$$D\\Phi(a,b) = \\begin{pmatrix} I_n & 0\\\\ D_xF(a,b) & D_yF(a,b)\\end{pmatrix},$$\n\nwhose determinant is $\\det D_yF(a,b) \\ne 0$. By the inverse function theorem $\\Phi$ maps an open set around $(a,b)$, which we may shrink to a product $U_0 \\times V$, diffeomorphically onto an open set $W \\ni (a, 0)$. Because $\\Phi$ does not change the first coordinate, its inverse has the form $\\Phi^{-1}(x,z) = (x, h(x,z))$ with $h$ of class $C^1$. Let $U = \\{x \\in U_0 : (x, 0) \\in W\\}$, an open set containing $a$, and put $g(x) = h(x, 0)$.\n\nFor $x \\in U$ and $y \\in V$: $F(x,y) = 0$ means $\\Phi(x,y) = (x,0)$, which (since $\\Phi$ is injective on $U_0 \\times V$) means $(x,y) = \\Phi^{-1}(x,0) = (x, g(x))$. Finally, differentiating $F(x, g(x)) = 0$ with the chain rule gives $D_xF + D_yF\\,Dg = 0$, which is the formula for $Dg$; $D_yF(x,g(x))$ is invertible near $a$ by continuity, after shrinking $U$ if necessary."
+    },
+    {
+     "type": "section",
+     "title": "Level sets and solving equations",
+     "body": "For the circle $F(x,y) = x^2 + y^2 - 1 = 0$, $\\partial F/\\partial y = 2y$. At every point with $y \\ne 0$ the theorem lets us write the circle locally as a graph $y = g(x)$ (here $g(x) = \\pm\\sqrt{1-x^2}$), with $g'(x) = -F_x/F_y = -x/y$. At $(\\pm1, 0)$ it fails, and genuinely so: near $(1,0)$ each $x < 1$ has two nearby $y$'s and each $x > 1$ has none. There one solves for $x$ instead, since $F_x = 2x \\ne 0$.\n\nThe general picture: if $F : \\mathbb{R}^{n+m} \\to \\mathbb{R}^m$ is $C^1$ and $DF$ has full rank $m$ at every point of the level set $F = 0$, then near each point some choice of $m$ variables can be solved for in terms of the other $n$, so the level set is locally the graph of a $C^1$ function of $n$ variables: an $n$-dimensional surface. Such level sets are called regular, and this is the standard way of producing [[smooth-manifolds]]. It is also what makes [[lagrange-multipliers]] work: on such a surface, a constrained extremum of $f$ forces $\\nabla f$ to be a combination of the rows of $DF$.\n\nTwo refinements for later. The constant rank theorem says that if $Df$ has constant rank $k$ near a point, then in suitable local coordinates $f$ looks like $(x_1,\\dots,x_n) \\mapsto (x_1,\\dots,x_k,0,\\dots,0)$. And there are infinite-dimensional versions on Banach spaces with the same proof, used to show that solutions of nonlinear differential equations depend smoothly on parameters."
+    },
+    {
+     "type": "example",
+     "title": "Inverting polar coordinates",
+     "body": "Show that polar coordinates have a $C^1$ local inverse near $(r,\\theta) = (2, \\pi/3)$, and compute the derivative of the inverse at $(x,y) = (1, \\sqrt3)$ in two ways.",
+     "solution": "At $(2,\\pi/3)$ the Jacobian is $\\begin{pmatrix}1/2 & -\\sqrt3\\\\ \\sqrt3/2 & 1\\end{pmatrix}$ with determinant $2 = r \\ne 0$, so the theorem applies. By the formula $Dg = (Df)^{-1}$,\n\n$$Dg(1,\\sqrt3) = \\frac12\\begin{pmatrix}1 & \\sqrt3\\\\ -\\sqrt3/2 & 1/2\\end{pmatrix} = \\begin{pmatrix}1/2 & \\sqrt3/2\\\\ -\\sqrt3/4 & 1/4\\end{pmatrix}.$$\n\nDirectly: near this point the inverse is $r = \\sqrt{x^2+y^2}$, $\\theta = \\arctan(y/x)$. Then $r_x = x/r = 1/2$, $r_y = y/r = \\sqrt3/2$, $\\theta_x = -y/r^2 = -\\sqrt3/4$ and $\\theta_y = x/r^2 = 1/4$, matching the matrix above."
+    },
+    {
+     "type": "example",
+     "title": "An equation with no closed-form solution",
+     "body": "Show that $xe^y + y = 1$ defines $y$ as a $C^1$ function $g(x)$ near $(1,0)$, and find $g'(1)$ and $g''(1)$.",
+     "solution": "Let $F(x,y) = xe^y + y - 1$. Then $F(1,0) = 0$ and $F_y = xe^y + 1$, which is $2 \\ne 0$ at $(1,0)$, so the implicit function theorem gives $g$ with $g(1) = 0$ (and $g$ is $C^\\infty$ since $F$ is).\n\nDifferentiate the identity $xe^{g} + g = 1$:\n\n$$e^{g} + xe^{g}g' + g' = 0.$$\n\nAt $x = 1$, $g = 0$: $1 + 2g'(1) = 0$, so $g'(1) = -1/2$. (This is $-F_x/F_y = -1/2$.) Differentiate again:\n\n$$2e^{g}g' + xe^{g}(g')^2 + xe^{g}g'' + g'' = 0.$$\n\nAt $x = 1$: $-1 + \\tfrac14 + 2g''(1) = 0$, so $g''(1) = 3/8$. Near $x = 1$, then, $g(x) \\approx -\\tfrac12(x-1) + \\tfrac{3}{16}(x-1)^2$."
+    },
+    {
+     "type": "example",
+     "title": "Roots depend smoothly on coefficients",
+     "body": "Let $p(x,y,z) = (x+y+z,\\; x^2+y^2+z^2,\\; x^3+y^3+z^3)$. Show that $p$ is locally invertible near any point with $x, y, z$ distinct, and not near any point with two coordinates equal. Interpret this for the roots of a cubic.",
+     "solution": "The Jacobian is\n\n$$Dp = \\begin{pmatrix}1 & 1 & 1\\\\ 2x & 2y & 2z\\\\ 3x^2 & 3y^2 & 3z^2\\end{pmatrix}, \\qquad \\det Dp = 6\\,(y-x)(z-x)(z-y),$$\n\na multiple of the Vandermonde determinant. So if $x, y, z$ are distinct, $Dp$ is invertible and $p$ has a $C^1$ (indeed $C^\\infty$) local inverse.\n\nIf two coordinates are equal, say $x = y$, then for small $t \\ne 0$ the points $(x+t, x-t, z)$ and $(x-t, x+t, z)$ are distinct, arbitrarily close to $(x,x,z)$, and have the same image (because $p$ is symmetric). So $p$ is not injective on any neighbourhood: local invertibility genuinely fails, not just the hypothesis.\n\nBy Newton's identities the power sums determine the elementary symmetric functions and conversely, so the coefficients of $t^3 - e_1t^2 + e_2t - e_3 = (t-x)(t-y)(t-z)$ are smooth functions of the power sums and vice versa. The conclusion: near a cubic with three distinct real roots, the roots, labelled continuously, are smooth functions of the coefficients. At a double root this breaks down, as $t^2 = \\varepsilon$ shows: its roots $\\pm\\sqrt{\\varepsilon}$ are not differentiable in $\\varepsilon$ at $0$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The theorem is local. $f(x,y) = (x^2 - y^2, 2xy)$, which is $z \\mapsto z^2$ in complex notation, has $\\det Df = 4(x^2+y^2) \\ne 0$ away from the origin, yet it is two-to-one on $\\mathbb{R}^2 \\setminus \\{0\\}$.\n- Invertible derivative is sufficient, not necessary, for an inverse: $x \\mapsto x^3$ is a bijection of $\\mathbb{R}$ with $f'(0) = 0$. What fails is the smoothness of the inverse: $x^{1/3}$ is not differentiable at $0$.\n- Differentiability alone is not enough; you need $C^1$ (see $x + 2x^2\\sin(1/x)$ above).\n- In the implicit function theorem, the invertible block must be the derivative with respect to the variables you are solving for. Checking $\\det D_xF$ instead tells you about solving for $x$."
+    },
+    {
+     "type": "connection",
+     "body": "The proof is an application of the [[contraction-mapping]] principle, and the same fixed-point scheme is a simplified Newton's method ([[root-finding]]). The implicit function theorem underlies [[lagrange-multipliers]], the change of variables formula for [[multiple-integrals]], and the definition of curves and surfaces as regular level sets; on [[smooth-manifolds]] the inverse function theorem is the tool that makes charts, immersions and submersions work, and it reappears for [[differential-forms]] and [[lie-groups]]. In [[holomorphic|complex analysis]] the analogous statement is that a holomorphic function with $f'(a) \\ne 0$ is locally biholomorphic, the starting point for [[conformal-maps]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. For $f(x,y) = (e^x\\cos y, e^x\\sin y)$, compute $\\det Df$, show that $f$ is locally invertible everywhere, and explain why it is not globally injective.\n2. Show that $x^2 + y^2 + z^2 + \\sin(xyz) = 1$ defines $z$ as a $C^1$ function of $(x,y)$ near $(0,0,1)$, and compute $\\partial z/\\partial x$ and $\\partial z/\\partial y$ at $(0,0)$.\n3. Prove that if $f : \\mathbb{R}^n \\to \\mathbb{R}^n$ is $C^1$ and $Df(x)$ is invertible for every $x$, then $f(\\mathbb{R}^n)$ is open.\n4. Near which points of the curve $y^2 = x^3$ can the curve be written as $y = g(x)$ with $g$ of class $C^1$? As $x = h(y)$? What happens at the origin?"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rudin, Principles of Mathematical Analysis",
+     "where": "Chapter 9"
+    },
+    {
+     "ref": "Spivak, Calculus on Manifolds",
+     "where": "Chapter 2"
+    },
+    {
+     "ref": "Lee, Introduction to Smooth Manifolds (2nd ed.)",
+     "where": "Appendix C"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Polar coordinates: det Df = r; at (2, pi/3) the inverse Jacobian equals the direct derivatives of (sqrt(x^2+y^2), atan(y/x)) at (1, sqrt 3)",
+     "python": "import sympy as sp\nr,t,x,y=sp.symbols('r t x y',positive=True)\nf=sp.Matrix([r*sp.cos(t),r*sp.sin(t)])\nJ=f.jacobian([r,t])\nassert sp.simplify(J.det()-r)==0\nJ0=J.subs({r:2,t:sp.pi/3})\nassert J0==sp.Matrix([[sp.Rational(1,2),-sp.sqrt(3)],[sp.sqrt(3)/2,1]])\nInv=J0.inv()\nassert sp.simplify(Inv-sp.Matrix([[sp.Rational(1,2),sp.sqrt(3)/2],[-sp.sqrt(3)/4,sp.Rational(1,4)]]))==sp.zeros(2)\ng=sp.Matrix([sp.sqrt(x**2+y**2),sp.atan(y/x)])\nD=g.jacobian([x,y]).subs({x:1,y:sp.sqrt(3)})\nassert sp.simplify(D-Inv)==sp.zeros(2)"
+    },
+    {
+     "claim": "f(x)=x+2x^2 sin(1/x): f'(0)=1 from the difference quotient; f'(1/(2 pi k))=-1 and f'(1/((2k+1)pi))=3",
+     "python": "import sympy as sp\nx,h=sp.symbols('x h',real=True)\nf=x+2*x**2*sp.sin(1/x)\nassert sp.limit((h+2*h**2*sp.sin(1/h))/h,h,0)==1\nfp=sp.diff(f,x)\nassert sp.simplify(fp-(1+4*x*sp.sin(1/x)-2*sp.cos(1/x)))==0\nfor k in range(1,6):\n    assert sp.simplify(fp.subs(x,1/(2*sp.pi*k)))==-1\n    assert sp.simplify(fp.subs(x,1/((2*k+1)*sp.pi)))==3"
+    },
+    {
+     "claim": "Implicit example x e^y + y = 1 near (1,0): F_y=2, g'(1)=-1/2, g''(1)=3/8; numerical solve agrees",
+     "python": "import sympy as sp\nfrom scipy.optimize import brentq\nimport math\nx=sp.symbols('x');g=sp.Function('g')\nF=x*sp.exp(g(x))+g(x)-1\nd1=sp.solve(sp.diff(F,x),g(x).diff(x))[0]\nd2=sp.solve(sp.diff(F,x,2),g(x).diff(x,2))[0]\nv1=sp.simplify(d1.subs(g(x),0).subs(x,1))\nassert v1==sp.Rational(-1,2)\nv2=sp.simplify(d2.subs(g(x).diff(x),v1).subs(g(x),0).subs(x,1))\nassert v2==sp.Rational(3,8)\nG=lambda X: brentq(lambda Y: X*math.exp(Y)+Y-1,-2,2,xtol=1e-14)\nh=1e-3\nassert abs((G(1+h)-G(1-h))/(2*h)+0.5)<1e-6\nassert abs((G(1+h)-2*G(1)+G(1-h))/h**2-0.375)<1e-4"
+    },
+    {
+     "claim": "Power-sum map: det Dp = 6(y-x)(z-x)(z-y); p is symmetric so (x+t,x-t,z),(x-t,x+t,z) share an image",
+     "python": "import sympy as sp\nx,y,z,t=sp.symbols('x y z t')\np=sp.Matrix([x+y+z,x**2+y**2+z**2,x**3+y**3+z**3])\nassert sp.expand(p.jacobian([x,y,z]).det()-6*(y-x)*(z-x)*(z-y))==0\nq=p.subs({x:x+t,y:x-t},simultaneous=True)\nq2=p.subs({x:x-t,y:x+t},simultaneous=True)\nassert sp.expand(q-q2)==sp.zeros(3,1)"
+    },
+    {
+     "claim": "Implicit function block matrix [[I,0],[DxF,DyF]] has determinant det DyF (example n=2,m=2 symbolic)",
+     "python": "import sympy as sp\nA=sp.Matrix(2,2,sp.symbols('a0:4'));C=sp.Matrix(2,2,sp.symbols('c0:4'))\nM=sp.Matrix(sp.BlockMatrix([[sp.eye(2),sp.zeros(2)],[A,C]]))\nassert sp.expand(M.det()-C.det())==0"
+    },
+    {
+     "claim": "Circle: implicit derivative -F_x/F_y=-x/y matches d/dx sqrt(1-x^2); z^2 map has det 4(x^2+y^2); exp map det e^{2x}",
+     "python": "import sympy as sp\nx,y=sp.symbols('x y',real=True)\ng=sp.sqrt(1-x**2)\nassert sp.simplify(sp.diff(g,x)-(-x/g))==0\nf=sp.Matrix([x**2-y**2,2*x*y])\nassert sp.expand(f.jacobian([x,y]).det()-4*(x**2+y**2))==0\nE=sp.Matrix([sp.exp(x)*sp.cos(y),sp.exp(x)*sp.sin(y)])\nassert sp.simplify(E.jacobian([x,y]).det()-sp.exp(2*x))==0"
+    },
+    {
+     "claim": "Mean value inequality step: for a 2x2 example near a, ||A^{-1}(A-Df(x))|| < 1/2 on a small ball, and iteration phi_y converges to the solution of f(x)=y",
+     "python": "import numpy as np\nf=lambda v: np.array([v[0]+0.3*np.sin(v[1]),v[1]+0.2*v[0]**2])\nDf=lambda v: np.array([[1,0.3*np.cos(v[1])],[0.4*v[0],1]])\na=np.array([0.5,0.2]);A=Df(a);Ai=np.linalg.inv(A)\nrng=np.random.default_rng(0)\nfor _ in range(200):\n    p=a+0.05*rng.uniform(-1,1,2)\n    assert np.linalg.norm(Ai@(A-Df(p)),2)<0.5\ny=f(a)+np.array([0.01,-0.008]);x=a.copy()\nfor _ in range(60): x=x+Ai@(y-f(x))\nassert np.linalg.norm(f(x)-y)<1e-13"
+    },
+    {
+     "claim": "Reviewer: invertible matrices stay invertible under perturbations with ||E|| ||A^-1|| < 1 (random); exercise 2 point and partials; second-order Taylor approximation of the implicit function agrees with a numerical solve",
+     "python": "import numpy as np, sympy as sp\nrng=np.random.default_rng(11)\n# perturbation of invertible matrices: ||B-A|| ||A^-1|| < 1 implies B invertible\nfor _ in range(500):\n    A=rng.normal(size=(3,3));Ai=np.linalg.inv(A)\n    E=rng.normal(size=(3,3));E*=0.99/(np.linalg.norm(E,2)*np.linalg.norm(Ai,2))\n    assert abs(np.linalg.det(A+E))>1e-12\n# exercise 2: F_z at (0,0,1) is 2, so z_x=z_y=0 there\nx,y,z=sp.symbols('x y z')\nF=x**2+y**2+z**2+sp.sin(x*y*z)-1\npt={x:0,y:0,z:1}\nassert F.subs(pt)==0 and sp.diff(F,z).subs(pt)==2 and sp.diff(F,x).subs(pt)==0 and sp.diff(F,y).subs(pt)==0\n# Taylor approximation of the implicit function in the example\nfrom scipy.optimize import brentq\nimport math\nG=lambda X: brentq(lambda Y: X*math.exp(Y)+Y-1,-2,2,xtol=1e-15)\nfor d in [0.01,-0.02]:\n    assert abs(G(1+d)-(-d/2+3*d*d/16))<2*abs(d)**3\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "contraction-mapping",
+  "entry": {
+   "sum": "A contraction is a map $T$ of a metric space with $d(Tx,Ty)\\le q\\,d(x,y)$ for a fixed $q<1$. On a complete metric space it has exactly one fixed point, and iterating $T$ from any start converges to it geometrically. Applied to the integral form of $y'=f(t,y)$ on a space of continuous functions, it gives Picard's theorem: a Lipschitz right-hand side yields a unique local solution.",
+   "key": [
+    "d(Tx,Ty)\\le q\\,d(x,y),\\ q<1,\\ X \\text{ complete} \\;\\Longrightarrow\\; \\exists!\\,x^*:\\ Tx^*=x^*",
+    "d(x_n,x^*)\\le \\frac{q^n}{1-q}\\,d(x_1,x_0)",
+    "y(t)=y_0+\\int_{t_0}^{t} f(s,y(s))\\,ds"
+   ],
+   "why": "It turns 'solve this equation' into 'iterate this map', with explicit error bounds: it proves existence and uniqueness for ODEs, underlies the inverse function theorem, and justifies fixed-point methods in numerical analysis.",
+   "msc": [
+    "47H10",
+    "54H25",
+    "34A12"
+   ],
+   "links": [
+    {
+     "field": "numerical-analysis",
+     "note": "Fixed-point iterations for nonlinear equations, and implicit time-stepping schemes for ODEs, are analysed by showing the iteration is a contraction, which also gives computable error bounds."
+    },
+    {
+     "field": "functional-analysis",
+     "note": "In Banach spaces the principle solves nonlinear integral and operator equations of the form x = Tx, for example Volterra and Fredholm equations with small kernels."
+    }
+   ],
+   "refs": [
+    "Kreyszig, Introductory Functional Analysis with Applications",
+    "Süli & Mayers, An Introduction to Numerical Analysis",
+    "Lee, Introduction to Smooth Manifolds"
+   ],
+   "aliases": [
+    "Banach fixed point theorem",
+    "contraction mapping theorem",
+    "fixed-point iteration",
+    "Picard–Lindelöf theorem",
+    "Picard's theorem",
+    "Picard iteration",
+    "Cauchy–Lipschitz theorem",
+    "existence and uniqueness theorem",
+    "Lipschitz condition"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Put a calculator in radians, type any number, and press the cosine key over and over. The display settles on $0.739085\\ldots$, the unique solution of $x = \\cos x$, whatever you started with. The equation has no algebraic solution, yet iteration finds it, and you can predict how many presses you need.\n\nThe contraction mapping principle explains when this works: if applying a map always brings points closer together by a fixed factor, repeated application converges to a unique fixed point. That one idea proves that ordinary differential equations have unique solutions (Picard's theorem), drives the inverse function theorem, and is the basis of a large family of numerical methods."
+    },
+    {
+     "type": "section",
+     "title": "Watching an iteration converge",
+     "body": "Starting from $x_0 = 1$, the iterates $x_{n+1} = \\cos x_n$ are, to four decimals,\n\n$$0.5403,\\ 0.8576,\\ 0.6543,\\ 0.7935,\\ 0.7014,\\ 0.7640,\\ 0.7221,\\ 0.7504,\\ \\ldots$$\n\nThey oscillate around the limit $x^* = 0.7390851\\ldots$, and each error is roughly $-0.67$ times the previous one. The reason is the mean value theorem ([[mvt]]): $x_{n+1} - x^* = \\cos x_n - \\cos x^* = -\\sin(\\xi_n)(x_n - x^*)$ for some $\\xi_n$ between them, and $\\sin x^* \\approx 0.674$. Because the factor stays below some $q < 1$, the error shrinks at least geometrically.\n\nTo make this general we need a notion of distance (a [[metric-spaces|metric]]) and a guarantee that a sequence which is settling down actually has a limit to settle on (completeness). The payoff is that the space can be a space of functions, where a single fixed point is an entire solution of a differential equation."
+    },
+    {
+     "type": "definition",
+     "title": "Contraction",
+     "body": "Let $(X,d)$ be a metric space. A map $T : X \\to X$ is a contraction if there is a constant $q$ with $0 \\le q < 1$ such that\n\n$$d(Tx, Ty) \\le q\\,d(x,y) \\qquad \\text{for all } x, y \\in X.$$\n\nA point with $Tx^* = x^*$ is a fixed point of $T$. In words: $T$ shrinks every distance by at least the same factor $q$."
+    },
+    {
+     "type": "theorem",
+     "title": "Contraction mapping principle (Banach fixed point theorem)",
+     "body": "Let $(X,d)$ be a non-empty complete metric space and $T : X \\to X$ a contraction with constant $q < 1$. Then $T$ has exactly one fixed point $x^*$. For every $x_0 \\in X$ the iterates $x_{n+1} = Tx_n$ converge to $x^*$, and\n\n$$d(x_n, x^*) \\le \\frac{q^n}{1-q}\\,d(x_1, x_0), \\qquad d(x_n, x^*) \\le \\frac{q}{1-q}\\,d(x_n, x_{n-1}).$$"
+    },
+    {
+     "type": "proof",
+     "body": "Uniqueness: if $Tx = x$ and $Ty = y$, then $d(x,y) = d(Tx,Ty) \\le q\\,d(x,y)$, so $(1-q)d(x,y) \\le 0$ and $x = y$.\n\nExistence: by induction, $d(x_{k+1}, x_k) \\le q^k d(x_1, x_0)$. For $m > n$ the triangle inequality and the geometric series give\n\n$$d(x_m, x_n) \\le \\sum_{k=n}^{m-1} d(x_{k+1}, x_k) \\le d(x_1,x_0)\\sum_{k=n}^{\\infty} q^k = \\frac{q^n}{1-q}\\,d(x_1,x_0).$$\n\nThe right side tends to $0$, so $(x_n)$ is a Cauchy sequence, and by completeness it converges to some $x^* \\in X$. A contraction is continuous (indeed Lipschitz), so $Tx^* = \\lim Tx_n = \\lim x_{n+1} = x^*$.\n\nError bounds: letting $m \\to \\infty$ in the display gives the first bound. Applying the first bound to the sequence that starts at $x_{n-1}$ (one step: $n = 1$) gives $d(x_n, x^*) \\le \\frac{q}{1-q}d(x_n, x_{n-1})$."
+    },
+    {
+     "type": "section",
+     "title": "Why every hypothesis matters",
+     "body": "Each hypothesis is needed.\n\n- Completeness. On $X = (0,1]$ with the usual distance, $Tx = x/2$ is a contraction with $q = 1/2$ but has no fixed point: the iterates head for $0$, which is missing.\n- A uniform $q < 1$. On $X = [1,\\infty)$ (complete), $Tx = x + 1/x$ satisfies $|Tx - Ty| = |x-y|\\,\\big(1 - \\tfrac{1}{xy}\\big) < |x - y|$ for $x \\ne y$, yet $Tx > x$ always, so there is no fixed point. The shrinking factor tends to $1$ far out.\n- $T$ must map $X$ into itself. This is often the step that requires choosing $X$ carefully.\n\nA practical test on an interval: if $f$ is differentiable on a closed interval $[a,b]$, $f([a,b]) \\subseteq [a,b]$ and $|f'(x)| \\le q < 1$ there, then by the mean value theorem $f$ is a contraction of the complete space $[a,b]$."
+    },
+    {
+     "type": "section",
+     "title": "Differential equations as fixed-point problems",
+     "body": "Consider the initial value problem $y'(t) = f(t, y(t))$, $y(t_0) = y_0$, from [[ode-first]]. By the fundamental theorem of calculus ([[ftc]]), a continuous $y$ solves it exactly when\n\n$$y(t) = y_0 + \\int_{t_0}^{t} f(s, y(s))\\,ds.$$\n\nThe right side defines an operator $T$ taking a function $y$ to a new function $Ty$, and solutions are its fixed points. We work in the space $C(I)$ of continuous functions on an interval $I$ with the sup distance $\\|y - z\\|_\\infty = \\max_{t \\in I}|y(t) - z(t)|$. This space is complete, because a uniformly Cauchy sequence of continuous functions converges uniformly to a continuous limit ([[uniform-convergence]]).\n\nThe key estimate is the Lipschitz condition: $|f(t,u) - f(t,v)| \\le L|u - v|$. It gives $|Ty(t) - Tz(t)| \\le \\int_{t_0}^t L|y(s) - z(s)|\\,ds \\le L\\,|t - t_0|\\,\\|y - z\\|_\\infty$, so on a short enough interval $T$ shrinks distances."
+    },
+    {
+     "type": "theorem",
+     "title": "Picard–Lindelöf theorem",
+     "body": "Let $R = [t_0 - a, t_0 + a] \\times [y_0 - b, y_0 + b]$ and let $f : R \\to \\mathbb{R}$ be continuous, with $|f| \\le M$ on $R$ and $|f(t,u) - f(t,v)| \\le L|u - v|$ for all $(t,u),(t,v) \\in R$. Choose $h > 0$ with $h \\le a$, $Mh \\le b$ and $Lh < 1$. Then the problem $y' = f(t,y)$, $y(t_0) = y_0$, has exactly one solution $y$ on $I = [t_0 - h, t_0 + h]$ (with graph in $R$), and the Picard iterates $y_0(t) \\equiv y_0$, $y_{n+1} = Ty_n$ converge uniformly to it."
+    },
+    {
+     "type": "proof",
+     "body": "Let $X = \\{y \\in C(I) : |y(t) - y_0| \\le b \\text{ for all } t \\in I\\}$. It is a closed subset of the complete space $C(I)$ (a uniform limit of functions with values in $[y_0-b, y_0+b]$ stays there), hence complete, and it contains the constant $y_0$.\n\n$T$ maps $X$ into $X$: for $y \\in X$, $Ty$ is continuous and $|Ty(t) - y_0| = \\big|\\int_{t_0}^t f(s,y(s))\\,ds\\big| \\le M|t - t_0| \\le Mh \\le b$.\n\n$T$ is a contraction: for $y, z \\in X$ and $t \\in I$, $|Ty(t) - Tz(t)| \\le L|t - t_0|\\,\\|y - z\\|_\\infty \\le Lh\\,\\|y - z\\|_\\infty$, and $q = Lh < 1$.\n\nBy the contraction mapping principle, $T$ has a unique fixed point $y \\in X$, and the Picard iterates converge to it in the sup norm, i.e. uniformly. Since $s \\mapsto f(s,y(s))$ is continuous, the fixed-point equation shows $y$ is $C^1$ with $y' = f(t,y)$ and $y(t_0) = y_0$. Conversely, any solution on $I$ with graph in $R$ lies in $X$ and is a fixed point of $T$, so it equals $y$."
+    },
+    {
+     "type": "section",
+     "title": "Further: global solutions, systems, and failure of uniqueness",
+     "body": "The condition $Lh < 1$ is an artefact of the proof: with a weighted sup norm, or by noticing that on $[t_0 - a, t_0 + a]$ the iterate $T^n$ has Lipschitz constant $(La)^n/n!$, which is below $1$ for large $n$, one shows that if $f$ is continuous and Lipschitz in $y$ on a whole strip $[t_0 - a, t_0 + a] \\times \\mathbb{R}$, the solution exists on the full interval. The same proof works verbatim for systems $\\mathbf{y}' = \\mathbf{f}(t,\\mathbf{y})$ with $\\mathbf{y} \\in \\mathbb{R}^n$ (see [[ode-systems]]), and hence for higher-order equations.\n\nWithout a Lipschitz condition, uniqueness can fail: $y' = 3y^{2/3}$, $y(0) = 0$ is solved by both $y = 0$ and $y = t^3$. (Peano's theorem still gives existence for continuous $f$, by a compactness argument, see [[arzela-ascoli]].) Fixed-point iterations also run in numerical analysis: solving $g(x) = 0$ as $x = x - g(x)/c$, implicit time-stepping in [[numerical-odes]], and Newton's method, which is a contraction near a simple root ([[root-finding]])."
+    },
+    {
+     "type": "example",
+     "title": "The cosine iteration",
+     "body": "Prove that $x = \\cos x$ has exactly one real solution, that the iteration $x_{n+1} = \\cos x_n$ converges to it from $x_0 = 1$, and find how many steps the a priori bound guarantees for an error below $10^{-6}$.",
+     "solution": "Any solution lies in $[-1,1]$, and since $\\cos x > 0$ there it lies in $(0,1]$. On $X = [0,1]$: $\\cos$ maps $[0,1]$ onto $[\\cos 1, 1] \\subseteq [0,1]$, and $|\\cos' x| = |\\sin x| \\le \\sin 1 \\approx 0.8415$. So $\\cos$ is a contraction of the complete space $[0,1]$ with $q = \\sin 1$, and the principle gives a unique fixed point in $[0,1]$, which by the first remark is the only real solution.\n\nWith $x_0 = 1$, $x_1 = \\cos 1 \\approx 0.5403$, so $d(x_1, x_0) \\approx 0.4597$. The a priori bound $\\frac{q^n}{1-q}(0.4597) < 10^{-6}$ needs\n\n$$n > \\frac{\\ln\\big(10^{-6}(1-q)/0.4597\\big)}{\\ln q} \\approx 86.2,$$\n\nso $87$ steps certainly suffice. In practice $32$ steps already do, because near $x^*$ the true contraction factor is $\\sin x^* \\approx 0.674$, much better than the worst case $\\sin 1$. The a posteriori bound $\\frac{q}{1-q}|x_n - x_{n-1}|$ detects this while you compute."
+    },
+    {
+     "type": "example",
+     "title": "A continued fraction",
+     "body": "Show that the iteration $x_{n+1} = 1 + 1/x_n$ with $x_0 = 3/2$ converges, and identify the limit. (This is the continued fraction $1 + \\cfrac{1}{1 + \\cfrac{1}{1 + \\cdots}}$.)",
+     "solution": "Let $T(x) = 1 + 1/x$ on $X = [3/2, 2]$. $T$ is decreasing, with $T(3/2) = 5/3$ and $T(2) = 3/2$, so $T(X) = [3/2, 5/3] \\subseteq X$. On $X$, $|T'(x)| = 1/x^2 \\le 4/9$. So $T$ is a contraction of the complete space $X$, the iterates converge, and the limit is the unique fixed point in $X$: $x = 1 + 1/x$, i.e. $x^2 - x - 1 = 0$, whose root in $[3/2, 2]$ is the golden ratio $\\frac{1+\\sqrt5}{2} \\approx 1.618$.\n\nThe iterates $3/2, 5/3, 8/5, 13/8, \\ldots$ are ratios of consecutive Fibonacci numbers, and the error shrinks by a factor of about $1/\\varphi^2 \\approx 0.38$ per step."
+    },
+    {
+     "type": "example",
+     "title": "Picard iterates by hand",
+     "body": "Compute the Picard iterates for $y' = 2t(1 + y)$, $y(0) = 0$, and recognise the solution.",
+     "solution": "Here $Ty(t) = \\int_0^t 2s\\,(1 + y(s))\\,ds$. Starting from $y_0 = 0$:\n\n$$y_1 = \\int_0^t 2s\\,ds = t^2,\\qquad y_2 = \\int_0^t 2s(1 + s^2)\\,ds = t^2 + \\frac{t^4}{2},\\qquad y_3 = t^2 + \\frac{t^4}{2} + \\frac{t^6}{6}.$$\n\nBy induction $y_n = \\sum_{k=1}^{n} t^{2k}/k!$: if $y_n$ has this form then $2s(1 + y_n(s)) = \\sum_{k=0}^{n} 2s^{2k+1}/k!$, whose integral is $\\sum_{k=0}^n t^{2k+2}/(k+1)!$. The limit is $\\sum_{k \\ge 1} t^{2k}/k! = e^{t^2} - 1$, and indeed $y = e^{t^2} - 1$ satisfies $y' = 2te^{t^2} = 2t(1 + y)$. The theorem guarantees convergence on a short interval; here it happens for all $t$ because $f$ is Lipschitz in $y$ on every strip $[-a,a] \\times \\mathbb{R}$ (with $L = 2a$)."
+    },
+    {
+     "type": "example",
+     "title": "An integral equation",
+     "body": "For which real $\\lambda$ does the contraction principle guarantee a unique continuous solution on $[0,1]$ of\n\n$$y(x) = 1 + \\lambda\\int_0^1 x s\\,y(s)\\,ds\\,?$$\n\nSolve the equation exactly and compare.",
+     "solution": "Let $Ty(x) = 1 + \\lambda\\int_0^1 xs\\,y(s)\\,ds$ on $C[0,1]$ with the sup norm. Then\n\n$$|Ty(x) - Tz(x)| \\le |\\lambda|\\,x\\int_0^1 s\\,|y(s) - z(s)|\\,ds \\le \\frac{|\\lambda|}{2}\\|y - z\\|_\\infty,$$\n\nso $T$ is a contraction when $|\\lambda| < 2$, giving a unique solution.\n\nExactly: any solution has the form $y = 1 + \\lambda c\\,x$ with $c = \\int_0^1 s\\,y(s)\\,ds$. Substituting, $c = \\int_0^1 (s + \\lambda c s^2)\\,ds = \\tfrac12 + \\tfrac{\\lambda c}{3}$, so for $\\lambda \\ne 3$, $c = \\frac{3}{2(3-\\lambda)}$ and\n\n$$y(x) = 1 + \\frac{3\\lambda x}{2(3 - \\lambda)}.$$\n\nSo a unique solution exists for every $\\lambda \\ne 3$, and for $\\lambda = 3$ the condition $c = 1/2 + c$ is impossible, so there is none. The contraction argument was sufficient but far from necessary; the sharp answer comes from the theory of [[compact-operators]] and the Fredholm alternative."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Checking $d(Tx,Ty) < d(x,y)$ for each pair is not enough; you need one $q < 1$ that works for all pairs, unless the space is compact (then a fixed point does exist, by a separate argument).\n- Forgetting to check that $T$ maps the chosen set into itself. For $x \\mapsto \\cos x$ the set $[0,1]$ works; for $x \\mapsto 2\\cos x$ no interval does (its only fixed point, near $1.03$, has $|f'| \\approx 1.71 > 1$), and the iteration indeed does not converge unless it lands exactly on that point.\n- The derivative test needs $|f'| \\le q < 1$ on a set mapped into itself, not just at the fixed point. Near the fixed point is enough for local convergence, but you must start close enough.\n- In Picard's theorem, continuity of $f$ alone gives existence, not uniqueness; uniqueness needs a Lipschitz (or similar) condition, as $y' = 3y^{2/3}$ shows."
+    },
+    {
+     "type": "connection",
+     "body": "Completeness of [[metric-spaces]] and of function spaces under [[uniform-convergence]] is what makes the principle work. It proves Picard's theorem for [[ode-first]] and [[ode-systems]], and it is the engine of the [[inverse-function-theorem]], where $f(x) = y$ is solved by iterating $x \\mapsto x + A^{-1}(y - f(x))$. In the setting of [[normed-spaces|Banach spaces]] it solves nonlinear integral equations; in numerical analysis it gives error bounds for fixed-point methods in [[root-finding]] and [[numerical-odes]]. A further, beautiful application: self-similar fractals such as the Cantor set and Sierpinski triangle are the unique fixed points of contractions acting on the complete space of compact sets with the Hausdorff metric."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that $x_{n+1} = \\sqrt{2 + x_n}$ converges for every $x_0 \\ge 0$ by showing that the map is a contraction of the complete space $[0,\\infty)$ into itself. What is the limit?\n2. Compute the Picard iterates for $y' = y$, $y(0) = 1$ and show that they are the Taylor polynomials of $e^t$.\n3. Let $T : \\mathbb{R}^2 \\to \\mathbb{R}^2$ be $T(x,y) = \\big(\\tfrac12\\sin y + 1, \\tfrac13\\cos x\\big)$. Show that $T$ is a contraction for the Euclidean distance and conclude that the system $x = \\tfrac12\\sin y + 1$, $y = \\tfrac13\\cos x$ has exactly one solution.\n4. Give an example of a map $T : [0,1] \\to [0,1]$ with $|Tx - Ty| < |x - y|$ for all $x \\ne y$ that is not a contraction. Does it have a fixed point?"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Kreyszig, Introductory Functional Analysis with Applications",
+     "where": "Chapter 5"
+    },
+    {
+     "ref": "Süli & Mayers, An Introduction to Numerical Analysis",
+     "where": "Chapter 1"
+    },
+    {
+     "ref": "Lee, Introduction to Smooth Manifolds (2nd ed.)",
+     "where": "Appendix D"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Cosine iterates from 1: 0.5403, 0.8576, 0.6543, 0.7935, 0.7014, 0.7640, 0.7221, 0.7504; fixed point 0.7390851..., sin(x*) ~ 0.674",
+     "python": "import math\nx=1.0;out=[]\nfor _ in range(8):\n    x=math.cos(x);out.append(round(x,4))\nassert out==[0.5403,0.8576,0.6543,0.7935,0.7014,0.764,0.7221,0.7504]\nfrom scipy.optimize import brentq\ns=brentq(lambda t:t-math.cos(t),0,1,xtol=1e-15)\nassert abs(s-0.7390851)<1e-7 and abs(math.sin(s)-0.674)<1e-3"
+    },
+    {
+     "claim": "A priori bound needs n > 86.2 (so 87 steps) for error < 1e-6 with q = sin 1 ~ 0.8415; in fact 32 iterations suffice",
+     "python": "import math\nq=math.sin(1)\nassert abs(q-0.8415)<1e-4\nnb=math.log(1e-6*(1-q)/(1-math.cos(1)))/math.log(q)\nassert 86.1<nb<86.3\nassert q**87/(1-q)*(1-math.cos(1))<1e-6 and q**86/(1-q)*(1-math.cos(1))>1e-6\ns=0.7390851332151607;x=1.0;n=0\nwhile abs(x-s)>=1e-6:\n    x=math.cos(x);n+=1\nassert n==32"
+    },
+    {
+     "claim": "x+1/x on [1,inf): |Tx-Ty|=|x-y|(1-1/(xy)) and Tx>x (no fixed point); x/2 on (0,1] has no fixed point",
+     "python": "import sympy as sp\nx,y=sp.symbols('x y',positive=True)\nT=lambda t:t+1/t\nassert sp.simplify((T(x)-T(y))-(x-y)*(1-1/(x*y)))==0\nassert sp.simplify(T(x)-x-1/x)==0\nassert sp.solve(sp.Eq(x/2,x),x)==[]"
+    },
+    {
+     "claim": "Golden ratio: T(x)=1+1/x maps [3/2,2] onto [3/2,5/3], |T'|<=4/9; iterates 3/2,5/3,8/5,13/8 converge to (1+sqrt5)/2",
+     "python": "from fractions import Fraction as F\nimport math\nT=lambda t:1+1/t\nassert T(F(3,2))==F(5,3) and T(F(2))==F(3,2)\nassert F(1)/F(3,2)**2==F(4,9)\nx=F(3,2);seq=[x]\nfor _ in range(3):\n    x=T(x);seq.append(x)\nassert seq==[F(3,2),F(5,3),F(8,5),F(13,8)]\nfor _ in range(40): x=T(x)\nassert abs(float(x)-(1+math.sqrt(5))/2)<1e-15\nassert abs(1/((1+math.sqrt(5))/2)**2-0.382)<1e-3"
+    },
+    {
+     "claim": "Picard iterates for y'=2t(1+y), y(0)=0 are sum_{k=1}^n t^{2k}/k!, and e^{t^2}-1 solves the IVP",
+     "python": "import sympy as sp\nt,s=sp.symbols('t s')\ny=sp.Integer(0)\nfor n in range(1,7):\n    y=sp.integrate(2*s*(1+y.subs(t,s)),(s,0,t))\n    assert sp.expand(y-sum(t**(2*k)/sp.factorial(k) for k in range(1,n+1)))==0\nY=sp.exp(t**2)-1\nassert sp.simplify(sp.diff(Y,t)-2*t*(1+Y))==0 and Y.subs(t,0)==0"
+    },
+    {
+     "claim": "Integral equation y=1+lambda int_0^1 x s y(s) ds: solution 1+3 lambda x/(2(3-lambda)) for lambda != 3; contraction constant |lambda|/2",
+     "python": "import sympy as sp\nx,s,l=sp.symbols('x s lambda')\ny=1+3*l*x/(2*(3-l))\nrhs=1+l*sp.integrate(x*s*y.subs(x,s),(s,0,1))\nassert sp.simplify(rhs-y)==0\nassert sp.integrate(s,(s,0,1))==sp.Rational(1,2)\nc=sp.symbols('c')\nassert sp.solve(sp.Eq(c,sp.Rational(1,2)+3*c/3),c)==[]"
+    },
+    {
+     "claim": "y'=3y^(2/3), y(0)=0 has the two solutions 0 and t^3 (t>0); Picard iterates for y'=y are Taylor polynomials of e^t",
+     "python": "import sympy as sp\nt,s=sp.symbols('t s',positive=True)\nY=t**3\nassert sp.simplify(sp.diff(Y,t)-3*Y**sp.Rational(2,3))==0\ny=sp.Integer(1)\nfor n in range(1,6):\n    y=1+sp.integrate(y.subs(t,s),(s,0,t))\n    assert sp.expand(y-sum(t**k/sp.factorial(k) for k in range(n+1)))==0"
+    },
+    {
+     "claim": "Exercise sanity: the map in exercise 3 has Jacobian operator norm at most sqrt(1/4+1/9)<1 everywhere (sampled)",
+     "python": "import numpy as np\nrng=np.random.default_rng(1)\nm=0\nfor _ in range(2000):\n    x,y=rng.uniform(-10,10,2)\n    J=np.array([[0,0.5*np.cos(y)],[-np.sin(x)/3,0]])\n    m=max(m,np.linalg.norm(J,2))\nassert m<=np.sqrt(1/4+1/9)+1e-12 and np.sqrt(1/4+1/9)<1"
+    },
+    {
+     "claim": "x=2cos x has a single real root, near 1.03, where |2 sin x| ~ 1.71 > 1; the iteration from 0.5 does not converge",
+     "python": "import math\nfrom scipy.optimize import brentq\nimport numpy as np\ng=lambda x:2*math.cos(x)-x\nxs=np.linspace(-2,2,40001);v=[g(t) for t in xs]\nassert sum(1 for a,b in zip(v,v[1:]) if a*b<=0)==1\nr=brentq(g,0,2)\nassert abs(r-1.03)<0.005 and abs(2*math.sin(r)-1.71)<0.01\nx=0.5\nfor _ in range(200): x=2*math.cos(x)\nassert abs(x-r)>1e-3"
+    },
+    {
+     "claim": "Reviewer: x+1/x maps [1,inf) into itself; sqrt(2+x) iteration converges to 2; a posteriori bound holds along the cosine iteration; Picard iterates for y=y from two starts differ by t^n/n!",
+     "python": "import math, numpy as np\n# x+1/x maps [1,inf) into [2,inf) subset [1,inf)\nxs=np.linspace(1,1e4,100001)\nassert (xs+1/xs>=2-1e-12).all()\n# sqrt(2+x) iteration: derivative <= 1/(2 sqrt 2) on [0,inf), limit 2\nassert 1/(2*math.sqrt(2))<1\nx=0.0\nfor _ in range(60): x=math.sqrt(2+x)\nassert abs(x-2)<1e-15\n# a posteriori bound for the cosine iteration actually bounds the error\nq=math.sin(1);s=0.7390851332151607;x=1.0\nfor n in range(1,60):\n    xn=math.cos(x);assert abs(xn-s)<=q/(1-q)*abs(xn-x)+1e-15;x=xn\n# T^n Lipschitz constant (L h)^n/n! for y'=y on [0,1]: Picard iterates from 0 and 1 differ by at most 1/n!\nimport sympy as sp\nt,u=sp.symbols('t u')\na=sp.Integer(0);b=sp.Integer(1)\nfor n in range(1,8):\n    a=1+sp.integrate(a.subs(t,u),(u,0,t));b=1+sp.integrate(b.subs(t,u),(u,0,t))\n    d=sp.expand(b-a)\n    assert sp.simplify(d-t**n/sp.factorial(n))==0\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "arzela-ascoli",
+  "entry": {
+   "sum": "On a compact metric space $K$, a family of continuous functions has a uniformly convergent subsequence from every sequence exactly when it is uniformly bounded and equicontinuous (Arzelà–Ascoli). Complementing this, any algebra of continuous functions on $K$ that contains the constants and separates points is dense in $C(K)$ for the sup norm (Stone–Weierstrass); in particular polynomials approximate every continuous function on $[a,b]$ uniformly.",
+   "key": [
+    "\\mathcal{F}\\subseteq C(K) \\text{ relatively compact} \\iff \\mathcal{F} \\text{ uniformly bounded and equicontinuous}",
+    "\\forall f\\in C[a,b],\\ \\forall \\varepsilon>0\\ \\exists \\text{ polynomial } p:\\ \\|f-p\\|_\\infty<\\varepsilon",
+    "B_nf(x)=\\sum_{k=0}^n f\\!\\left(\\tfrac kn\\right)\\binom nk x^k(1-x)^{n-k}\\ \\rightrightarrows\\ f"
+   ],
+   "why": "Arzelà–Ascoli is the standard tool for producing solutions as limits (Peano's theorem, compact integral operators, normal families in the Riemann mapping theorem), and Stone–Weierstrass justifies approximating continuous functions by polynomials or trigonometric polynomials.",
+   "msc": [
+    "41A10"
+   ],
+   "links": [
+    {
+     "field": "differential-equations",
+     "note": "Peano's existence theorem for $y'=f(t,y)$ with continuous $f$ is proved by extracting a uniformly convergent subsequence of Euler polygons using Arzelà–Ascoli."
+    },
+    {
+     "field": "complex-analysis",
+     "note": "Montel's theorem on normal families of holomorphic functions, a key step in the Riemann mapping theorem, is Arzelà–Ascoli combined with the Cauchy estimates."
+    },
+    {
+     "field": "numerical-analysis",
+     "note": "The Weierstrass theorem guarantees that polynomial approximation of a continuous function can be made uniformly accurate, the starting point of approximation theory."
+    }
+   ],
+   "refs": [
+    "Rudin, Principles of Mathematical Analysis",
+    "Folland, Real Analysis: Modern Techniques and Their Applications",
+    "Munkres, Topology"
+   ],
+   "aliases": [
+    "Arzelà–Ascoli theorem",
+    "Ascoli's theorem",
+    "Arzela-Ascoli",
+    "equicontinuity",
+    "equicontinuous family",
+    "Stone–Weierstrass theorem",
+    "Weierstrass approximation theorem",
+    "Bernstein polynomials",
+    "uniform approximation",
+    "relatively compact subsets of C(K)"
+   ]
+  },
+  "lesson": {
+   "minutes": 22,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Two questions about spaces of continuous functions come up again and again in analysis. First: in $\\mathbb{R}^n$ every bounded sequence has a convergent subsequence; when does a sequence of functions have a uniformly convergent subsequence? Second: polynomials are the functions we can actually compute with; which continuous functions can be approximated uniformly by them, or by other simple families?\n\nThe Arzelà–Ascoli theorem answers the first: boundedness is not enough, but boundedness plus a uniform control on oscillation (equicontinuity) is. The Stone–Weierstrass theorem answers the second: on a compact set, any algebra of functions that contains the constants and separates points can approximate every continuous function. Both are statements about the [[compactness|compact sets]] and the dense subsets of the space $C(K)$ with the sup norm."
+    },
+    {
+     "type": "section",
+     "title": "Bounded sequences of functions need not converge",
+     "body": "Throughout, $K$ is a compact metric space (often $[a,b]$) and $C(K)$ is the set of continuous real functions on $K$ with distance $\\|f - g\\|_\\infty = \\max_{x \\in K}|f(x) - g(x)|$. Convergence in this distance is [[uniform-convergence]], and $C(K)$ is complete.\n\nBounded is not enough. The functions $f_n(x) = x^n$ on $[0,1]$ all satisfy $|f_n| \\le 1$. Their pointwise limit is $0$ for $x < 1$ and $1$ at $x = 1$, which is discontinuous; since a uniform limit of continuous functions is continuous, and any subsequence has the same pointwise limit, no subsequence converges uniformly. Quantitatively, $f_n(x) - f_{2n}(x) = t - t^2$ with $t = x^n$, whose maximum over $[0,1]$ is $1/4$ (at $x^n = 1/2$). The functions get steeper and steeper near $x = 1$; the missing ingredient is a bound on steepness that is the same for all of them."
+    },
+    {
+     "type": "definition",
+     "title": "Uniformly bounded and equicontinuous",
+     "body": "A family $\\mathcal{F} \\subseteq C(K)$ is\n\n- uniformly bounded if there is $M$ with $|f(x)| \\le M$ for all $f \\in \\mathcal{F}$ and $x \\in K$;\n- equicontinuous if for every $\\varepsilon > 0$ there is $\\delta > 0$ such that $d(x,y) < \\delta$ implies $|f(x) - f(y)| < \\varepsilon$ for all $f \\in \\mathcal{F}$ at once.\n\nThe point is that one $\\delta$ works for every member of the family. The commonest example: all functions that are Lipschitz with the same constant $L$ form an equicontinuous family (take $\\delta = \\varepsilon/L$), so, for instance, any family of differentiable functions on $[a,b]$ with $|f'| \\le L$ is equicontinuous by the [[mvt|mean value theorem]]."
+    },
+    {
+     "type": "theorem",
+     "title": "Arzelà–Ascoli theorem",
+     "body": "Let $K$ be a compact metric space and $\\mathcal{F} \\subseteq C(K)$. Then every sequence in $\\mathcal{F}$ has a subsequence converging uniformly on $K$ (to a function in $C(K)$) if and only if $\\mathcal{F}$ is uniformly bounded and equicontinuous. Equivalently, $\\mathcal{F}$ has compact closure in $C(K)$ if and only if it is uniformly bounded and equicontinuous."
+    },
+    {
+     "type": "proof",
+     "body": "We prove the direction used in applications: uniformly bounded and equicontinuous implies a uniformly convergent subsequence. Let $(f_n)$ be a sequence in $\\mathcal{F}$ with $|f_n| \\le M$.\n\nStep 1: a countable dense set. For each $m \\ge 1$, compactness gives finitely many points such that every $x \\in K$ is within $1/m$ of one of them. Let $D = \\{d_1, d_2, \\dots\\}$ be the union over all $m$ of these finite sets; it is countable and dense.\n\nStep 2: convergence on $D$ by a diagonal argument. The numbers $f_n(d_1)$ lie in $[-M,M]$, so by Bolzano–Weierstrass some subsequence $(f_{1,n})$ converges at $d_1$. From it extract a subsequence $(f_{2,n})$ converging at $d_2$, and so on. The diagonal sequence $g_n = f_{n,n}$ is, from the $j$-th term on, a subsequence of $(f_{j,n})$, so $g_n(d_j)$ converges for every $j$.\n\nStep 3: equicontinuity upgrades this to uniform convergence. Let $\\varepsilon > 0$ and choose $\\delta$ from equicontinuity. Pick $m$ with $1/m < \\delta$, and let $E \\subseteq D$ be the finite $1/m$-net from step 1. Since $E$ is finite, there is $N$ with $|g_n(e) - g_k(e)| < \\varepsilon$ for all $e \\in E$ and $n, k \\ge N$. For any $x \\in K$ choose $e \\in E$ with $d(x,e) < 1/m < \\delta$; then for $n, k \\ge N$\n\n$$|g_n(x) - g_k(x)| \\le |g_n(x) - g_n(e)| + |g_n(e) - g_k(e)| + |g_k(e) - g_k(x)| < 3\\varepsilon.$$\n\nSo $(g_n)$ is uniformly Cauchy, and since $C(K)$ is complete it converges uniformly to a continuous function.\n\nFor the converse, suppose every sequence in $\\mathcal{F}$ has a uniformly convergent subsequence, so the closure of $\\mathcal{F}$ is compact. A compact set in a metric space is bounded, which gives uniform boundedness. Given $\\varepsilon$, compactness gives finitely many $h_1, \\dots, h_r \\in C(K)$ such that each $f \\in \\mathcal{F}$ has $\\|f - h_i\\|_\\infty < \\varepsilon$ for some $i$. Each $h_i$ is uniformly continuous on compact $K$; take $\\delta$ that works for all $h_i$ with $\\varepsilon$. Then $|f(x) - f(y)| < 3\\varepsilon$ whenever $d(x,y) < \\delta$, which is equicontinuity."
+    },
+    {
+     "type": "section",
+     "title": "What Arzelà–Ascoli is used for",
+     "body": "Arzelà–Ascoli is the standard way of producing solutions as limits. Three typical uses:\n\n- Peano's theorem. For $y' = f(t,y)$ with $f$ merely continuous, Euler polygon approximations all have slope at most $\\max|f|$, so they are equi-Lipschitz; a subsequence converges uniformly, and the limit solves the equation. Existence holds without the Lipschitz condition needed in [[contraction-mapping|Picard's theorem]] (but uniqueness may fail).\n- Integral operators. If $k$ is continuous on $[0,1]^2$, the operator $Tf(x) = \\int_0^1 k(x,y)f(y)\\,dy$ sends the unit ball of $C[0,1]$ into a uniformly bounded, equicontinuous family (because $k$ is uniformly continuous), so $T$ maps bounded sets to sets with compact closure: it is a [[compact-operators|compact operator]].\n- Normal families. In complex analysis, Montel's theorem says a locally bounded family of holomorphic functions has a subsequence converging uniformly on compact sets; the Cauchy estimates supply equicontinuity. This is a key step in proving the Riemann mapping theorem ([[conformal-maps]])."
+    },
+    {
+     "type": "section",
+     "title": "Approximating by polynomials: Bernstein's idea",
+     "body": "Now the approximation question. Given a continuous $f$ on $[0,1]$, Bernstein's construction is\n\n$$B_nf(x) = \\sum_{k=0}^n f\\!\\left(\\frac kn\\right)\\binom nk x^k(1-x)^{n-k}.$$\n\nThere is a probabilistic reading ([[distributions]]): if $S$ counts the successes in $n$ independent trials with success probability $x$, then $B_nf(x) = \\mathbb{E}\\,f(S/n)$. Since $S/n$ concentrates near $x$ when $n$ is large (its variance is $x(1-x)/n$), we expect $B_nf(x) \\to f(x)$.\n\nFor $f(x) = |x - \\tfrac12|$, the largest error $\\|B_nf - f\\|_\\infty$ is attained at $x = 1/2$ and equals about $0.1230$ for $n = 10$, $0.0398$ for $n = 100$ and $0.0126$ for $n = 1000$: convergence, but slowly, at roughly the rate $1/\\sqrt{2\\pi n}$."
+    },
+    {
+     "type": "theorem",
+     "title": "Weierstrass approximation theorem",
+     "body": "For every continuous $f : [a,b] \\to \\mathbb{R}$ and every $\\varepsilon > 0$ there is a polynomial $p$ with $|f(x) - p(x)| < \\varepsilon$ for all $x \\in [a,b]$. On $[0,1]$ one may take $p = B_nf$ for $n$ large."
+    },
+    {
+     "type": "proof",
+     "body": "By a linear change of variable we may take $[a,b] = [0,1]$. Write $p_k(x) = \\binom nk x^k(1-x)^{n-k}$. The binomial theorem and its derivatives give the three identities\n\n$$\\sum_k p_k(x) = 1,\\qquad \\sum_k \\frac kn\\,p_k(x) = x,\\qquad \\sum_k\\left(\\frac kn - x\\right)^2 p_k(x) = \\frac{x(1-x)}{n}.$$\n\nLet $M = \\|f\\|_\\infty$ and $\\varepsilon > 0$. Since $f$ is uniformly continuous on $[0,1]$, there is $\\delta > 0$ with $|f(s) - f(x)| < \\varepsilon$ whenever $|s - x| < \\delta$. Using the first identity,\n\n$$|B_nf(x) - f(x)| \\le \\sum_k \\left|f\\!\\left(\\frac kn\\right) - f(x)\\right| p_k(x).$$\n\nSplit the sum. Terms with $|k/n - x| < \\delta$ contribute less than $\\varepsilon\\sum_k p_k = \\varepsilon$. For the others, $|f(k/n) - f(x)| \\le 2M \\le 2M(k/n - x)^2/\\delta^2$, so by the third identity they contribute at most $\\frac{2M}{\\delta^2}\\cdot\\frac{x(1-x)}{n} \\le \\frac{M}{2\\delta^2 n}$. Hence $\\|B_nf - f\\|_\\infty \\le \\varepsilon + \\frac{M}{2\\delta^2 n} < 2\\varepsilon$ once $n > M/(2\\delta^2\\varepsilon)$."
+    },
+    {
+     "type": "theorem",
+     "title": "Stone–Weierstrass theorem",
+     "body": "Let $K$ be a compact Hausdorff space (for example a compact metric space) and $\\mathcal{A} \\subseteq C(K, \\mathbb{R})$ a subalgebra (closed under sums, products and real scalar multiples) such that\n\n1. $\\mathcal{A}$ contains the constant functions, and\n2. $\\mathcal{A}$ separates points: for $x \\ne y$ in $K$ there is $g \\in \\mathcal{A}$ with $g(x) \\ne g(y)$.\n\nThen $\\mathcal{A}$ is dense in $C(K,\\mathbb{R})$ for the sup norm. For complex-valued functions the same holds if, in addition, $\\mathcal{A}$ is closed under complex conjugation."
+    },
+    {
+     "type": "section",
+     "title": "Why Stone–Weierstrass is true, and what it gives",
+     "body": "Proof sketch, for the curious. Let $\\overline{\\mathcal{A}}$ be the uniform closure, again an algebra. (i) If $g \\in \\overline{\\mathcal{A}}$ then $|g| \\in \\overline{\\mathcal{A}}$: apply Weierstrass to approximate $t \\mapsto |t|$ by polynomials on $[-\\|g\\|, \\|g\\|]$, and compose. (ii) Hence $\\max(g,h) = \\tfrac12(g + h + |g-h|)$ and $\\min(g,h)$ are in $\\overline{\\mathcal{A}}$. (iii) Separation plus constants give, for any $x \\ne y$ and any target values $\\alpha, \\beta$, a function in $\\mathcal{A}$ with value $\\alpha$ at $x$ and $\\beta$ at $y$. (iv) Given $f$ and $\\varepsilon$, fix $x$; for each $y$ take $h_y$ matching $f$ at $x$ and $y$; finitely many of the open sets $\\{h_y < f + \\varepsilon\\}$ cover $K$, and the minimum of those $h_y$ is below $f + \\varepsilon$ everywhere and equals $f(x)$ at $x$. Taking a maximum of finitely many such functions over different $x$ (again by compactness) produces an element of $\\overline{\\mathcal{A}}$ within $\\varepsilon$ of $f$.\n\nSpecial cases worth knowing: polynomials in $n$ variables are dense in $C(K)$ for any compact $K \\subseteq \\mathbb{R}^n$; trigonometric polynomials $\\sum_{|k| \\le N} c_ke^{ikx}$ are dense in the continuous $2\\pi$-periodic functions (functions on the circle), which is the uniform side of [[fourier-series]]."
+    },
+    {
+     "type": "example",
+     "title": "Testing equicontinuity",
+     "body": "Which of these families on $[0,\\pi]$ are equicontinuous? (a) $\\{\\sin(nx) : n \\ge 1\\}$; (b) $\\{\\sin(x + n) : n \\ge 1\\}$; (c) $\\{\\sin(nx)/n : n \\ge 1\\}$. For each equicontinuous one, what does Arzelà–Ascoli give?",
+     "solution": "(a) Not equicontinuous. Take $\\varepsilon = 1/2$. For any $\\delta > 0$ choose $n$ with $\\pi/(2n) < \\delta$: the points $0$ and $\\pi/(2n)$ are within $\\delta$, but $|\\sin(n\\cdot\\tfrac{\\pi}{2n}) - \\sin 0| = 1$.\n\n(b) Equicontinuous: each function has derivative bounded by $1$, so all are $1$-Lipschitz; they are bounded by $1$. Arzelà–Ascoli says some subsequence converges uniformly. Indeed, the numbers $n \\bmod 2\\pi$ lie in $[0, 2\\pi]$, so some subsequence $n_j \\bmod 2\\pi$ converges to some $c$, and then $\\sin(x + n_j) \\to \\sin(x + c)$ uniformly.\n\n(c) Equicontinuous: $|(\\sin nx/n)'| = |\\cos nx| \\le 1$. Here the whole sequence converges uniformly, to $0$, since $|\\sin(nx)/n| \\le 1/n$."
+    },
+    {
+     "type": "example",
+     "title": "Bernstein polynomials of x²",
+     "body": "Compute $B_nf$ for $f(x) = x^2$ and find $\\|B_nf - f\\|_\\infty$ exactly.",
+     "solution": "$B_nf(x) = \\sum_k (k/n)^2p_k(x) = \\mathbb{E}[(S/n)^2]$ where $S$ is binomial with parameters $n$ and $x$. Since $\\mathbb{E}[S/n] = x$ and $\\operatorname{Var}(S/n) = x(1-x)/n$,\n\n$$B_nf(x) = x^2 + \\frac{x(1-x)}{n}.$$\n\nThe error $x(1-x)/n$ is largest at $x = 1/2$, so $\\|B_nf - f\\|_\\infty = \\frac{1}{4n}$. Bernstein polynomials converge, but even for a polynomial they converge only at rate $1/n$; their virtue is simplicity and the fact that they preserve positivity and monotonicity, not speed."
+    },
+    {
+     "type": "example",
+     "title": "Moments and even polynomials",
+     "body": "(a) Let $f$ be continuous on $[0,1]$ with $\\int_0^1 f(x)x^n\\,dx = 0$ for every $n = 0, 1, 2, \\ldots$. Prove $f \\equiv 0$.\n\n(b) Are the even polynomials $c_0 + c_1x^2 + \\cdots + c_mx^{2m}$ dense in $C[0,1]$? In $C[-1,1]$?",
+     "solution": "(a) By linearity $\\int_0^1 fp = 0$ for every polynomial $p$. By Weierstrass choose polynomials $p_k \\to f$ uniformly. Then\n\n$$\\int_0^1 f^2\\,dx = \\int_0^1 f(f - p_k)\\,dx \\le \\|f\\|_\\infty\\,\\|f - p_k\\|_\\infty \\to 0,$$\n\nso $\\int_0^1 f^2 = 0$, and since $f^2$ is continuous and non-negative, $f \\equiv 0$.\n\n(b) The even polynomials form an algebra containing the constants. On $[0,1]$, the function $x^2$ separates points ($x^2 \\ne y^2$ for $x \\ne y \\ge 0$), so by Stone–Weierstrass they are dense in $C[0,1]$. On $[-1,1]$ every even polynomial takes the same value at $x$ and $-x$, so separation fails; uniform limits of even functions are even, so a function like $x$ cannot be approximated. The closure is exactly the even continuous functions (apply the $[0,1]$ result to $g(\\sqrt{t})$)."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Compactness of the domain matters. On $\\mathbb{R}$, $f_n(x) = \\sin(x/n)$ is uniformly bounded and equicontinuous (all $1$-Lipschitz) and tends to $0$ pointwise, but $\\|f_n\\|_\\infty = 1$ for every $n$, so no subsequence converges uniformly to $0$ (or to anything else, since the pointwise limit is $0$). On non-compact domains one gets only uniform convergence on compact subsets.\n- Equicontinuity at each point separately is weaker in general; on a compact domain it implies the uniform version used above, by the same argument that continuous functions on compact sets are uniformly continuous.\n- Stone–Weierstrass needs the constants (or at least an algebra that vanishes at no common point): the polynomials with $p(0) = 0$ are not dense in $C[0,1]$, since they all vanish at $0$.\n- In the complex case conjugation is essential. Polynomials in $z$ separate points of the unit circle and contain constants, but $\\bar z$ cannot be approximated uniformly there: $\\oint p(z)\\,dz = 0$ for every polynomial, while $\\oint \\bar z\\,dz = 2\\pi i$.\n- Uniform approximation by polynomials is not the same as convergence of Taylor series: $f(x) = |x|$ has no Taylor series at $0$ but is a uniform limit of polynomials on $[-1,1]$."
+    },
+    {
+     "type": "connection",
+     "body": "Arzelà–Ascoli characterises the [[compactness|compact]] subsets of $C(K)$ and is how one proves existence: Peano's theorem for ODEs, the compactness of integral operators in the theory of [[compact-operators]] and the Fredholm alternative, and, via Montel's theorem on normal families, the Riemann mapping theorem in [[conformal-maps]]. Stone–Weierstrass makes polynomials and trigonometric polynomials dense, which is the starting point for [[fourier-series]], polynomial [[interpolation-quadrature|interpolation and quadrature]], and for showing that continuous functions are dense in [[lp-spaces]]. Both theorems are classic illustrations of how [[uniform-convergence]] and compactness interact."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that the family $\\{f \\in C^1[0,1] : f(0) = 0,\\ \\int_0^1 f'(x)^2\\,dx \\le 1\\}$ is uniformly bounded and equicontinuous. (Hint: Cauchy–Schwarz gives $|f(x) - f(y)| \\le \\sqrt{|x - y|}$.)\n2. Is $\\{x^n : n \\ge 1\\}$ equicontinuous on $[0, 1/2]$? On $[0,1]$? Justify both answers.\n3. Show that functions of the form $\\sum_{j=1}^m c_je^{-a_jx}$ with $a_j \\ge 0$ are dense in $C[0,1]$.\n4. Let $f \\in C[0,1]$ and suppose $\\int_0^1 f(x)e^{nx}\\,dx = 0$ for all integers $n \\ge 0$. Prove that $f \\equiv 0$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rudin, Principles of Mathematical Analysis",
+     "where": "Chapter 7"
+    },
+    {
+     "ref": "Folland, Real Analysis: Modern Techniques and Their Applications",
+     "where": "Chapter 4"
+    },
+    {
+     "ref": "Munkres, Topology",
+     "where": "Chapter 7"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "max over [0,1] of x^n - x^(2n) is 1/4 (attained where x^n = 1/2)",
+     "python": "import sympy as sp\nt=sp.symbols('t')\nassert sp.solve(sp.diff(t-t**2,t),t)==[sp.Rational(1,2)]\nassert (t-t**2).subs(t,sp.Rational(1,2))==sp.Rational(1,4)\nimport numpy as np\nfor n in [3,10,50]:\n    x=np.linspace(0,1,200001)\n    assert abs((x**n-x**(2*n)).max()-0.25)<1e-6"
+    },
+    {
+     "claim": "Bernstein identities: sum p_k=1, sum (k/n)p_k=x, sum (k/n-x)^2 p_k = x(1-x)/n (n=1..12)",
+     "python": "import sympy as sp\nx=sp.symbols('x')\nfor n in range(1,13):\n    p=[sp.binomial(n,k)*x**k*(1-x)**(n-k) for k in range(n+1)]\n    assert sp.expand(sum(p)-1)==0\n    assert sp.expand(sum(sp.Rational(k,n)*p[k] for k in range(n+1))-x)==0\n    assert sp.expand(sum((sp.Rational(k,n)-x)**2*p[k] for k in range(n+1))-x*(1-x)/n)==0"
+    },
+    {
+     "claim": "B_n(x^2) = x^2 + x(1-x)/n, sup error 1/(4n)",
+     "python": "import sympy as sp\nx=sp.symbols('x')\nfor n in range(1,13):\n    Bn=sum(sp.Rational(k,n)**2*sp.binomial(n,k)*x**k*(1-x)**(n-k) for k in range(n+1))\n    assert sp.expand(Bn-(x**2+x*(1-x)/n))==0\n    assert (x*(1-x)/n).subs(x,sp.Rational(1,2))==sp.Rational(1,4*n)"
+    },
+    {
+     "claim": "For f=|x-1/2|, sup error of B_n f is at x=1/2 and is ~0.1230 (n=10), 0.0398 (n=100), 0.0126 (n=1000), close to 1/sqrt(2 pi n)",
+     "python": "from fractions import Fraction as F\nfrom math import comb, pi, sqrt\nimport numpy as np\nfrom scipy.stats import binom\ndef B(n,x):\n    k=np.arange(n+1)\n    return float(np.sum(np.abs(k/n-0.5)*binom.pmf(k,n,x)))\nexp={10:0.1230,100:0.0398,1000:0.0126}\nfor n,v in exp.items():\n    xs=np.linspace(0,1,1001)\n    errs=[abs(B(n,t)-abs(t-0.5)) for t in xs]\n    i=int(np.argmax(errs))\n    assert abs(xs[i]-0.5)<1e-12 and abs(errs[i]-v)<6e-5\n    assert abs(errs[i]*sqrt(2*pi*n)-1)<0.03\nassert sum(abs(F(k,10)-F(1,2))*comb(10,k) for k in range(11))/2**10==F(63,512)"
+    },
+    {
+     "claim": "sin(nx) fails equicontinuity: |sin(n*pi/(2n)) - sin 0| = 1; sin(x/n) on R has sup 1 for every n",
+     "python": "import math\nfor n in range(1,50):\n    assert abs(math.sin(n*math.pi/(2*n))-math.sin(0)-1)<1e-12\n    assert abs(math.sin((n*math.pi/2)/n)-1)<1e-12"
+    },
+    {
+     "claim": "Contour integrals on the unit circle: closed integral of conj(z) dz is 2 pi i, of z^k dz is 0 (k>=0)",
+     "python": "import numpy as np\nfrom scipy.integrate import quad\ndef ci(g):\n    re=quad(lambda t:(g(np.exp(1j*t))*1j*np.exp(1j*t)).real,0,2*np.pi)[0]\n    im=quad(lambda t:(g(np.exp(1j*t))*1j*np.exp(1j*t)).imag,0,2*np.pi)[0]\n    return re+1j*im\nassert abs(ci(np.conj)-2j*np.pi)<1e-10\nfor k in range(6):\n    assert abs(ci(lambda z,k=k: z**k))<1e-10"
+    },
+    {
+     "claim": "Exercise 1 hint: if f(0)=0 and int f'^2<=1 then |f(x)-f(y)|<=sqrt|x-y| (sampled test with random polynomials normalised)",
+     "python": "import numpy as np\nrng=np.random.default_rng(2)\nxs=np.linspace(0,1,2001)\nfor _ in range(200):\n    c=rng.normal(size=6)\n    fp=np.polyval(np.polyder(np.append(c,0)),xs)\n    nrm=np.sqrt(np.trapezoid(fp**2,xs)) if hasattr(np,'trapezoid') else np.sqrt(np.trapz(fp**2,xs))\n    f=np.polyval(np.append(c,0),xs)/nrm\n    i,j=rng.integers(0,2001,2)\n    assert abs(f[i]-f[j])<=np.sqrt(abs(xs[i]-xs[j]))*(1+1e-3)+1e-9"
+    },
+    {
+     "claim": "Reviewer: shift-Lipschitz bound behind example (b); Bernstein approximants of cos 5x improve with n; x^2 separates points of [0,1]; x(1-x)<=1/4 used in the proof",
+     "python": "import numpy as np, math\n# example (b): sin(x+n_j) -> sin(x+c) uniformly when n_j mod 2pi -> c (1-Lipschitz in the shift)\nxs=np.linspace(0,math.pi,2001)\nfor d in [0.1,0.01,0.001]:\n    assert np.abs(np.sin(xs+1.3+d)-np.sin(xs+1.3)).max()<=d+1e-15\n# moment example: if f is orthogonal to all polynomials, int f^2 <= ||f|| ||f-p||; sample with Bernstein approximants of f=cos(5x)\nfrom math import comb\nf=lambda t: np.cos(5*t)\ndef B(n,t):\n    return sum(f(k/n)*comb(n,k)*t**k*(1-t)**(n-k) for k in range(n+1))\nt=np.linspace(0,1,2001)\nerrs=[np.abs(B(n,t)-f(t)).max() for n in [10,40,160]]\nassert errs[0]>errs[1]>errs[2]\n# even polynomials: x^2 separates points of [0,1] but not of [-1,1]\nassert all(a*a!=b*b for a in np.linspace(0,1,50) for b in np.linspace(0,1,50) if a!=b)\n# Weierstrass proof: the far terms are at most 2M x(1-x)/(n delta^2) <= M/(2 n delta^2)\nassert max(t*(1-t) for t in np.linspace(0,1,1001))<=0.25\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "lp-spaces",
+  "entry": {
+   "sum": "For $1\\le p<\\infty$, $L^p(X,\\mu)$ is the space of measurable functions with $\\|f\\|_p=(\\int|f|^p\\,d\\mu)^{1/p}<\\infty$, modulo equality almost everywhere; $L^\\infty$ uses the essential supremum. Hölder's and Minkowski's inequalities make each $L^p$ a normed space, the Riesz–Fischer theorem makes it complete, and $L^2$ is a Hilbert space. The exponent $p$ trades off penalising tall spikes (large $p$) against penalising slow decay (small $p$).",
+   "key": [
+    "\\|fg\\|_1 \\le \\|f\\|_p\\,\\|g\\|_q,\\qquad \\tfrac1p+\\tfrac1q=1",
+    "\\|f+g\\|_p \\le \\|f\\|_p+\\|g\\|_p",
+    "\\mu(X)<\\infty,\\ p<q \\;\\Longrightarrow\\; \\|f\\|_p \\le \\mu(X)^{\\frac1p-\\frac1q}\\,\\|f\\|_q"
+   ],
+   "why": "They are the standard complete function spaces of analysis: Fourier analysis lives in $L^2$, PDE estimates and Sobolev spaces are built on $L^p$, and in probability $L^p$ norms are moments and $L^2$ is the space of finite-variance random variables.",
+   "msc": [
+    "46E30"
+   ],
+   "links": [
+    {
+     "field": "probability",
+     "note": "Moments are $L^p$ norms of random variables, $L^2$ convergence is mean-square convergence, and Hölder and Jensen-type inequalities on a probability space bound expectations of products."
+    },
+    {
+     "field": "harmonic-analysis",
+     "note": "Plancherel makes the Fourier transform an isometry of $L^2$, and interpolation between $L^1$ and $L^2$ gives the Hausdorff–Young inequality for $1\\le p\\le 2$."
+    },
+    {
+     "field": "pde",
+     "note": "Weak solutions and energy estimates are formulated in Sobolev spaces, whose norms are $L^p$ norms of a function and its derivatives."
+    }
+   ],
+   "refs": [
+    "Folland, Real Analysis: Modern Techniques and Their Applications",
+    "Brezis, Functional Analysis, Sobolev Spaces and Partial Differential Equations",
+    "Rudin, Real and Complex Analysis"
+   ],
+   "aliases": [
+    "Lp space",
+    "L^p space",
+    "Lebesgue spaces",
+    "lp sequence spaces",
+    "Hölder's inequality",
+    "Minkowski's inequality",
+    "Riesz–Fischer theorem",
+    "essential supremum",
+    "conjugate exponent",
+    "Young's inequality"
+   ]
+  },
+  "lesson": {
+   "minutes": 24,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "How big is a function? The largest value it takes is one answer; the area under $|f|$ is another; the energy $\\int|f|^2$, which appears in physics and in Fourier analysis, is a third. Each choice turns a space of functions into a [[normed-spaces|normed space]], and the family of choices $\\big(\\int|f|^p\\big)^{1/p}$, indexed by $1 \\le p \\le \\infty$, gives the $L^p$ spaces.\n\nThey are complete, which the Riemann-integrable functions are not; $L^2$ is a Hilbert space, the natural home of Fourier series and quantum mechanics; and the inequalities of Hölder and Minkowski that hold in them are the basic tools for estimating integrals in PDE, harmonic analysis and probability. This page assumes the [[lebesgue|Lebesgue integral]] on a measure space."
+    },
+    {
+     "type": "section",
+     "title": "First impressions: the p-norms",
+     "body": "Start with vectors. For $x \\in \\mathbb{R}^n$ put $\\|x\\|_p = \\big(\\sum|x_i|^p\\big)^{1/p}$ and $\\|x\\|_\\infty = \\max|x_i|$. For $x = (3,4)$:\n\n$$\\|x\\|_1 = 7,\\quad \\|x\\|_2 = 5,\\quad \\|x\\|_3 = 91^{1/3} \\approx 4.498,\\quad \\|x\\|_\\infty = 4.$$\n\nThe norms decrease in $p$ and tend to the largest coordinate. In the plane the unit ball $\\{\\|x\\|_p \\le 1\\}$ is a diamond for $p = 1$, a disc for $p = 2$, and a square for $p = \\infty$, with rounded squares in between.\n\nFor functions, $p$ decides which kind of bad behaviour is penalised. On $(0,1]$, the function $x^{-a}$ (with $a > 0$) has $\\int_0^1 x^{-ap}\\,dx < \\infty$ exactly when $ap < 1$: large $p$ punishes tall spikes. On $[1,\\infty)$, $\\int_1^\\infty x^{-ap}\\,dx < \\infty$ exactly when $ap > 1$: small $p$ punishes slow decay. So on a finite interval, $L^p$ shrinks as $p$ grows; on $\\mathbb{R}$ neither space contains the other."
+    },
+    {
+     "type": "definition",
+     "title": "Lᵖ spaces",
+     "body": "Let $(X, \\mathcal{M}, \\mu)$ be a measure space and $1 \\le p < \\infty$. For measurable $f : X \\to \\mathbb{C}$ set\n\n$$\\|f\\|_p = \\Big(\\int_X |f|^p\\,d\\mu\\Big)^{1/p}, \\qquad \\|f\\|_\\infty = \\inf\\{M \\ge 0 : |f| \\le M \\ \\mu\\text{-almost everywhere}\\}$$\n\n(the essential supremum). For $1 \\le p \\le \\infty$, $L^p(X,\\mu)$ is the set of measurable $f$ with $\\|f\\|_p < \\infty$, where two functions are identified if they agree $\\mu$-almost everywhere. For counting measure on $\\mathbb{N}$ one writes $\\ell^p$.\n\nThe identification is not pedantry: $\\|f\\|_p = 0$ means only that $f = 0$ almost everywhere, so without it $\\|\\cdot\\|_p$ would not be a norm. Elements of $L^p$ are equivalence classes; their values at individual points are not defined."
+    },
+    {
+     "type": "theorem",
+     "title": "Hölder's inequality",
+     "body": "Let $1 < p < \\infty$ and let $q$ be the conjugate exponent, $\\frac1p + \\frac1q = 1$ (also $p = 1$, $q = \\infty$). For measurable $f, g$,\n\n$$\\int_X |fg|\\,d\\mu \\le \\|f\\|_p\\,\\|g\\|_q.$$\n\nFor $1 < p < \\infty$ and $\\|f\\|_p, \\|g\\|_q$ finite and non-zero, equality holds if and only if $|f|^p$ and $|g|^q$ are proportional almost everywhere. The case $p = q = 2$ is the Cauchy–Schwarz inequality."
+    },
+    {
+     "type": "proof",
+     "body": "First Young's inequality: for $a, b \\ge 0$, $ab \\le \\frac{a^p}{p} + \\frac{b^q}{q}$, with equality iff $a^p = b^q$. If $a$ or $b$ is $0$ this is clear. Otherwise, since $\\log$ is strictly concave ([[convexity]]),\n\n$$\\log\\Big(\\frac{a^p}{p} + \\frac{b^q}{q}\\Big) \\ge \\frac1p\\log a^p + \\frac1q\\log b^q = \\log(ab),$$\n\nwith equality iff $a^p = b^q$.\n\nThe case $p = 1$, $q = \\infty$ is immediate from $|fg| \\le |f|\\,\\|g\\|_\\infty$ a.e. For $1 < p < \\infty$: if $\\|f\\|_p = 0$ or $\\|g\\|_q = 0$ then $fg = 0$ a.e. and both sides vanish; if either is infinite there is nothing to prove. Otherwise, by homogeneity we may scale so that $\\|f\\|_p = \\|g\\|_q = 1$. Apply Young pointwise with $a = |f(x)|$, $b = |g(x)|$ and integrate:\n\n$$\\int|fg|\\,d\\mu \\le \\frac1p\\int|f|^p\\,d\\mu + \\frac1q\\int|g|^q\\,d\\mu = \\frac1p + \\frac1q = 1 = \\|f\\|_p\\|g\\|_q.$$\n\nEquality forces equality in Young almost everywhere, i.e. $|f|^p = |g|^q$ a.e. (after the scaling), which is the stated condition."
+    },
+    {
+     "type": "theorem",
+     "title": "Minkowski's inequality",
+     "body": "For $1 \\le p \\le \\infty$ and $f, g \\in L^p$, $\\|f + g\\|_p \\le \\|f\\|_p + \\|g\\|_p$. Consequently $\\|\\cdot\\|_p$ is a norm on $L^p$."
+    },
+    {
+     "type": "proof",
+     "body": "The cases $p = 1$ and $p = \\infty$ follow from $|f + g| \\le |f| + |g|$. Let $1 < p < \\infty$. First, $L^p$ is closed under addition, since $|f + g|^p \\le (2\\max(|f|,|g|))^p \\le 2^p(|f|^p + |g|^p)$. Now write $|f + g|^p \\le |f|\\,|f+g|^{p-1} + |g|\\,|f+g|^{p-1}$ and apply Hölder to each term with exponents $p$ and $q = p/(p-1)$, noting $\\big\\||f+g|^{p-1}\\big\\|_q = \\|f+g\\|_p^{p-1}$:\n\n$$\\|f+g\\|_p^p \\le \\big(\\|f\\|_p + \\|g\\|_p\\big)\\|f+g\\|_p^{p-1}.$$\n\nIf $\\|f + g\\|_p = 0$ there is nothing to prove; otherwise divide by $\\|f+g\\|_p^{p-1}$."
+    },
+    {
+     "type": "theorem",
+     "title": "Riesz–Fischer theorem",
+     "body": "For every measure space and every $1 \\le p \\le \\infty$, $L^p(X,\\mu)$ is complete, hence a Banach space. Moreover, if $f_n \\to f$ in $L^p$ with $p < \\infty$, some subsequence converges to $f$ almost everywhere."
+    },
+    {
+     "type": "proof",
+     "body": "We treat $p < \\infty$ (the case $p = \\infty$ is a uniform-convergence argument off a null set). A normed space is complete if every absolutely convergent series converges: given a Cauchy sequence, choose $n_1 < n_2 < \\cdots$ with $\\|f_{n_{k+1}} - f_{n_k}\\| < 2^{-k}$; the telescoping series $f_{n_1} + \\sum_k (f_{n_{k+1}} - f_{n_k})$ is absolutely convergent, its sum is the limit of the subsequence, and a Cauchy sequence with a convergent subsequence converges.\n\nSo let $g_k \\in L^p$ with $\\sum_k\\|g_k\\|_p = S < \\infty$. Put $G_n = \\sum_{k \\le n}|g_k|$ and $G = \\sum_k|g_k|$ (with values in $[0,\\infty]$). By Minkowski, $\\|G_n\\|_p \\le S$, and by monotone convergence $\\int G^p = \\lim\\int G_n^p \\le S^p$. So $G < \\infty$ a.e., and on that set the series $\\sum g_k(x)$ converges absolutely, to $F(x)$ say. Since $|F| \\le G$, $F \\in L^p$. Finally $|F - \\sum_{k \\le n}g_k|^p \\le (2G)^p$, which is integrable, and the left side tends to $0$ a.e., so by dominated convergence $\\|F - \\sum_{k\\le n}g_k\\|_p \\to 0$.\n\nThe a.e. statement comes out of the same argument: the subsequence $f_{n_k}$ chosen above converges a.e. to the limit, since the telescoping series converges absolutely a.e."
+    },
+    {
+     "type": "section",
+     "title": "L² is special; how the spaces compare",
+     "body": "Only one of these spaces carries an inner product compatible with its norm. $L^2$ has $\\langle f, g\\rangle = \\int f\\bar g\\,d\\mu$ with $\\langle f,f\\rangle = \\|f\\|_2^2$, so with Riesz–Fischer it is a [[hilbert-spaces|Hilbert space]], with orthogonal projections and orthonormal bases. For $p \\ne 2$ the parallelogram law $\\|f+g\\|^2 + \\|f-g\\|^2 = 2\\|f\\|^2 + 2\\|g\\|^2$ fails (see the example below), so no inner product induces $\\|\\cdot\\|_p$.\n\nHow the spaces sit together:\n\n- If $\\mu(X) < \\infty$ and $p < q$, then $L^q \\subseteq L^p$ with $\\|f\\|_p \\le \\mu(X)^{1/p - 1/q}\\|f\\|_q$ (apply Hölder to $|f|^p \\cdot 1$ with exponents $q/p$ and its conjugate).\n- For sequences the inclusion goes the other way: $\\ell^p \\subseteq \\ell^q$ for $p < q$, with $\\|x\\|_q \\le \\|x\\|_p$.\n- In general, if $p < q < r$ and $\\frac1q = \\frac\\theta p + \\frac{1-\\theta}{r}$, then $\\|f\\|_q \\le \\|f\\|_p^{\\theta}\\|f\\|_r^{1-\\theta}$. So $L^p \\cap L^r \\subseteq L^q$, and $\\log\\|f\\|_{q}$ is a convex function of $1/q$.\n- If $\\mu(X) < \\infty$ then $\\|f\\|_p \\to \\|f\\|_\\infty$ as $p \\to \\infty$."
+    },
+    {
+     "type": "section",
+     "title": "Density, duality, and beyond",
+     "body": "For readers continuing to functional analysis. Simple functions are dense in $L^p$ for every $p$ (integrable simple functions when $p < \\infty$), and for $p < \\infty$ the continuous functions with compact support are dense in $L^p(\\mathbb{R}^n)$. This last fact fails for $L^\\infty(\\mathbb{R}^n)$, which is not even separable. For $1 \\le p < \\infty$ (and $\\sigma$-finite $\\mu$ when $p = 1$), every bounded linear functional on $L^p$ has the form $f \\mapsto \\int fg\\,d\\mu$ for a unique $g \\in L^q$, so the dual of $L^p$ is $L^q$; for $1 < p < \\infty$ this makes $L^p$ reflexive, whereas $L^1$ and $L^\\infty$ are not (apart from finite-dimensional cases). Hölder's inequality and its equality case give $\\|f\\|_p = \\sup\\{|\\int fg| : \\|g\\|_q \\le 1\\}$ for $1 \\le p < \\infty$, which together with [[hahn-banach]] is how many estimates are proved. The Riesz–Thorin theorem interpolates bounds for linear operators between $L^p$ spaces, giving for instance the Hausdorff–Young inequality for the [[fourier-transform]], and Sobolev spaces, built from functions whose derivatives lie in $L^p$, are the setting for the modern theory of PDE."
+    },
+    {
+     "type": "example",
+     "title": "Which p? Spikes versus tails",
+     "body": "(a) For which $p \\in [1,\\infty]$ is $f(x) = x^{-1/3}$ in $L^p(0,1)$? Compute $\\|f\\|_p$ when it is finite. (b) For which $p$ is $g(x) = x^{-1/3}$ in $L^p(1,\\infty)$? (c) Find a function on $(0,\\infty)$ that lies in $L^p$ for exactly one $p$.",
+     "solution": "(a) $\\int_0^1 x^{-p/3}\\,dx$ is finite iff $p/3 < 1$, i.e. $p < 3$, and then equals $\\frac{1}{1 - p/3} = \\frac{3}{3-p}$, so $\\|f\\|_p = \\big(\\frac{3}{3-p}\\big)^{1/p}$. For instance $\\|f\\|_1 = 3/2$ and $\\|f\\|_2 = \\sqrt3$. $f$ is unbounded, so $f \\notin L^\\infty$. Answer: $1 \\le p < 3$.\n\n(b) $\\int_1^\\infty x^{-p/3}\\,dx < \\infty$ iff $p > 3$; also $g \\le 1$, so $g \\in L^\\infty$. Answer: $3 < p \\le \\infty$.\n\n(c) Glue the two behaviours at the borderline: take $h(x) = x^{-1/2}\\big(1 + |\\ln x|\\big)^{-1}$. Substituting $x = e^{u}$ turns $\\int_0^\\infty |h|^p\\,dx$ into $\\int_{-\\infty}^{\\infty} e^{u(1 - p/2)}(1+|u|)^{-p}\\,du$. If $p \\ne 2$ the exponential factor blows up at one end, so the integral diverges; if $p = 2$ it is $2\\int_0^\\infty (1+u)^{-2}\\,du = 2$. So $h \\in L^p(0,\\infty)$ exactly for $p = 2$ (and $h \\notin L^\\infty$ since it blows up at $0$)."
+    },
+    {
+     "type": "example",
+     "title": "Hölder with the equality case",
+     "body": "Find the largest possible value of $\\int_0^1 x f(x)\\,dx$ over measurable $f \\ge 0$ with $\\int_0^1 f^3\\,dx = 1$, and a function attaining it.",
+     "solution": "Hölder with $p = 3$ and $q = 3/2$ gives\n\n$$\\int_0^1 x f(x)\\,dx \\le \\|f\\|_3\\,\\|x\\|_{3/2} = 1\\cdot\\Big(\\int_0^1 x^{3/2}\\,dx\\Big)^{2/3} = \\Big(\\frac25\\Big)^{2/3} \\approx 0.5429.$$\n\nEquality requires $f^3$ proportional to $x^{3/2}$, i.e. $f = c\\sqrt x$. The constraint $\\int_0^1 c^3x^{3/2}\\,dx = \\frac{2c^3}{5} = 1$ gives $c = (5/2)^{1/3}$. Check: $\\int_0^1 x\\cdot c\\sqrt x\\,dx = \\frac{2c}{5} = \\frac25\\Big(\\frac52\\Big)^{1/3} = \\Big(\\frac25\\Big)^{2/3}$. So the maximum is $(2/5)^{2/3}$."
+    },
+    {
+     "type": "example",
+     "title": "Two structural facts",
+     "body": "(a) Show that the parallelogram law fails in $L^p[0,1]$ for every $p \\ne 2$. (b) Show that $\\|f\\|_p \\to \\|f\\|_\\infty$ as $p \\to \\infty$ when $\\mu(X) < \\infty$, and check it for $f(x) = x$ on $[0,1]$.",
+     "solution": "(a) Let $f = \\mathbf{1}_{[0,1/2]}$ and $g = \\mathbf{1}_{(1/2,1]}$. Then $|f + g| = |f - g| = 1$, so $\\|f+g\\|_p^2 + \\|f-g\\|_p^2 = 2$, while $2\\|f\\|_p^2 + 2\\|g\\|_p^2 = 4\\cdot 2^{-2/p}$. These are equal iff $2^{-2/p} = 1/2$, i.e. $p = 2$. (For $p = \\infty$ the right side is $4$.)\n\n(b) Let $M = \\|f\\|_\\infty$. For any $p$, $\\|f\\|_p \\le M\\mu(X)^{1/p} \\to M$, so $\\limsup\\|f\\|_p \\le M$. For $\\varepsilon \\in (0, M)$, the set $A = \\{|f| > M - \\varepsilon\\}$ has positive measure by definition of the essential supremum, and $\\|f\\|_p \\ge (M - \\varepsilon)\\mu(A)^{1/p} \\to M - \\varepsilon$. So $\\liminf\\|f\\|_p \\ge M - \\varepsilon$ for every $\\varepsilon$. (If $M = \\infty$, the second argument with any finite level shows $\\|f\\|_p \\to \\infty$.)\n\nFor $f(x) = x$: $\\|f\\|_p = (p+1)^{-1/p}$, which is $1/2$ at $p = 1$, $1/\\sqrt3 \\approx 0.577$ at $p = 2$, about $0.955$ at $p = 100$, and tends to $1 = \\|f\\|_\\infty$."
+    },
+    {
+     "type": "example",
+     "title": "A three-term Hölder inequality",
+     "body": "Prove that for positive reals $a_i, b_i, c_i$ ($i = 1, \\dots, n$),\n\n$$\\Big(\\sum_i a_ib_ic_i\\Big)^3 \\le \\Big(\\sum_i a_i^3\\Big)\\Big(\\sum_i b_i^3\\Big)\\Big(\\sum_i c_i^3\\Big).$$",
+     "solution": "Apply Hölder on $\\ell^p$ with $p = 3$, $q = 3/2$ to the sequences $(a_i)$ and $(b_ic_i)$:\n\n$$\\sum a_ib_ic_i \\le \\Big(\\sum a_i^3\\Big)^{1/3}\\Big(\\sum (b_ic_i)^{3/2}\\Big)^{2/3}.$$\n\nApply Cauchy–Schwarz ($p = q = 2$) to $(b_i^{3/2})$ and $(c_i^{3/2})$: $\\sum (b_ic_i)^{3/2} \\le \\big(\\sum b_i^3\\big)^{1/2}\\big(\\sum c_i^3\\big)^{1/2}$. Substituting,\n\n$$\\sum a_ib_ic_i \\le \\Big(\\sum a_i^3\\Big)^{1/3}\\Big(\\sum b_i^3\\Big)^{1/3}\\Big(\\sum c_i^3\\Big)^{1/3},$$\n\nand cubing gives the claim. The same argument proves $\\int|f_1\\cdots f_k| \\le \\prod\\|f_j\\|_{p_j}$ whenever $\\sum 1/p_j = 1$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Convergence in $L^p$ does not imply convergence almost everywhere. The typewriter sequence (indicators of $[0,1],[0,\\tfrac12],[\\tfrac12,1],[0,\\tfrac13],[\\tfrac13,\\tfrac23],\\ldots$) tends to $0$ in every $L^p$ with $p < \\infty$, yet at every point it takes the value $1$ infinitely often. Only a subsequence converges a.e.\n- Conversely, a.e. convergence does not imply $L^p$ convergence: $n\\mathbf{1}_{(0,1/n)} \\to 0$ everywhere on $(0,1)$ but has $L^1$ norm $1$. Dominated convergence is the usual bridge.\n- For $0 < p < 1$ the formula $(\\int|f|^p)^{1/p}$ is not a norm: with $f = \\mathbf{1}_{[0,1/2]}$, $g = \\mathbf{1}_{(1/2,1]}$ and $p = 1/2$, $\\|f+g\\| = 1$ but $\\|f\\| + \\|g\\| = 1/2$.\n- Inclusions depend on the measure: $L^2 \\subseteq L^1$ on $[0,1]$ but not on $\\mathbb{R}$ (take $1/(1+|x|)$), and $\\ell^1 \\subseteq \\ell^2$ for sequences.\n- $L^\\infty$ is the essential supremum: changing $f$ on a null set does not change it, and $\\mathbf{1}_{\\mathbb{Q}}$ has $\\|\\cdot\\|_\\infty = 0$ on $\\mathbb{R}$."
+    },
+    {
+     "type": "connection",
+     "body": "$L^p$ spaces are the main examples of [[normed-spaces|Banach spaces]], and $L^2$ is the model [[hilbert-spaces|Hilbert space]]: [[fourier-series]] converge in $L^2$ by Parseval, and the [[fourier-transform]] is an isometry of $L^2(\\mathbb{R})$ (Plancherel). Duality $(L^p)^* = L^q$ is a central application of the Radon–Nikodym theorem; integral operators with square-integrable kernels on $L^2$ are [[compact-operators]]. In probability, $L^p$ norms of [[random-variables]] are moments, $L^2$ convergence is mean-square convergence, and bounded families in $L^p$ ($p > 1$) are the uniformly integrable ones that [[martingales]] theory needs. Existence theory in the [[calculus-of-variations]] is set in Sobolev spaces built on $L^p$."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that if $\\mu(X) = 1$ then $\\|f\\|_1 \\le \\|f\\|_2 \\le \\|f\\|_\\infty$, and give an example on $[0,1]$ where both inequalities are strict.\n2. Prove that $\\ell^1 \\subseteq \\ell^2$ with $\\|x\\|_2 \\le \\|x\\|_1$, and show that the inclusion is strict.\n3. Let $f \\in L^1(\\mathbb{R}) \\cap L^\\infty(\\mathbb{R})$. Prove that $f \\in L^p(\\mathbb{R})$ for every $1 \\le p \\le \\infty$ and that $\\|f\\|_p \\le \\|f\\|_1^{1/p}\\|f\\|_\\infty^{1 - 1/p}$.\n4. Prove that $L^\\infty[0,1]$ is not separable by exhibiting uncountably many functions at pairwise distance $1$."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Folland, Real Analysis: Modern Techniques and Their Applications",
+     "where": "Chapter 6"
+    },
+    {
+     "ref": "Brezis, Functional Analysis, Sobolev Spaces and Partial Differential Equations",
+     "where": "Chapter 4"
+    },
+    {
+     "ref": "Rudin, Real and Complex Analysis",
+     "where": "Chapter 3"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "For (3,4): 1-norm 7, 2-norm 5, 3-norm 91^(1/3) ~ 4.498, sup-norm 4",
+     "python": "import numpy as np\nx=np.array([3.,4.])\nassert np.linalg.norm(x,1)==7 and np.linalg.norm(x,2)==5 and np.linalg.norm(x,np.inf)==4\nassert abs(np.linalg.norm(x,3)-91**(1/3))<1e-12 and abs(91**(1/3)-4.498)<5e-4"
+    },
+    {
+     "claim": "x^(-a) in L^p(0,1) iff ap<1, in L^p(1,oo) iff ap>1 (sympy, sample values); ||x^(-1/3)||_p^p = 3/(3-p) on (0,1)",
+     "python": "import sympy as sp\nx=sp.symbols('x',positive=True)\nfor a,p in [(sp.Rational(1,3),1),(sp.Rational(1,3),2),(sp.Rational(1,3),3),(sp.Rational(1,3),4),(sp.Rational(1,2),2),(sp.Rational(1,4),3)]:\n    I0=sp.integrate(x**(-a*p),(x,0,1));I1=sp.integrate(x**(-a*p),(x,1,sp.oo))\n    assert (I0.is_finite==True)==(a*p<1)\n    assert (I1.is_finite==True)==(a*p>1)\np=sp.symbols('p',positive=True)\nassert sp.simplify(sp.integrate(x**(-p/3),(x,0,1),conds='none')-3/(3-p))==0\nassert sp.integrate(x**sp.Rational(-1,3),(x,0,1))==sp.Rational(3,2) and sp.sqrt(sp.integrate(x**sp.Rational(-2,3),(x,0,1)))==sp.sqrt(3)"
+    },
+    {
+     "claim": "h(x)=x^(-1/2)/(1+|ln x|): substituted integral for p=2 equals 2; for p=1.9 and 2.1 the integral diverges",
+     "python": "import mpmath as mp\nI=mp.quad(lambda u: 1/(1+abs(u))**2,[-mp.inf,0,mp.inf])\nassert abs(I-2)<1e-12\nf=lambda p,u: mp.e**(u*(1-p/2))*(1+abs(u))**(-p)\nfor p,s in [(1.9,1),(2.1,-1)]:\n    assert f(p,s*2000)>1e10\nimport sympy as sp\nu=sp.symbols('u',positive=True)\nassert sp.integrate(2/(1+u)**2,(u,0,sp.oo))==2"
+    },
+    {
+     "claim": "Hoelder example: max of int x f with int f^3=1 is (2/5)^(2/3) ~ 0.5429, attained by f=(5/2)^(1/3) sqrt x",
+     "python": "import sympy as sp\nx=sp.symbols('x',positive=True)\nc=sp.Rational(5,2)**sp.Rational(1,3)\nf=c*sp.sqrt(x)\nassert sp.simplify(sp.integrate(f**3,(x,0,1))-1)==0\nv=sp.integrate(x*f,(x,0,1))\nassert sp.simplify(v-sp.Rational(2,5)**sp.Rational(2,3))==0\nassert sp.simplify(sp.integrate(x**sp.Rational(3,2),(x,0,1))**sp.Rational(2,3)-v)==0\nassert abs(float(v)-0.5429)<1e-4\nimport numpy as np\nrng=np.random.default_rng(3);t=np.linspace(0,1,20001)\nfor _ in range(50):\n    g=np.abs(np.polyval(rng.normal(size=4),t))+1e-3\n    g=g/np.trapezoid(g**3,t)**(1/3) if hasattr(np,'trapezoid') else g/np.trapz(g**3,t)**(1/3)\n    val=np.trapezoid(t*g,t) if hasattr(np,'trapezoid') else np.trapz(t*g,t)\n    assert val<=float(v)+1e-6"
+    },
+    {
+     "claim": "Parallelogram law in L^p[0,1] with indicators of halves holds iff p=2: 2 vs 4*2^(-2/p); p=1/2 breaks the triangle inequality (1 vs 1/2)",
+     "python": "import sympy as sp\np=sp.symbols('p',positive=True)\nassert sp.solve(sp.Eq(2,4*2**(-2/p)),p)==[2]\nnf=lambda pp: (sp.Rational(1,2))**(1/sp.nsimplify(pp))\nassert nf(sp.Rational(1,2))*2==sp.Rational(1,2)\nfor pp in [1,3,4]:\n    assert 4*nf(pp)**2!=2"
+    },
+    {
+     "claim": "||x||_p on [0,1] = (p+1)^(-1/p): 1/2 at p=1, 1/sqrt3 at p=2, ~0.955 at p=100, -> 1",
+     "python": "import sympy as sp\nx=sp.symbols('x',positive=True)\nfor pp in [1,2,5]:\n    assert sp.simplify(sp.integrate(x**pp,(x,0,1))**sp.Rational(1,pp)-(pp+1)**sp.Rational(-1,pp))==0\nassert (2)**-1==0.5 and abs(3**-0.5-0.577)<1e-3 and abs(101**(-1/100)-0.955)<1e-3\nq=sp.symbols('q',positive=True)\nassert sp.limit((q+1)**(-1/q),q,sp.oo)==1"
+    },
+    {
+     "claim": "Random tests: Young, Hoelder, Minkowski, three-term Hoelder, interpolation inequality and finite-measure inclusion",
+     "python": "import numpy as np\nrng=np.random.default_rng(4)\nn=lambda v,p: (np.abs(v)**p).sum()**(1/p)\nfor _ in range(2000):\n    p=rng.uniform(1.01,6);q=p/(p-1)\n    a,b=rng.uniform(0,5,2)\n    assert a*b<=a**p/p+b**q/q+1e-12\n    f=rng.normal(size=7);g=rng.normal(size=7);h=rng.uniform(0.1,3,7)\n    assert np.abs(f*g).sum()<=n(f,p)*n(g,q)*(1+1e-12)\n    assert n(f+g,p)<=n(f,p)+n(g,p)+1e-12\n    A,Bv,C=rng.uniform(0.1,3,(3,7))\n    assert (A*Bv*C).sum()**3<=(A**3).sum()*(Bv**3).sum()*(C**3).sum()*(1+1e-12)\n    P,R=sorted(rng.uniform(1,8,2));Q=rng.uniform(P,R);th=(1/Q-1/R)/(1/P-1/R)\n    assert n(f,Q)<=n(f,P)**th*n(f,R)**(1-th)*(1+1e-10)\n    w=np.full(7,1/7)\n    nm=lambda v,p:((np.abs(v)**p*w).sum())**(1/p)\n    assert nm(f,P)<=nm(f,R)*(1+1e-12)\n    assert n(f,R)<=n(f,P)*(1+1e-12)"
+    },
+    {
+     "claim": "Typewriter sequence: L^p norms (1/k)^(1/p) -> 0, yet every point of [0,1) lies in infinitely many of the intervals; n*1_(0,1/n) has L^1 norm 1",
+     "python": "from fractions import Fraction as F\nimport random\nints=[(F(j,k),F(j+1,k)) for k in range(1,200) for j in range(k)]\nassert max(b-a for a,b in ints[-199:])==F(1,199)\nrandom.seed(5)\nfor _ in range(50):\n    x=F(random.randrange(10**6),10**6)\n    hits=sum(1 for a,b in ints if a<=x<b)\n    assert hits==199\nfor N in [1,10,1000]:\n    assert N*F(1,N)==1"
+    },
+    {
+     "claim": "Reviewer: 1/(1+|x|) is in L^2 but not L^1 of the half-line; random tests of the exercise inequalities (L^1-L^inf interpolation, ||f||_1<=||f||_2<=||f||_inf on a probability space, l^1 in l^2)",
+     "python": "import numpy as np, sympy as sp\nx=sp.symbols('x',real=True)\nf=1/(1+sp.Abs(x))\nassert sp.integrate(1/(1+x)**2,(x,0,sp.oo))==1\nassert sp.integrate(1/(1+x),(x,0,sp.oo))==sp.oo\nrng=np.random.default_rng(9)\nfor _ in range(500):\n    v=rng.normal(size=9);p=rng.uniform(1,10)\n    n1=np.abs(v).sum();ni=np.abs(v).max();npp=(np.abs(v)**p).sum()**(1/p)\n    assert npp<=n1**(1/p)*ni**(1-1/p)*(1+1e-12)\n    # probability measure: ||f||_1 <= ||f||_2 <= ||f||_inf\n    m1=np.abs(v).mean();m2=np.sqrt((v**2).mean())\n    assert m1<=m2*(1+1e-12) and m2<=ni*(1+1e-12)\n    # l^1 inside l^2\n    assert np.sqrt((v**2).sum())<=n1*(1+1e-12)\n"
+    }
+   ]
+  }
+ },
+ {
+  "id": "entire-functions",
+  "entry": {
+   "sum": "An entire function is holomorphic on all of $\\mathbb{C}$; its growth rate governs its structure, from Liouville's theorem (bounded implies constant) to the order of growth. Like a polynomial, an entire function can be written as a product over its zeros, but with convergence factors and an extra zero-free factor $e^{g(z)}$; for finite order, Hadamard's theorem makes $g$ a polynomial, as in Euler's $\\sin\\pi z = \\pi z\\prod(1 - z^2/n^2)$.",
+   "key": [
+    "\\sin \\pi z = \\pi z \\prod_{n=1}^{\\infty}\\left(1-\\frac{z^2}{n^2}\\right)",
+    "|f(z)|\\le C(1+|z|)^N \\;\\Longrightarrow\\; f \\text{ is a polynomial of degree} \\le N",
+    "f(z) = e^{P(z)}\\, z^m \\prod_{n} E_k(z/a_n),\\quad \\rho<\\infty,\\ k=\\lfloor \\rho\\rfloor,\\ \\deg P\\le k"
+   ],
+   "why": "Product formulas evaluate series such as $\\sum 1/n^2=\\pi^2/6$, give the reflection formula for the Gamma function, and, through Hadamard's product for the completed zeta function, connect the zeros of $\\zeta$ to the distribution of primes.",
+   "msc": [
+    "30D20"
+   ],
+   "links": [
+    {
+     "field": "number-theory",
+     "note": "Hadamard's product for the completed Riemann zeta function over its nontrivial zeros underlies the explicit formula and the classical proof of the prime number theorem."
+    },
+    {
+     "field": "special-functions",
+     "note": "The Weierstrass product $1/\\Gamma(z)=ze^{\\gamma z}\\prod(1+z/n)e^{-z/n}$ and the sine product together give the reflection formula $\\Gamma(z)\\Gamma(1-z)=\\pi/\\sin\\pi z$."
+    }
+   ],
+   "refs": [
+    "Stein & Shakarchi, Complex Analysis",
+    "Ahlfors, Complex Analysis",
+    "Conway, Functions of One Complex Variable I"
+   ],
+   "aliases": [
+    "entire function",
+    "integral function",
+    "infinite product",
+    "Weierstrass factorization theorem",
+    "Weierstrass product",
+    "Hadamard factorization theorem",
+    "order of growth",
+    "Jensen's formula",
+    "sine product",
+    "Euler's product for sine",
+    "Liouville's theorem",
+    "Wallis product"
+   ]
+  },
+  "lesson": {
+   "minutes": 22,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A polynomial is determined, up to a constant factor, by its roots: $p(z) = c\\prod(z - a_k)$. Entire functions, those holomorphic on the whole complex plane, are the natural infinite-degree analogue of polynomials. Can they, too, be built from their zeros? Euler treated $\\sin \\pi z$ as a polynomial with roots at the integers and wrote\n\n$$\\sin \\pi z = \\pi z\\prod_{n=1}^{\\infty}\\Big(1 - \\frac{z^2}{n^2}\\Big),$$\n\nfrom which he read off $\\sum 1/n^2 = \\pi^2/6$. This page makes such formulas rigorous. The answer involves two new ingredients: convergence of infinite products, and a zero-free factor $e^{g(z)}$ that a polynomial does not need. How fast an entire function grows controls how simple both ingredients can be, which is the content of Hadamard's theorem, a key tool in the study of the Riemann zeta function."
+    },
+    {
+     "type": "section",
+     "title": "Examples, and growth controls everything",
+     "body": "Polynomials, $e^z$, $\\sin z$, $\\cos z$, $e^{z^2}$ and $\\cos\\sqrt z = \\sum_{n\\ge0}(-1)^nz^n/(2n)!$ are entire. Their behaviour at infinity is very different from that of polynomials. $e^z$ has no zeros at all, so it cannot be a product over its zeros in the naive sense; $\\sin z$ has infinitely many.\n\nThe first fact about entire functions comes straight from [[holomorphic|Cauchy's integral formula]]. If $f(z) = \\sum a_nz^n$ is entire and $M(R) = \\max_{|z| = R}|f(z)|$, the Cauchy estimates give\n\n$$|a_n| \\le \\frac{M(R)}{R^n} \\qquad \\text{for every } R > 0.$$\n\nSo growth controls the Taylor coefficients, and through them the whole function."
+    },
+    {
+     "type": "theorem",
+     "title": "Liouville's theorem, polynomial-growth form",
+     "body": "Let $f$ be entire, and suppose $|f(z)| \\le C(1 + |z|)^N$ for all $z$, for some constants $C$ and $N \\ge 0$. Then $f$ is a polynomial of degree at most $N$. In particular (the case $N = 0$, Liouville's theorem), a bounded entire function is constant."
+    },
+    {
+     "type": "proof",
+     "body": "For $n > N$ and $R \\ge 1$, the Cauchy estimate gives $|a_n| \\le C(1+R)^N/R^n \\le C\\,2^NR^{N-n}$. Letting $R \\to \\infty$ gives $a_n = 0$. So the Taylor series, which converges to $f$ everywhere, has only the terms with $n \\le N$."
+    },
+    {
+     "type": "definition",
+     "title": "Order of an entire function",
+     "body": "An entire function $f$ has order of growth $\\rho_f$ if\n\n$$\\rho_f = \\inf\\big\\{\\rho \\ge 0 : |f(z)| \\le Ae^{B|z|^\\rho} \\text{ for all } z, \\text{ for some constants } A, B > 0\\big\\}.$$\n\nIf no such $\\rho$ exists the order is infinite. Order measures growth on an exponential scale: non-constant polynomials have order $0$; $e^z$, $\\sin z$ and $\\cos z$ have order $1$; $\\cos\\sqrt z$ has order $1/2$; $e^{z^2}$ has order $2$; $e^{e^z}$ has infinite order."
+    },
+    {
+     "type": "section",
+     "title": "Infinite products",
+     "body": "An infinite product $\\prod_{n\\ge1}(1 + a_n)$ is said to converge if the partial products tend to a limit; the cleanest criterion is: if $\\sum|a_n| < \\infty$ then the product converges, and its value is $0$ only if some factor is $0$. The reason is the logarithm. For $|w| \\le 1/2$, the principal logarithm satisfies $|\\log(1 + w)| \\le 2|w|$, so if all $|a_n| \\le 1/2$ (true for all but finitely many $n$),\n\n$$\\prod_{n\\le N}(1 + a_n) = \\exp\\Big(\\sum_{n\\le N}\\log(1 + a_n)\\Big),$$\n\nand the series in the exponent converges absolutely. Its limit $L$ gives the product's value $e^L \\ne 0$.\n\nThe same estimate, made uniform, gives the version for functions: if $F_n$ are holomorphic on an open set $\\Omega$ and $\\sum|F_n(z)|$ converges uniformly on compact subsets of $\\Omega$, then $\\prod(1 + F_n(z))$ converges uniformly on compact subsets to a holomorphic function $F$ (a uniform limit of holomorphic functions is holomorphic), whose zeros are exactly the zeros of the factors. Where $F \\ne 0$, differentiating term by term gives the logarithmic derivative\n\n$$\\frac{F'}{F} = \\sum_n\\frac{F_n'}{1 + F_n}.$$\n\nFor the sine product, $F_n(z) = -z^2/n^2$ and $\\sum|z|^2/n^2$ converges uniformly on bounded sets. The product $\\prod(1 - z/n)$, by contrast, does not converge for $z \\ne 0$, because $\\sum 1/n$ diverges; pairing $n$ with $-n$, or inserting factors $e^{z/n}$, rescues it."
+    },
+    {
+     "type": "theorem",
+     "title": "Product formula for the sine",
+     "body": "For every $z \\in \\mathbb{C}$,\n\n$$\\sin\\pi z = \\pi z\\prod_{n=1}^{\\infty}\\Big(1 - \\frac{z^2}{n^2}\\Big),\\qquad\\text{and}\\qquad \\pi\\cot\\pi z = \\frac1z + \\sum_{n=1}^\\infty\\frac{2z}{z^2 - n^2}\\quad (z \\notin \\mathbb{Z}).$$"
+    },
+    {
+     "type": "proof",
+     "body": "Step 1: the cotangent series, by [[residues]]. Fix $z \\notin \\mathbb{Z}$ and let $C_N$ be the boundary of the square with vertices $(N + \\tfrac12)(\\pm1 \\pm i)$, for $N > |z|$. On the vertical sides $\\cot\\pi w = -i\\tanh(\\pi\\operatorname{Im}w)$, of modulus at most $1$; on the horizontal sides $|\\cot\\pi w| \\le \\coth\\big(\\pi(N + \\tfrac12)\\big) \\le \\coth(\\pi/2) < 2$. So $|\\cot\\pi w| \\le 2$ on every $C_N$.\n\nConsider $k(w) = \\pi\\cot(\\pi w)\\,\\dfrac{z}{w(w - z)}$. Its poles inside $C_N$ are at $w = z$ (residue $\\pi\\cot\\pi z$), at $w = n$ for $0 < |n| \\le N$ (residue $\\dfrac{z}{n(n - z)}$, since $\\pi\\cot\\pi w$ has residue $1$ there), and a double pole at $w = 0$. Near $0$, $\\pi\\cot\\pi w = \\frac1w + O(w)$, so the residue there is that of $\\frac{z}{w^2(w - z)}$, namely $\\frac{d}{dw}\\frac{z}{w - z}\\big|_{w=0} = -\\frac1z$. On $C_N$, $|k(w)| \\le \\dfrac{2\\pi|z|}{(N + \\frac12)(N + \\frac12 - |z|)}$ and the length of $C_N$ is $8(N + \\tfrac12)$, so $\\oint_{C_N}k \\to 0$. By the residue theorem,\n\n$$\\pi\\cot\\pi z - \\frac1z + \\sum_{0<|n|\\le N}\\frac{z}{n(n-z)} \\to 0.$$\n\nPairing $n$ with $-n$: $\\frac{z}{n(n-z)} + \\frac{z}{n(n+z)} = \\frac{2z}{n^2 - z^2}$. This gives the cotangent formula.\n\nStep 2: from cotangent to sine. Let $P(z) = \\pi z\\prod_{n\\ge1}(1 - z^2/n^2)$; by the previous section $P$ is entire with simple zeros exactly at the integers, and for $z \\notin \\mathbb{Z}$ its logarithmic derivative is $\\frac{P'}{P} = \\frac1z + \\sum\\frac{-2z/n^2}{1 - z^2/n^2} = \\frac1z + \\sum\\frac{2z}{z^2 - n^2} = \\pi\\cot\\pi z$. Hence $\\big(P/\\sin\\pi z\\big)' = \\frac{P}{\\sin\\pi z}\\big(\\frac{P'}{P} - \\pi\\cot\\pi z\\big) = 0$ on the connected set $\\mathbb{C}\\setminus\\mathbb{Z}$, so $P = c\\sin\\pi z$. As $z \\to 0$, $P(z)/(\\pi z) \\to 1$ and $\\sin(\\pi z)/(\\pi z) \\to 1$, so $c = 1$."
+    },
+    {
+     "type": "section",
+     "title": "Weierstrass and Hadamard: products for every entire function",
+     "body": "To build an entire function with prescribed zeros $a_1, a_2, \\ldots \\to \\infty$ in general, Weierstrass introduced the elementary factors\n\n$$E_0(z) = 1 - z, \\qquad E_k(z) = (1 - z)\\exp\\Big(z + \\frac{z^2}{2} + \\cdots + \\frac{z^k}{k}\\Big).$$\n\nThe exponential cancels the first $k$ terms of $\\log(1 - z) = -z - z^2/2 - \\cdots$, so $|1 - E_k(z)| \\le |z|^{k+1}$ for $|z| \\le 1$, and $\\prod E_k(z/a_n)$ converges whenever $\\sum|a_n|^{-(k+1)} < \\infty$; taking $k = n$ for the $n$-th factor always works.\n\nWeierstrass factorisation theorem (stated without proof). Every entire $f \\not\\equiv 0$ with a zero of order $m$ at $0$ and other zeros $a_1, a_2, \\ldots$ (with multiplicity) can be written $f(z) = e^{g(z)}z^m\\prod_n E_n(z/a_n)$ with $g$ entire. Conversely, for any sequence $a_n \\to \\infty$ such a product is an entire function with exactly those zeros.\n\nHadamard factorisation theorem (stated without proof). If $f$ has finite order $\\rho$ and $k = \\lfloor\\rho\\rfloor$, then\n\n$$f(z) = e^{P(z)}z^m\\prod_n E_k(z/a_n),$$\n\nwith $P$ a polynomial of degree at most $k$. Moreover $\\sum_n|a_n|^{-s} < \\infty$ for every $s > \\rho$, so functions of small order have few zeros. The proof rests on Jensen's formula, $\\log|f(0)| = \\sum_{|a_n| < R}\\log\\frac{|a_n|}{R} + \\frac{1}{2\\pi}\\int_0^{2\\pi}\\log|f(Re^{i\\theta})|\\,d\\theta$ (for $f(0) \\ne 0$ and no zeros on $|z| = R$), which converts a bound on growth into a bound on the number of zeros in a disc. For the sine, $\\rho = 1$ and $k = 1$; pairing $E_1(z/n)E_1(-z/n) = 1 - z^2/n^2$ recovers Euler's product with $P = \\log\\pi$."
+    },
+    {
+     "type": "example",
+     "title": "Euler's sums from the product",
+     "body": "Use the sine product to evaluate $\\sum_{n\\ge1}1/n^2$ and $\\sum_{n\\ge1}1/n^4$.",
+     "solution": "Compare Taylor coefficients at $z = 0$. On one side,\n\n$$\\frac{\\sin\\pi z}{\\pi z} = 1 - \\frac{\\pi^2}{6}z^2 + \\frac{\\pi^4}{120}z^4 - \\cdots.$$\n\nOn the other, expanding $\\prod(1 - z^2/n^2)$ (legitimate, since the product converges uniformly near $0$ and we may compare coefficients of holomorphic functions), the coefficient of $z^2$ is $-\\sum 1/n^2$ and that of $z^4$ is $e_2 = \\sum_{m<n}\\frac{1}{m^2n^2}$. Hence $\\sum 1/n^2 = \\pi^2/6$ and $e_2 = \\pi^4/120$. Since $\\big(\\sum 1/n^2\\big)^2 = \\sum 1/n^4 + 2e_2$,\n\n$$\\sum_{n\\ge1}\\frac1{n^4} = \\frac{\\pi^4}{36} - \\frac{\\pi^4}{60} = \\frac{\\pi^4}{90}.$$\n\nContinuing in the same way gives $\\zeta(2k)$ as a rational multiple of $\\pi^{2k}$ for every $k$ (see [[zeta]])."
+    },
+    {
+     "type": "example",
+     "title": "Wallis's product and the cosine",
+     "body": "Deduce Wallis's product $\\dfrac{\\pi}{2} = \\prod_{n\\ge1}\\dfrac{4n^2}{4n^2 - 1} = \\dfrac{2\\cdot2}{1\\cdot3}\\cdot\\dfrac{4\\cdot4}{3\\cdot5}\\cdot\\dfrac{6\\cdot6}{5\\cdot7}\\cdots$, and the product formula $\\cos\\pi z = \\prod_{n \\text{ odd}}\\big(1 - 4z^2/n^2\\big)$.",
+     "solution": "Put $z = 1/2$ in the sine product: $1 = \\frac{\\pi}{2}\\prod_{n\\ge1}\\Big(1 - \\frac{1}{4n^2}\\Big) = \\frac\\pi2\\prod\\frac{4n^2 - 1}{4n^2}$, and take reciprocals. Convergence is slow: the partial product up to $n = 1000$ is about $1.5704$ against $\\pi/2 \\approx 1.5708$.\n\nFor the cosine, apply the sine product to $\\sin 2\\pi z = 2\\pi z\\prod_{n\\ge1}(1 - 4z^2/n^2)$ and split the factors into even $n = 2m$, which give $\\prod_m(1 - z^2/m^2)$, and odd $n$. (Rearranging is allowed because $\\sum 4|z|^2/n^2$ converges, so the product converges absolutely.) Thus $\\sin 2\\pi z = 2\\sin\\pi z\\prod_{n\\text{ odd}}(1 - 4z^2/n^2)$, and comparing with $\\sin 2\\pi z = 2\\sin\\pi z\\cos\\pi z$ gives the cosine product for $z \\notin \\mathbb{Z}$, hence for all $z$ by continuity."
+    },
+    {
+     "type": "example",
+     "title": "Growth determines the function",
+     "body": "(a) Find all entire functions with $|f(z)| \\le 3 + |z|^{3/2}$ for all $z$. (b) Find all entire $f$ with $|f(z)| \\le e^{\\operatorname{Re}z}$ for all $z$. (c) Show that an entire function of order less than $1$ with no zeros is constant.",
+     "solution": "(a) $3 + |z|^{3/2} \\le 3(1 + |z|)^{3/2}$, so by the polynomial-growth Liouville theorem $f$ is a polynomial of degree at most $3/2$, i.e. $f(z) = az + b$ is linear. No non-linear function qualifies, while many linear ones do: for example every $az + b$ with $|a| \\le 1$ and $|b| \\le 2$, because $|az + b| \\le |z| + 2 \\le 3 + |z|^{3/2}$ (using $|z| \\le 1 + |z|^{3/2}$). Deciding exactly which pairs $(a,b)$ work is then a real-variable exercise.\n\n(b) $g(z) = f(z)e^{-z}$ is entire with $|g(z)| \\le e^{\\operatorname{Re}z}e^{-\\operatorname{Re}z} = 1$, so $g$ is a constant $c$ with $|c| \\le 1$. Answer: $f(z) = ce^z$ with $|c| \\le 1$.\n\n(c) By Hadamard with $\\rho < 1$, $k = 0$ and there are no zeros, so $f = e^{P}$ with $\\deg P \\le 0$: constant. (Without Hadamard: $f = e^g$ for an entire $g$, and the growth bound forces $\\operatorname{Re}g(z) \\le B|z|^\\rho + \\log A$; a Borel–Carathéodory estimate then makes $g$ a polynomial of degree $\\le \\rho < 1$.) The function $e^z$ shows that order $1$ is the threshold."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Zeros do not determine an entire function: $\\sin\\pi z$ and $e^{z^2}\\sin\\pi z$ have the same zeros. The factor $e^{g}$ is unavoidable, and finite order is what makes $g$ a polynomial.\n- A product whose partial products tend to $0$ without any factor vanishing does not count as convergent. For example, $\\prod_{n\\ge2}\\big(1 + (-1)^n/\\sqrt n\\big)$ has partial products tending to $0$ (roughly like $N^{-1/2}$), even though $\\sum(-1)^n/\\sqrt n$ converges: the criterion needs $\\sum|a_n| < \\infty$, or at least convergence of $\\sum\\log(1+a_n)$.\n- $\\prod(1 - z/n)$ diverges; only the symmetric pairing or convergence factors $e^{z/n}$ make the sine product work.\n- Order is about growth in all directions at once: $e^z$ is bounded on the left half-plane and on the imaginary axis, but still has order $1$.\n- Liouville's theorem needs $f$ holomorphic on all of $\\mathbb{C}$; $1/(1 + z^2)$ tends to $0$ at infinity but is not entire."
+    },
+    {
+     "type": "connection",
+     "body": "Entire functions are where the theory of [[holomorphic]] functions meets growth, and their products are built and verified with [[residues]]. Hadamard's theorem is used for the [[gamma]] function, $1/\\Gamma(z) = ze^{\\gamma z}\\prod(1 + z/n)e^{-z/n}$, which with the sine product gives the reflection formula $\\Gamma(z)\\Gamma(1-z) = \\pi/\\sin\\pi z$. Applied to the completed zeta function $\\xi(s)$, of order $1$, it gives a product over the [[nontrivial-zeros]] of [[zeta]], which is the starting point of the [[explicit-formula]] and of the classical proof of the [[pnt|prime number theorem]] with error term. Jensen's formula is the basic tool for counting zeros, and growth plus zeros is a recurring theme in [[l-functions]] and [[functional-equation]] arguments."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that $\\cos\\sqrt z$ is entire of order $1/2$ and find its zeros. Check that $\\sum|a_n|^{-s}$ converges exactly for $s > 1/2$.\n2. Prove that the product $\\prod_{n\\ge2}\\big(1 - \\frac{1}{n^2}\\big)$ converges and equals $\\frac12$ by telescoping.\n3. Take the logarithmic derivative of the cosine product to obtain an expansion of $\\pi\\tan\\pi z$ as a sum over odd integers.\n4. Show that if $f$ is entire and $\\operatorname{Re}f(z) \\le 0$ for all $z$, then $f$ is constant. (Hint: consider $e^{f}$.)"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Stein & Shakarchi, Complex Analysis",
+     "where": "Chapter 5"
+    },
+    {
+     "ref": "Ahlfors, Complex Analysis",
+     "where": "Chapter 5"
+    },
+    {
+     "ref": "Conway, Functions of One Complex Variable I"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "sin(pi z)/(pi z) = 1 - pi^2 z^2/6 + pi^4 z^4/120 - ...; sum 1/n^2 = pi^2/6, e_2 = pi^4/120, sum 1/n^4 = pi^4/36 - pi^4/60 = pi^4/90",
+     "python": "import sympy as sp\nz=sp.symbols('z')\ns=sp.series(sp.sin(sp.pi*z)/(sp.pi*z),z,0,6).removeO()\nassert sp.simplify(s-(1-sp.pi**2*z**2/6+sp.pi**4*z**4/120))==0\nn=sp.symbols('n',integer=True,positive=True)\nz2=sp.summation(1/n**2,(n,1,sp.oo));z4=sp.summation(1/n**4,(n,1,sp.oo))\nassert z2==sp.pi**2/6 and z4==sp.pi**4/90\nassert sp.simplify((z2**2-z4)/2-sp.pi**4/120)==0\nassert sp.simplify(sp.pi**4/36-sp.pi**4/60-sp.pi**4/90)==0"
+    },
+    {
+     "claim": "Sine product converges numerically at z=0.3+0.2i (error decreases ~1/N); cotangent partial fractions agree with pi cot(pi z)",
+     "python": "import mpmath as mp\nmp.mp.dps=30\nz=mp.mpc(0.3,0.2)\nP=lambda N: mp.pi*z*mp.fprod([1-z**2/k**2 for k in range(1,N+1)])\ne1=abs(P(1000)-mp.sin(mp.pi*z));e2=abs(P(10000)-mp.sin(mp.pi*z))\nassert e2<e1/5 and e2<1e-4\nC=1/z+mp.nsum(lambda k: 2*z/(z**2-k**2),[1,mp.inf])\nassert abs(C-mp.pi*mp.cot(mp.pi*z))<1e-20"
+    },
+    {
+     "claim": "|cot(pi w)| <= 1 on the vertical sides and <= coth(pi/2) ~1.09 < 2 on the horizontal sides of C_N (sampled, N=1..6)",
+     "python": "import mpmath as mp\nassert mp.coth(mp.pi/2)<1.1\nfor N in range(1,7):\n    a=N+0.5\n    for j in range(-200,201):\n        t=a*j/200\n        for w in [mp.mpc(a,t),mp.mpc(-a,t)]:\n            assert abs(mp.cot(mp.pi*w))<=1+1e-12\n        for w in [mp.mpc(t,a),mp.mpc(t,-a)]:\n            assert abs(mp.cot(mp.pi*w))<=mp.coth(mp.pi/2)+1e-12"
+    },
+    {
+     "claim": "Residues of k(w)=pi cot(pi w) z/(w(w-z)): -1/z at 0, z/(n(n-z)) at n, pi cot(pi z) at z; pairing gives 2z/(n^2-z^2)",
+     "python": "import sympy as sp\nw,z=sp.symbols('w z')\nk=sp.pi*sp.cot(sp.pi*w)*z/(w*(w-z))\nassert sp.simplify(sp.residue(k,w,0)+1/z)==0\nfor n in [1,2,-3]:\n    assert sp.simplify(sp.residue(k,w,n)-z/(n*(n-z)))==0\nassert sp.simplify(sp.limit((w-z)*k,w,z)-sp.pi*sp.cot(sp.pi*z))==0\nn=sp.symbols('n')\nassert sp.simplify(z/(n*(n-z))+z/(n*(n+z))-2*z/(n**2-z**2))==0"
+    },
+    {
+     "claim": "Wallis: partial product to 1000 is ~1.5704, limit pi/2; cosine product over odd n matches cos(pi z) numerically",
+     "python": "import mpmath as mp\nW=mp.fprod([mp.mpf(4*n*n)/(4*n*n-1) for n in range(1,1001)])\nassert abs(W-1.5704)<1e-4 and abs(mp.nprod(lambda n: 4*n*n/(4*n*n-1),[1,mp.inf])-mp.pi/2)<1e-10\nz=mp.mpc(0.37,-0.41)\nCp=mp.fprod([1-4*z**2/(2*m-1)**2 for m in range(1,200001)])\nassert abs(Cp-mp.cos(mp.pi*z))<1e-5"
+    },
+    {
+     "claim": "E_1(z/n)E_1(-z/n)=1-z^2/n^2; |1-E_k(z)|<=|z|^(k+1) on the unit disc (sampled, k=0..4)",
+     "python": "import sympy as sp, cmath, random\nz,n=sp.symbols('z n')\nE1=lambda u:(1-u)*sp.exp(u)\nassert sp.simplify(E1(z/n)*E1(-z/n)-(1-z**2/n**2))==0\nrandom.seed(7)\nfor k in range(5):\n    for _ in range(3000):\n        r=random.random()**0.5;t=random.uniform(0,2*cmath.pi);u=r*cmath.exp(1j*t)\n        E=(1-u)*cmath.exp(sum(u**j/j for j in range(1,k+1)))\n        assert abs(1-E)<=abs(u)**(k+1)+1e-12"
+    },
+    {
+     "claim": "prod_{n>=2}(1+(-1)^n/sqrt n) partial products tend to 0 roughly like N^(-1/2); prod_{n>=2}(1-1/n^2)=1/2",
+     "python": "import mpmath as mp\nP=lambda N: mp.fprod([1+(-1)**n/mp.sqrt(n) for n in range(2,N)])\na,b=P(10**3),P(10**5)\nassert b<a/5 and b<0.01\nassert 0.5<a*mp.sqrt(10**3)/(b*mp.sqrt(10**5))<2\nfrom fractions import Fraction as F\nq=F(1)\nfor n in range(2,1001): q*=1-F(1,n*n)\nassert q==F(1001,2000)"
+    },
+    {
+     "claim": "cos(sqrt z) = sum (-1)^n z^n/(2n)!; |cos sqrt z| <= e^{|z|^(1/2)} (sampled); zeros ((2k-1)pi/2)^2; |z|<=1+|z|^(3/2); 3+|z|^(3/2)<=3(1+|z|)^(3/2)",
+     "python": "import sympy as sp, mpmath as mp, random\nw=sp.symbols('w')\ns=sp.series(sp.cos(sp.sqrt(w)),w,0,6).removeO()\nassert sp.expand(s-sum((-1)**n*w**n/sp.factorial(2*n) for n in range(6)))==0\nrandom.seed(8)\nfor _ in range(2000):\n    zz=mp.mpc(random.uniform(-400,400),random.uniform(-400,400))\n    assert abs(mp.cos(mp.sqrt(zz)))<=mp.e**(abs(zz)**0.5)*(1+1e-12)\nfor k in range(1,5):\n    assert abs(mp.cos(mp.sqrt(((2*k-1)*mp.pi/2)**2)))<1e-12\nfor r in [i/100 for i in range(0,100001,7)]:\n    assert r<=1+r**1.5+1e-12 and 3+r**1.5<=3*(1+r)**1.5+1e-9"
+    },
+    {
+     "claim": "Reviewer: Jensen's formula numerically; Weierstrass product for 1/Gamma and the reflection formula; |log(1+w)|<=2|w| for |w|<=1/2; tangent expansion of exercise 3",
+     "python": "import mpmath as mp\nmp.mp.dps=25\n# Jensen's formula for f(z)=(z-0.5)(z+0.3j)e^z with R=1\nf=lambda z:(z-0.5)*(z+0.3j)*mp.e**z\nR=1\nlhs=mp.log(abs(f(0)))\nrhs=mp.log(0.5/R)+mp.log(0.3/R)+mp.quad(lambda t: mp.log(abs(f(R*mp.e**(1j*t)))),[0,mp.pi/2,mp.pi,3*mp.pi/2,2*mp.pi])/(2*mp.pi)\nassert abs(lhs-rhs)<1e-15\n# Weierstrass product for 1/Gamma and the reflection formula\nz=mp.mpf('0.3')\ng=z*mp.e**(mp.euler*z)*mp.nprod(lambda n:(1+z/n)*mp.e**(-z/n),[1,mp.inf])\nassert abs(g-1/mp.gamma(z))<1e-15\nassert abs(mp.gamma(z)*mp.gamma(1-z)-mp.pi/mp.sin(mp.pi*z))<1e-20\n# |log(1+w)| <= 2|w| for |w|<=1/2\nimport random\nrandom.seed(3)\nfor _ in range(5000):\n    r=random.random()*0.5;t=random.uniform(0,2*mp.pi);w=r*mp.e**(1j*t)\n    assert abs(mp.log(1+w))<=2*abs(w)+1e-20\n# pi tan(pi z) expansion over odd integers (exercise 3): sum_{n odd>0} 8z/(n^2-4z^2)\nz=mp.mpf('0.17')\ns=mp.nsum(lambda m: 8*z/((2*m-1)**2-4*z**2),[1,mp.inf])\nassert abs(s-mp.pi*mp.tan(mp.pi*z))<1e-18\n"
+    }
+   ]
+  }
+ }
+]
