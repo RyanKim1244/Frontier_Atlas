@@ -269,6 +269,7 @@ for k, ps in ALL.items():
 
 # ---------- lessons (AI-written, independently reviewed) ----------
 LD = os.path.join(OUT, "data", "lessons"); shutil.rmtree(LD, ignore_errors=True); os.makedirs(LD)
+shutil.rmtree(os.path.join(OUT, "data", "fig"), ignore_errors=True)
 LESSONS = {}
 for f in sorted(glob.glob(os.path.join(HERE, "..", "lessons", "final_*.json"))):
     for les in json.load(open(f)):
@@ -281,10 +282,15 @@ for cid, les in catalog_r2.LESSONS_R2.items():
     LESSONS[cid] = les
     with open(os.path.join(LD, cid + ".json"), "w", encoding="utf8") as g:
         json.dump({"blocks": les["blocks"], "sources": les.get("sources", [])}, g, ensure_ascii=False, separators=(",", ":"))
+import figures
 for cid, les in catalog_r4.LESSONS_R4.items():
     LESSONS[cid] = les
+    blocks = [figures.render(b, OUT) if b.get("type") == "figure" else b for b in les["blocks"]]
+    out = {"blocks": blocks, "sources": les.get("sources", [])}
+    if les.get("requires"): out["requires"] = les["requires"]
+    if les.get("v"): out["v"] = les["v"]
     with open(os.path.join(LD, cid + ".json"), "w", encoding="utf8") as g:
-        json.dump({"blocks": les["blocks"], "sources": les.get("sources", [])}, g, ensure_ascii=False, separators=(",", ":"))
+        json.dump(out, g, ensure_ascii=False, separators=(",", ":"))
 REVIEW = {}
 for f in glob.glob(os.path.join(HERE, "..", "lessons", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round2", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round4", "concepts", "review_*.json")):
     for r in json.load(open(f)): REVIEW[r["id"]] = sum(1 for i in r.get("issues", []) if i.get("severity") == "error")
@@ -307,6 +313,8 @@ for c in concepts:
     c["np"] = {k: sum(1 for p in ps if c["id"] in p["concepts"]) for k, ps in ALL.items()}
     c["nprob"] = sum(c["np"].values())
     if c["id"] in LESSONS: c["lesson"] = {"minutes": LESSONS[c["id"]].get("minutes", 15), "checks": len(LESSONS[c["id"]].get("checks", [])), "fixed": REVIEW.get(c["id"], 0)}
+    if c["id"] in LESSONS and LESSONS[c["id"]].get("v") == 2:
+        L5 = LESSONS[c["id"]]; c["lesson"].update(v=2, nsrc=len(L5.get("sources", [])), npap=sum(1 for x in L5.get("sources", []) if x.get("kind") == "paper"), fixed=L5.get("fixed", 0))
 colls = {}
 for ps in ALL.values():
     for p in ps: colls[p["coll"]] = colls.get(p["coll"], 0) + 1

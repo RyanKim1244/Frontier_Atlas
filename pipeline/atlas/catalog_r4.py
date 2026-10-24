@@ -28,6 +28,24 @@ for (cid, title, short, area, fields, stage, pre) in CUR:
                   msc=list(e.get("msc", [])), links=[l for l in e.get("links", []) if l.get("field") and l["field"] not in fields], refs=list(e.get("refs", [])),
                   status=None, aliases=list(e.get("aliases", [])), fields=list(fields), stage=stage))
     LESSONS_R4[cid] = dict(id=cid, **x["lesson"])
+
+# Round 5: source-composed pages (depth standard, pipeline/round5/DEPTH.md); same publish rule.
+R5 = os.path.join(HERE, "..", "round5")
+_s5 = _u.spec_from_file_location("curriculum_r5", os.path.join(R5, "curriculum.py")); _m5 = _u.module_from_spec(_s5); _s5.loader.exec_module(_m5)
+FINAL5 = {}
+for f in sorted(glob.glob(os.path.join(R5, "concepts", "final_*.json"))):
+    for x in json.load(open(f)): FINAL5[x["id"]] = x
+for a in getattr(_m5, "NEW_AREAS", []):
+    if not any(x["id"] == a["id"] for x in AREAS): AREAS.append(dict(a))
+for (cid, title, short, area, fields, stage, pre) in _m5.C:
+    x = FINAL5.get(cid)
+    if not x: continue
+    assert not any(c["id"] == cid for c in C), cid
+    e = x["entry"]
+    C.append(dict(id=cid, band=area, title=title, short=short, pre=list(pre), sum=e["sum"], key=list(e.get("key", [])), why=e.get("why", ""),
+                  msc=list(e.get("msc", [])), links=[l for l in e.get("links", []) if l.get("field") and l["field"] not in fields], refs=list(e.get("refs", [])),
+                  status=None, aliases=list(e.get("aliases", [])), fields=list(fields), stage=stage))
+    LESSONS_R4[cid] = dict(id=cid, **x["lesson"])
 present = {c["id"] for c in C}
 for c in C:
     c["pre"] = [p for p in c["pre"] if p in present]
@@ -44,6 +62,6 @@ used = {c["band"] for c in C}
 for a in AREAS:
     if not any(b["id"] == a["id"] for b in BANDS): BANDS.append(dict(a))
 ORDER = ["logic", "functions", "precalc", "calculus", "realanalysis", "complex", "harmonic", "odes", "dynamics", "pde", "functional", "linalg", "abstract", "lie",
-         "topology", "diffgeo", "foundations", "analytic", "algebraic", "combinatorial", "discrete", "olyalg", "geometry", "probability", "statistics", "numerics", "computation"]
+         "topology", "diffgeo", "alggeo", "foundations", "analytic", "algebraic", "combinatorial", "discrete", "olyalg", "geometry", "probability", "statistics", "numerics", "computation"]
 BANDS[:] = sorted([b for b in BANDS if b["id"] not in DROP_AREAS and b["id"] in used], key=lambda b: ORDER.index(b["id"]) if b["id"] in ORDER else 99)
 assert all(c["band"] in {b["id"] for b in BANDS} for c in C), [c["id"] for c in C if c["band"] not in {b["id"] for b in BANDS}]

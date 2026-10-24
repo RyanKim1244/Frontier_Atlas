@@ -184,6 +184,22 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .lb-example { background: var(--sunk); border-radius: 4px; padding: 12px 16px; margin: 18px 0; overflow-x: auto; }
 .lb-example > .linkbtn { margin-bottom: 4px; }
 .lb-src { margin-top: 26px; font-size: 15px; color: var(--ink-2); } .lb-src ul { margin: 4px 0 0; padding-left: 18px; }
+.lb-src ol { margin: 4px 0 0; padding-left: 24px; } .lb-src li { margin: 3px 0; scroll-margin-top: 90px; transition: background .4s; } .lb-src li.flash { background: var(--sunk); }
+.src-kind { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); margin-right: 6px; }
+.lb-cite { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); margin: -8px 0 14px; } .lb-cite .linkbtn { font-size: 12.5px; padding: 0; }
+.lb-box .lb-cite, .vw-panel .lb-cite, .conv .lb-cite { margin: 2px 0 10px; }
+.lb-views { border: 1px solid var(--rule); border-radius: 4px; padding: 12px 16px 4px; margin: 16px 0; background: var(--raise); overflow-x: auto; }
+.vw-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.vw-tab { font: inherit; font-family: var(--sans); font-size: 13.5px; border: 1px solid var(--rule-2); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.vw-tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.lb-conv { --c: var(--a-logic); } .conv { border-collapse: collapse; width: 100%; margin: 4px 0 10px; font-size: 16px; }
+.conv th { text-align: left; vertical-align: top; font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 8px 12px 8px 0; white-space: nowrap; color: var(--ink-2); }
+.conv td { padding: 8px 0; vertical-align: top; } .conv tr + tr { border-top: 1px solid var(--rule); } .conv td p { margin: 0 0 4px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .lb-fig img { filter: invert(1) hue-rotate(180deg); } }
+:root[data-theme="dark"] .lb-fig img { filter: invert(1) hue-rotate(180deg); }
+.lb-fig { margin: 20px 0; text-align: center; } .lb-fig img { max-width: 100%; height: auto; } .lb-fig figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; } .lb-fig figcaption p { margin: 0; }
+.req { padding-left: 0; list-style: none; } .req li { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--rule); } .req li p { margin: 0; }
+.req-p { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); min-width: 82px; } .req-p.core { color: var(--accent); }
 .rlist { margin: 0 0 14px; padding-left: 22px; } .rlist li { margin: 3px 0; }
 .toc-block ul li { border: 0; padding: 3px 0; } .toc { text-align: left; font-size: 14px; text-decoration: none; }
 @media (min-width: 901px) { .aside { position: sticky; top: 78px; max-height: calc(100vh - 96px); overflow-y: auto; } }
@@ -463,15 +479,17 @@ function lessonView(c, tocEl) {
   const L = c.lesson, box = h("div", { class: "lesson" });
   const meta = h("div", { class: "lesson-meta" },
     h("span", { class: "tag ai" }, "AI-written"),
-    h("span", null, "Written by AI, checked by a second model" + (L.fixed ? " (" + L.fixed + " error" + (L.fixed > 1 ? "s" : "") + " fixed)" : "") + ". " + L.checks + " claims verified in code · " + L.minutes + " min read."),
+    h("span", null, (L.v === 2 ? "Composed by AI from " + L.nsrc + " sources" + (L.npap ? ", with coverage checked against " + L.npap + " research papers" : "") + "; checked by a second model" : "Written by AI, checked by a second model") + (L.fixed ? " (" + L.fixed + " error" + (L.fixed > 1 ? "s" : "") + " fixed)" : "") + ". " + L.checks + " claims verified in code · " + L.minutes + " min read."),
     h("button", { class: "linkbtn", onclick: () => { const d = document.getElementById("discussion-sec"); if (d) { d.scrollIntoView({ behavior: "smooth" }); const t = d.querySelector("textarea"); if (t) setTimeout(() => t.focus(), 400); } } }, "Report a mistake"));
   const body = h("div", { class: "lesson-body" }, h("p", { class: "small muted" }, "Loading the lesson…"));
   box.append(meta, body);
   loadLesson(c.id).then(les => {
     const out = [], toc = [];
     let secN = 0;
+    const SN = {}; (les.sources || []).forEach((x, i) => { if (x.k) SN[x.k] = i + 1; });
+    const cite = ks => { ks = (ks || []).filter(k => SN[k]); return ks.length ? h("div", { class: "lb-cite" }, "Following ", ...ks.map((k, i) => [i ? " " : "", h("button", { class: "linkbtn", onclick: () => { const el = document.getElementById("lsrc-" + k); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1500); } } }, "[" + SN[k] + "]")]).flat()) : null; };
     les.blocks.forEach(b => {
-      const t = b.type;
+      const t = b.type, n0 = out.length;
       if (t === "intro") out.push(h("div", { class: "lb-intro" }, rich(b.body)));
       else if (t === "section") { const id = "ls-" + (++secN); toc.push([id, b.title]); out.push(h("h3", { class: "lb-h", id }, b.title), h("div", null, rich(b.body))); }
       else if (t === "definition") out.push(h("div", { class: "lb-box lb-def" }, h("div", { class: "lb-k" }, "Definition", b.title ? " · " + b.title : ""), rich(b.body)));
@@ -486,8 +504,23 @@ function lessonView(c, tocEl) {
       else if (t === "pitfall") out.push(h("div", { class: "lb-box lb-pit" }, h("div", { class: "lb-k" }, b.title || "Common mistakes"), rich(b.body)));
       else if (t === "connection") { const id = "ls-" + (++secN); toc.push([id, b.title || "Where this leads"]); out.push(h("h3", { class: "lb-h", id }, b.title || "Where this leads"), h("div", null, rich(b.body))); }
       else if (t === "exercise") out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Check yourself"), rich(b.body)));
+      else if (t === "views") {
+        const id = "ls-" + (++secN); toc.push([id, b.title]);
+        const tabs = h("div", { class: "vw-tabs", role: "tablist" }), panel = h("div", { class: "vw-panel", role: "tabpanel" });
+        const show = (i, ts) => { [...tabs.children].forEach((x, j) => x.setAttribute("aria-selected", j === i ? "true" : "false")); const it = b.items[i]; panel.replaceChildren(rich(it.body)); const ci = cite(it.src); if (ci) panel.append(ci); if (ts) typeset(panel); };
+        b.items.forEach((it, i) => tabs.append(h("button", { class: "vw-tab", role: "tab", onclick: () => show(i, true) }, it.label)));
+        show(0, false);
+        out.push(h("h3", { class: "lb-h", id }, b.title), b.body ? h("div", null, rich(b.body)) : null, h("div", { class: "lb-views" }, h("div", { class: "lb-k" }, b.items.length + " ways to see it"), tabs, panel));
+      }
+      else if (t === "conventions") out.push(h("div", { class: "lb-box lb-conv" }, h("div", { class: "lb-k" }, b.title || "Conventions differ between books"), b.body ? rich(b.body) : null,
+        h("table", { class: "conv" }, h("tbody", null, b.rows.map(r => h("tr", null, h("th", null, r.who), h("td", null, rich(r.text), cite(r.src))))))));
+      else if (t === "figure") out.push(h("figure", { class: "lb-fig" }, h("img", { src: b.svg, alt: b.alt || "", loading: "lazy" }), b.caption ? h("figcaption", null, rich(b.caption)) : null));
+      if (t !== "views" && b.src) { const ci = cite(b.src); if (ci) out.push(ci); }
     });
-    if (les.sources && les.sources.length) out.push(h("div", { class: "lb-src" }, h("div", { class: "lb-k" }, "Sources"), h("ul", null, les.sources.map(s => h("li", null, s.ref, s.where ? ", " + s.where : "")))));
+    if (les.requires && les.requires.length) { const id = "ls-" + (++secN); toc.push([id, "Ready for papers?"]);
+      out.push(h("h3", { class: "lb-h", id }, "Ready for papers?"), h("p", { class: "small muted" }, "What research papers using this concept take for granted, collected from the papers listed in the sources. Each item is taught above or on the linked page."),
+        h("ul", { class: "req" }, les.requires.map(r => h("li", null, h("span", { class: "req-p " + (r.priority || "") }, r.priority || ""), rich(r.item + (r.where ? " — " + r.where : "")))))); }
+    if (les.sources && les.sources.length) out.push(h("div", { class: "lb-src" }, h("div", { class: "lb-k" }, "Sources"), h(les.sources.some(x => x.k) ? "ol" : "ul", null, les.sources.map(s => h("li", { id: s.k ? "lsrc-" + s.k : null }, s.kind ? h("span", { class: "src-kind" }, s.kind) : null, s.url ? h("a", { href: s.url, target: "_blank", rel: "noopener" }, s.ref) : s.ref, s.where ? ", " + s.where : "")))));
     body.replaceChildren(...out); typeset(body);
     if (tocEl && toc.length) tocEl.replaceChildren(h("h2", null, "In this lesson"), h("ul", null, toc.map(([id, t]) => h("li", null, h("button", { class: "linkbtn toc", onclick: () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); } }, t)))));
   }).catch(() => body.replaceChildren(h("div", { class: "empty" }, h("b", null, "The lesson could not be loaded."), "Reload the page to try again.")));
