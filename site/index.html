@@ -653,7 +653,7 @@ function viewHome() {
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Areas"), h("a", { class: "small", href: "#concepts" }, "All concepts")),
       h("p", { class: "sub" }, "Clusters of related concepts. One area can span several fields."),
-      h("div", { class: "areas" }, CAT.bands.map(areaCard))),
+      areasFold()),
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "How the fields connect"), h("a", { class: "small", href: "#map", onclick: () => { S.mapMode = "fields"; } }, "Open the map")),
       h("p", { class: "sub" }, "Circles are fields, lines are shared concepts. Click a field to open it."),
@@ -706,6 +706,14 @@ function areaCard(b) {
     h("p", null, b.blurb),
     h("div", { class: "nums" }, cs.length + " concepts · " + np + " problems · " + b.fields.map(f => FIELD[f].name).join(", ")),
     h("ul", null, top.map(c => h("li", null, conceptLink(c.id, c.short)))));
+}
+function areasFold() {
+  const N = 6, all = CAT.bands, grid = h("div", { class: "areas" }, all.slice(0, N).map(areaCard));
+  if (all.length <= N) return grid;
+  let open = false;
+  const btn = h("button", { class: "btn", style: "margin-top:16px", "aria-expanded": "false" }, "Show all " + all.length + " areas");
+  btn.onclick = () => { open = !open; grid.replaceChildren(...(open ? all : all.slice(0, N)).map(areaCard)); btn.textContent = open ? "Show fewer" : "Show all " + all.length + " areas"; btn.setAttribute("aria-expanded", String(open)); if (!open) grid.scrollIntoView({ block: "start" }); };
+  return h("div", null, grid, btn);
 }
 function claimedList() {
   const box = h("div", { style: "margin-top:6px" }, h("p", { class: "small muted", style: "padding:14px 0" }, "Loading…"));
