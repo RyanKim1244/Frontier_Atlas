@@ -401,7 +401,7 @@ window.MathJax = {
   tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, packages: { "[-]": ["require", "autoload"] }, macros: { R: "\\mathbb{R}", N: "\\mathbb{N}", Z: "\\mathbb{Z}", Q: "\\mathbb{Q}", C: "\\mathbb{C}", RR: "\\mathbb{R}", NN: "\\mathbb{N}", ZZ: "\\mathbb{Z}", QQ: "\\mathbb{Q}", CC: "\\mathbb{C}", FF: "\\mathbb{F}", boldsymbol: ["\\mathbf{#1}", 1] } },
   /* Inline formulas in display style, so fractions and sums are not squeezed into text size. */
   startup: { ready() { MathJax.startup.defaultReady(); MathJax.startup.input[0].preFilters.add(({ math }) => { if (!math.display) math.math = "\\displaystyle " + math.math; }); } },
-  output: { displayOverflow: "linebreak", linebreaks: { inline: false, width: "100%" } },
+  output: { displayOverflow: "linebreak", linebreaks: { inline: false, width: "96%" } },
   options: { enableMenu: false, enableEnrichment: false, enableSpeech: false, enableBraille: false, enableExplorer: false, enableComplexity: false, menuOptions: { settings: { enrich: false, speech: false, braille: false, assistiveMml: true } }, ignoreHtmlClass: "mathjax_ignore", skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "select", "input"] }
 };
 </script>
