@@ -243,12 +243,13 @@ for x in json.load(open(os.path.join(SRC, "lebl.json"))):
                          license="CC BY-SA 4.0", license_url="https://creativecommons.org/licenses/by-sa/4.0/", credit=credit,
                          links=[{"label": "Book", "url": url}, {"label": "CC BY-SA 4.0", "url": "https://creativecommons.org/licenses/by-sa/4.0/"}]))
 # Round 5: exercises from openly licensed texts (statements only), each attached to the concept it directly exercises.
+_ORD = {"routine": 0, "standard": 1, "challenging": 2}   # used only to order easy -> hard; not shown
 for f in sorted(glob.glob(os.path.join(HERE, "..", "round5", "exercises", "exercises_*.json"))):
-    for x in json.load(open(f)):
+    for x in sorted(json.load(open(f)), key=lambda x: (x["concept"], _ORD.get(x.get("level"), 1))):
         cs = [c for c in [x["concept"]] + x.get("also", []) if c in IDS]
         if not cs: continue
         textbook.append(dict(id=x["id"], kind="textbook", coll=x["coll"], title=x["title"], section=x.get("section", ""), q=x["q"], concepts=cs, fields=fields_of(cs),
-                             license=x["license"], license_url=x["license_url"], credit=x["credit"], level=x.get("level"),
+                             license=x["license"], license_url=x["license_url"], credit=x["credit"],
                              links=[{"label": "Source", "url": x["url"]}, {"label": x["license"], "url": x["license_url"]}]))
 ids_t = [p["id"] for p in textbook]; assert len(ids_t) == len(set(ids_t)), [i for i in ids_t if ids_t.count(i) > 1][:5]
 

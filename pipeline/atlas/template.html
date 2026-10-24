@@ -550,7 +550,7 @@ function lessonView(c, tocEl) {
       else if (t === "pitfall") out.push(h("div", { class: "lb-box lb-pit" }, h("div", { class: "lb-k" }, b.title || "Common mistakes"), rich(b.body)));
       else if (t === "connection") { const id = "ls-" + (++secN); toc.push([id, b.title || "Where this leads"]); out.push(h("h3", { class: "lb-h", id }, b.title || "Where this leads"), h("div", null, rich(b.body))); }
       else if (t === "exercise" && b.items) out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Exercises"),
-        h("ol", { class: "exl" }, b.items.map(it => h("li", null, it.level ? h("span", { class: "lvl lvl-" + it.level }, it.level) : null, rich(it.q),
+        h("ol", { class: "exl" }, b.items.map(it => h("li", null, rich(it.q),
           h("div", { class: "folds" }, it.hint ? reveal("Hint", it.hint) : null, it.solution ? reveal("Solution", it.solution) : null))))));
       else if (t === "exercise") out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Check yourself"), rich(b.body)));
       else if (t === "check") out.push(h("div", { class: "lb-box lb-chk" }, h("div", { class: "lb-k" }, b.title || "Check your understanding"),
