@@ -413,7 +413,9 @@ function inline(par, em, into) {
   let last = 0, m;
   while ((m = re.exec(par))) {
     if (m.index > last) into.append(par.slice(last, m.index));
-    if (m[1]) into.append(CON[m[1]] ? conceptLink(m[1], m[2] || CON[m[1]].title) : (m[2] || m[1]));
+    if (m[1]) { let t = m[2] || (CON[m[1]] ? CON[m[1]].title : m[1]);
+      if (!m[2] && /\b(the|a|an)\s$/i.test(par.slice(Math.max(0, m.index - 4), m.index))) t = t.replace(/^(The|A|An)\s+/, "");
+      into.append(CON[m[1]] ? conceptLink(m[1], t) : t); }
     else if (m[4]) into.append(h("a", { href: m[4], target: "_blank", rel: "noopener" }, m[3]));
     else if (m[6]) into.append(h("i", null, m[6]));
     else into.append(h("code", { class: "mono", style: "font-size:.88em" }, m[5]));
