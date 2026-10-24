@@ -1,0 +1,494 @@
+[
+ {
+  "concept": "prime-patterns",
+  "ladder": [
+   {
+    "title": "Bertrand's postulate",
+    "kind": "classic",
+    "q": "Prove that for every integer $n\\ge 1$ there is a prime $p$ with $n<p\\le 2n$. Deduce that $p_{n+1}<2p_n$ for every $n\\ge 1$, where $p_n$ denotes the $n$th prime.",
+    "concepts": [
+     "prime-patterns",
+     "binomial-factorial",
+     "fta"
+    ],
+    "source": "Aigner & Ziegler, Proofs from THE BOOK, Chapter 2 (Bertrand's postulate)",
+    "bridges_to": [],
+    "note": "The first unconditional upper bound for prime gaps, proved by elementary estimates on the central binomial coefficient."
+   },
+   {
+    "title": "Average size and second moment of prime gaps",
+    "kind": "classic",
+    "q": "Let $d_n=p_{n+1}-p_n$. Assuming the prime number theorem in the form $p_n\\sim n\\log n$, prove:\n\n(a) for every $\\varepsilon>0$ there are infinitely many $n$ with $d_n>(1-\\varepsilon)\\log p_n$ and infinitely many $n$ with $d_n<(1+\\varepsilon)\\log p_n$;\n\n(b) $\\sum_{n\\le N} d_n^2\\gg N(\\log N)^2$ for all large $N$.",
+    "concepts": [
+     "prime-patterns",
+     "pnt",
+     "cauchy-schwarz",
+     "asymptotics"
+    ],
+    "source": "Elementary consequence of the prime number theorem (averaging and the Cauchy–Schwarz inequality); the unconditional lower bound in (b) is stated at erdosproblems.com/233 (Erdős Problem #233)",
+    "bridges_to": [
+     "ERDOS-233"
+    ],
+    "note": "Fixes the natural scale $\\log p_n$ for gaps; (b) is the trivial lower bound matching Heath-Brown's conjectured upper bound $N(\\log N)^2$."
+   },
+   {
+    "title": "Westzynthius: gaps are unboundedly larger than average",
+    "kind": "theorem",
+    "q": "Let $p_n$ denote the $n$th prime. Prove that\n$$\\limsup_{n\\to\\infty}\\frac{p_{n+1}-p_n}{\\log p_n}=\\infty.$$",
+    "concepts": [
+     "prime-patterns",
+     "crt",
+     "sieve-basics",
+     "pnt"
+    ],
+    "source": "E. Westzynthius, Über die Verteilung der Zahlen, die zu den n ersten Primzahlen teilerfremd sind, Societas Scientiarum Fennica, Commentationes Physico-Mathematicae 5 (1931), no. 25, 1–37",
+    "year": 1931,
+    "bridges_to": [
+     "ERDOS-5"
+    ],
+    "note": "Shows that $\\infty$ is a limit point of the normalized gaps, via long runs of integers each sharing a factor with the primorial."
+   },
+   {
+    "title": "Rankin's lower bound for large gaps",
+    "kind": "theorem",
+    "q": "Prove that there is a constant $c>0$ such that\n$$p_{n+1}-p_n>c\\,\\frac{\\log p_n\\,\\log\\log p_n\\,\\log\\log\\log\\log p_n}{(\\log\\log\\log p_n)^2}$$\nfor infinitely many $n$.",
+    "concepts": [
+     "prime-patterns",
+     "crt",
+     "smooth-powerful",
+     "sieve-basics"
+    ],
+    "source": "R. A. Rankin, The difference between consecutive prime numbers, J. London Math. Soc. 13 (1938), 242–247",
+    "year": 1938,
+    "bridges_to": [
+     "ERDOS-4",
+     "GREEN-46"
+    ],
+    "note": "The Erdős–Rankin method: cover an interval by one residue class per small prime, using smooth numbers to handle the hardest part; Erdős Problem 4 asks to make $c$ arbitrarily large."
+   },
+   {
+    "title": "Long gaps between primes (Ford–Green–Konyagin–Maynard–Tao)",
+    "kind": "theorem",
+    "q": "Prove that for all sufficiently large $X$,\n$$\\max_{p_n\\le X}(p_{n+1}-p_n)\\gg\\frac{\\log X\\,\\log\\log X\\,\\log\\log\\log\\log X}{\\log\\log\\log X}.$$",
+    "concepts": [
+     "prime-patterns",
+     "crt",
+     "bounded-gaps",
+     "probabilistic-method",
+     "sieve-basics"
+    ],
+    "source": "K. Ford, B. Green, S. Konyagin, J. Maynard, T. Tao, Long gaps between primes, J. Amer. Math. Soc. 31 (2018), 65–105",
+    "year": 2018,
+    "bridges_to": [
+     "ERDOS-4",
+     "GREEN-46"
+    ],
+    "note": "Gains a factor $\\log\\log\\log X$ over Rankin (settling Erdős Problem 4 in a strong form) by combining the covering argument with Maynard's sieve weights; improving it further is the residue-class covering question of Green's Problem 46."
+   },
+   {
+    "title": "Goldston–Pintz–Yıldırım: small normalized gaps",
+    "kind": "theorem",
+    "q": "Prove that\n$$\\liminf_{n\\to\\infty}\\frac{p_{n+1}-p_n}{\\log p_n}=0.$$",
+    "concepts": [
+     "prime-patterns",
+     "bounded-gaps",
+     "bombieri-vinogradov",
+     "selberg-sieve"
+    ],
+    "source": "D. A. Goldston, J. Pintz, C. Y. Yıldırım, Primes in tuples I, Ann. of Math. (2) 170 (2009), 819–862",
+    "year": 2009,
+    "bridges_to": [
+     "ERDOS-5"
+    ],
+    "note": "Shows that $0$ is a limit point of the normalized gaps, the case $C=0$ of Erdős Problem 5 (normalizing by $\\log n$ or $\\log p_n$ is equivalent)."
+   },
+   {
+    "title": "Bounded gaps between primes (Maynard)",
+    "kind": "theorem",
+    "q": "Prove that for every integer $m\\ge 1$ there is a constant $C_m$ such that $p_{n+m}-p_n\\le C_m$ for infinitely many $n$. In particular show that $p_{n+1}-p_n\\le 600$ for infinitely many $n$.",
+    "concepts": [
+     "prime-patterns",
+     "bounded-gaps",
+     "bombieri-vinogradov",
+     "selberg-sieve"
+    ],
+    "source": "J. Maynard, Small gaps between primes, Ann. of Math. (2) 181 (2015), 383–413",
+    "year": 2015,
+    "bridges_to": [
+     "ERDOS-6"
+    ],
+    "note": "Multidimensional sieve weights give many primes in a single admissible tuple, which is the engine behind the solution of Erdős Problem 6 and the later rungs."
+   },
+   {
+    "title": "Monotone runs of prime gaps",
+    "kind": "theorem",
+    "q": "Let $d_n=p_{n+1}-p_n$. Prove that for every $m\\ge 1$ there are infinitely many $n$ with $d_n<d_{n+1}<\\cdots<d_{n+m}$, and infinitely many $n$ with $d_n>d_{n+1}>\\cdots>d_{n+m}$.",
+    "concepts": [
+     "prime-patterns",
+     "bounded-gaps"
+    ],
+    "source": "W. D. Banks, T. Freiberg, C. L. Turnage-Butterbaugh, Consecutive primes in tuples, Acta Arith. 167 (2015), no. 3, 261–266",
+    "year": 2015,
+    "bridges_to": [
+     "ERDOS-6",
+     "ERDOS-852"
+    ],
+    "note": "Upgrades Maynard's theorem to control which members of a tuple are consecutive primes, settling the Erdős–Turán question (Erdős Problem 6); the same control over consecutive gaps is what Problems 852–853 ask about."
+   },
+   {
+    "title": "A positive proportion of limit points of normalized gaps",
+    "kind": "theorem",
+    "q": "Let $L$ be the set of limit points in $[0,\\infty)$ of the sequence $(p_{n+1}-p_n)/\\log p_n$. Prove that for any nine real numbers $0\\le\\beta_1\\le\\beta_2\\le\\cdots\\le\\beta_9$, at least one difference $\\beta_j-\\beta_i$ with $1\\le i<j\\le 9$ lies in $L$. Deduce that the Lebesgue measure $\\lambda$ satisfies $\\lambda(L\\cap[0,T])\\ge(1-o(1))\\,T/8$ as $T\\to\\infty$.",
+    "concepts": [
+     "prime-patterns",
+     "bounded-gaps",
+     "lebesgue"
+    ],
+    "source": "W. D. Banks, T. Freiberg, J. Maynard, On limit points of the sequence of normalized prime gaps, Proc. London Math. Soc. (3) 113 (2016), no. 4, 515–539, arXiv:1404.5094",
+    "year": 2016,
+    "bridges_to": [
+     "ERDOS-5"
+    ],
+    "note": "The strongest type of result towards Erdős Problem 5 (whether every $C\\ge0$ is a limit point); Merikoski (arXiv:1811.03008) later showed $\\lambda(L\\cap[0,T])\\ge T/3$ for all $T$ and that $L$ has bounded gaps."
+   },
+   {
+    "title": "Strings of consecutive primes in one residue class (Shiu)",
+    "kind": "theorem",
+    "q": "Let $q\\ge 1$ and $a$ be integers with $\\gcd(a,q)=1$, and let $k\\ge 1$. Prove that there are infinitely many $r$ such that the $k$ consecutive primes $p_{r+1},p_{r+2},\\ldots,p_{r+k}$ are all congruent to $a$ modulo $q$.",
+    "concepts": [
+     "prime-patterns",
+     "l-functions",
+     "sieve-basics",
+     "congruences"
+    ],
+    "source": "D. K. L. Shiu, Strings of congruent primes, J. London Math. Soc. (2) 61 (2000), 359–373",
+    "year": 2000,
+    "bridges_to": [
+     "ERDOS-427",
+     "ERDOS-141"
+    ],
+    "note": "Answers Erdős Problem 427 (as observed on erdosproblems.com, a long string of consecutive primes $\\equiv1\\bmod d$ beyond $p_n$ lets the partial sums hit every residue class); it is the nearest proven statement to finding consecutive primes in arithmetic progression (Problem 141), where the differences, not just the residues, must be fixed."
+   }
+  ]
+ },
+ {
+  "concept": "smooth-powerful",
+  "ladder": [
+   {
+    "title": "Counting squarefree numbers",
+    "kind": "classic",
+    "q": "Let $Q(x)$ be the number of squarefree positive integers $n\\le x$. Prove that\n$$Q(x)=\\frac{6}{\\pi^2}x+O(\\sqrt{x}).$$",
+    "concepts": [
+     "smooth-powerful",
+     "mobius",
+     "zeta",
+     "asymptotics"
+    ],
+    "source": "Hardy & Wright, An Introduction to the Theory of Numbers, Ch. XVIII",
+    "bridges_to": [],
+    "note": "The model computation: write the indicator of squarefree numbers as $\\sum_{d^2\\mid n}\\mu(d)$ and sum."
+   },
+   {
+    "title": "No two elements with square product",
+    "kind": "theorem",
+    "q": "For $N\\ge1$ let $F_2(N)$ be the largest size of a set $A\\subseteq\\{1,\\ldots,N\\}$ such that $ab$ is not a perfect square for any two distinct $a,b\\in A$. Prove that $F_2(N)$ equals the number of squarefree integers in $\\{1,\\ldots,N\\}$, so that $F_2(N)\\sim\\frac{6}{\\pi^2}N$.",
+    "concepts": [
+     "smooth-powerful",
+     "pigeonhole",
+     "combinatorial-nt"
+    ],
+    "source": "P. Erdős, A. Sárközy, V. T. Sós, On product representations of powers, I, European J. Combin. 16 (1995), 567–588",
+    "year": 1995,
+    "bridges_to": [
+     "ERDOS-121"
+    ],
+    "note": "The case $k=2$ of the function $F_k(N)$ in Erdős Problem 121: square classes (squarefree kernels) are the right bookkeeping."
+   },
+   {
+    "title": "Structure and count of powerful numbers",
+    "kind": "classic",
+    "q": "Call $n\\ge1$ powerful if $p\\mid n$ implies $p^2\\mid n$ for every prime $p$. Prove that every powerful $n$ can be written uniquely as $n=a^2b^3$ with $a,b$ positive integers and $b$ squarefree. Deduce that the number $P(x)$ of powerful $n\\le x$ satisfies\n$$P(x)=\\frac{\\zeta(3/2)}{\\zeta(3)}\\sqrt{x}+O(x^{1/3}).$$",
+    "concepts": [
+     "smooth-powerful",
+     "fta",
+     "zeta",
+     "asymptotics"
+    ],
+    "source": "S. W. Golomb, Powerful numbers, Amer. Math. Monthly 77 (1970), 848–852; the asymptotic goes back to P. Erdős and G. Szekeres, Acta Sci. Math. (Szeged) 7 (1934), 95–102",
+    "year": 1970,
+    "bridges_to": [],
+    "note": "Gives the density of powerful numbers (about $\\sqrt{x}$ of them up to $x$), the heuristic baseline for every question about consecutive or additive patterns of powerful numbers."
+   },
+   {
+    "title": "Consecutive powerful numbers",
+    "kind": "classic",
+    "q": "(a) Prove that there are no four consecutive positive integers that are all powerful.\n\n(b) Prove that there are infinitely many positive integers $n$ such that $n$ and $n+1$ are both powerful.",
+    "concepts": [
+     "smooth-powerful",
+     "pell",
+     "congruences"
+    ],
+    "source": "S. W. Golomb, Powerful numbers, Amer. Math. Monthly 77 (1970), 848–852",
+    "year": 1970,
+    "bridges_to": [
+     "ERDOS-364"
+    ],
+    "note": "Pairs are plentiful via Pell equations and quadruples are impossible mod 4; triples (Erdős Problem 364) sit exactly between what is easy in both directions."
+   },
+   {
+    "title": "Smooth numbers with one large prime factor",
+    "kind": "classic",
+    "q": "Let $\\Psi(x,y)$ be the number of $n\\le x$ all of whose prime factors are at most $y$. Using Mertens' theorem, prove that for each fixed $u\\in[1,2]$,\n$$\\Psi(x,x^{1/u})=(1-\\log u)\\,x+O\\Big(\\frac{x}{\\log x}\\Big)\\quad(x\\to\\infty).$$",
+    "concepts": [
+     "smooth-powerful",
+     "mertens",
+     "asymptotics"
+    ],
+    "source": "Tenenbaum, Introduction to Analytic and Probabilistic Number Theory, Ch. III.5 (Integers free of large prime factors)",
+    "bridges_to": [],
+    "note": "Computes Dickman's function on $[1,2]$, where $\\rho(u)=1-\\log u$, by an inclusion-exclusion that uses only one large prime factor."
+   },
+   {
+    "title": "Consecutive powerful numbers, neither a square",
+    "kind": "theorem",
+    "q": "Prove that there are infinitely many positive integers $n$ such that $n$ and $n+1$ are both powerful and neither $n$ nor $n+1$ is a perfect square.",
+    "concepts": [
+     "smooth-powerful",
+     "pell",
+     "quadratic-forms"
+    ],
+    "source": "D. T. Walker, Consecutive integer pairs of powerful numbers and related Diophantine equations, Fibonacci Quart. 14 (1976), no. 2, 111–116",
+    "year": 1976,
+    "bridges_to": [
+     "ERDOS-365"
+    ],
+    "note": "Gives infinitely many counterexamples to part (a) of Erdős Problem 365 (Golomb had found $23^3$, $23^3+1$); part (b), the $(\\log x)^{O(1)}$ count, remains open."
+   },
+   {
+    "title": "Dickman's theorem",
+    "kind": "theorem",
+    "q": "Let $\\rho:(0,\\infty)\\to\\mathbb{R}$ be the continuous function with $\\rho(u)=1$ for $0<u\\le1$ and $u\\rho'(u)=-\\rho(u-1)$ for $u>1$. Prove that for each fixed $u\\ge1$,\n$$\\Psi(x,x^{1/u})\\sim\\rho(u)\\,x\\quad(x\\to\\infty).$$",
+    "concepts": [
+     "smooth-powerful",
+     "mertens",
+     "pnt",
+     "asymptotics"
+    ],
+    "source": "K. Dickman, On the frequency of numbers containing prime factors of a certain relative magnitude, Ark. Mat. Astr. Fys. 22A (1930), no. 10, 1–14",
+    "year": 1930,
+    "bridges_to": [],
+    "note": "Extends the previous rung to all $u$ by an integral-delay recursion; smooth-number counts like this drive the large-gap constructions in prime-patterns."
+   },
+   {
+    "title": "Products of consecutive integers are never powers (Erdős–Selfridge)",
+    "kind": "theorem",
+    "q": "Prove that for integers $n\\ge1$, $k\\ge2$ and $\\ell\\ge2$, the product $n(n+1)\\cdots(n+k-1)$ is never an $\\ell$th power of an integer.",
+    "concepts": [
+     "smooth-powerful",
+     "binomial-factorial",
+     "diophantine"
+    ],
+    "source": "P. Erdős, J. L. Selfridge, The product of consecutive integers is never a power, Illinois J. Math. 19 (1975), 292–301",
+    "year": 1975,
+    "bridges_to": [
+     "ERDOS-137"
+    ],
+    "note": "Erdős Problem 137 asks for the much weaker conclusion 'never powerful' for $k\\ge3$, which is open even though 'never a perfect power' is known."
+   },
+   {
+    "title": "Coprime arithmetic progressions of powerful numbers",
+    "kind": "theorem",
+    "q": "Prove that there are infinitely many pairs of positive integers $(N,d)$ with $\\gcd(N,d)=1$ such that $N,N+d,N+2d,N+3d$ are all powerful. Prove also that there are infinitely many such pairs with $\\gcd(N,d)=1$ for which $N,N+d,N+2d$ are all $3$-full (every prime factor occurs to at least the third power).",
+    "concepts": [
+     "smooth-powerful",
+     "arithmetic-progressions",
+     "diophantine",
+     "pell"
+    ],
+    "source": "P. Bajpai, M. A. Bennett, T. H. Chan, Arithmetic progressions in squarefull numbers, Int. J. Number Theory 20 (2024), no. 1, 19–45, arXiv:2302.03113",
+    "year": 2024,
+    "bridges_to": [
+     "ERDOS-937"
+    ],
+    "note": "Resolves Erdős Problem 937; without coprimality the problem is trivial (scale any progression by a suitable square), and the same paper shows under abc that these lengths are optimal."
+   },
+   {
+    "title": "Five elements with square product (Tao)",
+    "kind": "theorem",
+    "q": "For $N\\ge1$ let $F_5(N)$ be the largest size of a set $A\\subseteq\\{1,\\ldots,N\\}$ such that no product of five distinct elements of $A$ is a perfect square. Prove that there is a constant $c>0$ such that $F_5(N)\\le(1-c+o(1))N$ as $N\\to\\infty$.",
+    "concepts": [
+     "smooth-powerful",
+     "probabilistic-method",
+     "combinatorial-nt"
+    ],
+    "source": "T. Tao, On product representations of squares, arXiv:2405.11610 (2024)",
+    "year": 2024,
+    "bridges_to": [
+     "ERDOS-121"
+    ],
+    "note": "Answers Erdős Problem 121 in the negative (the conjecture was $F_5(N)=(1-o(1))N$), contrasting with $F_3(N)=(1-o(1))N$ proved by Erdős–Sárközy–Sós."
+   }
+  ]
+ },
+ {
+  "concept": "diophantine-approx",
+  "ladder": [
+   {
+    "title": "Dirichlet's approximation theorem",
+    "kind": "classic",
+    "q": "Let $\\alpha$ be an irrational real number. Prove that there are infinitely many pairs of integers $(p,q)$ with $q\\ge1$ such that\n$$\\Big|\\alpha-\\frac{p}{q}\\Big|<\\frac{1}{q^2}.$$",
+    "concepts": [
+     "diophantine-approx",
+     "pigeonhole",
+     "continued-fractions"
+    ],
+    "source": "Hardy & Wright, An Introduction to the Theory of Numbers, Ch. XI",
+    "bridges_to": [],
+    "note": "The baseline exponent $2$ that every later rung either improves on (for special numbers) or shows to be essentially optimal."
+   },
+   {
+    "title": "Liouville's inequality",
+    "kind": "classic",
+    "q": "Let $\\alpha$ be a real algebraic number of degree $d\\ge2$. Prove that there is a constant $c(\\alpha)>0$ such that\n$$\\Big|\\alpha-\\frac{p}{q}\\Big|>\\frac{c(\\alpha)}{q^d}$$\nfor all integers $p$ and $q\\ge1$. Deduce that $\\sum_{n\\ge1}10^{-n!}$ is transcendental.",
+    "concepts": [
+     "diophantine-approx",
+     "polynomials-roots",
+     "mvt"
+    ],
+    "source": "Hardy & Wright, An Introduction to the Theory of Numbers, Ch. XI",
+    "bridges_to": [],
+    "note": "The basic mechanism of irrationality and transcendence proofs: a number with too-good rational approximations cannot be rational or algebraic of low degree."
+   },
+   {
+    "title": "Khintchine's theorem",
+    "kind": "theorem",
+    "q": "For real $x$ let $\\|x\\|$ be the distance from $x$ to the nearest integer. Let $\\psi:\\mathbb{N}\\to[0,\\infty)$ be non-increasing. Prove that if $\\sum_{q\\ge1}\\psi(q)<\\infty$ then for almost every $\\alpha\\in\\mathbb{R}$ the inequality $\\|q\\alpha\\|<\\psi(q)$ has only finitely many solutions $q\\in\\mathbb{N}$, while if $\\sum_{q\\ge1}\\psi(q)=\\infty$ then for almost every $\\alpha$ it has infinitely many solutions.",
+    "concepts": [
+     "diophantine-approx",
+     "lebesgue",
+     "continued-fractions"
+    ],
+    "source": "A. Khintchine, Einige Sätze über Kettenbrüche, mit Anwendungen auf die Theorie der Diophantischen Approximationen, Math. Ann. 92 (1924), 115–125",
+    "year": 1924,
+    "bridges_to": [
+     "ERDOS-999"
+    ],
+    "note": "The convergence half is Borel–Cantelli; the divergence half needs monotonicity, and removing it (with coprimality) is exactly the Duffin–Schaeffer problem."
+   },
+   {
+    "title": "Irrationality of the Lambert series at 1/2 (Erdős)",
+    "kind": "theorem",
+    "q": "Prove that\n$$\\sum_{n\\ge1}\\frac{1}{2^n-1}=\\sum_{n\\ge1}\\frac{\\tau(n)}{2^n}$$\nis irrational, where $\\tau(n)$ is the number of divisors of $n$.",
+    "concepts": [
+     "diophantine-approx",
+     "arithmetic-functions",
+     "digits-bases",
+     "series"
+    ],
+    "source": "P. Erdős, On arithmetical properties of Lambert series, J. Indian Math. Soc. (N.S.) 12 (1948), 63–66",
+    "year": 1948,
+    "bridges_to": [
+     "ERDOS-257",
+     "ERDOS-1049"
+    ],
+    "note": "The case $A=\\mathbb{N}$ of Erdős Problem 257 and the case $t=2$ of Problem 1049: the binary expansion of the sum is controlled by the divisor function."
+   },
+   {
+    "title": "Borwein's irrationality of q-harmonic type series",
+    "kind": "theorem",
+    "q": "Let $q\\ge2$ be an integer and $r\\ne0$ a rational number with $r\\ne-q^n$ for all $n\\ge1$. Prove that\n$$\\sum_{n\\ge1}\\frac{1}{q^n+r}$$\nis irrational.",
+    "concepts": [
+     "diophantine-approx",
+     "series",
+     "integer-polynomials"
+    ],
+    "source": "P. B. Borwein, On the irrationality of Σ 1/(q^n+r), J. Number Theory 37 (1991), 253–259",
+    "year": 1991,
+    "bridges_to": [
+     "ERDOS-1050",
+     "ERDOS-1049"
+    ],
+    "note": "Settles Erdős Problem 1050 ($q=2$, $r=-3$) via Padé approximation and also recovers the integer-$t$ case of Problem 1049 (first proved by Erdős in 1948); the rational non-integer $t$ case of 1049 stays open."
+   },
+   {
+    "title": "Roth's theorem",
+    "kind": "theorem",
+    "q": "Let $\\alpha$ be a real algebraic irrational number and $\\varepsilon>0$. Prove that there are only finitely many pairs of integers $(p,q)$ with $q\\ge1$ such that\n$$\\Big|\\alpha-\\frac{p}{q}\\Big|<\\frac{1}{q^{2+\\varepsilon}}.$$",
+    "concepts": [
+     "diophantine-approx",
+     "polynomials-roots"
+    ],
+    "source": "K. F. Roth, Rational approximations to algebraic numbers, Mathematika 2 (1955), 1–20",
+    "year": 1955,
+    "bridges_to": [],
+    "note": "Shows Dirichlet's exponent $2$ is sharp for every algebraic irrational, improving Liouville's $d$ all the way down."
+   },
+   {
+    "title": "Littlewood's conjecture for cubic fields (Cassels–Swinnerton-Dyer)",
+    "kind": "theorem",
+    "q": "For real $x$ let $\\|x\\|$ be the distance from $x$ to the nearest integer. Let $K$ be a real cubic number field and let $\\alpha,\\beta\\in K$ be such that $1,\\alpha,\\beta$ are linearly independent over $\\mathbb{Q}$. Prove that\n$$\\liminf_{n\\to\\infty}n\\,\\|n\\alpha\\|\\,\\|n\\beta\\|=0.$$",
+    "concepts": [
+     "diophantine-approx",
+     "ideals",
+     "quadratic-forms"
+    ],
+    "source": "J. W. S. Cassels, H. P. F. Swinnerton-Dyer, On the product of three homogeneous linear forms and indefinite ternary quadratic forms, Philos. Trans. Roy. Soc. London Ser. A 248 (1955), 73–96",
+    "year": 1955,
+    "bridges_to": [
+     "ERDOS-495"
+    ],
+    "note": "Littlewood's conjecture is trivial unless both $\\alpha,\\beta$ are badly approximable; cubic pairs are the most natural such pairs, and this is the case proved."
+   },
+   {
+    "title": "The Duffin–Schaeffer conjecture (Koukoulopoulos–Maynard)",
+    "kind": "theorem",
+    "q": "Let $\\psi:\\mathbb{N}\\to[0,\\infty)$ be any function and let $\\varphi$ be Euler's totient function. Prove that for almost every $\\alpha\\in\\mathbb{R}$ the inequality\n$$\\Big|\\alpha-\\frac{a}{q}\\Big|<\\frac{\\psi(q)}{q}$$\nhas infinitely many solutions in integers $a,q$ with $q\\ge1$ and $\\gcd(a,q)=1$ if and only if $\\sum_{q\\ge1}\\varphi(q)\\psi(q)/q=\\infty$.",
+    "concepts": [
+     "diophantine-approx",
+     "lebesgue",
+     "arithmetic-functions",
+     "probabilistic-method"
+    ],
+    "source": "D. Koukoulopoulos, J. Maynard, On the Duffin–Schaeffer conjecture, Ann. of Math. (2) 192 (2020), 251–307",
+    "year": 2020,
+    "bridges_to": [
+     "ERDOS-999"
+    ],
+    "note": "Removes the monotonicity hypothesis from Khintchine's theorem (with reduced fractions), resolving Erdős Problem 999."
+   },
+   {
+    "title": "Exceptions to Littlewood have dimension zero (Einsiedler–Katok–Lindenstrauss)",
+    "kind": "theorem",
+    "q": "For real $x$ let $\\|x\\|$ be the distance from $x$ to the nearest integer. Prove that the set of pairs $(\\alpha,\\beta)\\in\\mathbb{R}^2$ with\n$$\\liminf_{n\\to\\infty}n\\,\\|n\\alpha\\|\\,\\|n\\beta\\|>0$$\nhas Hausdorff dimension $0$.",
+    "concepts": [
+     "diophantine-approx",
+     "lebesgue"
+    ],
+    "source": "M. Einsiedler, A. Katok, E. Lindenstrauss, Invariant measures and the set of exceptions to Littlewood's conjecture, Ann. of Math. (2) 164 (2006), 513–560",
+    "year": 2006,
+    "bridges_to": [
+     "ERDOS-495"
+    ],
+    "note": "The strongest known result toward the Littlewood conjecture (Erdős Problem 495), obtained by measure rigidity for diagonal actions on $\\mathrm{SL}_3(\\mathbb{R})/\\mathrm{SL}_3(\\mathbb{Z})$."
+   },
+   {
+    "title": "Irrationality of the sum over primes (Tao–Teräväinen)",
+    "kind": "theorem",
+    "q": "Let $\\omega(n)$ be the number of distinct prime factors of $n$. Prove that\n$$\\sum_{n\\ge2}\\frac{\\omega(n)}{2^n}=\\sum_{p\\ \\mathrm{prime}}\\frac{1}{2^p-1}$$\n(verify this identity first) and that this number is irrational.",
+    "concepts": [
+     "diophantine-approx",
+     "arithmetic-functions",
+     "prime-patterns",
+     "probabilistic-nt"
+    ],
+    "source": "T. Tao, J. Teräväinen, Quantitative correlations and some problems on prime factors of consecutive integers, arXiv:2512.01739 (2025)",
+    "year": 2025,
+    "bridges_to": [
+     "ERDOS-69",
+     "ERDOS-257"
+    ],
+    "note": "Settles Erdős Problem 69 and the case $A=$ primes of Problem 257, extending Erdős's $A=\\mathbb{N}$ rung; it needs correlation estimates for $\\omega(n)$ and $\\omega(n+h)$ in place of the divisor-function structure."
+   }
+  ]
+ }
+]

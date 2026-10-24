@@ -1,0 +1,935 @@
+[
+ {
+  "id": "hecke-l",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A Dirichlet character $\\chi \\bmod q$ is a function on the integers, but it can just as well be read as a function on the ideals $(n)$ of $\\mathbb Z$ coprime to $q$. The Dedekind zeta function $\\zeta_K(s)=\\sum_{\\mathfrak a} N\\mathfrak a^{-s}$ of a number field $K$ is a sum over ideals of $K$. Hecke asked what the common generalisation should be: which functions $\\xi$ on the ideals of a number field give $L$-series $\\sum_{\\mathfrak a}\\xi(\\mathfrak a)N\\mathfrak a^{-s}$ that still continue to the whole plane and satisfy a functional equation?\n\nHis answer, the Größencharaktere (Hecke characters), gives the $L$-functions that control how prime ideals are distributed among ideal classes, ray classes and even angular sectors. They also work in the other direction: some $L$-functions of a field $K$ factor into Dirichlet $L$-functions, so information over $K$ can be carried back to $\\mathbb Q$."
+   },
+   {
+    "type": "section",
+    "title": "From characters of numbers to characters of ideals",
+    "body": "Over $\\mathbb Z$ every nonzero ideal is $(n)$ for exactly one $n>0$, so a Dirichlet character $\\chi \\bmod q$ gives a function $(n)\\mapsto\\chi(n)$ on ideals coprime to $q$ with nothing to check. In a general ring of integers $\\mathcal O_K$ two things change.\n\n1. Not every ideal is principal, so values on non-principal ideals must be chosen consistently with multiplication (this is where class group characters come from).\n2. A principal ideal $(\\alpha)$ has many generators: $\\alpha$ and $\\varepsilon\\alpha$ for every unit $\\varepsilon$. If we want the value $\\xi((\\alpha))$ to be computed from $\\alpha$, the recipe must give the same answer for all generators.\n\nHecke's idea is to let $\\xi((\\alpha))$ depend on $\\alpha$ in two ways at once: through a congruence condition (the residue of $\\alpha$ modulo some ideal $\\mathfrak m$, as for Dirichlet characters) and through the position of $\\alpha$ in the real and complex embeddings of $K$ (signs at real places, angles at complex places). The unit ambiguity is then absorbed by requiring the product of the two contributions to be $1$ on units.\n\nWrite $K_{\\mathbb R}=K\\otimes_{\\mathbb Q}\\mathbb R\\cong\\mathbb R^{r_1}\\times\\mathbb C^{r_2}$, where $r_1$ and $r_2$ count real embeddings and pairs of complex embeddings; an element $\\alpha\\in K$ sits in $K_{\\mathbb R}$ through its embeddings."
+   },
+   {
+    "type": "definition",
+    "title": "Hecke character (Größencharakter)",
+    "body": "Let $\\mathfrak m$ be a nonzero ideal of $\\mathcal O_K$ and $J^{\\mathfrak m}$ the group of fractional ideals coprime to $\\mathfrak m$. A Hecke character modulo $\\mathfrak m$ is a homomorphism $\\xi: J^{\\mathfrak m}\\to\\{z\\in\\mathbb C:|z|=1\\}$ for which there exist a character $\\xi_f$ of $(\\mathcal O_K/\\mathfrak m)^\\times$ and a continuous homomorphism $\\xi_\\infty:K_{\\mathbb R}^\\times\\to\\{|z|=1\\}$ such that\n$$\\xi((\\alpha))=\\xi_f(\\alpha)\\,\\xi_\\infty(\\alpha)\\qquad\\text{for every }\\alpha\\in\\mathcal O_K\\text{ coprime to }\\mathfrak m.$$\nIt has finite order exactly when $\\xi_\\infty$ depends only on the signs of $\\alpha$ at the real places. We extend $\\xi$ by $\\xi(\\mathfrak a)=0$ for integral ideals $\\mathfrak a$ not coprime to $\\mathfrak m$.\n\nIn words: on principal ideals a Hecke character is a Dirichlet-type character of the generator times a continuous \"angle\" character of the generator, glued so that units see the value $1$."
+   },
+   {
+    "type": "section",
+    "title": "Three families of examples",
+    "body": "Putting $\\alpha=\\varepsilon$, a unit, in the definition gives the compatibility condition $\\xi_f(\\varepsilon)\\xi_\\infty(\\varepsilon)=1$ for all units. Every example below is a way of meeting it.\n\n- Class group characters. Take $\\mathfrak m=(1)$ and $\\xi_f,\\xi_\\infty$ trivial. Then $\\xi$ is trivial on principal ideals, so it is a character of the class group $\\mathrm{Cl}_K$ (see [[class-group]]). More generally the finite-order Hecke characters modulo $\\mathfrak m$ are exactly the characters of the ray class group modulo $\\mathfrak m$ (with sign conditions at real places allowed).\n- Norm characters. $\\xi(\\mathfrak a)=N\\mathfrak a^{i\\tau}$ for real $\\tau$; here $\\xi_\\infty(x)=|N(x)|^{i\\tau}$. Its $L$-function is just $\\zeta_K(s-i\\tau)$, a shift.\n- Angular characters of $\\mathbb Q(i)$. Here $K_{\\mathbb R}=\\mathbb C$ and the units are $\\pm1,\\pm i$. For an integer $\\ell$ put $\\xi_\\ell((\\alpha))=(\\alpha/|\\alpha|)^{\\ell}$. Replacing $\\alpha$ by $i\\alpha$ multiplies this by $i^\\ell$, so the formula is well defined on ideals exactly when $4\\mid\\ell$. Since $\\mathbb Z[i]$ is a principal ideal domain, this defines $\\xi_\\ell$ on all ideals. For $\\ell\\neq0$ it has infinite order: it records the argument of a generator, a continuous quantity.\n\nThe third family is the genuinely new one: it sees the argument of $\\alpha$ in the complex plane, and Hecke used it to prove that Gaussian primes are equidistributed in angle."
+   },
+   {
+    "type": "definition",
+    "title": "Hecke L-function",
+    "body": "For a Hecke character $\\xi$ modulo $\\mathfrak m$,\n$$L(s,\\xi)=\\sum_{\\mathfrak a}\\frac{\\xi(\\mathfrak a)}{N\\mathfrak a^{s}}=\\prod_{\\mathfrak p\\nmid\\mathfrak m}\\Bigl(1-\\frac{\\xi(\\mathfrak p)}{N\\mathfrak p^{s}}\\Bigr)^{-1},$$\nthe sum over nonzero integral ideals and the product over prime ideals. Since $|\\xi(\\mathfrak a)|\\le1$, both converge absolutely for $\\operatorname{Re}s>1$, by comparison with $\\zeta_K(\\operatorname{Re}s)$ (see [[dedekind-zeta]]), and the product formula follows from unique factorisation of ideals and multiplicativity of $\\xi$ and $N$.\n\nIt is the $L$-series of $K$ twisted by $\\xi$; for $\\xi=1$ and $\\mathfrak m=(1)$ it is $\\zeta_K(s)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Hecke's theorem (finite-order case)",
+    "body": "Let $\\xi$ be a primitive Hecke character of finite order of $K$, with conductor $\\mathfrak f$ (the smallest modulus from which it comes), and for each real place $v$ let $a_v\\in\\{0,1\\}$ be such that $\\xi_\\infty(x)=\\prod_{v\\text{ real}}\\operatorname{sgn}(x_v)^{a_v}$. With $\\Gamma_{\\mathbb R}(s)=\\pi^{-s/2}\\Gamma(s/2)$ and $\\Gamma_{\\mathbb C}(s)=2(2\\pi)^{-s}\\Gamma(s)$, put\n$$\\Lambda(s,\\xi)=\\bigl(|d_K|\\,N\\mathfrak f\\bigr)^{s/2}\\prod_{v\\text{ real}}\\Gamma_{\\mathbb R}(s+a_v)\\;\\Gamma_{\\mathbb C}(s)^{r_2}\\;L(s,\\xi).$$\nThen $\\Lambda(s,\\xi)$ extends to a meromorphic function on $\\mathbb C$ satisfying\n$$\\Lambda(s,\\xi)=W(\\xi)\\,\\Lambda(1-s,\\bar\\xi),\\qquad |W(\\xi)|=1.$$\nIt is entire unless $\\xi$ is trivial, in which case $L(s,\\xi)=\\zeta_K(s)$ and the only poles are simple ones at $s=0$ and $s=1$. For Größencharaktere of infinite order the same holds with the gamma factors shifted according to $\\xi_\\infty$; then $L(s,\\xi)$ is entire unless $\\xi$ is a norm character $N\\mathfrak a^{i\\tau}$."
+   },
+   {
+    "type": "section",
+    "title": "Where the functional equation comes from",
+    "body": "We do not prove Hecke's theorem here; a complete proof takes a chapter (Neukirch, Chapter VII). The idea is the one you have seen for $\\zeta(s)$ in [[functional-equation]]. One writes $\\Lambda(s,\\xi)$ as a Mellin transform (see [[mellin]]) of a theta series: a sum of a Gaussian over the points of an ideal, viewed as a lattice in $K_{\\mathbb R}\\cong\\mathbb R^{n}$, twisted by $\\xi$. Poisson summation on that lattice (see [[fourier-poisson]]) relates the theta series at $t$ and $1/t$, and the dual lattice is where $d_K$ and $\\mathfrak f$ enter. The root number $W(\\xi)$ is a normalised Gauss sum, just as for Dirichlet characters.\n\nTate's thesis (1950) redid the whole argument as Poisson summation on the adeles, which treats all Hecke characters and all number fields uniformly and is now the standard modern route.\n\nFor $\\xi$ trivial the formula is the functional equation of $\\zeta_K$; for $K=\\mathbb Q$ ($d_K=1$, $r_1=1$, $r_2=0$) it is $q^{s/2}\\Gamma_{\\mathbb R}(s+a)L(s,\\chi)=W\\,q^{(1-s)/2}\\Gamma_{\\mathbb R}(1-s+a)L(1-s,\\bar\\chi)$, the functional equation of [[l-functions]], with $a=0$ or $1$ according as $\\chi(-1)=1$ or $-1$."
+   },
+   {
+    "type": "section",
+    "title": "Over the rationals: Dirichlet L-functions",
+    "body": "Take $K=\\mathbb Q$ and modulus $(q)$. The continuous characters of $\\mathbb R^\\times$ are $x\\mapsto\\operatorname{sgn}(x)^a|x|^{i\\tau}$ with $a\\in\\{0,1\\}$ and $\\tau$ real. So a Hecke character satisfies, for $n>0$ coprime to $q$,\n$$\\xi((n))=\\xi_f(n)\\,n^{i\\tau},$$\nand since $(n)=(-n)$ we also need $\\xi_f(-1)(-1)^a=1$. Reading $\\xi_f$ as a Dirichlet character $\\chi \\bmod q$, we get $\\xi((n))=\\chi(n)n^{i\\tau}$ and\n$$L(s,\\xi)=L(s-i\\tau,\\chi).$$\nFinite order means $\\tau=0$, and then $L(s,\\xi)$ is literally a Dirichlet $L$-function, with $a$ recording the parity of $\\chi$. So over $\\mathbb Q$ Hecke's theory recovers Dirichlet's and adds only vertical shifts."
+   },
+   {
+    "type": "theorem",
+    "title": "Factorisation over Q(√−3)",
+    "body": "Let $K=\\mathbb Q(\\sqrt{-3})$, with ring of integers $\\mathbb Z[\\omega]$, $\\omega=e^{2\\pi i/3}$, and let $\\chi_{-3}$ be the character mod $3$ with $\\chi_{-3}(1)=1$, $\\chi_{-3}(2)=-1$. For a Dirichlet character $\\chi \\bmod q$ define $\\xi_\\chi(\\mathfrak a)=\\chi(N\\mathfrak a)$. Then $\\xi_\\chi$ is a finite-order Hecke character of $K$ modulo $q\\mathbb Z[\\omega]$, and for $\\operatorname{Re}s>1$\n$$L(s,\\xi_\\chi)=L(s,\\chi)\\,L(s,\\chi\\chi_{-3}).$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "For $\\alpha\\in\\mathbb Z[\\omega]$ coprime to $q$, the norm $N\\alpha=\\alpha\\bar\\alpha$ is a positive integer coprime to $q$, and its residue mod $q$ depends only on $\\alpha \\bmod q\\mathbb Z[\\omega]$. So $\\xi_f(\\alpha)=\\chi(N\\alpha)$ is a character of $(\\mathbb Z[\\omega]/q)^\\times$, $\\xi_\\infty=1$ works (norms from an imaginary quadratic field are positive, so units have norm $1$ and $\\xi_f(\\varepsilon)=\\chi(1)=1$), and $\\xi_\\chi((\\alpha))=\\chi(N\\alpha)$. Multiplicativity of the norm makes $\\xi_\\chi$ a homomorphism on ideals. Hence $\\xi_\\chi$ is a Hecke character of finite order.\n\nNow compare Euler factors prime by prime, using how rational primes factor in $\\mathbb Z[\\omega]$ (see [[eisenstein-integers]]):\n\n1. $p\\equiv1\\pmod3$ splits into two primes of norm $p$. The left side has factor $(1-\\chi(p)p^{-s})^{-2}$. On the right, $\\chi\\chi_{-3}(p)=\\chi(p)$, giving the same.\n2. $p\\equiv2\\pmod3$ stays prime, with norm $p^2$. The left factor is $(1-\\chi(p)^2p^{-2s})^{-1}=(1-\\chi(p)p^{-s})^{-1}(1+\\chi(p)p^{-s})^{-1}$. On the right $\\chi\\chi_{-3}(p)=-\\chi(p)$: the same.\n3. $p=3$ ramifies: $3=-\\omega^2(1-\\omega)^2$, one prime of norm $3$. Left: $(1-\\chi(3)3^{-s})^{-1}$. Right: $(1-\\chi(3)3^{-s})^{-1}$ times $1$, since $\\chi_{-3}(3)=0$.\n\nIf $p\\mid q$ all factors involved equal $1$ on both sides. Both sides are absolutely convergent Euler products for $\\operatorname{Re}s>1$ with equal factors, so they are equal. (With $\\chi$ trivial this is the familiar $\\zeta_K(s)=\\zeta(s)L(s,\\chi_{-3})$.)"
+   },
+   {
+    "type": "section",
+    "title": "Why the factorisation matters for zeros",
+    "body": "Both sides continue meromorphically, so the identity holds on all of $\\mathbb C$. Suppose that for some $\\sigma_0\\lt 1$ every finite-order Hecke $L$-function of $\\mathbb Q(\\sqrt{-3})$ has no zeros in $\\operatorname{Re}s>\\sigma_0$. Take a Dirichlet character $\\chi$ and a point $\\rho$ with $\\operatorname{Re}\\rho>\\sigma_0$, $\\rho\\neq1$. The factor $L(s,\\chi\\chi_{-3})$ is holomorphic at $\\rho$ (its only possible pole is at $s=1$), so $L(\\rho,\\chi)=0$ would force $L(\\rho,\\xi_\\chi)=0$. At $s=1$ itself the classical non-vanishing $L(1,\\chi)\\neq0$ for non-principal $\\chi$ takes care of the remaining case. So a zero-free half-plane for the Hecke $L$-functions of one quadratic field yields the same half-plane for all Dirichlet $L$-functions. This kind of uniform zero-free half-plane, with $\\sigma_0\\lt 1$ fixed, is the subject of [[quasi-rh]].\n\nOn 30 September 2026 a manuscript produced by an OpenAI internal model claimed that every Dirichlet $L$-function is zero-free in $\\operatorname{Re}s>\\tfrac78$, using Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation; it was reported as Lean-verified. This is a claim, not an accepted theorem. The factorisation explains why a statement over $\\mathbb Q(\\sqrt{-3})$ can bear on Dirichlet $L$-functions; it says nothing about whether the manuscript's argument works."
+   },
+   {
+    "type": "example",
+    "title": "An angular character on the Gaussian integers",
+    "body": "For $K=\\mathbb Q(i)$ and $\\xi_4((\\alpha))=(\\alpha/|\\alpha|)^4$, compute the coefficients of $2^{-s}$, $5^{-s}$ and $9^{-s}$ in $L(s,\\xi_4)$.",
+    "solution": "The coefficient of $n^{-s}$ is $\\sum_{N\\mathfrak a=n}\\xi_4(\\mathfrak a)$.\n\nNorm $2$: the only ideal is $(1+i)$. Since $(1+i)^2=2i$, we get $(1+i)^4=-4$ and $|1+i|^4=4$, so $\\xi_4((1+i))=-1$. Coefficient $-1$.\n\nNorm $5$: the ideals are $(2+i)$ and $(2-i)$. Now $(2+i)^2=3+4i$ and $(3+4i)^2=-7+24i$, with $|2+i|^4=25$. So $\\xi_4((2+i))=(-7+24i)/25$ and $\\xi_4((2-i))$ is its conjugate. Coefficient $2\\cdot(-7/25)=-14/25$.\n\nNorm $9$: $3$ is inert in $\\mathbb Z[i]$, so the only ideal of norm $9$ is $(3)$, and $\\xi_4((3))=(3/3)^4=1$. Coefficient $1$.\n\nThe coefficients are real, because conjugate ideals have conjugate values, but they are not integers, and they can exceed $1$ in absolute value (at the prime $313$ the coefficient is about $-1.97$). The value $\\xi_4((2+i))=(-7+24i)/25$ is not a root of unity, which is another way to see that $\\xi_4$ has infinite order."
+   },
+   {
+    "type": "example",
+    "title": "Checking the factorisation numerically",
+    "body": "Let $\\chi=\\chi_{-4}$, the non-principal character mod $4$. Compute the coefficients of $5^{-s}$, $7^{-s}$ and $25^{-s}$ in $L(s,\\xi_\\chi)$ for $K=\\mathbb Q(\\sqrt{-3})$ in two ways: directly from ideals, and from the product $L(s,\\chi)L(s,\\chi\\chi_{-3})$.",
+    "solution": "Directly, the coefficient of $n^{-s}$ is $\\chi(n)$ times the number of ideals of norm $n$.\n\n- $5\\equiv2\\pmod3$ is inert, so there is no ideal of norm $5$: coefficient $0$.\n- $7\\equiv1\\pmod3$ splits (for example $7=N(3+\\omega)=9-3+1$), so there are two ideals of norm $7$, and $\\chi_{-4}(7)=-1$: coefficient $-2$.\n- Norm $25$: only the inert prime $(5)$, and $\\chi_{-4}(25)=1$: coefficient $1$.\n\nFrom the product, the coefficient of $n^{-s}$ is $\\sum_{de=n}\\chi(d)\\chi(e)\\chi_{-3}(e)=\\chi(n)\\sum_{e\\mid n}\\chi_{-3}(e)$.\n\n- $n=5$: $\\chi(5)\\bigl(1+\\chi_{-3}(5)\\bigr)=1\\cdot(1-1)=0$.\n- $n=7$: $\\chi(7)\\bigl(1+\\chi_{-3}(7)\\bigr)=-1\\cdot2=-2$.\n- $n=25$: $\\chi(25)\\bigl(1+\\chi_{-3}(5)+\\chi_{-3}(25)\\bigr)=1\\cdot(1-1+1)=1$.\n\nThe two computations agree. In general the number of ideals of norm $n$ in $\\mathbb Z[\\omega]$ is $\\sum_{e\\mid n}\\chi_{-3}(e)$, which is the coefficient form of $\\zeta_K=\\zeta\\cdot L(s,\\chi_{-3})$."
+   },
+   {
+    "type": "example",
+    "title": "Angles of Gaussian primes",
+    "body": "Each prime $p\\equiv1\\pmod4$ is $a^2+b^2$ with $a>b>0$ in exactly one way. Let $\\theta_p=\\arctan(b/a)\\in(0,\\pi/4)$. Hecke's angular characters show that the $\\theta_p$ are equidistributed in $(0,\\pi/4)$. Explain which $L$-functions are involved, and test the statement for $p\\lt 2\\cdot10^5$ by splitting $(0,\\pi/4)$ into four equal parts.",
+    "solution": "The two prime ideals above $p$ are generated by $a+bi$ and $a-bi$, with arguments $\\pm\\theta_p$. For $4\\mid\\ell$,\n$$\\xi_\\ell((a+bi))+\\xi_\\ell((a-bi))=2\\cos(\\ell\\theta_p).$$\nPut $\\varphi_p=4\\theta_p\\in(0,\\pi)$. The functions $\\cos(k\\varphi)$, $k\\ge0$, are complete for distributions on $[0,\\pi]$, so equidistribution of $\\varphi_p$ in $(0,\\pi)$ (equivalently of $\\theta_p$ in $(0,\\pi/4)$) follows once\n$$\\sum_{p\\le x,\\ p\\equiv1(4)}\\cos(4k\\theta_p)=o\\Bigl(\\frac{x}{\\log x}\\Bigr)\\qquad(k\\ge1).$$\nThis is a prime number theorem for $\\xi_{4k}$. It follows, as for Dirichlet characters, from the continuation of $L(s,\\xi_{4k})$ and its non-vanishing on $\\operatorname{Re}s=1$. We omit that step.\n\nNumerically, there are $8977$ primes $p\\equiv1\\pmod4$ with $5\\le p\\lt 2\\cdot10^5$. The counts of $\\theta_p$ in the four intervals $[0,\\pi/16)$, $[\\pi/16,\\pi/8)$, $[\\pi/8,3\\pi/16)$, $[3\\pi/16,\\pi/4)$ are $2232$, $2241$, $2246$ and $2258$, each within $1\\%$ of $8977/4\\approx2244$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- A Hecke character lives on ideals. A formula in the generator, such as $(\\alpha/|\\alpha|)^\\ell$, defines one only if it is invariant under all units: $4\\mid\\ell$ for $\\mathbb Q(i)$, $6\\mid\\ell$ for $\\mathbb Q(\\sqrt{-3})$.\n- \"Größencharakter\" is not the same as \"finite order\". Finite-order Hecke characters are ray class characters and, by class field theory, characters of Galois groups. Infinite-order ones, like the angular characters, are not.\n- The clean functional equation is for primitive characters. An imprimitive character differs from the primitive one at finitely many Euler factors, and those factors add zeros on $\\operatorname{Re}s=0$.\n- A zero-free statement for a product of $L$-functions gives one for each factor, but only away from poles of the other factors. Also, the characters $\\chi\\circ N$ are a small part of all Hecke characters of $\\mathbb Q(\\sqrt{-3})$, so a theorem about them alone does not give one about all Hecke $L$-functions of that field."
+   },
+   {
+    "type": "connection",
+    "body": "Dirichlet $L$-functions ([[l-functions]]) are the case $K=\\mathbb Q$ and Dedekind zeta functions ([[dedekind-zeta]]) the case $\\xi=1$. Their zero-free regions, of the same shape as in [[zero-free-region]] with a possible exceptional real zero as in [[siegel-zeros]], give prime ideal theorems in ray classes and angular sectors. The generalised Riemann hypothesis for them is part of [[grh]]. Cubic residue symbols on $\\mathbb Z[\\omega]$ (see [[cubic-characters]]), corrected by a character mod $3$ so that they are trivial on the six units, are finite-order Hecke characters of $\\mathbb Q(\\sqrt{-3})$. Factorisations such as $L(s,\\chi\\circ N)=L(s,\\chi)L(s,\\chi\\chi_{-3})$ are how statements over $K$ are brought down to $\\mathbb Q$, which is the strategy behind the claimed route to [[quasi-rh]] described above. Values at $s=1$ link to the [[class-number-formula]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $(\\alpha/|\\alpha|)^\\ell$ is well defined on the ideals of $\\mathbb Z[\\omega]$ if and only if $6\\mid\\ell$.\n2. For $K=\\mathbb Q(i)$ and a Dirichlet character $\\chi$, prove $L(s,\\chi\\circ N)=L(s,\\chi)L(s,\\chi\\chi_{-4})$ by comparing Euler factors.\n3. Explain why, for an imaginary quadratic field, every finite-order Hecke character can be taken with $\\xi_\\infty=1$.\n4. Over $\\mathbb Q$, show that a Hecke character modulo $(q)$ of finite order with $\\xi_\\infty=\\operatorname{sgn}^a$ comes from a Dirichlet character $\\chi \\bmod q$ with $\\chi(-1)=(-1)^a$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Neukirch, Algebraic Number Theory",
+    "where": "Chapter VII"
+   },
+   {
+    "ref": "Cassels & Fröhlich (eds.), Algebraic Number Theory (contains Tate's thesis)"
+   },
+   {
+    "ref": "Iwaniec & Kowalski, Analytic Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Completed L(s, chi_{-3}) satisfies Lambda(s) = Lambda(1-s)",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nchi=[0,1,-1]\ndef Lam(s): return mp.power(3,s/2)*mp.power(mp.pi,-(s+1)/2)*mp.gamma((s+1)/2)*mp.dirichlet(s,chi)\nfor s in [mp.mpc(0.3,2.0), mp.mpc(0.8,-5.0), mp.mpf(0.17)]:\n    assert abs(Lam(s)-Lam(1-s)) < 1e-20"
+   },
+   {
+    "claim": "Completed Dedekind zeta of Q(sqrt(-3)), 3^{s/2} Gamma_C(s) zeta(s) L(s,chi_{-3}), is symmetric under s -> 1-s",
+    "python": "import mpmath as mp\nmp.mp.dps=30\nchi=[0,1,-1]\ndef LamK(s): return mp.power(3,s/2)*2*mp.power(2*mp.pi,-s)*mp.gamma(s)*mp.zeta(s)*mp.dirichlet(s,chi)\nfor s in [mp.mpc(0.3,2.0), mp.mpc(0.6,7.0)]:\n    assert abs(LamK(s)-LamK(1-s)) < 1e-20"
+   },
+   {
+    "claim": "Number of ideals of norm n in Z[omega] equals sum_{e|n} chi_{-3}(e) for n <= 300 (elements of norm n divided by 6 units)",
+    "python": "N=300; R=40\ncnt=[0]*(N+1)\nfor a in range(-R,R+1):\n    for b in range(-R,R+1):\n        n=a*a-a*b+b*b\n        if 0<n<=N: cnt[n]+=1\nc3=lambda d:[0,1,-1][d%3]\nfor n in range(1,N+1):\n    assert cnt[n] % 6 == 0\n    assert cnt[n]//6 == sum(c3(e) for e in range(1,n+1) if n%e==0)"
+   },
+   {
+    "claim": "xi_4((1+i)) = -1, xi_4((2+i)) = (-7+24i)/25, coefficient of 5^{-s} is -14/25",
+    "python": "from fractions import Fraction as F\ndef mul(z,w): return (z[0]*w[0]-z[1]*w[1], z[0]*w[1]+z[1]*w[0])\ndef p4(z):\n    z2=mul(z,z); return mul(z2,z2)\nz=p4((1,1)); assert z==(-4,0) and F(z[0],4)==-1\nw=p4((2,1)); assert w==(-7,24)\nw2=p4((2,-1)); assert w2==(-7,-24)\nassert F(w[0]+w2[0],25)==F(-14,25)"
+   },
+   {
+    "claim": "Dirichlet coefficients of L(s, chi_{-4} o N) over Q(sqrt(-3)) equal those of L(s,chi_{-4}) L(s,chi_{-4} chi_{-3}) for n <= 300; values at 5, 7, 25 are 0, -2, 1",
+    "python": "N=300\nc3=lambda d:[0,1,-1][d%3]\nc4=lambda d:[0,1,0,-1][d%4]\nideals=lambda n: sum(c3(e) for e in range(1,n+1) if n%e==0)\nlhs=lambda n: c4(n)*ideals(n)\nrhs=lambda n: sum(c4(d)*c4(n//d)*c3(n//d) for d in range(1,n+1) if n%d==0)\nassert all(lhs(n)==rhs(n) for n in range(1,N+1))\nassert (lhs(5),lhs(7),lhs(25))==(0,-2,1)\nassert 3*3-3*1+1*1==7"
+   },
+   {
+    "claim": "For primes p = 1 mod 4 below 200000 (8977 of them) the angles arctan(b/a) fall 2232, 2241, 2246, 2258 into four equal parts of (0, pi/4)",
+    "python": "import math\nfrom sympy import primerange\nbins=[0]*4\nfor q in primerange(5,200000):\n    if q%4==1:\n        a=1\n        while True:\n            b2=q-a*a; b=math.isqrt(b2)\n            if b*b==b2:\n                A,B=max(a,b),min(a,b)\n                bins[int(math.atan2(B,A)/(math.pi/16))]+=1\n                break\n            a+=1\nassert bins==[2232,2241,2246,2258] and sum(bins)==8977\nassert all(abs(x-8977/4)/(8977/4)<0.01 for x in bins)"
+   },
+   {
+    "claim": "Over Z[i]: coefficients of L(s,xi_4) are real; at n=2,5,9,25 they are -1, -14/25, 1, -429/625; at the prime 313 the coefficient is below -1.9 (so not bounded by 1)",
+    "python": "from fractions import Fraction as Fr\ndef mul(z,w): return (z[0]*w[0]-z[1]*w[1], z[0]*w[1]+z[1]*w[0])\ndef coef(n):\n    # sum over elements of norm n of (z^4/|z|^4), divided by 4 units; exact rational arithmetic\n    re=Fr(0); im=Fr(0); R=int(n**0.5)+1\n    for a in range(-R,R+1):\n        for b in range(-R,R+1):\n            if a*a+b*b==n:\n                z2=mul((a,b),(a,b)); z4=mul(z2,z2)\n                re+=Fr(z4[0],n*n); im+=Fr(z4[1],n*n)\n    return re/4, im/4\nassert coef(2)==(-1,0) and coef(5)==(Fr(-14,25),0) and coef(9)==(1,0) and coef(25)==(Fr(-429,625),0)\nc=coef(313); assert c[1]==0 and c[0]< Fr(-19,10)\nassert all(coef(n)[1]==0 for n in range(1,200))"
+   },
+   {
+    "claim": "3 = -omega^2 (1-omega)^2 in Z[omega], and N(3+omega)=7",
+    "python": "import sympy as sp\nw=sp.Rational(-1,2)+sp.sqrt(3)*sp.I/2\nassert sp.simplify(sp.expand(-w**2*(1-w)**2)-3)==0\nassert sp.simplify(sp.expand((3+w)*(3+sp.conjugate(w)))-7)==0"
+   }
+  ]
+ },
+ {
+  "id": "elliptic-curves",
+  "minutes": 26,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Take the equation $y^2=x^3-2$. It has the integer point $(3,5)$. Does it have other rational points, and how would you find them? For a conic the answer is a single parametrisation. For a cubic there is something stranger and better: the rational points form a group. You can \"add\" two points to get a third.\n\nCurves of this kind, elliptic curves, are where much of modern number theory happens. Counting their points modulo primes leads to Hasse's bound $\\bigl|\\#E(\\mathbb F_p)-(p+1)\\bigr|\\le2\\sqrt p$, which says a certain sum of Legendre symbols is much smaller than it might be. Their rational points are the subject of Mordell's theorem and of the Birch and Swinnerton-Dyer conjecture. And Wiles's 1995 proof of Fermat's Last Theorem went through them."
+   },
+   {
+    "type": "section",
+    "title": "The chord–tangent idea",
+    "body": "Let $f(x)=x^3+ax+b$ with $a,b$ rational, and let $P,Q$ be rational points on $y^2=f(x)$ with different $x$-coordinates. The line through them is $y=\\lambda x+\\nu$ with $\\lambda,\\nu$ rational. Substituting gives\n$$x^3-\\lambda^2x^2+(a-2\\lambda\\nu)x+(b-\\nu^2)=0,$$\na cubic with rational coefficients. Two of its roots, $x_P$ and $x_Q$, are rational. By Vieta the three roots add up to $\\lambda^2$, so the third root $x_R=\\lambda^2-x_P-x_Q$ is rational too, and so is $y_R=\\lambda x_R+\\nu$. A line through two rational points therefore meets the curve in a third rational point. A tangent line at one rational point works the same way, with that point counted twice.\n\nThis is the chord–tangent construction. Versions of it go back to Diophantus, and Newton described it geometrically. The surprise is that a small adjustment turns it into an associative operation."
+   },
+   {
+    "type": "definition",
+    "title": "Elliptic curve",
+    "body": "Let $k$ be a field in which $2$ and $3$ are invertible, for example $\\mathbb Q$, $\\mathbb R$, or $\\mathbb F_p$ with $p\\ge5$. An elliptic curve over $k$ is a curve\n$$E:\\ y^2=x^3+ax+b\\qquad(a,b\\in k,\\ 4a^3+27b^2\\neq0),$$\ntogether with one extra point $O$, the point at infinity. For a field $L\\supseteq k$, $E(L)$ is the set of solutions $(x,y)\\in L^2$ together with $O$.\n\nThe condition $4a^3+27b^2\\neq0$ says that $x^3+ax+b$ has no repeated root, which is exactly what makes the curve smooth (no cusps or self-crossings)."
+   },
+   {
+    "type": "theorem",
+    "title": "The group law and its formulas",
+    "body": "On $E(k)$ define $P+Q$ as follows: draw the line through $P$ and $Q$ (the tangent if $P=Q$), let $R$ be its third intersection with $E$, and reflect $R$ in the $x$-axis. The point $O$ is the identity, and $-(x,y)=(x,-y)$. Explicitly, for $P=(x_1,y_1)$ and $Q=(x_2,y_2)$:\n\n- if $x_1=x_2$ and $y_1=-y_2$ (including $P=Q$ with $y_1=0$), then $P+Q=O$;\n- otherwise put $\\lambda=\\dfrac{y_2-y_1}{x_2-x_1}$ if $x_1\\neq x_2$, and $\\lambda=\\dfrac{3x_1^2+a}{2y_1}$ if $P=Q$, and then\n$$x_3=\\lambda^2-x_1-x_2,\\qquad y_3=\\lambda(x_1-x_3)-y_1,\\qquad P+Q=(x_3,y_3).$$\n\nWith this operation $E(k)$ is an abelian group."
+   },
+   {
+    "type": "proof",
+    "title": "Derivation of the formulas",
+    "body": "Let the line be $y=\\lambda(x-x_1)+y_1$. If $x_1\\ne x_2$ it passes through both points exactly when $\\lambda$ is the slope $(y_2-y_1)/(x_2-x_1)$. If $P=Q$ with $y_1\\neq0$, implicit differentiation of $y^2=x^3+ax+b$ gives $2yy'=3x^2+a$, so the tangent slope is $(3x_1^2+a)/(2y_1)$. Substituting the line into the curve gives a monic cubic in $x$ whose $x^2$ coefficient is $-\\lambda^2$. Its roots are $x_1$, $x_2$ (with $x_2=x_1$ in the tangent case, a double root) and the third intersection $x_3$. By Vieta, $x_1+x_2+x_3=\\lambda^2$. The third point is $R=(x_3,\\lambda(x_3-x_1)+y_1)$, and reflecting gives $y_3=-\\lambda(x_3-x_1)-y_1=\\lambda(x_1-x_3)-y_1$.\n\nIf $x_1=x_2$ and $y_1=-y_2$, the line is vertical. It meets the curve \"at $O$\", and the rule gives $P+Q=O$.\n\nCommutativity is clear, since the line through $P,Q$ does not depend on the order. That $O$ is the identity and $(x,-y)$ the inverse follows from the vertical-line case. Associativity is the hard part. It can be checked by a long computation with the formulas, or derived from the geometry of cubics (the Cayley–Bacharach theorem) or from the Riemann–Roch theorem. We omit it; see Silverman and Tate."
+   },
+   {
+    "type": "example",
+    "title": "Doubling a point (Bachet's formula)",
+    "body": "On $E:y^2=x^3-2$ let $P=(3,5)$. Compute $2P$.",
+    "solution": "Here $a=0$, so $\\lambda=\\dfrac{3\\cdot3^2}{2\\cdot5}=\\dfrac{27}{10}$. Then\n$$x_3=\\Bigl(\\frac{27}{10}\\Bigr)^2-2\\cdot3=\\frac{729-600}{100}=\\frac{129}{100},$$\n$$y_3=\\frac{27}{10}\\Bigl(3-\\frac{129}{100}\\Bigr)-5=\\frac{27}{10}\\cdot\\frac{171}{100}-5=\\frac{4617-5000}{1000}=-\\frac{383}{1000}.$$\nSo $2P=(129/100,\\,-383/1000)$. Check: $(129/100)^3-2=(2146689-2000000)/10^6=146689/10^6$ and $383^2=146689$.\n\nSo one integer solution of $y^2=x^3-2$ already gives a rational solution with denominators $100$ and $1000$, and repeating the process gives infinitely many (see the torsion section below)."
+   },
+   {
+    "type": "section",
+    "title": "Counting points modulo p",
+    "body": "Over a finite field the group $E(\\mathbb F_p)$ is finite, and the first question is its size. For each $x\\in\\mathbb F_p$ the number of $y$ with $y^2=f(x)$ is $2$, $1$ or $0$ according as $f(x)$ is a nonzero square, zero, or a non-square. In terms of the Legendre symbol (see [[quadratic-residues]]) this number is $1+\\bigl(\\frac{f(x)}{p}\\bigr)$.\n\nA random-looking element of $\\mathbb F_p$ is a square about half the time, so we expect about $p$ affine points, plus $O$. The interesting quantity is the error\n$$a_p=p+1-\\#E(\\mathbb F_p).$$"
+   },
+   {
+    "type": "theorem",
+    "title": "Point count via Legendre symbols",
+    "body": "Let $p\\ge5$ be prime, $a,b$ integers with $p\\nmid4a^3+27b^2$, and $f(x)=x^3+ax+b$. Then\n$$\\#E(\\mathbb F_p)=p+1+\\sum_{x=0}^{p-1}\\Bigl(\\frac{f(x)}{p}\\Bigr),\\qquad\\text{so}\\qquad a_p=-\\sum_{x=0}^{p-1}\\Bigl(\\frac{f(x)}{p}\\Bigr).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Summing $1+\\bigl(\\frac{f(x)}{p}\\bigr)$ over the $p$ values of $x$ counts the affine points, and adding $1$ for $O$ gives the formula."
+   },
+   {
+    "type": "example",
+    "title": "A curve over F_5",
+    "body": "Find $E(\\mathbb F_5)$ for $E:y^2=x^3+x+1$, and show that it is cyclic.",
+    "solution": "First, $4+27=31\\not\\equiv0\\pmod5$, so $E$ is an elliptic curve over $\\mathbb F_5$. The squares mod $5$ are $0,1,4$. Compute $f(x)$ for each $x$:\n\n- $x=0$: $f=1$, so $y=1,4$.\n- $x=1$: $f=3$, a non-square, so no points.\n- $x=2$: $f=11\\equiv1$, so $y=1,4$.\n- $x=3$: $f=31\\equiv1$, so $y=1,4$.\n- $x=4$: $f=69\\equiv4$, so $y=2,3$.\n\nWith $O$ that makes $9$ points, so $a_5=5+1-9=-3$. Hasse's bound allows $|a_5|\\le2\\sqrt5\\approx4.47$.\n\nLet $P=(0,1)$. For doubling, $\\lambda=(3\\cdot0+1)/(2\\cdot1)=1/2=3$ in $\\mathbb F_5$. Then $x_3=9-0=9\\equiv4$ and $y_3=3(0-4)-1=-13\\equiv2$, so $2P=(4,2)$. For $3P=P+2P$, $\\lambda=(2-1)/(4-0)=1/4=4$ (since $4\\cdot4=16\\equiv1$). Then $x_3=16-0-4=12\\equiv2$ and $y_3=4(0-2)-1=-9\\equiv1$, so $3P=(2,1)\\neq O$. The order of $P$ divides $9$ (Lagrange) and is not $1$ or $3$, so it is $9$. Hence $E(\\mathbb F_5)\\cong\\mathbb Z/9$, generated by $(0,1)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Hasse's theorem (1933)",
+    "body": "For $p\\ge5$ prime and an elliptic curve $E:y^2=x^3+ax+b$ with $a,b\\in\\mathbb Z$ and $p\\nmid4a^3+27b^2$,\n$$\\bigl|\\#E(\\mathbb F_p)-(p+1)\\bigr|\\le2\\sqrt p,\\qquad\\text{equivalently}\\qquad\\Bigl|\\sum_{x=0}^{p-1}\\Bigl(\\frac{x^3+ax+b}{p}\\Bigr)\\Bigr|\\le2\\sqrt p.$$"
+   },
+   {
+    "type": "section",
+    "title": "What Hasse's bound means",
+    "body": "We do not prove Hasse's theorem here. The standard proof uses the Frobenius map $\\phi(x,y)=(x^p,y^p)$. The points of $E(\\mathbb F_p)$ are exactly those fixed by $\\phi$, so $\\#E(\\mathbb F_p)=\\deg(1-\\phi)$. The degree is a positive definite quadratic form on endomorphisms, and the bound is then a Cauchy–Schwarz inequality. See Silverman, The Arithmetic of Elliptic Curves, Chapter V. An elementary but long proof was given later by Manin.\n\nThe content is square-root cancellation. The sum $\\sum_x\\bigl(\\frac{f(x)}{p}\\bigr)$ has $p$ terms, each $\\pm1$ or $0$. If the signs were independent coin flips, a typical size would be about $\\sqrt p$. Hasse says the sum is never larger than $2\\sqrt p$, for every curve and every good prime. Over many primes the normalised errors $a_p/(2\\sqrt p)\\in[-1,1]$ even have a definite limiting distribution, the Sato–Tate law for curves without complex multiplication, proved around 2008–2011 by Richard Taylor and collaborators.\n\nPrimes dividing $4a^3+27b^2$ are excluded because there the reduced curve is singular and is not an elliptic curve at all. For $y^2=x^3$ over $\\mathbb F_p$, for example, $x=0$ gives one point and each $x\\neq0$ gives $1+\\bigl(\\frac{x^3}{p}\\bigr)=1+\\bigl(\\frac xp\\bigr)$ points, so there are $p+1$ points including $O$. The smooth ones (all except $(0,0)$) form a group isomorphic to the additive group of $\\mathbb F_p$, not a group of the elliptic kind."
+   },
+   {
+    "type": "example",
+    "title": "Curves with exactly p + 1 points",
+    "body": "Show that if $p\\equiv3\\pmod4$ then $E:y^2=x^3-x$ has exactly $p+1$ points over $\\mathbb F_p$. Show also that if $p\\equiv2\\pmod3$, $p\\ge5$ and $p\\nmid b$, then $y^2=x^3+b$ has exactly $p+1$ points.",
+    "solution": "First curve. Here $4a^3+27b^2=-4$, which is nonzero mod every odd $p$. Let $f(x)=x^3-x$, which is odd: $f(-x)=-f(x)$. Since $p\\equiv3\\pmod4$, $\\bigl(\\frac{-1}{p}\\bigr)=-1$. As $x$ runs over $\\mathbb F_p$ so does $-x$, hence\n$$S=\\sum_x\\Bigl(\\frac{f(x)}{p}\\Bigr)=\\sum_x\\Bigl(\\frac{f(-x)}{p}\\Bigr)=\\sum_x\\Bigl(\\frac{-1}{p}\\Bigr)\\Bigl(\\frac{f(x)}{p}\\Bigr)=-S.$$\nSo $S=0$ and $\\#E(\\mathbb F_p)=p+1$.\n\nSecond curve. Here $4a^3+27b^2=27b^2$, nonzero mod $p$. Since $\\gcd(3,p-1)=1$, the map $x\\mapsto x^3$ is a bijection of $\\mathbb F_p$: it is injective on $\\mathbb F_p^\\times$, because $x^3=1$ forces the order of $x$ to divide $\\gcd(3,p-1)=1$, and it fixes $0$. Substituting $u=x^3$ and then $v=u+b$,\n$$\\sum_x\\Bigl(\\frac{x^3+b}{p}\\Bigr)=\\sum_u\\Bigl(\\frac{u+b}{p}\\Bigr)=\\sum_v\\Bigl(\\frac vp\\Bigr)=0,$$\nbecause there are equally many nonzero squares and non-squares. So again $\\#E(\\mathbb F_p)=p+1$.\n\nBoth curves have extra symmetry, called complex multiplication: $(x,y)\\mapsto(-x,iy)$ for the first and $(x,y)\\mapsto(\\omega x,y)$ for the second. That symmetry is why $a_p=0$ for half of all primes."
+   },
+   {
+    "type": "section",
+    "title": "Rational points: Mordell's theorem and torsion",
+    "body": "Over $\\mathbb Q$ the group can be infinite, but it is never wild.\n\n- Mordell's theorem (1922): $E(\\mathbb Q)$ is finitely generated, so $E(\\mathbb Q)\\cong\\mathbb Z^r\\oplus T$ with $T$ finite. Weil extended this to number fields in 1928. The rank $r$ is mysterious; the Birch and Swinnerton-Dyer conjecture predicts it from the numbers $a_p$.\n- Nagell–Lutz theorem: if $a,b\\in\\mathbb Z$ and $P=(x,y)\\neq O$ has finite order, then $x,y$ are integers, and either $y=0$ or $y^2$ divides $4a^3+27b^2$.\n- Mazur's theorem (1977): $T$ is one of the $15$ groups $\\mathbb Z/n$ with $1\\le n\\le10$ or $n=12$, or $\\mathbb Z/2\\times\\mathbb Z/2m$ with $1\\le m\\le4$.\n\nNagell–Lutz gives a quick test for infinite order. A point is not torsion as soon as some multiple of it has non-integer coordinates."
+   },
+   {
+    "type": "example",
+    "title": "Torsion and infinite order",
+    "body": "(a) Find all rational torsion points on $y^2=x^3+1$.\n\n(b) Show that $P=(3,5)$ on $y^2=x^3-2$ has infinite order.",
+    "solution": "(a) Here $4a^3+27b^2=27$. By Nagell–Lutz a torsion point $(x,y)\\ne O$ has integer coordinates and either $y=0$ or $y^2\\mid27$, so $y\\in\\{0,\\pm1,\\pm3\\}$. Then $y=0$ gives $x^3=-1$, so $x=-1$. Next $y=\\pm1$ gives $x^3=0$, so $x=0$. Finally $y=\\pm3$ gives $x^3=8$, so $x=2$. The candidates are $O,(-1,0),(0,\\pm1),(2,\\pm3)$.\n\nThey really are torsion. Take $Q=(2,3)$. The tangent slope is $\\lambda=3\\cdot4/6=2$, so $x(2Q)=4-4=0$ and $y(2Q)=2(2-0)-3=1$: $2Q=(0,1)$. Next, $3Q=Q+2Q$ has slope $(1-3)/(0-2)=1$, so $x=1-2-0=-1$ and $y=1\\cdot(2-(-1))-3=0$: $3Q=(-1,0)$, a point of order $2$. So $Q$ has order $6$ and the torsion subgroup is $\\mathbb Z/6$, consisting of $O,Q,2Q,\\dots,5Q$. (In fact these are all the rational points on this curve. That statement goes back to Euler and is stronger than what we proved.)\n\n(b) By the doubling example, $2P=(129/100,-383/1000)$ has non-integer coordinates, so $2P$ is not a torsion point. If $P$ had finite order $n$, then $n\\cdot2P=2(nP)=O$ and $2P$ would be torsion. So $P$ has infinite order and $E(\\mathbb Q)$ is infinite. Note that $P$ itself has integer coordinates: Nagell–Lutz has no converse."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The converse of Nagell–Lutz is false: integer coordinates do not make a point torsion, as $(3,5)$ on $y^2=x^3-2$ shows.\n- Singular cubics are not elliptic curves. On $y^2=x^3$ or $y^2=x^2(x+1)$ the chord–tangent rule still gives a group on the smooth points, but it is the additive or multiplicative group, and Hasse's bound does not apply.\n- Hasse's bound needs good reduction: $p\\nmid4a^3+27b^2$ (and $p\\ge5$ for this short form).\n- The slope formula for $P+Q$ divides by $x_2-x_1$. When $x_1=x_2$ you must decide between $P=Q$ (tangent) and $P=-Q$ (the answer is $O$).\n- \"Elliptic\" has nothing to do with ellipses. The name comes from elliptic integrals, which compute arc length of an ellipse and whose inverse functions parametrise these curves over $\\mathbb C$."
+   },
+   {
+    "type": "connection",
+    "body": "The numbers $a_p$ assemble into the $L$-function $L(E,s)=\\prod_{p\\text{ good}}(1-a_pp^{-s}+p^{1-2s})^{-1}$ (times factors at bad primes), and the [[bsd]] conjecture relates its behaviour at $s=1$ to the rank of $E(\\mathbb Q)$. Wiles (completed with Richard Taylor) proved in 1995 that semistable elliptic curves over $\\mathbb Q$ are modular, meaning their $a_p$ are Fourier coefficients of a modular form. By earlier work of Frey, Serre and Ribet, a counterexample $a^p+b^p=c^p$ would give a semistable curve $y^2=x(x-a^p)(x+b^p)$ that cannot be modular, so this proves Fermat's Last Theorem.\n\nMany classical [[diophantine]] questions are questions about elliptic curves. For example, $n$ is the area of a right triangle with rational sides exactly when $y^2=x^3-n^2x$ has a rational point with $y\\neq0$: the $3$-$4$-$5$ triangle of area $6$ gives the point $(25/4,35/8)$ on $y^2=x^3-36x$. Over [[finite-fields]] the groups $E(\\mathbb F_q)$ are used in cryptography, where the [[discrete-log]] problem on a curve replaces the one in $\\mathbb F_p^\\times$, and in Lenstra's elliptic curve factoring method (1987). The point counts rest on [[quadratic-residues]] and [[congruences]], and the group structure is ordinary [[groups]] theory."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Count the points of $y^2=x^3+2x+3$ over $\\mathbb F_7$ (first check that the curve is nonsingular mod $7$) and verify Hasse's bound.\n2. Prove that if $p\\equiv2\\pmod3$ and $p\\nmid6b$, the map $x\\mapsto x^3$ permutes $\\mathbb F_p$. Deduce again that $y^2=x^3+b$ has $p+1$ points over $\\mathbb F_p$.\n3. Let $P=(x_1,0)$ be a point with $y=0$ on an elliptic curve. Explain why the tangent at $P$ is vertical, and conclude that $2P=O$. How many points of order $2$ can a curve have over $\\mathbb Q$?\n4. Using the doubling formula, show that if $P=(x,y)$ has integer coordinates and $2P$ also does, then $2y$ divides $3x^2+a$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Silverman & Tate, Rational Points on Elliptic Curves"
+   },
+   {
+    "ref": "Silverman, The Arithmetic of Elliptic Curves",
+    "where": "Chapter V"
+   },
+   {
+    "ref": "Washington, Elliptic Curves: Number Theory and Cryptography"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "On y^2 = x^3 - 2, 2(3,5) = (129/100, -383/1000), and this point lies on the curve",
+    "python": "from fractions import Fraction as F\nx1,y1=F(3),F(5)\nl=3*x1*x1/(2*y1); x3=l*l-2*x1; y3=l*(x1-x3)-y1\nassert (x3,y3)==(F(129,100),F(-383,1000))\nassert y3*y3==x3**3-2 and 383**2==146689"
+   },
+   {
+    "claim": "y^2 = x^3+x+1 over F_5 has 9 points; (0,1) has order 9 with 2P=(4,2), 3P=(2,1)",
+    "python": "p,a,b=5,1,1\nassert (4*a**3+27*b**2)%p!=0\npts=[(x,y) for x in range(p) for y in range(p) if (y*y-(x**3+a*x+b))%p==0]\nassert len(pts)+1==9\ndef add(P,Q):\n    if P is None: return Q\n    if Q is None: return P\n    (x1,y1),(x2,y2)=P,Q\n    if x1==x2 and (y1+y2)%p==0: return None\n    l=((3*x1*x1+a)*pow(2*y1,-1,p) if P==Q else (y2-y1)*pow(x2-x1,-1,p))%p\n    x3=(l*l-x1-x2)%p\n    return (x3,(l*(x1-x3)-y1)%p)\nP=(0,1); P2=add(P,P); P3=add(P,P2)\nassert P2==(4,2) and P3==(2,1)\nQ=P; n=1\nwhile Q is not None: Q=add(Q,P); n+=1\nassert n==9"
+   },
+   {
+    "claim": "Hasse bound |p+1-#E(F_p)| <= 2 sqrt(p) holds for all y^2=x^3+ax+b with |a|,|b|<=5 and good primes 5 <= p < 200",
+    "python": "from sympy import primerange, legendre_symbol\nimport math\nfor p in primerange(5,200):\n    for a in range(-5,6):\n        for b in range(-5,6):\n            if (4*a**3+27*b**2)%p==0: continue\n            s=sum(legendre_symbol((x**3+a*x+b)%p,p) if (x**3+a*x+b)%p else 0 for x in range(p))\n            assert s*s <= 4*p"
+   },
+   {
+    "claim": "y^2=x^3-x has p+1 points for p = 3 mod 4, and y^2=x^3+b has p+1 points for p = 2 mod 3 (p>=5, p not dividing b)",
+    "python": "from sympy import primerange\ndef count(a,b,p): return 1+sum(1 for x in range(p) for y in range(p) if (y*y-x**3-a*x-b)%p==0)\nfor p in primerange(3,120):\n    if p%4==3: assert count(-1,0,p)==p+1\n    if p%3==2 and p>=5:\n        for b in range(1,8):\n            if b%p: assert count(0,b,p)==p+1"
+   },
+   {
+    "claim": "On y^2=x^3+1 over Q, Q=(2,3) has 2Q=(0,1), 3Q=(-1,0) and order 6",
+    "python": "from fractions import Fraction as F\na=0\ndef add(P,Q):\n    if P is None: return Q\n    if Q is None: return P\n    (x1,y1),(x2,y2)=P,Q\n    if x1==x2 and y1==-y2: return None\n    l=(3*x1*x1+a)/(2*y1) if P==Q else (y2-y1)/(x2-x1)\n    x3=l*l-x1-x2\n    return (x3,l*(x1-x3)-y1)\nQ=(F(2),F(3)); M=[Q]\nfor _ in range(6): M.append(add(M[-1],Q))\nassert M[1]==(0,1) and M[2]==(-1,0) and M[5] is None and all(m is not None for m in M[:5])\nassert 4*0+27*1==27"
+   },
+   {
+    "claim": "The 3-4-5 triangle gives the point (25/4, 35/8) on y^2 = x^3 - 36x",
+    "python": "from fractions import Fraction as F\nx,y=F(25,4),F(35,8)\nassert y*y==x**3-36*x and 3*4//2==6"
+   },
+   {
+    "claim": "y^2=x^3+2x+3 is nonsingular mod 7 (exercise data)",
+    "python": "assert (4*2**3+27*3**2)%7!=0"
+   },
+   {
+    "claim": "Singular cubic y^2=x^3 has exactly p+1 points over F_p (including O) for small primes p",
+    "python": "for p in [5,7,11,13,101,103]:\n    n=1+sum(1 for x in range(p) for y in range(p) if (y*y-x**3)%p==0)\n    assert n==p+1"
+   },
+   {
+    "claim": "Complex multiplication maps (x,y)->(-x,iy) on y^2=x^3-x and (x,y)->(omega x,y) on y^2=x^3+b preserve the curves",
+    "python": "import sympy as sp\nx,y,b=sp.symbols('x y b'); w=sp.Rational(-1,2)+sp.sqrt(3)*sp.I/2\nf1=lambda X,Y: Y**2-(X**3-X); f2=lambda X,Y: Y**2-(X**3+b)\nassert sp.expand(f1(-x,sp.I*y)+f1(x,y))==0\nassert sp.simplify(sp.expand(f2(w*x,y)-f2(x,y)))==0"
+   }
+  ]
+ },
+ {
+  "id": "combinatorial-nt",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Pick any $51$ distinct numbers from $1$ to $100$. Must one of them divide another? The answer is yes, and the proof is two lines once you look at the right feature of each number. No theory of primes is needed beyond the fact that every number is a power of $2$ times an odd number.\n\nCombinatorial number theory is the art of such arguments: questions about sets of integers where the decisive step is counting, pigeonholing or an extremal choice rather than algebra. Most of Erdős's famous problems on sums, divisors and progressions are phrased this way. Learning the basic moves is the entry ticket to them."
+   },
+   {
+    "type": "section",
+    "title": "Three basic moves",
+    "body": "Almost every argument at this level combines three ingredients.\n\n1. Pigeonhole on a cleverly chosen label. Give each integer a label from a small set, such as its residue mod $n$, its odd part, or the parity vector of its prime exponents. If there are more integers than labels, two share a label, and sharing a label must force the conclusion. Choosing the label is the whole problem.\n2. Double counting. Count one set of pairs in two ways, for example pairs $(d,n)$ with $d\\mid n$ counted by $n$ or by $d$.\n3. Extremal bound plus construction. To find the largest set with some property, prove an upper bound and exhibit a set that attains it. Neither half alone is an answer.\n\nWe will see each in action, starting with the theorem from the introduction (see [[pigeonhole]] for the general principle)."
+   },
+   {
+    "type": "theorem",
+    "title": "Divisor pairs in [1, 2n]",
+    "body": "Among any $n+1$ distinct integers in $\\{1,2,\\dots,2n\\}$ there are two, one of which divides the other. The number $n+1$ cannot be lowered: the $n$ integers $n+1,n+2,\\dots,2n$ contain no such pair."
+   },
+   {
+    "type": "proof",
+    "body": "Write each chosen integer as $2^km$ with $m$ odd (possible and unique by [[fta]]). The odd part $m$ lies in $\\{1,3,\\dots,2n-1\\}$, a set of $n$ values. With $n+1$ integers, two have the same odd part, say $2^km$ and $2^lm$ with $k\\lt l$, and then $2^km\\mid2^lm$.\n\nFor the second claim: if $n+1\\le a\\lt b\\le2n$ and $a\\mid b$, then $b\\ge2a\\ge2n+2$, which is impossible."
+   },
+   {
+    "type": "example",
+    "title": "Pigeonhole on residues",
+    "body": "Let $a_1,\\dots,a_n$ be any integers. Show that some block $a_{i+1}+a_{i+2}+\\dots+a_j$ with $0\\le i\\lt j\\le n$ is divisible by $n$.",
+    "solution": "Consider the $n+1$ prefix sums $s_0=0$, $s_1=a_1$, $s_2=a_1+a_2$, $\\dots$, $s_n=a_1+\\dots+a_n$. There are only $n$ residues mod $n$, so two of them agree: $s_i\\equiv s_j\\pmod n$ with $i\\lt j$. Then $s_j-s_i=a_{i+1}+\\dots+a_j$ is divisible by $n$.\n\nThe bound is sharp: $n-1$ ones have no nonempty sub-sum divisible by $n$. A deeper relative is the Erdős–Ginzburg–Ziv theorem (1961): among any $2n-1$ integers some $n$ of them have sum divisible by $n$. That count is also sharp, since $n-1$ zeros and $n-1$ ones admit no such choice. Its proof needs more than pigeonhole, and we omit it."
+   },
+   {
+    "type": "example",
+    "title": "Exponent vectors",
+    "body": "Seventeen positive integers have all their prime factors in $\\{2,3,5,7\\}$. Show that two of them have a product that is a perfect square. Show that sixteen would not be enough.",
+    "solution": "Write each number as $2^{e_1}3^{e_2}5^{e_3}7^{e_4}$ and label it by the parity vector $(e_1\\bmod2,\\dots,e_4\\bmod2)\\in\\{0,1\\}^4$. There are $2^4=16$ labels, so two of the seventeen numbers share a label. In their product every exponent is even, so the product is a square.\n\nWith sixteen numbers this can fail. Take the $16$ squarefree divisors of $210=2\\cdot3\\cdot5\\cdot7$. Their parity vectors are all different, and the product of two numbers is a square only when their parity vectors agree. So no two distinct ones have a square product.\n\nLinear algebra over $\\mathbb F_2$ gives more: among any five such numbers some nonempty subset has a square product, because five vectors in $\\mathbb F_2^4$ are linearly dependent (see [[linear-algebra]])."
+   },
+   {
+    "type": "section",
+    "title": "Double counting divisors",
+    "body": "How many divisors does an integer up to $n$ have on average? Count the pairs $(d,k)$ with $d\\mid k$ and $1\\le k\\le n$. Grouping by $k$ gives $\\sum_{k\\le n}\\tau(k)$. Grouping by $d$, the multiples of $d$ up to $n$ number $\\lfloor n/d\\rfloor$. So\n$$\\sum_{k=1}^{n}\\tau(k)=\\sum_{d=1}^{n}\\Bigl\\lfloor\\frac nd\\Bigr\\rfloor.$$\nFor $n=10$ both sides equal $27$: on the left $1+2+2+3+2+4+2+4+3+4$, on the right $10+5+3+2+2+1+1+1+1+1$. Since $\\lfloor n/d\\rfloor$ differs from $n/d$ by less than $1$, the right side is $n\\sum_{d\\le n}1/d+O(n)=n\\log n+O(n)$. So an integer up to $n$ has about $\\log n$ divisors on average, even though $\\tau$ itself jumps around wildly."
+   },
+   {
+    "type": "theorem",
+    "title": "Largest sum-free subset of [1, n]",
+    "body": "A set $A$ of integers is sum-free if there are no $x,y,z\\in A$ (not necessarily distinct) with $x+y=z$. The largest sum-free subset of $\\{1,\\dots,n\\}$ has exactly $\\lceil n/2\\rceil$ elements."
+   },
+   {
+    "type": "proof",
+    "body": "Construction: the odd numbers in $[1,n]$ form a sum-free set (odd plus odd is even), and there are $\\lceil n/2\\rceil$ of them.\n\nUpper bound: let $A\\subseteq[1,n]$ be sum-free and nonempty, with largest element $a$. Put $B=A\\setminus\\{a\\}$ and $C=\\{a-x:x\\in B\\}$. Both are subsets of $[1,a-1]$ with $|B|=|C|=|A|-1$. They are disjoint: if $a-x\\in A$ for some $x\\in B$, then $x+(a-x)=a$ is a forbidden sum (this includes the case $x=a-x$). Hence $2(|A|-1)\\le a-1\\le n-1$, so $|A|\\le(n+1)/2$, that is, $|A|\\le\\lceil n/2\\rceil$."
+   },
+   {
+    "type": "example",
+    "title": "No element twice another",
+    "body": "What is the largest subset of $\\{1,2,\\dots,100\\}$ containing no two elements with one equal to twice the other?",
+    "solution": "Group the numbers into chains by odd part: for odd $m\\le100$ let $C_m=\\{m,2m,4m,\\dots\\}\\cap[1,100]$. If $y=2x$ then $x$ and $y$ have the same odd part, so forbidden pairs only occur inside a chain, and there they are exactly consecutive members. A chain of length $L$ is a path $m-2m-4m-\\cdots$. A set containing no two consecutive members has at most $\\lceil L/2\\rceil$ of them, and taking every other one, starting with the first, attains that. So the answer is $\\sum_m\\lceil L_m/2\\rceil$.\n\nThe chain lengths:\n\n- $m=1$: $1,2,\\dots,64$, so $L=7$, contributing $4$.\n- $m=3$: $3,\\dots,96$, so $L=6$, contributing $3$.\n- $m=5$: $5,\\dots,80$, so $L=5$, contributing $3$.\n- $m=7,9,11$: $L=4$, contributing $2$ each, total $6$.\n- Odd $m$ from $13$ to $25$ (seven values): $L=3$, contributing $2$ each, total $14$.\n- Odd $m$ from $27$ to $49$ (twelve values): $L=2$, contributing $1$ each, total $12$.\n- Odd $m$ from $51$ to $99$ (twenty-five values): $L=1$, contributing $25$.\n\nTotal: $4+3+3+6+14+12+25=67$. The upper bound and the construction both come from the chain decomposition. That is typical: once the right partition is found, the extremal problem splits into tiny independent problems."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Distinctness matters. If repeats were allowed, choosing the same number twice would make \"one divides another\" trivial; the theorem is about $n+1$ distinct numbers.\n- Count the boxes carefully. In the prefix-sum argument there are $n+1$ prefix sums, including the empty sum $s_0=0$. Forgetting $s_0$ loses the argument.\n- An upper bound is not an answer until a construction matches it, and a construction is not an answer until it is proved optimal.\n- Maximal is not maximum. In $[1,6]$ the set $\\{2,3\\}$ is sum-free and cannot be enlarged (adding $1,4,5,6$ creates $1+1=2$, $2+2=4$, $2+3=5$, $3+3=6$), yet $\\{1,3,5\\}$ is larger. A greedy construction that stops when stuck proves nothing about the maximum."
+   },
+   {
+    "type": "connection",
+    "body": "Each of the moves above grows into a field. Sets with no element dividing another are [[primitive-sets]], where Erdős proved that $\\sum1/(a\\log a)$ stays bounded. Sum-free sets and their colouring versions lead to Schur's theorem in [[ramsey-arithmetic]]. Sizes of sumsets $A+B$ are the subject of [[additive-combinatorics]], and sets with all pairwise sums distinct are [[sidon-sets]]. Representing $1$ as a sum of distinct unit fractions is [[unit-fractions]], and covering all integers by residue classes with distinct moduli is [[covering-systems]]. The exponent-vector trick is the first step of factoring algorithms such as the quadratic sieve, and its linear-algebra form is part of [[linear-algebra]]. Behind all of this sit [[divisibility]], [[fta]] and [[pigeonhole]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Prove that every positive integer $n$ has a nonzero multiple whose decimal digits are all $0$ or $1$.\n2. Show that among any $n+1$ integers from $\\{1,\\dots,2n\\}$ two are coprime. Is $n+1$ best possible?\n3. Show that among any $k+1$ positive integers whose prime factors all lie in a fixed set of $k$ primes, some nonempty subset has a perfect-square product.\n4. Find the largest subset of $\\{1,\\dots,50\\}$ in which no element is three times another."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Erdős & Graham, Old and New Problems and Results in Combinatorial Number Theory"
+   },
+   {
+    "ref": "Guy, Unsolved Problems in Number Theory"
+   },
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "For n <= 7, every (n+1)-subset of [1,2n] contains a divisor pair, while {n+1,...,2n} does not",
+    "python": "from itertools import combinations\ndef has(S): return any(b%a==0 for a,b in combinations(sorted(S),2))\nfor n in range(1,8):\n    assert all(has(S) for S in combinations(range(1,2*n+1),n+1))\n    assert not has(range(n+1,2*n+1))"
+   },
+   {
+    "claim": "Prefix-sum claim: any n integers have a block sum divisible by n (random tests), and n-1 ones have no nonempty sub-sum divisible by n",
+    "python": "import random\nfrom itertools import combinations\nrandom.seed(1)\nfor _ in range(2000):\n    n=random.randint(1,12); a=[random.randint(-50,50) for _ in range(n)]\n    s=[0]\n    for x in a: s.append(s[-1]+x)\n    assert any((s[j]-s[i])%n==0 for i in range(n) for j in range(i+1,n+1))\nfor n in range(2,10):\n    assert all(k%n for k in range(1,n))"
+   },
+   {
+    "claim": "Erdős–Ginzburg–Ziv holds for n <= 5 (all multisets of residues), and n-1 zeros plus n-1 ones is a counterexample with 2n-2 numbers",
+    "python": "from itertools import combinations, combinations_with_replacement\nfor n in range(1,6):\n    for M in combinations_with_replacement(range(n),2*n-1):\n        assert any(sum(c)%n==0 for c in combinations(M,n))\n    bad=[0]*(n-1)+[1]*(n-1)\n    assert not any(sum(c)%n==0 for c in combinations(bad,n))"
+   },
+   {
+    "claim": "The 16 squarefree divisors of 210 have pairwise non-square products; parity vectors force a square among 17",
+    "python": "from math import isqrt\nD=[d for d in range(1,211) if 210%d==0]\nassert len(D)==16\nassert all(isqrt(a*b)**2!=a*b for i,a in enumerate(D) for b in D[i+1:])"
+   },
+   {
+    "claim": "sum_{k<=n} tau(k) = sum_{d<=n} floor(n/d) for n <= 300, both 27 for n=10",
+    "python": "tau=lambda k: sum(1 for d in range(1,k+1) if k%d==0)\nfor n in range(1,301):\n    assert sum(tau(k) for k in range(1,n+1))==sum(n//d for d in range(1,n+1))\nassert sum(tau(k) for k in range(1,11))==27==sum(10//d for d in range(1,11))\nassert [tau(k) for k in range(1,11)]==[1,2,2,3,2,4,2,4,3,4]"
+   },
+   {
+    "claim": "Largest sum-free subset of [1,n] has size ceil(n/2) for n <= 16 (exhaustive)",
+    "python": "from itertools import combinations\ndef sumfree(S):\n    s=set(S); return not any(x+y in s for x in S for y in S)\nfor n in range(1,17):\n    best=max(k for k in range(n+1) if any(sumfree(S) for S in combinations(range(1,n+1),k)))\n    assert best==(n+1)//2"
+   },
+   {
+    "claim": "Largest subset of [1,100] with no element twice another has 67 elements (chain formula), and the chain formula matches exhaustive search for n <= 16",
+    "python": "from itertools import combinations\ndef chain(N):\n    s=0\n    for m in range(1,N+1,2):\n        L=0; x=m\n        while x<=N: L+=1; x*=2\n        s+=(L+1)//2\n    return s\nassert chain(100)==67\ndef brute(N):\n    for k in range(N,0,-1):\n        for S in combinations(range(1,N+1),k):\n            t=set(S)\n            if not any(2*x in t for x in S): return k\n    return 0\nassert all(brute(N)==chain(N) for N in range(1,17))"
+   },
+   {
+    "claim": "{2,3} is a maximal sum-free subset of [1,6] while {1,3,5} is sum-free and larger",
+    "python": "def sf(S):\n    s=set(S); return not any(x+y in s for x in S for y in S)\nassert sf((2,3)) and sf((1,3,5))\nassert all(not sf((2,3,x)) for x in (1,4,5,6))"
+   },
+   {
+    "claim": "Average order of tau: (sum_{k<=n} tau(k) - n log n)/n stays bounded (close to 2*gamma-1) for n up to 10^6; and {51,...,100} has no divisor pair",
+    "python": "import math\nfor n in [10**3,10**4,10**5,10**6]:\n    D=sum(n//d for d in range(1,n+1))\n    r=(D-n*math.log(n))/n\n    assert abs(r-(2*0.5772156649-1))<0.1\nassert not any(b%a==0 for a in range(51,101) for b in range(a+1,101))\nfrom collections import Counter\nL=Counter()\nfor m in range(1,100,2):\n    l=0;x=m\n    while x<=100: l+=1;x*=2\n    L[l]+=1\nassert dict(L)=={7:1,6:1,5:1,4:3,3:7,2:12,1:25}"
+   }
+  ]
+ },
+ {
+  "id": "additive-combinatorics",
+  "minutes": 26,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "If you add a set of $k$ integers to itself, how many different sums can you get? At most $k(k+1)/2$, when all sums are distinct, and at least $2k-1$. The lower bound is attained only by arithmetic progressions. So the size of $A+A$ already says something about the shape of $A$. Additive combinatorics turns that observation into a theory. Sets with few sums are forced to look like progressions (Freiman's theorem), and Fourier analysis on $\\mathbb Z/N$ measures how far a set is from random.\n\nThe payoff is a set of tools strong enough to find patterns in sets about which you know almost nothing except their size. This is how Roth proved that dense sets contain three-term progressions, and it is one of the ingredients in Green and Tao's theorem that the primes contain arbitrarily long ones."
+   },
+   {
+    "type": "definition",
+    "title": "Sumset and doubling constant",
+    "body": "For finite subsets $A,B$ of an abelian group (here $\\mathbb Z$ or $\\mathbb Z/N$),\n$$A+B=\\{a+b:a\\in A,\\ b\\in B\\},\\qquad A-B=\\{a-b:a\\in A,\\ b\\in B\\}.$$\nThe doubling constant of $A$ is $K=|A+A|/|A|$. The set $A$ has small doubling if $|A+A|\\le K|A|$ for a $K$ that stays bounded as $|A|$ grows.\n\nSmall doubling means that many of the $|A|^2$ pairs collide on the same sum, which is a strong form of additive structure."
+   },
+   {
+    "type": "section",
+    "title": "Three test cases",
+    "body": "Compare three sets of size $k$.\n\n- An arithmetic progression $\\{a,a+d,\\dots,a+(k-1)d\\}$: the sums are $2a+jd$ for $0\\le j\\le2k-2$, so $|A+A|=2k-1$ and $K\\lt 2$.\n- Powers of two $\\{1,2,4,\\dots,2^{k-1}\\}$: by uniqueness of binary expansions, $2^i+2^j$ with $i\\le j$ are all different, so $|A+A|=k(k+1)/2$, the maximum.\n- Two far-apart blocks $\\{1,\\dots,k\\}\\cup\\{10^6+1,\\dots,10^6+k\\}$ (size $2k$, with $k$ small compared with $10^6$): the sums fill three blocks of length $2k-1$, so $|A+A|=3(2k-1)$ and $K\\approx3$. This set is not a progression, but it is a two-dimensional progression $\\{x+10^6y:1\\le x\\le k,\\ 0\\le y\\le1\\}$.\n\nThe third example is the general picture. Small doubling does not force a progression, but it does force a set to sit efficiently inside a \"progression of bounded dimension\"."
+   },
+   {
+    "type": "theorem",
+    "title": "Sumsets in the integers",
+    "body": "For a finite set $A\\subset\\mathbb Z$ with $|A|=k\\ge1$ we have $|A+A|\\ge2k-1$, with equality if and only if $A$ is an arithmetic progression."
+   },
+   {
+    "type": "proof",
+    "body": "Write $A=\\{a_1\\lt a_2\\lt \\dots\\lt a_k\\}$. The $2k-1$ sums\n$$a_1+a_1\\lt a_1+a_2\\lt a_2+a_2\\lt a_2+a_3\\lt a_3+a_3\\lt \\dots\\lt a_{k-1}+a_k\\lt a_k+a_k$$\nare strictly increasing, hence distinct, so $|A+A|\\ge2k-1$.\n\nSuppose equality holds, so this chain is all of $A+A$. For $2\\le i\\le k-1$ the sum $a_{i-1}+a_{i+1}$ lies strictly between $a_{i-1}+a_i$ and $a_i+a_{i+1}$. In the chain the only element strictly between those two is $a_i+a_i$. Hence $a_{i-1}+a_{i+1}=2a_i$ for every such $i$, which says $A$ is an arithmetic progression. Conversely a progression has exactly $2k-1$ sums."
+   },
+   {
+    "type": "theorem",
+    "title": "Cauchy–Davenport theorem",
+    "body": "Let $p$ be prime and $A,B$ nonempty subsets of $\\mathbb Z/p$. Then\n$$|A+B|\\ge\\min\\bigl(p,\\ |A|+|B|-1\\bigr).$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof (Davenport's transform)",
+    "body": "We use induction on $|B|$. If $|B|=1$ then $|A+B|=|A|$ and the claim holds. Let $|B|\\ge2$ and assume the result for all smaller second sets. If $A+B=\\mathbb Z/p$ there is nothing to prove, so assume not.\n\nFor $e\\in\\mathbb Z/p$ define\n$$A'=A\\cup(B+e),\\qquad B'=B\\cap(A-e).$$\nTwo facts hold for every $e$.\n\n1. $A'+B'\\subseteq A+B$. Take $y\\in B'$, so $y\\in B$ and $y+e\\in A$. If $x\\in A$ then $x+y\\in A+B$. If $x=b+e$ with $b\\in B$ then $x+y=b+(y+e)\\in B+A$.\n2. $|A'|+|B'|=|A|+|B|$. Indeed $|A'|=|A|+|B|-|A\\cap(B+e)|$, and $|B'|=|(B+e)\\cap A|$ after translating by $e$.\n\nWe now choose $e$ so that $B'$ is nonempty and smaller than $B$. For any $e=a-b$ with $a\\in A$, $b\\in B$, we have $b\\in B'$, so $B'\\neq\\varnothing$. Suppose that for every such $e$ we had $B'=B$, that is, $B+e\\subseteq A$. Fix distinct $b,b'\\in B$ and put $d=b'-b\\neq0$. For each $a\\in A$, taking $e=a-b$ gives $a+d=b'+e\\in A$. So $A+d\\subseteq A$, hence $A+d=A$, and $A$ is a union of cosets of the subgroup generated by $d$. That subgroup is all of $\\mathbb Z/p$ because $p$ is prime. Then $A=\\mathbb Z/p$ and $A+B=\\mathbb Z/p$, contrary to assumption.\n\nSo some $e$ gives $1\\le|B'|\\lt |B|$. By the induction hypothesis and facts 1 and 2,\n$$|A+B|\\ge|A'+B'|\\ge\\min(p,\\ |A'|+|B'|-1)=\\min(p,\\ |A|+|B|-1).$$"
+   },
+   {
+    "type": "example",
+    "title": "Two quick consequences",
+    "body": "(a) Show that if $A,B\\subseteq\\mathbb Z/n$ satisfy $|A|+|B|>n$, then $A+B=\\mathbb Z/n$. Deduce that every residue modulo an odd prime $p$ is a sum of two squares.\n\n(b) Let $p\\equiv1\\pmod3$ be prime. Show that every residue mod $p$ is a sum of three cubes mod $p$.",
+    "solution": "(a) Fix $g\\in\\mathbb Z/n$. The sets $A$ and $g-B=\\{g-b:b\\in B\\}$ have sizes adding to more than $n$, so they intersect: some $a=g-b$, that is, $g=a+b$. (No primality is needed.) For the squares, let $S=\\{x^2:x\\in\\mathbb Z/p\\}$. The nonzero squares come in pairs $x^2=(-x)^2$, so there are $(p-1)/2$ of them (see [[quadratic-residues]]), and $|S|=(p+1)/2$. Then $|S|+|S|=p+1>p$, so $S+S=\\mathbb Z/p$.\n\n(b) Here pigeonhole is not enough, and Cauchy–Davenport does the work. Since $3\\mid p-1$, the map $x\\mapsto x^3$ on $(\\mathbb Z/p)^\\times$ has a kernel of size $3$ (the cube roots of unity), so it is $3$-to-$1$, and there are $(p-1)/3$ nonzero cubes. With $0$, the set $C$ of cubes has $|C|=(p+2)/3$, and $|C|+|C|=(2p+4)/3\\lt p$ for every such $p$ (all are at least $7$). Applying Cauchy–Davenport twice,\n$$|C+C+C|\\ge\\min\\bigl(p,\\ |C+C|+|C|-1\\bigr)\\ge\\min\\bigl(p,\\ 3|C|-2\\bigr)=\\min(p,\\ p)=p.$$\n(If the first application already gives $C+C=\\mathbb Z/p$, the conclusion is immediate.) So $C+C+C=\\mathbb Z/p$. Two cubes are not always enough: mod $7$ the cubes are $\\{0,1,6\\}$ and $C+C=\\{0,1,2,5,6\\}$ misses $3$ and $4$."
+   },
+   {
+    "type": "theorem",
+    "title": "Ruzsa's triangle inequality",
+    "body": "For finite subsets $A,B,C$ of an abelian group,\n$$|A|\\,|B-C|\\le|A-B|\\,|A-C|.$$"
+   },
+   {
+    "type": "proof",
+    "body": "For each $x\\in B-C$ fix one representation $x=b(x)-c(x)$ with $b(x)\\in B$, $c(x)\\in C$. Define\n$$\\phi:A\\times(B-C)\\to(A-B)\\times(A-C),\\qquad\\phi(a,x)=\\bigl(a-b(x),\\ a-c(x)\\bigr).$$\nIf $\\phi(a,x)=(u,v)$ then $v-u=b(x)-c(x)=x$, so $x$ is determined. Then $b(x)$ is determined, and $a=u+b(x)$. So $\\phi$ is injective, and comparing sizes gives the inequality."
+   },
+   {
+    "type": "section",
+    "title": "Structure: Plünnecke–Ruzsa and Freiman",
+    "body": "Small doubling propagates. The Plünnecke–Ruzsa inequality says that if $|A+A|\\le K|A|$ then\n$$|mA-nA|\\le K^{m+n}|A|\\qquad\\text{for all }m,n\\ge0,$$\nwhere $mA$ means $A+\\dots+A$ with $m$ summands. (Petridis found a one-page proof in 2012; we omit it.) Ruzsa's triangle inequality gives a weaker version immediately: with $(A,B,C)$ replaced by $(-A,A,A)$ it reads $|A|\\,|A-A|\\le|A+A|^2$, so $|A-A|\\le K^2|A|$.\n\nA generalised arithmetic progression of dimension $d$ is a set\n$$P=\\{a_0+n_1d_1+\\dots+n_dd_d:\\ 0\\le n_i\\lt L_i\\},$$\nof size at most $L_1\\cdots L_d$. It always has small doubling: $P+P$ is contained in a progression of the same shape with each $L_i$ doubled, so $|P+P|\\le2^dL_1\\cdots L_d$. Freiman's theorem is the converse.\n\nFreiman's theorem: if $A\\subset\\mathbb Z$ is finite and $|A+A|\\le K|A|$, then $A$ is contained in a generalised arithmetic progression of dimension at most $d(K)$ and size at most $f(K)\\,|A|$, where $d(K)$ and $f(K)$ depend only on $K$.\n\nRuzsa (1994) found a short proof combining the inequalities above with a covering argument, and Chang and Sanders later made the dependence on $K$ far better. In the group $\\mathbb F_2^n$ the natural analogue, Marton's polynomial Freiman–Ruzsa conjecture, was proved by Gowers, Green, Manners and Tao in 2023: such a set is covered by a number of cosets of a subgroup of size at most $|A|$, where that number is polynomial in $K$."
+   },
+   {
+    "type": "section",
+    "title": "Fourier analysis on Z/N",
+    "body": "Write $e(t)=e^{2\\pi it}$ and, for $A\\subseteq\\mathbb Z/N$, define $S_A(r)=\\sum_{a\\in A}e(ra/N)$. Then $S_A(0)=|A|$, and orthogonality of characters (see [[fourier-poisson]]) gives Parseval's identity $\\sum_r|S_A(r)|^2=N|A|$. Additive questions become questions about these sums, because $\\frac1N\\sum_re(rm/N)$ is $1$ if $m\\equiv0$ and $0$ otherwise.\n\n- Additive energy. $E(A)=\\#\\{(a,b,c,d)\\in A^4:a+b=c+d\\}=\\frac1N\\sum_r|S_A(r)|^4$.\n- Three-term progressions. $T(A)=\\#\\{(x,y,z)\\in A^3:x+z=2y\\}=\\frac1N\\sum_rS_A(r)^2S_A(-2r)$.\n\nIn the last formula the term $r=0$ is $|A|^3/N$, the count expected for a random set of the same density. Everything else is controlled by the largest nontrivial coefficient. Indeed, for $N$ odd, $r\\mapsto-2r$ is a bijection, so\n$$\\Bigl|T(A)-\\frac{|A|^3}N\\Bigr|\\le\\max_{r\\neq0}|S_A(r)|\\cdot\\frac1N\\sum_r|S_A(r)|^2=|A|\\max_{r\\ne0}|S_A(r)|.$$\nSo either $A$ has about the expected number of progressions, or some $|S_A(r)|$ is large, meaning $A$ is biased along the residues of $rx$. Roth's proof plays these two cases against each other (see [[arithmetic-progressions]])."
+   },
+   {
+    "type": "theorem",
+    "title": "Energy bound",
+    "body": "For a finite set $A$ in an abelian group, $|A+A|\\ge|A|^4/E(A)$."
+   },
+   {
+    "type": "proof",
+    "body": "Let $\\rho(x)$ be the number of pairs $(a,b)\\in A^2$ with $a+b=x$. Then $\\sum_x\\rho(x)=|A|^2$, $\\sum_x\\rho(x)^2=E(A)$, and $\\rho$ vanishes outside $A+A$. By Cauchy–Schwarz,\n$$|A|^4=\\Bigl(\\sum_{x\\in A+A}\\rho(x)\\Bigr)^2\\le|A+A|\\sum_x\\rho(x)^2=|A+A|\\,E(A).$$"
+   },
+   {
+    "type": "example",
+    "title": "Quadratic residues look random",
+    "body": "Let $p=101$ and let $Q$ be the $50$ nonzero squares mod $p$. Show that $|S_Q(r)|\\le(1+\\sqrt{101})/2\\approx5.52$ for $r\\neq0$. Use this to estimate the number $T(Q)$ of triples $(x,y,z)\\in Q^3$ with $x+z\\equiv2y$, and compare with the true value $1250$.",
+    "solution": "Using the Legendre symbol, the indicator of $Q$ on nonzero $x$ is $\\tfrac12\\bigl(1+\\bigl(\\tfrac xp\\bigr)\\bigr)$. So for $r\\neq0$\n$$S_Q(r)=\\frac12\\sum_{x\\neq0}e(rx/p)+\\frac12\\sum_{x}\\Bigl(\\frac xp\\Bigr)e(rx/p)=\\frac12\\Bigl(-1+\\Bigl(\\frac rp\\Bigr)g\\Bigr),$$\nwhere $g=\\sum_x\\bigl(\\frac xp\\bigr)e(x/p)$ is the quadratic Gauss sum. Since $101\\equiv1\\pmod4$, $g=\\sqrt{101}$ (see [[gauss-sums]]). So $S_Q(r)=(-1\\pm\\sqrt{101})/2$ and $|S_Q(r)|\\le(1+\\sqrt{101})/2\\approx5.52$, compared with the trivial bound $50$.\n\nThe main term is $50^3/101\\approx1237.6$, and the error is at most $50\\times5.52\\approx276$. So the bound predicts $T(Q)$ between about $961$ and $1514$. The true value is $1250$ (this includes the $50$ trivial triples $x=y=z$). The squares behave, for three-term progressions, like a random set of density $1/2$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Cauchy–Davenport is false for composite moduli. In $\\mathbb Z/6$, $A=B=\\{0,2,4\\}$ gives $|A+B|=3\\lt \\min(6,5)$. The obstruction is a subgroup, and Kneser's theorem says subgroups are the only obstruction in general abelian groups.\n- Freiman's theorem says $A$ is contained in a generalised progression of comparable size. It does not say $A$ is one, nor that $A$ is a dense subset of an ordinary progression. The dimension must be allowed to grow with $K$. The standard example is a cube: the $2^d$ sums of distinct elements of $\\{1,10,\\dots,10^{d-1}\\}$ have $|A+A|=3^d$, so doubling $(3/2)^d$.\n- $|A+A|$ and $|A-A|$ can differ a lot for the same set, although each is at most the square of the other's doubling constant times $|A|$, by Ruzsa's inequality.\n- Small Fourier coefficients control three-term progressions but not four-term ones. A set can have all $|S_A(r)|$ small and still have the wrong number of four-term progressions, for example a set defined by a condition on $x^2 \\bmod N$. Longer progressions need Gowers's higher-order uniformity norms."
+   },
+   {
+    "type": "connection",
+    "body": "Fourier analysis and the density-increment strategy prove Roth's theorem and, with Gowers's higher-order Fourier analysis and Szemerédi's combinatorics, give the theory of [[arithmetic-progressions]]. Sets of minimal energy are [[sidon-sets]], and sets $A$ with $A+A$ (or $hA$) covering everything are [[additive-bases]]. The exponential sums $S_A(r)$ are the finite cousins of the sums in [[exponential-sums]] and the [[circle-method]], and colouring versions of these questions belong to [[ramsey-arithmetic]]. The elementary moves come from [[combinatorial-nt]].\n\nOn 8 October 2026 Thomas Bloom (erdosproblems.com) listed the claims touching Erdős problems in an OpenAI release. They include Erdős problem #3, claimed (not yet established) via a 198-page quasipolynomial bound for Szemerédi's theorem whose Lean file proves only a weaker statement. Bloom called his list a summary of claims, not an endorsement."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $|A+B|\\ge|A|+|B|-1$ for finite nonempty $A,B\\subset\\mathbb Z$. When does equality hold?\n2. Use Ruzsa's triangle inequality to prove $|A-A|\\le|A+A|^2/|A|$ and $|A+A|\\le|A-A|^2/|A|$.\n3. Compute the additive energy $E(A)$ for $A=\\{1,2,\\dots,k\\}$ and compare $|A|^4/E(A)$ with $|A+A|$.\n4. Let $A\\subseteq\\mathbb Z/p$ with $|A|=k$. Prove that $|hA|\\ge\\min(p,\\ hk-h+1)$, where $hA$ is the $h$-fold sumset."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Tao & Vu, Additive Combinatorics"
+   },
+   {
+    "ref": "Nathanson, Additive Number Theory: Inverse Problems and the Geometry of Sumsets"
+   },
+   {
+    "ref": "Zhao, Graph Theory and Additive Combinatorics"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "AP has |A+A| = 2k-1, powers of 2 have k(k+1)/2, two far blocks of size k each have 3(2k-1)",
+    "python": "def ss(A): return len({a+b for a in A for b in A})\nfor k in range(1,15):\n    assert ss([3+7*i for i in range(k)])==2*k-1\n    assert ss([2**i for i in range(k)])==k*(k+1)//2\n    assert ss(list(range(1,k+1))+list(range(10**6+1,10**6+k+1)))==3*(2*k-1)"
+   },
+   {
+    "claim": "|A+A| = 2|A|-1 only for arithmetic progressions (exhaustive over subsets of [0,11])",
+    "python": "from itertools import combinations\ndef isap(A): return len({A[i+1]-A[i] for i in range(len(A)-1)})<=1\nfor k in range(1,8):\n    for A in combinations(range(12),k):\n        s=len({a+b for a in A for b in A})\n        assert s>=2*k-1\n        assert (s==2*k-1)==isap(A)"
+   },
+   {
+    "claim": "Cauchy–Davenport holds for all nonempty A,B in Z/7, and fails in Z/6 for A=B={0,2,4}",
+    "python": "from itertools import combinations\np=7\nsubs=[set(c) for k in range(1,p+1) for c in combinations(range(p),k)]\nfor A in subs:\n    for B in subs:\n        assert len({(a+b)%p for a in A for b in B})>=min(p,len(A)+len(B)-1)\nA={0,2,4}; assert len({(a+b)%6 for a in A for b in A})==3<min(6,5)"
+   },
+   {
+    "claim": "Every residue mod p is a sum of two squares, for odd primes p < 300 (|S| = (p+1)/2)",
+    "python": "from sympy import primerange\nfor p in primerange(3,300):\n    S={x*x%p for x in range(p)}\n    assert len(S)==(p+1)//2\n    assert {(a+b)%p for a in S for b in S}==set(range(p))"
+   },
+   {
+    "claim": "For primes p = 1 mod 3 below 300 the cubes C (with 0) have (p+2)/3 elements and C+C+C is everything; mod 7, C={0,1,6} and C+C={0,1,2,5,6}",
+    "python": "from sympy import primerange\nfor p in primerange(7,300):\n    if p%3==1:\n        C={pow(x,3,p) for x in range(p)}\n        assert len(C)==(p+2)//3\n        CC={(a+b)%p for a in C for b in C}\n        assert {(a+b)%p for a in CC for b in C}==set(range(p))\nC={pow(x,3,7) for x in range(7)}; assert C=={0,1,6}\nassert {(a+b)%7 for a in C for b in C}=={0,1,2,5,6}"
+   },
+   {
+    "claim": "Cube example: sums of distinct elements of {1,10,...,10^(d-1)} give |A|=2^d, |A+A|=3^d",
+    "python": "from itertools import product\nfor d in range(1,7):\n    A={sum(e*10**i for i,e in enumerate(v)) for v in product((0,1),repeat=d)}\n    assert len(A)==2**d and len({a+b for a in A for b in A})==3**d"
+   },
+   {
+    "claim": "Ruzsa triangle inequality and the energy bound hold on random sets of integers",
+    "python": "import random\nrandom.seed(2)\nfor _ in range(300):\n    A,B,C=[set(random.sample(range(60),random.randint(1,12))) for _ in range(3)]\n    d=lambda X,Y: len({x-y for x in X for y in Y})\n    assert len(A)*d(B,C) <= d(A,B)*d(A,C)\n    E=sum(1 for a in A for b in A for c in A for e in A if a+b==c+e)\n    assert len({a+b for a in A for b in A})*E >= len(A)**4"
+   },
+   {
+    "claim": "Energy and 3-AP Fourier formulas, and Parseval, hold on a random subset of Z/31",
+    "python": "import cmath, random\nrandom.seed(3); N=31\nA=random.sample(range(N),11)\nS=[sum(cmath.exp(2j*cmath.pi*r*a/N) for a in A) for r in range(N)]\nE=sum(1 for a in A for b in A for c in A for d in A if (a+b-c-d)%N==0)\nT=sum(1 for x in A for y in A for z in A if (x+z-2*y)%N==0)\nassert abs(sum(abs(s)**2 for s in S)-N*len(A))<1e-8\nassert abs(sum(abs(s)**4 for s in S)/N-E)<1e-6\nassert abs(sum(S[r]**2*S[(-2*r)%N] for r in range(N))/N-T)<1e-6"
+   },
+   {
+    "claim": "For p=101 the 50 nonzero squares have max nontrivial |S_Q(r)| = (1+sqrt 101)/2; T(Q)=1250, main term 1237.6, error bound about 276",
+    "python": "import cmath, math\np=101; Q=sorted({x*x%p for x in range(1,p)}); assert len(Q)==50\nS=lambda r: sum(cmath.exp(2j*math.pi*r*a/p) for a in Q)\nM=max(abs(S(r)) for r in range(1,p))\nassert abs(M-(1+math.sqrt(p))/2)<1e-9 and abs(M-5.52)<0.01\nT=sum(1 for x in Q for y in Q for z in Q if (x+z-2*y)%p==0)\nassert T==1250 and abs(50**3/p-1237.6)<0.05 and abs(50*M-276)<1\nassert abs(T-50**3/p) <= 50*M"
+   },
+   {
+    "claim": "Davenport transform: for random A,B in Z/p and every e, A'+B' is inside A+B and |A'|+|B'| = |A|+|B|",
+    "python": "import random\nrandom.seed(5)\nfor p in [7,11,13]:\n    for _ in range(300):\n        A=set(random.sample(range(p),random.randint(1,p))); B=set(random.sample(range(p),random.randint(1,p)))\n        AB={(a+b)%p for a in A for b in B}\n        for e in range(p):\n            A2=A|{(b+e)%p for b in B}; B2=B&{(a-e)%p for a in A}\n            assert len(A2)+len(B2)==len(A)+len(B)\n            assert {(a+b)%p for a in A2 for b in B2} <= AB"
+   },
+   {
+    "claim": "Generalised progression with L=(4,5,3) and generic steps: |P+P| = prod(2L_i-1) <= 2^3 prod L_i; Ruzsa gives |A-A| <= |A+A|^2/|A| on random sets; p=101 interval 961..1514",
+    "python": "import random, math\nP={n1*1+n2*100+n3*10000 for n1 in range(4) for n2 in range(5) for n3 in range(3)}\nassert len(P)==60 and len({a+b for a in P for b in P})==7*9*5 <= 8*60\nrandom.seed(7)\nfor _ in range(200):\n    A=set(random.sample(range(80),random.randint(1,15)))\n    s=len({a+b for a in A for b in A}); d=len({a-b for a in A for b in A})\n    assert d*len(A)<=s*s and s*len(A)<=d*d\nM=(1+math.sqrt(101))/2\nassert round(50**3/101-50*M)==961 and round(50**3/101+50*M)==1514"
+   }
+  ]
+ },
+ {
+  "id": "ramsey-arithmetic",
+  "minutes": 24,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Colour each of the numbers $1,2,\\dots,N$ red or blue. If $N\\ge5$, then however you do it there are $x,y,z$ of the same colour with $x+y=z$. Colour the numbers $1,\\dots,9$ red or blue: some three of the same colour form an arithmetic progression. These are the first cases of two theorems from the early twentieth century, Schur's (1916) and van der Waerden's (1927). They say that additive structure cannot be destroyed by splitting the integers into finitely many pieces.\n\nArithmetic Ramsey theory asks which structures survive every finite colouring. The answers are sometimes complete (Rado's theorem decides exactly which linear equations survive) and sometimes quantitatively wild (the best known bounds for van der Waerden's theorem are towers of exponentials). The most interesting part is the comparison with density. Some colouring theorems hold because one colour class must be large, and some hold for subtler reasons."
+   },
+   {
+    "type": "definition",
+    "title": "Partition regular",
+    "body": "A system of equations is partition regular over $\\mathbb N=\\{1,2,\\dots\\}$ if for every $r$ and every colouring $\\mathbb N=C_1\\cup\\dots\\cup C_r$ some class $C_i$ contains a solution (unknowns may coincide unless stated otherwise). By a compactness argument this is equivalent to: for each $r$ there is $N$ such that every $r$-colouring of $[1,N]$ has a monochromatic solution.\n\nIn words, the equation cannot be avoided by any finite partition of the integers."
+   },
+   {
+    "type": "theorem",
+    "title": "Schur's theorem (1916)",
+    "body": "For every $r$ there is $N$ such that for every colouring $[1,N]=C_1\\cup\\cdots\\cup C_r$ there are $i$ and $x,y,z\\in C_i$ with $x+y=z$. One may take $N=R_r(3)-1$, where $R_r(3)$ is the $r$-colour Ramsey number of the triangle: the least $M$ such that every $r$-colouring of the edges of the complete graph $K_M$ contains a monochromatic triangle."
+   },
+   {
+    "type": "proof",
+    "body": "Let $N=R_r(3)-1$ and fix an $r$-colouring $c$ of $[1,N]$. Colour each edge $\\{u,v\\}$ of the complete graph on the vertex set $\\{1,2,\\dots,N+1\\}$ by $c(|u-v|)$; this makes sense since $1\\le|u-v|\\le N$. The graph has $R_r(3)$ vertices, so by Ramsey's theorem (see [[ramsey]]) there is a monochromatic triangle $u\\lt v\\lt w$. Put $x=v-u$, $y=w-v$, $z=w-u$. These have the same colour (the colours of the three edges), and $x+y=z$."
+   },
+   {
+    "type": "example",
+    "title": "Schur numbers",
+    "body": "Let $S(r)$ be the largest $N$ for which some $r$-colouring of $[1,N]$ has no monochromatic solution of $x+y=z$. Show that $S(2)=4$, and that $S(r+1)\\ge3S(r)+1$, so $S(r)\\ge(3^r-1)/2$.",
+    "solution": "$S(2)\\ge4$: colour $\\{1,4\\}$ red and $\\{2,3\\}$ blue. The red sums are $1+1=2$, $1+4=5$ and $4+4=8$, none of them red. The blue sums are $2+2=4$, $2+3=5$ and $3+3=6$, none of them blue.\n\n$S(2)\\le4$: suppose $[1,5]$ is coloured with no monochromatic solution, and say $1$ is red. Then $2=1+1$ is blue, so $4=2+2$ is red. Now $3$ cannot be red (as $1+3=4$) and so is blue. Finally $5=1+4$ forces $5$ blue, but $5=2+3$ forces $5$ red. Contradiction.\n\nThe recursion. Let $m=S(r)$ and take a good $r$-colouring of $[1,m]$. Colour $[1,3m+1]$ with $r+1$ colours: keep the colours on $[1,m]$; give the middle block $[m+1,2m+1]$ a new colour; give $x\\in[2m+2,3m+1]$ the colour of $x-(2m+1)$. Check each possible monochromatic triple $x\\le y$, $x+y=z\\le3m+1$.\n\n- New colour: two middle elements sum to at least $2m+2$, outside the middle block.\n- Old colour, $x,y\\le m$: if $z\\le m$ this contradicts goodness on $[1,m]$; if $m\\lt z\\le2m$, then $z$ is in the middle block, with the new colour.\n- Old colour, $x\\le m$, $y\\ge2m+2$: then $z\\ge2m+3$ and $z-(2m+1)=x+(y-(2m+1))$ is a solution inside $[1,m]$ with the same colour. Contradiction.\n- Old colour, $x,y\\ge2m+2$: $z\\ge4m+4$ is out of range.\n\nSo $S(r+1)\\ge3S(r)+1$. With $S(1)=1$ this gives $S(r)\\ge(3^r-1)/2$: $S(2)\\ge4$, $S(3)\\ge13$, $S(4)\\ge40$.\n\nThe true values are $S(3)=13$, $S(4)=44$ (Baumert, 1965) and $S(5)=160$ (Heule, 2017, by a large computer proof). Schur's proof gives the upper bound $S(r)\\le R_r(3)-2$. Since $R(3,3)=6$ and $R(3,3,3)=17$, this is $S(2)\\le4$ (sharp) and $S(3)\\le15$."
+   },
+   {
+    "type": "example",
+    "title": "Schur's application: Fermat's equation modulo p",
+    "body": "Let $m\\ge1$. Show that for every prime $p>S(m)+1$ the congruence $x^m+y^m\\equiv z^m\\pmod p$ has a solution with $p\\nmid xyz$. (This is why Schur proved his theorem: Fermat's Last Theorem cannot be proved by working modulo a single prime.)",
+    "solution": "The nonzero $m$-th powers form a subgroup $H$ of the cyclic group $(\\mathbb Z/p)^\\times$, of index $d=\\gcd(m,p-1)\\le m$. Colour each $n\\in[1,p-1]$ by the coset $nH$ that contains it. That is at most $m$ colours on $[1,p-1]$, and $p-1>S(m)$, so there are $a,b,c\\in[1,p-1]$ in the same coset $gH$ with $a+b=c$ as integers. Write $a\\equiv gx^m$, $b\\equiv gy^m$, $c\\equiv gz^m$ with $x,y,z$ nonzero mod $p$. Then $g(x^m+y^m)\\equiv gz^m$, and cancelling $g$ gives $x^m+y^m\\equiv z^m\\pmod p$.\n\nFor $m=3$ this gives a solution for every prime $p\\ge17$, since $S(3)=13$. Small primes can fail: mod $7$ and mod $13$ the nonzero cubes are $\\{1,6\\}$ and $\\{1,5,8,12\\}$, and no sum of two of them (repetition allowed) is again a nonzero cube."
+   },
+   {
+    "type": "theorem",
+    "title": "Van der Waerden's theorem (1927)",
+    "body": "For all $k,r\\ge1$ there is a least integer $W(k,r)$ such that every $r$-colouring of $[1,W(k,r)]$ contains a monochromatic $k$-term arithmetic progression $a,a+d,\\dots,a+(k-1)d$ with $d\\ge1$."
+   },
+   {
+    "type": "section",
+    "title": "The first case, by colour focusing",
+    "body": "The proofs of van der Waerden's theorem are inductions in which the bounds grow very fast. The case $k=3$, $r=2$ already shows the main idea: blocks of colours are themselves \"colours\", and repeated blocks line up into a progression of progressions. We prove $W(3,2)\\le325$; the true value is $W(3,2)=9$, which a short case check or a computer confirms. Other known values include $W(4,2)=35$ and $W(3,3)=27$."
+   },
+   {
+    "type": "theorem",
+    "title": "A bound for W(3,2)",
+    "body": "Every red/blue colouring of $[1,325]$ contains a monochromatic three-term arithmetic progression."
+   },
+   {
+    "type": "proof",
+    "body": "Cut $[1,325]$ into $65$ blocks of $5$ consecutive integers, $B_j=\\{5j-4,\\dots,5j\\}$. The colour pattern of a block is one of $2^5=32$ words, so among $B_1,\\dots,B_{33}$ two blocks $B_i$ and $B_{i+d}$ have the same pattern, with $1\\le d\\le32$. Then $i+2d\\le33+32=65$, so the block $B_{i+2d}$ exists too.\n\nRefer to positions $1,\\dots,5$ inside a block. Among positions $1,2,3$ of $B_i$ two have the same colour, say positions $u\\lt v\\le3$ are red. Put $w=2v-u\\le5$. If position $w$ of $B_i$ is red, positions $u,v,w$ of $B_i$ form a red progression. So assume position $w$ of $B_i$ is blue. Since $B_{i+d}$ has the same pattern, its positions $u,v$ are red and $w$ is blue.\n\nLook at position $w$ of $B_{i+2d}$. If it is red, then position $u$ of $B_i$, position $v$ of $B_{i+d}$ and position $w$ of $B_{i+2d}$ are red. They are the integers $5(i-1)+u$, $5(i+d-1)+v$ and $5(i+2d-1)+w$, with common difference $5d+(v-u)$, because $w-v=v-u$. If instead it is blue, then position $w$ of $B_i$, $B_{i+d}$ and $B_{i+2d}$ is blue each time, a blue progression with difference $5d$. Either way we are done."
+   },
+   {
+    "type": "theorem",
+    "title": "Rado's theorem for one equation (1933)",
+    "body": "Let $c_1,\\dots,c_n$ be nonzero integers. The equation $c_1x_1+\\dots+c_nx_n=0$ is partition regular over $\\mathbb N$ if and only if some nonempty subset of the coefficients sums to $0$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof of the 'only if' direction",
+    "body": "Assume no nonempty subset of the $c_i$ sums to $0$. Choose a prime $p$ larger than $\\sum|c_i|$, so $p$ divides no nonempty subset sum. Every $n\\in\\mathbb N$ can be written uniquely as $n=p^k(pq+\\delta)$ with $\\delta\\in\\{1,\\dots,p-1\\}$: $\\delta$ is the last nonzero digit of $n$ in base $p$. Colour $n$ by $\\delta$, which uses $p-1$ colours.\n\nSuppose $x_1,\\dots,x_n$ all have colour $\\delta$ and $\\sum c_ix_i=0$. Write $x_i=p^{k_i}(pq_i+\\delta)$, let $k=\\min k_i$ and $I=\\{i:k_i=k\\}\\neq\\varnothing$. Dividing the equation by $p^k$ and reducing mod $p$ kills every term with $k_i>k$ and leaves\n$$\\delta\\sum_{i\\in I}c_i\\equiv0\\pmod p.$$\nSince $p\\nmid\\delta$, $p$ divides $\\sum_{i\\in I}c_i$, which is impossible. So this colouring has no monochromatic solution.\n\nThe 'if' direction is harder and we omit it. It is proved by an induction that uses van der Waerden's theorem."
+   },
+   {
+    "type": "example",
+    "title": "Which equations survive?",
+    "body": "Decide which of these are partition regular: (a) $x+y=z$; (b) $x+y=3z$; (c) $x+2y=3z$. For (b), give an explicit colouring with no monochromatic solution.",
+    "solution": "(a) The coefficients are $1,1,-1$, and $1+(-1)=0$, so the equation is partition regular. This is Schur's theorem again.\n\n(b) The coefficients are $1,1,-3$. The nonempty subset sums are $1,1,-3,2,-2,-2,-1$, none zero, so the equation is not partition regular. The proof above with $p=5$ (which divides none of these sums) gives a $4$-colouring: colour $n$ by its last nonzero digit in base $5$. For instance $5$, $25$ and $1$ all get colour $1$. A solution in that class would need $x+y=3z$ with all three of colour $1$, and the argument shows none exists.\n\n(c) The coefficients are $1,2,-3$ and $1+2-3=0$, so the equation is partition regular. Here the theorem says little, because $x=y=z$ is always a monochromatic solution. Whenever the coefficients sum to zero the constant solutions make partition regularity trivial, and the real question is about solutions with distinct unknowns. For $x+z=2y$ (a three-term progression), solutions with distinct unknowns in one colour are exactly what van der Waerden's theorem provides."
+   },
+   {
+    "type": "section",
+    "title": "Colouring versus density",
+    "body": "A colouring statement follows from a density statement: in any $r$-colouring of $[1,N]$ some class has at least $N/r$ elements, so if every set of density $1/r$ contains the structure, the colouring version follows. The converse fails, and where it fails is instructive.\n\n- Schur has no density version. The odd numbers have density $1/2$ and contain no solution of $x+y=z$.\n- More generally, if $c_1+\\dots+c_n\\neq0$, choose $m>\\bigl|\\sum c_i\\bigr|$ and let $A=\\{x\\equiv1\\pmod m\\}$. For $x_i\\in A$, $\\sum c_ix_i\\equiv\\sum c_i\\not\\equiv0\\pmod m$, so $A$ has density $1/m$ and no solutions at all. Density versions can only hold for translation-invariant equations, those with $\\sum c_i=0$.\n- Van der Waerden does have a density version. This is Szemerédi's theorem (1975), and it is far harder than the colouring statement.\n\nSo a colouring theorem holds either because one colour class is dense enough, as in van der Waerden's theorem, or for a reason that density cannot see, as for Schur's equation, which the odd numbers avoid although they have density $1/2$. The gap between the two kinds of statement is where most of the difficulty lies."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Van der Waerden gives arbitrarily long finite progressions, not infinite ones. Colour the blocks $\\{1\\},\\{2,3\\},\\{4,5,6\\},\\dots$ (block $j$ has length $j$) alternately red and blue. An infinite progression with difference $d$ meets every block of length at least $d$, so it meets blocks of both colours.\n- Finitely many colours are essential. With infinitely many colours each integer can get its own colour.\n- In Schur's theorem as usually stated, $x=y$ is allowed. Requiring $x\\ne y$ changes the extremal numbers, though the theorem remains true.\n- Do not confuse $W(k,r)$, $S(r)$ and Ramsey numbers. Schur's proof bounds $S(r)$ by a Ramsey number, but they are different quantities with different values.\n- For an equation whose coefficients sum to zero, \"partition regular\" is automatic because of constant solutions. The meaningful question is then about distinct solutions, and Rado's theorem in the form above does not answer it."
+   },
+   {
+    "type": "connection",
+    "body": "Van der Waerden's theorem is the colouring shadow of Szemerédi's theorem, and the quantitative questions about it lead straight to [[arithmetic-progressions]]. Shelah (1988) gave the first primitive recursive bounds for $W(k,r)$, and Gowers (2001) an explicit bound that is a tower of five exponentials, as a by-product of his Fourier-analytic proof of Szemerédi's theorem. The vertex-colouring arguments rest on graph [[ramsey]] theory. Measuring how unevenly a two-colouring can split progressions is [[discrepancy]]; Erdős's discrepancy problem was solved by Tao in 2015. Further partition theorems include Hindman's (1974) on finite sums, the multidimensional and polynomial extensions proved with ergodic theory, and questions mixing sums and products, which draw on [[additive-combinatorics]]. The basic vocabulary comes from [[combinatorial-nt]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that every red/blue colouring of $[1,9]$ contains a monochromatic three-term progression, and find a colouring of $[1,8]$ that has none.\n2. Decide which equations are partition regular: $x+y+z=w$, $x+2y=4z$, $2x+3y=5z$, $x+y=4z$.\n3. Use the recursion in the Schur-number example to write down an explicit $3$-colouring of $[1,13]$ with no monochromatic solution of $x+y=z$.\n4. Show that the multiplicative equation $xy=z$ is partition regular over $\\{2,3,4,\\dots\\}$, by applying Schur's theorem to exponents of $2$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Graham, Rothschild & Spencer, Ramsey Theory"
+   },
+   {
+    "ref": "Landman & Robertson, Ramsey Theory on the Integers"
+   },
+   {
+    "ref": "Soifer, The Mathematical Coloring Book"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "S(2)=4 and S(3)=13: good colourings of [1,4] and [1,13] exist, none of [1,5] or [1,14]",
+    "python": "def good(n,r):\n    col=[-1]*(n+1)\n    def bt(i,mx):\n        if i>n: return True\n        for c in range(min(r,mx+2)):\n            if all(not(col[x]==c and col[i-x]==c) for x in range(1,i//2+1)):\n                col[i]=c\n                if bt(i+1,max(mx,c)): return True\n        col[i]=-1\n        return False\n    return bt(1,-1)\nassert good(4,2) and not good(5,2)\nassert good(13,3) and not good(14,3)"
+   },
+   {
+    "claim": "The colouring {1,4} red, {2,3} blue works, and the recursion S(r+1) >= 3S(r)+1 produces valid colourings of [1,4], [1,13], [1,40]",
+    "python": "def ok(col):\n    n=len(col)-1\n    return all(not(col[x]==col[y]==col[x+y]) for x in range(1,n+1) for y in range(x,n+1-x))\nassert ok([None,0,1,1,0])\ncol=[None,0]; r=1\nwhile len(col)-1<40:\n    m=len(col)-1\n    new=col[:]+[r]*(m+1)+[col[x-(2*m+1)] for x in range(2*m+2,3*m+2)]\n    col=new; r+=1\n    assert ok(col)\nassert len(col)-1==40 and r==4"
+   },
+   {
+    "claim": "S(4) >= 44: an explicit 4-colouring of [1,44] with no monochromatic x+y=z",
+    "python": "c=[0,1,0,2,0,2,1,1,3,3,3,3,2,3,0,3,0,1,0,2,1,2,2,1,2,0,1,0,3,2,3,2,1,3,3,3,1,1,2,0,2,0,1,0]\ncol=[None]+c; n=44\nassert len(c)==44\nassert all(not(col[x]==col[y]==col[x+y]) for x in range(1,n+1) for y in range(x,n+1-x))"
+   },
+   {
+    "claim": "R(3,3)=6: K5 has a 2-colouring without monochromatic triangle, K6 has none",
+    "python": "from itertools import combinations, product\ndef has_good(n):\n    E=list(combinations(range(n),2)); T=list(combinations(range(n),3))\n    for cols in product((0,1),repeat=len(E)):\n        c=dict(zip(E,cols))\n        if all(not(c[(a,b)]==c[(a,d)]==c[(b,d)]) for a,b,d in T): return True\n    return False\nassert has_good(5) and not has_good(6)"
+   },
+   {
+    "claim": "W(3,2)=9, W(4,2)=35, W(3,3)=27 by exhaustive search",
+    "python": "def free(n,k,r):\n    col=[-1]*(n+1)\n    def bt(i,mx):\n        if i>n: return True\n        for c in range(min(r,mx+2)):\n            if all(not all(col[i-j*d]==c for j in range(1,k)) for d in range(1,(i-1)//(k-1)+1)):\n                col[i]=c\n                if bt(i+1,max(mx,c)): return True\n        col[i]=-1\n        return False\n    return bt(1,-1)\nassert free(8,3,2) and not free(9,3,2)\nassert free(34,4,2) and not free(35,4,2)\nassert free(26,3,3) and not free(27,3,3)"
+   },
+   {
+    "claim": "x^3+y^3=z^3 has a solution with xyz nonzero mod p for every prime 17 <= p < 400, but not for p = 7, 13 (cubes {1,6} and {1,5,8,12})",
+    "python": "from sympy import primerange\ndef sol(p):\n    C={pow(x,3,p) for x in range(1,p)}\n    return any((a+b)%p in C for a in C for b in C), C\nfor p in primerange(17,400): assert sol(p)[0]\nassert sol(7)==(False,{1,6}) and sol(13)==(False,{1,5,8,12})"
+   },
+   {
+    "claim": "Colouring by last nonzero base-5 digit has no monochromatic x+y=3z up to 3000",
+    "python": "def col(n):\n    while n%5==0: n//=5\n    return n%5\nN=3000\nfor z in range(1,N//3+1):\n    for x in range(1,3*z):\n        y=3*z-x\n        assert not (col(x)==col(y)==col(z))\nassert col(5)==col(25)==col(1)==1"
+   },
+   {
+    "claim": "Equations with sum of coefficients nonzero avoid the class 1 mod m (m > |sum|); e.g. odd numbers are sum-free",
+    "python": "import random\nrandom.seed(5)\nfor _ in range(200):\n    c=[random.choice([-3,-2,-1,1,2,3]) for _ in range(random.randint(2,4))]\n    s=sum(c)\n    if s==0: continue\n    m=abs(s)+1\n    for _ in range(50):\n        x=[m*random.randint(0,50)+1 for _ in c]\n        assert sum(a*b for a,b in zip(c,x))!=0\nassert all((x+y)%2==0 for x in range(1,60,2) for y in range(1,60,2))"
+   },
+   {
+    "claim": "Alternating blocks of lengths 1,2,3,... give every infinite AP (tested: start <= 50, difference <= 20, first 400 terms) both colours",
+    "python": "col={}; n=1; j=1\nwhile n<=30000:\n    for _ in range(j): col[n]=j%2; n+=1\n    j+=1\nfor a in range(1,51):\n    for d in range(1,21):\n        assert len({col[a+t*d] for t in range(400)})==2"
+   },
+   {
+    "claim": "R(3,3,3) >= 17: colouring the edges of K_16 on GF(16) by the cubic-residue class of a-b has no monochromatic triangle; and the classical bound R(3,3,3) <= 3(R(3,3)-1)+2 = 17; hence Schur's proof gives S(3) <= 15",
+    "python": "from itertools import combinations\ndef gmul(a,b):\n    r=0\n    while b:\n        if b&1: r^=a\n        b>>=1; a<<=1\n        if a&16: a^=0b10011\n    return r\ng=2; lg={}; x=1\nfor k in range(15): lg[x]=k; x=gmul(x,g)\nassert len(lg)==15\ncol=lambda a,b: lg[a^b]%3\nassert all(not(col(a,b)==col(a,c)==col(b,c)) for a,b,c in combinations(range(16),3))\nR33=6; assert 3*(R33-1)+2==17 and 17-2==15"
+   }
+  ]
+ },
+ {
+  "id": "arithmetic-progressions",
+  "minutes": 26,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "How large can a subset of $\\{1,\\dots,N\\}$ be if it contains no three numbers in arithmetic progression? The even numbers fail at once ($2,4,6$), and so does any set containing a long interval. With some care you can find a progression-free set of $9$ numbers among the first $20$. Can a positive proportion, say $1\\%$, of $[1,N]$ avoid progressions when $N$ is huge?\n\nNo. This is Roth's theorem (1953) for three terms and Szemerédi's theorem (1975) for any length. Both are density statements: they need no colouring, only a lower bound on size. The modern question is how fast the maximal size $r_k(N)$ of a progression-free set must drop below $N$. The answer controls Erdős's conjecture that any set whose reciprocals diverge, such as the primes, contains arbitrarily long progressions."
+   },
+   {
+    "type": "definition",
+    "title": "r_k(N) and upper density",
+    "body": "A $k$-term arithmetic progression ($k$-AP) is $a,a+d,\\dots,a+(k-1)d$ with $d\\ge1$. Let $r_k(N)$ be the largest size of a subset of $\\{1,\\dots,N\\}$ containing no $k$-AP. The upper density of $A\\subseteq\\mathbb N$ is\n$$\\bar d(A)=\\limsup_{N\\to\\infty}\\frac{|A\\cap[1,N]|}{N}.$$\n\nSince a progression can be translated, $r_k$ is the same for every interval of length $N$, and $r_k(N+M)\\le r_k(N)+r_k(M)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Szemerédi's theorem (1975)",
+    "body": "Every $A\\subseteq\\mathbb N$ with $\\bar d(A)>0$ contains a $k$-term arithmetic progression for every $k$. Equivalently, $r_k(N)=o(N)$ for every fixed $k$."
+   },
+   {
+    "type": "section",
+    "title": "What the theorem says and does not say",
+    "body": "The two forms are equivalent. The finite form gives the infinite one at once: if $r_k(N)\\le\\varepsilon N$ for all large $N$, a set with upper density above $\\varepsilon$ has more than $\\varepsilon N\\ge r_k(N)$ elements in some $[1,N]$, so it contains a $k$-AP. The converse needs a compactness argument, which we omit.\n\nSzemerédi's theorem implies van der Waerden's theorem ([[ramsey-arithmetic]]). In an $r$-colouring of $\\mathbb N$, for each $N$ some colour class has at least $N/r$ elements in $[1,N]$. One class does this for infinitely many $N$, and so has upper density at least $1/r$.\n\nThere are three famous proofs: Szemerédi's combinatorial one (the origin of the regularity lemma), Furstenberg's via ergodic theory (1977), and Gowers's via higher-order Fourier analysis (2001). Only Gowers's gives reasonable bounds for $k\\ge4$: $r_k(N)\\le N/(\\log\\log N)^{c_k}$ with $c_k>0$.\n\nThe theorem does not apply to the primes, which have density $0$. Green and Tao (2004) proved that the primes nevertheless contain arbitrarily long progressions, by a \"relative\" Szemerédi theorem for dense subsets of a pseudorandom set that majorises the primes."
+   },
+   {
+    "type": "section",
+    "title": "Small cases and Behrend's construction",
+    "body": "Exact values are known only for small $N$. By exhaustive search, $r_3(9)=5$ (for example $\\{1,2,4,8,9\\}$), $r_3(14)=8$, $r_3(20)=9$ and $r_3(30)=12$.\n\nHow large can a progression-free set be? A natural first attempt uses the integers whose base-$3$ digits are all $0$ or $1$. If $x+z=2y$ for such numbers, then no carries occur, so the base-$3$ digits satisfy $x_i+z_i=2y_i$, which forces $x_i=y_i=z_i$. This gives about $N^{\\log2/\\log3}\\approx N^{0.63}$ elements. Behrend (1946) did far better:\n$$r_3(N)\\ge N\\exp\\bigl(-c\\sqrt{\\log N}\\bigr)$$\nfor some $c>0$ and all large $N$. This is larger than $N^{1-\\varepsilon}$ for every $\\varepsilon>0$.\n\nThe idea: a sphere contains no three distinct collinear points with one the midpoint of the other two, since a sphere is strictly convex. Take vectors $v\\in\\{0,1,\\dots,m-1\\}^n$ with $m\\le d/2$, read them as base-$d$ integers $\\sum v_id^i$, and keep only those with $\\sum v_i^2=R$ for a well-chosen $R$. If $x+z=2y$ among these integers, the digits are less than $d/2$, so no carries occur and $v_x+v_z=2v_y$ as vectors. All three vectors have length $\\sqrt R$, so the midpoint condition forces $v_x=v_z$, that is, $x=z$. By pigeonhole some $R\\le nm^2$ is hit by at least $m^n/(nm^2)$ vectors. Choosing $n\\approx\\sqrt{\\log N}$ optimises the count.\n\nKelley and Meka's 2023 bound $r_3(N)\\le N\\exp\\bigl(-c(\\log N)^{1/12}\\bigr)$ has the same shape as Behrend's lower bound, with $1/12$ in place of $1/2$. Before 2023 the best upper bounds were only slightly better than $N/\\log N$."
+   },
+   {
+    "type": "example",
+    "title": "A small Behrend set",
+    "body": "Take digits $v_i\\in\\{0,1,2,3,4\\}$ for three base-$10$ digits, and choose $R$ to maximise the number of vectors with $v_0^2+v_1^2+v_2^2=R$. List the resulting integers and check that they contain no $3$-AP.",
+    "solution": "Of the $125$ vectors, the most popular value is $R=17$, hit $9$ times: the permutations of $(4,1,0)$ (six of them) and of $(3,2,2)$ (three of them). Reading $(v_0,v_1,v_2)$ as $v_0+10v_1+100v_2$ gives\n$$\\{14,41,104,140,223,232,322,401,410\\}.$$\nDigits are at most $4$, so adding two of these numbers produces no carries. A relation $x+z=2y$ therefore holds digit by digit, and all three digit vectors lie on the sphere of radius $\\sqrt{17}$. Strict convexity forces $x=y=z$. For instance $14+410=424=2\\cdot212$, but $212$ is not in the set.\n\nNine numbers below $1000$ is far from optimal, but the point is the mechanism. With many digits the sphere trick wins over any fixed-base digit restriction."
+   },
+   {
+    "type": "theorem",
+    "title": "Roth's Fourier dichotomy",
+    "body": "Let $p$ be an odd prime and $A\\subseteq\\mathbb Z/p$ with $|A|=\\delta p$. If $A$ contains no progression $x,x+d,x+2d$ with $d\\not\\equiv0\\pmod p$, then, with $S_A(r)=\\sum_{a\\in A}e^{2\\pi iar/p}$,\n$$\\max_{r\\not\\equiv0}|S_A(r)|\\ge\\delta^2p-1.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $T$ be the number of $(x,y,z)\\in A^3$ with $x+z\\equiv2y$. Such a triple is $(y-d,y,y+d)$ with $d=y-x$. If $d\\not\\equiv0$ the three elements are distinct (as $p$ is odd), so by hypothesis only $d\\equiv0$ occurs, and $T=|A|=\\delta p$.\n\nOn the other hand, by orthogonality (see [[additive-combinatorics]]),\n$$T=\\frac1p\\sum_{r}S_A(r)^2S_A(-2r)=\\frac{|A|^3}p+\\frac1p\\sum_{r\\ne0}S_A(r)^2S_A(-2r).$$\nLet $M=\\max_{r\\ne0}|S_A(r)|$. Since $-2$ is invertible mod $p$, $|S_A(-2r)|\\le M$ for $r\\neq0$. By Parseval, $\\sum_r|S_A(r)|^2=p|A|$, so the error term is at most $M|A|$ in absolute value. Hence\n$$\\delta p=T\\ge\\delta^3p^2-M\\delta p,$$\nand dividing by $\\delta p$ gives $M\\ge\\delta^2p-1$."
+   },
+   {
+    "type": "section",
+    "title": "From a large coefficient to Roth's theorem",
+    "body": "The dichotomy says that a dense progression-free set must correlate with a \"wave\" $x\\mapsto e^{2\\pi irx/p}$. Roth turned this into a density increment. The set $\\{0,1,\\dots,p-1\\}$ can be cut into progressions of length about $\\sqrt p$ on each of which $rx/p$ is nearly constant modulo $1$, by Dirichlet's approximation theorem. A large coefficient then means $A$ has density at least $\\delta+c\\delta^2$ on one of these progressions. Rescaled, that progression is a new interval with a denser progression-free set inside it.\n\nEach step raises the density by a factor $1+c\\delta$, so after about $C/\\delta$ steps the density would exceed $1$, which is impossible. Each step also shrinks the length from $N$ to roughly $\\sqrt N$, so the argument runs only while $N^{2^{-C/\\delta}}$ is large. This gives $\\delta\\ll1/\\log\\log N$, that is,\n$$r_3(N)\\ll\\frac{N}{\\log\\log N}\\qquad\\text{(Roth, 1953)}.$$\n(To pass from $[1,N]$ to $\\mathbb Z/p$ one embeds $[1,N]$ in $\\mathbb Z/p$ with $p\\approx2N$ and keeps only the middle third of $A$, so that progressions mod $p$ are genuine ones. We have skipped these details.) Later refinements of the same strategy gave $N/(\\log N)^{c}$ (Heath-Brown and Szemerédi, late 1980s), then $N/(\\log N)^{1-o(1)}$ (Sanders, 2011), and $N/(\\log N)^{1+c}$ (Bloom and Sisask, 2020). Kelley and Meka (2023) used a new kind of density-increment argument to reach $N\\exp(-c(\\log N)^{1/12})$."
+   },
+   {
+    "type": "theorem",
+    "title": "A sufficient condition for Erdős's conjecture",
+    "body": "Erdős conjectured that if $A\\subseteq\\mathbb N$ and $\\sum_{n\\in A}1/n=\\infty$, then $A$ contains arbitrarily long arithmetic progressions. For a fixed $k$, if\n$$\\sum_{j\\ge0}\\frac{r_k(2^j)}{2^j}\\lt \\infty,$$\nthen every $A$ with $\\sum_{n\\in A}1/n=\\infty$ contains a $k$-AP. In particular a bound $r_k(N)\\le N/(\\log N)^{1+\\delta}$ for some $\\delta>0$ and all large $N$ suffices."
+   },
+   {
+    "type": "proof",
+    "body": "Suppose $A$ contains no $k$-AP. For each $j\\ge0$, the set $A\\cap[2^j,2^{j+1})$ is a $k$-AP-free subset of an interval of length $2^j$, so it has at most $r_k(2^j)$ elements, and each element $n$ satisfies $1/n\\le2^{-j}$. Hence\n$$\\sum_{n\\in A}\\frac1n\\le\\sum_{j\\ge0}\\frac{r_k(2^j)}{2^j}\\lt \\infty.$$\nFor the second claim, $r_k(2^j)/2^j\\le(j\\log2)^{-1-\\delta}$ for large $j$, and $\\sum_jj^{-1-\\delta}$ converges."
+   },
+   {
+    "type": "example",
+    "title": "The logarithmic barrier",
+    "body": "Explain why a bound $r_k(N)\\ll N/\\log N$ would not be enough for the criterion above, and why the case $k=3$ of Erdős's conjecture is now a theorem.",
+    "solution": "With $r_k(2^j)\\approx2^j/(j\\log2)$ the terms of $\\sum_jr_k(2^j)/2^j$ are about $1/(j\\log2)$, a harmonic series, which diverges. So the criterion needs a bound beating $N/\\log N$ by more than a factor $\\log\\log N$, for example $N/(\\log N)^{1+\\delta}$. Nothing better than about $N/\\log N$ was known until Bloom and Sisask (2020) proved $r_3(N)\\ll N/(\\log N)^{1+c}$, deliberately crossing this barrier. By the criterion, every set with divergent reciprocal sum contains a $3$-AP. The Kelley–Meka bound gives this with room to spare.\n\nThe primes are the test case: $\\sum_p1/p=\\infty$, and in fact $\\sum_{p\\le x}1/p=\\log\\log x+M+o(1)$ with $M\\approx0.2615$ (see [[mertens]]). At $x=10^6$ the sum is about $2.887$. So Erdős's conjecture contains the Green–Tao theorem. Green and Tao, however, used special properties of the primes, not their density."
+   },
+   {
+    "type": "section",
+    "title": "Status in 2026",
+    "body": "Two problems should be kept apart. In 1936 Erdős and Turán conjectured that sets of positive density contain long progressions; Szemerédi proved this. The stronger reciprocal-sum form, Erdős problem #3 on erdosproblems.com, carries a 5000-dollar prize. It is open for every $k\\ge4$, and the case $k=3$ follows from the bounds above.\n\nOn 8 October 2026 Thomas Bloom (erdosproblems.com) listed the claims in an OpenAI release that touch Erdős problems. Among them is #3, claimed via a 198-page quasipolynomial bound for Szemerédi's theorem, whose accompanying Lean file proves only a weaker statement. Bloom described the list as a summary of claims, not an endorsement. We do not reproduce the claimed bound. As the criterion above shows, a bound of the strength $r_k(N)\\le N/(\\log N)^{1+\\delta}$ for every $k$ would settle #3. Whether the manuscript establishes such a bound is exactly what has not been verified. A formal proof of a weaker statement is not a proof of the claim."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Positive upper density is enough for Szemerédi's theorem, but density zero is not: the primes need a separate argument, and the squares contain no $4$-term progressions at all (Fermat, proved by Euler).\n- Szemerédi's theorem gives arbitrarily long finite progressions, never an infinite one. A set of density $1$ can avoid all infinite progressions.\n- $r_k(N)=o(N)$ alone says nothing about reciprocal sums. The Erdős conjecture needs a quantitative rate, beyond the logarithmic barrier.\n- Behrend's sets are larger than $N^{1-\\varepsilon}$, so no power saving $r_3(N)\\le N^{1-c}$ is possible over the integers. (In $\\mathbb F_3^n$, by contrast, power savings do hold: Ellenberg and Gijswijt, 2016.)\n- A progression-free set mod $p$ is not the same as one in $[1,N]$, because progressions can wrap around. Roth's argument handles this by restricting to a middle third."
+   },
+   {
+    "type": "connection",
+    "body": "This is the meeting point of [[additive-combinatorics]] (Fourier analysis, density increment, Freiman-type structure) and [[ramsey-arithmetic]] (van der Waerden's colouring theorem, of which Szemerédi's is the density form). Progressions in the primes belong to [[prime-patterns]], and the exponential sums in the proof are close relatives of those in [[exponential-sums]] and the [[circle-method]]. Sets avoiding the equation $a+b=c+d$ instead of $a+c=2b$ are [[sidon-sets]]. The density-increment idea and the regularity lemma from Szemerédi's proof are now standard tools in combinatorics and theoretical computer science."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Prove $r_3(N+M)\\le r_3(N)+r_3(M)$ and deduce that $r_3(N)/N$ converges as $N\\to\\infty$.\n2. Show that the integers in $[0,3^n)$ whose base-$3$ digits are all $0$ or $1$ contain no $3$-AP. How many are there?\n3. Show that if $p\\lt q\\lt s$ are primes greater than $3$ in arithmetic progression, the common difference is divisible by $6$.\n4. The greedy progression-free sequence $1,2,4,5,10,11,13,14,\\dots$ consists of the numbers $n$ such that $n-1$ has no digit $2$ in base $3$. Show that its reciprocal sum converges."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Tao & Vu, Additive Combinatorics"
+   },
+   {
+    "ref": "Graham, Rothschild & Spencer, Ramsey Theory"
+   },
+   {
+    "ref": "Roth, On certain sets of integers, J. London Math. Soc. 28 (1953)"
+   },
+   {
+    "ref": "Kelley & Meka, Strong bounds for 3-progressions (2023)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "r_3(9)=5 (e.g. {1,2,4,8,9}), r_3(14)=8, r_3(20)=9, r_3(30)=12",
+    "python": "def r3(N):\n    best=0\n    def bt(i,S,s):\n        nonlocal best\n        if len(S)+(N-i+1)<=best: return\n        if i>N:\n            best=len(S); return\n        if not any(2*b-i in s for b in S):\n            s.add(i); bt(i+1,S+[i],s); s.discard(i)\n        bt(i+1,S,s)\n    bt(1,[],set())\n    return best\nassert [r3(n) for n in (9,14,20,30)]==[5,8,9,12]\nA={1,2,4,8,9}; assert not any((a+c)%2==0 and (a+c)//2 in A for a in A for c in A if a<c)"
+   },
+   {
+    "claim": "Behrend instance: R=17 is hit 9 times among {0..4}^3, giving {14,41,104,140,223,232,322,401,410}, which is 3-AP-free; 14+410=2*212",
+    "python": "from itertools import product\nfrom collections import Counter\nV=list(product(range(5),repeat=3))\nc=Counter(sum(x*x for x in v) for v in V)\nassert c.most_common(1)[0]==(17,9) and len(V)==125\nS=sorted(v[0]+10*v[1]+100*v[2] for v in V if sum(x*x for x in v)==17)\nassert S==[14,41,104,140,223,232,322,401,410]\ns=set(S); assert not any((a+b)%2==0 and (a+b)//2 in s for a in S for b in S if a<b)\nassert 14+410==2*212 and 212 not in s"
+   },
+   {
+    "claim": "Base-3 digits in {0,1} give a 3-AP-free set of size 2^n in [0,3^n), n <= 7",
+    "python": "from itertools import product\nfor n in range(1,8):\n    S=sorted(sum(d*3**i for i,d in enumerate(v)) for v in product((0,1),repeat=n))\n    s=set(S); assert len(S)==2**n\n    assert not any((a+b)%2==0 and (a+b)//2 in s for a in S for b in S if a<b)"
+   },
+   {
+    "claim": "Fourier dichotomy: greedy sets in Z/p without nontrivial 3-APs satisfy max_{r!=0}|S_A(r)| >= delta^2 p - 1",
+    "python": "import cmath\nfor p in (31,61,101,151):\n    A=[]\n    for x in range(p):\n        s=set(A)\n        if all((2*x-a)%p not in s and (2*a-x)%p not in s for a in A): A.append(x)\n    s=set(A); h=pow(2,-1,p)\n    assert not any(((a+c)*h)%p in s for a in A for c in A if a!=c)\n    M=max(abs(sum(cmath.exp(2j*cmath.pi*r*a/p) for a in A)) for r in range(1,p))\n    d=len(A)/p\n    assert M >= d*d*p-1"
+   },
+   {
+    "claim": "The greedy 3-AP-free sequence starting 1,2 is 1,2,4,5,10,11,13,14,... = 1 + (numbers with base-3 digits 0,1), checked below 3^7",
+    "python": "N=3**7\nA=[]; s=set()\nfor x in range(1,N+1):\n    if not any(2*b-x in s for b in A):\n        A.append(x); s.add(x)\ndef no2(n):\n    while n:\n        if n%3==2: return False\n        n//=3\n    return True\nassert A[:8]==[1,2,4,5,10,11,13,14]\nassert A==[n+1 for n in range(N) if no2(n)]"
+   },
+   {
+    "claim": "sum_{p<=10^6} 1/p is about 2.887 = log log 10^6 + 0.2615 (within 0.005)",
+    "python": "import math\nfrom sympy import primerange\ns=sum(1/p for p in primerange(2,10**6+1))\nassert abs(s-2.887)<0.005 and abs(s-(math.log(math.log(1e6))+0.2615))<0.005"
+   },
+   {
+    "claim": "Every 3-AP of primes greater than 3 below 3000 has difference divisible by 6",
+    "python": "from sympy import primerange\nP=list(primerange(5,3000)); s=set(P)\nfor i,a in enumerate(P):\n    for b in P[i+1:]:\n        if 2*b-a in s: assert (b-a)%6==0"
+   },
+   {
+    "claim": "Subadditivity r_3(N+M) <= r_3(N)+r_3(M) for N,M with N+M <= 24 (exact values by search); and with r(2^j) ~ 2^j/(j log 2) the criterion series behaves like the harmonic series (partial sums keep growing like log J)",
+    "python": "import math\ndef r3(N):\n    best=0\n    def bt(i,S,s):\n        nonlocal best\n        if len(S)+(N-i+1)<=best: return\n        if i>N: best=len(S); return\n        if not any(2*b-i in s for b in S):\n            s.add(i); bt(i+1,S+[i],s); s.discard(i)\n        bt(i+1,S,s)\n    bt(1,[],set()); return best\nr=[0]+[r3(n) for n in range(1,25)]\nassert all(r[n+m]<=r[n]+r[m] for n in range(1,25) for m in range(1,25-n))\npart=lambda J: sum(1/(j*math.log(2)) for j in range(1,J+1))\nassert part(10**6)-part(10**3) > 9"
+   }
+  ]
+ },
+ {
+  "id": "sidon-sets",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Choose numbers $a_1\\lt a_2\\lt \\dots\\lt a_k$ in $\\{1,\\dots,N\\}$ so that all the sums $a_i+a_j$ ($i\\le j$) are different. How many can you choose? Counting differences shows that $k$ is at most about $\\sqrt{2N}$. Clever algebraic constructions reach about $\\sqrt N$, and a sharper counting argument shows that $\\sqrt N+N^{1/4}+1$ is a ceiling. So the answer is $\\sqrt N$ to first order. What lies between $\\sqrt N$ and the ceiling is still unknown after more than ninety years.\n\nThese are Sidon sets, named after Simon Sidon, who asked Erdős about them in 1932 while working on Fourier series. They are the extreme opposite of sets with small doubling: their sumsets are as large as possible. Erdős offered 1000 dollars for deciding whether the maximal size is $\\sqrt N+O(N^{\\varepsilon})$."
+   },
+   {
+    "type": "definition",
+    "title": "Sidon set",
+    "body": "A set $A$ of integers (or of residues mod $m$) is a Sidon set if\n$$a+b=c+d,\\quad a,b,c,d\\in A,\\quad a\\le b,\\ c\\le d\\ \\Longrightarrow\\ (a,b)=(c,d).$$\nEquivalently, every nonzero integer has at most one representation as a difference $a-c$ with $a,c\\in A$: from $a+b=c+d$ we get $a-c=d-b$. Write $h(N)$ for the largest size of a Sidon subset of $\\{1,\\dots,N\\}$.\n\nSo a Sidon set is a set with no additive coincidences except the trivial ones $a+b=b+a$."
+   },
+   {
+    "type": "example",
+    "title": "The smallest interesting case",
+    "body": "Show that $\\{1,2,5,7\\}$ is a Sidon set and that $h(7)=4$.",
+    "solution": "The ten sums $a+b$ with $a\\le b$ are $2,3,4,6,7,8,9,10,12,14$, all different. Equivalently, the six positive differences $1,4,6,3,5,2$ are all different.\n\nA $5$-element Sidon set in $[1,7]$ would have $\\binom52=10$ distinct positive differences, all in $\\{1,\\dots,6\\}$, which is impossible. So $h(7)=4$.\n\nThis counting argument is general: $k$ elements give $\\binom k2$ distinct positive differences in $[1,N-1]$, so $k(k-1)/2\\le N-1$ and $h(N)\\lt \\sqrt{2N}+1$. Sidon sets in $[1,N]$ are the same thing as Golomb rulers of length at most $N-1$ (rulers with marks at integer positions, no distance measured twice). Exhaustive search gives $h(N)=1,2,2,3,3,3,4,4,4,4,4,5$ for $N=1,\\dots,12$."
+   },
+   {
+    "type": "section",
+    "title": "Sidon sets and additive energy",
+    "body": "In the language of [[additive-combinatorics]], a Sidon set is one of minimal additive energy. For any $A$ with $|A|=k$, the quadruples $(a,b,c,d)$ with $a+b=c+d$ include the trivial ones $(c,d)=(a,b)$ or $(c,d)=(b,a)$. There are $k^2+k^2-k=2k^2-k$ of these, since the two coincide when $a=b$. So\n$$E(A)\\ge2k^2-k,\\qquad\\text{with equality exactly for Sidon sets.}$$\nCorrespondingly $|A+A|=k(k+1)/2$, the maximum possible. Note also that a Sidon set contains no three-term progression, since $a+c=2b=b+b$ is a forbidden coincidence.\n\nOn the Fourier side, with $S_A(\\theta)=\\sum_{a\\in A}e^{2\\pi ia\\theta}$, the energy is $\\int_0^1|S_A(\\theta)|^4\\,d\\theta$. A Sidon set is one whose exponential sum has the smallest possible fourth moment given its second moment. This is the property Sidon needed for lacunary Fourier series (see [[fourier-poisson]])."
+   },
+   {
+    "type": "theorem",
+    "title": "Upper bound (Erdős–Turán, in Lindström's form)",
+    "body": "Every Sidon set $A\\subseteq\\{1,\\dots,N\\}$ satisfies\n$$|A|\\le\\sqrt N+N^{1/4}+1.$$\nIn particular $h(N)\\le\\sqrt N+O(N^{1/4})$, which is Erdős and Turán's bound (1941). The explicit form with constant $1$ was obtained by Lindström (1969)."
+   },
+   {
+    "type": "proof",
+    "body": "Let $|A|=k$ and fix an integer $m\\ge1$. For each integer $t$ with $2-m\\le t\\le N$ let $I_t=\\{t,t+1,\\dots,t+m-1\\}$ and $a_t=|A\\cap I_t|$. There are $N+m-1$ windows, and each $a\\in[1,N]$ lies in exactly $m$ of them (those with $a-m+1\\le t\\le a$). Hence\n$$\\sum_ta_t=km.$$\nNext count pairs inside windows. The sum $\\sum_t\\binom{a_t}2$ counts pairs $(t,\\{a\\lt a'\\})$ with $a,a'\\in I_t$. A pair with difference $a'-a=d$ lies in $m-d$ windows if $d\\lt m$ and in none otherwise. Because $A$ is Sidon, each difference $d$ occurs for at most one pair. So\n$$\\sum_t\\binom{a_t}2\\le\\sum_{d=1}^{m-1}(m-d)=\\frac{m(m-1)}2,\\qquad\\text{that is,}\\qquad\\sum_ta_t^2\\le m(m-1)+km.$$\nBy Cauchy–Schwarz over the $N+m-1$ windows,\n$$(km)^2\\le(N+m-1)\\sum_ta_t^2\\le(N+m-1)\\,m\\,(k+m-1).$$\nDividing by $m^2$ and enlarging slightly,\n$$k^2\\le\\frac{(N+m)(k+m)}m=N+m+\\frac{kN}m+k.$$\nNow take $m=\\lceil N^{3/4}\\rceil$, so $N/m\\le N^{1/4}$ and $m\\le N^{3/4}+1$. With $u=N^{1/4}$ this reads\n$$k^2-(u+1)k-(u^4+u^3+1)\\le0,\\qquad\\text{so}\\qquad k\\le\\frac{u+1+\\sqrt{4u^4+4u^3+u^2+2u+5}}2.$$\nFor $u\\ge1$ we have $(2u^2+u+1)^2=4u^4+4u^3+5u^2+2u+1\\ge4u^4+4u^3+u^2+2u+5$, since the difference is $4u^2-4\\ge0$. So the square root is at most $2u^2+u+1$, and $k\\le u^2+u+1=\\sqrt N+N^{1/4}+1$."
+   },
+   {
+    "type": "theorem",
+    "title": "A construction of Erdős and Turán",
+    "body": "Let $p$ be an odd prime and write $\\langle x\\rangle$ for the remainder of $x$ modulo $p$, in $\\{0,\\dots,p-1\\}$. Then\n$$A_p=\\{\\,2pk+\\langle k^2\\rangle:\\ 0\\le k\\le p-1\\,\\}$$\nis a Sidon set of $p$ elements in $[0,2p^2)$."
+   },
+   {
+    "type": "proof",
+    "body": "Write $f(k)=2pk+\\langle k^2\\rangle$. Its largest value is less than $2p(p-1)+p\\lt 2p^2$, and $f$ is increasing, so $|A_p|=p$. Suppose $f(k_1)+f(k_2)=f(k_3)+f(k_4)$. Then\n$$2p(k_1+k_2)+\\bigl(\\langle k_1^2\\rangle+\\langle k_2^2\\rangle\\bigr)=2p(k_3+k_4)+\\bigl(\\langle k_3^2\\rangle+\\langle k_4^2\\rangle\\bigr),$$\nand the bracketed terms lie in $[0,2p-2]$. Reducing modulo $2p$ and comparing quotients gives $k_1+k_2=k_3+k_4=:s$ and $\\langle k_1^2\\rangle+\\langle k_2^2\\rangle=\\langle k_3^2\\rangle+\\langle k_4^2\\rangle$, so $k_1^2+k_2^2\\equiv k_3^2+k_4^2\\pmod p$. Since $p$ is odd,\n$$k_1k_2\\equiv\\frac{s^2-(k_1^2+k_2^2)}2\\equiv k_3k_4\\pmod p.$$\nSo $\\{k_1,k_2\\}$ and $\\{k_3,k_4\\}$ are both the roots, mod $p$, of $X^2-sX+k_1k_2$. A polynomial of degree $2$ over the field $\\mathbb F_p$ has at most two roots, counted with multiplicity, so the two pairs agree mod $p$. All $k_i$ lie in $[0,p-1]$, so the pairs agree as sets of integers."
+   },
+   {
+    "type": "example",
+    "title": "The construction for p = 5",
+    "body": "Compute $A_5$ and check directly that it is Sidon. What lower bound for $h(N)$ does the construction give in general?",
+    "solution": "For $k=0,1,2,3,4$ the squares mod $5$ are $0,1,4,4,1$, so\n$$A_5=\\{0,\\ 11,\\ 24,\\ 34,\\ 41\\}.$$\nThe ten positive differences are $11,24,34,41,13,23,30,10,17,7$, all different.\n\nIn general, shifting by $1$ puts $A_p$ inside $[1,2p^2]$, so $h(2p^2)\\ge p$. For arbitrary $N$, take the largest prime $p$ with $2p^2\\le N$. Primes are dense enough (by the prime number theorem the next prime after $x$ is $x+o(x)$) that $p=(1-o(1))\\sqrt{N/2}$, so $h(N)\\ge(1/\\sqrt2-o(1))\\sqrt N$. This is off from the upper bound by a factor $\\sqrt2$, which a better construction removes."
+   },
+   {
+    "type": "section",
+    "title": "Singer's perfect difference sets",
+    "body": "A set $D$ of residues mod $m$ is a perfect difference set if every nonzero residue is $a-b$ for exactly one pair $a,b\\in D$. Then $|D|(|D|-1)=m-1$. Singer proved in 1938, using the field $\\mathbb F_{q^3}$ (see [[finite-fields]]), that for every prime power $q$ there is a perfect difference set of $q+1$ residues modulo $m=q^2+q+1$. The smallest cases are\n$$\\{0,1,3\\}\\bmod7\\ (q=2),\\qquad\\{0,1,3,9\\}\\bmod13\\ (q=3).$$\nA perfect difference set is a Sidon set mod $m$, and a Sidon set mod $m$ is also a Sidon set of integers, because a coincidence $a+b=c+d$ in $\\mathbb Z$ remains one mod $m$. Shifting $D$ into $[1,m]$ gives\n$$h(q^2+q+1)\\ge q+1>\\sqrt{q^2+q+1}.$$\nFor general $N$, take the largest prime $q$ with $q^2+q+1\\le N$. Baker, Harman and Pintz (2001) showed that every interval $[x-x^{0.525},x]$ contains a prime for large $x$. That gives\n$$\\sqrt N-O(N^{0.2625})\\le h(N)\\le\\sqrt N+N^{1/4}+1.$$\nSo $h(N)\\sim\\sqrt N$. The upper error term is $O(N^{1/4})$, but the known lower error term is weaker, because it depends on gaps between primes."
+   },
+   {
+    "type": "section",
+    "title": "The open problem",
+    "body": "Erdős problem #30 asks whether $h(N)=\\sqrt N+O_\\varepsilon(N^{\\varepsilon})$ for every $\\varepsilon>0$, with a prize of 1000 dollars. Both directions are open. The upper bound has barely moved: after Lindström's $\\sqrt N+N^{1/4}+1$, Balogh, Füredi and Roy (2021) proved\n$$|A|\\le\\sqrt N+0.998\\,N^{1/4}$$\nfor all large $N$, and Carter, Hunter and O'Bryant later lowered the constant to $0.98183$ (with an additive $O(1)$). On the lower side, Singer-type constructions give at least $\\sqrt N$ for $N$ of the form $q^2+q+1$. In between, the bound depends on prime gaps: Cramér-type conjectures on gaps would give $\\sqrt N-O(N^{\\varepsilon})$, but nobody knows whether some cleverer construction beats $\\sqrt N$ by a power of $N$, or whether the $N^{1/4}$ in the upper bound is real.\n\nInfinite Sidon sets behave differently. The greedy sequence $1,2,4,8,13,21,31,45,66,81,\\dots$ (the Mian–Chowla sequence: always take the smallest integer that keeps the set Sidon) has at least of order $N^{1/3}$ terms up to $N$. The reason is that a new term only has to avoid $O(k^3)$ values, such as $a+b-c$, determined by the $k$ terms already chosen. Ruzsa (1998) constructed an infinite Sidon set with $N^{\\sqrt2-1+o(1)}$ elements up to $N$, about $N^{0.414}$. Erdős conjectured that $N^{1/2-\\varepsilon}$ is possible for every $\\varepsilon>0$; that too is open."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The condition includes $a=b$: $2b=a+c$ is a forbidden coincidence, so Sidon sets contain no three-term progressions. Forgetting the case $a=b$ gives the different notion of \"weak Sidon\" sets.\n- $h(N)=\\sqrt N+O(N^{1/4})$ is known as an upper bound only. The lower bound obtained above for all $N$ has error $O(N^{0.2625})$, coming from prime gaps.\n- A Sidon set of integers need not be Sidon modulo $m$. For example $\\{1,2,5,7\\}$ is not Sidon mod $8$, since $5+5\\equiv1+1\\pmod8$.\n- Perfect difference sets exist when $q$ is a prime power. Whether they exist for any other $q$ is a famous open question (the prime power conjecture for projective planes). Constructions for general $N$ therefore go through primes and their gaps."
+   },
+   {
+    "type": "connection",
+    "body": "Sidon sets are the extreme case of the sumset questions in [[additive-combinatorics]]: maximal $|A+A|$ and minimal additive energy. Their generalisations, $B_h$ sets in which all $h$-fold sums are distinct, and the Erdős–Turán conjecture that an additive basis must have unbounded representation numbers, belong to [[additive-bases]]. The constructions come from [[finite-fields]] (Singer, and Bose's sets mod $q^2-1$), and the passage to all $N$ uses results on gaps between primes from [[prime-patterns]]. Because a Sidon set has no three-term progressions, Sidon sets also appear among the progression-free sets of [[arithmetic-progressions]], although they are much sparser than the largest ones."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\{1,2,4,\\dots,2^{k-1}\\}$ is a Sidon set, and that every Sidon set contains no three-term arithmetic progression.\n2. Find a $5$-element Sidon subset of $\\{1,\\dots,12\\}$. Then show that $h(11)=4$ (a computer search is fine).\n3. Verify that $\\{0,1,3,9\\}$ is a perfect difference set modulo $13$, and use it to write down a Sidon set of $4$ elements in $[1,13]$.\n4. Prove that the greedy Sidon sequence satisfies $a_{k+1}\\le k^3+1$, and deduce that it has at least $cN^{1/3}$ terms up to $N$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Erdős & Turán, On a problem of Sidon in additive number theory, and on some related problems, J. London Math. Soc. 16 (1941)"
+   },
+   {
+    "ref": "Halberstam & Roth, Sequences"
+   },
+   {
+    "ref": "O'Bryant, A complete annotated bibliography of work related to Sidon sequences, Electronic Journal of Combinatorics, Dynamic Survey DS11"
+   },
+   {
+    "ref": "Tao & Vu, Additive Combinatorics"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "{1,2,5,7} is Sidon with sums 2,3,4,6,7,8,9,10,12,14; h(N) for N=1..12 is 1,2,2,3,3,3,4,4,4,4,4,5",
+    "python": "A=[1,2,5,7]\nsums=sorted(a+b for i,a in enumerate(A) for b in A[i:])\nassert sums==[2,3,4,6,7,8,9,10,12,14] and len(set(sums))==10\ndef h(N):\n    best=0\n    def bt(i,k,D,last):\n        nonlocal best\n        best=max(best,k)\n        for x in range(i,N+1):\n            if k+(N-x+1)<=best: return\n            nd=0; ok=True\n            for s in last:\n                b=1<<(x-s)\n                if D&b or nd&b: ok=False; break\n                nd|=b\n            if ok: bt(x+1,k+1,D|nd,last+[x])\n    bt(1,0,0,[])\n    return best\nassert [h(n) for n in range(1,13)]==[1,2,2,3,3,3,4,4,4,4,4,5]"
+   },
+   {
+    "claim": "h(N) <= sqrt(N)+N^(1/4)+1 and h(N) < sqrt(2N)+1 for N <= 34 (exhaustive maxima)",
+    "python": "import math\ndef h(N):\n    best=0\n    def bt(i,k,D,last):\n        nonlocal best\n        best=max(best,k)\n        for x in range(i,N+1):\n            if k+(N-x+1)<=best: return\n            nd=0; ok=True\n            for s in last:\n                b=1<<(x-s)\n                if D&b or nd&b: ok=False; break\n                nd|=b\n            if ok: bt(x+1,k+1,D|nd,last+[x])\n    bt(1,0,0,[])\n    return best\nfor N in range(1,35):\n    k=h(N)\n    assert k <= math.sqrt(N)+N**0.25+1 and k < math.sqrt(2*N)+1"
+   },
+   {
+    "claim": "Algebra in the upper-bound proof: (2u^2+u+1)^2 - (4u^4+4u^3+u^2+2u+5) = 4u^2-4, and the window inequality holds on random Sidon sets",
+    "python": "import sympy as sp, random, math\nu=sp.symbols('u')\nassert sp.expand((2*u**2+u+1)**2-(4*u**4+4*u**3+u**2+2*u+5))==4*u**2-4\nrandom.seed(7)\nfor _ in range(200):\n    N=random.randint(20,400); A=[]; D=set()\n    for x in random.sample(range(1,N+1),N):\n        nd={abs(x-a) for a in A}\n        if len(nd)==len(A) and not nd&D: A.append(x); D|=nd\n    k=len(A); m=random.randint(1,N)\n    win=[sum(1 for a in A if t<=a<=t+m-1) for t in range(2-m,N+1)]\n    assert sum(win)==k*m and sum(w*(w-1)//2 for w in win)<=m*(m-1)//2\n    assert k*k <= (N+m)*(k+m)/m"
+   },
+   {
+    "claim": "Erdős–Turán sets A_p are Sidon with p elements in [0,2p^2) for odd primes p < 60; A_5 = {0,11,24,34,41}",
+    "python": "from sympy import primerange\ndef sidon(A):\n    d=[b-a for i,a in enumerate(A) for b in A[i+1:]]\n    return len(d)==len(set(d))\nfor p in primerange(3,60):\n    A=sorted(2*p*k+(k*k)%p for k in range(p))\n    assert len(set(A))==p and max(A)<2*p*p and sidon(A)\nA5=sorted(10*k+(k*k)%5 for k in range(5)); assert A5==[0,11,24,34,41]"
+   },
+   {
+    "claim": "{0,1,3} mod 7 and {0,1,3,9} mod 13 are perfect difference sets; sum and difference counting gives E(A)=2k^2-k for Sidon sets",
+    "python": "from collections import Counter\nfor D,m in (([0,1,3],7),([0,1,3,9],13)):\n    c=Counter((a-b)%m for a in D for b in D if a!=b)\n    assert sorted(c)==list(range(1,m)) and set(c.values())=={1}\nfor A in ([1,2,5,7],[0,11,24,34,41],[1,2,4,8,13,21,31,45]):\n    k=len(A)\n    E=sum(1 for a in A for b in A for c in A for d in A if a+b==c+d)\n    assert E==2*k*k-k and len({a+b for a in A for b in A})==k*(k+1)//2"
+   },
+   {
+    "claim": "Mian–Chowla greedy sequence begins 1,2,4,8,13,21,31,45,66,81 and satisfies a_{k+1} <= k^3+1; {1,2,5,7} is not Sidon mod 8 (5+5 = 1+1 mod 8); {1,2,5,10,12} is Sidon",
+    "python": "A=[]; D=set(); x=0\nwhile len(A)<30:\n    x+=1\n    nd={x-a for a in A}\n    if len(nd)==len(A) and not nd&D: A.append(x); D|=nd\nassert A[:10]==[1,2,4,8,13,21,31,45,66,81]\nassert (5+5)%8==(1+1)%8 and len({x%8 for x in (1,2,5,7)})==4\nfor k in range(1,len(A)): assert A[k]<=k**3+1\nB=[1,2,5,10,12]; d=[b-a for i,a in enumerate(B) for b in B[i+1:]]\nassert len(d)==len(set(d))"
+   },
+   {
+    "claim": "Singer: perfect difference sets of size q+1 mod q^2+q+1 exist for q=4,5 (found by search); and the largest prime q with q^2+q+1 <= N gives q+1 >= sqrt(N) - N^0.2625 at sampled N up to 10^9",
+    "python": "from itertools import combinations\nfrom sympy import prevprime\nimport math, random\ndef pds(q):\n    m=q*q+q+1\n    for rest in combinations(range(2,m),q-1):\n        D=(0,1)+rest\n        if len({(a-b)%m for a in D for b in D if a!=b})==m-1: return True\n    return False\nassert pds(4) and pds(5)\nrandom.seed(1)\nfor N in [10**3,10**5,10**7]+[random.randint(100,10**9) for _ in range(200)]:\n    x=math.isqrt(N)\n    while x*x+x+1>N: x-=1\n    q=x if x>=2 and all(x%d for d in range(2,math.isqrt(x)+1)) else prevprime(x)\n    assert q*q+q+1<=N and q+1 >= math.sqrt(N)-N**0.2625\n    assert (q+1)**2 > q*q+q+1"
+   }
+  ]
+ }
+]

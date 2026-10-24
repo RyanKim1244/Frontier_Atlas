@@ -1,0 +1,480 @@
+[
+ {
+  "concept": "discrete-geometry",
+  "ladder": [
+   {
+    "title": "Two centres force many distances",
+    "kind": "classic",
+    "q": "Let $P$ be a set of $n\\ge 2$ points in the plane and let $t$ be the number of distinct values of $|p-q|$ with $p\\ne q$ in $P$.\n\nShow that $t\\ge\\sqrt{(n-2)/2}$.",
+    "concepts": [
+     "discrete-geometry",
+     "pigeonhole",
+     "circles"
+    ],
+    "source": "P. Erdős, On sets of distances of n points, Amer. Math. Monthly 53 (1946), 248–250 (where a slightly stronger bound is proved); J. Pach & P. K. Agarwal, Combinatorial Geometry, Wiley 1995",
+    "year": 1946,
+    "bridges_to": [],
+    "note": "The first lower bound of order $\\sqrt n$ for distinct distances; everything later in the ladder improves the exponent towards $1$."
+   },
+   {
+    "title": "Unit distances via forbidden K(2,3)",
+    "kind": "classic",
+    "q": "Let $P$ be a set of $n$ points in the plane and let $u(P)$ be the number of unordered pairs $\\{p,q\\}\\subseteq P$ with $|p-q|=1$.\n\nShow that $u(P)\\le \\frac{n}{4}\\left(1+\\sqrt{8n-7}\\right)$. In particular $u(P)=O(n^{3/2})$.",
+    "concepts": [
+     "discrete-geometry",
+     "extremal-graphs",
+     "pigeonhole",
+     "circles"
+    ],
+    "source": "J. Pach & P. K. Agarwal, Combinatorial Geometry, Wiley 1995; P. Brass, W. Moser & J. Pach, Research Problems in Discrete Geometry, Springer 2005",
+    "bridges_to": [],
+    "note": "The trivial graph-theoretic bound (two unit circles meet in at most two points); the incidence method below lowers the exponent from $3/2$ to $4/3$."
+   },
+   {
+    "title": "The grid has few distinct distances",
+    "kind": "classic",
+    "q": "Let $m\\ge 2$, let $n=m^2$ and let $G=\\{1,\\dots,m\\}^2\\subseteq\\mathbb{R}^2$.\n\nYou may use Landau's theorem: the number of integers in $[1,x]$ that are sums of two squares is asymptotic to $Kx/\\sqrt{\\log x}$ for some constant $K>0$. Show that there is an absolute constant $C$ such that $G$ determines at most $Cn/\\sqrt{\\log n}$ distinct distances.",
+    "concepts": [
+     "discrete-geometry",
+     "sums-of-squares",
+     "asymptotics"
+    ],
+    "source": "P. Erdős, On sets of distances of n points, Amer. Math. Monthly 53 (1946), 248–250",
+    "year": 1946,
+    "bridges_to": [
+     "ERDOS-89"
+    ],
+    "note": "This is the construction behind Erdős's conjecture that $n/\\sqrt{\\log n}$ is the truth for distinct distances."
+   },
+   {
+    "title": "Cauchy–Schwarz bound for point–line incidences",
+    "kind": "classic",
+    "q": "Let $P$ be a set of $n$ points and $L$ a set of $m$ lines in the plane, and let $I(P,L)$ be the number of pairs $(p,\\ell)\\in P\\times L$ with $p\\in\\ell$.\n\nShow that $I(P,L)\\le n\\sqrt m+m$ and $I(P,L)\\le m\\sqrt n+n$.",
+    "concepts": [
+     "discrete-geometry",
+     "cauchy-schwarz",
+     "pigeonhole"
+    ],
+    "source": "J. Matoušek, Lectures on Discrete Geometry, Springer 2002; J. Pach & P. K. Agarwal, Combinatorial Geometry, Wiley 1995",
+    "bridges_to": [],
+    "note": "The naive incidence bound; the Szemerédi–Trotter theorem replaces it by the sharp $n^{2/3}m^{2/3}$."
+   },
+   {
+    "title": "The crossing lemma",
+    "kind": "theorem",
+    "q": "For a simple graph $G$ let $\\mathrm{cr}(G)$ be the minimum, over all drawings of $G$ in the plane, of the number of pairs of edges that cross.\n\nShow that if $G$ has $v$ vertices and $e\\ge 4v$ edges then $\\mathrm{cr}(G)\\ge \\dfrac{e^3}{64v^2}$.",
+    "concepts": [
+     "discrete-geometry",
+     "graph-basics",
+     "probabilistic-method"
+    ],
+    "source": "M. Ajtai, V. Chvátal, M. Newborn & E. Szemerédi, Crossing-free subgraphs, in Theory and Practice of Combinatorics, Ann. Discrete Math. 12 (North-Holland Math. Stud. 60), North-Holland 1982, 9–12; F. T. Leighton, Complexity Issues in VLSI, MIT Press 1983; the constant 1/64 comes from the probabilistic proof given in M. Aigner & G. M. Ziegler, Proofs from THE BOOK (chapter on probabilistic counting)",
+    "year": 1982,
+    "bridges_to": [],
+    "note": "The tool that gives one-paragraph proofs of the incidence and distance bounds that follow."
+   },
+   {
+    "title": "Szemerédi–Trotter theorem",
+    "kind": "theorem",
+    "q": "With $I(P,L)$ as before, show that there is an absolute constant $C$ such that for every set $P$ of $n$ points and every set $L$ of $m$ lines in the plane\n\n$$I(P,L)\\le C\\left(n^{2/3}m^{2/3}+n+m\\right).$$",
+    "concepts": [
+     "discrete-geometry",
+     "graph-basics",
+     "extremal-graphs"
+    ],
+    "source": "E. Szemerédi & W. T. Trotter, Extremal problems in discrete geometry, Combinatorica 3 (1983), 381–392; proof via the crossing lemma in L. A. Székely, Crossing numbers and hard Erdős problems in discrete geometry, Combin. Probab. Comput. 6 (1997), 353–358",
+    "year": 1983,
+    "bridges_to": [
+     "ERDOS-1069"
+    ],
+    "note": "The sharp incidence bound; it is the engine for rich lines, unit distances and distinct distances."
+   },
+   {
+    "title": "Rich lines and Beck's theorem",
+    "kind": "theorem",
+    "q": "Let $P$ be a set of $n$ points in the plane.\n\n(a) Show that there is an absolute constant $C$ such that for every $2\\le k\\le n$ the number of lines containing at least $k$ points of $P$ is at most $C\\left(\\dfrac{n^2}{k^3}+\\dfrac nk\\right)$.\n\n(b) Show that there is an absolute constant $c>0$ such that either some line contains at least $cn$ points of $P$, or at least $cn^2$ distinct lines each contain at least two points of $P$.",
+    "concepts": [
+     "discrete-geometry",
+     "pigeonhole"
+    ],
+    "source": "E. Szemerédi & W. T. Trotter, Extremal problems in discrete geometry, Combinatorica 3 (1983), 381–392; J. Beck, On the lattice property of the plane and some problems of Dirac, Motzkin and Erdős in combinatorial geometry, Combinatorica 3 (1983), 281–297",
+    "year": 1983,
+    "bridges_to": [
+     "ERDOS-1069",
+     "ERDOS-211",
+     "ERDOS-101",
+     "ERDOS-588"
+    ],
+    "note": "Part (a) is exactly Erdős #1069 (for $k\\le\\sqrt n$ the term $n^2/k^3$ dominates) and part (b) is the case of #211 in which at most $cn$ points lie on a line; #101 and #588 ask to beat the $O(n^2)$ that (a) gives for $4$-rich lines."
+   },
+   {
+    "title": "Unit distances: the n^{4/3} bound",
+    "kind": "theorem",
+    "q": "Show that there is an absolute constant $C$ such that any $n$ points in the plane determine at most $Cn^{4/3}$ unordered pairs at distance exactly $1$.",
+    "concepts": [
+     "discrete-geometry",
+     "extremal-graphs",
+     "circles"
+    ],
+    "source": "J. Spencer, E. Szemerédi & W. T. Trotter, Unit distances in the Euclidean plane, in Graph Theory and Combinatorics (B. Bollobás, ed.), Academic Press 1984, 293–308",
+    "year": 1984,
+    "bridges_to": [
+     "ERDOS-90",
+     "ERDOS-96"
+    ],
+    "note": "Still the best known upper bound for unit distances; Erdős conjectured $n^{1+O(1/\\log\\log n)}$, and #96 asks for $O(n)$ in convex position."
+   },
+   {
+    "title": "Pinned distinct distances: n^{4/5}",
+    "kind": "theorem",
+    "q": "Show that there is an absolute constant $c>0$ such that every set $P$ of $n\\ge 2$ points in the plane contains a point $p$ with\n\n$$\\#\\{\\,|p-q| : q\\in P\\setminus\\{p\\}\\,\\}\\ge c\\,n^{4/5}.$$",
+    "concepts": [
+     "discrete-geometry",
+     "graph-basics",
+     "circles"
+    ],
+    "source": "L. A. Székely, Crossing numbers and hard Erdős problems in discrete geometry, Combin. Probab. Comput. 6 (1997), 353–358",
+    "year": 1997,
+    "bridges_to": [
+     "ERDOS-89",
+     "ERDOS-604"
+    ],
+    "note": "A pinned bound from one point, from the crossing lemma applied to a multigraph of circle arcs; #604 asks for $n^{1-o(1)}$ distances from one point."
+   },
+   {
+    "title": "Guth–Katz: distance energy and n/log n distances",
+    "kind": "theorem",
+    "q": "Let $P$ be a set of $n\\ge 2$ points in the plane.\n\nShow that the number of quadruples $(a,b,c,d)\\in P^4$ with $|a-b|=|c-d|\\ne 0$ is at most $Cn^3\\log n$, and deduce that $P$ determines at least $c\\,n/\\log n$ distinct distances. Here $C,c>0$ are absolute constants.",
+    "concepts": [
+     "discrete-geometry",
+     "cauchy-schwarz"
+    ],
+    "source": "L. Guth & N. H. Katz, On the Erdős distinct distances problem in the plane, Ann. of Math. 181 (2015), 155–190, arXiv:1011.4105",
+    "year": 2015,
+    "bridges_to": [
+     "ERDOS-89",
+     "ERDOS-95"
+    ],
+    "note": "The energy bound settles #95 and leaves only a $\\sqrt{\\log n}$ gap to the grid construction in #89."
+   }
+  ]
+ },
+ {
+  "concept": "infinite-combinatorics",
+  "ladder": [
+   {
+    "title": "Infinite Ramsey theorem",
+    "kind": "classic",
+    "q": "Show that $\\aleph_0\\to(\\aleph_0)^n_r$ for all positive integers $n$ and $r$: for every colouring of the $n$-element subsets of $\\mathbb{N}$ with $r$ colours there is an infinite $H\\subseteq\\mathbb{N}$ all of whose $n$-element subsets have the same colour.\n\nDeduce that every sequence of distinct real numbers has an infinite strictly monotone subsequence.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey",
+     "pigeonhole"
+    ],
+    "source": "F. P. Ramsey, On a problem of formal logic, Proc. London Math. Soc. (2) 30 (1930), 264–286; R. L. Graham, B. L. Rothschild & J. H. Spencer, Ramsey Theory, Wiley",
+    "year": 1930,
+    "bridges_to": [],
+    "note": "The basic positive arrow relation that every rung below generalises to ordinals, uncountable cardinals or graphs."
+   },
+   {
+    "title": "Decomposable ordinals fail the triangle arrow",
+    "kind": "classic",
+    "q": "For an ordinal $\\alpha$ write $\\alpha\\to(\\alpha,3)^2$ if for every red/blue colouring of the $2$-element subsets of $\\alpha$ there is either a subset of order type $\\alpha$ all of whose pairs are red, or a $3$-element subset all of whose pairs are blue.\n\nShow that if $\\alpha=\\beta+\\gamma$ for ordinals $\\beta,\\gamma<\\alpha$, then $\\alpha\\not\\to(\\alpha,3)^2$. Conclude that every ordinal $\\alpha\\ge 2$ with $\\alpha\\to(\\alpha,3)^2$ is of the form $\\omega^\\delta$ with $\\delta\\ge 1$.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "F. Galvin & J. Larson, Pinning countable ordinals, Fund. Math. 82 (1974/75), 357–361",
+    "year": 1974,
+    "bridges_to": [
+     "ERDOS-592"
+    ],
+    "note": "It explains why Erdős #590–592 only concern ordinals of the form $\\omega^\\beta$."
+   },
+   {
+    "title": "Sierpiński's colouring",
+    "kind": "classic",
+    "q": "Show that $2^{\\aleph_0}\\not\\to(\\aleph_1)^2_2$: there is a colouring of the $2$-element subsets of $\\mathbb{R}$ with two colours such that no subset of $\\mathbb{R}$ of cardinality $\\aleph_1$ has all its $2$-element subsets of the same colour.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "W. Sierpiński, Sur un problème de la théorie des relations, Ann. Scuola Norm. Sup. Pisa (2) 2 (1933), 285–287; T. Jech, Set Theory (3rd ed., Springer 2003), Ch. 9",
+    "year": 1933,
+    "bridges_to": [],
+    "note": "The first negative arrow: Ramsey's theorem does not go up from $\\aleph_0$ to the continuum."
+   },
+   {
+    "title": "The shift graph",
+    "kind": "classic",
+    "q": "Let $\\kappa=(2^{\\aleph_0})^+$. Let $G$ be the graph whose vertices are the pairs $(\\alpha,\\beta)$ of ordinals with $\\alpha<\\beta<\\kappa$, in which $(\\alpha,\\beta)$ is adjacent to $(\\beta,\\gamma)$ whenever $\\alpha<\\beta<\\gamma<\\kappa$, and there are no other edges.\n\nShow that $G$ contains no triangle and that $G$ has no proper vertex colouring with countably many colours.",
+    "concepts": [
+     "infinite-combinatorics",
+     "graph-coloring"
+    ],
+    "source": "P. Erdős & A. Hajnal, On chromatic number of infinite graphs, in Theory of Graphs (Proc. Colloq. Tihany 1966), Academic Press 1968, 83–98",
+    "year": 1968,
+    "bridges_to": [
+     "ERDOS-593",
+     "ERDOS-1175"
+    ],
+    "note": "So uncountable chromatic number does not force a triangle: the simplest instance of the non-bipartite half of the graph analogue of #593, and the basic triangle-free example behind #1175."
+   },
+   {
+    "title": "Erdős–Rado for pairs",
+    "kind": "theorem",
+    "q": "Show that $(2^{\\aleph_0})^+\\to(\\aleph_1)^2_{\\aleph_0}$: for every colouring of the $2$-element subsets of a set of cardinality $(2^{\\aleph_0})^+$ with countably many colours there is a subset of cardinality $\\aleph_1$ all of whose $2$-element subsets have the same colour.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "P. Erdős & R. Rado, A partition calculus in set theory, Bull. Amer. Math. Soc. 62 (1956), 427–489",
+    "year": 1956,
+    "bridges_to": [
+     "ERDOS-1167"
+    ],
+    "note": "Together with Sierpiński's colouring it shows that $(2^{\\aleph_0})^+$ is the least cardinal with this property; #1167 asks how such stepping-up relations transfer between exponents."
+   },
+   {
+    "title": "Obligatory graphs are exactly the bipartite ones",
+    "kind": "theorem",
+    "q": "Show that a finite graph $H$ is isomorphic to a subgraph of every graph with chromatic number greater than $\\aleph_0$ if and only if $H$ is bipartite.",
+    "concepts": [
+     "infinite-combinatorics",
+     "graph-coloring",
+     "extremal-graphs"
+    ],
+    "source": "P. Erdős & A. Hajnal, On chromatic number of graphs and set-systems, Acta Math. Acad. Sci. Hungar. 17 (1966), 61–99; stated as Theorem 1.1 in C. Reiher, Obligatory hypergraphs, arXiv:2403.11223",
+    "year": 1966,
+    "bridges_to": [
+     "ERDOS-593"
+    ],
+    "note": "This completely answers the graph analogue of #593, which asks the same question for $3$-uniform hypergraphs."
+   },
+   {
+    "title": "Specker's theorem on omega squared",
+    "kind": "theorem",
+    "q": "With the notation $\\alpha\\to(\\alpha,3)^2$ from above, show that $\\omega^2\\to(\\omega^2,3)^2$, and that $\\omega^n\\not\\to(\\omega^n,3)^2$ for every integer $n\\ge 3$.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "E. Specker, Teilmengen von Mengen mit Relationen, Comment. Math. Helv. 31 (1957), 302–314",
+    "year": 1957,
+    "bridges_to": [
+     "ERDOS-592"
+    ],
+    "note": "It settles the finite exponents $\\beta$ in #592 and shows the answer is not monotone in $\\beta$."
+   },
+   {
+    "title": "Large odd cycles in uncountably chromatic graphs",
+    "kind": "theorem",
+    "q": "Let $G$ be a graph with chromatic number greater than $\\aleph_0$. Show that there is a positive integer $k$ such that $G$ contains a cycle of length $\\ell$ for every odd $\\ell\\ge k$.",
+    "concepts": [
+     "infinite-combinatorics",
+     "graph-coloring",
+     "cycles-matchings"
+    ],
+    "source": "P. Erdős, A. Hajnal & S. Shelah, On some general properties of chromatic numbers, in Topics in Topology (Proc. Colloq. Keszthely 1972), Colloq. Math. Soc. János Bolyai 8, North-Holland 1974, 243–255",
+    "year": 1974,
+    "bridges_to": [
+     "ERDOS-594",
+     "ERDOS-1067",
+     "ERDOS-1068"
+    ],
+    "note": "No fixed odd cycle is forced, but all long ones are; #1067 and #1068 ask which further structure (high connectivity) uncountable chromatic number forces."
+   },
+   {
+    "title": "Chang's theorem",
+    "kind": "theorem",
+    "q": "Show that $\\omega^\\omega\\to(\\omega^\\omega,3)^2$.",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "C. C. Chang, A partition theorem for the complete graph on ω^ω, J. Combin. Theory Ser. A 12 (1972), 396–452",
+    "year": 1972,
+    "bridges_to": [
+     "ERDOS-590",
+     "ERDOS-592"
+    ],
+    "note": "The first infinite exponent $\\beta=\\omega$ in #592, answering #590."
+   },
+   {
+    "title": "Schipperus: two indecomposable summands",
+    "kind": "theorem",
+    "q": "Let $\\gamma\\ge 1$ be a countable ordinal that is the sum of one or two additively indecomposable ordinals. Show that\n\n$$\\omega^{\\omega^\\gamma}\\to(\\omega^{\\omega^\\gamma},3)^2.$$",
+    "concepts": [
+     "infinite-combinatorics",
+     "ramsey"
+    ],
+    "source": "R. Schipperus, Countable partition ordinals, Ann. Pure Appl. Logic 161 (2010), 1195–1215",
+    "year": 2010,
+    "bridges_to": [
+     "ERDOS-591",
+     "ERDOS-592"
+    ],
+    "note": "With $\\gamma=2=1+1$ this answers #591; Schipperus also showed that it fails when $\\gamma$ is a sum of four or more indecomposables, so three summands is the open case of #592."
+   }
+  ]
+ },
+ {
+  "concept": "combinatorial-nt",
+  "ladder": [
+   {
+    "title": "Divisibility pairs in the first 2n integers",
+    "kind": "classic",
+    "q": "Let $n\\ge 1$. Show that among any $n+1$ distinct integers from $\\{1,\\dots,2n\\}$ one divides another, and find $n$ distinct integers in $\\{1,\\dots,2n\\}$ none of which divides another.",
+    "concepts": [
+     "combinatorial-nt",
+     "pigeonhole",
+     "divisibility",
+     "primitive-sets"
+    ],
+    "source": "M. Aigner & G. M. Ziegler, Proofs from THE BOOK, chapter on pigeon-hole and double counting",
+    "bridges_to": [],
+    "note": "The model argument: pigeonhole on a multiplicative invariant (the odd part)."
+   },
+   {
+    "title": "Zero-sum subsets modulo n",
+    "kind": "classic",
+    "q": "Let $n\\ge 1$ and let $a_1,\\dots,a_n$ be integers. Show that there is a nonempty $S\\subseteq\\{1,\\dots,n\\}$ with $n\\mid\\sum_{i\\in S}a_i$.\n\nShow that the statement can fail for $n-1$ integers.",
+    "concepts": [
+     "combinatorial-nt",
+     "pigeonhole",
+     "congruences"
+    ],
+    "source": "M. Aigner & G. M. Ziegler, Proofs from THE BOOK, chapter on pigeon-hole and double counting",
+    "bridges_to": [],
+    "note": "The simplest zero-sum statement; the Erdős–Ginzburg–Ziv and Erdős–Heilbronn rungs ask for zero sums with extra constraints."
+   },
+   {
+    "title": "A square from exponent vectors",
+    "kind": "classic",
+    "q": "Let $p_1,\\dots,p_k$ be primes and let $a_1,\\dots,a_{k+1}$ be positive integers all of whose prime factors lie in $\\{p_1,\\dots,p_k\\}$. Show that there is a nonempty $S\\subseteq\\{1,\\dots,k+1\\}$ such that $\\prod_{i\\in S}a_i$ is a perfect square.\n\nShow that $k$ such integers need not have this property.",
+    "concepts": [
+     "combinatorial-nt",
+     "fta",
+     "linear-algebra"
+    ],
+    "source": "R. Crandall & C. Pomerance, Prime Numbers: A Computational Perspective (2nd ed., Springer 2005)",
+    "bridges_to": [],
+    "note": "Linear algebra on exponent vectors mod 2; problems on square products such as #437 and #841 start here."
+   },
+   {
+    "title": "Sperner bound for subset sums",
+    "kind": "classic",
+    "q": "Let $a_1,\\dots,a_N$ be positive real numbers (not necessarily distinct) and let $t\\in\\mathbb{R}$. Show that the number of sets $S\\subseteq\\{1,\\dots,N\\}$ with $\\sum_{i\\in S}a_i=t$ is at most $\\binom{N}{\\lfloor N/2\\rfloor}$, and that equality can occur.",
+    "concepts": [
+     "combinatorial-nt",
+     "set-systems",
+     "additive-combinatorics"
+    ],
+    "source": "P. Erdős, On a lemma of Littlewood and Offord, Bull. Amer. Math. Soc. 51 (1945), 898–902",
+    "year": 1945,
+    "bridges_to": [
+     "ERDOS-362"
+    ],
+    "note": "The order $2^N/\\sqrt N$ is right when repeated values are allowed; #362 asks what happens when the $a_i$ are distinct."
+   },
+   {
+    "title": "Erdős–Ginzburg–Ziv theorem",
+    "kind": "theorem",
+    "q": "Let $n\\ge 1$. Show that among any $2n-1$ integers (not necessarily distinct) there are $n$ whose sum is divisible by $n$, and that $2n-2$ integers do not suffice in general.",
+    "concepts": [
+     "combinatorial-nt",
+     "congruences",
+     "finite-fields",
+     "additive-combinatorics"
+    ],
+    "source": "P. Erdős, A. Ginzburg & A. Ziv, Theorem in the additive number theory, Bull. Res. Council Israel 10F (1961), 41–43",
+    "year": 1961,
+    "bridges_to": [
+     "ERDOS-541"
+    ],
+    "note": "A zero-sum theorem with a prescribed number of terms; #541 asks about residue sequences whose zero-sum subsets all have the same size."
+   },
+   {
+    "title": "Zero-sum-free sets have size O(sqrt N)",
+    "kind": "special-case",
+    "q": "Show that there is an absolute constant $C$ such that, for every $N\\ge 1$, every set $A\\subseteq\\mathbb{Z}/N\\mathbb{Z}$ of distinct residues with $|A|\\ge C\\sqrt N$ has a nonempty subset $S$ with $\\sum_{s\\in S}s\\equiv 0\\pmod N$.\n\nShow also that for every $N\\ge 1$ there is a set of more than $\\sqrt{2N}-2$ distinct nonzero residues modulo $N$ with no nonempty subset summing to $0$ modulo $N$.",
+    "concepts": [
+     "combinatorial-nt",
+     "additive-combinatorics",
+     "congruences"
+    ],
+    "source": "E. Szemerédi, On a conjecture of Erdős and Heilbronn, Acta Arith. 17 (1970), 227–229",
+    "year": 1970,
+    "bridges_to": [
+     "ERDOS-540"
+    ],
+    "note": "This answers Erdős #540 up to the constant; Balandraud (Israel J. Math. 2012) found the sharp threshold for prime $N$."
+   },
+   {
+    "title": "Sárközy–Szemerédi: subset sums of distinct integers",
+    "kind": "special-case",
+    "q": "Show that there is an absolute constant $C$ such that, for every $N\\ge 1$, every set $A$ of $N$ distinct positive integers and every integer $t$, the number of $S\\subseteq A$ with $\\sum_{s\\in S}s=t$ is at most $C\\,2^N N^{-3/2}$.",
+    "concepts": [
+     "combinatorial-nt",
+     "additive-combinatorics",
+     "set-systems"
+    ],
+    "source": "A. Sárközy & E. Szemerédi, Über ein Problem von Erdős und Moser, Acta Arith. 11 (1965), 205–208",
+    "year": 1965,
+    "bridges_to": [
+     "ERDOS-362"
+    ],
+    "note": "Having distinct elements saves a factor of $N$ over the Sperner bound; this answers Erdős #362 (the Erdős–Moser problem)."
+   },
+   {
+    "title": "Graham's gcd conjecture",
+    "kind": "theorem",
+    "q": "Let $n\\ge 1$ and let $a_1<a_2<\\dots<a_n$ be positive integers. Show that there exist indices $i,j$ with\n\n$$\\frac{a_i}{\\gcd(a_i,a_j)}\\ge n.$$",
+    "concepts": [
+     "combinatorial-nt",
+     "divisibility",
+     "fta"
+    ],
+    "source": "R. Balasubramanian & K. Soundararajan, On a conjecture of R. L. Graham, Acta Arith. 75 (1996), 1–38",
+    "year": 1996,
+    "bridges_to": [
+     "ERDOS-402"
+    ],
+    "note": "This is exactly the statement of Erdős #402, conjectured by Graham and proved for all $n$ by Balasubramanian and Soundararajan."
+   },
+   {
+    "title": "Cameron–Erdős: counting sum-free sets",
+    "kind": "theorem",
+    "q": "Let $f(N)$ be the number of sets $A\\subseteq\\{1,\\dots,N\\}$, the empty set included, such that there are no $a,b,c\\in A$ (not necessarily distinct) with $a+b=c$.\n\nShow that there is an absolute constant $C$ such that $f(N)\\le C\\,2^{N/2}$ for all $N\\ge 1$.",
+    "concepts": [
+     "combinatorial-nt",
+     "additive-combinatorics",
+     "counting"
+    ],
+    "source": "B. Green, The Cameron–Erdős conjecture, Bull. London Math. Soc. 36 (2004), 769–778 (proved independently by A. A. Sapozhenko)",
+    "year": 2004,
+    "bridges_to": [
+     "ERDOS-748"
+    ],
+    "note": "This gives a much sharper form of Erdős #748: the subsets of the odd numbers and of the top half already give at least $2^{\\lceil N/2\\rceil}$ sum-free sets, so the order of magnitude is exact."
+   },
+   {
+    "title": "No term divides the sum of two larger terms",
+    "kind": "special-case",
+    "q": "Let $N\\ge 1$ and let $A\\subseteq\\{1,\\dots,N\\}$ be such that there are no $a,b,c\\in A$, with $b=c$ allowed, satisfying $a<\\min(b,c)$ and $a\\mid b+c$.\n\nShow that $|A|\\le N/3+C$ for an absolute constant $C$, and check that the set of integers in $(2N/3,N]$ satisfies the hypothesis.",
+    "concepts": [
+     "combinatorial-nt",
+     "divisibility",
+     "additive-combinatorics"
+    ],
+    "source": "B. Bedert, On a problem of Erdős and Sárközy about sequences with no term dividing the sum of two larger terms, arXiv:2301.07065 (2023)",
+    "year": 2023,
+    "bridges_to": [
+     "ERDOS-13",
+     "ERDOS-12"
+    ],
+    "note": "This settles the finite problem #13; #12 asks for the corresponding infinite sets, where much less is known."
+   }
+  ]
+ }
+]

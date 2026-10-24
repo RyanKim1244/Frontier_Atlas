@@ -1,0 +1,134 @@
+[
+ {
+  "id": "hecke-l",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example/An angular character on the Gaussian integers",
+    "problem": "Claimed the Dirichlet coefficients of L(s, xi_4) lie 'on or inside the unit circle'. False: a coefficient is a sum over all ideals of norm n; at the split prime 313 it is about -1.97. Also 'complex numbers' is misleading: the coefficients are real because conjugate ideals give conjugate values.",
+    "fix": "Rewrote the closing remark: coefficients are real, not integers, can exceed 1 in size (313 example); infinite order seen from (-7+24i)/25 not being a root of unity. Added exact-arithmetic check (also of the n=25 coefficient -429/625)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Why the factorisation matters for zeros",
+    "problem": "'Here is what the brief records' refers to an internal brief the reader never sees.",
+    "fix": "Removed; the 2026 result stays attributed and labelled as a claim."
+   },
+   {
+    "severity": "style",
+    "where": "intro, section/Where the functional equation comes from, pitfall, connection",
+    "problem": "Lesson over 2000 words; duplicated K=Q sanity check (repeated in the next section) and a pitfall bullet repeating the 'Over the rationals' section.",
+    "fix": "Condensed the sanity check into the actual functional equation, removed the repeated pitfall bullet and a few padding sentences; minutes 24 -> 22."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Ramification identity 3 = -omega^2(1-omega)^2 and N(3+omega)=7 not checked.",
+    "fix": "Added a sympy check."
+   }
+  ]
+ },
+ {
+  "id": "elliptic-curves",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Point count p+1 for the singular cubic y^2=x^3 and the complex-multiplication symmetries were stated without checks.",
+    "fix": "Added two checks; all definitions, formulas, the F_5 example, the doubling and torsion computations, Nagell-Lutz, Mazur's list, Frey curve and congruent-number point verified correct."
+   }
+  ]
+ },
+ {
+  "id": "combinatorial-nt",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The average-order claim sum tau(k) = n log n + O(n), the chain-length table and the sharpness set {51,...,100} were not checked directly.",
+    "fix": "Added one check covering all three. All proofs (divisor pairs, prefix sums, sum-free bound, chain decomposition) and numbers verified; no errors found."
+   }
+  ]
+ },
+ {
+  "id": "additive-combinatorics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'The brief records that ...' refers to an internal brief the reader never sees.",
+    "fix": "Removed the phrase; the 8 Oct 2026 item is kept attributed to Bloom and explicitly marked as a claim not yet established."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The two facts of the Davenport transform, the generalised-progression doubling bound, the Ruzsa consequences |A-A| <= |A+A|^2/|A| and the 961..1514 interval were not checked.",
+    "fix": "Added two checks. All proofs (2k-1 bound and equality case, Cauchy-Davenport, three cubes, Ruzsa triangle, energy bound, Fourier error bound for odd N) verified correct."
+   }
+  ]
+ },
+ {
+  "id": "ramsey-arithmetic",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "example/Schur numbers",
+    "problem": "R(3,3,3)=17 (used for S(3) <= 15) was unchecked; S(4)=44 (Baumert, 1965) and S(5)=160 (Heule, 2017) were stated without verification.",
+    "fix": "Verified S(4)=44 (Baumert; Golomb-Baumert 1965) and S(5)=160 (Heule, arXiv 1711.08076) by web search; added a check constructing the GF(16) cubic-residue 3-colouring of K_16 (R(3,3,3) >= 17) with the classical upper bound 3(R(3,3)-1)+2 = 17. All proofs (Schur via Ramsey, S(2)=4, tripling recursion, Fermat mod p, colour focusing W(3,2) <= 325, Rado 'only if') checked line by line; no errors."
+   }
+  ]
+ },
+ {
+  "id": "arithmetic-progressions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Status in 2026",
+    "problem": "'The brief records that ...' refers to an internal brief the reader never sees.",
+    "fix": "Rewritten as a direct attributed statement ('On 8 October 2026 Thomas Bloom (erdosproblems.com) listed ...'); still presented only as claims."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Subadditivity of r_3 and the divergence behind the 'logarithmic barrier' were not checked.",
+    "fix": "Added a check. Roth dichotomy proof, density-increment arithmetic, Behrend construction and example, Erdos criterion and its proof, and the historical bounds (Roth 1953, Heath-Brown/Szemeredi, Sanders 2011, Bloom-Sisask 2020, Kelley-Meka 2023) verified; no mathematical errors."
+   }
+  ]
+ },
+ {
+  "id": "sidon-sets",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/The open problem",
+    "problem": "Balogh-Furedi-Roy's 0.998 N^{1/4} was presented as the latest upper bound; it has since been improved (Carter, Hunter and O'Bryant, sqrt N + 0.98183 N^{1/4} + O(1), arXiv 2310.20032, listed on erdosproblems.com/30).",
+    "fix": "Verified BFR (arXiv 2103.15850) by web search, added the date 2021 and the later improvement."
+   },
+   {
+    "severity": "error",
+    "where": "example/The smallest interesting case",
+    "problem": "'Sidon sets in [1,N] are the same thing as Golomb rulers of length N-1': a Sidon set in [1,N] need not use both endpoints.",
+    "fix": "'of length at most N-1'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Title of Erdos-Turan 1941 slightly misquoted.",
+    "fix": "'On a problem of Sidon in additive number theory, and on some related problems'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "A check's claim text said '{1,2,5,7} is not Sidon mod 5' while the code (and the lesson) use mod 8; Singer's theorem beyond q=2,3 and the Baker-Harman-Pintz lower bound sqrt N - O(N^0.2625) were unchecked.",
+    "fix": "Corrected the claim text; added a check finding perfect difference sets for q=4,5 and testing q+1 >= sqrt N - N^0.2625 for sampled N up to 10^9. The exponent 0.2625 = 0.525/2 follows from Baker-Harman-Pintz (2001) primes in [x - x^0.525, x]; the Lindstrom proof algebra and the Erdos-Turan construction were checked line by line."
+   }
+  ]
+ }
+]

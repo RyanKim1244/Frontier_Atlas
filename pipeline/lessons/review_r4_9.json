@@ -1,0 +1,152 @@
+[
+ {
+  "id": "additive-bases",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "Called the Erdős–Turán conjecture (1941) 'a sixty-year-old open question'; it is about 85 years old.",
+    "fix": "Now reads 'the Erdős–Turán conjecture of 1941, still open'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Thin bases and the Erdős–Turán conjecture",
+    "problem": "Said the order-h version is 'even the weaker statement'. No implication between the h = 2 and order-h statements was given, so 'weaker' was not justified.",
+    "fix": "Now says the analogous conjecture for bases of order h >= 3 is open as well."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Thin bases and the Erdős–Turán conjecture",
+    "problem": "'Counting forces A(x) >> sqrt x, and then the average of r_A(n) is at least a constant' does not follow, and it does not motivate bounded r_A.",
+    "fix": "Replaced with: since sum_{n<=x} r_A(n) <= (A(x)+1)^2, a basis with A(x) of order exactly sqrt x has r_A bounded on average."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/From positive density to a basis",
+    "problem": "'A is a basis of order at most 2h for every nonnegative integer' is garbled.",
+    "fix": "Now: every nonnegative integer is a sum of 2h elements of A, i.e. 2hA = Z_{>=0}."
+   },
+   {
+    "severity": "style",
+    "where": "example/Squares are not a basis of order 3; pitfall; intro; exercise 2",
+    "problem": "Part (b) re-derived the counting bound already proved in the obstruction section. One pitfall bullet repeated the section text. The intro was wordy. Exercise 2 was phrased 'Prove that ... need not be'.",
+    "fix": "Part (b) now uses the bound and spells out the cube count. Removed the duplicate bullet, shortened the intro, and rephrased exercise 2 as 'give an example'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Literature facts checked by web search: Sprague 1948 (every n > 128 is a sum of distinct squares, Math. Z. 51) and Richert 1949 (every n > 6 is a sum of distinct primes, Math. Z. 52). Both confirmed and kept.",
+    "fix": "Added fresh checks: the Schnirelmann densities in the pitfall and exercise 1, uniqueness in the base-4 exercise, and Brown's criterion in both directions on random sequences."
+   }
+  ]
+ },
+ {
+  "id": "unit-fractions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Non-uniqueness and the cost of greed",
+    "problem": "The claim that splitting the largest denominator 'keeps all denominators distinct' fails for the representation 1 = 1/1: splitting gives 1/2 + 1/2.",
+    "fix": "Restricted the split to n >= 2 and noted that 1 = 1/1 can first be replaced by 1/2 + 1/3 + 1/6."
+   },
+   {
+    "severity": "style",
+    "where": "intro; pitfall",
+    "problem": "Slight padding. The pitfall said 'no such identity' without saying which identities.",
+    "fix": "Tightened the intro. The pitfall now names Mordell-type polynomial identities."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Mordell's six classes mod 840 (1, 121, 169, 289, 361, 529) checked by web search (erdosproblems.com #242, citing Mordell). Confirmed.",
+    "fix": "Added checks: the 2/n and power-of-2 identities, 1 = 1/2 + 1/3 + 1/6, and the Fourier subset-count formula on a small case."
+   }
+  ]
+ },
+ {
+  "id": "covering-systems",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Erdős's application and Sierpiński numbers",
+    "problem": "'Settling this has required large distributed computer searches' says the question of whether 78557 is the smallest Sierpiński number is settled. It is still open: a handful of smaller k remain.",
+    "fix": "Reworded: proving it means finding a prime k*2^n + 1 for every smaller odd k. Searches have done this for all but a handful of k, and those cases are still open."
+   },
+   {
+    "severity": "unclear",
+    "where": "exercise 3",
+    "problem": "'Some integer is covered at least twice unless the covering is exact' is true by definition, and the second half is already proved in the text.",
+    "fix": "Replaced with: find an exact covering with moduli 2, 4, 8, 8, and explain why moduli 2, 3, 6 cannot be exact."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Nielsen (2009) covering with least modulus 40 checked by web search (Wikipedia, Covering system). Confirmed.",
+    "fix": "Added a brute-force Mirsky–Newman check (all 332 exact coverings with at most 5 classes and moduli dividing 24), Erdős's reciprocal sum, and the orders of 2 for the primes in exercise 4."
+   }
+  ]
+ },
+ {
+  "id": "primitive-sets",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Primitive sets in a finite range",
+    "problem": "The convergence of sum 1/(p log p) was credited to 'Mertens-type estimates'. The argument given is really a Chebyshev count of primes in dyadic blocks.",
+    "fix": "Rewrote it as a Chebyshev-bound argument: O(1/j^2) per dyadic block."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The check for the pitfall '30 = 10*3 = 15*2' tested nothing (it asserted max([2,5]) >= 3).",
+    "fix": "Replaced it with a real check: {10,15} is primitive, P = 5, the cofactors are at most 5, and 30 lies in neither set M_a under the correct condition. Added a dyadic-block check."
+   }
+  ]
+ },
+ {
+  "id": "discrepancy",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Konev–Lisitsa (2014) checked by web search (arXiv 1402.2184): discrepancy-2 sequences have maximum length 1160, and 1161 is impossible. Confirmed. No mathematical errors found.",
+    "fix": "Added checks: discrepancy of 3-subsets for n = 4, 5, 6 and of intervals, and the count of order N^2 log N of arithmetic progressions in [1, N]."
+   }
+  ]
+ },
+ {
+  "id": "counting",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "proof/Inclusion–exclusion principle",
+    "problem": "The variable x was used both for an element and in 'binomial theorem with x = -1'.",
+    "fix": "Now says 'expand (1-1)^t'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "No mathematical errors found.",
+    "fix": "Added checks: the 30 + 80 + 30 decomposition of the overcount, and D_n/n! -> 1/e."
+   }
+  ]
+ },
+ {
+  "id": "pigeonhole",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "No mathematical errors found.",
+    "fix": "Added a check of the mod-10 box choice behind exercise 1."
+   }
+  ]
+ }
+]
