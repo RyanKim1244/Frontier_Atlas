@@ -384,6 +384,10 @@ catalog = {"planned": planned, "bands": cat.BANDS, "fields": cat.FIELDS, "concep
                        "Erdős and Green problems: google-deepmind/formal-conjectures (Apache-2.0); Erdős status from teorth/erdosproblems, mirroring erdosproblems.com.",
                        "Millennium Prize Problems: stated in our own words after the Clay Mathematics Institute descriptions."]}
 js = json.dumps(catalog, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+# Problem figures referenced from q; keep hand-added problem records to four fields.
+problem_figs = os.path.join(SRC, "olympiad_user", "figs")
+if os.path.isdir(problem_figs):
+    shutil.copytree(problem_figs, os.path.join(OUT, "data", "fig"), dirs_exist_ok=True)
 tpl = open(os.path.join(HERE, "template.html"), encoding="utf8").read()
 html = tpl.replace("/*CATALOG*/", js)
 open(os.path.join(OUT, "index.html"), "w", encoding="utf8").write(html)
@@ -391,3 +395,4 @@ empty = [c["id"] for c in concepts if c["nprob"] == 0]
 print(len(concepts), "concepts;", {k: v for k, v in stats.items() if k != "collections"}, colls, "; no problems:", empty, "; html KB", len(html) // 1024,
       "; files KB", {k: os.path.getsize(os.path.join(PD, k + ".json")) // 1024 for k in ALL})
 print("flagged:", len(flagged), "lessons:", len(LESSONS))
+

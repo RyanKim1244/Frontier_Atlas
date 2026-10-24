@@ -503,6 +503,11 @@ function inline(par, em, into) {
 function rich(text, em) {
   const frag = document.createDocumentFragment();
   String(text).split(/\n\s*\n/).forEach(par => {
+    const figure = /^!\[([^\]\n]+)\]\((data\/fig\/[A-Za-z0-9_-]+\.svg)\)$/.exec(par.trim());
+    if (figure) {
+      frag.append(h("figure", { class: "lb-fig" }, h("img", { src: figure[2], alt: figure[1], loading: "lazy", style: "display:block;max-width:100%;height:auto;margin:0 auto;background:#fff;border-radius:4px" })));
+      return;
+    }
     par = safeTex(par);
     const lines = par.split("\n");
     const isOl = lines.length > 1 && lines.every(l => /^\s*\d+[.)]\s/.test(l)), isUl = lines.length > 1 && lines.every(l => /^\s*[-•]\s/.test(l));
@@ -1756,3 +1761,4 @@ connect();
 </script>
 </body>
 </html>
+
