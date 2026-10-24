@@ -1,0 +1,1031 @@
+{
+ "id": "localization",
+ "papers": [
+  {
+   "arxiv": "2510.24818",
+   "title": "Formalization of Auslander--Buchsbaum--Serre criterion in Lean4 (Guan, Hu, 2025)",
+   "subfield": "formalized mathematics / commutative algebra",
+   "assumes": [
+    {
+     "item": "Associated primes of a localization: Ass(S^{-1}M) = Ass(M) intersected with Spec(S^{-1}R) (formalized, uses localization of modules)",
+     "where": "§2.1 Lemma 2.1"
+    },
+    {
+     "item": "Localizing at a minimal prime over Ann(M) to show minimal primes are associated",
+     "where": "§2.1 Lemma 2.2"
+    },
+    {
+     "item": "Localization is flat; regular sequences inside p stay regular in R_p (flat base change)",
+     "where": "§2.4"
+    },
+    {
+     "item": "Projectivity / projective dimension is local: pd M = sup_p pd M_p (also over maximal ideals); pd over S^{-1}R is <= pd over R; localizing a short exact sequence",
+     "where": "§2.5 Lemmas 2.9-2.10"
+    },
+    {
+     "item": "Global dimension computed locally: gldim R = sup_p gldim R_p",
+     "where": "§2.6 Lemma 2.14"
+    },
+    {
+     "item": "Local ring (R, m) as a standing hypothesis; depth defined w.r.t. the unique maximal ideal",
+     "where": "§3.1-3.3"
+    },
+    {
+     "item": "Localizing at an associated prime p makes pR_p an associated prime of M_p",
+     "where": "§3 Prop. 3.2"
+    },
+    {
+     "item": "Cohen-Macaulay property localizes; depth_p(M) <= depth M_p; 'X ring' defined as 'every R_p is X local ring' and checkable at maximal ideals",
+     "where": "§4 Lemma 4.5, Cor 4.8, Def 4.11, Lemma 4.12"
+    },
+    {
+     "item": "Height/dimension identities in R_p: dim R_p = ht(qR_p)+dim(R_p/qR_p)",
+     "where": "§4.1 Thm 4.19"
+    },
+    {
+     "item": "Localization in stages / of polynomial rings: R[X]_P as a localization of R_q[X] with q = P ∩ R",
+     "where": "§4.2, §5.4.3 Thm 5.22"
+    },
+    {
+     "item": "Projective = free over a local ring",
+     "where": "§5.3 Lemma 5.9"
+    },
+    {
+     "item": "Regular local ring localizes to regular local ring; regular ring = all R_p regular local",
+     "where": "§1, §5.4 Cor 5.17, Def 5.18, Thm 5.20"
+    },
+    {
+     "item": "Mathlib conventions: Localization.AtPrime (a construction) vs IsLocalization.AtPrime (a characteristic predicate), localizedModule, primeCompl",
+     "where": "throughout, esp. §2.5, §4, §5.4"
+    }
+   ]
+  },
+  {
+   "arxiv": "2510.10018",
+   "title": "Galois Action and Localization in Number Fields (Coykendall, Kettinger, 2025)",
+   "subfield": "algebraic number theory / multiplicative ideal theory",
+   "assumes": [
+    {
+     "item": "O_K is a Dedekind domain; class group Cl_K",
+     "where": "§1"
+    },
+    {
+     "item": "D[1/α] as the localization at the multiplicative set {±α^n}; its primes are the primes of D not meeting that set",
+     "where": "§4, before Thm 4.1"
+    },
+    {
+     "item": "Class group of a localization of a Krull/Dedekind domain is a quotient of Cl(D) by classes of primes meeting S (Claborn/Nagata-type result, cited)",
+     "where": "§4 Thm 4.1"
+    },
+    {
+     "item": "Localization of a Dedekind domain is Dedekind (integrally closed, Noetherian, dim<=1)",
+     "where": "§4 Thm 4.2"
+    },
+    {
+     "item": "Prime correspondence for O_K[1/α]; extension of ideals is multiplicative: (IJ)_S = I_S J_S",
+     "where": "§4 Thm 4.5"
+    },
+    {
+     "item": "Overrings of a Dedekind domain are intersections of localizations at primes (Gilmer)",
+     "where": "§5 Prop 5.2, Thm 5.3"
+    }
+   ]
+  },
+  {
+   "arxiv": "2404.12085",
+   "title": "Commutative Algebra and Algebraic Geometry using OSCAR (Boehm, Decker, Schreyer, 2024)",
+   "subfield": "computer algebra / computational algebraic geometry",
+   "assumes": [
+    {
+     "item": "Local ring of affine space at a point o: localization of k[x_1..x_n] at the maximal ideal of o; elements g/h with h(o) != 0; translating a point to the origin",
+     "where": "§3"
+    },
+    {
+     "item": "Local monomial orderings (1 > x_i) and Mora division for computing in localizations at a point",
+     "where": "§2, §3"
+    },
+    {
+     "item": "Intersection multiplicity as dim_k O_o/(f,g)O_o; finite length of local quotients",
+     "where": "§3 Def 3.1, Ex 3.2"
+    },
+    {
+     "item": "Delta invariant via normalization of the local ring A_o = O_o/fO_o (normalization commutes with localization)",
+     "where": "§3 Def 3.3"
+    },
+    {
+     "item": "Local notions on projective varieties computed in affine charts; independence of chart",
+     "where": "§4"
+    },
+    {
+     "item": "Background assumed: Nullstellensatz, primes/radicals, primary decomposition, Krull dimension, Zariski topology",
+     "where": "§2 and references [GP08], [CLO15]"
+    }
+   ]
+  },
+  {
+   "arxiv": "2607.04843",
+   "title": "Localization and Affine Schemes over F_1 (Xu, 2026)",
+   "subfield": "F_1-geometry / absolute algebraic geometry",
+   "assumes": [
+    {
+     "item": "Classical S^{-1}R with equivalence a/s ~ b/t iff u(ta - sb) = 0, and its universal property (generalized to F_1-algebras)",
+     "where": "§3.1-3.2 (Thm 3.5)"
+    },
+    {
+     "item": "Localization commutes with finite direct sums: S^{-1}(R^n) = (S^{-1}R)^n",
+     "where": "§3.3 Ex 3.9"
+    },
+    {
+     "item": "Spec, D(f), D(f) ∩ D(g) = D(fg), D(f) empty iff f nilpotent; primes of S^{-1}R = primes disjoint from S; Spec R_f ≅ D(f)",
+     "where": "§5.1, Prop 5.8"
+    },
+    {
+     "item": "Structure sheaf O(D(f)) = R_f, stalk O_p = R_p, global sections = R",
+     "where": "§5.1-5.2"
+    },
+    {
+     "item": "R_p is local; local homomorphisms = maps reflecting units / pulling back maximal ideals; locally ringed spaces",
+     "where": "§2.2 Def 2.14, §5.3 Def 5.5"
+    },
+    {
+     "item": "Anti-equivalence of rings and affine schemes",
+     "where": "§7.2"
+    }
+   ]
+  },
+  {
+   "arxiv": "2308.09371",
+   "title": "The constructive content of a local-global principle ... finitely generated projective module (Lombardi, 2023, in French)",
+   "subfield": "constructive algebra",
+   "assumes": [
+    {
+     "item": "Localization is exact (preserves kernels, cokernels, images, exact sequences)",
+     "where": "§1.3 Fait 1.12"
+    },
+    {
+     "item": "For finitely generated M: maps equal after localizing iff equal after multiplying by some s in S; finitely presented M: Hom commutes with localization",
+     "where": "§1.3 Faits 1.13-1.15"
+    },
+    {
+     "item": "Localizing in stages",
+     "where": "§1.3 Fait 1.16"
+    },
+    {
+     "item": "Localization at an idempotent: A_r ≅ rA; splitting along orthogonal idempotents",
+     "where": "§1.4 Fait 1.17"
+    },
+    {
+     "item": "Concrete local-global principle with comaximal elements s_1..s_m (s_1A+...+s_mA = A): property holds over A iff over each A[1/s_i]",
+     "where": "§1.5 Principles 1.18, 1.23, 1.26-1.27"
+    },
+    {
+     "item": "Saturated multiplicative sets vs complements of primes; maps to a local ring factor through a localization at a prime",
+     "where": "§1.5 Fait 1.20"
+    },
+    {
+     "item": "Local ring: non-units form an ideal (zero ring counted as local in this constructive convention); f.g. projective over local ring is free",
+     "where": "§1.2 Def 1.7, §2.1"
+    },
+    {
+     "item": "Nilradical = intersection of primes; quasi-compactness of Spec",
+     "where": "§1.2, §1.5"
+    }
+   ]
+  },
+  {
+   "arxiv": "2103.07767",
+   "title": "A survey on the Koszul homology algebra (Diethorn, 2021)",
+   "subfield": "homological commutative algebra",
+   "assumes": [
+    {
+     "item": "Local ring (R, m, k) with residue field k as the basic setting; graded rings treated as analogous ('the local case is similar')",
+     "where": "§1, §2"
+    },
+    {
+     "item": "Minimal generating sets (Nakayama) and minimal free resolutions; Betti numbers and Poincaré series of k",
+     "where": "§1, §3-§5"
+    },
+    {
+     "item": "Depth of a local ring and depth sensitivity of the Koszul complex",
+     "where": "§2"
+    },
+    {
+     "item": "Classes of local rings: regular, complete intersection, Gorenstein, Golod",
+     "where": "§1, §4"
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "ref": "Atiyah & Macdonald, Introduction to Commutative Algebra (1969), Ch. 3 (and Ch. 9)",
+   "url": "https://proofwiki.org/wiki/Book:M.F._Atiyah/Introduction_to_Commutative_Algebra",
+   "toc": [
+    "Ch.3 Rings and Modules of Fractions",
+    "Local properties",
+    "Extended and contracted ideals in rings of fractions",
+    "Exercises",
+    "Ch.9 Discrete Valuation Rings and Dedekind Domains: Discrete valuation rings; Dedekind domains; Fractional ideals; Exercises",
+    "(Local rings are defined in Ch.1 under 'Prime ideals and maximal ideals'; no separate heading)"
+   ]
+  },
+  {
+   "ref": "The Stacks Project, Chapter 10 Commutative Algebra, sections 10.9 and 10.17-10.24",
+   "url": "https://stacks.math.columbia.edu/tag/00CM",
+   "toc": [
+    "10.9 Localization (Def 10.9.1 multiplicative subset; Prop 10.9.3 universal property; Lemma 10.9.4 zero ring iff 0 in S; Lemma 10.9.5 S^{-1}R-modules = R-modules with S acting invertibly; Def 10.9.6 module localization; Example 10.9.8 A_p, A_f, Q(A); Lemma 10.9.9 colimit of M_f; Props 10.9.10-11 localization in stages; Prop 10.9.12 exactness; Lemma 10.9.13-14 quotients; Lemma 10.9.15-16 submodules/ideals are extended)",
+    "10.17 The spectrum of a ring",
+    "10.18 Local rings",
+    "10.19 The Jacobson radical of a ring",
+    "10.20 Nakayama's lemma",
+    "10.21 Open and closed subsets of spectra",
+    "10.23 Glueing properties",
+    "10.24 Glueing functions",
+    "10.25 Zerodivisors and total rings of fractions",
+    "10.39 Flat modules and flat ring maps",
+    "10.40 Supports and annihilators"
+   ]
+  },
+  {
+   "ref": "Altman & Kleiman, A Term of Commutative Algebra (2013/2017)",
+   "url": "https://dspace.mit.edu/bitstream/handle/1721.1/116075.2/WWCM.pdf",
+   "toc": [
+    "11. Localization of Rings (A. Text; B. Exercises)",
+    "12. Localization of Modules (A. Text; B. Exercises)",
+    "13. Support",
+    "(context) 9. Flatness; 22. Completion (App: Henselian Rings); 23. Discrete Valuation Rings; 24. Dedekind Domains; 25. Fractional Ideals"
+   ]
+  },
+  {
+   "ref": "Gathmann, Commutative Algebra (lecture notes), Chapter 6 Localization, pp. 50-59",
+   "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+   "toc": [
+    "Motivation (geometric: functions near a point)",
+    "Def 6.1 multiplicatively closed set; construction S^{-1}R",
+    "Remark 6.3-6.4 (extra factor u; non-injectivity; zero ring)",
+    "Examples 6.5-6.6",
+    "Prop 6.7 ideals and primes of S^{-1}R",
+    "Cor 6.10 R_P is local",
+    "Def 6.17 localization of modules; Lemma 6.19 S^{-1}M = M ⊗ S^{-1}R",
+    "Prop 6.21 exactness",
+    "Cor 6.26 length is local",
+    "Prop 6.27 local properties; Exercise 6.29"
+   ]
+  },
+  {
+   "ref": "Sutherland, MIT 18.785 Number Theory I, Lecture 2: Localization and Dedekind Domains (Fall 2025)",
+   "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+   "toc": [
+    "2.1 Localization of rings",
+    "2.2 Ideals in localizations",
+    "2.3 Localization of modules",
+    "2.4 Dedekind domains",
+    "2.5 Fractional ideals",
+    "2.6 Invertible fractional ideals and the ideal class group"
+   ]
+  },
+  {
+   "ref": "Vakil, Foundations of Algebraic Geometry (Math 216 notes, 2010 version; now 'The Rising Sea')",
+   "url": "https://homepage.mi-ras.ru/~avfonarev/beijing-22/Vakil.pdf",
+   "toc": [
+    "§2.3.1 (Universal properties) Localization: construction then 'cleaner' universal-property definition; Exercises 2.3.A-2.3.E, 2.3.K",
+    "§2.4.E localization as filtered colimit; §2.5.G localization as left adjoint; §2.6.F-G exactness, S^{-1}Hom",
+    "Ch.4 Toward affine schemes: 4.5 A base of the Zariski topology: distinguished open sets",
+    "§5.1 The structure sheaf of an affine scheme"
+   ]
+  },
+  {
+   "ref": "Eisenbud, Commutative Algebra with a View Toward Algebraic Geometry (GTM 150), Ch. 2 Localization (pp. 57-86)",
+   "url": "https://link.springer.com/book/9780387942698",
+   "toc": [
+    "Ch.2 Localization (chapter title verified on Springer page)",
+    "2.1 Fractions (unverified)",
+    "2.2 Hom and Tensor (unverified)",
+    "2.3 The Construction of Primes (unverified)",
+    "2.4 Rings and Modules of Finite Length (unverified)",
+    "2.5 Products of Domains (unverified)",
+    "2.6 Exercises (unverified)"
+   ]
+  }
+ ],
+ "explanations": {
+  "intuition": [
+   {
+    "summary": "Fractions f/g with g(a) != 0 in a coordinate ring are functions that make sense on some neighbourhood of the point a; the localization R_P is the ring of such 'local functions', which is where the name comes from. Localizing at a different point kills everything supported at a point (zero ring).",
+    "source": "Gathmann, Commutative Algebra notes, Ch.6 Motivation and Example 6.25",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Picture a/s, with s nonvanishing on a subspace Y, as a germ of a function near Y; the notes recommend keeping this picture in mind while working with the algebra.",
+    "source": "Math 210B (Stanford, Winter 2008) localization handout, §1 (author not given in the extracted text; likely B. Conrad's course)",
+    "url": "https://ericmalm.net/ac/projects/math210b-w08/math210b-localization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Germs of smooth functions at a point of a manifold form a local ring: a germ is invertible exactly when it does not vanish at the point, so the vanishing germs are the unique maximal ideal and evaluation identifies the residue field with R.",
+    "source": "J. Armstrong, The Unapologetic Mathematician, 'Local Rings' (2011)",
+    "url": "https://unapologetic.wordpress.com/2011/03/28/local-rings/",
+    "verified": true
+   },
+   {
+    "summary": "Localizing at a prime 'zooms in' to germs at a point, but Zariski open sets are dense, so Zariski-local isomorphism is still quite global (it forces birational equivalence); completion is the finer, formal neighbourhood in which regular points of equal dimension look alike.",
+    "source": "C. Grossack, 'Why is the completion of a local ring more local than just localizing?' (blog, 2022)",
+    "url": "https://grossack.site/2022/03/04/locality-in-alg-geom.html",
+    "verified": true
+   },
+   {
+    "summary": "Localization keeps the information near a point and discards non-local information; localizing Z at powers of 10 gives decimal fractions, a concrete picture of 'allowing chosen denominators'.",
+    "source": "Wikipedia, Localization (commutative algebra)",
+    "url": "https://en.wikipedia.org/wiki/Localization_(commutative_algebra)",
+    "verified": true
+   },
+   {
+    "summary": "Under the duality between rings and spaces, inverting S corresponds to restricting to the complement of the locus where elements of S vanish; Spec R[S^{-1}] -> Spec R are the basic open immersions of the Zariski topology.",
+    "source": "nLab, localization of a commutative ring (Idea; geometric interpretation)",
+    "url": "https://ncatlab.org/nlab/show/localization+of+a+commutative+ring",
+    "verified": true
+   }
+  ],
+  "motivation": [
+   {
+    "summary": "Chevalley (1944) explains that for a coordinate ring o of a variety V and prime u, o/u describes the subvariety U while the ring of quotients o_u is the tool for studying a neighbourhood of U in V; local theory needs non-domains because completion creates zero divisors, which forced a general construction.",
+    "source": "C. Chevalley, 'On the notion of the ring of quotients of a prime ideal', Bull. AMS 50 (1944) 93-97",
+    "url": "https://www.ams.org/bull/1944-50-02/S0002-9904-1944-08087-7/S0002-9904-1944-08087-7.pdf",
+    "verified": true
+   },
+   {
+    "summary": "History: Grell introduced localization for integral domains; Chevalley and Uzkov generalized it; Krull's 1938 paper launched local rings and their dimension theory (regular local rings = nonsingular points); Cohen's 1946 structure theory of complete local rings followed.",
+    "source": "Encyclopedia of Mathematics, 'Commutative algebra'",
+    "url": "https://encyclopediaofmath.org/wiki/Commutative_algebra",
+    "verified": true
+   },
+   {
+    "summary": "Krull introduced local rings in 1938 as 'Stellenringe' (rings of a point); the English term 'local ring' is attributed to Zariski.",
+    "source": "Wikipedia, Local ring (history)",
+    "url": "https://en.wikipedia.org/wiki/Local_ring",
+    "verified": true
+   },
+   {
+    "summary": "Algebraic motivation: make chosen elements invertible, as Q extends Z, so that questions about rings and modules reduce to a union of smaller local problems.",
+    "source": "Gathmann, Ch.6 introduction",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "In number theory localization lets one work in local rings (DVRs such as Z_(p)) where ideals are simple, and recover global information because an ideal of a domain is the intersection of its localizations; Dedekind domains are defined by their localizations being DVRs.",
+    "source": "Sutherland, 18.785 Lecture 2, §2.3-2.4 (Prop 2.6, Cor 2.7, Prop 2.9)",
+    "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Localization at elements R[1/f] is the ring-theoretic input for affine schemes and the structure sheaf (O(D(f)) = R_f, stalks R_p).",
+    "source": "Wikipedia, Localization (commutative algebra); Xu arXiv:2607.04843 §5",
+    "url": "https://en.wikipedia.org/wiki/Localization_(commutative_algebra)",
+    "verified": true
+   }
+  ],
+  "definitions": [
+   {
+    "summary": "Construction: on A x S set (x,s) ~ (y,t) iff (xt - ys)u = 0 for some u in S; classes x/s with the usual fraction operations. The extra u is needed for transitivity when S has zero divisors.",
+    "source": "Stacks Project 10.9 (Tag 00CM)",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Universal property: A -> S^{-1}A sends S to units and every ring map inverting S factors uniquely through it (Prop 10.9.3); this pins S^{-1}A down up to unique isomorphism, which is why the construction can be replaced by any model.",
+    "source": "Stacks Project Prop. 10.9.3; Vakil §2.3.1 (calls the universal-property definition 'cleaner')",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Module localization S^{-1}M defined by the same fraction construction; it is isomorphic to M ⊗_A S^{-1}A, and is a left adjoint (Altman-Kleiman make universal properties primary and derive the tensor description from adjointness).",
+    "source": "Gathmann Lemma 6.19; Vakil Ex. 2.3.K, 2.5.G; Altman-Kleiman Preface; Sutherland §2.3",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "S^{-1}M is the filtered colimit of the M_f over f in S; localization at a single element uses S = {1,f,f^2,...}.",
+    "source": "Stacks Lemma 10.9.9; Vakil Ex. 2.4.E",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "S^{-1}R-modules are the same as R-modules on which every s in S acts bijectively (localization is reflection onto this subcategory).",
+    "source": "Stacks Lemma 10.9.5 and 10.9.7",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "For a domain, S^{-1}A can be defined as a subring of Frac(A): A ⊆ S^{-1}A ⊆ Frac A. Agreement with the general construction is immediate because the u-factor is unnecessary without zero divisors.",
+    "source": "Sutherland 18.785 Lecture 2 §2.1",
+    "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "R_f ≅ R[x]/(fx - 1) (adjoin an inverse); proof by checking both satisfy the universal property. Used constructively (Rabinowitsch trick).",
+    "source": "standard; memory (Lombardi 2308.09371 §3 refers to Rabinowitsch's trick)",
+    "url": "https://arxiv.org/abs/2308.09371",
+    "verified": false
+   },
+   {
+    "summary": "Saturation: S and its saturation (all divisors of elements of S) give the same localization; two multiplicative sets give isomorphic localizations iff they have the same saturation. Saturated multiplicative sets that are maximal correspond to complements of primes.",
+    "source": "Wikipedia Localization; Stanford 210B notes §8; Lombardi Fait 1.20",
+    "url": "https://en.wikipedia.org/wiki/Localization_(commutative_algebra)",
+    "verified": true
+   },
+   {
+    "summary": "Local ring equivalent definitions: unique maximal ideal; non-units form an ideal; 1 != 0 and for each x, x or 1-x is a unit; a unit finite sum has a unit term. Equivalence: non-units lie in maximal ideals, so a unique maximal ideal is exactly the set of non-units.",
+    "source": "Wikipedia, Local ring",
+    "url": "https://en.wikipedia.org/wiki/Local_ring",
+    "verified": true
+   },
+   {
+    "summary": "Chevalley's 1944 ring of quotients: first divide o by the intersection Σ of primary ideals missing S, then take ordinary fractions; for Noetherian o this agrees with the modern S^{-1}o (kernel of o -> S^{-1}o is that intersection of primary components) [agreement statement from memory].",
+    "source": "Chevalley 1944, Bull AMS",
+    "url": "https://www.ams.org/bull/1944-50-02/S0002-9904-1944-08087-7/S0002-9904-1944-08087-7.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Local homomorphism: f:(R,m)->(S,n) with f(m) ⊆ n, equivalently f^{-1}(n) = m, equivalently f reflects units.",
+    "source": "Wikipedia, Local ring; Xu 2607.04843 Def 2.14",
+    "url": "https://en.wikipedia.org/wiki/Local_ring",
+    "verified": true
+   }
+  ],
+  "viewpoints": [
+   {
+    "summary": "Geometric: R_P = functions regular near a point / subvariety; R_f = functions on the open set D(f); Spec S^{-1}R is the subspace of primes missing S.",
+    "source": "Gathmann Ch.6; nLab; Xu §5",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Categorical: localization is the left adjoint/reflection to the inclusion of S-inverting algebras (or modules where S acts invertibly); module localization = base change ⊗ S^{-1}A; filtered colimit of R_f.",
+    "source": "Vakil §2.3-2.6; Stacks 10.9.5-10.9.9; Altman-Kleiman Preface",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Homotopical: the same universal property defines localization of E∞-rings; nLab treats localization away from an ideal as a modality in arithmetic cohesion and notes the clash with 'localization of a category'.",
+    "source": "nLab, localization of a commutative ring (E∞ section)",
+    "url": "https://ncatlab.org/nlab/show/localization+of+a+commutative+ring",
+    "verified": true
+   },
+   {
+    "summary": "Constructive: instead of localizing at all primes (needs choice), use finitely many comaximal elements s_i and the rings A[1/s_i]; 'dynamical' local rings treat primes as latent objects so abstract local-global proofs become algorithms.",
+    "source": "Lombardi, arXiv:2308.09371 §1.5, §3",
+    "url": "https://arxiv.org/abs/2308.09371",
+    "verified": true
+   },
+   {
+    "summary": "Formalization: a proof assistant cannot treat R[1/f][1/g] and R[1/fg] as equal, only uniquely isomorphic; one must choose a convenient characterizing property (Mathlib uses predicates like IsLocalization alongside the construction Localization).",
+    "source": "K. Buzzard, 'Grothendieck's use of equality' arXiv:2405.10387 (via HackerNoon repost); Guan-Hu 2510.24818",
+    "url": "https://hackernoon.com/lite/the-problem-with-grothendiecks-use-of-equality",
+    "verified": true
+   },
+   {
+    "summary": "Analytic: germs of continuous/smooth/analytic functions at a point form local rings; this is the model for O_{X,x}.",
+    "source": "Armstrong blog; Wikipedia Local ring examples",
+    "url": "https://unapologetic.wordpress.com/2011/03/28/local-rings/",
+    "verified": true
+   },
+   {
+    "summary": "Number-theoretic: Z_(p) is a DVR with residue field F_p and p-adic valuation; Dedekind = Noetherian domain whose localizations at nonzero primes are DVRs.",
+    "source": "Sutherland Example 2.5, Prop 2.9",
+    "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Computational: in a localization at a point one computes with local monomial orders and Mora's tangent-cone algorithm, or by computing over the polynomial ring and localizing at the end (pruning complexes), since R_p is not finitely generated over R.",
+    "source": "Sayrafi arXiv:1710.09830 §I; Boehm-Decker-Schreyer 2404.12085 §2-3",
+    "url": "https://ar5iv.labs.arxiv.org/html/1710.09830",
+    "verified": true
+   },
+   {
+    "summary": "Noncommutative: localization exists for any set but is well behaved under the Ore condition; key example rings of differential operators (microlocalization).",
+    "source": "Wikipedia, Localization (commutative algebra), non-commutative section",
+    "url": "https://en.wikipedia.org/wiki/Localization_(commutative_algebra)",
+    "verified": true
+   }
+  ],
+  "conventions": [
+   {
+    "summary": "Notation: S^{-1}A (Stacks, Atiyah-Macdonald, Gathmann), R[S^{-1}] (nLab), A_S (Lombardi); A_p or A_(p) for prime complement (Stanford 210B writes A_(P)); A_f vs A[1/f]; Coykendall-Kettinger (2510.10018) write the localization at {±α^n} as D[1/α].",
+    "source": "Stacks 10.9; nLab; Lombardi §1.3; Stanford 210B notes; Coykendall-Kettinger §4",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "'At' vs 'away from': algebraists localize 'at a prime p' (Z_(p), invert everything outside (p)) but 'away from p' when inverting p (Z[1/p]); category theorists 'localize at' the morphisms being inverted, which clashes; nLab switched some pages to 'away from' and the nForum thread ended without consensus.",
+    "source": "nLab page (Idea) and nForum discussion 5490",
+    "url": "https://nforum.ncatlab.org/discussion/5490/algebraic-localized-at-vs-away-from",
+    "verified": true
+   },
+   {
+    "summary": "Older usage (before ~1960, e.g. Chevalley's standing hypothesis, and the Nagata/French tradition) required local rings to be Noetherian, calling the general case 'quasi-local'; modern texts do not.",
+    "source": "Wikipedia, Local ring (conventions); Chevalley 1944",
+    "url": "https://en.wikipedia.org/wiki/Local_ring",
+    "verified": true
+   },
+   {
+    "summary": "Whether the zero ring is local: standard definition (unique maximal ideal) excludes it; Lombardi's constructive definition ('non-units form an ideal'-style axiom) counts the trivial ring as local.",
+    "source": "Lombardi 2308.09371 Def 1.7; Wikipedia Local ring",
+    "url": "https://arxiv.org/abs/2308.09371",
+    "verified": true
+   },
+   {
+    "summary": "Construction-first (Atiyah-Macdonald, Gathmann, Stacks, Sutherland) vs universal-property-first (Vakil 'cleaner', Altman-Kleiman throughout).",
+    "source": "Vakil §2.3.1; Altman-Kleiman Preface; Gathmann Ch.6",
+    "url": "https://homepage.mi-ras.ru/~avfonarev/beijing-22/Vakil.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Writing '=' for canonical isomorphisms of localizations (EGA 'identifier canoniquement', Milne's stated convention) vs strict equality in proof assistants.",
+    "source": "Buzzard arXiv:2405.10387",
+    "url": "https://hackernoon.com/lite/the-problem-with-grothendiecks-use-of-equality",
+    "verified": true
+   },
+   {
+    "summary": "Equivalence relation written with different letters/orders: (xt - ys)u = 0 (Stacks), u(as' - a's) = 0 (Gathmann), (a's'' - a''s')t = 0 (Stanford 210B), u(ta - sb) = 0 (Sutherland, Xu). Same condition.",
+    "source": "Stacks; Gathmann; Sutherland; Xu",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Notation (R, m, k) for a local ring with maximal ideal m and residue field k is standard in the commutative-algebra literature (e.g. Koszul survey uses 'local ring R with residue field k').",
+    "source": "Diethorn 2103.07767 §1",
+    "url": "https://arxiv.org/abs/2103.07767",
+    "verified": true
+   }
+  ],
+  "examples": [
+   {
+    "summary": "Z localized: at Z\\{0} gives Q; at powers of p gives Z[1/p]; at the prime (p) gives Z_(p) = fractions with denominator prime to p (a DVR, residue field F_p); at powers of 10 gives decimals.",
+    "source": "Gathmann Ex. 6.6; Sutherland Ex. 2.5; Wikipedia",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Field of fractions (S = nonzero elements of a domain) and total ring of fractions (S = non-zero-divisors).",
+    "source": "Stacks Example 10.9.8; Gathmann Ex. 6.5; Wikipedia",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Zero ring: S^{-1}A = 0 iff 0 ∈ S; in particular A_f = 0 when f is nilpotent (D(f) empty).",
+    "source": "Stacks Lemma 10.9.4; Vakil §2.3.1; Xu §5",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Line pair V(xy) ⊂ A^2: near (1,0) the function y equals 0, and indeed y/1 = 0/1 in the localization because x·y = 0 with x a unit there — the canonical illustration of the u-factor and non-injectivity.",
+    "source": "Gathmann Remark 6.3(b)",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Local rings: fields, DVRs, k[[x]], k[x]/(x^n) (dual numbers), Z_(2) (odd denominators), germs of functions, kG for p-group G in char p. Non-examples: k[x], Z, Z/(pq).",
+    "source": "Wikipedia, Local ring",
+    "url": "https://en.wikipedia.org/wiki/Local_ring",
+    "verified": true
+   },
+   {
+    "summary": "Local ring of A^n at a point: {g/h : h(o) != 0}; intersection multiplicity of two plane curves at o as dim_k O_o/(f,g), e.g. tangential cusps computed in OSCAR.",
+    "source": "Boehm-Decker-Schreyer 2404.12085 §3 Ex 3.2",
+    "url": "https://arxiv.org/abs/2404.12085",
+    "verified": true
+   },
+   {
+    "summary": "Not every property is local: being an integral domain is not (e.g. Z/6 or k×k: all localizations at primes are fields but the ring is not a domain) [specific example from memory]; Wikipedia notes an infinite product of fields as a cautionary example for local-global behaviour.",
+    "source": "Gathmann Prop 6.27 (domain not local); Wikipedia",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": false
+   },
+   {
+    "summary": "UFD need not be Dedekind (k[x,y]) and Dedekind need not be UFD (Z[√-13]); every PID is Dedekind because its localizations at nonzero primes are DVRs.",
+    "source": "Sutherland Cor 2.11, Remark 2.12",
+    "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Spec Z_(p) has exactly two points, (0) and (p): primes of Z contained in (p). Generally Spec A_p = primes contained in p.",
+    "source": "Gathmann Cor 6.10 (general statement); two-point example from memory",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": false
+   }
+  ],
+  "computation": [
+   {
+    "summary": "Prime ideals of S^{-1}A ↔ primes of A disjoint from S (via extension/contraction); primes of A_p ↔ primes contained in p, so A_p is local with maximal ideal pA_p. Every ideal of S^{-1}A is extended.",
+    "source": "Gathmann Prop 6.7, Cor 6.10; Stacks Lemma 10.9.16; Sutherland Thm 2.1",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "I^{ec} = {b : sb ∈ I for some s ∈ S} and J^{ce} = J; I^e proper iff I ∩ S = ∅; primary decompositions localize by dropping components that meet S.",
+    "source": "Stanford 210B notes §5",
+    "url": "https://ericmalm.net/ac/projects/math210b-w08/math210b-localization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Exactness: S^{-1} is exact (S^{-1}A is flat), so it commutes with kernels, cokernels, quotients, finite sums, intersections, radicals: S^{-1}(M/N) = S^{-1}M/S^{-1}N; S^{-1}A/S^{-1}I = (image of S)^{-1}(A/I).",
+    "source": "Stacks Prop 10.9.12-10.9.14; Wikipedia; Lombardi Fait 1.12",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Localization in stages: (SS')^{-1}A ≅ S̄^{-1}(S'^{-1}A); e.g. (A_f)_g = A_{fg}, and localizing R_p further at a smaller prime.",
+    "source": "Stacks Props 10.9.10-11; Lombardi Fait 1.16",
+    "url": "https://stacks.math.columbia.edu/tag/00CM",
+    "verified": true
+   },
+   {
+    "summary": "Local-global: M = 0 iff M_m = 0 for all maximal m; exactness, injectivity, ideal containment, reducedness, length, projectivity/projective dimension, global dimension, Cohen-Macaulayness, regularity are checked locally.",
+    "source": "Gathmann Prop 6.27, Cor 6.26; Guan-Hu 2510.24818 Lemmas 2.9, 2.14, 4.12, Thm 5.20",
+    "url": "https://arxiv.org/abs/2510.24818",
+    "verified": true
+   },
+   {
+    "summary": "Hom commutes with localization for finitely presented M: S^{-1}Hom_A(M,N) ≅ Hom_{S^{-1}A}(S^{-1}M,S^{-1}N).",
+    "source": "Vakil Ex 2.6.G; Lombardi Faits 1.14-1.15",
+    "url": "https://arxiv.org/abs/2308.09371",
+    "verified": true
+   },
+   {
+    "summary": "Computer algebra: Macaulay2 lacks monomial orders for general R_p; at maximal ideals use Mora's tangent cone algorithm (local orderings 1 > x_i); otherwise compute over the polynomial ring, prune, and localize. OSCAR provides localization(R, complement_of_point_ideal(...)) and vector_space_dimension for multiplicities.",
+    "source": "Sayrafi 1710.09830 §I; Boehm-Decker-Schreyer 2404.12085 §2-3",
+    "url": "https://ar5iv.labs.arxiv.org/html/1710.09830",
+    "verified": true
+   },
+   {
+    "summary": "Comaximal covers: to check a property of A, find s_1,...,s_m generating the unit ideal and check over each A[1/s_i]; finitely presented/projective modules become free on such a cover.",
+    "source": "Lombardi 2308.09371 §1.5, §2",
+    "url": "https://arxiv.org/abs/2308.09371",
+    "verified": true
+   }
+  ],
+  "confusions": [
+   {
+    "summary": "Why the extra factor u (or t) in the equivalence relation: without it transitivity fails when S has zero divisors; for domains it can be dropped.",
+    "source": "Gathmann Remark 6.3; Stanford 210B notes §3; Stacks 10.9",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "A -> S^{-1}A need not be injective; injective iff S contains no zero divisors.",
+    "source": "Vakil Ex 2.3.B; Gathmann Remark 6.4(a); Wikipedia",
+    "url": "https://homepage.mi-ras.ru/~avfonarev/beijing-22/Vakil.pdf",
+    "verified": true
+   },
+   {
+    "summary": "An element a/b of A_p can have a representation with b ∈ p; membership in A_p is about the existence of some representation with denominator outside p.",
+    "source": "Sutherland Warning 2.3",
+    "url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+    "verified": true
+   },
+   {
+    "summary": "General localizations S^{-1}R are not local rings; only localization at a prime (complement of a prime) is guaranteed to be local. Also 'localization at a prime' inverts the complement, not the prime.",
+    "source": "Gathmann (pitfalls); Chevalley 1944 notes that inverting only non-zero-divisors need not be local",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Notation clash Z_p: localization at p (or at powers of p, depending on author) vs p-adic integers vs Z/pZ; Z_(p), Z[1/p], completion Ẑ_p and Z/p are different objects.",
+    "source": "Gathmann (pitfalls, Ex 6.6); D. Zack Garza notes 'disambiguating completion and localization'",
+    "url": "https://notes.dzackgarza.com/Unsorted/disambiguating%20completion%20and%20localization.html",
+    "verified": true
+   },
+   {
+    "summary": "Ideal correspondence: every ideal of S^{-1}A is extended, but contraction-extension is a bijection only on primes (and primaries) disjoint from S, not all ideals.",
+    "source": "Gathmann; Stanford 210B notes §5",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Not every property is local (integral domain is not); local-global works for properties stable under the relevant intersections/exactness.",
+    "source": "Gathmann Prop 6.27; Sutherland §2.3",
+    "url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Localization vs completion: R_p already is 'germs at p' but is still Zariski-coarse; completion is 'more local'.",
+    "source": "Grossack blog (2022)",
+    "url": "https://grossack.site/2022/03/04/locality-in-alg-geom.html",
+    "verified": true
+   },
+   {
+    "summary": "Are R[1/f] and R[1/g] equal when D(f) = D(g)? Only canonically isomorphic; careless identification is an issue in formalization.",
+    "source": "Buzzard arXiv:2405.10387",
+    "url": "https://hackernoon.com/lite/the-problem-with-grothendiecks-use-of-equality",
+    "verified": true
+   },
+   {
+    "summary": "Terminology 'at' vs 'away from' and 'localization of a category' meaning something different.",
+    "source": "nForum discussion 5490; nLab",
+    "url": "https://nforum.ncatlab.org/discussion/5490/algebraic-localized-at-vs-away-from",
+    "verified": true
+   }
+  ]
+ },
+ "requirements": [
+  {
+   "item": "Multiplicative subset; construction of S^{-1}A with the u-factor equivalence relation",
+   "priority": "core",
+   "needed_by": [
+    "2607.04843",
+    "2308.09371",
+    "Stacks 10.9",
+    "Atiyah-Macdonald ch.3",
+    "Gathmann ch.6",
+    "Sutherland L2",
+    "Vakil §2.3"
+   ]
+  },
+  {
+   "item": "Universal property of localization; uniqueness up to unique isomorphism",
+   "priority": "core",
+   "needed_by": [
+    "2607.04843",
+    "2510.24818 (IsLocalization)",
+    "Stacks 10.9.3",
+    "Vakil §2.3",
+    "Altman-Kleiman ch.11",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Special cases: A_f = A[1/f] (powers of f), A_p (complement of prime), field of fractions, total ring of fractions, zero ring iff 0 ∈ S",
+   "priority": "core",
+   "needed_by": [
+    "2607.04843",
+    "2510.10018",
+    "2308.09371",
+    "Stacks 10.9.8",
+    "Gathmann ch.6",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Kernel of A -> S^{-1}A; injectivity iff no zero divisors in S",
+   "priority": "common",
+   "needed_by": [
+    "Vakil §2.3",
+    "Gathmann ch.6",
+    "Stanford 210B"
+   ]
+  },
+  {
+   "item": "Localization of modules S^{-1}M ≅ M ⊗_A S^{-1}A; S^{-1}R-modules = R-modules where S acts invertibly",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2308.09371",
+    "Stacks 10.9.5-6",
+    "Atiyah-Macdonald ch.3",
+    "Altman-Kleiman ch.12",
+    "Sutherland §2.3"
+   ]
+  },
+  {
+   "item": "Exactness / flatness of localization; commutes with quotients, finite sums, intersections, radicals",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2308.09371",
+    "1710.09830",
+    "Stacks 10.9.12-14",
+    "Atiyah-Macdonald ch.3",
+    "Gathmann 6.21"
+   ]
+  },
+  {
+   "item": "Prime ideals of S^{-1}A ↔ primes disjoint from S; Spec S^{-1}A as subspace; ideals of S^{-1}A are extended",
+   "priority": "core",
+   "needed_by": [
+    "2607.04843",
+    "2510.10018",
+    "Stacks 10.9.16",
+    "Atiyah-Macdonald ch.3",
+    "Gathmann 6.7",
+    "Sutherland Thm 2.1",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Extension/contraction formulas in rings of fractions; localization of primary decomposition",
+   "priority": "common",
+   "needed_by": [
+    "Atiyah-Macdonald ch.3-4",
+    "Stanford 210B",
+    "2510.10018 ((IJ)_S = I_S J_S)"
+   ]
+  },
+  {
+   "item": "A_p is local with maximal ideal pA_p; residue field κ(p); Spec A_p = primes inside p",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2607.04843",
+    "2103.07767",
+    "Gathmann 6.10",
+    "Sutherland §2.1",
+    "page: schemes",
+    "page: dedekind-domains"
+   ]
+  },
+  {
+   "item": "Local rings: equivalent definitions (unique maximal ideal; non-units form an ideal; x or 1-x unit); notation (R,m,k); quotients of local rings are local",
+   "priority": "core",
+   "needed_by": [
+    "2103.07767",
+    "2510.24818",
+    "2308.09371",
+    "Atiyah-Macdonald ch.1",
+    "Stacks 10.18"
+   ]
+  },
+  {
+   "item": "Local homomorphisms; locally ringed spaces",
+   "priority": "common",
+   "needed_by": [
+    "2607.04843",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Nakayama's lemma; minimal generators; f.g. projective over local ring is free",
+   "priority": "common",
+   "needed_by": [
+    "2103.07767",
+    "2510.24818",
+    "2308.09371",
+    "1710.09830",
+    "Stacks 10.20"
+   ]
+  },
+  {
+   "item": "Localization in stages ((A_f)_g = A_{fg}); localizations of localizations",
+   "priority": "common",
+   "needed_by": [
+    "2308.09371",
+    "2510.24818 (§4.2)",
+    "Stacks 10.9.10-11"
+   ]
+  },
+  {
+   "item": "Local properties / local-global principle: M = 0, exactness, injectivity, ideal equality, reducedness, projectivity checked at all primes or maximal ideals; non-local properties (domain)",
+   "priority": "core",
+   "needed_by": [
+    "2510.24818",
+    "2308.09371",
+    "Atiyah-Macdonald ch.3 'Local properties'",
+    "Gathmann 6.27",
+    "Sutherland Prop 2.6",
+    "page: dedekind-domains",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Defining global notions as 'all localizations have P' (regular ring, Cohen-Macaulay ring, Dedekind domain)",
+   "priority": "common",
+   "needed_by": [
+    "2510.24818",
+    "Sutherland Prop 2.9",
+    "page: dedekind-domains"
+   ]
+  },
+  {
+   "item": "Comaximal elements s_1..s_n and covers D(s_i) of Spec A; finite local-global principle",
+   "priority": "common",
+   "needed_by": [
+    "2308.09371",
+    "Stacks 10.23-10.24",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Spec A_f ≅ D(f); D(f) ∩ D(g) = D(fg); structure sheaf O(D(f)) = A_f; stalk O_p = A_p",
+   "priority": "core",
+   "needed_by": [
+    "2607.04843",
+    "Vakil §4.5, §5.1",
+    "page: schemes"
+   ]
+  },
+  {
+   "item": "Hom and localization: S^{-1}Hom(M,N) ≅ Hom(S^{-1}M, S^{-1}N) for finitely presented M",
+   "priority": "specialised",
+   "needed_by": [
+    "2308.09371",
+    "Vakil Ex 2.6.G"
+   ]
+  },
+  {
+   "item": "Localization preserves Noetherian, PID, integrally closed, Dedekind; normalization commutes with localization",
+   "priority": "common",
+   "needed_by": [
+    "2510.10018",
+    "2404.12085",
+    "Sutherland Remark 2.2, Prop 2.9",
+    "page: dedekind-domains"
+   ]
+  },
+  {
+   "item": "Z_(p) and DVRs as localizations of Dedekind domains; p-adic valuation",
+   "priority": "common",
+   "needed_by": [
+    "2510.10018",
+    "Sutherland Ex 2.5",
+    "Atiyah-Macdonald ch.9",
+    "page: dedekind-domains"
+   ]
+  },
+  {
+   "item": "Fractional ideals and class groups under localization; overrings of Dedekind domains as intersections of localizations",
+   "priority": "specialised",
+   "needed_by": [
+    "2510.10018",
+    "Sutherland §2.5-2.6",
+    "page: dedekind-domains"
+   ]
+  },
+  {
+   "item": "Associated primes, support and localization (Ass(S^{-1}M), Supp)",
+   "priority": "specialised",
+   "needed_by": [
+    "2510.24818",
+    "Stacks 10.40",
+    "Altman-Kleiman ch.13"
+   ]
+  },
+  {
+   "item": "Dimension, height and depth under localization (ht p = dim A_p)",
+   "priority": "specialised",
+   "needed_by": [
+    "2510.24818",
+    "2103.07767"
+   ]
+  },
+  {
+   "item": "Local ring at a point of affine space; length and intersection multiplicity dim_k O_o/(f,g)",
+   "priority": "specialised",
+   "needed_by": [
+    "2404.12085",
+    "1710.09830",
+    "Gathmann 6.26"
+   ]
+  },
+  {
+   "item": "Computing in local rings: local orderings, Mora's tangent cone algorithm",
+   "priority": "specialised",
+   "needed_by": [
+    "2404.12085",
+    "1710.09830"
+   ]
+  },
+  {
+   "item": "Localization at an idempotent; A ≅ product of localizations for orthogonal idempotents",
+   "priority": "specialised",
+   "needed_by": [
+    "2308.09371"
+   ]
+  },
+  {
+   "item": "Saturation of multiplicative sets; same saturation ⇔ same localization",
+   "priority": "specialised",
+   "needed_by": [
+    "2308.09371",
+    "Wikipedia",
+    "Stanford 210B"
+   ]
+  },
+  {
+   "item": "Canonical isomorphism vs equality; Mathlib IsLocalization vs Localization",
+   "priority": "specialised",
+   "needed_by": [
+    "2510.24818",
+    "Buzzard 2405.10387"
+   ]
+  },
+  {
+   "item": "Graded analogue (*local rings, homogeneous localization)",
+   "priority": "specialised",
+   "needed_by": [
+    "2103.07767"
+   ]
+  }
+ ],
+ "notes": [
+  "Math StackExchange and MathOverflow pages could not be reached: the search tool returned no MSE/MO results for many queries and direct MSE URLs are not on the fetch allowlist. The 'confusions' section therefore relies on pitfalls listed in lecture notes, nLab/nForum and blogs instead of MSE questions; a follow-up with MSE access would strengthen it.",
+  "Stacks Project chapter TOC and section 10.9 were fetched; section 10.18 (Local rings) contents were not opened individually.",
+  "Eisenbud Ch.2 subsection headings are from memory (marked unverified); only the chapter title/pages were verified on Springer.",
+  "Altman-Kleiman: only the TOC and preface were extractable (text cut off after Ch.3); chapter 11-12 internal structure not seen.",
+  "Vakil source is the 2010 Math 216 version, not the 2025 Rising Sea edition; section numbers differ in the book.",
+  "The Stanford 210B localization handout (ericmalm.net mirror) has no author in the extracted text; the Brian Conrad Stanford URL redirect-looped, so attribution to Conrad is unconfirmed.",
+  "Buzzard's equality paper was read via a HackerNoon republication of arXiv:2405.10387, not the arXiv page itself.",
+  "arXiv 2607.04843 page reported a date of 2026-09-22 (probably a revised version) although the ID indicates July 2026 submission.",
+  "Koszul survey (2103.07767) uses local rings mainly as a setting; its use of localization proper is light. Kept for the local-ring side of the concept.",
+  "Paper 'assumes' lists come from WebFetch summaries of arXiv HTML/PDF; section/lemma numbers should be spot-checked before quoting."
+ ]
+}

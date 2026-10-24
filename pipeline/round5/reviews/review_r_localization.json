@@ -1,0 +1,158 @@
+[
+ {
+  "id": "localization",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "block 95 example 'Glueing and idempotents in a small ring' (b)",
+    "problem": "The question asked whether (5/2, 5/2) in Z[1/2]+Z[1/3] lies in the image of alpha, but 5/2 is not in Z[1/3]; the solution itself said the pair is not in the middle term. The exercise was ill-posed.",
+    "fix": "Replaced by x = 5/2 in Z[1/2], y = 7/3 in Z[1/3]: beta(x,y) = 1/6 is nonzero, so the pair is not in ker(beta) = im(alpha); general description of ker(beta) kept. Check added."
+   },
+   {
+    "severity": "error",
+    "where": "block 91 views 'Not very local' (Grossack item)",
+    "problem": "'Two varieties with isomorphic local rings at some points are birational' and 'regular points of the same dimension all have isomorphic completed local rings' were stated without the hypotheses Grossack uses (varieties over an algebraically closed field k, isomorphism as k-algebras; Cohen structure theorem over a common field k). As written the claims are false (e.g. without the k-algebra condition, or over different fields).",
+    "fix": "Restated with Grossack's hypotheses; completion statement now cites the Cohen structure theorem and gives the power series ring k[[x_1..x_n]]."
+   },
+   {
+    "severity": "error",
+    "where": "block 45 pitfall, second bullet",
+    "problem": "Said Chevalley remarks that inverting just the non-zero-divisors does not give a local ring. Chevalley's remark is about inverting only the non-zero-divisors outside the prime u (the result 'fails in general' to be local).",
+    "fix": "Restated precisely."
+   },
+   {
+    "severity": "source",
+    "where": "block 100 definition 'Discrete valuation ring' and block 107 proof",
+    "problem": "The key fact 'a Noetherian local domain of dimension one is a DVR iff integrally closed' was cited to Atiyah-Macdonald Ch. 9 (not opened) and to Sutherland's Theorem 1.16 (Lecture 1, not reachable; Lecture 2 only cites it). The mathematics is correct: verified against Stacks Lemma 10.119.7 (tag 00PD), whose condition (5) 'Noetherian local normal domain of dimension 1' is equivalent to (1) DVR and (4) principal maximal ideal.",
+    "fix": "Both blocks now cite Stacks Lemma 10.119.7 (src stacks added, am removed from block 100); the proof says Sutherland quotes the same fact from his first lecture in the proof of Proposition 2.9 (confirmed in Lecture 2). Stacks 'where' updated."
+   },
+   {
+    "severity": "source",
+    "where": "sources: stan",
+    "problem": "The handout names no author, instructor, course or institution (checked in the PDF). 'Stanford Math 210B' was inferred from the URL path only; the hosting page is not fetchable.",
+    "fix": "Ref renamed to an anonymous Math 210B handout (Winter 2008) hosted on ericmalm.net; all text mentions of 'the Stanford handout' and the conventions row label changed to 'Math 210B handout'. Its content claims (notation A_(P), equivalence (a's''-a''s')s = 0, formula for I^ec, primary components meeting S drop out, saturation) were confirmed."
+   },
+   {
+    "severity": "source",
+    "where": "block 18 views 'What is S^{-1}A?', Chevalley item",
+    "problem": "The text attributed to Chevalley the identification of his ideal d with the modern kernel {a : sa = 0 for some s in S}. Chevalley defines d as the intersection of all primary ideals not meeting S and proves (Prop. 1) it is the intersection of the primary components of 0 whose primes miss S; the comparison with the kernel is not in his paper (the argument given is correct).",
+    "fix": "Marked the comparison as our check, not Chevalley's; added the reference to his Proposition 1 and the word irredundant."
+   },
+   {
+    "severity": "source",
+    "where": "block 18 views, Fractions item",
+    "problem": "Body names Sutherland as using this definition, but src lacked suth (Sutherland's §2.1 does use it).",
+    "fix": "Added suth to src."
+   },
+   {
+    "severity": "source",
+    "where": "block 18 views, Three checkable properties",
+    "problem": "Said Mathlib uses Strickland's characterisation 'because' it does not quantify over all rings; Buzzard reports that Mathlib uses it and separately notes that it avoids quantifying over all rings.",
+    "fix": "Reworded to match Buzzard (characterisation suggested by Neil Strickland; Mathlib uses it; it does not quantify over rings)."
+   },
+   {
+    "severity": "source",
+    "where": "block 0 intro",
+    "problem": "'Chevalley, who gave the general definition in 1944': Chevalley's paper works with Noetherian rings and credits Grell for the non-zero-divisor case.",
+    "fix": "Now: Chevalley in 1944 defined the ring of quotients of a Noetherian ring with respect to a multiplicative set."
+   },
+   {
+    "severity": "source",
+    "where": "block 22 proof of 'Adjoining an inverse'",
+    "problem": "Claimed Gathmann's Exercise 6.13 asks for A[x]/(fx-1) = A_f 'together with a geometric interpretation' as the graph of 1/f. In Gathmann the geometric interpretation is asked for part (a) (the axes example), not part (b); the graph-of-1/f reading is in no cited source.",
+    "fix": "Replaced with 'This is Gathmann's Exercise 6.13(b)'; src gathmann added to the proof. Block 7 now says it is Gathmann's Exercise 6.13(a)."
+   },
+   {
+    "severity": "source",
+    "where": "block 25 definition 'Saturation'",
+    "problem": "Cited gathmann; saturation could not be found in Gathmann Ch. 6. Wikipedia (same saturation iff isomorphic localisations), the Math 210B handout (saturation = elements becoming units) and Lombardi (Fait 1.20) confirmed.",
+    "fix": "Removed gathmann from src."
+   },
+   {
+    "severity": "source",
+    "where": "block 27 conventions, 'Gathmann (integers)' row",
+    "problem": "Cited suth for 'in number theory Z_p almost always means the p-adic integers'. Sutherland's Lecture 2 uses only Z_(p) and never discusses Z_p; Gathmann's Example 6.6 warns that Z_p is also used for Z/pZ, not for the p-adics. The p-adic claim had no source.",
+    "fix": "Row rewritten to what Gathmann (Example 6.6) and Sutherland actually do; src now gathmann, suth both accurate."
+   },
+   {
+    "severity": "source",
+    "where": "block 27 conventions, 'Equality versus canonical isomorphism' row",
+    "problem": "Said Grothendieck writes A_f[1/g] = A_fg. Buzzard's example from EGA I §1.3 is the canonical identification R[1/f] = R[1/g] when D(f) = D(g).",
+    "fix": "Row now describes the EGA example as Buzzard gives it. The lemma story (Stacks 00EJ formalised for R[1/f], not applicable to R[1/f][1/g], fixed via Strickland's characterisation) was confirmed."
+   },
+   {
+    "severity": "source",
+    "where": "block 51 views 'What a local ring is'",
+    "problem": "Lombardi item was labelled 'Non-units form an ideal' but describes Lombardi's Definition 1.7 (x or 1 - x invertible); the Gathmann/handout item said both 'introduce local rings as the rings A_p', but Gathmann defines local rings abstractly (Def. 6.9) and then reads R_P as local functions (Cor. 6.10, Rem. 6.11).",
+    "fix": "Label changed to 'x or 1 - x a unit'; Gathmann item rewritten with his numbering and reading."
+   },
+   {
+    "severity": "source",
+    "where": "block 57 conventions 'Conventions for local rings'",
+    "problem": "'Older usage (Chevalley, Nagata tradition)': Nagata is in no source; the Noetherian-by-definition and quasi-local claim is Wikipedia's ('before about 1960'). Lombardi row gave a rationale ('makes every localisation at a prime is local uniform') that is not Lombardi's; his Fait 1.20 actually speaks of nontrivial local rings. Diethorn row claimed (R, m, k) Noetherian notation; her §1-2 speak of 'a commutative local (or graded) ring' with residue field k, define things for standard graded algebras and say the local case is similar.",
+    "fix": "All three rows rewritten to what the sources say; 'who' labels changed."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 78-79 'Support and associated primes', 'Support of a finitely generated module'",
+    "problem": "Cited guanhu for the definitions and for Supp M = V(Ann M); Guan-Hu do not define support or associated primes and never state Supp M = V(Ann M). Their Lemma 2.1 (Ass of a localisation, R Noetherian, M finitely generated) was confirmed.",
+    "fix": "Definitions now cite stacks and guanhu (with the text saying Guan-Hu use Mathlib's definitions); the theorem cites Stacks Lemma 10.40.5 (tag 00L2), opened."
+   },
+   {
+    "severity": "source",
+    "where": "block 97 'Affine schemes in one paragraph'",
+    "problem": "Said Xu obtains an anti-equivalence with 'affine F_1-schemes' and put the universal property under Theorem 5.4. Xu: Theorem 3.5 is the universal property, Theorem 5.4 gives stalks, sections over D(f) and global sections, Definition 5.5 requires local stalk maps, and the anti-equivalence is with 'absolute affine schemes'.",
+    "fix": "Rewritten with Xu's numbering and terminology."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 113-114 'A finite-dimensional quotient is the product of its localisations'",
+    "problem": "Theorem cited bds, which does not state it; the proof called it 'a special case of Gathmann's Corollary 6.26', but Cor. 6.26 is about lengths of finite-length modules (dim_k and length differ when residue fields are bigger than k).",
+    "fix": "src now gathmann only; proof says 'compare Gathmann's Example 6.25 and Corollary 6.26' and states what they say. The proof itself (writer's own) was checked line by line and is correct."
+   },
+   {
+    "severity": "source",
+    "where": "block 119 connection on computer algebra",
+    "problem": "Overstated Sayrafi: he says no monomial orders are known for local rings in general, the exception being localisation at a maximal ideal via Mora's tangent cone algorithm. The rest (compute over the polynomial ring, tensor, prune; mingens, length, Hilbert-Samuel over R_p) was confirmed.",
+    "fix": "Reworded to Sayrafi's statement."
+   },
+   {
+    "severity": "source",
+    "where": "block 76 proof of 'Hom and localisation'",
+    "problem": "Cited only Lombardi's Fait 1.13 (finite type case); the finitely presented isomorphism is his Fait 1.14.",
+    "fix": "Added Fait 1.14. Vakil Exercise 2.6.G and its hint were confirmed."
+   },
+   {
+    "severity": "source",
+    "where": "block 110 example 'Inverting 2 in Z[sqrt(-5)]'",
+    "problem": "src coyk, but the example is not in Coykendall-Kettinger (their examples invert 1+sqrt(-5) and use Z[sqrt(-14)]); it is an application of their Theorem 4.1. The computation is correct.",
+    "fix": "Added a sentence saying it is our application of their Theorem 4.1."
+   },
+   {
+    "severity": "source",
+    "where": "sources: am",
+    "problem": "Atiyah-Macdonald was never opened by writer or reviewer. Its remaining citations are chapter-level (fractions Ch. 3, local rings Ch. 1, Nakayama Ch. 2, a 'local properties' section) and always alongside an opened source that carries the claim.",
+    "fix": "'where' now says chapter level only and drops Ch. 9; no claim on the page depends on AM alone."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 116 example 'Two tangential cusps'",
+    "problem": "Writer flagged the value 6 as own computation. BDS Example 3.2 uses exactly these curves (y^2 - x^3, 2y^2 - x^3) and two OSCAR methods but does not print the value.",
+    "fix": "Kept; the text already says the paper does not state the value. Recomputed independently: ideal = (x^3, y^2), colength 6 both globally and with an m^8 truncation (new check)."
+   },
+   {
+    "severity": "style",
+    "where": "block 38 figure (Spec Z)",
+    "problem": "The point (3) is both boxed (in Spec Z_(3)) and crossed out (not in D(3)); readable only with the caption.",
+    "fix": "Left as is; the caption explains both marks. All five figures were compiled and inspected: labels correct, nothing clipped, consistent with the text."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Several computed claims had no check: the axes example identity, localisations of the finite abelian group example, the determinant trick, the comaximal-powers exponent bound, the clearing-of-denominators identity, unit inverses in k[x]/(x^n), the corrected glueing example and the local multiplicities by truncation.",
+    "fix": "Eight checks added (26 total, all pass). All numbers recomputed independently in fresh Python: (Z/12)_2 = Z/3, (Z/12)_(2) = Z/4, (Z/12)_(3) = Z/3, (Z/12)_3 = Z/4, (Z/6)_(2), (Z/6)_(3), multiplicities 6, 2+1 = 3, 4 of 9, local colength 1 of 4 for (x+y^2, y+x^2)."
+   }
+  ]
+ }
+]

@@ -1,0 +1,1898 @@
+[
+{
+"id": "localization",
+"entry": {
+"sum": "Localisation builds from a commutative ring $A$ and a multiplicative set $S$ a ring $S^{-1}A$ of fractions $a/s$ in which every element of $S$ becomes invertible, together with the analogous modules $S^{-1}M$. Inverting everything outside a prime $\\mathfrak p$ gives the local ring $A_{\\mathfrak p}$, which has the unique maximal ideal $\\mathfrak pA_{\\mathfrak p}$ and describes $A$ near the point $\\mathfrak p$ of $\\operatorname{Spec} A$. Localisation is exact, so many properties of rings and modules can be checked one prime (or one maximal ideal) at a time.",
+"key": [
+"\\frac{a}{s}=\\frac{b}{t}\\iff u(at-bs)=0\\ \\text{for some } u\\in S",
+"\\operatorname{Spec} S^{-1}A\\;\\cong\\;\\{\\mathfrak p\\in\\operatorname{Spec}A:\\ \\mathfrak p\\cap S=\\varnothing\\},\\qquad S^{-1}M\\cong S^{-1}A\\otimes_A M",
+"M=0\\iff M_{\\mathfrak m}=0\\ \\text{for every maximal ideal } \\mathfrak m"
+],
+"why": "Local rings and localisations are the setting of nearly all of modern commutative algebra and algebraic geometry: the structure sheaf of a scheme is made of the rings $A_f$ and $A_{\\mathfrak p}$, and number theory studies a ring of integers through its localisations at its primes, the analogues of $\\mathbb Z_{(p)}$.",
+"msc": [
+"13B30"
+],
+"links": [
+{
+"field": "number-theory",
+"note": "The localisations $\\mathbb Z_{(p)}$ and $\\mathcal O_{K,\\mathfrak p}$ are discrete valuation rings, and a Dedekind domain is a Noetherian domain all of whose localisations at nonzero primes are discrete valuation rings."
+},
+{
+"field": "formal-verification",
+"note": "Lean's Mathlib characterises localisations by a predicate (IsLocalization) rather than one fixed construction, because different models such as $R[1/f][1/g]$ and $R[1/fg]$ are only canonically isomorphic, not equal."
+},
+{
+"field": "differential-geometry",
+"note": "Germs of smooth functions at a point of a manifold form a local ring whose maximal ideal is the germs vanishing at the point."
+}
+],
+"refs": [
+"M. F. Atiyah and I. G. Macdonald, Introduction to Commutative Algebra, Addison-Wesley 1969, Ch. 3",
+"D. Eisenbud, Commutative Algebra with a View Toward Algebraic Geometry, GTM 150, Springer 1995, Ch. 2",
+"A. Altman and S. Kleiman, A Term of Commutative Algebra, Worldwide Center of Mathematics 2013, Ch. 11-13",
+"R. Vakil, The Rising Sea: Foundations of Algebraic Geometry, Princeton University Press 2025"
+],
+"aliases": [
+"localization",
+"localisation",
+"ring of fractions",
+"rings of quotients",
+"local ring",
+"local rings",
+"Stellenring",
+"quasi-local ring"
+]
+},
+"lesson": {
+"v": 2,
+"minutes": 170,
+"sources": [
+{
+"k": "stacks",
+"ref": "The Stacks Project, Chapter 10 Commutative Algebra and Chapter 26 Schemes (online, ongoing)",
+"where": "§10.9 Localization; §10.17 Spectrum; §10.18 Local rings; §10.20 Nakayama; §10.24 Glueing functions (Lemma 10.24.1); Lemma 10.36.11; Lemma 10.40.5; Lemma 10.119.7; §26.2, Lemma 26.5.4; Def. 10.39.1 and Lemma 10.39.16 (faithful flatness); §10.63 Associated primes (Lemmas 10.63.7, 10.63.8, 10.63.16); §10.68 Regular sequences (Def. 10.68.1, Example 10.68.2, Lemma 10.68.4)",
+"url": "https://stacks.math.columbia.edu/tag/00CM",
+"kind": "reference"
+},
+{
+"k": "gathmann",
+"ref": "A. Gathmann, Commutative Algebra (lecture notes, Kaiserslautern), Chapter 6: Localization",
+"where": "Ch. 6, Remark 6.1 to Exercise 6.29",
+"url": "https://ncatlab.org/nlab/files/GathmannLocalization.pdf",
+"kind": "notes"
+},
+{
+"k": "suth",
+"ref": "A. Sutherland, MIT 18.785 Number Theory I, Lecture 2: Localization and Dedekind domains (2025)",
+"where": "§2.1-2.4",
+"url": "https://math.mit.edu/classes/18.785/2025/LectureNotes2.pdf",
+"kind": "notes"
+},
+{
+"k": "vakil",
+"ref": "R. Vakil, Foundations of Algebraic Geometry (Math 216 notes, 2010 version)",
+"where": "§2.3.1 and Exercises 2.3.A-2.3.K, 2.4.E, 2.5.G, 2.6.F-G; §4.5; §5.1",
+"url": "https://homepage.mi-ras.ru/~avfonarev/beijing-22/Vakil.pdf",
+"kind": "notes"
+},
+{
+"k": "am",
+"ref": "M. F. Atiyah and I. G. Macdonald, Introduction to Commutative Algebra (1969)",
+"where": "Ch. 1 (local rings), Ch. 2 (Nakayama), Ch. 3 Rings and modules of fractions (not opened by the reviewer; cited at chapter level only)",
+"kind": "textbook"
+},
+{
+"k": "stan",
+"ref": "Anonymous handout 'Localization' for a Math 210B course (Winter 2008), hosted on ericmalm.net; the handout names no author, instructor or institution",
+"url": "https://ericmalm.net/ac/projects/math210b-w08/math210b-localization.pdf",
+"kind": "notes"
+},
+{
+"k": "wloc",
+"ref": "Wikipedia, Localization (commutative algebra)",
+"url": "https://en.wikipedia.org/wiki/Localization_(commutative_algebra)",
+"kind": "reference"
+},
+{
+"k": "wlocal",
+"ref": "Wikipedia, Local ring",
+"url": "https://en.wikipedia.org/wiki/Local_ring",
+"kind": "reference"
+},
+{
+"k": "nlab",
+"ref": "nLab, localization of a commutative ring",
+"url": "https://ncatlab.org/nlab/show/localization+of+a+commutative+ring",
+"kind": "reference"
+},
+{
+"k": "nforum",
+"ref": "nForum discussion 5490, 'algebraic localized at vs away from'",
+"url": "https://nforum.ncatlab.org/discussion/5490/algebraic-localized-at-vs-away-from",
+"kind": "Q&A"
+},
+{
+"k": "armstrong",
+"ref": "J. Armstrong, 'Local Rings', The Unapologetic Mathematician (blog, 2011)",
+"url": "https://unapologetic.wordpress.com/2011/03/28/local-rings/",
+"kind": "blog"
+},
+{
+"k": "grossack",
+"ref": "C. Grossack, 'Why is the completion of a local ring more local than just localizing?' (blog, 2022)",
+"url": "https://grossack.site/2022/03/04/locality-in-alg-geom.html",
+"kind": "blog"
+},
+{
+"k": "chev",
+"ref": "C. Chevalley, On the notion of the ring of quotients of a prime ideal, Bull. AMS 50 (1944) 93-97",
+"where": "Introduction, Definition 1",
+"url": "https://www.ams.org/bull/1944-50-02/S0002-9904-1944-08087-7/S0002-9904-1944-08087-7.pdf",
+"kind": "paper"
+},
+{
+"k": "buzzard",
+"ref": "K. Buzzard, Grothendieck's use of equality (2024), arXiv:2405.10387",
+"where": "§5 Universal properties in algebraic geometry; §6",
+"url": "https://arxiv.org/abs/2405.10387",
+"kind": "paper"
+},
+{
+"k": "guanhu",
+"ref": "N. Guan and Y. Hu, Formalization of Auslander-Buchsbaum-Serre criterion in Lean4 (2025), arXiv:2510.24818",
+"where": "Lemmas 2.1, 2.9, 2.10, 2.14; Def. 4.11, Lemma 4.12; Def. 5.18, Thm 5.20; Lemma 2.2, §2.4, Prop. 3.2, Prop. 4.6, Cor. 4.8, Thm 4.19, §4.2",
+"url": "https://arxiv.org/abs/2510.24818",
+"kind": "paper"
+},
+{
+"k": "coyk",
+"ref": "J. Coykendall and J. Kettinger, Galois action and localization in number fields (2025), arXiv:2510.10018",
+"where": "§4 Thms 4.1, 4.2; §5 Prop. 5.2; Thm 4.2, Example 5.1, Thm 5.8",
+"url": "https://arxiv.org/abs/2510.10018",
+"kind": "paper"
+},
+{
+"k": "bds",
+"ref": "J. Boehm, W. Decker and F.-O. Schreyer, Commutative algebra and algebraic geometry using OSCAR (2024), arXiv:2404.12085",
+"where": "§2 (local orderings), §3 Def. 3.1, Ex. 3.2, Def. 3.3",
+"url": "https://arxiv.org/abs/2404.12085",
+"kind": "paper"
+},
+{
+"k": "xu",
+"ref": "L. Xu, Localization and affine schemes over F_1 (2026), arXiv:2607.04843",
+"where": "§2-3 (Def. 2.6, Thm 3.5), §5 (Thm 5.4, Prop. 5.8)",
+"url": "https://arxiv.org/abs/2607.04843",
+"kind": "paper"
+},
+{
+"k": "lomb",
+"ref": "H. Lombardi, The constructive content of a local-global principle with an application to the structure of a finitely generated projective module (2023, in French), arXiv:2308.09371",
+"where": "Def. 1.7; §1.3 Faits 1.12-1.16; Fait 1.17; Principes 1.18, 1.21; Fait 1.20",
+"url": "https://arxiv.org/abs/2308.09371",
+"kind": "paper"
+},
+{
+"k": "dieth",
+"ref": "R. Diethorn, A survey on the Koszul homology algebra (2021), arXiv:2103.07767",
+"where": "§1-2",
+"url": "https://arxiv.org/abs/2103.07767",
+"kind": "survey"
+},
+{
+"k": "sayrafi",
+"ref": "M. Sayrafi, Computations over local rings in Macaulay2 (2017), arXiv:1710.09830",
+"where": "§1",
+"url": "https://arxiv.org/abs/1710.09830",
+"kind": "paper"
+},
+{
+"k": "brownass",
+"ref": "'Remarks on Associated Primes', unsigned course note for Math 634, hosted on K. Brown's Cornell web space (the note names no author)",
+"where": "Lemma 1, Theorem",
+"url": "https://pi.math.cornell.edu/~kbrown/old/634/assoc.pdf",
+"kind": "notes"
+}
+],
+"requires": [
+{
+"item": "Multiplicative subsets and the construction of $S^{-1}A$ with the equivalence $u(at - bs) = 0$",
+"priority": "core",
+"where": "Fractions with chosen denominators"
+},
+{
+"item": "Universal property of $A \\to S^{-1}A$; uniqueness up to unique isomorphism",
+"priority": "core",
+"where": "The universal property and other definitions"
+},
+{
+"item": "Special cases: $A_f = A[1/f]$, $A_{\\mathfrak p}$, field of fractions, total ring of fractions; $S^{-1}A = 0$ iff $0 \\in S$",
+"priority": "core",
+"where": "Fractions with chosen denominators"
+},
+{
+"item": "Kernel of $A \\to S^{-1}A$; injectivity iff $S$ has no zero divisors",
+"priority": "common",
+"where": "Fractions with chosen denominators"
+},
+{
+"item": "Localisation of modules; $S^{-1}M \\cong S^{-1}A \\otimes_A M$; $S^{-1}A$-modules are $A$-modules on which $S$ acts invertibly",
+"priority": "core",
+"where": "Localising modules"
+},
+{
+"item": "Exactness of localisation and flatness of $S^{-1}A$; compatibility with quotients, finite sums, intersections and radicals",
+"priority": "core",
+"where": "Localising modules"
+},
+{
+"item": "Primes of $S^{-1}A$ correspond to primes of $A$ disjoint from $S$; $\\operatorname{Spec} S^{-1}A$ as a subspace; every ideal of $S^{-1}A$ is extended",
+"priority": "core",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "Extension and contraction formulas ($I^{ec}$, $(IJ)^e = I^eJ^e$); localisation of primary decompositions",
+"priority": "common",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "$A_{\\mathfrak p}$ is local with maximal ideal $\\mathfrak pA_{\\mathfrak p}$, residue field $\\kappa(\\mathfrak p) = \\operatorname{Frac}(A/\\mathfrak p)$, $\\operatorname{Spec} A_{\\mathfrak p}$ = primes inside $\\mathfrak p$",
+"priority": "core",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "Local rings: equivalent definitions, notation $(R, \\mathfrak m, k)$, quotients of local rings are local",
+"priority": "core",
+"where": "Local rings"
+},
+{
+"item": "Local homomorphisms; maps to local rings factor through $A_{\\mathfrak p}$; locally ringed spaces",
+"priority": "common",
+"where": "Local rings"
+},
+{
+"item": "Nakayama's lemma; minimal generators; finitely generated projective modules over local rings are free",
+"priority": "common",
+"where": "Nakayama's lemma and free modules over local rings"
+},
+{
+"item": "Localisation in stages: $(A_f)_g \\cong A_{fg}$, $(A_{\\mathfrak p})_{\\mathfrak q} \\cong A_{\\mathfrak q}$",
+"priority": "common",
+"where": "The universal property and other definitions"
+},
+{
+"item": "Local properties: $M = 0$, exactness, injectivity, inclusion of submodules, reducedness checked at primes or maximal ideals; being a domain is not local",
+"priority": "core",
+"where": "Local properties and the local-global principle"
+},
+{
+"item": "Global notions defined by all localisations (regular, Cohen-Macaulay, Dedekind; projective and global dimension computed locally)",
+"priority": "common",
+"where": "Local properties and the local-global principle"
+},
+{
+"item": "Comaximal elements $s_1, \\dots, s_n$, covers by $D(s_i)$ and the finite (concrete) local-global principle; the glueing sequence",
+"priority": "common",
+"where": "Local properties and the local-global principle"
+},
+{
+"item": "$\\operatorname{Spec} A_f \\cong D(f)$, $D(f) \\cap D(g) = D(fg)$, $D(f) = \\varnothing$ iff $f$ nilpotent",
+"priority": "core",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "Structure sheaf: $\\mathcal O(D(f)) = A_f$, stalks $\\mathcal O_{\\mathfrak p} = A_{\\mathfrak p}$, global sections $A$",
+"priority": "core",
+"where": "Affine schemes in one paragraph"
+},
+{
+"item": "$S^{-1}\\operatorname{Hom}_A(M, N) \\cong \\operatorname{Hom}_{S^{-1}A}(S^{-1}M, S^{-1}N)$ for finitely presented $M$",
+"priority": "specialised",
+"where": "Localising modules"
+},
+{
+"item": "Localisation preserves Noetherian, PID, integrally closed and Dedekind; integral closure (normalisation) commutes with localisation",
+"priority": "common",
+"where": "Arithmetic: discrete valuation rings and Dedekind domains"
+},
+{
+"item": "$\\mathbb Z_{(p)}$ and DVRs as localisations of Dedekind domains; the $p$-adic valuation",
+"priority": "common",
+"where": "Arithmetic: discrete valuation rings and Dedekind domains"
+},
+{
+"item": "Class groups of localisations of Dedekind domains (Claborn's theorem as used by Coykendall-Kettinger); overrings as intersections of localisations",
+"priority": "specialised",
+"where": "Arithmetic: discrete valuation rings and Dedekind domains (statements and an example; proofs: not covered here; see [coyk])"
+},
+{
+"item": "Fractional ideals and the class group in general",
+"priority": "specialised",
+"where": "not covered here; see [suth] and [[dedekind-domains]]"
+},
+{
+"item": "Support and associated primes under localisation ($\\operatorname{Supp} M = V(\\operatorname{Ann} M)$, $\\operatorname{Ass} S^{-1}M$); existence of associated primes over Noetherian rings; minimal primes over $\\operatorname{Ann} M$ are associated",
+"priority": "specialised",
+"where": "Associated primes, regular sequences and flat base change"
+},
+{
+"item": "Height and dimension under localisation: $\\dim A_{\\mathfrak p} = \\operatorname{ht}\\mathfrak p$",
+"priority": "specialised",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "Depth and its behaviour under localisation",
+"priority": "specialised",
+"where": "not covered here; see [guanhu]"
+},
+{
+"item": "Local ring of affine space at a point; length and intersection multiplicity $\\dim_k \\mathcal O_o/(f,g)$",
+"priority": "specialised",
+"where": "Local rings at points: multiplicities and computation"
+},
+{
+"item": "Computing in local rings: local orderings, Mora's tangent cone algorithm, pruning",
+"priority": "specialised",
+"where": "not covered here; see [bds] and [sayrafi]"
+},
+{
+"item": "Localisation at an idempotent; splitting $A$ along orthogonal idempotents",
+"priority": "specialised",
+"where": "Local properties and the local-global principle"
+},
+{
+"item": "Saturation of multiplicative sets; equal saturation gives the same localisation",
+"priority": "specialised",
+"where": "The universal property and other definitions"
+},
+{
+"item": "Canonical isomorphism versus equality; characterising localisations by properties (Mathlib's IsLocalization)",
+"priority": "specialised",
+"where": "The universal property and other definitions"
+},
+{
+"item": "Graded analogue (homogeneous localisation, graded local rings)",
+"priority": "specialised",
+"where": "not covered here; see [dieth]"
+},
+{
+"item": "Regular sequences under localisation (they stay regular in $A_{\\mathfrak p}$ when they lie in $\\mathfrak p$); $A \\to S^{-1}A$ flat but faithfully flat only when $S$ consists of units",
+"priority": "specialised",
+"where": "Associated primes, regular sequences and flat base change"
+},
+{
+"item": "Heights and quotients inside $A_{\\mathfrak p}$ ($\\operatorname{ht}\\mathfrak qA_{\\mathfrak p} = \\operatorname{ht}\\mathfrak q$, $A_{\\mathfrak p}/\\mathfrak qA_{\\mathfrak p} \\cong (A/\\mathfrak q)_{\\mathfrak p/\\mathfrak q}$); $A[X]_P$ as a localisation of $A_{\\mathfrak q}[X]$ with $\\mathfrak q = P \\cap A$",
+"priority": "specialised",
+"where": "Ideals and prime ideals of a localisation"
+},
+{
+"item": "A localisation of a domain as the intersection of the $A_{\\mathfrak p}$ over primes missing $S$; $\\mathcal O_K[1/\\alpha]$ versus $\\mathcal O_K[1/N(\\alpha)]$; Galois conjugates of localisations",
+"priority": "specialised",
+"where": "Arithmetic: discrete valuation rings and Dedekind domains"
+},
+{
+"item": "Mathlib names: Localization.AtPrime, IsLocalization.AtPrime, primeCompl, localizedModule",
+"priority": "specialised",
+"where": "The universal property and other definitions"
+}
+],
+"blocks": [
+{
+"type": "intro",
+"src": [
+"gathmann",
+"chev",
+"wlocal"
+],
+"body": "\nThe rational numbers are built from the integers by allowing division by every nonzero integer. Nothing stops us from being more selective. We could allow only powers of $10$ as denominators and get the decimal fractions $n/10^k$; or allow only denominators not divisible by $3$, and get a ring in which $2$, $4$, $5$ and $7$ have become invertible but $3$ has not. Localisation is this construction carried out in an arbitrary commutative ring: choose a set $S$ of elements you would like to be units, and form the ring $S^{-1}A$ of fractions with denominators in $S$.\n\nThe name comes from geometry. If $A$ is a ring of polynomial functions on some space and $a$ is a point, a fraction $f/g$ with $g(a) \\ne 0$ is not defined everywhere, but it is a perfectly good function on the region near $a$ where $g$ does not vanish. Allowing all such denominators gives the ring of functions that make sense near $a$, the ring of functions local to $a$. Chevalley, who in 1944 defined the ring of quotients of a Noetherian ring with respect to a multiplicative set, described the quotient $A/\\mathfrak p$ as the ring of the subvariety cut out by a prime $\\mathfrak p$, and the localised ring $A_{\\mathfrak p}$ as the right tool for studying a neighbourhood of that subvariety. Krull had introduced such rings in 1938 under the name Stellenringe, rings of a point; Zariski's English name, local ring, is the one that stuck.\n\nTwo facts make localisation indispensable. First, it is exact: it carries exact sequences of modules to exact sequences, so it can be applied to kernels, images and quotients without loss. Second, it detects things: a module is zero if all its localisations at maximal ideals are zero, and many properties (being reduced, a map being injective, a module being projective, a ring being regular or Cohen-Macaulay) can be tested one prime at a time. So a problem about $A$ can be cut into many problems about local rings, where tools such as Nakayama's lemma make life much easier.\n\nThis page builds the construction, explains why it has the shape it has, describes the ideals and primes of a localisation, develops local rings and Nakayama's lemma, localises modules, and proves the local-global principles that research papers use without comment. The last two sections turn to number theory (the rings $\\mathbb Z_{(p)}$ and Dedekind domains) and to geometry and computer algebra (local rings at points and intersection multiplicities). We use the language of [[noetherian-rings]] and [[modules]]; rings are commutative with $1$, and ring maps send $1$ to $1$.\n"
+},
+{
+"type": "section",
+"title": "Fractions with chosen denominators",
+"body": "Let $A$ be a ring. To divide by elements of a set $S$ we must also be able to divide by their products, and dividing by $1$ should change nothing. This forces the first definition.\n\nIn an integral domain one can simply work inside the field of fractions: $S^{-1}A$ is the set of all $a/s \\in \\operatorname{Frac}(A)$ with $a \\in A$, $s \\in S$, a subring with $A \\subseteq S^{-1}A \\subseteq \\operatorname{Frac}(A)$. This is how number theorists usually meet it. For rings with zero divisors there is no ambient field, and the fractions have to be built by hand as equivalence classes of pairs. The surprise is that the familiar rule $a/s = b/t \\iff at = bs$ no longer works and must be weakened by an extra factor.",
+"src": [
+"suth",
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "definition",
+"title": "Multiplicative set and ring of fractions",
+"body": "A subset $S \\subseteq A$ is multiplicative (or multiplicatively closed) if $1 \\in S$ and $st \\in S$ whenever $s, t \\in S$.\n\nOn the set of pairs $A \\times S$ define\n$$(a, s) \\sim (b, t) \\iff \\text{there is } u \\in S \\text{ with } u(at - bs) = 0 .$$\nWrite $a/s$ for the class of $(a, s)$ and $S^{-1}A$ for the set of classes. With\n$$\\frac{a}{s} + \\frac{b}{t} = \\frac{at + bs}{st}, \\qquad \\frac{a}{s}\\cdot\\frac{b}{t} = \\frac{ab}{st},$$\n$S^{-1}A$ is a ring with zero $0/1$ and identity $1/1$, and $\\iota\\colon A \\to S^{-1}A$, $a \\mapsto a/1$, is a ring homomorphism. It is called the localisation of $A$ at $S$ (also the ring of fractions or ring of quotients of $A$ with respect to $S$). Each $s \\in S$ becomes a unit: $(s/1)(1/s) = s/s = 1/1$.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "The relation is an equivalence and the operations are well defined",
+"body": "For a multiplicative set $S \\subseteq A$, the relation $\\sim$ on $A \\times S$ is an equivalence relation, and the sum and product of classes do not depend on the representatives chosen. Every fraction can be expanded: $a/s = (ua)/(us)$ for every $u \\in S$.",
+"src": [
+"gathmann",
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "Reflexivity and symmetry are clear (take $u = 1$, and note $u(at-bs)=0$ iff $u(bs-at)=0$).\n\nTransitivity is where the factor $u$ is needed. Suppose $u(at - bs) = 0$ and $v(br - ct) = 0$ with $u, v \\in S$; we want $(a, s) \\sim (c, r)$. Multiply the first equation by $vr$ and the second by $us$ and add:\n$$uv(atr - bsr) + uv(bsr - cst) = uv\\,t\\,(ar - cs) = 0 .$$\nSince $w = uvt \\in S$, this says $w(ar - cs) = 0$, as required. Note that we had to multiply by $t$, and $t$ may be a zero divisor; that is why the relation must allow a factor from $S$.\n\nWell-definedness. It suffices to change one fraction at a time, say replace $(a, s)$ by an equivalent $(a', s')$ with $u(as' - a's) = 0$, keeping $(b, t)$. For the product,\n$$u\\big((ab)(s't) - (a'b)(st)\\big) = u\\,bt\\,(as' - a's) = 0,$$\nso $(ab, st) \\sim (a'b, s't)$. For the sum,\n$$u\\big((at + bs)s't - (a't + bs')st\\big) = u\\,t^2(as' - a's) = 0,$$\nso $(at + bs, st) \\sim (a't + bs', s't)$. Changing the second fraction is the same computation with the roles exchanged. The ring axioms are then inherited from $A$, since every identity among fractions can be checked after bringing them to a common denominator. Finally $(ua)s - a(us) = 0$ gives $a/s = ua/us$.",
+"src": [
+"gathmann",
+"stacks"
+]
+},
+{
+"type": "figure",
+"engine": "plot",
+"code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(5.2, 3.6)\nax = plt.gca()\nax.plot([-2.2, 2.2], [0, 0], color='#1f4e79', lw=2.2)\nax.plot([0, 0], [-1.6, 1.6], color='#1f4e79', lw=2.2)\nt = np.linspace(0, 2*np.pi, 200)\nax.fill(1.2 + 0.45*np.cos(t), 0.45*np.sin(t), color='#f4b183', alpha=0.45)\nax.plot([1.2], [0], 'o', color='#c00000', ms=7)\nax.annotate('$a=(1,0)$', (1.2, 0), (1.35, -0.75), fontsize=11, arrowprops=dict(arrowstyle='-', color='gray'))\nax.text(1.05, 0.62, 'near $a$: $y=0$, $x\\\\neq 0$', fontsize=11)\nax.text(-2.15, 0.12, '$V(y)$: the $x$-axis', fontsize=10)\nax.text(0.08, 1.35, '$V(x)$: the $y$-axis', fontsize=10)\nax.set_xlim(-2.3, 2.6); ax.set_ylim(-1.7, 1.7); ax.set_aspect('equal'); ax.axis('off')\nax.set_title('$X = V(xy)\\\\subset \\\\mathbb{R}^2$, coordinate ring $\\\\mathbb{R}[x,y]/(xy)$', fontsize=11)\n",
+"caption": "The union of the two coordinate axes. Near the point $a = (1,0)$ only the $x$-axis is visible, so the function $y$ vanishes there; in the localisation at $a$ this is the equation $y/1 = 0/1$, which holds because $x\\cdot y = 0$ with $x$ invertible near $a$.",
+"alt": "Two perpendicular lines through the origin, the x-axis and the y-axis. A shaded disc around the point (1,0) on the x-axis contains no part of the y-axis; a label says that near this point y equals 0 and x is nonzero.",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "pitfall",
+"body": "Why not just use $at = bs$? Without the extra factor the relation is not transitive once $S$ contains zero divisors. In $A = \\mathbb R[x,y]/(xy)$ with $S = \\{1, x, x^2, \\dots\\}$ we have $y\\cdot x - 0\\cdot 1 = 0$, so naively $y/1 \\sim 0/x$; and $0/x \\sim 0/1$. But $y\\cdot 1 - 0 \\cdot 1 = y \\ne 0$, so the naive relation does not identify $y/1$ with $0/1$. The correct relation does: $u = x$ gives $x(y\\cdot 1 - 0\\cdot 1) = 0$. Geometrically this is the picture above: $x$ is invertible near $(1,0)$, and there $y$ is the zero function. When $A$ is a domain and $0 \\notin S$, the factor $u$ can be cancelled and the naive rule is correct.",
+"src": [
+"gathmann",
+"stan"
+]
+},
+{
+"type": "example",
+"title": "Points of the two axes",
+"body": "Let $A = \\mathbb R[x,y]/(xy)$ and $\\mathfrak p = (x - 1)$. Show that $y \\in \\mathfrak p$, that $\\mathfrak p$ is a maximal ideal, and that $A_{\\mathfrak p} \\cong \\mathbb R[x]_{(x-1)}$, the ring of rational functions in one variable defined at $x = 1$. (This is Gathmann's Exercise 6.13(a), and the algebra behind the figure: near $(1,0)$ the space looks like the $x$-axis.)",
+"solution": "In $A$ we have $y = -y(x - 1) + xy = -y(x-1)$, so $y \\in (x-1)$. Hence $\\mathfrak p = (x-1, y)$ and $A/\\mathfrak p \\cong \\mathbb R[x,y]/(xy, x-1, y) \\cong \\mathbb R$, a field, so $\\mathfrak p$ is maximal.\n\nIn $A_{\\mathfrak p}$ the element $x$ is a unit because $x \\notin \\mathfrak p$ (its image in $A/\\mathfrak p = \\mathbb R$ is $1$). From $xy = 0$ we get $y/1 = (x y)/x = 0$. Consider the map $\\mathbb R[x] \\to A_{\\mathfrak p}$. Every element of $A_{\\mathfrak p}$ is $g/h$ with $g, h$ polynomials in $x, y$ and $h \\notin \\mathfrak p$; since $y/1 = 0$, we may replace $g$ and $h$ by $g(x,0)$ and $h(x,0)$, and $h \\notin \\mathfrak p$ means $h(1,0) \\ne 0$. So every element is a fraction of polynomials in $x$ alone with denominator not vanishing at $1$. Conversely, the ring map $A \\to \\mathbb R[x]_{(x-1)}$, $x \\mapsto x$, $y \\mapsto 0$ (well defined since $xy \\mapsto 0$) sends every element outside $\\mathfrak p$ to a polynomial not vanishing at $1$, hence to a unit, so by the universal property proved in the next section it extends to $A_{\\mathfrak p} \\to \\mathbb R[x]_{(x-1)}$. The two maps are inverse to each other on generators, so $A_{\\mathfrak p} \\cong \\mathbb R[x]_{(x-1)}$. The same computation at $(0,1)$ gives the $y$-axis instead; at the origin, $\\mathfrak m = (x, y)$, neither $x$ nor $y$ is inverted, and $A_{\\mathfrak m}$ still sees both branches.",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "definition",
+"title": "The standard localisations",
+"body": "The following choices of $S$ occur constantly; the notation is as in the Stacks Project and Gathmann.\n\n1. Powers of one element: $S = \\{1, f, f^2, \\dots\\}$ gives $A_f$, also written $A[1/f]$. Its elements are $a/f^n$.\n2. Complement of a prime: if $\\mathfrak p$ is a prime ideal, $S = A \\setminus \\mathfrak p$ is multiplicative (this is exactly the definition of prime), and $A_{\\mathfrak p} = (A \\setminus \\mathfrak p)^{-1}A$ is the localisation at $\\mathfrak p$. Its elements are $a/s$ with $s \\notin \\mathfrak p$. Note what is inverted: everything outside $\\mathfrak p$, not $\\mathfrak p$ itself.\n3. Non-zero-divisors: the set of all non-zero-divisors is multiplicative, and the localisation is the total ring of fractions $Q(A)$. For a domain this is the field of fractions $\\operatorname{Frac}(A)$; it is the largest $S$ for which $A \\to S^{-1}A$ is injective.\n4. For a module $M$ the same letters are used: $M_f$, $M_{\\mathfrak p}$ (see the section on modules).\n\nFor the integers: $\\mathbb Z_{(p)} = \\{a/b : p \\nmid b\\}$ is the localisation at the prime $(p)$; $\\mathbb Z[1/p] = \\{a/p^n\\}$ inverts $p$ only; $\\mathbb Z[1/10]$ is the ring of decimal fractions; $(\\mathbb Z\\setminus\\{0\\})^{-1}\\mathbb Z = \\mathbb Q$.",
+"src": [
+"stacks",
+"gathmann",
+"wloc"
+]
+},
+{
+"type": "theorem",
+"title": "Kernel of the localisation map",
+"body": "Let $S \\subseteq A$ be multiplicative and $\\iota\\colon A \\to S^{-1}A$, $a \\mapsto a/1$.\n\n1. $\\ker \\iota = \\{a \\in A : sa = 0 \\text{ for some } s \\in S\\}$.\n2. $\\iota$ is injective if and only if $S$ contains no zero divisors.\n3. $S^{-1}A = 0$ if and only if $0 \\in S$. In particular $A_f = 0$ if and only if $f$ is nilpotent.",
+"src": [
+"stacks",
+"vakil",
+"gathmann"
+]
+},
+{
+"type": "proof",
+"body": "1. $a/1 = 0/1$ means $u(a\\cdot 1 - 0 \\cdot 1) = ua = 0$ for some $u \\in S$.\n\n2. If some $s \\in S$ is a zero divisor, say $sa = 0$ with $a \\ne 0$, then $a \\in \\ker\\iota$ by (1). Conversely if no element of $S$ kills a nonzero element, the kernel in (1) is zero.\n\n3. $S^{-1}A = 0$ means $1/1 = 0/1$, i.e. $u\\cdot 1 = 0$ for some $u \\in S$, i.e. $0 \\in S$. For $S = \\{f^n\\}$ this says $f^n = 0$ for some $n$.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "Localising a finite ring",
+"body": "Compute $(\\mathbb Z/12)_2$, the localisation of $A = \\mathbb Z/12$ at $S = \\{1, 2, 4, 8\\}$ (the powers of $2$ modulo $12$; note $16 \\equiv 4$). Find the kernel of $A \\to A_2$, and show $A_2 \\cong \\mathbb Z/3$.",
+"solution": "By the theorem the kernel consists of the $a$ killed by some power of $2$. In $\\mathbb Z/12$, $2^ka \\equiv 0 \\pmod{12}$ with $k \\ge 2$ holds iff $3 \\mid a$, and $2a \\equiv 0$ iff $6 \\mid a$. So $\\ker = \\{0, 3, 6, 9\\} = 3\\mathbb Z/12$.\n\nNext, every fraction is of the form $a/1$. Indeed $4/1$ is a unit of $A_2$ (it lies in the image of $S$), and $4 \\cdot 4 = 16 \\equiv 4$, so $e = 4/1$ satisfies $e^2 = e$; multiplying by $e^{-1}$ gives $e = 1$. Thus $1/4 = 1$ and $1/2 = 2/4 = 2/1$, and every fraction equals some $a/1$. So $A_2$ is the image of $A$, which is $A/\\ker = (\\mathbb Z/12)/(3) \\cong \\mathbb Z/3$. Concretely $A_2$ has three elements, $0, 1/1, 2/1$, and $1/2 = 2/1$ because $2 \\cdot 2 = 4 \\equiv 1 \\pmod 3$. This matches the Chinese remainder decomposition $\\mathbb Z/12 \\cong \\mathbb Z/4 \\times \\mathbb Z/3$: inverting $2$ kills the factor $\\mathbb Z/4$, in which $2$ is nilpotent, and leaves $\\mathbb Z/3$, in which $2$ is already a unit. A brute-force count of the classes of $A\\times S$ (see the checks) confirms three classes.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "Representatives in a local ring of the integers",
+"body": "In $\\mathbb Z_{(3)}$, is $9/3$ an element? Is $1/3$?",
+"solution": "$9/3 = 3/1$, because $9 \\cdot 1 - 3 \\cdot 3 = 0$. So $9/3$ is an element of $\\mathbb Z_{(3)}$ even though it is written with a denominator divisible by $3$: membership means that some representative has a denominator prime to $3$. On the other hand $1/3$ is not in $\\mathbb Z_{(3)}$: if $1/3 = a/b$ with $3 \\nmid b$, then $b = 3a$, a contradiction. In general $x \\in \\mathbb Q$ lies in $\\mathbb Z_{(p)}$ exactly when $v_p(x) \\ge 0$, where $v_p$ is the $p$-adic valuation (the exponent of $p$ in $x$).",
+"src": [
+"suth"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that $A \\setminus \\mathfrak p$ is multiplicative if and only if $\\mathfrak p$ is a prime ideal (for a proper ideal $\\mathfrak p$).\n2. (Basic) Compute $(\\mathbb Z/12)_3$ and $(\\mathbb Z/12)_6$. Which factor of $\\mathbb Z/4 \\times \\mathbb Z/3$ survives in each?\n3. (Medium) Let $A = k[x,y]/(xy)$. Compute the kernel of $A \\to A_x$ and show $A_x \\cong k[x, x^{-1}]$.\n4. (Medium) Show that $\\mathbb Z[1/10] = \\mathbb Z[1/2, 1/5]$ as subrings of $\\mathbb Q$, and that $\\mathbb Z[1/6] \\ne \\mathbb Z[1/2]$.\n5. (Harder) Show that the set of non-zero-divisors of $A$ is multiplicative, and that if $S$ is any multiplicative set for which $A \\to S^{-1}A$ is injective, then $S$ consists of non-zero-divisors."
+},
+{
+"type": "section",
+"title": "The universal property and other definitions",
+"body": "The construction by pairs is concrete but clumsy: checking that a map out of $S^{-1}A$ is well defined means checking compatibility with $\\sim$ every time. Almost every text therefore proves, right after the construction, that $S^{-1}A$ is characterised by a mapping property, and then uses only that property. Vakil goes further and remarks that it is cleaner to take the universal property as the definition, prove that something satisfying it exists, and derive everything else from it.",
+"src": [
+"stacks",
+"vakil"
+]
+},
+{
+"type": "theorem",
+"title": "Universal property of localisation",
+"body": "Let $S \\subseteq A$ be multiplicative and let $\\varphi\\colon A \\to B$ be a ring map such that $\\varphi(s)$ is a unit of $B$ for every $s \\in S$. Then there is exactly one ring map $\\psi\\colon S^{-1}A \\to B$ with $\\psi(a/1) = \\varphi(a)$ for all $a$, namely\n$$\\psi(a/s) = \\varphi(a)\\varphi(s)^{-1}.$$\nConsequently, if $\\iota'\\colon A \\to C$ is another ring map inverting $S$ with the same property, there is a unique isomorphism $S^{-1}A \\cong C$ compatible with the maps from $A$.",
+"src": [
+"stacks",
+"vakil"
+]
+},
+{
+"type": "proof",
+"body": "Existence. The formula is well defined: if $u(at - bs) = 0$ then applying $\\varphi$ gives $\\varphi(u)(\\varphi(a)\\varphi(t) - \\varphi(b)\\varphi(s)) = 0$, and since $\\varphi(u), \\varphi(s), \\varphi(t)$ are units, $\\varphi(a)\\varphi(s)^{-1} = \\varphi(b)\\varphi(t)^{-1}$. It respects sums and products because the formulas for fractions are the usual ones and $\\varphi$ is a ring map, and $\\psi(a/1) = \\varphi(a)$.\n\nUniqueness. If $\\psi'$ is another such map, then $\\psi'(1/s)\\varphi(s) = \\psi'(1/s)\\psi'(s/1) = \\psi'(1) = 1$, so $\\psi'(1/s) = \\varphi(s)^{-1}$, and $\\psi'(a/s) = \\psi'(a/1)\\psi'(1/s) = \\varphi(a)\\varphi(s)^{-1}$.\n\nUniqueness of $S^{-1}A$. Given $C$ with the same property, we get maps $S^{-1}A \\to C$ and $C \\to S^{-1}A$ under $A$. Their composite $S^{-1}A \\to S^{-1}A$ is a map under $A$, and so is the identity; by the uniqueness part they agree. The same holds for the other composite, so both maps are isomorphisms. This is the standard argument that an object defined by a universal property is unique up to unique isomorphism.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "figure",
+"engine": "tikz",
+"code": "\\begin{tikzcd}[column sep=large,row sep=large]\nA \\arrow[r,\"\\iota\"] \\arrow[dr,\"\\varphi\"'] & S^{-1}A \\arrow[d,dashed,\"\\exists!\\,\\psi\"] \\\\\n & B\n\\end{tikzcd}\n",
+"caption": "The universal property: any ring map $\\varphi$ sending every element of $S$ to a unit factors through $\\iota\\colon A \\to S^{-1}A$ in exactly one way.",
+"alt": "A commutative triangle: A maps to S inverse A by iota, A maps to B by phi, and a dashed arrow labelled 'there exists a unique psi' goes from S inverse A down to B.",
+"src": [
+"stacks",
+"vakil"
+]
+},
+{
+"type": "views",
+"title": "What is $S^{-1}A$?",
+"items": [
+{
+"label": "Fractions",
+"body": "Pairs $(a, s)$ modulo $u(at - bs) = 0$, with the school rules for adding and multiplying fractions. This is the definition in the Stacks Project, Gathmann, Sutherland and Atiyah-Macdonald, and it is the one needed whenever an explicit computation is made, for instance to find the kernel of $A \\to S^{-1}A$.",
+"src": [
+"stacks",
+"gathmann",
+"suth",
+"am"
+]
+},
+{
+"label": "Universal property",
+"body": "$S^{-1}A$ is the initial $A$-algebra in which the elements of $S$ become units: a ring map $A \\to S^{-1}A$ through which every $S$-inverting map factors uniquely. Vakil recommends this as the definition; the fraction construction then becomes a proof of existence (his Exercise 2.3.A asks to verify that the fractions satisfy it).",
+"src": [
+"vakil",
+"stacks"
+]
+},
+{
+"label": "Three checkable properties",
+"body": "A ring map $f\\colon A \\to B$ is a localisation at $S$ if and only if (i) $f(s)$ is a unit for all $s \\in S$, (ii) every element of $B$ has the form $f(a)f(s)^{-1}$, and (iii) $\\ker f$ consists of the $a$ with $sa = 0$ for some $s \\in S$. Buzzard reports that this characterisation, suggested by Neil Strickland, is the one Mathlib uses; unlike the universal property it does not quantify over all rings $B$, so it can be checked on a given model.",
+"src": [
+"buzzard"
+]
+},
+{
+"label": "Subring of the fraction field",
+"body": "For an integral domain $A$ and $0 \\notin S$, $S^{-1}A$ is simply $\\{a/s\\} \\subseteq \\operatorname{Frac}(A)$, so $A \\subseteq S^{-1}A \\subseteq \\operatorname{Frac}(A)$; the extra factor $u$ is invisible. This is the working definition in algebraic number theory.",
+"src": [
+"suth"
+]
+},
+{
+"label": "Chevalley's two steps",
+"body": "For a Noetherian ring $o$ and multiplicative $S \\not\\ni 0$, Chevalley first divides by the intersection of all primary ideals not meeting $S$; in the quotient the image of $S$ consists of non-zero-divisors, and he then takes ordinary fractions. When $S$ is the complement of a prime, the result is a local ring. Chevalley shows (his Proposition 1) that his ideal is the intersection of the primary components $\\mathfrak q_i$ of an irredundant decomposition of $0$ whose primes $\\mathfrak p_i$ miss $S$. One checks (this comparison is not in his paper) that this ideal is exactly the kernel $\\{a : sa = 0 \\text{ for some } s\\in S\\}$ of the modern map: if $sa = 0$ with $s \\notin \\mathfrak p_i$ then $a \\in \\mathfrak q_i$ because $\\mathfrak q_i$ is primary; conversely, choosing $s_j \\in \\mathfrak p_j \\cap S$ with $s_j^n \\in \\mathfrak q_j$ for the other components, $s = \\prod s_j^n$ kills $a$. So for Noetherian rings the two constructions agree.",
+"src": [
+"chev"
+]
+}
+],
+"body": "Five sources, five definitions of the same ring. They agree up to unique isomorphism, by the universal property."
+},
+{
+"type": "theorem",
+"title": "Strickland's characterisation",
+"body": "A ring map $f\\colon A \\to B$ is isomorphic under $A$ to $\\iota\\colon A \\to S^{-1}A$ if and only if it satisfies conditions (i), (ii), (iii) of the third view above.",
+"src": [
+"buzzard"
+]
+},
+{
+"type": "proof",
+"body": "The map $\\iota$ satisfies (i) and (ii) by construction ($a/s = \\iota(a)\\iota(s)^{-1}$), and (iii) by the kernel theorem of the previous section; isomorphisms under $A$ preserve the three conditions. Conversely, assume (i)-(iii). By (i) and the universal property there is $\\psi\\colon S^{-1}A \\to B$ with $\\psi(a/s) = f(a)f(s)^{-1}$. By (ii) it is surjective. If $\\psi(a/s) = 0$ then $f(a) = 0$, so by (iii) $ua = 0$ for some $u \\in S$, and then $a/s = ua/us = 0$. So $\\psi$ is injective, hence an isomorphism."
+},
+{
+"type": "theorem",
+"title": "Adjoining an inverse",
+"body": "For $f \\in A$ there is an isomorphism $A[x]/(fx - 1) \\cong A_f$ sending $x$ to $1/f$.",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "proof",
+"body": "Let $C = A[x]/(fx - 1)$ with the evident map $A \\to C$. In $C$ the element $f$ has inverse $x$, so $C$ inverts $S = \\{f^n\\}$. If $\\varphi\\colon A \\to B$ is a ring map with $\\varphi(f)$ a unit, the map $A[x] \\to B$ extending $\\varphi$ by $x \\mapsto \\varphi(f)^{-1}$ kills $fx - 1$, so it induces $C \\to B$; it is the only map under $A$, because $x$ must go to the inverse of $\\varphi(f)$. So $C$ has the universal property of $A_f$, and by uniqueness $C \\cong A_f$ with $x \\mapsto 1/f$. This is Gathmann's Exercise 6.13(b).",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "Localisation in stages",
+"body": "Let $S, T \\subseteq A$ be multiplicative and let $\\bar T$ be the image of $T$ in $S^{-1}A$. Then $ST = \\{st\\}$ is multiplicative and\n$$(ST)^{-1}A \\cong \\bar T^{-1}(S^{-1}A).$$\nIn particular $(A_f)_{g/1} \\cong A_{fg}$, and if $\\mathfrak q \\subseteq \\mathfrak p$ are primes then $(A_{\\mathfrak p})_{\\mathfrak q A_{\\mathfrak p}} \\cong A_{\\mathfrak q}$.",
+"src": [
+"stacks",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "A ring map $\\varphi\\colon A \\to B$ inverts $ST$ if and only if it inverts both $S$ and $T$: one direction because $s = s\\cdot 1$ and $t = 1\\cdot t$ lie in $ST$, the other because a product of units is a unit, and if $\\varphi(st)$ is a unit then so are its factors. Maps $\\bar T^{-1}(S^{-1}A) \\to B$ correspond, by the universal property twice, to maps $S^{-1}A \\to B$ inverting $\\bar T$, hence to maps $A \\to B$ inverting $S$ and $T$. Maps $(ST)^{-1}A \\to B$ correspond to maps $A \\to B$ inverting $ST$. Both rings therefore have the same universal property and are uniquely isomorphic.\n\nFor $A_f$ and $g$: the multiplicative set generated by $f$ and $g$ is $\\{f^ag^b\\}$, and inverting it is the same as inverting $\\{(fg)^n\\}$, because $fg$ is invertible exactly when $f$ and $g$ are. For primes $\\mathfrak q \\subseteq \\mathfrak p$ take $S = A \\setminus \\mathfrak p$ and $T = A \\setminus \\mathfrak q$. Then $S \\subseteq T$, so $ST = T$ and $(ST)^{-1}A = A_{\\mathfrak q}$. It remains to see that inverting $\\bar T$ in $A_{\\mathfrak p}$ is the same as inverting $A_{\\mathfrak p} \\setminus \\mathfrak qA_{\\mathfrak p}$. An element of $A_{\\mathfrak p}$ outside $\\mathfrak qA_{\\mathfrak p}$ has the form $t/s$ with $t \\notin \\mathfrak q$ (if $t \\in \\mathfrak q$ the fraction lies in $\\mathfrak qA_{\\mathfrak p}$), and $t/s = (t/1)(1/s)$ with $1/s$ already a unit; so a map inverting $\\bar T$ inverts all of $A_{\\mathfrak p} \\setminus \\mathfrak q A_{\\mathfrak p}$, and conversely $\\bar T$ lies in that set. The two universal properties coincide.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "definition",
+"title": "Saturation",
+"body": "The saturation of a multiplicative set $S$ is $\\hat S = \\{a \\in A : ab \\in S \\text{ for some } b \\in A\\}$, the set of divisors of elements of $S$; equivalently, the set of $a$ whose image in $S^{-1}A$ is a unit. $S$ is saturated if $S = \\hat S$. Then $\\hat S$ is multiplicative, $S^{-1}A \\cong \\hat S^{-1}A$, and two multiplicative sets give isomorphic localisations (under $A$) exactly when they have the same saturation. Complements of primes are saturated; Lombardi notes that, among saturated sets, these are exactly the ones whose localisation is a nonzero local ring.",
+"src": [
+"wloc",
+"stan",
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "The saturation of the powers of 2",
+"body": "In $\\mathbb Z$, find the saturation of $S = \\{1, 2, 4, 8, \\dots\\}$. Compare with the multiplicative set $\\{\\pm\\alpha^n\\}$ that Coykendall and Kettinger use to define $D[1/\\alpha]$.",
+"solution": "If $ab = 2^n$ then by unique factorisation $a = \\pm 2^k$ with $k \\le n$. Conversely each $\\pm 2^k$ divides a power of $2$. So $\\hat S = \\{\\pm 2^k : k \\ge 0\\}$, and $\\mathbb Z[1/2] = \\hat S^{-1}\\mathbb Z$: inverting $2$ automatically inverts $-2$. Coykendall and Kettinger localise a ring of integers at $\\{\\pm\\alpha^n\\}$ and write the result $D[1/\\alpha]$; including the sign changes nothing, since $-1$ is already a unit. Coykendall and Kettinger also describe their set as the complement of the union of the primes not containing $\\alpha$; strictly, that complement is the saturation of $\\{\\pm\\alpha^n\\}$, which gives the same ring. In general the saturation of $S$ is the complement of the union of the primes disjoint from $S$. Indeed, if $ab = s \\in S$ then every prime containing $a$ contains $s$, so $a$ lies in no prime disjoint from $S$. If $a \\notin \\hat S$, then $a/1$ is not a unit of $S^{-1}A$, so it lies in a maximal ideal of $S^{-1}A$, and by the prime correspondence of the next section the preimage of that ideal in $A$ is a prime disjoint from $S$ that contains $a$. For $S = \\{f^n\\}$ the primes disjoint from $S$ are those not containing $f$.",
+"src": [
+"coyk",
+"wloc"
+]
+},
+{
+"type": "conventions",
+"title": "Notation and language",
+"rows": [
+{
+"who": "Stacks Project, Atiyah-Macdonald, Gathmann",
+"text": "$S^{-1}A$, $A_f$ for powers of $f$, $A_{\\mathfrak p}$ for the complement of a prime; equivalence $(xt - ys)u = 0$.",
+"src": [
+"stacks",
+"am",
+"gathmann"
+]
+},
+{
+"who": "nLab",
+"text": "$R[S^{-1}]$, with elements written $rs^{-1}$; same equivalence relation.",
+"src": [
+"nlab"
+]
+},
+{
+"who": "Lombardi",
+"text": "$A_S$ and $M_S$; $A_s$ for powers of one element $s$; the monoid may contain $0$, giving the trivial ring.",
+"src": [
+"lomb"
+]
+},
+{
+"who": "Math 210B handout",
+"text": "$A_{(P)}$ for the localisation at the complement of a prime $P$, with the parenthesis that number theorists use in $\\mathbb Z_{(p)}$; equivalence written $(a's'' - a''s')s = 0$.",
+"src": [
+"stan"
+]
+},
+{
+"who": "Gathmann (integers)",
+"text": "Gathmann (Example 6.6) writes $\\mathbb Z_p$ for $\\{a/p^n\\}$, the localisation at the element $p$, and $\\mathbb Z_{(p)}$ for the localisation at the prime ideal $(p)$, and warns that $\\mathbb Z_p$ is also used for $\\mathbb Z/p\\mathbb Z$. Sutherland uses only $\\mathbb Z_{(p)} = \\{a/b : p \\nmid b\\}$. On this page we write $\\mathbb Z[1/p]$ and $\\mathbb Z_{(p)}$, which cannot be misread.",
+"src": [
+"gathmann",
+"suth"
+]
+},
+{
+"who": "Coykendall-Kettinger",
+"text": "$D[1/\\alpha]$ for the localisation of a Dedekind domain at $\\{\\pm\\alpha^n\\}$.",
+"src": [
+"coyk"
+]
+},
+{
+"who": "'At' versus 'away from' (nLab, nForum)",
+"text": "Algebraists localise at a prime $\\mathfrak p$ (inverting its complement) but speak of inverting $p$ as localising away from $p$; category theorists localise at the morphisms to be inverted, which clashes with the first usage. The nForum thread on renaming nLab pages ended without consensus.",
+"src": [
+"nlab",
+"nforum"
+]
+},
+{
+"who": "Equality versus canonical isomorphism",
+"text": "Grothendieck (EGA I, §1.3) says that $R[1/f]$ and $R[1/g]$ are canonically identified when $D(f) = D(g)$ and then treats them as equal; Buzzard reads this as a canonical isomorphism written as an equality. In a proof assistant the two are different types; Buzzard describes how a formalised lemma stated for the localisation $R[1/f]$ could not be applied to $R[1/f][1/g]$ until it was restated for any ring satisfying the characterisation above.",
+"src": [
+"buzzard"
+]
+},
+{
+"who": "Guan-Hu (Lean 4 and Mathlib)",
+"text": "$R_{\\mathfrak p}$ is the construction Localization.AtPrime p, built from the multiplicative set p.primeCompl $= R \\setminus \\mathfrak p$; $M_{\\mathfrak p}$ is M.localizedModule p.primeCompl. Separately, the predicate IsLocalization.AtPrime S p says that a given $R$-algebra $S$ is a localisation of $R$ at $\\mathfrak p$; Guan and Hu state results such as their Corollary 4.8 for any ring carrying this predicate, so that they apply to every model of $R_{\\mathfrak p}$, in line with the characterisation by conditions (i)-(iii) above.",
+"src": [
+"guanhu",
+"buzzard"
+]
+}
+]
+},
+{
+"type": "pitfall",
+"body": "- $A_{fg}$ and $(A_f)_g$ are canonically isomorphic, not literally equal. On paper this is harmless, but any argument that silently identifies two models must make sure the identifications are compatible; Buzzard's account of the Lean formalisation of schemes is a case where this mattered.\n- \"Localisation at $\\mathfrak p$\" inverts the elements outside $\\mathfrak p$. \"Localisation at $f$\" inverts $f$. The same word does opposite things; read $A_{\\mathfrak p}$ versus $A_f$ by whether the subscript is an ideal or an element.\n- $\\mathbb Z_{(p)}$, $\\mathbb Z[1/p]$, the $p$-adic integers and $\\mathbb Z/p$ are four different rings.",
+"src": [
+"buzzard",
+"nlab",
+"gathmann"
+]
+},
+{
+"type": "example",
+"title": "Two stages for the integers",
+"body": "Show directly that $\\mathbb Z[1/2][1/3] = \\mathbb Z[1/6]$ inside $\\mathbb Q$, and that $(\\mathbb Z_{(5)})_{(0)} = \\mathbb Q$.",
+"solution": "$\\mathbb Z[1/2][1/3]$ consists of the $a/(2^m3^n)$. Since $1/2 = 3/6$ and $1/3 = 2/6$, both $1/2$ and $1/3$ lie in $\\mathbb Z[1/6]$, so the left side is contained in $\\mathbb Z[1/6]$; conversely $1/6 = (1/2)(1/3)$. For the second, $(0)\\mathbb Z_{(5)}$ is the zero ideal of the domain $\\mathbb Z_{(5)}$, and localising a domain at its zero prime gives its fraction field, which is $\\mathbb Q$; this is the case $\\mathfrak q = (0) \\subseteq \\mathfrak p = (5)$ of localisation in stages.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Use the universal property to construct, for every ring map $g\\colon A \\to B$ and multiplicative $S \\subseteq A$, a ring map $S^{-1}A \\to g(S)^{-1}B$, and show it is unique.\n2. (Basic) Show that $\\mathbb Z[x]/(2x - 1) \\cong \\mathbb Z[1/2]$ by exhibiting the map explicitly.\n3. (Medium) Prove directly from Strickland's characterisation that $\\mathbb Z/12 \\to \\mathbb Z/3$ is a localisation of $\\mathbb Z/12$ at $\\{1, 2, 4, 8\\}$.\n4. (Medium) Show that $\\hat S$ is multiplicative and saturated, and that $S^{-1}A \\to \\hat S^{-1}A$ is an isomorphism.\n5. (Harder) Show that $\\mathbb Z[1/6]$ is not of the form $\\mathbb Z_{(p)}$ for any prime $p$, and that $\\mathbb Z_{(2)}$ is not of the form $S^{-1}\\mathbb Z$ for any finitely generated multiplicative set $S$."
+},
+{
+"type": "section",
+"title": "Ideals and prime ideals of a localisation",
+"body": "For a ring map $\\iota\\colon A \\to B$ there are two ways to move ideals. An ideal $I \\subseteq A$ extends to $I^e = I B$, the ideal generated by $\\iota(I)$; an ideal $J \\subseteq B$ contracts to $J^c = \\iota^{-1}(J)$. For a quotient map $A \\to A/I$ these give the familiar correspondence theorem from [[rings]]. For localisation the behaviour is almost as good, and it is the reason localisation is so useful for studying primes: the prime ideals of $S^{-1}A$ are exactly the primes of $A$ that avoid $S$, and $S^{-1}A$ has no other ideals than extended ones. Gathmann proves the correspondence with the same ingredients as the Stacks Project and Sutherland; the Math 210B handout adds the explicit formula for $I^{ec}$ and the behaviour of primary ideals.",
+"src": [
+"gathmann",
+"stacks",
+"suth",
+"stan"
+]
+},
+{
+"type": "theorem",
+"title": "Extension and contraction for $S^{-1}A$",
+"body": "Let $S \\subseteq A$ be multiplicative and $\\iota\\colon A \\to S^{-1}A$.\n\n1. For an ideal $I \\subseteq A$, $I^e = S^{-1}I = \\{a/s : a \\in I,\\ s \\in S\\}$.\n2. Every ideal $J$ of $S^{-1}A$ is extended: $J = (J^c)^e$.\n3. $I^e = S^{-1}A$ if and only if $I \\cap S \\ne \\varnothing$.\n4. $I^{ec} = \\{a \\in A : sa \\in I \\text{ for some } s \\in S\\}$.\n5. The maps $\\mathfrak p \\mapsto \\mathfrak p^e$ and $\\mathfrak q \\mapsto \\mathfrak q^c$ are mutually inverse, inclusion-preserving bijections between the primes of $A$ disjoint from $S$ and the primes of $S^{-1}A$. The same holds for primary ideals disjoint from $S$.\n6. Extension commutes with sums, products, finite intersections and radicals: $(I + J)^e = I^e + J^e$, $(IJ)^e = I^eJ^e$, $(I \\cap J)^e = I^e \\cap J^e$, $(\\sqrt I)^e = \\sqrt{I^e}$.",
+"src": [
+"gathmann",
+"stacks",
+"suth",
+"stan"
+]
+},
+{
+"type": "proof",
+"body": "1. The ideal generated by the $a/1$, $a \\in I$, consists of sums $\\sum (b_i/s_i)(a_i/1)$; bringing them to a common denominator gives a single fraction $a/s$ with $a \\in I$. Conversely $a/s = (1/s)(a/1)$.\n\n2. Let $J \\subseteq S^{-1}A$. If $a/s \\in J$ then $a/1 = (s/1)(a/s) \\in J$, so $a \\in J^c$ and $a/s \\in (J^c)^e$. The reverse inclusion $(J^c)^e \\subseteq J$ holds for every ring map.\n\n3. If $s \\in I \\cap S$ then $1 = s/s \\in I^e$. Conversely, if $1/1 = a/s$ with $a \\in I$, then $u(s - a) = 0$ for some $u \\in S$, so $us = ua \\in I \\cap S$.\n\n4. If $b/1 = a/s$ with $a \\in I$, then $u(bs - a) = 0$, so $(us)b = ua \\in I$ with $us \\in S$. Conversely, if $sb \\in I$ then $b/1 = (sb)/s \\in I^e$.\n\n5. Let $\\mathfrak q$ be a prime of $S^{-1}A$. Then $\\mathfrak q^c$ is prime (contractions of primes are always prime) and disjoint from $S$, since $s \\in \\mathfrak q^c$ would make the unit $s/1$ lie in $\\mathfrak q$. By (2), $\\mathfrak q^{ce} = \\mathfrak q$. Now let $\\mathfrak p$ be a prime of $A$ with $\\mathfrak p \\cap S = \\varnothing$. By (3), $\\mathfrak p^e$ is proper. It is prime: if $(a/s)(b/t) \\in \\mathfrak p^e$, then $ab/st = c/r$ with $c \\in \\mathfrak p$, so $u(abr - cst) = 0$ and $uabr \\in \\mathfrak p$; as $u, r \\notin \\mathfrak p$, we get $ab \\in \\mathfrak p$, so $a$ or $b$ lies in $\\mathfrak p$. By (4), $\\mathfrak p^{ec} = \\{a : sa \\in \\mathfrak p\\} = \\mathfrak p$, again because $s \\notin \\mathfrak p$. For a primary ideal $\\mathfrak q_0$ with $\\sqrt{\\mathfrak q_0} \\cap S = \\varnothing$ the same two computations work, using that $sa \\in \\mathfrak q_0$ with $s \\notin \\sqrt{\\mathfrak q_0}$ forces $a \\in \\mathfrak q_0$.\n\n6. Sums and products: the generators of both sides agree. Intersections: $\\subseteq$ is clear; if $x = a/s = b/t$ with $a \\in I$, $b \\in J$, then $u(at - bs) = 0$, and $c = uta = usb \\in I \\cap J$, so $x = c/(ust) \\in (I \\cap J)^e$. Radicals: if $(a/s)^n \\in I^e$ then $a^n/s^n = b/t$ with $b \\in I$, so $u(ta^n - s^nb) = 0$ and $(uta)^n \\in I$ (multiply by $(ut)^{n-1}$); so $uta \\in \\sqrt I$ and $a/s = (uta)/(uts) \\in (\\sqrt I)^e$. The reverse inclusion is clear.",
+"src": [
+"gathmann",
+"stan"
+]
+},
+{
+"type": "theorem",
+"title": "The local ring at a prime",
+"body": "Let $\\mathfrak p$ be a prime of $A$.\n\n1. The primes of $A_{\\mathfrak p}$ correspond to the primes of $A$ contained in $\\mathfrak p$.\n2. $A_{\\mathfrak p}$ has exactly one maximal ideal, $\\mathfrak pA_{\\mathfrak p} = \\{a/s : a \\in \\mathfrak p,\\ s \\notin \\mathfrak p\\}$, and every element outside it is a unit.\n3. The residue field is $A_{\\mathfrak p}/\\mathfrak pA_{\\mathfrak p} \\cong \\operatorname{Frac}(A/\\mathfrak p)$, written $\\kappa(\\mathfrak p)$.\n4. $\\dim A_{\\mathfrak p} = \\operatorname{ht}\\mathfrak p$, the supremum of the lengths of chains of primes ending at $\\mathfrak p$.",
+"src": [
+"gathmann",
+"stacks",
+"suth"
+]
+},
+{
+"type": "proof",
+"body": "1. A prime is disjoint from $A \\setminus \\mathfrak p$ exactly when it is contained in $\\mathfrak p$; apply part 5 of the previous theorem.\n\n2. $\\mathfrak pA_{\\mathfrak p}$ is a proper ideal, by part 3 of the previous theorem. If $a/s \\notin \\mathfrak pA_{\\mathfrak p}$ then $a \\notin \\mathfrak p$, so $s/a \\in A_{\\mathfrak p}$ is an inverse. Thus every proper ideal, consisting of non-units, lies inside $\\mathfrak pA_{\\mathfrak p}$, which is therefore the unique maximal ideal.\n\n3. Localisation commutes with quotients (Stacks, Proposition 10.9.14): $S^{-1}A/S^{-1}I \\cong \\bar S^{-1}(A/I)$, where $\\bar S$ is the image of $S$ in $A/I$. With $S = A\\setminus\\mathfrak p$ and $I = \\mathfrak p$, the image $\\bar S$ is the set of all nonzero elements of the domain $A/\\mathfrak p$, so $\\bar S^{-1}(A/\\mathfrak p) = \\operatorname{Frac}(A/\\mathfrak p)$. (The isomorphism sends $\\overline{a/s}$ to $\\bar a/\\bar s$; both maps are defined by the universal property.)\n\n4. The bijection in (1) preserves inclusions, so chains of primes in $A_{\\mathfrak p}$ are exactly chains of primes of $A$ inside $\\mathfrak p$, and every such chain can be extended to end at $\\mathfrak p$.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "Spectra of localisations",
+"body": "Write $\\operatorname{Spec} A$ for the set of primes of $A$ with the Zariski topology, $V(I) = \\{\\mathfrak p \\supseteq I\\}$ closed and $D(f) = \\{\\mathfrak p : f \\notin \\mathfrak p\\}$ open. Then:\n\n1. $\\operatorname{Spec} S^{-1}A \\to \\operatorname{Spec} A$, $\\mathfrak q \\mapsto \\mathfrak q^c$, is a homeomorphism onto $\\{\\mathfrak p : \\mathfrak p \\cap S = \\varnothing\\}$ with the subspace topology.\n2. In particular $\\operatorname{Spec} A_f \\cong D(f)$, and $\\operatorname{Spec} A_{\\mathfrak p}$ is the set of primes contained in $\\mathfrak p$.\n3. $D(f) \\cap D(g) = D(fg)$; $D(f) = \\varnothing$ if and only if $f$ is nilpotent; the sets $D(f)$ form a basis of the topology.",
+"src": [
+"stacks",
+"vakil"
+]
+},
+{
+"type": "proof",
+"body": "1. The map is the bijection of the previous theorem onto the primes avoiding $S$. It is continuous because preimages of closed sets are closed: the preimage of $V(I)$ is $V(I^e)$. It is closed onto its image: a closed set of $\\operatorname{Spec} S^{-1}A$ is $V(J)$ with $J = (J^c)^e$, and a prime $\\mathfrak q$ contains $J$ iff $\\mathfrak q^c \\supseteq J^c$ (apply extension and contraction, which are inverse on primes), so $V(J)$ maps onto $V(J^c) \\cap \\operatorname{image}$.\n\n2. For $S = \\{f^n\\}$, a prime avoids $S$ iff it does not contain $f$ (primes contain $f^n$ iff they contain $f$).\n\n3. A prime contains $fg$ iff it contains $f$ or $g$. $D(f) = \\varnothing$ means $f$ lies in every prime, i.e. in the nilradical (the intersection of all primes, see [[noetherian-rings]] and Stacks Lemma 10.17.2), i.e. $f$ is nilpotent; this matches $A_f = 0$ from the first section, as it must since $\\operatorname{Spec} A_f = \\varnothing$ iff $A_f = 0$. The complement of $V(I)$ is $\\bigcup_{f \\in I} D(f)$, so the $D(f)$ form a basis.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "figure",
+"engine": "tikz",
+"code": "\\begin{tikzpicture}[x=1.15cm,y=1cm,font=\\small]\n\\foreach \\i/\\p in {1/2,2/3,3/5,4/7,5/11,6/13} { \\fill (\\i,0) circle (2pt); \\node[below] at (\\i,-0.1) {$(\\p)$}; }\n\\node at (7,0) {$\\cdots$};\n\\fill[gray] (3.5,1.3) circle (2.5pt); \\node[right] at (3.85,1.3) {$(0)$, the generic point};\n\\foreach \\i in {1,...,6} \\draw[gray!60] (\\i,0.08) -- (3.5,1.22);\n\\node[left] at (0.4,0.6) {$\\operatorname{Spec}\\mathbb{Z}$:};\n\\draw[thick,blue,rounded corners] (1.6,-0.65) rectangle (2.4,0.35);\n\\draw[thick,blue,rounded corners] (3.2,1.0) rectangle (3.8,1.6);\n\\node[blue] at (2,-1.0) {$\\operatorname{Spec}\\mathbb{Z}_{(3)}=\\{(0),(3)\\}$};\n\\draw[thick,red,dashed] (1.75,0.25) -- (2.25,-0.25); \\draw[thick,red,dashed] (1.75,-0.25) -- (2.25,0.25);\n\\node[red,align=left] at (6.3,-1.0) {$\\operatorname{Spec}\\mathbb{Z}[1/3]=D(3)$: all points except $(3)$};\n\\end{tikzpicture}\n",
+"caption": "The spectrum of $\\mathbb Z$: one closed point $(p)$ for each prime and the generic point $(0)$, whose closure is the whole space because it is contained in every prime. Localising at the prime $(3)$ keeps the primes inside $(3)$, namely $(0)$ and $(3)$ (boxed); inverting $3$ keeps exactly the primes not containing $3$, everything except $(3)$ (crossed out).",
+"alt": "A row of dots labelled (2), (3), (5), (7), (11), (13) and dots continuing, with a grey dot above labelled (0), the generic point, joined to all of them. Blue boxes enclose (3) and (0), labelled Spec of Z localized at 3 equals the two points (0) and (3). The point (3) is crossed out in red, and a red label says Spec Z[1/3] = D(3) consists of all points except (3).",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "Finiteness passes to localisations",
+"body": "If $A$ is Noetherian, so is every $S^{-1}A$. If $A$ is a principal ideal domain, so is every $S^{-1}A$ with $0 \\notin S$. More precisely, if $a_1, \\dots, a_n$ generate $I$, then $a_1/1, \\dots, a_n/1$ generate $I^e$.",
+"src": [
+"suth"
+]
+},
+{
+"type": "proof",
+"body": "The generators of $I$ generate $I^e$ by part 1 of the extension theorem. Every ideal of $S^{-1}A$ is extended (part 2), so it is generated by the images of generators of an ideal of $A$: finitely many if $A$ is Noetherian, one if $A$ is a PID. A localisation of a domain at a set not containing $0$ is a subring of the fraction field, hence a domain.",
+"src": [
+"suth"
+]
+},
+{
+"type": "example",
+"title": "Primes of some localisations",
+"body": "Describe $\\operatorname{Spec}$ of: (a) $\\mathbb Z_{(p)}$; (b) $\\mathbb Z[1/6]$; (c) $k[x,y]_{(x,y)}$ for a field $k$ (just say which primes of $k[x,y]$ survive); (d) $(\\mathbb Z/12)_{(2)}$.",
+"solution": "(a) Primes of $\\mathbb Z$ inside $(p)$: $(0)$ and $(p)$. So $\\mathbb Z_{(p)}$ has exactly two primes, $0$ and the maximal ideal $p\\mathbb Z_{(p)}$; its dimension is $1 = \\operatorname{ht}(p)$.\n\n(b) Primes of $\\mathbb Z$ not containing $6$: $(0)$ and $(p)$ for $p \\ne 2, 3$. This is the open set $D(6) = D(2) \\cap D(3)$.\n\n(c) The primes of $k[x,y]$ contained in $(x,y)$: the zero ideal, the maximal ideal $(x,y)$ itself, and the height one primes $(f)$ with $f$ irreducible and $f(0,0) = 0$ (curves through the origin). Geometrically, $k[x,y]_{(x,y)}$ remembers the origin and every irreducible curve passing through it, and forgets everything else. Its dimension is $2 = \\operatorname{ht}(x,y)$.\n\n(d) The primes of $\\mathbb Z/12$ are $(2)$ and $(3)$, and only $(2)$ is contained in $(2)$. So $(\\mathbb Z/12)_{(2)}$ has a single prime. Here $S = \\{1, 5, 7, 11\\} \\cup \\{3, 9\\}$, the elements outside $(2)$; inverting $3$ kills $\\mathbb Z/3$ in $\\mathbb Z/4 \\times \\mathbb Z/3$, and $(\\mathbb Z/12)_{(2)} \\cong \\mathbb Z/4$, a local ring with maximal ideal $(2)$.",
+"src": [
+"gathmann",
+"stacks"
+]
+},
+{
+"type": "theorem",
+"title": "Localisation of a primary decomposition",
+"body": "Let $I = \\mathfrak q_1 \\cap \\dots \\cap \\mathfrak q_r$ be a primary decomposition with $\\sqrt{\\mathfrak q_i} = \\mathfrak p_i$, and let $S$ be multiplicative. Number the components so that $\\mathfrak p_1, \\dots, \\mathfrak p_m$ are disjoint from $S$ and $\\mathfrak p_{m+1}, \\dots, \\mathfrak p_r$ meet $S$. Then\n$$S^{-1}I = S^{-1}\\mathfrak q_1 \\cap \\dots \\cap S^{-1}\\mathfrak q_m, \\qquad I^{ec} = \\mathfrak q_1 \\cap \\dots \\cap \\mathfrak q_m,$$\nand these are primary decompositions. In words: localising throws away exactly the components that meet $S$.",
+"src": [
+"stan"
+]
+},
+{
+"type": "proof",
+"body": "Extension commutes with finite intersections, so $S^{-1}I = \\bigcap_i S^{-1}\\mathfrak q_i$. If $\\mathfrak p_i$ meets $S$, so does $\\mathfrak q_i$ (some power of an element of $\\mathfrak p_i \\cap S$ lies in $\\mathfrak q_i$, and lies in $S$), and $S^{-1}\\mathfrak q_i$ is the unit ideal. The other $S^{-1}\\mathfrak q_i$ are primary with radical $S^{-1}\\mathfrak p_i$ by part 5 of the extension theorem. Contracting, and using $\\mathfrak q_i^{ec} = \\mathfrak q_i$ for $i \\le m$ together with the fact that contraction commutes with intersections, gives the second formula.",
+"src": [
+"stan"
+]
+},
+{
+"type": "example",
+"title": "An embedded component disappears",
+"body": "In $A = k[x,y]$ let $I = (x^2, xy) = (x) \\cap (x^2, y)$. Compute $I A_{(x)}$ and $I A_{(x,y)}$.",
+"solution": "The components are $\\mathfrak q_1 = (x)$, prime, and $\\mathfrak q_2 = (x^2, y)$, primary with radical $(x, y)$. (Check of the decomposition: $I$ is contained in both. Conversely let $f = xg \\in (x) \\cap (x^2, y)$ and write $g = c + xg_1 + yg_2$ with $c \\in k$; then $f \\equiv cx$ modulo $I$, and since $I \\subseteq (x^2, y)$, also $cx \\in (x^2, y)$; setting $y = 0$ shows $c = 0$, so $f \\in I$.)\n\nAt $\\mathfrak p = (x)$: the radical $(x, y)$ is not contained in $(x)$, so it meets $A \\setminus (x)$ (it contains $y$). The second component disappears, and $IA_{(x)} = xA_{(x)}$. Directly: $y$ is a unit in $A_{(x)}$, so $x = (xy)/y \\in IA_{(x)}$.\n\nAt $\\mathfrak m = (x, y)$: both radicals lie in $\\mathfrak m$, nothing disappears, and $IA_{\\mathfrak m} = xA_{\\mathfrak m} \\cap (x^2, y)A_{\\mathfrak m}$ is strictly smaller than $xA_{\\mathfrak m}$. Indeed $x/1 \\notin IA_{\\mathfrak m}$: by part 4 of the extension theorem this would need $sx \\in I$ for some $s \\notin \\mathfrak m$, but $sx \\in (x^2, xy)$ forces $s \\in (x, y)$. Geometrically, the embedded point at the origin is invisible from the generic point of the line $x = 0$ but visible at the origin.",
+"src": [
+"stan"
+]
+},
+{
+"type": "example",
+"title": "Heights, quotients and polynomial rings inside a localisation",
+"body": "Guan and Hu's proof that $\\operatorname{ht} I + \\dim R/I = \\dim R$ for Cohen-Macaulay local rings (their Theorem 4.19), and their proof that $R[X]$ is Cohen-Macaulay when $R$ is (their §4.2), pass between rings using three identifications. Prove them. Let $\\mathfrak q \\subseteq \\mathfrak p$ be primes of $A$.\n\n(a) $\\operatorname{ht}(\\mathfrak qA_{\\mathfrak p}) = \\operatorname{ht}\\mathfrak q$.\n\n(b) $A_{\\mathfrak p}/\\mathfrak qA_{\\mathfrak p} \\cong (A/\\mathfrak q)_{\\mathfrak p/\\mathfrak q}$; hence $\\dim A_{\\mathfrak p}/\\mathfrak qA_{\\mathfrak p} = \\operatorname{ht}(\\mathfrak p/\\mathfrak q)$, the length of the longest chain of primes from $\\mathfrak q$ to $\\mathfrak p$.\n\n(c) If $P$ is a prime of $A[X]$ and $\\mathfrak q = P \\cap A$, then $A[X]_P \\cong (A_{\\mathfrak q}[X])_{PA_{\\mathfrak q}[X]}$.",
+"solution": "(a) By the theorem on the local ring at a prime, $\\mathfrak q' \\mapsto \\mathfrak q'A_{\\mathfrak p}$ is an inclusion-preserving bijection from the primes of $A$ inside $\\mathfrak p$ to the primes of $A_{\\mathfrak p}$, with inverse given by contraction. Every prime contained in $\\mathfrak q$ lies inside $\\mathfrak p$, so chains of primes of $A$ ending at $\\mathfrak q$ correspond exactly to chains of primes of $A_{\\mathfrak p}$ ending at $\\mathfrak qA_{\\mathfrak p}$, with the same lengths.\n\n(b) The composite $A \\to A/\\mathfrak q \\to (A/\\mathfrak q)_{\\mathfrak p/\\mathfrak q}$ sends each $s \\notin \\mathfrak p$ to a unit, since $\\bar s \\notin \\mathfrak p/\\mathfrak q$. By the universal property it factors through $\\psi\\colon A_{\\mathfrak p} \\to (A/\\mathfrak q)_{\\mathfrak p/\\mathfrak q}$, $a/s \\mapsto \\bar a/\\bar s$, which is surjective because every element of $(A/\\mathfrak q) \\setminus (\\mathfrak p/\\mathfrak q)$ is some $\\bar s$ with $s \\notin \\mathfrak p$. If $\\bar a/\\bar s = 0$, then $\\bar u\\bar a = 0$ for some $u \\notin \\mathfrak p$, i.e. $ua \\in \\mathfrak q$; as $u \\notin \\mathfrak q$ (because $\\mathfrak q \\subseteq \\mathfrak p$) and $\\mathfrak q$ is prime, $a \\in \\mathfrak q$. Conversely $\\psi$ kills $\\mathfrak qA_{\\mathfrak p}$. So $\\ker\\psi = \\mathfrak qA_{\\mathfrak p}$. The dimension statement is part 4 of the theorem on the local ring at a prime, applied to the prime $\\mathfrak p/\\mathfrak q$ of $A/\\mathfrak q$, whose primes are the $\\mathfrak q'/\\mathfrak q$ with $\\mathfrak q' \\supseteq \\mathfrak q$.\n\n(c) Put $S = A \\setminus \\mathfrak q$ and $T = A[X] \\setminus P$. Since $P \\cap A = \\mathfrak q$, $S \\subseteq T$, so the products $st$ again lie in $T$ and $ST = T$. Localisation in stages gives $A[X]_P = T^{-1}A[X] \\cong \\bar T^{-1}(S^{-1}A[X])$. Next, $S^{-1}(A[X]) \\cong A_{\\mathfrak q}[X]$: the map $A[X] \\to A_{\\mathfrak q}[X]$ inverts $S$, so it induces $\\varphi\\colon f/s \\mapsto \\sum_i (a_i/s)X^i$ for $f = \\sum_i a_iX^i$. It is surjective (bring the coefficients to a common denominator), and injective: if all $a_i/s = 0$, there are $u_i \\in S$ with $u_ia_i = 0$, and $u = \\prod_i u_i$ satisfies $uf = 0$, so $f/s = 0$. Under $\\varphi$, $S^{-1}P$ becomes $PA_{\\mathfrak q}[X]$, a prime by the correspondence theorem since $P \\cap S = \\varnothing$. Finally, inverting $\\bar T$ is the same as inverting the complement of $S^{-1}P$: an element $f/s$ lies outside $S^{-1}P$ exactly when $f \\in T$, and then $f/s = (f/1)(1/s)$ with $1/s$ a unit, so both sets of elements become units in the same $S^{-1}A[X]$-algebras, and the universal property identifies the two localisations. Hence $A[X]_P \\cong (A_{\\mathfrak q}[X])_{PA_{\\mathfrak q}[X]}$, which is the form in which Guan and Hu use it.",
+"src": [
+"guanhu",
+"stacks"
+]
+},
+{
+"type": "pitfall",
+"body": "- The correspondence is a bijection on primes, not on all ideals. Every ideal of $S^{-1}A$ is extended, but different ideals of $A$ can extend to the same one: in $\\mathbb Z_{(2)}$ the ideals $(2)$, $(6)$ and $(10)$ all extend to $2\\mathbb Z_{(2)}$, because $3$ and $5$ become units. Only the ideals with $I = I^{ec}$, those that are \"$S$-saturated\", are recovered.\n- A general localisation is not a local ring. $\\mathbb Z[1/2]$ has infinitely many maximal ideals; only localisations at the complement of a prime are guaranteed to be local. Chevalley already remarks that if one inverts only the non-zero-divisors outside a prime $\\mathfrak u$, the resulting ring in general fails to be local.\n- An element written $a/s$ with $s \\in \\mathfrak p$ may still lie in $A_{\\mathfrak p}$ ($9/3 = 3/1$ in $\\mathbb Z_{(3)}$); what matters is whether some representative has denominator outside $\\mathfrak p$.",
+"src": [
+"gathmann",
+"stan",
+"chev",
+"suth"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) List the primes of $\\mathbb Z[1/10]$ and of $\\mathbb Z_{(5)}$. Which of them are maximal?\n2. (Basic) In $\\mathbb Z_{(2)}$, show that every nonzero ideal is $2^k\\mathbb Z_{(2)}$ for a unique $k \\ge 0$.\n3. (Medium) Let $A = k[x,y]$ and $\\mathfrak p = (y)$. Show that $A_{\\mathfrak p}/\\mathfrak pA_{\\mathfrak p} \\cong k(x)$, the field of rational functions in $x$.\n4. (Medium) Show that $S^{-1}(\\sqrt{0}) = \\sqrt{0}$ in $S^{-1}A$: the nilradical commutes with localisation.\n5. (Harder) Let $I \\subseteq A$ and $S$ multiplicative. Show that the primes of $S^{-1}A$ containing $S^{-1}I$ correspond to the primes of $A$ containing $I$ and disjoint from $S$, and deduce $\\operatorname{Spec}((A/I)_{\\bar f}) \\cong V(I) \\cap D(f)$."
+},
+{
+"type": "section",
+"title": "Local rings",
+"body": "The rings $A_{\\mathfrak p}$ have a single maximal ideal. Rings with this property are the basic objects of a large part of commutative algebra: research papers routinely begin \"let $(R, \\mathfrak m, k)$ be a Noetherian local ring\", and global notions are often defined by asking that every localisation be a local ring of a given kind. This section collects the equivalent definitions, the examples, and the maps between local rings.",
+"src": [
+"stacks",
+"wlocal",
+"dieth"
+]
+},
+{
+"type": "definition",
+"title": "Local ring",
+"body": "A ring $R$ is local if it has exactly one maximal ideal $\\mathfrak m$. One writes $(R, \\mathfrak m)$ or $(R, \\mathfrak m, k)$ with $k = R/\\mathfrak m$ the residue field. A ring with finitely many maximal ideals is called semi-local.\n\nA ring map $\\varphi\\colon (R, \\mathfrak m_R) \\to (S, \\mathfrak m_S)$ between local rings is a local homomorphism if $\\varphi(\\mathfrak m_R) \\subseteq \\mathfrak m_S$.",
+"src": [
+"stacks",
+"wlocal",
+"am"
+]
+},
+{
+"type": "theorem",
+"title": "Characterisations of local rings",
+"body": "For a ring $R$ the following are equivalent:\n\n1. $R$ is local;\n2. $R$ has a maximal ideal $\\mathfrak m$ such that every element of $R \\setminus \\mathfrak m$ is a unit;\n3. $R \\ne 0$ and the non-units of $R$ form an ideal;\n4. $R \\ne 0$ and for every $x \\in R$, $x$ or $1 - x$ is a unit.\n\nWhen these hold, the maximal ideal is the set of non-units.",
+"src": [
+"stacks",
+"wlocal"
+]
+},
+{
+"type": "proof",
+"body": "(1) implies (2). Let $\\mathfrak m$ be the maximal ideal. If $x \\notin \\mathfrak m$ were a non-unit, $(x)$ would be a proper ideal, hence contained in some maximal ideal (every proper ideal is, by Zorn's lemma), which must be $\\mathfrak m$; contradiction.\n\n(2) implies (3). Every non-unit lies in $\\mathfrak m$ by (2), and elements of $\\mathfrak m$ are non-units since $\\mathfrak m$ is proper. So the non-units are exactly $\\mathfrak m$, an ideal; and $R \\ne 0$ as it has a maximal ideal.\n\n(3) implies (4). If $x$ and $1-x$ were both non-units, their sum $1$ would be a non-unit.\n\n(4) implies (1). First, the non-units form an ideal $\\mathfrak m$. If $x$ is a non-unit, so is $rx$ (if $rxy = 1$ then $x$ is a unit). Let $x, y$ be non-units and suppose $x + y$ were a unit, with inverse $w$. Then $xw + yw = 1$. Now $xw$ is a non-unit, so by (4) $1 - xw = yw$ is a unit, making $y$ a unit; contradiction. So $\\mathfrak m$ is an ideal, proper since $1 \\notin \\mathfrak m$. Any proper ideal consists of non-units, so lies in $\\mathfrak m$; hence $\\mathfrak m$ is the unique maximal ideal.",
+"src": [
+"stacks",
+"wlocal"
+]
+},
+{
+"type": "views",
+"title": "What a local ring is",
+"items": [
+{
+"label": "Unique maximal ideal",
+"body": "The definition in the Stacks Project and Atiyah-Macdonald: exactly one maximal ideal, equivalently $\\operatorname{Spec} R$ has exactly one closed point.",
+"src": [
+"stacks",
+"am"
+]
+},
+{
+"label": "x or 1 − x a unit",
+"body": "Lombardi's constructive definition: for every $x$, either $x$ or $1 - x$ is invertible. It avoids quantifying over maximal ideals (whose existence needs Zorn's lemma), and with this definition the zero ring counts as local; in a nonzero local ring the non-units form the maximal ideal.",
+"src": [
+"lomb"
+]
+},
+{
+"label": "Germs at a point",
+"body": "Armstrong's example: germs of smooth functions at a point $p$ of a manifold. A germ not vanishing at $p$ is nonzero on a neighbourhood, so $1/f$ is a germ there; the non-invertible germs are those vanishing at $p$, an ideal, and evaluation at $p$ identifies the residue field with $\\mathbb R$. The algebraic local rings $\\mathcal O_{X, x}$ of geometry imitate this.",
+"src": [
+"armstrong",
+"wlocal"
+]
+},
+{
+"label": "Localisation at a prime",
+"body": "Gathmann (Corollary 6.10, Remark 6.11) and the Math 210B handout meet local rings through the rings $A_{\\mathfrak p}$; for the coordinate ring of a variety and the ideal of a point $a$, Gathmann reads $A_{\\mathfrak p}$ as the ring of functions defined near $a$. Every local ring arises this way trivially ($R = R_{\\mathfrak m}$), and every $A_{\\mathfrak p}$ is local.",
+"src": [
+"gathmann",
+"stan"
+]
+},
+{
+"label": "Rings of a point (history)",
+"body": "Krull introduced local rings in 1938 as Stellenringe, rings of a point; the English name is Zariski's. Chevalley's 1944 paper still assumes all rings Noetherian, and before about 1960 many authors kept the Noetherian hypothesis and called the general case quasi-local.",
+"src": [
+"wlocal",
+"chev"
+]
+}
+],
+"body": "Five explanations of the same notion, from five traditions."
+},
+{
+"type": "example",
+"title": "Which of these rings are local?",
+"body": "Decide for: $\\mathbb Z/n$; $k[x]/(x^n)$; $k[\\![x]\\!]$; $\\mathbb Z_{(2)}$; $k[x]$; $\\mathbb Z$; $\\mathbb Z/6$; and a quotient $R/I$ of a local ring by a proper ideal.",
+"solution": "$\\mathbb Z/n$ (with $n \\ge 2$) is local iff $n$ is a prime power. Its maximal ideals are $(p)/(n)$ for the primes $p \\mid n$, so there is one exactly when $n = p^e$, and then the non-units are the multiples of $p$. So $\\mathbb Z/p^e$ is local, while $\\mathbb Z/6$ (two maximal ideals) is not.\n\n$k[x]/(x^n)$ is local with maximal ideal $(x)$: an element $c_0 + c_1x + \\dots$ with $c_0 \\ne 0$ is a unit because $x$ is nilpotent ($c_0(1 + y)$ with $y$ nilpotent has inverse $c_0^{-1}(1 - y + y^2 - \\cdots)$). For $n = 2$ this is the ring of dual numbers.\n\n$k[\\![x]\\!]$ is local with maximal ideal $(x)$: a power series with nonzero constant term has an inverse computed coefficient by coefficient.\n\n$\\mathbb Z_{(2)}$, the rationals with odd denominator, is local with maximal ideal $2\\mathbb Z_{(2)}$.\n\n$k[x]$ and $\\mathbb Z$ are not local: $x$ and $1 - x$ are both non-units in $k[x]$, and in $\\mathbb Z$ both $3$ and $1 - 3 = -2$ are non-units.\n\nA quotient $R/I$ of a local ring $(R, \\mathfrak m)$ by a proper ideal $I$ is local with maximal ideal $\\mathfrak m/I$: the maximal ideals of $R/I$ correspond to maximal ideals of $R$ containing $I$, and there is only one.",
+"src": [
+"wlocal"
+]
+},
+{
+"type": "theorem",
+"title": "Local homomorphisms",
+"body": "For a ring map $\\varphi\\colon R \\to S$ of local rings, the following are equivalent: (1) $\\varphi$ is local, $\\varphi(\\mathfrak m_R) \\subseteq \\mathfrak m_S$; (2) $\\varphi^{-1}(\\mathfrak m_S) = \\mathfrak m_R$; (3) $\\varphi$ reflects units: if $\\varphi(x)$ is a unit then $x$ is a unit.\n\nMoreover, for any ring $A$, any ring map $\\varphi\\colon A \\to B$ to a local ring $B$ factors uniquely as $A \\to A_{\\mathfrak p} \\to B$ with $\\mathfrak p = \\varphi^{-1}(\\mathfrak m_B)$, and $A_{\\mathfrak p} \\to B$ is local.",
+"src": [
+"stacks",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "(1) implies (2): $\\varphi^{-1}(\\mathfrak m_S)$ is a proper ideal containing $\\mathfrak m_R$, and $\\mathfrak m_R$ is maximal. (2) implies (3): if $x$ is a non-unit then $x \\in \\mathfrak m_R = \\varphi^{-1}(\\mathfrak m_S)$, so $\\varphi(x)$ is a non-unit. (3) implies (1): if $x \\in \\mathfrak m_R$ then $x$ is a non-unit, so $\\varphi(x)$ is a non-unit, i.e. lies in $\\mathfrak m_S$.\n\nFor the factorisation, $\\mathfrak p = \\varphi^{-1}(\\mathfrak m_B)$ is a prime, being the preimage of a prime. If $s \\notin \\mathfrak p$ then $\\varphi(s) \\notin \\mathfrak m_B$, so $\\varphi(s)$ is a unit of the local ring $B$. By the universal property $\\varphi$ factors uniquely through $A_{\\mathfrak p}$, by $a/s \\mapsto \\varphi(a)\\varphi(s)^{-1}$, and this sends $\\mathfrak pA_{\\mathfrak p}$ into $\\mathfrak m_B$.",
+"src": [
+"stacks",
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "A localisation map that is not local",
+"body": "Let $R = \\mathbb Z_{(p)}$, a local ring, and let $\\mathfrak q = (0)$, a non-maximal prime. Is $R \\to R_{(0)} = \\mathbb Q$ a local homomorphism?",
+"solution": "No. The maximal ideal of $\\mathbb Q$ is $0$, while $p \\in p\\mathbb Z_{(p)}$ maps to the unit $p \\in \\mathbb Q$. The map does not reflect units. This is the Stacks Project's example: for a local ring $R$ and a non-maximal prime $\\mathfrak q$, the map $R \\to R_{\\mathfrak q}$ is never local. In contrast $A \\to A_{\\mathfrak p}$ composed with any local map is governed by the factorisation theorem.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "definition",
+"title": "Locally ringed spaces",
+"body": "A locally ringed space is a topological space $X$ with a sheaf of rings $\\mathcal O_X$ all of whose stalks $\\mathcal O_{X,x}$ are local rings. A morphism of locally ringed spaces $(f, f^\\sharp)\\colon (X, \\mathcal O_X) \\to (Y, \\mathcal O_Y)$ is a morphism of ringed spaces such that every induced map of stalks $\\mathcal O_{Y, f(x)} \\to \\mathcal O_{X,x}$ is a local homomorphism. Affine schemes, built from the localisations $A_f$ and $A_{\\mathfrak p}$ (see the section on local properties), are the basic examples; Xu builds the analogous theory for $\\mathbb F_1$-algebras, where the stalk maps are required to be local in the same sense.",
+"src": [
+"stacks",
+"xu"
+]
+},
+{
+"type": "conventions",
+"title": "Conventions for local rings",
+"rows": [
+{
+"who": "Modern standard (Stacks, Atiyah-Macdonald)",
+"text": "Local means exactly one maximal ideal; no Noetherian hypothesis; the zero ring is not local.",
+"src": [
+"stacks",
+"am"
+]
+},
+{
+"who": "Older usage (before about 1960)",
+"text": "Many authors required local rings to be Noetherian, and called the general case quasi-local (Wikipedia, Local ring). Chevalley's 1944 paper works with Noetherian rings throughout and defines semi-local rings as Noetherian rings with finitely many maximal ideals.",
+"src": [
+"wlocal",
+"chev"
+]
+},
+{
+"who": "Constructive algebra (Lombardi)",
+"text": "Local means: for all $x$, $x$ or $1 - x$ is invertible. Lombardi states explicitly that the trivial ring is then local, with trivial residue field; his Fait 1.20 accordingly speaks of a nontrivial local ring when it characterises the localisations $A_{\\mathfrak p}$.",
+"src": [
+"lomb"
+]
+},
+{
+"who": "Koszul homology survey (Diethorn)",
+"text": "Works with \"a commutative local (or graded) ring\" $R$ with residue field $k$, writes out the definitions for standard graded $k$-algebras and says the local case is similar; the maximal ideal $\\mathfrak m$ enters only later.",
+"src": [
+"dieth"
+]
+}
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that $\\mathbb Z_{(p)}/p^e\\mathbb Z_{(p)} \\cong \\mathbb Z/p^e$, and that this ring is local.\n2. (Basic) Show that a ring in which every element is a unit or nilpotent is local, and find such a ring that is not a field.\n3. (Medium) Show that the composite of local homomorphisms is local, and that a ring map $A \\to B$ induces a local homomorphism $A_{\\varphi^{-1}(\\mathfrak q)} \\to B_{\\mathfrak q}$ for every prime $\\mathfrak q$ of $B$.\n4. (Medium) Show that a ring $R$ is local if and only if $\\operatorname{Spec} R$ has exactly one closed point.\n5. (Harder) Let $k$ be a field of characteristic $p$ and $G$ a cyclic group of order $p$. Show that the group algebra $kG \\cong k[t]/(t^p - 1) = k[t]/((t-1)^p)$ is local."
+},
+{
+"type": "section",
+"title": "Nakayama's lemma and free modules over local rings",
+"body": "Over a local ring $(R, \\mathfrak m, k)$ a finitely generated module is controlled by the vector space $M/\\mathfrak mM$ over the residue field. This is Nakayama's lemma, the single most used tool once a problem has been localised: minimal free resolutions, Betti numbers, the statement that projective equals free, and the reduction of many questions to linear algebra over $k$ all rest on it. The Stacks Project states a dozen variants; we prove the general one by the determinant trick and deduce the local versions, which Gathmann sets as an exercise.",
+"src": [
+"stacks",
+"gathmann",
+"dieth"
+]
+},
+{
+"type": "theorem",
+"title": "Nakayama's lemma",
+"body": "Let $R$ be a ring, $I$ an ideal and $M$ a finitely generated $R$-module.\n\n1. If $IM = M$, there is $f \\in 1 + I$ with $fM = 0$.\n2. If $(R, \\mathfrak m)$ is local, $I \\subseteq \\mathfrak m$ and $IM = M$, then $M = 0$.\n3. If $(R, \\mathfrak m)$ is local, $N \\subseteq M$ a submodule and $N + \\mathfrak mM = M$, then $N = M$.\n4. If $(R, \\mathfrak m, k)$ is local, elements $x_1, \\dots, x_n \\in M$ generate $M$ if and only if their images span the $k$-vector space $M/\\mathfrak mM$. Hence every minimal generating set of $M$ has exactly $\\dim_k M/\\mathfrak mM$ elements.",
+"src": [
+"stacks",
+"gathmann",
+"am"
+]
+},
+{
+"type": "proof",
+"body": "1. Let $y_1, \\dots, y_m$ generate $M$. Since $M = IM$, each $y_i = \\sum_j z_{ij}y_j$ with $z_{ij} \\in I$. So the matrix $T = (\\delta_{ij} - z_{ij})$ satisfies $T\\,y = 0$, where $y$ is the column of the $y_j$. Multiply on the left by the adjugate matrix of $T$: since $\\operatorname{adj}(T)\\,T = \\det(T)\\cdot\\mathrm{Id}$, we get $\\det(T)\\,y_j = 0$ for all $j$, so $f = \\det T$ kills $M$. Expanding the determinant, $T \\equiv \\mathrm{Id}$ modulo $I$, so $f \\equiv 1 \\pmod I$.\n\n2. Here $f \\in 1 + I \\subseteq 1 + \\mathfrak m$, and $f \\notin \\mathfrak m$ (else $1 \\in \\mathfrak m$), so $f$ is a unit by the characterisation of local rings. Then $M = f^{-1}fM = 0$.\n\n3. Apply (2) to the finitely generated module $M/N$: $\\mathfrak m(M/N) = (\\mathfrak mM + N)/N = M/N$, so $M/N = 0$.\n\n4. If the images span $M/\\mathfrak mM$, let $N = \\sum Rx_i$; then $N + \\mathfrak mM = M$, so $N = M$ by (3). The converse is clear. A generating set is minimal iff no proper subset generates, iff (by what we just proved) its image in $M/\\mathfrak mM$ is a basis, which has $\\dim_k M/\\mathfrak mM$ elements.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "theorem",
+"title": "Projective modules over a local ring are free",
+"body": "Let $(R, \\mathfrak m, k)$ be local and $P$ a finitely generated projective $R$-module, that is, a direct summand of some $R^n$. Then $P \\cong R^r$ with $r = \\dim_k P/\\mathfrak mP$.",
+"src": [
+"lomb",
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "By Nakayama choose $x_1, \\dots, x_r \\in P$ whose images form a basis of $P/\\mathfrak mP$; they generate $P$, giving a surjection $\\pi\\colon R^r \\to P$ with kernel $K$. Because $P$ is projective, $\\pi$ splits: $R^r \\cong P \\oplus K$. In particular $K$ is a quotient of $R^r$, so finitely generated. Reducing modulo $\\mathfrak m$ (that is, applying $k \\otimes_R -$, which preserves direct sums),\n$$k^r \\cong P/\\mathfrak mP \\oplus K/\\mathfrak mK .$$\nThe first summand already has dimension $r$, so $K/\\mathfrak mK = 0$, and $K = 0$ by Nakayama. Thus $\\pi$ is an isomorphism. Lombardi gives three proofs of this \"local freeness lemma\"; the first two, like the one above, use that the residue field is discrete (one can decide whether an element is zero), and the third, Azumaya's, does not, which matters constructively.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "Minimal generators of an ideal",
+"body": "Let $R = k[x,y]_{(x,y)}$ with maximal ideal $\\mathfrak m = (x, y)R$. Find the minimal number of generators of the ideal $I = (x + y^2,\\ y + x^2,\\ x^3 - y^3)R$, and of $\\mathfrak m$ itself.",
+"solution": "For $\\mathfrak m$: $\\mathfrak m/\\mathfrak m^2$ has basis the images of $x, y$, so $\\mathfrak m$ needs exactly $2$ generators.\n\nFor $I$: compute $I/\\mathfrak mI$. All three generators lie in $\\mathfrak m$, and modulo $\\mathfrak m^2$ they are $x$, $y$, $0$. So $I + \\mathfrak m^2 = \\mathfrak m$, and since $\\mathfrak m$ is finitely generated, Nakayama (part 3, with $N = I$ and $M = \\mathfrak m$, using $\\mathfrak m\\cdot\\mathfrak m = \\mathfrak m^2$) gives $I = \\mathfrak m$. Hence $I$ also needs exactly $2$ generators, for instance $x + y^2$ and $y + x^2$, and the third generator is redundant: $x^3 - y^3$ is an $R$-combination of the first two. Note that the analogous statement fails in the polynomial ring $k[x,y]$ itself: there $(x + y^2, y + x^2)$ is not $(x,y)$, since the two curves also pass through $(-1,-1)$ (substitute: $-1 + 1 = 0$ twice); after localising at the origin the other intersection points are forgotten.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "pitfall",
+"body": "- Finite generation is essential. $\\mathbb Q$ is a $\\mathbb Z_{(p)}$-module with $p\\mathbb Q = \\mathbb Q$, yet $\\mathbb Q \\ne 0$. Nakayama does not apply because $\\mathbb Q$ is not finitely generated over $\\mathbb Z_{(p)}$.\n- The hypothesis $I \\subseteq \\mathfrak m$ (more generally $I$ inside the Jacobson radical) is essential: over $\\mathbb Z$, $2\\cdot(\\mathbb Z/3) = \\mathbb Z/3 \\ne 0$.\n- \"Minimal generating set\" in a non-local ring need not have a well-defined size: $\\mathbb Z = (1) = (2, 3)$, and $\\{2,3\\}$ is a minimal generating set (neither element alone generates). Over a local ring all minimal generating sets have the same size.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Let $(R, \\mathfrak m)$ be local and $u \\in R$. Show that if $u \\equiv 1 \\pmod{\\mathfrak m}$ then $u$ is a unit, and deduce part 2 of Nakayama from part 1.\n2. (Basic) Find the minimal number of generators of $(x^2, xy, y^2)$ in $k[x,y]_{(x,y)}$.\n3. (Medium) Let $(R, \\mathfrak m)$ be local Noetherian and $\\varphi\\colon M \\to M$ a surjective endomorphism of a finitely generated module. Show $\\varphi$ is injective (make $M$ a module over $R[t]$ with $t$ acting as $\\varphi$ and apply part 1 with $I = (t)$).\n4. (Medium) Show that a finitely generated module $M$ over a local ring with $M \\otimes_R k = 0$ is zero.\n5. (Harder) Let $R$ be local and $F_1 \\to F_0 \\to M \\to 0$ a presentation by finite free modules with $F_0 \\to M$ inducing an isomorphism $F_0/\\mathfrak mF_0 \\cong M/\\mathfrak mM$. Show that the image of $F_1$ lies in $\\mathfrak mF_0$. (This is the first step towards minimal free resolutions.)"
+},
+{
+"type": "section",
+"title": "Localising modules",
+"body": "The same fractions make sense with numerators in a module. Localising modules is what makes localisation a tool rather than a curiosity: it turns an $A$-module into an $S^{-1}A$-module, it preserves exact sequences, and it agrees with base change along $A \\to S^{-1}A$. The results in this section are used in every paper in our list, usually without being stated.",
+"src": [
+"stacks",
+"gathmann",
+"vakil"
+]
+},
+{
+"type": "definition",
+"title": "Localisation of a module",
+"body": "Let $M$ be an $A$-module and $S \\subseteq A$ multiplicative. On $M \\times S$ put $(m, s) \\sim (n, t)$ iff $u(tm - sn) = 0$ for some $u \\in S$, and let $S^{-1}M$ be the set of classes $m/s$. With\n$$\\frac{m}{s} + \\frac{n}{t} = \\frac{tm + sn}{st}, \\qquad \\frac{a}{s}\\cdot\\frac{m}{t} = \\frac{am}{st},$$\n$S^{-1}M$ is an $S^{-1}A$-module, and $m \\mapsto m/1$ is $A$-linear. One writes $M_f$ and $M_{\\mathfrak p}$ as for rings. An $A$-linear map $\\varphi\\colon M \\to N$ induces the $S^{-1}A$-linear map $S^{-1}\\varphi\\colon m/s \\mapsto \\varphi(m)/s$, and $S^{-1}$ is a functor. The checks that $\\sim$ is an equivalence and the operations are well defined are word for word those for rings.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "Localisation is exact",
+"body": "If $L \\xrightarrow{\\alpha} M \\xrightarrow{\\beta} N$ is exact, then $S^{-1}L \\to S^{-1}M \\to S^{-1}N$ is exact. Consequently localisation preserves injections, surjections, kernels, images and cokernels, and for submodules $N, N' \\subseteq M$:\n$$S^{-1}(M/N) \\cong S^{-1}M/S^{-1}N,\\quad S^{-1}(N + N') = S^{-1}N + S^{-1}N',\\quad S^{-1}(N \\cap N') = S^{-1}N \\cap S^{-1}N',\\quad S^{-1}(M \\oplus M') \\cong S^{-1}M \\oplus S^{-1}M'.$$",
+"src": [
+"stacks",
+"gathmann",
+"vakil",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "The composite $S^{-1}\\beta \\circ S^{-1}\\alpha = S^{-1}(\\beta\\alpha) = 0$. Conversely let $m/s \\in \\ker S^{-1}\\beta$, i.e. $\\beta(m)/s = 0$, so $u\\beta(m) = 0$ for some $u \\in S$. Then $um \\in \\ker\\beta = \\operatorname{im}\\alpha$, say $um = \\alpha(l)$, and $m/s = um/us = S^{-1}\\alpha(l/us)$.\n\nFor the consequences: apply exactness to $0 \\to N \\to M \\to M/N \\to 0$ to get the quotient formula, and to $0 \\to \\ker \\to M \\to N$, $M \\to N \\to \\operatorname{coker} \\to 0$ for kernels and cokernels. Sums: $S^{-1}(N + N')$ is the image of $S^{-1}(N \\oplus N')$, and direct sums are preserved because a fraction $(n, n')/s$ is the same as $(n/s, n'/s)$. Intersections: $N \\cap N'$ is the kernel of $M \\to M/N \\oplus M/N'$, and kernels and finite direct sums are preserved.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "Localisation is base change",
+"body": "For every $A$-module $M$ there is an isomorphism of $S^{-1}A$-modules\n$$S^{-1}A \\otimes_A M \\xrightarrow{\\ \\sim\\ } S^{-1}M, \\qquad \\frac{a}{s} \\otimes m \\mapsto \\frac{am}{s},$$\nnatural in $M$. Consequently $S^{-1}A$ is a flat $A$-module: $S^{-1}A \\otimes_A -$ preserves injective maps.",
+"src": [
+"gathmann",
+"vakil",
+"am"
+]
+},
+{
+"type": "proof",
+"body": "We use the tensor product of $A$-modules as in [[tensor-products]]: $P \\otimes_A M$ is generated by symbols $p \\otimes m$, bilinear in $p$ and $m$, with $ap \\otimes m = p \\otimes am$, and a map out of it is the same as an $A$-bilinear map out of $P \\times M$.\n\nThe map $(a/s, m) \\mapsto am/s$ is well defined (if $a/s = b/t$ with $u(at - bs) = 0$, then $u(t\\cdot am - s\\cdot bm) = 0$) and bilinear, so it induces $\\Phi\\colon S^{-1}A \\otimes_A M \\to S^{-1}M$, which is surjective since $m/s = \\Phi((1/s) \\otimes m)$.\n\nEvery element of the tensor product has the form $(1/s) \\otimes m$: given $\\sum_i (a_i/s_i) \\otimes m_i$, put $s = \\prod s_i$ and $s_i' = s/s_i$; then $(a_i/s_i) \\otimes m_i = (a_is_i'/s) \\otimes m_i = (1/s) \\otimes a_is_i'm_i$, and the sum is $(1/s) \\otimes \\sum_i a_is_i'm_i$.\n\nInjectivity: suppose $\\Phi((1/s) \\otimes m) = m/s = 0$, i.e. $um = 0$ for some $u \\in S$. Then $(1/s) \\otimes m = (u/us) \\otimes m = (1/us) \\otimes um = 0$.\n\nFlatness: if $N \\to M$ is injective then so is $S^{-1}N \\to S^{-1}M$, by exactness, and under the isomorphism this is $S^{-1}A \\otimes N \\to S^{-1}A \\otimes M$.",
+"src": [
+"gathmann",
+"vakil"
+]
+},
+{
+"type": "views",
+"title": "Four descriptions of $S^{-1}M$",
+"items": [
+{
+"label": "Fractions",
+"body": "Classes $m/s$ under $u(tm - sn) = 0$: the definition in the Stacks Project and Gathmann, convenient for computing kernels.",
+"src": [
+"stacks",
+"gathmann"
+]
+},
+{
+"label": "Base change",
+"body": "$S^{-1}M = S^{-1}A \\otimes_A M$, so module localisation is extension of scalars along $A \\to S^{-1}A$. Gathmann proves it as Lemma 6.19; Vakil marks the isomorphism as an important exercise (2.3.K) and uses it to transport facts about tensor products.",
+"src": [
+"gathmann",
+"vakil"
+]
+},
+{
+"label": "Reflection",
+"body": "$S^{-1}A$-modules are the same as $A$-modules on which every $s \\in S$ acts bijectively (Stacks Lemma 10.9.5), and $M \\to S^{-1}M$ is the universal map from $M$ to such a module: for any $N$ on which $S$ acts invertibly, $\\operatorname{Hom}_A(S^{-1}M, N) \\cong \\operatorname{Hom}_A(M, N)$ (Lemma 10.9.7). In Vakil's terms (Exercise 2.5.G) localisation is left adjoint to the forgetful functor from $S^{-1}A$-modules to $A$-modules.",
+"src": [
+"stacks",
+"vakil"
+]
+},
+{
+"label": "Colimit",
+"body": "$S^{-1}M = \\operatorname{colim}_{f \\in S} M_f$, the colimit over $S$ preordered by divisibility (Stacks Lemma 10.9.9; Vakil Exercise 2.4.E for rings). So a general localisation is built from localisations at single elements, which is how the stalk $\\mathcal O_{X,\\mathfrak p} = A_{\\mathfrak p}$ arises from the rings $A_f$ with $f \\notin \\mathfrak p$.",
+"src": [
+"stacks",
+"vakil"
+]
+}
+]
+},
+{
+"type": "example",
+"title": "Localising a finitely generated abelian group",
+"body": "Let $M = \\mathbb Z \\oplus \\mathbb Z/4 \\oplus \\mathbb Z/9 \\oplus \\mathbb Z/5$. Compute $M_{(2)}$, $M_{(3)}$, $M[1/2]$ and $M \\otimes_{\\mathbb Z} \\mathbb Q$.",
+"solution": "Localisation commutes with finite direct sums, so localise each summand. For a cyclic module, $S^{-1}(\\mathbb Z/n) = S^{-1}\\mathbb Z/nS^{-1}\\mathbb Z$ by the quotient formula.\n\nAt $(2)$: $\\mathbb Z_{(2)}/4\\mathbb Z_{(2)} \\cong \\mathbb Z/4$, while $9$ and $5$ are units of $\\mathbb Z_{(2)}$, so $\\mathbb Z_{(2)}/9\\mathbb Z_{(2)} = 0 = \\mathbb Z_{(2)}/5\\mathbb Z_{(2)}$. Thus $M_{(2)} \\cong \\mathbb Z_{(2)} \\oplus \\mathbb Z/4$.\n\nAt $(3)$: $M_{(3)} \\cong \\mathbb Z_{(3)} \\oplus \\mathbb Z/9$.\n\nInverting $2$: $4$ becomes a unit, killing $\\mathbb Z/4$; the others survive because $9$ and $5$ stay non-units and $\\mathbb Z[1/2]/9\\mathbb Z[1/2] \\cong \\mathbb Z/9$ ($2$ is already invertible mod $9$). So $M[1/2] \\cong \\mathbb Z[1/2] \\oplus \\mathbb Z/9 \\oplus \\mathbb Z/5$.\n\nOver $\\mathbb Q$ every nonzero integer is a unit: $M \\otimes \\mathbb Q \\cong \\mathbb Q$. The torsion is invisible, and the rank of $M$ is $\\dim_{\\mathbb Q} M \\otimes \\mathbb Q = 1$. In terms of the structure theorem of [[modules]], localising at $(p)$ keeps the free part and the $p$-primary part and discards the rest.",
+"src": [
+"gathmann",
+"stacks"
+]
+},
+{
+"type": "theorem",
+"title": "Hom and localisation",
+"body": "If $M$ is finitely presented (there is an exact sequence $A^m \\to A^n \\to M \\to 0$), then for every $A$-module $N$ the natural map\n$$S^{-1}\\operatorname{Hom}_A(M, N) \\to \\operatorname{Hom}_{S^{-1}A}(S^{-1}M, S^{-1}N), \\qquad \\frac{\\varphi}{s} \\mapsto \\frac{1}{s}S^{-1}\\varphi,$$\nis an isomorphism. If $M$ is only finitely generated, it is injective, and two maps $M \\to N$ agree after localising iff $s\\varphi = s\\psi$ for some $s \\in S$.",
+"src": [
+"vakil",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "Following the hint in Vakil's Exercise 2.6.G: $\\operatorname{Hom}_A(-, N)$ is left exact, so the presentation gives an exact sequence $0 \\to \\operatorname{Hom}_A(M, N) \\to N^n \\to N^m$. Localising, which is exact, gives\n$$0 \\to S^{-1}\\operatorname{Hom}_A(M, N) \\to (S^{-1}N)^n \\to (S^{-1}N)^m .$$\nOn the other hand the localised presentation $(S^{-1}A)^m \\to (S^{-1}A)^n \\to S^{-1}M \\to 0$ is exact, and $\\operatorname{Hom}_{S^{-1}A}(-, S^{-1}N)$ gives $0 \\to \\operatorname{Hom}(S^{-1}M, S^{-1}N) \\to (S^{-1}N)^n \\to (S^{-1}N)^m$ with the same right-hand map (it is given by the same matrix). Both are kernels of the same map, and the natural map is compatible with the inclusions, so it is an isomorphism. For $M$ finitely generated only the first half of the argument is available ($A^n \\to M \\to 0$), which gives injectivity; this is Lombardi's Fait 1.13, and the finitely presented case is his Fait 1.14.",
+"src": [
+"vakil",
+"lomb"
+]
+},
+{
+"type": "pitfall",
+"body": "The finiteness hypothesis in Vakil's and Lombardi's statements cannot be dropped. Let $M = \\bigoplus_p \\mathbb Z/p$ over all primes $p$, and $S = \\mathbb Z \\setminus \\{0\\}$. Then $S^{-1}M = M \\otimes \\mathbb Q = 0$, so the right side is $0$; but $\\operatorname{Hom}_{\\mathbb Z}(M, M) = \\prod_p \\mathbb Z/p$ contains the element $(1, 1, 1, \\dots)$, which no nonzero integer kills, so $S^{-1}\\operatorname{Hom}(M, M) \\ne 0$.",
+"src": [
+"vakil",
+"lomb"
+]
+},
+{
+"type": "definition",
+"title": "Support and associated primes",
+"body": "The support of an $A$-module $M$ is $\\operatorname{Supp} M = \\{\\mathfrak p \\in \\operatorname{Spec} A : M_{\\mathfrak p} \\ne 0\\}$. A prime $\\mathfrak p$ is associated to $M$ if $\\mathfrak p = \\operatorname{Ann}(x)$ for some $x \\in M$; the set of these is $\\operatorname{Ass} M$. Guan and Hu use these notions without defining them (Mathlib already had them) and formalise, as their Lemma 2.1, the compatibility with localisation: for $A$ Noetherian and $M$ finitely generated,\n$$\\operatorname{Ass}_{S^{-1}A}(S^{-1}M) = \\{\\mathfrak p^e : \\mathfrak p \\in \\operatorname{Ass} M,\\ \\mathfrak p \\cap S = \\varnothing\\},$$\nthat is, $\\operatorname{Ass} M \\cap \\operatorname{Spec} S^{-1}A$.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "theorem",
+"title": "Support of a finitely generated module",
+"body": "If $M$ is finitely generated, $\\operatorname{Supp} M = V(\\operatorname{Ann} M)$, a closed subset of $\\operatorname{Spec} A$ (Stacks Lemma 10.40.5).",
+"src": [
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "If $\\mathfrak p \\not\\supseteq \\operatorname{Ann} M$, pick $s \\in \\operatorname{Ann} M \\setminus \\mathfrak p$; it kills every $m$, so $m/t = sm/st = 0$ and $M_{\\mathfrak p} = 0$. Conversely, if $M_{\\mathfrak p} = 0$ and $x_1, \\dots, x_n$ generate $M$, then each $x_i/1 = 0$, so $s_ix_i = 0$ for some $s_i \\notin \\mathfrak p$; the product $s = s_1\\cdots s_n \\notin \\mathfrak p$ kills all generators, so $s \\in \\operatorname{Ann} M \\setminus \\mathfrak p$."
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Compute $(\\mathbb Z/12)_{(3)}$ and $(\\mathbb Z/12)_{(5)}$ as $\\mathbb Z_{(3)}$- and $\\mathbb Z_{(5)}$-modules.\n2. (Basic) Show that $S^{-1}(I) \\cong I \\otimes_A S^{-1}A \\cong IS^{-1}A$ for an ideal $I$, i.e. tensoring an ideal with $S^{-1}A$ does not create torsion.\n3. (Medium) Find $\\operatorname{Supp}_{\\mathbb Z}(\\mathbb Q/\\mathbb Z)$ and show that it is not closed. Why does this not contradict the theorem above?\n4. (Medium) Show that for $A$-modules $M, N$: $S^{-1}(M \\otimes_A N) \\cong S^{-1}M \\otimes_{S^{-1}A} S^{-1}N$.\n5. (Harder) Show that a module $M$ is flat if and only if $M_{\\mathfrak m}$ is a flat $A_{\\mathfrak m}$-module for every maximal ideal $\\mathfrak m$. (Use the local-global principle of the next section and the previous exercise.)"
+},
+{
+"type": "section",
+"title": "Associated primes, regular sequences and flat base change",
+"body": "The preliminaries of Guan and Hu's formalisation of the Auslander-Buchsbaum-Serre criterion use three further facts about localisation: how associated primes behave under it (their Lemmas 2.1 and 2.2, used again in Proposition 3.2), that a regular sequence inside a prime $\\mathfrak p$ stays regular in $A_{\\mathfrak p}$ (their §2.4 and Proposition 4.6), and that $A \\to A_{\\mathfrak p}$ is flat but usually not faithfully flat, which is why they prove separate lemmas for localisations at primes instead of quoting general faithfully flat descent. This section proves the first two and explains the third. Recall that $\\operatorname{Ass} M$ is the set of primes of the form $\\operatorname{Ann}(x)$ with $x \\in M$.",
+"src": [
+"guanhu",
+"stacks",
+"brownass"
+]
+},
+{
+"type": "theorem",
+"title": "Associated primes exist",
+"body": "Let $A$ be Noetherian and $M \\ne 0$ an $A$-module. Every ideal that is maximal in the set $\\{\\operatorname{Ann}(x) : x \\in M,\\ x \\ne 0\\}$ is prime. Consequently $\\operatorname{Ass} M \\ne \\varnothing$, and every zero-divisor on $M$ (an $a$ with $ay = 0$ for some $y \\ne 0$) lies in some associated prime of $M$.",
+"src": [
+"brownass",
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "The set is nonempty because $M \\ne 0$, so it has a maximal element, $A$ being Noetherian (every nonempty set of ideals of a Noetherian ring has a maximal element; see [[noetherian-rings]]). Let $\\mathfrak p = \\operatorname{Ann}(x)$ be maximal. It is proper since $x \\ne 0$. Let $ab \\in \\mathfrak p$ with $b \\notin \\mathfrak p$. Then $bx \\ne 0$ and $\\operatorname{Ann}(bx) \\supseteq \\operatorname{Ann}(x) = \\mathfrak p$, so by maximality $\\operatorname{Ann}(bx) = \\mathfrak p$. Since $a(bx) = (ab)x = 0$, we get $a \\in \\mathfrak p$. So $\\mathfrak p$ is prime and lies in $\\operatorname{Ass} M$.\n\nIf $ay = 0$ with $y \\ne 0$, the annihilators $\\operatorname{Ann}(z)$, $z \\ne 0$, that contain $\\operatorname{Ann}(y)$ form a nonempty set; take a maximal one. Any annihilator of a nonzero element containing it also contains $\\operatorname{Ann}(y)$, so it is maximal in the whole set, hence an associated prime, and it contains $a$. (The note [brownass] proves the first part this way; the Stacks Project, Lemmas 10.63.7 and 10.63.9, reaches the same statements through filtrations with quotients $A/\\mathfrak p_i$.)",
+"src": [
+"brownass"
+]
+},
+{
+"type": "theorem",
+"title": "Associated primes and localisation",
+"body": "Let $S \\subseteq A$ be multiplicative and $M$ an $A$-module.\n\n1. If $\\mathfrak p \\in \\operatorname{Ass} M$ and $\\mathfrak p \\cap S = \\varnothing$, then $S^{-1}\\mathfrak p \\in \\operatorname{Ass}_{S^{-1}A}(S^{-1}M)$.\n2. If $A$ is Noetherian, every associated prime of $S^{-1}M$ arises in this way:\n$$\\operatorname{Ass}_{S^{-1}A}(S^{-1}M) = \\{S^{-1}\\mathfrak p : \\mathfrak p \\in \\operatorname{Ass} M,\\ \\mathfrak p \\cap S = \\varnothing\\}.$$\nThis is Guan-Hu Lemma 2.1 and Stacks Lemma 10.63.16.\n3. If $A$ is Noetherian and $M$ is finitely generated, every prime minimal over $\\operatorname{Ann} M$ is associated to $M$ (Guan-Hu Lemma 2.2; Stacks Lemma 10.63.8 for minimal primes of the support).\n\nIn particular, taking $S = A \\setminus \\mathfrak p$ in part 1: if $\\mathfrak p \\in \\operatorname{Ass} M$ then the maximal ideal $\\mathfrak pA_{\\mathfrak p}$ is associated to $M_{\\mathfrak p}$, which is the step used in Guan-Hu Proposition 3.2.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "proof",
+"body": "1. Let $\\mathfrak p = \\operatorname{Ann}(x)$. We show $\\operatorname{Ann}_{S^{-1}A}(x/1) = S^{-1}\\mathfrak p$. If $a \\in \\mathfrak p$ then $(a/s)(x/1) = ax/s = 0$. Conversely, if $(a/s)(x/1) = 0$, then $uax = 0$ for some $u \\in S$, so $ua \\in \\mathfrak p$; since $u \\notin \\mathfrak p$ and $\\mathfrak p$ is prime, $a \\in \\mathfrak p$ and $a/s \\in S^{-1}\\mathfrak p$. The ideal $S^{-1}\\mathfrak p$ is prime by the correspondence theorem (in particular proper, so $x/1 \\ne 0$).\n\n2. Let $Q = \\operatorname{Ann}(x/s)$ be a prime of $S^{-1}A$ and $\\mathfrak p = Q \\cap A$ its contraction, a prime disjoint from $S$ with $Q = S^{-1}\\mathfrak p$. As $A$ is Noetherian, $\\mathfrak p = (a_1, \\dots, a_n)$. Each $(a_i/1)(x/s) = 0$, so $u_ia_ix = 0$ for some $u_i \\in S$. Put $u = u_1\\cdots u_n$ and $y = ux$. Then $a_iy = 0$ for all $i$, so $\\mathfrak p \\subseteq \\operatorname{Ann}(y)$. Conversely, if $by = 0$ then $(b/1)(x/s) = bx/s = bux/(us) = by/(us) = 0$, so $b/1 \\in Q$ and $b \\in \\mathfrak p$. Thus $\\mathfrak p = \\operatorname{Ann}(y) \\in \\operatorname{Ass} M$, and $Q = S^{-1}\\mathfrak p$. Together with part 1 this gives the equality.\n\n3. Let $\\mathfrak p$ be minimal over $\\operatorname{Ann} M$. By the support theorem, $\\mathfrak p \\in V(\\operatorname{Ann} M) = \\operatorname{Supp} M$, so $M_{\\mathfrak p} \\ne 0$. The ring $A_{\\mathfrak p}$ is Noetherian, so by the existence theorem $M_{\\mathfrak p}$ has an associated prime, and by part 2 it is $\\mathfrak qA_{\\mathfrak p}$ for some $\\mathfrak q \\in \\operatorname{Ass} M$ with $\\mathfrak q \\subseteq \\mathfrak p$. Being the annihilator of an element of $M$, $\\mathfrak q$ contains $\\operatorname{Ann} M$; by minimality of $\\mathfrak p$, $\\mathfrak q = \\mathfrak p$. This is Guan and Hu's argument: localise at the minimal prime and use that the localisation has only one prime containing the annihilator.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "example",
+"title": "Associated primes of Z/12 and its localisations",
+"body": "Let $M = \\mathbb Z/12$ as a $\\mathbb Z$-module. Find $\\operatorname{Ass} M$, then $\\operatorname{Ass}$ of $M_{(2)}$, of $M_{(5)}$ and of $M[1/2] = S^{-1}M$ for $S = \\{2^n\\}$, and compare with part 3 of the theorem.",
+"solution": "The annihilator of the class of $x \\ne 0$ is $(12/\\gcd(x, 12))\\mathbb Z$, so the annihilators of nonzero elements are $12\\mathbb Z, 6\\mathbb Z, 4\\mathbb Z, 3\\mathbb Z, 2\\mathbb Z$ (for $\\gcd = 1, 2, 3, 4, 6$). The prime ones are $2\\mathbb Z = \\operatorname{Ann}(6)$ and $3\\mathbb Z = \\operatorname{Ann}(4) = \\operatorname{Ann}(8)$. So $\\operatorname{Ass} M = \\{(2), (3)\\}$. Also $\\operatorname{Ann} M = 12\\mathbb Z$, whose minimal primes $(2)$ and $(3)$ are both associated, as part 3 predicts; the maximal annihilators $2\\mathbb Z, 3\\mathbb Z$ are the primes of the existence theorem.\n\nAt $(2)$: of the two associated primes only $(2)$ is disjoint from $\\mathbb Z \\setminus (2)$, so $\\operatorname{Ass} M_{(2)} = \\{2\\mathbb Z_{(2)}\\}$. This matches the direct computation $M_{(2)} \\cong \\mathbb Z/4$ (the $3$-part dies because $3$ is inverted), where $\\operatorname{Ann}(2) = 2\\mathbb Z_{(2)}$.\n\nAt $(5)$: neither associated prime is contained in $(5)$, so $\\operatorname{Ass} M_{(5)} = \\varnothing$; indeed $M_{(5)} = 0$ because $12$ is a unit of $\\mathbb Z_{(5)}$ that kills $M$, consistent with the existence theorem.\n\nFor $S = \\{2^n\\}$: $(2)$ meets $S$ and $(3)$ does not, so $\\operatorname{Ass} S^{-1}M = \\{3\\mathbb Z[1/2]\\}$, and indeed $S^{-1}M \\cong \\mathbb Z/3$ (the $\\mathbb Z/4$ part is killed by $4 \\in S$).",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "theorem",
+"title": "Regular sequences under localisation",
+"body": "Following Stacks Definition 10.68.1, $x_1, \\dots, x_r \\in A$ is an $M$-regular sequence if each $x_i$ is a non-zero-divisor on $M/(x_1, \\dots, x_{i-1})M$ and $M/(x_1, \\dots, x_r)M \\ne 0$. Let $x_1, \\dots, x_r$ be $M$-regular and $S \\subseteq A$ multiplicative.\n\n1. Each $x_i/1$ is a non-zero-divisor on $S^{-1}M/(x_1/1, \\dots, x_{i-1}/1)S^{-1}M$. Hence $x_1/1, \\dots, x_r/1$ is $S^{-1}M$-regular as soon as $S^{-1}M/(x_1, \\dots, x_r)S^{-1}M \\ne 0$.\n2. If $M$ is finitely generated, $\\mathfrak p \\in \\operatorname{Supp} M$ and all $x_i \\in \\mathfrak p$, then $x_1/1, \\dots, x_r/1$ is an $M_{\\mathfrak p}$-regular sequence in $A_{\\mathfrak p}$.\n\nPart 2 is the step behind Guan-Hu Proposition 4.6, $\\operatorname{depth}_{\\mathfrak p} M \\le \\operatorname{depth} M_{\\mathfrak p}$; the Stacks Project chooses this definition, without requiring the $x_i$ to lie in a maximal ideal, because it is then preserved under localisation, whereas that requirement is not preserved in passing from $A$ to $A_{\\mathfrak p}$.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "proof",
+"body": "Write $I_i = (x_1, \\dots, x_i)$. For any ideal $I$ we have $S^{-1}(IM) = (S^{-1}I)(S^{-1}M)$: an element $(\\sum_j a_jm_j)/s$ with $a_j \\in I$ equals $\\sum_j (a_j/1)(m_j/s)$, and conversely $(a/t)(m/s) = am/(ts)$. Since localisation is exact, $S^{-1}(M/I_{i-1}M) \\cong S^{-1}M/(S^{-1}I_{i-1})S^{-1}M$, and $S^{-1}I_{i-1}$ is generated by $x_1/1, \\dots, x_{i-1}/1$.\n\n1. Multiplication by $x_i$ is injective on $N = M/I_{i-1}M$, i.e. $0 \\to N \\xrightarrow{x_i} N$ is exact. Localising preserves exactness, and $S^{-1}$ of multiplication by $x_i$ is multiplication by $x_i/1$; so $x_i/1$ is injective on $S^{-1}N$, which is the module in the statement by the first paragraph.\n\n2. By part 1 only the last condition needs proof. $M_{\\mathfrak p}$ is a finitely generated module over the local ring $A_{\\mathfrak p}$, and it is nonzero because $\\mathfrak p \\in \\operatorname{Supp} M$. Since all $x_i/1$ lie in $\\mathfrak pA_{\\mathfrak p}$, we have $(x_1, \\dots, x_r)M_{\\mathfrak p} \\subseteq \\mathfrak pA_{\\mathfrak p}M_{\\mathfrak p}$, and Nakayama's lemma gives $\\mathfrak pA_{\\mathfrak p}M_{\\mathfrak p} \\ne M_{\\mathfrak p}$. Hence $M_{\\mathfrak p}/(x_1, \\dots, x_r)M_{\\mathfrak p} \\ne 0$.\n\nThe hypothesis $x_i \\in \\mathfrak p$ cannot be dropped: $2$ is a $\\mathbb Z$-regular sequence, but in $\\mathbb Z_{(3)}$ it is a unit and $\\mathbb Z_{(3)}/2\\mathbb Z_{(3)} = 0$.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "A sequence that becomes regular after localising",
+"body": "In $A = k[x, y, z]$ ($k$ a field) the Stacks Project (Example 10.68.2) notes that $x, y(1-x), z(1-x)$ is $A$-regular while $y(1-x), z(1-x), x$ is not. Verify the second claim, and show that $y(1-x), z(1-x), x$ is regular in $A_{\\mathfrak m}$ for $\\mathfrak m = (x, y, z)$.",
+"solution": "In $A/(y(1-x))$ the class of $y$ is nonzero: $y = y(1-x)g$ would force $(1-x)g = 1$, impossible by degrees. But $z(1-x)\\cdot y = z\\cdot y(1-x) \\in (y(1-x))$. So $z(1-x)$ is a zero-divisor on $A/(y(1-x))$ and the sequence is not regular.\n\nIn $A_{\\mathfrak m}$ the element $1 - x \\notin \\mathfrak m$ is a unit. Hence $(y(1-x)) = (y)$ and $(y(1-x), z(1-x)) = (y, z)$ as ideals of $A_{\\mathfrak m}$, and multiplying an element by a unit does not change whether it is a non-zero-divisor on a module. So $y(1-x), z(1-x), x$ is $A_{\\mathfrak m}$-regular if and only if $y, z, x$ is. Now $y, z, x$ is $A$-regular: $A/(y) \\cong k[x, z]$, on which $z$ is a non-zero-divisor; $A/(y, z) \\cong k[x]$, on which $x$ is a non-zero-divisor; and $A/(y, z, x) \\cong k \\ne 0$. All three lie in $\\mathfrak m$, $A$ is finitely generated over itself and $\\mathfrak m \\in \\operatorname{Supp} A$, so part 2 of the theorem shows that $y, z, x$ is $A_{\\mathfrak m}$-regular. (Stacks Lemma 10.68.4 explains the general phenomenon: over a Noetherian local ring every permutation of a regular sequence of a finitely generated module is regular.)",
+"src": [
+"stacks"
+]
+},
+{
+"type": "theorem",
+"title": "Localisation is flat but rarely faithfully flat",
+"body": "A flat ring map $A \\to B$ is faithfully flat (Stacks Definition 10.39.1) if a complex of $A$-modules is exact exactly when it stays exact after $- \\otimes_A B$; by Stacks Lemma 10.39.16 this holds if and only if $\\operatorname{Spec} B \\to \\operatorname{Spec} A$ is surjective. For a multiplicative set $S \\subseteq A$ the following are equivalent:\n\n1. $A \\to S^{-1}A$ is faithfully flat;\n2. $\\operatorname{Spec} S^{-1}A \\to \\operatorname{Spec} A$ is surjective;\n3. $S^{-1}N \\ne 0$ for every nonzero $A$-module $N$;\n4. every element of $S$ is a unit of $A$, so that $A \\to S^{-1}A$ is an isomorphism.\n\nIn particular $A \\to A_{\\mathfrak p}$ is faithfully flat only when $A$ is local with maximal ideal $\\mathfrak p$.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "proof",
+"body": "$S^{-1}A$ is flat over $A$ because localisation is exact and $S^{-1}N \\cong N \\otimes_A S^{-1}A$. So (1) and (2) are equivalent by Stacks Lemma 10.39.16.\n\n(2) implies (4): the image of $\\operatorname{Spec} S^{-1}A$ is the set of primes disjoint from $S$. If some $s \\in S$ were not a unit, it would lie in a maximal ideal $\\mathfrak m$, which meets $S$ and so is not in the image.\n\n(3) implies (4): if $s \\in S$ is not a unit, then $N = A/sA \\ne 0$, but $S^{-1}N = 0$, because for $n \\in N$ and $t \\in S$ we have $n/t = sn/(st) = 0$, as $sn = 0$ in $N$.\n\n(4) implies (1), (2), (3): if $S$ consists of units then $\\iota\\colon A \\to S^{-1}A$ satisfies Strickland's conditions with $B = A$ and the identity map (every $a/s$ equals $\\iota(as^{-1})$, and $sa = 0$ forces $a = 0$), so $\\iota$ is an isomorphism, and an isomorphism has all three properties.\n\nFor the last sentence, $A \\setminus \\mathfrak p$ consists of units exactly when every non-unit lies in $\\mathfrak p$, i.e. when $\\mathfrak p$ is the unique maximal ideal.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "pitfall",
+"body": "- An $M$-regular sequence need not stay regular in $A_{\\mathfrak p}$ if some $x_i \\notin \\mathfrak p$: the quotient can become zero. Conversely, a sequence can be regular in some $A_{\\mathfrak m}$ without being regular in $A$ (the example above, at $\\mathfrak m = (x, y, z)$). Each single condition \"$x_i$ is a non-zero-divisor on $M/I_{i-1}M$\" is a local property, since it says that a kernel vanishes, so the failure in $A$ must show up at some other maximal ideal: in the example, at one containing $1 - x$, where $x$ becomes a unit.\n- Texts on local rings often require the elements of a regular sequence to lie in the maximal ideal; the Stacks Project does not, and it is the version without this requirement that localises.\n- Flatness of $A_{\\mathfrak p}$ lets one push exact sequences and regular sequences forward, but faithful flatness, which would let one pull properties back from $A_{\\mathfrak p}$ to $A$, fails unless $A$ is local with maximal ideal $\\mathfrak p$. Properties of $A$ are recovered from all localisations together, by the local-global principle of the next section; this is why Guan and Hu prove separate lemmas for $R \\to R_{\\mathfrak p}$ rather than apply general faithfully flat base change.",
+"src": [
+"stacks",
+"guanhu"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Find $\\operatorname{Ass}_{\\mathbb Z}(\\mathbb Z/360)$, and use the localisation theorem to find the associated primes of $(\\mathbb Z/360)_{(3)}$ and of $S^{-1}(\\mathbb Z/360)$ for $S = \\{5^n\\}$.\n2. (Basic) Let $A$ be Noetherian and $M \\ne 0$. Show that the set of zero-divisors on $M$ is exactly the union of the associated primes of $M$.\n3. (Medium) Let $A = k[x, y]$ and $M = A/(x^2, xy)$. Show that $\\operatorname{Ass} M = \\{(x), (x, y)\\}$ (find elements with these annihilators and show there are no others), and compute $\\operatorname{Ass} M_{(x)}$ and $\\operatorname{Ass} M_{(x,y)}$.\n4. (Medium) Let $A$ be Noetherian and $M$ any $A$-module. Show that $\\mathfrak p \\in \\operatorname{Supp} M$ if and only if some associated prime of $M$ is contained in $\\mathfrak p$.\n5. (Harder) Show that $x \\in A$ is a non-zero-divisor on $M$ if and only if $x/1$ is a non-zero-divisor on $M_{\\mathfrak m}$ for every maximal ideal $\\mathfrak m$, and deduce that for $M$ finitely generated over a Noetherian ring, a sequence $x_1, \\dots, x_r$ with $M/(x_1, \\dots, x_r)M \\ne 0$ is $M$-regular if and only if, for every maximal $\\mathfrak m$, its image satisfies the non-zero-divisor conditions on $M_{\\mathfrak m}$."
+},
+{
+"type": "section",
+"title": "Local properties and the local-global principle",
+"body": "A property of rings or modules is local if it holds for $A$ (or $M$) exactly when it holds for every localisation $A_{\\mathfrak p}$ (or $M_{\\mathfrak p}$), equivalently for every $A_{\\mathfrak m}$ with $\\mathfrak m$ maximal. Atiyah-Macdonald have a section called Local properties, Gathmann proves the basic cases in Proposition 6.27 and the exercises after it, and Lombardi gives \"concrete\" versions in which the infinitely many primes are replaced by finitely many elements generating the unit ideal. The second form is the one that glues: it is the algebra behind the structure sheaf of an affine scheme.",
+"src": [
+"am",
+"gathmann",
+"lomb"
+]
+},
+{
+"type": "theorem",
+"title": "Basic local properties",
+"body": "Let $M$ be an $A$-module. The following hold, and in each case \"for all primes\" may be replaced by \"for all maximal ideals\".\n\n1. $M = 0$ if and only if $M_{\\mathfrak p} = 0$ for all primes $\\mathfrak p$.\n2. A sequence $L \\to M \\to N$ is exact if and only if all $L_{\\mathfrak p} \\to M_{\\mathfrak p} \\to N_{\\mathfrak p}$ are exact. In particular injectivity and surjectivity of a map are local.\n3. For submodules $N, N' \\subseteq M$: $N \\subseteq N'$ iff $N_{\\mathfrak p} \\subseteq N'_{\\mathfrak p}$ for all $\\mathfrak p$; so equality of ideals is local.\n4. $A$ is reduced iff every $A_{\\mathfrak p}$ is reduced.\n5. An element $x \\in M$ is zero iff $x/1 = 0$ in every $M_{\\mathfrak m}$.",
+"src": [
+"gathmann",
+"am",
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "5 (and hence 1). Suppose $x \\ne 0$. Its annihilator $\\operatorname{Ann}(x)$ is a proper ideal (it misses $1$), so it is contained in some maximal ideal $\\mathfrak m$. If $x/1 = 0$ in $M_{\\mathfrak m}$ there is $s \\notin \\mathfrak m$ with $sx = 0$, i.e. $s \\in \\operatorname{Ann}(x) \\subseteq \\mathfrak m$, a contradiction. So some $x/1 \\ne 0$. Applying this to every $x$ gives 1 for maximal ideals; the version with all primes follows since $M_{\\mathfrak m} = 0$ is among the conditions.\n\n2. One direction is exactness of localisation. Conversely let $H = \\ker(M \\to N)/\\operatorname{im}(L \\to M)$. Localisation commutes with kernels, images and quotients, so $H_{\\mathfrak m}$ is the homology of the localised sequence, which is $0$. By 1, $H = 0$.\n\n3. Apply 1 to $(N + N')/N'$, whose localisation is $(N_{\\mathfrak p} + N'_{\\mathfrak p})/N'_{\\mathfrak p}$.\n\n4. The nilradical commutes with localisation (exercise 4 of the section on ideals, or part 6 of the extension theorem applied to $I = 0$): $\\sqrt{0}_{\\mathfrak p} = \\sqrt{0_{A_{\\mathfrak p}}}$. By 1, $\\sqrt 0 = 0$ iff all its localisations vanish.",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "example",
+"title": "Being a domain is not local",
+"body": "Let $A = \\mathbb Z/6$. Show that every localisation of $A$ at a prime is a field, but $A$ is not a domain.",
+"solution": "$A \\cong \\mathbb Z/2 \\times \\mathbb Z/3$ has the two primes $\\mathfrak p_2 = (2)$ and $\\mathfrak p_3 = (3)$. At $\\mathfrak p_2$, the element $3 \\notin \\mathfrak p_2$ becomes invertible, and $3 \\cdot 2 = 0$, so $2/1 = 0$; hence $A_{\\mathfrak p_2}$ is a quotient of $A/(2) = \\mathbb F_2$, and it is nonzero (localising at a prime never gives $0$), so $A_{\\mathfrak p_2} \\cong \\mathbb F_2$. Similarly $A_{\\mathfrak p_3} \\cong \\mathbb F_3$. Both are fields, in particular domains, but $2 \\cdot 3 = 0$ in $A$. Gathmann's Exercise 6.29 asks for exactly this phenomenon (being a domain is not a local property), and Wikipedia mentions a more drastic case: an infinite product of fields is neither a domain nor Noetherian, although all its local rings are fields. Geometrically, $\\operatorname{Spec} A$ is two points, and a domain must have irreducible spectrum, a condition that cannot be seen one point at a time.",
+"src": [
+"gathmann",
+"wloc"
+]
+},
+{
+"type": "theorem",
+"title": "Concrete local-global principle",
+"body": "Let $s_1, \\dots, s_n \\in A$ generate the unit ideal, $s_1A + \\dots + s_nA = A$. Then for $a \\in A$ and an $A$-module $M$:\n\n1. if $m \\in M$ and $m/1 = 0$ in every $M_{s_i}$, then $m = 0$;\n2. $a$ is a unit iff $a/1$ is a unit in every $A_{s_i}$;\n3. $a$ is a non-zero-divisor iff $a/1$ is a non-zero-divisor in every $A_{s_i}$.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "First, for any $N \\ge 1$ the powers $s_1^N, \\dots, s_n^N$ also generate the unit ideal: from $1 = \\sum c_is_i$, raising to the power $n(N-1) + 1$ and expanding, every monomial contains some $s_i$ with exponent at least $N$.\n\n1. $m/1 = 0$ in $M_{s_i}$ means $s_i^{N_i}m = 0$. Take $N = \\max N_i$ and write $1 = \\sum d_is_i^N$; then $m = \\sum d_is_i^Nm = 0$.\n\n2. If $a/1$ is a unit in $A_{s_i}$ then $(a/1)(b_i/s_i^{k}) = 1$, so $s_i^{l}(ab_i - s_i^{k}) = 0$ and $s_i^{k+l} \\in aA$. So the ideal $aA$ contains a power of each $s_i$, hence a set of elements generating the unit ideal (raise to a common exponent as above), so $aA = A$.\n\n3. If $ab = 0$ then $(a/1)(b/1) = 0$ in each $A_{s_i}$, so $b/1 = 0$ in each $A_{s_i}$, and $b = 0$ by 1. The converse uses that $A \\to A_{s_i}$ is flat: multiplication by $a$ is injective on $A$, hence on $A_{s_i}$ by exactness.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "theorem",
+"title": "Glueing: the sheaf condition for localisations",
+"body": "Let $f_1, \\dots, f_n$ generate the unit ideal of $A$ and let $M$ be an $A$-module. Then the sequence\n$$0 \\to M \\xrightarrow{\\ \\alpha\\ } \\bigoplus_{i} M_{f_i} \\xrightarrow{\\ \\beta\\ } \\bigoplus_{i,j} M_{f_if_j}$$\nis exact, where $\\alpha(m) = (m/1)_i$ and $\\beta\\big((m_i)_i\\big) = (m_i - m_j)_{i,j}$, the differences being taken in $M_{f_if_j}$ (into which both $M_{f_i}$ and $M_{f_j}$ map).",
+"src": [
+"stacks"
+]
+},
+{
+"type": "proof",
+"body": "This is the Stacks Project's argument (Lemma 10.24.1). By the local properties above, exactness may be checked after localising at each maximal ideal $\\mathfrak m$. Localising at $\\mathfrak m$ commutes with the finite direct sums and with the localisations $M_{f_i}$ (localisation in stages: both $(M_{f_i})_{\\mathfrak m}$ and $(M_{\\mathfrak m})_{f_i}$ invert the same multiplicative set). Since the $f_i$ generate the unit ideal, not all lie in $\\mathfrak m$; renumber so that $f_1 \\notin \\mathfrak m$. After localising, $f_1$ is a unit, and we may assume $f_1 = 1$, so $M_{f_1} = M$ and $M_{f_1f_j} = M_{f_j}$.\n\nNow $\\alpha$ is injective, because its first component is the identity of $M$. If $(m_i) \\in \\ker\\beta$, then in particular $m_1 - m_j = 0$ in $M_{f_1f_j} = M_{f_j}$ for every $j$, i.e. $m_j$ is the image of $m_1 \\in M$. Thus $(m_i) = \\alpha(m_1)$.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "figure",
+"engine": "tikz",
+"code": "\\begin{tikzcd}[column sep=large]\n0 \\arrow[r] & \\mathbb{Z} \\arrow[r,\"\\alpha\"] & \\mathbb{Z}[\\tfrac12]\\oplus\\mathbb{Z}[\\tfrac13] \\arrow[r,\"\\beta\"] & \\mathbb{Z}[\\tfrac16]\n\\end{tikzcd}\n",
+"caption": "The glueing sequence for $A = M = \\mathbb Z$ and the generators $f_1 = 2$, $f_2 = 3$ of the unit ideal (keeping only the component $(1,2)$ of $\\beta$, as the others are $0$ or determined by it), with $\\beta(x, y) = x - y$. Exactness in the middle says $\\mathbb Z[1/2] \\cap \\mathbb Z[1/3] = \\mathbb Z$ inside $\\mathbb Z[1/6]$: a rational number whose denominator is both a power of $2$ and a power of $3$ is an integer.",
+"alt": "An exact sequence: 0, then Z, then the direct sum of Z[1/2] and Z[1/3], then Z[1/6], with arrows alpha and beta.",
+"src": [
+"stacks"
+]
+},
+{
+"type": "views",
+"title": "What 'local' means",
+"items": [
+{
+"label": "Algebraic",
+"body": "A property is local when it can be tested on all $A_{\\mathfrak p}$, or all $A_{\\mathfrak m}$; the proofs reduce to the fact that a module whose localisations vanish is zero.",
+"src": [
+"am",
+"gathmann"
+]
+},
+{
+"label": "Geometric",
+"body": "Localising at $f$ restricts to the open set $D(f)$, where $f$ does not vanish; localising at $\\mathfrak p$ keeps only the germs of functions at the point $\\mathfrak p$. The nLab phrases this through the duality between rings and spaces: $\\operatorname{Spec} R[S^{-1}] \\to \\operatorname{Spec} R$ are the basic open immersions.",
+"src": [
+"gathmann",
+"nlab"
+]
+},
+{
+"label": "Constructive",
+"body": "Lombardi replaces \"for every prime\" by \"on each $A[1/s_i]$ for finitely many comaximal $s_i$\". The abstract principle (all primes) needs choice to produce primes; the concrete one does not, and Lombardi shows how proofs using the abstract version can be turned into algorithms that output the $s_i$.",
+"src": [
+"lomb"
+]
+},
+{
+"label": "Not very local",
+"body": "Grossack points out that Zariski open sets are dense, so the local ring $\\mathcal O_{X,x}$ still remembers a lot of global information: for varieties over an algebraically closed field $k$, if the local rings at a point of $X$ and a point of $Y$ are isomorphic as $k$-algebras, the points have isomorphic open neighbourhoods, so $X$ and $Y$ are birational. To see a genuinely small neighbourhood one completes: by the Cohen structure theorem, regular points of varieties of the same dimension over $k$ all have completed local ring $k[\\![x_1, \\dots, x_n]\\!]$, as in the manifold picture.",
+"src": [
+"grossack"
+]
+}
+]
+},
+{
+"type": "definition",
+"title": "Global notions defined locally",
+"body": "Many classes of rings are defined by a condition on all localisations, and a theorem then shows that maximal ideals suffice.\n\n1. Regular rings: $A$ is regular if every $A_{\\mathfrak p}$ is a regular local ring (Guan-Hu Definition 5.18); it suffices to check maximal ideals (their Theorem 5.20).\n2. Cohen-Macaulay rings: every $A_{\\mathfrak p}$ is a Cohen-Macaulay local ring (Definition 4.11); again maximal ideals suffice (Lemma 4.12).\n3. Dedekind domains: a Noetherian domain all of whose localisations at nonzero primes are discrete valuation rings (Sutherland, Proposition 2.9 and Definition 2.10; see the next section).\n4. Homological invariants: for a finitely generated module over a Noetherian ring, $\\operatorname{pd} M = \\sup_{\\mathfrak p} \\operatorname{pd} M_{\\mathfrak p}$ and $\\operatorname{gldim} A = \\sup_{\\mathfrak p} \\operatorname{gldim} A_{\\mathfrak p}$ (Guan-Hu Lemmas 2.9 and 2.14); localisation can only lower projective dimension (Lemma 2.10), because it carries projective resolutions to projective resolutions.\n5. Projective modules: a finitely presented module is projective iff all its localisations are free; concretely (Lombardi) iff there are comaximal $s_i$ with each $M_{s_i}$ free.\n\nThe definitions of regular and Cohen-Macaulay local rings are not given here; see [[homological-algebra]] for the tools, and Guan-Hu for a complete formal treatment.",
+"src": [
+"guanhu",
+"suth",
+"lomb"
+]
+},
+{
+"type": "theorem",
+"title": "Localising at an idempotent",
+"body": "If $e \\in A$ is idempotent ($e^2 = e$), then $A_e \\cong A/(1 - e) \\cong eA$, where $eA$ is a ring with identity $e$. If $e_1, \\dots, e_n$ are orthogonal idempotents with $\\sum e_i = 1$, then $A \\cong A_{e_1} \\times \\dots \\times A_{e_n}$, and similarly for modules.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "proof",
+"body": "The map $A \\to A/(1-e)$ sends $e$ to $1$, a unit, so it factors through $A_e$; and in $A_e$ we have $e/1 \\cdot (1 - e)/1 = 0$ with $e/1$ a unit, so $1 - e$ dies, giving the inverse map $A/(1-e) \\to A_e$. The map $A \\to eA$, $a \\mapsto ea$, is a surjective ring map with kernel $(1 - e)A$ (if $ea = 0$ then $a = (1-e)a$). For orthogonal idempotents, $A \\to \\prod eA$, $a \\mapsto (e_ia)_i$, is an isomorphism with inverse $(a_i) \\mapsto \\sum a_i$, which is Lombardi's Fait 1.17.",
+"src": [
+"lomb"
+]
+},
+{
+"type": "example",
+"title": "Glueing and idempotents in a small ring",
+"body": "(a) In $A = \\mathbb Z/6$ find the idempotents and compute $A_e$ for each. (b) For the glueing sequence with $A = \\mathbb Z$, $f_1 = 2$, $f_2 = 3$, take $x = 5/2 \\in \\mathbb Z[1/2]$ and $y = 7/3 \\in \\mathbb Z[1/3]$. Compute $\\beta(x, y)$, decide whether $(x, y)$ lies in the image of $\\alpha$, and describe all pairs in $\\ker\\beta$.",
+"solution": "(a) $e^2 = e$ in $\\mathbb Z/6$ means $6 \\mid e(e-1)$: $e \\in \\{0, 1, 3, 4\\}$. Then $A_0 = 0$, $A_1 = A$, $A_3 \\cong A/(1 - 3) = A/(2) \\cong \\mathbb F_2$ and $A_4 \\cong A/(1-4) = A/(3) \\cong \\mathbb F_3$. The orthogonal pair $3, 4$ (indeed $3\\cdot 4 = 12 \\equiv 0$ and $3 + 4 \\equiv 1$) recovers $\\mathbb Z/6 \\cong \\mathbb F_2 \\times \\mathbb F_3$. Inverting the idempotent $3$ gives the same ring as localising at the prime $(2)$, computed in the example on domains.\n\n(b) $\\beta(x, y) = 5/2 - 7/3 = 1/6 \\ne 0$ in $\\mathbb Z[1/6]$, so $(x, y) \\notin \\ker\\beta = \\operatorname{im}\\alpha$. In general a pair $(x, y)$ with $x = y$ in $\\mathbb Z[1/6]$ must have $x \\in \\mathbb Z[1/2] \\cap \\mathbb Z[1/3] = \\mathbb Z$, and then $(x, y) = \\alpha(x)$. The partition of unity behind the proof is $1 = (-1)\\cdot 2 + 1 \\cdot 3$.",
+"src": [
+"lomb",
+"stacks"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that an $A$-module map $\\varphi\\colon M \\to N$ is an isomorphism iff every $\\varphi_{\\mathfrak m}$ is.\n2. (Basic) Find comaximal $s_1, s_2 \\in \\mathbb Z$ such that $\\mathbb Z[1/s_1]$ and $\\mathbb Z[1/s_2]$ are both PIDs with $\\mathbb Z = \\mathbb Z[1/s_1] \\cap \\mathbb Z[1/s_2]$, and check the glueing sequence by hand.\n3. (Medium) Show that $\\operatorname{Spec} A$ is covered by finitely many $D(f_i)$ iff the $f_i$ generate the unit ideal, and deduce that $\\operatorname{Spec} A$ is quasi-compact.\n4. (Medium) Show that being Noetherian is not a local property, using an infinite product of fields $\\prod_{\\mathbb N} \\mathbb F_2$: every localisation at a prime is a field. (You may use that every element $x$ of this ring is idempotent.)\n5. (Harder) Prove the glueing theorem directly, without localising at maximal ideals: given elements $m_i/f_i^N \\in M_{f_i}$ that agree in every $M_{f_if_j}$, use an equation $1 = \\sum_i c_if_i^K$ for a suitable $K$ to write down $m \\in M$ with $m/1 = m_i/f_i^N$ in each $M_{f_i}$."
+},
+{
+"type": "section",
+"title": "Affine schemes in one paragraph",
+"body": "The two theorems above are why localisations are the local functions of algebraic geometry. On $X = \\operatorname{Spec} A$ the open sets $D(f)$ form a basis, $D(f) \\cap D(g) = D(fg)$, and $D(f) \\subseteq D(g)$ gives a restriction map $A_g \\to A_f$ (since $g$ is then invertible in $A_f$). Assigning $A_f$ to $D(f)$ defines a sheaf on this basis, because if $D(f) = \\bigcup_i D(f_i)$ then the $f_i$ generate the unit ideal of $A_f$ and the glueing sequence for the ring $A_f$ is exactly the sheaf condition. The resulting sheaf $\\mathcal O_X$ satisfies (Stacks Lemma 26.5.4; Vakil §5.1)\n$$\\Gamma(X, \\mathcal O_X) = A,\\qquad \\Gamma(D(f), \\mathcal O_X) = A_f,\\qquad \\mathcal O_{X, \\mathfrak p} = A_{\\mathfrak p},$$\nthe last because the stalk is the colimit of the $A_f$ over $f \\notin \\mathfrak p$, which is $A_{\\mathfrak p}$ by the colimit description of localisation. Its stalks are local rings, so $(X, \\mathcal O_X)$ is a locally ringed space, and a ring map $A \\to B$ induces a morphism of locally ringed spaces $\\operatorname{Spec} B \\to \\operatorname{Spec} A$ (the stalk maps $A_{\\mathfrak q^c} \\to B_{\\mathfrak q}$ are local). Xu's paper reproduces these steps for commutative $\\mathbb F_1$-algebras: the universal property of $S^{-1}A$ (his Theorem 3.5), then stalks $A_{\\mathfrak p}$, sections $A_f$ over $D(f)$ and global sections $A$ (Theorem 5.4), with morphisms required to be local on stalks (Definition 5.5), and obtains an anti-equivalence between commutative $\\mathbb F_1$-algebras and what he calls absolute affine schemes. The details belong to [[schemes]].",
+"src": [
+"stacks",
+"vakil",
+"xu"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that if $D(f) \\subseteq D(g)$ then $g$ is a unit in $A_f$, so there is a unique map $A_g \\to A_f$ under $A$.\n2. (Basic) For $X = \\operatorname{Spec}\\mathbb Z$ compute the stalks at $(0)$ and at $(p)$, and $\\Gamma(D(6), \\mathcal O_X)$.\n3. (Medium) Show that if $D(f) = D(g)$ then $A_f$ and $A_g$ are canonically isomorphic under $A$, although they need not be equal as sets of fractions.\n4. (Medium) Let $\\varphi\\colon A \\to B$ be a ring map, $\\mathfrak q$ a prime of $B$ and $\\mathfrak p = \\varphi^{-1}(\\mathfrak q)$. Show that the induced map $A_{\\mathfrak p} \\to B_{\\mathfrak q}$ is a local homomorphism."
+},
+{
+"type": "section",
+"title": "Arithmetic: discrete valuation rings and Dedekind domains",
+"body": "In number theory localisation is used to make ideal theory simple. The ring of integers $\\mathcal O_K$ of a number field may lack unique factorisation (see [[ideals]]), but each localisation $\\mathcal O_{K,\\mathfrak p}$ at a nonzero prime is a discrete valuation ring, a ring whose ideals are just the powers of one prime element. Global information is recovered because a domain is the intersection of its localisations. Sutherland's lecture develops exactly this, and Coykendall and Kettinger study class groups of the rings $\\mathcal O_K[1/\\alpha]$ obtained by inverting one element.",
+"src": [
+"suth",
+"coyk"
+]
+},
+{
+"type": "definition",
+"title": "Discrete valuation ring",
+"body": "A discrete valuation on a field $K$ is a surjective map $v\\colon K^\\times \\to \\mathbb Z$ with $v(xy) = v(x) + v(y)$ and $v(x + y) \\ge \\min(v(x), v(y))$ (when $x + y \\ne 0$). Its valuation ring $R = \\{x \\in K^\\times : v(x) \\ge 0\\} \\cup \\{0\\}$ is a discrete valuation ring (DVR). An element $\\pi$ with $v(\\pi) = 1$ is a uniformiser. A DVR is a local principal ideal domain: its units are the elements of valuation $0$, its maximal ideal is $\\pi R$, and every nonzero ideal is $\\pi^kR$ for a unique $k \\ge 0$. For a Noetherian local domain of dimension one, being a DVR is equivalent to being integrally closed, and also to the maximal ideal being principal (Stacks Lemma 10.119.7, which lists further equivalent conditions).",
+"src": [
+"stacks",
+"suth"
+]
+},
+{
+"type": "example",
+"title": "Localising the integers at a prime",
+"body": "Show that $\\mathbb Z_{(p)}$ is the valuation ring of the $p$-adic valuation $v_p$ on $\\mathbb Q$, find its units and ideals, and its residue field. Do the same for $k[x]_{(x-2)}$.",
+"solution": "Write a nonzero rational as $x = p^k a/b$ with $p \\nmid ab$; then $v_p(x) = k$ is well defined, additive under products, and $v_p(x + y) \\ge \\min(v_p(x), v_p(y))$ (factor out the smaller power of $p$). $x \\in \\mathbb Z_{(p)}$ iff it has a representative with denominator prime to $p$ iff $k \\ge 0$. Units: $v_p(x) = 0$, i.e. $x = a/b$ with $p \\nmid ab$. Every nonzero $x \\in \\mathbb Z_{(p)}$ is $p^{v_p(x)}u$ with $u$ a unit, so an ideal $I \\ne 0$ equals $p^k\\mathbb Z_{(p)}$ with $k$ the least valuation in $I$; here $\\pi = p$. The residue field is $\\mathbb Z_{(p)}/p\\mathbb Z_{(p)} \\cong \\operatorname{Frac}(\\mathbb Z/p) = \\mathbb F_p$, as in the theorem on the local ring at a prime.\n\nFor $k[x]_{(x-2)}$, the rational functions defined at $2$, the valuation is the order of vanishing at $2$, the uniformiser is $x - 2$, the maximal ideal is the set of functions vanishing at $2$, and the residue field is $k$, via evaluation at $2$ (Sutherland, Example 2.4).",
+"src": [
+"suth"
+]
+},
+{
+"type": "theorem",
+"title": "What localisation preserves",
+"body": "Let $A$ be a domain and $S$ multiplicative with $0 \\notin S$.\n\n1. If $A$ is Noetherian, so is $S^{-1}A$; and $\\dim S^{-1}A \\le \\dim A$.\n2. Integral closure commutes with localisation: if $A \\to B$ is a ring map and $B'$ is the integral closure of $A$ in $B$, then the integral closure of $S^{-1}A$ in $S^{-1}B$ is $S^{-1}B'$. In particular, if $A$ is integrally closed, so is $S^{-1}A$.\n3. If $A$ is a Dedekind domain (Noetherian, integrally closed, every nonzero prime maximal), so is $S^{-1}A$.",
+"src": [
+"suth",
+"stacks",
+"coyk"
+]
+},
+{
+"type": "proof",
+"body": "1. Noetherian: proved in the section on ideals. Dimension: chains of primes in $S^{-1}A$ correspond to chains of primes of $A$ avoiding $S$.\n\n2. (Stacks Lemma 10.36.11.) Elements of $S^{-1}B'$ are integral over $S^{-1}A$: if $b$ satisfies a monic equation over $A$, then $b/s$ satisfies the equation obtained by dividing by $s^n$, monic over $S^{-1}A$. Conversely, let $b/t \\in S^{-1}B$ satisfy\n$$(b/t)^n + (a_1/s_1)(b/t)^{n-1} + \\dots + a_n/s_n = 0 .$$\nPut $s = s_1\\cdots s_n$ and multiply by $(st)^n$: we get $(sb)^n + c_1(sb)^{n-1} + \\dots + c_n = 0$ in $S^{-1}B$ with $c_i \\in A$ (each $c_i$ is $a_i$ times a product of the $s_j$ and of powers of $t$). So some $u \\in S$ kills the left side in $B$; multiplying by $u^n$ gives a monic equation for $usb$ over $A$ in $B$. Hence $usb \\in B'$ and $b/t = usb/ust \\in S^{-1}B'$. Sutherland gives the same clearing-of-denominators argument for $B = \\operatorname{Frac}(A)$, which is the second sentence.\n\n3. Noetherian and integrally closed by 1 and 2. A nonzero prime of $S^{-1}A$ is $\\mathfrak p^e$ with $\\mathfrak p \\ne 0$, so $\\mathfrak p$ is maximal in $A$; any prime of $S^{-1}A$ containing $\\mathfrak p^e$ contracts to a prime containing $\\mathfrak p$, hence to $\\mathfrak p$, so $\\mathfrak p^e$ is maximal.",
+"src": [
+"stacks",
+"suth"
+]
+},
+{
+"type": "theorem",
+"title": "A domain is the intersection of its localisations",
+"body": "Let $A$ be a domain with fraction field $K$. Inside $K$,\n$$A = \\bigcap_{\\mathfrak m \\text{ maximal}} A_{\\mathfrak m} = \\bigcap_{\\mathfrak p \\text{ prime}} A_{\\mathfrak p}.$$\nFor example $\\mathbb Z = \\bigcap_p \\mathbb Z_{(p)}$.",
+"src": [
+"suth"
+]
+},
+{
+"type": "proof",
+"body": "Clearly $A$ lies in every $A_{\\mathfrak p}$, and $\\bigcap_{\\mathfrak p} \\subseteq \\bigcap_{\\mathfrak m}$. Let $x \\in K$ lie in every $A_{\\mathfrak m}$ and consider the ideal of denominators $D = \\{d \\in A : dx \\in A\\}$. For each $\\mathfrak m$ write $x = a/s$ with $s \\notin \\mathfrak m$; then $sx = a \\in A$, so $s \\in D \\setminus \\mathfrak m$. Thus $D$ is contained in no maximal ideal, so $D = A$, $1 \\in D$, and $x \\in A$. (Sutherland deduces the statement, also for ideals and modules, from his Proposition 2.6.)"
+},
+{
+"type": "theorem",
+"title": "Dedekind domains are locally DVRs",
+"body": "For a Noetherian domain $A$ the following are equivalent: (i) $A_{\\mathfrak p}$ is a DVR for every nonzero prime $\\mathfrak p$; (ii) $A$ is integrally closed and $\\dim A \\le 1$. Such $A$ is a Dedekind domain. Every PID, in particular $\\mathbb Z$ and $k[x]$, is a Dedekind domain.",
+"src": [
+"suth"
+]
+},
+{
+"type": "proof",
+"body": "(ii) implies (i): $A_{\\mathfrak p}$ is a Noetherian local domain, integrally closed by part 2 of the preservation theorem, and of dimension $1$ (its primes are $0$ and $\\mathfrak pA_{\\mathfrak p}$). By the characterisation of DVRs among Noetherian local domains of dimension one (Stacks Lemma 10.119.7; Sutherland quotes the same fact from his first lecture in the proof of his Proposition 2.9), it is a DVR.\n\n(i) implies (ii): a DVR is integrally closed (if $x \\notin R$ then $v(x) < 0$, and in a monic equation $x^n + a_1x^{n-1} + \\dots + a_n = 0$ the term $x^n$ has strictly smaller valuation than all the others, which is impossible), so by the intersection theorem $A = \\bigcap A_{\\mathfrak p}$ is an intersection of integrally closed rings with the same fraction field, hence integrally closed. If $0 \\ne \\mathfrak q \\subsetneq \\mathfrak p$ were a chain of primes in $A$, then $A_{\\mathfrak p}$ would have the chain $0 \\subsetneq \\mathfrak qA_{\\mathfrak p} \\subsetneq \\mathfrak pA_{\\mathfrak p}$, but a DVR has only two primes. For a PID, each $A_{\\mathfrak p}$ is a local PID that is not a field, which is a DVR (the valuation is the exponent of a generator of $\\mathfrak pA_{\\mathfrak p}$).",
+"src": [
+"suth",
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "A non-principal prime becomes principal locally",
+"body": "In $D = \\mathbb Z[\\sqrt{-5}]$ let $P_2 = (2, 1 + \\sqrt{-5})$, the prime with $P_2^2 = (2)$ from [[ideals]]. Show that $P_2D_{P_2}$ is generated by $1 + \\sqrt{-5}$, so $D_{P_2}$ is a DVR with uniformiser $1 + \\sqrt{-5}$, although $P_2$ is not principal in $D$.",
+"solution": "In $D_{P_2}$ the element $3$ is a unit, since $3 \\notin P_2$ (elements of $P_2$ are $a + b\\sqrt{-5}$ with $a \\equiv b \\pmod 2$). Now $(1 + \\sqrt{-5})(1 - \\sqrt{-5}) = 1 + 5 = 6$, so\n$$2 = \\frac{(1 + \\sqrt{-5})(1 - \\sqrt{-5})}{3} \\in (1 + \\sqrt{-5})D_{P_2}.$$\nHence $P_2D_{P_2} = (2, 1 + \\sqrt{-5})D_{P_2} = (1 + \\sqrt{-5})D_{P_2}$. The local ring is a DVR because $D$ is a Dedekind domain. The valuation of $2$ is $2$ (as $(2) = P_2^2$) and that of $1 + \\sqrt{-5}$ is $1$ (as $(1 + \\sqrt{-5}) = P_2P_3$ with $P_3 = (3, 1+\\sqrt{-5}) \\ne P_2$). Locally at $P_2$ the failure of unique factorisation is invisible: it is a global phenomenon, measured by the class group.",
+"src": [
+"suth"
+]
+},
+{
+"type": "theorem",
+"title": "Class groups of localisations (Claborn)",
+"body": "Let $D$ be a Dedekind domain and $\\alpha \\in D$ a nonzero non-unit with $(\\alpha) = \\mathfrak p_1^{n_1}\\cdots\\mathfrak p_k^{n_k}$. Then\n$$\\operatorname{Cl}(D[1/\\alpha]) \\cong \\operatorname{Cl}(D)/\\langle[\\mathfrak p_1], \\dots, [\\mathfrak p_k]\\rangle .$$\nThis is Theorem 4.1 of Coykendall-Kettinger, a special case of a theorem of Claborn; the proof is not given here (see [coyk] §4 and the references there). Their Theorem 4.2 states that $\\mathcal O_K[1/\\alpha]$ is the integral closure of $\\mathbb Z[1/N(\\alpha)]$ in $K$; read it with care, because the integral closure is $\\mathcal O_K[1/N(\\alpha)]$, which contains $\\mathcal O_K[1/\\alpha]$ and can be strictly larger (see the example 'Inverting an element versus inverting its norm' below; equality holds for instance when $\\alpha \\in \\mathbb Z$, the case of their Theorem 4.5). They also use (Proposition 5.2, due to Gilmer) that every ring between a Dedekind domain $D$ and its fraction field is an intersection of localisations $D_{\\mathfrak p}$.",
+"src": [
+"coyk"
+]
+},
+{
+"type": "example",
+"title": "Inverting 2 in Z[sqrt(-5)]",
+"body": "Using the theorem, compute $\\operatorname{Cl}(\\mathbb Z[\\sqrt{-5}][1/2])$, and verify by hand that the non-principal prime $P_3' = (3, 1 - \\sqrt{-5})$ becomes principal in $D[1/2]$.",
+"solution": "(This is our application of their Theorem 4.1; the paper's own examples invert other elements.) $\\operatorname{Cl}(D) \\cong \\mathbb Z/2$, generated by the class of the non-principal prime $P_2$ (see [[class-group]]). Since $(2) = P_2^2$, the theorem gives $\\operatorname{Cl}(D[1/2]) \\cong \\operatorname{Cl}(D)/\\langle [P_2] \\rangle = 0$: the ring $D[1/2]$ is a PID.\n\nBy hand: in $D$ we have $P_2P_3' = (1 - \\sqrt{-5})$ (an exercise on [[ideals]], checked below). Extension is multiplicative, $(IJ)^e = I^eJ^e$, and $P_2^e = D[1/2]$ because $2 \\in P_2$ is a unit of $D[1/2]$. So\n$$P_3'D[1/2] = P_2^eP_3'^e = (P_2P_3')^e = (1 - \\sqrt{-5})D[1/2].$$",
+"src": [
+"coyk"
+]
+},
+{
+"type": "theorem",
+"title": "A localisation is the intersection of its local rings",
+"body": "Let $A$ be a domain with fraction field $K$ and $S$ multiplicative with $0 \\notin S$. Inside $K$,\n$$S^{-1}A = \\bigcap_{\\mathfrak p \\cap S = \\varnothing} A_{\\mathfrak p},$$\nthe intersection over primes of $A$ disjoint from $S$; and for a prime $\\mathfrak p$ of $A$, $\\mathfrak pS^{-1}A \\ne S^{-1}A$ if and only if $\\mathfrak p \\cap S = \\varnothing$. For a Dedekind domain $D$ and $R = S^{-1}D$ this is the formula $R = \\bigcap_{\\mathfrak pR \\ne R} D_{\\mathfrak p}$ that Coykendall and Kettinger quote from Gilmer for every ring between $D$ and $K$ (their Proposition 5.2), and that they apply to localisations in Theorem 5.5 and Theorem 5.8.",
+"src": [
+"suth",
+"coyk"
+]
+},
+{
+"type": "proof",
+"body": "The second statement is part 3 of the extension-contraction theorem. For the first, put $B = S^{-1}A \\subseteq K$, a domain with fraction field $K$. By the theorem that a domain is the intersection of its localisations, $B = \\bigcap_Q B_Q$ over the primes $Q$ of $B$, and these are the $Q = S^{-1}\\mathfrak p$ with $\\mathfrak p \\cap S = \\varnothing$. It remains to see $B_Q = A_{\\mathfrak p}$ as subrings of $K$. If $t \\in A \\setminus \\mathfrak p$ then $t/1 \\notin Q$, so $A_{\\mathfrak p} \\subseteq B_Q$. Conversely an element of $B_Q$ is $b/c$ with $b = a/s$, $c = a'/s'$, $a, a' \\in A$, $s, s' \\in S$ and $c \\notin Q$; then $a' \\notin \\mathfrak p$ (otherwise $c = a'/s' \\in Q$), and $b/c = (as')/(sa')$ with $sa' \\notin \\mathfrak p$ because $s \\notin \\mathfrak p$. So $b/c \\in A_{\\mathfrak p}$.",
+"src": [
+"suth",
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "Inverting an element versus inverting its norm",
+"body": "Let $K = \\mathbb Q(i)$, $\\mathcal O_K = \\mathbb Z[i]$ and $\\alpha = 2 + i$, so $N(\\alpha) = 5$. Is $R = \\mathbb Z[i][1/\\alpha]$ the integral closure of $\\mathbb Z[1/5]$ in $K$? Then describe in general, for a number field $K$ and nonzero $\\alpha \\in \\mathcal O_K$, how $\\mathcal O_K[1/\\alpha]$ and $\\mathcal O_K[1/N(\\alpha)]$ compare.",
+"solution": "By the theorem on what localisation preserves (part 2, with $A = \\mathbb Z$, $B = K$, $B' = \\mathcal O_K = \\mathbb Z[i]$ and $S = \\{5^n\\}$, noting $S^{-1}K = K$), the integral closure of $\\mathbb Z[1/5]$ in $K$ is $\\mathbb Z[i][1/5]$. It contains $R$, since $1/(2+i) = (2-i)/5$. But it is strictly larger. In the PID $\\mathbb Z[i]$ we have $5 = (2+i)(2-i)$, and $2 - i$ is a Gaussian prime (its norm $5$ is prime) that is not an associate of $2+i$ (the associates of $2+i$ are $\\pm(2+i)$ and $\\pm(1-2i)$). By unique factorisation no power $(2+i)^n$ is divisible by $2 - i$, so the prime $(2-i)$ is disjoint from $\\{(2+i)^n\\}$ and extends to a proper prime of $R$ containing $5$. Thus $5$ is not a unit of $R$: $1/5 \\notin R$, and $R$ does not even contain $\\mathbb Z[1/5]$.\n\nIn general, let $N(\\alpha)$ be the product of the conjugates of $\\alpha$ and $\\beta = N(\\alpha)/\\alpha$, the product of the conjugates other than $\\alpha$ itself. Then $\\beta \\in K$ and $\\beta$ is an algebraic integer, so $\\beta \\in \\mathcal O_K$, and $1/\\alpha = \\beta/N(\\alpha)$. Hence always $\\mathcal O_K[1/\\alpha] \\subseteq \\mathcal O_K[1/N(\\alpha)]$, the latter being the integral closure of $\\mathbb Z[1/N(\\alpha)]$ in $K$. Equality holds if and only if $N(\\alpha)$ is a unit of $\\mathcal O_K[1/\\alpha]$, that is (by the description of the saturation of $\\{\\alpha^n\\}$ as the complement of the union of the primes not containing $\\alpha$) if and only if every prime of $\\mathcal O_K$ containing $N(\\alpha)$ contains $\\alpha$. For $\\alpha \\in \\mathbb Z$ this holds, since then $N(\\alpha) = \\alpha^{[K:\\mathbb Q]}$; for $\\alpha = 2 + i$ it fails at the prime $(2 - i)$. Coykendall and Kettinger's proof of their Theorem 4.2 shows correctly that $\\mathcal O_K[1/\\alpha]$ is integrally closed and that $1/\\alpha$ is integral over $\\mathbb Z[1/N(\\alpha)]$; what it needs in addition, and what fails here, is that $\\mathcal O_K[1/\\alpha]$ contain $1/N(\\alpha)$.",
+"src": [
+"coyk",
+"suth",
+"stacks"
+]
+},
+{
+"type": "example",
+"title": "Conjugation and localisation",
+"body": "Coykendall and Kettinger (Example 5.1, Theorem 5.8) ask when a Galois automorphism $\\sigma$ preserves an overring of $\\mathcal O_K$. Let $D = \\mathbb Z[\\sqrt{-5}]$, $\\sigma$ complex conjugation and $\\alpha = 1 + \\sqrt{-5}$. Show that $\\sigma(D_{\\mathfrak p}) = D_{\\sigma(\\mathfrak p)}$ for every prime $\\mathfrak p$, but that $R = D[1/\\alpha]$ satisfies $\\sigma(R) \\ne R$.",
+"solution": "$\\sigma$ is a ring automorphism of $D$, extended to $K = \\operatorname{Frac} D$ by $\\sigma(a/s) = \\sigma(a)/\\sigma(s)$. It maps $D \\setminus \\mathfrak p$ bijectively onto $D \\setminus \\sigma(\\mathfrak p)$, so $\\sigma(D_{\\mathfrak p}) = \\{\\sigma(a)/\\sigma(s) : s \\notin \\mathfrak p\\} = D_{\\sigma(\\mathfrak p)}$. Likewise $\\sigma(R) = D[1/\\sigma(\\alpha)] = D[1/(1 - \\sqrt{-5})]$.\n\nSo $\\sigma(R) \\subseteq R$ would require $1 - \\sqrt{-5}$ to be a unit of $R$, i.e. to lie in no prime of $D$ disjoint from $\\{\\alpha^n\\}$ (the saturation criterion). Consider $\\chi\\colon D \\to \\mathbb F_3$, $a + b\\sqrt{-5} \\mapsto a + b \\bmod 3$. It is a ring map because $(\\sqrt{-5})^2 = -5 \\equiv 1 = 1^2 \\pmod 3$. Its kernel $P_3'$ contains $3$ and $1 - \\sqrt{-5}$, and conversely $a + b\\sqrt{-5} = (a + b) - b(1 - \\sqrt{-5})$ lies in $(3, 1 - \\sqrt{-5})$ when $3 \\mid a + b$; so $P_3' = (3, 1 - \\sqrt{-5})$, a prime with residue field $\\mathbb F_3$. Since $\\chi(\\alpha) = 2 \\ne 0$, $P_3'$ contains no power of $\\alpha$, so $P_3'R$ is a proper prime of $R$ containing $1 - \\sqrt{-5}$. Hence $1/(1 - \\sqrt{-5}) = \\sigma(1/\\alpha) \\notin R$ and $\\sigma(R) \\ne R$. This is the paper's observation that $\\frac{1}{\\alpha}\\sigma(\\frac{1}{\\alpha}) = \\frac16 \\notin R$ (indeed $6 \\in P_3'$). In the language of their Theorem 5.8: $P_3 = \\sigma(P_3') = (3, 1 + \\sqrt{-5})$ satisfies $P_3R = R$ since it contains $\\alpha$, while $\\sigma(P_3)R = P_3'R \\ne R$.",
+"src": [
+"coyk"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that $\\mathbb Z[i][1/(1+i)] = \\mathbb Z[i][1/2]$, using $2 = -i(1+i)^2$, and check it against the criterion in the example on norms.\n2. (Basic) Let $D$ be a domain and $f, g \\in D$ nonzero. Show that $D[1/f] \\subseteq D[1/g]$ inside $\\operatorname{Frac} D$ if and only if every prime of $D$ containing $f$ contains $g$. Compare with the exercise on $D(f) \\subseteq D(g)$ in the section on affine schemes.\n3. (Medium) Let $K$ be a number field and $n \\in \\mathbb Z$ nonzero. Show that $\\mathcal O_K[1/n]$ is the integral closure of $\\mathbb Z[1/n]$ in $K$ and that $\\sigma(\\mathcal O_K[1/n]) = \\mathcal O_K[1/n]$ for every automorphism $\\sigma$ of $K$.\n4. (Medium) In $D = \\mathbb Z[\\sqrt{-5}]$ list the primes $\\mathfrak p$ with $\\mathfrak pD[1/6] = D[1/6]$, and show that $D[1/6] = \\bigcap D_{\\mathfrak p}$ over the remaining primes.\n5. (Harder) With $D$ and $\\alpha = 1 + \\sqrt{-5}$ as in the conjugation example, show that $D[1/\\alpha] \\cap D[1/\\sigma(\\alpha)]$ is not $D$: describe it as $\\bigcap D_{\\mathfrak p}$ over an explicit set of primes, and identify it as $D[1/2]$. (Use $(\\alpha) = P_2P_3$ and $(\\sigma(\\alpha)) = P_2P_3'$.)"
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Show that the only DVR with fraction field $\\mathbb Q$ containing $\\mathbb Z$ and with residue characteristic $p$ is $\\mathbb Z_{(p)}$.\n2. (Basic) Show that $\\mathbb Z[1/6]$ is a Dedekind domain and a PID, and list its maximal ideals.\n3. (Medium) Show that $\\mathbb Z[\\sqrt{-3}]$ is not integrally closed, and that its localisation at the prime $(2, 1 + \\sqrt{-3})$ is not a DVR, while its localisation at every other nonzero prime is.\n4. (Medium) Use Claborn's theorem to show that for every Dedekind domain $D$ with finite class group there is $\\alpha$ with $D[1/\\alpha]$ a PID.\n5. (Harder) Prove the first half of Gilmer's statement in the simplest case: every ring $R$ with $\\mathbb Z \\subseteq R \\subseteq \\mathbb Q$ equals $\\mathbb Z[1/p : p \\in P]$ for a set of primes $P$, and is the intersection of the $\\mathbb Z_{(q)}$ for $q \\notin P$."
+},
+{
+"type": "section",
+"title": "Local rings at points: multiplicities and computation",
+"body": "In computational algebraic geometry localisation appears in its most literal form. For a point $o$ of affine space $\\mathbb A^n_k$, Boehm, Decker and Schreyer work with the local ring\n$$\\mathcal O_o = k[x_1, \\dots, x_n]_{\\mathfrak m_o} = \\{g/h : h(o) \\ne 0\\},$$\nwhere $\\mathfrak m_o$ is the maximal ideal of polynomials vanishing at $o$; after a translation one may assume $o$ is the origin. Local invariants of curves and surfaces, such as intersection multiplicities and the delta invariant of a singular point, are defined by finite-dimensional quotients of $\\mathcal O_o$. The point of localising is that it isolates one point: a quotient $k[x]/I$ supported at finitely many points splits into a product of local pieces, and localising at one of them picks out its piece.",
+"src": [
+"bds",
+"gathmann"
+]
+},
+{
+"type": "theorem",
+"title": "A finite-dimensional quotient is the product of its localisations",
+"body": "Let $B = k[x_1, \\dots, x_n]/I$ be finite-dimensional over $k$. Then $B$ has finitely many maximal ideals $\\mathfrak m_1, \\dots, \\mathfrak m_r$, each localisation $B_{\\mathfrak m_i}$ is finite-dimensional, and\n$$B \\cong B_{\\mathfrak m_1} \\times \\dots \\times B_{\\mathfrak m_r}, \\qquad \\dim_k B = \\sum_i \\dim_k B_{\\mathfrak m_i}.$$",
+"src": [
+"gathmann"
+]
+},
+{
+"type": "proof",
+"body": "A finite-dimensional algebra is Artinian: descending chains of ideals are chains of subspaces, which stop. Every prime $\\mathfrak p$ of $B$ is maximal, because $B/\\mathfrak p$ is a finite-dimensional domain, hence a field (multiplication by a nonzero element is an injective linear map, hence surjective). If $\\mathfrak m_1, \\dots, \\mathfrak m_{r}$ are distinct maximal ideals, the Chinese remainder theorem makes $B \\to \\prod B/\\mathfrak m_i$ surjective, so $r \\le \\dim_k B$; hence there are finitely many. The nilradical $N = \\mathfrak m_1 \\cap \\dots \\cap \\mathfrak m_r$ is nilpotent (it is a finitely generated ideal of nilpotent elements in a Noetherian ring), say $N^e = 0$. The ideals $\\mathfrak m_i^e$ are pairwise comaximal and $\\prod_i \\mathfrak m_i^e \\subseteq N^e = 0$, so by the Chinese remainder theorem $B \\cong \\prod_i B/\\mathfrak m_i^e$. Each factor $B/\\mathfrak m_i^e$ is local (its only maximal ideal is $\\mathfrak m_i/\\mathfrak m_i^e$), and localising the product at $\\mathfrak m_i$ kills the other factors (in each of them some element of $\\mathfrak m_j \\setminus \\mathfrak m_i$ is nilpotent, and it becomes a unit) and leaves $B/\\mathfrak m_i^e$ unchanged. So $B_{\\mathfrak m_i} \\cong B/\\mathfrak m_i^e$. Compare Gathmann's Example 6.25 and Corollary 6.26, which show more generally that the length of a module of finite length is the sum of the lengths of its localisations at the maximal ideals."
+},
+{
+"type": "definition",
+"title": "Intersection multiplicity",
+"body": "Let $f, g \\in k[x, y]$ be non-constant square-free polynomials without common factor, defining plane curves $C = V(f)$ and $D = V(g)$. Their intersection multiplicity at the origin $o$ is\n$$i(C, D; o) = \\dim_k \\mathcal O_o/(f, g)\\mathcal O_o,$$\nand at another point it is defined after translating that point to the origin (possibly after enlarging $k$). This is Definition 3.1 of Boehm-Decker-Schreyer; their Definition 3.3 defines the delta invariant of a curve singularity through the normalisation of the local ring $\\mathcal O_o/f\\mathcal O_o$, and normalisation commutes with localisation by the theorem on integral closures above.",
+"src": [
+"bds"
+]
+},
+{
+"type": "example",
+"title": "Two tangential cusps (Boehm-Decker-Schreyer, Example 3.2)",
+"body": "Compute $i(C, D; o)$ for $C = V(y^2 - x^3)$ and $D = V(2y^2 - x^3)$.",
+"solution": "The ideal $(y^2 - x^3, 2y^2 - x^3)$ contains $(2y^2 - x^3) - (y^2 - x^3) = y^2$ and then $x^3$, so it equals $(x^3, y^2)$. This ideal is supported only at the origin: $k[x,y]/(x^3, y^2)$ is already local, with basis $1, x, x^2, y, xy, x^2y$. Localising changes nothing, so $i(C, D; o) = 6$. (The paper computes this both by localising in OSCAR and with a built-in command; the hand computation gives $6$, confirmed in the checks.)",
+"src": [
+"bds"
+]
+},
+{
+"type": "example",
+"title": "Localising separates intersection points",
+"body": "Let $C = V(y)$ (the $x$-axis) and $D = V(y - x^3 + x^2)$. Find all intersection points and their multiplicities, and compare with $\\dim_k k[x,y]/(f, g)$.",
+"solution": "Modulo $y$, the second equation becomes $x^3 - x^2 = x^2(x - 1)$, so\n$$B = k[x,y]/(y,\\ y - x^3 + x^2) \\cong k[x]/(x^2(x-1)), \\qquad \\dim_k B = 3 .$$\nThe maximal ideals of $B$ are $(x)$ and $(x - 1)$: the points $o = (0,0)$ and $a = (1,0)$. At $o$, the factor $x - 1$ is a unit (it equals $-1$ at $o$), so $B_{(x)} \\cong k[x]_{(x)}/(x^2) \\cong k[x]/(x^2)$, of dimension $2$: the cubic is tangent to the axis at the origin. At $a$, $x^2$ is a unit and $B_{(x-1)} \\cong k[x]/(x-1) \\cong k$, dimension $1$: a transversal crossing. The total $2 + 1 = 3$ is the dimension of the global quotient, as the product theorem says; and $3 = \\deg C \\cdot \\deg D$, as Bézout's theorem predicts once no intersection points escape to infinity. By the Chinese remainder theorem $B \\cong k[x]/(x^2) \\times k[x]/(x-1)$, and the two factors are the two localisations.",
+"src": [
+"bds",
+"gathmann"
+]
+},
+{
+"type": "figure",
+"engine": "plot",
+"code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(5.4, 3.4)\nax = plt.gca()\nx = np.linspace(-0.75, 1.45, 400)\nax.axhline(0, color='#1f4e79', lw=2.0, label='$C: y=0$')\nax.plot(x, x**3 - x**2, color='#c55a11', lw=2.0, label='$D: y=x^3-x^2$')\nax.plot([0], [0], 'o', color='black', ms=7); ax.plot([1], [0], 'o', color='black', ms=7)\nax.annotate('$o=(0,0)$: multiplicity 2', (0, 0), (-0.72, 0.42), fontsize=10, arrowprops=dict(arrowstyle='->', color='gray'))\nax.annotate('$a=(1,0)$: multiplicity 1', (1, 0), (0.45, -0.62), fontsize=10, arrowprops=dict(arrowstyle='->', color='gray'))\nax.set_xlim(-0.8, 1.5); ax.set_ylim(-0.8, 0.8)\nax.legend(loc='upper left', fontsize=9, frameon=False)\nax.set_xlabel('$x$'); ax.set_ylabel('$y$')\nfor s in ['top', 'right']: ax.spines[s].set_visible(False)\n",
+"caption": "The line $y = 0$ and the cubic $y = x^3 - x^2$ meet at the origin, where they are tangent, and at $(1,0)$, where they cross. Localising $k[x,y]/(y, y - x^3 + x^2)$ at each point gives the local multiplicities $2$ and $1$; they add up to the dimension $3$ of the global quotient.",
+"alt": "A horizontal line y = 0 and a cubic curve y = x cubed minus x squared. The cubic touches the line at the origin, labelled multiplicity 2, and crosses it at (1,0), labelled multiplicity 1.",
+"src": [
+"bds"
+]
+},
+{
+"type": "connection",
+"body": "How computer algebra handles local rings. The ring $\\mathcal O_o$ is not finitely generated as a $k[x]$-algebra, so it cannot be fed to a Gröbner basis algorithm directly. Two strategies appear in the papers. Boehm, Decker and Schreyer use local monomial orderings, in which $1 > x_i$ for every variable (so that the \"leading term\" of $1 - x$ is $1$, matching the fact that $1 - x$ is a unit in $\\mathcal O_o$), and division with respect to such orderings; this works at points. Sayrafi notes that no suitable monomial orders are known for local rings in general, the exception being localisation at a maximal ideal, where Mora's tangent cone algorithm gives a minimal basis. Sayrafi's Macaulay2 packages, which handle localisations at arbitrary primes, instead compute over the polynomial ring (free resolutions, syzygies) and only at the end localise, pruning the resulting complexes; minimal generators, length and the Hilbert-Samuel function over $R_{\\mathfrak p}$ are computed this way. The algorithms are not covered on this page; see Boehm-Decker-Schreyer §2-3 and Sayrafi §1.",
+"src": [
+"bds",
+"sayrafi"
+]
+},
+{
+"type": "exercise",
+"body": "1. (Basic) Compute $i(C, D; o)$ for $C = V(y - x^2)$ and $D = V(y)$, and for $C = V(y^2 - x^3)$ and $D = V(y)$.\n2. (Basic) Find all points of $V(x^2 + y^2 - 1) \\cap V(x - y)$ over $\\mathbb R$ and their multiplicities, and check that they add up to $\\dim_{\\mathbb R} \\mathbb R[x,y]/(x^2 + y^2 - 1, x - y)$.\n3. (Medium) Compute $\\dim_k \\mathcal O_o/(x^2 - y^3, x^3 - y^2)\\mathcal O_o$ and compare with $\\dim_k k[x,y]/(x^2 - y^3, x^3 - y^2)$ over $k = \\mathbb C$. Which other points contribute?\n4. (Medium) Show that in a local monomial ordering ($1 > x$) the polynomial $1 - x + x^5$ has leading term $1$, and explain why this is consistent with its being a unit of $k[x]_{(x)}$.\n5. (Harder) Let $B$ be a finite-dimensional $k$-algebra. Show that $B$ is local if and only if every element of $B$ is a unit or nilpotent."
+},
+{
+"type": "connection",
+"body": "- [[schemes]]: the structure sheaf of $\\operatorname{Spec} A$ is built from the rings $A_f$ on the basic open sets $D(f)$, with stalks $A_{\\mathfrak p}$; schemes are locally ringed spaces glued from these.\n- [[dedekind-domains]]: Dedekind domains are the Noetherian domains whose localisations at nonzero primes are DVRs; fractional ideals and the class group are treated there.\n- [[sheaves]] and [[algebraic-varieties]]: the local ring $\\mathcal O_{X,x}$ of a variety at a point is a localisation of its coordinate ring, and the germ picture of the local ring at a point is the stalk of a sheaf.\n- [[homological-algebra]]: flatness of $S^{-1}A$, projective and global dimension computed locally, and minimal free resolutions over local rings (built with Nakayama's lemma) are the starting point of the Koszul homology and Auslander-Buchsbaum-Serre papers above.\n- [[p-adic-numbers]]: the $p$-adic integers are the completion of the DVR $\\mathbb Z_{(p)}$, the \"more local\" object described in the views on locality.\n- [[class-group]] and [[ideals]]: localising a ring of integers kills the classes of the primes that become units.",
+"src": [
+"stacks",
+"suth",
+"guanhu",
+"dieth",
+"grossack"
+]
+}
+],
+"checks": [
+{
+"claim": "(Z/12)_2 has 3 elements; kernel of Z/12 -> (Z/12)_2 is {0,3,6,9}; 4/1 = 1 there",
+"python": "\ndef loc_classes(n, S):\n    \"\"\"Brute-force S^{-1}(Z/n): classes of pairs (a,s) under u(a t - b s) = 0 mod n for some u in S.\"\"\"\n    S = sorted(set(x % n for x in S))\n    pairs = [(a, s) for a in range(n) for s in S]\n    def eq(p, q):\n        (a, s), (b, t) = p, q\n        return any((u * (a * t - b * s)) % n == 0 for u in S)\n    classes = []\n    for p in pairs:\n        for c in classes:\n            if eq(p, c[0]): c.append(p); break\n        else: classes.append([p])\n    return classes\ndef mult_closure(n, gens):\n    S = {1 % n}\n    while True:\n        new = {(a * g) % n for a in S for g in gens} | S\n        if new == S: return S\n        S = new\n\nS = mult_closure(12, [2]); assert S == {1, 2, 4, 8}\ncl = loc_classes(12, S); assert len(cl) == 3\nker = [a for a in range(12) if any((s * a) % 12 == 0 for s in S)]\nassert ker == [0, 3, 6, 9]\nfind = lambda p: next(i for i, c in enumerate(cl) if p in c)\nassert find((4, 1)) == find((1, 1)) and find((1, 2)) == find((2, 1))\n"
+},
+{
+"claim": "Without the factor u the relation is not transitive (Z/12, S = powers of 2), mirroring y/1 ~ 0/x ~ 0/1",
+"python": "\nn = 12; S = [1, 2, 4, 8]\nnaive = lambda p, q: (p[0] * q[1] - q[0] * p[1]) % n == 0\npairs = [(a, s) for a in range(n) for s in S]\nbad = [(p, q, r) for p in pairs for q in pairs for r in pairs if naive(p, q) and naive(q, r) and not naive(p, r)]\nassert bad, 'expected a failure of transitivity'\nassert naive((3, 1), (0, 4)) and naive((0, 4), (0, 1)) and not naive((3, 1), (0, 1))\n# the correct relation identifies 3/1 with 0/1 (u = 4 kills 3)\nassert (4 * 3) % 12 == 0\n"
+},
+{
+"claim": "Transitivity identity: uv(atr - bsr) + uv(bsr - cst) = uvt(ar - cs); sum well-definedness identity",
+"python": "\nimport sympy as sp\na, b, c, s, t, r, u, v, a1, s1 = sp.symbols('a b c s t r u v a1 s1')\nassert sp.expand(u*v*(a*t*r - b*s*r) + u*v*(b*s*r - c*s*t) - u*v*t*(a*r - c*s)) == 0\n# sum: u((a t + b s) s1 t - (a1 t + b s1) s t) = u t^2 (a s1 - a1 s)\nassert sp.expand(u*((a*t + b*s)*s1*t - (a1*t + b*s1)*s*t) - u*t**2*(a*s1 - a1*s)) == 0\nassert sp.expand(u*((a*b)*(s1*t) - (a1*b)*(s*t)) - u*b*t*(a*s1 - a1*s)) == 0\n"
+},
+{
+"claim": "(Z/12)_(2) = Z/4 (4 classes), (Z/12)_(3) = Z/3, (Z/12)_3 = Z/4, (Z/12)_6 = 0, (Z/12)_(5) = 0 (the image of Z minus 5Z in Z/12 contains 12 = 0)",
+"python": "\ndef loc_classes(n, S):\n    \"\"\"Brute-force S^{-1}(Z/n): classes of pairs (a,s) under u(a t - b s) = 0 mod n for some u in S.\"\"\"\n    S = sorted(set(x % n for x in S))\n    pairs = [(a, s) for a in range(n) for s in S]\n    def eq(p, q):\n        (a, s), (b, t) = p, q\n        return any((u * (a * t - b * s)) % n == 0 for u in S)\n    classes = []\n    for p in pairs:\n        for c in classes:\n            if eq(p, c[0]): c.append(p); break\n        else: classes.append([p])\n    return classes\ndef mult_closure(n, gens):\n    S = {1 % n}\n    while True:\n        new = {(a * g) % n for a in S for g in gens} | S\n        if new == S: return S\n        S = new\n\nodd = [s for s in range(12) if s % 2]\nassert len(loc_classes(12, odd)) == 4\nassert len(loc_classes(12, [s for s in range(12) if s % 3])) == 3\nassert len(loc_classes(12, mult_closure(12, [3]))) == 4\nassert len(loc_classes(12, mult_closure(12, [6]))) == 1\nassert {z % 12 for z in range(1, 200) if z % 5} == set(range(12))\nassert len(loc_classes(12, range(12))) == 1\n"
+},
+{
+"claim": "Z/6 localised at (2) and (3) gives fields with 2 and 3 elements; Z/6 is not a domain; idempotents of Z/6 are 0,1,3,4 and (Z/6)_3 = F_2, (Z/6)_4 = F_3",
+"python": "\ndef loc_classes(n, S):\n    \"\"\"Brute-force S^{-1}(Z/n): classes of pairs (a,s) under u(a t - b s) = 0 mod n for some u in S.\"\"\"\n    S = sorted(set(x % n for x in S))\n    pairs = [(a, s) for a in range(n) for s in S]\n    def eq(p, q):\n        (a, s), (b, t) = p, q\n        return any((u * (a * t - b * s)) % n == 0 for u in S)\n    classes = []\n    for p in pairs:\n        for c in classes:\n            if eq(p, c[0]): c.append(p); break\n        else: classes.append([p])\n    return classes\ndef mult_closure(n, gens):\n    S = {1 % n}\n    while True:\n        new = {(a * g) % n for a in S for g in gens} | S\n        if new == S: return S\n        S = new\n\nassert len(loc_classes(6, [1, 3, 5])) == 2 and len(loc_classes(6, [1, 2, 4, 5])) == 3\nassert (2 * 3) % 6 == 0\nassert [e for e in range(6) if (e * e - e) % 6 == 0] == [0, 1, 3, 4]\nassert len(loc_classes(6, mult_closure(6, [3]))) == 2 and len(loc_classes(6, mult_closure(6, [4]))) == 3\nassert (3 * 4) % 6 == 0 and (3 + 4) % 6 == 1\nassert len(loc_classes(6, mult_closure(6, [0]))) == 1\n"
+},
+{
+"claim": "Z/n is local (non-units form an ideal) iff n is a prime power, for 2 <= n <= 60",
+"python": "\nfrom math import gcd\nfrom sympy import factorint\nfor n in range(2, 61):\n    nonunits = {a for a in range(n) if gcd(a, n) != 1}\n    ideal = all((x + y) % n in nonunits for x in nonunits for y in nonunits)\n    assert ideal == (len(factorint(n)) == 1), n\n"
+},
+{
+"claim": "9/3 = 3/1 in Z_(3); p-adic valuation is additive and ultrametric on random rationals; Z_(p) = {v_p >= 0}",
+"python": "\nfrom fractions import Fraction as F\nimport random\ndef v(x, p):\n    x = F(x); k = 0; a, b = x.numerator, x.denominator\n    while a % p == 0: a //= p; k += 1\n    while b % p == 0: b //= p; k -= 1\n    return k\nassert 9 * 1 - 3 * 3 == 0\nrandom.seed(1)\nfor _ in range(2000):\n    x = F(random.randint(-500, 500) or 1, random.randint(1, 500)); y = F(random.randint(-500, 500) or 1, random.randint(1, 500))\n    for p in (2, 3, 5):\n        assert v(x * y, p) == v(x, p) + v(y, p)\n        if x + y != 0: assert v(x + y, p) >= min(v(x, p), v(y, p))\n        assert (v(x, p) >= 0) == (x.denominator % p != 0)\n"
+},
+{
+"claim": "Z[1/2] intersect Z[1/3] = Z and Z[1/2][1/3] = Z[1/6] on all fractions with small denominators; 1 = (-1)*2 + 1*3",
+"python": "\nfrom fractions import Fraction as F\ndef only(d, primes):\n    for p in primes:\n        while d % p == 0: d //= p\n    return d == 1\nfor d in range(1, 400):\n    for a in range(-30, 31):\n        x = F(a, d)\n        if only(x.denominator, [2]) and only(x.denominator, [3]): assert x.denominator == 1\n        assert only(x.denominator, [2, 3]) == any(6**k % x.denominator == 0 for k in range(12))\nassert (-1) * 2 + 1 * 3 == 1\n"
+},
+{
+"claim": "Saturation of {2^n} in Z is {+-2^k}: every divisor of a power of 2 is +-2^k (checked up to 2^12)",
+"python": "\ndivs = {d for n in range(13) for d in range(-2**12, 2**12 + 1) if d != 0 and (2**n) % d == 0}\nassert divs == {s * 2**k for k in range(13) for s in (1, -1)}\n"
+},
+{
+"claim": "Z[x]/(2x-1) = Z[1/2]: x -> 1/2 kills 2x-1, and a*x^n maps to a/2^n",
+"python": "\nimport sympy as sp\nx = sp.symbols('x')\nassert (2 * x - 1).subs(x, sp.Rational(1, 2)) == 0\nassert sp.Rational(7, 8) == (7 * x**3).subs(x, sp.Rational(1, 2))\n"
+},
+{
+"claim": "(x^2, xy) = (x) cap (x^2, y) in Q[x,y]; x not in (x^2,xy) locally at the origin argument: s*x in (x^2,xy) forces s(0,0)=0",
+"python": "\nimport sympy as sp\nx, y, t = sp.symbols('x y t')\n# intersection via elimination: I cap J = (t I + (1-t) J) cap k[x,y]\nG = sp.groebner([t*x, (1-t)*x**2, (1-t)*y], t, x, y, order='lex')\ninter = [g for g in G.exprs if not g.has(t)]\nGi = sp.groebner(inter, x, y, order='grevlex'); Gt = sp.groebner([x**2, x*y], x, y, order='grevlex')\nassert all(Gt.contains(g) for g in Gi.exprs) and all(Gi.contains(g) for g in Gt.exprs)\n# x*y in I, so x = (xy)/y in I_(x); and s*x in I for s = 1 + x or 1 + y fails\nassert not Gt.contains(x) and not Gt.contains((1 + y) * x) and not Gt.contains((1 + x) * x) and Gt.contains(y * x)\n"
+},
+{
+"claim": "Nakayama example: x^3 - y^3 lies in (x + y^2, y + x^2) after inverting an element not vanishing at 0; images of generators mod m^2 are x, y; (-1,-1) is a common zero",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\ng1, g2, g3 = x + y**2, y + x**2, x**3 - y**3\n# modulo m^2 = (x^2, xy, y^2)\nG2 = sp.groebner([x**2, x*y, y**2], x, y, order='grevlex')\nassert G2.reduce(g1)[1] == x and G2.reduce(g2)[1] == y and G2.reduce(g3)[1] == 0\nassert g1.subs({x: -1, y: -1}) == 0 and g2.subs({x: -1, y: -1}) == 0\nG = sp.groebner([g1, g2], x, y, order='lex')\nassert G.exprs == [x + y**2, y**4 + y]\n# y^4 + y = y (y^3 + 1) has a simple root at 0: the origin contributes colength 1, so (g1, g2) = m locally\nassert sp.diff(y**4 + y, y).subs(y, 0) == 1\n"
+},
+{
+"claim": "Z[sqrt(-5)]: (1+w)(1-w) = 6; P2^2 = (2); P2 * P3' = (1 - w); 3 not in P2 (lattice HNF computation of ideals)",
+"python": "\nfrom math import gcd\ndef mul(p, q):  # (a + b w)(c + d w), w^2 = -5\n    return (p[0]*q[0] - 5*p[1]*q[1], p[0]*q[1] + p[1]*q[0])\ndef egcd(a, b):\n    if b == 0: return (abs(a), (1 if a >= 0 else -1), 0)\n    g, x, y = egcd(b, a % b); return (g, y, x - (a // b) * y)\ndef lattice(gens):  # Z-span of g and g*w for ideal generators g\n    vs = []\n    for g in gens: vs += [g, mul(g, (0, 1))]\n    # basis {(h,0), (c,e)}: e = gcd of second coords\n    e = 0; u = (0, 0)\n    for v in vs:\n        if v[1] == 0: continue\n        if e == 0: e, u = abs(v[1]), (v if v[1] > 0 else (-v[0], -v[1])); continue\n        g, s, t = egcd(e, v[1]); u = (s*u[0] + t*v[0], s*u[1] + t*v[1]); e = g\n    h = 0\n    for v in vs + [mul(u, (0, 1))]:\n        if e: k = v[1] // e; w0 = v[0] - k*u[0]\n        else: w0 = v[0]\n        h = gcd(h, w0)\n    return (h, e, u[0] % h if h else u[0])\ndef prod(I, J): return [mul(a, b) for a in I for b in J]\nassert mul((1, 1), (1, -1)) == (6, 0)\nP2 = [(2, 0), (1, 1)]; P3p = [(3, 0), (1, -1)]\nassert lattice(prod(P2, P2)) == lattice([(2, 0)])\nassert lattice(prod(P2, P3p)) == lattice([(1, -1)])\nassert lattice(P2) == (2, 1, 1)  # P2 = {a + b w : a = b mod 2}, index 2\nassert (3 - 0) % 2 == 1  # 3 = 3 + 0w has a - b odd, so 3 not in P2\n"
+},
+{
+"claim": "Intersection multiplicity of y^2 - x^3 and 2y^2 - x^3 at the origin is 6: the ideal is (x^3, y^2)",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([y**2 - x**3, 2*y**2 - x**3], x, y, order='grevlex')\nassert sp.groebner([x**3, y**2], x, y, order='grevlex').exprs == G.exprs\nstd = [x**i * y**j for i in range(10) for j in range(10) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 6\n"
+},
+{
+"claim": "y = 0 and y = x^3 - x^2: global quotient has dimension 3; local pieces k[x]/(x^2) (dim 2) and k[x]/(x-1) (dim 1); CRT idempotents exist",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([y, y - x**3 + x**2], x, y, order='lex')\nstd = [x**i * y**j for i in range(6) for j in range(3) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 3\nf = x**2 * (x - 1)\nassert sp.gcd(x**2, x - 1) == 1\ns, t, h = sp.gcdex(x**2, x - 1, x)\nassert sp.expand(s * x**2 + t * (x - 1)) == 1\ne = sp.expand(s * x**2)  # idempotent: 1 mod (x-1), 0 mod x^2\nassert sp.rem(sp.expand(e**2 - e), f, x) == 0 and sp.rem(e - 1, x - 1, x) == 0 and sp.rem(e, x**2, x) == 0\n"
+},
+{
+"claim": "x^2 - y^3 and x^3 - y^2 over C: total colength 9 = 4 at the origin + 5 simple points x^5 = 1, y = x^4",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\nG = sp.groebner([x**2 - y**3, x**3 - y**2], x, y, order='grevlex')\nstd = [x**i * y**j for i in range(12) for j in range(12) if G.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(std) == 9\n# local colength at origin: add a high power of m to cut off the other points\nGl = sp.groebner([x**2 - y**3, x**3 - y**2] + [x**i * y**(8 - i) for i in range(9)], x, y, order='grevlex')\nstdl = [x**i * y**j for i in range(12) for j in range(12) if Gl.reduce(x**i * y**j)[1] == x**i * y**j]\nassert len(stdl) == 4\nz = sp.exp(2 * sp.pi * sp.I / 5)\nfor k in range(5):\n    X = z**k; Y = X**4\n    assert abs(complex(sp.N(X**2 - Y**3))) < 1e-12 and abs(complex(sp.N(X**3 - Y**2))) < 1e-12\n"
+},
+{
+"claim": "Powers of comaximal elements are comaximal: from 1 = (-1)*2 + 3, find explicit c_i with c1*2^3 + c2*3^3 = 1",
+"python": "\nfrom sympy import gcdex\ns, t, g = gcdex(8, 27)\nassert g == 1 and s * 8 + t * 27 == 1\n"
+},
+{
+"claim": "Minimal number of generators of (x^2, xy, y^2) at the origin is 3: dim of I/mI",
+"python": "\nimport sympy as sp\nx, y = sp.symbols('x y')\n# I/mI with I = m^2, m I = m^3: monomials of degree exactly 2\nG = sp.groebner([x**3, x**2*y, x*y**2, y**3], x, y, order='grevlex')\ngens = [x**2, x*y, y**2]\nM = sp.Matrix([[sp.Poly(G.reduce(g)[1], x, y).coeff_monomial(m) for m in gens] for g in gens])\nassert M.rank() == 3\n"
+},
+{
+"claim": "Example on the two axes: y = -y(x-1) + xy in R[x,y]; A/(x-1,y) has dimension 1; y/1 = 0 in A_(x-1) since x is outside the ideal and xy = 0",
+"python": "import sympy as sp\nx, y = sp.symbols('x y')\nassert sp.expand(-y*(x - 1) + x*y - y) == 0\nG = sp.groebner([x*y, x - 1, y], x, y, order='grevlex')\nassert G.exprs == [x - 1, y]\nassert (x*y).subs({x: 1, y: 0}) == 0 and x.subs({x: 1}) != 0\n"
+},
+{
+"claim": "Localising Z/4 + Z/9 + Z/5 (torsion of the example module): at (2) only Z/4 survives (4 classes), at (3) only Z/9 (9 classes); inverting 2 kills Z/4 and keeps Z/9, Z/5",
+"python": "\ndef loc_size(n, S):\n    S = sorted(set(x % n for x in S)); pairs = [(a, s) for a in range(n) for s in S]\n    eq = lambda p, q: any((u * (p[0] * q[1] - q[0] * p[1])) % n == 0 for u in S)\n    cls = []\n    for p in pairs:\n        if not any(eq(p, c) for c in cls): cls.append(p)\n    return len(cls)\n\ndef at_prime(n, p):\n    return loc_size(n, [s for s in range(1, 10 * n) if s % p != 0])\ndef inv(n, a):\n    return loc_size(n, [a ** k for k in range(8)])\nassert (at_prime(4, 2), at_prime(9, 2), at_prime(5, 2)) == (4, 1, 1)\nassert (at_prime(4, 3), at_prime(9, 3), at_prime(5, 3)) == (1, 9, 1)\nassert (inv(4, 2), inv(9, 2), inv(5, 2)) == (1, 9, 5)\n"
+},
+{
+"claim": "Glueing example (b): 5/2 - 7/3 = 1/6, so (5/2, 7/3) is not in ker(beta)",
+"python": "from fractions import Fraction as F\nassert F(5, 2) - F(7, 3) == F(1, 6)\n"
+},
+{
+"claim": "Determinant trick: adj(T) T = det(T) I, and det(I - Z) is 1 modulo the entries of Z (3x3 symbolic)",
+"python": "import sympy as sp\nz = sp.symbols('z0:9'); Z = sp.Matrix(3, 3, z); T = sp.eye(3) - Z\nassert sp.simplify(T.adjugate() * T - T.det() * sp.eye(3)) == sp.zeros(3, 3)\nassert sp.expand(T.det()).subs({v: 0 for v in z}) == 1\n"
+},
+{
+"claim": "Powers of comaximal elements: every monomial of degree n(N-1)+1 in n variables has an exponent >= N (n <= 4, N <= 4)",
+"python": "import itertools\nfor n in range(1, 5):\n    for N in range(1, 5):\n        D = n * (N - 1) + 1\n        for e in itertools.product(range(D + 1), repeat=n):\n            if sum(e) == D: assert max(e) >= N\n"
+},
+{
+"claim": "Clearing denominators in the integral-closure proof: (st)^n times (b/t)^(n-i) (a_i/s_i) equals (sb)^(n-i) c_i with c_i = a_i (s/s_i) s^(i-1) t^i (n = 3)",
+"python": "import sympy as sp\nb, t = sp.symbols('b t'); a = sp.symbols('a1:4'); s_ = sp.symbols('s1:4'); n = 3\ns = s_[0] * s_[1] * s_[2]\nfor i in range(1, n + 1):\n    lhs = (s * t) ** n * (b / t) ** (n - i) * a[i - 1] / s_[i - 1]\n    c = a[i - 1] * (s / s_[i - 1]) * s ** (i - 1) * t ** i\n    assert sp.simplify(lhs - (s * b) ** (n - i) * c) == 0\n    assert sp.fraction(sp.together(c))[1] == 1\n"
+},
+{
+"claim": "Units in k[x]/(x^n): (1 + y)(1 - y + ... + (-y)^(n-1)) = 1 - (-y)^n, which is 1 when y is nilpotent of order n",
+"python": "import sympy as sp\ny = sp.symbols('y')\nfor n in range(1, 8):\n    assert sp.expand((1 + y) * sum((-y) ** k for k in range(n)) - (1 - (-y) ** n)) == 0\n"
+},
+{
+"claim": "Local multiplicities in the separation example by truncating with a high power of the maximal ideal: 2 at the origin, 1 at (1,0); for the two cusps 6; total 3",
+"python": "import sympy as sp\nx, y = sp.symbols('x y')\ndef colen(gens, cx=0, N=8):\n    X = x - cx\n    G = sp.groebner(gens + [X**i * y**(N - i) for i in range(N + 1)], x, y, order='grevlex')\n    return sum(1 for i in range(14) for j in range(14) if G.reduce(x**i * y**j)[1] == x**i * y**j)\ng = [y, y - x**3 + x**2]\nassert colen(g, 0) == 2 and colen(g, 1) == 1\nassert colen([y**2 - x**3, 2*y**2 - x**3], 0) == 6\n"
+},
+{
+"claim": "Ass_Z(Z/12) = {(2),(3)}; Ass_Z(Z/360) = {(2),(3),(5)}; (Z/12)_(2) has 4 elements, (Z/12)_(5) = 0, (Z/12)[1/2] has 3 elements; annihilators of nonzero elements of Z/12 are 12,6,4,3,2",
+"python": "\nfrom math import gcd\ndef isprime(n): return n > 1 and all(n % d for d in range(2, int(n**0.5) + 1))\ndef ann_gens(n): return sorted({n // gcd(x, n) for x in range(1, n)})\nassert ann_gens(12) == [2, 3, 4, 6, 12]\ndef ass(n): return sorted(g for g in ann_gens(n) if isprime(g))\nassert ass(12) == [2, 3] and ass(360) == [2, 3, 5]\nassert 12 // gcd(6, 12) == 2 and 12 // gcd(4, 12) == 3 and 12 // gcd(8, 12) == 3\ndef loc_classes(n, S):\n    S = sorted(set(x % n for x in S))\n    pairs = [(a, s) for a in range(n) for s in S]\n    classes = []\n    for p in pairs:\n        for c in classes:\n            (a, s), (b, t) = p, c[0]\n            if any((u * (a * t - b * s)) % n == 0 for u in S): c.append(p); break\n        else: classes.append([p])\n    return classes\nodd = [x for x in range(12) if x % 2]            # residues of the integers outside (2)\nassert len(loc_classes(12, odd)) == 4             # (Z/12)_(2) = Z/4\nnot5 = sorted({m % 12 for m in range(1, 200) if m % 5})   # residues of integers outside (5); 12 gives 0\nassert 0 in not5 and len(loc_classes(12, not5)) == 1      # (Z/12)_(5) = 0\nassert len(loc_classes(12, [1, 2, 4, 8])) == 3   # Z/12[1/2] = Z/3\n# localisation of Ass at (3) and at powers of 5 for Z/360 (exercise data): primes contained in (3) / disjoint from 5^n\nassert [p for p in ass(360) if p == 3] == [3] and [p for p in ass(360) if p != 5] == [2, 3]\n"
+},
+{
+"claim": "k[x,y,z]: z(1-x)*y = z*(y(1-x)) and y is not in (y(1-x)); y,z,x regular (quotients k[x,z], k[x], k)",
+"python": "\nimport sympy as sp\nx, y, z = sp.symbols('x y z')\nassert sp.expand(z*(1-x)*y - z*(y*(1-x))) == 0\nq, r = sp.reduced(y, [y*(1-x)], x, y, z, order='lex')\nassert r != 0\nG = sp.groebner([y*(1-x)], x, y, z, order='lex')\nassert not G.contains(y) and G.contains(z*(1-x)*y)\n# after inverting 1-x the ideals agree: y = (y(1-x)) * 1/(1-x)\nassert sp.simplify(y*(1-x) / (1-x) - y) == 0\n"
+},
+{
+"claim": "Z[i]: 5=(2+i)(2-i), 2-i not an associate of 2+i, (2-i) does not divide (2+i)^n for n<=15, 1/(2+i)=(2-i)/5, 2=-i(1+i)^2",
+"python": "\nI = 1j\ndef gdiv(a, b):\n    q = a / b\n    return abs(q.real - round(q.real)) < 1e-9 and abs(q.imag - round(q.imag)) < 1e-9\nassert (2+I)*(2-I) == 5\nassoc = [u*(2+I) for u in (1, -1, I, -I)]\nassert all(abs(a - (2-I)) > 1e-9 for a in assoc)\nassert sorted((round(a.real), round(a.imag)) for a in assoc) == sorted([(2,1),(-2,-1),(-1,2),(1,-2)])\np = 1\nfor n in range(1, 16):\n    p = p * (2+I)\n    assert not gdiv(p, 2-I)\nassert abs(1/(2+I) - (2-I)/5) < 1e-12\nassert -I*(1+I)**2 == 2\n"
+},
+{
+"claim": "Z[sqrt(-5)]: chi(a+b w)=a+b mod 3 is multiplicative; chi(1+w)=2, chi(1-w)=0, chi(3)=0, chi(6)=0; (1+w)(1-w)=6; 1/(1+w)=(1-w)/6",
+"python": "\nimport random, sympy as sp\ndef mul(p, q):\n    a, b = p; c, d = q\n    return (a*c - 5*b*d, a*d + b*c)\nchi = lambda p: (p[0] + p[1]) % 3\nrandom.seed(1)\nfor _ in range(2000):\n    p = (random.randint(-50, 50), random.randint(-50, 50)); q = (random.randint(-50, 50), random.randint(-50, 50))\n    assert chi(mul(p, q)) == (chi(p) * chi(q)) % 3\n    s = (p[0] + q[0], p[1] + q[1]); assert chi(s) == (chi(p) + chi(q)) % 3\nassert chi((1, 1)) == 2 and chi((1, -1)) == 0 and chi((3, 0)) == 0 and chi((6, 0)) == 0\nassert mul((1, 1), (1, -1)) == (6, 0)\nw = sp.sqrt(-5)\nassert sp.simplify(1/(1+w) - (1-w)/6) == 0\n# kernel generated by 3 and 1-w: a+bw = (a+b) - b(1-w)\nfor a in range(-6, 7):\n    for b in range(-6, 7):\n        t = mul((-b, 0), (1, -1))                 # -b(1 - w)\n        assert (a + b + t[0], t[1]) == (a, b)     # a + b w = (a+b) - b(1-w)\n        if (a + b) % 3 == 0: assert chi((a, b)) == 0\n"
+}
+],
+"fixed": 3
+}
+}
+]

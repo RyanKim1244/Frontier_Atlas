@@ -1,0 +1,25 @@
+[
+ {
+  "id": "localization",
+  "papers_read": ["2510.24818", "2510.10018"],
+  "gaps_found": [
+   {"paper": "2510.24818", "item": "Lemma 2.1, Ass(S^{-1}M) = Ass(M) restricted to Spec S^{-1}R, was stated on the page without proof; existence of associated primes over Noetherian rings (needed for it and for Lemma 2.2) was missing", "fixed_in": "Associated primes exist; Associated primes and localisation"},
+   {"paper": "2510.24818", "item": "Lemma 2.2 (minimal primes over Ann M are associated, proved by localising at the minimal prime) and Prop. 3.2 (p in Ass M gives pR_p in Ass M_p) were missing", "fixed_in": "Associated primes and localisation"},
+   {"paper": "2510.24818", "item": "Regular sequences inside p stay regular in R_p (§2.4, Prop. 4.6, depth_p M <= depth M_p) was missing, including the hypothesis x_i in p and the Stacks convention that makes regularity localise", "fixed_in": "Regular sequences under localisation; A sequence that becomes regular after localising"},
+   {"paper": "2510.24818", "item": "Why R -> R_p needs separate lemmas: localisation is flat but not faithfully flat (only when S consists of units) was missing", "fixed_in": "Localisation is flat but rarely faithfully flat"},
+   {"paper": "2510.24818", "item": "Thm 4.19 and §4.2 use ht(qR_p) = ht q, R_p/qR_p = (R/q)_p and R[X]_P as the localisation of R_q[X] at P R_q[X] (q = P cap R); none was on the page", "fixed_in": "Heights, quotients and polynomial rings inside a localisation"},
+   {"paper": "2510.24818", "item": "Mathlib names Localization.AtPrime, IsLocalization.AtPrime, primeCompl, localizedModule used in the statements were not explained", "fixed_in": "Notation and language (new conventions row)"},
+   {"paper": "2510.10018", "item": "The page repeated Theorem 4.2 (O_K[1/alpha] is the integral closure of Z[1/N(alpha)]) as fact; it fails in general (K = Q(i), alpha = 2+i: 1/5 is not in Z[i][1/(2+i)]). The correct statement and criterion for equality were added and block 'Class groups of localisations (Claborn)' corrected", "fixed_in": "Inverting an element versus inverting its norm"},
+   {"paper": "2510.10018", "item": "Prop. 5.2 / Thms 5.5, 5.8 use R = intersection of D_p over primes with pR != R; for localisations this was not proved (only A = intersection of all A_p was on the page)", "fixed_in": "A localisation is the intersection of its local rings"},
+   {"paper": "2510.10018", "item": "Example 5.1 and Thm 5.8: sigma(D_p) = D_{sigma(p)} and the failure of sigma(R) = R for R = Z[sqrt(-5)][1/(1+sqrt(-5))] were not covered", "fixed_in": "Conjugation and localisation"}
+  ],
+  "remaining": [
+   "Depth and Cohen-Macaulay/regular local rings are still only named (requires item points to [guanhu]); a reader of 2510.24818 §3-5 needs a depth page.",
+   "Claborn's theorem (2510.10018 Thm 4.1) and Gilmer's description of arbitrary overrings (Prop. 5.2) are stated, not proved; only the localisation case of Gilmer is proved.",
+   "Ass(S^{-1}M) is proved for Noetherian A only (as in the papers); the non-Noetherian inclusion is part 1.",
+   "Papers 2607.04843 (Xu), 2308.09371 (Lombardi), 2404.12085 (BDS) were not re-read in this round; their uses were checked only against the dossier's lists, which the page already covers.",
+   "Guan-Hu lemma numbers are taken from the arXiv HTML via WebFetch summaries; arXiv PDFs and Stacks pages could not be downloaded directly (proxy 403), only read through WebFetch.",
+   "No Math StackExchange or MathOverflow sources (not reachable)."
+  ]
+ }
+]
