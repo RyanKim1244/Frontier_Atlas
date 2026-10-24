@@ -1,0 +1,224 @@
+[
+ {
+  "id": "graph-algorithms",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.key[0]",
+    "problem": "Bellman equation d(s,v)=min(d(s,u)+w(uv)) stated with no hypothesis; it fails (distances undefined) when there are negative cycles.",
+    "fix": "Added 'no negative cycles' to the condition."
+   },
+   {
+    "severity": "error",
+    "where": "section: Acyclic graphs, critical paths and negative weights",
+    "problem": "Said that when Bellman-Ford detects a negative cycle 'shortest paths do not exist'. That is too strong: only vertices reachable from the cycle lose their distances.",
+    "fix": "Restricted the claim to vertices reachable from the cycle."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Acyclic graphs...",
+    "problem": "DAG label rule gave no initial value L(s)=0. Also 'DFS does this' was attached to the remove-a-source method, which is Kahn's algorithm, not DFS.",
+    "fix": "Added L(s)=0 and reworded to 'this takes linear time'."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padding sentence.",
+    "fix": "Shortened it."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added Kruskal trace check (including rejection of AB), Bellman-Ford on the pitfall graph, and a brute-force test of the cut lemma on random graphs.",
+    "fix": "Added 2 checks."
+   }
+  ]
+ },
+ {
+  "id": "network-flows",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example: König's theorem from max-flow min-cut",
+    "problem": "The final chain wrote max flow = max matching. The argument only shows that an integer max flow gives a matching, i.e. max flow <= max matching. The conclusion still holds, but the equality was not justified.",
+    "fix": "Changed it to min cover <= c(S,T) = max flow <= max matching."
+   },
+   {
+    "severity": "error",
+    "where": "section: Algorithms and modelling tricks",
+    "problem": "The 2022 Chen–Kyng–Liu–Peng–Probst Gutenberg–Sachdeva result (checked: arXiv 2203.00671) was stated without its hypothesis. It holds for integer capacities of polynomial size, in time m^{1+o(1)}.",
+    "fix": "Added the hypothesis and the bound."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Algorithms and modelling tricks",
+    "problem": "For Menger's theorem, 'disconnects t from s' is ambiguous in a directed graph.",
+    "fix": "Changed it to 'destroys every directed s–t path'."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "The non-integral maximum flow example ('two parallel routes into a sink edge') was vague.",
+    "fix": "Made it concrete with explicit edges, and checked it."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links (physics)",
+    "problem": "The writer flagged this link as weak. The Kirchhoff/electrical-flow note described a tool for algorithms, not a use of flows in physics.",
+    "fix": "Replaced it with a standard use: ground states of the random-field ferromagnetic Ising model are minimum s–t cuts, computed with max-flow."
+   },
+   {
+    "severity": "style",
+    "where": "sources/refs",
+    "problem": "Kept Ahuja–Magnanti–Orlin, Diestel (Ch. 6 'Flows'), Kleinberg & Tardos and Ford & Fulkerson, all real.",
+    "fix": "None."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added a networkx cross-check of the example's max flow and min cut, and of the pitfall flow.",
+    "fix": "Added 1 check."
+   }
+  ]
+ },
+ {
+  "id": "conic-sections",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "'Seventeen centuries later Kepler' does not match Apollonius (c. 200 BC) to Kepler (1609), which is about 1800 years. It also credited the degree-two description to Descartes alone and called it exact, ignoring degenerate cases.",
+    "fix": "Changed it to 'about eighteen centuries after Apollonius', 'Descartes and Fermat', and 'apart from degenerate cases'."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "The focus–directrix description leaves out the circle, but the circle was not mentioned.",
+    "fix": "Added 'circle as the limiting case e=0'."
+   },
+   {
+    "severity": "style",
+    "where": "section: Dandelin spheres",
+    "problem": "Hype ('beautiful argument').",
+    "fix": "Removed it."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added a symbolic check of the hyperbola converse and a numeric check that negative r in the polar form traces the far branch.",
+    "fix": "Added 1 check."
+   }
+  ]
+ },
+ {
+  "id": "area-volume",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Surfaces, calculus and what volume really is",
+    "problem": "'Dehn proved in 1900 that a cube and a regular tetrahedron...' Dehn's work appeared in 1900–1901, and his paper concerned tetrahedra in general. The cube versus regular tetrahedron pair is the standard example of his invariant, not his stated theorem.",
+    "fix": "Reworded: soon after Hilbert posed the problem in 1900, Dehn proved that some equal-volume polyhedra are not equidecomposable, with the cube and regular tetrahedron as an example."
+   },
+   {
+    "severity": "style",
+    "where": "same section",
+    "problem": "'Those pieces have no volume at all' was imprecise.",
+    "fix": "Changed it to 'cannot be assigned any volume'. Banach–Tarski with five pieces verified as the minimum (Robinson)."
+   },
+   {
+    "severity": "style",
+    "where": "refs",
+    "problem": "Kiselev Book II (Givental translation), Stewart and Boltianskii's Hilbert's Third Problem are all real.",
+    "fix": "Kept them."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added an integration check for Step 2 of the pyramid proof and for the unit conversions.",
+    "fix": "Added 1 check."
+   }
+  ]
+ },
+ {
+  "id": "solid-geometry",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "All mathematics verified: the perpendicularity test, three perpendiculars, distance formulas, the cube angles, the skew-line distance, the Euler proof sketch and the Platonic classification. Refs (Kiselev II, Coxeter, Anton) are real. Exercise data were checked too (plane y+z=2, distance sqrt2; dihedral angle arccos 1/3).",
+    "fix": "Added 1 check (equilateral face-diagonal triangle, normal of x+y+z=1, inconsistency of the skew-line system)."
+   }
+  ]
+ },
+ {
+  "id": "constructions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.key[2]",
+    "problem": "The Gauss–Wantzel criterion was stated with no range for n. For n=1 or 2 the statement is meaningless.",
+    "fix": "Added n >= 3."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "Said Eisenstein's criterion was 'used to prove irreducibility' here, but the page never uses it.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Courant & Robbins Ch. III (Geometrical constructions), Stewart's Galois Theory and G. E. Martin's Geometric Constructions are all real. Wantzel 1837, Lindemann 1882, Gauss 1796 (17-gon) and Euler's factor 641 are all correct.",
+    "fix": "Kept them."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added checks of the pentagon chord construction and of the quotient-by-similar-triangles construction.",
+    "fix": "Added 1 check."
+   }
+  ]
+ },
+ {
+  "id": "p-adic-numbers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: Measuring size by divisibility",
+    "problem": "The proof that Q is incomplete used digit expansions (defined only later) and the unproved claim that rationals have eventually periodic p-adic expansions.",
+    "fix": "Replaced it with a self-contained argument: Hensel lifts x_n of sqrt(-1) mod 5^n are Cauchy, and a rational limit would satisfy r^2=-1."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Solving equations",
+    "problem": "The 2-adic unit-square criterion (u ≡ 1 mod 8) was stated without proof (writer asked: prove or label).",
+    "fix": "Added a short complete proof: the squaring map on odd residues mod 2^k is exactly 4-to-1, which gives every u ≡ 1 mod 8 mod 2^k, then compactness of Z_2. Verified by check."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "One bullet repeated the intro example (sum of 2^n).",
+    "fix": "Removed it."
+   },
+   {
+    "severity": "style",
+    "where": "facts",
+    "problem": "Selmer's 3x^3+4y^3+5z^3=0 counterexample to the Hasse principle, Ostrowski, the product formula, the Cantor-set homeomorphism, and Serre Ch. II / Neukirch Ch. II all verified.",
+    "fix": "None."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added a check of Hensel lift compatibility up to 5^30 and of the exact 4-to-1 squaring map mod 2^k.",
+    "fix": "Added 1 check."
+   }
+  ]
+ }
+]
