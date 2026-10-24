@@ -1,0 +1,494 @@
+[
+ {
+  "concept": "sidon-sets",
+  "ladder": [
+   {
+    "title": "Distinct differences bound",
+    "kind": "classic",
+    "q": "A set $A$ of positive integers is a Sidon set if all sums $a+b$ with $a\\le b$ and $a,b\\in A$ are distinct.\n\nLet $A\\subseteq\\{1,\\ldots,N\\}$ be a Sidon set. Show that the positive differences $a-a'$ with $a,a'\\in A$, $a>a'$, are pairwise distinct, and deduce that $|A|<\\sqrt{2N}+1$.",
+    "concepts": [
+     "sidon-sets",
+     "pigeonhole",
+     "additive-combinatorics"
+    ],
+    "source": "Elementary counting (proof checked by the reviewer); see K. O'Bryant, A complete annotated bibliography of work related to Sidon sequences, Electron. J. Combin. Dynamic Survey DS11 (2004), arXiv:math/0407117",
+    "bridges_to": [],
+    "note": "The trivial upper bound; the whole of Erdős #30 is about replacing $\\sqrt{2N}$ by $\\sqrt N$ plus the smallest possible error."
+   },
+   {
+    "title": "The greedy Sidon sequence grows at most cubically",
+    "kind": "classic",
+    "q": "Let $a_1=1$ and, for $n\\ge1$, let $a_{n+1}$ be the least integer greater than $a_n$ such that $\\{a_1,\\ldots,a_{n+1}\\}$ is a Sidon set.\n\nShow that $a_{n+1}\\le 4n^3$ for every $n\\ge1$, and deduce that there is an absolute constant $c>0$ such that the infinite Sidon set $A=\\{a_1,a_2,\\ldots\\}$ satisfies $|A\\cap\\{1,\\ldots,N\\}|\\ge cN^{1/3}$ for all $N\\ge1$.",
+    "concepts": [
+     "sidon-sets",
+     "combinatorial-nt",
+     "counting"
+    ],
+    "source": "A. M. Mian and S. Chowla, Proc. Nat. Acad. Sci. India Sect. A 14 (1944) (the sequence); the cubic bound $a_n\\le(n-1)^3+1$ is in A. Stöhr, J. Reine Angew. Math. 194 (1955), see O'Bryant, Electron. J. Combin. Dynamic Survey DS11 (2004) and J. Cilleruelo, Infinite Sidon sequences, arXiv:1209.0326",
+    "bridges_to": [
+     "ERDOS-340"
+    ],
+    "note": "This is the greedy (Mian–Chowla) sequence of Erdős #340; this trivial $N^{1/3}$ bound is still the best known lower bound for it, against the conjectured $N^{1/2-\\varepsilon}$."
+   },
+   {
+    "title": "The Erdős–Turán quadratic-residue construction",
+    "kind": "theorem",
+    "q": "Let $p$ be an odd prime and, for $0\\le k<p$, let $r_k\\in\\{0,1,\\ldots,p-1\\}$ be the residue of $k^2$ modulo $p$. Show that\n$$A_p=\\{\\,2pk+r_k : 0\\le k<p\\,\\}$$\nis a Sidon set of $p$ elements contained in $\\{0,1,\\ldots,2p^2-1\\}$.\n\nDeduce, using that the ratio of consecutive primes tends to $1$, that the maximum size $h(N)$ of a Sidon set in $\\{1,\\ldots,N\\}$ satisfies $h(N)\\ge(1/\\sqrt2-o(1))\\sqrt N$.",
+    "concepts": [
+     "sidon-sets",
+     "congruences",
+     "quadratic-residues",
+     "finite-fields"
+    ],
+    "source": "P. Erdős and P. Turán, On a problem of Sidon in additive number theory, and on some related problems, J. London Math. Soc. 16 (1941), 212–215",
+    "year": 1941,
+    "bridges_to": [],
+    "note": "The first algebraic construction: it shows $h(N)$ really has order $\\sqrt N$, leaving only the constant and the error term."
+   },
+   {
+    "title": "Lindström's upper bound",
+    "kind": "theorem",
+    "q": "Show that every Sidon set $A\\subseteq\\{1,\\ldots,N\\}$ satisfies\n$$|A|<N^{1/2}+N^{1/4}+1.$$",
+    "concepts": [
+     "sidon-sets",
+     "cauchy-schwarz",
+     "additive-combinatorics"
+    ],
+    "source": "B. Lindström, An inequality for B2-sequences, J. Combinatorial Theory 6 (1969), 211–212; the bound $\\sqrt N+O(N^{1/4})$ goes back to Erdős and Turán (1941)",
+    "year": 1969,
+    "bridges_to": [
+     "ERDOS-30"
+    ],
+    "note": "Counting differences in short windows replaces $\\sqrt{2N}$ by $\\sqrt N$; the $N^{1/4}$ error term is the barrier Erdős #30 asks to break."
+   },
+   {
+    "title": "Singer difference sets give asymptotically optimal Sidon sets",
+    "kind": "theorem",
+    "q": "Let $q$ be a prime power. Show that there exist $q+1$ residues modulo $m=q^2+q+1$ such that every nonzero residue modulo $m$ is a difference of two of them in exactly one way.\n\nDeduce that $h(q^2+q+1)\\ge q+1$, where $h(N)$ is the maximum size of a Sidon subset of $\\{1,\\ldots,N\\}$, and, using that consecutive primes $p<p'$ satisfy $p'/p\\to1$ together with the upper bound of the previous problem, that $h(N)=(1+o(1))\\sqrt N$.",
+    "concepts": [
+     "sidon-sets",
+     "finite-fields",
+     "fields-ext",
+     "additive-combinatorics"
+    ],
+    "source": "J. Singer, A theorem in finite projective geometry and some applications to number theory, Trans. Amer. Math. Soc. 43 (1938), 377–385",
+    "year": 1938,
+    "bridges_to": [
+     "GREEN-31",
+     "ERDOS-707"
+    ],
+    "note": "Matches the upper bound to first order; at $N=q^2+q+1$ it gives $h(N)\\ge\\sqrt N+1/2-o(1)$, and Green's Problem 31 asks whether one can beat $\\sqrt N+O(1)$ even for infinitely many $N$."
+   },
+   {
+    "title": "B3 sets: counting bound and the Bose–Chowla construction",
+    "kind": "theorem",
+    "q": "Call $A\\subseteq\\mathbb{N}$ a $B_3$ set if the sums $a+b+c$ with $a\\le b\\le c$ and $a,b,c\\in A$ are all distinct, and let $f(N)$ be the maximum size of a $B_3$ set in $\\{1,\\ldots,N\\}$.\n\n(a) By counting the sums, show that $f(N)<(18N)^{1/3}$.\n\n(b) Show that for every prime power $q$ there is a $B_3$ set of $q$ integers contained in $\\{1,\\ldots,q^3-1\\}$, and deduce that $f(N)\\ge(1-o(1))N^{1/3}$.",
+    "concepts": [
+     "sidon-sets",
+     "finite-fields",
+     "additive-combinatorics"
+    ],
+    "source": "R. C. Bose and S. Chowla, Theorems in the additive theory of numbers, Comment. Math. Helv. 37 (1962/63), 141–147; the counting bound $(h\\cdot h!)^{1/h}N^{1/h}$ is classical, see O'Bryant, Electron. J. Combin. Dynamic Survey DS11 (2004)",
+    "year": 1962,
+    "bridges_to": [
+     "ERDOS-241",
+     "ERDOS-41"
+    ],
+    "note": "Gives the right order $N^{1/3}$ for triple sums; Erdős #241 asks whether the lower bound is asymptotically sharp, which needs an upper bound of the form $(1+o(1))N^{1/3}$."
+   },
+   {
+    "title": "Infinite Sidon sets cannot be dense at every scale",
+    "kind": "theorem",
+    "q": "Let $A\\subseteq\\mathbb{N}$ be an infinite Sidon set. Show that there is an absolute constant $C$ (independent of $A$) such that\n$$\\liminf_{x\\to\\infty}\\frac{|A\\cap[1,x]|}{\\sqrt{x/\\log x}}\\le C.$$\nIn particular $\\liminf_{x\\to\\infty}|A\\cap[1,x]|/\\sqrt x=0$.",
+    "concepts": [
+     "sidon-sets",
+     "additive-combinatorics",
+     "asymptotics"
+    ],
+    "source": "Erdős; proof in A. Stöhr, Gelöste und ungelöste Fragen über Basen der natürlichen Zahlenreihe II, J. Reine Angew. Math. 194 (1955), and in Halberstam & Roth, Sequences, Vol. I (1966), Ch. II; see also erdosproblems.com/1191 and O'Bryant, Electron. J. Combin. Dynamic Survey DS11 (2004)",
+    "bridges_to": [
+     "ERDOS-1191"
+    ],
+    "note": "An infinite Sidon set must be thinner than finite optimal ones infinitely often; Erdős #1191 asks whether the constant $C$ can be replaced by $0$.",
+    "year": 1955
+   },
+   {
+    "title": "Maximal Sidon sets: the cube-root bound and Ruzsa's construction",
+    "kind": "theorem",
+    "q": "A Sidon set $A\\subseteq\\{1,\\ldots,N\\}$ is maximal if $A\\cup\\{x\\}$ is not a Sidon set for every $x\\in\\{1,\\ldots,N\\}\\setminus A$.\n\n(a) Show that there is an absolute constant $c>0$ such that every maximal Sidon set $A\\subseteq\\{1,\\ldots,N\\}$ has $|A|\\ge cN^{1/3}$.\n\n(b) Show that there is an absolute constant $C$ such that for every large $N$ there is a maximal Sidon set $A\\subseteq\\{1,\\ldots,N\\}$ with $|A|\\le C(N\\log N)^{1/3}$.",
+    "concepts": [
+     "sidon-sets",
+     "probabilistic-method",
+     "additive-combinatorics"
+    ],
+    "source": "Part (a): elementary counting, stated as easy in erdosproblems.com/156; the question comes from P. Erdős, A. Sárközy and V. T. Sós, On sum sets of Sidon sets I, J. Number Theory 47 (1994), 329–347. Part (b): I. Z. Ruzsa, A small maximal Sidon set, Ramanujan J. 2 (1998), 55–58",
+    "year": 1998,
+    "bridges_to": [
+     "ERDOS-156"
+    ],
+    "note": "The two bounds differ only by $(\\log N)^{1/3}$; Erdős #156 asks whether that logarithm can be removed."
+   },
+   {
+    "title": "Ruzsa's dense infinite Sidon sequence",
+    "kind": "theorem",
+    "q": "Show that there is an infinite Sidon set $A\\subseteq\\mathbb{N}$ such that for every $\\varepsilon>0$,\n$$|A\\cap\\{1,\\ldots,N\\}|\\ge N^{\\sqrt2-1-\\varepsilon}$$\nfor all sufficiently large $N$.",
+    "concepts": [
+     "sidon-sets",
+     "probabilistic-method",
+     "combinatorial-nt"
+    ],
+    "source": "I. Z. Ruzsa, An infinite Sidon sequence, J. Number Theory 68 (1998), 63–71",
+    "year": 1998,
+    "bridges_to": [
+     "ERDOS-39"
+    ],
+    "note": "Improves the greedy exponent $1/3$ (and Ajtai–Komlós–Szemerédi's $(N\\log N)^{1/3}$, 1981) to $\\sqrt2-1\\approx0.414$; Erdős #39 asks for every exponent below $1/2$."
+   },
+   {
+    "title": "Balogh–Füredi–Roy: improving the constant in the N^{1/4} term",
+    "kind": "theorem",
+    "q": "Show that for all sufficiently large $N$, every Sidon set $A\\subseteq\\{1,\\ldots,N\\}$ satisfies\n$$|A|\\le\\sqrt N+0.998\\,N^{1/4}.$$",
+    "concepts": [
+     "sidon-sets",
+     "additive-combinatorics",
+     "cauchy-schwarz"
+    ],
+    "source": "J. Balogh, Z. Füredi and S. Roy, An upper bound on the size of Sidon sets, Amer. Math. Monthly 130 (2023), no. 5, 437–445; arXiv:2103.15850",
+    "year": 2021,
+    "bridges_to": [
+     "ERDOS-30"
+    ],
+    "note": "The first improvement of the constant $1$ in Lindström's $N^{1/4}$ term in over fifty years; Erdős #30 asks to lower the exponent $1/4$ itself to any $\\varepsilon>0$."
+   }
+  ]
+ },
+ {
+  "concept": "additive-bases",
+  "ladder": [
+   {
+    "title": "The representation function is never eventually constant",
+    "kind": "classic",
+    "q": "Let $A\\subseteq\\{0,1,2,\\ldots\\}$ be infinite and let $r(n)=\\#\\{(a,b)\\in A^2: a\\le b,\\ a+b=n\\}$ count representations with $a\\le b$. Show that $r(n)$ is not constant for all sufficiently large $n$.",
+    "concepts": [
+     "additive-bases",
+     "generating-functions",
+     "power-series"
+    ],
+    "source": "G. A. Dirac, Note on a problem in additive number theory, J. London Math. Soc. 26 (1951), 312–313; see M. B. Nathanson, Inverse problems for representation functions in additive number theory, arXiv:0712.0408, Theorem 1",
+    "year": 1951,
+    "bridges_to": [],
+    "note": "The weakest form of the Erdős–Turán philosophy that a representation function cannot be too regular."
+   },
+   {
+    "title": "A basis of order two has at least square-root growth",
+    "kind": "classic",
+    "q": "Let $A\\subseteq\\{0,1,2,\\ldots\\}$ be such that every sufficiently large integer can be written as $a+b$ with $a,b\\in A$. Show that\n$$\\liminf_{N\\to\\infty}\\frac{|A\\cap\\{0,1,\\ldots,N\\}|}{\\sqrt N}\\ge\\sqrt2.$$",
+    "concepts": [
+     "additive-bases",
+     "pigeonhole",
+     "counting"
+    ],
+    "source": "Elementary counting (proof checked by the reviewer); the order of magnitude $A(x)\\gg\\sqrt x$ for bases of order $2$ is Theorem 1 of M. B. Nathanson, Cassels bases, arXiv:0905.3144",
+    "bridges_to": [
+     "ERDOS-28",
+     "ERDOS-40"
+    ],
+    "note": "Shows a basis of order $2$ has on average at least a constant number of representations, the starting point of the Erdős–Turán conjecture."
+   },
+   {
+    "title": "A thin basis from binary digits",
+    "kind": "classic",
+    "q": "Let $E$ be the set of nonnegative integers whose binary expansion uses only the powers $4^j$ ($j\\ge0$), and let $O=2E$ be the set of those using only the powers $2\\cdot4^j$. Show that $A=E\\cup O$ satisfies $A+A\\supseteq\\{0,1,2,\\ldots\\}$ and $|A\\cap\\{0,1,\\ldots,N\\}|\\le4\\sqrt N$ for every $N\\ge1$.",
+    "concepts": [
+     "additive-bases",
+     "digits-bases"
+    ],
+    "source": "D. Raikov (1937) and A. Stöhr (1937); see M. B. Nathanson, Cassels bases, arXiv:0905.3144, where the bound $A(x)<(2+\\sqrt2)\\sqrt x$ is shown",
+    "bridges_to": [
+     "ERDOS-28"
+    ],
+    "note": "The square-root lower bound is attained up to a constant, so the Erdős–Turán conjecture cannot follow from counting alone; in this example $r(n)$ is unbounded.",
+    "year": 1937
+   },
+   {
+    "title": "Schnirelmann's inequality",
+    "kind": "classic",
+    "q": "For $A\\subseteq\\{0,1,2,\\ldots\\}$ let $A(n)=\\#\\{a\\in A:1\\le a\\le n\\}$ and define the Schnirelmann density $\\sigma(A)=\\inf_{n\\ge1}A(n)/n$.\n\n(a) Show that if $0\\in A$ and $0\\in B$ then $\\sigma(A+B)\\ge\\sigma(A)+\\sigma(B)-\\sigma(A)\\sigma(B)$.\n\n(b) Deduce that if $0\\in A$ and $\\sigma(A)>0$, then $A$ is a basis of finite order: there is $h$ such that every nonnegative integer is a sum of $h$ elements of $A$.",
+    "concepts": [
+     "additive-bases",
+     "additive-combinatorics"
+    ],
+    "source": "L. G. Schnirelmann (1930); M. B. Nathanson, Additive Number Theory: The Classical Bases, Graduate Texts in Mathematics 164, Springer (1996)",
+    "year": 1930,
+    "bridges_to": [
+     "ERDOS-35"
+    ],
+    "note": "The basic density-increment inequality for sumsets, the tool behind Schnirelmann's proof that the primes form a basis of finite order."
+   },
+   {
+    "title": "Erdős's covering-congruence obstruction for 2^k + p",
+    "kind": "theorem",
+    "q": "(a) Show that every integer $k$ lies in at least one of the residue classes $0 \\bmod 2$, $0 \\bmod 3$, $1 \\bmod 4$, $3 \\bmod 8$, $7 \\bmod 12$, $23 \\bmod 24$.\n\n(b) Prove that there is an infinite arithmetic progression of odd positive integers none of which can be written as $2^k+p$ with $k\\ge0$ an integer and $p$ a prime.",
+    "concepts": [
+     "additive-bases",
+     "covering-systems",
+     "crt",
+     "order-primroot"
+    ],
+    "source": "P. Erdős, On integers of the form 2^k + p and some related problems, Summa Brasil. Math. 2 (1950), 113–123",
+    "year": 1950,
+    "bridges_to": [
+     "ERDOS-16",
+     "ERDOS-9"
+    ],
+    "note": "Contrasts with Romanoff's theorem (1934) that the integers $2^k+p$ have positive lower density; Erdős #16 asks whether such progressions explain all exceptions."
+   },
+   {
+    "title": "Erdős's density increment for adding a basis",
+    "kind": "theorem",
+    "q": "Let $\\sigma$ denote Schnirelmann density, $\\sigma(A)=\\inf_{n\\ge1}\\#\\{a\\in A:1\\le a\\le n\\}/n$. Let $B\\subseteq\\{0,1,2,\\ldots\\}$ with $0\\in B$ be a basis of order $k$, i.e. every nonnegative integer is a sum of $k$ elements of $B$. Let $A\\subseteq\\{0,1,2,\\ldots\\}$ with $0\\in A$ and $\\alpha=\\sigma(A)$. Show that\n$$\\sigma(A+B)\\ge\\alpha+\\frac{\\alpha(1-\\alpha)}{2k}.$$",
+    "concepts": [
+     "additive-bases",
+     "additive-combinatorics"
+    ],
+    "source": "P. Erdős, On the arithmetical density of the sum of two sequences, one of which forms a basis for the integers, Acta Arith. 1 (1936), 197–200",
+    "year": 1936,
+    "bridges_to": [
+     "ERDOS-35"
+    ],
+    "note": "This is Erdős #35 with $2k$ in place of $k$; the sharper form follows from Plünnecke's inequality $\\sigma(A+B)\\ge\\alpha^{1-1/k}$ (J. Reine Angew. Math. 243, 1970), since $\\alpha^{1-1/k}\\ge\\alpha+\\alpha(1-\\alpha)/k$."
+   },
+   {
+    "title": "A basis of order two with logarithmically many representations",
+    "kind": "theorem",
+    "q": "Let $r(n)=\\#\\{(a,b)\\in A^2:a+b=n\\}$. Show that there exist $A\\subseteq\\mathbb{N}$ and constants $0<c_1<c_2$ such that\n$$c_1\\log n\\le r(n)\\le c_2\\log n$$\nfor all sufficiently large $n$.",
+    "concepts": [
+     "additive-bases",
+     "probabilistic-method"
+    ],
+    "source": "P. Erdős, Problems and results in additive number theory, Colloque sur la Théorie des Nombres, Bruxelles 1955, CBRM (1956), 127–137 (the upper bound alone is in P. Erdős, On a problem of Sidon in additive number theory, Acta Sci. Math. (Szeged) 15 (1954), 255–259); extended to every order $h$ by P. Erdős and P. Tetali, Representations of integers as the sum of k terms, Random Structures Algorithms 1 (1990), 245–261",
+    "year": 1956,
+    "bridges_to": [
+     "ERDOS-66",
+     "ERDOS-28"
+    ],
+    "note": "Shows the conjectured growth $\\log n$ in the strong Erdős–Turán conjecture is attainable; Erdős #66 asks whether $r(n)/\\log n$ can even converge to a nonzero limit."
+   },
+   {
+    "title": "Bases of order two have a representation count of at least 8 infinitely often",
+    "kind": "theorem",
+    "q": "Let $A\\subseteq\\{0,1,2,\\ldots\\}$ and $r(n)=\\#\\{(a,b)\\in A^2:a+b=n\\}$ (ordered pairs). Suppose $r(n)\\ge1$ for every integer $n\\ge0$. Show that $r(n)\\ge8$ for infinitely many $n$.",
+    "concepts": [
+     "additive-bases",
+     "generating-functions"
+    ],
+    "source": "P. Borwein, S. Choi and F. Chu, An old conjecture of Erdős–Turán on additive bases, Math. Comp. 75 (2006), 475–484; improving the bound 6 of G. Grekos, L. Haddad, C. Helou and J. Pihko, On the Erdős–Turán conjecture, J. Number Theory 102 (2003), 339–352",
+    "year": 2006,
+    "bridges_to": [
+     "ERDOS-28"
+    ],
+    "note": "The best known constant lower bound on $\\limsup r(n)$; Erdős #28 asks for $\\limsup r(n)=\\infty$."
+   },
+   {
+    "title": "The Erdős–Fuchs theorem",
+    "kind": "theorem",
+    "q": "Let $A\\subseteq\\{0,1,2,\\ldots\\}$ be infinite and let $R(N)=\\#\\{(a,b)\\in A^2:a+b\\le N\\}$. Show that for no constant $c>0$ can one have\n$$R(N)=cN+o\\!\\left(N^{1/4}(\\log N)^{-1/2}\\right)\\quad(N\\to\\infty).$$",
+    "concepts": [
+     "additive-bases",
+     "generating-functions",
+     "fourier-poisson"
+    ],
+    "source": "P. Erdős and W. H. J. Fuchs, On a problem of additive number theory, J. London Math. Soc. 31 (1956), 67–73",
+    "year": 1956,
+    "bridges_to": [
+     "ERDOS-66",
+     "ERDOS-28"
+    ],
+    "note": "Quantifies that the representation function cannot be regular on average, answering a question of Erdős and Turán about $R(N)=cN+O(1)$; the analytic method is a model for attacks on the irregularity problems around Erdős #28 and #66."
+   },
+   {
+    "title": "Gallagher: a prime plus boundedly many powers of 2",
+    "kind": "theorem",
+    "q": "Show that for every $\\varepsilon>0$ there is an integer $k=k(\\varepsilon)$ such that the set of positive integers of the form $p+2^{\\nu_1}+\\cdots+2^{\\nu_j}$, with $p$ prime, $0\\le j\\le k$ and $\\nu_1,\\ldots,\\nu_j\\ge0$, has lower asymptotic density at least $1-\\varepsilon$.",
+    "concepts": [
+     "additive-bases",
+     "sieve-basics",
+     "large-sieve",
+     "prime-patterns"
+    ],
+    "source": "P. X. Gallagher, Primes and powers of 2, Invent. Math. 29 (1975), 125–142",
+    "year": 1975,
+    "bridges_to": [
+     "ERDOS-10"
+    ],
+    "note": "The density version of Erdős #10; the open problem asks for a single $k$ that represents all large integers."
+   }
+  ]
+ },
+ {
+  "concept": "arithmetic-progressions",
+  "ladder": [
+   {
+    "title": "Van der Waerden number W(3,2)",
+    "kind": "classic",
+    "q": "Show that every colouring of $\\{1,2,\\ldots,9\\}$ with two colours contains a monochromatic $3$-term arithmetic progression, and that this fails for $\\{1,2,\\ldots,8\\}$.",
+    "concepts": [
+     "arithmetic-progressions",
+     "ramsey-arithmetic",
+     "pigeonhole"
+    ],
+    "source": "R. L. Graham, B. L. Rothschild and J. H. Spencer, Ramsey Theory (2nd ed., 1990)",
+    "bridges_to": [],
+    "note": "The smallest nontrivial case of van der Waerden's theorem, of which Szemerédi's theorem is the density version."
+   },
+   {
+    "title": "Monotone 3-term progressions in permutations",
+    "kind": "theorem",
+    "q": "A monotone $k$-term arithmetic progression in a sequence $x_1,x_2,\\ldots$ is a choice of indices $i_1<\\cdots<i_k$ such that $x_{i_1},\\ldots,x_{i_k}$ is an arithmetic progression (increasing or decreasing).\n\n(a) Show that for every $n\\ge1$ there is a permutation of $\\{1,\\ldots,n\\}$ with no monotone $3$-term arithmetic progression.\n\n(b) Show that every permutation $x_1,x_2,\\ldots$ of the positive integers contains a monotone $3$-term arithmetic progression.",
+    "concepts": [
+     "arithmetic-progressions",
+     "ramsey-arithmetic",
+     "infinite-combinatorics"
+    ],
+    "source": "J. A. Davis, R. C. Entringer, R. L. Graham and G. J. Simmons, On permutations containing no long arithmetic progressions, Acta Arith. 34 (1977), 81–90",
+    "year": 1977,
+    "bridges_to": [
+     "ERDOS-196",
+     "ERDOS-197"
+    ],
+    "note": "The same paper constructs a permutation of $\\mathbb{N}$ with no monotone $5$-term progression, leaving $4$ terms as Erdős #196."
+   },
+   {
+    "title": "A progression-free set from ternary digits",
+    "kind": "classic",
+    "q": "Let $r_3(N)$ be the maximum size of a subset of $\\{1,\\ldots,N\\}$ containing no three distinct elements in arithmetic progression. Show that the set of $n\\ge1$ such that $n-1$ has only digits $0$ and $1$ in base $3$ contains no $3$-term arithmetic progression, and deduce that $r_3(N)\\ge\\tfrac12N^{\\log2/\\log3}$ for all $N\\ge1$.",
+    "concepts": [
+     "arithmetic-progressions",
+     "digits-bases",
+     "combinatorial-nt"
+    ],
+    "source": "P. Erdős and P. Turán, On some sequences of integers, J. London Math. Soc. 11 (1936), 261–264",
+    "year": 1936,
+    "bridges_to": [],
+    "note": "The first construction in the paper that introduced $r_k(N)$; it shows progression-free sets can have polynomial size."
+   },
+   {
+    "title": "Behrend's construction",
+    "kind": "theorem",
+    "q": "Show that there is a constant $c>0$ such that for all $N\\ge2$ there is a set $A\\subseteq\\{1,\\ldots,N\\}$ with no $3$-term arithmetic progression and\n$$|A|\\ge N\\exp\\!\\left(-c\\sqrt{\\log N}\\right).$$",
+    "concepts": [
+     "arithmetic-progressions",
+     "digits-bases",
+     "combinatorial-nt"
+    ],
+    "source": "F. A. Behrend, On sets of integers which contain no three terms in arithmetical progression, Proc. Nat. Acad. Sci. USA 32 (1946), 331–332",
+    "year": 1946,
+    "bridges_to": [
+     "ERDOS-142"
+    ],
+    "note": "Shows $r_3(N)=N^{1-o(1)}$, so any upper bound must leave room for this; it is still essentially the best lower bound."
+   },
+   {
+    "title": "Roth's theorem",
+    "kind": "theorem",
+    "q": "Show that there is a constant $C$ such that for all $N\\ge3$ every subset of $\\{1,\\ldots,N\\}$ with no $3$-term arithmetic progression has at most $CN/\\log\\log N$ elements.",
+    "concepts": [
+     "arithmetic-progressions",
+     "fourier-poisson",
+     "additive-combinatorics"
+    ],
+    "source": "K. F. Roth, On certain sets of integers, J. London Math. Soc. 28 (1953), 104–109",
+    "year": 1953,
+    "bridges_to": [
+     "ERDOS-139"
+    ],
+    "note": "The $k=3$ case of Erdős #139 by Fourier-analytic density increment, the method all later 3-AP bounds refine."
+   },
+   {
+    "title": "Szemerédi's theorem",
+    "kind": "theorem",
+    "q": "Let $k\\ge3$ and let $r_k(N)$ be the maximum size of a subset of $\\{1,\\ldots,N\\}$ with no $k$-term arithmetic progression. Show that $r_k(N)=o(N)$ as $N\\to\\infty$; equivalently, every subset of $\\mathbb{N}$ of positive upper density contains arbitrarily long arithmetic progressions.",
+    "concepts": [
+     "arithmetic-progressions",
+     "ramsey-arithmetic",
+     "extremal-graphs"
+    ],
+    "source": "E. Szemerédi, On sets of integers containing no k elements in arithmetic progression, Acta Arith. 27 (1975), 199–245",
+    "year": 1975,
+    "bridges_to": [
+     "ERDOS-3"
+    ],
+    "note": "This is Erdős #139, now solved; Erdős #3 asks for arbitrarily long progressions under the much weaker hypothesis $\\sum_{n\\in A}1/n=\\infty$, and all later work on it is about the rate in $r_k(N)=o(N)$."
+   },
+   {
+    "title": "Gowers's quantitative Szemerédi theorem",
+    "kind": "theorem",
+    "q": "Let $k\\ge3$ and $c_k=2^{-2^{k+9}}$. Show that for all sufficiently large $N$, every subset of $\\{1,\\ldots,N\\}$ with no $k$-term arithmetic progression has at most $N(\\log\\log N)^{-c_k}$ elements.",
+    "concepts": [
+     "arithmetic-progressions",
+     "fourier-poisson",
+     "additive-combinatorics"
+    ],
+    "source": "W. T. Gowers, A new proof of Szemerédi's theorem, Geom. Funct. Anal. 11 (2001), 465–588",
+    "year": 2001,
+    "bridges_to": [
+     "ERDOS-142"
+    ],
+    "note": "The first bound for all $k$ with a reasonable rate, introducing the Gowers uniformity norms."
+   },
+   {
+    "title": "Kelley–Meka bounds for 3-term progressions",
+    "kind": "theorem",
+    "q": "Show that there is a constant $c>0$ such that for all $N\\ge3$ every subset of $\\{1,\\ldots,N\\}$ with no $3$-term arithmetic progression has at most\n$$N\\exp\\!\\left(-c(\\log N)^{1/12}\\right)$$\nelements. Deduce that every $A\\subseteq\\mathbb{N}$ with $\\sum_{n\\in A}1/n=\\infty$ contains a $3$-term arithmetic progression.",
+    "concepts": [
+     "arithmetic-progressions",
+     "additive-combinatorics",
+     "fourier-poisson"
+    ],
+    "source": "Z. Kelley and R. Meka, Strong bounds for 3-progressions, FOCS 2023, arXiv:2302.05537 (the exponent $1/12$ is made explicit in T. F. Bloom and O. Sisask, The Kelley–Meka bounds for sets free of three-term arithmetic progressions, Essent. Number Theory 2 (2023), arXiv:2302.07211); exponent improved to $1/9$ by T. F. Bloom and O. Sisask, An improvement to the Kelley–Meka bounds on three-term arithmetic progressions, arXiv:2309.02353",
+    "year": 2023,
+    "bridges_to": [
+     "GREEN-9",
+     "ERDOS-3",
+     "ERDOS-142"
+    ],
+    "note": "Answers Green's Problem 9, gives a new proof of the $k=3$ case of Erdős #3 (first proved by Bloom and Sisask in 2020), and brings the upper bound to the same shape as Behrend's lower bound, with exponent $1/12$ against $1/2$."
+   },
+   {
+    "title": "Leng–Sah–Sawhney bounds for long progressions",
+    "kind": "theorem",
+    "q": "Let $k\\ge5$. Show that there is a constant $c_k>0$ such that for all sufficiently large $N$, every subset of $\\{1,\\ldots,N\\}$ with no $k$-term arithmetic progression has at most\n$$N\\exp\\!\\left(-(\\log\\log N)^{c_k}\\right)$$\nelements.",
+    "concepts": [
+     "arithmetic-progressions",
+     "additive-combinatorics",
+     "fourier-poisson"
+    ],
+    "source": "J. Leng, A. Sah and M. Sawhney, Improved bounds for Szemerédi's theorem, arXiv:2402.17995 (2024)",
+    "year": 2024,
+    "bridges_to": [
+     "ERDOS-142",
+     "ERDOS-3"
+    ],
+    "note": "The first bound for $k\\ge5$ beating every power of $\\log\\log N$; Erdős #3 for $k$-term progressions would follow from a bound $r_k(N)\\ll N/(\\log N)^{1+\\delta}$ for some $\\delta>0$."
+   },
+   {
+    "title": "The Green–Tao theorem",
+    "kind": "theorem",
+    "q": "Show that for every $k\\ge3$ the primes contain a $k$-term arithmetic progression.",
+    "concepts": [
+     "arithmetic-progressions",
+     "prime-patterns",
+     "sieve-basics",
+     "pnt"
+    ],
+    "source": "B. Green and T. Tao, The primes contain arbitrarily long arithmetic progressions, Ann. of Math. 167 (2008), 481–547",
+    "year": 2008,
+    "bridges_to": [
+     "ERDOS-141",
+     "ERDOS-200"
+    ],
+    "note": "A relative Szemerédi theorem for the primes, which have density zero; Erdős #141 asks for such progressions among consecutive primes, and #200 for the length of the longest one below $N$."
+   }
+  ]
+ }
+]

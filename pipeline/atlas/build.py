@@ -226,7 +226,21 @@ for x in json.load(open(os.path.join(HERE, "..", "round3", "textbook_raw.json"))
                          links=[{"label": "Book", "url": x["link"]}, {"label": lic[0], "url": lic[1]}]))
 ids_t = [p["id"] for p in textbook]; assert len(ids_t) == len(set(ids_t)), [i for i in ids_t if ids_t.count(i) > 1][:5]
 
-ALL = {"textbook": textbook, "olympiad": olympiad, "research": research, "examples": examples}
+# ---------- bridge ladders: ordered steps from olympiad/textbook level to research problems (reviewed only) ----------
+bridge = []
+RIDS = {p["id"] for p in research}
+for f in sorted(glob.glob(os.path.join(HERE, "..", "round4", "ladders", "ladder_final_*.json"))):
+    for L in json.load(open(f)):
+        cid = L["concept"]
+        if cid not in IDS: continue
+        rungs = L["ladder"]
+        for k, r in enumerate(rungs, 1):
+            cs = [c for c in r.get("concepts", []) if c in IDS]
+            if cid not in cs: cs = [cid] + cs
+            bridge.append(dict(id=f"LAD-{cid}-{k}", kind="bridge", coll="Ladder", title=r["title"], year=r.get("year"), q=r["q"], concepts=cs, fields=fields_of(cs),
+                               ladder=dict(concept=cid, step=k, of=len(rungs)), rkind=r.get("kind", ""), source=r.get("source", ""), note=r.get("note", ""),
+                               bridges_to=[b for b in r.get("bridges_to", []) if b in RIDS]))
+ALL = {"textbook": textbook, "olympiad": olympiad, "bridge": bridge, "research": research, "examples": examples}
 for k, ps in ALL.items():
     for p in ps:
         for c in p["concepts"]: assert c in IDS, (p["id"], c)
@@ -272,7 +286,7 @@ for c in concepts:
 colls = {}
 for ps in ALL.values():
     for p in ps: colls[p["coll"]] = colls.get(p["coll"], 0) + 1
-stats = {"textbook": len(textbook), "olympiad": len(olympiad), "research": len(research), "examples": len(examples), "total": sum(len(v) for v in ALL.values()),
+stats = {"textbook": len(textbook), "olympiad": len(olympiad), "bridge": len(bridge), "research": len(research), "examples": len(examples), "total": sum(len(v) for v in ALL.values()),
          "open": sum(p["status"] == "open" for p in research), "solved": sum(p["status"] == "solved" for p in research), "claimed": sum(p["status"] == "claimed" for p in research), "collections": colls}
 catalog = {"bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
            "credits": ["Textbook exercises: David Austin, Understanding Linear Algebra (CC BY 4.0); Mitchel T. Keller and William T. Trotter, Applied Combinatorics (CC BY-SA 4.0). Statements only, reformatted; exercises from CC BY-SA sources are shared under CC BY-SA 4.0.",

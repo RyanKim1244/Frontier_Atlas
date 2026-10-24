@@ -255,6 +255,8 @@ details.submit summary { cursor: pointer; font-family: var(--sans); font-weight:
 footer { border-top: 1px solid var(--rule); padding-block: 24px 44px; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
 footer p { max-width: 62em; }
 .flinks a { color: var(--ink-2); }
+.ladder { padding-left: 22px; margin: 0; } .ladder li { padding: 3px 0; border: 0; font-size: 15px; } .ladder li.done a { color: var(--ink-3); text-decoration: line-through; }
+.tag.step { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
 [hidden] { display: none !important; }
 @media (max-width: 900px) { .top .brand { order: -2; } .acct { order: -1; margin-left: auto; } }
 .acct { display: flex; align-items: center; min-height: 34px; }
@@ -360,7 +362,8 @@ const CAT = JSON.parse(document.getElementById("catalog").textContent);
 const CON = Object.fromEntries(CAT.concepts.map(c => [c.id, c]));
 const AREA = Object.fromEntries(CAT.bands.map(b => [b.id, b]));
 const FIELD = Object.fromEntries(CAT.fields.map(f => [f.id, f]));
-const ST = CAT.stats, KINDS = ["textbook", "olympiad", "research", "examples"];
+const ST = CAT.stats, KINDS = ["textbook", "olympiad", "bridge", "research", "examples"];
+const KN = { textbook: "Textbook", olympiad: "Olympiad", bridge: "Ladder", research: "Research", example: "Example", community: "Community" };
 const STAGES = [["school", "School"], ["olympiad", "Olympiad training"], ["undergraduate", "Undergraduate"], ["graduate", "Graduate"], ["research", "Research frontier"]];
 const STAGE = Object.fromEntries(STAGES);
 const kids = {};
@@ -793,6 +796,7 @@ function viewConcept(r) {
   const aside = h("aside", { class: "aside" },
     c.lesson ? tocEl : null,
     h("section", { class: "block" }, h("h2", null, "Your progress"), h("div", { id: "cprogress" })),
+    ladderBlock(c),
     h("section", { class: "block" }, h("h2", null, "Requires"), pre.length ? h("ul", null, pre.map(p => h("li", null, conceptLink(p)))) : h("p", { class: "small muted" }, "A starting point.")),
     next.length ? h("section", { class: "block" }, h("h2", null, "Leads to"), h("ul", null, next.map(p => h("li", null, conceptLink(p))))) : null,
     path.length > 1 ? h("section", { class: "block" }, h("h2", null, "Path from scratch"),
@@ -809,6 +813,18 @@ function viewConcept(r) {
       h("h1", null, c.title), h("p", { class: "sum" }, c.sum),
       h("div", { class: "tags" }, statusTag(c.status), c.msc.map(m => h("span", { class: "tag msc", title: "Mathematics Subject Classification" }, "MSC " + m)), c.links.filter(l => !c.fields.includes(l.field)).map(l => fieldTag(l.field)))),
     h("div", { class: "cgrid" }, main, aside));
+}
+/* Ladder: ordered steps from olympiad/textbook level to this concept's research problems. */
+function ladderBlock(c) {
+  if (!c.np.bridge) return null;
+  const el = h("section", { class: "block" }, h("h2", null, "Ladder to the frontier"), h("p", { class: "small muted" }, "Loading…"));
+  loadSrc("bridge").then(B => {
+    const r = B.filter(x => x.ladder.concept === c.id).sort((a, b) => a.ladder.step - b.ladder.step);
+    if (!r.length) { el.remove(); return; }
+    el.replaceChildren(h("h2", null, "Ladder to the frontier"), h("p", { class: "small muted", style: "margin:-4px 0 8px" }, "From a first exercise to the results just below the open problems."),
+      h("ol", { class: "ladder" }, r.map(x => h("li", { class: S.solved.has(x.id) ? "done" : null }, h("a", { href: "#problem-" + x.id }, x.title), x.year ? h("span", { class: "small muted" }, " · " + x.year) : null))));
+  }).catch(() => el.remove());
+  return el;
 }
 function renderProgress(el, cid) {
   const c = CON[cid];
@@ -831,11 +847,11 @@ function problemBrowser(c) {
   if (c && c.nprob === 0) { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); subsReady.then(() => { if (bank().length) draw(); else none(); }); }
   else { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); loadFor(c).then(draw).catch(() => list.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); }
   if (c) box.append(submitForm(c));
-  const kindName = { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Examples", community: "Community" };
+  const kindName = KN;
   function bank() { return allProblems().filter(p => !c || p.concepts.includes(c.id)); }
   function draw() {
     const all = bank();
-    const kinds = ["textbook", "olympiad", "research", "example", "community"].filter(k => all.some(p => p.kind === k));
+    const kinds = ["textbook", "olympiad", "bridge", "research", "example", "community"].filter(k => all.some(p => p.kind === k));
     const seg = (key, opts) => h("div", { class: "seg", role: "group" }, opts.map(([v, label, n]) => h("button", { "aria-pressed": st[key] === v ? "true" : "false", onclick: () => { st[key] = v; st.page = 0; if (key === "kind") { st.coll = ""; if (v !== "research") st.status = ""; } draw(); } }, label, n !== undefined ? h("span", { class: "n" }, n) : null)));
     const rows = [h("div", { class: "row" }, seg("kind", [["", "All", all.length]].concat(kinds.map(k => [k, kindName[k], all.filter(p => p.kind === k).length]))))];
     const rs = all.filter(p => p.kind === "research");
@@ -861,8 +877,8 @@ function problemBrowser(c) {
         && (!st.hide || !S.solved.has(p.id)) && (!st.field || (p.fields || []).includes(st.field))
         && (!ql || p.title.toLowerCase().includes(ql) || p.q.toLowerCase().includes(ql) || (p.tags || []).some(t => t.includes(ql))));
       const yr = p => p.year || 0;
-      const so = { textbook: 0, olympiad: 1, research: 2, example: 3, community: 4 }, co = { Millennium: 0, Erdős: 1, Green: 2 };
-      const sorters = { default: (a, b) => so[a.kind] - so[b.kind] || (co[a.coll] ?? 9) - (co[b.coll] ?? 9) || yr(a) - yr(b) || (a.num || 0) - (b.num || 0) || a.title.localeCompare(b.title, "en", { numeric: true }),
+      const so = { textbook: 0, olympiad: 1, bridge: 2, research: 3, example: 4, community: 5 }, co = { Millennium: 0, Erdős: 1, Green: 2 };
+      const sorters = { default: (a, b) => so[a.kind] - so[b.kind] || (a.ladder && b.ladder ? a.ladder.concept.localeCompare(b.ladder.concept) || a.ladder.step - b.ladder.step : 0) || (co[a.coll] ?? 9) - (co[b.coll] ?? 9) || yr(a) - yr(b) || (a.num || 0) - (b.num || 0) || a.title.localeCompare(b.title, "en", { numeric: true }),
         new: (a, b) => yr(b) - yr(a) || a.title.localeCompare(b.title, "en", { numeric: true }), old: (a, b) => (yr(a) || 9999) - (yr(b) || 9999) || a.title.localeCompare(b.title, "en", { numeric: true }), prize: (a, b) => prizeVal(b) - prizeVal(a) || so[a.kind] - so[b.kind] };
       shown.sort(sorters[st.sort] || sorters.default);
       const pages = Math.max(1, Math.ceil(shown.length / PAGE)); st.page = Math.min(st.page, pages - 1);
@@ -884,15 +900,22 @@ function problemCard(p, c, mode) {
   const page = mode === "page";
   const solved = S.solved.has(p.id);
   const card = h("article", { class: "pcard" + (solved ? " solvedc" : ""), id: "p-" + p.id });
-  const stTag = p.kind === "research" ? h("span", { class: "tag " + p.status }, p.status === "claimed" ? "Claimed" : p.slabel + (p.lean ? " · Lean" : "")) : null;
-  const kindTag = h("span", { class: "kind" }, { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Example", community: "Community" }[p.kind]);
+  const stTag = p.kind === "research" ? h("span", { class: "tag " + p.status }, p.status === "claimed" ? "Claimed" : p.slabel + (p.lean ? " · Lean" : ""))
+    : p.ladder ? h("a", { class: "tag step", href: "#concept-" + p.ladder.concept, title: "Ladder toward the research problems on " + CON[p.ladder.concept].short }, CON[p.ladder.concept].short + " · step " + p.ladder.step + " of " + p.ladder.of) : null;
+  const kindTag = h("span", { class: "kind" }, KN[p.kind]);
   const home = c ? c.fields : ["number-theory"];
   const otherFields = (p.fields || []).filter(f => FIELD[f] && !home.includes(f)).slice(0, 3);
   card.append(h("div", { class: "pcard-h" }, page ? null : h("a", { class: "pt", href: "#problem-" + p.id }, p.title), page ? null : kindTag, stTag,
     p.prize ? h("span", { class: "tag prize mathjax_ignore" }, p.prize) : null, p.ai ? h("span", { class: "tag ai", title: "AI systems are involved in the solution or the claim" }, "AI") : null,
     page ? null : otherFields.map(f => h("span", { class: "tag" }, FIELD[f].name))));
   const q = h("div", { class: "q" }); q.append(rich(p.q)); card.append(q);
-  if (p.note) card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, p.note));
+  if (p.note && p.kind !== "bridge") card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, p.note));
+  if (p.kind === "bridge") {
+    if (p.note) card.append(h("p", { class: "small muted", style: "margin:-4px 0 6px" }, rich(p.note)));
+    card.append(h("p", { class: "small muted", style: "margin:0 0 10px" }, "Source: ", inline(safeTex(p.source), true, h("span"))));
+    if (p.bridges_to && p.bridges_to.length) card.append(h("div", { class: "tags", style: "margin:-2px 0 12px" }, h("span", { class: "small muted" }, "Leads to"),
+      p.bridges_to.map(id => h("a", { class: "tag", href: "#problem-" + id }, PIDX[id] ? PIDX[id].title : id.replace(/^ERDOS-/, "Erdős #").replace(/^GREEN-/, "Green #").replace(/^CLAY-/, "Millennium: ")))));
+  }
   if (p.license) card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, "From " + p.credit + (p.section ? ", " + p.section : "") + " · ", h("a", { href: p.license_url, target: "_blank", rel: "noopener" }, p.license)));
   if (p.opts) card.append(h("ol", { class: "opts" }, p.opts.map((o, i) => h("li", { "data-i": i }, String.fromCharCode(65 + i) + ". ", o))));
   const others = p.concepts.filter(x => !c || x !== c.id);
@@ -928,7 +951,7 @@ function problemCard(p, c, mode) {
   card.append(acts, folds);
   return card;
 }
-function srcOf(id) { return /^(ULA|AC)-/.test(id) ? "textbook" : id.startsWith("EX-") ? "examples" : /^(ERDOS|GREEN|CLAY)-/.test(id) ? "research" : id.startsWith("C-") ? null : "olympiad"; }
+function srcOf(id) { return id.startsWith("LAD-") ? "bridge" : /^(ULA|AC)-/.test(id) ? "textbook" : id.startsWith("EX-") ? "examples" : /^(ERDOS|GREEN|CLAY)-/.test(id) ? "research" : id.startsWith("C-") ? null : "olympiad"; }
 function viewProblem(r) {
   const box = h("div", null, h("p", { class: "small muted" }, "Loading the problem…"));
   const k = srcOf(r.id);
@@ -941,24 +964,28 @@ function viewProblem(r) {
   return box;
 }
 function problemPage(p, list) {
-  const kindName = { textbook: "Textbook", olympiad: "Olympiad", research: "Research", example: "Example", community: "Community" }[p.kind];
-  const same = (list || []).filter(x => x.coll === p.coll), i = same.findIndex(x => x.id === p.id);
+  const kindName = KN[p.kind];
+  const same = (list || []).filter(x => p.ladder ? x.ladder && x.ladder.concept === p.ladder.concept : x.coll === p.coll), i = same.findIndex(x => x.id === p.id);
+  const steps = h("section", { class: "block", hidden: true });
+  if (p.kind === "research") loadSrc("bridge").then(B => { const r = B.filter(x => (x.bridges_to || []).includes(p.id)); if (!r.length) return;
+    steps.hidden = false; steps.replaceChildren(h("h2", null, "Steps toward this problem"), h("ol", { style: "padding-left:20px;margin:0" }, r.map(x => h("li", { style: "border:0;padding:2px 0" }, h("a", { href: "#problem-" + x.id }, x.title), h("span", { class: "small muted" }, " · " + CON[x.ladder.concept].short + " " + x.ladder.step + "/" + x.ladder.of))))); }).catch(() => {});
   const prev = i > 0 ? same[i - 1] : null, next = i >= 0 && i < same.length - 1 ? same[i + 1] : null;
-  const c0 = p.concepts[0], more = (list || []).filter(x => x.id !== p.id && x.concepts.includes(c0)).slice(0, 6);
+  const c0 = p.concepts[0], more = p.ladder ? [] : (list || []).filter(x => x.id !== p.id && x.concepts.includes(c0)).slice(0, 6);
   const main = h("div", null,
     problemCard(p, null, "page"),
     h("section", { class: "block", id: "discussion-sec", style: "margin-top:36px" }, h("h2", null, "Solutions and discussion"),
       h("p", { class: "small muted", style: "margin:-4px 0 14px" }, "Solutions stay folded until a reader opens them."),
       threadBox("problem:" + p.id, { solutions: true })));
   const aside = h("aside", { class: "aside" },
+    steps,
     h("section", { class: "block" }, h("h2", null, "Concepts"), h("ul", null, p.concepts.map(x => h("li", null, dot(CON[x].band), " ", conceptLink(x))))),
     (p.fields || []).length ? h("section", { class: "block" }, h("h2", null, "Fields"), h("div", { class: "tags" }, p.fields.filter(f => FIELD[f]).map(fieldTag))) : null,
     (p.links || []).length ? h("section", { class: "block" }, h("h2", null, "Sources"), h("ul", null, p.links.map(l => h("li", null, h("a", { href: l.url, target: "_blank", rel: "noopener" }, l.label))))) : null,
-    (prev || next) ? h("section", { class: "block" }, h("h2", null, "In " + p.coll), h("ul", null, prev ? h("li", null, "← ", h("a", { href: "#problem-" + prev.id }, prev.title)) : null, next ? h("li", null, "→ ", h("a", { href: "#problem-" + next.id }, next.title)) : null)) : null,
+    (prev || next) ? h("section", { class: "block" }, h("h2", null, p.ladder ? "On this ladder" : "In " + p.coll), h("ul", null, prev ? h("li", null, "← ", h("a", { href: "#problem-" + prev.id }, prev.title)) : null, next ? h("li", null, "→ ", h("a", { href: "#problem-" + next.id }, next.title)) : null)) : null,
     more.length ? h("section", { class: "block" }, h("h2", null, "More on " + CON[c0].short), h("ul", null, more.map(x => h("li", null, h("a", { href: "#problem-" + x.id }, x.title))))) : null);
   return h("article", null,
     h("div", { class: "crumbs" }, h("a", { href: "#" }, "Atlas"), " / ", h("a", { href: "#problems" }, "Problems"), " / ", h("a", { href: "#problems", onclick: () => { Object.assign(S.gp, { kind: p.kind === "example" ? "example" : p.kind, coll: p.coll, page: 0 }); } }, p.coll)),
-    h("header", { class: "chead" }, h("div", { class: "eyebrow" }, h("span", null, kindName), h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.coll), p.year ? [h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.year)] : null),
+    h("header", { class: "chead" }, h("div", { class: "eyebrow" }, h("span", null, kindName), h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.ladder ? CON[p.ladder.concept].short + " · step " + p.ladder.step + " of " + p.ladder.of : p.coll), p.year ? [h("span", { "aria-hidden": "true" }, "·"), h("span", null, p.year)] : null),
       h("h1", null, p.title)),
     h("div", { class: "cgrid", style: "margin-top:22px" }, main, aside));
 }
@@ -986,7 +1013,7 @@ function submitForm(c) {
 function viewProblems() {
   const C = ST.collections;
   return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Problems"),
-    h("p", null, ST.total.toLocaleString("en") + " problems from open textbooks, olympiads and research lists. Solutions come from readers.")),
+    h("p", null, ST.total.toLocaleString("en") + " problems: open textbooks, olympiads, ladders that climb toward open problems, and research lists. Solutions come from readers.")),
     problemBrowser(null), h("div", { class: "credit" }, CAT.credits.map(t => h("p", { style: "margin:0 0 4px" }, t))));
 }
 
