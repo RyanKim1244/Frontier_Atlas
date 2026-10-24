@@ -1,0 +1,272 @@
+[
+ {
+  "id": "fundamental-group",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Why this is a group",
+    "problem": "The product on classes was used without saying it is well defined, i.e. independent of the representatives.",
+    "fix": "Added one sentence: running homotopies f≃f', g≃g' side by side gives f·g ≃ f'·g'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: Brouwer",
+    "problem": "The claim that S^k is simply connected for k ≥ 2 was used as a fact with no source on the page. The check that the ray map fixes boundary points was left implicit.",
+    "fix": "Now derived from the (labelled, unproved) van Kampen theorem in the later section. Stated the two roots for |x| = 1: 0 and -2(1 - x·g(x))/|x-g(x)|^2 ≤ 0."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: fundamental theorem of algebra",
+    "problem": "R_1 was used in the first paragraph and only chosen in the second.",
+    "fix": "R_1 is now fixed at the start."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: punctured plane and torus",
+    "problem": "The solution said 'the plane minus a point and the torus are not homeomorphic' but never showed that Z and Z×Z are non-isomorphic.",
+    "fix": "Added the reason: quotients by doubles have orders 2 and 4. The example now separates all three spaces."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (physics)",
+    "problem": "'is the topological reason that spin-1/2 particles exist' overstated the physics.",
+    "fix": "Reworded: π_1(SO(3)) = Z/2 is why a 2π rotation cannot be undone while a 4π rotation can (the belt trick), the topological root of spin-1/2."
+   },
+   {
+    "severity": "style",
+    "where": "entry.aliases",
+    "problem": "'loop space' is a different object, not an alias for π_1.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "3130 tokens long, as noted by the writer.",
+    "fix": "Trimmed to about 2350 tokens (about 2000 words outside TeX), at no cost to correctness. Shortened intro, sections, proof sketch, examples, van Kampen/coverings section, pitfalls and connection. Dropped the free-homotopy pitfall, the change-of-base-point exercise and the S^2→R^2 half of the antipodal exercise. Minutes 25 → 20."
+   },
+   {
+    "severity": "style",
+    "where": "section 'Idea of the proof of the lifting lemma'",
+    "problem": "Did not say that the argument is only an outline.",
+    "fix": "Retitled 'Proof sketch of the lifting lemma'. Van Kampen and the classification of coverings were already labelled 'stated without proof'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Munkres ch. 9, Hatcher §1.1 and §1.3, and Massey are all correct.",
+    "fix": "Kept (Munkres given as 'Chapter 9'). MSC 55Q05, 57M05, 57M10 kept."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "There was no independent check of the FTA numbers or of the Brouwer root claim.",
+    "fix": "Added one check: root moduli, winding numbers, the bounds 9/8 < 5 and 7·64 < 512, the Brouwer quadratic roots, and the orders of the quotients by doubles."
+   }
+  ]
+ },
+ {
+  "id": "classification-of-surfaces",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "The writer was unsure about 57K20.",
+    "fix": "Kept. 57K20 is the MSC2020 code for 2-dimensional topology, the successor of 57N05 for surfaces."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Asked to keep only references I can vouch for: Munkres ch. 12, Massey ch. 1, Armstrong ch. 7.",
+    "fix": "Kept all three: Munkres ch. 12 is Classification of Surfaces, Massey ch. 1 is Two-dimensional manifolds, Armstrong ch. 7 is Surfaces. Munkres 'where' shortened to 'Chapter 12'."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Gauss–Bonnet was given for orientable surfaces only, without saying that it also holds otherwise.",
+    "fix": "Added that it holds for non-orientable surfaces too, with area taken as a density."
+   },
+   {
+    "severity": "style",
+    "where": "intro / example 1 / pitfall",
+    "problem": "Some wordy sentences.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Classification-side homology facts were stated (H_1(N_k), H_1(T_g)) and the 7-vertex torus was identified only through χ and orientability.",
+    "fix": "Added independent checks: word invariants, connected-sum identities, minimal vertex counts, and CW/simplicial homology of N_k, T_g, the 6-vertex RP^2 and the 7-vertex torus."
+   }
+  ]
+ },
+ {
+  "id": "homology",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example: torus and Klein bottle",
+    "problem": "'With orientations chosen as in the square picture' pointed to a picture that does not exist. The torus and the Klein bottle use different diagonals, and the boundaries cannot be reproduced without knowing them.",
+    "fix": "Spelled out the Δ-complex: corner names, edge directions, which diagonal each surface uses, and the vertex order of U and L. The stated boundaries now follow from the formula, and I verified them."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: torus and Klein bottle",
+    "problem": "'A closed connected n-manifold has H_n = Z if orientable, 0 if not' was stated without saying it is unproved.",
+    "fix": "Labelled as a standard theorem not proved here."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "The Hodge conjecture description left out 'rational' and 'smooth'. 'The computation of homotopy groups' was vague.",
+    "fix": "Corrected the Hodge wording and dropped the vague clause."
+   },
+   {
+    "severity": "style",
+    "where": "intro / pitfall",
+    "problem": "Slight padding.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Klein bottle and RP^2 computations were checked only with the writer's own sympy helper on the same Δ-data.",
+    "fix": "Recomputed with my own integer Smith-form code. For the Klein bottle and torus I used both a genuine 9-vertex simplicial triangulation and the lesson's Δ-data: (Z, Z⊕Z/2, 0) and (Z, Z^2, Z). For RP^2 I used the 6-vertex triangulation and exercise 4's Δ-complex (∂∂ = 0 checked): (Z, Z/2, 0). I also checked the basic examples and the spheres. MSC 55N10 kept."
+   }
+  ]
+ },
+ {
+  "id": "curves",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section: Why curvature and torsion are enough",
+    "problem": "Hopf's rotation theorem and Fenchel's theorem were quoted without saying they are not proved. Hopf also needs a regular curve.",
+    "fix": "Labelled both as stated without proof and added 'regular'."
+   },
+   {
+    "severity": "style",
+    "where": "section: Velocity, speed and arc length",
+    "problem": "'Differentiable map', although third derivatives are used later.",
+    "fix": "Changed to 'smooth map'. Tightened the helix-unrolling sentence."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "",
+    "fix": "Added independent numeric checks (quadrature, finite differences) of the cycloid length, helix length, ellipse/parabola curvature and helix/twisted-cubic κ and τ."
+   }
+  ]
+ },
+ {
+  "id": "surfaces-curvature",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "definition: Principal, Gaussian and mean curvature ('In words')",
+    "problem": "'K is zero where the surface is straight in some direction' is false: at a saddle point (K < 0) the normal curvature also vanishes in the asymptotic directions. The lesson's own example has k_n = 0 along the axes of z = xy.",
+    "fix": "Now: zero where one principal curvature vanishes (like a cylinder)."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: What the Theorema Egregium means",
+    "problem": "'Any surface with K ≡ 0 is locally isometric to the plane' does not follow from the Theorema Egregium and was not labelled. The one-side/crossing behaviour by the sign of K and the Gauss-map area ratio were also unproved and unlabelled.",
+    "fix": "Attributed the converse to Minding and labelled it unproved. The other two facts are introduced as 'standard facts, stated without proof'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: What the Theorema Egregium means",
+    "problem": "'no map ... preserves all distances, even approximately at every scale' was muddled.",
+    "fix": "Now: no map of any region of the Earth, however small, onto a flat sheet preserves all distances."
+   },
+   {
+    "severity": "style",
+    "where": "example: compact surface",
+    "problem": "'the flat torus, which is not in R^3' was imprecise.",
+    "fix": "Now: the abstract flat torus, which cannot be placed in R^3 as a regular surface with its metric."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "do Carmo §4.3 for the Theorema Egregium: §4-3 is 'The Gauss theorem and the equations of compatibility'.",
+    "fix": "Kept, written in do Carmo's style as §4-3."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "",
+    "fix": "Added a numeric shape-operator check. It covers the torus K formula, total curvature 0 on the torus and 4π on an ellipsoid, the saddle, the sphere, the ellipsoid value 9/4, and the Gauss-map area ratio."
+   }
+  ]
+ },
+ {
+  "id": "gauss-bonnet",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "'For a region bounded by curves ... always add up to 2π' is false without the disc hypothesis. The lesson's own pitfall says an annulus gives 0.",
+    "fix": "Now 'a region homeomorphic to a disc with piecewise smooth boundary'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Examples of geodesics",
+    "problem": "'Through every point, in every direction, there is exactly one geodesic' needs 'for a short time'.",
+    "fix": "Added."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: consequences (b)",
+    "problem": "'Compact orientable surface with K > 0 is a sphere' needs connectedness.",
+    "fix": "Added 'connected'."
+   },
+   {
+    "severity": "style",
+    "where": "section / pitfall",
+    "problem": "Slight padding and one redundant pitfall (the dented sphere).",
+    "fix": "Tightened and removed the redundant pitfall."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "",
+    "fix": "Added Girard's formula on 200 random spherical triangles, exercise 1 data, the cap identity, triangulation bookkeeping, and numerically integrated total curvature (torus 0, ellipsoid 4π). Sources: do Carmo ch. 4 is correct. MSC 53C22, 53A05 kept."
+   }
+  ]
+ },
+ {
+  "id": "smooth-manifolds",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example (b)",
+    "problem": "'{f = c} is a smooth hypersurface for every homogeneous polynomial f and c ≠ 0' fails for constant f (degree 0). Euler's identity gives d·f, which is useless when d = 0. The set can also be empty.",
+    "fix": "Added 'of positive degree' and 'when non-empty'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example (b)",
+    "problem": "The c = 0 remark did not explain why the zero set fails to be a surface.",
+    "fix": "Gave the factorisation f = (x+y+z)(x^2+y^2+z^2-xy-yz-zx): the zero set is a plane together with the line x=y=z. I verified the factorisation."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "'{x^2 = 0} is a line' did not name the ambient space.",
+    "fix": "Added 'in R^2'. Tightened the x^3-chart pitfall and the intro."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "",
+    "fix": "Added independent checks: factorisation, critical points of f lie in f = 0, numeric rank of dF_A for O(n), the RP^2 transition and the stereographic inversion. Sources: Lee chs. 1–5, Tu, Guillemin–Pollack ch. 1 are fine. MSC 58A05, 57R55 kept."
+   }
+  ]
+ }
+]
