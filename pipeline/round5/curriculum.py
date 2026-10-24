@@ -1,0 +1,51 @@
+# Round 5 (planned, not started): the graduate core missing from the atlas.
+# Same pipeline as round 4: brief -> writer (entry + lesson) -> independent reviewer -> checks re-run -> publish.
+# (id, title, short, area, fields, stage, prerequisites)   Priority: P1 = needed before physics, P2 = core, P3 = later.
+C = [
+ # --- P1: needed before theoretical physics ---
+ ("vector-bundles", "Vector bundles and connections", "Bundles & connections", "diffgeo", ["differential-geometry", "physics"], "graduate", ["smooth-manifolds", "tensor-products"]),          # P1
+ ("curvature-forms", "Curvature of connections and characteristic classes", "Characteristic classes", "diffgeo", ["differential-geometry", "topology", "physics"], "graduate", ["vector-bundles", "de-rham-cohomology"]),  # P1
+ ("de-rham-cohomology", "De Rham cohomology", "De Rham cohomology", "diffgeo", ["differential-geometry", "topology"], "graduate", ["differential-forms", "homology"]),                       # P1
+ ("lie-algebra-structure", "Semisimple Lie algebras, roots and weights", "Roots & weights", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "group-representations"]),   # P1
+ ("sl2-su2", "Representations of sl(2), SU(2) and SO(3)", "SU(2) representations", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "character-theory"]),        # P1
+ ("distributions", "Distributions and weak derivatives", "Distributions", "functional", ["functional-analysis", "pde", "physics"], "graduate", ["fourier-transform", "lp-spaces"]),          # P1
+ ("sobolev-spaces", "Sobolev spaces and weak solutions", "Sobolev spaces", "pde", ["pde", "functional-analysis"], "graduate", ["distributions", "hilbert-spaces"]),                       # P1
+ ("unbounded-operators", "Unbounded operators and the spectral theorem", "Unbounded operators", "functional", ["functional-analysis", "physics"], "graduate", ["compact-operators", "hilbert-spaces"]),  # P1
+ ("symplectic-geometry", "Symplectic manifolds and Hamiltonian flows", "Symplectic geometry", "diffgeo", ["differential-geometry", "physics", "dynamics"], "graduate", ["differential-forms", "smooth-manifolds"]),  # P1
+ ("stochastic-calculus", "Stochastic integrals and Itô's formula", "Stochastic calculus", "probability", ["probability", "pde", "physics"], "graduate", ["brownian-motion", "martingales"]),  # P1
+ # --- P2: graduate core ---
+ ("localization", "Localisation and local rings", "Localisation", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["noetherian-rings", "modules"]),
+ ("dedekind-domains", "Dedekind domains", "Dedekind domains", "algebraic", ["number-theory", "algebra"], "graduate", ["ideals", "localization"]),
+ ("homological-algebra", "Exact sequences, Ext and Tor", "Homological algebra", "abstract", ["algebra", "topology", "category-theory"], "graduate", ["modules", "categories-functors"]),
+ ("yoneda-adjunctions", "The Yoneda lemma, limits and adjunctions", "Yoneda & adjunctions", "abstract", ["category-theory"], "graduate", ["categories-functors"]),
+ ("cohomology", "Singular cohomology and Poincaré duality", "Cohomology", "topology", ["topology", "algebra"], "graduate", ["homology", "homological-algebra"]),
+ ("homotopy-groups", "Higher homotopy groups and fibrations", "Homotopy groups", "topology", ["topology", "physics"], "graduate", ["fundamental-group", "homology"]),
+ ("spectral-sequences", "Spectral sequences", "Spectral sequences", "topology", ["topology", "algebra"], "graduate", ["cohomology", "homological-algebra"]),
+ ("morse-theory", "Morse theory", "Morse theory", "topology", ["topology", "differential-geometry"], "graduate", ["smooth-manifolds", "homology"]),
+ ("covering-spaces", "Covering spaces and the van Kampen theorem", "Covering spaces", "topology", ["topology", "algebra"], "undergraduate", ["fundamental-group"]),
+ ("algebraic-varieties", "Affine and projective varieties", "Varieties", "alggeo", ["algebraic-geometry", "algebra"], "graduate", ["noetherian-rings", "fields-ext"]),
+ ("sheaves", "Sheaves", "Sheaves", "alggeo", ["algebraic-geometry", "topology"], "graduate", ["algebraic-varieties", "topological-spaces"]),
+ ("schemes", "Schemes", "Schemes", "alggeo", ["algebraic-geometry"], "graduate", ["sheaves", "localization"]),
+ ("sheaf-cohomology", "Sheaf cohomology", "Sheaf cohomology", "alggeo", ["algebraic-geometry", "topology"], "graduate", ["sheaves", "homological-algebra"]),
+ ("riemann-surfaces", "Riemann surfaces", "Riemann surfaces", "complex", ["complex-analysis", "algebraic-geometry"], "graduate", ["holomorphic", "classification-of-surfaces"]),
+ ("riemann-roch", "The Riemann–Roch theorem", "Riemann–Roch", "alggeo", ["algebraic-geometry", "complex-analysis"], "graduate", ["riemann-surfaces", "sheaf-cohomology"]),
+ ("modular-forms", "Modular forms", "Modular forms", "algebraic", ["number-theory", "complex-analysis"], "graduate", ["holomorphic", "group-actions"]),
+ ("class-field-theory", "Class field theory", "Class field theory", "algebraic", ["number-theory", "algebra"], "graduate", ["galois", "p-adic-numbers", "dedekind-domains"]),
+ ("galois-cohomology", "Group cohomology and Galois cohomology", "Galois cohomology", "algebraic", ["number-theory", "algebra"], "graduate", ["galois", "homological-algebra"]),
+ ("elliptic-pde", "Elliptic regularity and the Dirichlet problem", "Elliptic PDE", "pde", ["pde", "functional-analysis"], "graduate", ["sobolev-spaces", "laplace-equation"]),
+ ("operator-algebras", "C*-algebras and von Neumann algebras", "Operator algebras", "functional", ["functional-analysis", "physics"], "graduate", ["unbounded-operators"]),
+ ("harmonic-analysis-groups", "Fourier analysis on groups and the Peter–Weyl theorem", "Harmonic analysis on groups", "harmonic", ["harmonic-analysis", "representation-theory"], "graduate", ["fourier-transform", "lie-groups", "hilbert-spaces"]),
+ ("ergodic-theory", "Ergodic theory", "Ergodic theory", "dynamics", ["dynamics", "probability"], "graduate", ["lebesgue", "markov-chains"]),
+ ("several-complex", "Several complex variables", "Several complex variables", "complex", ["complex-analysis"], "graduate", ["holomorphic", "partial-derivatives"]),
+ ("radon-nikodym", "Signed measures and the Radon–Nikodym theorem", "Radon–Nikodym", "realanalysis", ["real-analysis", "probability"], "graduate", ["lebesgue"]),
+ # --- P3: later ---
+ ("hodge-theory", "Hodge theory", "Hodge theory", "diffgeo", ["differential-geometry", "algebraic-geometry"], "graduate", ["de-rham-cohomology", "elliptic-pde"]),
+ ("k-theory", "Topological K-theory", "K-theory", "topology", ["topology", "physics"], "graduate", ["vector-bundles", "cohomology"]),
+ ("forcing", "Forcing and independence", "Forcing", "logic", ["logic"], "graduate", ["ordinals-cardinals", "completeness-theorem"]),
+ ("model-theory", "Model theory", "Model theory", "logic", ["logic", "algebra"], "graduate", ["completeness-theorem"]),
+ ("symmetric-functions", "Symmetric functions and Young tableaux", "Symmetric functions", "discrete", ["combinatorics", "representation-theory"], "graduate", ["partitions", "character-theory"]),
+ ("geometric-group-theory", "Geometric group theory", "Geometric group theory", "abstract", ["algebra", "geometry", "topology"], "graduate", ["groups", "fundamental-group", "metric-spaces"]),
+ ("automorphic-forms", "Automorphic forms and the Langlands programme", "Automorphic forms", "algebraic", ["number-theory", "representation-theory"], "research", ["modular-forms", "class-field-theory", "harmonic-analysis-groups"]),
+ ("weil-conjectures", "The Weil conjectures", "Weil conjectures", "alggeo", ["algebraic-geometry", "number-theory"], "research", ["sheaf-cohomology", "finite-fields"]),
+]
+NEW_AREAS = [{"id": "alggeo", "name": "Algebraic geometry", "blurb": "Varieties, sheaves, schemes and their cohomology.", "fields": ["algebraic-geometry"]}]
