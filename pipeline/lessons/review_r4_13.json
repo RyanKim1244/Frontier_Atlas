@@ -1,0 +1,134 @@
+[
+ {
+  "id": "sequences",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2470 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Item on guessing formulas duplicated the theorem's role.",
+    "fix": "Removed."
+   }
+  ]
+ },
+ {
+  "id": "floor-functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2470 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Two items repeated points made in the body (Legendre for primes; brace notation).",
+    "fix": "Removed."
+   }
+  ]
+ },
+ {
+  "id": "linear-algebra",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Said Croot, Lev and Pach, and then Ellenberg and Gijswijt, proved the bound for subsets of F_3^n; Croot-Lev-Pach (2016) proved it for (Z/4Z)^n, Ellenberg-Gijswijt for F_3^n (verified by search).",
+    "fix": "Attribution corrected."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2300 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   }
+  ]
+ },
+ {
+  "id": "euclid-basics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2410 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   }
+  ]
+ },
+ {
+  "id": "circles",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Claimed the inversion with centre P and radius squared pow(P) maps the circle onto itself, with no restriction; for P inside, pow(P)<0 and no such inversion exists.",
+    "fix": "Restricted to P outside the circle."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2540 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   }
+  ]
+ },
+ {
+  "id": "triangle-centres",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~2635 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   },
+   {
+    "severity": "style",
+    "where": "example (Menelaus in action)",
+    "problem": "Coordinate re-derivation duplicated the solution.",
+    "fix": "Removed from text (still verified in checks)."
+   }
+  ]
+ },
+ {
+  "id": "geo-transformations",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Same unrestricted claim that inversion with radius squared pow(P) fixes the circle; false for P inside.",
+    "fix": "Restricted to P outside."
+   },
+   {
+    "severity": "unclear",
+    "where": "section Spiral similarity",
+    "problem": "'Every spiral similarity is z -> az+b with a != 0,1' excludes the identity (a=1) which is a spiral similarity with angle 0, ratio 1.",
+    "fix": "Reworded: spiral similarities other than the identity are exactly these maps."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length (~3110 words incl. TeX).",
+    "fix": "Trimmed redundant sentences, repeated remarks and padding; no mathematical content removed."
+   },
+   {
+    "severity": "style",
+    "where": "proof (Inversion of lines and circles)",
+    "problem": "Embedded numerical example and repetition lengthened the proof.",
+    "fix": "Condensed; removed example and its check."
+   }
+  ]
+ }
+]

@@ -1,0 +1,29 @@
+[
+ {
+  "id": "sequences",
+  "field": "key_statements",
+  "problem": "The closed form alpha r_1^n + beta r_2^n needs r_1, r_2 to be distinct roots of r^2 = pr + q; for a double root the general solution is (alpha + beta n) r^n.",
+  "corrected": [
+   "a_{n+2} = pa_{n+1} + qa_n,\\ r_1 \\ne r_2 \\text{ roots of } r^2 = pr + q \\Rightarrow a_n = \\alpha r_1^n + \\beta r_2^n",
+   "\\text{bounded and monotone} \\Rightarrow \\text{convergent}"
+  ]
+ },
+ {
+  "id": "floor-functions",
+  "field": "key_statements",
+  "problem": "Beatty's theorem needs alpha, beta > 0 (e.g. alpha = -sqrt2 gives 0 < beta < 1 and the statement fails), and the sets should be indexed by n >= 1; braces are otherwise ambiguous with the fractional-part notation.",
+  "corrected": [
+   "\\sum_{k=0}^{n-1}\\Big\\lfloor x + \\frac kn\\Big\\rfloor = \\lfloor nx\\rfloor\\ \\ \\text{(Hermite)}",
+   "\\alpha,\\beta>0,\\ \\tfrac1\\alpha + \\tfrac1\\beta = 1,\\ \\alpha\\notin\\mathbb Q \\Rightarrow \\{\\lfloor n\\alpha\\rfloor\\}_{n\\ge1} \\sqcup \\{\\lfloor n\\beta\\rfloor\\}_{n\\ge1} = \\mathbb N_{>0}"
+  ]
+ },
+ {
+  "id": "circles",
+  "field": "key_statements",
+  "problem": "With unsigned lengths PA*PB = |PO^2 - r^2| (negative right side for P inside); the equality without absolute value holds only for signed lengths. The cyclic criterion requires ABCD convex.",
+  "corrected": [
+   "\\overline{PA} \\cdot \\overline{PB} = |PO|^2 - r^2 \\ \\ \\text{(signed lengths)}",
+   "ABCD \\text{ convex: cyclic} \\iff \\angle A + \\angle C = 180^\\circ"
+  ]
+ }
+]
