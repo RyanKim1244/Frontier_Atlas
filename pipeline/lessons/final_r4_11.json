@@ -1,0 +1,981 @@
+[
+ {
+  "id": "ramsey",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "At a party of six people, some pairs know each other and some do not. However the acquaintances are arranged, there are always three people who all know each other or three who are mutual strangers. With five people this can fail. Ramsey theory is the study of statements of this shape: once a structure is large enough, any way of splitting it into a few classes leaves one class containing a large orderly piece.\n\nThe basic question is quantitative: how many vertices force a one-coloured complete subgraph of a given size? The answer, the Ramsey number, is known exactly only in a handful of small cases, and its growth rate is a central open problem of combinatorics."
+   },
+   {
+    "type": "section",
+    "title": "The party problem",
+    "body": "Translate the party into a graph: six vertices, every pair joined by an edge, the edge red if the two people know each other and blue otherwise. This is a 2-colouring of the edges of the complete graph $K_6$ (see [[graph-basics]]). We want a monochromatic triangle: three vertices whose three connecting edges have the same colour.\n\nPick any vertex $v$. It has five edges, so by [[pigeonhole]] at least three of them share a colour, say red, going to $a$, $b$, $c$. If any of the edges $ab$, $bc$, $ca$ is red, it forms a red triangle with $v$. If none is red, then $abc$ is a blue triangle. Either way we are done.\n\nFive vertices are not enough. Place them at the corners of a regular pentagon, colour the five sides red and the five diagonals blue. The red edges form a 5-cycle, which has no triangle, and the blue edges form another 5-cycle (the pentagram), which has no triangle either.\n\nSo six is the exact threshold. The general question asks the same thing with triangles replaced by larger complete graphs, and with possibly different targets for the two colours."
+   },
+   {
+    "type": "definition",
+    "title": "Ramsey number",
+    "body": "For integers $k, \\ell \\ge 1$, the Ramsey number $R(k,\\ell)$ is the least $n$ such that every colouring of the edges of $K_n$ in red and blue contains a red $K_k$ or a blue $K_\\ell$. The diagonal case is written $R(k) = R(k,k)$.\n\nEquivalently, thinking of the red edges as a graph $G$: every graph on $R(k,\\ell)$ vertices contains a clique of size $k$ or an independent set of size $\\ell$, and some graph on $R(k,\\ell)-1$ vertices contains neither. The party problem says $R(3,3) = 6$."
+   },
+   {
+    "type": "section",
+    "title": "Why the numbers exist",
+    "body": "It is not obvious that $R(k,\\ell)$ is finite: perhaps for some $k$ there are arbitrarily large colourings with no monochromatic $K_k$. The argument for triangles generalises, and it gives a recursive bound.\n\nSmall cases first. A single vertex is a $K_1$ of either colour, so $R(1,\\ell) = R(k,1) = 1$. For $R(2,\\ell)$: if any edge is red we have a red $K_2$; otherwise everything is blue, so $\\ell$ vertices suffice and $\\ell - 1$ do not (colour all edges blue). Hence $R(2,\\ell) = \\ell$, and by symmetry $R(k,2) = k$. Swapping the colours shows $R(k,\\ell) = R(\\ell,k)$ in general."
+   },
+   {
+    "type": "theorem",
+    "title": "Ramsey's theorem with the Erdős–Szekeres bound",
+    "body": "For all $k, \\ell \\ge 2$,\n$$R(k,\\ell) \\le R(k-1,\\ell) + R(k,\\ell-1).$$\nConsequently $R(k,\\ell)$ is finite for all $k,\\ell \\ge 1$ and\n$$R(k,\\ell) \\le \\binom{k+\\ell-2}{k-1}, \\qquad\\text{in particular}\\qquad R(k) \\le \\binom{2k-2}{k-1} < 4^{k}.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "Assume $R(k-1,\\ell)$ and $R(k,\\ell-1)$ are finite, and let $n = R(k-1,\\ell) + R(k,\\ell-1)$. Take any red/blue colouring of $K_n$ and a vertex $v$. The other $n-1$ vertices split into the set $A$ of those joined to $v$ by a red edge and the set $B$ of those joined by a blue edge. Since $|A| + |B| = n - 1$, we cannot have both $|A| \\le R(k-1,\\ell) - 1$ and $|B| \\le R(k,\\ell-1) - 1$, because then $|A|+|B| \\le n-2$. So one of the following holds.\n\n1. $|A| \\ge R(k-1,\\ell)$. Inside $A$ there is a red $K_{k-1}$ or a blue $K_\\ell$. A blue $K_\\ell$ finishes the proof; a red $K_{k-1}$ together with $v$ is a red $K_k$, since all edges from $v$ to $A$ are red.\n2. $|B| \\ge R(k,\\ell-1)$. Inside $B$ there is a red $K_k$, which finishes the proof, or a blue $K_{\\ell-1}$, which together with $v$ is a blue $K_\\ell$.\n\nThis proves the recursive inequality, and finiteness follows by induction on $k+\\ell$ from the base cases $R(1,\\ell) = R(k,1) = 1$.\n\nFor the binomial bound, also induct on $k+\\ell$. The bound holds when $k=1$ or $\\ell=1$, because $\\binom{\\ell-1}{0} = \\binom{k-1}{k-1} = 1$. For $k,\\ell \\ge 2$, the recursion and the induction hypothesis give\n$$R(k,\\ell) \\le \\binom{k+\\ell-3}{k-2} + \\binom{k+\\ell-3}{k-1} = \\binom{k+\\ell-2}{k-1}$$\nby Pascal's rule. Finally $\\binom{2k-2}{k-1}$ is one term of $\\sum_j \\binom{2k-2}{j} = 4^{k-1}$, so it is less than $4^k$."
+   },
+   {
+    "type": "section",
+    "title": "Small values and the growth of R(k)",
+    "body": "The recursion gives $R(3,3) \\le R(2,3) + R(3,2) = 6$, which is exact. Exact values are known only for a few small pairs. Three facts worth knowing:\n\n- $R(3,4) = 9$ (see the second example below).\n- $R(4,4) = 18$, proved by Greenwood and Gleason in 1955. The lower bound comes from the Paley graph on 17 vertices: join $i$ and $j$ in $\\mathbb{Z}/17$ when $i - j$ is a nonzero square modulo 17. This graph has no clique and no independent set of size 4.\n- $R(5,5)$ is unknown. It is known that $43 \\le R(5,5) \\le 46$: the lower bound is Exoo's colouring of $K_{42}$ (1989), and the upper bound is a large computer-assisted argument of Angeltveit and McKay (2024).\n\nFor general $k$ the bounds are exponential with different bases. In 1947 Erdős proved $R(k) > 2^{k/2}$ for all $k \\ge 3$ by showing that a uniformly random colouring of $K_n$ with $n = \\lfloor 2^{k/2} \\rfloor$ has, with positive probability, no monochromatic $K_k$. This argument is the subject of [[probabilistic-method]]. Together:\n$$2^{k/2} < R(k) \\le 4^{k} \\qquad (k \\ge 3).$$\n(The inequality $\\sqrt{2}^{\\,k} \\le R(k)$ also holds for $k = 2$, where $R(2) = 2$, but not for $k = 1$, where $R(1) = 1$.)\n\nSince 1947 the base $\\sqrt2$ in the lower bound has not been improved, only constant factors in front. For the upper bound, Conlon (2009) improved $\\binom{2k-2}{k-1}$ by a factor that grows faster than any power of $k$, but the base 4 stood until 2023, when Campos, Griffiths, Morris and Sahasrabudhe proved\n$$R(k) \\le (4-\\varepsilon)^k$$\nfor a fixed $\\varepsilon > 0$ and all large $k$. This was the first exponential improvement over the 1935 bound of Erdős and Szekeres. Whether $\\lim R(k)^{1/k}$ exists, and what it is, remains open.\n\nThe lower bound is not constructive: random colourings work, but no explicit colouring of $K_n$ is known whose largest monochromatic clique is as small as a random one's, of order $\\log n$."
+   },
+   {
+    "type": "section",
+    "title": "More colours and larger subsets",
+    "body": "The same argument works with $r$ colours. Let $R_r(k)$ be the least $n$ such that every $r$-colouring of the edges of $K_n$ contains a monochromatic $K_k$. Picking a vertex $v$ and splitting the other vertices by the colour of their edge to $v$ shows by induction that $R_r(k)$ is finite. For triangles with three colours the answer is $R_3(3) = 17$, also due to Greenwood and Gleason. Their lower-bound colouring of $K_{16}$ uses the field with 16 elements: colour the edge $\\{x,y\\}$ according to which coset of the subgroup of cubes contains $x - y$.\n\nEdges are 2-element subsets. Ramsey's original 1930 theorem, proved as a lemma in a paper on decision problems in logic, colours $m$-element subsets."
+   },
+   {
+    "type": "theorem",
+    "title": "Ramsey's theorem (finite form)",
+    "body": "For all positive integers $m$, $r$ and $k$ there is an $N$ such that, however the $m$-element subsets of an $N$-element set are coloured with $r$ colours, there is a $k$-element subset all of whose $m$-element subsets have the same colour."
+   },
+   {
+    "type": "section",
+    "title": "The general philosophy",
+    "body": "The general theorem is proved by induction on $m$, using the case $m - 1$ as the graph case used single vertices. Its bounds grow like towers of exponentials, and for $m \\ge 3$ the true growth is still not understood (see [[hypergraphs]]).\n\nMany results share this structure: colour a large object, find a structured monochromatic piece. Schur's theorem (monochromatic solutions of $x + y = z$) follows directly from the graph case, as the third example shows. Van der Waerden's theorem on monochromatic arithmetic progressions needs a different proof (see [[ramsey-arithmetic]]). The infinite version, that every colouring of the pairs of an infinite set has an infinite monochromatic subset, is the starting point of [[infinite-combinatorics]]."
+   },
+   {
+    "type": "example",
+    "title": "At least two monochromatic triangles",
+    "body": "Show that every red/blue colouring of the edges of $K_6$ contains at least two monochromatic triangles.",
+    "solution": "Call a pair of edges at a common vertex a bichromatic angle if the two edges have different colours. If vertex $v$ has $r_v$ red edges and $5 - r_v$ blue edges, it is the apex of $r_v(5 - r_v)$ bichromatic angles. Since $r_v \\in \\{0,\\dots,5\\}$, this is at most $2 \\cdot 3 = 6$.\n\nA monochromatic triangle has no bichromatic angles. A triangle that is not monochromatic has two edges of one colour and one of the other, so exactly two of its three angles are bichromatic. Every bichromatic angle lies in exactly one triangle, the one obtained by closing it up. Hence\n$$2 \\cdot \\#\\{\\text{non-monochromatic triangles}\\} = \\sum_v r_v(5 - r_v) \\le 6 \\cdot 6 = 36.$$\nSo at most 18 of the $\\binom{6}{3} = 20$ triangles are non-monochromatic, and at least 2 are monochromatic.\n\nThe bound is sharp. Split the six vertices into two groups of three, colour edges inside a group red and edges between the groups blue. The two groups are red triangles; there is no blue triangle, since the blue graph is bipartite."
+   },
+   {
+    "type": "example",
+    "title": "Computing R(3,4)",
+    "body": "Prove that $R(3,4) = 9$.",
+    "solution": "The recursion gives $R(3,4) \\le R(2,4) + R(3,3) = 4 + 6 = 10$. We improve this by one using parity.\n\nSuppose the edges of $K_9$ are coloured with no red triangle and no blue $K_4$. Fix a vertex $v$, let $A$ be its red neighbours and $B$ its blue neighbours, so $|A| + |B| = 8$.\n\n- Inside $A$ there is no red edge, since such an edge together with $v$ would be a red triangle. So $A$ spans only blue edges, and as there is no blue $K_4$, $|A| \\le 3$.\n- Inside $B$ there is no blue triangle, since with $v$ it would give a blue $K_4$. There is also no red triangle. As $R(3,3) = 6$, $|B| \\le 5$.\n\nSince $|A| + |B| = 8$, both bounds are attained: every vertex has exactly 3 red edges. Then the red graph has $9 \\cdot 3 / 2$ edges, which is not an integer. This contradiction shows $R(3,4) \\le 9$.\n\nFor the lower bound, colour $K_8$ on vertices $\\mathbb{Z}/8$ by making $\\{i,j\\}$ red when $i - j \\equiv \\pm 1$ or $4 \\pmod 8$. A red triangle would need three differences from $\\{\\pm1, 4\\}$ that add up to $0 \\pmod 8$, and no such combination exists. Checking the 70 four-element subsets (or arguing by hand) shows that each contains a red edge, so there is no blue $K_4$. Hence $R(3,4) > 8$."
+   },
+   {
+    "type": "example",
+    "title": "Schur's theorem from Ramsey's theorem",
+    "body": "Show that for every $r$ there is an $N$ such that, however $\\{1, 2, \\dots, N\\}$ is coloured with $r$ colours, there are $x, y, z$ of the same colour with $x + y = z$ ($x = y$ is allowed). For $r = 2$, find the least such $N$.",
+    "solution": "Let $N = R_r(3) - 1$ and fix a colouring $\\chi$ of $\\{1,\\dots,N\\}$. Colour the edges of the complete graph on vertices $\\{0, 1, \\dots, N\\}$ by giving the edge $\\{i, j\\}$ the colour $\\chi(|i - j|)$. This graph has $R_r(3)$ vertices, so it has a monochromatic triangle $a < b < c$. Put $x = b - a$, $y = c - b$, $z = c - a$. These three numbers lie in $\\{1,\\dots,N\\}$, have the same colour, and satisfy $x + y = z$.\n\nFor two colours this gives $N = R(3,3) - 1 = 5$. It is the least possible: colour $1$ and $4$ red, $2$ and $3$ blue. The red sums $1+1$, $1+4$, $4+4$ equal $2$, $5$, $8$, none red; the blue sums $2+2$, $2+3$, $3+3$ equal $4$, $5$, $6$, none blue. So four numbers can be coloured with no monochromatic solution, while five cannot."
+   },
+   {
+    "type": "pitfall",
+    "body": "- A monochromatic $K_k$ means all $\\binom{k}{2}$ edges among the $k$ chosen vertices have one colour. It is not enough for the edges along a path or a cycle through them to agree.\n- $R(k,\\ell)$ is a threshold for every colouring. To prove $R(k,\\ell) > n$ you must exhibit one colouring of $K_n$ (or prove one exists); to prove $R(k,\\ell) \\le n$ you must handle all colourings.\n- The binomial bound is not exact in general: it gives $R(4,4) \\le 20$, while the truth is 18.\n- Ramsey's theorem finds a monochromatic substructure, not a large colour class. Questions about how many edges force a $K_k$, whatever their colour, belong to Turán's theorem (see [[extremal-graphs]]), which has quite different answers."
+   },
+   {
+    "type": "connection",
+    "body": "- [[probabilistic-method]]: Erdős's lower bound for $R(k)$ is the founding example of proving existence by random choice.\n- [[ramsey-arithmetic]]: Schur, van der Waerden and Rado colour integers and look for monochromatic solutions of equations or arithmetic progressions.\n- [[infinite-combinatorics]]: the infinite Ramsey theorem and partition relations for cardinals, some of them independent of the usual axioms.\n- [[hypergraphs]]: Ramsey numbers for colourings of triples grow much faster and are far less understood.\n- [[discrete-geometry]]: the Erdős–Szekeres theorem on convex polygons follows from Ramsey's theorem for 4-element subsets.\n- [[extremal-graphs]] and [[graph-coloring]]: related forcing questions where density, not colouring, is the hypothesis."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use the recursion to show $R(3,5) \\le 14$.\n2. Prove that $R_3(3) \\le 17$: every 3-colouring of the edges of $K_{17}$ has a monochromatic triangle.\n3. Show that for $k, \\ell \\ge 2$, if $R(k-1,\\ell)$ and $R(k,\\ell-1)$ are both even, then $R(k,\\ell) \\le R(k-1,\\ell) + R(k,\\ell-1) - 1$.\n4. Prove that every 2-colouring of the edges of $K_7$ contains at least four monochromatic triangles, by adapting the angle-counting argument for $K_6$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Graham, Rothschild & Spencer, Ramsey Theory"
+   },
+   {
+    "ref": "Bollobás, Modern Graph Theory"
+   },
+   {
+    "ref": "Alon & Spencer, The Probabilistic Method"
+   },
+   {
+    "ref": "Campos, Griffiths, Morris & Sahasrabudhe, An exponential improvement for diagonal Ramsey (2023)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Every 2-colouring of K6 has a monochromatic triangle, the pentagon/pentagram colouring of K5 has none, and the minimum number of monochromatic triangles in K6 is 2",
+    "python": "from itertools import combinations\nE=list(combinations(range(6),2)); idx={e:i for i,e in enumerate(E)}\nT=list(combinations(range(6),3))\nbest=99\nfor m in range(1<<15):\n    c=lambda a,b:(m>>idx[(a,b)])&1\n    mono=sum(1 for a,b,d in T if c(a,b)==c(a,d)==c(b,d))\n    best=min(best,mono)\nassert best==2\ncol5=lambda a,b: 1 if (b-a)%5 in (1,4) else 0\nassert not any(col5(a,b)==col5(a,d)==col5(b,d) for a,b,d in combinations(range(5),3))"
+   },
+   {
+    "claim": "Binomial bounds: binom(4,2)=6, binom(5,2)=10, binom(6,3)=20, and binom(2k-2,k-1) < 4^k",
+    "python": "from math import comb\nassert comb(4,2)==6 and comb(5,2)==10 and comb(6,3)==20\nassert all(comb(2*k-2,k-1)<4**k for k in range(1,200))\nassert all(comb(k+l-3,k-2)+comb(k+l-3,k-1)==comb(k+l-2,k-1) for k in range(2,30) for l in range(2,30))"
+   },
+   {
+    "claim": "Erdős's inequality binom(n,k) 2^(1-binom(k,2)) < 1 holds for n = floor(2^(k/2)) and 3 <= k <= 100, so R(k) > 2^(k/2)",
+    "python": "from math import comb, isqrt\nfrom fractions import Fraction\nfor k in range(3,101):\n    n=isqrt(2**k)  # floor(2^(k/2))\n    assert n*n<=2**k<(n+1)**2\n    assert Fraction(comb(n,k)*2,2**comb(k,2))<1"
+   },
+   {
+    "claim": "The circulant colouring of K8 with red differences ±1, 4 has no red triangle and no blue K4, so R(3,4) > 8",
+    "python": "from itertools import combinations\nred=lambda a,b:(a-b)%8 in (1,4,7)\nassert not any(red(a,b) and red(a,c) and red(b,c) for a,b,c in combinations(range(8),3))\nassert all(any(red(x,y) for x,y in combinations(S,2)) for S in combinations(range(8),4))\nassert 9*3%2==1"
+   },
+   {
+    "claim": "The Paley graph on 17 vertices has no clique and no independent set of size 4, so R(4,4) > 17",
+    "python": "from itertools import combinations\nQ={x*x%17 for x in range(1,17)}\nadj=lambda a,b:(a-b)%17 in Q\nassert len(Q)==8 and all((-q)%17 in Q for q in Q)\nfor S in combinations(range(17),4):\n    vals={adj(x,y) for x,y in combinations(S,2)}\n    assert vals=={True,False}"
+   },
+   {
+    "claim": "Colouring K16 by the coset of the cube subgroup of GF(16)* containing x-y gives no monochromatic triangle, so R_3(3) > 16",
+    "python": "from itertools import combinations\ndef mul(a,b):\n    r=0\n    while b:\n        if b&1: r^=a\n        b>>=1; a<<=1\n        if a&16: a^=0b10011\n    return r\ndef order(g):\n    x=g;k=1\n    while x!=1: x=mul(x,g);k+=1\n    return k\ng=next(x for x in range(2,16) if order(x)==15)\nlog={};x=1\nfor k in range(15): log[x]=k; x=mul(x,g)\ncol=lambda a,b: log[a^b]%3\nassert not any(col(a,b)==col(a,c)==col(b,c) for a,b,c in combinations(range(16),3))"
+   },
+   {
+    "claim": "Every 2-colouring of {1..5} has a monochromatic solution of x+y=z, while {1,4} red, {2,3} blue avoids one on {1..4}",
+    "python": "from itertools import product\ndef has(col):\n    n=len(col)\n    return any(col[x-1]==col[y-1]==col[x+y-1] for x in range(1,n+1) for y in range(x,n+1) if x+y<=n)\nassert all(has(c) for c in product((0,1),repeat=5))\nassert not has((0,1,1,0))"
+   },
+   {
+    "claim": "Exercise facts: the recursion gives R(3,5) <= R(2,5)+R(3,4) = 14; angle counting in K7 gives at least 35 - floor(7*9/2) = 4 monochromatic triangles; the K6 two-triangle colouring (two red triangles, blue K_{3,3}) has exactly 2 monochromatic triangles; R(2,l) = l by brute force for l <= 5",
+    "python": "from itertools import combinations, product\nfrom math import comb\nassert 5+9==14\nassert comb(7,3)-(7*max(r*(6-r) for r in range(7)))//2==4\nred=lambda a,b:(a<3)==(b<3)\nassert sum(1 for a,b,c in combinations(range(6),3) if red(a,b)==red(a,c)==red(b,c))==2\ndef has(n,k,l):\n    E=list(combinations(range(n),2))\n    for m in range(1<<len(E)):\n        col={e:(m>>i)&1 for i,e in enumerate(E)}\n        if not (any(all(col[e]==1 for e in combinations(S,2)) for S in combinations(range(n),k)) or any(all(col[e]==0 for e in combinations(S,2)) for S in combinations(range(n),l))): return False\n    return True\nfor L in range(2,6):\n    assert has(L,2,L) and not has(L-1,2,L)\n"
+   }
+  ]
+ },
+ {
+  "id": "probabilistic-method",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Suppose you want to show that some object exists: a colouring with no large monochromatic clique, a tournament where every pair of players is beaten by a third, a large subset of integers with no solution to $x + y = z$. Building one explicitly can be very hard. The probabilistic method takes another route: choose an object at random and show that it has the property with positive probability. Then at least one object has it.\n\nOn a finite set of objects this is counting in another language (\"probability positive\" means \"some good object exists\"), but probability supplies tools, above all linearity of expectation, that make the counting easy."
+   },
+   {
+    "type": "section",
+    "title": "The first example: Ramsey numbers",
+    "body": "Recall from [[ramsey]] that $R(k)$ is the least $n$ such that every red/blue colouring of the edges of $K_n$ has a monochromatic $K_k$. To prove $R(k) > n$ we need one colouring of $K_n$ with no monochromatic $K_k$.\n\nColour each edge of $K_n$ red or blue independently with probability $\\tfrac12$ each. A fixed set $S$ of $k$ vertices spans $\\binom{k}{2}$ edges. They are all red with probability $2^{-\\binom k2}$ and all blue with the same probability, so $S$ is monochromatic with probability $2^{1-\\binom k2}$. There are $\\binom nk$ sets $S$, and the probability that at least one of several events happens is at most the sum of their probabilities (the union bound). This gives the inequality Erdős used in 1947."
+   },
+   {
+    "type": "theorem",
+    "title": "Erdős's lower bound for Ramsey numbers",
+    "body": "If\n$$\\Pr\\big[\\text{some } K_k \\text{ monochromatic}\\big] \\le \\binom nk 2^{1-\\binom k2} < 1,$$\nthen $R(k) > n$. In particular $R(k) > 2^{k/2}$ for every $k \\ge 3$."
+   },
+   {
+    "type": "proof",
+    "title": "Proof",
+    "body": "The first statement was shown above: if the union bound is less than 1, then with positive probability no $k$-set is monochromatic, so at least one colouring of $K_n$ has no monochromatic $K_k$.\n\nFor the second, let $k \\ge 3$ and $n = \\lfloor 2^{k/2} \\rfloor$. Using $\\binom nk \\le n^k / k!$ and $n^k \\le 2^{k^2/2}$,\n$$\\binom nk 2^{1-\\binom k2} \\le \\frac{2^{k^2/2}}{k!}\\, 2^{1 - \\frac{k^2}{2} + \\frac{k}{2}} = \\frac{2^{1 + k/2}}{k!}.$$\nFor $k = 3$ this is $2^{2.5}/6 < 5.66/6 < 1$. Going from $k$ to $k+1$ multiplies the numerator by $\\sqrt 2$ and the denominator by $k + 1 \\ge 4$, so the quantity stays below 1 for all $k \\ge 3$. Hence $R(k) > n = \\lfloor 2^{k/2} \\rfloor$, and since $R(k)$ is an integer, $R(k) \\ge \\lfloor 2^{k/2}\\rfloor + 1 > 2^{k/2}$."
+   },
+   {
+    "type": "section",
+    "title": "Expectation and linearity",
+    "body": "The union bound is the crudest tool. The workhorse is the following observation about any random variable $X$ on a finite probability space (see [[random-variables]]): $X$ cannot always be smaller than its average."
+   },
+   {
+    "type": "theorem",
+    "title": "First-moment principle",
+    "body": "Let $X$ be a random variable on a finite probability space. If $\\mathbb E[X] \\ge t$, then $\\Pr[X \\ge t] > 0$. Likewise, if $\\mathbb E[X] \\le t$, then $\\Pr[X \\le t] > 0$."
+   },
+   {
+    "type": "proof",
+    "body": "Let the outcomes be $\\omega_1, \\dots, \\omega_N$ with probabilities $p_i > 0$ summing to 1. If $X(\\omega_i) < t$ for every $i$, then $\\mathbb E[X] = \\sum p_i X(\\omega_i) < \\sum p_i t = t$, contradicting $\\mathbb E[X] \\ge t$. The second statement is the same argument with the inequalities reversed."
+   },
+   {
+    "type": "section",
+    "title": "How the principle is used",
+    "body": "To use the principle we need $\\mathbb E[X]$, and that is where linearity of expectation comes in: if $X = X_1 + \\dots + X_m$, then $\\mathbb E[X] = \\mathbb E[X_1] + \\dots + \\mathbb E[X_m]$, whether or not the $X_i$ are independent. Typically $X$ counts something and $X_i$ is the indicator of the $i$-th possible occurrence, so $\\mathbb E[X_i]$ is just a probability.\n\nA first illustration. In a tournament every pair of $n$ players plays once and there are no draws; draw an arrow from winner to loser. A Hamiltonian path is an ordering $v_1, \\dots, v_n$ of all the players in which each $v_i$ beat $v_{i+1}$. Choose the result of each game by a fair coin. For each of the $n!$ orderings, the $n - 1$ required results occur with probability $2^{-(n-1)}$. By linearity the expected number of Hamiltonian paths is $n!/2^{n-1}$, so some tournament on $n$ players has at least that many. Szele observed this in 1943, before Erdős's Ramsey paper."
+   },
+   {
+    "type": "section",
+    "title": "Alterations: choose at random, then repair",
+    "body": "Sometimes a random object is almost good, and a few local fixes finish the job. The expected number of fixes then enters the calculation.\n\nLet $G$ be a graph with $n$ vertices and $m \\ge n/2$ edges. Put each vertex into a set $S$ independently with probability $p$. Then $\\mathbb E|S| = pn$, and the expected number of edges with both ends in $S$ is $p^2 m$. Now delete one endpoint of each such edge. What remains is an independent set (no two of its vertices are adjacent) of size at least $|S| - e(S)$, whose expectation is $pn - p^2 m$. Choosing $p = n/(2m)$, which is at most 1, gives\n$$\\mathbb E\\big[|S| - e(S)\\big] = \\frac{n^2}{2m} - \\frac{n^2}{4m} = \\frac{n^2}{4m},$$\nso $G$ has an independent set of at least $n^2/(4m)$ vertices. In terms of the average degree $d = 2m/n$ this reads $n/(2d)$.\n\nThe same trick improves the Ramsey bound: delete one vertex from each monochromatic $K_k$ of a random colouring. This shows $R(k) > n - \\binom nk 2^{1-\\binom k2}$ for every $n$. Optimising $n$ gives $R(k) > (1+o(1))\\frac{k}{e}\\,2^{k/2}$, a factor $\\sqrt2$ better than the best the plain union bound gives, $(1+o(1))\\frac{k}{e\\sqrt2}\\,2^{k/2}$."
+   },
+   {
+    "type": "section",
+    "title": "Rare, nearly independent events: the local lemma",
+    "body": "The union bound needs the bad events' probabilities to add up to less than 1. If there are very many bad events, each unlikely, this fails even when most pairs of events have nothing to do with each other. If all bad events were independent, the probability that none occurs would be the product of the probabilities $1 - \\Pr[A_i]$, which is positive. The Lovász local lemma (Erdős and Lovász, 1975) interpolates between these extremes. Its symmetric form reads as follows.\n\nLet $A_1, \\dots, A_N$ be events such that each $A_i$ has probability at most $p$, and each $A_i$ is mutually independent of the collection of all other $A_j$ except at most $d$ of them. If $e\\,p\\,(d+1) \\le 1$, then with positive probability none of the $A_i$ occurs.\n\nWe state it without proof (Alon and Spencer give a two-page proof). Notice that the number of events $N$ does not appear. Applied to Ramsey numbers, it gives $R(k) > (1 + o(1)) \\frac{\\sqrt2}{e}\\, k\\, 2^{k/2}$, a result of Spencer. The base $\\sqrt2$ has never been improved.\n\nThe fourth main tool is concentration: a sum of many independent small random variables is very likely close to its mean. A typical bound: if $X$ is the sum of $n$ independent random signs $\\pm1$, then $\\Pr[|X| \\ge \\lambda] \\le 2e^{-\\lambda^2/(2n)}$. Combined with the union bound, this shows that for any $n$ subsets of an $n$-element set there is a red/blue colouring of the points in which every subset has $|\\#\\text{red} - \\#\\text{blue}| < \\sqrt{2n\\ln(4n)}$: the failure probability is at most $n \\cdot 2e^{-\\ln(4n)} = \\tfrac12$. This is the starting point of [[discrepancy]] theory."
+   },
+   {
+    "type": "example",
+    "title": "Large bipartite subgraphs",
+    "body": "Show that every graph with $m$ edges contains a bipartite subgraph with at least $m/2$ edges.",
+    "solution": "Put each vertex on the left or right side independently with probability $\\tfrac12$. An edge is cut (its ends on opposite sides) with probability $\\tfrac12$, so by linearity the expected number of cut edges is $m/2$. By the first-moment principle some partition cuts at least $m/2$ edges, and the cut edges form a bipartite subgraph."
+   },
+   {
+    "type": "example",
+    "title": "Tournaments where every pair is beaten",
+    "body": "Say a tournament has property $S_k$ if for every set of $k$ players there is another player who beat all of them. Show that a tournament with property $S_k$ exists whenever $\\binom nk (1 - 2^{-k})^{n-k} < 1$. For $k = 2$, how large an $n$ does this give, and can you do better?",
+    "solution": "Take a random tournament on $n$ players. For a fixed set $K$ of $k$ players and a fixed outsider $v$, the probability that $v$ beat all of $K$ is $2^{-k}$. Different outsiders involve disjoint sets of games, so the probability that no outsider beat all of $K$ is $(1 - 2^{-k})^{n-k}$. By the union bound over the $\\binom nk$ choices of $K$, the probability that property $S_k$ fails is at most $\\binom nk (1-2^{-k})^{n-k}$. If this is less than 1, some tournament has property $S_k$.\n\nFor $k = 2$ the condition $\\binom n2 (3/4)^{n-2} < 1$ first holds at $n = 21$. The random method is not sharp here. On the players $0, 1, \\dots, 6$, let $i$ beat $j$ when $i - j$ is one of the nonzero squares modulo 7, which are $1, 2, 4$. Exactly one of $i - j$ and $j - i$ is a square (because $-1 \\equiv 6$ is not a square mod 7), so this is a tournament. Checking the 21 pairs shows that every pair is beaten by some third player: for instance $\\{0, 1\\}$ is beaten by $2$, since $2 - 0 = 2$ and $2 - 1 = 1$ are squares. So 7 players suffice for $S_2$."
+   },
+   {
+    "type": "example",
+    "title": "Independent sets from a random order (Caro–Wei)",
+    "body": "Let $G$ be a graph with vertex degrees $d(v)$. Prove that $G$ has an independent set of size at least $\\sum_v \\frac{1}{d(v) + 1}$.",
+    "solution": "Order the vertices uniformly at random, and let $I$ be the set of vertices that come before all of their neighbours in the order. Two adjacent vertices cannot both be in $I$, since one of them comes first, so $I$ is independent.\n\nA vertex $v$ is in $I$ exactly when it is first among the $d(v) + 1$ vertices consisting of $v$ and its neighbours. Each of these is equally likely to come first, so $\\Pr[v \\in I] = 1/(d(v)+1)$. By linearity $\\mathbb E|I| = \\sum_v 1/(d(v)+1)$, and by the first-moment principle some ordering gives an independent set at least this large.\n\nFor the 5-cycle the bound is $5/3$, so there is an independent set of size 2; for the Petersen graph (10 vertices, all of degree 3) it is $5/2$, so there is one of size 3 (the true maximum is 4). By convexity of $x \\mapsto 1/(x+1)$, the bound is at least $n/(d + 1)$ where $d$ is the average degree, which is Turán's theorem in complementary form (see [[extremal-graphs]])."
+   },
+   {
+    "type": "example",
+    "title": "Sum-free subsets",
+    "body": "A set of integers is sum-free if it contains no $x, y, z$ (with $x = y$ allowed) such that $x + y = z$. Prove that every set $A$ of $n$ nonzero integers contains a sum-free subset with more than $n/3$ elements.",
+    "solution": "Choose a prime $p = 3k + 2$ larger than $|a|$ for every $a \\in A$; there are infinitely many primes of the form $3k + 2$ (an elementary proof imitates Euclid's argument with the number $3N - 1$). Then no element of $A$ is divisible by $p$.\n\nLet $C = \\{k+1, k+2, \\dots, 2k+1\\}$, viewed as residues modulo $p$. The set $C$ is sum-free modulo $p$: the sum of two elements of $C$ lies between $2k+2$ and $4k+2$, and modulo $p = 3k + 2$ these numbers are the residues $2k+2, \\dots, 3k+1$, then $0$, then $1, \\dots, k$, none of which is in $C$.\n\nNow pick $x$ uniformly from $\\{1, 2, \\dots, p-1\\}$. For each fixed $a \\in A$, the map $x \\mapsto xa \\bmod p$ is a bijection of the nonzero residues, so $xa \\bmod p$ is uniform on them and lands in $C$ with probability\n$$\\frac{|C|}{p - 1} = \\frac{k+1}{3k+1} > \\frac13.$$\nBy linearity, the expected number of $a \\in A$ with $xa \\bmod p \\in C$ is greater than $n/3$, so some $x$ gives a subset $B \\subseteq A$ with $|B| > n/3$ and $xB \\bmod p \\subseteq C$.\n\n$B$ is sum-free: if $a + b = c$ with $a, b, c \\in B$, then $xa + xb \\equiv xc \\pmod p$ with all three residues in $C$, which is impossible."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The first-moment principle gives $\\Pr[X \\ge \\mathbb E X] > 0$, not $\\Pr[X > \\mathbb E X] > 0$. If $X$ is constant there is nothing above the mean.\n- Linearity of expectation needs no independence, but computing a probability like \"no outsider beats all of $K$\" as a product does. Check independence each time you multiply.\n- The union bound is an inequality. Showing that the sum of probabilities is large proves nothing about whether a bad event must happen.\n- A positive probability can be astronomically small: the method proves existence, not an efficient way to find the object.\n- In the local lemma the condition is about mutual independence from all but $d$ events, which is stronger than pairwise independence."
+   },
+   {
+    "type": "connection",
+    "body": "- [[ramsey]]: the 1947 lower bound $R(k) > 2^{k/2}$ is still the best up to a factor polynomial in $k$.\n- [[extremal-graphs]] and [[graph-coloring]]: Erdős used random graphs with an alteration step to show there are graphs with no short cycles and arbitrarily large chromatic number.\n- [[hypergraphs]] and [[set-systems]]: random colourings bound property B, and random permutations give short proofs of Sperner-type inequalities.\n- [[discrepancy]]: concentration and the union bound give the first estimates for how evenly a colouring can split a family of sets.\n- [[sidon-sets]] and [[additive-combinatorics]]: random sets with alterations give lower bounds for many extremal problems on integers.\n- [[limit-theorems]]: concentration bounds are quantitative forms of the law of large numbers."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use the alteration method to prove $R(k) > n - \\binom nk 2^{1-\\binom k2}$ for every $n$.\n2. Show that if $n^2 < (k-1)\\,2^k$, then $\\{1, \\dots, n\\}$ can be coloured red and blue with no monochromatic $k$-term arithmetic progression. (First show there are at most $n^2/(2(k-1))$ such progressions.)\n3. Prove that every $k$-uniform hypergraph with fewer than $2^{k-1}$ edges has a red/blue colouring of its vertices with no monochromatic edge.\n4. Show that every graph with $m \\ge 1$ edges has a bipartite subgraph with at least $m/2$ edges using a deterministic argument: move vertices one at a time to the side that cuts more of their edges."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Alon & Spencer, The Probabilistic Method"
+   },
+   {
+    "ref": "Jukna, Extremal Combinatorics"
+   },
+   {
+    "ref": "Erdős, Some remarks on the theory of graphs, Bulletin of the AMS 53 (1947)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "binom(n,k) 2^(1-binom(k,2)) <= 2^(1+k/2)/k! < 1 for n = floor(2^(k/2)), 3 <= k <= 80",
+    "python": "from math import comb, factorial, isqrt, sqrt\nfor k in range(3,81):\n    n=isqrt(2**k)\n    lhs=comb(n,k)*2/2**comb(k,2)\n    assert lhs<=2**(1+k/2)/factorial(k)*(1+1e-12) and 2**(1+k/2)/factorial(k)<1\nassert 2**2.5/6<1 and 2**2.5<5.66"
+   },
+   {
+    "claim": "The average number of Hamiltonian paths over all tournaments on n players is n!/2^(n-1) (checked for n = 3, 4, 5)",
+    "python": "from itertools import combinations, permutations\nfrom fractions import Fraction\nfrom math import factorial\nfor n in (3,4,5):\n    P=list(combinations(range(n),2)); tot=0\n    for m in range(1<<len(P)):\n        beats={}\n        for i,(a,b) in enumerate(P):\n            w=(m>>i)&1\n            beats[(a,b)]=bool(w); beats[(b,a)]=not w\n        tot+=sum(all(beats[(p[i],p[i+1])] for i in range(n-1)) for p in permutations(range(n)))\n    assert Fraction(tot,2**len(P))==Fraction(factorial(n),2**(n-1))"
+   },
+   {
+    "claim": "For k=2 the least n with binom(n,2)(3/4)^(n-2) < 1 is 21, and the quadratic-residue tournament on 7 players has property S_2",
+    "python": "from math import comb\nfrom fractions import Fraction\nfrom itertools import combinations\nn=3\nwhile comb(n,2)*Fraction(3,4)**(n-2)>=1: n+=1\nassert n==21\nQ={1,2,4}\nassert {x*x%7 for x in range(1,7)}==Q\nassert all(((i-j)%7 in Q)!=((j-i)%7 in Q) for i,j in combinations(range(7),2))\nassert all(any(((z-a)%7 in Q) and ((z-b)%7 in Q) for z in range(7)) for a,b in combinations(range(7),2))\nassert ((2-0)%7 in Q) and ((2-1)%7 in Q)"
+   },
+   {
+    "claim": "Alteration computation: n^2/(2m) - n^2/(4m) = n^2/(4m); concentration: n*2*exp(-ln(4n)) = 1/2",
+    "python": "import sympy as sp\nn,m=sp.symbols('n m',positive=True)\np=n/(2*m)\nassert sp.simplify(p*n-p**2*m-n**2/(4*m))==0\nassert sp.simplify(n*2*sp.exp(-sp.log(4*n))-sp.Rational(1,2))==0"
+   },
+   {
+    "claim": "Caro-Wei bounds: 5/3 for C5 (alpha = 2) and 5/2 for the Petersen graph (alpha = 4)",
+    "python": "from itertools import combinations\nfrom fractions import Fraction\ndef alpha(V,E):\n    Es=set(map(frozenset,E))\n    for r in range(len(V),0,-1):\n        for S in combinations(V,r):\n            if all(frozenset(p) not in Es for p in combinations(S,2)): return r\nC5=[(i,(i+1)%5) for i in range(5)]\nassert alpha(range(5),C5)==2\nouter=[(i,(i+1)%5) for i in range(5)]; spokes=[(i,i+5) for i in range(5)]; inner=[(5+i,5+(i+2)%5) for i in range(5)]\nPet=outer+spokes+inner\ndeg=[sum(v in e for e in Pet) for v in range(10)]\nassert deg==[3]*10 and alpha(range(10),Pet)==4\nassert sum(Fraction(1,d+1) for d in deg)==Fraction(5,2)\nassert 5*Fraction(1,3)==Fraction(5,3)"
+   },
+   {
+    "claim": "The middle-third set C = {k+1..2k+1} is sum-free mod p=3k+2, (k+1)/(3k+1) > 1/3, and the multiplier argument finds a sum-free subset of size > n/3 for random sets",
+    "python": "import random\nfrom fractions import Fraction\nfrom sympy import isprime, nextprime\nfor k in range(1,60):\n    p=3*k+2; C=set(range(k+1,2*k+2))\n    assert all((a+b)%p not in C for a in C for b in C)\n    assert Fraction(k+1,3*k+1)>Fraction(1,3)\nrandom.seed(1)\nfor trial in range(30):\n    A=random.sample([x for x in range(-200,201) if x],random.randint(3,25))\n    p=nextprime(max(abs(a) for a in A))\n    while p%3!=2: p=nextprime(p)\n    k=(p-2)//3; C=set(range(k+1,2*k+2))\n    best=max(([a for a in A if x*a%p in C] for x in range(1,p)),key=len)\n    S=set(best)\n    assert 3*len(best)>len(A)\n    assert not any(a+b in S for a in S for b in S)"
+   },
+   {
+    "claim": "The number of k-term APs in {1..n} is at most n^2/(2(k-1)) (checked for 2 <= k <= 12, n <= 300)",
+    "python": "for k in range(2,13):\n    for n in range(1,301):\n        cnt=sum(max(0,n-(k-1)*d) for d in range(1,n+1))\n        assert 2*(k-1)*cnt<=n*n"
+   },
+   {
+    "claim": "Asymptotics of the Ramsey lower bounds: the largest n with binom(n,k)2^(1-binom(k,2)) < 1, divided by k 2^(k/2), approaches 1/(e sqrt2) ~ 0.26, and the alteration bound max_n [n - binom(n,k)2^(1-binom(k,2))] divided by k 2^(k/2) approaches 1/e ~ 0.37 (checked at k = 60, within slowly vanishing error)",
+    "python": "from mpmath import mp, mpf, binomial, e, sqrt, floor\nmp.dps=60\nk=60\nf=lambda n: binomial(n,k)*mpf(2)**(1-k*(k-1)//2)\nlo,hi=mpf(k),mpf(2)**k\nwhile hi-lo>1:\n    mid=floor((lo+hi)/2)\n    if f(mid)<1: lo=mid\n    else: hi=mid\nr1=lo/(k*mpf(2)**(k/2))\nbest=max(n-f(n) for n in [lo*(1+mpf(j)/200) for j in range(0,200)])\nr2=best/(k*mpf(2)**(k/2))\nassert abs(r1-1/(e*sqrt(2)))<0.03 and abs(r2-1/e)<0.04 and r2/r1>1.3\n"
+   },
+   {
+    "claim": "Exercises 2-3: expected monochromatic APs is #APs * 2^(1-k) <= n^2/((k-1)2^k); and a k-graph with fewer than 2^(k-1) edges is 2-colourable (exhaustive for k=3, all 3-edge 3-graphs on 6 vertices)",
+    "python": "from itertools import combinations, product\nfrom fractions import Fraction\nfor k in range(2,10):\n    for n in range(1,120):\n        cnt=sum(max(0,n-(k-1)*dd) for dd in range(1,n+1))\n        assert Fraction(cnt,2**(k-1))<=Fraction(n*n,(k-1)*2**k)\nT=list(combinations(range(6),3))\ncols=list(product((0,1),repeat=6))\nfor H in combinations(T,3):\n    assert any(all(len({c[x] for x in ed})==2 for ed in H) for c in cols)\n"
+   }
+  ]
+ },
+ {
+  "id": "set-systems",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A club with $n$ members wants to form committees. How many committees can it have if no committee may be a subset of another? How many if every two committees must share a member? How many committees of exactly $k$ people, all pairwise sharing a member? Questions like these, about the largest family of subsets of an $n$-element set subject to a rule, make up extremal set theory.\n\nThe answers are often clean binomial coefficients, and the proofs are short double-counting arguments that recur throughout combinatorics and theoretical computer science."
+   },
+   {
+    "type": "section",
+    "title": "Notation and first observations",
+    "body": "Write $[n] = \\{1, 2, \\dots, n\\}$. A family $\\mathcal F$ is a set of subsets of $[n]$. The family of all subsets has $2^n$ members, and the family $\\binom{[n]}{k}$ of all $k$-element subsets has $\\binom nk$ members (see [[counting]]).\n\nTwo rules dominate the subject.\n\n1. No member contains another. The family $\\binom{[n]}{k}$ obeys this rule, because distinct sets of the same size cannot contain each other. The best single layer is the middle one, $k = \\lfloor n/2 \\rfloor$, since the binomial coefficients increase up to the middle and then decrease.\n2. Every two members intersect. The family of all sets containing the element 1 obeys this rule and has $2^{n-1}$ members. Among $k$-element sets, all $k$-sets containing 1 form an intersecting family of size $\\binom{n-1}{k-1}$, called a star.\n\nThe theorems below say that, under the right conditions, these simple families are the best possible."
+   },
+   {
+    "type": "definition",
+    "title": "Antichain, intersecting family",
+    "body": "A family $\\mathcal F$ of subsets of $[n]$ is an antichain (or Sperner family) if there are no distinct $A, B \\in \\mathcal F$ with $A \\subset B$. It is intersecting if $A \\cap B \\neq \\emptyset$ for all $A, B \\in \\mathcal F$.\n\nAn antichain is a family with no comparable pair; an intersecting family is one with no disjoint pair."
+   },
+   {
+    "type": "theorem",
+    "title": "Sperner's theorem and the LYM inequality",
+    "body": "If $\\mathcal F$ is an antichain of subsets of $[n]$, then\n$$\\sum_{A \\in \\mathcal F} \\frac{1}{\\binom{n}{|A|}} \\le 1 \\qquad\\text{(LYM inequality)},$$\nand consequently\n$$|\\mathcal F| \\le \\binom{n}{\\lfloor n/2\\rfloor} \\qquad\\text{(Sperner, 1928)}.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof by counting chains",
+    "body": "A maximal chain is a sequence $\\emptyset = C_0 \\subset C_1 \\subset \\dots \\subset C_n = [n]$ with $|C_i| = i$. Choosing such a chain is the same as choosing the order in which the elements $1, \\dots, n$ are added, so there are $n!$ maximal chains.\n\nFix a set $A$ with $|A| = a$. A maximal chain passes through $A$ exactly when the first $a$ elements added are those of $A$; there are $a!$ orders for them and $(n-a)!$ for the rest, so $a!(n-a)!$ maximal chains pass through $A$.\n\nNo maximal chain passes through two members of an antichain, since any two sets on one chain are comparable. Counting pairs (chain, member of $\\mathcal F$ on that chain) therefore gives\n$$\\sum_{A \\in \\mathcal F} |A|!\\,(n-|A|)! \\le n!.$$\nDividing by $n!$ gives the LYM inequality. Since $\\binom{n}{|A|} \\le \\binom{n}{\\lfloor n/2 \\rfloor}$ for every $A$, each term of the sum is at least $1/\\binom{n}{\\lfloor n/2\\rfloor}$, so $|\\mathcal F| / \\binom{n}{\\lfloor n/2\\rfloor} \\le 1$."
+   },
+   {
+    "type": "section",
+    "title": "Intersecting families of k-sets",
+    "body": "For families of arbitrary sets, the intersecting condition is easy: a family cannot contain both a set and its complement, and the $2^n$ subsets fall into $2^{n-1}$ complementary pairs, so an intersecting family has at most $2^{n-1}$ members, as many as a star.\n\nFor $k$-element sets the question is harder, and there is a threshold. If $n < 2k$, any two $k$-subsets of $[n]$ intersect, so all $\\binom nk$ of them form an intersecting family, which is more than a star. If $n \\ge 2k$, the star wins."
+   },
+   {
+    "type": "theorem",
+    "title": "Erdős–Ko–Rado theorem",
+    "body": "Let $n \\ge 2k$. If $\\mathcal F$ is an intersecting family of $k$-element subsets of $[n]$, then\n$$|\\mathcal F| \\le \\binom{n-1}{k-1}.$$\nFor $n > 2k$, equality holds only for stars."
+   },
+   {
+    "type": "proof",
+    "title": "Katona's cycle proof of the bound",
+    "body": "Place the elements of $[n]$ around a circle in some order $\\sigma$. An arc is a set of $k$ elements that are consecutive around the circle; there are $n$ arcs.\n\nClaim: an intersecting family contains at most $k$ of the $n$ arcs of $\\sigma$. Suppose it contains some arc $A$, occupying positions $i, i+1, \\dots, i+k-1$ (indices modulo $n$). Any other arc meeting $A$ either starts at one of the positions $i+1, \\dots, i+k-1$ or ends at one of the positions $i, \\dots, i+k-2$. Pair, for $j = 1, \\dots, k-1$, the arc ending at position $i+j-1$ with the arc starting at position $i+j$. Together these two arcs cover the $2k$ consecutive positions from $i+j-k$ to $i+j+k-1$, and since $n \\ge 2k$ these positions are distinct, so the two arcs are disjoint. The family contains at most one arc from each pair, so at most $1 + (k-1) = k$ arcs in total.\n\nNow count pairs $(\\sigma, A)$ with $\\sigma$ a circular order (up to rotation, there are $(n-1)!$) and $A \\in \\mathcal F$ an arc of $\\sigma$. By the claim there are at most $k\\,(n-1)!$ such pairs. On the other hand, a fixed $k$-set $A$ is an arc of exactly $k!\\,(n-k)!$ circular orders: glue $A$ into one block, arrange the block and the other $n - k$ elements around the circle in $(n-k)!$ ways, and order $A$ inside the block in $k!$ ways. Hence\n$$|\\mathcal F| \\cdot k!\\,(n-k)! \\le k\\,(n-1)!, \\qquad |\\mathcal F| \\le \\frac{k\\,(n-1)!}{k!\\,(n-k)!} = \\binom{n-1}{k-1}.$$\n(The uniqueness statement for $n > 2k$ needs a closer look at the case of equality and is omitted here.)"
+   },
+   {
+    "type": "section",
+    "title": "Sunflowers",
+    "body": "Sperner and Erdős–Ko–Rado bound the size of families that avoid a pattern. The sunflower lemma goes the other way: every large family contains a pattern. A sunflower with $p$ petals is a collection of $p$ sets $S_1, \\dots, S_p$ whose pairwise intersections are all equal to the same set $Y$, the core. Removing the core leaves $p$ disjoint petals $S_i \\setminus Y$. The core may be empty, in which case a sunflower is just $p$ pairwise disjoint sets."
+   },
+   {
+    "type": "theorem",
+    "title": "Sunflower lemma (Erdős–Rado, 1960)",
+    "body": "Let $k, p \\ge 1$. Every family of more than $k!\\,(p-1)^k$ distinct sets, each of size $k$, contains a sunflower with $p$ petals."
+   },
+   {
+    "type": "proof",
+    "body": "Induction on $k$. For $k = 1$ the sets are distinct singletons; more than $p - 1$ of them gives $p$ pairwise disjoint ones, a sunflower with empty core.\n\nFor $k \\ge 2$, let $\\mathcal F$ have more than $k!\\,(p-1)^k$ members and choose a maximal subfamily $\\mathcal D \\subseteq \\mathcal F$ of pairwise disjoint sets. If $|\\mathcal D| \\ge p$, any $p$ of its sets form a sunflower. Otherwise the union $U$ of the sets in $\\mathcal D$ has at most $(p-1)k$ elements, and by maximality every member of $\\mathcal F$ meets $U$. By [[pigeonhole]] some element $x \\in U$ lies in more than\n$$\\frac{k!\\,(p-1)^k}{(p-1)k} = (k-1)!\\,(p-1)^{k-1}$$\nmembers of $\\mathcal F$. Removing $x$ from these members gives that many distinct sets of size $k - 1$, which by induction contain a sunflower $S_1 \\setminus\\{x\\}, \\dots, S_p\\setminus\\{x\\}$. Putting $x$ back into every set keeps all pairwise intersections equal (each gains $x$), so $S_1, \\dots, S_p$ is a sunflower in $\\mathcal F$."
+   },
+   {
+    "type": "section",
+    "title": "How good is the sunflower bound?",
+    "body": "Take $k$ disjoint blocks of $p - 1$ elements each, and let the family consist of all sets that pick one element from each block. It has $(p-1)^k$ members and contains no sunflower with $p$ petals, so the truth lies between $(p-1)^k$ and $k!\\,(p-1)^k$. Erdős and Rado conjectured that $C_p^k$ sets suffice for a constant $C_p$ depending only on $p$; this sunflower conjecture is still open. A breakthrough of Alweiss, Lovett, Wu and Zhang (2019), with later refinements by others, lowered the bound to the form $(C p \\log k)^k$ for an absolute constant $C$, well below $k!$."
+   },
+   {
+    "type": "example",
+    "title": "Divisors that do not divide each other",
+    "body": "What is the largest set of divisors of $30030 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 11 \\cdot 13$ such that no member divides another?",
+    "solution": "Because $30030$ is a product of six distinct primes, each divisor corresponds to the set of primes dividing it, and $d \\mid d'$ exactly when the set for $d$ is contained in the set for $d'$. So we want the largest antichain of subsets of a 6-element set, which by Sperner's theorem has $\\binom63 = 20$ members. The divisors that are products of exactly three of the six primes achieve it."
+   },
+   {
+    "type": "example",
+    "title": "The threshold in Erdős–Ko–Rado",
+    "body": "Find the largest intersecting family of 2-element subsets of $[5]$, and of 3-element subsets of $[5]$. Compare with $\\binom{n-1}{k-1}$.",
+    "solution": "For $k = 2$, $n = 5 \\ge 2k$. Think of 2-sets as edges of a graph on 5 vertices; intersecting means any two edges share a vertex. Such a graph is a star (all edges through one vertex) or a triangle. A star has at most 4 edges and a triangle has 3, so the maximum is $4 = \\binom41$, as the theorem says. The triangle $\\{12, 13, 23\\}$ is a maximal intersecting family that is not a star, but it is smaller.\n\nFor $k = 3$, $n = 5 < 2k$. Any two 3-subsets of $[5]$ meet, because together they would otherwise need 6 elements. So all $\\binom53 = 10$ of them form an intersecting family, larger than $\\binom42 = 6$. The hypothesis $n \\ge 2k$ cannot be dropped."
+   },
+   {
+    "type": "example",
+    "title": "Signed sums in a short interval",
+    "body": "Let $a_1, \\dots, a_n$ be real numbers with $|a_i| \\ge 1$ for all $i$. Among the $2^n$ sums $\\varepsilon_1 a_1 + \\dots + \\varepsilon_n a_n$ with $\\varepsilon_i \\in \\{+1, -1\\}$, show that at most $\\binom{n}{\\lfloor n/2\\rfloor}$ lie in any open interval of length 2.",
+    "solution": "Replacing $a_i$ by $-a_i$ only relabels the sums (swap the sign $\\varepsilon_i$), so we may assume $a_i \\ge 1$ for all $i$. For a subset $S \\subseteq [n]$ let\n$$s(S) = \\sum_{i \\in S} a_i - \\sum_{i \\notin S} a_i,$$\nthe sum with $\\varepsilon_i = +1$ exactly for $i \\in S$. If $S \\subsetneq T$, then\n$$s(T) - s(S) = 2\\sum_{i \\in T \\setminus S} a_i \\ge 2,$$\nso $s(S)$ and $s(T)$ cannot both lie in an open interval of length 2. Hence the sets $S$ whose sums lie in a given such interval form an antichain, and Sperner's theorem bounds their number by $\\binom{n}{\\lfloor n/2\\rfloor}$.\n\nThe bound is sharp: with all $a_i = 1$, the sum is $2|S| - n$, and the $\\binom{n}{\\lfloor n/2\\rfloor}$ sets of size $\\lfloor n/2\\rfloor$ all give the same sum. This is Erdős's 1945 solution of the Littlewood–Offord problem, which asks how concentrated random signed sums can be."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Sperner's theorem allows sets of different sizes, so it is not enough to observe that the middle layer is the largest layer. The proof has to rule out cleverly mixed families, which is why the LYM inequality weights each set by $1/\\binom{n}{|A|}$ instead of simply counting.\n- Erdős–Ko–Rado needs $n \\ge 2k$. For $n < 2k$ every family of $k$-sets is intersecting.\n- For $n = 2k$ the star is not the only extremal family: choosing one set from each complementary pair $\\{A, [n]\\setminus A\\}$ also gives $\\frac12\\binom{2k}{k} = \\binom{2k-1}{k-1}$ sets.\n- Intersecting (no two disjoint) and pairwise disjoint are opposite conditions; the sunflower lemma uses the second inside its proof.\n- In the sunflower lemma the sets must be distinct and all of the same size $k$, and the core may be empty."
+   },
+   {
+    "type": "connection",
+    "body": "- [[hypergraphs]]: a family of $k$-element sets is a $k$-uniform hypergraph, and Erdős–Ko–Rado is a Turán-type theorem for them (the forbidden configuration is two disjoint edges).\n- [[probabilistic-method]]: the chain-counting proof of LYM is a random-permutation argument, and the sunflower bounds of 2019 come from a probabilistic analysis.\n- [[p-vs-np]]: Razborov's 1985 superpolynomial lower bound for monotone circuits computing the clique function used the sunflower lemma (Alon and Boppana soon strengthened it to an exponential bound).\n- Coding theory treats codes as families of subsets (binary words) with distance restrictions, and many bounds there have the same flavour.\n- The union-closed sets conjecture of Frankl (if a finite family is closed under unions and has a nonempty member, some element lies in at least half the members) is a famous open problem of this type; Gilmer proved in 2022 that some element lies in a constant fraction of the members."
+   },
+   {
+    "type": "exercise",
+    "body": "1. For $n = 2k$, describe an intersecting family of $k$-subsets of $[n]$ of size $\\binom{n-1}{k-1}$ that is not a star (try $n = 4$, $k = 2$ first).\n2. A family of subsets of $[n]$ contains no three sets $A \\subsetneq B \\subsetneq C$. Adapt the chain-counting proof to show that its size is at most the sum of the two largest binomial coefficients $\\binom{n}{j}$.\n3. Show that the family of $(p-1)^k$ sets described above (one element from each of $k$ blocks of size $p-1$) contains no sunflower with $p$ petals.\n4. Prove that an intersecting family of subsets of $[n]$ with exactly $2^{n-1}$ members contains, for every set $A \\subseteq [n]$, exactly one of $A$ and its complement."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Jukna, Extremal Combinatorics"
+   },
+   {
+    "ref": "Anderson, Combinatorics of Finite Sets"
+   },
+   {
+    "ref": "Bollobás, Combinatorics: Set Systems, Hypergraphs, Families of Vectors and Combinatorial Probability"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "The largest antichain of subsets of [4] has 6 = binom(4,2) members",
+    "python": "from itertools import combinations\nfrom math import comb\nsets=[frozenset(c) for r in range(5) for c in combinations(range(4),r)]\ncomp=[[i<j and (a<b or b<a) for j,b in enumerate(sets)] for i,a in enumerate(sets)]\nbest=0\nfor m in range(1<<16):\n    if bin(m).count('1')<=best: continue\n    mem=[i for i in range(16) if m>>i&1]\n    if all(not (sets[i]<sets[j] or sets[j]<sets[i]) for i,j in combinations(mem,2)): best=len(mem)\nassert best==6==comb(4,2)"
+   },
+   {
+    "claim": "k(n-1)!/(k!(n-k)!) = binom(n-1,k-1), and n! chains with a!(n-a)! through each a-set give LYM for all layers",
+    "python": "from math import comb, factorial\nfrom fractions import Fraction\nfor n in range(1,30):\n    for k in range(1,n+1):\n        assert Fraction(k*factorial(n-1),factorial(k)*factorial(n-k))==comb(n-1,k-1)\n    for a in range(n+1):\n        assert comb(n,a)*factorial(a)*factorial(n-a)==factorial(n)"
+   },
+   {
+    "claim": "Max intersecting family of 2-subsets of [5] has 4 members; all 10 3-subsets of [5] pairwise intersect; for n=6, k=3 the maximum is 10 = binom(5,2)",
+    "python": "from itertools import combinations\nfrom math import comb\ndef maxint(n,k):\n    S=[frozenset(c) for c in combinations(range(n),k)]\n    best=0\n    def rec(i,chosen):\n        nonlocal best\n        best=max(best,len(chosen))\n        if len(chosen)+len(S)-i<=best: return\n        for j in range(i,len(S)):\n            if all(S[j]&c for c in chosen): rec(j+1,chosen+[S[j]])\n    rec(0,[])\n    return best\nassert maxint(5,2)==4==comb(4,1)\nassert maxint(5,3)==10==comb(5,3)\nassert maxint(6,3)==10==comb(5,2)"
+   },
+   {
+    "claim": "30030 = 2*3*5*7*11*13 and its 3-prime divisors form an antichain under divisibility of size 20",
+    "python": "from itertools import combinations\nfrom math import prod\nP=[2,3,5,7,11,13]\nassert prod(P)==30030\nD=[prod(c) for c in combinations(P,3)]\nassert len(D)==20 and all(a%b and b%a for a,b in combinations(D,2))"
+   },
+   {
+    "claim": "For a_i = 1, the sums 2|S|-n for |S| = floor(n/2) coincide; for random a_i >= 1, no open interval of length 2 contains more than binom(n, floor(n/2)) signed sums",
+    "python": "import random\nfrom itertools import product\nfrom math import comb\nrandom.seed(3)\nfor trial in range(40):\n    n=random.randint(1,10)\n    a=[random.choice([-1,1])*random.uniform(1,3) for _ in range(n)]\n    sums=sorted(sum(e*x for e,x in zip(eps,a)) for eps in product((1,-1),repeat=n))\n    j=0; best=0\n    for i in range(len(sums)):\n        while sums[i]-sums[j]>=2-1e-12: j+=1\n        best=max(best,i-j+1)\n    assert best<=comb(n,n//2)"
+   },
+   {
+    "claim": "The block construction with k blocks of p-1 elements has no sunflower with p petals (checked for small k, p)",
+    "python": "from itertools import product, combinations\nfor k in (1,2,3):\n    for p in (2,3,4):\n        if (p-1)**k>27: continue\n        F=[frozenset((b,x) for b,x in enumerate(c)) for c in product(range(p-1),repeat=k)]\n        for S in combinations(F,p):\n            cores={a&b for a,b in combinations(S,2)}\n            assert len(cores)!=1"
+   },
+   {
+    "claim": "For n = 2k the family of one set from each complementary pair has binom(2k,k)/2 = binom(2k-1,k-1) members",
+    "python": "from math import comb\nassert all(comb(2*k,k)==2*comb(2*k-1,k-1) for k in range(1,40))"
+   },
+   {
+    "claim": "Katona's claim: an intersecting family contains at most k of the n arcs of a circular order when n >= 2k (exhaustive for n <= 10)",
+    "python": "from itertools import combinations\nfor n in range(2,11):\n    for k in range(1,n//2+1):\n        arcs=[frozenset((s+t)%n for t in range(k)) for s in range(n)]\n        best=0\n        for m in range(1<<n):\n            F=[arcs[i] for i in range(n) if m>>i&1]\n            if len(F)>best and all(a&b for a,b in combinations(F,2)): best=len(F)\n        assert best==k\n"
+   },
+   {
+    "claim": "Sunflower lemma for k=2, p=3: random families of 9 > 2!(3-1)^2 = 8 distinct 2-subsets of [7] contain a 3-petal sunflower; Exercise 2: the largest family in 2^[4] with no chain A < B < C has binom(4,2)+binom(4,1) = 10 members",
+    "python": "from itertools import combinations\nimport random\nfrom math import comb\ndef has_sf(F,p):\n    return any(len({a&b for a,b in combinations(S,2)})==1 for S in combinations(F,p))\nE=[frozenset(c) for c in combinations(range(7),2)]\nrandom.seed(0)\nfor _ in range(3000):\n    F=random.sample(E,9)\n    assert has_sf(F,3)\nsets=[frozenset(c) for r in range(5) for c in combinations(range(4),r)]\nlt=[[a<b for b in sets] for a in sets]\nbest=0\nfor m in range(1<<16):\n    c=bin(m).count('1')\n    if c<=best: continue\n    mem=[i for i in range(16) if m>>i&1]\n    if not any(lt[a][b] and lt[b][x] for a in mem for b in mem if lt[a][b] for x in mem): best=c\nassert best==10==comb(4,2)+comb(4,1)\n"
+   }
+  ]
+ },
+ {
+  "id": "hypergraphs",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A graph records which pairs of objects are related. Many structures relate larger groups: the lines of a finite geometry are triples of points, the clauses of a logic formula are sets of variables, the arithmetic progressions of length 3 in $\\{1, \\dots, N\\}$ are triples of numbers. A hypergraph allows edges with any number of vertices.\n\nThe classical questions about graphs (how many edges force a given subgraph, how large must a structure be before a colouring has a monochromatic piece) make sense for hypergraphs, but they become dramatically harder. The simplest unsolved case is striking: nobody knows, even asymptotically, how many triples on $n$ points can be chosen with no four points spanning all four of their triples."
+   },
+   {
+    "type": "definition",
+    "title": "Hypergraph",
+    "body": "A hypergraph $H$ consists of a finite vertex set $V$ and a family $E$ of subsets of $V$, called edges. It is $k$-uniform (a $k$-graph) if every edge has exactly $k$ vertices. The complete $k$-graph $K_n^{(k)}$ has all $\\binom nk$ $k$-subsets of an $n$-set as edges.\n\nSo a 2-graph is an ordinary graph (see [[graph-basics]]), and a $k$-graph is the same thing as a family of $k$-element sets, the object of [[set-systems]]. The tetrahedron $K_4^{(3)}$ is the 3-graph on four vertices whose edges are all four triples."
+   },
+   {
+    "type": "section",
+    "title": "From Turán's theorem to Turán densities",
+    "body": "For graphs, Mantel's theorem says that a triangle-free graph on $n$ vertices has at most $\\lfloor n^2/4 \\rfloor$ edges, attained by the complete bipartite graph with parts as equal as possible. Turán's theorem generalises this: a graph with no $K_{r+1}$ has at most a fraction $1 - \\frac1r$ of all possible edges, asymptotically, and the extremal graph is complete $r$-partite with equal parts (see [[extremal-graphs]]).\n\nFor $k$-graphs the natural analogue is the following."
+   },
+   {
+    "type": "definition",
+    "title": "Turán number and Turán density",
+    "body": "For a $k$-graph $F$, the Turán number $\\mathrm{ex}(n, F)$ is the largest number of edges in a $k$-graph on $n$ vertices that contains no copy of $F$. The Turán density is\n$$\\pi(F) = \\lim_{n \\to \\infty} \\frac{\\mathrm{ex}(n,F)}{\\binom nk}.$$\nIt is the largest fraction of all $k$-sets that an $F$-free $k$-graph can contain, for large $n$."
+   },
+   {
+    "type": "theorem",
+    "title": "Averaging lemma (Katona–Nemetz–Simonovits, 1964)",
+    "body": "For every $k$-graph $F$ and every $n > k$,\n$$\\frac{\\mathrm{ex}(n,F)}{\\binom nk} \\le \\frac{\\mathrm{ex}(n-1,F)}{\\binom{n-1}k}.$$\nSo the ratio is non-increasing in $n$ and, being bounded below by 0, has a limit; $\\pi(F)$ is well defined."
+   },
+   {
+    "type": "proof",
+    "body": "Let $H$ be an $F$-free $k$-graph on $n$ vertices with $\\mathrm{ex}(n,F)$ edges. Deleting one vertex leaves an $F$-free $k$-graph on $n-1$ vertices, with at most $\\mathrm{ex}(n-1,F)$ edges. Sum over the $n$ choices of the deleted vertex. An edge survives exactly when the deleted vertex is not one of its $k$ vertices, which happens for $n - k$ choices. Double counting gives\n$$(n-k)\\,\\mathrm{ex}(n,F) \\le n\\,\\mathrm{ex}(n-1,F).$$\nSince $\\binom nk = \\frac{n}{n-k}\\binom{n-1}{k}$, dividing both sides by $(n-k)\\binom nk = n\\binom{n-1}k$ gives the inequality."
+   },
+   {
+    "type": "section",
+    "title": "The tetrahedron problem",
+    "body": "For the tetrahedron, start with the smallest case: on 4 vertices, a $K_4^{(3)}$-free 3-graph can have 3 of the 4 triples, so $\\mathrm{ex}(4, K_4^{(3)}) = 3$ and the averaging lemma gives $\\pi(K_4^{(3)}) \\le \\frac34$.\n\nIn 1941 Turán proposed the following construction. Split the vertices into three parts $V_1, V_2, V_3$ of nearly equal size. Take as edges every triple with one vertex in each part, and every triple with two vertices in $V_i$ and one in $V_{i+1}$, indices taken cyclically ($V_4 = V_1$). The first example below checks that it contains no tetrahedron and has density tending to $\\frac59$. Turán conjectured that this is optimal:\n$$\\pi\\big(K_4^{(3)}\\big) \\overset{?}{=} \\tfrac59.$$\nThis is still open. Chung and Lu proved $\\pi(K_4^{(3)}) \\le \\frac{3+\\sqrt{17}}{12} \\approx 0.5936$ in 1999. In 2010 Razborov used his computer-assisted flag algebra method to show $\\pi(K_4^{(3)}) \\le 0.561666$, and later flag-algebra computations by Baber lowered this slightly, to about $0.5615$. The gap to $\\frac59 = 0.5555\\ldots$ is small but has resisted every approach.\n\nOne reason for the difficulty is that, unlike for graphs, there are many different near-extremal constructions: Brown, Kostochka and Fon-der-Flaass found many non-isomorphic 3-graphs achieving the same density $\\frac59$. A proof cannot simply show that an extremal hypergraph must look like one particular object.\n\nSome hypergraph Turán densities are known. Erdős showed in 1964 that $\\pi(F) = 0$ exactly when $F$ is $k$-partite (its vertices split into $k$ classes with every edge meeting each class once). For the Fano plane, de Caen and Füredi proved in 2000 that the density is $\\frac34$ (see the third example)."
+   },
+   {
+    "type": "section",
+    "title": "Colouring hypergraphs",
+    "body": "A hypergraph is 2-colourable (has property B) if its vertices can be coloured red and blue so that no edge is monochromatic. For graphs this just means bipartite. For $k$-graphs, the question is how many edges are needed to make a 2-colouring impossible."
+   },
+   {
+    "type": "theorem",
+    "title": "Erdős's property B bound (1963)",
+    "body": "Every $k$-uniform hypergraph with fewer than $2^{k-1}$ edges is 2-colourable."
+   },
+   {
+    "type": "proof",
+    "body": "Colour each vertex red or blue independently with probability $\\frac12$. A fixed edge has $k$ vertices, so it is all red with probability $2^{-k}$ and all blue with probability $2^{-k}$, monochromatic with probability $2^{1-k}$. If there are $m < 2^{k-1}$ edges, the union bound gives\n$$\\Pr[\\text{some edge monochromatic}] \\le m \\cdot 2^{1-k} < 1,$$\nso some colouring has no monochromatic edge. (This is the [[probabilistic-method]] in its simplest form.)"
+   },
+   {
+    "type": "section",
+    "title": "Ramsey numbers for hypergraphs",
+    "body": "Ramsey's theorem holds for $k$-sets (see [[ramsey]]): for every $s$ and $t$ there is a least $r_k(s,t)$ such that every red/blue colouring of the edges of $K_n^{(k)}$, for $n \\ge r_k(s,t)$, contains a red $K_s^{(k)}$ or a blue $K_t^{(k)}$. For $k = 2$ these are the usual Ramsey numbers, which grow exponentially. For $k = 3$, Erdős, Hajnal and Rado showed\n$$2^{c s^2} < r_3(s,s) < 2^{2^{c' s}}$$\nfor constants $c, c' > 0$. Whether the true growth is a single or a double exponential is a well-known open problem, and very few exact values are known: one of them is $r_3(4,4) = 13$, proved by McKay and Radziszowski in 1991 with a large computer search."
+   },
+   {
+    "type": "section",
+    "title": "Why hypergraphs matter beyond themselves",
+    "body": "Many problems about integers can be encoded in hypergraphs; for instance the 3-term arithmetic progressions in a set of integers form a 3-graph. Two modern tools exploit such encodings.\n\n- Hypergraph regularity. Szemerédi's regularity lemma says every large graph is approximately a union of a bounded number of random-like bipartite pieces. In the mid-2000s Gowers, and independently Rödl and coauthors (Nagle, Schacht, Skokan), proved hypergraph versions with matching counting lemmas. The resulting hypergraph removal lemma gives new proofs of Szemerédi's theorem and its multidimensional versions (see [[arithmetic-progressions]]).\n- Containers. Balogh, Morris and Samotij, and independently Saxton and Thomason (both published in 2015), showed that the independent sets of a hypergraph with well-spread edges lie in a small number of containers, each with few edges. This gives counting results (for example for sum-free sets) and Turán and Szemerédi theorems inside random sets."
+   },
+   {
+    "type": "example",
+    "title": "Turán's construction",
+    "body": "Show that Turán's 3-graph described above contains no $K_4^{(3)}$, and that when the three parts have size $m$ each its density tends to $\\frac59$ as $m \\to \\infty$.",
+    "solution": "Take any 4 vertices; we find a triple among them that is not an edge. Record how many of the 4 vertices lie in each part.\n\n- If some part contains 3 of them, those 3 form a non-edge (no edge has three vertices in one part).\n- If the pattern is $2, 2, 0$, with two vertices in $V_i$ and two in $V_j$: with three parts, exactly one of $j = i + 1$ and $i = j + 1$ holds (cyclically). If $j = i+1$, then the triple with two vertices in $V_j$ and one in $V_i$ is a non-edge; otherwise the triple with two in $V_i$ and one in $V_j$ is.\n- If the pattern is $2, 1, 1$, with two vertices in $V_i$ and one each in $V_{i+1}$ and $V_{i+2}$: the triple consisting of the two vertices in $V_i$ and the one in $V_{i+2}$ is not an edge, because two vertices in $V_i$ must be completed from $V_{i+1}$.\n\nSo every 4-set misses a triple, and there is no tetrahedron.\n\nWith parts of size $m$, there are $m^3$ triples meeting all three parts, and for each $i$ there are $\\binom m2 \\cdot m$ triples with two vertices in $V_i$ and one in $V_{i+1}$. The number of edges is\n$$m^3 + 3m\\binom m2 = m^3 + \\tfrac32 m^2(m-1) \\sim \\tfrac52 m^3,$$\nwhile $\\binom{3m}{3} \\sim \\frac{27}{6}m^3 = \\frac92 m^3$. The ratio tends to $\\frac{5/2}{9/2} = \\frac59$. Hence $\\pi(K_4^{(3)}) \\ge \\frac59$. For finite $m$ the ratio is larger (it is $0.7$ for $m = 2$ and $\\frac{54}{84} \\approx 0.643$ for $m = 3$), consistent with the averaging lemma."
+   },
+   {
+    "type": "example",
+    "title": "Exact values on few vertices",
+    "body": "Use the averaging lemma to show $\\mathrm{ex}(5, K_4^{(3)}) \\le 7$, and find a $K_4^{(3)}$-free 3-graph on 5 vertices with 7 edges.",
+    "solution": "We know $\\mathrm{ex}(4, K_4^{(3)}) = 3$. The lemma, in the form $(n-k)\\,\\mathrm{ex}(n,F) \\le n\\,\\mathrm{ex}(n-1,F)$ with $n = 5$, $k = 3$, gives $2\\,\\mathrm{ex}(5, K_4^{(3)}) \\le 15$, so $\\mathrm{ex}(5, K_4^{(3)}) \\le 7$.\n\nTurán's construction with parts $V_1 = \\{a, b\\}$, $V_2 = \\{c, d\\}$, $V_3 = \\{e\\}$ attains this. Its edges are the 4 triples with one vertex in each part ($ace, ade, bce, bde$), the triples $abc$, $abd$ (two in $V_1$, one in $V_2$), and $cde$ (two in $V_2$, one in $V_3$): 7 edges in total, and the first example shows it has no tetrahedron. So $\\mathrm{ex}(5, K_4^{(3)}) = 7$."
+   },
+   {
+    "type": "example",
+    "title": "The Fano plane",
+    "body": "The Fano plane is the 3-graph on vertices $\\{0, 1, \\dots, 6\\}$ whose 7 edges (lines) are $\\{0,1,2\\}, \\{0,3,4\\}, \\{0,5,6\\}, \\{1,3,5\\}, \\{1,4,6\\}, \\{2,3,6\\}, \\{2,4,5\\}$. Every two vertices lie on exactly one line, and every two lines meet in exactly one vertex. Show that the Fano plane is not 2-colourable, and deduce that $\\pi(\\text{Fano}) \\ge \\frac34$.",
+    "solution": "Suppose the 7 vertices are coloured red and blue. One colour, say red, has at least 4 vertices.\n\nIf red has at least 5 vertices, choose 5 red vertices and let $u, v$ be the other two vertices (whatever their colours). Each vertex lies on 3 lines, and exactly one line contains both $u$ and $v$, so the number of lines through $u$ or $v$ is $3 + 3 - 1 = 5$. The remaining $7 - 5 = 2$ lines avoid $u$ and $v$ and therefore consist of red vertices.\n\nIf red has exactly 4 vertices, the blue set $B$ has 3. If $B$ is a line, it is a blue line. If not, count the lines meeting $B$: each of its 3 points lies on 3 lines, each of the 3 pairs in $B$ lies on exactly one common line, and no line contains all of $B$. By inclusion–exclusion $9 - 3 + 0 = 6$ lines meet $B$, so one line avoids $B$ and is red.\n\nIn every case some line is monochromatic, so the Fano plane does not have property B.\n\nFor the density: split $n$ vertices into two halves $A$, $B$ and take as edges all triples that meet both halves. This 3-graph contains no Fano plane, because a copy would be 2-coloured by the halves with no monochromatic line. Its number of edges is $\\binom n3 - \\binom{|A|}3 - \\binom{|B|}3$, and with $|A| = |B| = n/2$ the ratio to $\\binom n3$ tends to $1 - 2 \\cdot \\frac18 = \\frac34$. De Caen and Füredi proved that $\\frac34$ is the exact value."
+   },
+   {
+    "type": "example",
+    "title": "Triples that share at most one point",
+    "body": "A 3-graph is linear if any two edges share at most one vertex. Show that a linear 3-graph on $n$ vertices has at most $n(n-1)/6$ edges, and that equality forces $n \\equiv 1$ or $3 \\pmod 6$.",
+    "solution": "Each edge contains 3 pairs of vertices, and by linearity no pair lies in two edges. So $3e \\le \\binom n2$, that is $e \\le n(n-1)/6$.\n\nEquality means every pair lies in exactly one edge; such a 3-graph is a Steiner triple system. Fix a vertex $v$. The $n-1$ pairs $\\{v, w\\}$ are each covered by exactly one edge through $v$, and each edge through $v$ covers two of them, so $n - 1$ is even and $n$ is odd. Also $n(n-1)/6$ must be an integer, so $3 \\mid n(n-1)$, that is $n \\equiv 0$ or $1 \\pmod 3$. Combined with $n$ odd this gives $n \\equiv 1$ or $3 \\pmod 6$.\n\nThe Fano plane is the case $n = 7$, and the 12 lines of the $3 \\times 3$ grid over $\\mathbb Z/3$ (rows, columns and the two families of wrapped diagonals) give $n = 9$. Kirkman showed in 1847 that Steiner triple systems exist for every $n \\equiv 1, 3 \\pmod 6$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $K_4^{(3)}$ is not the graph $K_4$: it has 4 vertices and 4 edges, each a triple. A 3-graph can contain all six pairs of four vertices inside its edges without containing $K_4^{(3)}$.\n- The Turán density is normalised by $\\binom nk$, not by $n^k$; the two conventions differ by a factor $k!$.\n- Property B colours vertices; Ramsey problems colour edges.\n- Graph intuition can mislead. For graphs, $\\pi(F)$ depends only on the chromatic number of $F$ and the extremal graphs are essentially unique; for 3-graphs neither statement holds."
+   },
+   {
+    "type": "connection",
+    "body": "- [[set-systems]]: the Erdős–Ko–Rado theorem is the Turán problem for $k$-graphs whose forbidden configuration is two disjoint edges.\n- [[extremal-graphs]]: Turán's theorem and the Erdős–Stone–Simonovits theorem are the solved case $k = 2$.\n- [[ramsey]] and [[infinite-combinatorics]]: Ramsey's theorem for $k$-sets, with tower-type bounds.\n- [[probabilistic-method]]: random colourings give property B bounds, and the local lemma 2-colours hypergraphs whose edges overlap little.\n- [[arithmetic-progressions]] and [[additive-combinatorics]]: hypergraph regularity, removal and containers.\n- [[discrete-geometry]]: points and lines form a linear hypergraph."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Count the edges of Turán's construction with three parts of size 2, and use the averaging lemma with $\\mathrm{ex}(5, K_4^{(3)}) = 7$ to show that it is extremal: $\\mathrm{ex}(6, K_4^{(3)}) = 14$.\n2. Show that the number of edges of the \"meets both halves\" construction is maximised, for given $n$, when the halves are as equal as possible.\n3. Using the local lemma from [[probabilistic-method]], show that a $k$-graph in which each edge meets at most $d$ other edges is 2-colourable provided $e(d+1) \\le 2^{k-1}$.\n4. Show that $\\pi(F) = 0$ for the 3-graph $F$ with vertices $a, b, c, d, e$ and edges $abc$, $abd$, $abe$ by exhibiting a 3-partition of its vertices."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Jukna, Extremal Combinatorics"
+   },
+   {
+    "ref": "Keevash, Hypergraph Turán problems, in Surveys in Combinatorics 2011 (London Math. Soc. Lecture Note Series 392)"
+   },
+   {
+    "ref": "Graham, Rothschild & Spencer, Ramsey Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Turán's construction has no K4^(3); it has 14, 54, 136 edges for parts (2,2,2), (3,3,3), (4,4,4) (ratios 0.7, 54/84, ...), and 7 edges for parts (2,2,1)",
+    "python": "from itertools import combinations\nfrom math import comb\ndef tur(sizes):\n    P=[i for i,s in enumerate(sizes) for _ in range(s)]; n=len(P)\n    E=set()\n    for t in combinations(range(n),3):\n        c=[[P[x] for x in t].count(i) for i in range(3)]\n        if c==[1,1,1] or any(c[i]==2 and c[(i+1)%3]==1 for i in range(3)): E.add(t)\n    return n,E\nfor sizes,ne in [((2,2,2),14),((3,3,3),54),((4,4,4),136),((2,2,1),7)]:\n    n,E=tur(sizes)\n    assert len(E)==ne\n    assert not any(all(t in E for t in combinations(S,3)) for S in combinations(range(n),4))\nassert comb(9,3)==84 and abs(14/comb(6,3)-0.7)<1e-12"
+   },
+   {
+    "claim": "Edges m^3 + 3m*binom(m,2) over binom(3m,3) tends to 5/9",
+    "python": "import sympy as sp\nm=sp.symbols('m',positive=True)\ne=m**3+3*m*m*(m-1)/2\ntot=3*m*(3*m-1)*(3*m-2)/6\nassert sp.limit(e/tot,m,sp.oo)==sp.Rational(5,9)"
+   },
+   {
+    "claim": "ex(4,K4^(3)) = 3 and ex(5,K4^(3)) = 7 by brute force; the averaging inequality gives ex(5) <= 7 and ex(6) <= 14",
+    "python": "from itertools import combinations\ndef ex(n):\n    T=list(combinations(range(n),3)); best=0\n    for m in range(1<<len(T)):\n        E={T[i] for i in range(len(T)) if m>>i&1}\n        if len(E)>best and not any(all(t in E for t in combinations(S,3)) for S in combinations(range(n),4)): best=len(E)\n    return best\nassert ex(4)==3 and ex(5)==7\nassert (5*3)//2==7\nassert (6*7)//3==14  # averaging from ex(5)=7 gives ex(6)<=14, attained by parts (2,2,2)"
+   },
+   {
+    "claim": "The Fano plane: every pair on exactly one line, no proper 2-colouring; lines avoiding two points: 7-3-3+1 = 2",
+    "python": "from itertools import combinations\nF=[(0,1,2),(0,3,4),(0,5,6),(1,3,5),(1,4,6),(2,3,6),(2,4,5)]\nassert all(sum(1 for l in F if a in l and b in l)==1 for a,b in combinations(range(7),2))\nassert all(len(set(a)&set(b))==1 for a,b in combinations(F,2))\nassert not any(all(len({(m>>x)&1 for x in l})==2 for l in F) for m in range(128))\nfor u,v in combinations(range(7),2):\n    assert sum(1 for l in F if u not in l and v not in l)==2"
+   },
+   {
+    "claim": "The 'meets both halves' construction has density tending to 3/4",
+    "python": "import sympy as sp\nn=sp.symbols('n',positive=True)\nc3=lambda x: x*(x-1)*(x-2)/6\nassert sp.limit((c3(n)-2*c3(n/2))/c3(n),n,sp.oo)==sp.Rational(3,4)"
+   },
+   {
+    "claim": "The 12 lines of AG(2,3) form a Steiner triple system on 9 points; n(n-1)/6 integral with n odd iff n = 1, 3 mod 6",
+    "python": "from itertools import combinations\npts=[(x,y) for x in range(3) for y in range(3)]\nlines=set()\nfor p in pts:\n    for d in [(0,1),(1,0),(1,1),(1,2)]:\n        lines.add(frozenset(((p[0]+t*d[0])%3,(p[1]+t*d[1])%3) for t in range(3)))\nassert len(lines)==12\nassert all(sum(1 for l in lines if a in l and b in l)==1 for a,b in combinations(pts,2))\nfor n in range(1,200):\n    assert (n%2==1 and n*(n-1)%6==0)==(n%6 in (1,3))"
+   },
+   {
+    "claim": "Property B: a random 2-colouring leaves an edge monochromatic with probability 2^(1-k); fewer than 2^(k-1) edges always 2-colourable (exhaustive for k=3 with 3 edges on 6 vertices)",
+    "python": "from itertools import combinations, product\nfrom fractions import Fraction\nk=3\ncols=list(product((0,1),repeat=k))\nassert Fraction(sum(1 for c in cols if len(set(c))==1),len(cols))==Fraction(2,2**k)\nT=list(combinations(range(6),3))\nfor H in combinations(T,3):\n    assert any(all(len({c[x] for x in e})==2 for e in H) for c in product((0,1),repeat=6))"
+   },
+   {
+    "claim": "Chung-Lu bound (3+sqrt17)/12 = 0.59359... rounds to 0.5936; Turán's 5/9 = 0.5555... lies below Razborov's 0.561666 and Baber's 0.5615",
+    "python": "from math import sqrt\nv=(3+sqrt(17))/12\nassert round(v,4)==0.5936 and 0.59359<v<0.59360\nassert 5/9<0.5615<0.561666<v\n"
+   },
+   {
+    "claim": "Exercise 3 and 4: the local lemma condition e*2^(1-k)*(d+1) <= 1 is equivalent to e(d+1) <= 2^(k-1); the 3-graph {abc, abd, abe} is 3-partite with parts {a},{b},{c,d,e}",
+    "python": "import math\nfor k in range(2,20):\n    for dd in range(0,5000,7):\n        assert (math.e*2**(1-k)*(dd+1)<=1)==(math.e*(dd+1)<=2**(k-1))\npart={'a':0,'b':1,'c':2,'d':2,'e':2}\nassert all(len({part[x] for x in ed})==3 for ed in ['abc','abd','abe'])\n"
+   }
+  ]
+ },
+ {
+  "id": "grids-tilings",
+  "minutes": 16,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Can a chessboard with two opposite corners cut off be covered by dominoes? Can a $10 \\times 10$ board be covered by $1 \\times 4$ strips? Which single square can be removed from an $8 \\times 8$ board so that the rest can be covered by $1 \\times 3$ strips? Grid problems like these are a staple of olympiads, and most impossibility proofs in this area use the same trick: colour the board so that every tile covers the colours in a fixed proportion, then count.\n\nThe colouring is an invariant in disguise (see [[invariants]]): however the tiles are placed, the number of cells of each colour covered so far changes in a predictable way. When the board's colour counts do not fit that pattern, no tiling exists."
+   },
+   {
+    "type": "section",
+    "title": "The mutilated chessboard",
+    "body": "An $8 \\times 8$ board has 64 cells; remove two opposite corners and 62 remain, an even number, so counting area alone does not rule out a tiling by 31 dominoes. Colour the board in the usual chessboard pattern. Two opposite corners have the same colour: corner $(1,1)$ and corner $(8,8)$ both have $i + j$ even. So the mutilated board has 30 cells of one colour and 32 of the other."
+   },
+   {
+    "type": "theorem",
+    "title": "Mutilated chessboard",
+    "body": "A mutilated $8 \\times 8$ board (two opposite corners removed) has no domino tiling."
+   },
+   {
+    "type": "proof",
+    "body": "Colour cell $(i,j)$ black if $i + j$ is even and white otherwise. Two horizontally or vertically adjacent cells differ by 1 in exactly one coordinate, so every domino covers one black and one white cell. A tiling by 31 dominoes would therefore cover 31 black and 31 white cells. But the removed corners $(1,1)$ and $(8,8)$ are both black, so the mutilated board has $32 - 2 = 30$ black cells and $32$ white cells. No tiling exists."
+   },
+   {
+    "type": "section",
+    "title": "When the colours balance",
+    "body": "The colouring argument gives a necessary condition: a region tileable by dominoes has as many black as white cells. It is not sufficient in general. The region below has 6 cells, 3 of each colour, but cannot be tiled: the top cell and the left cell are both adjacent only to the same cell of the long row, and they cannot both use it.\n\n$$\\begin{array}{cccc} & \\square & & \\\\ \\square & \\square & \\square & \\square \\\\ & & \\square & \\end{array}$$\n\nFor the full board, however, balance is enough. This is a theorem usually credited to Ralph Gomory."
+   },
+   {
+    "type": "theorem",
+    "title": "Gomory's theorem",
+    "body": "If one black and one white cell are removed from an $8 \\times 8$ chessboard, the remaining 62 cells can always be tiled by dominoes."
+   },
+   {
+    "type": "proof",
+    "body": "Find a closed path through all 64 cells that moves between adjacent cells. One such path: start at the top-left corner and go right along row 1 to its end; go down one step into row 2 and snake through rows 2 to 8 using only columns 2 to 8 (row 2 right to left, row 3 left to right, and so on, ending in row 8 at column 2); step left into column 1 and climb column 1 back up to row 2, then step to the starting cell. Every cell is visited exactly once, and the last cell, in column 1 of row 2, is adjacent to the first.\n\nAlong this cycle the colours alternate, since consecutive cells are adjacent. Remove a black cell $b$ and a white cell $w$. They cut the cycle into two arcs (one of them empty if $b$ and $w$ are neighbours on the cycle). Walking from $b$ to $w$ along the cycle, the colours go black, white, black, ..., and since $w$ is white it is an odd number of steps from $b$; so each arc strictly between them contains an even number of cells. Cover each arc by dominoes, pairing its cells in order: each pair consists of consecutive cells on the cycle, which are adjacent on the board. This tiles the 62 remaining cells."
+   },
+   {
+    "type": "section",
+    "title": "Colourings for longer tiles",
+    "body": "For a $1 \\times k$ strip, two colours are not enough. Use $k$ colours along diagonals: give cell $(i,j)$ the colour $(i + j) \\bmod k$. A horizontal or vertical strip of length $k$ covers $k$ consecutive values of $i+j$, hence exactly one cell of each colour. So a region tileable by $1 \\times k$ strips has the same number of cells of each colour.\n\nAn equivalent and often more convenient way to write this uses complex numbers (see [[complex-numbers]]). Let $\\zeta = e^{2\\pi i/k}$ and give cell $(i,j)$ the weight $\\zeta^{i+j}$. A strip starting at $(i,j)$ has total weight $\\zeta^{i+j}(1 + \\zeta + \\dots + \\zeta^{k-1}) = 0$. So a tileable region has total weight $0$. This weighting gives a complete answer for rectangles."
+   },
+   {
+    "type": "theorem",
+    "title": "Rectangles tiled by strips",
+    "body": "Let $k \\ge 2$. An $a \\times b$ rectangle can be tiled by $1 \\times k$ strips (in either orientation) if and only if $k \\mid a$ or $k \\mid b$."
+   },
+   {
+    "type": "proof",
+    "body": "If $k \\mid a$, fill each of the $b$ columns of height $a$ with vertical strips; if $k \\mid b$, fill each row with horizontal strips.\n\nConversely, suppose a tiling exists. Index the cells by $0 \\le i < a$, $0 \\le j < b$ and weight them by $\\zeta^{i+j}$. Each strip has weight 0, so the whole rectangle does:\n$$0 = \\sum_{i=0}^{a-1}\\sum_{j=0}^{b-1} \\zeta^{i+j} = \\Big(\\sum_{i=0}^{a-1}\\zeta^i\\Big)\\Big(\\sum_{j=0}^{b-1}\\zeta^j\\Big) = \\frac{1-\\zeta^a}{1-\\zeta}\\cdot\\frac{1-\\zeta^b}{1-\\zeta}.$$\nA product of complex numbers is zero only if a factor is zero, so $\\zeta^a = 1$ or $\\zeta^b = 1$, which means $k \\mid a$ or $k \\mid b$."
+   },
+   {
+    "type": "section",
+    "title": "Counting tilings",
+    "body": "Besides asking whether a tiling exists, one can ask how many there are. A $2 \\times n$ strip has $F_{n+1}$ domino tilings, where $F$ are the Fibonacci numbers (first example). For general boards the count is much harder, but for dominoes there is a remarkable formula. Domino tilings of a region are the same as perfect matchings of its grid graph (see [[cycles-matchings]]), and in 1961 Kasteleyn, and independently Temperley and Fisher, showed that for planar regions this number can be computed as a determinant of a suitably signed adjacency matrix (see [[determinants]]). For the $8 \\times 8$ board the answer is $12\\,988\\,816$.\n\nThis connection is the starting point of the dimer model in statistical physics, where random domino tilings of large regions show striking large-scale behaviour."
+   },
+   {
+    "type": "example",
+    "title": "Domino tilings of a 2 by n strip",
+    "body": "Let $t_n$ be the number of domino tilings of a $2 \\times n$ rectangle. Show that $t_n = F_{n+1}$, where $F_1 = F_2 = 1$ and $F_{m+1} = F_m + F_{m-1}$.",
+    "solution": "Look at the leftmost column. Either it is covered by one vertical domino, leaving a $2 \\times (n-1)$ strip, or its top cell is covered by a horizontal domino; then the bottom cell must also be covered by a horizontal domino directly below, and a $2 \\times (n-2)$ strip remains. These cases are disjoint, so $t_n = t_{n-1} + t_{n-2}$ for $n \\ge 2$, with $t_0 = 1$ (the empty tiling) and $t_1 = 1$. These are the Fibonacci initial values shifted by one, so $t_n = F_{n+1}$. For example $t_4 = 5$ and $t_8 = 34$."
+   },
+   {
+    "type": "example",
+    "title": "A 10 by 10 board and 1 by 4 strips",
+    "body": "Show that a $10 \\times 10$ board cannot be tiled by $1 \\times 4$ strips, using a colour count.",
+    "solution": "This follows from the theorem on rectangles, since $4 \\nmid 10$, but it is instructive to see the colour count directly. Colour cell $(i,j)$, $0 \\le i, j \\le 9$, with $(i+j) \\bmod 4$. Each strip covers one cell of each colour, so 25 strips would cover exactly 25 cells of each colour.\n\nCount the colours. Among $0, 1, \\dots, 9$ the residues $0, 1, 2, 3$ modulo 4 occur $n_0 = 3$, $n_1 = 3$, $n_2 = 2$, $n_3 = 2$ times, for $i$ and for $j$ alike. The number of cells of colour $c$ is $\\sum_r n_r\\, n_{c-r}$ (indices mod 4):\n$$\\begin{aligned} \\text{colour } 0 &: n_0n_0 + n_1n_3 + n_2n_2 + n_3n_1 = 9 + 6 + 4 + 6 = 25,\\\\ \\text{colour } 1 &: n_0n_1 + n_1n_0 + n_2n_3 + n_3n_2 = 9 + 9 + 4 + 4 = 26,\\\\ \\text{colour } 2 &: n_0n_2 + n_1n_1 + n_2n_0 + n_3n_3 = 6 + 9 + 6 + 4 = 25,\\\\ \\text{colour } 3 &: n_0n_3 + n_1n_2 + n_2n_1 + n_3n_0 = 6 + 6 + 6 + 6 = 24. \\end{aligned}$$\nThe counts are not all equal, so no tiling exists."
+   },
+   {
+    "type": "example",
+    "title": "Removing one cell for 1 by 3 strips",
+    "body": "One cell is removed from an $8 \\times 8$ board, and the remaining 63 cells are to be tiled by 21 strips of size $1 \\times 3$. Which cells can be removed?",
+    "solution": "Number rows and columns $1, \\dots, 8$ and use two colourings: $c_1(i,j) = (i + j) \\bmod 3$ and $c_2(i,j) = (i - j) \\bmod 3$. A strip covers three cells along a row or column, so for each colouring it covers one cell of each colour. Hence after removal each colouring must show exactly 21 cells of each colour.\n\nAmong $1, \\dots, 8$, the residues $1$ and $2$ modulo 3 occur three times each and the residue $0$ twice. For $c_1$, colour 0 has $2\\cdot 2 + 3\\cdot 3 + 3 \\cdot 3 = 22$ cells (pairs of residues $(0,0), (1,2), (2,1)$) and the other two colours have 21 each. The same computation gives 22 cells with $c_2 = 0$ and 21 for each other colour. So the removed cell must have $i + j \\equiv 0$ and $i - j \\equiv 0 \\pmod 3$. Adding, $2i \\equiv 0$, so $i \\equiv 0$ and then $j \\equiv 0 \\pmod 3$. The only candidates are $(3,3), (3,6), (6,3), (6,6)$.\n\nThese four cells are images of each other under rotations of the board, so it suffices to tile the board with $(3,3)$ removed. Rows 6 to 8 form a $3 \\times 8$ block, tiled by 8 vertical strips. In rows 1 to 5, columns 6 to 8 form a $5 \\times 3$ block, tiled by 5 horizontal strips. What is left is the $5 \\times 5$ square in rows 1 to 5 and columns 1 to 5 with its centre $(3,3)$ removed. That ring splits into four $2 \\times 3$ rectangles arranged like a pinwheel: rows 1–2 with columns 1–3, rows 1–3 with columns 4–5, rows 4–5 with columns 3–5, and rows 3–5 with columns 1–2. Each $2 \\times 3$ rectangle is two parallel strips. So exactly the four cells $(3,3), (3,6), (6,3), (6,6)$ work."
+   },
+   {
+    "type": "example",
+    "title": "L-trominoes on a 2^n board",
+    "body": "Prove that for every $n \\ge 1$ and every cell of a $2^n \\times 2^n$ board, the board with that cell removed can be tiled by L-shaped trominoes (three cells forming a $2 \\times 2$ square minus one cell).",
+    "solution": "Induction on $n$. For $n = 1$, a $2 \\times 2$ board minus one cell is itself an L-tromino.\n\nSuppose the statement holds for $2^{n-1} \\times 2^{n-1}$ boards. Split the $2^n \\times 2^n$ board into four quadrants of that size. The removed cell lies in one quadrant. Place one L-tromino at the centre of the board so that it covers the corner cell, at the centre, of each of the other three quadrants. Now each of the four quadrants has exactly one cell that is missing or already covered, and by the induction hypothesis each can be tiled by L-trominoes. Together with the central tromino this tiles the whole board minus the chosen cell.\n\nNote that $4^n - 1$ is divisible by 3, as it must be. Divisibility of the area by 3 alone does not guarantee a tiling: a $3 \\times 3$ square cannot be tiled by three L-trominoes."
+   },
+   {
+    "type": "pitfall",
+    "body": "- A colour count proves impossibility only. Equal counts do not prove that a tiling exists (see the six-cell region above); for existence you need a construction.\n- Check that every placement of every tile, in all orientations allowed, covers the colours in the same proportions. The diagonal colouring mod $k$ works for straight strips but not for L-shapes.\n- Count the colours of the board carefully, and remember that which colour has the extra cell depends on the board's dimensions modulo the number of colours.\n- Different colourings rule out different cells; in the $1 \\times 3$ problem one colouring alone leaves 22 candidate cells, and only the combination of two colourings narrows it to four."
+   },
+   {
+    "type": "connection",
+    "body": "- [[invariants]]: a colouring argument is an invariant (the colour counts covered so far) that every move preserves.\n- [[cycles-matchings]] and [[graph-basics]]: domino tilings are perfect matchings of grid graphs, and Gomory's proof uses a Hamiltonian cycle.\n- [[determinants]]: the Kasteleyn–Temperley–Fisher method counts domino tilings of planar regions as determinants.\n- [[complex-numbers]]: roots-of-unity weights turn colouring arguments into algebra.\n- [[generating-functions]]: tiling counts of strips satisfy linear recurrences, as the Fibonacci example shows."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Can a $6 \\times 6$ board be tiled by $1 \\times 4$ strips? Can a $4 \\times 6$ board?\n2. Show that a $5 \\times 5$ board with one cell removed can be tiled by dominoes if and only if the removed cell has the same colour as the corners.\n3. Prove that a $3 \\times 3$ square cannot be tiled by L-trominoes.\n4. Show that the number of tilings of a $3 \\times n$ rectangle by dominoes is $0$ for odd $n$, and find a recurrence for even $n$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Engel, Problem-Solving Strategies"
+   },
+   {
+    "ref": "Golomb, Polyominoes: Puzzles, Patterns, Problems, and Packings"
+   },
+   {
+    "ref": "Kasteleyn, The statistics of dimers on a lattice, Physica 27 (1961)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "The mutilated 8x8 board has 30 cells of the corner colour and 32 of the other; the six-cell region has 3 of each colour and no domino tiling",
+    "python": "cells=[(i,j) for i in range(1,9) for j in range(1,9) if (i,j) not in [(1,1),(8,8)]]\nassert sum((i+j)%2==0 for i,j in cells)==30 and sum((i+j)%2==1 for i,j in cells)==32\nR={(0,1),(1,0),(1,1),(1,2),(1,3),(2,2)}\nassert sum((i+j)%2 for i,j in R)==3\ndef tile(rem):\n    if not rem: return True\n    c=min(rem)\n    for d in [(0,1),(1,0)]:\n        q=(c[0]+d[0],c[1]+d[1])\n        if q in rem and tile(rem-{c,q}): return True\n    return False\nassert not tile(frozenset(R))"
+   },
+   {
+    "claim": "The described path is a Hamiltonian cycle of the 8x8 grid, and removing any black and any white cell leaves a domino-tileable board (all 1024 pairs)",
+    "python": "path=[(1,j) for j in range(1,9)]\nfor r in range(2,9):\n    cols=range(8,1,-1) if r%2==0 else range(2,9)\n    path+=[(r,c) for c in cols]\npath+=[(r,1) for r in range(8,1,-1)]\nassert len(path)==64 and len(set(path))==64\nassert all(abs(a[0]-b[0])+abs(a[1]-b[1])==1 for a,b in zip(path,path[1:]+path[:1]))\ncells=[(i,j) for i in range(1,9) for j in range(1,9)]\ndef matchable(rem):\n    B=[c for c in rem if (c[0]+c[1])%2==0]; W=set(rem)-set(B)\n    match={}\n    def aug(u,seen):\n        for d in [(0,1),(1,0),(0,-1),(-1,0)]:\n            v=(u[0]+d[0],u[1]+d[1])\n            if v in W and v not in seen:\n                seen.add(v)\n                if v not in match or aug(match[v],seen):\n                    match[v]=u; return True\n        return False\n    return len(B)==len(W) and all(aug(u,set()) for u in B)\nblacks=[c for c in cells if sum(c)%2==0]; whites=[c for c in cells if sum(c)%2==1]\nassert all(matchable([c for c in cells if c not in (b,w)]) for b in blacks for w in whites)"
+   },
+   {
+    "claim": "Weight check: (sum_{i<a} z^i)(sum_{j<b} z^j) = 0 for z = e^(2 pi i/k) exactly when k | a or k | b (a, b, k up to 12)",
+    "python": "import cmath\nfor k in range(2,13):\n    z=cmath.exp(2j*cmath.pi/k)\n    assert abs(sum(z**i for i in range(k)))<1e-9\n    for a in range(1,13):\n        for b in range(1,13):\n            w=sum(z**i for i in range(a))*sum(z**j for j in range(b))\n            assert (abs(w)<1e-9)==(a%k==0 or b%k==0)"
+   },
+   {
+    "claim": "2xn domino tilings follow Fibonacci (t_4 = 5, t_8 = 34) and the 8x8 board has 12988816 domino tilings",
+    "python": "from functools import lru_cache\ndef count(m,n):\n    @lru_cache(None)\n    def f(col,mask):\n        if col==n: return 1 if mask==0 else 0\n        outs=[]\n        def fill(row,cur,nxt):\n            if row==m: outs.append(nxt); return\n            if cur>>row&1: fill(row+1,cur,nxt)\n            else:\n                fill(row+1,cur,nxt|1<<row)\n                if row+1<m and not cur>>(row+1)&1: fill(row+2,cur,nxt)\n        fill(0,mask,0)\n        return sum(f(col+1,x) for x in outs)\n    return f(0,0)\nF=[0,1,1]\nfor _ in range(20): F.append(F[-1]+F[-2])\nassert all(count(2,n)==F[n+1] for n in range(1,15))\nassert count(2,4)==5 and count(2,8)==34\nassert count(8,8)==12988816\nassert all(count(3,n)==0 for n in (1,3,5,7))"
+   },
+   {
+    "claim": "Colouring (i+j) mod 4 on the 10x10 board gives counts 25, 26, 25, 24",
+    "python": "cnt=[0]*4\nfor i in range(10):\n    for j in range(10): cnt[(i+j)%4]+=1\nassert cnt==[25,26,25,24]\nn=[3,3,2,2]\nassert [sum(n[r]*n[(c-r)%4] for r in range(4)) for c in range(4)]==cnt"
+   },
+   {
+    "claim": "For 8x8 minus one cell, a 1x3 strip tiling exists exactly for the removed cells (3,3),(3,6),(6,3),(6,6); both mod-3 diagonal colourings have counts 22,21,21",
+    "python": "def tileable(rem):\n    if not rem: return True\n    c=min(rem)\n    for sh in [((0,0),(0,1),(0,2)),((0,0),(1,0),(2,0))]:\n        pts={(c[0]+a,c[1]+b) for a,b in sh}\n        if pts<=rem and tileable(rem-pts): return True\n    return False\ncells={(i,j) for i in range(1,9) for j in range(1,9)}\ngood=sorted(c for c in cells if tileable(frozenset(cells-{c})))\nassert good==[(3,3),(3,6),(6,3),(6,6)]\nfor f in (lambda i,j:(i+j)%3, lambda i,j:(i-j)%3):\n    cnt=[sum(1 for i,j in cells if f(i,j)==c) for c in range(3)]\n    assert cnt==[22,21,21]"
+   },
+   {
+    "claim": "L-tromino tilings of 2^n boards minus any cell exist (constructive recursion, n <= 4); 3x3 has none; 5x5 minus a cell is domino-tileable exactly for the 13 corner-coloured cells",
+    "python": "def ltile(n,r0,c0,hole,tiles):\n    if n==1:\n        tiles.append({(r0+a,c0+b) for a in (0,1) for b in (0,1)}-{hole}); return\n    h=2**(n-1); centre=[]\n    for qa in (0,1):\n        for qb in (0,1):\n            R,C=r0+qa*h,c0+qb*h\n            if R<=hole[0]<R+h and C<=hole[1]<C+h: sub=hole\n            else:\n                sub=(r0+h-1+qa,c0+h-1+qb); centre.append(sub)\n            ltile(n-1,R,C,sub,tiles)\n    tiles.append(set(centre))\nfor n in range(1,5):\n    N=2**n\n    for hole in [(r,c) for r in range(N) for c in range(N)]:\n        T=[]; ltile(n,0,0,hole,T)\n        cov=[x for t in T for x in t]\n        assert len(cov)==len(set(cov))==N*N-1 and hole not in cov\n        for t in T:\n            rs={x[0] for x in t}; cs={x[1] for x in t}\n            assert len(t)==3 and max(rs)-min(rs)==1 and max(cs)-min(cs)==1\n    assert (4**n-1)%3==0\ndef tile(rem,shapes):\n    if not rem: return True\n    c=min(rem)\n    for sh in shapes:\n        m=min(sh); pts={(c[0]+a-m[0],c[1]+b-m[1]) for a,b in sh}\n        if pts<=rem and tile(rem-pts,shapes): return True\n    return False\nL=[[(0,0),(0,1),(1,0)],[(0,0),(0,1),(1,1)],[(0,0),(1,0),(1,1)],[(0,1),(1,0),(1,1)]]\nassert not tile(frozenset((i,j) for i in range(3) for j in range(3)),L)\nD=[[(0,0),(0,1)],[(0,0),(1,0)]]\nok=[(r,c) for r in range(5) for c in range(5) if tile(frozenset((i,j) for i in range(5) for j in range(5) if (i,j)!=(r,c)),D)]\nassert len(ok)==13 and all((r+c)%2==0 for r,c in ok)"
+   }
+  ]
+ },
+ {
+  "id": "discrete-geometry",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Put $n$ points in the plane. How many pairs can be at distance exactly 1? How few different distances can the pairs determine? Must some of the points form a convex pentagon? Must some line pass through exactly two of them? Combinatorial geometry asks such questions about finite configurations of points, lines and circles, where the answer depends on both counting and geometry.\n\nMany of these problems were posed by Erdős in the 1930s and 1940s. The best answers combine double counting, graph drawing, Ramsey theory and, since 2010, algebraic geometry."
+   },
+   {
+    "type": "section",
+    "title": "Unit distances and distinct distances",
+    "body": "For a set $P$ of $n$ points, let $u(P)$ be the number of pairs at distance 1 and $g(P)$ the number of distinct distances among all pairs. Write $u(n)$ for the maximum of $u(P)$ and $g(n)$ for the minimum of $g(P)$ over $n$-point sets. The two problems pull in opposite directions: a set with few distinct distances must repeat some distance often.\n\nSimple constructions. Points equally spaced on a line, at $0, 1, \\dots, n-1$, give $n - 1$ unit distances and $n - 1$ distinct distances. Doing better takes more care. A square $\\sqrt n \\times \\sqrt n$ grid of integer points determines only about $n/\\sqrt{\\log n}$ distinct distances, because the squared distances are sums of two squares below $2n$, and few integers have that form (see [[sums-of-squares]]). Scaling the same grid so that its most frequent distance becomes 1, Erdős obtained $u(n) \\ge n^{1 + c/\\log\\log n}$ for a constant $c > 0$.\n\nElementary upper and lower bounds come from the fact that two distinct circles meet in at most two points."
+   },
+   {
+    "type": "theorem",
+    "title": "Elementary distance bounds",
+    "body": "For every set of $n \\ge 2$ points in the plane:\n\n1. the number of unit distances is at most $\\frac n4\\big(1 + \\sqrt{8n - 7}\\big)$, so $u(n) = O(n^{3/2})$;\n2. the number $t$ of distinct distances satisfies $n - 2 \\le 2t^2$, so $g(n) \\ge \\sqrt{(n-2)/2}$."
+   },
+   {
+    "type": "proof",
+    "body": "1. For each point $p$, let $d_p$ be the number of points at distance 1 from $p$; then $\\sum_p d_p = 2u$. Count triples $(p, \\{q, r\\})$ with $q, r$ both at distance 1 from $p$. For fixed $p$ there are $\\binom{d_p}{2}$ of them. For a fixed pair $\\{q, r\\}$, the point $p$ lies on the unit circles around $q$ and around $r$, which meet in at most two points. So\n$$\\sum_p \\binom{d_p}{2} \\le 2\\binom n2 = n(n-1).$$\nThe function $x \\mapsto x(x-1)/2$ is convex, so with $x = 2u/n$ the average degree, $\\sum_p \\binom{d_p}{2} \\ge n\\cdot\\frac{x(x-1)}{2}$ (see [[convexity]]). Hence $x^2 - x - 2(n-1) \\le 0$, so $x \\le \\frac12\\big(1 + \\sqrt{8n-7}\\big)$ and $u = nx/2 \\le \\frac n4\\big(1 + \\sqrt{8n-7}\\big)$.\n\n2. Let the distinct distances be $r_1, \\dots, r_t$ and fix two points $p \\ne q$. Each of the other $n - 2$ points lies on one of the $t$ circles of radius $r_i$ around $p$ and on one of the $t$ circles of radius $r_j$ around $q$. For each of the $t^2$ choices of $(i, j)$ the two circles have different centres and meet in at most 2 points. So $n - 2 \\le 2t^2$."
+   },
+   {
+    "type": "section",
+    "title": "What is known, and a 2026 claim",
+    "body": "Both elementary bounds are far from the truth.\n\nFor unit distances, Spencer, Szemerédi and Trotter proved in 1984 that\n$$\\#\\text{unit distances} \\le O(n^{4/3}).$$\nSzékely (1997) found a short proof via the crossing lemma: a graph drawn in the plane with $v$ vertices and $e \\ge 4v$ edges has at least $e^3/(64v^2)$ pairs of crossing edges. Applying it to the drawing whose edges are arcs of the unit circles around the points gives the $n^{4/3}$ bound (details omitted). The exponent $4/3$ has not been improved since 1984.\n\nErdős conjectured in 1946 that his grid construction is close to optimal: $u(n)$ is at most $n^{1+o(1)}$, and in a sharper form of order $n^{1 + c/\\log\\log n}$, like the grid. Claim (May 2026): on 20 May 2026 a counterexample to Erdős's unit distance conjecture was reported, found by an internal OpenAI model; Tim Gowers is reported to have praised the proof. This is a claim, not yet an established result, and this lesson does not rely on it or describe what bound it gives.\n\nFor distinct distances, Erdős conjectured that the grid is optimal up to constants, $g(n) \\ge c\\,n/\\sqrt{\\log n}$. In 2010 Guth and Katz proved\n$$\\#\\text{distinct distances} \\ge c\\,\\frac{n}{\\log n},$$\nwhich misses the conjecture by only a factor $\\sqrt{\\log n}$. Following an idea of Elekes and Sharir, they turn the problem into counting intersecting pairs of lines in three-dimensional space, and bound those by polynomial partitioning: the zero set of a polynomial of controlled degree cuts space into cells each meeting few lines."
+   },
+   {
+    "type": "section",
+    "title": "Incidences between points and lines",
+    "body": "An incidence between a set of points and a set of lines is a pair (point, line) with the point on the line. With $m$ points and $n$ lines, a Cauchy–Schwarz argument gives at most about $m\\sqrt n + n$ incidences (third example). The truth is smaller."
+   },
+   {
+    "type": "theorem",
+    "title": "Szemerédi–Trotter theorem (1983)",
+    "body": "There is a constant $C$ such that $m$ points and $n$ lines in the plane have at most\n$$C\\big(m^{2/3}n^{2/3} + m + n\\big)$$\nincidences."
+   },
+   {
+    "type": "section",
+    "title": "About the Szemerédi–Trotter theorem",
+    "body": "The proof is omitted; Székely's crossing-lemma argument gives it in a page. The bound is sharp up to the constant: with points the integer grid $\\{1,\\dots,k\\} \\times \\{1,\\dots,2k^2\\}$ and lines $y = ax + b$ with $a \\in \\{1,\\dots,k\\}$, $b \\in \\{1,\\dots,k^2\\}$, each line contains $k$ grid points, giving $k^4$ incidences among $2k^3$ points and $k^3$ lines, which is of order $m^{2/3}n^{2/3}$. Unit distances are an incidence problem between points and unit circles, which is why the same exponent $4/3$ appears."
+   },
+   {
+    "type": "section",
+    "title": "Convex position: the Erdős–Szekeres theorem",
+    "body": "A set of points is in general position if no three are collinear, and in convex position if each point is a vertex of the convex hull of the set. Esther Klein observed that among any 5 points in general position, 4 are in convex position (second example). Erdős and Szekeres asked how many points force $k$ points in convex position; the story is known as the happy ending problem, because Klein and Szekeres later married."
+   },
+   {
+    "type": "theorem",
+    "title": "Erdős–Szekeres theorem (1935)",
+    "body": "For every $k \\ge 3$ there is a least integer $f(k)$ such that every set of $f(k)$ points in general position in the plane contains $k$ points in convex position. Moreover\n$$2^{k-2} + 1 \\le f(k) \\le \\binom{2k-4}{k-2} + 1.$$"
+   },
+   {
+    "type": "proof",
+    "title": "Proof that f(k) exists",
+    "body": "We prove existence using Ramsey's theorem for 4-element subsets (see [[ramsey]]); the explicit bounds need finer arguments and are not proved here.\n\nFirst, if every 4 points of a finite set $S$ in general position are in convex position, then $S$ is in convex position. Otherwise some point $p \\in S$ is not a vertex of the convex hull of $S$, so it lies in that hull. Triangulate the hull by joining one hull vertex to all others; $p$ lies in one of these triangles, whose vertices are three points of $S$, and by general position it is in the interior. Those three points together with $p$ are not in convex position.\n\nNow colour each 4-element subset of a large point set red if it is in convex position and blue otherwise. By Ramsey's theorem there is an $N$ such that any such colouring of the 4-subsets of $N$ points has a 5-set all of whose 4-subsets are blue or a $k$-set all of whose 4-subsets are red. The first is impossible by Klein's observation. So there are $k$ points all of whose 4-subsets are convex, and by the previous paragraph they are in convex position."
+   },
+   {
+    "type": "section",
+    "title": "The current state",
+    "body": "The lower bound $2^{k-2} + 1$ comes from an explicit construction of Erdős and Szekeres (1961), who conjectured it is exact. Small cases agree: $f(4) = 5$ by Klein's observation, $f(5) = 9$, and $f(6) = 17$, the last by a computer search of Szekeres and Peters (2006). In 2017 Andrew Suk proved $f(k) \\le 2^{k + o(k)}$, so the conjecture is now known to be right in the exponent."
+   },
+   {
+    "type": "theorem",
+    "title": "Sylvester–Gallai theorem",
+    "body": "If a finite set of points in the plane is not contained in a line, then some line passes through exactly two of the points."
+   },
+   {
+    "type": "proof",
+    "title": "Kelly's proof",
+    "body": "Call a line connecting if it passes through at least two of the points. Consider all pairs $(P, \\ell)$ where $\\ell$ is a connecting line and $P$ is a point of the set not on $\\ell$; such pairs exist because the points are not collinear, and there are finitely many. Choose a pair for which the distance from $P$ to $\\ell$ is smallest, and let $Q$ be the foot of the perpendicular from $P$ to $\\ell$.\n\nSuppose $\\ell$ contains at least three of the points. The point $Q$ divides $\\ell$ into two closed rays, so by [[pigeonhole]] two of the points, $A$ and $B$, lie on the same ray; name them so that $|QB| \\le |QA|$. Then $A \\ne Q$ and $B$ lies on the segment $QA$ (possibly $B = Q$).\n\nLet $m$ be the connecting line $PA$. The point $B$ is not on $m$, since otherwise $m$ would be $\\ell$ and $P$ would lie on $\\ell$. As a point moves along the segment from $Q$ to $A$, its distance to the line $PA$ decreases in proportion to its distance from $A$, so the distance from $B$ to $m$ is at most the distance from $Q$ to $m$. In the right triangle $PQA$, the distance from $Q$ to the hypotenuse $PA$ equals $|PQ|\\cdot|QA|/|PA|$, and $|QA| < |PA|$, so this distance is less than $|PQ|$. Hence the pair $(B, m)$ has smaller distance than $(P, \\ell)$, a contradiction. So $\\ell$ contains exactly two of the points."
+   },
+   {
+    "type": "example",
+    "title": "Many unit distances from a cube",
+    "body": "Show that for every $k$ there is a set of $n = 2^k$ points in the plane with at least $k\\,2^{k-1} = \\frac n2 \\log_2 n$ unit distances. So $u(n)$ grows faster than any linear function.",
+    "solution": "Choose unit vectors $v_1, \\dots, v_k$ in the plane and, for each subset $S \\subseteq \\{1, \\dots, k\\}$, the point $x_S = \\sum_{i \\in S} v_i$. If the directions are chosen generically (for instance at random), the $2^k$ points $x_S$ are distinct, since a coincidence $x_S = x_T$ is a nontrivial linear relation among the $v_i$ with coefficients $0, \\pm 1$, and each such relation fails for almost every choice.\n\nIf $T = S \\cup \\{i\\}$ with $i \\notin S$, then $x_T - x_S = v_i$ has length 1. Each of the $2^k$ subsets $T$ has $|T|$ such neighbours $S$ below it, so the number of these pairs is $\\sum_T |T| = k\\,2^{k-1}$. All of them are unit distances (there may be more).\n\nThis is the planar shadow of the $k$-dimensional cube, whose $k\\,2^{k-1}$ edges all have the same length."
+   },
+   {
+    "type": "example",
+    "title": "Klein's five-point lemma",
+    "body": "Prove that among any 5 points in the plane, no three collinear, some 4 are the vertices of a convex quadrilateral.",
+    "solution": "Look at the convex hull. If it has 5 or 4 vertices, any 4 hull vertices are in convex position.\n\nOtherwise the hull is a triangle $ABC$ and the other two points $D$, $E$ lie inside it. The line $DE$ passes through no vertex of the triangle (no three points are collinear), so it leaves the three vertices on its two sides, and by pigeonhole two of them, say $A$ and $B$, are on the same side.\n\nWe claim $A, B, D, E$ are in convex position, that is, none of them lies inside the triangle of the other three. $A$ is a vertex of triangle $ABC$, which contains $B$, $D$ and $E$, so $A$ cannot lie in the triangle $BDE$; similarly for $B$. If $D$ were inside triangle $ABE$, the line from the vertex $E$ through the interior point $D$ would cross the opposite side $AB$ at an interior point of the segment, putting $A$ and $B$ on opposite sides of line $DE$, contrary to the choice of $A$, $B$. The same argument with $D$ and $E$ exchanged rules out $E$ inside $ABD$. So $ABDE$ (in a suitable order) is a convex quadrilateral.\n\nFour points are not enough: a triangle with one point inside has no convex quadrilateral."
+   },
+   {
+    "type": "example",
+    "title": "A first incidence bound",
+    "body": "Show that $m$ points and $n$ lines in the plane have at most $n + m\\sqrt n$ incidences.",
+    "solution": "For each line $\\ell$ let $d_\\ell$ be the number of points on it, so the number of incidences is $I = \\sum_\\ell d_\\ell$. Count ordered pairs of distinct points lying on a common line: line $\\ell$ contributes $d_\\ell(d_\\ell - 1)$, and each ordered pair of points lies on at most one line, so\n$$\\sum_\\ell d_\\ell^2 - I = \\sum_\\ell d_\\ell(d_\\ell - 1) \\le m(m-1) \\le m^2.$$\nBy the Cauchy–Schwarz inequality (see [[cauchy-schwarz]]), $I^2 = \\big(\\sum_\\ell d_\\ell\\big)^2 \\le n\\sum_\\ell d_\\ell^2 \\le n(m^2 + I)$. Thus $I^2 - nI - nm^2 \\le 0$, and\n$$I \\le \\frac{n + \\sqrt{n^2 + 4nm^2}}{2} \\le \\frac{n + (n + 2m\\sqrt n)}{2} = n + m\\sqrt n,$$\nusing $n^2 + 4nm^2 \\le (n + 2m\\sqrt n)^2$. For $m = n$ this gives $O(n^{3/2})$, compared with the true order $n^{4/3}$ from Szemerédi–Trotter."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Unit-distance and distinct-distance problems point in opposite directions, but they are linked: any distance can be scaled to 1, so each distance occurs at most $u(n)$ times and $g(n) \\ge \\binom n2 / u(n)$. With the $O(n^{4/3})$ bound this already gives $g(n) \\ge c\\,n^{2/3}$, far better than the elementary $\\sqrt n$.\n- General position matters. Without it, all $n$ points could lie on a line, which contains no convex quadrilateral at all.\n- The Sylvester–Gallai theorem is special to real geometry and finite sets. Over the complex numbers it fails (the 9 inflection points of a smooth plane cubic have every connecting line through 3 of them), and it fails for infinite sets such as the integer lattice.\n- A reported proof is not an accepted one; recent claims, including AI-generated ones, should be cited as claims until independently checked."
+   },
+   {
+    "type": "connection",
+    "body": "- [[ramsey]]: the Erdős–Szekeres theorem is one of the earliest applications of Ramsey's theorem.\n- [[probabilistic-method]]: the crossing lemma, behind Székely's proofs, has a short probabilistic proof.\n- [[additive-combinatorics]]: Elekes used the Szemerédi–Trotter theorem to prove the sum-product estimate $\\max(|A+A|, |A\\cdot A|) \\ge c|A|^{5/4}$ for finite sets of reals.\n- [[sums-of-squares]]: the distinct distances of a grid are governed by which integers are sums of two squares.\n- [[hypergraphs]]: points and lines form a linear hypergraph, and incidence bounds are extremal results for it.\n- [[polynomials-roots]]: the polynomial method rests on simple facts such as: a polynomial of degree $d$ vanishing at $d+1$ points of a line vanishes on the whole line."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the vertices of a regular $n$-gon determine exactly $\\lfloor n/2\\rfloor$ distinct distances.\n2. Prove that 4 points in the plane determine at most 5 unit distances, and find 4 points with exactly 5.\n3. Show that $m$ points and $n$ lines have at most $m + n\\sqrt m$ incidences, by exchanging the roles of points and lines in the third example.\n4. Show that the Sylvester–Gallai theorem fails for the infinite set $\\mathbb Z^2$ of integer points: every line through two of them contains infinitely many."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Matoušek, Lectures on Discrete Geometry"
+   },
+   {
+    "ref": "Pach & Agarwal, Combinatorial Geometry"
+   },
+   {
+    "ref": "Guth, Polynomial Methods in Combinatorics"
+   },
+   {
+    "ref": "Guth & Katz, On the Erdős distinct distances problem in the plane, Annals of Mathematics 181 (2015)"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "From x^2 - x - 2(n-1) <= 0 one gets u <= n(1+sqrt(8n-7))/4; the bound is 6 at n = 4 and about 3.84 at n = 3",
+    "python": "import sympy as sp\nn,x=sp.symbols('n x',positive=True)\nroots=sp.solve(sp.Eq(x**2-x-2*(n-1),0),x)\nr=max(roots,key=lambda e: e.subs(n,5))\nassert sp.simplify(r-(1+sp.sqrt(8*n-7))/2)==0\nB=lambda N: N*(1+(8*N-7)**0.5)/4\nassert abs(B(4)-6)<1e-12 and 3.8<B(3)<3.85"
+   },
+   {
+    "claim": "Cube construction: 2^k sums of generic unit vectors are distinct and have at least k 2^(k-1) unit distances (k = 2..8)",
+    "python": "import random, math\nfrom itertools import combinations\nrandom.seed(7)\nfor k in range(2,9):\n    v=[(math.cos(a),math.sin(a)) for a in (random.uniform(0,2*math.pi) for _ in range(k))]\n    pts=[]\n    for S in range(1<<k):\n        pts.append((sum(v[i][0] for i in range(k) if S>>i&1),sum(v[i][1] for i in range(k) if S>>i&1)))\n    assert min(math.dist(p,q) for p,q in combinations(pts,2))>1e-6\n    u=sum(1 for p,q in combinations(pts,2) if abs(math.dist(p,q)-1)<1e-9)\n    assert u>=k*2**(k-1)\n    assert sum(bin(S).count('1') for S in range(1<<k))==k*2**(k-1)"
+   },
+   {
+    "claim": "Every random 5-point set in general position contains 4 points in convex position; a triangle with an interior point does not",
+    "python": "import random\nfrom itertools import combinations\ndef orient(a,b,c): return (b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0])\ndef in_tri(p,a,b,c):\n    s=[orient(a,b,p),orient(b,c,p),orient(c,a,p)]\n    return all(x>0 for x in s) or all(x<0 for x in s)\ndef convex4(Q):\n    return not any(in_tri(Q[i],*[Q[j] for j in range(4) if j!=i]) for i in range(4))\nrandom.seed(5)\nfor _ in range(3000):\n    P=[(random.random(),random.random()) for _ in range(5)]\n    assert any(convex4(list(Q)) for Q in combinations(P,4))\nassert not convex4([(0,0),(4,0),(0,4),(1,1)])"
+   },
+   {
+    "claim": "A regular n-gon has floor(n/2) distinct distances (n = 3..30)",
+    "python": "import math\nfrom itertools import combinations\nfor n in range(3,31):\n    pts=[(math.cos(2*math.pi*i/n),math.sin(2*math.pi*i/n)) for i in range(n)]\n    d=sorted(math.dist(p,q) for p,q in combinations(pts,2))\n    distinct=[d[0]]\n    for x in d[1:]:\n        if x-distinct[-1]>1e-9: distinct.append(x)\n    assert len(distinct)==n//2"
+   },
+   {
+    "claim": "Incidence bound I <= n + m sqrt(n) holds on random and grid configurations; the grid {1..k}x{1..2k^2} with lines y=ax+b gives exactly k^4 incidences",
+    "python": "import random, math\nfrom fractions import Fraction\nfor k in range(1,6):\n    pts={(x,y) for x in range(1,k+1) for y in range(1,2*k*k+1)}\n    I=sum(1 for a in range(1,k+1) for b in range(1,k*k+1) for x in range(1,k+1) if (x,a*x+b) in pts)\n    assert I==k**4\n    m,n=len(pts),k**3\n    assert I<=n+m*math.sqrt(n)\nrandom.seed(2)\nfor _ in range(50):\n    P=list({(random.randint(0,6),random.randint(0,6)) for _ in range(random.randint(3,30))})\n    lines=set()\n    for (x1,y1) in P:\n        for (x2,y2) in P:\n            if (x1,y1)<(x2,y2):\n                a,b,c=y2-y1,x1-x2,(y2-y1)*x1+(x1-x2)*y1\n                g=math.gcd(math.gcd(a,b),c) or 1\n                if a<0 or (a==0 and b<0): g=-g\n                lines.add((a//g,b//g,c//g))\n    L=random.sample(sorted(lines),min(len(lines),random.randint(1,15)))\n    I=sum(1 for (a,b,c) in L for (x,y) in P if a*x+b*y==c)\n    assert I<=len(L)+len(P)*math.sqrt(len(L))+1e-9"
+   },
+   {
+    "claim": "Grid point sets satisfy n - 2 <= 2t^2 for their number t of distinct distances",
+    "python": "from itertools import combinations\nfor k in range(2,16):\n    pts=[(x,y) for x in range(k) for y in range(k)]\n    t=len({(a[0]-b[0])**2+(a[1]-b[1])**2 for a,b in combinations(pts,2)})\n    assert len(pts)-2<=2*t*t"
+   },
+   {
+    "claim": "Random non-collinear integer point sets have an ordinary line (Sylvester-Gallai) and determine at least n connecting lines",
+    "python": "import random\nfrom itertools import combinations\nrandom.seed(11)\ndef col(a,b,c): return (b[0]-a[0])*(c[1]-a[1])==(b[1]-a[1])*(c[0]-a[0])\nfor _ in range(300):\n    P=list({(random.randint(0,4),random.randint(0,4)) for _ in range(random.randint(3,14))})\n    if len(P)<3 or all(col(P[0],P[1],c) for c in P[2:]): continue\n    lines=set()\n    for a,b in combinations(P,2):\n        lines.add(frozenset(c for c in P if col(a,b,c)))\n    assert any(len(l)==2 for l in lines)\n    assert len(lines)>=len(P)"
+   },
+   {
+    "claim": "Erdős-Szekeres bounds: 2^(k-2)+1 = 5, 9, 17 for k = 4, 5, 6, and binom(2k-4,k-2)+1 = 7, 21, 71",
+    "python": "from math import comb\nassert [2**(k-2)+1 for k in (4,5,6)]==[5,9,17]\nassert [comb(2*k-4,k-2)+1 for k in (4,5,6)]==[7,21,71]"
+   },
+   {
+    "claim": "Exercise 2: four points have at most 5 unit distances (K4 is not a unit-distance graph: 4 points pairwise at distance 1 do not exist), and the rhombus of two unit equilateral triangles has exactly 5; Theorem 2 gives t >= sqrt((n-2)/2)",
+    "python": "import math\nfrom itertools import combinations\nP=[(0,0),(1,0),(0.5,math.sqrt(3)/2),(0.5,-math.sqrt(3)/2)]\nassert sum(1 for p,q in combinations(P,2) if abs(math.dist(p,q)-1)<1e-12)==5\n# three mutually unit points form an equilateral triangle; the only points at distance 1 from two of its vertices are the third vertex and its reflection, which is at distance sqrt(3) from the third\na,b,c=P[0],P[1],P[2]\nassert abs(math.dist(P[3],c)-math.sqrt(3))<1e-12\nfor n in range(2,200):\n    t=math.isqrt(n)  # any t with 2t^2 >= n-2 satisfies the bound\n    assert (2*t*t>=n-2)==(t>=math.sqrt((n-2)/2))\n"
+   }
+  ]
+ },
+ {
+  "id": "infinite-combinatorics",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Ramsey's theorem says that a large enough finite structure, coloured with a few colours, contains a large monochromatic piece. What if the structure is infinite? For the natural numbers the answer is as good as one could hope: colour the pairs of natural numbers with finitely many colours and there is always an infinite set all of whose pairs have the same colour. For uncountable sets the picture changes completely, and some of the most natural questions cannot be settled from the standard axioms of set theory.\n\nThe partition calculus, developed by Erdős, Rado, Hajnal and others from the 1950s on, organises these questions with one piece of notation, the arrow."
+   },
+   {
+    "type": "section",
+    "title": "Just enough about infinite cardinals",
+    "body": "Two sets have the same cardinality if there is a bijection between them. The natural numbers have cardinality $\\aleph_0$; sets of this size are countable. Cantor showed that the real numbers are not countable; their cardinality is written $2^{\\aleph_0}$, since $\\mathbb R$ is in bijection with the set of all subsets of $\\mathbb N$.\n\nWe work in ZFC, the usual axioms of set theory including the axiom of choice. Under choice every set can be well-ordered, and the cardinalities are themselves well-ordered: $\\aleph_0 < \\aleph_1 < \\aleph_2 < \\cdots$, where $\\aleph_1$ is the smallest uncountable cardinality. A convenient model of a set of size $\\aleph_1$ is $\\omega_1$, the set of countable ordinals, which is well-ordered in such a way that every element has only countably many predecessors. For a cardinal $\\kappa$, $\\kappa^+$ denotes the next larger cardinal.\n\nCantor's theorem gives $2^{\\aleph_0} \\ge \\aleph_1$. The continuum hypothesis (CH) is the statement $2^{\\aleph_0} = \\aleph_1$. Gödel (1940) showed that ZFC cannot refute CH and Cohen (1963) showed that it cannot prove it: CH is independent of ZFC."
+   },
+   {
+    "type": "definition",
+    "title": "Partition arrow",
+    "body": "For a set $X$ and a positive integer $n$, write $[X]^n$ for the set of all $n$-element subsets of $X$. For cardinals $\\kappa, \\lambda$ and positive integers $n, r$,\n$$\\kappa \\to (\\lambda)^n_r$$\nmeans: for every set $X$ of cardinality $\\kappa$ and every colouring $c : [X]^n \\to \\{1, \\dots, r\\}$, there is a set $H \\subseteq X$ of cardinality $\\lambda$ such that $c$ is constant on $[H]^n$. Such an $H$ is called homogeneous for $c$. The negation is written $\\kappa \\not\\to (\\lambda)^n_r$.\n\nIn words: every $r$-colouring of the $n$-subsets of a set of size $\\kappa$ has a homogeneous set of size $\\lambda$. Finite Ramsey's theorem (see [[ramsey]]) says that for every $k$ there is a finite $N$ with $N \\to (k)^2_2$; the least such $N$ is $R(k)$."
+   },
+   {
+    "type": "theorem",
+    "title": "Infinite Ramsey theorem (Ramsey, 1930)",
+    "body": "For all positive integers $n$ and $r$,\n$$\\aleph_0 \\to (\\aleph_0)^n_r.$$\nThat is, for every colouring of the $n$-element subsets of $\\mathbb N$ with $r$ colours there is an infinite $H \\subseteq \\mathbb N$ all of whose $n$-element subsets have the same colour."
+   },
+   {
+    "type": "proof",
+    "body": "Induction on $n$. For $n = 1$ this is the infinite [[pigeonhole]] principle: if $\\mathbb N$ is split into $r$ classes, one class is infinite.\n\nAssume the statement for $n - 1$ and let $c$ colour $[\\mathbb N]^n$ with $r$ colours. We build elements $a_0 < a_1 < a_2 < \\cdots$, infinite sets $\\mathbb N = X_0 \\supseteq X_1 \\supseteq X_2 \\supseteq \\cdots$ and colours $c_0, c_1, c_2, \\ldots$ as follows. Given the infinite set $X_i$, let $a_i = \\min X_i$. Colour each $(n-1)$-subset $s$ of $X_i \\setminus \\{a_i\\}$ with the colour $c(\\{a_i\\} \\cup s)$. By the induction hypothesis there is an infinite $X_{i+1} \\subseteq X_i \\setminus \\{a_i\\}$ on whose $(n-1)$-subsets this colouring is constant, say equal to $c_i$.\n\nEvery later element $a_j$ ($j > i$) lies in $X_{i+1}$. So any $n$-set of the form $\\{a_i\\} \\cup s$ with $s \\subseteq \\{a_{i+1}, a_{i+2}, \\ldots\\}$ has colour $c_i$; in other words, the colour of an $n$-subset of $\\{a_0, a_1, \\ldots\\}$ depends only on its smallest element. By the case $n = 1$, infinitely many indices $i$ share the same colour $c_i$, say all $i \\in I$. Then $H = \\{a_i : i \\in I\\}$ is infinite, and every $n$-subset of $H$ has colour $c_i$ for its least element $a_i$, which is the common colour. So $H$ is homogeneous."
+   },
+   {
+    "type": "section",
+    "title": "From infinite to finite: compactness",
+    "body": "The infinite theorem implies the finite one without any estimates, by a compactness argument (second example). This kind of argument, related to compactness in topology (see [[compactness]]) and to König's lemma on infinite trees, gives no bound on $R(k)$, only its existence.\n\nCompactness can prove more than it seems. Paris and Harrington found in 1977 a slight strengthening of finite Ramsey's theorem: one also asks that the homogeneous set $H$ have at least $\\min H$ elements. This statement is true, and it follows from the infinite Ramsey theorem by compactness, but it cannot be proved in Peano arithmetic. It was the first natural example of a true statement about finite sets that is independent of Peano arithmetic."
+   },
+   {
+    "type": "section",
+    "title": "Uncountable sets: where the analogy fails",
+    "body": "One might hope that $\\kappa \\to (\\kappa)^2_2$ for every infinite cardinal $\\kappa$, or at least that $2^{\\aleph_0} \\to (\\aleph_1)^2_2$: every 2-colouring of the pairs of real numbers has an uncountable homogeneous set. Sierpiński showed that this fails."
+   },
+   {
+    "type": "theorem",
+    "title": "Sierpiński's theorem (1933)",
+    "body": "$$2^{\\aleph_0} \\not\\to (\\aleph_1)^2_2.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Using the axiom of choice, well-order the real numbers: fix a well-ordering $\\prec$ of $\\mathbb R$. Colour a pair $\\{x, y\\}$ with $x \\prec y$ red if $x < y$ and blue if $x > y$. So a pair is red when the well-ordering and the usual order agree on it.\n\nSuppose $H \\subseteq \\mathbb R$ is homogeneous of size $\\aleph_1$. The well-ordering $\\prec$ restricted to $H$ is a well-ordering of an uncountable set, so it has an initial segment of order type $\\omega_1$: elements $y_\\xi$, indexed by the countable ordinals $\\xi$, with $y_\\xi \\prec y_\\eta$ whenever $\\xi < \\eta$.\n\nIf $H$ is red, then $y_\\xi < y_\\eta$ whenever $\\xi < \\eta$: the $y_\\xi$ form a strictly increasing sequence of real numbers of length $\\omega_1$. For each $\\xi$ choose a rational number $q_\\xi$ with $y_\\xi < q_\\xi < y_{\\xi+1}$. The open intervals $(y_\\xi, y_{\\xi+1})$ are pairwise disjoint, so the $q_\\xi$ are distinct, and we get an injection from the uncountable set $\\omega_1$ into the countable set $\\mathbb Q$, which is impossible. If $H$ is blue, the same argument applies to the strictly decreasing sequence. Hence no homogeneous set of size $\\aleph_1$ exists."
+   },
+   {
+    "type": "section",
+    "title": "Positive results and independence",
+    "body": "The positive counterpart is the Erdős–Rado theorem (1956): for every infinite cardinal $\\kappa$,\n$$(2^\\kappa)^+ \\to (\\kappa^+)^2_\\kappa .$$\nFor $\\kappa = \\aleph_0$ it says that the pairs of a set of size $(2^{\\aleph_0})^+$, coloured with countably many colours, have a homogeneous set of size $\\aleph_1$. Sierpiński's theorem shows that $(2^{\\aleph_0})^+$ cannot be replaced by $2^{\\aleph_0}$ even for two colours, so this is sharp. We do not prove Erdős–Rado here; the proof is a transfinite refinement of the least-element construction used for the infinite Ramsey theorem.\n\nThese two results already produce a statement that ZFC cannot decide:\n$$\\aleph_2 \\to (\\aleph_1)^2_2 \\quad\\Longleftrightarrow\\quad \\text{CH}.$$\nIf CH holds, then $(2^{\\aleph_0})^+ = \\aleph_2$, and Erdős–Rado gives $\\aleph_2 \\to (\\aleph_1)^2_2$. If CH fails, then $2^{\\aleph_0} \\ge \\aleph_2$, so there is a set of $\\aleph_2$ real numbers, and Sierpiński's colouring restricted to it has no homogeneous set of size $\\aleph_1$ (the proof above works for any set of reals). Since CH is independent of ZFC, so is $\\aleph_2 \\to (\\aleph_1)^2_2$.\n\nAt the other extreme, an uncountable cardinal $\\kappa$ with $\\kappa \\to (\\kappa)^2_2$ is called weakly compact. Such cardinals are inaccessible, and ZFC cannot prove that they exist (if ZFC is consistent). So the simplest-looking uncountable analogue of Ramsey's theorem is a large cardinal axiom.\n\nExponent $\\omega$ behaves differently again. One can ask for a 2-colouring of the infinite subsets of $\\mathbb N$ with an infinite homogeneous set. With the axiom of choice there are colourings with none (fourth example). For colourings that are definable in a simple way, however, homogeneous sets do exist: Galvin and Prikry proved in 1973 that every Borel colouring has one."
+   },
+   {
+    "type": "example",
+    "title": "Monotone subsequences",
+    "body": "Prove that every sequence $x_1, x_2, \\ldots$ of real numbers has an infinite subsequence that is strictly increasing, constant, or strictly decreasing.",
+    "solution": "Colour each pair $\\{i, j\\}$ with $i < j$ by one of three colours, according to whether $x_i < x_j$, $x_i = x_j$ or $x_i > x_j$. By $\\aleph_0 \\to (\\aleph_0)^2_3$ there is an infinite set $H$ of indices on which the colouring is constant. Listing $H$ in increasing order $i_1 < i_2 < \\cdots$, the subsequence $x_{i_1}, x_{i_2}, \\ldots$ is strictly increasing, constant or strictly decreasing according to the colour. (Each consecutive pair has the common colour, and so does every pair.)\n\nThe finite analogue is the Erdős–Szekeres theorem: any $n^2 + 1$ distinct reals in sequence contain a monotone subsequence of length $n + 1$, and $n^2$ do not suffice."
+   },
+   {
+    "type": "example",
+    "title": "Finite Ramsey from infinite Ramsey",
+    "body": "Deduce from $\\aleph_0 \\to (\\aleph_0)^2_2$, without any estimates, that for every $k$ there is a finite $N$ with $N \\to (k)^2_2$.",
+    "solution": "Suppose not: for some $k$ and every $N$ there is a colouring $c_N$ of the pairs of $\\{1, \\dots, N\\}$ with no homogeneous $k$-set. List all pairs of positive integers as $p_1, p_2, p_3, \\ldots$.\n\nWe build a colouring $c$ of all pairs of $\\mathbb N$. Let $S_0$ be the set of all $N$. Infinitely many $N \\in S_0$ have $p_1 \\subseteq \\{1, \\dots, N\\}$, and among them infinitely many give $p_1$ the same colour; call that colour $c(p_1)$ and the infinite set of such $N$ $S_1$. Repeat: from the infinite set $S_{j-1}$, keep those $N$ with $p_j \\subseteq \\{1, \\dots, N\\}$ (all but finitely many); among them some colour is taken by $c_N(p_j)$ for infinitely many $N$. Call that colour $c(p_j)$ and let $S_j$ be the infinite set of those $N$. By construction, every $N \\in S_j$ agrees with $c$ on $p_1, \\dots, p_j$.\n\nBy the infinite Ramsey theorem, $c$ has an infinite homogeneous set; take $k$ of its elements, forming a set $K$. The pairs inside $K$ are among $p_1, \\dots, p_J$ for some $J$. Any $N \\in S_J$ is defined on these pairs and agrees with $c$ there, so $K$ is a homogeneous $k$-set for $c_N$, a contradiction."
+   },
+   {
+    "type": "example",
+    "title": "Infinite point sets",
+    "body": "Show that every infinite set of points in the plane contains an infinite subset that either lies on a single line or has no three points on a line.",
+    "solution": "Take a countably infinite subset $X$. Colour each 3-element subset of $X$ red if its points are collinear and blue otherwise. By $\\aleph_0 \\to (\\aleph_0)^3_2$ there is an infinite homogeneous $H \\subseteq X$.\n\nIf $H$ is blue, no three of its points are collinear. If $H$ is red, fix two points $a, b \\in H$; every other $c \\in H$ is collinear with $a$ and $b$, so lies on the line $ab$, and all of $H$ is on that line."
+   },
+   {
+    "type": "example",
+    "title": "No Ramsey theorem for infinite exponent",
+    "body": "Using the axiom of choice, construct a 2-colouring of the infinite subsets of $\\mathbb N$ such that no infinite $H \\subseteq \\mathbb N$ has all its infinite subsets of the same colour.",
+    "solution": "Call infinite sets $X, Y \\subseteq \\mathbb N$ equivalent if their symmetric difference $X \\triangle Y$ is finite. This is an equivalence relation. By the axiom of choice, pick one representative $r(X)$ from each equivalence class, so that $r(X) = r(Y)$ whenever $X$ and $Y$ are equivalent. Colour $X$ red if $|X \\triangle r(X)|$ is even and blue if it is odd.\n\nLet $H$ be any infinite set, $m = \\min H$ and $H' = H \\setminus \\{m\\}$. Both are infinite subsets of $H$, and they are equivalent, so $r(H') = r(H) =: r$. Since $H' \\triangle r = (H \\triangle r) \\triangle \\{m\\}$, the sizes $|H' \\triangle r|$ and $|H \\triangle r|$ differ by exactly one. So $H$ and $H'$ have different colours, and $H$ is not homogeneous."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Homogeneous means every $n$-subset of $H$ has the same colour, not merely the $n$-subsets of consecutive elements. In the proof above, the reduction to the least element is what makes the colour depend on one index only.\n- The arrow relation stays true when $\\kappa$ is increased or $\\lambda$ or $r$ is decreased. Decreasing the exponent $n$ is safe when $\\lambda$ is infinite (fourth exercise) but not in general: $3 \\to (3)^3_2$ holds trivially, while $3 \\not\\to (3)^2_2$.\n- The uncountable analogue of the infinite Ramsey theorem fails in ZFC for $2^{\\aleph_0}$ (Sierpiński), and its validity for $\\aleph_2$ depends on CH. Do not transfer the countable proof naively: run transfinitely, the construction reaches limit stages where the intersection of the nested sets built so far can be empty, which is one way to see why the Erdős–Rado theorem needs a much larger starting set.\n- Compactness arguments prove that finite numbers exist without bounding them. The Paris–Harrington theorem shows that this loss can be essential.\n- Counterexamples like the one for exponent $\\omega$ use the axiom of choice; they cannot be written down explicitly."
+   },
+   {
+    "type": "connection",
+    "body": "- [[ramsey]]: finite Ramsey theory, which compactness derives from the infinite theorem.\n- [[ramsey-arithmetic]]: Hindman's theorem (1974), that every finite colouring of $\\mathbb N$ has an infinite set all of whose finite sums have one colour, is an infinite Ramsey theorem with a slick proof via ultrafilters.\n- [[compactness]]: the passage from infinite to finite statements is a topological compactness argument in disguise (Tychonoff's theorem for the space of colourings).\n- [[hypergraphs]]: colouring $n$-subsets is colouring the edges of a complete $n$-uniform hypergraph.\n- [[real-numbers]]: Sierpiński's argument rests on the countable dense subset $\\mathbb Q$ of $\\mathbb R$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Prove that every infinite partially ordered set contains an infinite chain (pairwise comparable elements) or an infinite antichain (pairwise incomparable elements).\n2. Show that $\\kappa \\to (\\aleph_0)^n_r$ for every infinite cardinal $\\kappa$ and all positive integers $n, r$.\n3. Prove that every infinite set of points in space contains an infinite subset that lies in one plane or has no four points in a common plane.\n4. Show that if $\\kappa \\to (\\lambda)^n_r$ with $\\lambda$ infinite and $n \\ge 2$, then also $\\kappa \\to (\\lambda)^{n-1}_r$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Graham, Rothschild & Spencer, Ramsey Theory"
+   },
+   {
+    "ref": "Jech, Set Theory"
+   },
+   {
+    "ref": "Erdős, Hajnal, Máté & Rado, Combinatorial Set Theory: Partition Relations for Cardinals"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Finite shadow (Erdős–Szekeres): every permutation of 5 elements has a monotone subsequence of length 3, (2,1,4,3) has none; length-10 sequences (sampled) have one of length 4 while (3,2,1,6,5,4,9,8,7) has none",
+    "python": "import random\nfrom itertools import permutations\ndef longest(seq,cmp):\n    best=[1]*len(seq)\n    for i in range(len(seq)):\n        for j in range(i):\n            if cmp(seq[j],seq[i]): best[i]=max(best[i],best[j]+1)\n    return max(best)\nmono=lambda s: max(longest(s,lambda a,b:a<b),longest(s,lambda a,b:a>b))\nassert all(mono(p)>=3 for p in permutations(range(5)))\nassert mono((2,1,4,3))==2\nrandom.seed(0)\nfor _ in range(20000):\n    p=random.sample(range(10),10); assert mono(p)>=4\nassert mono((3,2,1,6,5,4,9,8,7))==3"
+   },
+   {
+    "claim": "The least-element construction from the proof, run on a random 2-colouring of pairs of a finite set, yields a set whose pair colours depend only on the smaller element, and a homogeneous subset",
+    "python": "import random\nfrom itertools import combinations\nrandom.seed(4)\nN=4096\ncol={}\ndef c(a,b):\n    if a>b: a,b=b,a\n    if (a,b) not in col: col[(a,b)]=random.randint(0,1)\n    return col[(a,b)]\nX=list(range(N)); A=[]; C=[]\nwhile X:\n    a=X[0]; rest=X[1:]\n    if not rest: A.append(a); C.append(0); break\n    groups=[[y for y in rest if c(a,y)==v] for v in (0,1)]\n    v=0 if len(groups[0])>=len(groups[1]) else 1\n    A.append(a); C.append(v); X=groups[v]\nfor i,j in combinations(range(len(A)-1),2):\n    assert c(A[i],A[j])==C[i]\nv=max((0,1),key=C[:-1].count)\nH=[A[i] for i in range(len(A)-1) if C[i]==v]\nassert len(H)>=len(A)//2-1 and len(A)>=12\nassert all(c(x,y)==v for x,y in combinations(H,2))"
+   },
+   {
+    "claim": "Removing the least element of H changes |H symmetric-difference r| by exactly one (random finite tests)",
+    "python": "import random\nrandom.seed(9)\nfor _ in range(2000):\n    H=set(random.sample(range(60),random.randint(1,30))); r=set(random.sample(range(60),random.randint(0,30)))\n    m=min(H); H2=H-{m}\n    assert abs(len(H2^r)-len(H^r))==1\n    assert (H2^r)==((H^r)^{m})"
+   },
+   {
+    "claim": "Finite arrows: 6 -> (3)^2_2 and 5 -/-> (3)^2_2 (so R(3) = 6); decreasing the exponent can fail for finite lambda: 3 -> (3)^3_2 but 3 -/-> (3)^2_2",
+    "python": "from itertools import combinations\ndef arrow(N,lam,n,r):\n    S=list(combinations(range(N),n))\n    def rec(i,col):\n        if i==len(S):\n            return any(len({col[s] for s in combinations(H,n)})==1 for H in combinations(range(N),lam))\n        return all(rec(i+1,{**col,S[i]:c}) for c in range(r))\n    return rec(0,{})\nassert arrow(6,3,2,2) and not arrow(5,3,2,2)\nassert arrow(3,3,3,2) and not arrow(3,3,2,2)\n"
+   },
+   {
+    "claim": "Infinite point set example, homogeneous red case: if all triples of a point set are collinear then every point lies on the line through two fixed points (random collinear integer sets)",
+    "python": "import random\nfrom itertools import combinations\ndef col(a,b,c): return (b[0]-a[0])*(c[1]-a[1])==(b[1]-a[1])*(c[0]-a[0])\nrandom.seed(3)\nfor _ in range(500):\n    a,b=(0,0),(random.randint(1,5),random.randint(-5,5))\n    H=[a,b]+[(t*b[0],t*b[1]) for t in random.sample(range(2,30),5)]\n    assert all(col(*T) for T in combinations(H,3))\n    assert all(col(a,b,c) for c in H)\n"
+   },
+   {
+    "claim": "Erdős-Szekeres finite analogue: every permutation of 5 (= 2^2+1) has a monotone subsequence of length 3, 100000 random permutations of 10 (= 3^2+1) have one of length 4, and the 9-term sequence 3,2,1,6,5,4,9,8,7 has none of length 4",
+    "python": "import random\nfrom itertools import permutations\nfrom bisect import bisect_left\ndef lis(s):\n    t=[]\n    for x in s:\n        i=bisect_left(t,x)\n        if i==len(t): t.append(x)\n        else: t[i]=x\n    return len(t)\nmono=lambda s: max(lis(s),lis([-x for x in s]))\nassert all(mono(p)>=3 for p in permutations(range(5)))\nrandom.seed(1)\nfor _ in range(100000):\n    p=random.sample(range(10),10); assert mono(p)>=4\nassert mono((3,2,1,6,5,4,9,8,7))==3\n"
+   }
+  ]
+ }
+]

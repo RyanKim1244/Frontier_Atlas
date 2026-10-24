@@ -1,0 +1,194 @@
+[
+ {
+  "id": "ramsey",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Small values and the growth of R(k)",
+    "problem": "R(5,5) bounds stated without attribution; writer did not verify. Verified: lower bound 43 from Exoo (1989), upper bound 46 from Angeltveit and McKay (arXiv 2409.15709, 2024).",
+    "fix": "Added both attributions."
+   },
+   {
+    "severity": "style",
+    "where": "intro, section/Small values, section/The general philosophy, connection",
+    "problem": "Lesson over 2000 words, with some repeated points (non-constructive lower bound said twice, in a section and in a pitfall).",
+    "fix": "Tightened the wording, dropped the duplicate pitfall and shortened the connection block."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise numbers (R(3,5) <= 14, at least 4 monochromatic triangles in K7), the sharpness colouring for K6, and R(2,l) = l were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "probabilistic-method",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Alterations: choose at random, then repair",
+    "problem": "Said the alteration bound R(k) > n - binom(n,k)2^(1-binom(k,2)) 'gains a factor of order k over the plain bound'. In fact the optimised plain union bound already gives (1+o(1)) k 2^(k/2)/(e sqrt2), and alteration improves this only to (1+o(1)) k 2^(k/2)/e, a factor sqrt2.",
+    "fix": "Stated both asymptotic bounds and the sqrt2 gain; added an mpmath check at k = 60."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'still the best up to constant factors' is ambiguous: Spencer's bound beats 2^(k/2) by a factor linear in k.",
+    "fix": "Changed to 'up to a factor polynomial in k'; trimmed the block."
+   },
+   {
+    "severity": "style",
+    "where": "intro, section/How the principle is used, pitfall",
+    "problem": "Padding.",
+    "fix": "Shortened."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercises 2 and 3 (expected monochromatic APs, property B with fewer than 2^(k-1) edges) were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "set-systems",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "Called Razborov's 1985 monotone-circuit lower bound for clique 'exponential'. It was superpolynomial (n^(Omega(log n))); the exponential bound is due to Alon and Boppana (1987).",
+    "fix": "Corrected."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'Erdős–Ko–Rado is the first hypergraph Turán-type theorem' is an unverifiable priority claim.",
+    "fix": "Replaced with an exact description: the Turán problem whose forbidden configuration is two disjoint edges."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Katona's at-most-k-arcs claim, the sunflower lemma and Exercise 2 (no 3-chain gives at most 10 sets for n = 4) were not checked.",
+    "fix": "Added two checks: exhaustive for arcs with n <= 10, and brute force for the others."
+   }
+  ]
+ },
+ {
+  "id": "hypergraphs",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/The tetrahedron problem",
+    "problem": "Chung–Lu bound (3+sqrt17)/12 = 0.59359... was given as ~0.5937.",
+    "fix": "Changed to ~0.5936; added a check."
+   },
+   {
+    "severity": "error",
+    "where": "section/The tetrahedron problem",
+    "problem": "Razborov's 2010 flag-algebra bound was given as 0.5617 and called the best upper bound. The bound as published and cited (e.g. Falgas-Ravry–Vaughan, arXiv 1110.1623) is 0.561666, not 0.5611666 (a typo seen in one online listing). Later flag-algebra computations by Baber gave about 0.5615, so Razborov's bound is not the best.",
+    "fix": "Stated 0.561666 for Razborov and added Baber's later 0.5615. A 2026 preprint with a lower bound was left out, since it is not in the brief's timeline."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "'nobody knows how many triples...' could be read as being about exact values for every n.",
+    "fix": "Added 'even asymptotically'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Ramsey numbers for hypergraphs",
+    "problem": "r_3(4,4) = 13 was stated without verification.",
+    "fix": "Verified as McKay and Radziszowski (1991) on McKay's Ramsey data page; kept."
+   },
+   {
+    "severity": "style",
+    "where": "section/Why hypergraphs matter beyond themselves, connection, pitfall",
+    "problem": "Over length.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercises 3 and 4 were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "grids-tilings",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "A vague comb-games bullet with no concrete content.",
+    "fix": "Removed."
+   }
+  ]
+ },
+ {
+  "id": "discrete-geometry",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/What is known, and a 2026 claim",
+    "problem": "The 2026 unit-distance counterexample should be presented only as a claim, as the brief marks it (ai_claim). The Gowers praise was stated as fact.",
+    "fix": "Labelled the paragraph 'Claim (May 2026)', attributed the Gowers praise as reported, and said that nothing in the lesson depends on it."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/The current state",
+    "problem": "f(5) = 9 and f(6) = 17 were stated without verification.",
+    "fix": "Verified f(6) = 17 (Szekeres and Peters, ANZIAM J. 48, 2006) and f(5) = 9 (classical); kept."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/What is known",
+    "problem": "'For decades nobody has improved the exponent 4/3' was vague.",
+    "fix": "Changed to 'not improved since 1984'."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "About 2700 words.",
+    "fix": "Removed the de Bruijn–Erdős example, which was not needed for the summary, and a pitfall that only said the O-constant is hidden; tightened the intro, sections and connection block."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 2 (at most 5 unit distances among 4 points, with an example) was not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "infinite-combinatorics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "Claimed the arrow relation stays true when the exponent n is decreased, with only 'a small argument' needed for infinite lambda. This is false for finite lambda: 3 -> (3)^3_2 holds trivially but 3 -/-> (3)^2_2.",
+    "fix": "Restricted the monotonicity in n to infinite lambda and gave the counterexample; added a brute-force check."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "Said limit stages are 'exactly what costs' the jump to (2^aleph0)^+ in Erdős–Rado. This is a heuristic presented as a precise statement.",
+    "fix": "Softened to a heuristic."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Only 3 checks. R(3) = 6 as an arrow statement and the finite Erdős–Szekeres analogue were not verified properly: the old check rested on random samples of length 10.",
+    "fix": "Added three checks: finite arrows, collinearity homogeneity, and Erdős–Szekeres with an exhaustive n = 2 case."
+   }
+  ]
+ }
+]
