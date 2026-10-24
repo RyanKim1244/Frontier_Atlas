@@ -320,7 +320,9 @@ for ps in ALL.values():
     for p in ps: colls[p["coll"]] = colls.get(p["coll"], 0) + 1
 stats = {"textbook": len(textbook), "olympiad": len(olympiad), "bridge": len(bridge), "research": len(research), "examples": len(examples), "total": sum(len(v) for v in ALL.values()),
          "open": sum(p["status"] == "open" for p in research), "solved": sum(p["status"] == "solved" for p in research), "claimed": sum(p["status"] == "claimed" for p in research), "collections": colls}
-catalog = {"bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
+_pub = {c["id"] for c in concepts}
+planned = {c[0]: c[1] for c in catalog_r4._m5.C if c[0] not in _pub}
+catalog = {"planned": planned, "bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
            "credits": ["Textbook exercises: David Austin, Understanding Linear Algebra (CC BY 4.0); Mitchel T. Keller and William T. Trotter, Applied Combinatorics (CC BY-SA 4.0); Jiří Lebl, Basic Analysis I–II and Notes on Diffy Qs (CC BY-SA 4.0). Statements only, reformatted; exercises from CC BY-SA sources are shared under CC BY-SA 4.0.",
                        "Olympiad statements: IMO, USAMO and national olympiads, cross-checked with the compfiles Lean statements (Apache-2.0).",
                        "Erdős and Green problems: google-deepmind/formal-conjectures (Apache-2.0); Erdős status from teorth/erdosproblems, mirroring erdosproblems.com.",

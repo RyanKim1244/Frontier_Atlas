@@ -200,6 +200,7 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .lb-fig { margin: 20px 0; text-align: center; } .lb-fig img { max-width: 100%; height: auto; } .lb-fig figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; } .lb-fig figcaption p { margin: 0; }
 .req { padding-left: 0; list-style: none; } .req li { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--rule); } .req li p { margin: 0; }
 .req-p { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); min-width: 82px; } .req-p.core { color: var(--accent); }
+.soon { border-bottom: 1px dotted var(--ink-3); cursor: help; }
 .rlist { margin: 0 0 14px; padding-left: 22px; } .rlist li { margin: 3px 0; }
 .toc-block ul li { border: 0; padding: 3px 0; } .toc { text-align: left; font-size: 14px; text-decoration: none; }
 @media (min-width: 901px) { .aside { position: sticky; top: 78px; max-height: calc(100vh - 96px); overflow-y: auto; } }
@@ -453,7 +454,8 @@ function inline(par, em, into) {
     if (m.index > last) into.append(par.slice(last, m.index));
     if (m[1]) { let t = m[2] || (CON[m[1]] ? CON[m[1]].title : m[1]);
       if (!m[2] && /\b(the|a|an)\s$/i.test(par.slice(Math.max(0, m.index - 4), m.index))) t = t.replace(/^(The|A|An)\s+/, "");
-      into.append(CON[m[1]] ? conceptLink(m[1], t) : t); }
+      if (!CON[m[1]] && !m[2] && CAT.planned && CAT.planned[m[1]]) t = CAT.planned[m[1]];
+      into.append(CON[m[1]] ? conceptLink(m[1], t) : h("span", { class: "soon", title: "Page in preparation" }, t)); }
     else if (m[4]) into.append(h("a", { href: m[4], target: "_blank", rel: "noopener" }, m[3]));
     else if (m[6]) into.append(h("i", null, m[6]));
     else into.append(h("code", { class: "mono", style: "font-size:.88em" }, m[5]));

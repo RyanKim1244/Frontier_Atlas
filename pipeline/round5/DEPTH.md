@@ -20,7 +20,10 @@ cellular homology, which nearly every paper using homology assumes.
    - examples and counterexamples, from easy to hard
 4. **Proofs.** Full proofs of the main theorems; a proof left out names where it is done.
 5. **Exercises in every section,** graded, not one at the end.
-6. **A concept may be several pages** (a short chapter) when one page cannot hold it.
+6. **One concept per page; no length target.** An outline step fixes the scope from the textbooks and the papers' needs before
+   writing; length follows from it. Material that is a different concept (own definitions, theorems, textbook chapter) gets its
+   own page, linked as a prerequisite or follow-up, instead of being absorbed. (Pilot lesson: a word range in the instructions made
+   three very different concepts come out at the same length, and the sufficiency check absorbed neighbouring concepts.)
 7. **Checking.** Writer → independent reviewer (correctness) → separate sufficiency checker (re-reads the requirements
    list and one of the papers, marks what is still missing) → fixes → independent correctness review of everything the sufficiency checker added → checks and render sweep re-run by me.
 8. **Existing pages count too.** The 279 published pages are re-audited against the same standard.
