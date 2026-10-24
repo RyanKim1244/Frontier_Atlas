@@ -61,7 +61,7 @@ main { padding-block: 40px 84px; min-height: 60vh; overflow-x: clip; }
 
 /* inputs */
 input[type="text"], input[type="search"], select, textarea { background: var(--raise); border: 1px solid var(--rule-2); border-radius: 4px; padding: 8px 11px; font-family: var(--sans); font-size: 15px; }
-textarea { width: 100%; min-height: 96px; resize: vertical; line-height: 1.5; }
+textarea { box-sizing: border-box; width: 100%; min-height: 96px; resize: vertical; line-height: 1.5; }
 .btn { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); border-radius: 4px; padding: 8px 15px; font-family: var(--sans); font-weight: 600; font-size: 14px; cursor: pointer; }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule-2); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -237,6 +237,28 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .post .acts { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
 .post .replies { margin-top: 10px; padding-left: 16px; border-left: 2px solid var(--rule); display: grid; gap: 8px; }
 .post .replies .post { border-top: 0; padding-top: 0; }
+.cm { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 6px; padding-top: 12px; }
+.thread > .cm { border-top: 1px solid var(--rule); }
+.cm-child { padding-top: 10px; }
+.cm-rail { grid-row: 1; border: 0; background: none; cursor: pointer; padding: 0; position: relative; margin-top: 26px; }
+.cm-rail::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--rule); border-radius: 1px; }
+.cm-rail:hover::before { background: var(--accent); }
+.cm.collapsed > .cm-rail { visibility: hidden; }
+.cm-main { min-width: 0; }
+.cm-fold { width: 18px; height: 18px; line-height: 14px; border: 1px solid var(--rule-2); border-radius: 50%; background: var(--raise); color: var(--ink-3); font-size: 12px; cursor: pointer; padding: 0; margin-left: -24px; flex: none; }
+.cm-more { font-style: italic; }
+.cm .body { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 6px; font-size: 16.5px; }
+.cm .acts { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+.cm-kids { margin-top: 2px; }
+.thread-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 6px; }
+.sortbar button { padding: 3px 12px; }
+.composer .bar-r { display: inline-flex; gap: 12px; align-items: center; }
+.composer-big { border: 1px solid var(--rule-2); border-radius: 6px; background: var(--raise); padding: 16px 18px; }
+.composer-big textarea { min-height: 150px; font-size: 16px; }
+.qhead { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; font-family: var(--sans); }
+.qhead label { display: inline-flex; gap: 8px; align-items: center; color: var(--ink-2); } .qhead select { max-width: 320px; }
+.qpage { max-width: 860px; } .qcomp { margin: 22px 0 18px; }
+@media (max-width: 620px) { .cm { grid-template-columns: 12px minmax(0, 1fr); column-gap: 4px; } .cm-rail::before { left: 5px; } .cm-fold { margin-left: -18px; } .qhead select { max-width: 100%; } }
 .vote { font-family: var(--mono); font-size: 12px; border: 1px solid var(--rule-2); background: var(--raise); border-radius: 3px; padding: 1px 9px; cursor: pointer; }
 .vote.on { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); }
 .composer { display: grid; gap: 8px; }
@@ -1074,10 +1096,14 @@ function ensureProposals(force) {
     const { data, error } = await S.sb.from("post_feed").select(FEED).eq("kind", "proposal").is("parent", null).order("created_at", { ascending: false }).limit(300);
     if (error) throw error;
     await absorb(data);
-    const ids = data.map(r => r.id);
-    for (let i = 0; i < ids.length; i += 150) {
-      const rep = await S.sb.from("post_feed").select(FEED).in("parent", ids.slice(i, i + 150)).order("created_at").limit(2000);
-      if (!rep.error) await absorb(rep.data);
+    let ids = data.map(r => r.id);
+    for (let level = 0; level < 8 && ids.length; level++) {
+      const next = [];
+      for (let i = 0; i < ids.length; i += 150) {
+        const rep = await S.sb.from("post_feed").select(FEED).in("parent", ids.slice(i, i + 150)).order("created_at").limit(2000);
+        if (!rep.error) { await absorb(rep.data); rep.data.forEach(r => next.push(r.id)); }
+      }
+      ids = next;
     }
   });
 }
@@ -1127,7 +1153,7 @@ async function deleteItem(it) {
 }
 function dropPost(id) {
   const it = S.posts[id]; if (!it) return;
-  const gone = [id, ...Object.values(S.posts).filter(x => x.parent === id).map(x => x.id)];
+  const gone = [id]; for (let k = 0; k < gone.length; k++) Object.values(S.posts).forEach(x => { if (x.parent === gone[k]) gone.push(x.id); });
   gone.forEach(g => { const x = S.posts[g]; if (x && x.kind !== "problem") S.counts[x.target] = Math.max(0, (S.counts[x.target] || 0) - 1); delete S.posts[g]; });
 }
 let voteBusy = new Set();
@@ -1197,90 +1223,118 @@ function livePreview(ta) {
   ta.addEventListener("input", () => { clearTimeout(tm); tm = setTimeout(draw, 350); }); setTimeout(draw, 0);
   return box;
 }
-function postView(it, ps, replies, opts) {
-  const p = ps[it.author] || {}, v = votesFor(it.id);
-  const el = h("div", { class: "post" }), body = h("div", { class: "body" }); body.textContent = safeTex(it.body);
+/* Reddit-style threads: nested replies, votes on every post, collapsible branches, Top/New sort. */
+const MAXDEPTH = 8;
+function childrenOf(items) { const m = {}; items.forEach(i => { if (i.parent) (m[i.parent] = m[i.parent] || []).push(i); }); return m; }
+function sortPosts(list, mode) { return list.slice().sort(mode === "new" ? (a, b) => b.createdAt.localeCompare(a.createdAt) : (a, b) => votesFor(b.id).n - votesFor(a.id).n || a.createdAt.localeCompare(b.createdAt)); }
+function countDesc(id, kids) { return (kids[id] || []).reduce((n, c) => n + 1 + countDesc(c.id, kids), 0); }
+function composer(opts) {
+  const ta = h("textarea", { id: opts.id, placeholder: opts.placeholder || "Plain text; math in $...$ or $$...$$.", class: opts.big ? "big" : null });
+  if (opts.draftKey) { ta.value = S.drafts[opts.draftKey] || ""; ta.addEventListener("input", () => { S.drafts[opts.draftKey] = ta.value; }); }
+  const send = h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; send.disabled = true; const ok = await opts.onSend(t); send.disabled = false; if (ok) { ta.value = ""; if (opts.draftKey) S.drafts[opts.draftKey] = ""; } } }, opts.label || "Post");
+  const box = h("div", { class: "composer" + (opts.big ? " composer-big" : "") }, opts.head || null, ta, livePreview(ta), h("div", { class: "bar" }, opts.extra || h("span"), h("span", { class: "bar-r" }, opts.cancel || null, send)));
+  box._ta = ta; return box;
+}
+function postView(it, ps, kids, opts, depth) {
+  depth = depth || 0;
+  const p = ps[it.author] || {}, v = votesFor(it.id), children = sortPosts(kids[it.id] || [], opts.sort);
+  const el = h("div", { class: "cm" + (depth ? " cm-child" : ""), id: "post-" + it.id });
+  const body = h("div", { class: "body" }); body.textContent = safeTex(it.body);
   let shownBody = body;
   if (it.spoiler && it.author !== S.uid) {
     const wrap = h("div", { class: "spoiler" });
-    const btn = h("button", { class: "linkbtn", onclick: () => { wrap.replaceChildren(body); typeset(body); } }, "Show solution");
-    wrap.append(btn); shownBody = wrap;
+    wrap.append(h("button", { class: "linkbtn", onclick: () => { wrap.replaceChildren(body); typeset(body); } }, "Show solution"));
+    shownBody = wrap;
   }
-  const acts = h("div", { class: "acts" });
-  if (!it.parent) {
-    acts.append(h("button", { class: "vote" + (v.mine ? " on" : ""), disabled: canPost() ? null : true, "aria-pressed": v.mine ? "true" : "false", onclick: () => toggleVote(it.id), title: "Agree" }, "+" + v.n));
-    if (canPost()) acts.append(h("button", { class: "linkbtn", onclick: () => { const rb = el.querySelector(".reply-box"); rb.hidden = !rb.hidden; rb.querySelector("textarea").focus(); } }, "Reply"));
-  }
+  const n = countDesc(it.id, kids);
+  const fold = h("button", { class: "cm-fold", title: "Collapse", "aria-expanded": "true", onclick: () => toggle() }, "−");
+  const rail = h("button", { class: "cm-rail", "aria-label": "Collapse this thread", onclick: () => toggle() });
+  const more = h("span", { class: "cm-more", hidden: true }, n ? n + (n === 1 ? " reply hidden" : " replies hidden") : "collapsed");
+  const acts = h("div", { class: "acts" },
+    h("button", { class: "vote" + (v.mine ? " on" : ""), disabled: canPost() ? null : true, "aria-pressed": v.mine ? "true" : "false", onclick: () => toggleVote(it.id), title: "Upvote" }, "▲ " + v.n));
+  const replyHost = h("div");
+  if (canPost() && depth < MAXDEPTH) acts.append(h("button", { class: "linkbtn", onclick: () => {
+    if (replyHost.firstChild) { replyHost.replaceChildren(); return; }
+    const c = composer({ id: "re-" + it.id, placeholder: "Reply. Math in $...$", label: "Reply",
+      cancel: h("button", { class: "linkbtn", onclick: () => replyHost.replaceChildren() }, "Cancel"),
+      onSend: async t => { const ok = await addItem({ kind: "post", target: it.target, body: t, parent: it.id }); if (ok) replyHost.replaceChildren(); return ok; } });
+    replyHost.replaceChildren(c); c._ta.focus(); } }, "Reply"));
   if (canPost() && (it.author === S.uid || S.isAdmin)) {
     const del = h("button", { class: "linkbtn", onclick: () => { if (del.dataset.armed) deleteItem(it); else { del.dataset.armed = "1"; del.textContent = "Delete for good?"; setTimeout(() => { if (del.isConnected) { delete del.dataset.armed; del.textContent = "Delete"; } }, 4000); } } }, "Delete");
     acts.append(del);
   }
-  el.append(h("div", { class: "post-h" }, p.avatarUrl ? h("img", { src: p.avatarUrl, alt: "" }) : null, h("a", { class: "pauthor", href: "#user-" + it.author }, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
-    it.kind === "proposal" ? h("span", { class: "tag claimed" }, "Research question") : null, it.spoiler ? h("span", { class: "tag solved" }, "Solution") : null, opts.showTarget ? targetLink(it.target) : null), shownBody, acts);
-  if (!it.parent) {
-    if (replies.length) el.append(h("div", { class: "replies" }, replies.map(r => postView(r, ps, [], opts))));
-    if (canPost()) {
-      const ta = h("textarea", { id: "re-" + it.id, placeholder: "Reply. Math in $...$" });
-      el.append(h("div", { class: "reply-box composer", hidden: true, style: "margin-top:10px" }, ta, livePreview(ta),
-        h("div", { class: "bar" }, h("span"), h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; ta.value = ""; await addItem({ kind: "post", target: it.target, body: t, parent: it.id }); } }, "Reply"))));
-    }
-  }
+  const head = h("div", { class: "post-h" }, fold, p.avatarUrl ? h("img", { src: p.avatarUrl, alt: "" }) : null,
+    h("a", { class: "pauthor", href: "#user-" + it.author }, p.name || (it.author === S.uid ? "You" : "Member")), h("span", { class: "mono" }, fmtDate(it.createdAt)),
+    it.kind === "proposal" ? h("span", { class: "tag claimed" }, "Research question") : null, it.spoiler ? h("span", { class: "tag solved" }, "Solution") : null,
+    opts.showTarget && !depth ? targetLink(it.target) : null, more);
+  const content = h("div", { class: "cm-content" }, shownBody, acts, replyHost,
+    children.length ? h("div", { class: "cm-kids" }, children.map(c => postView(c, ps, kids, opts, depth + 1))) : null);
+  el.append(rail, h("div", { class: "cm-main" }, head, content));
+  function toggle() { const c = !content.hidden; content.hidden = c; more.hidden = !c; el.classList.toggle("collapsed", c); fold.textContent = c ? "+" : "−"; fold.setAttribute("aria-expanded", c ? "false" : "true"); }
   return el;
 }
-function threadBox(target, opts) { const el = h("div", { class: "thread", "data-target": target }); el._opts = opts; renderThread(el, true); return el; }
+function sortBar(opts, redraw) {
+  return h("div", { class: "seg sortbar", role: "group", "aria-label": "Sort" }, [["top", "Top"], ["new", "New"]].map(([k, l]) =>
+    h("button", { "aria-pressed": (opts.sort || "top") === k ? "true" : "false", onclick: () => { opts.sort = k; redraw(); } }, l)));
+}
+function threadBox(target, opts) { const el = h("div", { class: "thread", "data-target": target }); el._opts = Object.assign({ sort: "top" }, opts); renderThread(el, true); return el; }
 async function renderThread(el, fresh) {
   const target = el.dataset.target, opts = el._opts || {}, gen = el._gen = (el._gen || 0) + 1;
   if (fresh) el._fresh = true;
   let failed = false;
   if (S.community === "on") { const force = !!el._fresh; el._fresh = false; await ensureTarget(target, force).catch(() => { failed = true; }); }
   if (gen !== el._gen) return;
-  const items = allItems().filter(i => i.target === target && i.kind !== "problem"), tops = items.filter(i => !i.parent);
+  const items = allItems().filter(i => i.target === target && i.kind !== "problem"), tops = sortPosts(items.filter(i => !i.parent), opts.sort), kids = childrenOf(items);
   const ps = await names(items.map(i => i.author));
   if (gen !== el._gen) return;
   const out = [], note = participationNote();
+  if (canPost()) {
+    const slug = target.replace(/[^a-z0-9]/gi, "-");
+    const prop = opts.allowProposal ? h("input", { type: "checkbox", id: "pp-" + slug }) : null;
+    const spo = opts.solutions ? h("input", { type: "checkbox", id: "sp-" + slug, checked: true }) : null;
+    out.push(composer({ id: "c-" + slug, draftKey: target,
+      extra: prop ? h("label", { for: prop.id }, prop, "Propose as a research question") : spo ? h("label", { for: spo.id }, spo, "This is a solution (keep it folded)") : h("span"),
+      onSend: async t => { const ok = await addItem(Object.assign({ kind: prop && prop.checked ? "proposal" : "post", target, body: t }, spo && spo.checked ? { spoiler: true } : {})); if (ok) toast(prop && prop.checked ? "Posted as a research question." : "Posted."); return ok; } }));
+  }
   if (note) out.push(h("div", { class: "note" }, note));
   if (failed) out.push(h("div", { class: "note" }, "The discussion could not be loaded. Reload the page to try again."));
-  if (!tops.length && S.community === "on" && !failed) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No posts yet."), target.startsWith("problem:") ? "Share an approach, a proof or a question." : "Ask a question or point out a gap."));
-  tops.forEach(t => out.push(postView(t, ps, items.filter(r => r.parent === t.id), opts)));
-  if (canPost()) {
-    const key = target, ta = h("textarea", { id: "c-" + target.replace(/[^a-z0-9]/gi, "-"), placeholder: "Plain text; math in $...$ or $$...$$." });
-    ta.value = S.drafts[key] || ""; ta.addEventListener("input", () => { S.drafts[key] = ta.value; });
-    const prop = opts.allowProposal ? h("input", { type: "checkbox", id: "pp-" + target.replace(/[^a-z0-9]/gi, "-") }) : null;
-    const spo = opts.solutions ? h("input", { type: "checkbox", id: "sp-" + target.replace(/[^a-z0-9]/gi, "-"), checked: true }) : null;
-    const send = h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; send.disabled = true; const ok = await addItem(Object.assign({ kind: prop && prop.checked ? "proposal" : "post", target, body: t }, spo && spo.checked ? { spoiler: true } : {})); if (ok) { S.drafts[key] = ""; toast(prop && prop.checked ? "Posted as a research question." : "Posted."); } send.disabled = false; } }, "Post");
-    out.push(h("div", { class: "composer" }, ta, livePreview(ta), h("div", { class: "bar" }, prop ? h("label", { for: prop.id }, prop, "Propose as a research question") : spo ? h("label", { for: spo.id }, spo, "This is a solution (keep it folded)") : h("span"), send)));
-  }
+  if (tops.length) out.push(h("div", { class: "thread-bar" }, h("span", { class: "small muted" }, items.length + (items.length === 1 ? " post" : " posts")), sortBar(opts, () => renderThread(el))));
+  else if (S.community === "on" && !failed) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No posts yet."), target.startsWith("problem:") ? "Share an approach, a proof or a question." : "Ask a question or point out a gap."));
+  tops.forEach(t => out.push(postView(t, ps, kids, opts)));
   el.replaceChildren(...out); typeset(el);
 }
+const QOPTS = { sort: "top", showTarget: true };
 function viewQuestions() {
   setTimeout(() => renderQuestions(true), 0);
-  return h("div", null, h("header", { class: "page-h" }, h("h1", null, "Research questions"), h("p", null, "Questions worth answering next. Vote for the ones you want answered.")),
-    h("div", { class: "cgrid" }, h("div", { class: "thread", id: "qlist" }), h("aside", { class: "aside" }, h("section", { class: "block" }, h("h2", null, "Propose a question"), h("div", { id: "qcomp" })))));
+  return h("div", { class: "qpage" }, h("header", { class: "page-h" }, h("h1", null, "Research questions"), h("p", null, "Questions worth answering next. Vote for the ones you want answered.")),
+    h("div", { id: "qcomp", class: "qcomp" }), h("div", { id: "qbar" }), h("div", { class: "thread", id: "qlist" }));
 }
 let qGen = 0;
 async function renderQuestions(fresh) {
   const gen = ++qGen;
   if (S.community === "on") await ensureProposals(fresh === true).catch(() => {});
   if (gen !== qGen) return;
-  const list = document.getElementById("qlist"), comp = document.getElementById("qcomp");
+  const list = document.getElementById("qlist"), comp = document.getElementById("qcomp"), bar = document.getElementById("qbar");
   const all = allItems(), props = all.filter(i => i.kind === "proposal" && !i.parent);
   document.getElementById("qcount").textContent = props.length ? props.length : "";
   if (!list) return;
   const ps = await names(all.map(i => i.author));
   if (gen !== qGen) return;
-  props.sort((a, b) => votesFor(b.id).n - votesFor(a.id).n || b.createdAt.localeCompare(a.createdAt));
+  const kids = childrenOf(all.filter(i => props.some(p => p.target === i.target) || true));
   const out = [], note = participationNote();
   if (note) out.push(h("div", { class: "note" }, note));
   if (!props.length) out.push(h("div", { class: "empty", style: "margin-top:0" }, h("b", null, "No questions yet."), "Propose the first one."));
-  props.forEach(p => out.push(postView(p, ps, all.filter(r => r.parent === p.id), { showTarget: true })));
+  sortPosts(props, QOPTS.sort).forEach(p => out.push(postView(p, ps, kids, QOPTS)));
+  if (bar) bar.replaceChildren(props.length ? h("div", { class: "thread-bar" }, h("span", { class: "small muted" }, props.length + (props.length === 1 ? " question" : " questions")), sortBar(QOPTS, () => renderQuestions())) : "");
   list.replaceChildren(...out); typeset(list);
   if (!comp || comp.dataset.built === String(canPost())) return;
   comp.dataset.built = String(canPost());
-  if (!canPost()) { comp.replaceChildren(h("p", { class: "note" }, participationNote() || "")); return; }
-  const sel = h("select", { id: "qt", style: "width:100%" }, h("option", { value: "general" }, "No specific concept"), CAT.concepts.map(c => h("option", { value: "concept:" + c.id }, c.title)));
-  const ta = h("textarea", { id: "qb", placeholder: "For example: does the cubic theta argument extend from $\\mathbb Q(\\sqrt{-3})$ to $\\mathbb Q(\\sqrt{-7})$?" });
-  const send = h("button", { class: "btn", onclick: async () => { const t = ta.value.trim(); if (!t) return; const ok = await addItem({ kind: "proposal", target: sel.value, body: t }); if (ok) { ta.value = ""; toast("Question posted."); } } }, "Propose");
-  comp.replaceChildren(h("div", { class: "composer" }, h("label", { for: "qt", class: "small" }, "Related concept"), sel, ta, livePreview(ta), h("div", { class: "bar" }, h("span"), send)));
+  if (!canPost()) { comp.replaceChildren(); return; }
+  const sel = h("select", { id: "qt" }, h("option", { value: "general" }, "No specific concept"), CAT.concepts.map(c => h("option", { value: "concept:" + c.id }, c.title)));
+  comp.replaceChildren(composer({ id: "qb", big: true, draftKey: "question", label: "Post question",
+    placeholder: "Ask a question worth answering. Give the context and what you already know. Math in $...$ or $$...$$.",
+    head: h("div", { class: "qhead" }, h("b", null, "Propose a research question"), h("label", { for: "qt", class: "small" }, "Related concept", sel)),
+    onSend: async t => { const ok = await addItem({ kind: "proposal", target: sel.value, body: t }); if (ok) toast("Question posted."); return ok; } }));
 }
 function viewReview() {
   setTimeout(() => renderReviewList(true), 0);

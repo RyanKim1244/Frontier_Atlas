@@ -42,7 +42,7 @@ insert into votes (post_id) select id from posts where target = 'concept:divisib
 insert into posts (target, parent, body) select target, id, 'reply' from posts where target = 'concept:divisibility' and kind='post';
 \echo expect ERROR reply across targets
 insert into posts (target, parent, body) select 'general', id, 'reply' from posts where target = 'concept:divisibility' and kind='post';
-\echo expect ERROR reply to reply
+\echo reply to reply now allowed (nested threads)
 insert into posts (target, parent, body) select target, id, 'r2' from posts where body = 'reply';
 \echo expect 0 deleted (A post)
 delete from posts where body = 'hello $x$';
