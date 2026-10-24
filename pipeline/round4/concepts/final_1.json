@@ -1,0 +1,1308 @@
+[
+ {
+  "id": "sets-relations",
+  "entry": {
+   "sum": "A set is a collection determined by its elements, and a relation on $A$ is just a set of ordered pairs $R \\subseteq A \\times A$. The two most important kinds are equivalence relations (reflexive, symmetric, transitive), which are the same thing as partitions, and partial orders (reflexive, antisymmetric, transitive), which formalise 'comes before'.",
+   "key": [
+    "(A \\cup B)^c = A^c \\cap B^c,\\quad (A \\cap B)^c = A^c \\cup B^c",
+    "\\text{equivalence relations on } A \\;\\longleftrightarrow\\; \\text{partitions of } A",
+    "|\\mathcal{P}(A)| = 2^{|A|},\\qquad \\#\\{\\text{relations on } A\\} = 2^{|A|^2}"
+   ],
+   "why": "Every quotient construction in mathematics (residues mod $n$, cosets, identifying the edges of a square to get a torus) is a partition by an equivalence relation, and partial orders model dependencies, from inclusion of sets to task scheduling.",
+   "msc": [
+    "03E20",
+    "06A06"
+   ],
+   "links": [
+    {
+     "field": "computer-science",
+     "note": "Relational databases store n-ary relations as tables, and reachability in a directed graph is the transitive closure of its edge relation."
+    },
+    {
+     "field": "algebra",
+     "note": "Quotient groups and rings are built by partitioning a group or ring into the classes of an equivalence relation, such as the cosets of a subgroup."
+    },
+    {
+     "field": "topology",
+     "note": "Quotient spaces, such as a torus obtained from a square, are defined by gluing points together along an equivalence relation."
+    }
+   ],
+   "refs": [
+    "Rosen, Discrete Mathematics and Its Applications",
+    "Halmos, Naive Set Theory",
+    "Davey & Priestley, Introduction to Lattices and Order"
+   ],
+   "aliases": [
+    "set theory basics",
+    "set operations",
+    "relations",
+    "equivalence relation",
+    "partition",
+    "partial order",
+    "poset",
+    "Hasse diagram",
+    "transitive closure",
+    "Venn diagram"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Sorting a drawer of socks into matching pairs, listing which cities have direct flights between them, saying that two integers \"leave the same remainder when divided by 3\", ranking tasks so that each one comes after the tasks it depends on: all of these are statements about collections of objects and about how pairs of objects are linked. Sets are the collections; relations are the links.\n\nThis page sets up that language. The two ideas worth carrying away are that an equivalence relation is the same thing as a way of cutting a set into pieces, and that a partial order is a consistent way of saying \"comes before\" when not every pair has to be comparable."
+    },
+    {
+     "type": "section",
+     "title": "Sets and how to describe them",
+     "body": "A set is a collection of objects, called its elements; we write $x \\in A$ for \"$x$ is an element of $A$\" and $x \\notin A$ otherwise. A set is determined by its elements alone: order and repetition do not matter, so $\\{1,2,3\\}$, $\\{3,1,2\\}$ and $\\{1,1,2,3\\}$ are the same set. This principle (two sets are equal exactly when they have the same elements) is called extensionality.\n\nThere are two common ways to describe a set. Listing (roster notation): $\\{2,3,5,7\\}$. Set-builder notation: $\\{n \\in \\mathbb{Z} : n > 0 \\text{ and } n^2 < 50\\}$, read \"the set of integers $n$ such that $n>0$ and $n^2<50$\", which is $\\{1,2,3,4,5,6,7\\}$. The empty set $\\varnothing$ has no elements at all.\n\n$A$ is a subset of $B$, written $A \\subseteq B$, if every element of $A$ is an element of $B$. So $A = B$ exactly when $A \\subseteq B$ and $B \\subseteq A$; this \"two inclusions\" pattern is the standard way to prove two sets equal. Note that $\\varnothing \\subseteq A$ for every set $A$, because there is no element of $\\varnothing$ that could fail to lie in $A$.\n\nThe power set $\\mathcal{P}(A)$ is the set of all subsets of $A$. If $A$ has $n$ elements then $\\mathcal{P}(A)$ has $2^n$: to build a subset you decide, independently for each of the $n$ elements, whether it is in or out."
+    },
+    {
+     "type": "definition",
+     "title": "Set operations",
+     "body": "For sets $A, B$ inside some universe $U$:\n\n- union $A \\cup B = \\{x : x \\in A \\text{ or } x \\in B\\}$;\n- intersection $A \\cap B = \\{x : x \\in A \\text{ and } x \\in B\\}$;\n- difference $A \\setminus B = \\{x : x \\in A \\text{ and } x \\notin B\\}$;\n- complement $A^c = U \\setminus A$;\n- Cartesian product $A \\times B = \\{(a,b) : a \\in A,\\ b \\in B\\}$, the set of ordered pairs.\n\nUnion, intersection and complement are the set versions of \"or\", \"and\" and \"not\"; the product is how we build the pairs that relations are made of. If $A$ and $B$ are finite, $|A \\times B| = |A|\\cdot|B|$."
+    },
+    {
+     "type": "theorem",
+     "title": "De Morgan's laws",
+     "body": "For any subsets $A, B$ of a universe $U$,\n$$(A \\cup B)^c = A^c \\cap B^c, \\qquad (A \\cap B)^c = A^c \\cup B^c.$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof of the first law",
+     "body": "For any $x \\in U$: $x \\in (A\\cup B)^c$ means $x$ is not in $A \\cup B$, which happens exactly when $x \\notin A$ and $x \\notin B$, that is when $x \\in A^c \\cap B^c$. Each step is an \"exactly when\", so this proves both inclusions at once. The second law follows by applying the first to $A^c$ and $B^c$ and taking complements."
+    },
+    {
+     "type": "section",
+     "title": "Relations as sets of pairs",
+     "body": "A relation from $A$ to $B$ is simply a subset $R \\subseteq A \\times B$; we write $a \\mathrel{R} b$ for $(a,b) \\in R$. A relation on $A$ is a subset of $A \\times A$. For example, on $A = \\{1,2,3,4\\}$ the relation \"divides\" is\n$$\\{(1,1),(1,2),(1,3),(1,4),(2,2),(2,4),(3,3),(4,4)\\}.$$\n\nSince $A \\times A$ has $n^2$ elements when $|A| = n$, there are $2^{n^2}$ relations on an $n$-element set. A function $f : A \\to B$ (see [[functions]]) is the special kind of relation in which every $a \\in A$ is related to exactly one $b$.\n\nFinite relations can be drawn in two handy ways. As a matrix: rows and columns indexed by elements, with a 1 in position $(a,b)$ when $a \\mathrel{R} b$. As a directed graph: a dot for each element and an arrow $a \\to b$ for each related pair. More generally an $n$-ary relation is a subset of $A_1 \\times \\dots \\times A_n$; a table in a database, where each row is a tuple (name, date of birth, city), is exactly this."
+    },
+    {
+     "type": "definition",
+     "title": "Properties of a relation on A",
+     "body": "A relation $R$ on a set $A$ is\n\n- reflexive if $a \\mathrel{R} a$ for every $a \\in A$;\n- symmetric if $a \\mathrel{R} b$ implies $b \\mathrel{R} a$;\n- antisymmetric if $a \\mathrel{R} b$ and $b \\mathrel{R} a$ together imply $a = b$;\n- transitive if $a \\mathrel{R} b$ and $b \\mathrel{R} c$ together imply $a \\mathrel{R} c$.\n\nIn the arrow picture: reflexive means a loop at every dot, symmetric means every arrow has a return arrow, antisymmetric means no two distinct dots have arrows both ways, transitive means every two-step path has a shortcut arrow."
+    },
+    {
+     "type": "section",
+     "title": "Closures",
+     "body": "If a relation lacks a property, we can add the fewest pairs needed to get it. The reflexive closure of $R$ is $R \\cup \\{(a,a) : a \\in A\\}$; the symmetric closure is $R \\cup \\{(b,a) : (a,b) \\in R\\}$. The transitive closure $R^+$ is the smallest transitive relation containing $R$: $a \\mathrel{R^+} b$ exactly when there is a chain $a = x_0 \\mathrel{R} x_1 \\mathrel{R} \\cdots \\mathrel{R} x_k = b$ with $k \\ge 1$. In graph terms, $R^+$ records which dots can be reached from which by following arrows; on an $n$-element set chains of at most $n$ steps suffice. Computing reachability like this is a basic task in [[graph-algorithms]]."
+    },
+    {
+     "type": "definition",
+     "title": "Equivalence relation, class, partition",
+     "body": "An equivalence relation on $A$ is a relation that is reflexive, symmetric and transitive; it is often written $\\sim$. The equivalence class of $a$ is $[a] = \\{x \\in A : x \\sim a\\}$. A partition of $A$ is a collection of nonempty subsets of $A$ (the blocks) such that every element of $A$ lies in exactly one block.\n\nAn equivalence relation is a notion of \"the same for present purposes\": same remainder mod 3, same birthday, same shape."
+    },
+    {
+     "type": "theorem",
+     "title": "Equivalence relations are partitions",
+     "body": "If $\\sim$ is an equivalence relation on $A$, its equivalence classes form a partition of $A$. Conversely, if $\\Pi$ is a partition of $A$, the relation \"$a \\sim b$ if and only if $a$ and $b$ lie in the same block of $\\Pi$\" is an equivalence relation whose classes are exactly the blocks of $\\Pi$. These two constructions undo each other."
+    },
+    {
+     "type": "proof",
+     "body": "Let $\\sim$ be an equivalence relation. Each class $[a]$ is nonempty because $a \\in [a]$ by reflexivity, and this also shows every element lies in at least one class. It remains to see that two classes are either equal or disjoint. Suppose $c \\in [a] \\cap [b]$, so $c \\sim a$ and $c \\sim b$. By symmetry $a \\sim c$, and by transitivity $a \\sim b$. Now if $x \\in [a]$ then $x \\sim a$ and $a \\sim b$, so $x \\sim b$ and $x \\in [b]$; thus $[a] \\subseteq [b]$, and by the same argument with $a, b$ swapped, $[b] \\subseteq [a]$. So overlapping classes coincide, and every element lies in exactly one class.\n\nFor the converse, \"same block\" is reflexive (each $a$ is in its own block), symmetric (the wording is symmetric) and transitive (if $a, b$ share a block and $b, c$ share a block, these blocks both contain $b$, so they are the same block, which contains $a$ and $c$). The class of $a$ is the block containing $a$. Finally, starting from $\\sim$, forming classes, and then taking \"same class\" gives back $\\sim$, since $a \\sim b$ exactly when $a \\in [b]$."
+    },
+    {
+     "type": "definition",
+     "title": "Partial order",
+     "body": "A partial order on $A$ is a relation that is reflexive, antisymmetric and transitive, usually written $\\preceq$; the pair $(A, \\preceq)$ is a partially ordered set, or poset. Elements $a, b$ are comparable if $a \\preceq b$ or $b \\preceq a$. A total (linear) order is a partial order in which every two elements are comparable.\n\nExamples: $\\le$ on $\\mathbb{R}$ is total; $\\subseteq$ on $\\mathcal{P}(A)$ and divisibility on the positive integers are partial but not total ($\\{1\\}$ and $\\{2\\}$ are incomparable, and so are 2 and 3)."
+    },
+    {
+     "type": "section",
+     "title": "Pictures and vocabulary for posets",
+     "body": "A finite poset is drawn as a Hasse diagram: put $b$ above $a$ and join them with a line when $a \\prec b$ and nothing lies strictly between them. Loops and shortcut lines are left out, since reflexivity and transitivity restore them.\n\nIn a poset, $m$ is maximal if no element lies strictly above it, and greatest if every element lies below it; minimal and least are defined dually. A greatest element is automatically maximal and unique, but a poset can have many maximal elements and no greatest one. A chain is a set of pairwise comparable elements; an antichain is a set of pairwise incomparable ones.\n\nA total order in which every nonempty subset has a least element is a well-order. The usual order on $\\mathbb{N}$ is a well-order, and that fact is the engine behind [[induction]]; the usual order on $\\mathbb{Z}$ is not (there is no least integer). Well-orders are studied in [[ordinals-cardinals]].\n\nEvery finite poset can be extended to a total order by repeatedly removing a minimal element and listing it next (a topological sort)."
+    },
+    {
+     "type": "section",
+     "title": "A glimpse further: why we are careful",
+     "body": "It is tempting to allow any description to define a set. Russell's paradox shows the danger: if $R = \\{x : x \\notin x\\}$ were a set, then $R \\in R$ would hold exactly when $R \\notin R$, a contradiction. Axiomatic set theory (the Zermelo–Fraenkel axioms) avoids this by only allowing set-builder notation inside a set already known to exist, as in $\\{x \\in A : \\dots\\}$. University readers will also meet Zorn's lemma (a nonempty poset in which every chain has an upper bound has a maximal element), which is equivalent to the axiom of choice."
+    },
+    {
+     "type": "example",
+     "title": "A transitive closure",
+     "body": "On $A = \\{1,2,3,4\\}$ let $R = \\{(1,2),(2,3),(3,4)\\}$. Which of the four properties does $R$ have? Find its transitive closure.",
+     "solution": "$R$ is not reflexive (no $(1,1)$), not symmetric ($(1,2) \\in R$ but $(2,1) \\notin R$), and it is antisymmetric, since there are no two distinct elements related both ways. It is not transitive: $(1,2), (2,3) \\in R$ but $(1,3) \\notin R$.\n\nChains of arrows: $1 \\to 2 \\to 3 \\to 4$. Two-step chains give $(1,3), (2,4)$, and the three-step chain gives $(1,4)$. So\n$$R^+ = \\{(1,2),(1,3),(1,4),(2,3),(2,4),(3,4)\\},$$\nwhich is exactly the strict order $<$ on $\\{1,2,3,4\\}$. Adding the four pairs $(a,a)$ turns it into the partial (indeed total) order $\\le$."
+    },
+    {
+     "type": "example",
+     "title": "Counting equivalence relations",
+     "body": "How many equivalence relations are there on $\\{1,2,3,4\\}$?",
+     "solution": "By the theorem above it is enough to count partitions of a 4-element set, grouped by block sizes:\n\n- one block $\\{1,2,3,4\\}$: 1 way;\n- sizes 3+1: choose the singleton, 4 ways;\n- sizes 2+2: the block containing 1 has one partner among 3 elements, 3 ways;\n- sizes 2+1+1: choose the pair, $\\binom{4}{2} = 6$ ways;\n- four singletons: 1 way.\n\nThe total is $1 + 4 + 3 + 6 + 1 = 15$. (These counts are the Bell numbers $1, 1, 2, 5, 15, 52, \\dots$; compare this with the $2^{16} = 65536$ relations of all kinds on the same set.)"
+    },
+    {
+     "type": "example",
+     "title": "Chains and antichains under divisibility",
+     "body": "Order $\\{1,2,\\dots,12\\}$ by divisibility. Find its minimal and maximal elements and an antichain of size 6. Then show that any 7 of these numbers include two, one of which divides the other.",
+     "solution": "The only minimal element is 1, which divides everything, so it is in fact least. An element is maximal if none of its multiples other than itself lies in the set, that is, if $2m > 12$: the maximal elements are $7, 8, 9, 10, 11, 12$. No one of these divides another (the smallest proper multiple of each exceeds 12), so they form an antichain of size 6.\n\nNow take any 7 numbers from 1 to 12. Write each as $2^k m$ with $m$ odd. The odd part $m$ is one of $1, 3, 5, 7, 9, 11$: only 6 possibilities. By the [[pigeonhole]] principle two of the chosen numbers, say $2^j m$ and $2^k m$ with $j < k$, have the same odd part, and then the first divides the second. So 6 is the largest size of an antichain here. The same argument shows that among any $n+1$ numbers from $\\{1, \\dots, 2n\\}$ one divides another."
+    },
+    {
+     "type": "pitfall",
+     "body": "- $\\in$ and $\\subseteq$ are different: $1 \\in \\{1,2\\}$ and $\\{1\\} \\subseteq \\{1,2\\}$, but $\\{1\\} \\notin \\{1,2\\}$.\n- $\\varnothing$ and $\\{\\varnothing\\}$ differ: the first has no elements, the second has one.\n- Antisymmetric does not mean \"not symmetric\". The equality relation is both symmetric and antisymmetric; the relation $\\{(1,2),(2,1),(1,3)\\}$ on $\\{1,2,3\\}$ is neither.\n- A common false proof claims symmetry and transitivity imply reflexivity (\"from $a R b$ get $b R a$, then $a R a$\"). It only works for elements related to something. The empty relation on a nonempty set is symmetric and transitive but not reflexive.\n- Maximal is not the same as greatest: in the divisibility example there are six maximal elements and no greatest one."
+    },
+    {
+     "type": "connection",
+     "body": "This vocabulary is the setting for [[proof-methods]], where \"prove two sets equal\" and \"prove a relation is an equivalence\" are standard exercises. Congruence modulo $n$ is an equivalence relation whose classes are the residue classes of [[congruences]], and quotient constructions throughout algebra (cosets in [[groups]], for instance) are partitions by an equivalence relation. In [[automata]], the states of a minimal automaton correspond to the classes of a natural equivalence relation on strings. Comparing the sizes of infinite sets, and extending induction beyond $\\mathbb{N}$ with well-orders, is the subject of [[ordinals-cardinals]]. Counting subsets and relations leads into [[counting]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Prove that $A \\setminus (B \\cup C) = (A \\setminus B) \\cap (A \\setminus C)$ by showing both inclusions.\n2. On $\\mathbb{Z}$, define $a \\sim b$ when $a - b$ is divisible by 5. Prove that $\\sim$ is an equivalence relation and list its classes.\n3. How many relations on a 3-element set are reflexive? How many are symmetric?\n4. Draw the Hasse diagram of the divisors of 30 under divisibility. Is there a greatest element?"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rosen, Discrete Mathematics and Its Applications",
+     "where": "§§2.1–2.2 and Chapter 8 (6th ed.)"
+    },
+    {
+     "ref": "Halmos, Naive Set Theory"
+    },
+    {
+     "ref": "Davey & Priestley, Introduction to Lattices and Order"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Sample computation: set operations, De Morgan and |A x B| = |A||B| on small sets",
+     "python": "U=set(range(1,7));A={1,2,3,4};B={3,4,5}\nassert A|B=={1,2,3,4,5} and A&B=={3,4} and A-B=={1,2} and U-(A|B)=={6}\nassert (U-A)&(U-B)==U-(A|B)=={6}\nimport itertools\nassert len(list(itertools.product(A,B)))==12"
+    },
+    {
+     "claim": "{n in Z: n>0, n^2<50} = {1..7}; power set of a 4-set has 16 elements",
+     "python": "from itertools import combinations\nassert {n for n in range(-100,100) if n>0 and n*n<50}==set(range(1,8))\nassert sum(1 for r in range(5) for _ in combinations(range(4),r))==16"
+    },
+    {
+     "claim": "De Morgan's laws hold for all pairs of subsets of a 5-element universe",
+     "python": "from itertools import combinations\nU=frozenset(range(5)); S=[frozenset(c) for r in range(6) for c in combinations(U,r)]\nfor A in S:\n  for B in S:\n    assert U-(A|B)==(U-A)&(U-B) and U-(A&B)==(U-A)|(U-B)"
+    },
+    {
+     "claim": "Transitive closure of {(1,2),(2,3),(3,4)} is the strict order < on {1,2,3,4}",
+     "python": "R={(1,2),(2,3),(3,4)}; C=set(R)\nwhile True:\n  N=C|{(a,d) for (a,b) in C for (c,d) in C if b==c}\n  if N==C: break\n  C=N\nassert C=={(a,b) for a in range(1,5) for b in range(1,5) if a<b}"
+    },
+    {
+     "claim": "There are 15 equivalence relations on a 4-element set (brute force over all 2^16 relations), and the block-size count 1+4+3+6+1 = 15",
+     "python": "A=range(4); P=[(a,b) for a in A for b in A]; cnt=0\nfor m in range(1<<16):\n  R={P[i] for i in range(16) if m>>i&1}\n  if all((a,a) in R for a in A) and all((b,a) in R for (a,b) in R) and all((a,d) in R for (a,b) in R for (c,d) in R if b==c): cnt+=1\nassert cnt==15==1+4+3+6+1"
+    },
+    {
+     "claim": "On a 3-element set: 19 partial orders, 64 reflexive relations, 64 symmetric relations; 512 relations in total",
+     "python": "A=range(3); P=[(a,b) for a in A for b in A]; po=ref=sym=0\nfor m in range(1<<9):\n  R={P[i] for i in range(9) if m>>i&1}\n  r=all((a,a) in R for a in A); s=all((b,a) in R for (a,b) in R)\n  an=all(a==b for (a,b) in R if (b,a) in R); t=all((a,d) in R for (a,b) in R for (c,d) in R if b==c)\n  po+=r and an and t; ref+=r; sym+=s\nassert (po,ref,sym)==(19,64,64) and 2**9==512"
+    },
+    {
+     "claim": "Divisibility on {1..12}: maximal elements 7..12 form an antichain; every 7-subset contains a divisibility pair; same for n+1 of {1..2n}, n<=7",
+     "python": "from itertools import combinations\nS=range(1,13)\nmx=[m for m in S if not any(k!=m and k%m==0 for k in S)]\nassert mx==[7,8,9,10,11,12]\nassert all(a%b and b%a for a,b in combinations(mx,2))\nfor n in range(1,8):\n  T=range(1,2*n+1)\n  assert all(any(b%a==0 for a,b in combinations(c,2)) for c in combinations(T,n+1))"
+    },
+    {
+     "claim": "Bell numbers 1,1,2,5,15,52 (set partitions of 0..5 elements)",
+     "python": "from sympy import bell\nassert [bell(n) for n in range(6)]==[1,1,2,5,15,52]"
+    },
+    {
+     "claim": "The divisibility relation on {1,2,3,4} is exactly the 8 listed pairs; {(1,2),(2,1),(1,3)} on {1,2,3} is neither symmetric nor antisymmetric; the empty relation on {1,2} is symmetric and transitive but not reflexive; chains of length <= n suffice for transitive closure on n-element sets (all relations on 3 elements)",
+     "python": "A=range(1,5)\nassert {(a,b) for a in A for b in A if b%a==0}=={(1,1),(1,2),(1,3),(1,4),(2,2),(2,4),(3,3),(4,4)}\nR={(1,2),(2,1),(1,3)}\nsym=lambda R:all((b,a) in R for a,b in R); anti=lambda R:all(a==b for a,b in R if (b,a) in R)\ntr=lambda R:all((a,d) in R for a,b in R for c,d in R if b==c)\nassert not sym(R) and not anti(R)\nE=set(); assert sym(E) and tr(E) and not all((a,a) in E for a in (1,2))\nfrom itertools import product\nP=[(a,b) for a in range(3) for b in range(3)]\nfor m in range(1<<9):\n  R={P[i] for i in range(9) if m>>i&1}\n  C=set(R)\n  while True:\n    N=C|{(a,d) for a,b in C for c,d in C if b==c}\n    if N==C: break\n    C=N\n  walks=set(R); cur=set(R)\n  for _ in range(2):\n    cur={(a,d) for a,b in cur for c,d in R if b==c}; walks|=cur\n  assert walks==C"
+    },
+    {
+     "claim": "Exercise data: 2^6 reflexive and 2^6 symmetric relations on a 3-set; divisors of 30 under divisibility have greatest element 30 (8 divisors)",
+     "python": "from sympy import divisors\nDs=divisors(30); assert len(Ds)==8 and all(30%d==0 for d in Ds)\nassert 2**(9-3)==64 and 2**(3+3)==64"
+    }
+   ]
+  }
+ },
+ {
+  "id": "logic-basics",
+  "entry": {
+   "sum": "Propositional logic studies how the truth of compound statements built with $\\neg, \\wedge, \\vee, \\to, \\leftrightarrow$ depends on the truth of their parts; predicate logic adds variables and the quantifiers $\\forall$ and $\\exists$. The key skills are reading the conditional correctly ($p \\to q$ is false only when $p$ is true and $q$ false) and negating quantified statements by swapping $\\forall$ and $\\exists$.",
+   "key": [
+    "p \\to q \\;\\equiv\\; \\neg p \\vee q \\;\\equiv\\; \\neg q \\to \\neg p",
+    "\\neg \\forall x\\, P(x) \\equiv \\exists x\\, \\neg P(x), \\qquad \\neg \\exists x\\, P(x) \\equiv \\forall x\\, \\neg P(x)",
+    "\\forall x\\, \\exists y\\, \\varphi \\text{ and } \\exists y\\, \\forall x\\, \\varphi \\text{ are in general different}"
+   ],
+   "why": "Every definition in analysis, such as continuity or convergence, is a nest of quantifiers that must be negated correctly in proofs, and satisfiability of propositional formulas is the core problem that SAT solvers and hardware verification tools attack.",
+   "msc": [
+    "03B05",
+    "03B10"
+   ],
+   "links": [
+    {
+     "field": "real-analysis",
+     "note": "Limits, continuity and uniform convergence are defined by nested quantifiers, and the difference between pointwise and uniform convergence is exactly a swap of quantifier order."
+    },
+    {
+     "field": "formal-verification",
+     "note": "Proof assistants and SAT/SMT solvers check propositional and first-order formulas mechanically to verify hardware and software."
+    },
+    {
+     "field": "algebra",
+     "note": "The propositional connectives obey the laws of a Boolean algebra, the same laws satisfied by union, intersection and complement of sets."
+    }
+   ],
+   "refs": [
+    "Rosen, Discrete Mathematics and Its Applications",
+    "Enderton, A Mathematical Introduction to Logic",
+    "Velleman, How to Prove It"
+   ],
+   "aliases": [
+    "propositional logic",
+    "predicate logic",
+    "first-order logic",
+    "truth tables",
+    "quantifiers",
+    "logical connectives",
+    "rules of inference",
+    "contrapositive",
+    "Boolean logic",
+    "disjunctive normal form"
+   ]
+  },
+  "lesson": {
+   "minutes": 22,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "\"If $n^2$ is even, then $n$ is even.\" \"For every $\\varepsilon > 0$ there is a $\\delta > 0$ such that ...\" Mathematical statements are built from a small set of words: not, and, or, if ... then, for all, there exists. Logic studies those words on their own, separated from what the statements are about, so that we can tell when a statement is true just because of its shape and when one statement follows from others.\n\nThe first half of this page is propositional logic, which handles not, and, or, if-then. The second half adds variables and the quantifiers \"for all\" and \"there exists\" (predicate logic), which is what real mathematics needs. The habits learned here, especially negating statements correctly and reading quantifiers in order, are used in every proof you will ever write."
+    },
+    {
+     "type": "section",
+     "title": "Propositions and connectives",
+     "body": "A proposition is a statement that is either true (T) or false (F), such as \"7 is prime\" (T) or \"$2+2=5$\" (F). \"$x > 3$\" is not a proposition until we know $x$. Letters $p, q, r$ stand for propositions, and connectives build new ones:\n\n- negation $\\neg p$ (\"not $p$\"): true exactly when $p$ is false;\n- conjunction $p \\wedge q$ (\"$p$ and $q$\"): true exactly when both are true;\n- disjunction $p \\vee q$ (\"$p$ or $q$\"): true when at least one is true (the inclusive or);\n- conditional $p \\to q$ (\"if $p$ then $q$\"): false only when $p$ is true and $q$ is false;\n- biconditional $p \\leftrightarrow q$ (\"$p$ if and only if $q$\"): true when $p$ and $q$ have the same truth value.\n\nThe conditional surprises people. Think of $p \\to q$ as a promise: \"if it rains, I will bring an umbrella\". The promise is broken only if it rains and I do not bring one. If it does not rain, the promise is kept whatever I do. So $p \\to q$ is true whenever $p$ is false; this is called vacuous truth. For example \"every element of $\\varnothing$ is negative\" is true.\n\nA truth table lists the value of a compound formula for each of the $2^n$ assignments of T/F to its $n$ letters. Here is the table for the conditional:\n$$\\begin{array}{cc|c} p & q & p \\to q \\\\ \\hline T & T & T \\\\ T & F & F \\\\ F & T & T \\\\ F & F & T \\end{array}$$"
+    },
+    {
+     "type": "definition",
+     "title": "Tautology, contradiction, equivalence",
+     "body": "A formula is a tautology if it is true under every assignment, a contradiction if it is false under every assignment, and satisfiable if it is true under at least one. Two formulas $\\varphi$ and $\\psi$ are logically equivalent, written $\\varphi \\equiv \\psi$, if they have the same truth value under every assignment; equivalently, $\\varphi \\leftrightarrow \\psi$ is a tautology.\n\nEquivalent formulas say the same thing in different words, so one may always be replaced by the other inside a proof."
+    },
+    {
+     "type": "theorem",
+     "title": "Standard equivalences",
+     "body": "For all propositions $p, q, r$:\n$$\\neg(p \\wedge q) \\equiv \\neg p \\vee \\neg q, \\qquad \\neg(p \\vee q) \\equiv \\neg p \\wedge \\neg q \\quad \\text{(De Morgan)}$$\n$$p \\to q \\;\\equiv\\; \\neg p \\vee q \\;\\equiv\\; \\neg q \\to \\neg p \\quad \\text{(contrapositive)}$$\n$$\\neg(p \\to q) \\equiv p \\wedge \\neg q, \\qquad p \\wedge (q \\vee r) \\equiv (p \\wedge q) \\vee (p \\wedge r).$$\nThe converse $q \\to p$ is not equivalent to $p \\to q$."
+    },
+    {
+     "type": "proof",
+     "body": "Each equivalence involves at most three letters, so it can be verified by checking all $2^3 = 8$ assignments. For the contrapositive: $\\neg q \\to \\neg p$ is false only when $\\neg q$ is true and $\\neg p$ is false, that is when $q$ is false and $p$ is true, which is exactly the one row where $p \\to q$ is false. Likewise $\\neg p \\vee q$ is false only when $p$ is true and $q$ is false. For the converse, the assignment $p = F$, $q = T$ makes $p \\to q$ true and $q \\to p$ false, so they differ."
+    },
+    {
+     "type": "section",
+     "title": "Every truth table comes from a formula",
+     "body": "Any formula in $p, q, r$ defines a truth function: a rule giving T or F for each of the 8 assignments. Since each of the $2^n$ rows can independently be T or F, there are $2^{2^n}$ truth functions of $n$ letters; for $n = 2$ that is 16. Can every one of them be written with the connectives above? Yes, and the proof is constructive."
+    },
+    {
+     "type": "theorem",
+     "title": "Disjunctive normal form",
+     "body": "Every truth function of $p_1, \\dots, p_n$ is expressed by a formula that is a disjunction of conjunctions of letters and negated letters. Consequently $\\{\\neg, \\wedge, \\vee\\}$ is functionally complete, and so is $\\{\\neg, \\wedge\\}$."
+    },
+    {
+     "type": "proof",
+     "body": "If the function is never true, use the contradiction $p_1 \\wedge \\neg p_1$. Otherwise, for each row where the function is true, form the conjunction that describes exactly that row: include $p_i$ if $p_i$ is T in that row and $\\neg p_i$ if it is F. This conjunction is true in that row and false in every other row. The disjunction of these conjunctions is true precisely in the rows where the function is true. Finally, $\\vee$ can be removed using De Morgan: $\\varphi \\vee \\psi \\equiv \\neg(\\neg \\varphi \\wedge \\neg \\psi)$."
+    },
+    {
+     "type": "section",
+     "title": "Predicates and quantifiers",
+     "body": "A predicate is a statement with variables, such as $P(x)$: \"$x^2 > 2$\". It becomes a proposition when a value from a chosen domain is substituted, or when the variable is quantified:\n\n- $\\forall x\\, P(x)$: \"for every $x$ in the domain, $P(x)$\";\n- $\\exists x\\, P(x)$: \"there is at least one $x$ in the domain with $P(x)$\".\n\nThe domain matters: $\\exists x\\,(x^2 = 2)$ is true over $\\mathbb{R}$ and false over $\\mathbb{Q}$. A variable that is quantified is bound; one that is not is free, and a formula with free variables has no truth value until they are given values.\n\nNegation moves through quantifiers by swapping them:\n$$\\neg \\forall x\\, P(x) \\equiv \\exists x\\, \\neg P(x), \\qquad \\neg \\exists x\\, P(x) \\equiv \\forall x\\, \\neg P(x).$$\n\"Not every swan is white\" means \"some swan is not white\", not \"no swan is white\".\n\nWith several quantifiers, order matters. Over the integers, $\\forall x\\, \\exists y\\, (y > x)$ says \"for each $x$ there is something bigger\", which is true: take $y = x+1$. But $\\exists y\\, \\forall x\\, (y > x)$ says \"some single integer is bigger than every integer\", which is false (it would have to be bigger than itself). In $\\forall x\\, \\exists y$, the $y$ may depend on $x$; in $\\exists y\\, \\forall x$ it may not."
+    },
+    {
+     "type": "section",
+     "title": "Valid arguments",
+     "body": "An argument with premises $\\varphi_1, \\dots, \\varphi_k$ and conclusion $\\psi$ is valid if $\\psi$ is true under every assignment that makes all the premises true; equivalently, $(\\varphi_1 \\wedge \\dots \\wedge \\varphi_k) \\to \\psi$ is a tautology. Validity is about form: a valid argument with a false premise may have a false conclusion. The most used rules of inference are\n\n- modus ponens: from $p$ and $p \\to q$, conclude $q$;\n- modus tollens: from $\\neg q$ and $p \\to q$, conclude $\\neg p$;\n- hypothetical syllogism: from $p \\to q$ and $q \\to r$, conclude $p \\to r$;\n- universal instantiation: from $\\forall x\\, P(x)$, conclude $P(c)$ for any particular $c$; existential generalisation: from $P(c)$, conclude $\\exists x\\, P(x)$.\n\nTwo classic invalid patterns are affirming the consequent (from $q$ and $p \\to q$, conclude $p$) and denying the antecedent (from $\\neg p$ and $p \\to q$, conclude $\\neg q$). The assignment $p = F$, $q = T$ defeats both."
+    },
+    {
+     "type": "section",
+     "title": "First-order logic, precisely",
+     "body": "University courses make predicate logic exact. A first-order language fixes symbols: variables, connectives, $\\forall$, $=$, and some constant, function and relation symbols (for arithmetic: $0$, $S$, $+$, $\\cdot$, $<$). Terms and formulas are then defined recursively: variables and constants are terms; $f(t_1,\\dots,t_n)$ is a term when the $t_i$ are; $R(t_1,\\dots,t_n)$ and $t_1 = t_2$ are formulas; and $\\neg\\varphi$, $(\\varphi \\to \\psi)$, $\\forall x\\, \\varphi$ are formulas when $\\varphi, \\psi$ are. (The other connectives and $\\exists$ can be defined from these, for instance $\\exists x\\,\\varphi$ as $\\neg \\forall x\\, \\neg \\varphi$.) Because the definitions are recursive, facts about all formulas are proved by [[induction]] on how they are built.\n\nA structure $\\mathfrak{A}$ for the language is a nonempty domain together with an interpretation of each symbol; a sentence (a formula with no free variables) is then either true or false in $\\mathfrak{A}$, written $\\mathfrak{A} \\models \\sigma$ when true. A sentence $\\sigma$ is a logical consequence of a set of sentences $\\Gamma$, written $\\Gamma \\models \\sigma$, if $\\sigma$ is true in every structure in which all of $\\Gamma$ is true. This semantic notion is the one that Gödel's [[completeness-theorem]] matches with formal provability."
+    },
+    {
+     "type": "example",
+     "title": "A tautology by truth table",
+     "body": "Show that $\\big((p \\to q) \\wedge (q \\to r)\\big) \\to (p \\to r)$ is a tautology.",
+     "solution": "The formula can only be false if $p \\to r$ is false, which forces $p = T$ and $r = F$, while the hypothesis $(p \\to q) \\wedge (q \\to r)$ is true. With $p = T$, $p \\to q$ true forces $q = T$; then $q \\to r$ with $r = F$ is false, a contradiction. So no assignment makes the formula false. (Checking all 8 rows of the truth table gives the same result.) This is the hypothetical syllogism."
+    },
+    {
+     "type": "example",
+     "title": "Knights and knaves",
+     "body": "On an island, knights always tell the truth and knaves always lie. Resident A says: \"At least one of us two is a knave.\" What are A and B?",
+     "solution": "Let $a$ mean \"A is a knight\" and $b$ mean \"B is a knight\". A's statement is $\\neg a \\vee \\neg b$, and since A is a knight exactly when the statement is true, we need $a \\leftrightarrow (\\neg a \\vee \\neg b)$.\n\nIf $a$ were false, the right side $\\neg a \\vee \\neg b$ would be true, so the biconditional would fail. Hence $a$ is true, and then $\\neg a \\vee \\neg b$ must be true, which forces $\\neg b$. So A is a knight and B is a knave. Checking all four assignments confirms this is the only solution."
+    },
+    {
+     "type": "example",
+     "title": "Negating a definition",
+     "body": "A sequence $(a_n)$ is bounded if $\\exists M\\, \\forall n\\, (|a_n| \\le M)$. Write the statement \"$(a_n)$ is unbounded\" without a negation sign in front, and explain why $\\forall n\\, \\exists M\\, (|a_n| \\le M)$ says something different.",
+     "solution": "Push the negation inward, swapping each quantifier:\n$$\\neg \\exists M\\, \\forall n\\, (|a_n| \\le M) \\equiv \\forall M\\, \\exists n\\, \\neg(|a_n| \\le M) \\equiv \\forall M\\, \\exists n\\, (|a_n| > M).$$\nIn words: whatever bound you propose, some term exceeds it. For $a_n = n$ this holds (given $M$, take $n = \\lfloor M \\rfloor + 1$, or $n = 0$ if $M < 0$).\n\nThe swapped statement $\\forall n\\, \\exists M\\, (|a_n| \\le M)$ is true for every real sequence: for each $n$ just take $M = |a_n|$. It only says each term is a finite number, because $M$ is allowed to depend on $n$. Boundedness demands a single $M$ for all $n$."
+    },
+    {
+     "type": "example",
+     "title": "Counting satisfying assignments",
+     "body": "Let $\\varphi_n = (p_1 \\vee p_2) \\wedge (p_2 \\vee p_3) \\wedge \\dots \\wedge (p_{n-1} \\vee p_n)$ for $n \\ge 2$. How many of the $2^n$ assignments satisfy $\\varphi_n$?",
+     "solution": "An assignment satisfies $\\varphi_n$ exactly when no two consecutive letters are both false. Let $s_n$ be the number of such T/F strings of length $n$ (with $s_1 = 2$ for a single letter). Split by the last letter. If $p_n = T$, the first $n-1$ letters can be any valid string: $s_{n-1}$ ways. If $p_n = F$, then $p_{n-1}$ must be $T$ and the first $n-2$ letters are any valid string: $s_{n-2}$ ways (for $n = 2$ this is the single string TF, so set $s_0 = 1$). Hence\n$$s_n = s_{n-1} + s_{n-2}, \\quad s_0 = 1,\\ s_1 = 2,$$\ngiving $s_2 = 3$, $s_3 = 5$, $s_4 = 8$, $s_5 = 13$: these are the Fibonacci numbers, $s_n = F_{n+2}$ with $F_1 = F_2 = 1$. Even this simple-looking formula is satisfied by a fraction of assignments that shrinks like $(1.618/2)^n$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- The converse is not the contrapositive: from \"if $n$ is divisible by 4 then $n$ is even\" you may not conclude \"if $n$ is even then $n$ is divisible by 4\".\n- \"Or\" in mathematics is inclusive unless \"exactly one\" is said.\n- The negation of \"all are\" is \"not all are\" (some are not), not \"none are\". The negation of $p \\to q$ is $p \\wedge \\neg q$, not $p \\to \\neg q$.\n- Do not swap quantifiers of different kinds; $\\forall \\exists$ and $\\exists \\forall$ are different statements.\n- \"$p$ only if $q$\" means $p \\to q$; \"$p$ unless $q$\" means $\\neg q \\to p$."
+    },
+    {
+     "type": "connection",
+     "body": "These rules are the raw material of [[proof-methods]]: proof by contrapositive uses $p \\to q \\equiv \\neg q \\to \\neg p$, and proof by contradiction uses the fact that a statement whose negation implies a contradiction must be true. The set operations of [[sets-relations]] mirror the connectives ($\\cup$ for $\\vee$, $\\cap$ for $\\wedge$, complement for $\\neg$). Deciding whether a propositional formula is satisfiable (the SAT problem) is the original NP-complete problem, central to [[p-vs-np]]. First-order logic is the setting for the [[completeness-theorem]], which shows that a simple set of proof rules captures every logical consequence, and, via [[computability]], for the [[incompleteness]] theorems."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Use a truth table to decide whether $(p \\to q) \\to r$ and $p \\to (q \\to r)$ are equivalent.\n2. Express $p \\leftrightarrow q$ using only $\\neg$ and $\\wedge$.\n3. Negate \"for every $\\varepsilon > 0$ there is an $N$ such that for all $n \\ge N$, $|a_n - L| < \\varepsilon$\", and say in words what the negation means.\n4. Over the domain of positive integers, decide which of $\\forall x\\, \\exists y\\, (x \\mid y)$, $\\exists x\\, \\forall y\\, (x \\mid y)$ and $\\exists y\\, \\forall x\\, (x \\mid y)$ are true."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rosen, Discrete Mathematics and Its Applications",
+     "where": "§§1.1–1.5 (6th ed.)"
+    },
+    {
+     "ref": "Enderton, A Mathematical Introduction to Logic",
+     "where": "Chapters 1–2"
+    },
+    {
+     "ref": "Velleman, How to Prove It"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Truth table of p->q, and the standard equivalences (De Morgan, contrapositive, negated conditional, distributivity); converse differs at p=F,q=T",
+     "python": "from itertools import product\nimp=lambda a,b:(not a) or b\nassert [imp(p,q) for p,q in [(1,1),(1,0),(0,1),(0,0)]]==[True,False,True,True]\nfor p,q,r in product([False,True],repeat=3):\n  assert (not(p and q))==((not p) or (not q)) and (not(p or q))==((not p) and (not q))\n  assert imp(p,q)==((not p) or q)==imp(not q,not p)\n  assert (not imp(p,q))==(p and not q)\n  assert (p and (q or r))==((p and q) or (p and r))\nassert imp(False,True) and not imp(True,False)"
+    },
+    {
+     "claim": "Hypothetical syllogism ((p->q)&(q->r))->(p->r) is a tautology; affirming the consequent and denying the antecedent are invalid",
+     "python": "from itertools import product\nimp=lambda a,b:(not a) or b\nassert all(imp(imp(p,q) and imp(q,r), imp(p,r)) for p,q,r in product([0,1],repeat=3))\nassert not all(imp(q and imp(p,q), p) for p,q in product([0,1],repeat=2))\nassert not all(imp((not p) and imp(p,q), not q) for p,q in product([0,1],repeat=2))"
+    },
+    {
+     "claim": "Knights and knaves: the unique solution of a <-> (not a or not b) is a=T, b=F",
+     "python": "from itertools import product\nsols=[(a,b) for a,b in product([False,True],repeat=2) if a==((not a) or (not b))]\nassert sols==[(True,False)]"
+    },
+    {
+     "claim": "DNF construction reproduces every truth function of 3 letters; 2^(2^n) truth functions (16 for n=2); NAND alone expresses not and and",
+     "python": "from itertools import product\nrows=list(product([False,True],repeat=3))\nfor m in range(256):\n  f={r:bool(m>>i&1) for i,r in enumerate(rows)}\n  terms=[r for r in rows if f[r]]\n  dnf=lambda x:any(all(x[i]==t[i] for i in range(3)) for t in terms)\n  assert all(dnf(r)==f[r] for r in rows)\nassert len(set(tuple(m>>i&1 for i in range(4)) for m in range(16)))==16==2**(2**2)\nnand=lambda a,b:not(a and b)\nfor a,b in product([False,True],repeat=2):\n  assert nand(a,a)==(not a) and nand(nand(a,b),nand(a,b))==(a and b)"
+    },
+    {
+     "claim": "Quantifier order over a finite window of integers: forall x exists y (y>x) holds with y=x+1, exists y forall x (y>x) fails; De Morgan for quantifiers on a finite domain",
+     "python": "D=range(-50,50)\nassert all((x+1)>x for x in D)\nassert not any(all(y>x for x in D) for y in D)\nP=lambda x:x*x>2\nassert (not all(P(x) for x in D))==any(not P(x) for x in D)\nassert (not any(x*x==2 for x in D))==all(x*x!=2 for x in D)"
+    },
+    {
+     "claim": "Number of assignments satisfying (p1 v p2)&...&(p_{n-1} v p_n) is F_{n+2}: 3,5,8,13 for n=2..5, checked up to n=16",
+     "python": "from itertools import product\nfrom sympy import fibonacci\nfor n in range(2,17):\n  c=sum(1 for a in product([0,1],repeat=n) if all(a[i] or a[i+1] for i in range(n-1)))\n  assert c==fibonacci(n+2)\nassert [fibonacci(n+2) for n in range(2,6)]==[3,5,8,13]"
+    },
+    {
+     "claim": "Unbounded example a_n = n: for each M, n = floor(M)+1 (or 0 when M<0) exceeds M",
+     "python": "import math\nfrom fractions import Fraction as F\nfor M in [F(-7,2),F(0),F(1,3),F(5),F(99,7),F(1000)]:\n  n=math.floor(M)+1 if M>=0 else 0\n  assert n>=0 and n>M"
+    },
+    {
+     "claim": "Ratio of satisfying assignments F_{n+2}/2^n decays like (phi/2)^n: successive ratios tend to phi/2 ~ 0.809; {not, and} expresses or via De Morgan",
+     "python": "from sympy import fibonacci, sqrt, N\nphi=(1+sqrt(5))/2\nr=[fibonacci(n+3)/2**(n+1)/(fibonacci(n+2)/2**n) for n in range(30,33)]\nassert all(abs(N(x-phi/2))<1e-10 for x in r)\nfrom itertools import product\nassert all((a or b)==(not((not a) and (not b))) for a,b in product([0,1],repeat=2))"
+    },
+    {
+     "claim": "Exercise 1 sanity: (p->q)->r and p->(q->r) differ (e.g. p=q=r=F)",
+     "python": "imp=lambda a,b:(not a) or b\nassert imp(imp(False,False),False)!=imp(False,imp(False,False))"
+    }
+   ]
+  }
+ },
+ {
+  "id": "proof-methods",
+  "entry": {
+   "sum": "A proof is a chain of justified steps from hypotheses and definitions to a conclusion. The standard shapes are direct proof, proof of the contrapositive ($\\neg q \\to \\neg p$ in place of $p \\to q$), proof by contradiction, proof by cases, constructive and non-constructive existence, and disproof by counterexample; the logical form of the statement tells you which shapes fit.",
+   "key": [
+    "(p \\to q) \\equiv (\\neg q \\to \\neg p)",
+    "\\big(\\neg P \\to (Q \\wedge \\neg Q)\\big) \\;\\Longrightarrow\\; P",
+    "\\neg\\, \\forall x\\, P(x) \\equiv \\exists x\\, \\neg P(x) \\quad \\text{(one counterexample disproves)}"
+   ],
+   "why": "Every theorem on this site is established by combining these few patterns; recognising them turns reading a proof into following a plan, and writing one into choosing a plan.",
+   "msc": [],
+   "links": [
+    {
+     "field": "number-theory",
+     "note": "Parity and remainder case analysis, contradiction (irrationality of $\\sqrt 2$, infinitude of primes) and infinite descent are the basic tools of elementary number theory."
+    },
+    {
+     "field": "combinatorics",
+     "note": "Combinatorics leans heavily on non-constructive existence proofs, such as the pigeonhole principle and probabilistic arguments, which show an object exists without exhibiting it."
+    },
+    {
+     "field": "formal-verification",
+     "note": "Proof assistants such as Lean make these proof shapes explicit as tactics (intro, cases, by_contra, exact) that a computer checks step by step."
+    }
+   ],
+   "refs": [
+    "Velleman, How to Prove It",
+    "Rosen, Discrete Mathematics and Its Applications",
+    "Pólya, How to Solve It"
+   ],
+   "aliases": [
+    "proof techniques",
+    "direct proof",
+    "proof by contradiction",
+    "reductio ad absurdum",
+    "contrapositive",
+    "proof by cases",
+    "counterexample",
+    "existence proof",
+    "infinite descent",
+    "without loss of generality"
+   ]
+  },
+  "lesson": {
+   "minutes": 20,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Check $n^2 + n + 41$ for $n = 0, 1, 2, \\dots$ and you get 41, 43, 47, 53, 61, ..., all prime, for forty values in a row. It is tempting to conclude that the formula always gives primes. It does not: at $n = 40$ it gives $1681 = 41^2$. Examples, however many, cannot establish a statement about infinitely many cases. A proof can.\n\nA proof is a chain of statements, each one either an assumption, a definition, a previously proved fact, or a consequence of earlier lines by a valid rule of logic, ending in the statement to be proved. This page collects the standard shapes such chains take. Knowing the shapes does not make proofs easy, but it tells you what a finished proof of a given kind of statement must look like, and so where to start."
+    },
+    {
+     "type": "section",
+     "title": "Start from definitions",
+     "body": "Most beginner difficulties come from not writing down what the words mean. Throughout this page, for integers: $n$ is even if $n = 2k$ for some integer $k$, and odd if $n = 2k+1$ for some integer $k$; $a$ divides $b$, written $a \\mid b$, if $b = ak$ for some integer $k$; a real number is rational if it equals $p/q$ with $p, q$ integers and $q \\ne 0$, and irrational otherwise.\n\nThe logical shape of the statement also dictates the opening line, using the rules from [[logic-basics]]. To prove $\\forall x\\, P(x)$, begin \"Let $x$ be arbitrary\" and prove $P(x)$ without assuming anything special about $x$. To prove $p \\to q$, assume $p$ and derive $q$. To prove $p \\leftrightarrow q$, prove $p \\to q$ and $q \\to p$ separately. To prove two sets equal, prove both inclusions (see [[sets-relations]]). To prove $\\exists x\\, P(x)$, exhibit an $x$, or show that its non-existence is impossible."
+    },
+    {
+     "type": "section",
+     "title": "Direct proof",
+     "body": "A direct proof of $p \\to q$ assumes $p$ and reasons forward until $q$ appears.\n\nClaim: if $a \\mid b$ and $b \\mid c$ then $a \\mid c$. Proof: by definition $b = ak$ and $c = bl$ for some integers $k, l$. Then $c = (ak)l = a(kl)$, and $kl$ is an integer, so $a \\mid c$.\n\nClaim: the sum of two odd integers is even. Proof: write them as $2k+1$ and $2l+1$. Their sum is $2k + 2l + 2 = 2(k + l + 1)$, which is even.\n\nNotice that the second proof uses different letters $k$ and $l$. Writing both odd numbers as $2k+1$ would silently assume they are equal, a common slip."
+    },
+    {
+     "type": "section",
+     "title": "Contrapositive",
+     "body": "Since $p \\to q$ is equivalent to $\\neg q \\to \\neg p$, we may instead assume $q$ is false and show $p$ is false. This helps when $\\neg q$ gives you something concrete to work with and $p$ does not.\n\nClaim: for an integer $n$, if $n^2$ is even then $n$ is even. A direct attack starts from $n^2 = 2k$, which says little about $n$. The contrapositive is: if $n$ is odd then $n^2$ is odd. Now write $n = 2k+1$; then $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, which is odd. Done."
+    },
+    {
+     "type": "section",
+     "title": "Contradiction",
+     "body": "To prove $P$ by contradiction, assume $\\neg P$ and derive something impossible, such as a statement and its negation. Since a true assumption cannot lead to a falsehood by valid steps, $\\neg P$ is false and $P$ is true. Contradiction is especially natural for statements of non-existence (\"there is no ...\") and for irrationality, where the negation hands you an equation to work with."
+    },
+    {
+     "type": "theorem",
+     "title": "Irrationality of the square root of 2",
+     "body": "There are no integers $p, q$ with $q \\ne 0$ and $(p/q)^2 = 2$. That is, $\\sqrt{2}$ is irrational."
+    },
+    {
+     "type": "proof",
+     "body": "Suppose, for contradiction, that $\\sqrt 2 = p/q$ with integers $p, q$, $q \\neq 0$. Cancelling common factors, we may assume $p$ and $q$ are not both even. Squaring, $p^2 = 2q^2$, so $p^2$ is even, and by the contrapositive argument above $p$ is even, say $p = 2m$. Then $4m^2 = 2q^2$, so $q^2 = 2m^2$ is even and $q$ is even. Now $p$ and $q$ are both even, contradicting our choice. Hence no such fraction exists."
+    },
+    {
+     "type": "section",
+     "title": "Cases, and 'without loss of generality'",
+     "body": "If every object falls into one of finitely many cases, it is enough to prove the statement in each case. Integers can be split by parity, or more generally by remainder on division by some $m$ (see [[congruences]]).\n\nClaim: $n^2 + n$ is even for every integer $n$. If $n = 2k$, then $n^2 + n = 2k(2k+1)$, even. If $n = 2k+1$, then $n^2 + n = (2k+1)(2k+2) = 2(2k+1)(k+1)$, even. (A slicker proof: $n^2+n = n(n+1)$ is a product of two consecutive integers, one of which is even.)\n\nWhen cases differ only by renaming, one case is enough, and we say \"without loss of generality\". For instance, in proving $\\max(x,y) + \\min(x,y) = x + y$ we may assume $x \\le y$, since swapping the names does not change either side."
+    },
+    {
+     "type": "section",
+     "title": "Existence, uniqueness and counterexamples",
+     "body": "A constructive existence proof names the object: \"there is an integer that is a sum of two cubes in two ways: $1729 = 1^3 + 12^3 = 9^3 + 10^3$.\" A non-constructive proof shows existence without saying which object works. The classic example: there exist irrational $a, b$ with $a^b$ rational. Consider $x = \\sqrt2^{\\sqrt2}$. If $x$ is rational, take $a = b = \\sqrt 2$. If $x$ is irrational, take $a = x$ and $b = \\sqrt 2$: then $a^b = \\sqrt2^{\\sqrt2 \\cdot \\sqrt2} = \\sqrt2^2 = 2$. Either way such a pair exists, though the argument does not tell us which case holds.\n\nTo prove uniqueness, suppose two objects $x$ and $y$ both have the property and show $x = y$.\n\nTo disprove a universal statement $\\forall x\\, P(x)$, one counterexample suffices, because its negation is $\\exists x\\, \\neg P(x)$. The polynomial $n^2 + n + 41$ is disproved as a prime generator by $n = 40$; you could also spot $n = 41$ without computing, since every term is then divisible by 41."
+    },
+    {
+     "type": "section",
+     "title": "Strategy",
+     "body": "Proof methods are shapes, not recipes. Practical habits that help:\n\n1. Try small cases until you believe the statement and see why it is true.\n2. Work backwards from the goal (\"it would suffice to show ...\") and forwards from the hypotheses, and look for a meeting point. Then write the final proof in the forward direction.\n3. Ask which hypothesis you have not used yet; a correct proof normally uses them all.\n4. If a statement is about all positive integers and the case $n$ seems to follow from smaller cases, use [[induction]]. A variant is infinite descent, or minimal counterexample: assume there is a counterexample, take the smallest one, and produce a smaller one."
+    },
+    {
+     "type": "example",
+     "title": "A contrapositive",
+     "body": "Let $n$ be an integer. Prove that if $5n + 3$ is even, then $n$ is odd.",
+     "solution": "Contrapositive: if $n$ is even then $5n + 3$ is odd. Let $n = 2k$. Then $5n + 3 = 10k + 3 = 2(5k + 1) + 1$, which is odd. Since the contrapositive is equivalent to the original statement, we are done."
+    },
+    {
+     "type": "example",
+     "title": "Contradiction with parity",
+     "body": "Prove that $\\log_2 3$ is irrational.",
+     "solution": "Suppose $\\log_2 3 = a/b$ with integers $a, b$, $b \\ne 0$. Since $\\log_2 3 > 0$ (because $3 > 1$), we may take $a, b > 0$. Then $2^{a/b} = 3$, so $2^a = 3^b$. The left side is even because $a \\ge 1$, and the right side is odd, a contradiction. Hence $\\log_2 3$ is irrational."
+    },
+    {
+     "type": "example",
+     "title": "Cases by remainder",
+     "body": "Show that the square of any integer leaves remainder 0 or 1 on division by 4. Deduce that no integer of the form $4k + 3$ is a sum of two squares.",
+     "solution": "If $n = 2m$ then $n^2 = 4m^2$, remainder 0. If $n = 2m + 1$ then $n^2 = 4(m^2 + m) + 1$, remainder 1.\n\nA sum of two squares therefore has remainder $0 + 0$, $0 + 1$ or $1 + 1$ on division by 4, that is 0, 1 or 2, never 3. So 3, 7, 11, 15, 19, ... are not sums of two squares. (Which numbers are sums of two squares is answered in [[sums-of-squares]].)"
+    },
+    {
+     "type": "example",
+     "title": "Infinite descent",
+     "body": "Prove that $x^2 + y^2 = 3z^2$ has no solution in positive integers.",
+     "solution": "First, squares leave remainder 0 or 1 on division by 3: $(3m)^2 = 9m^2$, $(3m \\pm 1)^2 = 3(3m^2 \\pm 2m) + 1$.\n\nSuppose there is a solution in positive integers, and choose one with $z$ as small as possible; the positive integers are well-ordered, so this is legitimate. Since $x^2 + y^2 = 3z^2$ is divisible by 3, and the possible remainders of $x^2 + y^2$ are $0, 1, 2$ with 0 only for $0 + 0$, both $x$ and $y$ are divisible by 3. Write $x = 3x'$, $y = 3y'$. Then $9x'^2 + 9y'^2 = 3z^2$, so $z^2 = 3(x'^2 + y'^2)$, so $3 \\mid z^2$, and therefore $3 \\mid z$ (if $z$ were not a multiple of 3, $z^2$ would leave remainder 1). Writing $z = 3z'$ gives $x'^2 + y'^2 = 3z'^2$, another solution in positive integers with $z' = z/3 < z$. This contradicts the minimality of $z$."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Checking examples is not a proof of a universal statement, as $n^2 + n + 41$ shows.\n- Proving the converse instead of the statement. \"If $n$ is even then $n^2$ is even\" is not the same claim as \"if $n^2$ is even then $n$ is even\".\n- Assuming what is to be proved, often hidden in a step like \"since $n$ is even, ...\" when evenness was the goal.\n- Starting from the desired equation and deriving a true one (like $0 = 0$) proves nothing unless every step is reversible.\n- In Euclid's proof that there are infinitely many primes, $p_1 p_2 \\cdots p_k + 1$ need not itself be prime: $2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 11 \\cdot 13 + 1 = 30031 = 59 \\cdot 509$. The proof only needs that its prime factors are new.\n- Many \"proofs by contradiction\" are really contrapositive proofs in disguise; prefer the plainer form when it works."
+    },
+    {
+     "type": "connection",
+     "body": "The logical rules behind each method are in [[logic-basics]]. Induction, the method for statements indexed by positive integers, gets its own page: [[induction]]. Parity and remainder arguments grow into the theory of [[congruences]] and [[divisibility]]; descent arguments reappear in [[pythagorean]] triples and in [[vieta-jumping]]. Non-constructive existence arguments are taken much further by the [[pigeonhole]] principle and the [[probabilistic-method]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Prove that if $a \\mid b$ and $a \\mid c$ then $a \\mid (3b - 2c)$.\n2. Prove that if $n^2$ is divisible by 3 then $n$ is divisible by 3, and use this to prove that $\\sqrt 3$ is irrational.\n3. Find a counterexample: \"if $p$ is prime then $2^p - 1$ is prime.\"\n4. Prove that for every integer $n$, $n^3 - n$ is divisible by 6."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Velleman, How to Prove It"
+    },
+    {
+     "ref": "Rosen, Discrete Mathematics and Its Applications",
+     "where": "§§1.6–1.7 (6th ed.)"
+    },
+    {
+     "ref": "Pólya, How to Solve It"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "n^2+n+41 is prime for n=0..39, and equals 1681 = 41^2 at n=40; divisible by 41 at n=41",
+     "python": "from sympy import isprime\nassert all(isprime(n*n+n+41) for n in range(40))\nassert 40*40+40+41==1681==41**2 and (41*41+41+41)%41==0"
+    },
+    {
+     "claim": "Parity facts: n odd => n^2 odd; n^2+n even; 5n+3 even => n odd; squares mod 4 in {0,1}, mod 3 in {0,1}; sums of two squares mod 4 never 3",
+     "python": "R=range(-500,500)\nassert all((n*n)%2==1 for n in R if n%2)\nassert all((n*n+n)%2==0 for n in R)\nassert all(n%2==1 for n in R if (5*n+3)%2==0)\nassert {n*n%4 for n in R}=={0,1} and {n*n%3 for n in R}=={0,1}\nassert 3 not in {(a*a+b*b)%4 for a in range(8) for b in range(8)}"
+    },
+    {
+     "claim": "1729 = 1^3+12^3 = 9^3+10^3; 2*3*5*7*11*13+1 = 30031 = 59*509",
+     "python": "assert 1729==1+12**3==9**3+10**3\nassert 2*3*5*7*11*13+1==30031==59*509"
+    },
+    {
+     "claim": "(sqrt2^sqrt2)^sqrt2 = 2 (numerically, 50 digits)",
+     "python": "from mpmath import mp, sqrt, mpf\nmp.dps=50\nassert abs((sqrt(2)**sqrt(2))**sqrt(2)-2)<mpf(10)**-45"
+    },
+    {
+     "claim": "No positive solutions of x^2+y^2=3z^2 with z<=300; 2^a != 3^b for a,b>=1 small",
+     "python": "import math\nfor z in range(1,301):\n  t=3*z*z\n  for x in range(1,math.isqrt(t)+1):\n    r=t-x*x\n    if r>0: assert math.isqrt(r)**2!=r\nassert all(2**a!=3**b for a in range(1,60) for b in range(1,40))"
+    },
+    {
+     "claim": "Exercise sanity: 2^11-1 = 2047 = 23*89 is composite though 11 is prime; n^3-n divisible by 6",
+     "python": "assert 2**11-1==2047==23*89\nassert all((n**3-n)%6==0 for n in range(-300,300))"
+    },
+    {
+     "claim": "No rational p/q with |q|<=2000 squares to 2 (search check of sqrt2 irrationality)",
+     "python": "import math\nfor q in range(1,2001):\n  p=math.isqrt(2*q*q)\n  assert p*p!=2*q*q"
+    },
+    {
+     "claim": "Mod 3: x^2+y^2 = 0 mod 3 only when x = y = 0 mod 3; 3b-2c divisible by a when a|b, a|c (sample); Euclid number 30031 is not prime but its prime factors exceed 13",
+     "python": "assert all((x*x+y*y)%3!=0 or (x%3==0 and y%3==0) for x in range(30) for y in range(30))\nassert all((3*a*k-2*a*l)%a==0 for a in range(1,20) for k in range(-5,6) for l in range(-5,6))\nfrom sympy import isprime, factorint\nassert not isprime(30031) and min(factorint(30031))>13"
+    }
+   ]
+  }
+ },
+ {
+  "id": "induction",
+  "entry": {
+   "sum": "Mathematical induction proves a statement $P(n)$ for all $n \\ge n_0$ by checking a base case $P(n_0)$ and showing that $P(k)$ implies $P(k+1)$. Its variants (strong induction, structural induction on recursively defined objects) and its twin, recursive definition, rest on the fact that every nonempty set of natural numbers has a least element.",
+   "key": [
+    "\\Big(P(n_0) \\wedge \\forall k \\ge n_0\\, \\big(P(k) \\to P(k+1)\\big)\\Big) \\;\\Longrightarrow\\; \\forall n \\ge n_0\\; P(n)",
+    "\\text{strong: } \\Big(\\forall k \\ge n_0\\, \\big(P(n_0) \\wedge \\dots \\wedge P(k) \\to P(k+1)\\big)\\Big) \\wedge P(n_0) \\;\\Longrightarrow\\; \\forall n \\ge n_0\\; P(n)",
+    "1 + 3 + \\dots + (2n-1) = n^2"
+   ],
+   "why": "Induction is how one proves anything about all natural numbers or about recursively built objects; in computing it is the standard tool for showing that recursive programs and loops are correct and for analysing their running times through recurrences.",
+   "msc": [],
+   "links": [
+    {
+     "field": "computer-science",
+     "note": "Correctness of recursive algorithms and of loops (via loop invariants) is proved by induction, and running times are obtained by solving recurrence relations."
+    },
+    {
+     "field": "number-theory",
+     "note": "Strong induction proves that every integer greater than 1 factors into primes, and divisibility statements such as $3 \\mid 4^n - 1$ are proved by ordinary induction."
+    },
+    {
+     "field": "formal-verification",
+     "note": "Proof assistants generate an induction principle automatically for every recursively defined data type, and many verified-software proofs are structural inductions."
+    }
+   ],
+   "refs": [
+    "Rosen, Discrete Mathematics and Its Applications",
+    "Velleman, How to Prove It",
+    "Engel, Problem-Solving Strategies"
+   ],
+   "aliases": [
+    "proof by induction",
+    "strong induction",
+    "complete induction",
+    "structural induction",
+    "well-ordering principle",
+    "recursion",
+    "recursive definition",
+    "recurrence relation"
+   ]
+  },
+  "lesson": {
+   "minutes": 22,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Add up the first few odd numbers: $1 = 1$, $1 + 3 = 4$, $1 + 3 + 5 = 9$, $1 + 3 + 5 + 7 = 16$. The pattern $1 + 3 + \\dots + (2n-1) = n^2$ is easy to guess. To prove it for every $n$ we cannot check infinitely many cases, but we can do something better: show that whenever the formula holds for one value of $n$, it automatically holds for the next. Then the truth at $n = 1$ topples onto $n = 2$, then $n = 3$, and so on forever, like a line of dominoes.\n\nThat idea is mathematical induction. Its twin is recursion: defining an object at step $n$ in terms of earlier steps. Induction is the natural way to prove things about anything defined recursively, from sequences to computer programs to the formulas of logic."
+    },
+    {
+     "type": "theorem",
+     "title": "Principle of mathematical induction",
+     "body": "Let $P(n)$ be a statement about integers $n \\ge n_0$. Suppose\n\n1. (base case) $P(n_0)$ is true, and\n2. (inductive step) for every $k \\ge n_0$, if $P(k)$ is true then $P(k+1)$ is true.\n\nThen $P(n)$ is true for every integer $n \\ge n_0$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof from the well-ordering principle",
+     "body": "We use the well-ordering principle: every nonempty set of integers that are all $\\ge n_0$ has a least element. Suppose the conclusion fails, so the set $S$ of integers $n \\ge n_0$ for which $P(n)$ is false is nonempty. Let $m$ be its least element. Then $m \\ne n_0$ because $P(n_0)$ is true, so $m - 1 \\ge n_0$, and $P(m-1)$ is true because $m-1 < m$ is not in $S$. By the inductive step with $k = m - 1$, $P(m)$ is true, contradicting $m \\in S$. (In axiomatic treatments, induction itself is taken as an axiom about $\\mathbb{N}$; the two principles are equivalent.)"
+    },
+    {
+     "type": "section",
+     "title": "Writing an induction proof",
+     "body": "Take the odd-number sum. Let $P(n)$ be the statement $1 + 3 + \\dots + (2n-1) = n^2$.\n\nBase case: $P(1)$ says $1 = 1^2$. True.\n\nInductive step: assume $P(k)$ for some $k \\ge 1$, that is $1 + 3 + \\dots + (2k-1) = k^2$. This assumption is called the inductive hypothesis. Adding the next odd number $2k+1$ to both sides,\n$$1 + 3 + \\dots + (2k-1) + (2k+1) = k^2 + 2k + 1 = (k+1)^2,$$\nwhich is exactly $P(k+1)$. By induction, $P(n)$ holds for all $n \\ge 1$.\n\nThe same pattern proves $1 + 2 + \\dots + n = \\dfrac{n(n+1)}{2}$ and $1^2 + 2^2 + \\dots + n^2 = \\dfrac{n(n+1)(2n+1)}{6}$. Induction checks a formula; it does not tell you how to find it. Guessing usually comes from small cases.\n\nInduction also handles divisibility and inequalities. For example, $3 \\mid 4^n - 1$ for all $n \\ge 0$: the base case is $4^0 - 1 = 0$, and if $4^k - 1 = 3m$ then $4^{k+1} - 1 = 4(4^k - 1) + 3 = 3(4m + 1)$. And $2^n > n^2$ for all $n \\ge 5$: the base case is $32 > 25$; if $2^k > k^2$ with $k \\ge 5$, then $2^{k+1} > 2k^2 = k^2 + k\\cdot k \\ge k^2 + 5k > k^2 + 2k + 1 = (k+1)^2$. The base case really must be 5: at $n = 4$ both sides equal 16, and at $n = 3$ the inequality is false."
+    },
+    {
+     "type": "section",
+     "title": "Strong induction",
+     "body": "Sometimes $P(k+1)$ follows not from $P(k)$ but from some earlier case. Strong induction allows the inductive step to assume all of $P(n_0), P(n_0+1), \\dots, P(k)$ when proving $P(k+1)$. It is no stronger logically (apply ordinary induction to the statement \"$P(n_0), \\dots, P(n)$ all hold\"), but it is often more convenient.\n\nClassic use: every integer $n \\ge 2$ is a product of primes. The base case $n = 2$ holds because 2 is prime. Suppose the claim holds for all integers from 2 to $k$. If $k+1$ is prime, it is a product of one prime. Otherwise $k + 1 = ab$ with $2 \\le a, b \\le k$, and both $a$ and $b$ are products of primes by hypothesis, so $k+1$ is too. Ordinary induction would be useless here: knowing about $k$ says nothing about $k + 1$. (Uniqueness of the factorisation needs more; see [[fta]].)"
+    },
+    {
+     "type": "section",
+     "title": "Recursion",
+     "body": "A recursive definition specifies a starting value and a rule for producing each later value from earlier ones. Examples: $0! = 1$ and $n! = n \\cdot (n-1)!$; the Fibonacci numbers $F_1 = F_2 = 1$, $F_{n} = F_{n-1} + F_{n-2}$ for $n \\ge 3$, giving $1, 1, 2, 3, 5, 8, 13, 21, \\dots$. Induction proves facts about such sequences because the definition and the proof march in step.\n\nRecursion also defines sets. The set of balanced strings of brackets is the smallest set such that the empty string is in it, and if $u, v$ are in it then so are $(u)$ and $uv$. A full binary tree is either a single node, or a root with two full binary trees attached as its left and right subtrees. The formulas of [[logic-basics]] are defined the same way.\n\nFor recursively defined sets, structural induction replaces induction on $n$: to prove every element has a property, show the starting elements have it and that each construction rule preserves it. For instance, every balanced string has equally many left and right brackets: the empty string has 0 of each, and if $u$ and $v$ are balanced in this sense then so are $(u)$ (one more of each) and $uv$ (counts add)."
+    },
+    {
+     "type": "section",
+     "title": "Strengthening the hypothesis",
+     "body": "A surprising feature of induction is that a stronger statement can be easier to prove, because it gives you a stronger hypothesis to use. Try to prove\n$$1 + \\frac14 + \\frac19 + \\dots + \\frac{1}{n^2} \\le 2 \\quad \\text{for all } n \\ge 1.$$\nThe inductive step fails: knowing the sum up to $k$ is at most 2 tells you nothing once you add $1/(k+1)^2$. Instead prove the sharper claim that the sum is at most $2 - \\frac1n$. The base case is $1 \\le 1$. If the sum up to $k$ is at most $2 - \\frac1k$, the sum up to $k+1$ is at most\n$$2 - \\frac1k + \\frac1{(k+1)^2} \\le 2 - \\frac1k + \\frac{1}{k(k+1)} = 2 - \\frac1k + \\frac1k - \\frac1{k+1} = 2 - \\frac{1}{k+1}.$$\nThe original claim follows. When an induction will not go through, look for a stronger statement that carries more information forward."
+    },
+    {
+     "type": "example",
+     "title": "A Fibonacci sum",
+     "body": "Prove that $F_1 + F_2 + \\dots + F_n = F_{n+2} - 1$ for all $n \\ge 1$.",
+     "solution": "Base case: $n = 1$ gives $F_1 = 1$ and $F_3 - 1 = 2 - 1 = 1$.\n\nInductive step: assume $F_1 + \\dots + F_k = F_{k+2} - 1$. Then\n$$F_1 + \\dots + F_k + F_{k+1} = F_{k+2} - 1 + F_{k+1} = F_{k+3} - 1,$$\nusing the recurrence $F_{k+3} = F_{k+2} + F_{k+1}$. This is the statement for $k+1$. For instance, $1+1+2+3+5+8 = 20 = F_8 - 1 = 21 - 1$."
+    },
+    {
+     "type": "example",
+     "title": "Postage stamps",
+     "body": "Show that every amount of postage of at least 12 cents can be made from 4-cent and 5-cent stamps.",
+     "solution": "Use strong induction with four base cases: $12 = 4+4+4$, $13 = 4+4+5$, $14 = 4+5+5$, $15 = 5+5+5$. For $n \\ge 16$, assume every amount from 12 to $n - 1$ can be made. Then $n - 4 \\ge 12$ can be made, and adding one 4-cent stamp makes $n$.\n\nThe four base cases are needed because the step jumps back by 4. The bound 12 is sharp: 11 cannot be made, since $11 - 5k$ is $11, 6, 1$ for $k = 0, 1, 2$, none a multiple of 4."
+    },
+    {
+     "type": "example",
+     "title": "Leaves of a full binary tree",
+     "body": "In a full binary tree every node has either 0 children (a leaf) or 2 children (an internal node). Prove by structural induction that the number of leaves is one more than the number of internal nodes.",
+     "solution": "Write $L(T)$ and $I(T)$ for the numbers of leaves and internal nodes. For a single node, $L = 1$ and $I = 0$, so $L = I + 1$.\n\nIf $T$ is a root joined to subtrees $T_1$ and $T_2$ that satisfy $L(T_i) = I(T_i) + 1$, then the leaves of $T$ are those of $T_1$ and $T_2$, and the internal nodes are those of $T_1$ and $T_2$ plus the root. So\n$$L(T) = L(T_1) + L(T_2) = I(T_1) + I(T_2) + 2 = (I(T) - 1) + 2 = I(T) + 1.$$\nSince every full binary tree is built by these two rules, the formula holds for all of them."
+    },
+    {
+     "type": "example",
+     "title": "Tromino tilings",
+     "body": "An L-tromino is three unit squares forming an L. Prove that for every $n \\ge 1$, a $2^n \\times 2^n$ board with any one square removed can be tiled by L-trominoes.",
+     "solution": "For $n = 1$, a $2 \\times 2$ board with one square removed is itself an L-tromino.\n\nSuppose the statement holds for $2^k \\times 2^k$ boards, and take a $2^{k+1} \\times 2^{k+1}$ board with one square removed. Cut it into four $2^k \\times 2^k$ quarters. The removed square lies in one quarter. Place one tromino at the centre of the board so that it covers one square of each of the other three quarters, namely the corner square of each that touches the centre. Now each of the four quarters is a $2^k \\times 2^k$ board with exactly one square removed or already covered, so each can be tiled by the inductive hypothesis. Together with the central tromino this tiles the whole board.\n\nA quick count is consistent with this: $4^n - 1$ is divisible by 3, as shown above. The proof is also an algorithm, which builds a tiling recursively."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Skipping the base case. The \"proof\" that $n = n + 1$ implies $n + 1 = n + 2$ has a valid inductive step and no true base case.\n- An inductive step that silently fails for small $k$. The famous false argument that all horses have the same colour removes one horse from a group of $k+1$, then another, and uses the overlap of the two groups of $k$; for $k = 1$ there is no overlap, so the step from 1 to 2 fails.\n- In strong induction, providing too few base cases for how far back the step reaches (see the stamps).\n- Assuming $P(k+1)$ and deriving something true is the wrong direction. Start from $P(k)$ and reach $P(k+1)$.\n- Induction proves formulas but does not find them; a failed induction can mean the statement is false or that it needs strengthening."
+    },
+    {
+     "type": "connection",
+     "body": "Induction is the method for statements about the natural numbers, and the well-ordering principle behind it is extended to infinite well-orders in [[ordinals-cardinals]] (transfinite induction). Structural induction on formulas and proofs is the main tool in the [[completeness-theorem]]. In computer science, correctness proofs of recursive programs and loop invariants are inductions, and running times are found from recurrences, as in [[algorithms]]; facts about strings and [[automata]] are proved by induction on length. Recursively defined sequences are studied with [[sequences]] and [[generating-functions]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Prove $1^3 + 2^3 + \\dots + n^3 = \\left(\\dfrac{n(n+1)}{2}\\right)^2$ for all $n \\ge 1$.\n2. Prove that $n! > 2^n$ for all $n \\ge 4$.\n3. Prove that $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ for all $n \\ge 2$.\n4. Show that a $2^n \\times 2^n$ board with one square removed needs exactly $(4^n - 1)/3$ trominoes, and find a $5 \\times 5$ board with one square removed that cannot be tiled."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Rosen, Discrete Mathematics and Its Applications",
+     "where": "§§4.1–4.3 (6th ed.)"
+    },
+    {
+     "ref": "Velleman, How to Prove It"
+    },
+    {
+     "ref": "Engel, Problem-Solving Strategies"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Sums: odd numbers to n^2, 1..n = n(n+1)/2, squares = n(n+1)(2n+1)/6, cubes = (n(n+1)/2)^2 (symbolic)",
+     "python": "from sympy import symbols, summation, simplify\nk,n=symbols('k n',integer=True,positive=True)\nassert simplify(summation(2*k-1,(k,1,n))-n**2)==0\nassert simplify(summation(k,(k,1,n))-n*(n+1)/2)==0\nassert simplify(summation(k**2,(k,1,n))-n*(n+1)*(2*n+1)/6)==0\nassert simplify(summation(k**3,(k,1,n))-(n*(n+1)/2)**2)==0"
+    },
+    {
+     "claim": "3 | 4^n - 1; 2^n > n^2 for 5<=n<=300, equality at n=4, false at n=3; n! > 2^n for n>=4",
+     "python": "import math\nassert all((4**n-1)%3==0 for n in range(300))\nassert all(2**n>n*n for n in range(5,301)) and 2**4==4**2 and not 2**3>3**2\nassert all(math.factorial(n)>2**n for n in range(4,200)) and not math.factorial(3)>2**3"
+    },
+    {
+     "claim": "Fibonacci: 1,1,2,3,5,8,13,21; sum F_1..F_n = F_{n+2}-1 (n<=200); 1+1+2+3+5+8 = 20 = F_8-1; Cassini identity",
+     "python": "F=[0,1,1]\nwhile len(F)<210: F.append(F[-1]+F[-2])\nassert F[1:9]==[1,1,2,3,5,8,13,21]\nassert all(sum(F[1:n+1])==F[n+2]-1 for n in range(1,200))\nassert 1+1+2+3+5+8==20==F[8]-1\nassert all(F[n+1]*F[n-1]-F[n]**2==(-1)**n for n in range(2,200))"
+    },
+    {
+     "claim": "Postage: every n>=12 is 4a+5b with a,b>=0; 11 is not; base cases 12,13,14,15 as stated",
+     "python": "ok=lambda n:any((n-5*b)>=0 and (n-5*b)%4==0 for b in range(n//5+1))\nassert all(ok(n) for n in range(12,2000)) and not ok(11)\nassert 12==4*3 and 13==4+4+5 and 14==4+5+5 and 15==5*3"
+    },
+    {
+     "claim": "Sum_{k<=n} 1/k^2 <= 2 - 1/n for n<=400 (exact fractions); 1/(k+1)^2 <= 1/(k(k+1))",
+     "python": "from fractions import Fraction as Fr\ns=Fr(0)\nfor n in range(1,401):\n  s+=Fr(1,n*n); assert s<=2-Fr(1,n)\nassert all(Fr(1,(k+1)**2)<=Fr(1,k*(k+1)) for k in range(1,500))"
+    },
+    {
+     "claim": "Full binary trees: leaves = internal nodes + 1 (all full binary trees with up to 9 internal nodes); balanced bracket strings have equal counts",
+     "python": "from functools import lru_cache\n@lru_cache(None)\ndef trees(i):\n  if i==0: return [(1,0)]\n  out=[]\n  for a in range(i):\n    for (l1,i1) in trees(a):\n      for (l2,i2) in trees(i-1-a): out.append((l1+l2,i1+i2+1))\n  return out\nfor i in range(10):\n  assert all(L==I+1 and I==i for L,I in trees(i))\nS={''}\nfor _ in range(3): S=S|{'('+u+')' for u in S}|{u+v for u in S for v in S}\nassert all(s.count('(')==s.count(')') for s in S)"
+    },
+    {
+     "claim": "The inductive tromino construction tiles every 2^n x 2^n board minus any one square, n=1..4; (4^n-1)/3 trominoes",
+     "python": "def tile(n):\n  N=2**n\n  for hr in range(N):\n    for hc in range(N):\n      g=[[0]*N for _ in range(N)]; g[hr][hc]=-1; c=[0]\n      def go(r0,c0,s,hr,hc):\n        if s==1: return\n        h=s//2; c[0]+=1; t=c[0]; holes=[]\n        for dr in (0,1):\n          for dc in (0,1):\n            qr,qc=r0+dr*h,c0+dc*h\n            if qr<=hr<qr+h and qc<=hc<qc+h: holes.append((qr,qc,hr,hc))\n            else:\n              rr,cc=r0+h-1+dr,c0+h-1+dc; g[rr][cc]=t; holes.append((qr,qc,rr,cc))\n        for (qr,qc,a,b) in holes: go(qr,qc,h,a,b)\n      go(0,0,N,hr,hc)\n      cells={}\n      for r in range(N):\n        for cc in range(N):\n          if g[r][cc]>0: cells.setdefault(g[r][cc],[]).append((r,cc))\n      assert sum(1 for r in range(N) for cc in range(N) if g[r][cc]==0)==0\n      assert len(cells)==(4**n-1)//3\n      for v in cells.values():\n        assert len(v)==3\n        rs={a for a,b in v}; cs={b for a,b in v}\n        assert len(rs)==2 and len(cs)==2 and max(rs)-min(rs)==1 and max(cs)-min(cs)==1\nfor n in range(1,5): tile(n)"
+    },
+    {
+     "claim": "Some 5x5 board with one square removed cannot be tiled by L-trominoes (backtracking over all 25 holes)",
+     "python": "N=5\nshapes=[[(0,0),(1,0),(0,1)],[(0,0),(0,1),(1,1)],[(0,0),(1,0),(1,1)],[(0,0),(1,0),(1,-1)]]\ndef can(hole):\n  g=[[False]*N for _ in range(N)]; g[hole[0]][hole[1]]=True\n  def solve():\n    for r in range(N):\n      for c in range(N):\n        if not g[r][c]:\n          for sh in shapes:\n            cells=[(r+a,c+b) for a,b in sh]\n            if all(0<=x<N and 0<=y<N and not g[x][y] for x,y in cells):\n              for x,y in cells: g[x][y]=True\n              if solve(): return True\n              for x,y in cells: g[x][y]=False\n          return False\n    return True\n  return solve()\nres={(i,j):can((i,j)) for i in range(N) for j in range(N)}\nassert any(not v for v in res.values()) and any(res.values())"
+    },
+    {
+     "claim": "Inductive step of 2^n > n^2: for k >= 5, 2k^2 >= k^2+5k > k^2+2k+1 (symbolic)",
+     "python": "from sympy import symbols, expand\nk=symbols('k')\ne1=expand(2*k**2-(k**2+5*k)); e2=expand(k**2+5*k-(k**2+2*k+1))\nassert all(e1.subs(k,v)>=0 and e2.subs(k,v)>0 for v in range(5,500))\nassert expand(e1-k*(k-5))==0 and expand(e2-(3*k-1))==0"
+    },
+    {
+     "claim": "Strengthened bound step: 2-1/k+1/(k(k+1)) = 2-1/(k+1) (symbolic); prime factorisation exists for 2..2000 via sympy",
+     "python": "from sympy import symbols, simplify, factorint, Mul\nk=symbols('k',positive=True)\nassert simplify(2-1/k+1/(k*(k+1))-(2-1/(k+1)))==0\nassert all(Mul(*[p**e for p,e in factorint(n).items()])==n for n in range(2,2001))"
+    }
+   ]
+  }
+ },
+ {
+  "id": "ordinals-cardinals",
+  "entry": {
+   "sum": "Two sets have the same cardinality when there is a bijection between them; $\\mathbb{N}$, $\\mathbb{Z}$ and $\\mathbb{Q}$ are countable, but by Cantor's diagonal argument $|A| < |\\mathcal{P}(A)|$ for every set, so $\\mathbb{R}$ is uncountable. Ordinals are the order types of well-ordered sets, extending counting and induction beyond the natural numbers to $\\omega, \\omega+1, \\dots, \\omega^2, \\dots$.",
+   "key": [
+    "|A| < |\\mathcal{P}(A)| = 2^{|A|}",
+    "\\aleph_0 = |\\mathbb{N}| = |\\mathbb{Q}| = |\\mathbb{N} \\times \\mathbb{N}|, \\qquad |\\mathbb{R}| = 2^{\\aleph_0}",
+    "\\text{injections } A \\to B \\text{ and } B \\to A \\;\\Longrightarrow\\; \\text{a bijection } A \\to B"
+   ],
+   "why": "Countability arguments show that most real numbers are transcendental and that most sets of integers cannot be decided by any program, and ordinals supply the transfinite induction used to build objects step by step past the natural numbers.",
+   "msc": [
+    "03E10"
+   ],
+   "links": [
+    {
+     "field": "real-analysis",
+     "note": "Countable sets have Lebesgue measure zero, and the uncountability of $\\mathbb{R}$ is why the rationals and algebraic numbers form only a negligible part of the line."
+    },
+    {
+     "field": "computer-science",
+     "note": "There are only countably many programs but uncountably many sets of natural numbers, so most sets are undecidable; the halting problem is proved by the same diagonal argument as Cantor's theorem."
+    },
+    {
+     "field": "algebra",
+     "note": "Zorn's lemma and transfinite recursion give every vector space a basis, and cardinality comparisons show that $\\mathbb{R}$ as a vector space over $\\mathbb{Q}$ has dimension $2^{\\aleph_0}$."
+    }
+   ],
+   "refs": [
+    "Halmos, Naive Set Theory",
+    "Enderton, Elements of Set Theory",
+    "Jech, Set Theory"
+   ],
+   "aliases": [
+    "countable",
+    "uncountable",
+    "cardinality",
+    "cardinal numbers",
+    "ordinal numbers",
+    "Cantor's diagonal argument",
+    "Cantor's theorem",
+    "Schröder–Bernstein theorem",
+    "Cantor–Bernstein theorem",
+    "transfinite induction",
+    "continuum hypothesis",
+    "aleph"
+   ]
+  },
+  "lesson": {
+   "minutes": 25,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "How do you tell whether two piles of stones have the same size without counting? Pair them off, one stone from each pile at a time, and see whether either pile runs out first. Cantor's idea was to use exactly this test for infinite sets: two sets have the same size if their elements can be paired off perfectly. The surprises start at once. The even numbers can be paired with all natural numbers ($n \\leftrightarrow 2n$), so a part can be as large as the whole. Yet the real numbers cannot be paired with the natural numbers: there are genuinely different sizes of infinity.\n\nThere are two different ways to extend counting beyond the finite. Cardinals measure how many elements a set has. Ordinals measure how long a well-ordered list is, and they let induction and recursion continue past the natural numbers. This page develops both, assuming [[sets-relations]], [[functions]] (injections, surjections, bijections) and [[induction]]."
+    },
+    {
+     "type": "definition",
+     "title": "Equinumerosity and countability",
+     "body": "Sets $A$ and $B$ are equinumerous, written $|A| = |B|$, if there is a bijection $A \\to B$. We write $|A| \\le |B|$ if there is an injection $A \\to B$, and $|A| < |B|$ if $|A| \\le |B|$ but $|A| \\ne |B|$. A set is countably infinite if it is equinumerous with $\\mathbb{N} = \\{0, 1, 2, \\dots\\}$, countable if it is finite or countably infinite, and uncountable otherwise. The cardinality of $\\mathbb{N}$ is written $\\aleph_0$.\n\nA set is countably infinite exactly when its elements can be listed as $a_0, a_1, a_2, \\dots$ with every element appearing exactly once."
+    },
+    {
+     "type": "section",
+     "title": "Countable sets are everywhere",
+     "body": "The integers are countable: list them as $0, -1, 1, -2, 2, \\dots$, that is, send $n \\in \\mathbb{N}$ to $n/2$ if $n$ is even and to $-(n+1)/2$ if $n$ is odd.\n\nThe set $\\mathbb{N} \\times \\mathbb{N}$ of pairs is countable. Arrange the pairs in a grid and walk along the diagonals $m + n = 0, 1, 2, \\dots$ in turn. This gives the Cantor pairing function\n$$\\pi(m, n) = \\frac{(m+n)(m+n+1)}{2} + n,$$\na bijection $\\mathbb{N} \\times \\mathbb{N} \\to \\mathbb{N}$: the pairs on earlier diagonals use up the first $\\binom{m+n+1}{2}$ numbers, and $n$ gives the position on the current diagonal. By induction, $\\mathbb{N}^k$ is countable for every $k$.\n\nThe rationals are countable: send each positive rational, written in lowest terms $p/q$, to the pair $(p, q)$. This is an injection into $\\mathbb{N} \\times \\mathbb{N}$, so the positive rationals are infinite and inject into a countable set, hence are countable (an infinite subset of $\\mathbb{N}$ can be listed in increasing order). Adding $0$ and the negatives keeps the set countable. So although the rationals are dense, there are no more of them than natural numbers.\n\nMore generally, a countable union of countable sets is countable (this needs a small amount of the axiom of choice, to pick a listing of each set). The set of all finite strings over a countable alphabet is countable, and hence so is the set of algebraic numbers (each is a root of one of countably many integer polynomials, each having finitely many roots)."
+    },
+    {
+     "type": "theorem",
+     "title": "Cantor's theorem",
+     "body": "For every set $A$, there is no surjection $A \\to \\mathcal{P}(A)$. Hence $|A| < |\\mathcal{P}(A)|$. In particular $\\mathcal{P}(\\mathbb{N})$ and $\\mathbb{R}$ are uncountable."
+    },
+    {
+     "type": "proof",
+     "body": "Let $f : A \\to \\mathcal{P}(A)$ be any function. Consider the diagonal set\n$$D = \\{a \\in A : a \\notin f(a)\\}.$$\nIf $D = f(d)$ for some $d \\in A$, then $d \\in D$ if and only if $d \\notin f(d) = D$, which is impossible. So $D$ is not in the image, and $f$ is not surjective. The map $a \\mapsto \\{a\\}$ is an injection $A \\to \\mathcal{P}(A)$, so $|A| \\le |\\mathcal{P}(A)|$, and the two are not equal.\n\nFor $\\mathbb{R}$, it suffices to inject $\\mathcal{P}(\\mathbb{N})$ into $\\mathbb{R}$: send $S \\subseteq \\mathbb{N}$ to the number whose decimal expansion is $0.d_0 d_1 d_2 \\dots$ with $d_n = 1$ if $n \\in S$ and $d_n = 2$ otherwise. Different sets differ in some first digit, and since only the digits 1 and 2 occur, the two numbers really are different (the ambiguity $0.0999\\ldots = 0.1$ needs digits 0 or 9). An uncountable set cannot inject into a countable one, so $\\mathbb{R}$ is uncountable."
+    },
+    {
+     "type": "section",
+     "title": "Comparing sizes",
+     "body": "Is $\\le$ on cardinalities a sensible order? If $|A| \\le |B|$ and $|B| \\le |A|$, we want $|A| = |B|$. This is true but not obvious, since the two injections may have nothing to do with each other."
+    },
+    {
+     "type": "theorem",
+     "title": "Schröder–Bernstein theorem",
+     "body": "If there are injections $f : A \\to B$ and $g : B \\to A$, then there is a bijection $h : A \\to B$."
+    },
+    {
+     "type": "proof",
+     "body": "Let $C_0 = A \\setminus g(B)$, the elements of $A$ not hit by $g$, and $C_{n+1} = g(f(C_n))$. Let $C = C_0 \\cup C_1 \\cup C_2 \\cup \\cdots$. Define\n$$h(x) = \\begin{cases} f(x) & x \\in C, \\\\ g^{-1}(x) & x \\notin C. \\end{cases}$$\nThis makes sense: if $x \\notin C$ then $x \\notin C_0$, so $x \\in g(B)$, and $g^{-1}(x)$ is a single element because $g$ is injective.\n\nInjective: $f$ is injective on $C$ and $g^{-1}$ is injective off $C$. Suppose $f(x) = g^{-1}(y)$ with $x \\in C_n$ and $y \\notin C$. Then $y = g(f(x)) \\in C_{n+1} \\subseteq C$, a contradiction.\n\nSurjective: let $b \\in B$. If $g(b) \\notin C$ then $h(g(b)) = b$. If $g(b) \\in C$, then $g(b) \\notin C_0$ (it is in the image of $g$), so $g(b) \\in C_{n+1} = g(f(C_n))$ for some $n$, and since $g$ is injective, $b = f(x)$ for some $x \\in C_n$; then $h(x) = b$."
+    },
+    {
+     "type": "section",
+     "title": "Cardinal arithmetic, briefly",
+     "body": "For cardinals one defines $|A| + |B| = |A \\sqcup B|$ (disjoint union), $|A|\\cdot|B| = |A \\times B|$ and $|B|^{|A|} = |B^A|$, the set of functions $A \\to B$. Since subsets of $A$ correspond to functions $A \\to \\{0,1\\}$, $|\\mathcal{P}(A)| = 2^{|A|}$. The facts above say $\\aleph_0 + \\aleph_0 = \\aleph_0 \\cdot \\aleph_0 = \\aleph_0$ and $|\\mathbb{R}| = 2^{\\aleph_0}$, the cardinality of the continuum, often written $\\mathfrak{c}$. Also $\\mathfrak{c} \\cdot \\mathfrak{c} = \\mathfrak{c}$: interleaving the decimal digits of two numbers in $(0,1)$ (using expansions that do not end in repeating 9s) gives an injection $(0,1)^2 \\to (0,1)$, and Schröder–Bernstein does the rest. So the plane has no more points than a line.\n\nIs there a set of size strictly between $\\aleph_0$ and $\\mathfrak{c}$? The continuum hypothesis says no. Gödel (1940) and Cohen (1963) showed that it can be neither proved nor refuted from the standard Zermelo–Fraenkel axioms with choice (ZFC), if those are consistent. With the axiom of choice any two cardinalities are comparable; without it, that can fail."
+    },
+    {
+     "type": "section",
+     "title": "Well-orders and ordinals",
+     "body": "Recall that a well-order is a total order in which every nonempty subset has a least element. Two well-orders have the same order type if there is an order-preserving bijection between them. Finite well-orders of the same size always have the same type, but infinite ones need not. Write $\\omega$ for the type of $0 < 1 < 2 < \\cdots$. Putting one extra element after all of them gives $0 < 1 < 2 < \\cdots < \\infty$, of type $\\omega + 1$; this is not isomorphic to $\\omega$, because it has a largest element. Continuing: $\\omega + 2$, ..., $\\omega \\cdot 2$ (two copies of $\\omega$ one after the other), $\\omega \\cdot 3$, ..., $\\omega^2$ (copies of $\\omega$ indexed by $\\omega$), and so on. All of these are countable sets with different orders.\n\nVon Neumann made this precise: an ordinal is a set $\\alpha$ that is transitive (every element of $\\alpha$ is a subset of $\\alpha$) and well-ordered by $\\in$. Then $0 = \\varnothing$, $1 = \\{0\\}$, $2 = \\{0, 1\\}$, ..., $\\omega = \\{0, 1, 2, \\dots\\}$, $\\omega + 1 = \\omega \\cup \\{\\omega\\}$. Each ordinal is the set of smaller ordinals. Every ordinal is either $0$, a successor $\\alpha + 1 = \\alpha \\cup \\{\\alpha\\}$, or a limit like $\\omega$ that is neither, and every well-ordered set is isomorphic to exactly one ordinal.\n\nOrdinal addition and multiplication are defined by concatenating orders, and they are not commutative. $1 + \\omega$ (one point, then a copy of $\\omega$) is again of type $\\omega$, but $\\omega + 1$ is not. Similarly $2 \\cdot \\omega$ ($\\omega$ copies of a two-point order) is $\\omega$, while $\\omega \\cdot 2 = \\omega + \\omega$."
+    },
+    {
+     "type": "theorem",
+     "title": "Transfinite induction",
+     "body": "Let $P(\\alpha)$ be a property of ordinals. If for every ordinal $\\alpha$, $P(\\beta)$ for all $\\beta < \\alpha$ implies $P(\\alpha)$, then $P(\\alpha)$ holds for every ordinal $\\alpha$."
+    },
+    {
+     "type": "proof",
+     "body": "If not, some ordinal fails $P$; the ordinals up to and including it are well-ordered, so there is a least ordinal $\\alpha$ failing $P$. Every $\\beta < \\alpha$ satisfies $P$, so by hypothesis $\\alpha$ does too, a contradiction. In practice one checks three cases: $0$, successors and limits, exactly as strong [[induction]] on $\\mathbb{N}$, with one new kind of step."
+    },
+    {
+     "type": "section",
+     "title": "Cardinals as ordinals",
+     "body": "The two notions meet as follows. Using the axiom of choice, every set can be well-ordered (Zermelo's theorem), so every set is equinumerous with some ordinal. The cardinal $|A|$ is then defined as the least ordinal equinumerous with $A$. Finite cardinals are the natural numbers, and $\\aleph_0 = \\omega$. The ordinals $\\omega, \\omega+1, \\omega \\cdot 2, \\omega^2, \\dots$ are all countable and so all have cardinality $\\aleph_0$; the least uncountable ordinal is $\\omega_1 = \\aleph_1$, then $\\aleph_2$, and so on. In this language the continuum hypothesis reads $2^{\\aleph_0} = \\aleph_1$."
+    },
+    {
+     "type": "example",
+     "title": "Explicit bijections",
+     "body": "(a) Check that $f(n) = n/2$ for even $n$ and $f(n) = -(n+1)/2$ for odd $n$ is a bijection $\\mathbb{N} \\to \\mathbb{Z}$.\n\n(b) Find the pair $(m, n)$ with $\\pi(m,n) = 17$, where $\\pi$ is the Cantor pairing function.",
+     "solution": "(a) Even $n$ go to $0, 1, 2, \\dots$ in order, and odd $n$ go to $-1, -2, -3, \\dots$ in order. Every integer is hit exactly once: $k \\ge 0$ by $n = 2k$ and $k < 0$ by $n = -2k - 1$.\n\n(b) The diagonal $s = m + n$ starts at $s(s+1)/2$: the starts are $0, 1, 3, 6, 10, 15, 21, \\dots$. Since $15 \\le 17 < 21$, we have $s = 5$ and $n = 17 - 15 = 2$, $m = 3$. Check: $\\pi(3, 2) = 5 \\cdot 6/2 + 2 = 17$."
+    },
+    {
+     "type": "example",
+     "title": "Closed and open intervals",
+     "body": "Show that $[0,1]$ and $(0,1)$ have the same cardinality, first by Schröder–Bernstein and then by an explicit bijection.",
+     "solution": "Schröder–Bernstein: inclusion is an injection $(0,1) \\to [0,1]$, and $x \\mapsto \\tfrac14 + \\tfrac{x}{2}$ is an injection $[0,1] \\to [\\tfrac14, \\tfrac34] \\subseteq (0,1)$.\n\nExplicit: use the Hilbert hotel trick on the sequence $\\tfrac12, \\tfrac13, \\tfrac14, \\dots$. Define $h : [0,1] \\to (0,1)$ by\n$$h(0) = \\tfrac12, \\quad h(1) = \\tfrac13, \\quad h\\!\\left(\\tfrac1n\\right) = \\tfrac{1}{n+2} \\ (n \\ge 2), \\quad h(x) = x \\text{ otherwise}.$$\nThe points $0, 1, \\tfrac12, \\tfrac13, \\dots$ are sent onto $\\tfrac12, \\tfrac13, \\tfrac14, \\tfrac15, \\dots$, each hit exactly once, and every other point is fixed. So $h$ is a bijection. Countably many points were shuffled to make room for two more."
+    },
+    {
+     "type": "example",
+     "title": "An uncountable almost disjoint family",
+     "body": "Call two subsets of $\\mathbb{N}$ almost disjoint if their intersection is finite. Show that there are uncountably many subsets of $\\mathbb{N}$ any two of which are almost disjoint.",
+     "solution": "Replace $\\mathbb{N}$ by the set $T$ of finite strings of 0s and 1s, which is countably infinite (list them by length, then alphabetically), so it is enough to work in $T$. For each infinite 0-1 sequence $x = x_1 x_2 x_3 \\ldots$ let $S_x \\subseteq T$ be the set of its finite beginnings: the empty string, $x_1$, $x_1 x_2$, and so on.\n\nIf $x \\ne y$, they first differ at some position $k$. Then $S_x$ and $S_y$ share exactly the $k$ beginnings of lengths $0, 1, \\dots, k-1$, and no longer ones. So $S_x \\cap S_y$ is finite. Different sequences give different sets, and by Cantor's theorem there are uncountably many infinite 0-1 sequences (they correspond to subsets of $\\mathbb{N}$). This is surprising at first: one might expect an almost disjoint family to be no bigger than a disjoint one, and a family of pairwise disjoint nonempty subsets of $\\mathbb{N}$ is at most countable."
+    },
+    {
+     "type": "pitfall",
+     "body": "- \"All infinite sets have the same size\" is false (Cantor), and so is \"a proper subset is always smaller\" for infinite sets.\n- Density says nothing about size: $\\mathbb{Q}$ is dense in $\\mathbb{R}$ yet countable.\n- In the diagonal argument with decimals, avoid the digits 0 and 9, since $0.1999\\ldots = 0.2$ has two expansions.\n- Ordinal and cardinal arithmetic differ: $\\omega + 1 \\ne \\omega$ as ordinals, but $\\aleph_0 + 1 = \\aleph_0$ as cardinals. Ordinal addition is not commutative.\n- Cantor's theorem compares $A$ with $\\mathcal{P}(A)$; it does not say $\\mathbb{R}$ is the next size after $\\mathbb{N}$. That is the continuum hypothesis, which is independent of ZFC."
+    },
+    {
+     "type": "connection",
+     "body": "Countability is used constantly in analysis: countable sets have measure zero in [[lebesgue]] theory, and $\\mathbb{R}$ being uncountable (see [[real-numbers]]) is why most real numbers are not algebraic. In [[computability]], there are countably many programs but uncountably many sets of natural numbers, so most sets are undecidable; the diagonal argument here is the same one behind the halting problem and the [[incompleteness]] theorems. The downward Löwenheim–Skolem theorem, a companion of the [[completeness-theorem]], shows every consistent countable theory has a countable model. Infinite versions of Ramsey's theorem and other results of [[infinite-combinatorics]] use cardinals and ordinals as their natural language."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that the set of all finite subsets of $\\mathbb{N}$ is countable, while the set of all infinite subsets is uncountable.\n2. Give an explicit bijection from $(0,1)$ to $\\mathbb{R}$.\n3. Prove that the set of real functions $\\mathbb{R} \\to \\mathbb{R}$ has cardinality $2^{\\mathfrak c}$, strictly larger than $\\mathfrak c$.\n4. Is $\\omega + \\omega^2$ equal to $\\omega^2$? Is $\\omega^2 + \\omega$? Describe each order in words."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Halmos, Naive Set Theory"
+    },
+    {
+     "ref": "Enderton, Elements of Set Theory"
+    },
+    {
+     "ref": "Jech, Set Theory",
+     "where": "Chapters 1–3 and 5"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "f(n)=n/2 (n even), -(n+1)/2 (n odd) is a bijection from {0..1999} onto {-1000..999}; preimages 2k and -2k-1",
+     "python": "f=lambda n:n//2 if n%2==0 else -(n+1)//2\nimg=[f(n) for n in range(2000)]\nassert sorted(img)==list(range(-1000,1000))\nassert all(f(2*k)==k for k in range(500)) and all(f(-2*k-1)==k for k in range(-500,0))"
+    },
+    {
+     "claim": "Cantor pairing pi(m,n)=(m+n)(m+n+1)/2+n is a bijection from {m+n<60} onto {0,...,1829}; pi(3,2)=17; diagonal starts 0,1,3,6,10,15,21",
+     "python": "pi=lambda m,n:(m+n)*(m+n+1)//2+n\nvals=sorted(pi(m,s-m) for s in range(60) for m in range(s+1))\nassert vals==list(range(60*61//2))\nassert pi(3,2)==17 and [s*(s+1)//2 for s in range(7)]==[0,1,3,6,10,15,21]"
+    },
+    {
+     "claim": "Lowest-terms map p/q -> (p,q) is injective on positive rationals with p,q<=60",
+     "python": "from fractions import Fraction as F\nS={F(p,q) for p in range(1,61) for q in range(1,61)}\npairs=[(x.numerator,x.denominator) for x in S]\nassert len(pairs)==len(set(pairs))==len(S)"
+    },
+    {
+     "claim": "Cantor diagonal: for random maps f: A -> P(A) on a 10-element set, D = {a : a not in f(a)} is never in the image",
+     "python": "import random\nrandom.seed(1)\nA=range(10)\nfor _ in range(2000):\n  f={a:frozenset(x for x in A if random.random()<0.5) for a in A}\n  D=frozenset(a for a in A if a not in f[a])\n  assert all(f[a]!=D for a in A)"
+    },
+    {
+     "claim": "The 1/2-digit decimal coding of subsets of {0..11} is injective; 0.1999... = 0.2 exactly (geometric series)",
+     "python": "from fractions import Fraction as F\nfrom itertools import product\ncode=lambda bits:sum(F(1 if b else 2,10**(i+1)) for i,b in enumerate(bits))\nvals={code(b) for b in product([0,1],repeat=12)}\nassert len(vals)==2**12\nfrom sympy import Rational, Sum, symbols, oo\nk=symbols('k',integer=True,positive=True)\nassert Rational(1,10)+Sum(Rational(9)/10**k,(k,2,oo)).doit()==Rational(1,5)"
+    },
+    {
+     "claim": "Schroder-Bernstein construction with A=B=N, f(n)=n+1, g(n)=2n gives h injective on [0,4000) and hitting every b<1000",
+     "python": "f=lambda n:n+1; g=lambda n:2*n\nLIM=20000\nC=set(x for x in range(LIM) if x%2==1); cur=set(C)\nwhile cur:\n  cur={g(f(x)) for x in cur if g(f(x))<LIM}-C; C|=cur\nh=lambda x:f(x) if x in C else x//2\nvals=[h(x) for x in range(4000)]\nassert len(set(vals))==len(vals)\nassert set(range(1000))<=set(vals)"
+    },
+    {
+     "claim": "[0,1] -> (0,1) Hilbert-hotel map is injective on a large rational sample containing 0, 1 and 1/n, with image inside (0,1)",
+     "python": "from fractions import Fraction as F\ndef h(x):\n  if x==0: return F(1,2)\n  if x==1: return F(1,3)\n  if x.numerator==1 and x.denominator>=2: return F(1,x.denominator+2)\n  return x\nS={F(p,q) for q in range(1,80) for p in range(0,q+1)}\nim=[h(x) for x in S]\nassert len(set(im))==len(S) and all(0<y<1 for y in im)\nassert {h(F(0)),h(F(1))}|{h(F(1,n)) for n in range(2,50)}=={F(1,n) for n in range(2,52)}\nassert all(0<F(1,4)+x/2<1 for x in S if 0<=x<=1)"
+    },
+    {
+     "claim": "Prefix sets of distinct 0-1 sequences (length 12) meet in exactly k elements, where k is the 1-indexed first differing position",
+     "python": "from itertools import product\nseqs=list(product('01',repeat=12))\npre=lambda s:{''.join(s[:i]) for i in range(len(s)+1)}\nimport random\nrandom.seed(2)\nfor _ in range(3000):\n  x,y=random.sample(seqs,2)\n  i=next(i for i in range(12) if x[i]!=y[i])\n  assert len(pre(x)&pre(y))==i+1"
+    },
+    {
+     "claim": "Interleaving decimal digits is injective on pairs of 4-digit decimals in (0,1); x -> 1/4 + x/2 maps [0,1] into [1/4,3/4]; f(-2k-1) = k for k<0",
+     "python": "from fractions import Fraction as F\nfrom itertools import product\ninter=lambda a,b:''.join(x+y for x,y in zip(a,b))\nS=[''.join(t) for t in product('0123456789',repeat=2)]\nvals={inter(a,b) for a in S for b in S}\nassert len(vals)==len(S)**2\nassert F(1,4)+F(0)/2==F(1,4) and F(1,4)+F(1)/2==F(3,4)\nf=lambda n:n//2 if n%2==0 else -(n+1)//2\nassert all(f(-2*k-1)==k for k in range(-300,0))"
+    },
+    {
+     "claim": "Schroder-Bernstein proof on a finite-like example: A=B=N, f(n)=2n, g(n)=2n+1; constructed h is injective and surjective onto {0..999} within a window",
+     "python": "f=lambda n:2*n; g=lambda n:2*n+1\nLIM=1<<16\nC=set(x for x in range(LIM) if x%2==0); cur=set(C)\nwhile cur:\n  cur={g(f(x)) for x in cur if g(f(x))<LIM}-C; C|=cur\nh=lambda x:f(x) if x in C else (x-1)//2\nvals=[h(x) for x in range(8000)]\nassert len(set(vals))==len(vals) and set(range(1000))<=set(vals)"
+    }
+   ]
+  }
+ },
+ {
+  "id": "completeness-theorem",
+  "entry": {
+   "sum": "Gödel's completeness theorem says that in first-order logic semantic consequence and formal provability coincide: $\\Gamma \\models \\varphi$ if and only if $\\Gamma \\vdash \\varphi$; equivalently, every consistent set of sentences has a model. Its corollary, the compactness theorem, says a set of sentences has a model as soon as each of its finite subsets does, which yields nonstandard models of arithmetic and shows that properties like finiteness or connectedness are not first-order expressible.",
+   "key": [
+    "\\Gamma \\vdash \\varphi \\iff \\Gamma \\models \\varphi",
+    "\\Gamma \\text{ is consistent} \\iff \\Gamma \\text{ has a model}",
+    "\\Gamma \\text{ has a model} \\iff \\text{every finite } \\Gamma_0 \\subseteq \\Gamma \\text{ has a model}"
+   ],
+   "why": "Soundness lets one prove non-provability by exhibiting a countermodel, and completeness guarantees that every non-provable sentence has one, so provability questions can be settled by building structures; compactness is the basic construction tool of model theory, producing infinitesimals, nonstandard integers and colourings of infinite graphs from finite information.",
+   "msc": [
+    "03B10",
+    "03C07"
+   ],
+   "links": [
+    {
+     "field": "real-analysis",
+     "note": "Applying compactness to the theory of the real numbers produces ordered fields with infinitesimals, on which Robinson's nonstandard analysis rebuilds calculus."
+    },
+    {
+     "field": "combinatorics",
+     "note": "Propositional compactness shows that an infinite graph is k-colourable whenever all its finite subgraphs are (the de Bruijn–Erdős theorem), and similar arguments transfer finite Ramsey-type results to infinite ones and back."
+    },
+    {
+     "field": "algebra",
+     "note": "Compactness shows that a first-order statement true in every field of characteristic 0 holds in characteristic p for all large primes p, a transfer principle used in algebra and algebraic geometry."
+    }
+   ],
+   "refs": [
+    "Enderton, A Mathematical Introduction to Logic",
+    "Mendelson, Introduction to Mathematical Logic",
+    "Ebbinghaus, Flum & Thomas, Mathematical Logic"
+   ],
+   "aliases": [
+    "completeness theorem",
+    "Gödel's completeness theorem",
+    "compactness theorem",
+    "soundness theorem",
+    "Henkin construction",
+    "Löwenheim–Skolem theorem",
+    "nonstandard models",
+    "first-order logic",
+    "model theory"
+   ]
+  },
+  "lesson": {
+   "minutes": 25,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "There are two quite different ways to say that a statement $\\varphi$ follows from assumptions $\\Gamma$. The semantic way: $\\varphi$ is true in every structure in which all of $\\Gamma$ is true, written $\\Gamma \\models \\varphi$. This quantifies over all structures, infinitely many of them, of every size. The syntactic way: there is a proof, a finite list of formulas, each an assumption, an axiom, or obtained from earlier ones by a fixed rule, ending in $\\varphi$; written $\\Gamma \\vdash \\varphi$. This is a finite, mechanical object that a computer could check.\n\nGödel's completeness theorem (proved in his 1929 dissertation, published 1930) says the two notions agree for first-order logic: a sentence follows from $\\Gamma$ in every possible world exactly when it can be formally proved from $\\Gamma$. Its most useful consequence, the compactness theorem, turns this into a powerful construction tool: to build a structure with infinitely many required properties, it is enough to satisfy any finitely many of them at a time."
+    },
+    {
+     "type": "section",
+     "title": "Setting: structures and consequence",
+     "body": "We use the first-order languages of [[logic-basics]]: a language has constant, function and relation symbols; formulas are built from atomic formulas with $\\neg$, $\\to$ and $\\forall$ (the other connectives and $\\exists$ being abbreviations); a sentence has no free variables. A structure $\\mathfrak A$ gives a nonempty domain and interprets each symbol. A model of a set of sentences $\\Gamma$ is a structure in which every sentence of $\\Gamma$ is true. Then $\\Gamma \\models \\varphi$ means every model of $\\Gamma$ is a model of $\\varphi$, and $\\Gamma$ is satisfiable if it has a model.\n\nFor example, let $\\Gamma$ be the axioms for groups in a language with a binary symbol $\\cdot$, a constant $e$ and a unary symbol ${}^{-1}$. Then $\\Gamma \\models \\forall x\\, \\forall y\\, \\forall z\\, (x \\cdot y = x \\cdot z \\to y = z)$, since cancellation holds in every group. But $\\Gamma \\not\\models \\forall x\\, \\forall y\\, (x \\cdot y = y \\cdot x)$: the symmetric group $S_3$ is a model of $\\Gamma$ in which this sentence is false. A single countermodel is how non-consequence is shown."
+    },
+    {
+     "type": "definition",
+     "title": "A deductive calculus",
+     "body": "Fix the following logical axioms (all instances of these schemes, and all generalisations $\\forall x_1 \\cdots \\forall x_n\\, \\alpha$ of them):\n\n1. every instance of a propositional tautology, such as $\\alpha \\to (\\beta \\to \\alpha)$;\n2. $\\forall x\\, \\alpha \\to \\alpha^x_t$, where $\\alpha^x_t$ replaces the free occurrences of $x$ by a term $t$ that can be substituted without any of its variables becoming bound;\n3. $\\forall x\\, (\\alpha \\to \\beta) \\to (\\forall x\\, \\alpha \\to \\forall x\\, \\beta)$;\n4. $\\alpha \\to \\forall x\\, \\alpha$, when $x$ does not occur free in $\\alpha$;\n5. $x = x$, and $x = y \\to (\\alpha \\to \\alpha')$ for atomic $\\alpha$, where $\\alpha'$ is obtained from $\\alpha$ by replacing $x$ by $y$ at zero or more (not necessarily all) of its occurrences.\n\nThe only rule is modus ponens: from $\\alpha$ and $\\alpha \\to \\beta$, infer $\\beta$. A deduction of $\\varphi$ from $\\Gamma$ is a finite sequence of formulas ending in $\\varphi$, each of which is in $\\Gamma$, is a logical axiom, or follows from two earlier ones by modus ponens. We write $\\Gamma \\vdash \\varphi$ if one exists, and call $\\Gamma$ consistent if there is no $\\varphi$ with both $\\Gamma \\vdash \\varphi$ and $\\Gamma \\vdash \\neg \\varphi$.\n\nThis is essentially the calculus in Enderton's textbook, where the schemes are numbered as six groups (the two equality schemes separately); many equivalent systems exist (natural deduction, sequent calculi), and the theorems below hold for all the standard ones. Two basic facts about it are used constantly: the deduction theorem, $\\Gamma \\cup \\{\\alpha\\} \\vdash \\beta$ if and only if $\\Gamma \\vdash \\alpha \\to \\beta$; and $\\Gamma$ is inconsistent if and only if $\\Gamma \\vdash \\varphi$ for every $\\varphi$."
+    },
+    {
+     "type": "theorem",
+     "title": "Soundness theorem",
+     "body": "If $\\Gamma \\vdash \\varphi$, then $\\Gamma \\models \\varphi$."
+    },
+    {
+     "type": "proof",
+     "body": "By [[induction]] on the length of the deduction, show that every formula in it is true in every model of $\\Gamma$ under every assignment of values to its free variables. Members of $\\Gamma$ are true by assumption. Each logical axiom is true in every structure; for scheme 1 because tautologies are true whatever truth values their parts take, and for schemes 2 to 5 by short checks from the definition of truth (scheme 2 needs the substitution lemma, which says that $\\alpha^x_t$ holds under an assignment exactly when $\\alpha$ holds after giving $x$ the value of $t$). Finally, if $\\alpha$ and $\\alpha \\to \\beta$ are both true under an assignment, so is $\\beta$."
+    },
+    {
+     "type": "theorem",
+     "title": "Gödel's completeness theorem",
+     "body": "If $\\Gamma \\models \\varphi$, then $\\Gamma \\vdash \\varphi$. Equivalently: every consistent set of sentences has a model."
+    },
+    {
+     "type": "proof",
+     "title": "Proof sketch (Henkin's method, countable language)",
+     "body": "First, the second form implies the first (the converse is similar and not needed). If $\\Gamma \\models \\varphi$ then $\\Gamma \\cup \\{\\neg\\varphi\\}$ has no model; if every consistent set has a model, $\\Gamma \\cup \\{\\neg\\varphi\\}$ must be inconsistent, so it proves $\\varphi$, and by the deduction theorem $\\Gamma \\vdash \\neg\\varphi \\to \\varphi$, from which $\\Gamma \\vdash \\varphi$ by a tautology.\n\nNow let $\\Gamma$ be consistent. The idea is to build a model out of the language itself.\n\n1. Witnesses. Add infinitely many new constants. List all formulas $\\theta_1(x), \\theta_2(x), \\dots$ of the enlarged language with one free variable, and for each add the Henkin axiom $\\neg \\forall x\\, \\theta_n(x) \\to \\neg \\theta_n(c_n)$, with $c_n$ a new constant not occurring in $\\theta_1, \\dots, \\theta_n$ or in the earlier Henkin axioms. Intuitively: if something fails $\\theta_n$, then $c_n$ names such a thing. One shows the enlarged set is still consistent.\n2. Maximality. List all sentences $\\sigma_1, \\sigma_2, \\dots$ and go through them, adding $\\sigma_k$ if that keeps the set consistent and $\\neg\\sigma_k$ otherwise (Lindenbaum's lemma). The result $\\Delta$ is consistent and, for each sentence $\\sigma$, contains exactly one of $\\sigma$ and $\\neg\\sigma$.\n3. The term model. Let the domain be the closed terms, with $t$ and $u$ identified when the sentence $t = u$ is in $\\Delta$ (the equality axioms make this an equivalence relation compatible with all symbols). Interpret each constant as (the class of) itself, each function symbol $f$ by sending the classes of $t_1, \\dots, t_n$ to the class of $f(t_1,\\dots,t_n)$, and each relation symbol $R$ by declaring $R(t_1,\\dots,t_n)$ true exactly when that sentence is in $\\Delta$.\n4. Truth lemma. By induction on formulas, a sentence is true in the term model if and only if it is in $\\Delta$. The atomic case is the definition; $\\neg$ and $\\to$ use maximality; and $\\forall$ is where the witnesses are needed: if $\\forall x\\, \\theta(x) \\notin \\Delta$, then the witness $c$ satisfies $\\neg\\theta(c) \\in \\Delta$, so $\\forall x\\, \\theta(x)$ fails in the model too.\n\nSince $\\Gamma \\subseteq \\Delta$, the term model (restricted to the original language) is a model of $\\Gamma$. Note that its domain is countable, a fact used below."
+    },
+    {
+     "type": "theorem",
+     "title": "Compactness theorem",
+     "body": "A set of sentences $\\Gamma$ has a model if and only if every finite subset of $\\Gamma$ has a model. Equivalently, if $\\Gamma \\models \\varphi$ then $\\Gamma_0 \\models \\varphi$ for some finite $\\Gamma_0 \\subseteq \\Gamma$."
+    },
+    {
+     "type": "proof",
+     "body": "One direction is trivial. For the other, suppose $\\Gamma$ has no model. By completeness $\\Gamma$ is inconsistent, so it proves some $\\psi$ and $\\neg \\psi$. The two deductions are finite lists, so together they use only finitely many members of $\\Gamma$; call this finite set $\\Gamma_0$. Then $\\Gamma_0$ is inconsistent, and by soundness it has no model."
+    },
+    {
+     "type": "section",
+     "title": "What compactness buys",
+     "body": "Stated this way, compactness mentions only models, not proofs. Typical uses:\n\nArbitrarily large finite models force infinite ones. If $\\Gamma$ has finite models of every size, add the sentences $\\lambda_n$: \"there are at least $n$ elements\", that is $\\exists x_1 \\cdots \\exists x_n \\bigwedge_{i<j} x_i \\ne x_j$. Each finite subset of $\\Gamma \\cup \\{\\lambda_2, \\lambda_3, \\dots\\}$ has a model, so the whole set does, and that model is infinite. Consequently no set of first-order sentences has exactly the finite groups (or finite fields, or finite graphs) as its models.\n\nNonstandard arithmetic. Let $\\mathrm{Th}(\\mathbb N)$ be all sentences true in $(\\mathbb N, 0, S, +, \\cdot, <)$. Add a constant $c$ and the sentences $c > \\underline{n}$ for each $n$, where $\\underline{n}$ is $S S \\cdots S 0$. Any finite subset is true in $\\mathbb N$ if $c$ is interpreted as a large enough number, so there is a model of everything true about $\\mathbb N$ that also contains an element larger than every standard number. Such a model satisfies exactly the same first-order sentences as $\\mathbb N$, so \"being a standard natural number\" is not first-order expressible. The same trick applied to $\\mathbb R$ produces fields with infinitesimals, the starting point of Robinson's nonstandard analysis.\n\nLöwenheim–Skolem. The Henkin model above is countable, so every consistent set of sentences in a countable language has a countable model. Even axioms for set theory, which prove that uncountable sets exist, have countable models (Skolem's paradox: \"uncountable\" inside the model only means that the model contains no bijection with its own $\\omega$)."
+    },
+    {
+     "type": "example",
+     "title": "A formal deduction",
+     "body": "Using only scheme 1 instances and modus ponens, give a deduction of $p \\to p$ (for a fixed formula $p$) that uses the tautologies $\\alpha \\to (\\beta \\to \\alpha)$ and $(\\alpha \\to (\\beta \\to \\gamma)) \\to ((\\alpha \\to \\beta) \\to (\\alpha \\to \\gamma))$.",
+     "solution": "Of course $p \\to p$ is itself a tautology, so in this calculus it is an axiom. The point of the exercise is to see how the two schemes, which also form the core of the classic Hilbert systems, generate it.\n\n1. $(p \\to ((p \\to p) \\to p)) \\to ((p \\to (p \\to p)) \\to (p \\to p))$, the second scheme with $\\alpha = p$, $\\beta = p \\to p$, $\\gamma = p$.\n2. $p \\to ((p \\to p) \\to p)$, the first scheme with $\\alpha = p$, $\\beta = p \\to p$.\n3. $(p \\to (p \\to p)) \\to (p \\to p)$, modus ponens from 2 and 1.\n4. $p \\to (p \\to p)$, the first scheme with $\\alpha = \\beta = p$.\n5. $p \\to p$, modus ponens from 4 and 3."
+    },
+    {
+     "type": "example",
+     "title": "Non-consequence by countermodel",
+     "body": "Show that $\\forall x\\, \\exists y\\, R(x,y) \\not\\vdash \\exists y\\, \\forall x\\, R(x,y)$.",
+     "solution": "By soundness it is enough to find a structure where the hypothesis is true and the conclusion is false. Take the domain $\\{0, 1\\}$ and let $R(x,y)$ mean $x \\ne y$. Every $x$ has a $y$ different from it, so $\\forall x\\, \\exists y\\, R(x,y)$ holds. But no $y$ is different from every $x$, since $y$ is not different from itself. So $\\exists y\\, \\forall x\\, R(x,y)$ is false.\n\nCompleteness gives the converse: whenever no countermodel exists, a deduction does. This turns \"is it provable?\" into \"is there a counterexample?\", and vice versa."
+    },
+    {
+     "type": "example",
+     "title": "Connectedness is not first-order",
+     "body": "In the language with one binary relation symbol $E$ (edges of a graph), show that there is no set $\\Gamma$ of sentences whose models are exactly the connected graphs.",
+     "solution": "Suppose such a $\\Gamma$ existed. Add two constants $a, b$, and for each $n \\ge 1$ the sentence $\\delta_n$: \"there is no path of length at most $n$ from $a$ to $b$\". For instance $\\delta_2$ is\n$$a \\ne b \\wedge \\neg E(a,b) \\wedge \\neg \\exists z\\, \\big(E(a,z) \\wedge E(z,b)\\big).$$\nTake any finite subset of $\\Gamma \\cup \\{\\delta_1, \\delta_2, \\dots\\}$, and let $N$ be the largest $n$ for which $\\delta_n$ occurs. A path with $N + 2$ vertices, with $a$ and $b$ its two ends, is connected (so it satisfies $\\Gamma$), and its ends are at distance $N + 1$, so it satisfies $\\delta_1, \\dots, \\delta_N$. By compactness the whole set has a model: a graph satisfying $\\Gamma$, hence connected, in which $a$ and $b$ are joined by no path of any length. This is a contradiction."
+    },
+    {
+     "type": "example",
+     "title": "Colouring infinite graphs",
+     "body": "Let $G$ be a graph with countably many vertices such that every finite subgraph can be properly coloured with 3 colours. Prove that $G$ itself can be properly 3-coloured.",
+     "solution": "This needs only the propositional version of compactness, which follows from the propositional completeness theorem in the same way. For each vertex $v$ and colour $i \\in \\{1,2,3\\}$ take a propositional letter $p_{v,i}$, meaning \"$v$ gets colour $i$\". Let $\\Gamma$ consist of\n\n- $p_{v,1} \\vee p_{v,2} \\vee p_{v,3}$ for each vertex $v$ (some colour);\n- $\\neg(p_{v,i} \\wedge p_{v,j})$ for each $v$ and $i < j$ (at most one colour);\n- $\\neg(p_{u,i} \\wedge p_{v,i})$ for each edge $uv$ and each $i$ (neighbours differ).\n\nAn assignment satisfying $\\Gamma$ is exactly a proper 3-colouring. A finite subset of $\\Gamma$ mentions finitely many vertices, and a proper colouring of the finite subgraph they span satisfies it. By compactness $\\Gamma$ is satisfiable, so $G$ is 3-colourable. (With the axiom of choice the same holds for any number of vertices; this is the de Bruijn–Erdős theorem.)"
+    },
+    {
+     "type": "pitfall",
+     "body": "- Completeness is not the same as the completeness of a theory. Gödel's completeness theorem is about the logic: every valid consequence is provable. A theory $T$ is called complete if it proves $\\sigma$ or $\\neg\\sigma$ for every sentence $\\sigma$; the [[incompleteness]] theorems say arithmetic is not complete in this second sense. The two results do not conflict.\n- Completeness does not give a decision procedure. Provable consequences can be listed one by one, but if $\\varphi$ is not a consequence, the search may never end; first-order validity is undecidable (Church and Turing).\n- Compactness fails for stronger logics. In second-order logic one can characterise $\\mathbb N$ up to isomorphism, so the nonstandard-model argument breaks down, and so does completeness.\n- In the compactness argument, each finite subset may need a different model; there is no claim that one model of a finite subset extends to a model of everything."
+    },
+    {
+     "type": "connection",
+     "body": "The completeness theorem is the base camp for [[incompleteness]]: once provability in first-order logic is known to capture truth in all models, Gödel's second great result shows that no reasonable axiom system captures truth in the one intended model $\\mathbb N$. Compactness and Löwenheim–Skolem are the opening theorems of model theory, and the countable models they produce connect to [[ordinals-cardinals]]. The propositional form of compactness is the logical core of results in [[infinite-combinatorics]], such as infinite colouring theorems, and the undecidability of validity is a theorem of [[computability]]."
+    },
+    {
+     "type": "exercise",
+     "body": "1. Show that $\\{\\forall x\\, \\neg R(x,x),\\ \\forall x\\, \\forall y\\, \\forall z\\, (R(x,y) \\wedge R(y,z) \\to R(x,z))\\} \\not\\models \\forall x\\, \\forall y\\, (R(x,y) \\vee x = y \\vee R(y,x))$.\n2. Use compactness to show that if a sentence is true in every field of characteristic 0, then it is true in every field of characteristic $p$ for all sufficiently large primes $p$.\n3. Prove that there is no set of sentences in the language of ordered sets whose models are exactly the well-orders. (Hint: add constants $c_0 > c_1 > c_2 > \\cdots$.)"
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Enderton, A Mathematical Introduction to Logic",
+     "where": "Chapter 2"
+    },
+    {
+     "ref": "Mendelson, Introduction to Mathematical Logic"
+    },
+    {
+     "ref": "Ebbinghaus, Flum & Thomas, Mathematical Logic"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Hilbert schemes alpha->(beta->alpha) and the distribution scheme are tautologies, and the 5-line deduction of p->p is correct (each MP step has the right form)",
+     "python": "from itertools import product\nI=lambda a,b:('->',a,b)\ndef ev(f,v):\n  if isinstance(f,str): return v[f]\n  return (not ev(f[1],v)) or ev(f[2],v)\nK=lambda a,b:I(a,I(b,a))\nS=lambda a,b,c:I(I(a,I(b,c)),I(I(a,b),I(a,c)))\nfor v in product([0,1],repeat=3):\n  e=dict(zip('abc',v))\n  assert ev(K('a','b'),e) and ev(S('a','b','c'),e)\np='p'\nL1=S(p,I(p,p),p); L2=K(p,I(p,p)); L3=I(I(p,I(p,p)),I(p,p)); L4=K(p,p); L5=I(p,p)\nassert L1==I(L2,L3) and L3==I(L4,L5)"
+    },
+    {
+     "claim": "Countermodel: on {0,1} with R(x,y) iff x != y, forall x exists y R holds but exists y forall x R fails",
+     "python": "D=[0,1]; R=lambda x,y:x!=y\nassert all(any(R(x,y) for y in D) for x in D)\nassert not any(all(R(x,y) for x in D) for y in D)"
+    },
+    {
+     "claim": "S3 is a group where cancellation holds but commutativity fails",
+     "python": "from itertools import permutations\nG=list(permutations(range(3)))\nm=lambda a,b:tuple(a[b[i]] for i in range(3))\nassert all(m(x,y)!=m(x,z) for x in G for y in G for z in G if y!=z)\nassert any(m(x,y)!=m(y,x) for x in G for y in G)"
+    },
+    {
+     "claim": "In a path with N+2 vertices the ends are at distance N+1 (so delta_1..delta_N hold) and the path is connected",
+     "python": "from collections import deque\nfor N in range(1,40):\n  n=N+2; adj={i:[j for j in (i-1,i+1) if 0<=j<n] for i in range(n)}\n  d={0:0}; q=deque([0])\n  while q:\n    u=q.popleft()\n    for w in adj[u]:\n      if w not in d: d[w]=d[u]+1; q.append(w)\n  assert len(d)==n and d[n-1]==N+1"
+    },
+    {
+     "claim": "The propositional encoding of 3-colouring: satisfying assignments correspond exactly to proper 3-colourings (checked on the 5-cycle: 30 colourings, and K4: 0)",
+     "python": "from itertools import product\ndef count_sat(V,E):\n  letters=[(v,i) for v in V for i in range(3)]; c=0\n  for bits in product([0,1],repeat=len(letters)):\n    a=dict(zip(letters,bits))\n    if all(any(a[(v,i)] for i in range(3)) for v in V) and all(not(a[(v,i)] and a[(v,j)]) for v in V for i in range(3) for j in range(i+1,3)) and all(not(a[(u,i)] and a[(v,i)]) for u,v in E for i in range(3)):\n      c+=1\n  return c\ndef count_col(V,E):\n  return sum(1 for col in product(range(3),repeat=len(V)) if all(col[u]!=col[v] for u,v in E))\nC5=[(i,(i+1)%5) for i in range(5)]\nassert count_sat(range(5),C5)==count_col(range(5),C5)==30\nK4=[(i,j) for i in range(4) for j in range(i+1,4)]\nassert count_sat(range(4),K4)==count_col(range(4),K4)==0"
+    },
+    {
+     "claim": "Strict partial order that is not total exists (exercise 1 countermodel): divisibility-strict on {1,2,3}",
+     "python": "D=[1,2,3]; R=lambda x,y:x!=y and y%x==0\nassert all(not R(x,x) for x in D)\nassert all(R(x,z) for x in D for y in D for z in D if R(x,y) and R(y,z))\nassert not all(R(x,y) or x==y or R(y,x) for x in D for y in D)"
+    },
+    {
+     "claim": "Tautology used in the reduction: (not phi -> phi) -> phi",
+     "python": "imp=lambda a,b:(not a) or b\nassert all(imp(imp(not f,f),f) for f in (False,True))"
+    },
+    {
+     "claim": "delta_2 as written (a != b, no edge ab, no common neighbour) holds exactly when dist(a,b) > 2, over all graphs on 5 labelled vertices and all pairs a != b; and also fails when a = b",
+     "python": "from itertools import combinations, product\nfrom collections import deque\nV=range(5); allE=list(combinations(V,2))\ndef dist(E,a,b):\n  adj={v:set() for v in V}\n  for u,w in E: adj[u].add(w); adj[w].add(u)\n  d={a:0}; q=deque([a])\n  while q:\n    u=q.popleft()\n    for w in adj[u]:\n      if w not in d: d[w]=d[u]+1; q.append(w)\n  return d.get(b,99)\nfor m in range(1<<len(allE)):\n  E=[allE[i] for i in range(len(allE)) if m>>i&1]; S=set(E)|{(w,u) for u,w in E}\n  for a,b in product(V,V):\n    d2=(a!=b) and ((a,b) not in S) and not any((a,z) in S and (z,b) in S for z in V)\n    assert d2==(dist(E,a,b)>2)"
+    },
+    {
+     "claim": "Exercise 3 hint sanity: any finite set of conditions c0>c1>...>cN is satisfiable in the well-order {0..N} (assign c_i = N-i)",
+     "python": "for N in range(1,50):\n  c=[N-i for i in range(N+1)]\n  assert all(c[i]>c[i+1] for i in range(N)) and all(0<=x<=N for x in c)"
+    }
+   ]
+  }
+ },
+ {
+  "id": "incompleteness",
+  "entry": {
+   "sum": "Gödel's first incompleteness theorem says that every consistent, effectively axiomatised theory that contains a modest amount of arithmetic leaves some arithmetical sentence $G$ undecided: $T \\nvdash G$ and $T \\nvdash \\neg G$. The second says such a theory (extending PA) cannot prove its own consistency $\\mathrm{Con}_T$. Both rest on coding formulas by numbers and on a diagonal construction of a sentence that says 'I am not provable'.",
+   "key": [
+    "T \\vdash G \\leftrightarrow \\neg\\mathrm{Prov}_T(\\ulcorner G \\urcorner)",
+    "T \\text{ consistent, effectively axiomatised},\\ T \\supseteq Q \\;\\Longrightarrow\\; T \\nvdash G \\text{ and } T \\nvdash \\neg G",
+    "T \\supseteq \\mathrm{PA} \\text{ consistent, effectively axiomatised} \\;\\Longrightarrow\\; T \\nvdash \\mathrm{Con}_T"
+   ],
+   "why": "The theorems set permanent limits on axiomatic mathematics and on mechanical theorem proving, and they explain why concrete statements like Goodstein's theorem need methods beyond Peano arithmetic.",
+   "msc": [
+    "03F40",
+    "03F30"
+   ],
+   "links": [
+    {
+     "field": "number-theory",
+     "note": "By the Matiyasevich–Robinson–Davis–Putnam theorem, for any such theory there is a polynomial Diophantine equation with no solutions in natural numbers whose unsolvability the theory cannot prove."
+    },
+    {
+     "field": "combinatorics",
+     "note": "The Paris–Harrington strengthening of the finite Ramsey theorem (1977) is the classic example of a natural combinatorial statement that is true but unprovable in Peano arithmetic."
+    },
+    {
+     "field": "formal-verification",
+     "note": "A proof assistant whose logic is consistent, effectively axiomatised and strong enough to encode arithmetic cannot verify its own consistency from within, so trust in its kernel ultimately rests on a stronger or external argument."
+    }
+   ],
+   "refs": [
+    "Enderton, A Mathematical Introduction to Logic",
+    "Smith, An Introduction to Gödel's Theorems",
+    "Boolos, Burgess & Jeffrey, Computability and Logic"
+   ],
+   "aliases": [
+    "Gödel's incompleteness theorem",
+    "first incompleteness theorem",
+    "second incompleteness theorem",
+    "Gödel numbering",
+    "Gödel sentence",
+    "diagonal lemma",
+    "fixed-point lemma",
+    "Rosser's theorem",
+    "Hilbert's programme",
+    "Peano arithmetic",
+    "Goodstein's theorem"
+   ]
+  },
+  "lesson": {
+   "minutes": 25,
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "In the 1920s Hilbert proposed a programme: write down a mechanically checkable list of axioms from which every true statement of arithmetic could be proved, and prove by elementary means that these axioms never lead to a contradiction. In 1931 Gödel showed that neither half can be achieved. Any consistent axiom system that is listed by a mechanical rule and can do a modest amount of arithmetic leaves some arithmetical sentence undecided: it proves neither the sentence nor its negation. And such a system cannot prove its own consistency.\n\nThese are theorems about formal systems, proved with the same rigour as any theorem about primes. This page states them precisely, explains the two key tools (coding syntax by numbers, and self-reference by diagonalisation), proves the first theorem, sketches the second, and connects both to the undecidability of the halting problem. It assumes the [[completeness-theorem]] page and basic [[computability]]."
+    },
+    {
+     "type": "definition",
+     "title": "Theories and their properties",
+     "body": "A theory $T$ is a set of sentences in a first-order language; its theorems are the sentences $\\sigma$ with $T \\vdash \\sigma$. We work in the language of arithmetic with symbols $0, S, +, \\cdot, <$, intended to be read in the standard model $\\mathbb N$. The theory $T$ is\n\n- consistent if there is no sentence $\\sigma$ with $T \\vdash \\sigma$ and $T \\vdash \\neg \\sigma$;\n- complete if for every sentence $\\sigma$, $T \\vdash \\sigma$ or $T \\vdash \\neg\\sigma$;\n- effectively axiomatised if there is an algorithm that decides, for any sentence, whether it is an axiom of $T$;\n- sound if every theorem of $T$ is true in $\\mathbb N$.\n\nTwo standard theories: Robinson arithmetic $Q$, with a few simple axioms such as $\\forall x\\, (Sx \\ne 0)$ and $\\forall x\\, \\forall y\\, (x + Sy = S(x+y))$, and Peano arithmetic PA, which adds the induction scheme: for each formula $\\varphi(x)$, the axiom $\\big(\\varphi(0) \\wedge \\forall x\\, (\\varphi(x) \\to \\varphi(Sx))\\big) \\to \\forall x\\, \\varphi(x)$.\n\n\"Complete\" here is a property of a theory, unlike the completeness theorem, which is about the logic."
+    },
+    {
+     "type": "section",
+     "title": "Coding syntax by numbers",
+     "body": "Gödel's first idea is that formulas and proofs, being finite strings, can be coded as natural numbers, so that statements about provability become statements about numbers. Give each symbol a code number. A string with symbol codes $a_1, a_2, \\dots, a_k$ gets the Gödel number\n$$2^{a_1} \\cdot 3^{a_2} \\cdot 5^{a_3} \\cdots p_k^{a_k},$$\nwhere $p_k$ is the $k$-th prime. By unique factorisation ([[fta]]) the string can be recovered from its number. A proof, being a finite sequence of formulas, is coded the same way from the codes of its lines. Write $\\ulcorner \\sigma \\urcorner$ for the numeral (the term $SS\\cdots S0$) of the Gödel number of $\\sigma$.\n\nThe point of the coding is that the syntactic operations become computable functions of numbers: whether $n$ codes a formula, whether $n$ codes an axiom of $T$ (this is where effective axiomatisation is used), and whether $m$ codes a deduction whose last line is coded by $n$. Every computable relation of numbers is representable in $Q$: there is a formula $\\mathrm{Prf}_T(y, x)$ such that whenever $m$ codes a proof of the sentence coded by $n$, $Q \\vdash \\mathrm{Prf}_T(\\underline{m}, \\underline{n})$, and whenever it does not, $Q \\vdash \\neg\\mathrm{Prf}_T(\\underline{m}, \\underline{n})$, where $\\underline m$ is the numeral of $m$. This is a long but routine verification, which we take for granted. Define\n$$\\mathrm{Prov}_T(x) \\;=\\; \\exists y\\, \\mathrm{Prf}_T(y, x),$$\n\"$x$ is the code of a theorem of $T$\"."
+    },
+    {
+     "type": "theorem",
+     "title": "Diagonal lemma",
+     "body": "Let $T$ extend $Q$. For every formula $\\varphi(x)$ with one free variable there is a sentence $\\sigma$ such that\n$$T \\vdash \\sigma \\leftrightarrow \\varphi(\\ulcorner \\sigma \\urcorner).$$"
+    },
+    {
+     "type": "proof",
+     "title": "Proof sketch",
+     "body": "The function $d$ that sends the code of a formula $\\psi(x)$ to the code of the sentence $\\psi(\\ulcorner \\psi \\urcorner)$, the formula applied to its own code, is computable, so it is representable by a formula $D(x, y)$, with $Q$ proving that $D(\\ulcorner\\psi\\urcorner, y)$ holds for exactly one $y$, namely the code of $\\psi(\\ulcorner\\psi\\urcorner)$. Let $\\psi(x) = \\exists y\\, (D(x,y) \\wedge \\varphi(y))$, \"the diagonal of $x$ has property $\\varphi$\", and let $\\sigma = \\psi(\\ulcorner \\psi \\urcorner)$. Then $\\sigma$ says that the diagonal of $\\psi$, which is $\\sigma$ itself, has property $\\varphi$, and the representability of $d$ turns this into a proof of $\\sigma \\leftrightarrow \\varphi(\\ulcorner\\sigma\\urcorner)$ in $T$. The same trick makes a computer program print its own source code."
+    },
+    {
+     "type": "theorem",
+     "title": "First incompleteness theorem",
+     "body": "Let $T$ be a consistent, effectively axiomatised theory in the language of arithmetic that extends $Q$. Then there is a sentence $G$ such that $T \\nvdash G$ and $T \\nvdash \\neg G$. So $T$ is incomplete.\n\n(Gödel's original proof assumed that $T$ is $\\omega$-consistent, a little more than consistent; Rosser (1936) showed plain consistency is enough. Below we prove the version in which $T$ is also sound, which already covers PA.)"
+    },
+    {
+     "type": "proof",
+     "title": "Proof for sound theories",
+     "body": "Apply the diagonal lemma to $\\neg \\mathrm{Prov}_T(x)$: there is $G$ with\n$$T \\vdash G \\leftrightarrow \\neg \\mathrm{Prov}_T(\\ulcorner G \\urcorner).$$\nRead in $\\mathbb N$, $G$ says \"I am not a theorem of $T$.\"\n\nSuppose $T \\vdash G$. Then some number $m$ codes a proof of $G$, so $Q \\vdash \\mathrm{Prf}_T(\\underline m, \\ulcorner G \\urcorner)$, hence $T \\vdash \\mathrm{Prov}_T(\\ulcorner G \\urcorner)$. By the displayed equivalence, $T \\vdash \\neg G$ as well, and $T$ is inconsistent. So $T \\nvdash G$.\n\nSince $G$ is not a theorem, no number codes a proof of it, so $\\neg \\mathrm{Prov}_T(\\ulcorner G \\urcorner)$ is true in $\\mathbb N$; as $T$ is sound, the provable equivalence $G \\leftrightarrow \\neg \\mathrm{Prov}_T(\\ulcorner G \\urcorner)$ is true in $\\mathbb N$ too, so $G$ is true in $\\mathbb N$. Then $\\neg G$ is false in $\\mathbb N$, and a sound $T$ cannot prove it. So $T \\nvdash \\neg G$.\n\nRosser's improvement replaces \"I am not provable\" by \"for any proof of me there is a shorter proof of my negation\", which lets the second half go through using only consistency."
+    },
+    {
+     "type": "section",
+     "title": "The computability view",
+     "body": "There is a second route to incompleteness through the halting problem: there is no algorithm that decides, given a program $M$, whether $M$ halts on empty input. For each $M$ there is an arithmetic sentence $H_M$ that is true in $\\mathbb N$ exactly when $M$ halts (it says \"there is a number coding a finished computation of $M$\"), and if $M$ does halt, $Q$ proves $H_M$, by checking the computation.\n\nNow suppose $T$ were sound, effectively axiomatised and complete. Given $M$, list all theorems of $T$ (possible because $T$ is effectively axiomatised: run through all strings and check which code proofs) until either $H_M$ or $\\neg H_M$ appears. Completeness guarantees that one of them appears, and soundness that the answer is right. That would decide the halting problem, which is impossible. So $T$ is incomplete. This argument also shows that the set of sentences true in $\\mathbb N$ is not effectively axiomatisable, and indeed is not even computably enumerable."
+    },
+    {
+     "type": "theorem",
+     "title": "Second incompleteness theorem",
+     "body": "Let $T$ be a consistent, effectively axiomatised theory extending PA, and let $\\mathrm{Con}_T$ be the sentence $\\neg \\mathrm{Prov}_T(\\ulcorner 0 = S0 \\urcorner)$. Then $T \\nvdash \\mathrm{Con}_T$."
+    },
+    {
+     "type": "proof",
+     "title": "Proof sketch",
+     "body": "The first half of the proof of the first theorem showed: if $T$ is consistent, then $T \\nvdash G$, so $G$ is true. That reasoning uses only elementary facts about proofs and codes, and it can be carried out inside $T$ itself (PA is strong enough; one checks the Hilbert–Bernays derivability conditions, such as $T \\vdash \\mathrm{Prov}_T(\\ulcorner\\alpha\\urcorner) \\to \\mathrm{Prov}_T(\\ulcorner \\mathrm{Prov}_T(\\ulcorner\\alpha\\urcorner) \\urcorner)$). The formalised result is\n$$T \\vdash \\mathrm{Con}_T \\to G.$$\nIf $T$ proved $\\mathrm{Con}_T$, modus ponens would give $T \\vdash G$, which the first theorem rules out. So $T \\nvdash \\mathrm{Con}_T$."
+    },
+    {
+     "type": "section",
+     "title": "What the theorems do and do not say",
+     "body": "They do not say that some statement is unprovable in every system: $T + G$ proves $G$. But $T + G$ is again consistent and effectively axiomatised, so it has its own undecided sentence; the incompleteness cannot be repaired by adding axioms one at a time, or by any effective scheme.\n\nThey need all their hypotheses. The theory of all sentences true in $\\mathbb N$ is complete and consistent, but not effectively axiomatised. Presburger arithmetic (only $+$, no $\\cdot$) and the theory of real closed fields (Tarski) are complete and effectively axiomatised; they are too weak to represent all computable relations.\n\nThe second theorem does not show that PA is inconsistent; it shows its consistency cannot be proved by means formalisable in PA. Gentzen (1936) proved the consistency of PA using induction along the ordinal $\\varepsilon_0$, a principle outside PA (see [[ordinals-cardinals]]).\n\nNatural undecided statements exist. Goodstein's theorem (every Goodstein sequence reaches 0) is true but not provable in PA (Kirby and Paris, 1982), as is a strengthened finite Ramsey theorem (Paris and Harrington, 1977). In set theory, the continuum hypothesis is neither provable nor refutable in ZFC, assuming ZFC is consistent. And by the work of Matiyasevich, Robinson, Davis and Putnam, for any $T$ as above there is a polynomial Diophantine equation with no solutions in natural numbers for which $T$ cannot prove that it has none."
+    },
+    {
+     "type": "example",
+     "title": "Computing a Gödel number",
+     "body": "Code the symbols by $0 \\mapsto 1$, $S \\mapsto 2$, $= \\ \\mapsto 3$. Find the Gödel number of the string $S0 = S0$, and recover the string from its number.",
+     "solution": "The symbol codes are $2, 1, 3, 2, 1$, so the Gödel number is\n$$2^2 \\cdot 3^1 \\cdot 5^3 \\cdot 7^2 \\cdot 11^1 = 4 \\cdot 3 \\cdot 125 \\cdot 49 \\cdot 11 = 808500.$$\nTo decode, factor: $808500 = 2^2 \\cdot 3 \\cdot 5^3 \\cdot 7^2 \\cdot 11$. The exponents of the successive primes $2, 3, 5, 7, 11$ are $2, 1, 3, 2, 1$, giving back $S, 0, =, S, 0$. Unique factorisation guarantees this always works, provided every symbol code is at least 1, so that no exponent is 0 and the length of the string can be read off."
+    },
+    {
+     "type": "example",
+     "title": "Goodstein sequences",
+     "body": "Write $n$ in hereditary base 2 (write $n$ in base 2, then write each exponent in base 2, and so on). Replace every 2 by 3 and subtract 1. Write the result in hereditary base 3, replace every 3 by 4 and subtract 1, and so on. Compute the sequence starting at 3, and the first few terms starting at 4.",
+     "solution": "Start with 3. In base 2, $3 = 2 + 1$. Replace 2 by 3: $3 + 1 = 4$; subtract 1: $3$. In base 3, $3 = 3^1$; replace 3 by 4 and subtract 1: $4 - 1 = 3$. In base 4, $3$ is a single digit, so the bump changes nothing and we get $2$, then $1$, then $0$. The sequence is $3, 3, 3, 2, 1, 0$.\n\nStart with 4. In hereditary base 2, $4 = 2^2$; replacing 2 by 3 gives $3^3 = 27$, minus 1 is $26 = 2 \\cdot 3^2 + 2 \\cdot 3 + 2$. Bump to base 4: $2 \\cdot 16 + 2 \\cdot 4 + 2 = 42$, minus 1 is $41$. Continuing gives $4, 26, 41, 60, 83, 109, 139, 173, \\dots$, which grows for an astronomically long time, yet eventually reaches 0. Goodstein proved that every such sequence reaches 0 by attaching to each term an ordinal below $\\varepsilon_0$ (replace the base by $\\omega$) and noting that these ordinals strictly decrease, which cannot go on forever. Kirby and Paris showed that PA cannot prove this."
+    },
+    {
+     "type": "example",
+     "title": "Complete theories are decidable",
+     "body": "Let $T$ be consistent, complete and effectively axiomatised. Show that there is an algorithm deciding, for each sentence $\\sigma$, whether $T \\vdash \\sigma$. Conclude that any consistent, effectively axiomatised $T$ extending $Q$ in which the set of theorems is undecidable must be incomplete.",
+     "solution": "Since $T$ is effectively axiomatised, we can list all finite strings and test each one to see whether it codes a deduction from $T$, so we can list all theorems of $T$. Given $\\sigma$, run this list until $\\sigma$ or $\\neg\\sigma$ appears. By completeness one of them does, so the search stops; by consistency only one of them is ever a theorem. Answer \"yes\" if $\\sigma$ appeared, \"no\" otherwise.\n\nSo for consistent, effectively axiomatised theories, completeness implies that the set of theorems is decidable. But every consistent theory extending $Q$ has an undecidable set of theorems (this essential undecidability of $Q$ goes back to Church and to Tarski, Mostowski and Robinson), so a consistent, effectively axiomatised $T$ extending $Q$ cannot be complete. This is one more proof of the first incompleteness theorem, in Rosser's strong form."
+    },
+    {
+     "type": "pitfall",
+     "body": "- Confusing truth with provability. $G$ is true in $\\mathbb N$ but not provable in $T$; in some other (nonstandard) models of $T$, $G$ is false, which is why the [[completeness-theorem]] is not contradicted.\n- Over-reading. The theorems do not say that mathematics is inconsistent, that minds outperform machines, or that every theory is incomplete; they apply to consistent, effectively axiomatised theories that interpret enough arithmetic.\n- Adding the Gödel sentence as an axiom does not produce a complete theory.\n- The second theorem is about the specific sentence $\\mathrm{Con}_T$ built from a standard provability formula; with deliberately perverse codings of \"consistency\" it can fail, which is why the derivability conditions matter.\n- Weak systems are not automatically incomplete: Presburger arithmetic is complete."
+    },
+    {
+     "type": "connection",
+     "body": "Incompleteness sits between logic and computation. The diagonal argument is the one behind Cantor's theorem in [[ordinals-cardinals]] and the halting problem in [[computability]], and Gentzen's consistency proof measures the strength of PA by the ordinal $\\varepsilon_0$. The completeness and compactness theorems of [[completeness-theorem]] explain why unprovable sentences must fail in some model. The negative solution of Hilbert's tenth problem ties incompleteness to [[diophantine]] equations, and the Paris–Harrington theorem shows a statement of [[ramsey]] theory that is true but unprovable in PA. Open problems such as the [[rh]] or [[goldbach]] could in principle be undecidable in a given axiom system, although there is no evidence that they are."
+    },
+    {
+     "type": "exercise",
+     "body": "1. With the coding of the first example, which string has Gödel number $2^2 \\cdot 3^2 \\cdot 5 \\cdot 7^3 \\cdot 11^2 \\cdot 13$?\n2. Explain why the sentence $G$ of the first theorem is equivalent in $T$ to $\\mathrm{Con}_T$ when $T$ extends PA. (Use the second theorem's proof and the fact that an inconsistent theory proves everything.)\n3. Show that $T = \\mathrm{PA} + \\neg \\mathrm{Con}_{\\mathrm{PA}}$ is consistent if PA is, even though it asserts that PA is inconsistent. Is $T$ sound?\n4. Compute the Goodstein sequence starting at 2."
+    }
+   ],
+   "sources": [
+    {
+     "ref": "Enderton, A Mathematical Introduction to Logic",
+     "where": "Chapter 3"
+    },
+    {
+     "ref": "Smith, An Introduction to Gödel's Theorems"
+    },
+    {
+     "ref": "Boolos, Burgess & Jeffrey, Computability and Logic"
+    }
+   ],
+   "checks": [
+    {
+     "claim": "Godel number of S0=S0 is 2^2*3*5^3*7^2*11 = 808500 and decodes to exponents 2,1,3,2,1",
+     "python": "from sympy import factorint, prime\nn=2**2*3*5**3*7**2*11\nassert n==4*3*125*49*11==808500\nf=factorint(n)\nassert [f.get(prime(i),0) for i in range(1,6)]==[2,1,3,2,1] and len(f)==5"
+    },
+    {
+     "claim": "Prime-power coding is injective on all strings of length 1..5 over codes {1,2,3}",
+     "python": "from itertools import product\nfrom sympy import prime\nP=[prime(i) for i in range(1,6)]\nseen={}\nfor k in range(1,6):\n  for s in product([1,2,3],repeat=k):\n    g=1\n    for p,a in zip(P,s): g*=p**a\n    assert g not in seen; seen[g]=s"
+    },
+    {
+     "claim": "Goodstein sequences: from 3 it is 3,3,3,2,1,0; from 4 it begins 4,26,41,60,83,109,139,173; 26 = 2*9+2*3+2 and the base-4 bump gives 42",
+     "python": "def hb(n,b,nb):\n  r=0;e=0\n  while n:\n    d=n%b\n    if d: r+=d*nb**hb(e,b,nb)\n    n//=b;e+=1\n  return r\ndef good(n,k):\n  s=[n];b=2\n  while len(s)<k and n>0:\n    n=hb(n,b,b+1)-1;b+=1;s.append(n)\n  return s\nassert good(3,20)==[3,3,3,2,1,0]\nassert good(4,8)==[4,26,41,60,83,109,139,173]\nassert 26==2*9+2*3+2 and hb(26,3,4)==2*16+2*4+2==42 and hb(4,2,3)==27"
+    },
+    {
+     "claim": "Goodstein from 2 reaches 0 (2,2,1,0); exercise 1 code has exponents 2,2,1,3,2,1",
+     "python": "def hb(n,b,nb):\n  r=0;e=0\n  while n:\n    d=n%b\n    if d: r+=d*nb**hb(e,b,nb)\n    n//=b;e+=1\n  return r\ns=[2];b=2;n=2\nwhile n>0:\n  n=hb(n,b,b+1)-1;b+=1;s.append(n)\nassert s==[2,2,1,0]\nfrom sympy import factorint\nf=factorint(2**2*3**2*5*7**3*11**2*13)\nassert [f[p] for p in (2,3,5,7,11,13)]==[2,2,1,3,2,1]"
+    },
+    {
+     "claim": "Diagonalisation sanity: for random maps f from programs to sets, the diagonal set differs from every f(i) (finite analogue of the halting-problem argument)",
+     "python": "import random\nrandom.seed(5)\nfor _ in range(500):\n  n=12; f=[set(j for j in range(n) if random.random()<0.5) for i in range(n)]\n  D={i for i in range(n) if i not in f[i]}\n  assert all(D!=f[i] for i in range(n))"
+    },
+    {
+     "claim": "Exercise 1 decodes to the string S S 0 = S 0; Godel numbers of distinct strings over codes 1..3 of length <= 6 are distinct (independent implementation)",
+     "python": "from sympy import factorint, primerange\nsym={1:'0',2:'S',3:'='}\nn=2**2*3**2*5*7**3*11**2*13\nf=factorint(n); ps=list(primerange(2,14))\nassert set(f)==set(ps) and ''.join(sym[f[p]] for p in ps)=='SS0=S0'\nfrom itertools import product\nP=list(primerange(2,15)); seen=set()\nfor k in range(1,7):\n  for s in product([1,2,3],repeat=k):\n    g=1\n    for p,a in zip(P,s): g*=p**a\n    assert g not in seen; seen.add(g)"
+    },
+    {
+     "claim": "Goodstein from 4 recomputed independently with hereditary-base strings: 4,26,41,60,83,109,139,173; from 3: 3,3,3,2,1,0",
+     "python": "def rep(n,b):\n  out=[];e=0\n  while n:\n    d=n%b\n    if d: out.append((d,rep(e,b)))\n    n//=b;e+=1\n  return out\ndef ev(r,b): return sum(d*b**ev(e,b) for d,e in r)\ndef seq(n,k):\n  s=[n];b=2\n  while len(s)<k and n>0:\n    n=ev(rep(n,b),b+1)-1; b+=1; s.append(n)\n  return s\nassert seq(4,8)==[4,26,41,60,83,109,139,173]\nassert seq(3,10)==[3,3,3,2,1,0]\nassert 3**3-1==26==2*9+2*3+2"
+    }
+   ]
+  }
+ }
+]

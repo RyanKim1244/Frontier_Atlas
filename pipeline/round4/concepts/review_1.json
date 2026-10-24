@@ -1,0 +1,139 @@
+[
+ {
+  "id": "sets-relations",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padding sentence.",
+    "fix": "Trimmed."
+   },
+   {
+    "severity": "style",
+    "where": "section: Pictures and vocabulary for posets",
+    "problem": "Aside slightly padded.",
+    "fix": "Shortened."
+   }
+  ]
+ },
+ {
+  "id": "logic-basics",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "proof-methods",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.links formal-verification",
+    "problem": "Tactic list mixed Lean and Coq names (Coq has no cases tactic; Lean's proof-by-contradiction tactic is by_contra).",
+    "fix": "Restricted to Lean tactic names."
+   }
+  ]
+ },
+ {
+  "id": "induction",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Strong induction",
+    "problem": "Base case of the prime-factorisation induction was not stated, although the strong-induction statement in the entry requires P(n_0).",
+    "fix": "Added the base case n = 2."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links formal-verification",
+    "problem": "\"most\" is an unverifiable overclaim.",
+    "fix": "Changed to \"many\"."
+   }
+  ]
+ },
+ {
+  "id": "ordinals-cardinals",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Cardinal arithmetic, briefly",
+    "problem": "\"Interleave the digits\" did not say how double expansions are handled or why an injection is enough.",
+    "fix": "Specified the expansions and that Schröder–Bernstein finishes."
+   }
+  ]
+ },
+ {
+  "id": "completeness-theorem",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.why",
+    "problem": "Attributed to completeness what soundness gives: exhibiting a countermodel shows non-provability by soundness (as the lesson itself says in the countermodel example). Completeness is the converse.",
+    "fix": "Rewrote: soundness gives the countermodel method, completeness guarantees a countermodel always exists."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Date given as 1929 only; the published paper is 1930.",
+    "fix": "Gave both dates."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition: A deductive calculus",
+    "problem": "Equality scheme said \"some occurrences\"; Enderton's scheme allows zero or more, not necessarily all, occurrences.",
+    "fix": "Reworded to match the intended scheme."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition: A deductive calculus",
+    "problem": "Claimed to be exactly Enderton's calculus, but the list merges his groups 5 and 6.",
+    "fix": "Said \"essentially\" and noted the numbering difference."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof: Proof sketch (Henkin)",
+    "problem": "Said \"the two forms are equivalent\" but argued only one direction.",
+    "fix": "Stated the direction that is proved."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof: Proof sketch (Henkin), step 1",
+    "problem": "Did not say the formulas range over the enlarged language (needed so formulas mentioning new constants also get witnesses), nor what \"fresh\" requires.",
+    "fix": "Made both explicit."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof: Proof sketch (Henkin), step 3",
+    "problem": "Term model interpretation of constants and function symbols omitted.",
+    "fix": "Added."
+   }
+  ]
+ },
+ {
+  "id": "incompleteness",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "\"A finite list of axioms\" is inaccurate (PA itself has infinitely many axioms) and does not match the hypothesis \"effectively axiomatised\" used in the theorems.",
+    "fix": "Changed to \"mechanically checkable list\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof: Proof for sound theories",
+    "problem": "The step from \"G is not a theorem\" to \"G is true\" skipped the use of soundness on the fixed-point equivalence.",
+    "fix": "Spelled out the step."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links combinatorics",
+    "problem": "\"The first natural\" is a judgement call that is hard to vouch for.",
+    "fix": "Rephrased as the classic example."
+   }
+  ]
+ }
+]
