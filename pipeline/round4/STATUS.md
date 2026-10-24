@@ -1,11 +1,13 @@
-# Round 4 status (paused 2026-10-23 for usage limits)
+# Round 4 status (2026-10-24)
 
-Published: lessons for 14 existing concepts (batches 1 and 12: written, independently reviewed, every check re-run), and 16 reviewed corrections to catalog entries (entry_fixes_*.json, applied by build.py).
+Published:
+- Lessons for all 188 original concepts (15 batches, each written, independently reviewed, checks re-run).
+- Reviewed corrections to catalog entries (entry_fixes_*.json, applied by build.py).
+- Bridge ladders: 7 batches, 207 reviewed steps (ladders/ladder_final_*.json).
+- Lebl exercises: Basic Analysis I-II and Notes on Diffy Qs, attached by section (lebl_map.json); exercises whose topic page is still missing appear automatically once it exists.
+- New topic concepts: batches 1-7 of 13 (concepts/final_*.json), 49 concepts.
+- Areas are topics only (curriculum.py MOVE / RENAME_AREAS / DROP_AREAS).
 
-Kept for the next session, in work/:
-- TOC surveys and gap analyses: toc_korea/intl/advanced.json, gaps_*.json. Merged into curriculum.py (91 new topic concepts, new topic areas, area moves).
-- L/: lessons for existing concepts. Drafts written for batches 3, 4, 5, 8, 9, 10, 11, 13, 14 (awaiting review). Batches 2, 6, 7, 15 not finished. Briefs for all 15.
-- B/: bridge ladders (textbook/olympiad → research). Written: 1–7. Reviewed: 1, 2 (ladder_final_*.json). UI not built yet.
-- W/: briefs for the 91 new concepts (13 batches); no drafts yet.
-- P/lebl_raw.json: 1,211 exercise statements from Lebl, Basic Analysis I–II and Notes on Diffy Qs (CC BY-SA 4.0), extracted by tex_extract.py; concept mapping pending.
-- queue.md: reviewer flags per batch.
+Paused (usage): new-concept batches 8-13 (work/W/brief_8..13.json, 42 concepts: Fourier/PDE remainder, topology, differential geometry, functional analysis, probability, statistics, numerics, combinatorics, geometry, p-adics).
+Pipeline: writer_prompt.md -> draft_N.json -> reviewer_prompt.md -> final_N.json -> integrate_W.sh N.
+Not started: OpenIntro Statistics exercises (needs the statistics concepts of batch 11).

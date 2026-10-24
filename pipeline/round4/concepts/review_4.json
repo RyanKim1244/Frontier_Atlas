@@ -1,0 +1,174 @@
+[
+ {
+  "id": "bifurcations",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "definition/Bifurcation and bifurcation diagram",
+    "problem": "Defined a bifurcation as the portraits just below and just above r0 being inequivalent. For the transcritical normal form x'=rx-x^2 the portraits at r<0 and r>0 are topologically equivalent (one repeller left of one attractor), so the lesson's own transcritical example would not count as a bifurcation.",
+    "fix": "Redefined: r0 is a bifurcation value if arbitrarily close to r0 there are r whose portrait is not equivalent to the portrait at r0; added a sentence explaining the transcritical case; added a check."
+   },
+   {
+    "severity": "error",
+    "where": "section/In the plane: the Hopf bifurcation",
+    "problem": "Said super- vs subcritical is decided by the cubic terms; the first Lyapunov coefficient depends on the quadratic and cubic Taylor terms.",
+    "fix": "Changed to quadratic and cubic terms."
+   },
+   {
+    "severity": "style",
+    "where": "section/In the plane: the Hopf bifurcation",
+    "problem": "For the normal form the radius is exactly sqrt(mu) and the period exactly 2pi/omega, not 'growing like' / 'close to'.",
+    "fix": "Stated exactly."
+   },
+   {
+    "severity": "style",
+    "where": "entry.why",
+    "problem": "'the route by which simple systems become chaotic' overstates; period doubling is one of several routes.",
+    "fix": "'one route'."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall / example / definition",
+    "problem": "Length about 2520 words.",
+    "fix": "Removed two low-value pitfalls, a moralising sentence in the harvesting solution and the 'In words' paragraph of the definition."
+   }
+  ]
+ },
+ {
+  "id": "limit-cycles",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/The Van der Pol oscillator",
+    "problem": "Liénard's theorem was stated without the hypotheses g(x)>0 for x>0, F<0 on (0,a) and F nondecreasing for x>a (and smoothness).",
+    "fix": "Stated the theorem with all standard hypotheses."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall (Dulac)",
+    "problem": "The example offered for Dulac failing on a non-simply-connected region (r'=r(1-r^2)) has divergence 2-4r^2 of changing sign, so it does not illustrate the failure at all.",
+    "fix": "Replaced with phi=1/(x^2+y^2), for which div(phi F)=-2 on the punctured plane although the unit circle is a closed orbit; verified in a check."
+   },
+   {
+    "severity": "error",
+    "where": "example/Ruling out cycles with Dulac",
+    "problem": "Claimed phi=1/(xy) works for 'any two-species competition model with self-limitation' (false in that generality); boundedness argument only covered x.",
+    "fix": "Restricted to Lotka–Volterra competition with b,f>0 and gave div(phi F)=-b/y-f/x; added y'<0 for y>2."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Using the theorem: trapping regions",
+    "problem": "'a point p_n with period 1/n' is inaccurate (the point is fixed by the time-1/n map, its least period need not be 1/n) and the limit argument was unstated.",
+    "fix": "Rephrased and completed the argument."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/An annulus trapping region",
+    "problem": "Argument that every closed orbit lies in 1/sqrt2<=r<=1 was loose ('r decreasing all the way round' ignores orbits crossing r=1).",
+    "fix": "Replaced with the farthest/nearest-point argument (r'=0 there)."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof/Proof sketch",
+    "problem": "'Jordan curve theorem ... only true in the plane' is false (it holds on the sphere).",
+    "fix": "Now says it fails on surfaces such as the torus and has no counterpart in three dimensions."
+   },
+   {
+    "severity": "style",
+    "where": "entry.key[2]",
+    "problem": "'div of one sign' allows zero; the criterion needs strict sign.",
+    "fix": "Written as >0 (or <0) throughout a simply connected region."
+   }
+  ]
+ },
+ {
+  "id": "chaos",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/The route to chaos in the logistic family",
+    "problem": "Universality of delta claimed for every smooth one-hump family; it holds for maps with a quadratic maximum (other orders give other constants).",
+    "fix": "Added 'with a quadratic maximum'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Equilibria of the Lorenz system",
+    "problem": "Asserted 'no closed orbit stable' as if shown; the example proves nothing about cycles.",
+    "fix": "Reworded: unstable equilibria plus trapping means no rest; numerically no cycle is approached."
+   },
+   {
+    "severity": "style",
+    "where": "section/Flows: the Lorenz equations",
+    "problem": "Dimension 2.06 quoted without saying which dimension.",
+    "fix": "Identified as the Kaplan–Yorke estimate 2+lambda1/|lambda3| and verified it from lambda1~0.906 and the divergence -41/3."
+   },
+   {
+    "severity": "style",
+    "where": "section/Sensitive dependence in numbers",
+    "problem": "'<' inside TeX ($\\prod_{k<n}$) can be eaten as an HTML tag by the page renderer.",
+    "fix": "Rewritten as \\prod_{k=0}^{n-1}."
+   }
+  ]
+ },
+ {
+  "id": "fourier-series",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem/Dirichlet's theorem",
+    "problem": "Hypothesis allowed only finitely many discontinuities with f C^1 elsewhere, which excludes corners such as those of the periodic extension of x^2 used in the Basel example (continuous but not differentiable at odd multiples of pi).",
+    "fix": "Hypothesis now allows finitely many jumps or corners, with one-sided limits and one-sided derivatives defined as used in the proof; the Basel example now notes the corners."
+   },
+   {
+    "severity": "error",
+    "where": "exercise 3",
+    "problem": "Claimed that int D_N^2 = pi(N+1/2) explains why S_N can be large for bounded f; the relevant quantity is the L^1 norm of D_N (Lebesgue constants), not the L^2 norm (which gives no such conclusion).",
+    "fix": "Exercise now asks to show int |D_N| -> infinity and draw the conclusion; growth ~ (4/pi^2) ln N verified in a check."
+   },
+   {
+    "severity": "style",
+    "where": "example/The Gibbs overshoot",
+    "problem": "'<' inside TeX ($\\max_{0<x<\\pi}$) risks HTML parsing.",
+    "fix": "Used \\lt."
+   },
+   {
+    "severity": "style",
+    "where": "entry.key[1]",
+    "problem": "|f|^2 with real coefficients a_n^2: inconsistent for complex f.",
+    "fix": "Written f(x)^2 (real f, as in the lesson)."
+   }
+  ]
+ },
+ {
+  "id": "fourier-transform",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "heat-equation",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "wave-equation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'Time-independent solutions oscillating like e^{i omega t}' is self-contradictory.",
+    "fix": "Now: time-harmonic solutions u=e^{i omega t}v lead to Delta v+(omega/c)^2 v=0."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links[differential-geometry]",
+    "problem": "Waves travel along null geodesics only in the high-frequency (geometric optics) limit.",
+    "fix": "Added that qualifier."
+   }
+  ]
+ }
+]
