@@ -10,11 +10,13 @@ for id in "$@"; do
 import json, sys
 B, i, out = sys.argv[1:4]
 x = json.load(open(f"{B}/final_s_{i}.json"))
-rv = json.load(open(f"{B}/review_r_{i}.json"))
+import os
+rv = json.load(open(f"{B}/review_r_{i}.json")) + (json.load(open(f"{B}/review_a_{i}.json")) if os.path.exists(f"{B}/review_a_{i}.json") else [])
 x[0]["lesson"]["fixed"] = sum(1 for r in rv for k in r.get("issues", []) if k.get("severity") == "error")
 json.dump(x, open(out, "w"), ensure_ascii=False, indent=0)
 PY
-  cp $B/review_r_$id.json $B/suff_s_$id.json $B/dossier_$id.json $P/round5/reviews/
+  test -f $B/review_a_$id.json  # material added by the sufficiency check must be reviewed too
+  cp $B/review_r_$id.json $B/review_a_$id.json $B/suff_s_$id.json $B/dossier_$id.json $P/round5/reviews/
 done
 cd /home/claude/frontier_atlas && python3 -I pipeline/atlas/build.py | tail -1
 IDS=$(echo "$@" | tr ' ' ',')

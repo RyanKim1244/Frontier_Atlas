@@ -22,5 +22,5 @@ cellular homology, which nearly every paper using homology assumes.
 5. **Exercises in every section,** graded, not one at the end.
 6. **A concept may be several pages** (a short chapter) when one page cannot hold it.
 7. **Checking.** Writer → independent reviewer (correctness) → separate sufficiency checker (re-reads the requirements
-   list and one of the papers, marks what is still missing) → fixes → checks and render sweep re-run by me.
+   list and one of the papers, marks what is still missing) → fixes → independent correctness review of everything the sufficiency checker added → checks and render sweep re-run by me.
 8. **Existing pages count too.** The 279 published pages are re-audited against the same standard.
