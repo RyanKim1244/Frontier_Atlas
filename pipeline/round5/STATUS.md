@@ -62,3 +62,8 @@ Next session must first redesign for throughput without dropping the checks that
 - cheaper models for classification, exercise sourcing, formula-width fixes; strongest model for writing and correctness review;
 - many batches in parallel; school-level concepts are smaller and faster;
 - a written definition of "complete" per tier (what every page must have) agreed with the owner.
+
+## Olympiad problems: added by the owner (2026-10-25)
+The owner adds olympiad past problems himself (pipeline/src/olympiad_user/*.json, format in its README). Claude does not
+collect olympiad problems; for newly added ones Claude only tags concepts and decides attachment (easy positions only:
+IMO/USAMO P1, P4; Putnam A1, A2, B1, B2; other contests by judged difficulty), and checks the statements render.
