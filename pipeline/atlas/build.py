@@ -249,7 +249,7 @@ for f in sorted(glob.glob(os.path.join(HERE, "..", "round5", "exercises", "exerc
         cs = [c for c in [x["concept"]] + x.get("also", []) if c in IDS]
         if not cs: continue
         textbook.append(dict(id=x["id"], kind="textbook", coll=x["coll"], title=x["title"], section=x.get("section", ""), q=x["q"], concepts=cs, fields=fields_of(cs),
-                             license=x["license"], license_url=x["license_url"], credit=x["credit"],
+                             license=x["license"], license_url=x["license_url"], credit=x["credit"], attach=list(cs),
                              links=[{"label": "Source", "url": x["url"]}, {"label": x["license"], "url": x["license_url"]}]))
 ids_t = [p["id"] for p in textbook]; assert len(ids_t) == len(set(ids_t)), [i for i in ids_t if ids_t.count(i) > 1][:5]
 
@@ -268,6 +268,17 @@ for f in sorted(glob.glob(os.path.join(HERE, "..", "round4", "ladders", "ladder_
                                ladder=dict(concept=cid, step=k, of=len(rungs)), rkind=r.get("kind", ""), source=r.get("source", ""), note=r.get("note", ""),
                                bridges_to=[b for b in r.get("bridges_to", []) if b in RIDS]))
 ALL = {"textbook": textbook, "olympiad": olympiad, "bridge": bridge, "research": research, "examples": examples}
+# Concept pages list only problems strongly tied to the concept (`attach`); every other concept stays a tag (`concepts`).
+ATT = {}
+for f in sorted(glob.glob(os.path.join(HERE, "..", "round5", "attach", "attach_*.json"))): ATT.update(json.load(open(f)))
+for k, ps in ALL.items():
+    for p in ps:
+        if p.get("ladder"): p["attach"] = [p["ladder"]["concept"]]
+        elif p["id"] in ATT:
+            a = ATT[p["id"]]
+            keep = [c for c in p["concepts"] if c not in set(a.get("drop", [])) or c in a.get("attach", [])]
+            if keep: p["concepts"] = keep; p["fields"] = fields_of(keep)
+            p["attach"] = [c for c in a.get("attach", []) if c in p["concepts"]]
 for k, ps in ALL.items():
     for p in ps:
         for c in p["concepts"]: assert c in IDS, (p["id"], c)
@@ -319,7 +330,7 @@ order = {b["id"]: i for i, b in enumerate(cat.BANDS)}
 concepts = sorted(cat.C, key=lambda c: order[c["band"]])
 for c in concepts:
     for k in ("no", "counts"): c.pop(k, None)
-    c["np"] = {k: sum(1 for p in ps if c["id"] in p["concepts"]) for k, ps in ALL.items()}
+    c["np"] = {k: sum(1 for p in ps if c["id"] in p.get("attach", p["concepts"])) for k, ps in ALL.items()}
     c["nprob"] = sum(c["np"].values())
     if c["id"] in LESSONS: c["lesson"] = {"minutes": LESSONS[c["id"]].get("minutes", 15), "checks": len(LESSONS[c["id"]].get("checks", [])), "fixed": REVIEW.get(c["id"], 0)}
     if c["id"] in LESSONS and LESSONS[c["id"]].get("v") == 2:
