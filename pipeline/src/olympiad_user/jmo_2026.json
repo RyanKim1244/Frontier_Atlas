@@ -3,102 +3,102 @@
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "1",
-    "q": "Determine all $(a,b,c)\\in\\mathbb{Z}_{>0}^3$ satisfying $$a^{20}+b^2+c^6=2026.$$"
+    "q": "Find all triples $(a,b,c)$ of positive integers satisfying $$a^{20}+b^2+c^6=2026.$$"
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "2",
-    "q": "Determine $\\min\\{n\\in\\mathbb{Z}_{>0}:n\\nmid\\lfloor n\\sqrt{2026}\\rfloor\\}$."
+    "q": "Find the smallest positive integer $n$ for which $[\\sqrt{2026}\\,n]$ is not divisible by $n$. Here, for a real number $r$, the notation $[r]$ denotes the greatest integer not exceeding $r$. For example, $[3.14]=3$ and $[5]=5$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "3",
-    "q": "For points $A,B,C,D,E$ in this order on a circle, let $P=BE\\cap AC$, $Q=BE\\cap AD$. Given $BP=PQ=QE$ and $([BCP],[APQ],[DEQ])=(2,9,3)$, determine $AC/AD$. Here $[XYZ]$ denotes triangle area; intersections use segments."
+    "q": "Five points $A,B,C,D,E$ lie on a circle in this order. Let $P$ and $Q$ be the intersections of segment $BE$ with segments $AC$ and $AD$, respectively, and suppose that $BP=PQ=QE$. If the areas of triangles $BCP$, $APQ$, and $DEQ$ are $2$, $9$, and $3$, respectively, find the value of $AC/AD$.\n\nHere $XY$ denotes the length of segment $XY$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "4",
-    "q": "Maximize the area of an integer-sided rectangle partitioned by full cuts parallel to its sides into pairwise noncongruent rectangles whose side lengths belong to $\\{1,\\ldots,9\\}$."
+    "q": "Let $ABCD$ be a rectangle whose side lengths are integers. A cut is a straight line satisfying one of the following conditions:\n\n(i) It passes through a point on side $AB$, excluding the endpoints, and is parallel to side $BC$.\n\n(ii) It passes through a point on side $BC$, excluding the endpoints, and is parallel to side $AB$.\n\nAfter choosing several distinct cuts, cut the rectangle $ABCD$ completely apart along all the chosen cuts. Every resulting smaller rectangle has integer side lengths between $1$ and $9$, inclusive, and no two distinct resulting rectangles are congruent. Find the greatest possible area of rectangle $ABCD$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "5",
-    "q": "Determine $\\{(x,y,z)\\in\\{1,\\ldots,17\\}^3:\\gcd(xy+4,yz+5,zx+6,xyz+7)>1\\}$."
+    "q": "Find all triples $(x,y,z)$ of integers between $1$ and $17$, inclusive, satisfying the following condition:\n\nThere exists an integer greater than or equal to $2$ that divides each of $xy+4$, $yz+5$, $zx+6$, and $xyz+7$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "6",
-    "q": "In parallelogram $ABCD$, take $E\\in\\operatorname{int}(CD)$, $M=(A+E)/2$, and $F=\\operatorname{line}(BM)\\cap AD$. Given $(CE,DF,MB,MC)=(3,3,5,4)$, determine $AB$."
+    "q": "A point $E$ lies on side $CD$ of a parallelogram $ABCD$, excluding the endpoints. Let $M$ be the midpoint of segment $AE$, and let $F$ be the intersection of the line $BM$ with side $AD$. Suppose that $CE=DF=3$. If $MB=5$ and $MC=4$, find the length of segment $AB$.\n\nHere $XY$ denotes the length of segment $XY$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "7",
-    "q": "On $G=\\mathbb{Z}/2026\\mathbb{Z}$, define $T_S(i)=i+1$ for $i\\in S$, and $T_S(i)=i-2$ otherwise. Count $S\\subseteq G$ with $|T_S(G)|=2000$."
+    "q": "There are $2026$ benches equally spaced around a circular lake. Initially, one student sits on each bench, facing away from the lake. A teacher selects between $0$ and $2026$ students, inclusive. Afterwards, each student acts as follows:\n\n(i) A student selected by the teacher moves to the bench one place to their right and sits there.\n\n(ii) A student not selected by the teacher moves to the bench two places to their left and sits there.\n\nHow many ways can the teacher select the students so that, after all students have moved, exactly $2000$ benches have at least one student sitting on them?"
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "8",
-    "q": "Minimize $a_{20}$ over pairwise distinct positive-integer sequences containing $36,3750$ and satisfying $\\sum_{k=1}^n(-1)^{k-1}a_k\\mid a_{n+1}$ for every $n\\ge1$."
+    "q": "A sequence $a_1,a_2,\\ldots$ of positive integers has pairwise distinct terms and satisfies both of the following conditions:\n\n(i) There exist positive integers $i,j$ such that $a_i=36$ and $a_j=3750$.\n\n(ii) For every positive integer $n$, the number $a_{n+1}$ is a multiple of $$\\sum_{k=1}^{n}(-1)^{k-1}a_k.$$\n\nFind the smallest possible value of $a_{20}$.\n\nHere an integer $x$ is a multiple of an integer $y$ if there exists an integer $m$ such that $x=my$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "9",
-    "q": "Given $AB=AC$, $BC=21$, take interior side-points $D\\in BC,E\\in CA,F\\in AB$ with $\\angle EDF=180^\\circ-\\angle BAC/2$. Set $P=\\operatorname{perpBis}(BD)\\cap\\operatorname{line}(DE)$, $Q=\\operatorname{perpBis}(CD)\\cap\\operatorname{line}(DF)$, $R=\\operatorname{line}(BP)\\cap\\operatorname{line}(CQ)$. Given $(EP,FQ,AR)=(12,16,6\\sqrt7)$, determine $[DPQ]$. Here $\\operatorname{perpBis}$ denotes perpendicular bisector and brackets denote area."
+    "q": "An isosceles triangle $ABC$ with $AB=AC$ satisfies $BC=21$. Choose points $D,E,F$ on sides $BC,CA,AB$, respectively, excluding the endpoints, so that $$\\angle EDF=180^\\circ-\\frac12\\angle BAC.$$\n\nLet $P$ be the intersection of the perpendicular bisector of segment $BD$ with the line $DE$, and let $Q$ be the intersection of the perpendicular bisector of segment $CD$ with the line $DF$. Further, let $R$ be the intersection of the lines $BP$ and $CQ$. Suppose that $EP=12$, $FQ=16$, and $AR=6\\sqrt7$. Find the area of triangle $DPQ$.\n\nHere $XY$ denotes the length of segment $XY$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "10",
-    "q": "Find the least positive integer $n$ admitting a strictly convex $101$-gon with cyclic vertices $P_i=(x_i,y_i)\\in\\{0,\\ldots,n\\}^2$ and $x_i=y_{i+1}$ (indices modulo $101$)."
+    "q": "Let $n$ be a positive integer. In the $xy$-plane, call a point good if both its $x$-coordinate and its $y$-coordinate are integers between $0$ and $n$, inclusive. Find the smallest possible value of $n$ for which there exists a convex $101$-gon $P_1P_2\\cdots P_{101}$ satisfying both of the following conditions:\n\n(i) For every integer $i$ with $1\\le i\\le101$, the point $P_i$ is good.\n\n(ii) For every integer $i$ with $1\\le i\\le101$, the $x$-coordinate of $P_i$ equals the $y$-coordinate of $P_{i+1}$. Here $P_{102}=P_1$.\n\nA convex $101$-gon means a $101$-gon without self-intersections, all of whose interior angles are less than $180^\\circ$."
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "11",
-    "q": "Count $(a_1,\\ldots,a_{26})\\in\\{1,\\ldots,20\\}^{26}$ for which exactly one pair $1\\le i<j\\le26$ satisfies $\\sum_{k=1}^ia_k=\\sum_{k=j}^{26}a_k$."
+    "q": "How many tuples $(a_1,a_2,\\ldots,a_{26})$ of integers between $1$ and $20$, inclusive, satisfy the following condition?\n\nThere is exactly one pair of integers $(i,j)$ with $1\\le i<j\\le26$ such that $$a_1+a_2+\\cdots+a_i=a_j+a_{j+1}+\\cdots+a_{26}.$$"
   },
   {
     "contest": "JMO Preliminary",
     "year": 2026,
     "num": "12",
-    "q": "Minimize $z\\in\\mathbb{Z}_{>0}$ subject to $\\exists x,y\\in\\mathbb{Z}_{>0}:x^xy^y=z^{20x+26y}$, $z^{25}\\mid x$, $z^{25}\\nmid y$."
+    "q": "Positive integers $x,y,z$ satisfy $$x^x y^y=z^{20x+26y}.$$ If $x/z^{25}$ is an integer and $y/z^{25}$ is not an integer, find the smallest possible value of $z$."
   },
   {
     "contest": "JMO",
     "year": 2026,
     "num": "1",
-    "q": "Let $ABC$ be acute, $AB<AC$, with circumcenter $O$; its internal angle bisector at $A$ meets $BC$ at $D$. Distinct $P,Q\\in\\overrightarrow{DO}$ occur in order $D,P,Q$, opposite $B$ across $AC$ and alongside $C$ across $AB$. Given $AB=BP$, $AC=CQ$, $\\angle ABP=\\angle ACQ$, determine $\\angle BAC$."
+    "q": "Let $ABC$ be an acute triangle with $AB<AC$. Let $O$ be its circumcenter, and let $D$ be the intersection of the bisector of $\\angle BAC$ with side $BC$. Take two distinct points $P,Q$ on the ray $DO$. Both points lie on the opposite side of the line $AC$ from $B$ and on the same side of the line $AB$ as $C$, and the points $D,P,Q$ occur in this order. Suppose that $AB=BP$, $AC=CQ$, and $\\angle ABP=\\angle ACQ$. Find the measure of $\\angle BAC$.\n\nHere $XY$ denotes the length of segment $XY$."
   },
   {
     "contest": "JMO",
     "year": 2026,
     "num": "2",
-    "q": "For positive odd integers $a_n$, suppose $$a_{n+2}=\\min\\{k\\in\\mathbb{Z}_{>0}:k>a_{n+1},\\ k\\equiv1\\pmod2,\\ \\gcd(k,a_n)=1\\}\\qquad(n\\ge1).$$ Prove $\\exists C\\in\\mathbb{Z}_{>0}\\ \\forall n\\ge1:\\ |a_n-2n|\\le C$."
+    "q": "A sequence $a_1,a_2,\\ldots$ of positive odd integers satisfies the following condition for every positive integer $n$:\n\nAmong the odd integers greater than $a_{n+1}$ and relatively prime to $a_n$, the smallest is $a_{n+2}$.\n\nProve that there exists a positive integer $C$ such that $|a_n-2n|\\le C$ for every positive integer $n$."
   },
   {
     "contest": "JMO",
     "year": 2026,
     "num": "3",
-    "q": "For each integer $n\\ge2$, minimize $m\\ge2n$ admitting disjoint $n$-element vertex subsets $R,B$ of a regular $m$-gon such that $$\\{|u-v|:u,v\\in R,\\ u\\ne v\\}\\cap\\{|u-v|:u,v\\in B,\\ u\\ne v\\}=\\varnothing,$$ where $|u-v|$ is Euclidean distance."
+    "q": "Let $n$ be an integer greater than or equal to $2$, and let $m$ be an integer greater than or equal to $2n$. Choose $2n$ distinct vertices of a regular $m$-gon, color $n$ of these vertices red, and color the remaining $n$ blue. Suppose that the following condition holds:\n\nFor every choice of two distinct red vertices and two distinct blue vertices, the distance between the two red vertices differs from the distance between the two blue vertices.\n\nExpress the smallest possible value of $m$ in terms of $n$."
   },
   {
     "contest": "JMO",
     "year": 2026,
     "num": "4",
-    "q": "Determine all $f:\\mathbb{R}\\to\\mathbb{R}$ with $$\\forall x,y\\in\\mathbb{R},\\qquad f(x^2+f(y)^2)+2yf(x)=f(x+f(y))^2.$$"
+    "q": "Find all functions $f$ defined on the real numbers and taking real values such that $$f\\bigl(x^2+f(y)^2\\bigr)+2f(x)y=\\bigl(f(x+f(y))\\bigr)^2$$ for every pair of real numbers $x,y$."
   },
   {
     "contest": "JMO",
     "year": 2026,
     "num": "5",
-    "q": "Fix a scalene triangle $ABC\\subset\\pi\\subset\\mathbb{R}^3$, with incenter $I$. For $P\\notin\\pi$ satisfying $AP\\cdot BC=BP\\cdot CA=CP\\cdot AB$, let $I_A,I_B,I_C$ be the incenters of $BCP,CAP,ABP$. Whenever the circumcircles $(II_BI_C),(II_CI_A),(II_AI_B)$ meet $\\pi$ again at $X,Y,Z\\ne I$, respectively, prove that $XYZ$ has a similarity class independent of $P$."
+    "q": "Let $\\pi$ be a plane in three-dimensional space. Let $ABC$ be a triangle in $\\pi$ that is not isosceles, and let $I$ be its incenter. Prove that there exists a triangle $T$ such that the following holds for every point $P$ not in $\\pi$ satisfying $$AP\\cdot BC=BP\\cdot CA=CP\\cdot AB.$$\n\nLet $I_A,I_B,I_C$ be the incenters of triangles $BCP,CAP,ABP$, respectively. If the circumcircles of triangles $II_BI_C$, $II_CI_A$, and $II_AI_B$ intersect $\\pi$ at points $X,Y,Z$ other than $I$, respectively, then triangle $XYZ$ is similar to $T$.\n\nHere $UV$ denotes the length of segment $UV$."
   }
 ]
