@@ -575,7 +575,7 @@ function lessonView(c, tocEl) {
       out.push(h("h3", { class: "lb-h", id }, "Ready for papers?"), h("p", { class: "small muted" }, "What research papers using this concept take for granted, collected from the papers listed in the sources. Each item is taught above or on the linked page."),
         h("ul", { class: "req" }, les.requires.map(r => h("li", null, h("span", { class: "req-p " + (r.priority || "") }, r.priority || ""), rich(r.item + (r.where ? " — " + r.where : "")))))); }
     if (les.sources && les.sources.length) out.push(h("div", { class: "lb-src" }, h("div", { class: "lb-k" }, "Sources"), h(les.sources.some(x => x.k) ? "ol" : "ul", null, les.sources.map(s => h("li", { id: s.k ? "lsrc-" + s.k : null }, s.kind ? h("span", { class: "src-kind" }, s.kind) : null, s.url ? h("a", { href: s.url, target: "_blank", rel: "noopener" }, s.ref) : s.ref, s.where ? ", " + s.where : "")))));
-    body.replaceChildren(...out); typeset(body);
+    body.replaceChildren(...out.filter(x => x != null)); typeset(body);
     if (tocEl && toc.length) tocEl.replaceChildren(h("h2", null, "In this lesson"), h("ul", null, toc.map(([id, t]) => h("li", null, h("button", { class: "linkbtn toc", onclick: () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); } }, t))))); if (tocEl && toc.length) typeset(tocEl);
   }).catch(() => body.replaceChildren(h("div", { class: "empty" }, h("b", null, "The lesson could not be loaded."), "Reload the page to try again.")));
   return box;
