@@ -1,0 +1,230 @@
+[
+ {
+  "id": "point-estimation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "Said the MLE is 'as precise as any unbiased estimator can be' for large samples. That is only true asymptotically and only under regularity conditions.",
+    "fix": "Reworded: its variance approaches the Cramér-Rao bound."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rice chapter number (Chapter 8) cannot be vouched for across editions.",
+    "fix": "Removed the 'where'."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "'cross-[[entropy]]' renders as 'cross-' followed by the page title.",
+    "fix": "Changed to [[entropy|cross-entropy]]."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The S^2 enumeration check only asserted the bias of the divisor-n estimator trivially (multiplied both sides by 2/3).",
+    "fix": "Added an exact check that the divisor-n version has expectation (n-1)/n sigma^2, plus the MSE comparison used in exercise 2."
+   }
+  ]
+ },
+ {
+  "id": "confidence-intervals",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Going further",
+    "problem": "Explained the Wald undercoverage at n=20, p=0.1 as the interval being 'centred at the wrong place'. That is vague, and p-hat is unbiased.",
+    "fix": "Replaced with the concrete failure: p-hat = 0 (probability 0.9^20 ≈ 0.12) gives a zero-width interval. Added a check."
+   },
+   {
+    "severity": "error",
+    "where": "example: Comparing two groups",
+    "problem": "The test's assumptions were not stated (random assignment, success/failure counts of at least 10 in each group).",
+    "fix": "Added the conditions with the counts 45/105 and 30/120. Added a check."
+   },
+   {
+    "severity": "style",
+    "where": "length",
+    "problem": "2185 words, with repetition between the 'What 95% confidence means' section and the pitfalls.",
+    "fix": "Removed two duplicate pitfalls (and the orphaned 0.71 check), a duplicated bias bullet and a duplicate exercise, and tightened the wording. Now 2082 words."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Wilson interval was checked only with a hand formula.",
+    "fix": "Added an independent check using scipy's binomtest Wilson interval."
+   }
+  ]
+ },
+ {
+  "id": "hypothesis-testing",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "Said that rejecting at level alpha accepts 'a probability alpha' of Type I error. For discrete tests the size is at most alpha, and the lesson itself shows 0.041.",
+    "fix": "Changed to 'at most alpha'."
+   },
+   {
+    "severity": "error",
+    "where": "section: The spinner / example: majority / sign test",
+    "problem": "Assumptions were not stated: independent trials with constant p for the binomial test; random sample and np0 >= 10 for the z-test; independence for the sign test.",
+    "fix": "Stated the assumptions in each place."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'If the spinner really were fair' conflicts with the null p = 0.25 (a 'fair' spinner is not defined).",
+    "fix": "Changed to 'if the friend's claim were true'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added independent scipy binomtest checks for the spinner and sign-test p-values.",
+    "fix": ""
+   }
+  ]
+ },
+ {
+  "id": "t-tests",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "'s can easily be 30% too small' was imprecise. The probability is about 0.16 for n = 8 from normal data.",
+    "fix": "Reworded to 'about one time in six', which matches the existing check."
+   },
+   {
+    "severity": "error",
+    "where": "examples (one-sample, paired, Welch, ANOVA)",
+    "problem": "Test assumptions were stated only in the general sections, not in the worked tests.",
+    "fix": "Added the assumptions to each example, including the equal-variance check for ANOVA (SDs 1.29, 0.82, 0.82; ratio < 2, checked). Added a caveat that a before/after design with no control group does not show the drug caused the drop."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rice chapters 11 and 12 cannot be vouched for.",
+    "fix": "Removed the 'where'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added independent checks with scipy's t.interval and the one-sided ttest_rel, and of the group SDs.",
+    "fix": ""
+   }
+  ]
+ },
+ {
+  "id": "chi-square-tests",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section: Going further",
+    "problem": "Called G^2 'the general likelihood-ratio test of [[point-estimation]]', but that page does not cover likelihood-ratio tests. The hypothesis-testing page does.",
+    "fix": "Relinked to [[hypothesis-testing]]."
+   },
+   {
+    "severity": "error",
+    "where": "examples: die, transport",
+    "problem": "Assumptions (independent observations, expected counts >= 5) were not checked in the worked tests.",
+    "fix": "Stated them, with the smallest expected count of 22.5 for the transport table."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links (cryptography)",
+    "problem": "Duplicated the computer-science note about testing RNGs.",
+    "fix": "Rewrote it to cover classical frequency analysis and scoring candidate keys."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rice chapters 9 and 13 cannot be vouched for.",
+    "fix": "Removed the 'where'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added an independent scipy check of the p-values, and a check that G^2 ≈ X^2.",
+    "fix": ""
+   }
+  ]
+ },
+ {
+  "id": "linear-regression",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "sources",
+    "problem": "Freedman, Pisani & Purves 'Parts III and IV'. Part IV is Probability; correlation and regression are Part III.",
+    "fix": "Changed to 'Part III'."
+   },
+   {
+    "severity": "unclear",
+    "where": "example: exponential model",
+    "problem": "'A residual plot of N against t' confuses the residuals with the data.",
+    "fix": "Changed to 'plotting the residuals against t'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Rice chapter 14 cannot be vouched for.",
+    "fix": "Removed the 'where'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The claim that the x-on-y line is always the steeper one was not checked.",
+    "fix": "Added a check that 1/b' = b/r^2 > b (3.676 vs 3.632)."
+   }
+  ]
+ },
+ {
+  "id": "root-finding",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "Said that e^x = 3 - x has 'no formula at all'. In fact x = 3 - W(e^3) via the Lambert W function.",
+    "fix": "Changed to 'no formula in terms of the usual functions'."
+   },
+   {
+    "severity": "error",
+    "where": "section: Locating a root",
+    "problem": "'A sign change shows an odd number of roots' is false without multiplicity and finiteness assumptions (a continuous f can have infinitely many roots, or a double root inside the interval).",
+    "fix": "Changed to 'guarantees at least one root, not exactly one'."
+   },
+   {
+    "severity": "style",
+    "where": "example: Division",
+    "problem": "'Early computers had no division circuit' is an unsupported historical generalisation.",
+    "fix": "Changed to 'Some processors have no division circuit'."
+   },
+   {
+    "severity": "style",
+    "where": "length",
+    "problem": "2090 words, with pitfalls repeating the sign-change and rearrangement points from the sections.",
+    "fix": "Removed the two duplicate pitfalls and tightened the intro. Now 2050 words."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Checked Burden & Faires ch. 2 (Solutions of Equations in One Variable), Süli & Mayers ch. 1 (Solution of equations by iteration) and Stewart 4.8 (Newton's method, as in the brief).",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Added checks for the exercise roots (e^x = 3 - x near 0.792; |g'| at the two roots of x^2 - 5x + 3).",
+    "fix": ""
+   }
+  ]
+ }
+]
