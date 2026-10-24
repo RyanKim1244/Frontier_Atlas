@@ -22,6 +22,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install numpy sympy mpmath
+      - name: Tools for figures not yet in the cache (Asymptote, TeX, pdftocairo)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends asymptote texlive-latex-base texlive-pictures texlive-latex-extra poppler-utils
       - name: Build the site from the pipeline
         run: python3 -I pipeline/atlas/build.py
       - uses: actions/configure-pages@v5

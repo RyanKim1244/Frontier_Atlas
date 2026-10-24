@@ -1062,6 +1062,7 @@ function problemCard(p, c, mode) {
     p.prize ? h("span", { class: "tag prize mathjax_ignore" }, p.prize) : null, p.ai ? h("span", { class: "tag ai", title: "AI systems are involved in the solution or the claim" }, "AI") : null,
     page ? null : otherFields.map(f => h("span", { class: "tag" }, FIELD[f].name))));
   const q = h("div", { class: "q" }); q.append(rich(p.q)); card.append(q);
+  if (p.figs) p.figs.forEach(src => { const box = h("div", { class: "fig-svg", style: "margin:10px 0" }); if (/\.svg$/.test(src) && src.startsWith("data/fig/")) fetch(src).then(r => r.text()).then(t => { box.innerHTML = t; }).catch(() => {}); else box.append(h("img", { src, alt: "Figure for " + p.title, style: "max-width:100%" })); card.append(box); });
   if (p.note && p.kind !== "bridge") card.append(h("p", { class: "small muted", style: "margin:-4px 0 10px" }, p.note));
   if (p.kind === "bridge") {
     if (p.note) card.append(h("p", { class: "small muted", style: "margin:-4px 0 6px" }, rich(p.note)));

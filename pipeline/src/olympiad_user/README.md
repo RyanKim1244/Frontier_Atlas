@@ -22,4 +22,10 @@ Put one or more `.json` files in this folder (any name, e.g. `kmo.json`). Each f
   Leave it empty if unsure; Claude classifies new problems (tags, and which concept pages list them) in the next session.
 - `source_url`: optional link to where the statement was taken from.
 
+Figures:
+- Asymptote, as on AoPS: put the code inside the statement between `[asy]` and `[/asy]` (copy it from the AoPS wiki or write
+  it; `import geometry;` works, AoPS's `olympiad.asy` is not available). It is compiled to a figure under the statement and
+  recoloured for light/dark mode.
+- Or an image: put `abc.svg` / `abc.png` in this folder and add `"figure": "abc.svg"` (or a list of files).
+
 No solutions. Save, commit, push (or use GitHub's "Add file" button in this folder); the site rebuilds automatically.

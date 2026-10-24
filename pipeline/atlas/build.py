@@ -73,6 +73,8 @@ for f in sorted(glob.glob(os.path.join(SRC, "batches", "out_*.json"))):
         links = [l for l in [aops(src, y, num), {"label": "Lean statement", "url": f"https://github.com/dwrensha/compfiles/blob/main/Compfiles/{x['file']}.lean"}] if l]
         olympiad.append(dict(id=slug, kind="olympiad", coll=src, title=title, year=y, q=x["q"].strip(), concepts=cs[:3], fields=fields_of(cs[:3]), links=links,
                              note="Statement reconstructed from the formal version." if "reconstruct" in x.get("check", "").lower() or "empty" in x.get("check", "").lower() else None))
+import figures
+shutil.rmtree(os.path.join(OUT, "data", "fig"), ignore_errors=True); os.makedirs(os.path.join(OUT, "data", "fig"), exist_ok=True)
 # Olympiad problems added by hand (pipeline/src/olympiad_user/*.json; format in its README.md).
 for f in sorted(glob.glob(os.path.join(SRC, "olympiad_user", "*.json"))):
     for x in json.load(open(f, encoding="utf8")):
@@ -80,8 +82,15 @@ for f in sorted(glob.glob(os.path.join(SRC, "olympiad_user", "*.json"))):
         cs = [c for c in x.get("tags", []) if c in IDS]
         slug = re.sub(r"[^A-Za-z0-9]+", "-", f"{src}-{y or ''}-P{num}").strip("-")
         links = [l for l in [aops(src, y, num), {"label": "Source", "url": x["source_url"]} if x.get("source_url") else None] if l]
-        olympiad.append(dict(id=slug, kind="olympiad", coll=src, title=f"{src} {y} · Problem {num}" if y else f"{src} · {num}", year=y, q=x["q"].strip(),
-                             concepts=cs, fields=fields_of(cs), links=links))
+        q, figs = x["q"].strip(), []
+        for code in re.findall(r"\[asy\](.*?)\[/asy\]", q, re.S):   # AoPS-style [asy]...[/asy] figures, compiled to SVG
+            figs.append(figures.render({"type": "figure", "engine": "asy", "code": code.strip()}, OUT)["svg"])
+        q = re.sub(r"\s*\[asy\].*?\[/asy\]\s*", "\n\n", q, flags=re.S).strip()
+        for im in ([x["figure"]] if isinstance(x.get("figure"), str) else x.get("figure", [])):   # or an image file in this folder
+            dst = os.path.join(OUT, "data", "fig"); os.makedirs(dst, exist_ok=True)
+            shutil.copy(os.path.join(SRC, "olympiad_user", im), os.path.join(dst, os.path.basename(im))); figs.append("data/fig/" + os.path.basename(im))
+        olympiad.append(dict(id=slug, kind="olympiad", coll=src, title=f"{src} {y} · Problem {num}" if y else f"{src} · {num}", year=y, q=q,
+                             concepts=cs, fields=fields_of(cs), links=links, **({"figs": figs} if figs else {})))
 ids_o = [p["id"] for p in olympiad]
 dups = {i for i in ids_o if ids_o.count(i) > 1}
 for p in olympiad:
@@ -317,7 +326,6 @@ shutil.copytree(os.path.join(HERE, "..", "licenses"), os.path.join(OUT, "license
 
 # ---------- lessons (AI-written, independently reviewed) ----------
 LD = os.path.join(OUT, "data", "lessons"); shutil.rmtree(LD, ignore_errors=True); os.makedirs(LD)
-shutil.rmtree(os.path.join(OUT, "data", "fig"), ignore_errors=True)
 LESSONS = {}
 for f in sorted(glob.glob(os.path.join(HERE, "..", "lessons", "final_*.json"))):
     for les in json.load(open(f)):
@@ -330,7 +338,6 @@ for cid, les in catalog_r2.LESSONS_R2.items():
     LESSONS[cid] = les
     with open(os.path.join(LD, cid + ".json"), "w", encoding="utf8") as g:
         json.dump({"blocks": les["blocks"], "sources": les.get("sources", [])}, g, ensure_ascii=False, separators=(",", ":"))
-import figures
 for cid, les in catalog_r4.LESSONS_R4.items():
     LESSONS[cid] = les
     blocks = [figures.render(b, OUT) if b.get("type") == "figure" else b for b in les["blocks"]]
