@@ -53,3 +53,12 @@ Alongside filling concepts, follow recent mathematics: new results, claimed solu
 Each check: update the timeline events and research-problem statuses (erdosproblems.com, formal-conjectures, Clay), link each
 item to its concepts, and move concepts needed to understand new results up the writing queue. Sources: arXiv math listings,
 erdosproblems.com, Quanta, mathematicians' blogs (e.g. Tao), formalisation projects (Lean/mathlib). Facts verified at the source.
+
+## Deadline: mathematics service complete by February 2027 (agreed 2026-10-24)
+About 17 weeks. Expected size: roughly 1,500-2,500 concepts (school + olympiad + undergraduate + graduate core + tiers 1-3).
+Throughput needed: on the order of 100+ concepts per week; the pilot pipeline cost ~1M tokens per concept, far too slow.
+Next session must first redesign for throughput without dropping the checks that caught real errors:
+- research per topic cluster (one dossier set for 10-20 related concepts), not per concept;
+- cheaper models for classification, exercise sourcing, formula-width fixes; strongest model for writing and correctness review;
+- many batches in parallel; school-level concepts are smaller and faster;
+- a written definition of "complete" per tier (what every page must have) agreed with the owner.
