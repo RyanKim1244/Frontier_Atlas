@@ -708,7 +708,7 @@ function areaCard(b) {
     h("ul", null, top.map(c => h("li", null, conceptLink(c.id, c.short)))));
 }
 function areasFold() {
-  const N = 6, all = CAT.bands, grid = h("div", { class: "areas" }, all.slice(0, N).map(areaCard));
+  const N = 4, all = CAT.bands, grid = h("div", { class: "areas" }, all.slice(0, N).map(areaCard));
   if (all.length <= N) return grid;
   let open = false;
   const btn = h("button", { class: "btn", style: "margin-top:16px", "aria-expanded": "false" }, "Show all " + all.length + " areas");
