@@ -89,9 +89,7 @@ Other types:
 8. Text conventions as before: paragraphs separated by \n\n; inline $..$, display $$..$$; lists "1. " / "- "; no markdown
    headings, bold, HTML or backticks; [[id]] or [[id|text]] links only to ids in all_concepts.json; no literal dollar signs.
 9. Length: there is no target. It follows from the scope fixed in the outline (below). minutes = honest reading time.
-11. One concept per page. If the material splits into distinct concepts (each with its own definitions, main theorems and
-    its own chapter or section in the textbooks), it becomes several pages linked by prerequisites. Do not absorb a
-    neighbouring concept because a paper needs it: list it in `requires` with where: "separate page: <title>" and report it.
+11. One concept per page, decided by classification, never by length. List the distinct concepts the material contains (a concept = its own definitions and main theorems, treated as its own topic in the sources). Every concept other than this page's becomes its own page, however small or large; on this page it gets at most a one-line recall with a [[link]] or a requires item with where: "separate page: <title>". Never absorb, and never split, because of word count.
 
 ## Outline first
 Before writing, produce outline_<id>.json: the list of subtopics, for each the textbook sections that treat it (from the

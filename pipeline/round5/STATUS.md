@@ -6,7 +6,7 @@ de-rham-cohomology, poincare-duality. Exercises from Stacks/Napkin: round5/exerc
 In progress (work saved in round5/work/P2/, specs in round5/specs/; scratch copies used by the tools live in the session scratchpad):
 - cohomology (singular cohomology and the cup product): draft_cohomology.json done and validated; correctness review (Role R)
   was stopped before finishing -> rerun Role R, then Role S, then review of S additions, then publish (integrate_P.sh).
-- depth-cohen-macaulay: draft done (too long, ~220 min); Role R stopped. Rerun Role R with the rule-11 instruction: move
+- depth-cohen-macaulay: draft done (too long, ~220 min); Role R stopped. Rerun Role R with the rule-11 instruction (separate by classification, not length): move
   Gorenstein/canonical modules, local cohomology, Stanley-Reisner, matrix factorizations to seeds.
 - dedekind-domains: dossier done; writer stopped mid-way (check for outline_/draft_ files in work/P2); rerun the writer.
 

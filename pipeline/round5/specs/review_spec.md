@@ -28,7 +28,7 @@ Work on final_r.json (after role R).
 2. Check `requires`: every core/common item is actually taught where it says (read that section), not just mentioned.
 3. Compare with the dossier's textbook tables of contents: anything papers need that the page skips.
 4. Check that each central notion has a views block with genuinely different explanations (not one idea reworded), each faithful to its source.
-5. If a gap is a different concept (its own definitions and theorems, its own textbook chapter), do not add it to this page:
+5. If a gap is a different concept (its own definitions and theorems; decide by classification, never by length), do not add it to this page:
    record it in suff_s as {"new_concept": title, "why": ...} and add a requires item with where: "separate page: <title>".
 6. Fix the remaining gaps: write the missing material (with src, following a real source you open; full rigour; exercises;
    checks), extend requires. Do not delete correct material.
