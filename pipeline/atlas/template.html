@@ -665,7 +665,26 @@ function viewHome() {
     h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Fields")),
       h("p", { class: "sub" }, "Every field the atlas touches."),
-      h("div", { class: "tags", style: "margin-top:14px" }, usedFields.map(f => h("a", { class: "tag", href: "#field-" + f.id }, f.name, h("span", { class: "mono muted" }, CAT.concepts.filter(c => touchesField(c, f.id)).length))))));
+      h("div", { class: "tags", style: "margin-top:14px" }, usedFields.map(f => h("a", { class: "tag", href: "#field-" + f.id }, f.name, h("span", { class: "mono muted" }, CAT.concepts.filter(c => touchesField(c, f.id)).length))))),
+    h("section", { class: "section" },
+      h("div", { class: "section-h" }, h("h2", null, "Open problems"), h("a", { class: "small", href: "#problems", onclick: () => { Object.assign(S.gp, { kind: "research", status: "open", q: "", page: 0 }); } }, "All " + ST.open)),
+      h("p", { class: "sub" }, "Unsolved research problems, tagged by concept. Pick a tag to see its problems."),
+      openList()));
+}
+function openList() {
+  const box = h("div", { style: "margin-top:6px" }, h("p", { class: "small muted", style: "padding:14px 0" }, "Loading…"));
+  loadSrc("research").then(list => {
+    const open = list.filter(p => p.status === "open"), n = {};
+    open.forEach(p => p.concepts.forEach(c => { n[c] = (n[c] || 0) + 1; }));
+    const tags = Object.keys(n).filter(c => CON[c]).sort((a, b) => n[b] - n[a]).slice(0, 24);
+    const co = { Millennium: 0, Green: 1, "Erdős": 2 };
+    const top = open.slice().sort((a, b) => (co[a.coll] ?? 9) - (co[b.coll] ?? 9) || prizeVal(b) - prizeVal(a) || (a.num || 0) - (b.num || 0)).slice(0, 4);
+    box.replaceChildren(
+      h("div", { class: "tags", style: "margin:10px 0 18px" }, tags.map(c => h("a", { class: "tag", href: "#problems", onclick: () => { Object.assign(S.gp, { kind: "research", status: "open", q: CON[c].title, page: 0 }); } }, dot(CON[c].band), CON[c].short, h("span", { class: "mono muted" }, n[c])))),
+      ...top.map(p => problemCard(p, null)));
+    typeset(box);
+  }).catch(() => box.replaceChildren());
+  return box;
 }
 function led(n, label) { return h("div", null, h("b", { "data-count": n }, n.toLocaleString("en-US")), h("span", null, label)); }
 /* Count up from 0 with an ease-out. The final number is in the markup, so the page is right even if animation never runs. */
@@ -908,7 +927,6 @@ function viewConcept(r) {
     c.lesson ? tocEl : null,
     h("section", { class: "block" }, h("h2", null, "Your progress"), h("div", { id: "cprogress" })),
     ladderBlock(c),
-    openBlock(c),
     h("section", { class: "block" }, h("h2", null, "Requires"), pre.length ? h("ul", null, pre.map(p => h("li", null, conceptLink(p)))) : h("p", { class: "small muted" }, "A starting point.")),
     next.length ? h("section", { class: "block" }, h("h2", null, "Leads to"), h("ul", null, next.map(p => h("li", null, conceptLink(p))))) : null,
     path.length > 1 ? h("section", { class: "block" }, h("h2", null, "Path from scratch"),
@@ -987,7 +1005,7 @@ function problemBrowser(c) {
     const colls = {}; all.filter(p => !st.kind || p.kind === st.kind).forEach(p => { colls[p.coll] = (colls[p.coll] || 0) + 1; });
     if (Object.keys(colls).length > 1) extra.append(h("select", { "aria-label": "Collection", onchange: e => { st.coll = e.target.value; st.page = 0; drawList(); } }, h("option", { value: "" }, "Any collection"), Object.entries(colls).sort((a, b) => b[1] - a[1]).map(([k, n]) => h("option", { value: k, selected: st.coll === k }, k + " (" + n + ")"))));
     if (!c) {
-      const qi = h("input", { type: "search", id: "pq", value: st.q, placeholder: "Search statements, e.g. Sidon", "aria-label": "Search problems", style: "min-width:220px" });
+      const qi = h("input", { type: "search", id: "pq", value: st.q, placeholder: "Search statements or concept tags, e.g. Sidon", "aria-label": "Search problems", style: "min-width:220px" });
       let tm; qi.addEventListener("input", () => { st.q = qi.value; clearTimeout(tm); tm = setTimeout(() => { st.page = 0; drawList(); }, 200); });
       const fsel = h("select", { "aria-label": "Field", onchange: e => { st.field = e.target.value; st.page = 0; drawList(); } }, h("option", { value: "" }, "Any field"), usedFields.map(f => h("option", { value: f.id, selected: st.field === f.id }, f.name)));
       extra.prepend(qi); extra.append(fsel);
@@ -1001,7 +1019,7 @@ function problemBrowser(c) {
       const ql = (st.q || "").toLowerCase().trim();
       const shown = all.filter(p => (!st.kind || p.kind === st.kind) && (!st.status || (p.kind === "research" && p.status === st.status)) && (!st.coll || p.coll === st.coll)
         && (!st.hide || !S.solved.has(p.id)) && (!st.field || (p.fields || []).includes(st.field))
-        && (!ql || p.title.toLowerCase().includes(ql) || p.q.toLowerCase().includes(ql) || (p.tags || []).some(t => t.includes(ql))));
+        && (!ql || p.title.toLowerCase().includes(ql) || p.q.toLowerCase().includes(ql) || (p.tags || []).some(t => t.includes(ql)) || p.concepts.some(x => x.includes(ql) || (CON[x] && (CON[x].title.toLowerCase().includes(ql) || (CON[x].aliases || []).some(a => a.toLowerCase().includes(ql)))))));
       const yr = p => p.year || 0;
       const so = { textbook: 0, olympiad: 1, bridge: 2, research: 3, example: 4, community: 5 }, co = { Millennium: 0, Erdős: 1, Green: 2 };
       const sorters = { default: (a, b) => so[a.kind] - so[b.kind] || (a.ladder && b.ladder ? a.ladder.concept.localeCompare(b.ladder.concept) || a.ladder.step - b.ladder.step : 0) || (co[a.coll] ?? 9) - (co[b.coll] ?? 9) || yr(a) - yr(b) || (a.num || 0) - (b.num || 0) || a.title.localeCompare(b.title, "en", { numeric: true }),

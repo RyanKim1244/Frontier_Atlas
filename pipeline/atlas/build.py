@@ -248,6 +248,8 @@ for f in sorted(glob.glob(os.path.join(HERE, "..", "round5", "exercises", "exerc
     for x in sorted(json.load(open(f)), key=lambda x: (x["concept"], _ORD.get(x.get("level"), 1))):
         cs = [c for c in [x["concept"]] + x.get("also", []) if c in IDS]
         if not cs: continue
+        if x["license"].startswith("GFDL"):   # GFDL: ship the licence text with the site; keep the source's own notice as well
+            x = dict(x, license="GFDL 1.2+", license_url="licenses/GFDL-1.2.txt")
         textbook.append(dict(id=x["id"], kind="textbook", coll=x["coll"], title=x["title"], section=x.get("section", ""), q=x["q"], concepts=cs, fields=fields_of(cs),
                              license=x["license"], license_url=x["license_url"], credit=x["credit"], attach=list(cs),
                              links=[{"label": "Source", "url": x["url"]}, {"label": x["license"], "url": x["license_url"]}]))
@@ -286,6 +288,8 @@ for k, ps in ALL.items():
     assert len({p["id"] for p in ps}) == len(ps), k
     with open(os.path.join(PD, k + ".json"), "w", encoding="utf8") as f:
         json.dump(ps, f, ensure_ascii=False, separators=(",", ":"))
+
+shutil.copytree(os.path.join(HERE, "..", "licenses"), os.path.join(OUT, "licenses"), dirs_exist_ok=True)
 
 # ---------- lessons (AI-written, independently reviewed) ----------
 LD = os.path.join(OUT, "data", "lessons"); shutil.rmtree(LD, ignore_errors=True); os.makedirs(LD)

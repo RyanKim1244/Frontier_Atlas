@@ -1,0 +1,76 @@
+{
+ "batch": "r5a",
+ "sources": [
+  {
+   "coll": "Stacks Project",
+   "credit": "A. J. de Jong et al., The Stacks Project",
+   "url": "https://stacks.math.columbia.edu/",
+   "license": "GFDL 1.2 or later (no Invariant Sections, no Front- or Back-Cover Texts)",
+   "license_url": "https://github.com/stacks/stacks-project/blob/master/COPYING",
+   "license_evidence": [
+    {
+     "url": "https://github.com/stacks/stacks-project/blob/master/COPYING",
+     "quote": "GNU Free Documentation License Version 1.2, November 2002 (full text of the licence file in the repository)"
+    },
+    {
+     "url": "https://github.com/stacks/stacks-project/blob/master/introduction.tex",
+     "quote": "Copyright (C) 2005 -- 2025 Johan de Jong. Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts."
+    },
+    {
+     "url": "https://stacks.math.columbia.edu/tag/0001",
+     "quote": "All contributions are licensed under the GNU Free Documentation License"
+    }
+   ],
+   "text_used": "Chapter 111 'Exercises' (exercises.tex, git commit a04446ec, 2026-07-28); numbering 111.s.n checked against the live tag pages 0CRC (111.11.1), 0CRE (111.11.3), 0EER (111.60.7)",
+   "notes": "GFDL: reuse as a separate GFDL-licensed unit with the licence notice and a link to the licence text; do not mix into CC BY-SA text. Hints and 'suggested solutions' inside statements were removed and marked as omitted.",
+   "count": 42
+  },
+  {
+   "coll": "Napkin",
+   "credit": "Evan Chen, An Infinitely Large Napkin",
+   "url": "https://web.evanchen.cc/napkin.html",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://github.com/vEnhance/napkin/blob/main/LICENSE.md",
+   "license_evidence": [
+    {
+     "url": "https://github.com/vEnhance/napkin/blob/main/LICENSE.md",
+     "quote": "The text/PDF of the Napkin is licensed under CC-by-SA-4.0. The source files for the Napkin are licensed under GNU GPL v3."
+    },
+    {
+     "url": "https://github.com/vEnhance/napkin/blob/main/tex/frontmatter/title-embellishments.tex",
+     "quote": "Text licensed under CC-by-SA-4.0. Source files licensed under GNU GPL v3."
+    }
+   ],
+   "text_used": "LaTeX source at git commit 2bdf25b3 (2026-10-23); chapter numbers computed from Napkin.tex include order (sales pitch = chapter 0), problems numbered <chapter><letter>, questions/exercises <chapter>.<section>.<n> as in the book's theorem counters; the web page web.evanchen.cc/napkin.html shows no licence text itself, so the repository LICENSE.md and the book's front matter are the evidence",
+   "notes": "Statements taken as text under CC BY-SA 4.0 (not the GPL source); Napkin macros expanded to standard TeX; tikz-cd diagrams redrawn as arrays and marked as redrawn. Hints and solutions (hint/sol environments, Appendix) not copied.",
+   "count": 43
+  }
+ ],
+ "rejected": [
+  {
+   "source": "J. Pevtsova, Math 509 Homological Algebra lecture notes (UW 2023)",
+   "url": "https://sites.math.washington.edu/~julia/notes/Homological_Algebra_UW2023.pdf",
+   "reason": "no licence or copyright statement in the document: not reusable"
+  },
+  {
+   "source": "L. Potter, Homological Algebra Summer Mini-course 2024 problem sets (UT Austin)",
+   "url": "https://web.ma.utexas.edu/SMC/2024/Homalgpsets.pdf",
+   "reason": "no licence statement"
+  },
+  {
+   "source": "A. Petrov, The Essence of de Rham Cohomology, arXiv:2411.06296",
+   "url": "https://arxiv.org/abs/2411.06296",
+   "reason": "abstract page shows no CC licence (default arXiv licence); no exercises"
+  },
+  {
+   "source": "Weibel, Hatcher, Bott-Tu, Lee, Atiyah-Macdonald, Vakil, Eisenbud, Gathmann, Sutherland (MIT OCW), Milne",
+   "url": "/home/claude/frontier_atlas/pipeline/round5/research/sources.json",
+   "reason": "all rights reserved or NC/ND, or no licence stated"
+  },
+  {
+   "source": "Math StackExchange / MathOverflow",
+   "url": "https://math.stackexchange.com/",
+   "reason": "not reachable from this session"
+  }
+ ]
+}
