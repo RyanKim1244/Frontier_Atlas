@@ -73,6 +73,15 @@ for f in sorted(glob.glob(os.path.join(SRC, "batches", "out_*.json"))):
         links = [l for l in [aops(src, y, num), {"label": "Lean statement", "url": f"https://github.com/dwrensha/compfiles/blob/main/Compfiles/{x['file']}.lean"}] if l]
         olympiad.append(dict(id=slug, kind="olympiad", coll=src, title=title, year=y, q=x["q"].strip(), concepts=cs[:3], fields=fields_of(cs[:3]), links=links,
                              note="Statement reconstructed from the formal version." if "reconstruct" in x.get("check", "").lower() or "empty" in x.get("check", "").lower() else None))
+# Olympiad problems added by hand (pipeline/src/olympiad_user/*.json; format in its README.md).
+for f in sorted(glob.glob(os.path.join(SRC, "olympiad_user", "*.json"))):
+    for x in json.load(open(f, encoding="utf8")):
+        src, y, num = x["contest"].strip(), x.get("year"), str(x.get("num", "")).strip()
+        cs = [c for c in x.get("tags", []) if c in IDS]
+        slug = re.sub(r"[^A-Za-z0-9]+", "-", f"{src}-{y or ''}-P{num}").strip("-")
+        links = [l for l in [aops(src, y, num), {"label": "Source", "url": x["source_url"]} if x.get("source_url") else None] if l]
+        olympiad.append(dict(id=slug, kind="olympiad", coll=src, title=f"{src} {y} · Problem {num}" if y else f"{src} · {num}", year=y, q=x["q"].strip(),
+                             concepts=cs, fields=fields_of(cs), links=links))
 ids_o = [p["id"] for p in olympiad]
 dups = {i for i in ids_o if ids_o.count(i) > 1}
 for p in olympiad:
