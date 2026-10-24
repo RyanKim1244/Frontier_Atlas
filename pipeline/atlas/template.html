@@ -184,6 +184,12 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .lb-h { font-size: 22px; margin: 30px 0 10px; scroll-margin-top: 80px; }
 .lb-k { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
 .lb-box { border: 1px solid var(--rule); border-left: 3px solid var(--c, var(--rule-2)); background: var(--raise); border-radius: 0 4px 4px 0; padding: 12px 16px 4px; margin: 16px 0; overflow-x: auto; }
+.lb-chk { --c: var(--a-numerics, var(--accent)); } .lb-sum { --c: var(--ink-3); background: var(--sunk); }
+.exl, .chkl { margin: 0 0 8px; padding-left: 22px; } .exl > li, .chkl > li { margin: 10px 0 14px; } .exl > li > p, .chkl > li > p { margin: 0 0 6px; }
+.folds { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: flex-start; } .folds .fold { flex-basis: 100%; margin-top: 4px; }
+.rv-btn { font-family: var(--sans); font-size: 13.5px; }
+.lvl { float: right; margin-left: 8px; font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); border: 1px solid var(--rule-2); border-radius: 999px; padding: 1px 8px; }
+.lvl-challenging { color: var(--accent); border-color: var(--accent); }
 .lb-def { --c: var(--a-foundations); } .lb-thm { --c: var(--accent); } .lb-pit { --c: var(--warn); } .lb-ex { --c: var(--good); }
 .lb-proof { margin: -6px 0 18px; padding: 4px 0 0 16px; border-left: 1px dashed var(--rule-2); overflow-x: auto; }
 .lb-proof .qed { text-align: right; color: var(--ink-3); margin-top: -10px; }
@@ -504,6 +510,15 @@ function rich(text, em) {
 }
 const LESSON = {};
 function loadLesson(id) { if (!LESSON[id]) LESSON[id] = fetch("data/lessons/" + id + ".json").then(r => { if (!r.ok) throw new Error("lesson"); return r.json(); }); return LESSON[id]; }
+const EXPAND = /[?&]expand\b/.test(location.search);   /* open every hint/solution (used by checks) */
+function reveal(label, text) {
+  const wrap = h("span", { class: "rv" }); let box = null;
+  const btn = h("button", { class: "linkbtn rv-btn", "aria-expanded": "false" }, "Show " + label.toLowerCase());
+  const open = ts => { box = h("div", { class: "fold" }, h("span", { class: "fl" }, label), rich(text)); wrap.after(box); if (ts) typeset(box); btn.textContent = "Hide " + label.toLowerCase(); btn.setAttribute("aria-expanded", "true"); };
+  btn.onclick = () => { if (box) { box.remove(); box = null; btn.textContent = "Show " + label.toLowerCase(); btn.setAttribute("aria-expanded", "false"); } else open(true); };
+  wrap.append(btn); if (EXPAND) queueMicrotask(() => wrap.isConnected ? open(false) : setTimeout(() => open(false), 0));
+  return wrap;
+}
 function lessonView(c, tocEl) {
   const L = c.lesson, box = h("div", { class: "lesson" });
   const meta = h("div", { class: "lesson-meta" },
@@ -532,7 +547,13 @@ function lessonView(c, tocEl) {
       }
       else if (t === "pitfall") out.push(h("div", { class: "lb-box lb-pit" }, h("div", { class: "lb-k" }, b.title || "Common mistakes"), rich(b.body)));
       else if (t === "connection") { const id = "ls-" + (++secN); toc.push([id, b.title || "Where this leads"]); out.push(h("h3", { class: "lb-h", id }, b.title || "Where this leads"), h("div", null, rich(b.body))); }
+      else if (t === "exercise" && b.items) out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Exercises"),
+        h("ol", { class: "exl" }, b.items.map(it => h("li", null, it.level ? h("span", { class: "lvl lvl-" + it.level }, it.level) : null, rich(it.q),
+          h("div", { class: "folds" }, it.hint ? reveal("Hint", it.hint) : null, it.solution ? reveal("Solution", it.solution) : null))))));
       else if (t === "exercise") out.push(h("div", { class: "lb-box lb-ex" }, h("div", { class: "lb-k" }, b.title || "Check yourself"), rich(b.body)));
+      else if (t === "check") out.push(h("div", { class: "lb-box lb-chk" }, h("div", { class: "lb-k" }, b.title || "Check your understanding"),
+        h("ul", { class: "chkl" }, b.items.map(it => h("li", null, rich(it.q), h("div", { class: "folds" }, reveal("Answer", it.a)))))));
+      else if (t === "summary") out.push(h("div", { class: "lb-box lb-sum" }, h("div", { class: "lb-k" }, b.title || "Remember"), rich(b.body)));
       else if (t === "views") {
         const id = "ls-" + (++secN); toc.push([id, b.title]);
         const tabs = h("div", { class: "vw-tabs", role: "tablist" }), panel = h("div", { class: "vw-panel", role: "tabpanel" });

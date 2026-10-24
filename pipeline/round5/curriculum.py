@@ -18,6 +18,7 @@ C = [
  ("localization", "Localisation", "Localisation", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["noetherian-rings", "modules", "tensor-products"]),
  ("local-rings", "Local rings and Nakayama's lemma", "Local rings", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["localization"]),
  ("dedekind-domains", "Dedekind domains", "Dedekind domains", "algebraic", ["number-theory", "algebra"], "graduate", ["ideals", "localization", "local-rings"]),
+ ("depth-cohen-macaulay", "Depth and Cohen–Macaulay modules", "Depth & Cohen–Macaulay", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["local-rings", "ext"]),
  ("homological-algebra", "Exact sequences, complexes and resolutions", "Exact sequences", "abstract", ["algebra", "topology", "category-theory"], "graduate", ["modules", "categories-functors"]),
  ("derived-functors", "Derived functors", "Derived functors", "abstract", ["algebra", "topology", "category-theory"], "graduate", ["homological-algebra"]),
  ("tor", "Tor and flatness", "Tor", "abstract", ["algebra", "topology"], "graduate", ["derived-functors"]),
