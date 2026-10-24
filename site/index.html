@@ -663,10 +663,6 @@ function viewHome() {
       h("p", { class: "sub" }, "Solutions have been claimed but not yet verified."),
       claimedList()),
     h("section", { class: "section" },
-      h("div", { class: "section-h" }, h("h2", null, "Fields")),
-      h("p", { class: "sub" }, "Every field the atlas touches."),
-      h("div", { class: "tags", style: "margin-top:14px" }, usedFields.map(f => h("a", { class: "tag", href: "#field-" + f.id }, f.name, h("span", { class: "mono muted" }, CAT.concepts.filter(c => touchesField(c, f.id)).length))))),
-    h("section", { class: "section" },
       h("div", { class: "section-h" }, h("h2", null, "Open problems"), h("a", { class: "small", href: "#problems", onclick: () => { Object.assign(S.gp, { kind: "research", status: "open", q: "", page: 0 }); } }, "All " + ST.open)),
       h("p", { class: "sub" }, "Unsolved research problems, tagged by concept. Pick a tag to see its problems."),
       openList()));
