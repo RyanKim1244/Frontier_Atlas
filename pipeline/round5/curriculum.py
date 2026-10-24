@@ -1,19 +1,19 @@
 # Round 5 (planned, not started): the graduate core missing from the atlas.
 # Same pipeline as round 4: brief -> writer (entry + lesson) -> independent reviewer -> checks re-run -> publish.
-# (id, title, short, area, fields, stage, prerequisites)   Priority: P1 = needed before physics, P2 = core, P3 = later.
+# (id, title, short, area, fields, stage, prerequisites)   Order: by mathematical dependency (foundations of each subject first); no physics priority.
 C = [
- # --- P1: needed before theoretical physics ---
- ("vector-bundles", "Vector bundles and connections", "Bundles & connections", "diffgeo", ["differential-geometry", "physics"], "graduate", ["smooth-manifolds", "tensor-products"]),          # P1
- ("curvature-forms", "Curvature of connections and characteristic classes", "Characteristic classes", "diffgeo", ["differential-geometry", "topology", "physics"], "graduate", ["vector-bundles", "de-rham-cohomology"]),  # P1
- ("de-rham-cohomology", "De Rham cohomology", "De Rham cohomology", "diffgeo", ["differential-geometry", "topology"], "graduate", ["differential-forms", "homology"]),                       # P1
- ("lie-algebra-structure", "Semisimple Lie algebras, roots and weights", "Roots & weights", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "group-representations"]),   # P1
- ("sl2-su2", "Representations of sl(2), SU(2) and SO(3)", "SU(2) representations", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "character-theory"]),        # P1
- ("distributions", "Distributions and weak derivatives", "Distributions", "functional", ["functional-analysis", "pde", "physics"], "graduate", ["fourier-transform", "lp-spaces"]),          # P1
- ("sobolev-spaces", "Sobolev spaces and weak solutions", "Sobolev spaces", "pde", ["pde", "functional-analysis"], "graduate", ["distributions", "hilbert-spaces"]),                       # P1
- ("unbounded-operators", "Unbounded operators and the spectral theorem", "Unbounded operators", "functional", ["functional-analysis", "physics"], "graduate", ["compact-operators", "hilbert-spaces"]),  # P1
- ("symplectic-geometry", "Symplectic manifolds and Hamiltonian flows", "Symplectic geometry", "diffgeo", ["differential-geometry", "physics", "dynamics"], "graduate", ["differential-forms", "smooth-manifolds"]),  # P1
- ("stochastic-calculus", "Stochastic integrals and Itô's formula", "Stochastic calculus", "probability", ["probability", "pde", "physics"], "graduate", ["brownian-motion", "martingales"]),  # P1
- # --- P2: graduate core ---
+ # --- graduate core: geometry, Lie theory, analysis ---
+ ("vector-bundles", "Vector bundles and connections", "Bundles & connections", "diffgeo", ["differential-geometry", "physics"], "graduate", ["smooth-manifolds", "tensor-products"]),        
+ ("curvature-forms", "Curvature of connections and characteristic classes", "Characteristic classes", "diffgeo", ["differential-geometry", "topology", "physics"], "graduate", ["vector-bundles", "de-rham-cohomology"]),
+ ("de-rham-cohomology", "De Rham cohomology", "De Rham cohomology", "diffgeo", ["differential-geometry", "topology"], "graduate", ["differential-forms", "homology"]),                     
+ ("lie-algebra-structure", "Semisimple Lie algebras, roots and weights", "Roots & weights", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "group-representations"]), 
+ ("sl2-su2", "Representations of sl(2), SU(2) and SO(3)", "SU(2) representations", "lie", ["representation-theory", "physics"], "graduate", ["lie-algebras", "character-theory"]),      
+ ("distributions", "Distributions and weak derivatives", "Distributions", "functional", ["functional-analysis", "pde", "physics"], "graduate", ["fourier-transform", "lp-spaces"]),        
+ ("sobolev-spaces", "Sobolev spaces and weak solutions", "Sobolev spaces", "pde", ["pde", "functional-analysis"], "graduate", ["distributions", "hilbert-spaces"]),                     
+ ("unbounded-operators", "Unbounded operators and the spectral theorem", "Unbounded operators", "functional", ["functional-analysis", "physics"], "graduate", ["compact-operators", "hilbert-spaces"]),
+ ("symplectic-geometry", "Symplectic manifolds and Hamiltonian flows", "Symplectic geometry", "diffgeo", ["differential-geometry", "physics", "dynamics"], "graduate", ["differential-forms", "smooth-manifolds"]),
+ ("stochastic-calculus", "Stochastic integrals and Itô's formula", "Stochastic calculus", "probability", ["probability", "pde", "physics"], "graduate", ["brownian-motion", "martingales"]),
+ # --- graduate core: algebra, topology, algebraic geometry, number theory, analysis ---
  ("localization", "Localisation and local rings", "Localisation", "abstract", ["algebra", "algebraic-geometry"], "graduate", ["noetherian-rings", "modules"]),
  ("dedekind-domains", "Dedekind domains", "Dedekind domains", "algebraic", ["number-theory", "algebra"], "graduate", ["ideals", "localization"]),
  ("homological-algebra", "Exact sequences, Ext and Tor", "Homological algebra", "abstract", ["algebra", "topology", "category-theory"], "graduate", ["modules", "categories-functors"]),
@@ -38,7 +38,7 @@ C = [
  ("ergodic-theory", "Ergodic theory", "Ergodic theory", "dynamics", ["dynamics", "probability"], "graduate", ["lebesgue", "markov-chains"]),
  ("several-complex", "Several complex variables", "Several complex variables", "complex", ["complex-analysis"], "graduate", ["holomorphic", "partial-derivatives"]),
  ("radon-nikodym", "Signed measures and the Radon–Nikodym theorem", "Radon–Nikodym", "realanalysis", ["real-analysis", "probability"], "graduate", ["lebesgue"]),
- # --- P3: later ---
+ # --- advanced ---
  ("hodge-theory", "Hodge theory", "Hodge theory", "diffgeo", ["differential-geometry", "algebraic-geometry"], "graduate", ["de-rham-cohomology", "elliptic-pde"]),
  ("k-theory", "Topological K-theory", "K-theory", "topology", ["topology", "physics"], "graduate", ["vector-bundles", "cohomology"]),
  ("forcing", "Forcing and independence", "Forcing", "logic", ["logic"], "graduate", ["ordinals-cardinals", "completeness-theorem"]),
