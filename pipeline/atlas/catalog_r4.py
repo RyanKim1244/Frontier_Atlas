@@ -35,6 +35,8 @@ _s5 = _u.spec_from_file_location("curriculum_r5", os.path.join(R5, "curriculum.p
 FINAL5 = {}
 for f in sorted(glob.glob(os.path.join(R5, "concepts", "final_*.json"))):
     for x in json.load(open(f)): FINAL5[x["id"]] = x
+for f in filter(None, os.environ.get("ATLAS_R5_EXTRA", "").split(":")):   # preview drafts without publishing them
+    for x in json.load(open(f)): FINAL5[x["id"]] = x
 for a in getattr(_m5, "NEW_AREAS", []):
     if not any(x["id"] == a["id"] for x in AREAS): AREAS.append(dict(a))
 for (cid, title, short, area, fields, stage, pre) in _m5.C:
