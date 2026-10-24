@@ -399,6 +399,8 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
 <script>
 window.MathJax = {
   tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]], processEscapes: true, packages: { "[-]": ["require", "autoload"] }, macros: { R: "\\mathbb{R}", N: "\\mathbb{N}", Z: "\\mathbb{Z}", Q: "\\mathbb{Q}", C: "\\mathbb{C}", RR: "\\mathbb{R}", NN: "\\mathbb{N}", ZZ: "\\mathbb{Z}", QQ: "\\mathbb{Q}", CC: "\\mathbb{C}", FF: "\\mathbb{F}", boldsymbol: ["\\mathbf{#1}", 1] } },
+  /* Inline formulas in display style, so fractions and sums are not squeezed into text size. */
+  startup: { ready() { MathJax.startup.defaultReady(); MathJax.startup.input[0].preFilters.add(({ math }) => { if (!math.display) math.math = "\\displaystyle " + math.math; }); } },
   output: { displayOverflow: "linebreak", linebreaks: { inline: false, width: "100%" } },
   options: { enableMenu: false, enableEnrichment: false, enableSpeech: false, enableBraille: false, enableExplorer: false, enableComplexity: false, menuOptions: { settings: { enrich: false, speech: false, braille: false, assistiveMml: true } }, ignoreHtmlClass: "mathjax_ignore", skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "select", "input"] }
 };
@@ -462,7 +464,7 @@ function fitWide(el) {
   const mark = m => { const upd = () => m.classList.toggle("more", m.scrollLeft + m.clientWidth < m.scrollWidth - 2); upd(); m.addEventListener("scroll", upd, { passive: true }); };
   el.querySelectorAll("mjx-container.wide, mjx-container[display=\"true\"]").forEach(m => { if (m.scrollWidth > m.clientWidth + 1) mark(m); });
 }
-function keepTex(el) { try { MathJax.startup.document.getMathItemsWithin(el).forEach(m => { const r = m.typesetRoot; if (r && !r.dataset.tex) r.dataset.tex = m.display ? "$$" + m.math + "$$" : "$" + m.math + "$"; }); } catch (e) {} }
+function keepTex(el) { try { MathJax.startup.document.getMathItemsWithin(el).forEach(m => { const r = m.typesetRoot; if (r && !r.dataset.tex) r.dataset.tex = m.display ? "$$" + m.math + "$$" : "$" + m.math.replace(/^\\displaystyle /, "") + "$"; }); } catch (e) {} }
 function typeset(el) { if (!el || !window.MathJax || typeof window.MathJax.typesetPromise !== "function") return; mjChain = mjChain.then(() => window.MathJax.startup.promise).then(() => el.isConnected ? window.MathJax.typesetPromise([el]).then(() => { keepTex(el); fitWide(el); }) : null).catch(() => {}); }
 /* Copying text that contains formulas gives their TeX source, not the glyphs. */
 document.addEventListener("copy", e => {
