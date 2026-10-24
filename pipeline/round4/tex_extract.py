@@ -139,6 +139,13 @@ def convert(q):
     # punctuation after display math goes inside it
     q = re.sub(r'\$\$\s*\n\n\s*([.,;:])', r'\1$$\n\n', q)
     q = re.sub(r'\$\$([.,;:])', r'\1$$', q)
+    q = re.sub(r'\\postdisplaypenalty\s*=\s*\d+', '', q)
+    q = re.sub(r'\\widebar\b', r'\\overline', q)
+    # no blank lines inside display math (they would split the paragraph)
+    q = re.sub(r'\$\$(.*?)\$\$', lambda m: '$$' + re.sub(r'\s*\n\s*\n\s*', ' ', m.group(1)) + '$$', q, flags=re.S)
+    # a forced line break in text becomes a paragraph break
+    pieces = re.split(r'(\$\$.*?\$\$|\$[^$]*\$)', q, flags=re.S)
+    q = ''.join(p if i % 2 else p.replace('\\\\', '\n\n') for i, p in enumerate(pieces))
     # single newlines inside a paragraph are spaces (except list lines)
     paras = []
     for p in q.strip().split('\n\n'):

@@ -224,6 +224,23 @@ for x in json.load(open(os.path.join(HERE, "..", "round3", "textbook_raw.json"))
     textbook.append(dict(id=pid, kind="textbook", coll=coll, title=(f"{code} {secno} · Exercise {x['num']}" if secno else f"{code} · {sec} · Exercise {x['num']}"), section=sec,
                          q=x["q"], concepts=cs, fields=fields_of(cs), license=lic[0], license_url=lic[1], credit=lic[2],
                          links=[{"label": "Book", "url": x["link"]}, {"label": lic[0], "url": lic[1]}]))
+# Jiří Lebl's books (dual CC BY-NC-SA / CC BY-SA 4.0; used under CC BY-SA 4.0). Statements only; book numbering kept.
+LMAP = json.load(open(os.path.join(HERE, "..", "round4", "lebl_map.json")))
+LEX = set(json.load(open(os.path.join(HERE, "..", "round4", "lebl_exclude.json")))) if os.path.exists(os.path.join(HERE, "..", "round4", "lebl_exclude.json")) else set()
+for x in json.load(open(os.path.join(SRC, "lebl.json"))):
+    cs = [c for c in LMAP[x["book"]].get(x["section"], []) if c in IDS]
+    pid = f"{x['book']}-{x['section']}-{x['n']}"
+    if not cs or pid in LEX: continue
+    if x["book"] == "BA":
+        vol = "I" if x["chapter"] <= 7 else "II"
+        credit, coll, url = f"Jiří Lebl, Basic Analysis {vol}", "Lebl, Basic Analysis", "https://www.jirka.org/ra/"
+        title = f"Basic Analysis {x['section']} · Exercise {x['n']}"
+    else:
+        credit, coll, url = "Jiří Lebl, Notes on Diffy Qs", "Lebl, Notes on Diffy Qs", "https://www.jirka.org/diffyqs/"
+        title = f"Diffy Qs {x['section']} · Exercise {x['n']}"
+    textbook.append(dict(id=pid, kind="textbook", coll=coll, title=title, section=f"§{x['section']} {x['section_title']}", q=x["q"], concepts=cs, fields=fields_of(cs),
+                         license="CC BY-SA 4.0", license_url="https://creativecommons.org/licenses/by-sa/4.0/", credit=credit,
+                         links=[{"label": "Book", "url": url}, {"label": "CC BY-SA 4.0", "url": "https://creativecommons.org/licenses/by-sa/4.0/"}]))
 ids_t = [p["id"] for p in textbook]; assert len(ids_t) == len(set(ids_t)), [i for i in ids_t if ids_t.count(i) > 1][:5]
 
 # ---------- bridge ladders: ordered steps from olympiad/textbook level to research problems (reviewed only) ----------
@@ -289,7 +306,7 @@ for ps in ALL.values():
 stats = {"textbook": len(textbook), "olympiad": len(olympiad), "bridge": len(bridge), "research": len(research), "examples": len(examples), "total": sum(len(v) for v in ALL.values()),
          "open": sum(p["status"] == "open" for p in research), "solved": sum(p["status"] == "solved" for p in research), "claimed": sum(p["status"] == "claimed" for p in research), "collections": colls}
 catalog = {"bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
-           "credits": ["Textbook exercises: David Austin, Understanding Linear Algebra (CC BY 4.0); Mitchel T. Keller and William T. Trotter, Applied Combinatorics (CC BY-SA 4.0). Statements only, reformatted; exercises from CC BY-SA sources are shared under CC BY-SA 4.0.",
+           "credits": ["Textbook exercises: David Austin, Understanding Linear Algebra (CC BY 4.0); Mitchel T. Keller and William T. Trotter, Applied Combinatorics (CC BY-SA 4.0); Jiří Lebl, Basic Analysis I–II and Notes on Diffy Qs (CC BY-SA 4.0). Statements only, reformatted; exercises from CC BY-SA sources are shared under CC BY-SA 4.0.",
                        "Olympiad statements: IMO, USAMO and national olympiads, cross-checked with the compfiles Lean statements (Apache-2.0).",
                        "Erdős and Green problems: google-deepmind/formal-conjectures (Apache-2.0); Erdős status from teorth/erdosproblems, mirroring erdosproblems.com.",
                        "Millennium Prize Problems: stated in our own words after the Clay Mathematics Institute descriptions."]}

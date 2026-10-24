@@ -951,7 +951,7 @@ function problemCard(p, c, mode) {
   card.append(acts, folds);
   return card;
 }
-function srcOf(id) { return id.startsWith("LAD-") ? "bridge" : /^(ULA|AC)-/.test(id) ? "textbook" : id.startsWith("EX-") ? "examples" : /^(ERDOS|GREEN|CLAY)-/.test(id) ? "research" : id.startsWith("C-") ? null : "olympiad"; }
+function srcOf(id) { return id.startsWith("LAD-") ? "bridge" : /^(ULA|AC|BA|DQ)-/.test(id) ? "textbook" : id.startsWith("EX-") ? "examples" : /^(ERDOS|GREEN|CLAY)-/.test(id) ? "research" : id.startsWith("C-") ? null : "olympiad"; }
 function viewProblem(r) {
   const box = h("div", null, h("p", { class: "small muted" }, "Loading the problem…"));
   const k = srcOf(r.id);
