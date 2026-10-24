@@ -1,0 +1,188 @@
+[
+ {
+  "id": "conformal-maps",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "proof :: Proof (in three steps), Step 3",
+    "problem": "Step 3 asserts $h = \\psi_\\beta\\circ q \\in \\mathcal{F}$ without noting that $q$ is injective, which membership in $\\mathcal{F}$ requires.",
+    "fix": "Added: $q$ is injective because $q^2 = \\psi_\\alpha\\circ f$ is."
+   },
+   {
+    "severity": "unclear",
+    "where": "example :: How far can a disc map move the centre? (a)",
+    "problem": "The step $f(0)=g(\\psi_{1/2}^{-1}(0))$ was justified by \"$\\psi_{1/2}(\\tfrac12)=0$\", which is the wrong fact for that equality (it uses $\\psi_{1/2}^{-1}(0)=\\tfrac12$, i.e. $\\psi_{1/2}(0)=\\tfrac12$ via the involution).",
+    "fix": "Rewrote via $f = g\\circ\\psi_{1/2}$."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Last pitfall repeats the remark on $\\bar z$ from the first section; lesson just over 2000 words.",
+    "fix": "Removed it."
+   },
+   {
+    "severity": "unclear",
+    "where": "section :: Why holomorphic maps preserve angles",
+    "problem": "\"Angles are preserved exactly at points where $f'\\neq0$\" left the behaviour at critical points to the single $z^2$ example.",
+    "fix": "Stated the general rule (angles multiplied by $k$ at a zero of $f'$ of order $k-1$)."
+   },
+   {
+    "severity": "style",
+    "where": "example :: A strip",
+    "problem": "Lesson slightly over 2000 words.",
+    "fix": "Dropped an incidental closing remark in the strip example."
+   }
+  ]
+ },
+ {
+  "id": "dual-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.key",
+    "problem": "Key statement $\\dim V^* = \\dim V$ was given without the finite-dimensionality hypothesis, and the lesson itself shows it fails for $\\mathbb{Q}[x]$.",
+    "fix": "Added $(\\dim V<\\infty)$."
+   },
+   {
+    "severity": "style",
+    "where": "entry.key",
+    "problem": "Matrix of the dual map equals the transpose only with respect to the dual bases.",
+    "fix": "Added \"(dual bases)\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "Pointed to a \"Riesz representation\" in the inner-products page that this reviewer cannot confirm is there; over $\\mathbb{C}$ the map $v\\mapsto\\langle\\cdot,v\\rangle$ is only conjugate-linear.",
+    "fix": "Stated the real case directly."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "Writer flagged 15A03/15A04 as uncertain.",
+    "fix": "Kept: 15A03 (vector spaces, linear dependence, rank) covers dual and quotient spaces and row rank = column rank; 15A04 (linear transformations) covers the dual map. Both are MSC2020 codes for exactly this material."
+   }
+  ]
+ },
+ {
+  "id": "tensor-products",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "proof :: Existence, uniqueness and a basis",
+    "problem": "The theorem asserts existence of tensor products in general, but the construction uses coordinates and so only covers finite-dimensional $V, W$.",
+    "fix": "Restricted the construction to finite dimensions and named the general construction."
+   },
+   {
+    "severity": "style",
+    "where": "proof :: Existence, uniqueness and a basis",
+    "problem": "Uniqueness of $\\tilde\\beta$ needs the pure tensors $t_{ij}$ to span.",
+    "fix": "Said so."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Tensor products appear in Axler only from the 4th edition, whose Chapter 9 is multilinear algebra; earlier editions have a different Chapter 9.",
+    "fix": "Named the 4th edition."
+   }
+  ]
+ },
+ {
+  "id": "least-squares",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "proof :: Best approximation",
+    "problem": "The theorem asserts existence of the projection onto any subspace $W$, but the existence argument only treats a column space.",
+    "fix": "Noted that every subspace is a column space."
+   },
+   {
+    "severity": "error",
+    "where": "section :: Gram–Schmidt and the QR factorisation",
+    "problem": "\"The result is the same factorisation\" is false as stated: Householder QR (e.g. numpy) typically returns negative diagonal entries of $R$; it agrees with Gram–Schmidt only up to signs.",
+    "fix": "Added \"up to the signs of the columns of $Q$ and the rows of $R$\"."
+   }
+  ]
+ },
+ {
+  "id": "solvable-groups",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section :: The big theorems",
+    "problem": "\"Order has at most two prime factors\" misstates Burnside's theorem (read with multiplicity it is a triviality about orders $p$, $p^2$, $pq$); the theorem is about at most two distinct prime divisors.",
+    "fix": "Stated it as order $p^aq^b$."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links number-theory",
+    "problem": "The note claimed a radical extension \"has a solvable Galois group\" without the Galois-closure caveat, and the link to class field theory was vague.",
+    "fix": "Rewrote as the exact tower statement."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "\"A solvable complex Lie algebra acts by upper triangular matrices\" does not say on what; Lie's theorem is about finite-dimensional representations.",
+    "fix": "Stated it for finite-dimensional complex representations."
+   },
+   {
+    "severity": "style",
+    "where": "checks :: Q8",
+    "problem": "The Q8 check used the private sympy method FpGroup._to_perm_group.",
+    "fix": "Replaced with a check that builds Q8 from quaternion multiplication as a PermutationGroup (public API only)."
+   }
+  ]
+ },
+ {
+  "id": "ufds",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section :: Beyond PIDs: polynomial rings",
+    "problem": "Gauss's theorem is supported only by an outline (\"The idea\"), not labelled as such.",
+    "fix": "Labelled it explicitly as an outline."
+   },
+   {
+    "severity": "style",
+    "where": "section :: Beyond PIDs: polynomial rings",
+    "problem": "Why $(R/(p))[x]$ is a domain was not stated.",
+    "fix": "Added: because $p$ is prime (irreducible = prime in a UFD)."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof :: Euclidean domain implies PID implies UFD (uniqueness)",
+    "problem": "The induction did not address the case where one product is exhausted before the other, which is where $r=s$ comes from.",
+    "fix": "Added the end case."
+   }
+  ]
+ },
+ {
+  "id": "modules",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section :: Linear operators as $F[x]$-modules",
+    "problem": "With the page's row convention for relations, the presentation of $V_T$ is $F[x]^n/\\operatorname{rows}(xI - A^{\\mathsf{T}})$, not $\\operatorname{rows}(xI-A)$ (the relations are $xe_j - \\sum_i a_{ij}e_i$).",
+    "fix": "Corrected to $A^{\\mathsf{T}}$ and noted that $xI-A$ and its transpose have the same Smith form."
+   },
+   {
+    "severity": "style",
+    "where": "proof :: Proof of existence",
+    "problem": "Uniqueness part of the structure theorem is only an outline, but the block title said \"Proof of existence\" only.",
+    "fix": "Retitled \"Proof of existence, and outline of uniqueness\"."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof :: Proof for a Euclidean domain",
+    "problem": "The Smith normal form is stated for PIDs but proved only for Euclidean domains, with no indication of the general case.",
+    "fix": "Added the Bézout-step modification for a general PID."
+   }
+  ]
+ }
+]
