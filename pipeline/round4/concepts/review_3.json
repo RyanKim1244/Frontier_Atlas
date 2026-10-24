@@ -1,0 +1,272 @@
+[
+ {
+  "id": "integral-applications",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.msc",
+    "problem": "26A42 is the code for Riemann/Stieltjes/Lebesgue integration theory, not for applications of the one-variable integral.",
+    "fix": "Replaced with 26A06 (One-variable calculus)."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Stewart chapter/section numbers (Ch. 6, §8.1) depend on the edition.",
+    "fix": "Dropped the 'where' field."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Over length; some duplicated warnings (|f-g| and washer formula said in text and again in pitfalls).",
+    "fix": "Trimmed intro, recipe, arc-length and connection prose; removed the duplicates."
+   }
+  ]
+ },
+ {
+  "id": "parametric-polar",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Parametric curves",
+    "problem": "Direction of travel of x=t^2, y=t^3-3t was reversed: the curve comes in from the lower right (y -> -oo as t -> -oo) and leaves to the upper right, not the other way.",
+    "fix": "Rewrote the description with the points (1,2), origin, (1,-2) in order; added a check."
+   },
+   {
+    "severity": "error",
+    "where": "theorem/Area in polar coordinates",
+    "problem": "Stated for any continuous f with beta-alpha <= 2pi; when f changes sign, traced pieces can overlap (e.g. cos 3theta on [0,2pi] covers each petal twice), so 'the region swept has area (1/2)int f^2' is false.",
+    "fix": "Added the hypothesis f >= 0 and used f (not |f|) in the proof; the sign-change cases stay in the pitfall."
+   },
+   {
+    "severity": "error",
+    "where": "example/Loop of a parametric curve (c)",
+    "problem": "'The lower branch is concave up and the upper branch concave down' is wrong: the t>0 half also contains the part beyond the crossing with y>0.",
+    "fix": "Described the halves by t>0 and t<0 (mirror images)."
+   },
+   {
+    "severity": "error",
+    "where": "exercise 4",
+    "problem": "'Length from theta=0 to T is sqrt2(e^T-1)' combined with T -> -oo gives a negative length.",
+    "fix": "Restated as the length on [T,0], sqrt2(1-e^T); added a check."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'never pass through the same vertical line twice' is garbled.",
+    "fix": "'meets each vertical line at most once'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Stewart chapter number is edition dependent.",
+    "fix": "Dropped 'where'."
+   }
+  ]
+ },
+ {
+  "id": "ode-systems",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.sum",
+    "problem": "'every solution is e^{At}x(0)' right after introducing x'=Ax+g(t): false for the forced system.",
+    "fix": "Restricted to the homogeneous system."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links physics",
+    "problem": "Normal-mode frequencies are square roots of eigenvalues of M^{-1}K, not of the stiffness matrix alone (unless all masses are 1).",
+    "fix": "Corrected the note."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.links probability",
+    "problem": "P(t)=e^{tQ} as stated needs a finite state space.",
+    "fix": "Added 'finite-state ... with generator Q'."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "'If 0 is an eigenvalue, try a particular solution with a factor of t' is not a reliable rule.",
+    "fix": "Replaced by: there may be no equilibrium; find a particular solution another way (variation of parameters)."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Complex-eigenvalue item was vague.",
+    "fix": "Rewritten."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Boyce chapter number varies (7 in most editions, 6 in the 12th international adaptation).",
+    "fix": "Dropped 'where'."
+   }
+  ]
+ },
+ {
+  "id": "laplace-transform",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "connection",
+    "problem": "'the substitution x=e^{-t} relates it to the Mellin transform': that substitution turns the Mellin transform into the two-sided Laplace transform, not the one-sided one on this page.",
+    "fix": "Stated precisely; added a numeric check (Gamma(5/2) both ways)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 4 (integral equation, sinh t) unchecked.",
+    "fix": "Added check."
+   }
+  ]
+ },
+ {
+  "id": "series-solutions-ode",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Airy's and Legendre's equations",
+    "problem": "'For x>0 the solutions grow very fast' is false for Ai, which decays.",
+    "fix": "Said almost every solution grows, Ai (up to a constant factor) decays; added an mpmath check."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem/Frobenius",
+    "problem": "Convergence radius stated only for y1; the explanation of the logarithm in case 3 (equal roots) via the recurrence breaking down at n=r1-r2=0 was muddled.",
+    "fix": "Stated convergence for all series; separate explanation for case 3 and case 4."
+   },
+   {
+    "severity": "error",
+    "where": "example/Bessel",
+    "problem": "'only J0 appears in the vibrations of a drum' is only true for radially symmetric modes.",
+    "fix": "Added 'radially symmetric'."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition/Ordinary points",
+    "problem": "'denominators do not vanish' needs lowest terms.",
+    "fix": "Added '(after cancelling common factors)'."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "34A25 and 33C10 checked: 34A25 = analytical theory of ODEs (series, transforms); 33C10 = Bessel and Airy functions. Both apply.",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Boyce chapter number and title vary by edition.",
+    "fix": "Dropped 'where'."
+   }
+  ]
+ },
+ {
+  "id": "sturm-liouville",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.key[1]",
+    "problem": "The '= 0' in Lagrange's identity holds only when u, v satisfy the boundary conditions, and L was undefined in the entry.",
+    "fix": "Defined L and added the condition."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry.sum",
+    "problem": "Spectral properties stated without 'regular'/bounded interval (they fail for singular problems, as the lesson itself says).",
+    "fix": "Added the qualifiers."
+   },
+   {
+    "severity": "error",
+    "where": "definition",
+    "problem": "Reduction of a2y''+a1y'+a0y+lambda a3 y=0 to SL form needs a3>0 for a positive weight; p, q, w were not identified.",
+    "fix": "Added a3>0 and p=mu a2, q=-mu a0, w=mu a3; added a symbolic check."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof/Properties",
+    "problem": "The inverse of L exists only if 0 is not an eigenvalue.",
+    "fix": "Added the shift of q; same caveat in the functional-analysis link."
+   },
+   {
+    "severity": "style",
+    "where": "section/Rayleigh quotient",
+    "problem": "'R compares potential energy with kinetic energy' is loose.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "34B24 (Sturm-Liouville theory) and 34L10 (eigenfunctions, eigenfunction expansions, completeness) checked.",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Boyce chapter number varies by edition.",
+    "fix": "Dropped 'where'."
+   }
+  ]
+ },
+ {
+  "id": "phase-plane",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "theorem/Linearisation (Hartman-Grobman remark)",
+    "problem": "Spiral/node remark tied to 'F twice differentiable', and gave no warning about repeated eigenvalues.",
+    "fix": "Rewritten: the homeomorphism does not separate nodes from spirals; spirals stay spirals and nodes with distinct eigenvalues stay nodes; only a repeated real eigenvalue lets a node become a spiral (cf. Boyce's locally linear table)."
+   },
+   {
+    "severity": "error",
+    "where": "section/Why linearisation works",
+    "problem": "Said nodes occupy open regions of the trace-determinant plane (false on the parabola tau^2=4Delta), and that a centre is pushed to a spiral (it may also stay a centre); presented as an argument rather than a heuristic.",
+    "fix": "Rewritten as a labelled heuristic with both borderline cases."
+   },
+   {
+    "severity": "error",
+    "where": "entry.key[2]",
+    "problem": "Lyapunov condition omitted V(x*)=0 and the exclusion x != x*.",
+    "fix": "Stated the hypotheses in full."
+   },
+   {
+    "severity": "error",
+    "where": "entry.links optimisation",
+    "problem": "Strict local minima need not be asymptotically stable for gradient flow (critical points can accumulate).",
+    "fix": "Changed to nondegenerate local minima."
+   },
+   {
+    "severity": "style",
+    "where": "entry.links physics",
+    "problem": "Note was garbled ('saddles ... separated by energy levels').",
+    "fix": "Rewritten."
+   },
+   {
+    "severity": "style",
+    "where": "whole lesson",
+    "problem": "Longest page.",
+    "fix": "Trimmed intro, autonomous-systems, conservative and competing-species prose."
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "34D20 (stability of ODE solutions) and 34C05 (topological structure of integral curves, singular points, limit cycles) checked.",
+    "fix": "Kept."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Boyce chapter number varies by edition.",
+    "fix": "Dropped 'where'."
+   }
+  ]
+ }
+]
