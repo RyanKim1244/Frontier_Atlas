@@ -1,0 +1,134 @@
+[
+ {
+  "id": "differential-forms",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "pitfall (compact support)",
+    "problem": "Counterexample said only '$\\int_0^1 dx=1$' without naming the form $\\omega$ whose support fails to be compact.",
+    "fix": "Named $\\omega=x$ on $M=(0,1)$ explicitly."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof (cube)",
+    "problem": "'$c=\\varphi\\circ$(standard cube)' was not a definition; the boundary of a singular cube was never defined.",
+    "fix": "Defined a singular cube as a smooth map $\\varphi:I^k\\to\\mathbb{R}^n$ and its boundary via the face maps."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Spivak chapter 4 covers forms and Stokes on chains; Stokes on manifolds (also used in the lesson) is chapter 5.",
+    "fix": "Cited chapters 4–5."
+   }
+  ]
+ },
+ {
+  "id": "riemannian-geometry",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example: Detecting curvature with a piece of string",
+    "problem": "Claimed that in geodesic polar coordinates about any point of any surface the metric is $dr^2+f(r)^2d\\theta^2$ with $f$ independent of $\\theta$, and $C(r)=2\\pi f(r)$. In general $f=f(r,\\theta)$; the lesson's curvature theorem only covers the rotationally symmetric case.",
+    "fix": "Added the rotational-symmetry hypothesis (e.g. surface of revolution, $p$ on the axis), and a sentence that the general case (Bertrand–Diguet–Puiseux) holds, stated without proof."
+   },
+   {
+    "severity": "style",
+    "where": "section: Geodesics minimise, but only locally",
+    "problem": "Uniqueness of the shortest curve holds only up to reparametrisation.",
+    "fix": "Added 'up to reparametrisation'."
+   },
+   {
+    "severity": "style",
+    "where": "section: Curvature and global shape",
+    "problem": "Bonnet–Myers needs $n\\ge2$ (for $n=1$, Ric is identically $0$ and the hypothesis is vacuous-inconsistent).",
+    "fix": "Added $n\\ge2$."
+   },
+   {
+    "severity": "style",
+    "where": "length",
+    "problem": "Lesson about 2260 words.",
+    "fix": "Trimmed a few sentences of padding."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Writer flagged 'Lee, chapters 12–13'. In Lee's Introduction to Smooth Manifolds (2nd ed.) chapter 12 is Tensors and chapter 13 is Riemannian Metrics, so the citation matches that book (not Introduction to Riemannian Manifolds); it covers only the metric part of this page.",
+    "fix": "Kept, with the chapter topics named; the connection/curvature material is cited to Lee's Introduction to Riemannian Manifolds and do Carmo without section numbers."
+   }
+  ]
+ },
+ {
+  "id": "normed-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'L^p spaces are the completions of continuous functions under integral norms' is false for $p=\\infty$.",
+    "fix": "Restricted to $1\\le p<\\infty$ and noted the exception."
+   }
+  ]
+ },
+ {
+  "id": "hilbert-spaces",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.links (harmonic-analysis)",
+    "problem": "Attributed preservation of the $L^2$ norm by the Fourier transform to Parseval's identity for an orthonormal basis; the transform statement is Plancherel's theorem, and the basis statement is about Fourier coefficients.",
+    "fix": "Restated Parseval as the coefficient isometry onto $\\ell^2(\\mathbb{Z})$ and named Plancherel for the transform."
+   }
+  ]
+ },
+ {
+  "id": "hahn-banach",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "entry.links (logic)",
+    "problem": "Writer asked to verify the choice-strength claims. Verified: the ultrafilter lemma/BPI implies Hahn–Banach and is strictly weaker than AC, so Hahn–Banach does not imply AC over ZF; Brown–Simpson (1986) proved the separable Hahn–Banach theorem equivalent to WKL_0 over RCA_0. The old wording 'needs a form of the axiom of choice' was vague and 'standard example in reverse mathematics' gave no content.",
+    "fix": "Rewrote the note with the precise statements (not provable in ZF; follows from BPI, which is strictly weaker than AC; separable case equivalent to WKL_0 over RCA_0)."
+   }
+  ]
+ },
+ {
+  "id": "compact-operators",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "theorem: Fredholm alternative",
+    "problem": "Part 4 ($\\dim\\ker A=\\dim\\ker A^*$) is not proved; the omission was mentioned only at the end of the proof block.",
+    "fix": "Labelled part 4 as stated without proof in the theorem itself; the proof block keeps its title 'Proof of parts 1–3'."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'a subspace of finite codimension' is vacuous for $n\\times n$ matrices; the point is that the subspace is proper.",
+    "fix": "Changed to 'a proper subspace'."
+   }
+  ]
+ },
+ {
+  "id": "joint-distributions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section: Sums of independent random variables",
+    "problem": "The region $\\{x+y\\le s\\}$ is a half-plane, not a strip.",
+    "fix": "Corrected."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Conditional expectation as best prediction",
+    "problem": "The mean-square decomposition needs $E[X^2]<\\infty$ (otherwise both sides may be infinite and the cross term undefined); only $g(Y)$ was assumed square-integrable.",
+    "fix": "Added the hypothesis $E[X^2]<\\infty$."
+   }
+  ]
+ }
+]
