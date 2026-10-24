@@ -28,3 +28,14 @@ Goal: all of mathematics. Every batch of 3 mixes new concepts and upgrades of ex
   foundations found in the taxonomy (research/taxonomy.json, tier 1 first).
 - An upgrade uses the same pipeline (dossier -> outline -> write -> R -> S -> review of S -> exercises -> publish), keeping
   correct existing material and its checks; foundations are written for a first-time learner (school/undergraduate stage).
+
+## School mathematics from the first year (agreed 2026-10-24)
+Coverage must start at elementary school: every concept in school textbooks gets its own page (grouped by topic, never by
+grade), so a learner can climb step by step from counting to research.
+Next research task (before writing): build the full school concept list from curricula and open textbooks, compare it with
+the existing concepts, and add the missing ones to the curriculum with prerequisites.
+- Topic lists (reference only, no text copied): Korean national curriculum achievement standards (2022 revision),
+  US Common Core, England national curriculum.
+- Open textbooks usable for structure and for exercises (licence to be confirmed per source): Illustrative Mathematics K-12
+  (CC BY 4.0), OpenStax Prealgebra / Elementary Algebra / Intermediate Algebra / College Algebra / Precalculus / Calculus
+  (CC BY 4.0), CK-12 (check licence; often NC -> excluded).
