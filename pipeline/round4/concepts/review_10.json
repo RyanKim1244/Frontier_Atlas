@@ -1,0 +1,266 @@
+[
+ {
+  "id": "moment-generating",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Tail bounds",
+    "problem": "Called '100(3/4 ln 3/2 + 1/4 ln 1/2)' 'the exponent'. The bound is e^{-100D}, so the exponent is -100D, and the units (nats) and which two distributions were not stated.",
+    "fix": "Now: bound = e^{-100D} with D ~ 0.131, the relative entropy in nats of a 3/4-coin from a fair coin. Added a check."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Tail bounds",
+    "problem": "Lévy's continuity theorem and its MGF analogue were stated without proof and the text did not say so.",
+    "fix": "Labelled both as stated without proof."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Wordy sentence about convolutions.",
+    "fix": "Shortened."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Ross section number depends on the edition.",
+    "fix": "Now 'Section 7.7 (10th ed.)', which the brief confirms."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise premises were not checked: the (1-2t)^-3 moments, and the loaded-dice polynomial values at r = ±1.",
+    "fix": "Added two checks."
+   }
+  ]
+ },
+ {
+  "id": "monte-carlo",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: A run, with its error bar / checks",
+    "problem": "The reported run depended on the Python random module's stream for seed 2026, and the check reproduced only that stream.",
+    "fix": "Reran the experiment with numpy default_rng(2026) and replaced the numbers (1.72725, s 0.49325, SE 0.00493, CI [1.71758, 1.73692]; antithetic 1.71702, SE 0.00088). Added a sentence that the SE is close to the theoretical 0.00492 for any seed. The check asserts the seeded values, and also checks for 10 other seeds that the SE is within 3% of theory and the mean is within 5 SE."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof: accuracy theorem",
+    "problem": "Said s -> sigma 'with probability 1 (Slutsky's theorem)'. The convergence comes from the strong law; Slutsky justifies the substitution, and it was not labelled as unproved.",
+    "fix": "Reworded and labelled Slutsky as a standard result not proved here."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Long roadmap sentence.",
+    "fix": "Tightened."
+   }
+  ]
+ },
+ {
+  "id": "entropy",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Surprise and its average",
+    "problem": "'These three properties essentially force the logarithm' is an unproved claim and was not marked as one.",
+    "fix": "Now: 'Up to the choice of base, these properties force log(1/p) (a functional-equation argument we do not give here).'"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem: Gibbs' inequality",
+    "problem": "'H(Y|X) <= H(Y) with equality iff independent' needs finite entropies. With countably many values, both sides can be infinite.",
+    "fix": "Added 'for variables of finite entropy'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Entropy as the limit of compression",
+    "problem": "Kraft's inequality (both directions) was given only with a picture, and was not labelled as unproved.",
+    "fix": "Labelled as stated with only a sketch."
+   },
+   {
+    "severity": "style",
+    "where": "example 2 solution",
+    "problem": "'by a clever scheme due to Ford and Johnson': the 7-comparison sort for n = 5 was known before Ford–Johnson. Their merge-insertion method achieves it.",
+    "fix": "Reworded to say merge-insertion achieves 7."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'probability about 2^{-nH}' is true only on the exponential scale.",
+    "fix": "Now 2^{-n(H+o(1))}."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Chapter and section numbers depend on the edition.",
+    "fix": "Cover & Thomas Chapters 2 and 5 (2nd ed.; ch. 2 Entropy, Relative Entropy and Mutual Information, ch. 5 Data Compression), and Ross 9.3–9.4 (10th ed., per the brief)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The intro's guessing-game claim (average below four questions) and the premise of the 12-coin exercise were not checked.",
+    "fix": "Added two checks."
+   }
+  ]
+ },
+ {
+  "id": "martingales",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section: Rules of computation",
+    "problem": "Said the rules (including conditional Jensen and taking out what is known) all 'follow from the definition', but no proofs were given.",
+    "fix": "Labelled as consequences whose proofs are omitted (see references)."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'f(X_n) is a martingale exactly when f is harmonic' needs integrability (e.g. f bounded) and must hold for every starting state.",
+    "fix": "Added 'bounded f', 'for every starting state' and 'Pf = f'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Durrett's chapter numbering differs between editions (martingales are ch. 5 in the 4th, ch. 4 in the 5th).",
+    "fix": "Now 'Chapter 4 (5th ed.)'."
+   },
+   {
+    "severity": "style",
+    "where": "intro / section / pitfall",
+    "problem": "Padding. The pitfall 'E[X|G] is a random variable' repeated the definition.",
+    "fix": "Trimmed the intro, shortened one sentence and removed that bullet."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 1's formula and exercise 3's premise (HTHT, HHTT) were not checked.",
+    "fix": "Added checks: an exact linear solve for the biased walk, and pattern waiting times 20 and 16."
+   }
+  ]
+ },
+ {
+  "id": "brownian-motion",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem: Existence and invariance principle",
+    "problem": "Gave 'the maximum' as an example of a bounded continuous functional. The maximum is continuous but unbounded.",
+    "fix": "Example changed to g(max w) with g bounded and continuous. Both parts are now labelled as stated without proof."
+   },
+   {
+    "severity": "error",
+    "where": "theorem/proof: Quadratic variation",
+    "problem": "Claimed infinite variation 'on every interval' a.s., but the proof covered only one fixed interval [0, t].",
+    "fix": "Added the countable union over rational intervals, using that increments over [r, r'] form a Brownian motion."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Basic properties; example 3",
+    "problem": "The strong Markov property and continuous-time optional stopping were used without proof and not labelled.",
+    "fix": "Labelled both as used without proof."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "Durrett's chapter depends on the edition.",
+    "fix": "Now 'Chapter 7 (5th ed.)'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The time-inversion covariance and P(T_a <= t) -> 1 were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "descriptive-statistics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.msc",
+    "problem": "62-07 (Data analysis) was used only from 1980 to 2019 and is not an MSC2020 code; it was replaced by 62-08 and 62R07, neither of which fits this topic.",
+    "fix": "Removed; msc is now empty."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: A guarantee that holds for every data set",
+    "problem": "The proof divides by sigma^2 and so fails when sigma = 0.",
+    "fix": "Added the sigma = 0 case."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Mean versus median",
+    "problem": "'as the first example shows' pointed to an example that comes later on the page.",
+    "fix": "Now 'as Example 1 below shows'."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "OpenIntro's chapter numbering depends on the edition (summaries are in ch. 1 of the 3rd ed.).",
+    "fix": "Now 'Chapter 2 (4th ed.)' (Summarizing data)."
+   },
+   {
+    "severity": "style",
+    "where": "intro / sections",
+    "problem": "Minor padding.",
+    "fix": "Tightened two sentences."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The exercise premises and Chebyshev's k = 2 value were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "sampling-design",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "The Literary Digest details were written from memory and vague ('millions', 'called the result correctly'). Gallup called the winner but underestimated the margin.",
+    "fix": "Checked against a source: about 10 million ballots mailed, about 2.4 million returned, Landon predicted, Roosevelt won about 61% of the popular vote. Now 'Pollsters such as George Gallup ... called the winner correctly'."
+   },
+   {
+    "severity": "error",
+    "where": "entry.key",
+    "problem": "The variance formula sigma^2/n (N-n)/(N-1) is right only with the population variance taken with divisor N, and the key did not say so.",
+    "fix": "Added sigma^2 = (1/N) sum (y_j - mu)^2 to the key."
+   },
+   {
+    "severity": "unclear",
+    "where": "section: Other sampling designs",
+    "problem": "'Systematic sample behaves like an SRS' is false as stated: most n-sets can never be chosen.",
+    "fix": "Reworded: not an SRS, but usually behaves like one unless the list repeats with period k."
+   },
+   {
+    "severity": "style",
+    "where": "sources",
+    "problem": "The OpenIntro section numbers are edition-specific.",
+    "fix": "Now 'Sections 1.3 and 1.4 (4th ed.)', as in the brief."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Wordy second paragraph.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The finite-population-correction claim (n = 1000, N = 50,000 vs 50 million) and exercise 1 were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ }
+]
