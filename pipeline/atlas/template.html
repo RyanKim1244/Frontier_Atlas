@@ -8,6 +8,7 @@
 <meta property="og:title" content="Frontier Atlas">
 <meta property="og:description" content="Mathematics from first principles to the frontier.">
 <meta name="theme-color" content="#fbfaf6">
+<script>try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Ccircle cx='11' cy='11' r='9.5' fill='%23fbfaf6' stroke='%231d1c19' stroke-width='1.3'/%3E%3Cpath d='M11 3.5 L13.2 11 L11 18.5 L8.8 11 Z' fill='%23a13d1d'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,13 +21,16 @@
   --rule: #e6e2d8; --rule-2: #cdc7b9; --accent: #a13d1d; --accent-tint: rgba(161, 61, 29, 0.08); --link: #8f3518;
   --good: #2c7a4b; --good-tint: rgba(44, 122, 75, 0.10); --warn: #946200; --warn-tint: rgba(148, 98, 0, 0.11); --bad: #b3261e;
   --a-foundations: #3462c4; --a-analysis: #11866e; --a-analytic: #c3452a; --a-algebraic: #96408e; --a-combinatorial: #b07800; --a-computation: #5a6c80; --a-frontier: #1d1c19; --a-discrete: #12799a; --a-olyalg: #5f7f1c; --a-geometry: #8a5a2b; --a-precalc: #5b9a6a; --a-calculus: #13875a; --a-realanalysis: #0b5c49; --a-linalg: #a8468e; --a-abstract: #7a4fb0; --a-probability: #c2700f; --a-logic: #6b5aa6; --a-complex: #0f8f86; --a-harmonic: #2f7fb0; --a-odes: #1e8f4e; --a-dynamics: #b4532a; --a-pde: #a8432f; --a-functional: #4a6fa5; --a-lie: #8c3f9e; --a-topology: #a0522d; --a-diffgeo: #7a5c00; --a-statistics: #c0306a; --a-numerics: #4b7a8a;
+  --fig-red: #c0392b; --fig-blue: #2563b8; --fig-green: #23824f; --fig-orange: #c06a00; --fig-purple: #8a3fb0;
   --serif: "Newsreader", "Iowan Old Style", Georgia, serif; --sans: "Public Sans", -apple-system, "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --fig-red: #ff8a7a; --fig-blue: #7eb0ff; --fig-green: #6fd39b; --fig-orange: #f3b25b; --fig-purple: #d29cf2;
   --paper: #161512; --raise: #1d1c18; --sunk: #221f1a; --ink: #ece8de; --ink-2: #b9b3a6; --ink-3: #8b8578; --rule: #2e2b25; --rule-2: #413d35;
   --accent: #ee8a63; --accent-tint: rgba(238, 138, 99, 0.12); --link: #f09872; --good: #6cc792; --good-tint: rgba(108, 199, 146, 0.12); --warn: #e8b552; --warn-tint: rgba(232, 181, 82, 0.13); --bad: #ff8a7c;
   --a-foundations: #7fa4f5; --a-analysis: #52cdb0; --a-analytic: #f2805f; --a-algebraic: #da80cf; --a-combinatorial: #e6b440; --a-computation: #98a9bd; --a-frontier: #ece8de; --a-discrete: #5cc3e2; --a-olyalg: #a9cc5e; --a-geometry: #d6a372; --a-precalc: #92d0a0; --a-calculus: #4fcf98; --a-realanalysis: #7fc8b4; --a-linalg: #ee8fd2; --a-abstract: #b99bf2; --a-probability: #f2aa55; color-scheme: dark; } } --a-logic: #b2a4ea; --a-complex: #5ad0c6; --a-harmonic: #78bde8; --a-odes: #64d08f; --a-dynamics: #ef9a73; --a-pde: #f08a74; --a-functional: #92b2e6; --a-lie: #d08ae0; --a-topology: #e09a70; --a-diffgeo: #e0c25a; --a-statistics: #f07fa8; --a-numerics: #8fc0cf;
 :root[data-theme="dark"] {
+  --fig-red: #ff8a7a; --fig-blue: #7eb0ff; --fig-green: #6fd39b; --fig-orange: #f3b25b; --fig-purple: #d29cf2;
   --paper: #161512; --raise: #1d1c18; --sunk: #221f1a; --ink: #ece8de; --ink-2: #b9b3a6; --ink-3: #8b8578; --rule: #2e2b25; --rule-2: #413d35;
   --accent: #ee8a63; --accent-tint: rgba(238, 138, 99, 0.12); --link: #f09872; --good: #6cc792; --good-tint: rgba(108, 199, 146, 0.12); --warn: #e8b552; --warn-tint: rgba(232, 181, 82, 0.13); --bad: #ff8a7c;
   --a-foundations: #7fa4f5; --a-analysis: #52cdb0; --a-analytic: #f2805f; --a-algebraic: #da80cf; --a-combinatorial: #e6b440; --a-computation: #98a9bd; --a-frontier: #ece8de; --a-discrete: #5cc3e2; --a-olyalg: #a9cc5e; --a-geometry: #d6a372; --a-precalc: #92d0a0; --a-calculus: #4fcf98; --a-realanalysis: #7fc8b4; --a-linalg: #ee8fd2; --a-abstract: #b99bf2; --a-probability: #f2aa55; color-scheme: dark; } --a-logic: #b2a4ea; --a-complex: #5ad0c6; --a-harmonic: #78bde8; --a-odes: #64d08f; --a-dynamics: #ef9a73; --a-pde: #f08a74; --a-functional: #92b2e6; --a-lie: #d08ae0; --a-topology: #e09a70; --a-diffgeo: #e0c25a; --a-statistics: #f07fa8; --a-numerics: #8fc0cf;
@@ -56,6 +60,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .nav a.on { color: var(--ink); font-weight: 600; }
 .nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); }
 .nav a small { font-family: var(--mono); font-size: 11.5px; color: var(--accent); margin-left: 4px; }
+.themebtn { background: none; border: 1px solid var(--rule-2); color: var(--ink-2); border-radius: 999px; width: 34px; height: 34px; padding: 0; display: inline-grid; place-items: center; cursor: pointer; flex: none; }
+.themebtn:hover { color: var(--ink); border-color: var(--ink-3); }
 .topsearch { margin-left: auto; } .topsearch input { width: 210px; }
 main { padding-block: 40px 84px; min-height: 60vh; overflow-x: clip; }
 
@@ -195,9 +201,7 @@ a.tag:hover { border-color: var(--ink-3); color: var(--ink); }
 .lb-conv { --c: var(--a-logic); } .conv { border-collapse: collapse; width: 100%; margin: 4px 0 10px; font-size: 16px; }
 .conv th { text-align: left; vertical-align: top; font-family: var(--sans); font-size: 13px; font-weight: 600; padding: 8px 12px 8px 0; white-space: nowrap; color: var(--ink-2); }
 .conv td { padding: 8px 0; vertical-align: top; } .conv tr + tr { border-top: 1px solid var(--rule); } .conv td p { margin: 0 0 4px; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .lb-fig img { filter: invert(1) hue-rotate(180deg); } }
-:root[data-theme="dark"] .lb-fig img { filter: invert(1) hue-rotate(180deg); }
-.lb-fig { margin: 20px 0; text-align: center; } .lb-fig img { max-width: 100%; height: auto; } .lb-fig figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; } .lb-fig figcaption p { margin: 0; }
+.lb-fig { margin: 24px 0; text-align: center; } .fig-svg { overflow-x: auto; } .fig-svg svg { max-width: 100%; height: auto; display: inline-block; vertical-align: top; } .lb-fig figcaption { font-size: 15px; color: var(--ink-2); margin-top: 6px; } .lb-fig figcaption p { margin: 0; }
 .req { padding-left: 0; list-style: none; } .req li { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--rule); } .req li p { margin: 0; }
 .req-p { font-family: var(--sans); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); min-width: 82px; } .req-p.core { color: var(--accent); }
 .soon { border-bottom: 1px dotted var(--ink-3); cursor: help; }
@@ -297,7 +301,7 @@ footer p { max-width: 62em; }
 .ladder { padding-left: 22px; margin: 0; } .ladder li { padding: 3px 0; border: 0; font-size: 15px; } .ladder li.done a { color: var(--ink-3); text-decoration: line-through; }
 .tag.step { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
 [hidden] { display: none !important; }
-@media (max-width: 900px) { .top .brand { order: -2; } .acct { order: -1; margin-left: auto; } }
+@media (max-width: 900px) { .top .brand { order: -3; } .themebtn { order: -2; margin-left: auto; } .acct { order: -1; } .top .wrap { column-gap: 12px; } }
 .acct { display: flex; align-items: center; min-height: 34px; }
 .acct .btn { padding: 6px 13px; font-size: 13.5px; }
 .acct-wait { display: inline-block; width: 64px; height: 30px; }
@@ -374,6 +378,7 @@ mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; max-width:
       <a href="#review" data-r="review" id="nav-review" hidden>Review<small id="rcount"></small></a>
     </nav>
     <form class="topsearch" id="topsearch" role="search"><input type="search" id="topq" placeholder="Search concepts" aria-label="Search concepts"></form>
+    <button class="themebtn" id="themebtn" type="button" aria-label="Switch theme"></button>
     <div class="acct" id="acct"></div>
   </div>
 </header>
@@ -398,6 +403,16 @@ window.MathJax = {
 <script>
 "use strict";
 const CAT = JSON.parse(document.getElementById("catalog").textContent);
+(function themeToggle() {
+  const btn = document.getElementById("themebtn"), root = document.documentElement, mq = matchMedia("(prefers-color-scheme: dark)");
+  const SUN = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>';
+  const MOON = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>';
+  const eff = () => root.getAttribute("data-theme") || (mq.matches ? "dark" : "light");
+  const paint = () => { const d = eff() === "dark"; btn.innerHTML = d ? SUN : MOON; btn.setAttribute("aria-label", d ? "Switch to light theme" : "Switch to dark theme"); btn.title = btn.getAttribute("aria-label");
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", d ? "#161512" : "#fbfaf6"); };
+  btn.addEventListener("click", () => { const next = eff() === "dark" ? "light" : "dark"; root.setAttribute("data-theme", next); try { localStorage.setItem("theme", next); } catch (e) {} paint(); });
+  mq.addEventListener && mq.addEventListener("change", paint); paint();
+})();
 const CON = Object.fromEntries(CAT.concepts.map(c => [c.id, c]));
 const AREA = Object.fromEntries(CAT.bands.map(b => [b.id, b]));
 const FIELD = Object.fromEntries(CAT.fields.map(f => [f.id, f]));
@@ -516,7 +531,9 @@ function lessonView(c, tocEl) {
       }
       else if (t === "conventions") out.push(h("div", { class: "lb-box lb-conv" }, h("div", { class: "lb-k" }, b.title || "Conventions differ between books"), b.body ? rich(b.body) : null,
         h("table", { class: "conv" }, h("tbody", null, b.rows.map(r => h("tr", null, h("th", null, r.who), h("td", null, rich(r.text), cite(r.src))))))));
-      else if (t === "figure") out.push(h("figure", { class: "lb-fig" }, h("img", { src: b.svg, alt: b.alt || "", loading: "lazy" }), b.caption ? h("figcaption", null, rich(b.caption)) : null));
+      else if (t === "figure") { const box = h("div", { class: "fig-svg", role: "img", "aria-label": b.alt || "" });
+        fetch(b.svg).then(r => r.ok ? r.text() : Promise.reject()).then(txt => { box.innerHTML = txt; }).catch(() => { box.textContent = "The figure could not be loaded."; });
+        out.push(h("figure", { class: "lb-fig" }, box, b.caption ? h("figcaption", null, rich(b.caption)) : null)); }
       if (t !== "views" && b.src) { const ci = cite(b.src); if (ci) out.push(ci); }
     });
     if (les.requires && les.requires.length) { const id = "ls-" + (++secN); toc.push([id, "Ready for papers?"]);
