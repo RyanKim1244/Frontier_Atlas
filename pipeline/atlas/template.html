@@ -606,6 +606,7 @@ function loadSrc(k) { if (PB[k]) return Promise.resolve(PB[k]); if (!PBload[k]) 
 let sbDone; const sbReady = new Promise(r => { sbDone = r; });
 let subsDone; const subsReady = new Promise(r => { subsDone = r; }); setTimeout(() => subsDone(), 4000);
 function loadFor(c) { return Promise.all([...KINDS.filter(k => !c || c.np[k]).map(loadSrc), subsReady]); }
+const EXK = new Set(["textbook", "example", "community", "olympiad"]);
 function allProblems() { return [].concat(PB.textbook || [], PB.olympiad || [], PB.bridge || [], PB.research || [], PB.examples || [], communityProblems()); }
 function solvedInConcept(cid) { let n = 0; S.solved.forEach(pid => { const p = PIDX[pid]; if (p && (p.attach || p.concepts).includes(cid)) n++; }); return n; }
 
@@ -996,7 +997,7 @@ function problemBrowser(c) {
   else { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); loadFor(c).then(draw).catch(() => list.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); }
   if (c) box.append(submitForm(c));
   const kindName = KN;
-  function bank() { return allProblems().filter(p => !c || (p.kind !== "research" && (p.attach || p.concepts).includes(c.id))); }   /* concept pages: exercises only; research problems are listed separately */
+  function bank() { return allProblems().filter(p => !c || (EXK.has(p.kind) && (p.attach || p.concepts).includes(c.id))); }   /* concept pages: exercises (a few olympiad problems at most, chosen in the build); research problems live in the Problems list with tags */
   function draw() {
     const all = bank();
     const kinds = ["textbook", "olympiad", "bridge", "research", "example", "community"].filter(k => all.some(p => p.kind === k));

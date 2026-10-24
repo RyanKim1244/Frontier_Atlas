@@ -290,6 +290,15 @@ for k, ps in ALL.items():
             keep = [c for c in p["concepts"] if c not in set(a.get("drop", [])) or c in a.get("attach", [])]
             if keep: p["concepts"] = keep; p["fields"] = fields_of(keep)
             p["attach"] = [c for c in a.get("attach", []) if c in p["concepts"]]
+# A concept page lists at most a few olympiad problems: single-concept ones first, then IMO, USAMO, Putnam, others; newest first.
+OLY_MAX = 5
+_rank = {"IMO": 0, "USAMO": 1, "Putnam": 2}
+_by = {}
+for p in olympiad:
+    for c in p.get("attach", []): _by.setdefault(c, []).append(p)
+for c, ps in _by.items():
+    ps.sort(key=lambda p: (len(p["attach"]) > 1, _rank.get(p["coll"], 3), -(p.get("year") or 0)))
+    for p in ps[OLY_MAX:]: p["attach"] = [x for x in p["attach"] if x != c]
 for k, ps in ALL.items():
     for p in ps:
         for c in p["concepts"]: assert c in IDS, (p["id"], c)
@@ -344,7 +353,7 @@ concepts = sorted(cat.C, key=lambda c: order[c["band"]])
 for c in concepts:
     for k in ("no", "counts"): c.pop(k, None)
     c["np"] = {k: sum(1 for p in ps if c["id"] in p.get("attach", p["concepts"])) for k, ps in ALL.items()}
-    c["nprob"] = sum(v for k, v in c["np"].items() if k != "research")   # exercises; research problems are counted separately
+    c["nprob"] = sum(v for k, v in c["np"].items() if k in ("textbook", "olympiad", "examples"))   # concept-page exercises
     if c["id"] in LESSONS: c["lesson"] = {"minutes": LESSONS[c["id"]].get("minutes", 15), "checks": len(LESSONS[c["id"]].get("checks", [])), "fixed": REVIEW.get(c["id"], 0)}
     if c["id"] in LESSONS and LESSONS[c["id"]].get("v") == 2:
         L5 = LESSONS[c["id"]]; c["lesson"].update(v=2, nsrc=len(L5.get("sources", [])), npap=sum(1 for x in L5.get("sources", []) if x.get("kind") == "paper"), fixed=L5.get("fixed", 0))
