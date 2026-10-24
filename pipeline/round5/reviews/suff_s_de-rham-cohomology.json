@@ -1,0 +1,61 @@
+[
+ {
+  "id": "de-rham-cohomology",
+  "papers_read": [
+   "2206.08618",
+   "2309.11405",
+   "0709.3615 (Libine notes, opened as a new source)",
+   "1706.07371 (Pastras notes, opened as a new source)"
+  ],
+  "gaps_found": [
+   {
+    "paper": "2309.11405",
+    "item": "Integration of equivariant forms (coefficientwise) and the fact that it vanishes on d_G-exact forms, needed before any localisation formula (NS use it implicitly via Remark 2.80 and Thm 3.28)",
+    "fixed_in": "Equivariant Stokes theorem"
+   },
+   {
+    "paper": "2309.11405",
+    "item": "H_G(pt)=S(g*)^G (Ex. 3.13), H_T(pt) polynomial ring (Ex. 2.77), H_G(M) as H_G(pt)-module (Thm 2.78) in the Cartan model",
+    "fixed_in": "Equivariant integration, the point and fixed points"
+   },
+   {
+    "paper": "2309.11405",
+    "item": "Restriction to a fixed point as a chain map, i_F^*(omega+mu)=mu(F) (Lemma 3.16)",
+    "fixed_in": "Equivariant integration, the point and fixed points"
+   },
+   {
+    "paper": "2309.11405",
+    "item": "Localisation theorem (Thm 3.28/3.30) was only quoted with its shape illustrated; no proof, no definition of weights at fixed points, no orientation rule for their signs",
+    "fixed_in": "Localisation for a circle action on a surface (full proof following Libine's Berline-Vergne strategy) and Localisation on the rotating sphere, degree by degree"
+   },
+   {
+    "paper": "2309.11405",
+    "item": "Normalisations of the localisation formula differ (NS: product of weights, no 2pi, X=-2pi d_theta; Libine: (-2pi)^{n/2}/Pfaffian; Meinrenken: (-1)^{n/2}, Euler form det^{1/2}(zeta/2pi))",
+    "fixed_in": "Normalising the localisation formula"
+   },
+   {
+    "paper": "2309.11405",
+    "item": "Sign/orientation slips in NS §1.2 (sin phi dtheta^dphi integrated as 4pi; iota_X omega = 2pi sin phi dphi = d(2pi cos phi))",
+    "fixed_in": "pitfall after Normalising the localisation formula"
+   },
+   {
+    "paper": "2206.08618",
+    "item": "De Rham-Betti triples, (L-)de Rham-Betti classes (Defs. 2.1, 2.3), cycle classes up to sign (eq. (2)), and the criterion 'by Poincaré duality' that a de Rham class extends iff its periods divided by (2 pi i)^k lie in the coefficient field",
+    "fixed_in": "De Rham–Betti classes and the period criterion; Period criterion for de Rham–Betti classes"
+   },
+   {
+    "paper": "2206.08618",
+    "item": "Elliptic curve example: H^1_dR spanned by dx/y and x dx/y (second kind), periods omega_j, eta_j, and omega1 eta2 - omega2 eta1 in Q^x 2 pi i; why a form with a pole defines a de Rham class",
+    "fixed_in": "Periods of an elliptic curve and Legendre's relation (residue proof and wedge-pairing proof, both giving 2 pi i)"
+   }
+  ],
+  "remaining": [
+   "Thom isomorphism, Thom forms, Euler class of an oriented bundle and integration along the fibre (NS §2.7 Thm 2.94-2.99, Meinrenken §8) are not taught; listed in requires as specialised, pointing to Bott-Tu Ch. I §6, NS §2.7, Meinrenken §8 and curvature-forms. Readers of NS Thm 3.28 with non-isolated fixed components need them.",
+   "Localisation is proved only for circle actions on surfaces with isolated fixed points; the general ABBV/Berline-Vergne theorem (higher dimension, fixed components, equivariant Euler class of the normal bundle) is stated with references (Libine Thm 46, NS Thm 3.28, Meinrenken Thm 9.1). Libine's PDF text extraction ended before the final Stokes step of his proof, so that step on this page is our own (standard) argument.",
+   "The fact that invariant forms compute de Rham cohomology for compact connected G (averaging), and Cartan's theorem identifying the Cartan model with Borel cohomology, are not proved (stated with references).",
+   "KSV §4 uses the Hodge filtration F^0, absolute Hodge/motivated cycles, André motives and Tannakian formalism; these are beyond this page (Hodge filtration pointed to hodge-theory). The uniformisation z -> (wp, wp') of the elliptic curve and the description of c_X as integration of algebraic forms are taken as given.",
+   "Meinrenken's isolated-fixed-point formula in Remark 9.4 was partly garbled in text extraction; the conventions row cites only the sign (-1)^{dim M/2}, the absence of an explicit 2pi and eq. (32), which were readable.",
+   "Math StackExchange / MathOverflow not fetchable; arXiv PDFs reached only through WebFetch summaries (curl blocked), so near-verbatim reading of the papers was not possible."
+  ]
+ }
+]

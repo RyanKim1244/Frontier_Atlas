@@ -1,0 +1,56 @@
+[
+ {
+  "id": "de-rham-cohomology",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 116 proof of 'Localisation for a circle action on a surface', opening and Step 2",
+    "problem": "Credited Libine's §7 with 'a 1-form theta with iota_X theta = 1'. Libine (arXiv:0709.3615, opened) takes theta_X = <L_X, .> from an invariant metric, so iota_X theta_X = ||L_X||^2, and divides by (d - iota_X) theta_X. The proof also did not say which steps are the writer's own.",
+    "fix": "States Libine's choice and that the page normalises theta to iota_X theta = 1 (so (d - u iota_X) theta = -u). Also says that the readable text of Libine's proof stops before the final Stokes step, so Steps 3-4 are the page's own argument. That argument was checked line by line and is correct: the weights are integers, nonzero and well defined; the boundary circles are orbits traversed with sign(w_p); the Stokes signs on M_eps are right; the a_0 terms cancel by sum 1/w_p = 0; and the F-empty case holds."
+   },
+   {
+    "severity": "source",
+    "where": "block 114 proof of 'Equivariant Stokes theorem'",
+    "problem": "'Libine states that integration descends to equivariant cohomology' could not be confirmed; Libine's Remark 47 says the localisation formula descends to cohomology.",
+    "fix": "Now cites Remark 47 for that conclusion."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 115 theorem, last paragraph",
+    "problem": "Said Libine's Thm 46 and Notman-Sanabani's Thm 3.28 'allow higher dimensions, other compact groups and non-isolated fixed points'. In fact Libine's Thm 46 needs isolated zeros, and NS Thm 3.28 is for Hamiltonian torus actions.",
+    "fix": "Now says which source allows what."
+   },
+   {
+    "severity": "error",
+    "where": "block 117 example 'Localisation on the rotating sphere, degree by degree'",
+    "problem": "The question asked 'Which classes does the formula show to be zero?', but the formula shows no class is zero, and the solution's vanishing integrals for even k could be read as zero classes. In fact (mu+uz)^2 = u^2 in H_{S^1}(S^2) is nonzero.",
+    "fix": "Question reworded. The solution now says that vanishing integrals do not show a class is zero and that the even powers are nonzero (same restrictions as u^2 at the poles). New check 40 covers this and the integral identity in exercise 5."
+   },
+   {
+    "severity": "source",
+    "where": "block 119 pitfall on Notman-Sanabani §1.2",
+    "problem": "Both alleged slips are in the paper (checked in arXiv HTML §1.2): it prints int sin(phi) dtheta^dphi = 4pi and iota_X omega = 2pi sin(phi) dphi = d(2pi cos(phi)) for X = -2pi d_theta. But the page said NS evaluate the integral 'as an iterated integral'; they get 4pi from the localisation formula as 2pi - (-2pi). It also said omega = sin(phi) dtheta^dphi is 'as printed', when the paper never defines omega separately and calls it the area form.",
+    "fix": "Rewritten to describe accurately what is printed, with both readings of omega (printed integrand or outward area form) and the resulting moment map sign."
+   },
+   {
+    "severity": "source",
+    "where": "block 124 section 'De Rham-Betti classes and the period criterion'",
+    "problem": "Said KSV's L-de Rham-Betti classes take coefficients in a subfield L of C, and that the paper states the criterion 'for its own coefficient field'. KSV Defs 2.1/2.3 (arXiv HTML, opened) take L' with L in L' in Q-bar, and the remark after eq. (2) asks for the normalised periods to lie in K.",
+    "fix": "Both statements corrected; the page's theorem keeps general L in C as its own extension."
+   },
+   {
+    "severity": "style",
+    "where": "block 127 example 'Periods of an elliptic curve and Legendre's relation', body",
+    "problem": "'is a nonzero rational multiple of 2 pi i' copied the KSV wording.",
+    "fix": "Rephrased as omega_1 eta_2 - omega_2 eta_1 in Q^x 2 pi i."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 112, 113, 118, 120, 125-128 and checks 34-39",
+    "problem": "No error found. Verified: H_G(pt), the module structure and restriction to fixed points against NS Ex. 2.77, 3.13, Thm 2.78, Rem. 2.80, Prop. 3.14, Lemma 3.16 and Libine Defs 16, 19, §5.4; the conventions rows against Libine Thm 46 and the local model (positively oriented orthonormal basis, det^{1/2} = c_1...c_{n/2}, generating fields via exp(-tX)), NS Thm 3.28 and Rem. 3.25-3.26, Meinrenken eq. (6), (19), (32), Thm 9.1, Rem. 9.4 eq. (47)-(48), eq. (51); and the sphere test of Libine's sign (c = -1 at N, +1 at S, total 4pi). In the period criterion and its proof, the Legendre contour orientation and sign (H1 Omega2 - H2 Omega1 = 2 pi i), the y = 2y' rescaling factor 4, the cutoff construction of the class of eta, the wedge-pairing computation, and the exercise claims (square lattice H1 = pi, int dz^dzbar = -2i area) all hold. KSV's elliptic-curve example uses y^2 = x^3 - ax - b, consistent with the rescaling remark.",
+    "fix": "Added check 40 (Libine normalisation at both poles; the even-power and exercise-5 identities). All 41 checks pass."
+   }
+  ]
+ }
+]

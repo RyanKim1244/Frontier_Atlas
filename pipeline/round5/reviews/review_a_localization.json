@@ -1,0 +1,50 @@
+[
+ {
+  "id": "localization",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 83 section 'Associated primes, regular sequences and flat base change'",
+    "problem": "Said Lemmas 2.1 and 2.2 are 'used again in Proposition 3.2' and that Guan-Hu prove separate lemmas 'instead of quoting general faithfully flat descent'. Checked against arXiv:2510.24818 (HTML): Guan-Hu Prop. 3.2 is a Hom-vanishing criterion whose proof uses only that pR_p is associated to M_p (Lemma 2.2 is not used). In §2.4 they formalise flat base change (weakly regular) and faithfully flat base change (regular) and add separate lemmas for localisation, without giving the reason the page attributed to them.",
+    "fix": "Restated: the proof of Prop. 3.2 uses pR_p in Ass M_p; their two base-change results and the localisation lemmas are described as the paper does, and the point that A -> A_p is not faithfully flat is now presented as the page's explanation."
+   },
+   {
+    "severity": "source",
+    "where": "block 86 theorem 'Associated primes and localisation', part 2",
+    "problem": "'This is Guan-Hu Lemma 2.1' for arbitrary M. Guan-Hu Lemma 2.1 assumes M finitely generated. Stacks Lemma 10.63.16 (tag 05BZ, opened) gives it for any M over a Noetherian ring, which is what the page states.",
+    "fix": "Attribution now says Stacks 10.63.16, and Guan-Hu Lemma 2.1 for finitely generated M."
+   },
+   {
+    "severity": "error",
+    "where": "block 89 theorem 'Regular sequences under localisation', last paragraph",
+    "problem": "Said the Stacks Project chooses its definition of regular sequence (no maximal-ideal requirement) 'because it is then preserved under localisation'. Stacks Def. 10.68.1 (tag 00LF, opened) gives no such reason, and the claim is muddled: the non-vanishing condition M/(x)M != 0 is exactly the part that localisation can destroy.",
+    "fix": "Replaced with an accurate remark: for finitely generated M over a local ring, Stacks' condition agrees with the maximal-ideal condition by Nakayama; Guan-Hu's Lean code separates IsWeaklyRegular (non-zero-divisor conditions, which survive any localisation by part 1) from IsRegular (which adds the non-vanishing condition, the part needing x_i in p)."
+   },
+   {
+    "severity": "error",
+    "where": "block 94 pitfall, bullets 2 and 3",
+    "problem": "Bullet 2 said 'it is the version without this requirement that localises', which repeats the wrong claim above. Bullet 3 attributed the separate localisation lemmas to Guan-Hu's avoidance of 'general faithfully flat base change' as if the paper said so.",
+    "fix": "Bullet 2 rewritten (the two definitions agree over local rings by Nakayama; the non-vanishing condition can be lost on localising). Bullet 3 now says their faithfully flat base-change result does not cover R -> R_p, which is why they need separate lemmas."
+   },
+   {
+    "severity": "source",
+    "where": "block 123 theorem 'Class groups of localisations (Claborn)'",
+    "problem": "'equality holds for instance when alpha in Z, the case of their Theorem 4.5'. Coykendall-Kettinger Thm 4.5 (opened) is about a Galois action on Cl(O_K[1/n]), not about this equality.",
+    "fix": "Now says the alpha-in-Z case covers the rings O_K[1/n] of Thm 4.5, and notes that Cor. 4.4 applies Thm 4.1 to N(alpha) directly, so it does not depend on Thm 4.2. The correction of Thm 4.2 itself was checked: the paper's proof shows O_K[1/alpha] is integrally closed and 1/alpha is integral over Z[1/N(alpha)], and never checks that Z[1/N(alpha)] lies in O_K[1/alpha]. The counterexample Z[i], alpha = 2+i is correct; a new check (check 30) adds a ring map Z[i] -> F_5 that kills 2-i and 5 but no power of 2+i."
+   },
+   {
+    "severity": "source",
+    "where": "block 125 theorem 'A localisation is the intersection of its local rings'",
+    "problem": "Said Coykendall-Kettinger 'apply [Gilmer's formula] to localisations in Theorem 5.5 and Theorem 5.8'. In the paper, Prop. 5.2 is cited in the proof of Thm 5.3. Thm 5.8's proof uses it for arbitrary overrings, and Thm 5.5 uses the intersection form for an adjacent overring that turns out to be D[1/a].",
+    "fix": "Restated: used in the proofs of Theorems 5.3, 5.5 and 5.8; in 5.5 the overring is D[1/a], the case proved on the page."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 84-85, 88, 90-93, 126-129 and checks 26-29",
+    "problem": "No error found. Math verified line by line: maximal annihilators are prime; Ass(S^{-1}M); minimal primes are associated; Z/12 computations; localisation of regular sequences and the k[x,y,z] example; faithful flatness equivalences; the heights, quotients and A[X]_P identifications in block 45; the Gilmer intersection for S^{-1}A; the Z[i] and Z[sqrt-5] examples; the exercises' claims. Sources opened: Stacks Def. 10.68.1, Ex. 10.68.2, Lemmas 10.68.4, 10.63.7-10.63.9, 10.63.16, 10.39.16; the Brown-hosted note on associated primes; Coykendall-Kettinger §4-5 statements and the proof of Thm 4.2; Guan-Hu Lemmas 2.1-2.2, §2.4, Props 3.2 and 4.6, Cor. 4.8 Lean code (IsLocalization.AtPrime, Localization.AtPrime, primeCompl, M.localizedModule), Thm 4.19, §4.2.",
+    "fix": "Added check 30 (Z[i] -> F_5 and the prime sets in Z[sqrt-5] used in exercise 5). All 31 checks pass."
+   }
+  ]
+ }
+]

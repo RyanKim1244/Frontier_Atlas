@@ -1,0 +1,915 @@
+{
+ "id": "de-rham-cohomology",
+ "papers": [
+  {
+   "arxiv": "2309.11405",
+   "title": "Localisation in Equivariant Cohomology (Notman, Sanabani)",
+   "subfield": "symplectic geometry / mathematical physics (equivariant cohomology, localization)",
+   "assumes": [
+    {
+     "item": "Differential forms Omega^k(M), wedge product, graded algebra Omega(M)",
+     "where": "§2.1 Def 2.12-2.14, Rem 2.13"
+    },
+    {
+     "item": "Exterior derivative d, Leibniz rule, d^2=0",
+     "where": "§2.1 Def 2.15"
+    },
+    {
+     "item": "Closed/exact forms Z^k, B^k; de Rham complex; H^k=Z^k/B^k as graded algebra",
+     "where": "§2.1 Def 2.16-2.20"
+    },
+    {
+     "item": "Integration as linear map on top-degree cohomology to H(pt)",
+     "where": "§2.1 Def 2.21"
+    },
+    {
+     "item": "Lie derivative, interior product, Cartan magic formula L_X = i_X d + d i_X; L_X commutes with d",
+     "where": "§2.3 Def 2.41-2.46"
+    },
+    {
+     "item": "Curvature forms of connections are closed; invariant polynomial classes [P(F)] independent of connection (Chern-Weil)",
+     "where": "§2.5, §2.7 Prop 2.68, Cor 2.90"
+    },
+    {
+     "item": "Euler and Chern classes as de Rham classes",
+     "where": "§2.7"
+    },
+    {
+     "item": "Cartan model (S(g*) ⊗ Omega(M))^G with d_G = d - xi^i i_{xi_i}; equivariant cohomology as its cohomology (Cartan theorem); Weil model named",
+     "where": "§3.1 Def 3.1-3.9, Thm 3.10"
+    },
+    {
+     "item": "Atiyah-Bott / Duistermaat-Heckman localization of integrals of equivariantly closed forms",
+     "where": "§3.3 Thm 3.28-3.30"
+    }
+   ]
+  },
+  {
+   "arxiv": "2408.00220",
+   "title": "Persistent de Rham-Hodge Laplacians in Eulerian representation for manifold topological learning (Su, Tong, Wei)",
+   "subfield": "applied topology / geometric machine learning",
+   "assumes": [
+    {
+     "item": "Exterior derivative d with dd=0 and Stokes' theorem on compact manifolds with boundary",
+     "where": "§2 Eq.(1)"
+    },
+    {
+     "item": "H^k_dR as closed mod exact; isomorphic to singular cohomology (de Rham theorem)",
+     "where": "§2 Eq.(3)"
+    },
+    {
+     "item": "Hodge star, L^2 inner product, codifferential delta=(-1)^{m(k-1)+1} *d*, Hodge Laplacian dδ+δd, harmonic forms",
+     "where": "§2 Eqs.(4)-(6)"
+    },
+    {
+     "item": "Hodge decomposition on closed manifolds; harmonic forms represent cohomology",
+     "where": "§2 Eq.(8), Rem 1"
+    },
+    {
+     "item": "Relative vs absolute de Rham cohomology H^k(M,∂M), H^k(M); normal/tangential boundary conditions; Hodge-Morrey(-Friedrichs) decompositions",
+     "where": "§2.1, Rem 2-3"
+    },
+    {
+     "item": "Betti numbers as dimensions of H^k; reading beta_0, beta_1, beta_2 as components, tunnels, cavities",
+     "where": "§2, §3.2"
+    },
+    {
+     "item": "Discrete exterior calculus (cochains on grids, diagonal Hodge stars) approximating de Rham complex",
+     "where": "§3"
+    },
+    {
+     "item": "Persistence via sublevel-set filtrations of Morse functions; persistent cohomology",
+     "where": "§4"
+    }
+   ]
+  },
+  {
+   "arxiv": "2603.29018",
+   "title": "Discrete Poincaré and Bogovskii operators on cochains and Whitney forms (Guzmán, Hirani, Liu, Potu)",
+   "subfield": "numerical analysis (finite element exterior calculus, discrete exterior calculus)",
+   "assumes": [
+    {
+     "item": "Homotopic smooth maps induce equal maps on de Rham cohomology (cites Lee Prop 17.10)",
+     "where": "§1, §2.1"
+    },
+    {
+     "item": "Homotopy operator h with dh+hd = i_1^* - i_0^* built from interior product and integration in t (Lee Lemma 17.9)",
+     "where": "§2.1"
+    },
+    {
+     "item": "Poincaré lemma via Poincaré operator on contractible/star-shaped domains: dK+Kd = identity-type formula; vanishing of cohomology on contractible manifolds",
+     "where": "§1, §2.1 Eq.(2.3)"
+    },
+    {
+     "item": "Stokes' theorem on (Lipschitz) singular chains",
+     "where": "§2.1 Eq.(2.1), §2.2 Eq.(2.8)"
+    },
+    {
+     "item": "Simplicial chains/cochains, coboundary, pairing; Whitney map W and de Rham map R with dW=Wd, dR=Rd",
+     "where": "§1-§2 Eq.(2.2)"
+    },
+    {
+     "item": "Singular simplices, smooth/Lipschitz chains, degenerate simplices integrate to zero",
+     "where": "§2.2"
+    },
+    {
+     "item": "Cochain-level contracting homotopy implies vanishing cohomology in positive degree",
+     "where": "§1 Eq.(1.1)"
+    },
+    {
+     "item": "Boundary-condition-preserving potentials (Bogovskii, compact support); vector-proxy reading (grad/curl/div potentials)",
+     "where": "§1, §7"
+    }
+   ]
+  },
+  {
+   "arxiv": "2307.07547",
+   "title": "Lectures on Generalized Symmetries (Bhardwaj et al.)",
+   "subfield": "high-energy theory (QFT, higher-form symmetries)",
+   "assumes": [
+    {
+     "item": "Prerequisite: differential geometry and algebraic topology (forms, cohomology)",
+     "where": "§1"
+    },
+    {
+     "item": "Conserved currents as closed (d-1)- or (d-p-1)-forms; charges as integrals of closed forms over cycles, topological by Stokes",
+     "where": "§2.1 Eqs.(2.30)-(2.33), §2.2"
+    },
+    {
+     "item": "Maxwell: F=dA, Bianchi dF=0, d*F=0; flux integrals over S^2 quantized; Hodge dual",
+     "where": "§2.2 Eqs.(2.49)-(2.55), (2.81)"
+    },
+    {
+     "item": "Gauge transformations as shifts by exact forms",
+     "where": "§2.3 Eq.(2.94), §3 Eq.(3.11)"
+    },
+    {
+     "item": "Poincaré dual delta-forms of submanifolds",
+     "where": "§2.1 Eq.(2.36), §2.2 (2.77)"
+    },
+    {
+     "item": "Discrete cocycles/cup products as analogue of forms/wedge (BF theory a ∪ δb vs B∧dA)",
+     "where": "§2.3 Eq.(2.83), §3.2.1 Eq.(3.34)"
+    }
+   ]
+  },
+  {
+   "arxiv": "2206.08618",
+   "title": "Around the de Rham-Betti conjecture (Kreutz, Shen, Vial)",
+   "subfield": "arithmetic/algebraic geometry (periods, motives)",
+   "assumes": [
+    {
+     "item": "Algebraic de Rham cohomology H^n_dR(X/K) of smooth projective varieties over a subfield K of C",
+     "where": "Introduction"
+    },
+    {
+     "item": "Grothendieck period comparison H_dR ⊗_K C ≅ H_B(X^an,Q) ⊗ C via GAGA and analytic Poincaré lemma",
+     "where": "Introduction Eq.(1)"
+    },
+    {
+     "item": "Periods as integrals of de Rham classes over rational homology classes (integration pairing)",
+     "where": "Introduction"
+    },
+    {
+     "item": "Cycle classes cl_dR, cl_B compatible under comparison; Tate twists Q(k)=(2πi)^k Q",
+     "where": "Introduction Eq.(2)"
+    },
+    {
+     "item": "Poincaré duality",
+     "where": "Introduction"
+    }
+   ]
+  },
+  {
+   "arxiv": "2210.07952",
+   "title": "Harmonic Forms, Hodge Theory and the Kodaira Embedding Theorem (Uzu Lim)",
+   "subfield": "complex/Kähler geometry (expository)",
+   "assumes": [
+    {
+     "item": "Smooth and complex-valued forms; bidegree (p,q) decomposition; d = ∂ + ∂̄",
+     "where": "§2.1-2.2"
+    },
+    {
+     "item": "de Rham theorem via comparing fine/soft resolutions of the constant sheaf",
+     "where": "§2.3.2 Thm 2.2"
+    },
+    {
+     "item": "Dolbeault theorem; sheaf and Čech cohomology agreement",
+     "where": "§2.3.2-2.3.3"
+    },
+    {
+     "item": "Connections, curvature, Bianchi identity; Chern forms closed and independent of connection",
+     "where": "§2.4 Prop 2.11, 2.16"
+    },
+    {
+     "item": "Hodge theorem: harmonic forms ≅ de Rham cohomology on compact manifolds; Hodge decomposition on Kähler manifolds",
+     "where": "Introduction, §3"
+    },
+    {
+     "item": "Line bundles classified by H^2(X,Z) and exponential sequence (integral vs real classes)",
+     "where": "§2.5"
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "ref": "Bott & Tu, Differential Forms in Algebraic Topology (GTM 82), Chapter I De Rham Theory (and Ch. II)",
+   "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf ; https://ncatlab.org/nlab/show/Differential+Forms+in+Algebraic+Topology",
+   "toc": [
+    "§1 The de Rham Complex on R^n (incl. compact supports)",
+    "§2 The Mayer-Vietoris Sequence",
+    "§3 Orientation and Integration",
+    "§4 Poincaré Lemmas",
+    "§5 The Mayer-Vietoris Argument (good covers, finite dimensionality, Poincaré duality, Künneth, Leray-Hirsch, Poincaré dual of a closed oriented submanifold)",
+    "§6 The Thom Isomorphism",
+    "§7 The Nonorientable Case",
+    "Ch. II §8 The Generalized Mayer-Vietoris Principle",
+    "§9 More Examples and Applications of the Mayer-Vietoris Principle",
+    "§10 Presheaves and Čech Cohomology",
+    "§11 Sphere Bundles",
+    "§12 The Thom Isomorphism Revisited (unverified title)",
+    "§13 Monodromy"
+   ]
+  },
+  {
+   "ref": "Guillemin & Haine, Differential Forms (MIT 18.952 draft, 2018), Ch. 3 and Ch. 5 Cohomology via Forms",
+   "url": "https://math.mit.edu/classes/18.952/2018SP/files/18.952_book.pdf",
+   "toc": [
+    "3.2-3.3 Poincaré lemma for compactly supported forms (rectangles, open subsets of R^n)",
+    "3.4-3.6 Degree of a mapping",
+    "5.1 The de Rham cohomology groups of a manifold",
+    "5.2 The Mayer-Vietoris Sequence",
+    "5.3 Cohomology of Good Covers",
+    "5.4 Poincaré duality",
+    "5.5 Thom classes & intersection theory",
+    "5.6 The Lefschetz Theorem",
+    "5.7 The Künneth theorem",
+    "5.8 Čech Cohomology",
+    "App. C Good covers and convexity theorems"
+   ]
+  },
+  {
+   "ref": "J. M. Lee, Introduction to Smooth Manifolds, 2nd ed. (GTM 218), Ch. 17 De Rham Cohomology and Ch. 18 The de Rham Theorem",
+   "url": "https://catalogo.abie.es/Record/unav.b32908891/TOC",
+   "toc": [
+    "Ch. 16 Integration on Manifolds",
+    "Ch. 17 De Rham Cohomology",
+    "Ch. 18 The de Rham Theorem",
+    "(section headings, from memory, unverified: Ch.17 The de Rham Cohomology Groups; Homotopy Invariance; The Mayer-Vietoris Theorem; Degree Theory; Proof of the Mayer-Vietoris Theorem. Ch.18 Singular Homology; Singular Cohomology; Smooth Singular Homology; The de Rham Theorem)"
+   ]
+  },
+  {
+   "ref": "M. Gualtieri, MAT1300 lecture notes (Toronto, 2017), §6",
+   "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+   "toc": [
+    "6.2 de Rham Cohomology",
+    "6.3 Integration",
+    "6.4 Stokes' Theorem",
+    "6.5 The Mayer-Vietoris sequence",
+    "6.6 Examples of cohomology computations"
+   ]
+  },
+  {
+   "ref": "A. Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296, expository)",
+   "url": "https://arxiv.org/pdf/2411.06296",
+   "toc": [
+    "1 Introduction",
+    "2 De Rham Cohomology: Preamble; De Rham Cohomology; Some Basic Properties; Example",
+    "3 Major Tools: Mayer-Vietoris; Homotopy Invariance; Poincaré Duality; The Künneth Formula",
+    "4 Repaying Technical Debt (proof of Mayer-Vietoris)",
+    "5 de Rham's Theorem: Smooth Singular Homology; The Tools; The Theorem; The Proof"
+   ]
+  },
+  {
+   "ref": "A. Ginory, De Rham's Theorem (Rutgers expository notes)",
+   "url": "https://sites.math.rutgers.edu/~ag930/Some%20Math/deRhamThm.pdf",
+   "toc": [
+    "1 Introduction",
+    "2 Singular Homology",
+    "3 Singular Cohomology",
+    "4 Smooth Singular Homology",
+    "5 de Rham Cohomology",
+    "6 de Rham's Theorem"
+   ]
+  },
+  {
+   "ref": "L. W. Tu, An Introduction to Manifolds, 2nd ed., Ch. 8 De Rham Theory (chapter level only)",
+   "url": "https://link.springer.com/book/9781441973993",
+   "toc": [
+    "Ch. 7 Integration",
+    "Ch. 8 De Rham Theory (pp. 273-316); section headings not verified"
+   ]
+  }
+ ],
+ "explanations": {
+  "intuition": [
+   {
+    "summary": "Closed-but-not-exact forms detect holes: a closed form with nonzero integral around a loop cannot have a global primitive, so the loop must encircle something missing from the space.",
+    "source": "Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://arxiv.org/pdf/2411.06296",
+    "verified": true
+   },
+   {
+    "summary": "Cohomology as 'all solutions modulo obvious solutions': in each degree, solutions of d=0 modulo those coming from a potential; the leftover counts global obstructions.",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021)",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "De Rham cohomology measures how badly the fundamental theorem of calculus (zero derivative implies constant; closed implies has a potential) fails globally; slides attribute this phrasing to Tao.",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021)",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Vector-calculus picture: closed 1-form = curl-free field, exact 1-form = gradient; H^1 asks whether every curl-free field has a potential.",
+    "source": "D. Perkinson (Reed College Math 341), lecture slides 08fri",
+    "url": "https://people.reed.edu/~davidp/341/slides/08fri-lecture.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Closed forms are always locally exact (local branches of the angle differ by constants), so cohomology is a purely global, topological phenomenon.",
+    "source": "Wikipedia, Closed and exact differential forms",
+    "url": "https://en.wikipedia.org/wiki/Closed_and_exact_differential_forms",
+    "verified": true
+   },
+   {
+    "summary": "Dual picture via homology: cycles that do not bound are 'real holes'; de Rham classes are detected by integrating over them, and de Rham's theorem makes cohomology dual to homology.",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021)",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Harmonic representative picture: on a compact Riemannian manifold each class has a unique energy-minimizing (harmonic) representative, making classes concrete objects.",
+    "source": "Wikipedia, De Rham cohomology",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_cohomology",
+    "verified": true
+   }
+  ],
+  "motivation": [
+   {
+    "summary": "Bott-Tu present de Rham theory as a computable model cohomology theory, with Mayer-Vietoris as the key tool, used to reach harder topology (characteristic classes, spectral sequences, homotopy).",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Path independence / conservative fields: integrals of exact forms around closed loops vanish (Stokes); de Rham cohomology classifies when potentials exist.",
+    "source": "Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://arxiv.org/pdf/2411.06296",
+    "verified": true
+   },
+   {
+    "summary": "Historical: de Rham (1931) proved integration over chains identifies these groups with real singular cohomology; Weil (1952) gave a Čech-based proof.",
+    "source": "Wikipedia, De Rham cohomology and Wikipedia, De Rham theorem",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Physics origin: magnetic field as a closed 2-form (no monopoles) with vector potential; Coulomb field on R^3 minus a point represents a nonzero H^2 class (charge).",
+    "source": "Wikipedia, Closed and exact differential forms; Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://en.wikipedia.org/wiki/Closed_and_exact_differential_forms",
+    "verified": true
+   },
+   {
+    "summary": "Topological invariants from calculus: H^*(S^n) computes to R in degrees 0,n, giving invariance of dimension for R^n.",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021)",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Arithmetic motivation: Grothendieck's algebraic de Rham cohomology gives a K-structure on complex cohomology; comparing with Betti rational structure produces periods.",
+    "source": "K. Kedlaya, Notes on prismatic cohomology, Overview section",
+    "url": "https://kskedlaya.org/prismatic/sec_overview.html",
+    "verified": true
+   }
+  ],
+  "definitions": [
+   {
+    "summary": "Standard: H^k_dR(M) = ker(d: Ω^k→Ω^{k+1}) / im(d: Ω^{k-1}→Ω^k); well-defined because d^2=0. Graded-commutative ring under wedge.",
+    "source": "Gualtieri, MAT1300 notes §6.2-6.6",
+    "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+    "verified": true
+   },
+   {
+    "summary": "On R^n Bott-Tu define Ω*(R^n) = C^∞ ⊗ Λ(dx_1..dx_n) with anticommuting dx_i, then glue; also define compactly supported Ω*_c and H*_c.",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Sheaf definition: the de Rham complex is a fine resolution of the constant sheaf R (Poincaré lemma = exactness), so H_dR = sheaf cohomology H(M;R); agreement proved by acyclicity of fine sheaves.",
+    "source": "Wikipedia, De Rham cohomology; Lim 2210.07952 §2.3.2",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Algebraic: for smooth varieties, algebraic de Rham cohomology is hypercohomology of the algebraic de Rham complex Ω^•_X; singular varieties need Grothendieck's more subtle version.",
+    "source": "nLab, de Rham cohomology",
+    "url": "https://ncatlab.org/nlab/show/de+Rham+cohomology",
+    "verified": true
+   },
+   {
+    "summary": "De Rham theorem via integration map I: [ω]↦(c↦∫_c ω) on smooth singular chains, well defined by Stokes; proved iso by Mayer-Vietoris + five lemma induction over good covers/bases ('de Rham manifolds').",
+    "source": "D. Chua, Part III Differential Geometry notes, ch.7 De Rham's theorem; Ginory, De Rham's Theorem (Rutgers notes); Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://dec41.user.srcf.net/h/III_M/differential_geometry/7",
+    "verified": true
+   },
+   {
+    "summary": "Smooth singular homology equals ordinary singular homology (smoothing of simplices compatible with faces), needed so integration makes sense.",
+    "source": "Ginory, De Rham's Theorem (Rutgers notes)",
+    "url": "https://sites.math.rutgers.edu/~ag930/Some%20Math/deRhamThm.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Alternative proof via sheaves/hypercohomology; and a version with currents that loses multiplicativity. Integration pairing with homology is perfect: a closed form is exact iff all its periods vanish.",
+    "source": "Wikipedia, De Rham theorem",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Abstract: Ω•(M) as Chevalley-Eilenberg algebra of the tangent Lie algebroid; cohesive-homotopy version ♭_dR A.",
+    "source": "nLab, de Rham cohomology",
+    "url": "https://ncatlab.org/nlab/show/de+Rham+cohomology",
+    "verified": true
+   }
+  ],
+  "viewpoints": [
+   {
+    "summary": "Analytic/Hodge: harmonic forms (kernel of Δ=dδ+δd) represent classes uniquely on closed manifolds; with boundary use tangential/normal conditions for absolute/relative cohomology.",
+    "source": "Su-Tong-Wei arXiv:2408.00220 §2-2.1",
+    "url": "https://arxiv.org/pdf/2408.00220",
+    "verified": true
+   },
+   {
+    "summary": "Discrete/numerical: cochains on a mesh with coboundary, Whitney map and de Rham map commuting with d, mimicking the smooth complex; Poincaré operators become cone operators.",
+    "source": "Guzmán-Hirani-Liu-Potu arXiv:2603.29018 §1-2",
+    "url": "https://arxiv.org/html/2603.29018v2",
+    "verified": true
+   },
+   {
+    "summary": "Physics: conserved currents are closed forms, charges are periods over cycles, topological invariance of charge operators is Stokes; gauge freedom = adding exact forms.",
+    "source": "Bhardwaj et al. arXiv:2307.07547 §2",
+    "url": "https://ar5iv.labs.arxiv.org/html/2307.07547",
+    "verified": true
+   },
+   {
+    "summary": "Equivariant: Cartan model complex (S(g*)⊗Ω)^G with d_G = d - Σ ξ^i ι_i computes Borel equivariant cohomology; localization of integrals.",
+    "source": "Notman-Sanabani arXiv:2309.11405 §3",
+    "url": "https://arxiv.org/pdf/2309.11405",
+    "verified": true
+   },
+   {
+    "summary": "Arithmetic: comparison H_dR⊗C≅H_B⊗C; in char p and over Z_p de Rham behaves differently (Cartier isomorphism, crystalline, prismatic); Poincaré lemma fails in char p.",
+    "source": "K. Kedlaya, Notes on prismatic cohomology, Overview section; Prismatic cohomology course, Lecture I Overview (Bhatt, Columbia; author not printed on page)",
+    "url": "https://kskedlaya.org/prismatic/sec_overview.html",
+    "verified": true
+   },
+   {
+    "summary": "Characteristic classes: invariant polynomials of curvature give closed forms whose de Rham classes are independent of the connection (Chern-Weil).",
+    "source": "Wikipedia, Chern-Weil homomorphism",
+    "url": "https://en.wikipedia.org/wiki/Chern%E2%80%93Weil_homomorphism",
+    "verified": true
+   }
+  ],
+  "conventions": [
+   {
+    "summary": "Graded commutativity ω∧φ=(-1)^{pq}φ∧ω and antiderivation d(ω∧φ)=dω∧φ+(-1)^p ω∧dφ; Bott-Tu fix the boundary orientation of the half space with a (-1)^n so Stokes has no sign; homotopy operator identity carries a sign (-1)^{k-1}.",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Two normalisations of wedge/alternation: most modern texts vs Kobayashi-Nomizu and Helgason; the coordinate-free formula for d then differs by a constant factor (believed 1/(k+1)).",
+    "source": "Wikipedia, Exterior derivative",
+    "url": "https://en.wikipedia.org/wiki/Exterior_derivative",
+    "verified": true
+   },
+   {
+    "summary": "Codifferential sign δ=(-1)^{m(k-1)+1} * d * in one paper; other sources use (-1)^{m(k+1)+1} or (-1)^k *^{-1}d*; check the source.",
+    "source": "Su-Tong-Wei arXiv:2408.00220 §2 (alternatives unverified)",
+    "url": "https://arxiv.org/pdf/2408.00220",
+    "verified": true
+   },
+   {
+    "summary": "Cartan differential sign: d_G = d - Σ ξ^i ι_{ξ_i} (Notman-Sanabani); other authors use d + ι or include factors of i or 2π; Euler class/localization signs depend on this.",
+    "source": "Notman-Sanabani arXiv:2309.11405 Def 3.4 (alternatives unverified)",
+    "url": "https://arxiv.org/pdf/2309.11405",
+    "verified": true
+   },
+   {
+    "summary": "Chern class normalisation: either c(E)=det(1+ (i/2π)F) or with -1/(2πi); characteristic polynomial in t vs t^{-1}; Wikipedia notes its sign choice.",
+    "source": "Wikipedia, Chern-Weil homomorphism",
+    "url": "https://en.wikipedia.org/wiki/Chern%E2%80%93Weil_homomorphism",
+    "verified": true
+   },
+   {
+    "summary": "Notation: H^k_dR(M), H^k(M;R), H_dR^k(X/K) (algebraic), H_c^k compact support; Lee and Petrov use smooth singular chains; Ginory indexes chain complexes by all integers.",
+    "source": "Ginory, De Rham's Theorem (Rutgers notes); Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296); arXiv:2206.08618",
+    "url": "https://sites.math.rutgers.edu/~ag930/Some%20Math/deRhamThm.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Tate twist convention Q(k)=(2πi)^k Q to make the comparison isomorphism and cycle classes compatible.",
+    "source": "Kreutz-Shen-Vial arXiv:2206.08618 Intro",
+    "url": "https://ar5iv.labs.arxiv.org/html/2206.08618",
+    "verified": true
+   }
+  ],
+  "examples": [
+   {
+    "summary": "R^n (or star-shaped/contractible): H^0=R, else 0 (Poincaré lemma).",
+    "source": "Gualtieri, MAT1300 notes §6.2-6.6",
+    "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Circle: H^0=H^1=R; dθ is closed, not exact, integral 2π; ring R[x]/(x^2). Generator built via Mayer-Vietoris and bump function in Bott-Tu.",
+    "source": "Gualtieri, MAT1300 notes §6.2-6.6; Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Punctured plane R^2\\{0}: angle form closed not exact; same cohomology as circle.",
+    "source": "Wikipedia, Closed and exact differential forms; Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://en.wikipedia.org/wiki/Closed_and_exact_differential_forms",
+    "verified": true
+   },
+   {
+    "summary": "Spheres S^n: R in degrees 0 and n via Mayer-Vietoris with two charts.",
+    "source": "Gualtieri, MAT1300 notes §6.2-6.6; nLab, de Rham cohomology",
+    "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Tori T^n: dim H^k = C(n,k), generated by wedges of dθ_i (Künneth).",
+    "source": "Wikipedia, De Rham cohomology",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_cohomology",
+    "verified": true
+   },
+   {
+    "summary": "R^3 minus a line has curl-free non-gradient fields; R^3 minus a point is simply connected but has div-free fields that are not curls (H^1=0, H^2≠0).",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021)",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Möbius strip has the cohomology of the circle (homotopy invariance); compact supported H_c^*(R^n)=R in degree n only.",
+    "source": "Wikipedia, De Rham cohomology; Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_cohomology",
+    "verified": true
+   },
+   {
+    "summary": "Torsion counterexamples: Klein bottle / RP^n integral torsion invisible to de Rham; Enriques surface 2-torsion in H^2; in char 2 Enriques surfaces have nonzero H^1_dR.",
+    "source": "Wikipedia, De Rham theorem; K. Kedlaya, Notes on prismatic cohomology, Overview section; Prismatic cohomology course, Lecture I Overview (Bhatt, Columbia; author not printed on page)",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Closed oriented n-manifold: H^n≠0 since a volume form has nonzero integral and exact top forms integrate to 0.",
+    "source": "D. Perkinson (Reed College Math 341), lecture slides 08fri",
+    "url": "https://people.reed.edu/~davidp/341/slides/08fri-lecture.pdf",
+    "verified": true
+   }
+  ],
+  "computation": [
+   {
+    "summary": "Mayer-Vietoris long exact sequence (from partition-of-unity short exact sequence) plus induction on good covers.",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5; Gualtieri, MAT1300 notes §6.2-6.6",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Homotopy invariance via chain homotopy integrating along [0,1]; reduce to deformation retracts.",
+    "source": "Gualtieri, MAT1300 notes §6.2-6.6; arXiv:2603.29018 §2.1",
+    "url": "https://www.math.utoronto.ca/mgualt/courses/17-1300/docs/17-1300-notes-13.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Poincaré duality pairing H^k × H_c^{n-k}→R and Künneth formula for products.",
+    "source": "Guillemin & Haine, Differential Forms, Ch.3 and Ch.5; Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://math.mit.edu/classes/18.952/2018SP/files/18.952_book.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Good covers / Čech-de Rham double complex: cohomology equals Čech cohomology of the nerve with R coefficients.",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5; Guillemin & Haine, Differential Forms, Ch.3 and Ch.5",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Hodge theory: compute dim of harmonic forms; discrete versions compute kernels of Hodge Laplacian matrices on meshes.",
+    "source": "arXiv:2408.00220 §2-3",
+    "url": "https://arxiv.org/pdf/2408.00220",
+    "verified": true
+   },
+   {
+    "summary": "Periods test: closed form is exact iff all integrals over cycles vanish; use integrals to show non-exactness.",
+    "source": "Wikipedia, De Rham theorem",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Compact connected Lie groups: cohomology computed by bi-invariant forms / Lie algebra cohomology.",
+    "source": "memory (standard, e.g. Chevalley-Eilenberg)",
+    "url": "",
+    "verified": false
+   },
+   {
+    "summary": "Chern-Weil: compute characteristic classes from any convenient connection's curvature.",
+    "source": "Wikipedia, Chern-Weil homomorphism",
+    "url": "https://en.wikipedia.org/wiki/Chern%E2%80%93Weil_homomorphism",
+    "verified": true
+   }
+  ],
+  "confusions": [
+   {
+    "summary": "'Closed implies exact' only locally; globally fails; the angle 'function' is multivalued but its differential is a well-defined form.",
+    "source": "Wikipedia, Closed and exact differential forms",
+    "url": "https://en.wikipedia.org/wiki/Closed_and_exact_differential_forms",
+    "verified": true
+   },
+   {
+    "summary": "Simply connected suffices for H^1=0 but not for higher degrees (R^3 minus a point has H^2≠0). Wikipedia's summary loosely conflates contractible and simply connected.",
+    "source": "A. López Neumann, Du rotationnel à la cohomologie de de Rham (slides, Paris-Saclay \"Explique-moi\", 2021); Wikipedia, De Rham cohomology",
+    "url": "https://www.imo.universite-paris-saclay.fr/explique_moi/files/de_rham.pdf",
+    "verified": true
+   },
+   {
+    "summary": "De Rham uses real coefficients: torsion in integral cohomology is lost; integral of a form over a torsion class is zero.",
+    "source": "Wikipedia, De Rham theorem; Prismatic cohomology course, Lecture I Overview (Bhatt, Columbia; author not printed on page)",
+    "url": "https://en.wikipedia.org/wiki/De_Rham_theorem",
+    "verified": true
+   },
+   {
+    "summary": "Singular simplices are merely continuous; one must pass to smooth singular chains before integrating, then show nothing is lost.",
+    "source": "Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296); Ginory, De Rham's Theorem (Rutgers notes)",
+    "url": "https://arxiv.org/pdf/2411.06296",
+    "verified": true
+   },
+   {
+    "summary": "Compactly supported cohomology is covariant for open inclusions, not functorial under all smooth maps; Poincaré duality pairs H^k with H_c^{n-k}, not H^k with H^{n-k}, on noncompact manifolds.",
+    "source": "Bott & Tu, Differential Forms in Algebraic Topology, Intro and §1-§5; Petrov, The Essence of de Rham Cohomology (arXiv:2411.06296)",
+    "url": "https://www.maths.ed.ac.uk/%7Ev1ranick/papers/botttu.pdf",
+    "verified": true
+   },
+   {
+    "summary": "With boundary, harmonic fields (closed and coclosed) are infinite-dimensional; need boundary conditions to get finite-dimensional spaces matching absolute or relative cohomology.",
+    "source": "arXiv:2408.00220 §2.1",
+    "url": "https://arxiv.org/pdf/2408.00220",
+    "verified": true
+   },
+   {
+    "summary": "Normalisation of wedge/alternation changes formulas for d by constants across books; check conventions.",
+    "source": "Wikipedia, Exterior derivative",
+    "url": "https://en.wikipedia.org/wiki/Exterior_derivative",
+    "verified": true
+   },
+   {
+    "summary": "Math StackExchange / MathOverflow threads could not be opened in this session (not reachable via the search/fetch tools); MSE-signal confusions above are from other sources.",
+    "source": "n/a",
+    "url": "",
+    "verified": false
+   }
+  ]
+ },
+ "requirements": [
+  {
+   "item": "Exterior derivative, d^2=0, closed vs exact forms, definition H^k_dR = closed/exact",
+   "priority": "core",
+   "needed_by": [
+    "2309.11405",
+    "2408.00220",
+    "2603.29018",
+    "2307.07547",
+    "2210.07952",
+    "Bott-Tu §1",
+    "Lee ch.17",
+    "Guillemin-Haine 5.1",
+    "Gualtieri 6.2"
+   ]
+  },
+  {
+   "item": "Ring structure (wedge), functoriality under pullback",
+   "priority": "core",
+   "needed_by": [
+    "2309.11405",
+    "Gualtieri 6.2",
+    "Lee ch.17",
+    "page: curvature-forms"
+   ]
+  },
+  {
+   "item": "Integration of forms over chains and Stokes' theorem",
+   "priority": "core",
+   "needed_by": [
+    "2408.00220",
+    "2603.29018",
+    "2307.07547",
+    "2206.08618",
+    "Bott-Tu §3",
+    "Gualtieri 6.3-6.4"
+   ]
+  },
+  {
+   "item": "Poincaré lemma (star-shaped/contractible), explicit homotopy/cone operator",
+   "priority": "core",
+   "needed_by": [
+    "2603.29018",
+    "2206.08618 (analytic Poincaré lemma)",
+    "Bott-Tu §4",
+    "Guillemin-Haine ch.3"
+   ]
+  },
+  {
+   "item": "Homotopy invariance via chain homotopy",
+   "priority": "core",
+   "needed_by": [
+    "2603.29018",
+    "Lee ch.17",
+    "Petrov §3",
+    "page: curvature-forms (connection independence)"
+   ]
+  },
+  {
+   "item": "de Rham theorem: integration map to real singular cohomology is a ring isomorphism",
+   "priority": "core",
+   "needed_by": [
+    "2408.00220",
+    "2210.07952",
+    "2206.08618",
+    "Lee ch.18",
+    "Ginory",
+    "Petrov §5",
+    "page: hodge-theory"
+   ]
+  },
+  {
+   "item": "Mayer-Vietoris sequence and good covers",
+   "priority": "common",
+   "needed_by": [
+    "Bott-Tu §2,§5",
+    "Guillemin-Haine 5.2-5.3",
+    "Gualtieri 6.5",
+    "Petrov §3"
+   ]
+  },
+  {
+   "item": "Standard examples: R^n, S^1, punctured plane, S^n, T^n",
+   "priority": "core",
+   "needed_by": [
+    "Gualtieri 6.6",
+    "Bott-Tu",
+    "Petrov",
+    "2307.07547 (flux through S^2)"
+   ]
+  },
+  {
+   "item": "Betti numbers and interpretation of classes as holes",
+   "priority": "common",
+   "needed_by": [
+    "2408.00220",
+    "page: hodge-theory"
+   ]
+  },
+  {
+   "item": "Periods / integration pairing; closed form exact iff all periods vanish",
+   "priority": "common",
+   "needed_by": [
+    "2206.08618",
+    "2307.07547",
+    "Wikipedia de Rham theorem"
+   ]
+  },
+  {
+   "item": "Compactly supported cohomology and Poincaré duality; Poincaré dual of a submanifold",
+   "priority": "common",
+   "needed_by": [
+    "2307.07547",
+    "2206.08618",
+    "Bott-Tu §5",
+    "Guillemin-Haine 5.4"
+   ]
+  },
+  {
+   "item": "Künneth formula",
+   "priority": "common",
+   "needed_by": [
+    "Bott-Tu §5",
+    "Guillemin-Haine 5.7",
+    "Petrov §3"
+   ]
+  },
+  {
+   "item": "Sheaf-theoretic view: de Rham complex as fine resolution of constant sheaf; Čech-de Rham",
+   "priority": "common",
+   "needed_by": [
+    "2210.07952",
+    "Bott-Tu ch.II",
+    "Guillemin-Haine 5.8"
+   ]
+  },
+  {
+   "item": "Hodge star, codifferential, Hodge Laplacian, harmonic representatives (statement only, forward pointer)",
+   "priority": "common",
+   "needed_by": [
+    "2408.00220",
+    "2210.07952",
+    "page: hodge-theory"
+   ]
+  },
+  {
+   "item": "Relative cohomology and boundary conditions on manifolds with boundary",
+   "priority": "specialised",
+   "needed_by": [
+    "2408.00220"
+   ]
+  },
+  {
+   "item": "Interior product, Lie derivative, Cartan magic formula",
+   "priority": "common",
+   "needed_by": [
+    "2309.11405",
+    "2603.29018"
+   ]
+  },
+  {
+   "item": "Curvature forms closed; Chern-Weil classes independent of connection (forward pointer)",
+   "priority": "common",
+   "needed_by": [
+    "2309.11405",
+    "2210.07952",
+    "page: curvature-forms"
+   ]
+  },
+  {
+   "item": "Real vs integral coefficients; torsion invisible; integrality of flux/Chern classes",
+   "priority": "common",
+   "needed_by": [
+    "2307.07547",
+    "2210.07952",
+    "2206.08618"
+   ]
+  },
+  {
+   "item": "Discrete analogues: simplicial cochains, Whitney map, de Rham map commuting with d",
+   "priority": "specialised",
+   "needed_by": [
+    "2603.29018",
+    "2408.00220",
+    "2307.07547 (cochain BF theory)"
+   ]
+  },
+  {
+   "item": "Equivariant de Rham cohomology (Cartan model) and localization",
+   "priority": "specialised",
+   "needed_by": [
+    "2309.11405"
+   ]
+  },
+  {
+   "item": "Algebraic de Rham cohomology and Grothendieck comparison; Hodge filtration",
+   "priority": "specialised",
+   "needed_by": [
+    "2206.08618",
+    "Kedlaya overview"
+   ]
+  },
+  {
+   "item": "Dolbeault decomposition d = ∂ + ∂̄ (forward pointer to Hodge theory)",
+   "priority": "specialised",
+   "needed_by": [
+    "2210.07952",
+    "page: hodge-theory"
+   ]
+  },
+  {
+   "item": "Physics dictionary: conserved currents as closed forms, charges as periods, gauge = exact shifts",
+   "priority": "specialised",
+   "needed_by": [
+    "2307.07547"
+   ]
+  },
+  {
+   "item": "Sign/normalisation conventions (graded Leibniz, wedge normalisation, codifferential sign, boundary orientation)",
+   "priority": "common",
+   "needed_by": [
+    "Bott-Tu §1,§3",
+    "2408.00220",
+    "2309.11405"
+   ]
+  }
+ ],
+ "notes": [
+  "Math StackExchange and MathOverflow pages were unreachable (search tool did not return them; direct fetch not allowlisted). No MSE/MO items cited; confusions drawn from Wikipedia, notes, papers.",
+  "Tao's 'Differential forms and integration' PDF could not be fetched; the Tao attribution appears only via López Neumann's slides.",
+  "Lee ISM ch.17/18 and Tu ch.8 section headings not verified (only chapter titles seen); Lee section list marked unverified in texts.",
+  "Bott-Tu §12 title not on nLab list (numbers skipped); marked unverified.",
+  "Paper 2210.07952 is expository (math.HO/DG), included for hodge-theory needs; 2307.07547 lecture notes in hep-th. 2312.08515 (Neural k-forms) considered but dropped: it uses integration of forms over simplices but not cohomology.",
+  "2309.11405 contains a likely typo for the interior product anticommutation (Thm 2.45(iii)); 2408.00220 Remark 2 has a notational typo.",
+  "Wikipedia de Rham theorem page's claim that the sheaf proof needs derived ∞-categories is an odd claim; not relied on.",
+  "Convention alternatives for codifferential sign, Cartan differential sign and Chern normalisation are partly from memory (verified flag true only for the cited source's own convention).",
+  "Some fetched pages were summarized via a tool's model; summaries are my own paraphrase."
+ ]
+}

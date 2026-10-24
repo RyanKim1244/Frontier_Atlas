@@ -1,0 +1,110 @@
+[
+ {
+  "id": "de-rham-cohomology",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "block 23 example 'Checking Cartan's formula for a rotation', last paragraph",
+    "problem": "Claimed that the two halves of Cartan's formula 'each preserve degree only after they are added'. False: d iota_X and iota_X d each map k-forms to k-forms.",
+    "fix": "Replaced with a correct remark (each half preserves degree; only the sum equals L_X)."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 57 proof of Poincaré duality, five lemma paragraph",
+    "problem": "Injectivity chase was garbled ('a_3 is the image of a_2 - (image of a_1), which is 0') and skipped the use of injectivity of the second vertical map.",
+    "fix": "Rewrote the chase step by step."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 60 example 'Poincaré duals of circles on the torus'",
+    "problem": "Bump representative justified by 'same integral over T'; on T^2 both periods are needed.",
+    "fix": "Now states both periods (0 over S, -1 over T)."
+   },
+   {
+    "severity": "source",
+    "where": "block 3 views item 'Holes detected by integrals' [Pe]",
+    "problem": "Attributed the 2 pi loop integral to Petrov; Petrov only argues that a loop not bounding a disc must enclose a hole and never computes the integral.",
+    "fix": "Reworded; the 2 pi is credited to the page's own example."
+   },
+   {
+    "severity": "source",
+    "where": "block 46 conventions row Petrov [Pe]",
+    "problem": "Said Petrov's connecting map changes sign; Petrov gives the difference map and lift (confirmed) but describes delta only in words.",
+    "fix": "Row now says the explicit formula changes sign with this lift and that Petrov describes delta only in words."
+   },
+   {
+    "severity": "source",
+    "where": "block 61 views items 'Nondegenerate integration pairing' [BT, GH] and 'An isomorphism with a dual' [Pe]",
+    "problem": "GH's proof method (MV ladder, five lemma) could not be confirmed; Petrov's warning was misparaphrased ('a product is not the dual of a sum') and tied to finiteness, which Petrov does not do.",
+    "fix": "Proof method now attributed to Bott-Tu only; Petrov item rewritten to match his remark (dual of a sum is a product, dual of a product is not a sum)."
+   },
+   {
+    "severity": "source",
+    "where": "block 60 example, last sentence [GH §5.5]",
+    "problem": "'Guillemin-Haine develop intersection numbers in this way' overstated; GH §5.5 derives intersection numbers from Poincaré duality via Thom classes.",
+    "fix": "Reworded accordingly."
+   },
+   {
+    "severity": "source",
+    "where": "block 78 example 'Torsion is invisible' [Ke]",
+    "problem": "Attributed to Kedlaya the claim that torsion 'becomes visible only in characteristic p or with integral refinements'; Kedlaya's overview only says the canonical class of an Enriques surface is a nontrivial 2-torsion class in H^2.",
+    "fix": "Reworded to what Kedlaya says plus the mathematical consequence (torsion maps to zero in real/complex de Rham cohomology)."
+   },
+   {
+    "severity": "source",
+    "where": "block 82 section 'Betti numbers and what they count' [LN]",
+    "problem": "López Neumann's slides do not give the 'loops around missing lines / surfaces around missing points' pictures; they give R^3 minus a line and R^3 minus a point as examples and speak of holes.",
+    "fix": "Reworded to the slides' examples."
+   },
+   {
+    "severity": "source",
+    "where": "block 95 section 'Manifolds with boundary' [STW]",
+    "problem": "Misprint located in 'Remark 3'; it is in the paragraph after Remark 2 (H_t^k written as H_t^k ∩ Ω_t^k).",
+    "fix": "Location and nature of the misprint corrected."
+   },
+   {
+    "severity": "source",
+    "where": "block 107 section 'Equivariant cohomology: the Cartan model' [Me]",
+    "problem": "Meinrenken Theorem 5.3 is the Weil-to-Cartan isomorphism; the identification with Borel equivariant cohomology is his Theorem 6.1 (compact connected G).",
+    "fix": "Theorem numbers split correctly."
+   },
+   {
+    "severity": "source",
+    "where": "block 74 proof of de Rham's theorem [Ch]",
+    "problem": "Said Chua takes the argument from Lee; Chua's notes outline it without that attribution (Petrov and Ginory credit Lee and Bredon).",
+    "fix": "Attribution reworded."
+   },
+   {
+    "severity": "source",
+    "where": "block 103 section 'Curvature and characteristic classes' [Lim]",
+    "problem": "Lim Proposition 2.16 states connection-independence but only indicates the interpolation proof.",
+    "fix": "Noted in the text."
+   },
+   {
+    "severity": "source",
+    "where": "block 20 section on Cartan's formula [NS]",
+    "problem": "'The identity they use later is iota_X iota_Y = -iota_Y iota_X' asserted more than can be read off; confirmed that NS Thm 2.45(iii) prints iota_X∘iota_Y=[X,Y] (writer's remark correct).",
+    "fix": "Softened to 'what their later computations need'."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 105 conventions row Notman-Sanabani (writer flag: Chern normalisation)",
+    "problem": "Checked: NS Example 2.93 c_k = eps_k(F)/(2 pi i)^k with Def 2.91 det(I+tA)=sum t^k eps_k(A), F = d omega + omega∧omega; Lim c = det(I + sqrt(-1)Θ/2π), Θ = dθ+θ². The (-1)^k discrepancy is real. Row lacked a concrete test.",
+    "fix": "Added equation numbers and the concrete comparison (∫c_1 = -1 versus +1 on the exercise's S^2 bundle); added a check."
+   },
+   {
+    "severity": "style",
+    "where": "block 48 section 'Good covers'",
+    "problem": "Existence of good covers cited to Bott-Tu §5 only, whose body could not be extracted.",
+    "fix": "Added Guillemin-Haine Appendix C (confirmed in their table of contents) as a second reference."
+   }
+  ],
+  "notes": [
+   "Writer flags: (1) Mayer-Vietoris sign: BT Example 2.6 difference map (omega,tau)->tau-omega and (2.5) delta = -d(rho_V omega) on U, d(rho_U omega) on V confirmed; Gualtieri same; Petrov opposite order (confirmed). (2) Compact-support MV maps sigma->(-sigma,sigma), (alpha,beta)->alpha+beta and connecting map [tau]->[d rho_V ∧ tau] rederived: exact and consistent. (3) Duality ladder: first two squares commute, third commutes up to (-1)^(q+1), rederived by hand and by check 15. (4) Compact Poincaré lemma identity 1 - e_* pi_* = (-1)^(q-1)(dK - Kd) confirmed as BT Prop. 4.6 (second PDF copy) and rederived for both types. (5) Chern normalisation: discrepancy confirmed from both papers.",
+   "Not verifiable from text: Bott-Tu §5 and Ch. II §8 bodies (two PDF copies both end before §5; only the TOC is readable), so claims cited to BT §5/§8 (good cover existence, PD ladder 'up to sign', eta_S definition, Künneth hypothesis, de Rham = Čech for good covers) rest on the TOC plus standard content; mathematics independently checked. Lee was not opened: Lemma 17.9, Prop. 17.10 confirmed only as GHLP's in-text citations of [23] (reference list unreachable) and Theorem 18.7 as Petrov's citation of Lee. Wikipedia Hodge star and Exterior derivative formula blocks did not extract; only the prose (signature factor s; constant factor for Kobayashi-Nomizu) was confirmed. nLab not re-opened. MSE/MO not fetchable.",
+   "Citations: 251 src instances; about 95 checked against opened sources (all views items and convention rows, most proofs, many sections). 11 were inaccurate as worded (fixed above); none pointed to a nonexistent source, so no source was removed.",
+   "Figures (5) compiled and inspected: labels correct, nothing clipped, consistent with text. Two checks added (34 total, all pass); validate.py OK."
+  ]
+ }
+]
