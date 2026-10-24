@@ -39,3 +39,11 @@ the existing concepts, and add the missing ones to the curriculum with prerequis
 - Open textbooks usable for structure and for exercises (licence to be confirmed per source): Illustrative Mathematics K-12
   (CC BY 4.0), OpenStax Prealgebra / Elementary Algebra / Intermediate Algebra / College Algebra / Precalculus / Calculus
   (CC BY 4.0), CK-12 (check licence; often NC -> excluded).
+
+## Olympiad mathematics (agreed 2026-10-24)
+Olympiad concepts are thin too. Next session starts from the beginning: school mathematics + olympiad topics, researched together.
+- Build an olympiad topic list (algebra, combinatorics, geometry, number theory: techniques and standard results, e.g.
+  invariants and monovariants, extremal principle, orders and primitive roots, lifting the exponent, Vieta jumping,
+  inversion, projective geometry, complex and barycentric coordinates, inequalities beyond AM-GM, functional equations by type).
+- Use the olympiad problems left unattached in round5/attach/ (no tag was central) as evidence of missing concepts.
+- Licensed sources only for text and exercises; topic lists from handouts are reference only.
