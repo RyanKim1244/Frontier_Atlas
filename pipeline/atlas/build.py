@@ -294,7 +294,13 @@ for k, ps in ALL.items():
 OLY_MAX = 5
 _rank = {"IMO": 0, "USAMO": 1, "Putnam": 2}
 _by = {}
+def _easy(p):   # concept practice: only the easy slots of each contest (difficulty by problem position)
+    t = p["title"]
+    if p["coll"] in ("IMO", "USAMO"): return bool(re.search(r"Problem [14]$", t))
+    if p["coll"] == "Putnam": return bool(re.search(r"[AB][12]$", p["id"]))
+    return False
 for p in olympiad:
+    if not _easy(p): p["attach"] = []
     for c in p.get("attach", []): _by.setdefault(c, []).append(p)
 for c, ps in _by.items():
     ps.sort(key=lambda p: (len(p["attach"]) > 1, _rank.get(p["coll"], 3), -(p.get("year") or 0)))
