@@ -17,3 +17,14 @@ regular-local-rings, local-cohomology, gorenstein-rings, stanley-reisner-rings, 
 characteristic classes, equivariant cohomology, algebraic de Rham cohomology (seeds in round5/seeds/).
 Open items: 145 concepts have no exercises yet; old 279 pages are thin by the new standard; MSE/MathOverflow not reachable
 (add to allowed domains); Supabase migrations nested_replies and post_titles must be run by the owner.
+
+## Standing plan (agreed 2026-10-24)
+Goal: all of mathematics. Every batch of 3 mixes new concepts and upgrades of existing (v1) pages to the depth standard.
+- Upgrade queue (most depended-on first, by number of concepts that build on them): functions, euclid-basics, limits,
+  real-numbers, seq-limits, divisibility, derivative, trig, exp-log, riemann-integral, continuity, diff-rules, fta, mvt,
+  series, vectors-plane, ftc, congruences, linear-systems, matrices, ...
+- New-concept queue: finish cohomology, depth-cohen-macaulay, dedekind-domains; then the concepts current pages point to
+  (krull-dimension, associated-primes, manifold-duality, spectral-sequences, sheaf-cohomology, ...), plus missing
+  foundations found in the taxonomy (research/taxonomy.json, tier 1 first).
+- An upgrade uses the same pipeline (dossier -> outline -> write -> R -> S -> review of S -> exercises -> publish), keeping
+  correct existing material and its checks; foundations are written for a first-time learner (school/undergraduate stage).
