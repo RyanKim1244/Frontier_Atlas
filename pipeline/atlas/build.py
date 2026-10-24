@@ -5,6 +5,7 @@ import catalog_src as cat
 import catalog_ext   # noqa: F401
 import catalog_ext2  # noqa: F401
 import catalog_r2    # noqa: F401
+import catalog_r4    # noqa: F401
 import problems_src as pr
 from imo_src import IMO
 from research_hand import CLAY
@@ -280,8 +281,12 @@ for cid, les in catalog_r2.LESSONS_R2.items():
     LESSONS[cid] = les
     with open(os.path.join(LD, cid + ".json"), "w", encoding="utf8") as g:
         json.dump({"blocks": les["blocks"], "sources": les.get("sources", [])}, g, ensure_ascii=False, separators=(",", ":"))
+for cid, les in catalog_r4.LESSONS_R4.items():
+    LESSONS[cid] = les
+    with open(os.path.join(LD, cid + ".json"), "w", encoding="utf8") as g:
+        json.dump({"blocks": les["blocks"], "sources": les.get("sources", [])}, g, ensure_ascii=False, separators=(",", ":"))
 REVIEW = {}
-for f in glob.glob(os.path.join(HERE, "..", "lessons", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round2", "review_*.json")):
+for f in glob.glob(os.path.join(HERE, "..", "lessons", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round2", "review_*.json")) + glob.glob(os.path.join(HERE, "..", "round4", "concepts", "review_*.json")):
     for r in json.load(open(f)): REVIEW[r["id"]] = sum(1 for i in r.get("issues", []) if i.get("severity") == "error")
 
 # ---------- reviewed corrections to catalog entries (round 4 reviewers) ----------

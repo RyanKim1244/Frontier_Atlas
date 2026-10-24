@@ -1,0 +1,146 @@
+[
+ {
+  "id": "invariants",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example / gcd and lcm moves",
+    "problem": "It opened with 'Two invariants', but the invariant product was never used, and 'every number divides L' is a preserved property, not an invariant of the kind defined.",
+    "fix": "Dropped the unused product invariant and called the divisibility fact a preserved property. ab = gl is now stated as true for any two positive integers."
+   },
+   {
+    "severity": "style",
+    "where": "intro, section 'Monovariants as a construction tool', pitfall",
+    "problem": "Padding and a pitfall bullet that repeated the club example.",
+    "fix": "Trimmed them (2032 to 1934 words)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The algebra of the gcd/lcm monovariant was not checked symbolically.",
+    "fix": "Added a sympy check."
+   }
+  ]
+ },
+ {
+  "id": "comb-games",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example / Knocking down pins",
+    "problem": "For n = 1 or 2 the solution said 'two separate rows of equal length remain', but nothing remains.",
+    "fix": "Example removed to save length. The mirroring strategy is now one sentence in the pairing paragraph, and the brute-force pin check now backs that sentence."
+   },
+   {
+    "severity": "style",
+    "where": "sections 'Small cases', 'Symmetry, pairing and strategy stealing', intro, pitfalls",
+    "problem": "Repeated summaries, and a strategy-stealing pitfall that duplicated the section.",
+    "fix": "Condensed them (2835 to 2607 words; minutes 24 to 18)."
+   }
+  ]
+ },
+ {
+  "id": "generating-functions",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section / From the series to the size of the numbers",
+    "problem": "It said the Hardy–Ramanujan formula overestimates p(100) by 'about 4%'. The true ratio is 1.0457, i.e. about 4.6%. The draft check passed only because its interval was 1.03 to 1.05.",
+    "fix": "Changed to 'about 4.6%'. The check now uses intervals [1.045, 1.047] and [1.0135, 1.0145]."
+   },
+   {
+    "severity": "style",
+    "where": "definition, dictionary, examples",
+    "problem": "Padding.",
+    "fix": "Trimmed (2175 to 2120 words; minutes 22 to 19)."
+   }
+  ]
+ },
+ {
+  "id": "graph-basics",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section / Counting trees",
+    "problem": "The 'average degree < 2 implies leaves' remark left out that every degree is at least 1.",
+    "fix": "Added it and compressed the section."
+   },
+   {
+    "severity": "style",
+    "where": "intro, tree proof preface, Euler necessity, pitfalls",
+    "problem": "Wordiness, and an intro with the grammar slip 'fewest number of cables'.",
+    "fix": "Tightened (2413 to 2353 words)."
+   }
+  ]
+ },
+ {
+  "id": "cycles-matchings",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section 'Consequences of Hall's theorem'",
+    "problem": "It called Hall's condition 'not obviously easier to verify than finding the matching'. That is vague.",
+    "fix": "Reworded: brute-force checking all subsets is no easier than searching for the matching."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall, connection",
+    "problem": "Bullets and min–max remarks repeated earlier text.",
+    "fix": "Removed the duplicates (2241 to 2191 words)."
+   }
+  ]
+ },
+ {
+  "id": "graph-coloring",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "The Brooks bullet restated the section verbatim.",
+    "fix": "Removed it."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 3 (divisibility graph on 1..20) was not checked to be well posed.",
+    "fix": "Added a check that chi = 5."
+   }
+  ]
+ },
+ {
+  "id": "extremal-graphs",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "It claimed that for 'most bipartite graphs' even the order of magnitude of ex(n,H) is unknown. That is an unsupported quantitative claim.",
+    "fix": "Now says 'for many bipartite graphs, such as K_{4,4} and the 8-cycle'."
+   },
+   {
+    "severity": "unclear",
+    "where": "section / The bipartite frontier",
+    "problem": "The Sidon-set definition was garbled ('sums distinct apart from order'). 'Which the Sidon property forbids' skipped the step that turns equal sums into a contradiction.",
+    "fix": "Defined Sidon sets mod m precisely. Spelled out that the Sidon property forces x1 = x2 or y1 = y2."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition / Extremal number",
+    "problem": "'ex(n,H) edges do not [force H]' read as if every graph with that many edges avoids H.",
+    "fix": "Now says some graph with ex(n,H) edges avoids H."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Exercise 3 bipartite bound was not checked.",
+    "fix": "Added a check: brute force for n <= 3, plus equality at n = 7."
+   }
+  ]
+ }
+]

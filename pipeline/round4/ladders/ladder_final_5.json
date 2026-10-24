@@ -1,0 +1,490 @@
+[
+ {
+  "concept": "hypergraphs",
+  "ladder": [
+   {
+    "title": "Few edges force property B",
+    "kind": "classic",
+    "q": "Let $n\\ge 1$ and let $H$ be an $n$-uniform hypergraph (every edge has exactly $n$ vertices) with fewer than $2^{n-1}$ edges.\n\nProve that the vertices of $H$ can be coloured red and blue so that no edge is monochromatic. Deduce that $m(n)\\ge 2^{n-1}$, where $m(n)$ is the least number of edges of an $n$-uniform hypergraph that is not $2$-colourable.",
+    "concepts": [
+     "hypergraphs",
+     "probabilistic-method",
+     "graph-coloring"
+    ],
+    "source": "P. Erdős, On a combinatorial problem, Nordisk Mat. Tidskr. 11 (1963); Alon & Spencer, The Probabilistic Method (chapter on property B)",
+    "year": 1963,
+    "bridges_to": [
+     "ERDOS-901"
+    ],
+    "note": "The one-line first-moment argument gives the starting lower bound for the property B function $m(n)$."
+   },
+   {
+    "title": "Turán's construction for the tetrahedron",
+    "kind": "classic",
+    "q": "Partition a set $V$ of $n$ vertices into three parts $V_0,V_1,V_2$ whose sizes differ by at most $1$. Let $H$ be the $3$-uniform hypergraph on $V$ whose edges are the triples meeting all three parts, together with the triples having two vertices in $V_i$ and one vertex in $V_{i+1}$ (indices mod $3$), for $i=0,1,2$.\n\n(a) Prove that no $4$ vertices of $H$ span all $4$ possible triples, i.e. $H$ contains no $K_4^{(3)}$.\n\n(b) Prove that $H$ has $\\left(\\frac59+o(1)\\right)\\binom n3$ edges as $n\\to\\infty$.\n\n(c) Show by averaging over $4$-sets that every $K_4^{(3)}$-free $3$-uniform hypergraph on $n$ vertices has at most $\\frac34\\binom n3$ edges.",
+    "concepts": [
+     "hypergraphs",
+     "extremal-graphs",
+     "counting"
+    ],
+    "source": "P. Keevash, Hypergraph Turán problems, Surveys in Combinatorics 2011 (LMS Lecture Note Ser. 392)",
+    "year": 1941,
+    "bridges_to": [
+     "ERDOS-500"
+    ],
+    "note": "Gives the conjectured extremal example and a trivial upper bound, framing the gap $[5/9,3/4]$ that the rest of the ladder narrows."
+   },
+   {
+    "title": "Random lower bound for 3-uniform Ramsey numbers",
+    "kind": "classic",
+    "q": "Let $R_3(n)$ be the least $N$ such that every red/blue colouring of the $3$-element subsets of an $N$-element set contains $n$ points all of whose triples have the same colour.\n\nProve that there is an absolute constant $c>0$ such that $R_3(n)>2^{cn^2}$ for all sufficiently large $n$.",
+    "concepts": [
+     "hypergraphs",
+     "ramsey",
+     "probabilistic-method"
+    ],
+    "source": "Graham, Rothschild & Spencer, Ramsey Theory (2nd ed., 1990)",
+    "bridges_to": [
+     "ERDOS-564",
+     "ERDOS-562"
+    ],
+    "note": "The random colouring gives only $2^{cn^2}$, while the Erdős–Rado upper bound is $2^{2^{Cn}}$; closing this gap for two colours is exactly Erdős Problem 564."
+   },
+   {
+    "title": "Graphs with no s+1 disjoint edges",
+    "kind": "special-case",
+    "q": "Let $s\\ge 1$ and $n\\ge 2s+2$. Prove that a graph on $n$ vertices containing no $s+1$ pairwise disjoint edges has at most\n$$\\max\\left\\{\\binom{2s+1}{2},\\ \\binom n2-\\binom{n-s}{2}\\right\\}$$\nedges, and that this bound is attained.",
+    "concepts": [
+     "hypergraphs",
+     "cycles-matchings",
+     "extremal-graphs"
+    ],
+    "source": "P. Erdős and T. Gallai, On maximal paths and circuits of graphs, Acta Math. Acad. Sci. Hungar. 10 (1959)",
+    "year": 1959,
+    "bridges_to": [
+     "ERDOS-1020"
+    ],
+    "note": "This is the $r=2$ case of the Erdős matching problem $f(n;r,k)$: the two extremal families (a clique, or all edges meeting a fixed $s$-set) are exactly the conjectured ones for all $r$."
+   },
+   {
+    "title": "Complete r-partite r-graphs have Turán density zero",
+    "kind": "theorem",
+    "q": "For $r\\ge 2$ and $s\\ge 1$ let $K_r(s)$ be the complete $r$-partite $r$-uniform hypergraph with $s$ vertices in each class.\n\nProve that there is $n_0(r,s)$ such that for all $n\\ge n_0$ every $r$-uniform hypergraph on $n$ vertices with at least $n^{\\,r-s^{1-r}}$ edges contains a copy of $K_r(s)$. Deduce that an $r$-uniform hypergraph $F$ satisfies $\\mathrm{ex}_r(n,F)=o(n^r)$ if and only if $F$ is $r$-partite.",
+    "concepts": [
+     "hypergraphs",
+     "extremal-graphs",
+     "set-systems"
+    ],
+    "source": "P. Erdős, On extremal problems of graphs and generalized graphs, Israel J. Math. 2 (1964)",
+    "year": 1964,
+    "bridges_to": [
+     "ERDOS-1158",
+     "ERDOS-837"
+    ],
+    "note": "Extends Kővári–Sós–Turán to hypergraphs; Erdős Problem 1158 asks whether the exponent $r-s^{1-r}$ is sharp, and the result also shows $0$ is a jump."
+   },
+   {
+    "title": "The (6,3) theorem",
+    "kind": "theorem",
+    "q": "Let $H$ be a $3$-uniform hypergraph on $n$ vertices in which no $6$ vertices span $3$ or more edges.\n\nProve that $H$ has $o(n^2)$ edges as $n\\to\\infty$.",
+    "concepts": [
+     "hypergraphs",
+     "extremal-graphs",
+     "additive-combinatorics"
+    ],
+    "source": "I. Z. Ruzsa and E. Szemerédi, Triple systems with no six points carrying three triangles, Colloq. Math. Soc. János Bolyai 18 (1978)",
+    "year": 1978,
+    "bridges_to": [
+     "ERDOS-716",
+     "ERDOS-1178"
+    ],
+    "note": "This is the case $r=3$, $e=3$ of the Brown–Erdős–Sós problem; it settles Erdős Problem 716, and Problem 1178 asks for the analogue for every $e$ and $r$."
+   },
+   {
+    "title": "Erdős matching conjecture for large n",
+    "kind": "theorem",
+    "q": "Let $k\\ge 2$, $s\\ge 1$, and let $\\mathcal F$ be a family of $k$-element subsets of $\\{1,\\dots,n\\}$ containing no $s+1$ pairwise disjoint members.\n\nProve that if $n\\ge (2s+1)k-s$ then\n$$|\\mathcal F|\\le \\binom nk-\\binom{n-s}{k}.$$",
+    "concepts": [
+     "hypergraphs",
+     "set-systems",
+     "cycles-matchings"
+    ],
+    "source": "P. Frankl, Improved bounds for Erdős' matching conjecture, J. Combin. Theory Ser. A 120 (2013)",
+    "year": 2013,
+    "bridges_to": [
+     "ERDOS-1020"
+    ],
+    "note": "Confirms the conjectured value of $f(n;k,s+1)$ in a linear range of $n$; the conjecture predicts $\\max\\{\\binom{(s+1)k-1}{k},\\binom nk-\\binom{n-s}{k}\\}$ for all $n\\ge (s+1)k$."
+   },
+   {
+    "title": "Improved lower bound for property B",
+    "kind": "theorem",
+    "q": "Let $m(n)$ be the least number of edges of an $n$-uniform hypergraph that is not $2$-colourable.\n\nProve that\n$$m(n)=\\Omega\\!\\left(2^n\\sqrt{\\frac{n}{\\log n}}\\right).$$",
+    "concepts": [
+     "hypergraphs",
+     "probabilistic-method",
+     "graph-coloring"
+    ],
+    "source": "J. Radhakrishnan and A. Srinivasan, Improved bounds and algorithms for hypergraph 2-coloring, Random Structures Algorithms 16 (2000)",
+    "year": 2000,
+    "bridges_to": [
+     "ERDOS-901"
+    ],
+    "note": "Improves the easy $2^{n-1}$ by a factor $\\sqrt{n/\\log n}$; Erdős's random construction gives $m(n)=O(n^2 2^n)$, and the true order is Problem 901."
+   },
+   {
+    "title": "Hypergraphs do not jump",
+    "kind": "theorem",
+    "q": "For $r\\ge 3$, call $\\alpha\\in[0,1)$ a jump for $r$ if there is $c>0$ such that for every $\\varepsilon>0$ and every integer $m\\ge r$ there is $n_0(\\varepsilon,m)$ such that every $r$-uniform hypergraph on $n>n_0$ vertices with at least $(\\alpha+\\varepsilon)\\binom nr$ edges contains a subhypergraph on $m$ vertices with at least $(\\alpha+c)\\binom mr$ edges.\n\nProve that for every $r\\ge 3$ and every integer $l>2r$, the number $1-\\frac{1}{l^{\\,r-1}}$ is not a jump for $r$.",
+    "concepts": [
+     "hypergraphs",
+     "extremal-graphs"
+    ],
+    "source": "P. Frankl and V. Rödl, Hypergraphs do not jump, Combinatorica 4 (1984)",
+    "year": 1984,
+    "bridges_to": [
+     "ERDOS-837",
+     "ERDOS-1075"
+    ],
+    "note": "Erdős proved every $\\alpha\\in[0,r!/r^r)$ is a jump; Frankl–Rödl disproved that every $\\alpha$ is, leaving open whether $r!/r^r$ itself is a jump (the question behind Problem 1075); Problem 837 asks for the full set of jumps when $r=3$."
+   },
+   {
+    "title": "Flag-algebra bound for the tetrahedron",
+    "kind": "theorem",
+    "q": "Prove that for all sufficiently large $n$, every $3$-uniform hypergraph on $n$ vertices containing no $K_4^{(3)}$ (four vertices spanning all four triples) has at most $0.562\\binom n3$ edges.",
+    "concepts": [
+     "hypergraphs",
+     "extremal-graphs"
+    ],
+    "source": "A. A. Razborov, On 3-hypergraphs with forbidden 4-vertex configurations, SIAM J. Discrete Math. 24 (2010)",
+    "year": 2010,
+    "bridges_to": [
+     "ERDOS-500",
+     "ERDOS-712"
+    ],
+    "note": "Razborov's flag-algebra computation was the first to push the upper bound well below the averaging bound $3/4$, towards Turán's conjectured $5/9\\approx 0.5556$; Baber later lowered it to $0.5615$, and a 2026 preprint claims $0.5578$."
+   }
+  ]
+ },
+ {
+  "concept": "extremal-graphs",
+  "ladder": [
+   {
+    "title": "Mantel's theorem",
+    "kind": "classic",
+    "q": "Prove that a graph on $n$ vertices containing no triangle has at most $\\lfloor n^2/4\\rfloor$ edges, and determine all graphs attaining this bound.",
+    "concepts": [
+     "extremal-graphs",
+     "graph-basics",
+     "pigeonhole"
+    ],
+    "source": "B. Bollobás, Extremal Graph Theory (1978); Aigner & Ziegler, Proofs from THE BOOK",
+    "year": 1907,
+    "bridges_to": [],
+    "note": "This is the base case of Turán's theorem and the first instance of an exact extremal number."
+   },
+   {
+    "title": "Kővári–Sós–Turán bound",
+    "kind": "classic",
+    "q": "Let $1\\le s\\le t$ be integers. Prove that every graph on $n$ vertices with no subgraph isomorphic to $K_{s,t}$ has at most\n$$\\frac12 (t-1)^{1/s}\\, n^{2-1/s}+\\frac12 (s-1)\\,n$$\nedges.",
+    "concepts": [
+     "extremal-graphs",
+     "pigeonhole",
+     "convexity"
+    ],
+    "source": "T. Kővári, V. T. Sós and P. Turán, On a problem of K. Zarankiewicz, Colloq. Math. 3 (1954); see Bollobás, Extremal Graph Theory",
+    "year": 1954,
+    "bridges_to": [
+     "ERDOS-714"
+    ],
+    "note": "Gives the upper bound $\\mathrm{ex}(n;K_{r,r})=O(n^{2-1/r})$ whose matching lower bound is Erdős Problem 714."
+   },
+   {
+    "title": "The asymptotics of ex(n, C4)",
+    "kind": "theorem",
+    "q": "Prove that\n$$\\mathrm{ex}(n;C_4)=\\left(\\tfrac12+o(1)\\right)n^{3/2}\\qquad(n\\to\\infty).$$\n\nFor the lower bound, for a prime power $q$ take as vertices the points of the projective plane over $\\mathbb F_q$ and join distinct points $(x_0:x_1:x_2)$ and $(y_0:y_1:y_2)$ when $x_0y_0+x_1y_1+x_2y_2=0$; then use the density of primes to pass to all $n$.",
+    "concepts": [
+     "extremal-graphs",
+     "finite-fields",
+     "pigeonhole"
+    ],
+    "source": "P. Erdős, A. Rényi and V. T. Sós, On a problem of graph theory, Studia Sci. Math. Hungar. 1 (1966); W. G. Brown, On graphs that do not contain a Thomsen graph, Canad. Math. Bull. 9 (1966)",
+    "year": 1966,
+    "bridges_to": [
+     "ERDOS-765"
+    ],
+    "note": "The first bipartite extremal number known asymptotically; Füredi later found the exact value for $n=q^2+q+1$, which answers Problem 765."
+   },
+   {
+    "title": "Erdős–Stone–Simonovits",
+    "kind": "classic",
+    "q": "Let $H$ be a graph with chromatic number $\\chi(H)=r+1\\ge 2$. Prove that\n$$\\mathrm{ex}(n;H)=\\left(1-\\frac1r+o(1)\\right)\\binom n2 .$$\n\nIn particular, conclude that $\\mathrm{ex}(n;H)=o(n^2)$ if and only if $H$ is bipartite.",
+    "concepts": [
+     "extremal-graphs",
+     "graph-coloring"
+    ],
+    "source": "P. Erdős and A. H. Stone, On the structure of linear graphs, Bull. Amer. Math. Soc. 52 (1946); P. Erdős and M. Simonovits, A limit theorem in graph theory, Studia Sci. Math. Hungar. 1 (1966)",
+    "year": 1946,
+    "bridges_to": [
+     "ERDOS-713"
+    ],
+    "note": "Settles the non-bipartite case to first order, so every remaining question about the order of magnitude of $\\mathrm{ex}(n;H)$ concerns bipartite $H$."
+   },
+   {
+    "title": "A dense K_{3,3}-free graph",
+    "kind": "special-case",
+    "q": "Prove that there is a constant $c>0$ such that for all $n\\ge 2$ there is a graph on $n$ vertices with at least $c\\,n^{5/3}$ edges and no subgraph isomorphic to $K_{3,3}$.",
+    "concepts": [
+     "extremal-graphs",
+     "finite-fields"
+    ],
+    "source": "W. G. Brown, On graphs that do not contain a Thomsen graph, Canad. Math. Bull. 9 (1966)",
+    "year": 1966,
+    "bridges_to": [
+     "ERDOS-714"
+    ],
+    "note": "This is the case $r=3$ of Problem 714 (the case $r=2$ is the $C_4$ rung); Brown's construction uses spheres in $\\mathbb F_p^3$, and the case $r\\ge 4$ is open."
+   },
+   {
+    "title": "Even cycles: the Bondy–Simonovits bound",
+    "kind": "theorem",
+    "q": "Let $k\\ge 2$. Prove that there is a constant $C_k$ such that every graph on $n$ vertices with no cycle of length exactly $2k$ has at most $C_k\\, n^{1+1/k}$ edges.",
+    "concepts": [
+     "extremal-graphs",
+     "cycles-matchings"
+    ],
+    "source": "J. A. Bondy and M. Simonovits, Cycles of even length in graphs, J. Combin. Theory Ser. B 16 (1974)",
+    "year": 1974,
+    "bridges_to": [
+     "ERDOS-572"
+    ],
+    "note": "Gives the upper bound that Problem 572 asks to match from below."
+   },
+   {
+    "title": "Dense graphs with no 6-cycle",
+    "kind": "special-case",
+    "q": "Prove that there is a constant $c>0$ such that for infinitely many $n$ there is a graph on $n$ vertices with at least $c\\,n^{4/3}$ edges and no cycle of length $6$.",
+    "concepts": [
+     "extremal-graphs",
+     "cycles-matchings",
+     "finite-fields"
+    ],
+    "source": "C. T. Benson, Minimal regular graphs of girths eight and twelve, Canad. J. Math. 18 (1966); R. Wenger, Extremal graphs with no C4's, C6's, or C10's, J. Combin. Theory Ser. B 52 (1991)",
+    "year": 1966,
+    "bridges_to": [
+     "ERDOS-572"
+    ],
+    "note": "This is the case $k=3$ of Problem 572, from incidence graphs of generalized quadrangles; the matching lower bound is known only for $k\\in\\{2,3,5\\}$."
+   },
+   {
+    "title": "Norm graphs",
+    "kind": "theorem",
+    "q": "Let $t\\ge 2$ and $s\\ge (t-1)!+1$ be integers. Prove that there is $c=c(t,s)>0$ such that\n$$\\mathrm{ex}(n;K_{t,s})\\ge c\\,n^{2-1/t}$$\nfor all sufficiently large $n$.",
+    "concepts": [
+     "extremal-graphs",
+     "finite-fields"
+    ],
+    "source": "N. Alon, L. Rónyai and T. Szabó, Norm-graphs: variations and applications, J. Combin. Theory Ser. B 76 (1999); earlier J. Kollár, L. Rónyai and T. Szabó, Combinatorica 16 (1996) for s > t!",
+    "year": 1999,
+    "bridges_to": [
+     "ERDOS-714"
+    ],
+    "note": "This settles the order of magnitude for $K_{t,s}$ when $s$ is large compared with $t$; Problem 714 asks for the balanced case $s=t$."
+   },
+   {
+    "title": "Bipartite graphs with bounded degrees on one side",
+    "kind": "theorem",
+    "q": "Let $r\\ge 1$ and let $H$ be a bipartite graph with parts $A,B$ in which every vertex of $A$ has degree at most $r$. Prove that $\\mathrm{ex}(n;H)=O_H\\!\\left(n^{2-1/r}\\right)$.\n\nFurther, prove that if $H$ is bipartite and $r$-degenerate then $\\mathrm{ex}(n;H)=O_H\\!\\left(n^{2-1/(4r)}\\right)$.",
+    "concepts": [
+     "extremal-graphs",
+     "probabilistic-method"
+    ],
+    "source": "N. Alon, M. Krivelevich and B. Sudakov, Turán numbers of bipartite graphs and related Ramsey-type questions, Combin. Probab. Comput. 12 (2003)",
+    "year": 2003,
+    "bridges_to": [
+     "ERDOS-146",
+     "ERDOS-113"
+    ],
+    "note": "Dependent random choice proves the Erdős–Simonovits conjecture when the degeneracy bound holds on one side, and gives exponent $2-1/(4r)$ in general, against the conjectured $2-1/r$."
+   },
+   {
+    "title": "Every rational exponent for families",
+    "kind": "theorem",
+    "q": "Prove that for every rational number $\\alpha\\in(1,2)$ there is a finite family $\\mathcal F_\\alpha$ of bipartite graphs with\n$$\\mathrm{ex}(n;\\mathcal F_\\alpha)=\\Theta(n^{\\alpha}).$$",
+    "concepts": [
+     "extremal-graphs",
+     "probabilistic-method"
+    ],
+    "source": "B. Bukh and D. Conlon, Rational exponents in extremal graph theory, J. Eur. Math. Soc. 20 (2018)",
+    "year": 2018,
+    "bridges_to": [
+     "ERDOS-571",
+     "ERDOS-713"
+    ],
+    "note": "This is the family version of Problem 571, which asks for a single graph with each rational exponent; Problem 713(b) asks whether only rational exponents occur."
+   }
+  ]
+ },
+ {
+  "concept": "ramsey",
+  "ladder": [
+   {
+    "title": "The Erdős–Szekeres recursion",
+    "kind": "classic",
+    "q": "Let $R(k,\\ell)$ be the least $n$ such that every red/blue colouring of the edges of $K_n$ contains a red $K_k$ or a blue $K_\\ell$.\n\nProve that $R(k,\\ell)\\le R(k-1,\\ell)+R(k,\\ell-1)$ for $k,\\ell\\ge 2$, and deduce that\n$$R(k,\\ell)\\le\\binom{k+\\ell-2}{k-1}.$$\nConclude that $R(k,k)<4^k$.",
+    "concepts": [
+     "ramsey",
+     "pigeonhole",
+     "counting"
+    ],
+    "source": "P. Erdős and G. Szekeres, A combinatorial problem in geometry, Compositio Math. 2 (1935); Graham, Rothschild & Spencer, Ramsey Theory",
+    "year": 1935,
+    "bridges_to": [
+     "ERDOS-77",
+     "ERDOS-1030"
+    ],
+    "note": "Gives the $4^k$ upper bound that stood, up to subexponential factors, until 2023."
+   },
+   {
+    "title": "Ramsey numbers of a tree versus a clique",
+    "kind": "theorem",
+    "q": "Let $T$ be any tree on $n\\ge 2$ vertices and let $m\\ge 2$. Prove that every red/blue colouring of the edges of $K_N$ with $N=(n-1)(m-1)+1$ contains a red copy of $T$ or a blue $K_m$, and that this is false for $N=(n-1)(m-1)$.",
+    "concepts": [
+     "ramsey",
+     "graph-basics"
+    ],
+    "source": "V. Chvátal, Tree-complete graph Ramsey numbers, J. Graph Theory 1 (1977)",
+    "year": 1977,
+    "bridges_to": [
+     "ERDOS-551"
+    ],
+    "note": "An exact off-diagonal Ramsey number by greedy embedding; Problem 551 asks for the same formula $(k-1)(n-1)+1$ with the tree replaced by a cycle $C_k$."
+   },
+   {
+    "title": "Multicolour triangle Ramsey numbers",
+    "kind": "classic",
+    "q": "Let $R(3;k)$ be the least $n$ such that every colouring of the edges of $K_n$ with $k$ colours contains a monochromatic triangle.\n\nProve that $R(3;k)\\le k\\,(R(3;k-1)-1)+2$ for $k\\ge 2$, and deduce that $R(3;k)\\le\\lfloor e\\cdot k!\\rfloor+1$ for all $k\\ge 1$.",
+    "concepts": [
+     "ramsey",
+     "pigeonhole"
+    ],
+    "source": "Graham, Rothschild & Spencer, Ramsey Theory (2nd ed., 1990)",
+    "bridges_to": [
+     "ERDOS-183"
+    ],
+    "note": "Gives the factorial upper bound; Problem 183 asks about $\\lim_k R(3;k)^{1/k}$, and the known lower bounds are only exponential."
+   },
+   {
+    "title": "Erdős's probabilistic lower bound",
+    "kind": "classic",
+    "q": "Let $R(k)=R(k,k)$. Prove that if $\\binom nk 2^{1-\\binom k2}<1$ then $R(k)>n$, and deduce that $R(k)>2^{k/2}$ for every $k\\ge 3$.",
+    "concepts": [
+     "ramsey",
+     "probabilistic-method",
+     "counting"
+    ],
+    "source": "P. Erdős, Some remarks on the theory of graphs, Bull. Amer. Math. Soc. 53 (1947)",
+    "year": 1947,
+    "bridges_to": [
+     "ERDOS-77",
+     "ERDOS-78"
+    ],
+    "note": "This is the lower bound $\\sqrt2^{\\,k}$, still the best up to lower-order factors; Problem 78 asks for an explicit colouring that does as well as $C^k$."
+   },
+   {
+    "title": "Local lemma lower bound for R(k)",
+    "kind": "theorem",
+    "q": "Using the Lovász Local Lemma, prove that\n$$R(k)\\ge (1+o(1))\\,\\frac{\\sqrt2}{e}\\,k\\,2^{k/2}\\qquad(k\\to\\infty).$$",
+    "concepts": [
+     "ramsey",
+     "probabilistic-method"
+    ],
+    "source": "J. Spencer, Ramsey's theorem—a new lower bound, J. Combin. Theory Ser. A 18 (1975); Alon & Spencer, The Probabilistic Method",
+    "year": 1975,
+    "bridges_to": [
+     "ERDOS-1029"
+    ],
+    "note": "Doubles the constant from the first-moment bound; Problem 1029 asks whether $R(k)/(k2^{k/2})\\to\\infty$."
+   },
+   {
+    "title": "Shearer's bound and R(3,k)",
+    "kind": "theorem",
+    "q": "Let $G$ be a triangle-free graph on $n$ vertices with average degree $d>1$. Prove that $G$ has an independent set of size at least\n$$n\\,\\frac{d\\log d-d+1}{(d-1)^2}.$$\n\nDeduce that $R(3,k)\\le (1+o(1))\\dfrac{k^2}{\\log k}$ as $k\\to\\infty$, where $\\log$ denotes the natural logarithm.",
+    "concepts": [
+     "ramsey",
+     "probabilistic-method",
+     "graph-basics"
+    ],
+    "source": "J. B. Shearer, A note on the independence number of triangle-free graphs, Discrete Math. 46 (1983)",
+    "year": 1983,
+    "bridges_to": [
+     "ERDOS-165"
+    ],
+    "note": "Gives the best known upper bound for $R(3,k)$ (Ajtai–Komlós–Szemerédi had first shown $O(k^2/\\log k)$)."
+   },
+   {
+    "title": "The order of magnitude of R(3,k)",
+    "kind": "theorem",
+    "q": "Prove that there is a constant $c>0$ such that\n$$R(3,k)\\ge c\\,\\frac{k^2}{\\log k}$$\nfor all $k\\ge 2$.",
+    "concepts": [
+     "ramsey",
+     "probabilistic-method"
+    ],
+    "source": "J. H. Kim, The Ramsey number R(3,t) has order of magnitude t^2/log t, Random Structures Algorithms 7 (1995)",
+    "year": 1995,
+    "bridges_to": [
+     "ERDOS-165",
+     "ERDOS-544"
+    ],
+    "note": "Together with the previous rung this pins down $R(3,k)=\\Theta(k^2/\\log k)$; the lower-bound constant has since been raised to $1/2$ (Hefty, Horn, King and Pfender, 2025), Problem 165 asks for the constant, and Problem 544 asks about the increments $R(3,k+1)-R(3,k)$."
+   },
+   {
+    "title": "Bounded degree graphs have linear Ramsey numbers",
+    "kind": "special-case",
+    "q": "Let $\\Delta\\ge 1$. Prove that there is a constant $C(\\Delta)$ such that every graph $H$ on $n$ vertices with maximum degree at most $\\Delta$ satisfies $R(H)\\le C(\\Delta)\\,n$, where $R(H)$ is the least $N$ such that every red/blue colouring of $E(K_N)$ contains a monochromatic copy of $H$.",
+    "concepts": [
+     "ramsey",
+     "extremal-graphs"
+    ],
+    "source": "V. Chvátal, V. Rödl, E. Szemerédi and W. T. Trotter, The Ramsey number of a graph with bounded maximum degree, J. Combin. Theory Ser. B 34 (1983)",
+    "year": 1983,
+    "bridges_to": [
+     "ERDOS-163"
+    ],
+    "note": "Bounded maximum degree implies bounded degeneracy, so this is a special case of the Burr–Erdős conjecture (Problem 163), later proved by C. Lee (2017)."
+   },
+   {
+    "title": "The asymptotics of R(4,k)",
+    "kind": "special-case",
+    "q": "Prove that there is a constant $c>0$ such that\n$$R(4,k)\\ge c\\,\\frac{k^3}{(\\log k)^4}$$\nfor all sufficiently large $k$.",
+    "concepts": [
+     "ramsey",
+     "finite-fields",
+     "probabilistic-method"
+    ],
+    "source": "S. Mattheus and J. Verstraete, The asymptotics of r(4,t), Ann. of Math. 199 (2024)",
+    "year": 2024,
+    "bridges_to": [
+     "ERDOS-166",
+     "ERDOS-986"
+    ],
+    "note": "This answers Problem 166 and is the case $s=4$ of Problem 986, matching the Ajtai–Komlós–Szemerédi upper bound $O(k^3/\\log^2 k)$ up to logarithmic factors."
+   },
+   {
+    "title": "An exponential improvement for diagonal Ramsey",
+    "kind": "theorem",
+    "q": "Prove that there is an absolute constant $\\varepsilon>0$ such that\n$$R(k)\\le (4-\\varepsilon)^k$$\nfor all sufficiently large $k$.",
+    "concepts": [
+     "ramsey",
+     "probabilistic-method"
+    ],
+    "source": "M. Campos, S. Griffiths, R. Morris and J. Sahasrabudhe, An exponential improvement for diagonal Ramsey, Ann. of Math. 203 (2026), 869–932; arXiv:2303.09521",
+    "year": 2023,
+    "bridges_to": [
+     "ERDOS-77"
+    ],
+    "note": "The first exponential improvement on Erdős–Szekeres (later optimised to $3.8^{k+o(k)}$ by Gupta, Ndiaye, Norin and Wei, arXiv:2407.19026); Problem 77 asks for $\\lim R(k)^{1/k}$, which, if it exists, now lies between $\\sqrt2$ and $3.8$."
+   }
+  ]
+ }
+]

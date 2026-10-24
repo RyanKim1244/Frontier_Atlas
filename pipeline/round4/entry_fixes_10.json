@@ -1,0 +1,5 @@
+[
+ {"id": "graph-basics", "field": "key_statements", "problem": "The Euler criterion as stated is false for graphs with isolated vertices (they have Euler tours but are not connected); what is needed is that all edges lie in one component.", "corrected": ["\\text{tree on } n \\text{ vertices} \\iff \\text{connected with } n-1 \\text{ edges}", "\\text{Euler tour exists} \\iff \\text{all degrees even and all edges in one component}"]},
+ {"id": "cycles-matchings", "field": "key_statements", "problem": "Dirac's theorem needs n >= 3: K_2 has minimum degree 1 = n/2 but no cycle.", "corrected": ["\\text{Hall: } |N(S)| \\ge |S|\\ \\ \\forall S\\subseteq X", "n \\ge 3,\\ \\delta(G) \\ge n/2 \\Rightarrow G \\text{ Hamiltonian (Dirac)}"]},
+ {"id": "extremal-graphs", "field": "key_statements", "problem": "ex(n, K_{r+1}) equals (1-1/r) n^2/2 only when r divides n; in general it is t(n,r), the edge count of the Turán graph, which is at most that value.", "corrected": ["\\operatorname{ex}(n, K_{r+1}) = t(n,r) \\le \\Big(1-\\frac1r\\Big)\\frac{n^2}{2}\\ \\ (\\text{Turán graph } T(n,r))", "\\operatorname{ex}(n,H) = \\Big(1-\\frac{1}{\\chi(H)-1}+o(1)\\Big)\\binom n2"]}
+]
