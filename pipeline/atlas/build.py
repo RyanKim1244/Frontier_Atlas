@@ -290,8 +290,8 @@ for k, ps in ALL.items():
             keep = [c for c in p["concepts"] if c not in set(a.get("drop", [])) or c in a.get("attach", [])]
             if keep: p["concepts"] = keep; p["fields"] = fields_of(keep)
             p["attach"] = [c for c in a.get("attach", []) if c in p["concepts"]]
-# A concept page lists at most a few olympiad problems: single-concept ones first, then IMO, USAMO, Putnam, others; newest first.
-OLY_MAX = 5
+# Concept pages list olympiad problems only from easy positions; order: single-concept first, then IMO, USAMO, Putnam; newest first.
+OLY_MAX = 10**6   # no cap; only easy positions are attached (see _easy)
 _rank = {"IMO": 0, "USAMO": 1, "Putnam": 2}
 _by = {}
 def _easy(p):   # concept practice: only the easy slots of each contest (difficulty by problem position)
