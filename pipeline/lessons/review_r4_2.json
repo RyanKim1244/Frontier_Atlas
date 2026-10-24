@@ -1,0 +1,132 @@
+[
+ {
+  "id": "gamma",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Padding sentence restating the motivation.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof/Reflection formula",
+    "problem": "The non-vanishing of Gamma was deduced from the reflection formula, which only holds off the integers; the integer points were not addressed.",
+    "fix": "Added the integer cases (positive integers: (n-1)! != 0; non-positive integers: poles)."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Attributed the shift by one to Legendre; who introduced the shift is a disputed historical question (only the notation Gamma is securely Legendre's).",
+    "fix": "Kept only the attribution of the notation."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "Bohr-Mollerup theorem stated without positivity of f, which is needed for log f to make sense.",
+    "fix": "Added \"positive\"."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Beta-integral check failed at working precision 25 (endpoint singularity at a = 0.4).",
+    "fix": "Raised working precision to 40; the check now passes."
+   }
+  ]
+ },
+ {
+  "id": "fourier-poisson",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "mellin",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "Wordy; lesson over 2000 words.",
+    "fix": "Tightened."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Asymptotics from poles",
+    "problem": "Called the expansion of 1/(e^y-1) a Taylor series (it has a pole at 0), and said the agreement \"is\" zeta(-n) = -B_{n+1}/(n+1) without the restriction n >= 1; with B_1 = -1/2 that formula gives +1/2 at n = 0, not zeta(0) = -1/2.",
+    "fix": "Laurent expansion; stated the coefficients B_{n+1}/(n+1)!, restricted the formula to n >= 1 and listed zeta(0) separately."
+   },
+   {
+    "severity": "style",
+    "where": "example/Perron's lemma in numbers",
+    "problem": "Padding; lesson over 2000 words.",
+    "fix": "Shortened the closing paragraph."
+   },
+   {
+    "severity": "style",
+    "where": "connection",
+    "problem": "Bullet repeated the intro; lesson over 2000 words.",
+    "fix": "Removed."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Three checks failed or timed out: quadrature of x^{s-1}/(1+x) missed its 1e-12 tolerance; the Perron/zeta^2 check took over 90 s; the sympy residue of zeta(s)^2 x^s/s raised PoleError.",
+    "fix": "Rewrote the quadrature on [0,1] with tolerance 1e-8; Perron check rerun at T = 60 with a rigorous tail bound (d(n) <= 2 sqrt n); residue computed by a numerical contour integral."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Wordy; lesson over 2000 words.",
+    "fix": "Condensed the first two items."
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-series",
+  "verdict": "ok",
+  "issues": []
+ },
+ {
+  "id": "zeta",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Crossing the line Re s = 1",
+    "problem": "Claimed the partial sums behave like N^{1-s}/(1-s) plus a constant for all Re s <= 1; for Re s <= 0 further growing terms (e.g. N^{-s}/2) appear, so the description is wrong there.",
+    "fix": "Split the cases: for Re s <= 0 the terms do not tend to 0; the partial-sum description is kept for 0 < Re s <= 1."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The continuation-formula check failed at s = 0.5: mpmath nsum does not converge for the slowly decaying series.",
+    "fix": "Summed the unit-interval pieces explicitly up to N = 20000 and added the tail with an explicit error bound."
+   }
+  ]
+ },
+ {
+  "id": "functional-equation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The closed-form check e^{-y}/(1-e^{-y})^2 = 1/(4 sinh^2(y/2)) failed because sympy.simplify did not reduce the hyperbolic form to 0.",
+    "fix": "Rewrote both sides in exponentials before simplifying; passes."
+   }
+  ]
+ },
+ {
+  "id": "chebyshev",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/Chebyshev's constants and the numbers",
+    "problem": "\"Alternating signs\" does not describe the table (signs -, -, +, -).",
+    "fix": "\"changes of sign\"."
+   }
+  ]
+ }
+]

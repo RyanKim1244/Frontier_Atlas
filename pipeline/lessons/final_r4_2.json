@@ -1,0 +1,938 @@
+[
+ {
+  "id": "gamma",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "What should $(1/2)!$ mean? The factorial is defined by repeated multiplication, which only makes sense for whole numbers, yet formulas in probability, geometry and number theory keep producing $n!$ in places where $n$ wants to be a fraction or even a complex number. The gamma function is the standard answer: one function, given by an integral, that matches the factorial at the integers (shifted by one), obeys the same recursion everywhere, and extends to the whole complex plane apart from isolated poles.\n\nIn number theory the motivation is sharper: the Riemann zeta function satisfies a symmetric functional equation only after it is multiplied by a gamma factor, and the same holds for every $L$-function. Euler found the function in 1729, in letters to Christian Goldbach, while looking for a way to interpolate $n!$ between the integers."
+   },
+   {
+    "type": "section",
+    "title": "An integral that produces factorials",
+    "body": "For an integer $n \\ge 0$ put $I_n = \\int_0^\\infty x^n e^{-x}\\,dx$. Clearly $I_0 = 1$. Integrating by parts with $u = x^n$ and $dv = e^{-x}\\,dx$ gives $I_n = \\bigl[-x^n e^{-x}\\bigr]_0^\\infty + n\\int_0^\\infty x^{n-1}e^{-x}\\,dx = n I_{n-1}$ for $n \\ge 1$, because the boundary term vanishes at both ends. Hence $I_n = n!$.\n\nNothing in the integral forces $n$ to be an integer. For complex $s$ and $x > 0$ define $x^{s-1} = e^{(s-1)\\log x}$; then $|x^{s-1}| = x^{\\sigma-1}$ where $\\sigma = \\operatorname{Re} s$. At the end $x = \\infty$ the factor $e^{-x}$ beats every power of $x$, so that half of the [[improper-integrals|improper integral]] always converges. Near $x = 0$ we have $e^{-x} \\approx 1$, so convergence there is the same as convergence of $\\int_0^1 x^{\\sigma-1}\\,dx$, which happens exactly when $\\sigma > 0$."
+   },
+   {
+    "type": "definition",
+    "title": "The gamma function",
+    "body": "For complex $s$ with $\\operatorname{Re} s > 0$,\n$$\\Gamma(s) = \\int_0^\\infty x^{s-1}e^{-x}\\,dx.$$\nThe integral converges absolutely in this half-plane, and it converges uniformly on every strip $a \\le \\operatorname{Re} s \\le b$ with $0 < a < b$, so $\\Gamma$ is holomorphic for $\\operatorname{Re} s > 0$. By the calculation above, $\\Gamma(n+1) = n!$ for every integer $n \\ge 0$."
+   },
+   {
+    "type": "theorem",
+    "title": "Functional equation of Γ",
+    "body": "For $\\operatorname{Re} s > 0$,\n$$\\Gamma(s+1) = s\\,\\Gamma(s), \\qquad \\Gamma(1) = 1,$$\nand consequently $\\Gamma(n) = (n-1)!$ for every integer $n \\ge 1$."
+   },
+   {
+    "type": "proof",
+    "body": "Integrate by parts on $[\\varepsilon, R]$:\n$$\\int_\\varepsilon^R x^{s}e^{-x}\\,dx = \\bigl[-x^s e^{-x}\\bigr]_\\varepsilon^R + s\\int_\\varepsilon^R x^{s-1}e^{-x}\\,dx.$$\nAs $\\varepsilon \\to 0^+$ the term $\\varepsilon^s e^{-\\varepsilon}$ tends to $0$, because $|\\varepsilon^s| = \\varepsilon^{\\operatorname{Re} s}$ and $\\operatorname{Re} s > 0$. As $R \\to \\infty$ the term $R^s e^{-R}$ tends to $0$. Taking both limits gives $\\Gamma(s+1) = s\\,\\Gamma(s)$. Also $\\Gamma(1) = \\int_0^\\infty e^{-x}\\,dx = 1$, and induction gives $\\Gamma(n) = (n-1)\\Gamma(n-1) = \\dots = (n-1)!\\,\\Gamma(1) = (n-1)!$."
+   },
+   {
+    "type": "section",
+    "title": "Continuing to the left",
+    "body": "The integral only defines $\\Gamma$ for $\\operatorname{Re} s > 0$, but the functional equation shows how to go further. Read backwards it says $\\Gamma(s) = \\Gamma(s+1)/s$. The right side makes sense for $\\operatorname{Re} s > -1$, $s \\ne 0$, and agrees with $\\Gamma$ where both are defined. Repeating this $n$ times,\n$$\\Gamma(s) = \\frac{\\Gamma(s+n)}{s(s+1)\\cdots(s+n-1)},$$\nwhich defines a meromorphic function on $\\operatorname{Re} s > -n$ whose only possible poles are at $0, -1, \\dots, -(n-1)$. Different choices of $n$ agree where they overlap, so by the uniqueness of [[continuation|analytic continuation]] there is exactly one meromorphic function on $\\mathbb C$ that equals the integral when $\\operatorname{Re} s > 0$. We keep calling it $\\Gamma$.\n\nA second construction makes the poles explicit and uses only [[series|power series]]. Split the integral at $x = 1$ and expand $e^{-x} = \\sum_k (-1)^k x^k/k!$ on $[0,1]$; integrating term by term is allowed for $\\operatorname{Re} s > 0$ because the series of absolute values converges. The result is\n$$\\Gamma(s) = \\sum_{k=0}^\\infty \\frac{(-1)^k}{k!\\,(s+k)} + \\int_1^\\infty x^{s-1}e^{-x}\\,dx.$$\nThe integral on the right converges for every complex $s$ and is an entire function of $s$. On any compact set avoiding $0, -1, -2, \\dots$ the $k$-th term of the series is at most a constant times $1/k!$, so the series converges uniformly there and defines a meromorphic function. The right side is therefore the continuation of $\\Gamma$, valid on all of $\\mathbb C$."
+   },
+   {
+    "type": "theorem",
+    "title": "Poles and residues",
+    "body": "$\\Gamma$ is meromorphic on $\\mathbb C$. Its only poles are simple poles at $s = 0, -1, -2, \\dots$, and\n$$\\operatorname{Res}_{s=-k}\\Gamma(s) = \\frac{(-1)^k}{k!} \\qquad (k = 0, 1, 2, \\dots).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Use the series formula. Near $s = -k$ every term except the $k$-th is holomorphic, and so is the integral; the $k$-th term is $\\frac{(-1)^k}{k!}\\cdot\\frac{1}{s+k}$. At points other than $0, -1, -2, \\dots$ everything is holomorphic."
+   },
+   {
+    "type": "section",
+    "title": "The value at 1/2 and the Beta integral",
+    "body": "Substituting $x = u^2$ in the definition gives $\\Gamma(1/2) = \\int_0^\\infty x^{-1/2}e^{-x}\\,dx = 2\\int_0^\\infty e^{-u^2}\\,du = \\sqrt\\pi$, the Gaussian integral. The functional equation then gives $\\Gamma(3/2) = \\tfrac12\\sqrt\\pi$ and $\\Gamma(5/2) = \\tfrac34\\sqrt\\pi$, and going left, $\\Gamma(-1/2) = \\Gamma(1/2)/(-1/2) = -2\\sqrt\\pi$. So the answer to the opening question is $(1/2)! = \\Gamma(3/2) = \\sqrt\\pi/2$.\n\nProducts of gamma values come from a double integral. For $\\operatorname{Re} a > 0$ and $\\operatorname{Re} b > 0$ the Beta integral is $B(a,b) = \\int_0^1 t^{a-1}(1-t)^{b-1}\\,dt$."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler's Beta integral",
+    "body": "For $\\operatorname{Re} a > 0$ and $\\operatorname{Re} b > 0$,\n$$B(a,b) = \\int_0^1 t^{a-1}(1-t)^{b-1}\\,dt = \\frac{\\Gamma(a)\\,\\Gamma(b)}{\\Gamma(a+b)}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Write $\\Gamma(a)\\Gamma(b) = \\int_0^\\infty\\!\\int_0^\\infty x^{a-1}y^{b-1}e^{-(x+y)}\\,dx\\,dy$. The double integral converges absolutely, so we may change variables and use Fubini's theorem. Put $x = ut$, $y = u(1-t)$ with $u > 0$ and $0 < t < 1$. This maps the strip $(0,\\infty)\\times(0,1)$ bijectively onto the open quadrant, with Jacobian determinant of absolute value $u$. Since $x^{a-1}y^{b-1} = u^{a+b-2}t^{a-1}(1-t)^{b-1}$ and $x + y = u$,\n$$\\Gamma(a)\\Gamma(b) = \\int_0^\\infty u^{a+b-1}e^{-u}\\,du\\int_0^1 t^{a-1}(1-t)^{b-1}\\,dt = \\Gamma(a+b)\\,B(a,b).$$"
+   },
+   {
+    "type": "theorem",
+    "title": "Reflection formula",
+    "body": "For every $s \\in \\mathbb C \\setminus \\mathbb Z$,\n$$\\Gamma(s)\\,\\Gamma(1-s) = \\frac{\\pi}{\\sin \\pi s}.$$\nIn particular $\\Gamma$ has no zeros, and $1/\\Gamma$ is an entire function whose zeros are exactly $0, -1, -2, \\dots$."
+   },
+   {
+    "type": "proof",
+    "body": "First let $0 < s < 1$. The Beta integral with $a = s$, $b = 1-s$ gives $\\Gamma(s)\\Gamma(1-s) = \\Gamma(1)B(s, 1-s) = \\int_0^1 t^{s-1}(1-t)^{-s}\\,dt$. The substitution $t = u/(1+u)$, which maps $(0,\\infty)$ onto $(0,1)$ with $dt = du/(1+u)^2$, turns this into\n$$\\int_0^\\infty \\frac{u^{s-1}}{1+u}\\,du.$$\nThis integral equals $\\pi/\\sin\\pi s$. That is a standard [[residues|residue]] calculation, which we only sketch: integrate $z^{s-1}/(1+z)$ around a keyhole contour that hugs the positive real axis, with $\\arg z \\in (0, 2\\pi)$. The small and large circles contribute nothing in the limit because $0 < s < 1$, the two sides of the cut contribute $(1 - e^{2\\pi i s})$ times the integral, and the residue at $z = -1$ is $e^{i\\pi(s-1)} = -e^{i\\pi s}$. So the integral is $-2\\pi i\\,e^{i\\pi s}/(1 - e^{2\\pi i s}) = \\pi/\\sin \\pi s$.\n\nBoth sides of the reflection formula are meromorphic on $\\mathbb C$ and they agree on the interval $(0,1)$, so by the identity theorem they agree everywhere. Since $\\pi/\\sin\\pi s$ never vanishes, $\\Gamma(s) \\ne 0$ for $s \\notin \\mathbb Z$; at the positive integers $\\Gamma(n) = (n-1)! \\ne 0$, and the other integers are poles. So $\\Gamma$ never vanishes. Finally $1/\\Gamma(s) = \\Gamma(1-s)\\sin(\\pi s)/\\pi$: the poles of $\\Gamma(1-s)$ at $s = 1, 2, \\dots$ are cancelled by zeros of $\\sin \\pi s$, so $1/\\Gamma$ is entire, and it vanishes exactly where $\\Gamma$ has poles."
+   },
+   {
+    "type": "section",
+    "title": "How big is Γ?",
+    "body": "For real $x \\to \\infty$, Stirling's formula says\n$$\\Gamma(x) \\sim \\sqrt{2\\pi}\\,x^{x-1/2}e^{-x},$$\nwhich for $x = n+1$ is the familiar approximation of $n!$. More generally $\\log\\Gamma(s) = (s - \\tfrac12)\\log s - s + \\tfrac12\\log 2\\pi + O(1/|s|)$ uniformly in any sector $|\\arg s| \\le \\pi - \\delta$. We omit the proof; it is in the references.\n\nThe consequence used most in number theory concerns vertical lines. For fixed real $\\sigma$ and $|t| \\to \\infty$,\n$$|\\Gamma(\\sigma + it)| \\sim \\sqrt{2\\pi}\\,|t|^{\\sigma-1/2}e^{-\\pi|t|/2}.$$\nSo $\\Gamma$ decays exponentially as one moves up a vertical line. This is what makes contour integrals involving $\\Gamma$ converge so well in the [[mellin|Mellin transform]], and it is how the gamma factor in the functional equation of $\\zeta$ controls the size of $\\zeta$ to the left of the critical strip."
+   },
+   {
+    "type": "example",
+    "title": "Gaussian moments and negative half-integers",
+    "body": "Evaluate $\\int_0^\\infty x^4 e^{-x^2}\\,dx$ and $\\Gamma(-3/2)$.",
+    "solution": "Substitute $x = \\sqrt u$, so $dx = \\tfrac12 u^{-1/2}\\,du$. The integral becomes\n$$\\tfrac12\\int_0^\\infty u^{3/2}e^{-u}\\,du = \\tfrac12\\Gamma(5/2) = \\tfrac12\\cdot\\tfrac32\\cdot\\tfrac12\\sqrt\\pi = \\frac{3\\sqrt\\pi}{8}.$$\nThe same substitution shows $\\int_0^\\infty x^m e^{-x^2}\\,dx = \\tfrac12\\Gamma\\bigl(\\tfrac{m+1}{2}\\bigr)$ for every real $m > -1$.\n\nFor $\\Gamma(-3/2)$ run the recursion backwards: $\\Gamma(-1/2) = \\Gamma(1/2)/(-1/2) = -2\\sqrt\\pi$, and $\\Gamma(-3/2) = \\Gamma(-1/2)/(-3/2) = \\tfrac43\\sqrt\\pi$. In general $\\Gamma$ is positive on $(0,\\infty)$, negative on $(-1,0)$, positive on $(-2,-1)$, and so on: the sign changes at each pole."
+   },
+   {
+    "type": "example",
+    "title": "Trigonometric integrals from the Beta function",
+    "body": "Compute $\\int_0^{\\pi/2}\\sin^6\\theta\\,d\\theta$.",
+    "solution": "In the Beta integral substitute $t = \\sin^2\\theta$, so $1 - t = \\cos^2\\theta$ and $dt = 2\\sin\\theta\\cos\\theta\\,d\\theta$. This gives the general identity\n$$\\int_0^{\\pi/2}\\sin^{2a-1}\\theta\\,\\cos^{2b-1}\\theta\\,d\\theta = \\tfrac12 B(a,b) = \\frac{\\Gamma(a)\\Gamma(b)}{2\\,\\Gamma(a+b)}.$$\nFor $\\sin^6\\theta$ take $2a - 1 = 6$ and $2b - 1 = 0$, that is $a = 7/2$, $b = 1/2$. Since $\\Gamma(7/2) = \\tfrac52\\cdot\\tfrac32\\cdot\\tfrac12\\sqrt\\pi = \\tfrac{15}{8}\\sqrt\\pi$ and $\\Gamma(4) = 6$,\n$$\\int_0^{\\pi/2}\\sin^6\\theta\\,d\\theta = \\frac{\\tfrac{15}{8}\\sqrt\\pi\\cdot\\sqrt\\pi}{2\\cdot 6} = \\frac{15\\pi}{96} = \\frac{5\\pi}{32}.$$"
+   },
+   {
+    "type": "example",
+    "title": "Γ on vertical lines",
+    "body": "Show that for real $t$, $|\\Gamma(\\tfrac12 + it)|^2 = \\dfrac{\\pi}{\\cosh\\pi t}$, and for real $t \\ne 0$, $|\\Gamma(it)|^2 = \\dfrac{\\pi}{t\\sinh\\pi t}$.",
+    "solution": "First, $\\overline{\\Gamma(s)} = \\Gamma(\\bar s)$. For $\\operatorname{Re} s > 0$ this follows by conjugating the integrand, and it extends to all $s$ through the formula $\\Gamma(s) = \\Gamma(s+n)/(s(s+1)\\cdots(s+n-1))$, whose right side has the same property.\n\nSo $|\\Gamma(\\tfrac12+it)|^2 = \\Gamma(\\tfrac12+it)\\Gamma(\\tfrac12-it)$. The reflection formula with $s = \\tfrac12 + it$, so that $1 - s = \\tfrac12 - it$, gives\n$$\\frac{\\pi}{\\sin(\\tfrac\\pi2 + i\\pi t)} = \\frac{\\pi}{\\cos(i\\pi t)} = \\frac{\\pi}{\\cosh \\pi t}.$$\nFor the second formula, $|\\Gamma(it)|^2 = \\Gamma(it)\\Gamma(-it)$, and the functional equation gives $\\Gamma(1 - it) = -it\\,\\Gamma(-it)$. Hence\n$$\\Gamma(it)\\Gamma(-it) = \\frac{\\Gamma(it)\\Gamma(1-it)}{-it} = \\frac{\\pi}{-it\\,\\sin(i\\pi t)} = \\frac{\\pi}{-it\\cdot i\\sinh\\pi t} = \\frac{\\pi}{t\\sinh \\pi t}.$$\nBoth formulas show the decay $|\\Gamma(\\sigma+it)| \\approx \\sqrt{2\\pi}\\,|t|^{\\sigma-1/2}e^{-\\pi|t|/2}$ predicted by Stirling: for instance $\\pi/\\cosh \\pi t \\approx 2\\pi e^{-\\pi|t|}$."
+   },
+   {
+    "type": "example",
+    "title": "Gauss's limit and Wallis's product",
+    "body": "Prove Gauss's formula $\\Gamma(s) = \\lim_{n\\to\\infty}\\dfrac{n!\\,n^s}{s(s+1)\\cdots(s+n)}$ for real $s > 0$, and deduce Wallis's product\n$$\\frac{\\pi}{2} = \\prod_{k=1}^\\infty\\frac{(2k)^2}{(2k-1)(2k+1)}.$$",
+    "solution": "Let $g_n(s) = \\int_0^n x^{s-1}(1 - x/n)^n\\,dx$. Substituting $x = nu$ and using the Beta integral,\n$$g_n(s) = n^s\\int_0^1 u^{s-1}(1-u)^n\\,du = n^s B(s, n+1) = \\frac{n^s\\,\\Gamma(s)\\,n!}{\\Gamma(s+n+1)}.$$\nBy the functional equation $\\Gamma(s+n+1) = (s+n)(s+n-1)\\cdots s\\,\\Gamma(s)$, so $g_n(s) = \\dfrac{n!\\,n^s}{s(s+1)\\cdots(s+n)}$.\n\nOn the other hand, for $0 \\le x \\le n$ we have $0 \\le (1 - x/n)^n \\le e^{-x}$, because $\\log(1 - y) \\le -y$, and $(1 - x/n)^n \\to e^{-x}$ for each fixed $x$. By dominated convergence, with dominating function $x^{s-1}e^{-x}$, we get $g_n(s) \\to \\Gamma(s)$.\n\nNow take $s = \\tfrac12$. Then $s(s+1)\\cdots(s+n) = \\dfrac{1\\cdot 3\\cdots(2n+1)}{2^{n+1}}$, so\n$$\\frac{2^{n+1}\\,n!\\,\\sqrt n}{1\\cdot3\\cdots(2n+1)} \\to \\sqrt\\pi.$$\nSquare this and write $(2^n n!)^2 = \\prod_{k=1}^n(2k)^2$ and $\\bigl(1\\cdot3\\cdots(2n+1)\\bigr)^2 = (2n+1)\\prod_{k=1}^n(2k-1)(2k+1)$. The squared quantity becomes\n$$\\frac{4n}{2n+1}\\prod_{k=1}^n\\frac{(2k)^2}{(2k-1)(2k+1)} \\to \\pi.$$\nSince $4n/(2n+1) \\to 2$, the partial products of Wallis's product tend to $\\pi/2$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $\\Gamma(n) = (n-1)!$, not $n!$. The shift by one is a historical convention (the letter $\\Gamma$ is Legendre's notation); $\\Gamma(n+1) = n!$ is the safe form to remember.\n- The integral formula is valid only for $\\operatorname{Re} s > 0$. For $\\operatorname{Re} s \\le 0$ the integral diverges, and $\\Gamma(s)$ means the continuation, computed for example by $\\Gamma(s) = \\Gamma(s+n)/(s(s+1)\\cdots(s+n-1))$.\n- Matching the factorial at the integers does not single out $\\Gamma$: for any constant $c$, the function $\\Gamma(s)(1 + c\\sin 2\\pi s)$ has the same integer values and the same recursion. On $(0,\\infty)$ the Bohr–Mollerup theorem characterises $\\Gamma$ as the only positive function $f$ with $f(1) = 1$, $f(x+1) = x f(x)$ and $\\log f$ convex.\n- $\\Gamma$ never vanishes. The negative integers are poles of $\\Gamma$ and zeros of $1/\\Gamma$.\n- Stirling's formula is an asymptotic statement about the ratio: $\\Gamma(x)/(\\sqrt{2\\pi}\\,x^{x-1/2}e^{-x}) \\to 1$, while the difference grows without bound."
+   },
+   {
+    "type": "connection",
+    "body": "The [[mellin|Mellin transform]] is built on the integral that defines $\\Gamma$: $\\Gamma(s)$ is the Mellin transform of $e^{-x}$, and Mellin inversion gives $e^{-y} = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Gamma(s)\\,y^{-s}\\,ds$ for $c > 0$, the starting point for smoothed sums over integers.\n\nFor the [[zeta|Riemann zeta function]], the substitution $x = \\pi n^2 t$ in $\\Gamma(s/2)$ turns $\\pi^{-s/2}\\Gamma(s/2)n^{-s}$ into $\\int_0^\\infty e^{-\\pi n^2 t}t^{s/2-1}\\,dt$. Summing over $n$ connects $\\zeta$ with the theta function of [[fourier-poisson|Poisson summation]], and the result is the symmetric [[functional-equation]] for $\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$. The trivial zeros of $\\zeta$ at $-2, -4, \\dots$ are the poles of $\\Gamma(s/2)$ seen from the other side.\n\nOutside number theory, $\\Gamma$ gives the volume $\\pi^{n/2}/\\Gamma(\\tfrac n2 + 1)$ of the unit ball in $\\mathbb R^n$, and the normalising constants of the gamma, chi-squared and Student distributions in [[distributions|probability]]."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\Gamma(n + \\tfrac12) = \\dfrac{(2n)!}{4^n\\,n!}\\sqrt\\pi$ for every integer $n \\ge 0$.\n2. Show that $B(a,b) = \\displaystyle\\int_0^\\infty\\frac{u^{a-1}}{(1+u)^{a+b}}\\,du$ for $a, b > 0$.\n3. Show that $\\displaystyle\\int_0^1(-\\log x)^{s-1}\\,dx = \\Gamma(s)$ for $\\operatorname{Re} s > 0$.\n4. Check that the residues $(-1)^k/k!$ of $\\Gamma$ at $s = -k$ are consistent with the reflection formula, by computing the residue of $\\pi/(\\sin(\\pi s)\\,\\Gamma(1-s))$ at $s = -k$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Stein & Shakarchi, Complex Analysis",
+    "where": "Ch. 6"
+   },
+   {
+    "ref": "Emil Artin, The Gamma Function"
+   },
+   {
+    "ref": "Whittaker & Watson, A Course of Modern Analysis",
+    "where": "Ch. 12"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Gamma(n) = (n-1)! for n = 1..15, and Gamma(1/2) = sqrt(pi), Gamma(3/2) = sqrt(pi)/2, Gamma(5/2) = 3 sqrt(pi)/4, Gamma(7/2) = 15 sqrt(pi)/8, Gamma(-1/2) = -2 sqrt(pi), Gamma(-3/2) = 4 sqrt(pi)/3",
+    "python": "import sympy as sp\nfor n in range(1,16):\n    assert sp.gamma(n) == sp.factorial(n-1)\nh = sp.Rational(1,2)\nassert sp.simplify(sp.gamma(h) - sp.sqrt(sp.pi)) == 0\nassert sp.simplify(sp.gamma(3*h) - sp.sqrt(sp.pi)/2) == 0\nassert sp.simplify(sp.gamma(5*h) - 3*sp.sqrt(sp.pi)/4) == 0\nassert sp.simplify(sp.gamma(7*h) - 15*sp.sqrt(sp.pi)/8) == 0\nassert sp.simplify(sp.gamma(-h) + 2*sp.sqrt(sp.pi)) == 0\nassert sp.simplify(sp.gamma(-3*h) - 4*sp.sqrt(sp.pi)/3) == 0"
+   },
+   {
+    "claim": "The series-plus-integral formula for Gamma agrees with Gamma at s = 0.7, -2.3 and 1.5+2i, and the residue of Gamma at -k is (-1)^k/k! for k = 0..6",
+    "python": "from mpmath import mp, gamma, nsum, quad, exp, inf, factorial, mpf, mpc\nmp.dps = 30\ndef G(s):\n    return nsum(lambda k: (-1)**int(k)/(factorial(k)*(s+k)), [0, inf]) + quad(lambda x: x**(s-1)*exp(-x), [1, inf])\nfor s in [mpf('0.7'), mpf('-2.3'), mpc(1.5, 2)]:\n    assert abs(G(s) - gamma(s)) < mpf(10)**-20\nimport sympy as sp\ns = sp.symbols('s')\nfor k in range(7):\n    assert sp.residue(sp.gamma(s), s, -k) == sp.Integer(-1)**k/sp.factorial(k)"
+   },
+   {
+    "claim": "int_0^oo x^4 e^{-x^2} dx = 3 sqrt(pi)/8 and int_0^{pi/2} sin^6 = 5 pi/32",
+    "python": "import sympy as sp\nx, th = sp.symbols('x theta')\nassert sp.simplify(sp.integrate(x**4*sp.exp(-x**2), (x, 0, sp.oo)) - 3*sp.sqrt(sp.pi)/8) == 0\nassert sp.simplify(sp.integrate(sp.sin(th)**6, (th, 0, sp.pi/2)) - 5*sp.pi/32) == 0\nassert sp.simplify(sp.gamma(sp.Rational(7,2))*sp.gamma(sp.Rational(1,2))/(2*sp.gamma(4)) - 5*sp.pi/32) == 0"
+   },
+   {
+    "claim": "Beta integral B(a,b) = Gamma(a)Gamma(b)/Gamma(a+b) at (2.5,1.3) and (0.4,0.7); int_0^oo u^{s-1}/(1+u) du = pi/sin(pi s) at s = 0.3",
+    "python": "from mpmath import mp, quad, gamma, pi, sin, mpf, inf\nmp.dps = 40\nfor a, b in [(mpf('2.5'), mpf('1.3')), (mpf('0.4'), mpf('0.7'))]:\n    B = quad(lambda t: t**(a-1)*(1-t)**(b-1), [0, mpf(1)/2, 1])\n    assert abs(B - gamma(a)*gamma(b)/gamma(a+b)) < mpf(10)**-12\ns = mpf('0.3')\nI = quad(lambda u: u**(s-1)/(1+u), [0, 1, inf])\nassert abs(I - pi/sin(pi*s)) < mpf(10)**-12"
+   },
+   {
+    "claim": "Reflection formula at s = 0.3 and s = 0.25+1.7i; |Gamma(1/2+2i)|^2 = pi/cosh(2pi); |Gamma(1.5i)|^2 = pi/(1.5 sinh(1.5pi))",
+    "python": "from mpmath import mp, gamma, pi, sin, cosh, sinh, mpf, mpc\nmp.dps = 30\nfor s in [mpf('0.3'), mpc('0.25', '1.7')]:\n    assert abs(gamma(s)*gamma(1-s) - pi/sin(pi*s)) < mpf(10)**-25\nassert abs(abs(gamma(mpc(0.5, 2)))**2 - pi/cosh(2*pi)) < mpf(10)**-25\nt = mpf('1.5')\nassert abs(abs(gamma(mpc(0, t)))**2 - pi/(t*sinh(pi*t))) < mpf(10)**-25"
+   },
+   {
+    "claim": "Stirling: Gamma(200)/(sqrt(2pi) 200^{199.5} e^{-200}) is within 1/2000 of 1; |Gamma(0.3+100i)| / (sqrt(2pi) 100^{-0.2} e^{-50pi}) is within 0.01 of 1",
+    "python": "from mpmath import mp, gamma, sqrt, pi, exp, mpf, mpc\nmp.dps = 30\nx = mpf(200)\nr = gamma(x)/(sqrt(2*pi)*x**(x-0.5)*exp(-x))\nassert abs(r - 1) < mpf(1)/2000\nr2 = abs(gamma(mpc(0.3, 100)))/(sqrt(2*pi)*mpf(100)**(-0.2)*exp(-50*pi))\nassert abs(r2 - 1) < 0.01"
+   },
+   {
+    "claim": "Gauss's product at s = 1/2 with n = 200000 is within 1e-4 of sqrt(pi); the Wallis partial product with 200000 factors is within 1e-4 of pi/2",
+    "python": "import math\nn = 200000\ns = 0.5\nlg = math.lgamma(n+1) + s*math.log(n) - sum(math.log(s+k) for k in range(n+1))\nassert abs(math.exp(lg) - math.sqrt(math.pi)) < 1e-4\nw = 0.0\nfor k in range(1, n+1):\n    w += math.log((2*k)**2/((2*k-1)*(2*k+1)))\nassert abs(math.exp(w) - math.pi/2) < 1e-4"
+   },
+   {
+    "claim": "Gamma(s)(1 + c sin 2 pi s) satisfies f(s+1) = s f(s); unit ball volume pi^{n/2}/Gamma(n/2+1) equals 4pi/3 for n = 3 and pi for n = 2",
+    "python": "import sympy as sp\ns, c = sp.symbols('s c')\nf = sp.gamma(s)*(1 + c*sp.sin(2*sp.pi*s))\nassert sp.simplify(sp.expand_func(f.subs(s, s+1) - s*f)) == 0\nassert sp.simplify(sp.pi**sp.Rational(3,2)/sp.gamma(sp.Rational(5,2)) - 4*sp.pi/3) == 0\nassert sp.simplify(sp.pi/sp.gamma(2) - sp.pi) == 0"
+   },
+   {
+    "claim": "Gauss product algebra at s = 1/2: s(s+1)...(s+n) = 1*3*...*(2n+1)/2^{n+1}, (1*3*...*(2n+1))^2 = (2n+1) prod_{k<=n}(2k-1)(2k+1), and the squared quantity equals 4n/(2n+1) times the Wallis partial product (n = 1..30); Jacobian of (u,t) -> (ut, u(1-t)) is -u",
+    "python": "from fractions import Fraction as F\nimport math, sympy as sp\nfor n in range(1, 31):\n    odd = math.prod(range(1, 2*n+2, 2))\n    assert math.prod(F(1, 2) + k for k in range(n+1)) == F(odd, 2**(n+1))\n    assert odd**2 == (2*n+1)*math.prod((2*k-1)*(2*k+1) for k in range(1, n+1))\n    lhs = F(2**(n+1)*math.factorial(n), odd)**2*n\n    W = math.prod(F((2*k)**2, (2*k-1)*(2*k+1)) for k in range(1, n+1))\n    assert lhs == F(4*n, 2*n+1)*W\nu, t = sp.symbols('u t')\nJ = sp.Matrix([u*t, u*(1-t)]).jacobian([u, t])\nassert sp.simplify(J.det() + u) == 0"
+   },
+   {
+    "claim": "Exercise identities: Gamma(n+1/2) = (2n)! sqrt(pi)/(4^n n!) for n = 0..12; residue of pi/(sin(pi s) Gamma(1-s)) at s = -k is (-1)^k/k! for k = 0..5; int_0^1 (-log x)^{s-1} dx = Gamma(s) at s = 2.7",
+    "python": "import sympy as sp\nfrom mpmath import mp, quad, log, gamma, mpf\nfor n in range(13):\n    assert sp.simplify(sp.gamma(n + sp.Rational(1, 2)) - sp.factorial(2*n)*sp.sqrt(sp.pi)/(4**n*sp.factorial(n))) == 0\ns = sp.symbols('s')\nfor k in range(6):\n    r = sp.limit((s + k)*sp.pi/(sp.sin(sp.pi*s)*sp.gamma(1 - s)), s, -k)\n    assert sp.simplify(r - sp.Integer(-1)**k/sp.factorial(k)) == 0\nmp.dps = 25\na = mpf('2.7')\nassert abs(quad(lambda x: (-log(x))**(a-1), [0, 1]) - gamma(a)) < mpf(10)**-15"
+   }
+  ]
+ },
+ {
+  "id": "fourier-poisson",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Suppose you want the sum of $f(n)$ over all integers $n$, and $f$ is spread out, so the sum converges slowly. Poisson summation replaces it by the sum of the Fourier transform $\\hat f$ over the integers, and a spread-out function has a concentrated transform. The two sides can look completely different, and the identity between them is one of the most useful tools in analysis and number theory.\n\nIts most famous application is Riemann's. Applied to a Gaussian, Poisson summation gives the transformation law $\\theta(1/t) = \\sqrt t\\,\\theta(t)$ for the theta function $\\theta(t) = \\sum_n e^{-\\pi n^2 t}$, and from that law Riemann derived the functional equation of the zeta function."
+   },
+   {
+    "type": "section",
+    "title": "Fourier series in brief",
+    "body": "A function $g:\\mathbb R \\to \\mathbb C$ with period 1 can often be written as a superposition of the waves $e^{2\\pi i kx}$, $k \\in \\mathbb Z$ (see [[complex-numbers]] and [[trig]] for $e^{i\\phi} = \\cos\\phi + i\\sin\\phi$). The key fact is orthogonality:\n$$\\int_0^1 e^{2\\pi i jx}\\,\\overline{e^{2\\pi i kx}}\\,dx = \\int_0^1 e^{2\\pi i (j-k)x}\\,dx = \\begin{cases} 1 & j = k,\\\\ 0 & j \\ne k.\\end{cases}$$\nSo if $g(x) = \\sum_k c_k e^{2\\pi i kx}$ with $\\sum_k|c_k| < \\infty$, multiplying by $e^{-2\\pi i kx}$ and integrating term by term recovers the $k$-th Fourier coefficient\n$$c_k = \\hat g(k) = \\int_0^1 g(x)\\,e^{-2\\pi i kx}\\,dx.$$\nThe converse question, whether $g$ really equals its Fourier series, needs hypotheses. We use one standard fact without proof: a continuous 1-periodic function whose Fourier coefficients satisfy $\\sum_k|\\hat g(k)| < \\infty$ equals the sum of its Fourier series at every point. (It is equivalent to the statement that a continuous periodic function with all Fourier coefficients zero is identically zero.)\n\nSmoothness makes the coefficients small. If $g$ is periodic with a continuous second derivative, integrating by parts twice gives $\\hat g(k) = -\\widehat{g''}(k)/(4\\pi^2k^2)$ for $k \\ne 0$, so $|\\hat g(k)| \\le C/k^2$ and the fact applies."
+   },
+   {
+    "type": "definition",
+    "title": "Fourier transform",
+    "body": "For an integrable function $f:\\mathbb R\\to\\mathbb C$, the Fourier transform is\n$$\\hat f(\\xi) = \\int_{-\\infty}^{\\infty} f(x)\\,e^{-2\\pi i x\\xi}\\,dx \\qquad (\\xi \\in \\mathbb R).$$\nIt measures how much of the frequency $\\xi$ is present in $f$. With $2\\pi$ placed in the exponent, the formulas below carry no stray constants."
+   },
+   {
+    "type": "section",
+    "title": "Rules of the transform, and the Gaussian",
+    "body": "Three rules follow by substituting in the [[riemann-integral|integral]]:\n- translation: $f(x - a)$ has transform $e^{-2\\pi i a\\xi}\\hat f(\\xi)$;\n- modulation: $e^{2\\pi i bx}f(x)$ has transform $\\hat f(\\xi - b)$;\n- dilation: for $\\lambda > 0$, $f(\\lambda x)$ has transform $\\lambda^{-1}\\hat f(\\xi/\\lambda)$.\n\nThe dilation rule is the uncertainty principle in miniature: squeezing $f$ by a factor $\\lambda$ stretches $\\hat f$ by the same factor.\n\nThe Gaussian $G(x) = e^{-\\pi x^2}$ is its own transform. Let $F = \\hat G$. Differentiating under the integral sign, which the rapid decay of $G$ allows, and using $G'(x) = -2\\pi x\\,G(x)$,\n$$F'(\\xi) = \\int_{-\\infty}^\\infty(-2\\pi i x)\\,G(x)\\,e^{-2\\pi i x\\xi}\\,dx = i\\int_{-\\infty}^\\infty G'(x)\\,e^{-2\\pi i x\\xi}\\,dx.$$\nIntegrating by parts (the boundary terms vanish) turns the last integral into $2\\pi i\\xi\\,F(\\xi)$, so $F'(\\xi) = -2\\pi\\xi\\,F(\\xi)$. This is the differential equation that $G$ itself satisfies, so $F(\\xi) = F(0)e^{-\\pi\\xi^2}$, and $F(0) = \\int e^{-\\pi x^2}\\,dx = 1$. Combining with the dilation rule ($\\lambda = \\sqrt t$): for $t > 0$, the function $e^{-\\pi t x^2}$ has transform $t^{-1/2}e^{-\\pi\\xi^2/t}$. A narrow Gaussian has a wide transform, and vice versa."
+   },
+   {
+    "type": "theorem",
+    "title": "Poisson summation formula",
+    "body": "Let $f:\\mathbb R\\to\\mathbb C$ be continuous, and suppose there is a constant $C$ with $|f(x)| \\le C(1+|x|)^{-2}$ and $|\\hat f(\\xi)| \\le C(1+|\\xi|)^{-2}$ for all real $x$ and $\\xi$. Then for every real $x$\n$$\\sum_{n\\in\\mathbb Z} f(x+n) = \\sum_{k\\in\\mathbb Z}\\hat f(k)\\,e^{2\\pi i kx},$$\nand in particular\n$$\\sum_{n\\in\\mathbb Z} f(n) = \\sum_{k\\in\\mathbb Z}\\hat f(k).$$\nBoth series converge absolutely."
+   },
+   {
+    "type": "proof",
+    "body": "Let $P(x) = \\sum_n f(x+n)$, the periodisation of $f$. By the decay of $f$ the series converges absolutely and uniformly for $x \\in [0,1]$, and $P$ has period 1, so $P$ is continuous and periodic. Its Fourier coefficients are\n$$\\hat P(k) = \\int_0^1\\sum_n f(x+n)\\,e^{-2\\pi i kx}\\,dx = \\sum_n\\int_n^{n+1} f(y)\\,e^{-2\\pi i ky}\\,dy = \\int_{-\\infty}^\\infty f(y)\\,e^{-2\\pi i ky}\\,dy = \\hat f(k).$$\nHere we swapped sum and integral (uniform convergence), substituted $y = x + n$, and used $e^{-2\\pi i k(y-n)} = e^{-2\\pi i ky}$. By hypothesis $\\sum_k|\\hat f(k)| < \\infty$, so by the fact quoted above $P$ equals its Fourier series: $P(x) = \\sum_k\\hat f(k)\\,e^{2\\pi i kx}$. Setting $x = 0$ gives the second formula."
+   },
+   {
+    "type": "section",
+    "title": "What the proof says",
+    "body": "The proof is worth remembering for its idea. Wrapping $f$ around a circle of length 1 produces a periodic function, and the Fourier coefficients of that periodic function are the values of $\\hat f$ at the integers. Summing a function over the lattice $\\mathbb Z$ and summing its transform over the same lattice are two descriptions of one object."
+   },
+   {
+    "type": "theorem",
+    "title": "Transformation law of θ",
+    "body": "For $t > 0$ let $\\theta(t) = \\sum_{n\\in\\mathbb Z} e^{-\\pi n^2 t}$. Then\n$$\\theta(1/t) = \\sqrt t\\,\\theta(t).$$"
+   },
+   {
+    "type": "proof",
+    "body": "Apply Poisson summation to $f(x) = e^{-\\pi t x^2}$. By the previous section $\\hat f(\\xi) = t^{-1/2}e^{-\\pi\\xi^2/t}$, and both $f$ and $\\hat f$ decay faster than any power, so the theorem applies:\n$$\\theta(t) = \\sum_n f(n) = \\sum_k t^{-1/2}e^{-\\pi k^2/t} = t^{-1/2}\\,\\theta(1/t).$$\nMultiply by $\\sqrt t$."
+   },
+   {
+    "type": "section",
+    "title": "What the theta relation says",
+    "body": "As $t \\to 0^+$ the terms $e^{-\\pi n^2 t}$ decay slowly and $\\theta(t)$ is a long sum of numbers close to 1. The transformation law evaluates it almost exactly:\n$$\\theta(t) = t^{-1/2}\\,\\theta(1/t) = t^{-1/2}\\bigl(1 + 2e^{-\\pi/t} + 2e^{-4\\pi/t} + \\cdots\\bigr).$$\nSo $\\theta(t)$ is $t^{-1/2}$ up to an error that is exponentially small in $1/t$. This is the general pattern: when $f$ is spread out, $\\hat f$ is concentrated near $0$, and one side of Poisson summation is dominated by a single term.\n\nRiemann's use of this relation, explained in [[functional-equation]], passes through the [[mellin|Mellin transform]]: $\\int_0^\\infty\\tfrac12(\\theta(t) - 1)\\,t^{s/2-1}\\,dt = \\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$, and the symmetry $t \\leftrightarrow 1/t$ of $\\theta$ becomes the symmetry $s \\leftrightarrow 1-s$ of the completed zeta function."
+   },
+   {
+    "type": "section",
+    "title": "The finite version",
+    "body": "The same ideas work on the finite group $\\mathbb Z/N\\mathbb Z$, where all sums are finite and convergence never arises. Write $e(x) = e^{2\\pi i x}$. Orthogonality is now the geometric series identity\n$$\\sum_{n=0}^{N-1} e\\!\\left(\\frac{an}{N}\\right) = \\begin{cases} N & \\text{if } N \\mid a,\\\\ 0 & \\text{if } N\\nmid a,\\end{cases}$$\nand the discrete transform $\\hat f(a) = \\sum_{n=0}^{N-1} f(n)\\,e(-an/N)$ satisfies the inversion formula $f(n) = \\frac1N\\sum_{a=0}^{N-1}\\hat f(a)\\,e(an/N)$. The first identity detects the congruence $a \\equiv 0 \\pmod N$ by an exponential sum; this is the starting point of the [[circle-method|circle method]] and of Fourier-analytic [[additive-combinatorics|additive combinatorics]]."
+   },
+   {
+    "type": "example",
+    "title": "A sum that is almost exactly 10",
+    "body": "Show that $\\sum_{n\\in\\mathbb Z} e^{-\\pi n^2/100}$ differs from $10$ by less than $10^{-100}$.",
+    "solution": "The sum is $\\theta(1/100)$. By the transformation law with $t = 100$,\n$$\\theta(1/100) = \\sqrt{100}\\,\\theta(100) = 10\\Bigl(1 + 2\\sum_{n\\ge1}e^{-100\\pi n^2}\\Bigr).$$\nSince $n^2 \\ge n$, the inner sum is at most $\\sum_{n\\ge1}e^{-100\\pi n} = e^{-100\\pi}/(1 - e^{-100\\pi}) < 1.5\\,e^{-100\\pi}$. So the sum equals $10 + \\varepsilon$ with $0 < \\varepsilon < 30\\,e^{-100\\pi}$. Finally $e^{-100\\pi} = 10^{-100\\pi/\\ln 10} < 10^{-136}$, so $\\varepsilon < 3\\cdot10^{-135}$.\n\nSumming directly, the terms $e^{-\\pi n^2/100}$ only drop below $10^{-15}$ once $|n| \\ge 34$, so dozens of terms are needed for ordinary floating-point accuracy, and the closeness to 10 is invisible from the series itself."
+   },
+   {
+    "type": "example",
+    "title": "A partial-fraction identity and the Basel problem",
+    "body": "Let $a > 0$. Prove that\n$$\\sum_{n\\in\\mathbb Z}\\frac{1}{n^2 + a^2} = \\frac{\\pi}{a}\\coth(\\pi a),$$\nand deduce that $\\sum_{n\\ge1} 1/n^2 = \\pi^2/6$.",
+    "solution": "Let $g(x) = e^{-2\\pi a|x|}$. Its transform is\n$$\\hat g(\\xi) = 2\\int_0^\\infty e^{-2\\pi a x}\\cos(2\\pi x\\xi)\\,dx = \\frac{2\\cdot 2\\pi a}{(2\\pi a)^2 + (2\\pi\\xi)^2} = \\frac{a}{\\pi(a^2+\\xi^2)},$$\nusing $\\int_0^\\infty e^{-\\alpha x}\\cos(\\beta x)\\,dx = \\alpha/(\\alpha^2+\\beta^2)$ for $\\alpha > 0$. The function $g$ is continuous and decays exponentially, and $\\hat g(\\xi) \\le C(1+|\\xi|)^{-2}$, so Poisson summation applies:\n$$\\sum_{n\\in\\mathbb Z}e^{-2\\pi a|n|} = \\frac{a}{\\pi}\\sum_{k\\in\\mathbb Z}\\frac{1}{a^2+k^2}.$$\nWith $q = e^{-2\\pi a}$, the left side is $1 + 2q/(1-q) = (1+q)/(1-q) = \\coth(\\pi a)$. Rearranging gives the identity.\n\nFor the Basel problem, separate the term $k = 0$:\n$$2\\sum_{k\\ge1}\\frac{1}{k^2+a^2} = \\frac{\\pi}{a}\\coth(\\pi a) - \\frac{1}{a^2}.$$\nUsing $\\coth y = \\frac1y + \\frac y3 + O(y^3)$ as $y \\to 0$, the right side equals $\\frac{\\pi^2}{3} + O(a^2)$. On the left, each term increases to $1/k^2$ as $a \\downarrow 0$, so by monotone convergence the left side tends to $2\\sum_{k\\ge1}1/k^2$. Hence $\\sum_{k\\ge1}1/k^2 = \\pi^2/6$."
+   },
+   {
+    "type": "example",
+    "title": "When the hypotheses fail",
+    "body": "Test Poisson summation on the indicator function of $[0,1]$, that is $f(x) = 1$ for $0 \\le x \\le 1$ and $f(x) = 0$ otherwise. What goes wrong, and how is it repaired?",
+    "solution": "On the left, $\\sum_n f(n) = f(0) + f(1) = 2$. On the right, $\\hat f(0) = \\int_0^1 dx = 1$ and, for $k \\ne 0$, $\\hat f(k) = \\int_0^1 e^{-2\\pi i kx}\\,dx = 0$. So $\\sum_k\\hat f(k) = 1 \\ne 2$.\n\nThe theorem does not apply: $f$ is discontinuous and $\\hat f(\\xi) = (1 - e^{-2\\pi i\\xi})/(2\\pi i\\xi)$ decays only like $1/|\\xi|$. Look at the periodisation $P(x) = \\sum_n f(x+n)$: it equals $1$ for every non-integer $x$ and $2$ at the integers. Fourier coefficients are integrals and cannot see the values at single points, so the Fourier series of $P$ is the constant 1.\n\nThe standard repair is to assign the average of the one-sided limits at each jump: with $f(0) = f(1) = \\tfrac12$, the left side becomes $1$ and the formula holds. For functions with jumps, this averaging convention is part of the correct statement."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Conventions vary: books use $e^{-ix\\xi}$, $e^{-2\\pi i x\\xi}$, with or without a factor $1/\\sqrt{2\\pi}$. Under another convention $e^{-\\pi x^2}$ is no longer its own transform and Poisson summation acquires constants. Check the convention before quoting a formula.\n- Poisson summation needs hypotheses: decay of both $f$ and $\\hat f$, or a careful treatment of discontinuities as in the last example. Convergence of both sides alone does not guarantee that they are equal.\n- The theta law is $\\theta(1/t) = \\sqrt t\\,\\theta(t)$, not $\\theta(1/t) = \\theta(t)/\\sqrt t$. Test at an extreme value: for large $t$, $\\theta(t)$ is close to 1, while $\\theta(1/t)$ is large, about $\\sqrt t$.\n- A shift on one side becomes a phase on the other: $\\sum_n f(x+n)$ corresponds to $\\sum_k\\hat f(k)e^{2\\pi i kx}$, not to a shifted sum of $\\hat f$."
+   },
+   {
+    "type": "connection",
+    "body": "- [[functional-equation]]: Riemann's proof of the functional equation of $\\zeta$ is the theta law fed through a Mellin transform. Twisting the theta function by a Dirichlet character gives the functional equations of [[l-functions|Dirichlet L-functions]], with a [[gauss-sums|Gauss sum]] arising as the transform of the character.\n- [[large-sieve]]: the large sieve inequality bounds a trigonometric polynomial $\\sum a_n e(n\\alpha)$ at well-spaced points $\\alpha$; its proofs rest on the duality between a sequence and its transform.\n- [[exponential-sums]] and [[circle-method]]: by orthogonality on $\\mathbb R/\\mathbb Z$, the number of representations $N = n_1 + \\dots + n_k$ is $\\int_0^1 S(\\alpha)^k e(-N\\alpha)\\,d\\alpha$ for a suitable exponential sum $S$. Poisson summation also converts a long exponential sum into a shorter dual sum, a basic step in estimating such sums.\n- [[additive-combinatorics]]: Roth's theorem on three-term arithmetic progressions and many sumset estimates are proved with Fourier analysis on $\\mathbb Z/N\\mathbb Z$.\n- [[navier-stokes]]: Fourier introduced his trigonometric series in the Théorie analytique de la chaleur (1822) to solve the heat equation. In fluid mechanics the transform turns derivatives into multiplication by $2\\pi i\\xi$, which is how energy estimates and scaling arguments for the Navier–Stokes equations are organised."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Verify the translation, modulation and dilation rules from the definition of $\\hat f$.\n2. Apply Poisson summation to $f(x) = e^{-\\pi t(x+a)^2}$ to show that $\\sum_n e^{-\\pi t(n+a)^2} = t^{-1/2}\\sum_k e^{-\\pi k^2/t}e^{2\\pi i ka}$ for $t > 0$ and real $a$.\n3. Compute $\\sum_{n\\in\\mathbb Z}1/(n^2+1)$ to six decimal places in two ways: by direct summation and from the identity in the second example. Roughly how many terms does the direct sum need?\n4. Show that $\\theta(t) - t^{-1/2}$ tends to $0$ faster than any power of $t$ as $t \\to 0^+$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Stein & Shakarchi, Fourier Analysis: An Introduction",
+    "where": "Ch. 5"
+   },
+   {
+    "ref": "T. W. Körner, Fourier Analysis"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "theta(1/t) = sqrt(t) theta(t) at t = 0.37 and t = 2.5",
+    "python": "from mpmath import mp, exp, pi, sqrt, mpf\nmp.dps = 30\ndef theta(t):\n    return 1 + 2*sum(exp(-pi*n*n*t) for n in range(1, 400))\nfor t in [mpf('0.37'), mpf('2.5')]:\n    assert abs(theta(1/t) - sqrt(t)*theta(t)) < mpf(10)**-25"
+   },
+   {
+    "claim": "The Fourier transform of e^{-pi x^2} at xi = 0.7 is e^{-pi 0.49}; e^{-pi t x^2} has transform t^{-1/2} e^{-pi xi^2/t} (t = 3, xi = 0.4)",
+    "python": "from mpmath import mp, quad, exp, cos, pi, sqrt, mpf, inf\nmp.dps = 25\ndef ft(f, xi):\n    return 2*quad(lambda x: f(x)*cos(2*pi*x*xi), [0, inf])\nassert abs(ft(lambda x: exp(-pi*x*x), mpf('0.7')) - exp(-pi*mpf('0.49'))) < mpf(10)**-15\nt = mpf(3); xi = mpf('0.4')\nassert abs(ft(lambda x: exp(-pi*t*x*x), xi) - exp(-pi*xi*xi/t)/sqrt(t)) < mpf(10)**-15"
+   },
+   {
+    "claim": "sum_n e^{-pi n^2/100} = 10 + eps with 0 < eps < 3e-135; e^{-100 pi} < 1e-136; terms drop below 1e-15 exactly from |n| = 34",
+    "python": "from mpmath import mp, exp, pi, mpf\nimport math\nmp.dps = 220\nS = 1 + 2*sum(exp(-pi*mpf(n)**2/100) for n in range(1, 400))\neps = S - 10\nassert eps > 0 and eps < mpf(3)*mpf(10)**-135\nassert exp(-100*pi) < mpf(10)**-136\nassert math.exp(-math.pi*33**2/100) > 1e-15 and math.exp(-math.pi*34**2/100) < 1e-15"
+   },
+   {
+    "claim": "sum_{n in Z} 1/(n^2+a^2) = (pi/a) coth(pi a) at a = 0.5 and a = 1; transform of e^{-2 pi a|x|} is a/(pi(a^2+xi^2)) at a = 0.5, xi = 0.3; (pi/a)coth(pi a) - 1/a^2 -> pi^2/3",
+    "python": "from mpmath import mp, nsum, coth, pi, mpf, inf, quad, exp, cos\nmp.dps = 30\nfor a in [mpf('0.5'), mpf(1)]:\n    S = nsum(lambda n: 1/(n*n + a*a), [-inf, inf])\n    assert abs(S - pi/a*coth(pi*a)) < mpf(10)**-20\na = mpf('0.5'); xi = mpf('0.3')\ng = 2*quad(lambda x: exp(-2*pi*a*x)*cos(2*pi*x*xi), [0, inf])\nassert abs(g - a/(pi*(a*a + xi*xi))) < mpf(10)**-15\na = mpf(10)**-6\nassert abs(pi/a*coth(pi*a) - 1/a**2 - pi**2/3) < mpf(10)**-9\nassert abs(nsum(lambda k: 1/k**2, [1, inf]) - pi**2/6) < mpf(10)**-20"
+   },
+   {
+    "claim": "Indicator of [0,1]: hat f(k) = 0 for k = 1..6 and -1..-6, hat f(0) = 1, and the Fourier transform equals (1 - e^{-2 pi i xi})/(2 pi i xi)",
+    "python": "import sympy as sp\nx, xi = sp.symbols('x xi', real=True)\nfor k in list(range(1, 7)) + list(range(-6, 0)):\n    assert sp.simplify(sp.integrate(sp.exp(-2*sp.pi*sp.I*k*x), (x, 0, 1))) == 0\nassert sp.integrate(1, (x, 0, 1)) == 1\nF = sp.integrate(sp.exp(-2*sp.pi*sp.I*x*xi), (x, 0, 1))\nval = complex(sp.N(F.subs(xi, sp.Rational(3, 7))))\nexpected = complex(sp.N(((1 - sp.exp(-2*sp.pi*sp.I*xi))/(2*sp.pi*sp.I*xi)).subs(xi, sp.Rational(3, 7))))\nassert abs(val - expected) < 1e-12"
+   },
+   {
+    "claim": "Finite orthogonality: sum_{n=0}^{N-1} e(an/N) = N if N | a and 0 otherwise (N = 12, a = -30..30); discrete inversion for a random vector",
+    "python": "import cmath, random\nN = 12\nfor a in range(-30, 31):\n    S = sum(cmath.exp(2j*cmath.pi*a*n/N) for n in range(N))\n    assert abs(S - (N if a % N == 0 else 0)) < 1e-9\nrandom.seed(1)\nf = [complex(random.random(), random.random()) for _ in range(N)]\nfh = [sum(f[n]*cmath.exp(-2j*cmath.pi*a*n/N) for n in range(N)) for a in range(N)]\nfor n in range(N):\n    assert abs(sum(fh[a]*cmath.exp(2j*cmath.pi*a*n/N) for a in range(N))/N - f[n]) < 1e-9"
+   },
+   {
+    "claim": "Poisson with a shift: sum_n e^{-pi t (n+a)^2} = t^{-1/2} sum_k e^{-pi k^2/t} e^{2 pi i k a} at t = 0.8, a = 0.3",
+    "python": "from mpmath import mp, exp, pi, sqrt, mpf, mpc\nmp.dps = 30\nt = mpf('0.8'); a = mpf('0.3')\nL = sum(exp(-pi*t*(n + a)**2) for n in range(-200, 201))\nR = sum(exp(-pi*k*k/t)*exp(2j*pi*k*a) for k in range(-200, 201))/sqrt(t)\nassert abs(L - R) < mpf(10)**-25"
+   },
+   {
+    "claim": "With q = e^{-2 pi a}: sum_n e^{-2 pi a|n|} = (1+q)/(1-q) = coth(pi a) at a = 0.37; theta(t) - t^{-1/2} = 2 t^{-1/2} sum_{n>=1} e^{-pi n^2/t} at t = 0.05",
+    "python": "from mpmath import mp, exp, pi, coth, sqrt, mpf\nmp.dps = 30\na = mpf('0.37'); q = exp(-2*pi*a)\nS = 1 + 2*sum(exp(-2*pi*a*n) for n in range(1, 400))\nassert abs(S - (1+q)/(1-q)) < mpf(10)**-25 and abs((1+q)/(1-q) - coth(pi*a)) < mpf(10)**-25\nt = mpf('0.05')\nth = 1 + 2*sum(exp(-pi*n*n*t) for n in range(1, 200))\nassert abs(th - 1/sqrt(t) - 2/sqrt(t)*sum(exp(-pi*n*n/t) for n in range(1, 5))) < mpf(10)**-25"
+   }
+  ]
+ },
+ {
+  "id": "mellin",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "A Dirichlet series $F(s) = \\sum a_n n^{-s}$ packages arithmetic information into a function of a complex variable. The questions we care about, however, concern partial sums: how many primes there are up to $x$, or how large $\\sum_{n\\le x} d(n)$ is. The Mellin transform is the dictionary between functions of $x$ on $(0,\\infty)$ and functions of $s$ in a vertical strip, and Perron's formula is its most important entry: it recovers $\\sum_{n \\le x} a_n$ from $F$ by integrating $F(s)x^s/s$ up a vertical line.\n\nOnce a partial sum is a contour integral, the contour can be moved to the left, and every pole crossed leaves a term behind. This is the mechanism behind the prime number theorem and the explicit formula."
+   },
+   {
+    "type": "definition",
+    "title": "Mellin transform",
+    "body": "For a function $f$ on $(0,\\infty)$, its Mellin transform is\n$$\\mathcal Mf(s) = \\int_0^\\infty f(x)\\,x^{s-1}\\,dx,$$\ndefined for those complex $s$ where the integral converges absolutely. Since $|x^{s-1}| = x^{\\operatorname{Re}s - 1}$, this set is a vertical strip $\\alpha < \\operatorname{Re} s < \\beta$ (possibly a half-plane, possibly including an edge line), whose edges are fixed by the behaviour of $f$ near $0$ and near $\\infty$. A Mellin transform is always a function together with its strip."
+   },
+   {
+    "type": "section",
+    "title": "First examples and rules",
+    "body": "Four basic examples:\n- $f(x) = e^{-x}$: $\\mathcal Mf(s) = \\Gamma(s)$ for $\\operatorname{Re} s > 0$. This is the definition of [[gamma|the gamma function]].\n- $f(x) = 1/(1+x)$: $\\mathcal Mf(s) = \\pi/\\sin\\pi s$ for $0 < \\operatorname{Re} s < 1$ (Example 1).\n- $f(x) = 1$ on $(0,1)$ and $0$ on $[1,\\infty)$: $\\mathcal Mf(s) = \\int_0^1 x^{s-1}\\,dx = 1/s$ for $\\operatorname{Re} s > 0$.\n- $f(x) = 0$ on $(0,1]$ and $-1$ on $(1,\\infty)$: $\\mathcal Mf(s) = -\\int_1^\\infty x^{s-1}\\,dx = 1/s$ for $\\operatorname{Re} s < 0$.\n\nThe last two have the same formula $1/s$ in different strips. The strip is part of the data.\n\nTwo rules are used constantly. Scaling: for $a > 0$, $f(ax)$ has transform $a^{-s}\\mathcal Mf(s)$. Summation: if $\\sum_n|a_n|n^{-\\sigma} < \\infty$ and $\\int_0^\\infty|f(x)|x^{\\sigma-1}\\,dx < \\infty$, then on the line $\\operatorname{Re} s = \\sigma$ the function $\\sum_n a_n f(nx)$ has transform $F(s)\\,\\mathcal Mf(s)$, where $F(s) = \\sum a_n n^{-s}$. For instance\n$$\\int_0^\\infty\\Bigl(\\sum_{n\\ge1}a_n e^{-nx}\\Bigr)x^{s-1}\\,dx = \\Gamma(s)F(s).$$\n\nFinally, the substitution $x = e^{-u}$ gives $\\mathcal Mf(\\sigma + it) = \\int_{-\\infty}^\\infty f(e^{-u})e^{-\\sigma u}e^{-itu}\\,du$, a Fourier transform of $f(e^{-u})e^{-\\sigma u}$ (in the convention without $2\\pi$ in the exponent). Facts about the [[fourier-poisson|Fourier transform]] therefore carry over; in particular Fourier inversion becomes Mellin inversion."
+   },
+   {
+    "type": "theorem",
+    "title": "Mellin inversion",
+    "body": "Suppose $\\int_0^\\infty|f(x)|x^{c-1}\\,dx < \\infty$, that $t \\mapsto \\mathcal Mf(c+it)$ is integrable on $\\mathbb R$, and that $f$ is continuous at the point $x > 0$. Then\n$$f(x) = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\mathcal Mf(s)\\,x^{-s}\\,ds.$$\nThis is Fourier inversion after the change of variables above; we do not reprove it."
+   },
+   {
+    "type": "section",
+    "title": "Smoothed sums",
+    "body": "Applied to $e^{-x}$, inversion gives the Cahen–Mellin integral\n$$e^{-y} = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Gamma(s)\\,y^{-s}\\,ds \\qquad (y > 0,\\ c > 0),$$\nwhich converges absolutely because $|\\Gamma(c+it)|$ decays like $e^{-\\pi|t|/2}$. Now let $F(s) = \\sum a_n n^{-s}$ converge absolutely for $\\operatorname{Re} s > \\sigma_a$, take $c > \\max(0, \\sigma_a)$, put $y = n/x$, multiply by $a_n$ and sum. Absolute convergence of everything allows the swap, and\n$$\\sum_{n\\ge1}a_n e^{-n/x} = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}F(s)\\,\\Gamma(s)\\,x^s\\,ds.$$\nThe left side is a smoothly weighted version of $\\sum_{n\\le x}a_n$: terms with $n$ much smaller than $x$ get weight close to 1, terms with $n$ much larger get weight close to 0. To recover the sharp partial sum we need a kernel that is exactly 1 for $n < x$ and exactly 0 for $n > x$. That kernel is $x^s/s$."
+   },
+   {
+    "type": "theorem",
+    "title": "Perron's lemma",
+    "body": "Let $c > 0$ and $y > 0$, and for $T > 0$ put\n$$I(y,T) = \\frac{1}{2\\pi i}\\int_{c-iT}^{c+iT}\\frac{y^s}{s}\\,ds.$$\nThen $I(y,T) \\to \\delta(y)$ as $T \\to \\infty$, where $\\delta(y) = 1$ for $y > 1$, $\\delta(1) = \\tfrac12$, and $\\delta(y) = 0$ for $0 < y < 1$. More precisely,\n$$|I(y,T) - \\delta(y)| \\le \\frac{y^c}{\\pi T\\,|\\log y|}\\quad (y \\ne 1), \\qquad |I(1,T) - \\tfrac12| \\le \\frac{c}{\\pi T}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $y > 1$. For large $U > 0$ integrate $y^s/s$ counterclockwise around the rectangle with vertices $c - iT$, $c + iT$, $-U + iT$, $-U - iT$. The only pole inside is $s = 0$, with residue $y^0 = 1$, so the integral over the right edge equals $2\\pi i$ minus the integrals over the other three edges. On the left edge $|y^s/s| \\le y^{-U}/U$, so that edge contributes at most $\\frac{1}{2\\pi}\\cdot 2T\\cdot y^{-U}/U$ to $I$, which tends to $0$ as $U \\to \\infty$. On each horizontal edge $|s| \\ge T$, so each contributes at most\n$$\\frac{1}{2\\pi}\\int_{-\\infty}^{c}\\frac{y^\\sigma}{T}\\,d\\sigma = \\frac{y^c}{2\\pi T\\log y}.$$\nHence $|I(y,T) - 1| \\le y^c/(\\pi T\\log y)$.\n\nIf $0 < y < 1$, use the rectangle reaching right to $\\operatorname{Re} s = U$ instead. There is no pole inside, the far edge contributes at most $\\frac{T}{\\pi}\\,y^U/U \\to 0$, and each horizontal edge at most $\\frac{1}{2\\pi}\\int_c^\\infty\\frac{y^\\sigma}{T}\\,d\\sigma = \\frac{y^c}{2\\pi T|\\log y|}$. So $|I(y,T)| \\le y^c/(\\pi T|\\log y|)$.\n\nIf $y = 1$, compute directly with $s = c + it$, $ds = i\\,dt$:\n$$I(1,T) = \\frac{1}{2\\pi}\\int_{-T}^{T}\\frac{dt}{c+it} = \\frac{1}{2\\pi}\\int_{-T}^{T}\\frac{c\\,dt}{c^2+t^2} = \\frac{1}{\\pi}\\arctan\\frac{T}{c},$$\nsince the odd part $-it/(c^2+t^2)$ integrates to zero. Then $\\tfrac12 - I(1,T) = \\frac1\\pi\\arctan\\frac cT \\le \\frac{c}{\\pi T}$."
+   },
+   {
+    "type": "theorem",
+    "title": "Perron's formula",
+    "body": "Let $F(s) = \\sum_{n\\ge1}a_n n^{-s}$ converge absolutely for $\\operatorname{Re} s > \\sigma_a$, and let $c > \\max(0, \\sigma_a)$ and $x > 0$. Then\n$${\\sum_{n\\le x}}' a_n = \\lim_{T\\to\\infty}\\frac{1}{2\\pi i}\\int_{c-iT}^{c+iT}F(s)\\,\\frac{x^s}{s}\\,ds,$$\nwhere the prime means that when $x$ is an integer the last term $a_x$ is counted with weight $\\tfrac12$. Quantitatively, for every $T > 0$,\n$$\\Bigl|{\\sum_{n\\le x}}' a_n - \\frac{1}{2\\pi i}\\int_{c-iT}^{c+iT}F(s)\\,\\frac{x^s}{s}\\,ds\\Bigr| \\le \\sum_{n\\ne x}\\frac{|a_n|\\,(x/n)^c}{\\pi T\\,|\\log(x/n)|} + \\frac{c\\,|a_x|}{\\pi T},$$\nthe last term being present only when $x$ is an integer."
+   },
+   {
+    "type": "proof",
+    "body": "On the segment from $c - iT$ to $c + iT$ the series for $F$ converges absolutely and uniformly, so we may integrate term by term:\n$$\\frac{1}{2\\pi i}\\int_{c-iT}^{c+iT}F(s)\\,\\frac{x^s}{s}\\,ds = \\sum_n a_n\\,I(x/n, T).$$\nBy Perron's lemma, $I(x/n,T)$ differs from $\\delta(x/n)$ by at most the stated amounts, and $\\delta(x/n)$ is $1$ for $n < x$, $\\tfrac12$ for $n = x$ and $0$ for $n > x$, so $\\sum_n a_n\\delta(x/n) = \\sum'_{n\\le x}a_n$. This proves the inequality.\n\nThe right side tends to $0$ as $T \\to \\infty$. For $n \\ge 2x$ we have $|\\log(x/n)| \\ge \\log 2$, so those terms contribute at most $\\frac{x^c}{\\pi T\\log 2}\\sum_n|a_n|n^{-c}$, a finite constant divided by $T$. The finitely many terms with $n < 2x$ each carry a factor $1/T$. Letting $T \\to \\infty$ gives the limit formula."
+   },
+   {
+    "type": "section",
+    "title": "Moving the contour",
+    "body": "Perron's formula is useful because the integrand $F(s)x^s/s$ can often be continued to the left of the line $\\operatorname{Re} s = c$. If $F$ continues meromorphically and has controlled growth, one replaces the segment $[c - iT, c + iT]$ by $[c' - iT, c' + iT]$ with $c' < c$. By the [[residues|residue theorem]] the difference is $2\\pi i$ times the residues in between, plus two horizontal integrals. Each residue becomes a term of an asymptotic formula, and the integral along the new line, where $|x^s| = x^{c'}$ is smaller, becomes part of the error term.\n\nThe model case is $F = \\zeta$ with $a_n = 1$, where the sum is $\\lfloor x\\rfloor$. The pole of $\\zeta$ at $s = 1$ contributes the residue $x$, the main term. The pole of $1/s$ at $s = 0$ contributes $\\zeta(0) = -\\tfrac12$, which is the average value of $\\lfloor x\\rfloor - x = -\\{x\\}$; the oscillation of $\\{x\\}$ stays in the remaining integral.\n\nFor $F = -\\zeta'/\\zeta = \\sum\\Lambda(n)n^{-s}$ (see [[chebyshev]]) the sum is $\\psi(x)$. The pole at $s = 1$ gives the main term $x$, and each zero $\\rho$ of $\\zeta$ is a pole of $-\\zeta'/\\zeta$ and contributes $-x^\\rho/\\rho$. Pushing the contour all the way to the left is the [[explicit-formula]]; showing that the zeros contribute $o(x)$, which needs a [[zero-free-region]] to the left of $\\operatorname{Re} s = 1$, proves the [[pnt|prime number theorem]]."
+   },
+   {
+    "type": "section",
+    "title": "A 2026 claim",
+    "body": "On 30 September 2026 a manuscript attributed to an OpenAI internal model claimed a [[quasi-rh|quasi-Riemann hypothesis]]: that every Dirichlet $L$-function is zero-free in the half-plane $\\operatorname{Re} s > \\tfrac78$. According to the claim, the argument uses Hecke $L$-functions over $\\mathbb Q(\\sqrt{-3})$, cubic theta sums and a Mellin continuation, and the proof is reported to have been verified in Lean. This is a claim, not an established theorem, and we say nothing about its details beyond this.\n\nWhat \"Mellin continuation\" means in general is the technique of this lesson. One writes a function as a Mellin integral that converges in some strip, splits the integral at $x = 1$, and uses a transformation law of the integrand to show that each piece continues beyond the strip. The classical example is Riemann's proof of the [[functional-equation]] of $\\zeta$, where the transformation law is $\\theta(1/t) = \\sqrt t\\,\\theta(t)$."
+   },
+   {
+    "type": "example",
+    "title": "The Mellin transform of 1/(1+x)",
+    "body": "Show that $\\displaystyle\\int_0^\\infty\\frac{x^{s-1}}{1+x}\\,dx = \\frac{\\pi}{\\sin\\pi s}$ for $0 < \\operatorname{Re} s < 1$, and relate the edges of the strip to the poles of the right side.",
+    "solution": "Near $x = 0$ the integrand has size $x^{\\sigma-1}$ ($\\sigma = \\operatorname{Re} s$), which is integrable exactly when $\\sigma > 0$; near $\\infty$ it has size $x^{\\sigma-2}$, integrable exactly when $\\sigma < 1$. So the strip is $0 < \\sigma < 1$.\n\nFor real $s \\in (0,1)$ substitute $x = t/(1-t)$, so $dx = dt/(1-t)^2$, $1 + x = 1/(1-t)$ and $x^{s-1} = t^{s-1}(1-t)^{1-s}$. The integrand becomes $t^{s-1}(1-t)^{-s}$, so the integral is $B(s, 1-s) = \\Gamma(s)\\Gamma(1-s)$, which equals $\\pi/\\sin\\pi s$ by the reflection formula of [[gamma]]. Both sides are holomorphic in the strip and agree on $(0,1)$, so they agree throughout the strip.\n\nThe right side has poles at $s = 0$ (residue $1$) and $s = 1$ (residue $-1$), exactly on the edges. They record the behaviour of $f$: $1/(1+x) \\approx 1$ near $0$, and $\\int_0^1 x^{s-1}\\,dx = 1/s$; while $1/(1+x) \\approx 1/x$ near $\\infty$, and $\\int_1^\\infty x^{s-2}\\,dx = -1/(s-1)$. In general, a term $x^{-a}$ in the expansion of $f$ at $0$ produces a pole at $s = a$ with the same coefficient."
+   },
+   {
+    "type": "example",
+    "title": "Asymptotics from poles",
+    "body": "Use the Mellin transform to explain the expansion\n$$\\frac{1}{e^y - 1} = \\frac1y - \\frac12 + \\frac{y}{12} + O(y^{5/2}) \\qquad (y \\to 0^+)$$\nin terms of values of the zeta function.",
+    "solution": "The left side is $\\sum_{n\\ge1}e^{-ny}$. By the smoothed-sum formula with $a_n = 1$, $F = \\zeta$ and $x = 1/y$, for $c > 1$\n$$\\sum_{n\\ge1}e^{-ny} = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Gamma(s)\\,\\zeta(s)\\,y^{-s}\\,ds.$$\nMove the line of integration to $\\operatorname{Re} s = -\\tfrac52$. This is legitimate because $\\zeta$ grows at most polynomially in $|t|$ in vertical strips away from $s = 1$ (a consequence of the [[functional-equation]] that we quote), while $\\Gamma$ decays exponentially, so the horizontal pieces vanish in the limit. The poles crossed are:\n- $s = 1$, from $\\zeta$: residue $\\Gamma(1)y^{-1} = 1/y$;\n- $s = 0$, from $\\Gamma$ (residue 1): contribution $\\zeta(0) = -\\tfrac12$;\n- $s = -1$, from $\\Gamma$ (residue $-1$): contribution $-\\zeta(-1)\\,y = y/12$, since $\\zeta(-1) = -\\tfrac1{12}$;\n- $s = -2$: $\\Gamma$ has a pole but $\\zeta(-2) = 0$, so there is no contribution.\nOn the new line $|y^{-s}| = y^{5/2}$, and the remaining integral is $O(y^{5/2})$.\n\nPushing further, the pole at $s = -3$ gives $\\frac{(-1)^3}{3!}\\zeta(-3)\\,y^3 = -\\frac{y^3}{720}$, in agreement with the Laurent expansion $\\frac{1}{e^y-1} = \\frac1y - \\frac12 + \\frac{y}{12} - \\frac{y^3}{720} + \\cdots$. Its coefficients are $B_{n+1}/(n+1)!$ (Bernoulli numbers with $B_1 = -\\tfrac12$), and matching them with the residues $\\frac{(-1)^n}{n!}\\zeta(-n)$ is the formula $\\zeta(-n) = -B_{n+1}/(n+1)$ $(n \\ge 1)$ of [[zeta]], together with $\\zeta(0) = -\\tfrac12$, seen from the Mellin side."
+   },
+   {
+    "type": "example",
+    "title": "Perron's lemma in numbers",
+    "body": "Take $c = 1$ and $T = 50$. Compute $I(y,T)$ numerically for $y = 2$, $y = \\tfrac12$ and $y = 1$, and compare with the error bounds in Perron's lemma.",
+    "solution": "With $s = 1 + it$ the imaginary parts cancel by symmetry, and\n$$I(y,T) = \\frac{y}{\\pi}\\int_0^T\\frac{\\cos(t\\log y) + t\\sin(t\\log y)}{1+t^2}\\,dt.$$\nNumerical integration gives:\n- $y = 2$: $I \\approx 1.01828$, so the error is about $0.01828$, while the bound $2/(50\\pi\\log 2)$ is about $0.01837$.\n- $y = \\tfrac12$: $I \\approx -0.00458$, while the bound $\\tfrac12/(50\\pi\\log 2)$ is about $0.00459$.\n- $y = 1$: $I = \\frac1\\pi\\arctan 50 \\approx 0.49363$, an error of about $0.00637$, against the bound $1/(50\\pi) \\approx 0.00637$.\n\nThe bounds are nearly sharp here, and the error decays only like $1/T$. In applications $T$ is chosen as a function of $x$, and smoothed sums, with their exponentially decaying kernels, are preferred whenever the problem allows them."
+   },
+   {
+    "type": "pitfall",
+    "body": "- Perron's integral converges only conditionally, since $|x^s/s|$ decays only like $1/|t|$; it means $\\lim_{T\\to\\infty}\\int_{c-iT}^{c+iT}$. The compact form $\\sum_{n\\le x}a_n = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}F(s)\\frac{x^s}{s}\\,ds$ hides this limit, the condition $c > \\max(0, \\sigma_a)$ and the halving of the term $n = x$ when $x$ is an integer.\n- On a line to the left of $0$ or of $\\sigma_a$ one is inverting a different Mellin transform (compare the two functions with transform $1/s$ above).\n- The truncation error is large for $n$ close to $x$, because $|\\log(x/n)|$ is small. Bounding that part requires information about the $a_n$ near $x$, and it is often the delicate step.\n- Moving a contour needs bounds for $F$ on the horizontal segments, not just a meromorphic continuation."
+   },
+   {
+    "type": "connection",
+    "body": "- [[functional-equation]]: Riemann's proof writes $\\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ as the Mellin transform of $\\tfrac12(\\theta(t) - 1)$ at $s/2$, and continues it by splitting at $t = 1$.\n- [[pnt]]: Perron's formula for $-\\zeta'/\\zeta$ together with a zero-free region gives $\\psi(x) \\sim x$.\n- [[explicit-formula]]: moving the Perron contour all the way to the left expresses $\\psi(x)$ as $x$ minus a sum over the zeros of $\\zeta$, plus simple terms.\n- [[quasi-rh]]: the 2026 claim described above lists a Mellin continuation among its ingredients."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that the Mellin transform of $e^{-x^2}$ is $\\tfrac12\\Gamma(s/2)$ for $\\operatorname{Re} s > 0$, and that the Mellin transform of $e^{-\\pi n^2 x}$ is $\\pi^{-s}n^{-2s}\\Gamma(s)$.\n2. Prove the scaling and summation rules, including the conditions for absolute convergence.\n3. With $\\zeta(s) = \\frac{1}{s-1} + \\gamma + O(s-1)$, show that the residue of $\\zeta(s)^2x^s/s$ at $s = 1$ is $x\\log x + (2\\gamma - 1)x$. (This is the main term of $\\sum_{n\\le x}d(n)$ predicted by Perron's formula.)\n4. Show directly from the definition that $I(y,T)$ is real for every $y > 0$ and $T > 0$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Ch. 11"
+   },
+   {
+    "ref": "Montgomery & Vaughan, Multiplicative Number Theory I: Classical Theory"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "int_0^oo x^{s-1}/(1+x) dx = pi/sin(pi s) at s = 0.3 + 0.5i",
+    "python": "from mpmath import mp, quad, pi, sin, mpc, mpf\nmp.dps = 30\ns = mpc('0.3', '0.5')\n# split at 1 and send (1, oo) to (0, 1) by x -> 1/x\nI = quad(lambda x: (x**(s-1) + x**(-s))/(1+x), [0, 1])\nassert abs(I - pi/sin(pi*s)) < mpf(10)**-8"
+   },
+   {
+    "claim": "Cahen-Mellin: (1/2 pi i) int_{(1)} Gamma(s) y^{-s} ds = e^{-y} at y = 0.7; Mellin transform of e^{-x^2} is Gamma(s/2)/2 at s = 1.3",
+    "python": "from mpmath import mp, quad, gamma, exp, pi, mpf, mpc, inf\nmp.dps = 25\ny = mpf('0.7'); c = mpf(1)\nI = quad(lambda t: gamma(mpc(c, t))*y**(-mpc(c, t)), [-inf, 0, inf])/(2*pi)\nassert abs(I - exp(-y)) < mpf(10)**-12\ns = mpf('1.3')\nassert abs(quad(lambda x: exp(-x*x)*x**(s-1), [0, inf]) - gamma(s/2)/2) < mpf(10)**-15"
+   },
+   {
+    "claim": "Perron's lemma with c = 1, T = 50: I(2) ~ 1.01828 within 0.01837 of 1; I(1/2) ~ -0.00458 within 0.00459 of 0; I(1) = arctan(50)/pi ~ 0.49363 within 1/(50 pi) of 1/2 (direct complex integration)",
+    "python": "from mpmath import mp, quad, log, pi, atan, mpf, mpc, linspace\nmp.dps = 25\nc = mpf(1); T = mpf(50)\ndef I(y):\n    f = lambda t: y**mpc(c, t)/mpc(c, t)\n    pts = linspace(-T, T, 401)\n    v = quad(f, pts)/(2*pi)\n    assert abs(v.imag) < mpf(10)**-12\n    return v.real\nv2 = I(mpf(2)); vh = I(mpf('0.5')); v1 = I(mpf(1))\nassert abs(v2 - mpf('1.01828')) < mpf('0.000005')\nassert abs(v2 - 1) <= 2/(pi*T*log(2))\nassert abs(vh - mpf('-0.00458')) < mpf('0.000005')\nassert abs(vh) <= mpf('0.5')/(pi*T*log(2))\nassert abs(v1 - atan(T/c)/pi) < mpf(10)**-15\nassert abs(v1 - mpf('0.49363')) < mpf('0.000005')\nassert abs(v1 - mpf(1)/2) <= c/(pi*T)\nassert abs(2/(pi*T*log(2)) - mpf('0.01837')) < mpf('0.000005')\nassert abs(mpf('0.5')/(pi*T*log(2)) - mpf('0.00459')) < mpf('0.000005')"
+   },
+   {
+    "claim": "Perron's formula numerically for F = zeta^2 (a_n = d(n)) at x = 10.5, c = 2, T = 60: the truncated integral lies within the stated error bound (tail n >= 3000 bounded with d(n) <= 2 sqrt n) of sum_{n<=10} d(n) = 27",
+    "python": "from mpmath import mp, quad, zeta, pi, mpf, mpc, linspace, log, sqrt\nmp.dps = 15\nx = mpf('10.5'); c = mpf(2); T = mpf(60)\nf = lambda t: zeta(mpc(c, t))**2*x**mpc(c, t)/mpc(c, t)\nv = quad(f, linspace(-T, T, 61))/(2*pi)\nd = lambda n: sum(1 for k in range(1, n+1) if n % k == 0)\nassert sum(d(n) for n in range(1, 11)) == 27\nN = 3000\nbound = sum(d(n)*(x/n)**c/(pi*T*abs(log(x/n))) for n in range(1, N))\n# tail n >= N: d(n) <= 2 sqrt(n), |log(x/n)| >= log 2, sum_{n>=N} n^{-3/2} <= 2/sqrt(N-1)\nbound += 2*2/sqrt(N-1)*x**c/(pi*T*log(2))\nassert abs(v.imag) < mpf(10)**-8\nassert abs(v.real - 27) <= bound"
+   },
+   {
+    "claim": "zeta(0) = -1/2, zeta(-1) = -1/12, zeta(-2) = 0, zeta(-3) = 1/120, and the Taylor series of 1/(e^y-1) is 1/y - 1/2 + y/12 - y^3/720 + ...; the residues (-1)^n/n! zeta(-n) match its coefficients for n = 0..8",
+    "python": "import sympy as sp\ny = sp.symbols('y')\nassert sp.zeta(0) == sp.Rational(-1, 2) and sp.zeta(-1) == sp.Rational(-1, 12)\nassert sp.zeta(-2) == 0 and sp.zeta(-3) == sp.Rational(1, 120)\nser = sp.series(1/(sp.exp(y) - 1), y, 0, 10).removeO()\nassert sp.simplify(ser.coeff(y, -1) - 1) == 0\nfor n in range(0, 9):\n    assert sp.simplify(ser.coeff(y, n) - sp.Integer(-1)**n/sp.factorial(n)*sp.zeta(-n)) == 0\nassert ser.coeff(y, 3) == sp.Rational(-1, 720)"
+   },
+   {
+    "claim": "Residue of zeta(s)^2 x^s / s at s = 1 is x log x + (2 gamma - 1) x",
+    "python": "from mpmath import mp, quad, zeta, exp, log, euler, pi, mpf\nmp.dps = 25\nx = mpf('7.3')\ndef g(th):\n    s = 1 + exp(1j*th)/2\n    return zeta(s)**2*x**s/s*(1j*exp(1j*th)/2)\nr = quad(g, [0, pi, 2*pi])/(2j*pi)\nassert abs(r - (x*log(x) + (2*euler - 1)*x)) < mpf(10)**-15"
+   },
+   {
+    "claim": "Residues of pi/sin(pi s) at s = 0 and s = 1 are 1 and -1",
+    "python": "import sympy as sp\ns = sp.symbols('s')\nassert sp.residue(sp.pi/sp.sin(sp.pi*s), s, 0) == 1\nassert sp.residue(sp.pi/sp.sin(sp.pi*s), s, 1) == -1"
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-series",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "Power series $\\sum a_n z^n$ are the natural generating functions for additive problems, because $z^m z^n = z^{m+n}$. For multiplicative problems one wants terms that multiply according to the index, and since $m^{-s}n^{-s} = (mn)^{-s}$, the right objects are Dirichlet series $\\sum a_n n^{-s}$. Multiplying two of them corresponds to Dirichlet convolution of the coefficients, and when the coefficients are multiplicative the series splits into a product over primes.\n\nThat product, found by Euler in 1737 for $a_n = 1$, is unique factorisation written as an identity between functions. It gives a proof that $\\sum 1/p$ diverges, and it is the first link between the primes and the analytic behaviour of a function."
+   },
+   {
+    "type": "definition",
+    "title": "Dirichlet series",
+    "body": "A Dirichlet series is a series\n$$F(s) = \\sum_{n=1}^\\infty\\frac{a_n}{n^s},$$\nwhere the $a_n$ are complex numbers and $s = \\sigma + it$ is a complex variable. Here $n^{-s} = e^{-s\\log n}$, so $|n^{-s}| = n^{-\\sigma}$. The series is the generating function of the arithmetic function $n \\mapsto a_n$."
+   },
+   {
+    "type": "section",
+    "title": "Where a Dirichlet series converges",
+    "body": "Since $|a_n n^{-s}| = |a_n|n^{-\\sigma}$ depends only on $\\sigma = \\operatorname{Re} s$, absolute convergence is decided by the real part alone: if $\\sum|a_n|n^{-\\sigma_0}$ converges, so does $\\sum|a_n|n^{-\\sigma}$ for every $\\sigma \\ge \\sigma_0$. Hence the series converges absolutely in a right half-plane $\\sigma > \\sigma_a$ (and perhaps on its boundary line), where $\\sigma_a \\in [-\\infty, \\infty]$ is the abscissa of absolute convergence. Where a power series has discs, a Dirichlet series has half-planes.\n\nExamples. For $a_n = 1$ we get $\\zeta(s) = \\sum n^{-s}$ with $\\sigma_a = 1$. If $|a_n| \\le Cn^k$ then $\\sigma_a \\le k+1$. The alternating series $\\sum(-1)^{n-1}n^{-s}$ also has $\\sigma_a = 1$, yet for real $s > 0$ it converges by the alternating series test, and with partial summation one shows it converges for all $\\sigma > 0$. So convergence and absolute convergence can hold in different half-planes. The gap is at most 1: if the series converges at $s_0$, its terms are bounded, $|a_n|n^{-\\sigma_0} \\le C$, so it converges absolutely for $\\sigma > \\sigma_0 + 1$.\n\nOn each half-plane $\\sigma \\ge \\sigma_a + \\varepsilon$ the series converges uniformly (Weierstrass M-test with $\\sum|a_n|n^{-\\sigma_a-\\varepsilon}$), so $F$ is holomorphic for $\\sigma > \\sigma_a$ and can be differentiated term by term: $F'(s) = -\\sum a_n(\\log n)n^{-s}$. We also quote the uniqueness theorem: if two Dirichlet series converge absolutely and agree for all sufficiently large real $s$, their coefficients are equal. So $F$ determines its coefficients."
+   },
+   {
+    "type": "theorem",
+    "title": "Products and Dirichlet convolution",
+    "body": "If $F(s) = \\sum a_n n^{-s}$ and $G(s) = \\sum b_n n^{-s}$ both converge absolutely at $s$, then so does the series below, and\n$$F(s)\\,G(s) = \\sum_{n\\ge1}\\frac{(a*b)(n)}{n^s}, \\qquad (a*b)(n) = \\sum_{d\\mid n}a_d\\,b_{n/d}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "The double series $\\sum_{d,e\\ge1}a_d b_e(de)^{-s}$ converges absolutely: the sum of the absolute values of its terms is $\\bigl(\\sum_d|a_d|d^{-\\sigma}\\bigr)\\bigl(\\sum_e|b_e|e^{-\\sigma}\\bigr)$. An absolutely convergent double series may be summed in any order. Grouping the terms by the value of $n = de$ gives $\\sum_n n^{-s}\\sum_{de = n}a_d b_e$, which is the claim, and also shows that $\\sum_n|(a*b)(n)|n^{-\\sigma}$ is finite."
+   },
+   {
+    "type": "section",
+    "title": "A dictionary",
+    "body": "Combined with the convolution identities of [[mobius]] and the functions of [[arithmetic-functions]], the theorem gives a small dictionary. Write $\\tau(n)$ for the number of divisors, $\\sigma(n)$ for their sum (not to be confused with $\\sigma = \\operatorname{Re} s$), $\\mathrm{id}(n) = n$, and note that $\\sum n\\cdot n^{-s} = \\zeta(s-1)$.\n- $\\zeta(s)^2 = \\sum\\tau(n)n^{-s}$ for $\\operatorname{Re} s > 1$, since $\\tau = 1 * 1$.\n- $1/\\zeta(s) = \\sum\\mu(n)n^{-s}$ for $\\operatorname{Re} s > 1$, since $\\mu * 1 = \\varepsilon$, the identity for convolution ($\\varepsilon(1) = 1$ and $\\varepsilon(n) = 0$ for $n > 1$).\n- $\\zeta(s)\\zeta(s-1) = \\sum\\sigma(n)n^{-s}$ for $\\operatorname{Re} s > 2$, since $\\sigma = 1 * \\mathrm{id}$.\n- $\\zeta(s-1)/\\zeta(s) = \\sum\\varphi(n)n^{-s}$ for $\\operatorname{Re} s > 2$, since $\\varphi = \\mu * \\mathrm{id}$.\n- $-\\zeta'(s) = \\sum(\\log n)n^{-s}$ for $\\operatorname{Re} s > 1$, by term-by-term differentiation.\n\nThe second line has an immediate consequence: $\\zeta(s) \\ne 0$ for $\\operatorname{Re} s > 1$, because $\\zeta(s)\\cdot\\sum\\mu(n)n^{-s} = 1$ there."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler product",
+    "body": "Let $a$ be multiplicative, and suppose $\\sum_n|a_n|n^{-\\sigma} < \\infty$, where $\\sigma = \\operatorname{Re} s$. Then\n$$\\sum_{n\\ge1}\\frac{a_n}{n^s} = \\prod_p\\Bigl(1 + \\frac{a_p}{p^s} + \\frac{a_{p^2}}{p^{2s}} + \\cdots\\Bigr),$$\nthe product over all primes converging as the limit of the partial products over $p \\le P$. If $a$ is completely multiplicative, each factor is a geometric series and\n$$\\sum_{n\\ge1}\\frac{a_n}{n^s} = \\prod_p\\frac{1}{1 - a_p p^{-s}}.$$\nFor $a_n = 1$ this is Euler's product $\\zeta(s) = \\prod_p(1 - p^{-s})^{-1}$, valid for $\\operatorname{Re} s > 1$."
+   },
+   {
+    "type": "proof",
+    "body": "Each factor converges absolutely, since its terms are among those of $\\sum|a_n|n^{-\\sigma}$; in the completely multiplicative case this forces $|a_p p^{-s}| < 1$, so the geometric series formula applies. Fix $P$ and multiply out the finitely many factors with $p \\le P$. A typical product of terms is $a_{p_1^{k_1}}\\cdots a_{p_r^{k_r}}(p_1^{k_1}\\cdots p_r^{k_r})^{-s}$, and by multiplicativity it equals $a_n n^{-s}$ with $n = p_1^{k_1}\\cdots p_r^{k_r}$. By the [[fta|fundamental theorem of arithmetic]], every $n$ whose prime factors are all at most $P$ arises exactly once, and no other $n$ arises. (Multiplying finitely many absolutely convergent series and rearranging is legitimate.) Therefore\n$$\\prod_{p\\le P}\\Bigl(\\sum_{k\\ge0}\\frac{a_{p^k}}{p^{ks}}\\Bigr) = \\sum_{n:\\ p\\mid n\\,\\Rightarrow\\, p\\le P}\\frac{a_n}{n^s}.$$\nEvery $n$ missing on the right has a prime factor larger than $P$, so $n > P$, and the difference from the full series is at most $\\sum_{n>P}|a_n|n^{-\\sigma}$. This tail tends to $0$ as $P \\to \\infty$."
+   },
+   {
+    "type": "section",
+    "title": "Euler's proof that the sum of 1/p diverges",
+    "body": "Take $s > 1$ real in Euler's product and take logarithms: $\\log\\zeta(s) = \\sum_p -\\log(1 - p^{-s})$. For $0 < u \\le \\tfrac12$ we have $-\\log(1-u) = u + \\tfrac{u^2}{2} + \\tfrac{u^3}{3} + \\cdots \\le u + \\tfrac{u^2}{2}(1 + u + u^2 + \\cdots) \\le u + u^2$. Since $p^{-s} \\le \\tfrac12$,\n$$\\log\\zeta(s) \\le \\sum_p\\frac{1}{p^s} + \\sum_p\\frac{1}{p^{2s}} < \\sum_p\\frac{1}{p^s} + 1,$$\nbecause $\\sum_p p^{-2s} < \\sum_{n\\ge2}n^{-2} = \\frac{\\pi^2}{6} - 1 < 1$. On the other hand, comparing the sum with an integral, $\\zeta(s) > \\int_1^\\infty x^{-s}\\,dx = \\frac{1}{s-1}$. Hence\n$$\\sum_p\\frac{1}{p^s} > \\log\\frac{1}{s-1} - 1,$$\nwhich tends to infinity as $s \\to 1^+$. If $\\sum_p 1/p$ converged, to $S$ say, then $\\sum_p p^{-s} \\le S$ for every $s > 1$, a contradiction. So $\\sum_p 1/p$ diverges. This is far stronger than the infinitude of primes: the primes are dense enough that their reciprocals have an infinite sum, whereas the reciprocals of the squares have a finite one. A version with explicit inequalities is Example 3."
+   },
+   {
+    "type": "example",
+    "title": "An Euler-product calculation",
+    "body": "Let $\\omega(n)$ be the number of distinct prime factors of $n$. Express $\\sum_{n\\ge1}2^{\\omega(n)}n^{-s}$ in terms of $\\zeta$, and deduce a formula for $2^{\\omega(n)}$ as a convolution.",
+    "solution": "The function $2^{\\omega(n)}$ is multiplicative, with value $2$ at every prime power $p^k$, $k \\ge 1$. With $u = p^{-s}$ the Euler factor is\n$$1 + 2u + 2u^2 + \\cdots = 1 + \\frac{2u}{1-u} = \\frac{1+u}{1-u} = \\frac{1-u^2}{(1-u)^2}.$$\nSince $\\prod_p(1-p^{-s})^{-1} = \\zeta(s)$ and $\\prod_p(1 - p^{-2s}) = 1/\\zeta(2s)$, we get, for $\\operatorname{Re} s > 1$,\n$$\\sum_{n\\ge1}\\frac{2^{\\omega(n)}}{n^s} = \\frac{\\zeta(s)^2}{\\zeta(2s)}.$$\nNow read the right side as a product of Dirichlet series: $\\zeta(s)^2 = \\sum\\tau(n)n^{-s}$, and $1/\\zeta(2s) = \\sum_m\\mu(m)m^{-2s}$ is the series of the function equal to $\\mu(m)$ at $n = m^2$ and $0$ at non-squares. By the convolution theorem and uniqueness of coefficients,\n$$2^{\\omega(n)} = \\sum_{d^2\\mid n}\\mu(d)\\,\\tau(n/d^2).$$\nCheck with $n = 12$: $\\omega(12) = 2$, so the left side is $4$; on the right, $d \\in \\{1, 2\\}$ gives $\\tau(12) - \\tau(3) = 6 - 2 = 4$."
+   },
+   {
+    "type": "example",
+    "title": "Counting squarefree numbers",
+    "body": "Let $Q(x)$ be the number of squarefree integers $n \\le x$. Show that $Q(x) = \\dfrac{6}{\\pi^2}x + O(\\sqrt x)$.",
+    "solution": "The Dirichlet series of $\\mu^2$ (the indicator of squarefree numbers) has Euler factors $1 + p^{-s}$, so it equals $\\zeta(s)/\\zeta(2s)$. As in the previous example this means $\\mu^2(n) = \\sum_{d^2\\mid n}\\mu(d)$. (Directly: write $n = a^2b$ with $b$ squarefree; then $d^2 \\mid n$ exactly when $d \\mid a$, and $\\sum_{d\\mid a}\\mu(d)$ is $1$ if $a = 1$ and $0$ otherwise.)\n\nSum over $n \\le x$ and swap the order: the number of $n \\le x$ divisible by $d^2$ is $\\lfloor x/d^2\\rfloor$, so\n$$Q(x) = \\sum_{d\\le\\sqrt x}\\mu(d)\\Bigl\\lfloor\\frac{x}{d^2}\\Bigr\\rfloor = x\\sum_{d\\le\\sqrt x}\\frac{\\mu(d)}{d^2} + O(\\sqrt x),$$\nsince dropping the floor costs at most 1 for each of the at most $\\sqrt x$ values of $d$. Finally $\\sum_{d\\ge1}\\mu(d)/d^2 = 1/\\zeta(2) = 6/\\pi^2$ (see [[zeta]] for $\\zeta(2) = \\pi^2/6$), and the tail satisfies $\\sum_{d>\\sqrt x}d^{-2} \\le 2/\\sqrt x$ for $x \\ge 1$, so replacing the partial sum by $6/\\pi^2$ costs $O(\\sqrt x)$ in $Q(x)$.\n\nNumerically, $Q(10^6) = 607926$, while $\\frac{6}{\\pi^2}10^6 \\approx 607927.1$."
+   },
+   {
+    "type": "example",
+    "title": "A finite form of Euler's argument",
+    "body": "Prove that for every $x \\ge 2$\n$$\\prod_{p\\le x}\\Bigl(1 - \\frac1p\\Bigr)^{-1} > \\log x \\qquad\\text{and}\\qquad \\sum_{p\\le x}\\frac1p > \\log\\log x - \\frac12.$$",
+    "solution": "Each factor is a convergent geometric series, $(1 - 1/p)^{-1} = \\sum_{k\\ge0}p^{-k}$. Multiplying out the finitely many factors with $p \\le x$ gives, by unique factorisation, the sum of $1/n$ over all $n$ whose prime factors are all at most $x$. Every $n \\le x$ is such a number, so\n$$\\prod_{p\\le x}\\Bigl(1 - \\frac1p\\Bigr)^{-1} \\ge \\sum_{n\\le x}\\frac1n > \\int_1^{\\lfloor x\\rfloor+1}\\frac{dt}{t} > \\log x,$$\nand the first inequality is strict as well, because $n = 2^k > x$ also appears.\n\nTake logarithms: $\\sum_{p\\le x}-\\log(1 - 1/p) > \\log\\log x$. For each prime,\n$$-\\log\\Bigl(1 - \\frac1p\\Bigr) = \\frac1p + \\sum_{k\\ge2}\\frac{1}{kp^k} \\le \\frac1p + \\frac12\\sum_{k\\ge2}\\frac{1}{p^k} = \\frac1p + \\frac{1}{2p(p-1)}.$$\nSumming, and using $\\sum_p\\frac{1}{p(p-1)} < \\sum_{n\\ge2}\\frac{1}{n(n-1)} = 1$, gives $\\sum_{p\\le x}1/p + \\tfrac12 > \\log\\log x$.\n\nThe truth is $\\sum_{p\\le x}1/p = \\log\\log x + M + o(1)$ with $M \\approx 0.2615$ ([[mertens]]). For $x = 10^6$ the sum is about $2.8873$, while $\\log\\log 10^6 \\approx 2.6258$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The Euler product needs multiplicativity and absolute convergence. For $\\zeta$, the product $\\prod_p(1 - p^{-s})^{-1}$ converges only for $\\operatorname{Re} s > 1$. The function $\\zeta$ continues to the whole plane, but the product does not, and the zeros of $\\zeta$ in the critical strip cannot be seen from it.\n- A Dirichlet series can converge without converging absolutely, as $\\sum(-1)^{n-1}n^{-s}$ does for $0 < \\sigma \\le 1$. The multiplication theorem and the Euler product as proved here use absolute convergence.\n- The series and the analytic function it defines are different objects: the function may extend far beyond the half-plane of convergence. Statements such as $\\zeta(-1) = -\\tfrac{1}{12}$ concern the continuation, not the divergent series $\\sum n$.\n- Products of Dirichlet series correspond to convolution over divisors, $\\sum_{de = n}$, not to the additive convolution $\\sum_{i+j = n}$ of power series."
+   },
+   {
+    "type": "connection",
+    "body": "- [[zeta]]: the case $a_n = 1$, where analytic continuation, special values and zeros take over.\n- [[l-functions]]: for a Dirichlet character $\\chi$, which is completely multiplicative, $L(s,\\chi) = \\sum\\chi(n)n^{-s} = \\prod_p(1 - \\chi(p)p^{-s})^{-1}$. Dirichlet's theorem on primes in arithmetic progressions comes from these products in the same way that the divergence of $\\sum 1/p$ comes from Euler's.\n- [[chebyshev]]: the logarithmic derivative of Euler's product is $-\\zeta'(s)/\\zeta(s) = \\sum\\Lambda(n)n^{-s}$, the bridge from $\\zeta$ to prime counting.\n- [[mellin]]: Perron's formula recovers $\\sum_{n\\le x}a_n$ from the function $\\sum a_n n^{-s}$, turning analytic information into asymptotic information.\n- [[dedekind-zeta]]: the analogous product over prime ideals encodes unique factorisation of ideals in a number field."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\sum_{n\\ge1}\\lambda(n)n^{-s} = \\zeta(2s)/\\zeta(s)$ for $\\operatorname{Re} s > 1$, where $\\lambda(n) = (-1)^{\\Omega(n)}$ and $\\Omega(n)$ counts prime factors with multiplicity.\n2. Show that $\\sum_{n\\ge1}(-1)^{n-1}n^{-s} = (1 - 2^{1-s})\\zeta(s)$ for $\\operatorname{Re} s > 1$.\n3. Prove that for $\\sigma = \\operatorname{Re} s > 1$ one has $\\zeta(2\\sigma)/\\zeta(\\sigma) \\le |\\zeta(s)| \\le \\zeta(\\sigma)$.\n4. Find the Euler factors of $\\sum\\tau(n)^2n^{-s}$ and show that this series equals $\\zeta(s)^4/\\zeta(2s)$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Ch. 11"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   },
+   {
+    "ref": "Tenenbaum, Introduction to Analytic and Probabilistic Number Theory"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Partial Euler product over p <= 10^5 at s = 2 is within 1e-5 of pi^2/6; sum mu(n)/n^3 = 1/zeta(3) and sum phi(n)/n^4 = zeta(3)/zeta(4), to 1e-6 with 20000 terms",
+    "python": "import math\nfrom sympy import primerange, mobius, totient\nP = 1.0\nfor p in primerange(2, 10**5):\n    P *= 1/(1 - p**-2.0)\nassert abs(P - math.pi**2/6) < 1e-5\nfrom mpmath import zeta\ns1 = sum(int(mobius(n))/n**3 for n in range(1, 20001))\nassert abs(s1 - 1/float(zeta(3))) < 1e-6\ns2 = sum(int(totient(n))/n**4 for n in range(1, 20001))\nassert abs(s2 - float(zeta(3)/zeta(4))) < 1e-6"
+   },
+   {
+    "claim": "2^omega(n) = sum_{d^2|n} mu(d) tau(n/d^2) and mu(n)^2 = sum_{d^2|n} mu(d) for n <= 3000; check at n = 12 gives 4 = 6 - 2",
+    "python": "from sympy import primefactors, mobius, divisor_count\nfor n in range(1, 3001):\n    w = 2**len(primefactors(n))\n    r = 0; r2 = 0; d = 1\n    while d*d <= n:\n        if n % (d*d) == 0:\n            r += int(mobius(d))*int(divisor_count(n//(d*d)))\n            r2 += int(mobius(d))\n        d += 1\n    assert w == r\n    assert r2 == int(mobius(n))**2\nassert divisor_count(12) == 6 and divisor_count(3) == 2"
+   },
+   {
+    "claim": "Euler factors: 1+2u+2u^2+... = (1+u)/(1-u) = (1-u^2)/(1-u)^2; sum (k+1)^2 u^k = (1+u)/(1-u)^3 = (1-u^2)/(1-u)^4; -log(1-u) <= u + u^2 on (0, 1/2]",
+    "python": "import sympy as sp, math\nu = sp.symbols('u')\nN = 12\ns1 = 1 + sum(2*u**k for k in range(1, N))\nassert sp.expand(sp.series((1+u)/(1-u), u, 0, N).removeO() - s1) == 0\nassert sp.simplify((1+u)/(1-u) - (1-u**2)/(1-u)**2) == 0\ns2 = sum((k+1)**2*u**k for k in range(N))\nassert sp.expand(sp.series((1+u)/(1-u)**3, u, 0, N).removeO() - s2) == 0\nassert sp.simplify((1+u)/(1-u)**3 - (1-u**2)/(1-u)**4) == 0\nfor i in range(1, 501):\n    x = i/1000\n    assert -math.log(1-x) <= x + x*x\nassert math.pi**2/6 - 1 < 1"
+   },
+   {
+    "claim": "Q(10^6) = 607926 and 6/pi^2 * 10^6 = 607927.10...; |Q(x) - 6x/pi^2| <= 3 sqrt(x) for x = 10^3..10^6 (powers of 10)",
+    "python": "import math\nN = 10**6\nsq = bytearray([1])*(N+1)\nsq[0] = 0\nd = 2\nwhile d*d <= N:\n    for m in range(d*d, N+1, d*d):\n        sq[m] = 0\n    d += 1\nassert sum(sq) == 607926\nassert abs(6/math.pi**2*N - 607927.1) < 0.01\nfor e in range(3, 7):\n    x = 10**e\n    Q = sum(sq[:x+1])\n    assert abs(Q - 6*x/math.pi**2) <= 3*math.sqrt(x)"
+   },
+   {
+    "claim": "prod_{p<=x}(1-1/p)^{-1} > log x and sum_{p<=x} 1/p > loglog x - 1/2 for all 2 <= x <= 10^5 (checked at each integer); at x = 10^6 the sum is 2.8873 and loglog x = 2.6258, difference about 0.2615",
+    "python": "import math\nfrom sympy import primerange, isprime\nlogprod = 0.0; s = 0.0\nfor n in range(2, 10**5 + 1):\n    if isprime(n):\n        logprod += -math.log(1 - 1/n); s += 1/n\n    assert logprod > math.log(math.log(n))\n    assert s > math.log(math.log(n)) - 0.5\nS = sum(1/p for p in primerange(2, 10**6 + 1))\nassert abs(S - 2.8873) < 5e-5\nassert abs(math.log(math.log(10**6)) - 2.6258) < 5e-5\nassert abs(S - math.log(math.log(10**6)) - 0.2615) < 5e-4"
+   },
+   {
+    "claim": "Exercise identities hold numerically at s = 3: sum lambda(n) n^{-3} = zeta(6)/zeta(3); sum tau(n)^2 n^{-3} = zeta(3)^4/zeta(6); alternating series = (1-2^{-2}) zeta(3)",
+    "python": "from sympy import factorint, divisor_count\nfrom mpmath import zeta\nN = 20000\nlam = sum((-1)**sum(factorint(n).values())/n**3 for n in range(1, N+1))\nassert abs(lam - float(zeta(6)/zeta(3))) < 1e-6\nt2 = sum(int(divisor_count(n))**2/n**3 for n in range(1, N+1))\nassert abs(t2 - float(zeta(3)**4/zeta(6))) < 1e-4\nalt = sum((-1)**(n-1)/n**3 for n in range(1, N+1))\nassert abs(alt - 0.75*float(zeta(3))) < 1e-9"
+   },
+   {
+    "claim": "Dictionary at s = 3: sum tau(n) n^{-3} = zeta(3)^2, sum sigma(n) n^{-3} = zeta(3) zeta(2); sum 2^omega(n) n^{-3} = zeta(3)^2/zeta(6); sum_{n>=2} 1/(n(n-1)) = 1 (partial sums)",
+    "python": "from sympy import divisor_count, divisor_sigma, primefactors\nfrom mpmath import zeta\nN = 20000\nassert abs(sum(int(divisor_count(n))/n**3 for n in range(1, N+1)) - float(zeta(3)**2)) < 1e-6\nassert abs(sum(int(divisor_sigma(n))/n**3 for n in range(1, N+1)) - float(zeta(3)*zeta(2))) < 1e-3\nassert abs(sum(2**len(primefactors(n))/n**3 for n in range(1, N+1)) - float(zeta(3)**2/zeta(6))) < 1e-6\nassert abs(sum(1/(n*(n-1)) for n in range(2, 10**6)) - 1) < 2e-6"
+   }
+  ]
+ },
+ {
+  "id": "zeta",
+  "minutes": 20,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The zeta function begins as a simple series, $\\sum n^{-s}$, and becomes the central object of analytic number theory. Its Euler product ties it to the primes; its continuation and special values tie it to Bernoulli numbers and to $\\pi$; and the positions of its zeros control the error term in the prime number theorem.\n\nThis lesson builds the basic facts: the continuation past the line $\\operatorname{Re} s = 1$, the simple pole at $s = 1$, Euler's evaluation of $\\zeta(2k)$, the values at the negative integers, and the first facts about zeros. Euler found $\\zeta(2) = \\pi^2/6$ in 1735; Riemann's paper of 1859 made $\\zeta$ a function of a complex variable and showed why its zeros matter."
+   },
+   {
+    "type": "definition",
+    "title": "The Riemann zeta function",
+    "body": "For complex $s$ with $\\operatorname{Re} s > 1$,\n$$\\zeta(s) = \\sum_{n=1}^\\infty\\frac{1}{n^s} = \\prod_p\\frac{1}{1 - p^{-s}}.$$\nThe series and the product converge absolutely there ([[dirichlet-series]]), so $\\zeta$ is holomorphic and nonzero in this half-plane. For other $s$, $\\zeta(s)$ means the analytic continuation constructed below."
+   },
+   {
+    "type": "section",
+    "title": "Crossing the line Re s = 1",
+    "body": "The series diverges at every $s$ with $\\operatorname{Re} s \\le 1$: for $\\operatorname{Re} s \\le 0$ its terms do not even tend to $0$, and for $0 < \\operatorname{Re} s \\le 1$ its partial sums $\\sum_{n\\le N}n^{-s}$ behave like $N^{1-s}/(1-s)$ plus a constant (like $\\log N$ when $s = 1$) and do not converge. To go further we need another formula for the same function. Here is the simplest. For $\\operatorname{Re} s > 1$,\n$$s\\int_1^\\infty\\lfloor x\\rfloor\\,x^{-s-1}\\,dx = \\sum_{n\\ge1}s\\int_n^\\infty x^{-s-1}\\,dx = \\sum_{n\\ge1}n^{-s} = \\zeta(s),$$\nbecause $\\lfloor x\\rfloor = \\sum_{n\\le x}1$ and the swap of sum and integral is justified by absolute convergence. Now write $\\lfloor x\\rfloor = x - \\{x\\}$, with $\\{x\\} \\in [0,1)$ the fractional part. The $x$ part gives $s\\int_1^\\infty x^{-s}\\,dx = \\frac{s}{s-1}$, so\n$$\\zeta(s) = \\frac{s}{s-1} - s\\int_1^\\infty\\{x\\}\\,x^{-s-1}\\,dx.$$\nThe last integral converges absolutely for $\\operatorname{Re} s > 0$, since $|\\{x\\}x^{-s-1}| \\le x^{-\\operatorname{Re}s-1}$, and it is holomorphic there. So the right side is the [[continuation|analytic continuation]] of $\\zeta$ to $\\operatorname{Re} s > 0$, and its only singularity is a simple pole at $s = 1$ with residue $1$.\n\nNear $s = 1$, $\\frac{s}{s-1} = 1 + \\frac{1}{s-1}$, so\n$$\\zeta(s) = \\frac{1}{s-1} + \\gamma + O(s-1), \\qquad \\gamma = 1 - \\int_1^\\infty\\frac{\\{x\\}}{x^2}\\,dx = 0.5772\\ldots,$$\nwhich is Euler's constant (Exercise 2 identifies it with $\\lim_N(\\sum_{n\\le N}1/n - \\log N)$).\n\nThe same formula gives bounds for real $s > 1$. Since $0 \\le \\{x\\} < 1$, the subtracted term lies strictly between $0$ and $s\\int_1^\\infty x^{-s-1}\\,dx = 1$, so\n$$\\frac{1}{s-1} < \\zeta(s) < \\frac{s}{s-1}.$$\nIn particular $\\zeta(s) \\sim 1/(s-1)$ as $s \\to 1^+$."
+   },
+   {
+    "type": "theorem",
+    "title": "Continuation to the whole plane",
+    "body": "$\\zeta$ extends to a meromorphic function on $\\mathbb C$ whose only pole is a simple pole at $s = 1$ with residue $1$."
+   },
+   {
+    "type": "section",
+    "title": "About the proof",
+    "body": "Two proofs are standard. Repeating the integration by parts above with more terms of the Euler–Maclaurin formula ([[partial-summation]]) extends the formula to $\\operatorname{Re} s > -k$ for any $k$. Riemann's own proof, through the theta function and Poisson summation, gives at the same time the functional equation relating $\\zeta(s)$ and $\\zeta(1-s)$, in which the [[gamma|gamma function]] appears; it is the subject of [[functional-equation]]. We use the theorem here and refer there for the proof."
+   },
+   {
+    "type": "section",
+    "title": "Bernoulli numbers",
+    "body": "The even values involve the Bernoulli numbers, defined by the power series\n$$\\frac{t}{e^t - 1} = \\sum_{n\\ge0}B_n\\frac{t^n}{n!} \\qquad (|t| < 2\\pi).$$\nThe first ones are $B_0 = 1$, $B_1 = -\\tfrac12$, $B_2 = \\tfrac16$, $B_4 = -\\tfrac{1}{30}$, $B_6 = \\tfrac{1}{42}$, $B_8 = -\\tfrac{1}{30}$, $B_{10} = \\tfrac{5}{66}$, $B_{12} = -\\tfrac{691}{2730}$, and $B_n = 0$ for every odd $n \\ge 3$. The last fact holds because\n$$\\frac{t}{e^t-1} + \\frac t2 = \\frac t2\\cdot\\frac{e^t+1}{e^t-1} = \\frac t2\\coth\\frac t2$$\nis an even function of $t$."
+   },
+   {
+    "type": "theorem",
+    "title": "Euler's formula for ζ(2k)",
+    "body": "For every integer $k \\ge 1$,\n$$\\zeta(2k) = \\frac{(-1)^{k+1}B_{2k}(2\\pi)^{2k}}{2\\,(2k)!}.$$\nSo $\\zeta(2) = \\frac{\\pi^2}{6}$, $\\zeta(4) = \\frac{\\pi^4}{90}$, $\\zeta(6) = \\frac{\\pi^6}{945}$, and every $\\zeta(2k)$ is a rational multiple of $\\pi^{2k}$."
+   },
+   {
+    "type": "proof",
+    "body": "We use the partial-fraction expansion of the cotangent,\n$$\\pi z\\cot\\pi z = 1 - 2\\sum_{n\\ge1}\\frac{z^2}{n^2 - z^2} \\qquad (z \\notin \\mathbb Z).$$\nIt comes from Example 2 of [[fourier-poisson]], which proves $\\sum_{n\\in\\mathbb Z}(n^2+a^2)^{-1} = \\frac{\\pi}{a}\\coth\\pi a$ for $a > 0$. Both sides are meromorphic in $a$, so the identity persists for complex $a$, and putting $a = iz$ (with $\\coth(i\\pi z) = -i\\cot\\pi z$) gives the expansion above.\n\nFor $|z| < 1$ expand each term as a geometric series, $\\frac{z^2}{n^2 - z^2} = \\sum_{k\\ge1}(z/n)^{2k}$, and sum over $n$ first (everything converges absolutely):\n$$\\pi z\\cot\\pi z = 1 - 2\\sum_{k\\ge1}\\zeta(2k)\\,z^{2k}.$$\nOn the other hand, $\\cot\\pi z = i\\,\\frac{e^{2\\pi iz}+1}{e^{2\\pi iz}-1}$, so with $t = 2\\pi iz$,\n$$\\pi z\\cot\\pi z = \\frac t2\\cdot\\frac{e^t+1}{e^t-1} = \\frac t2\\coth\\frac t2 = \\sum_{k\\ge0}B_{2k}\\frac{t^{2k}}{(2k)!} = \\sum_{k\\ge0}\\frac{(-1)^kB_{2k}(2\\pi)^{2k}}{(2k)!}z^{2k}.$$\nComparing coefficients of $z^{2k}$ for $k \\ge 1$ gives $-2\\zeta(2k) = (-1)^kB_{2k}(2\\pi)^{2k}/(2k)!$, which is the formula."
+   },
+   {
+    "type": "section",
+    "title": "Values at the negative integers",
+    "body": "Euler also found, by daring manipulations of divergent series, the values of $\\zeta$ at the negative integers. In modern form they are values of the continuation:\n$$\\zeta(0) = -\\frac12, \\qquad \\zeta(-n) = -\\frac{B_{n+1}}{n+1}\\quad (n \\ge 1).$$\nThus $\\zeta(-1) = -\\tfrac{1}{12}$, $\\zeta(-3) = \\tfrac{1}{120}$, $\\zeta(-5) = -\\tfrac{1}{252}$, and $\\zeta(-2) = \\zeta(-4) = \\cdots = 0$ because the odd Bernoulli numbers vanish. These are the trivial zeros. The formula with $B_{n+1}$ also covers $n = 0$ if one uses the convention $B_1 = +\\tfrac12$; with the convention $B_1 = -\\tfrac12$ used here, $\\zeta(0) = -\\tfrac12$ must be stated separately. All of these values follow from $\\zeta(2k)$ and the functional equation, as shown in [[functional-equation]]."
+   },
+   {
+    "type": "section",
+    "title": "Zeros",
+    "body": "By the Euler product, $\\zeta(s) \\ne 0$ for $\\operatorname{Re} s > 1$. In 1896 Hadamard and de la Vallée Poussin independently proved that $\\zeta(1+it) \\ne 0$ for every real $t$, which is the key step in the [[pnt|prime number theorem]]. Combined with the functional equation, this shows that apart from the trivial zeros, every zero of $\\zeta$ lies in the critical strip $0 < \\operatorname{Re} s < 1$. These are the nontrivial zeros. Since $\\zeta(\\bar s) = \\overline{\\zeta(s)}$, they are symmetric about the real axis, and the functional equation makes them symmetric about the line $\\operatorname{Re} s = \\tfrac12$ as well. The first three, in the upper half-plane, are approximately\n$$\\tfrac12 + 14.1347i, \\qquad \\tfrac12 + 21.0220i, \\qquad \\tfrac12 + 25.0109i.$$\nThe [[rh|Riemann hypothesis]] asserts that every nontrivial zero has real part $\\tfrac12$. Riemann's 1859 paper showed how these zeros govern the distribution of primes; the precise statement is the [[explicit-formula]]."
+   },
+   {
+    "type": "example",
+    "title": "The next even values",
+    "body": "Compute $\\zeta(4)$ and $\\zeta(6)$ from Euler's formula.",
+    "solution": "For $k = 2$: $\\zeta(4) = \\dfrac{(-1)^3B_4(2\\pi)^4}{2\\cdot 4!} = \\dfrac{\\tfrac{1}{30}\\cdot16\\pi^4}{48} = \\dfrac{16\\pi^4}{1440} = \\dfrac{\\pi^4}{90}$.\n\nFor $k = 3$: $\\zeta(6) = \\dfrac{(-1)^4B_6(2\\pi)^6}{2\\cdot 6!} = \\dfrac{\\tfrac{1}{42}\\cdot64\\pi^6}{1440} = \\dfrac{64\\pi^6}{60480} = \\dfrac{\\pi^6}{945}$.\n\nNumerically $\\pi^4/90 = 1.08232\\ldots$ and $\\pi^6/945 = 1.01734\\ldots$, in agreement with the series: the terms beyond $n = 1$ contribute only about $0.08$ and $0.017$."
+   },
+   {
+    "type": "example",
+    "title": "Sums of zeta values",
+    "body": "Prove that\n$$\\sum_{k\\ge2}\\bigl(\\zeta(k) - 1\\bigr) = 1 \\qquad\\text{and}\\qquad \\sum_{k\\ge1}\\bigl(\\zeta(2k) - 1\\bigr) = \\frac34.$$",
+    "solution": "For $k \\ge 2$, $\\zeta(k) - 1 = \\sum_{m\\ge2}m^{-k}$. All terms are positive, so the double sum may be rearranged freely:\n$$\\sum_{k\\ge2}\\sum_{m\\ge2}\\frac{1}{m^k} = \\sum_{m\\ge2}\\frac{m^{-2}}{1 - m^{-1}} = \\sum_{m\\ge2}\\frac{1}{m(m-1)} = \\sum_{m\\ge2}\\Bigl(\\frac{1}{m-1} - \\frac1m\\Bigr) = 1.$$\nFor the even values,\n$$\\sum_{k\\ge1}\\sum_{m\\ge2}\\frac{1}{m^{2k}} = \\sum_{m\\ge2}\\frac{1}{m^2 - 1} = \\frac12\\sum_{m\\ge2}\\Bigl(\\frac{1}{m-1} - \\frac{1}{m+1}\\Bigr) = \\frac12\\Bigl(1 + \\frac12\\Bigr) = \\frac34.$$\nSubtracting, $\\sum_{k\\ge1}(\\zeta(2k+1) - 1) = \\tfrac14$: the odd values, for which no closed form is known, still have an exact sum."
+   },
+   {
+    "type": "example",
+    "title": "Coprime pairs",
+    "body": "Choose integers $a, b$ independently and uniformly from $\\{1, \\dots, N\\}$. Show that the probability that $\\gcd(a,b) = 1$ tends to $1/\\zeta(2) = 6/\\pi^2$ as $N \\to \\infty$.",
+    "solution": "By Möbius inversion ([[mobius]]), $\\sum_{d\\mid g}\\mu(d)$ is $1$ if $g = 1$ and $0$ otherwise. Apply it with $g = \\gcd(a,b)$; the divisors of $\\gcd(a,b)$ are the common divisors of $a$ and $b$. Swapping the order of summation, the number of coprime pairs is\n$$C(N) = \\sum_{a,b\\le N}\\ \\sum_{d\\mid a,\\ d\\mid b}\\mu(d) = \\sum_{d\\le N}\\mu(d)\\Bigl\\lfloor\\frac Nd\\Bigr\\rfloor^2.$$\nWrite $\\lfloor N/d\\rfloor = N/d - \\theta_d$ with $0 \\le \\theta_d < 1$; then $\\lfloor N/d\\rfloor^2 = N^2/d^2 + E_d$ with $|E_d| \\le 2N/d$. So\n$$C(N) = N^2\\sum_{d\\le N}\\frac{\\mu(d)}{d^2} + O\\Bigl(N\\sum_{d\\le N}\\frac1d\\Bigr) = \\frac{N^2}{\\zeta(2)} + O(N\\log N),$$\nusing $\\sum_d\\mu(d)/d^2 = 1/\\zeta(2)$ and $\\sum_{d>N}d^{-2} \\le 1/N$. Dividing by $N^2$, the probability is $6/\\pi^2 + O(\\log N/N)$. For $N = 1000$ there are $608383$ coprime pairs, a proportion of $0.6084$, against $6/\\pi^2 \\approx 0.6079$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- \"$1 + 2 + 3 + \\cdots = -\\tfrac{1}{12}$\" is not a statement about the series, which diverges. What is true is that the continuation of $\\sum n^{-s}$ from $\\operatorname{Re} s > 1$ takes the value $-\\tfrac{1}{12}$ at $s = -1$. A legitimate shadow of it: the smoothed sum $\\sum_n n e^{-n/N}$ equals $N^2 - \\tfrac{1}{12} + O(N^{-2})$, with constant term $\\zeta(-1)$ (see [[functional-equation]]).\n- The series and the Euler product are valid only for $\\operatorname{Re} s > 1$. Nonvanishing \"because of the Euler product\" says nothing inside the critical strip.\n- The formula $\\zeta(-n) = -B_{n+1}/(n+1)$ is for $n \\ge 1$; at $n = 0$ it depends on the sign convention for $B_1$.\n- No closed form is known for $\\zeta(3), \\zeta(5), \\dots$. Apéry proved in 1978 that $\\zeta(3)$ is irrational; whether $\\zeta(5)$ is irrational is unknown.\n- $\\zeta$ has a pole at $s = 1$ but is finite at every other point of the line $\\operatorname{Re} s = 1$, and its nonvanishing there is a theorem (1896), not a triviality."
+   },
+   {
+    "type": "connection",
+    "body": "- [[functional-equation]]: Riemann's symmetry between $s$ and $1-s$, which completes the continuation, explains the trivial zeros and produces the values $\\zeta(-n)$.\n- [[pnt]]: Perron's formula ([[mellin]]) applied to $-\\zeta'/\\zeta$, together with $\\zeta(1+it) \\ne 0$, gives $\\pi(x) \\sim x/\\log x$.\n- [[l-functions]]: replacing $1$ by a Dirichlet character $\\chi(n)$ gives $L(s,\\chi)$, which detects primes in arithmetic progressions.\n- [[dedekind-zeta]]: the zeta function of a number field; for $\\mathbb Q(i)$ it factors as $\\zeta(s)L(s,\\chi_{-4})$, where $\\chi_{-4}$ is the nontrivial character modulo 4.\n- [[nontrivial-zeros]] and [[rh]]: counting and locating the zeros in the critical strip."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Use $B_8 = -\\tfrac{1}{30}$ to show that $\\zeta(8) = \\pi^8/9450$.\n2. Show that $\\sum_{n\\le N}\\frac1n - \\log N = 1 - \\int_1^N\\frac{\\{x\\}}{x^2}\\,dx$, and deduce that $\\gamma = \\lim_{N\\to\\infty}\\bigl(\\sum_{n\\le N}\\frac1n - \\log N\\bigr)$.\n3. Show that $(1 - 2^{1-s})\\zeta(s) = \\sum_{n\\ge1}(-1)^{n-1}n^{-s}$ for $\\operatorname{Re} s > 1$. The right side converges and is positive for real $s > 0$; use this to show that $\\zeta(s) < 0$ for $0 < s < 1$.\n4. Prove that $\\zeta(\\bar s) = \\overline{\\zeta(s)}$ wherever $\\zeta$ is defined."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Edwards, Riemann's Zeta Function"
+   },
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function",
+    "where": "Ch. 2"
+   },
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Ch. 12"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Euler's formula zeta(2k) = (-1)^{k+1} B_{2k} (2pi)^{2k}/(2 (2k)!) for k = 1..8; zeta(2) = pi^2/6, zeta(4) = pi^4/90, zeta(6) = pi^6/945, zeta(8) = pi^8/9450",
+    "python": "import sympy as sp\nfor k in range(1, 9):\n    assert sp.simplify(sp.zeta(2*k) - sp.Integer(-1)**(k+1)*sp.bernoulli(2*k)*(2*sp.pi)**(2*k)/(2*sp.factorial(2*k))) == 0\nassert sp.zeta(2) == sp.pi**2/6 and sp.zeta(4) == sp.pi**4/90\nassert sp.zeta(6) == sp.pi**6/945 and sp.zeta(8) == sp.pi**8/9450"
+   },
+   {
+    "claim": "Bernoulli numbers from t/(e^t-1): B0=1, B1=-1/2, B2=1/6, B4=-1/30, B6=1/42, B8=-1/30, B10=5/66, B12=-691/2730, odd B_n = 0 for 3 <= n <= 13",
+    "python": "import sympy as sp\nt = sp.symbols('t')\nser = sp.series(t/(sp.exp(t) - 1), t, 0, 15).removeO()\nBn = [ser.coeff(t, n)*sp.factorial(n) for n in range(15)]\nR = sp.Rational\nassert Bn[0] == 1 and Bn[1] == R(-1, 2) and Bn[2] == R(1, 6) and Bn[4] == R(-1, 30)\nassert Bn[6] == R(1, 42) and Bn[8] == R(-1, 30) and Bn[10] == R(5, 66) and Bn[12] == R(-691, 2730)\nassert all(Bn[n] == 0 for n in range(3, 15, 2))"
+   },
+   {
+    "claim": "zeta(0) = -1/2, zeta(-1) = -1/12, zeta(-3) = 1/120, zeta(-5) = -1/252, zeta(-2) = zeta(-4) = 0, and zeta(-n) = -B_{n+1}/(n+1) for n = 1..12 (with B_{n+1}, n+1 >= 2, convention-independent)",
+    "python": "import sympy as sp\nR = sp.Rational\nassert sp.zeta(0) == R(-1, 2) and sp.zeta(-1) == R(-1, 12) and sp.zeta(-3) == R(1, 120)\nassert sp.zeta(-5) == R(-1, 252) and sp.zeta(-2) == 0 and sp.zeta(-4) == 0\nfor n in range(1, 13):\n    assert sp.zeta(-n) == -sp.bernoulli(n+1)/(n+1)"
+   },
+   {
+    "claim": "Continuation formula zeta(s) = s/(s-1) - s int_1^oo {x} x^{-s-1} dx holds at s = 2 and s = 0.5 (exact unit-interval pieces up to N = 20000, tail N^{-s}/(2s) with error at most (s+2)/8 N^{-s-1}); gamma = 1 - int_1^oo {x}/x^2 dx",
+    "python": "from mpmath import mp, nsum, zeta, euler, log, mpf, inf, fsum\nmp.dps = 20\ndef J(s, N=20000):\n    # sum of int_n^{n+1} (x-n) x^{-s-1} dx for n < N, in closed form, plus the tail int_N^oo {x} x^{-s-1} dx ~ N^{-s}/(2s)\n    # (the tail's remaining part int_N^oo ({x}-1/2) x^{-s-1} dx is at most (s+2)/8 * N^{-s-1} in size)\n    f = lambda n: ((n+1)**(1-s) - n**(1-s))/(1-s) + n*((n+1)**(-s) - n**(-s))/s\n    return fsum(f(mpf(n)) for n in range(1, N)) + mpf(N)**(-s)/(2*s)\nfor s in [mpf(2), mpf('0.5')]:\n    assert abs(s/(s-1) - s*J(s) - zeta(s)) < mpf(10)**-6\ng = 1 - nsum(lambda n: log(1 + 1/n) - 1/(n+1), [1, inf])\nassert abs(g - euler) < mpf(10)**-15"
+   },
+   {
+    "claim": "1/(s-1) < zeta(s) < s/(s-1) at s = 1.01, 1.5, 2, 5; zeta(0.5) < 0",
+    "python": "from mpmath import zeta, mpf\nfor s in [mpf('1.01'), mpf('1.5'), mpf(2), mpf(5)]:\n    assert 1/(s-1) < zeta(s) < s/(s-1)\nassert zeta(mpf('0.5')) < 0"
+   },
+   {
+    "claim": "sum_{k>=2}(zeta(k)-1) = 1, sum_{k>=1}(zeta(2k)-1) = 3/4, sum_{k>=1}(zeta(2k+1)-1) = 1/4",
+    "python": "from mpmath import mp, zeta, nsum, inf, mpf\nmp.dps = 25\nassert abs(nsum(lambda k: zeta(k) - 1, [2, inf]) - 1) < mpf(10)**-15\nassert abs(nsum(lambda k: zeta(2*k) - 1, [1, inf]) - mpf(3)/4) < mpf(10)**-15\nassert abs(nsum(lambda k: zeta(2*k+1) - 1, [1, inf]) - mpf(1)/4) < mpf(10)**-15"
+   },
+   {
+    "claim": "Coprime pairs in [1,1000]^2: C = 608383 (both by the Mobius formula and by direct gcd count), proportion 0.6084 vs 6/pi^2 = 0.6079",
+    "python": "import math\nfrom sympy import mobius\nN = 1000\nC = sum(int(mobius(d))*(N//d)**2 for d in range(1, N+1))\nassert C == 608383\nC2 = sum(1 for a in range(1, N+1) for b in range(1, N+1) if math.gcd(a, b) == 1)\nassert C2 == C\nassert abs(C/N**2 - 0.6084) < 5e-5 and abs(6/math.pi**2 - 0.6079) < 5e-5"
+   },
+   {
+    "claim": "First three nontrivial zeros are 1/2 + 14.1347i, 1/2 + 21.0220i, 1/2 + 25.0109i; zeta(4) = 1.08232..., zeta(6) = 1.01734...",
+    "python": "from mpmath import zetazero, zeta, mpf\nz = [zetazero(k) for k in (1, 2, 3)]\nfor w, t in zip(z, ['14.1347', '21.0220', '25.0109']):\n    assert abs(w.real - 0.5) < 1e-20 and abs(w.imag - mpf(t)) < 5e-5\nassert abs(zeta(4) - mpf('1.08232')) < 5e-6 and abs(zeta(6) - mpf('1.01734')) < 5e-6"
+   },
+   {
+    "claim": "Partial fractions: pi z cot(pi z) = 1 - 2 sum_{n>=1} z^2/(n^2 - z^2) at z = 0.3 and z = 1.7; coth(i y) = -i cot(y)",
+    "python": "from mpmath import mp, pi, cot, coth, nsum, inf, mpf, mpc\nmp.dps = 25\nfor z in [mpf('0.3'), mpf('1.7')]:\n    assert abs(pi*z*cot(pi*z) - (1 - 2*nsum(lambda n: z*z/(n*n - z*z), [1, inf]))) < mpf(10)**-15\ny = mpf('0.8')\nassert abs(coth(mpc(0, y)) - (-1j)*cot(y)) < mpf(10)**-20"
+   },
+   {
+    "claim": "Smoothed sum: sum_n n e^{-n/N} - N^2 + 1/12 is O(N^{-2}) (N = 10, 100: |difference| < 1/(200 N^2)); Abel identity sum_{n<=N} 1/n - log N = 1 - int_1^N {x}/x^2 dx at N = 50",
+    "python": "from mpmath import mp, exp, nsum, inf, mpf, log, fsum\nmp.dps = 30\nfor N in [10, 100]:\n    S = nsum(lambda n: n*exp(-n/mpf(N)), [1, inf])\n    assert abs(S - N**2 + mpf(1)/12) < 1/(mpf(200)*N**2)\nN = 50\nlhs = fsum(1/mpf(n) for n in range(1, N+1)) - log(N)\nrhs = 1 - fsum(log(1 + 1/mpf(n)) - 1/mpf(n+1) for n in range(1, N))\nassert abs(lhs - rhs) < mpf(10)**-25"
+   }
+  ]
+ },
+ {
+  "id": "functional-equation",
+  "minutes": 22,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The series $\\sum n^{-s}$ only converges for $\\operatorname{Re} s > 1$. The functional equation is a symmetry relating the value of $\\zeta$ at $s$ to its value at $1 - s$, so that once $\\zeta$ is understood to the right of the critical strip it is understood to the left as well. Riemann proved it in 1859 using the theta function, and the proof is a model for every $L$-function that came after.\n\nIts consequences are immediate and important: $\\zeta$ continues to the whole plane, it vanishes at $-2, -4, -6, \\dots$ (the trivial zeros), its remaining zeros are symmetric about the line $\\operatorname{Re} s = \\tfrac12$, its values at negative integers are rational, and its growth to the left of the strip can be read off from its growth to the right."
+   },
+   {
+    "type": "section",
+    "title": "Riemann's idea: a Mellin transform of theta",
+    "body": "Start from the gamma integral of [[gamma]] with the substitution $x = \\pi n^2t$: for $\\operatorname{Re} s > 0$,\n$$\\int_0^\\infty e^{-\\pi n^2t}\\,t^{s/2}\\,\\frac{dt}{t} = \\pi^{-s/2}\\,n^{-s}\\,\\Gamma(s/2).$$\nSum over $n \\ge 1$ when $\\operatorname{Re} s > 1$; the double sum-integral of absolute values converges, so the swap is allowed:\n$$\\Lambda(s) := \\pi^{-s/2}\\Gamma(s/2)\\zeta(s) = \\int_0^\\infty\\omega(t)\\,t^{s/2}\\,\\frac{dt}{t}, \\qquad \\omega(t) = \\sum_{n\\ge1}e^{-\\pi n^2t} = \\frac{\\theta(t) - 1}{2}.$$\nIn the language of [[mellin]], $\\Lambda(s)$ is the Mellin transform of $\\omega$ evaluated at $s/2$. As $t \\to \\infty$, $\\omega(t)$ decays like $e^{-\\pi t}$; as $t \\to 0^+$ it blows up like $\\tfrac12t^{-1/2}$, and that blow-up is why the integral converges only for $\\operatorname{Re} s > 1$. The theta law $\\theta(1/t) = \\sqrt t\\,\\theta(t)$ of [[fourier-poisson]] describes the blow-up exactly, and Riemann's idea is to use it to fold the bad half of the integral onto the good half."
+   },
+   {
+    "type": "theorem",
+    "title": "Riemann's functional equation",
+    "body": "The function $\\Lambda(s) = \\pi^{-s/2}\\Gamma(s/2)\\zeta(s)$ extends to a meromorphic function on $\\mathbb C$ whose only poles are simple poles at $s = 0$ (residue $-1$) and $s = 1$ (residue $1$), and\n$$\\Lambda(s) = \\Lambda(1-s).$$\nEquivalently, the completed zeta function\n$$\\xi(s) = \\tfrac12\\,s(s-1)\\,\\pi^{-s/2}\\,\\Gamma(s/2)\\,\\zeta(s)$$\nis entire and satisfies $\\xi(s) = \\xi(1-s)$. For all $s \\ne 0, 1$,\n$$\\Lambda(s) = \\frac{1}{s-1} - \\frac1s + \\int_1^\\infty\\omega(t)\\bigl(t^{s/2} + t^{(1-s)/2}\\bigr)\\frac{dt}{t}.$$"
+   },
+   {
+    "type": "proof",
+    "body": "Let $\\operatorname{Re} s > 1$ and split the integral for $\\Lambda(s)$ at $t = 1$. In the piece over $(0,1)$ substitute $t = 1/u$:\n$$\\int_0^1\\omega(t)\\,t^{s/2}\\,\\frac{dt}{t} = \\int_1^\\infty\\omega(1/u)\\,u^{-s/2}\\,\\frac{du}{u}.$$\nFrom $\\theta(1/u) = \\sqrt u\\,\\theta(u)$ we get $2\\omega(1/u) + 1 = \\sqrt u\\,(2\\omega(u) + 1)$, that is,\n$$\\omega(1/u) = \\sqrt u\\,\\omega(u) + \\tfrac12\\sqrt u - \\tfrac12.$$\nSubstituting,\n$$\\int_1^\\infty\\omega(1/u)\\,u^{-s/2}\\,\\frac{du}{u} = \\int_1^\\infty\\omega(u)\\,u^{(1-s)/2}\\,\\frac{du}{u} + \\frac12\\int_1^\\infty\\bigl(u^{(1-s)/2} - u^{-s/2}\\bigr)\\frac{du}{u}.$$\nFor $\\operatorname{Re} s > 1$ the last integral is elementary: $\\int_1^\\infty u^{(1-s)/2-1}\\,du = \\frac{2}{s-1}$ and $\\int_1^\\infty u^{-s/2-1}\\,du = \\frac2s$, so the last term equals $\\frac{1}{s-1} - \\frac1s$. Adding the piece over $(1,\\infty)$ gives the displayed formula for $\\Lambda(s)$ when $\\operatorname{Re} s > 1$.\n\nNow examine the right side. For $t \\ge 1$, $\\omega(t) \\le \\sum_{n\\ge1}e^{-\\pi nt} \\le e^{-\\pi t}/(1 - e^{-\\pi})$, so the integral converges absolutely and uniformly for $s$ in any compact set, and defines an entire function of $s$. The right side is therefore meromorphic on $\\mathbb C$ with simple poles only at $s = 1$ (residue $1$) and $s = 0$ (residue $-1$), and it is the continuation of $\\Lambda$. Replacing $s$ by $1 - s$ swaps $t^{s/2}$ and $t^{(1-s)/2}$ and turns $\\frac{1}{s-1} - \\frac1s$ into $\\frac{1}{-s} - \\frac{1}{1-s} = \\frac{1}{s-1} - \\frac1s$, so the right side is unchanged and $\\Lambda(s) = \\Lambda(1-s)$.\n\nFinally, $\\tfrac12s(s-1)$ vanishes simply at $0$ and $1$, cancelling both poles, so $\\xi$ is entire; and $s(s-1)$ is invariant under $s \\mapsto 1-s$, so $\\xi(s) = \\xi(1-s)$."
+   },
+   {
+    "type": "section",
+    "title": "Continuation, trivial zeros and ζ(0)",
+    "body": "Since $1/\\Gamma$ is entire, $\\zeta(s) = \\pi^{s/2}\\Lambda(s)/\\Gamma(s/2)$ is meromorphic on $\\mathbb C$. Its possible poles are the poles of $\\Lambda$, at $0$ and $1$. At $s = 0$ the pole of $\\Lambda$ is cancelled by the zero of $1/\\Gamma(s/2)$, so the only pole of $\\zeta$ is at $s = 1$. This completes the proof of the continuation stated in [[zeta]].\n\nNow use that $\\Gamma(s/2)$ has simple poles at $s = 0, -2, -4, \\dots$.\n- At $s = -2k$ with $k \\ge 1$: $\\Lambda(-2k) = \\Lambda(1+2k) = \\pi^{-(2k+1)/2}\\Gamma(k+\\tfrac12)\\zeta(2k+1)$ is finite and nonzero, while $1/\\Gamma(s/2)$ has a simple zero. So $\\zeta$ has a simple zero at each negative even integer. These are the trivial zeros.\n- At $s = 0$: $\\Lambda(s) = -\\frac1s + O(1)$, while $\\Gamma(s/2) = \\frac2s + O(1)$, so $\\pi^{s/2}/\\Gamma(s/2) = \\frac s2 + O(s^2)$. Multiplying, $\\zeta(0) = -\\tfrac12$."
+   },
+   {
+    "type": "theorem",
+    "title": "Asymmetric form",
+    "body": "As meromorphic functions on $\\mathbb C$,\n$$\\zeta(s) = 2^s\\pi^{s-1}\\sin\\Bigl(\\frac{\\pi s}{2}\\Bigr)\\,\\Gamma(1-s)\\,\\zeta(1-s).$$"
+   },
+   {
+    "type": "proof",
+    "body": "From $\\Lambda(s) = \\Lambda(1-s)$,\n$$\\zeta(s) = \\pi^{s-1/2}\\,\\frac{\\Gamma\\bigl(\\frac{1-s}{2}\\bigr)}{\\Gamma\\bigl(\\frac s2\\bigr)}\\,\\zeta(1-s).$$\nTwo gamma identities simplify the ratio. The reflection formula of [[gamma]] gives $\\frac{1}{\\Gamma(s/2)} = \\frac{\\Gamma(1 - s/2)\\sin(\\pi s/2)}{\\pi}$. Legendre's duplication formula $\\Gamma(z)\\Gamma(z + \\tfrac12) = 2^{1-2z}\\sqrt\\pi\\,\\Gamma(2z)$, which we quote (it follows from the Beta integral), with $z = \\frac{1-s}{2}$ gives $\\Gamma\\bigl(\\frac{1-s}{2}\\bigr)\\Gamma\\bigl(1 - \\frac s2\\bigr) = 2^s\\sqrt\\pi\\,\\Gamma(1-s)$. Together,\n$$\\frac{\\Gamma\\bigl(\\frac{1-s}{2}\\bigr)}{\\Gamma\\bigl(\\frac s2\\bigr)} = 2^s\\pi^{-1/2}\\sin\\Bigl(\\frac{\\pi s}{2}\\Bigr)\\Gamma(1-s),$$\nand substituting gives the formula."
+   },
+   {
+    "type": "section",
+    "title": "Zeros and symmetry",
+    "body": "Every nontrivial zero of $\\zeta$ is a zero of $\\xi$, and conversely. Indeed, for $\\operatorname{Re} s > 1$ none of the factors of $\\xi$ vanishes, so $\\xi(s) \\ne 0$ there; by the symmetry $\\xi(s) = \\xi(1-s)$, also $\\xi(s) \\ne 0$ for $\\operatorname{Re} s < 0$. The trivial zeros of $\\zeta$ are cancelled by the poles of $\\Gamma(s/2)$, and $\\xi(0) = \\xi(1) = \\tfrac12$. So the zeros of $\\xi$ all lie in the closed strip $0 \\le \\operatorname{Re} s \\le 1$, where they are exactly the zeros of $\\zeta$. (They actually lie in the open strip, by the nonvanishing of $\\zeta$ on $\\operatorname{Re} s = 1$.)\n\nSince $\\xi$ is real on the real axis, $\\xi(\\bar s) = \\overline{\\xi(s)}$. Combined with $\\xi(s) = \\xi(1-s)$, zeros come in sets $\\{\\rho, \\bar\\rho, 1-\\rho, 1-\\bar\\rho\\}$, symmetric about the real axis and about the critical line $\\operatorname{Re} s = \\tfrac12$. On the critical line, $\\xi(\\tfrac12 + it) = \\xi(\\tfrac12 - it) = \\overline{\\xi(\\tfrac12 + it)}$, so $t \\mapsto \\xi(\\tfrac12+it)$ is a real function. Its sign changes locate zeros on the line; this is how zeros are computed, and it is the starting point of Hardy's 1914 proof that infinitely many zeros lie on the critical line.\n\nThe symmetry also transports information. Any region free of zeros next to the line $\\operatorname{Re} s = 1$, for instance one of the form $\\sigma > 1 - c/\\log(|t|+2)$ from the theory of the [[zero-free-region]], is reflected into a region free of nontrivial zeros next to $\\operatorname{Re} s = 0$."
+   },
+   {
+    "type": "section",
+    "title": "Growth on vertical lines",
+    "body": "Write the asymmetric form as $\\zeta(s) = \\chi(s)\\zeta(1-s)$ with $\\chi(s) = 2^s\\pi^{s-1}\\sin(\\pi s/2)\\Gamma(1-s)$. Stirling's formula shows that for fixed real $\\sigma$,\n$$|\\chi(\\sigma + it)| \\sim \\Bigl(\\frac{|t|}{2\\pi}\\Bigr)^{1/2-\\sigma} \\qquad (|t| \\to \\infty).$$\nTo the right of the strip, say on $\\operatorname{Re} s = 1 + \\delta$, $\\zeta$ is bounded above and below. So on $\\operatorname{Re} s = -\\delta$ the functional equation gives $|\\zeta(-\\delta + it)| \\asymp |t|^{1/2+\\delta}$. Interpolating between these two lines with the Phragmén–Lindelöf principle (a maximum principle for strips, which we do not prove) yields the convexity bound $\\zeta(\\tfrac12 + it) = O(|t|^{1/4+\\varepsilon})$. The Lindelöf hypothesis asserts $O(|t|^\\varepsilon)$; see [[lindelof]]. On the critical line itself $|\\chi(\\tfrac12 + it)| = 1$ exactly, so $|\\zeta(\\tfrac12 + it)| = |\\zeta(\\tfrac12 - it)|$."
+   },
+   {
+    "type": "example",
+    "title": "Values at negative odd integers",
+    "body": "Use the asymmetric form and Euler's formula for $\\zeta(2k)$ to show that $\\zeta(1 - 2k) = -\\dfrac{B_{2k}}{2k}$ for $k \\ge 1$. In particular $\\zeta(-1) = -\\tfrac{1}{12}$.",
+    "solution": "Put $s = 1 - 2k$, so $1 - s = 2k$. Then $\\sin\\bigl(\\frac{\\pi(1-2k)}{2}\\bigr) = \\cos(\\pi k) = (-1)^k$ and $\\Gamma(1-s) = \\Gamma(2k) = (2k-1)!$, so\n$$\\zeta(1-2k) = 2^{1-2k}\\pi^{-2k}(-1)^k(2k-1)!\\,\\zeta(2k).$$\nInsert $\\zeta(2k) = \\frac{(-1)^{k+1}B_{2k}(2\\pi)^{2k}}{2(2k)!}$ from [[zeta]]. The powers of $\\pi$ cancel, $2^{1-2k}\\cdot 2^{2k}/2 = 1$, the signs give $(-1)^{2k+1} = -1$, and $(2k-1)!/(2k)! = 1/(2k)$. Hence $\\zeta(1-2k) = -B_{2k}/(2k)$.\n\nFor $k = 1$: $\\zeta(-1) = -B_2/2 = -\\tfrac{1}{12}$. Directly from the asymmetric form: $\\zeta(-1) = 2^{-1}\\pi^{-2}\\sin(-\\tfrac\\pi2)\\,\\Gamma(2)\\,\\zeta(2) = \\tfrac12\\cdot\\tfrac{1}{\\pi^2}\\cdot(-1)\\cdot 1\\cdot\\tfrac{\\pi^2}{6} = -\\tfrac{1}{12}$."
+   },
+   {
+    "type": "example",
+    "title": "A derivative at a trivial zero",
+    "body": "Show that $\\zeta'(-2) = -\\dfrac{\\zeta(3)}{4\\pi^2}$.",
+    "solution": "Write $\\zeta(s) = h(s)\\sin(\\pi s/2)$ with $h(s) = 2^s\\pi^{s-1}\\Gamma(1-s)\\zeta(1-s)$, which is holomorphic near $s = -2$. Since $\\sin(\\pi s/2)$ vanishes at $s = -2$, the product rule gives\n$$\\zeta'(-2) = h(-2)\\cdot\\frac\\pi2\\cos(-\\pi) = -\\frac\\pi2\\,h(-2).$$\nNow $h(-2) = 2^{-2}\\pi^{-3}\\Gamma(3)\\zeta(3) = \\frac{2\\zeta(3)}{4\\pi^3} = \\frac{\\zeta(3)}{2\\pi^3}$, so $\\zeta'(-2) = -\\frac{\\zeta(3)}{4\\pi^2} \\approx -0.03045$. In the same way (Exercise 4) every $\\zeta'(-2k)$ is a rational multiple of $\\zeta(2k+1)/\\pi^{2k}$."
+   },
+   {
+    "type": "example",
+    "title": "Where -1/12 really lives",
+    "body": "Show that as $y \\to 0^+$,\n$$\\sum_{n\\ge1}n\\,e^{-ny} = \\frac{1}{y^2} - \\frac{1}{12} + O(y^2),$$\nso that with $y = 1/N$ the smoothed sum of $1 + 2 + 3 + \\cdots$ is $N^2 - \\tfrac{1}{12} + O(N^{-2})$.",
+    "solution": "Mellin method. Since $\\sum_n n\\cdot n^{-s} = \\zeta(s-1)$, the smoothed-sum formula of [[mellin]] gives, for $c > 2$,\n$$\\sum_{n\\ge1}n\\,e^{-ny} = \\frac{1}{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Gamma(s)\\,\\zeta(s-1)\\,y^{-s}\\,ds.$$\nShift the line to $\\operatorname{Re} s = -\\tfrac52$. This is allowed because $\\zeta$ grows at most polynomially on vertical lines (the growth section above, with the convexity principle) while $\\Gamma$ decays exponentially. The poles crossed are: $s = 2$, where $\\zeta(s-1)$ has its pole, with residue $\\Gamma(2)y^{-2} = y^{-2}$; $s = 0$, a pole of $\\Gamma$ with residue $1$, contributing $\\zeta(-1) = -\\tfrac{1}{12}$; $s = -1$, contributing $-\\zeta(-2)\\,y = 0$; and $s = -2$, contributing $\\tfrac12\\zeta(-3)\\,y^2 = \\tfrac{y^2}{240}$. The integral on the new line is $O(y^{5/2})$. Hence the sum is $y^{-2} - \\tfrac{1}{12} + \\tfrac{y^2}{240} + O(y^{5/2})$.\n\nCheck by a closed form. Differentiating the geometric series, $\\sum_n n e^{-ny} = \\frac{e^{-y}}{(1-e^{-y})^2} = \\frac{1}{4\\sinh^2(y/2)}$, whose Laurent expansion is $\\frac{1}{y^2} - \\frac{1}{12} + \\frac{y^2}{240} - \\cdots$. The constant term $-\\tfrac{1}{12}$ is $\\zeta(-1)$, and it appears next to a main term $N^2$ that goes to infinity. That is the honest content of the slogan."
+   },
+   {
+    "type": "pitfall",
+    "body": "- The functional equation does not say $|\\zeta(s)| = |\\zeta(1-s)|$. The factor $\\chi(s)$ has size about $(|t|/2\\pi)^{1/2-\\sigma}$; only on the critical line are the two sizes equal.\n- Symmetry about $\\operatorname{Re} s = \\tfrac12$ pairs zeros; it does not force them onto the line. That is the [[rh|Riemann hypothesis]], which remains open.\n- The trivial zeros are zeros of $\\zeta$ but not of $\\xi$, since the poles of $\\Gamma(s/2)$ absorb them. And $\\zeta$ does not vanish at $0$ or at the negative odd integers.\n- Normalisations differ. Riemann's own function was, in today's notation, $\\xi(\\tfrac12 + it)$ regarded as a function of $t$ (often written $\\Xi(t)$), and some authors omit the factor $\\tfrac12$ or work with $\\Lambda$. Check before comparing formulas."
+   },
+   {
+    "type": "connection",
+    "body": "- [[nontrivial-zeros]]: $\\xi$ is entire of order 1, which leads to Hadamard's product over the zeros; counting zeros up to height $T$ with the argument principle uses the functional equation to control the part of the contour left of the strip, giving the Riemann–von Mangoldt formula $N(T) = \\frac{T}{2\\pi}\\log\\frac{T}{2\\pi} - \\frac{T}{2\\pi} + O(\\log T)$.\n- [[lindelof]]: the convexity bound $|t|^{1/4+\\varepsilon}$ comes from the functional equation; any improvement is a subconvexity bound.\n- [[hecke-l]] and [[dedekind-zeta]]: Hecke carried the same template (theta function, Poisson summation, Mellin transform, fold at $t = 1$) to Dedekind zeta functions and to the $L$-functions now named after him.\n- [[l-functions]] and [[gauss-sums]]: for a primitive Dirichlet character the theta function is twisted by $\\chi$, and the Gauss sum $\\tau(\\chi)$ enters the functional equation as the root number factor.\n- [[zero-free-region]]: the symmetry turns a zero-free region near $\\operatorname{Re} s = 1$ into one near $\\operatorname{Re} s = 0$."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\xi(0) = \\xi(1) = \\tfrac12$.\n2. Use the asymmetric form with $\\zeta(4) = \\pi^4/90$ and $\\zeta(6) = \\pi^6/945$ to show $\\zeta(-3) = \\tfrac{1}{120}$ and $\\zeta(-5) = -\\tfrac{1}{252}$.\n3. Show that $\\xi(s)$ is real when $s$ is real and when $s$ lies on the critical line.\n4. Show that $\\zeta'(-2k) = (-1)^k\\dfrac{(2k)!\\,\\zeta(2k+1)}{2\\,(2\\pi)^{2k}}$ for every integer $k \\ge 1$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Titchmarsh, The Theory of the Riemann Zeta-Function",
+    "where": "Ch. 2"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   },
+   {
+    "ref": "Edwards, Riemann's Zeta Function"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "Lambda(s) = Lambda(1-s) at s = 0.3+5i and s = 2.7-1.1i; xi(s) = xi(1-s) at s = 0.8+3i",
+    "python": "from mpmath import mp, pi, gamma, zeta, mpc, mpf\nmp.dps = 30\nLam = lambda s: pi**(-s/2)*gamma(s/2)*zeta(s)\nfor s in [mpc('0.3', 5), mpc('2.7', '-1.1')]:\n    assert abs(Lam(s) - Lam(1-s)) < mpf(10)**-20\nxi = lambda s: s*(s-1)/2*Lam(s)\ns = mpc('0.8', 3)\nassert abs(xi(s) - xi(1-s)) < mpf(10)**-20"
+   },
+   {
+    "claim": "Integral representation Lambda(s) = 1/(s-1) - 1/s + int_1^oo omega(t)(t^{s/2} + t^{(1-s)/2}) dt/t at s = 2.5, s = 0.3+2i and s = -1.7",
+    "python": "from mpmath import mp, pi, gamma, zeta, quad, exp, mpc, mpf, inf\nmp.dps = 25\nomega = lambda t: sum(exp(-pi*n*n*t) for n in range(1, 30))\ndef R(s):\n    return 1/(s-1) - 1/s + quad(lambda t: omega(t)*(t**(s/2) + t**((1-s)/2))/t, [1, 3, inf])\nfor s in [mpf('2.5'), mpc('0.3', 2), mpf('-1.7')]:\n    assert abs(R(s) - pi**(-s/2)*gamma(s/2)*zeta(s)) < mpf(10)**-15"
+   },
+   {
+    "claim": "omega(1/u) = sqrt(u) omega(u) + sqrt(u)/2 - 1/2 at u = 3.3; omega(t) <= e^{-pi t}/(1 - e^{-pi}) for t >= 1",
+    "python": "from mpmath import mp, pi, exp, sqrt, mpf\nmp.dps = 30\nomega = lambda t: sum(exp(-pi*n*n*t) for n in range(1, 300))\nu = mpf('3.3')\nassert abs(omega(1/u) - (sqrt(u)*omega(u) + sqrt(u)/2 - mpf(1)/2)) < mpf(10)**-25\nfor t in [1, 1.5, 2, 5, 10]:\n    assert omega(mpf(t)) <= exp(-pi*t)/(1 - exp(-pi))"
+   },
+   {
+    "claim": "Asymmetric form zeta(s) = 2^s pi^{s-1} sin(pi s/2) Gamma(1-s) zeta(1-s) at s = -2.5+i, 0.3+2i, -3.5; Legendre duplication at z = 0.37+0.2i",
+    "python": "from mpmath import mp, pi, gamma, zeta, sin, sqrt, mpc, mpf\nmp.dps = 30\nfor s in [mpc('-2.5', 1), mpc('0.3', 2), mpf('-3.5')]:\n    assert abs(zeta(s) - 2**s*pi**(s-1)*sin(pi*s/2)*gamma(1-s)*zeta(1-s)) < mpf(10)**-20\nz = mpc('0.37', '0.2')\nassert abs(gamma(z)*gamma(z + 0.5) - 2**(1-2*z)*sqrt(pi)*gamma(2*z)) < mpf(10)**-20"
+   },
+   {
+    "claim": "zeta(1-2k) = -B_{2k}/(2k) for k = 1..8, zeta(-1) = -1/12, zeta(-3) = 1/120, zeta(-5) = -1/252, zeta(0) = -1/2, trivial zeros at -2, -4, ..., -20",
+    "python": "import sympy as sp\nfor k in range(1, 9):\n    assert sp.zeta(1 - 2*k) == -sp.bernoulli(2*k)/(2*k)\nassert sp.zeta(-1) == sp.Rational(-1, 12) and sp.zeta(-3) == sp.Rational(1, 120)\nassert sp.zeta(-5) == sp.Rational(-1, 252) and sp.zeta(0) == sp.Rational(-1, 2)\nassert all(sp.zeta(-2*k) == 0 for k in range(1, 11))"
+   },
+   {
+    "claim": "zeta'(-2) = -zeta(3)/(4 pi^2) ~ -0.03045, and zeta'(-2k) = (-1)^k (2k)! zeta(2k+1)/(2 (2pi)^{2k}) for k = 1..4; trivial zeros are simple",
+    "python": "from mpmath import mp, zeta, pi, factorial, mpf, diff\nmp.dps = 30\nd2 = zeta(-2, derivative=1)\nassert abs(d2 + zeta(3)/(4*pi**2)) < mpf(10)**-25\nassert abs(d2 - mpf('-0.03045')) < mpf('0.000005')\nfor k in range(1, 5):\n    dk = zeta(-2*k, derivative=1)\n    assert abs(dk - (-1)**k*factorial(2*k)*zeta(2*k+1)/(2*(2*pi)**(2*k))) < mpf(10)**-20\n    assert dk != 0"
+   },
+   {
+    "claim": "sum n e^{-ny} = 1/(4 sinh^2(y/2)) and equals 1/y^2 - 1/12 + y^2/240 + O(y^4); numerically at y = 0.01 the difference from 1/y^2 - 1/12 + y^2/240 is below 1e-10",
+    "python": "import sympy as sp\nfrom mpmath import mp, exp, mpf, nsum, inf\ny = sp.symbols('y', positive=True)\nser = sp.series(1/(4*sp.sinh(y/2)**2), y, 0, 4).removeO()\nassert sp.simplify(ser - (1/y**2 - sp.Rational(1, 12) + y**2/240)) == 0\nassert sp.simplify((sp.exp(-y)/(1 - sp.exp(-y))**2 - 1/(4*sp.sinh(y/2)**2)).rewrite(sp.exp)) == 0\nmp.dps = 30\nyy = mpf('0.01')\nS = nsum(lambda n: n*exp(-n*yy), [1, inf])\nassert abs(S - (1/yy**2 - mpf(1)/12 + yy**2/240)) < mpf(10)**-10"
+   },
+   {
+    "claim": "xi(0) = xi(1) = 1/2; xi(1/2 + it) is real (t = 10, 30) and vanishes at the first zero 1/2 + 14.1347...i",
+    "python": "from mpmath import mp, pi, gamma, zeta, mpc, mpf, zetazero\nmp.dps = 30\nxi = lambda s: s*(s-1)/2*pi**(-s/2)*gamma(s/2)*zeta(s)\ne = mpf(10)**-12\nassert abs(xi(1 + e) - 0.5) < 1e-10 and abs(xi(e) - 0.5) < 1e-10\nfor t in [10, 30]:\n    v = xi(mpc(0.5, t))\n    assert abs(v.imag) < mpf(10)**-20*max(1, abs(v.real))\nassert abs(xi(zetazero(1))) < mpf(10)**-20"
+   },
+   {
+    "claim": "|chi(1/2+it)| = 1 at t = 7, 100; |chi(sigma+it)| / (t/2pi)^{1/2-sigma} is within 1% of 1 at sigma = -0.5, 1.5 and t = 1000",
+    "python": "from mpmath import mp, pi, gamma, sin, mpc, mpf\nmp.dps = 30\nchi = lambda s: 2**s*pi**(s-1)*sin(pi*s/2)*gamma(1-s)\nfor t in [7, 100]:\n    assert abs(abs(chi(mpc(0.5, t))) - 1) < mpf(10)**-20\nfor sig in [mpf('-0.5'), mpf('1.5')]:\n    t = mpf(1000)\n    r = abs(chi(mpc(sig, t)))/(t/(2*pi))**(0.5 - sig)\n    assert abs(r - 1) < 0.01"
+   },
+   {
+    "claim": "zeta(-3) = 2^{-3} pi^{-4} sin(-3pi/2) 3! zeta(4) = 1/120 and zeta(-5) = 2^{-5} pi^{-6} sin(-5pi/2) 5! zeta(6) = -1/252; Gamma((1-s)/2)Gamma(1-s/2) = 2^s sqrt(pi) Gamma(1-s) at s = 0.3+0.7i",
+    "python": "import sympy as sp\nfrom mpmath import mp, gamma, sqrt, pi, mpc, mpf\nv3 = 2**sp.Integer(-3)*sp.pi**-4*sp.sin(-3*sp.pi/2)*sp.factorial(3)*sp.pi**4/90\nv5 = 2**sp.Integer(-5)*sp.pi**-6*sp.sin(-5*sp.pi/2)*sp.factorial(5)*sp.pi**6/945\nassert sp.simplify(v3 - sp.Rational(1, 120)) == 0 and sp.simplify(v5 + sp.Rational(1, 252)) == 0\nmp.dps = 30\ns = mpc('0.3', '0.7')\nassert abs(gamma((1-s)/2)*gamma(1-s/2) - 2**s*sqrt(pi)*gamma(1-s)) < mpf(10)**-25"
+   }
+  ]
+ },
+ {
+  "id": "chebyshev",
+  "minutes": 18,
+  "blocks": [
+   {
+    "type": "intro",
+    "body": "The prime-counting function $\\pi(x)$ gives every prime the same weight. For analysis it is better to give the prime $p$ the weight $\\log p$, and to count prime powers as well. The resulting function $\\psi(x)$ looks less natural but behaves much better: its Dirichlet series is $-\\zeta'/\\zeta$, it equals the logarithm of $\\operatorname{lcm}(1, 2, \\dots, \\lfloor x\\rfloor)$, and the prime number theorem takes the clean form $\\psi(x) \\sim x$.\n\nThe weight $\\log p$ is natural for a simple reason. Near $n$, roughly one integer in $\\log n$ is prime, so weighting each prime by $\\log p$ makes the expected weight per integer about $1$, and $\\psi(x)$ should be about $x$. Chebyshev, in 1848–1850, was the first to prove that $\\psi(x)$ is indeed of size $x$: it lies between two constant multiples of $x$."
+   },
+   {
+    "type": "definition",
+    "title": "The von Mangoldt function",
+    "body": "For an integer $n \\ge 1$,\n$$\\Lambda(n) = \\begin{cases}\\log p & \\text{if } n = p^k \\text{ for a prime } p \\text{ and some } k \\ge 1,\\\\ 0 & \\text{otherwise.}\\end{cases}$$\nSo $\\Lambda(1) = 0$, $\\Lambda(2) = \\Lambda(4) = \\Lambda(8) = \\log 2$, $\\Lambda(9) = \\log 3$ and $\\Lambda(6) = \\Lambda(12) = 0$. It is an arithmetic function in the sense of [[arithmetic-functions]], but not a multiplicative one."
+   },
+   {
+    "type": "definition",
+    "title": "Chebyshev's functions ψ and θ",
+    "body": "For real $x \\ge 1$,\n$$\\psi(x) = \\sum_{n\\le x}\\Lambda(n) = \\sum_{p^k\\le x}\\log p, \\qquad \\theta(x) = \\sum_{p\\le x}\\log p.$$\n$\\psi$ counts prime powers with weight $\\log p$; $\\theta$ counts only the primes. Both are step functions that jump at prime powers (for $\\psi$) or primes (for $\\theta$)."
+   },
+   {
+    "type": "theorem",
+    "title": "Basic identities",
+    "body": "1. For every $n \\ge 1$, $\\sum_{d\\mid n}\\Lambda(d) = \\log n$.\n2. For every $x \\ge 1$, $\\psi(x) = \\log\\operatorname{lcm}(1, 2, \\dots, \\lfloor x\\rfloor)$.\n3. For every $x \\ge 1$, $\\psi(x) = \\sum_{k\\ge1}\\theta(x^{1/k})$, a finite sum since $\\theta(y) = 0$ for $y < 2$.\n4. For $\\operatorname{Re} s > 1$, $\\displaystyle -\\frac{\\zeta'(s)}{\\zeta(s)} = \\sum_{n\\ge1}\\frac{\\Lambda(n)}{n^s}$."
+   },
+   {
+    "type": "proof",
+    "body": "1. Write $n = \\prod_p p^{a_p}$. The divisors $d$ of $n$ with $\\Lambda(d) \\ne 0$ are $p, p^2, \\dots, p^{a_p}$ for each prime $p \\mid n$, and each contributes $\\log p$. The total is $\\sum_p a_p\\log p = \\log n$.\n\n2. Let $N = \\lfloor x\\rfloor$. The exponent of $p$ in $\\operatorname{lcm}(1, \\dots, N)$ is the largest $k$ with $p^k \\le N$, which is the number of $k \\ge 1$ with $p^k \\le x$. So $\\log\\operatorname{lcm}(1,\\dots,N) = \\sum_p\\log p\\cdot\\#\\{k \\ge 1 : p^k \\le x\\} = \\sum_{p^k\\le x}\\log p = \\psi(x)$.\n\n3. Group the prime powers $p^k \\le x$ according to $k$, and note that $p^k \\le x$ exactly when $p \\le x^{1/k}$.\n\n4. Part 1 says $\\Lambda * 1 = \\log$ in the sense of Dirichlet convolution ([[mobius]]). Since $0 \\le \\Lambda(n) \\le \\log n$, the series $\\sum\\Lambda(n)n^{-s}$ converges absolutely for $\\operatorname{Re} s > 1$, and by the product rule for [[dirichlet-series]], $\\zeta(s)\\sum\\Lambda(n)n^{-s} = \\sum(\\log n)n^{-s} = -\\zeta'(s)$. Divide by $\\zeta(s)$, which is nonzero for $\\operatorname{Re} s > 1$."
+   },
+   {
+    "type": "example",
+    "title": "Small values",
+    "body": "List $\\Lambda(n)$ for $n \\le 12$, and compute $\\psi(10)$ and $\\theta(10)$.",
+    "solution": "The nonzero values are $\\Lambda(2) = \\Lambda(4) = \\Lambda(8) = \\log 2$, $\\Lambda(3) = \\Lambda(9) = \\log 3$, $\\Lambda(5) = \\log 5$, $\\Lambda(7) = \\log 7$ and $\\Lambda(11) = \\log 11$; the others ($n = 1, 6, 10, 12$) are $0$.\n\nHence $\\psi(10) = 3\\log 2 + 2\\log 3 + \\log 5 + \\log 7 = \\log(8\\cdot9\\cdot5\\cdot7) = \\log 2520 \\approx 7.832$, and indeed $\\operatorname{lcm}(1, \\dots, 10) = 2520$. Also $\\theta(10) = \\log(2\\cdot3\\cdot5\\cdot7) = \\log 210 \\approx 5.347$. The difference $\\psi(10) - \\theta(10) = \\log 12$ matches part 3 of the theorem: $\\theta(10^{1/2}) + \\theta(10^{1/3}) = \\theta(3.16\\ldots) + \\theta(2.15\\ldots) = \\log 6 + \\log 2$, and $\\theta(10^{1/k}) = 0$ for $k \\ge 4$."
+   },
+   {
+    "type": "section",
+    "title": "ψ, θ and π",
+    "body": "The functions $\\psi$, $\\theta$ and $\\pi$ carry the same information to leading order.\n\n$\\psi$ versus $\\theta$. Trivially $\\theta(y) \\le \\pi(y)\\log y \\le y\\log y$. In $\\psi(x) - \\theta(x) = \\sum_{k\\ge2}\\theta(x^{1/k})$ there are at most $\\log x/\\log 2$ nonzero terms, each at most $\\theta(\\sqrt x) \\le \\sqrt x\\log\\sqrt x$. So\n$$0 \\le \\psi(x) - \\theta(x) \\le \\frac{\\log x}{\\log 2}\\cdot\\frac{\\sqrt x\\log x}{2} = O(\\sqrt x\\log^2x).$$\n(With the bound $\\theta(y) < y\\log 4$ proved below, this improves to $O(\\sqrt x)$.)\n\n$\\theta$ versus $\\pi$. On one side, $\\psi(x) = \\sum_{p\\le x}\\lfloor\\log x/\\log p\\rfloor\\log p \\le \\pi(x)\\log x$. On the other, keeping only primes above $\\sqrt x$,\n$$\\theta(x) \\ge \\sum_{\\sqrt x < p\\le x}\\log p \\ge \\bigl(\\pi(x) - \\sqrt x\\bigr)\\tfrac12\\log x,$$\nso $\\pi(x) \\le 2\\theta(x)/\\log x + \\sqrt x$. Together these show that $\\pi(x) \\asymp x/\\log x$ if and only if $\\psi(x) \\asymp x$. With [[partial-summation]] one gets the exact relation\n$$\\pi(x) = \\frac{\\theta(x)}{\\log x} + \\int_2^x\\frac{\\theta(t)}{t\\log^2t}\\,dt,$$\nfrom which $\\theta(x) \\sim x$ implies $\\pi(x) \\sim x/\\log x$, and conversely. So the [[pnt|prime number theorem]] can be stated equivalently as $\\psi(x) \\sim x$, $\\theta(x) \\sim x$ or $\\pi(x) \\sim x/\\log x$."
+   },
+   {
+    "type": "theorem",
+    "title": "Chebyshev-type bounds",
+    "body": "1. For every integer $n \\ge 1$, $\\prod_{p\\le n}p < 4^n$. Hence $\\theta(x) < x\\log 4$ for all $x \\ge 1$.\n2. For every real $x \\ge 2$, $\\psi(x) \\ge x\\log 2 - \\log\\bigl(4(x+1)\\bigr)$.\n\nConsequently $\\psi(x) \\asymp x$, $\\theta(x) \\asymp x$ and $\\pi(x) \\asymp x/\\log x$; more precisely $\\log 2 \\le \\liminf\\psi(x)/x \\le \\limsup\\psi(x)/x \\le \\log 4$."
+   },
+   {
+    "type": "proof",
+    "body": "1. Induction on $n$. For $n = 1, 2$ the products are $1 < 4$ and $2 < 16$. If $n > 2$ is even, $n$ is not prime, so $\\prod_{p\\le n}p = \\prod_{p\\le n-1}p < 4^{n-1}$. If $n = 2m + 1$ is odd, every prime $p$ with $m + 1 < p \\le 2m+1$ divides $\\binom{2m+1}{m} = \\frac{(2m+1)!}{m!\\,(m+1)!}$, since it divides the numerator but not the denominator. Moreover $\\binom{2m+1}{m} = \\binom{2m+1}{m+1}$, and these two equal terms appear in the expansion of $(1+1)^{2m+1} = 2^{2m+1}$, so $\\binom{2m+1}{m} \\le 4^m$. Therefore, by the induction hypothesis for $m + 1 < n$,\n$$\\prod_{p\\le 2m+1}p = \\prod_{p\\le m+1}p\\cdot\\prod_{m+1<p\\le 2m+1}p < 4^{m+1}\\cdot 4^m = 4^{2m+1}.$$\nFor real $x \\ge 1$ apply this with $n = \\lfloor x\\rfloor$: $\\theta(x) < \\lfloor x\\rfloor\\log 4 \\le x\\log 4$.\n\n2. Let $n \\ge 1$. By Legendre's formula ([[binomial-factorial]]), the exponent of $p$ in $\\binom{2n}{n}$ is $\\sum_{j\\ge1}\\bigl(\\lfloor 2n/p^j\\rfloor - 2\\lfloor n/p^j\\rfloor\\bigr)$. Each term is $0$ or $1$, and it is $0$ once $p^j > 2n$. So the exponent is at most the number of $j \\ge 1$ with $p^j \\le 2n$, which is the exponent of $p$ in $\\operatorname{lcm}(1, \\dots, 2n)$. Hence $\\binom{2n}{n}$ divides $\\operatorname{lcm}(1,\\dots,2n)$. Also $\\binom{2n}{n}$ is the largest of the $2n+1$ binomial coefficients, which sum to $4^n$, so $\\binom{2n}{n} \\ge 4^n/(2n+1)$. By part 2 of the basic identities,\n$$\\psi(2n) \\ge \\log\\binom{2n}{n} \\ge n\\log 4 - \\log(2n+1).$$\nFor real $x \\ge 2$ take $n = \\lfloor x/2\\rfloor \\ge 1$. Then $n > x/2 - 1$ and $2n + 1 \\le x + 1$, so $\\psi(x) \\ge \\psi(2n) \\ge (x/2 - 1)\\log 4 - \\log(x+1) = x\\log 2 - \\log(4(x+1))$.\n\nFor the consequences: part 2 gives $\\liminf\\psi(x)/x \\ge \\log 2$; part 1 together with $\\psi(x) - \\theta(x) = O(\\sqrt x\\log^2x)$ gives $\\limsup\\psi(x)/x \\le \\log 4$; and the comparisons of the previous section transfer the bounds to $\\theta$ and $\\pi$."
+   },
+   {
+    "type": "section",
+    "title": "Chebyshev's constants and the numbers",
+    "body": "Chebyshev's own constants were sharper. Working with the combination $\\lfloor x\\rfloor - \\lfloor x/2\\rfloor - \\lfloor x/3\\rfloor - \\lfloor x/5\\rfloor + \\lfloor x/30\\rfloor$ in place of central binomial coefficients, he showed that for all sufficiently large $x$,\n$$0.92129\\,x < \\psi(x) < 1.10555\\,x.$$\nHe also proved that if $\\psi(x)/x$ (equivalently $\\pi(x)\\log x/x$) has a limit, the limit must be $1$. Proving that the limit exists took nearly another half-century and the methods of complex analysis. Numerically the ratio is already close to $1$:\n- $\\psi(10^2) \\approx 94.05$, ratio $0.9405$;\n- $\\psi(10^3) \\approx 996.68$, ratio $0.9967$;\n- $\\psi(10^4) \\approx 10013.40$, ratio $1.0013$;\n- $\\psi(10^6) \\approx 999586.6$, ratio $0.99959$.\n\nThe fluctuations of $\\psi(x) - x$, visible here as changes of sign, are governed by the zeros of $\\zeta$: this is the content of the [[explicit-formula]], proved by von Mangoldt in 1895."
+   },
+   {
+    "type": "example",
+    "title": "An lcm inequality",
+    "body": "Prove that $\\operatorname{lcm}(1, 2, \\dots, N) \\ge 2^N$ for every integer $N \\ge 7$, and deduce $\\psi(N) \\ge N\\log 2$ for these $N$.",
+    "solution": "Write $L_n = \\operatorname{lcm}(1, \\dots, n)$. For $1 \\le m \\le n$ consider\n$$I = \\int_0^1 x^{m-1}(1-x)^{n-m}\\,dx.$$\nExpanding $(1-x)^{n-m}$ by the binomial theorem, $I = \\sum_{j=0}^{n-m}(-1)^j\\binom{n-m}{j}\\frac{1}{m+j}$, a sum of fractions with denominators in $\\{m, \\dots, n\\}$; so $L_n I$ is an integer. On the other hand, by the Beta integral (or repeated integration by parts), $I = \\frac{(m-1)!\\,(n-m)!}{n!} = \\frac{1}{m\\binom nm}$. Therefore $m\\binom nm$ divides $L_n$.\n\nApply this twice. With $n = 2k$ and $m = k$: $k\\binom{2k}{k} \\mid L_{2k} \\mid L_{2k+1}$. With $n = 2k+1$ and $m = k+1$: $(k+1)\\binom{2k+1}{k+1} = (2k+1)\\binom{2k}{k}$ divides $L_{2k+1}$. Since $\\gcd(k, 2k+1) = 1$, both $k\\binom{2k}{k}$ and $(2k+1)\\binom{2k}{k}$ dividing $L_{2k+1}$ implies $k(2k+1)\\binom{2k}{k} \\mid L_{2k+1}$. Using $\\binom{2k}{k} \\ge 4^k/(2k+1)$,\n$$L_{2k+1} \\ge k(2k+1)\\binom{2k}{k} \\ge k\\cdot 4^k.$$\nFor $k \\ge 4$ this gives $L_{2k+1} \\ge 4\\cdot 4^k = 2^{2k+2}$. So for odd $N = 2k+1 \\ge 9$ we get $L_N \\ge 2^{N+1}$, and for even $N = 2k+2 \\ge 10$ we get $L_N \\ge L_{N-1} \\ge 2^{N}$. The remaining cases are checked directly: $L_7 = 420 \\ge 128$ and $L_8 = 840 \\ge 256$.\n\nSince $\\psi(N) = \\log L_N$, this gives $\\psi(N) \\ge N\\log 2$ for $N \\ge 7$. The condition matters: $L_6 = 60 < 64 = 2^6$."
+   },
+   {
+    "type": "pitfall",
+    "body": "- $\\Lambda$ is not multiplicative: $\\Lambda(6) = 0$ although $\\Lambda(2)\\Lambda(3) \\ne 0$. Its Dirichlet series is a logarithmic derivative, not an Euler product.\n- $\\psi$ counts prime powers as well as primes. The difference $\\psi(x) - \\theta(x)$ is $O(\\sqrt x)$, small but not negligible in precise work; the explicit formula is a statement about $\\psi$, and transferring it to $\\theta$ or $\\pi$ changes the lower-order terms.\n- Inequalities that hold for large $x$ can fail for small $x$: $\\operatorname{lcm}(1, \\dots, 6) = 60 < 2^6$. Check small cases separately.\n- Chebyshev's bounds give $\\psi(x) \\asymp x$, not $\\psi(x) \\sim x$. The asymptotic is the prime number theorem, proved in 1896 with complex analysis and elementarily only in 1948–1949 by Selberg and Erdős."
+   },
+   {
+    "type": "connection",
+    "body": "- [[mertens]]: from $\\log\\lfloor x\\rfloor! = \\sum_{n\\le x}\\Lambda(n)\\lfloor x/n\\rfloor$ and $\\psi(x) = O(x)$ one gets $\\sum_{n\\le x}\\Lambda(n)/n = \\log x + O(1)$, the first of Mertens' theorems.\n- [[pnt]]: $\\psi(x) \\sim x$, proved by applying Perron's formula ([[mellin]]) to $-\\zeta'/\\zeta$ and using that $\\zeta$ has no zeros on $\\operatorname{Re} s = 1$.\n- [[explicit-formula]]: for $x > 1$ not a prime power, $\\psi(x) = x - \\sum_\\rho\\frac{x^\\rho}{\\rho} - \\log 2\\pi - \\tfrac12\\log(1 - x^{-2})$, the sum running over the nontrivial zeros of $\\zeta$, taken in order of increasing $|\\operatorname{Im}\\rho|$.\n- [[zeta]]: the identity $-\\zeta'/\\zeta = \\sum\\Lambda(n)n^{-s}$ turns every pole and zero of $\\zeta$ into a term in the distribution of primes."
+   },
+   {
+    "type": "exercise",
+    "body": "1. Show that $\\Lambda(n) = -\\sum_{d\\mid n}\\mu(d)\\log d$, that is, $\\Lambda = \\mu * \\log$.\n2. Show that $\\sum_{m\\le x}\\psi(x/m) = \\log\\bigl(\\lfloor x\\rfloor!\\bigr)$ for every $x \\ge 1$.\n3. Using the bounds of this lesson, show that for all sufficiently large $x$ the interval $(x, 3x]$ contains a prime.\n4. Verify $\\psi(30) = \\log\\operatorname{lcm}(1, \\dots, 30)$ by listing the prime powers up to $30$."
+   }
+  ],
+  "sources": [
+   {
+    "ref": "Apostol, Introduction to Analytic Number Theory",
+    "where": "Ch. 4"
+   },
+   {
+    "ref": "Davenport, Multiplicative Number Theory"
+   },
+   {
+    "ref": "Hardy & Wright, An Introduction to the Theory of Numbers"
+   }
+  ],
+  "checks": [
+   {
+    "claim": "sum_{d|n} Lambda(d) = log n for n <= 3000; Lambda = mu * log, i.e. Lambda(n) = -sum_{d|n} mu(d) log d",
+    "python": "import math\nfrom sympy import divisors, factorint, mobius\ndef Lam(n):\n    f = factorint(n)\n    return math.log(next(iter(f))) if len(f) == 1 else 0.0\nfor n in range(1, 3001):\n    ds = divisors(n)\n    assert abs(sum(Lam(d) for d in ds) - math.log(n)) < 1e-9\n    assert abs(Lam(n) + sum(int(mobius(d))*math.log(d) for d in ds)) < 1e-9"
+   },
+   {
+    "claim": "psi(x) = log lcm(1..floor x): exact check prod_{p^k <= N} p == lcm(1..N) for N <= 600; psi(x) = sum_k theta(x^{1/k}) at x = 10, 1000, 12345.6",
+    "python": "import math\nfrom sympy import primerange\nL = 1\nfor N in range(1, 601):\n    L = L*N//math.gcd(L, N)\n    P = 1\n    for p in primerange(2, N+1):\n        k = p\n        while k <= N:\n            P *= p; k *= p\n    assert P == L\ndef theta(y):\n    return sum(math.log(p) for p in primerange(2, int(y)+1))\ndef psi(x):\n    t = 0.0\n    for p in primerange(2, int(x)+1):\n        k = p\n        while k <= x:\n            t += math.log(p); k *= p\n    return t\nfor x in [10, 1000, 12345.6]:\n    s = 0.0; k = 1\n    while x**(1/k) >= 2:\n        s += theta(x**(1/k)); k += 1\n    assert abs(psi(x) - s) < 1e-7"
+   },
+   {
+    "claim": "psi(10) = log 2520 ~ 7.832, theta(10) = log 210 ~ 5.347, psi(10) - theta(10) = log 12 = log 6 + log 2",
+    "python": "import math\nassert math.lcm(*range(1, 11)) == 2520\nassert abs(math.log(2520) - 7.832) < 5e-4 and abs(math.log(210) - 5.347) < 5e-4\npsi10 = 3*math.log(2) + 2*math.log(3) + math.log(5) + math.log(7)\nassert abs(psi10 - math.log(2520)) < 1e-12\nassert abs(psi10 - math.log(210) - math.log(12)) < 1e-12\nassert abs(math.log(12) - (math.log(6) + math.log(2))) < 1e-12\nassert int(10**0.5) == 3 and int(10**(1/3)) == 2 and 10**0.25 < 2"
+   },
+   {
+    "claim": "prod_{p <= n} p < 4^n for all 1 <= n <= 5000; binom(2m+1,m) <= 4^m; binom(2n,n) divides lcm(1..2n) and binom(2n,n) >= 4^n/(2n+1) for n <= 400",
+    "python": "import math\nfrom sympy import isprime\nP = 1\nfor n in range(1, 5001):\n    if isprime(n):\n        P *= n\n    assert P < 4**n\nL = 1\nfor n in range(1, 401):\n    assert math.comb(2*n+1, n) <= 4**n\n    for k in (2*n-1, 2*n):\n        L = L*k//math.gcd(L, k)\n    assert L % math.comb(2*n, n) == 0\n    assert math.comb(2*n, n)*(2*n+1) >= 4**n"
+   },
+   {
+    "claim": "psi(x) >= x log 2 - log(4(x+1)) for all real x in [2, 20000] (checked just below each jump and at x = 2)",
+    "python": "import math\nfrom sympy import primerange\nM = 20001\nlam = [0.0]*(M+1)\nfor p in primerange(2, M+1):\n    k = p\n    while k <= M:\n        lam[k] = math.log(p); k *= p\npsi = [0.0]*(M+1)\nfor n in range(1, M+1):\n    psi[n] = psi[n-1] + lam[n]\nassert psi[2] >= 2*math.log(2) - math.log(12)\nfor n in range(3, M+1):\n    # on [n-1, n) psi equals psi[n-1]; the bound is largest as x -> n\n    assert psi[n-1] >= n*math.log(2) - math.log(4*(n+1))"
+   },
+   {
+    "claim": "lcm(1..N) >= 2^N for 7 <= N <= 3000 and fails for N = 1..4 and 6 (holds at 5); m binom(n,m) divides lcm(1..n) for 1 <= m <= n <= 80; L7 = 420, L8 = 840, L6 = 60",
+    "python": "import math\nL = [1]\nfor n in range(1, 3001):\n    L.append(L[-1]*n//math.gcd(L[-1], n))\nassert all(L[N] >= 2**N for N in range(7, 3001))\nassert [N for N in range(1, 7) if L[N] < 2**N] == [1, 2, 3, 4, 6]\nassert L[7] == 420 and L[8] == 840 and L[6] == 60\nfor n in range(1, 81):\n    for m in range(1, n+1):\n        assert L[n] % (m*math.comb(n, m)) == 0\nfrom fractions import Fraction\nfor n, m in [(10, 4), (13, 7)]:\n    I = sum(Fraction((-1)**j*math.comb(n-m, j), m+j) for j in range(n-m+1))\n    assert I == Fraction(1, m*math.comb(n, m))"
+   },
+   {
+    "claim": "Table: psi(100) ~ 94.05, psi(1000) ~ 996.68, psi(10^4) ~ 10013.40, psi(10^6) ~ 999586.6; Chebyshev constants A = log(2^{1/2} 3^{1/3} 5^{1/5} / 30^{1/30}) ~ 0.92129 and 6A/5 ~ 1.10555",
+    "python": "import math\nfrom sympy import primerange\nps = list(primerange(2, 10**6 + 1))\ndef psi(x):\n    t = 0.0\n    for p in ps:\n        if p > x: break\n        k = p\n        while k <= x:\n            t += math.log(p); k *= p\n    return t\nassert abs(psi(100) - 94.05) < 0.005\nassert abs(psi(1000) - 996.68) < 0.005\nassert abs(psi(10**4) - 10013.40) < 0.005\nassert abs(psi(10**6) - 999586.6) < 0.05\nA = math.log(2)/2 + math.log(3)/3 + math.log(5)/5 - math.log(30)/30\nassert abs(A - 0.92129) < 5e-6 and abs(6*A/5 - 1.10555) < 5e-6"
+   },
+   {
+    "claim": "-zeta'(2)/zeta(2) = sum Lambda(n)/n^2 (partial sum to 2*10^5 within 1e-4); sum_{m<=x} psi(x/m) = log(floor(x)!) at x = 100 and 257.3",
+    "python": "import math\nfrom sympy import primerange\nfrom mpmath import zeta\nM = 200000\nlam = [0.0]*(M+1)\nfor p in primerange(2, M+1):\n    k = p\n    while k <= M:\n        lam[k] = math.log(p); k *= p\nS = sum(lam[n]/n**2 for n in range(1, M+1))\ntarget = float(-zeta(2, derivative=1)/zeta(2))\nassert abs(S - target) < 1e-4\npsi = [0.0]*(M+1)\nfor n in range(1, M+1):\n    psi[n] = psi[n-1] + lam[n]\nfor x in [100, 257.3]:\n    lhs = sum(psi[int(x/m)] for m in range(1, int(x)+1))\n    assert abs(lhs - math.lgamma(int(x)+1)) < 1e-6"
+   },
+   {
+    "claim": "pi(x) = theta(x)/log x + int_2^x theta(t)/(t log^2 t) dt at x = 1000 (pi(1000) = 168); pi(x) <= 2 theta(x)/log x + sqrt x and psi(x) <= pi(x) log x at x = 10^4; theta(3x) > theta(x) for x = 10..20000",
+    "python": "import math\nfrom sympy import primerange\nfrom mpmath import quad, log as mlog, mpf\nps = list(primerange(2, 60001))\ndef theta(x): return sum(math.log(p) for p in ps if p <= x)\nx = 1000\n# theta is constant between primes: integrate piecewise exactly via mpmath on each gap\npts = [2] + [p for p in ps if 2 < p <= x] + [x]\nintegral = 0\nfor a, b in zip(pts, pts[1:]):\n    th = theta(a)\n    integral += th*(1/mlog(a) - 1/mlog(b))\nval = theta(x)/math.log(x) + float(integral)\nassert len([p for p in ps if p <= x]) == 168 and abs(val - 168) < 1e-9\nX = 10**4\npi_X = len([p for p in ps if p <= X])\npsiX = sum(math.log(p)*int(math.log(X)/math.log(p) + 1e-12) for p in ps if p <= X)\nassert pi_X <= 2*theta(X)/math.log(X) + math.sqrt(X) and psiX <= pi_X*math.log(X)\nimport bisect\nfor x in range(10, 20001):\n    assert bisect.bisect_right(ps, 3*x) > bisect.bisect_right(ps, x)"
+   }
+  ]
+ }
+]

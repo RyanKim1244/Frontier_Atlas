@@ -1,0 +1,18 @@
+[
+ {
+  "id": "zeta",
+  "field": "key_statements",
+  "problem": "zeta(-n) = -B_{n+1}/(n+1) is stated without a range; with the usual convention B_1 = -1/2 it gives zeta(0) = +1/2, but zeta(0) = -1/2. It holds for n >= 1.",
+  "corrected": [
+   "\\zeta(2k) = \\frac{(-1)^{k+1} B_{2k} (2\\pi)^{2k}}{2\\,(2k)!}, \\qquad \\zeta(-n) = -\\frac{B_{n+1}}{n+1} \\quad (n \\ge 1)"
+  ]
+ },
+ {
+  "id": "mellin",
+  "field": "key_statements",
+  "problem": "Perron's formula is stated with no conditions. It needs c > max(0, sigma_a), the integral exists only as a symmetric limit, and when x is an integer the last term must be halved, so as written it fails at integer x.",
+  "corrected": [
+   "\\sum_{n \\le x} a_n = \\frac{1}{2\\pi i}\\int_{c - i\\infty}^{c+i\\infty} \\Bigl(\\sum_n \\frac{a_n}{n^s}\\Bigr) \\frac{x^s}{s}\\, ds \\qquad (c > \\max(0,\\sigma_a),\\ x \\notin \\mathbb Z)"
+  ]
+ }
+]

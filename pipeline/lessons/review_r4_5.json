@@ -1,0 +1,194 @@
+[
+ {
+  "id": "bombieri-vinogradov",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Measuring the error",
+    "problem": "Said the prime powers 'that divide q' sit in the non-coprime classes; the relevant ones are the prime powers p^k with p | q (most of them do not divide q).",
+    "fix": "Reworded to 'prime powers p^k with p | q'."
+   },
+   {
+    "severity": "unclear",
+    "where": "connection",
+    "problem": "'Maynard's sieve needed only level 1/2' understates the result: Maynard's method works with any positive level of distribution.",
+    "fix": "Now says any positive level works, so Bombieri-Vinogradov is more than enough."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Algebraic expansion of the large-sieve bound and the claim sum 1/phi(q) << log Q were not checked.",
+    "fix": "Added two checks. Recomputed the x=10^5 data independently with numpy (0.3948x, 11.1317x, 3.55%), which agrees. Davenport Ch. 28 confirmed as Bombieri's theorem."
+   }
+  ]
+ },
+ {
+  "id": "bounded-gaps",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Zhang, Maynard and Polymath",
+    "problem": "Attributed the bound 12 under Elliott-Halberstam to Polymath8b. It is Maynard's, from his 2015 paper, which improved GPY's 16. Polymath8b's conditional result is 6 under generalised EH (confirmed from the Polymath8b abstract).",
+    "fix": "Corrected the attribution."
+   },
+   {
+    "severity": "error",
+    "where": "example/Why weights are needed",
+    "problem": "Said the first and (m+1)-st primes found in the tuple translate are p_j and p_{j+m}. They need not be consecutive primes. The correct statement is p_{j+m} <= q_{m+1}.",
+    "fix": "Rewrote the step: q_1 = p_j, so p_{j+m} <= q_{m+1} and p_{j+m} - p_j <= h_k - h_1."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Recomputed -58039, 8392, the minimal diameters 2,6,8,12,16,20 and p_16=53, p_65=313, p_28=107, p_132=743 independently. All correct.",
+    "fix": "Added an independent sieve check and an arithmetic check of Zhang's level and Maynard's criterion. The 2026 AxiomProver item is already presented as a claim."
+   }
+  ]
+ },
+ {
+  "id": "exponential-sums",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Why square root is the natural size",
+    "problem": "'Saving even a small power beyond sqrt q for short ranges' was vague and arguably wrong as worded.",
+    "fix": "Now says completion gives about sqrt(q) log q, which is trivial for ranges shorter than sqrt q, and that beating it is hard."
+   },
+   {
+    "severity": "style",
+    "where": "pitfall",
+    "problem": "Referred to 'the catalog formula'. The catalog entry is being corrected to add 'p odd'.",
+    "fix": "Now says 'The formula'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Weil bound for Kloosterman sums and the small residue facts were not checked.",
+    "fix": "Added checks. The sqrt2 partial-sum maximum is 1.03744929, within 7e-10 of the bound, which confirms the draft."
+   }
+  ]
+ },
+ {
+  "id": "circle-method",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example/Orthogonality at work",
+    "problem": "Frequencies of S^3 e(-12 alpha) were given as running from -12 to 24. The lowest frequency is 3-12 = -9.",
+    "fix": "Corrected to -9 and [-9,24]. Added a check."
+   },
+   {
+    "severity": "error",
+    "where": "section/Minor arcs",
+    "problem": "Stated sum_{p<=N}(log p)^2 <= N log N as an inequality for all N. This is not established: it needs theta(N) <= N, and theta(x) - x changes sign.",
+    "fix": "Replaced with <= theta(N) log N << N log N, and used << for the minor-arc and binary bounds."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Peaks at rationals",
+    "problem": "Asked to compare with 1/sqrt q, but for q=4 the ratio is 1/sqrt2 = sqrt2/sqrt q. The solution did not say so.",
+    "fix": "Added the comparison: exact for q=5, a factor sqrt2 larger for q=4 because |G(q)| = sqrt(2q) when 4 | q."
+   },
+   {
+    "severity": "style",
+    "where": "section/Counting with orthogonality; pitfall",
+    "problem": "Text referred to the catalog key statement with S summed over all n <= N. The entry is being fixed to sum over the set A.",
+    "fix": "Reworded both places so they do not depend on the catalog wording."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The three-squares obstruction (7 mod 8) was not checked.",
+    "fix": "Added a check. Independently recomputed r_4 average (ratio 1.00003 at X=2000), r(12)=55, and the subset count 8 for p=5."
+   }
+  ]
+ },
+ {
+  "id": "ternary-goldbach",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "Claimed R(N) is nonzero for every even N because representations 2+2+p and 2+p+q 'exist'. That is unproven in general: it would need binary-Goldbach-type input.",
+    "fix": "Now says such triples can occur, have total weight O(N (log N)^2), and are therefore invisible to the main term."
+   },
+   {
+    "severity": "error",
+    "where": "section/Minor arcs: Vinogradov's estimate",
+    "problem": "Same unjustified inequality sum (log p)^2 <= N log N.",
+    "fix": "Replaced with <= theta(N) log N << N log N."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Small cases",
+    "problem": "'N=7 is the only case that needs the prime 2' is only verified in the computed range.",
+    "fix": "Added 'In this range'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Small representations, the values of c_p, the factors 3/4 and 9/8 at p=3, and the minor-arc exponent bookkeeping were unchecked.",
+    "fix": "Added two checks. Independently recomputed S(10001)=2.30039, 255348 triples, ratio 0.9601, 1.472e5 and C2=0.660162. All agree. The Helfgott-Platt verification to 8.875e30 and the DETZ 1997 GRH result are correct as stated."
+   }
+  ]
+ },
+ {
+  "id": "waring",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/The circle method view",
+    "problem": "Said the singular series 'vanishes exactly when a congruence obstruction blocks N'. That is too strong as stated: the useful fact is a positive lower bound for s large (e.g. s >= 4k).",
+    "fix": "Reworded accordingly."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/A 2-adic obstruction",
+    "problem": "'G(4)=16 shows this simple obstruction is the only one' overstates the result.",
+    "fix": "Now says G(4)=16 shows the bound is sharp: every sufficiently large integer is a sum of 16 fourth powers."
+   },
+   {
+    "severity": "style",
+    "where": "section/The circle method view",
+    "problem": "Referred to 'the point the catalog makes'.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The explicit witness decompositions and the three-squares obstruction were unchecked.",
+    "fix": "Added two checks. The DP results (23, 239; the seven numbers that need 19 fourth powers) were confirmed by rerun. Dickson 1939, Davenport 1939, Linnik 1943, Balasubramanian-Deshouillers-Dress 1986 and Mahler's finiteness result are correctly attributed."
+   }
+  ]
+ },
+ {
+  "id": "moments",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/Higher moments: conjectures",
+    "problem": "Said both 42 and 24024 had been conjectured earlier than Keating-Snaith. Conrey-Gonek's 24024 (arXiv math/9902162, 1999) was contemporaneous and independent, not clearly earlier.",
+    "fix": "Now: 42 earlier by Conrey-Ghosh; 24024 found independently by Conrey-Gonek."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Mollifiers",
+    "problem": "The zero-density argument says zeta*M - 1 has no terms n <= y. That is false for the smoothed mollifier defined just above with P(0)=0. It holds for the sharp mollifier.",
+    "fix": "Specified the unsmoothed mollifier and gave the reason (sum_{d|n} mu(d) = 0). Added a check."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Barnes G values were checked only in floating point.",
+    "fix": "Added an exact integer check. Recomputed the integral to 100 independently with mpmath.quad: 295.635, agreeing with 295.64. The two-term Ingham value 292.172 also agrees. The October 2026 item is presented as a claim, as required."
+   }
+  ]
+ }
+]

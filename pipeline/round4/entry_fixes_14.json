@@ -1,0 +1,35 @@
+[
+ {
+  "id": "primality",
+  "field": "key_statements",
+  "problem": "As stated, the implication is false when n divides a (for example n = 5, a = 5 gives 5^4 = 0 mod 5, not 1, yet 5 is prime). The hypothesis n does not divide a, or gcd(a, n) = 1, is needed.",
+  "corrected": [
+   "n \\nmid a,\\ a^{n-1} \\not\\equiv 1 \\pmod n \\ \\Longrightarrow\\ n \\text{ composite}"
+  ]
+ },
+ {
+  "id": "geo-inequalities",
+  "field": "key_statements",
+  "problem": "Erdős–Mordell is given with no hypothesis on P, and it fails for points outside the triangle.",
+  "corrected": [
+   "R \\ge 2r",
+   "PA+PB+PC \\ge 2(PD+PE+PF)\\ \\ \\text{(Erdős–Mordell, } P \\text{ inside } ABC)",
+   "4\\pi A \\le L^2"
+  ]
+ },
+ {
+  "id": "discrete-log",
+  "field": "why",
+  "problem": "Taken literally, the entry says nothing much faster than sqrt p is known. For this concept's own group, the units modulo p, index calculus and the number field sieve are subexponential and so far faster. The square-root barrier holds only for generic groups such as well-chosen elliptic curves.",
+  "corrected": "Baby-step giant-step solves it in about $\\sqrt p$ steps in any group; modulo $p$, index calculus is much faster, but for well-chosen elliptic curve groups nothing much faster than square root is known."
+ },
+ {
+  "id": "rh",
+  "field": "key_statements",
+  "problem": "The bound psi(x) = x + O(sqrt x log^2 x) is listed as if it were known. It is proved only under RH (von Koch, 1901) and is not known unconditionally.",
+  "corrected": [
+   "\\zeta(\\rho) = 0,\\ 0 < \\operatorname{Re}\\rho < 1 \\ \\Longrightarrow\\ \\operatorname{Re}\\rho = \\tfrac12",
+   "\\text{RH} \\Longrightarrow \\psi(x) = x + O(\\sqrt x \\log^2 x)"
+  ]
+ }
+]

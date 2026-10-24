@@ -1,0 +1,152 @@
+[
+ {
+  "id": "quasi-rh",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/The 2026 claims",
+    "problem": "The Siegel-zero paper and the two arXiv follow-ups were described as having excluded/widened/improved, not as claims.",
+    "fix": "Reworded as 'claiming to exclude', 'claims a wider zero-free half-plane', 'claims an improved bound'."
+   },
+   {
+    "severity": "unclear",
+    "where": "exercise 2",
+    "problem": "Asked for partial summation where plain subtraction of psi - theta = O(sqrt x log x) is all that is needed.",
+    "fix": "Changed to 'deduce'."
+   }
+  ]
+ },
+ {
+  "id": "no-siegel",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "Example beta = 1 - q^{-1/100} is in fact ruled out for all large q by Siegel's theorem (beta > 1 - c(eps) q^{-eps} with eps = 1/200), ineffectively; so 'classical methods cannot rule this out' was false.",
+    "fix": "Replaced by beta = 1 - 1/(log q)^2, which Siegel's theorem does not exclude and which is a Siegel zero in the sense defined."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Where the ineffectivity comes from",
+    "problem": "'the bound follows directly' misdescribes the first case of Siegel's proof.",
+    "fix": "Now says the argument runs with an arbitrary auxiliary real character and the constant is computable, which is what makes the case split the source of ineffectivity."
+   }
+  ]
+ },
+ {
+  "id": "twin-primes",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'the last decade' is inaccurate as of 2026 (Zhang and Maynard were 2013) and 'remarkably close' is hype.",
+    "fix": "'work since 2013 has brought it much closer'."
+   }
+  ]
+ },
+ {
+  "id": "goldbach",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/Parseval for prime sums",
+    "problem": "Compared the trivial bound 1.28e7 with a main term 'about 10^6' and called it more than ten times too large; the actual weighted main term at n = 10^6 is 2C_2(4/3)n, about 1.76e6, so the factor is about 7.",
+    "fix": "Stated the true main term and factor (about seven, growing like log n); added a check."
+   }
+  ]
+ },
+ {
+  "id": "bsd",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "section/What is known",
+    "problem": "'Nothing is known when the order of vanishing is 2 or more' is false: the rank equality has been confirmed for particular curves (e.g. Buhler–Gross–Zagier 1985 for the rank-3 curve of conductor 5077).",
+    "fix": "Changed to 'no general result is known', and mentioned the curve-by-curve confirmations with the verified 1985 reference."
+   }
+  ]
+ },
+ {
+  "id": "p-vs-np",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'would change overnight' is hype.",
+    "fix": "Removed 'overnight'."
+   }
+  ]
+ },
+ {
+  "id": "navier-stokes",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "pitfall",
+    "problem": "Said smallness in the energy norm 'is not enough' for global regularity; that is not proved, only not known.",
+    "fix": "Now says it is not known to give global regularity, and that the known small-data theorems use critical norms."
+   },
+   {
+    "severity": "style",
+    "where": "proof/energy identity remark",
+    "problem": "'the only such a priori bound' overstated.",
+    "fix": "'essentially the only'."
+   }
+  ]
+ },
+ {
+  "id": "yang-mills",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "definition/Mass gap",
+    "problem": "Called exponential decay of correlations 'equivalent' to the gap without the hypotheses that make this true.",
+    "fix": "'Correspondingly ... (in the axiomatic framework this can be made precise)'."
+   },
+   {
+    "severity": "error",
+    "where": "checks",
+    "problem": "The symbolic pure-gauge check did not finish in 70 s (sympy simplify of matrix exponentials).",
+    "fix": "Replaced by an equivalent numerical check (scipy expm, finite differences at three points) that also verifies A_1 = -T_1 and the formula for A_2; runs in about 3 s."
+   }
+  ]
+ },
+ {
+  "id": "hodge",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/The objects",
+    "problem": "'a plane cubic curve is topologically a torus' needs non-singularity.",
+    "fix": "Added 'non-singular'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 4 value and the smoothness of the Fermat quartic were unchecked.",
+    "fix": "Added a check (chi(6) = 108, h^{1,1} = 86; Fermat quartic gradient vanishes only at 0)."
+   }
+  ]
+ },
+ {
+  "id": "poincare",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/The two-dimensional picture",
+    "problem": "Inferred existence of constant-curvature metrics from Gauss–Bonnet ('So a sphere carries...'); Gauss–Bonnet only fixes the sign, existence is uniformisation.",
+    "fix": "Rewritten to cite uniformisation for existence and Gauss–Bonnet for the sign."
+   }
+  ]
+ }
+]

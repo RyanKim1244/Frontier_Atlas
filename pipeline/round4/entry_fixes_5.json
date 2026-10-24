@@ -1,0 +1,38 @@
+[
+ {
+  "id": "bombieri-vinogradov",
+  "field": "key_statements",
+  "problem": "The range of q is not specified; the bound is false for Q much larger than x^{1/2}.",
+  "corrected": [
+   "\\sum_{q \\le Q}\\ \\max_{(a,q)=1} \\Bigl|\\psi(x;q,a) - \\frac{x}{\\varphi(q)}\\Bigr| \\ll_A \\frac{x}{(\\log x)^A}, \\qquad Q = x^{1/2}(\\log x)^{-B(A)}"
+  ]
+ },
+ {
+  "id": "exponential-sums",
+  "field": "summary",
+  "problem": "The square-root size holds only for odd primes p; for p = 2 the sum is 0.",
+  "corrected": "Sums $\\sum e(f(n))$ with $e(x) = e^{2\\pi i x}$. Weyl (1916) showed $n^2\\alpha$ is equidistributed modulo $1$ for irrational $\\alpha$ by squaring the sum (differencing). Complete sums such as $\\sum_{n \\bmod p} e(n^2/p)$ for an odd prime $p$ have size exactly $\\sqrt p$."
+ },
+ {
+  "id": "exponential-sums",
+  "field": "key_statements",
+  "problem": "Missing hypothesis p odd prime (the sum is 0 for p = 2).",
+  "corrected": [
+   "\\Bigl|\\sum_{n=0}^{p-1} e\\!\\left(\\frac{n^2}{p}\\right)\\Bigr| = \\sqrt p \\quad (p \\text{ an odd prime})"
+  ]
+ },
+ {
+  "id": "circle-method",
+  "field": "key_statements",
+  "problem": "With S summed over all n <= N the integral just counts compositions of N into k parts; S must run over the set A of allowed summands.",
+  "corrected": [
+   "r(N) = \\int_0^1 S(\\alpha)^k\\, e(-N\\alpha)\\, d\\alpha, \\qquad S(\\alpha) = \\sum_{n \\le N,\\ n \\in \\mathcal A} e(n\\alpha)"
+  ]
+ },
+ {
+  "id": "moments",
+  "field": "summary",
+  "problem": "The October 2026 result is marked as a claim in the timeline but stated as fact in the summary.",
+  "corrected": "Averages of $|\\zeta|^{2k}$ or of $L$-values over families carry information about zeros. Bettin and Gonek (2017) showed a conjecture on mollified second moments implies the Riemann hypothesis. In October 2026 a follow-up preprint claimed to refine the quasi-RH bound using amplified moments."
+ }
+]

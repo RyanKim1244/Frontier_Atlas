@@ -1,0 +1,122 @@
+[
+ {
+  "id": "zero-density",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem/A first density bound",
+    "problem": "The constant was stated as log zeta(2 sigma_0)/(2 pi (sigma - sigma_0)). The proof gives 2 pi * integral of nu <= (T/2) log zeta(2 sigma_0), so the constant is log zeta(2 sigma_0)/(4 pi (sigma - sigma_0)). The stated version was weaker than what the proof gives, and the 'clean form' log zeta(sigma+1/2)/(2 pi (sigma-1/2)) and Example 3 did not follow from it.",
+    "fix": "Changed 2 pi to 4 pi in the theorem, and the last step of the proof now writes the bound out explicitly. The clean form and Example 3 were already consistent with 4 pi. Added a sympy check."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem/The main density theorems",
+    "problem": "'known only for sigma sufficiently close to 1' gave no range.",
+    "fix": "Added that Huxley's bound alone gives the density hypothesis for sigma >= 5/6, where 3/(3 sigma - 1) <= 2, and added a check."
+   },
+   {
+    "severity": "style",
+    "where": "section/What shape of bound to expect; section 'From O(T) to a power saving'; pitfall",
+    "problem": "Lesson was over 2100 words and repeated itself (LH implies DH was said twice, and the 'zeros off the line' remark appeared twice).",
+    "fix": "Cut the repeated sentences and two pitfall bullets, and tightened one paragraph. Now about 2070 words."
+   }
+  ]
+ },
+ {
+  "id": "lindelof",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "example/Example 3",
+    "problem": "Claim that |zeta| exceeds 9.4 near t = 897.85 is the maximum over t <= 1000 was checked only at one point.",
+    "fix": "Added an independent grid check over [800,1000] (the peak is about 9.406 near t = 897.84), plus a check that 1/6 - 13/84 = 1/84."
+   }
+  ]
+ },
+ {
+  "id": "pair-correlation",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem/Montgomery's theorem (assuming RH)",
+    "problem": "The theorem was credited to Montgomery as holding uniformly for |alpha| <= 1. Montgomery's 1973 paper proves 0 <= alpha <= 1 - epsilon. Uniformity up to alpha = 1 comes from a later refinement by Goldston and Montgomery (Goldston, Notes on pair correlation, arXiv math/0412313).",
+    "fix": "Kept the statement and added a note on who proved what."
+   },
+   {
+    "severity": "style",
+    "where": "example/Example 1",
+    "problem": "'about a hundred times rarer' (the actual ratio is about 91) was not checked.",
+    "fix": "Added a check of the ratio, of m^2 >= 2m and of N(1000) = 649."
+   }
+  ]
+ },
+ {
+  "id": "diophantine-approx",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/Example 4: a Thue equation",
+    "problem": "Thue's exponent was written as 3/2 + 1 = 5/2. Thue's theorem gives d/2 + 1 + epsilon, not d/2 + 1.",
+    "fix": "Rewritten as 3/2 + 1 + epsilon < 3."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The Thue inequality bound and the badly-approximable lower bound for sqrt 2 had no direct check.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "smooth-powerful",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "rho(3) was checked only with the author's own ODE solver.",
+    "fix": "Added an independent check from the closed form rho(u) = 1 - log u + int_2^u log(t-1)/t dt on [2,3]. P_2(10^6) = 2027, Psi(10^6,1000) = 344299 and Psi(10^6,100) = 72271 were recomputed independently with a smallest-prime-factor sieve and agree."
+   }
+  ]
+ },
+ {
+  "id": "prime-patterns",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section/Long gaps: covering an interval with residue classes",
+    "problem": "The CRT step took N <= prod p and then claimed that all of N+1..N+z exceed y, which needs N > y. This is not guaranteed for the least residue.",
+    "fix": "Now takes N with y < N <= y + prod_{p<=y} p."
+   },
+   {
+    "severity": "style",
+    "where": "exercise",
+    "problem": "Exercise 4 (a run of 13 for 2,3,5,7,11 and a gap of 14) repeated the worked answer in Example 4 (114..126, 113 -> 127).",
+    "fix": "Replaced with: show that every 10 consecutive integers contain one coprime to 210, so the trivial covering is optimal for p <= 7. Added a check."
+   }
+  ]
+ },
+ {
+  "id": "probabilistic-nt",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/Divisibility events are nearly independent",
+    "problem": "Divisibility by p_1...p_k being equivalent to divisibility by their product was credited to the Chinese remainder theorem. It follows from unique factorisation (coprimality).",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "style",
+    "where": "example/Example 2",
+    "problem": "Mean of tau = 13.97 was checked only by brute force.",
+    "fix": "Added a check against Dirichlet's log x + 2 gamma - 1."
+   }
+  ]
+ }
+]
