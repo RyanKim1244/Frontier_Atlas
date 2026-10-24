@@ -1,0 +1,966 @@
+{
+ "id": "homological-algebra",
+ "papers": [
+  {
+   "arxiv": "2212.05521",
+   "title": "Vanishing of (co)homology, freeness criteria, and the Auslander-Reiten conjecture for Cohen-Macaulay Burch rings (Holanda, Miranda-Neto)",
+   "subfield": "commutative algebra",
+   "assumes": [
+    {
+     "item": "Ext^i_R(M,N) and Tor_i^R(M,N) for finitely generated modules over a Noetherian local ring; vanishing conditions as hypotheses (Auslander-Reiten, Tachikawa-type conjectures)",
+     "where": "§1"
+    },
+    {
+     "item": "duals M* = Hom_R(M,R), Matlis dual M^vee, canonical dual M^dagger = Hom_R(M,omega_R)",
+     "where": "§1 Conventions"
+    },
+    {
+     "item": "projective dimension pd_R M and injective dimension id_R M",
+     "where": "§1 Conventions"
+    },
+    {
+     "item": "free modules, torsionfree modules, freeness detected by vanishing of Ext",
+     "where": "§1"
+    },
+    {
+     "item": "depth, maximal Cohen-Macaulay modules, local duality (Ext against the canonical module)",
+     "where": "§1 Conventions, §2"
+    },
+    {
+     "item": "free and injective resolutions; Hom-tensor adjunction isomorphism of double complexes F⊗Hom(N,E) ≅ Hom(Hom(F,N),E)",
+     "where": "§2 proof of Thm 2.1"
+    },
+    {
+     "item": "two spectral sequences of a double complex converging to the same limit; collapse and five-term exact sequences",
+     "where": "§2 Thm 2.1"
+    },
+    {
+     "item": "Ext-Tor duality of the form Tor_{j}(M,N^dagger)^dagger ≅ Ext^{j}(M,N) under vanishing hypotheses",
+     "where": "§2 Thm 2.1(iii)"
+    },
+    {
+     "item": "linear resolutions / minimal resolutions (Burch rings defined via them)",
+     "where": "§1"
+    }
+   ]
+  },
+  {
+   "arxiv": "2308.01790",
+   "title": "Exact structures for persistence modules (Blanchette, Brüstle, Hanson)",
+   "subfield": "topological data analysis / representation theory of algebras",
+   "assumes": [
+    {
+     "item": "abelian categories; Rep P (persistence modules over a poset) is abelian; equivalence with modules over the incidence algebra",
+     "where": "§2.2"
+    },
+    {
+     "item": "short exact sequences, exact functors, representable functors Hom(I,-)",
+     "where": "§2.2"
+    },
+    {
+     "item": "projective objects and projective resolutions; projectivity characterised by vanishing of Ext^1 (footnote)",
+     "where": "§2.2 fn.2, Thm 2.10"
+    },
+    {
+     "item": "global dimension, finite global dimension; representation dimension; quasi-hereditary algebras",
+     "where": "§1"
+    },
+    {
+     "item": "almost split (Auslander-Reiten) sequences",
+     "where": "§1"
+    },
+    {
+     "item": "Krull-Remak-Schmidt(-Azumaya) decomposition, indecomposables, local endomorphism rings",
+     "where": "§2.2"
+    },
+    {
+     "item": "Grothendieck group and split Grothendieck group; additive invariants",
+     "where": "§2.3"
+    },
+    {
+     "item": "exact categories / relative homological algebra (formalised later), relative projectives, Ext^1 in an exact structure, pullbacks/pushouts of sequences, Baer sum",
+     "where": "§1 informally; §3-§5"
+    }
+   ]
+  },
+  {
+   "arxiv": "2410.08933",
+   "title": "Profinite and Solid Cohomology (J. Tang)",
+   "subfield": "number theory / condensed mathematics (continuous group cohomology)",
+   "assumes": [
+    {
+     "item": "abelian categories and Grothendieck axioms AB3-AB6, AB3*, AB4* (exactness of products/coproducts/filtered colimits)",
+     "where": "§1, §2"
+    },
+    {
+     "item": "enough projectives / enough injectives; compact projective generators",
+     "where": "§1, §2"
+    },
+    {
+     "item": "Ext^* both as derived functor of Hom and as Yoneda Ext, and when they agree",
+     "where": "§1 Thm 1.1 and after"
+    },
+    {
+     "item": "projective resolutions; FP_infinity modules; injective resolutions of the second variable",
+     "where": "§1 Thm 1.1(iii)"
+    },
+    {
+     "item": "tensor products over (condensed) rings, internal Hom, Hom-tensor adjunction",
+     "where": "§2 Prop 2.6"
+    },
+    {
+     "item": "computing Ext^i as H^i(Hom(P_*,N)) for a projective resolution P_*",
+     "where": "§3.4 Thm 3.14"
+    },
+    {
+     "item": "group cohomology as Ext over the group ring: H^*(G,A) = Ext^*_{R[G]}(R,A), compared with continuous cohomology",
+     "where": "§3.6 Example 3.22"
+    },
+    {
+     "item": "Tor requires resolving and flatness; projective need not imply flat in non-classical settings (remark)",
+     "where": "§3.5"
+    },
+    {
+     "item": "derived categories (deferred to §4)",
+     "where": "§4"
+    }
+   ]
+  },
+  {
+   "arxiv": "2302.07222",
+   "title": "Additivity of derived limits in the Cohen model (N. Bannister)",
+   "subfield": "set theory / strong homology",
+   "assumes": [
+    {
+     "item": "inverse systems of abelian groups over directed posets; lim is left exact",
+     "where": "§1, §3 opening"
+    },
+    {
+     "item": "derived limits lim^n as right derived functors of lim, with long exact sequence",
+     "where": "§1, §3 opening"
+    },
+    {
+     "item": "cochain complexes, cohomology H^n(K^•)",
+     "where": "§2.1"
+    },
+    {
+     "item": "computing lim^n by an explicit alternating cochain complex (Roos-type complex)",
+     "where": "§3.2 Def 3.5, Prop 3.7"
+    },
+    {
+     "item": "snake lemma giving long exact sequence for 0→G→Ḡ→Ḡ/G→0",
+     "where": "§3.2"
+    },
+    {
+     "item": "injective objects (lifting property), divisible groups as injective Z-modules, enough injectives, exact left adjoints preserve injectives",
+     "where": "§3.3 Rmk 3.17, Lemmas 3.18-3.22"
+    },
+    {
+     "item": "injectives are acyclic for lim (higher derived limits vanish)",
+     "where": "§3.3 Cor 3.23"
+    },
+    {
+     "item": "universal delta-functors: uniqueness of derived functors",
+     "where": "§3.3 Fact 3.26, Lemma 3.27"
+    },
+    {
+     "item": "Čech vs strong homology; failure of exactness",
+     "where": "§1"
+    }
+   ]
+  },
+  {
+   "arxiv": "2405.04649",
+   "title": "The Smith Fiber Sequence and Invertible Field Theories (Debray, Devalapurkar, Krulewski, Liu, Pacheco-Tallaj, Thorngren)",
+   "subfield": "algebraic topology / mathematical physics",
+   "assumes": [
+    {
+     "item": "long exact sequences from (co)fiber sequences, used as a computational tool",
+     "where": "§1, §5 Cor 5.8"
+    },
+    {
+     "item": "five lemma; checking exactness by hand",
+     "where": "§5.1"
+    },
+    {
+     "item": "extension problems in long exact sequences; non-split extensions",
+     "where": "§1, App. A, Example 6.14"
+    },
+    {
+     "item": "generalized (co)homology, homotopy groups of spectra, twisted/local coefficients",
+     "where": "§2"
+    },
+    {
+     "item": "Anderson duality I_Z (classically fits in a short exact sequence 0→Ext(π_{n-1}E,Z)→I_Z E^n→Hom(π_n E,Z)→0); our fetch could not reach §8.2.2 so exact use is unverified",
+     "where": "§1 fn.2, §8.2.2 (unverified)"
+    },
+    {
+     "item": "spectral sequences (mentioned as the harder alternative)",
+     "where": "§1"
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "ref": "C. Weibel, An Introduction to Homological Algebra (CUP 1994), Ch.1-3 (TOC via nLab; Ch.3 pdf opened)",
+   "url": "https://ncatlab.org/nlab/show/An+introduction+to+homological+algebra",
+   "toc": [
+    "1 Chain complexes: 1.1 Complexes of R-modules; 1.2 Operations on chain complexes; 1.3 Long exact sequences; 1.4 Chain homotopies; 1.5 Mapping cones and cylinders; 1.6 More on abelian categories",
+    "2 Derived functors: 2.1 δ-functors; 2.2 Projective resolutions; 2.3 Injective resolutions; 2.4 Left derived functors; 2.5 Right derived functors; 2.6 Adjoint functors and left/right exactness; 2.7 Balancing Tor and Ext",
+    "3 Tor and Ext: 3.1 Tor for abelian groups; 3.2 Tor and flatness; 3.3 Ext for nice rings; 3.4 Ext and extensions; 3.5 Derived functors of the inverse limit; 3.6 Universal coefficient theorems",
+    "4 Homological dimension: 4.1 Dimensions; 4.2 Rings of small dimension; 4.3 Change of rings; 4.4 Local rings; 4.5 Koszul complexes; 4.6 Local cohomology",
+    "6 Group homology and cohomology; 9.1-9.3 Hochschild (co)homology, H^2 and extensions; 10 The derived category"
+   ]
+  },
+  {
+   "ref": "Stacks Project, Chapter 12 Homological Algebra (tag 00ZU) and §13.27 Ext groups (tag 06XP)",
+   "url": "https://stacks.math.columbia.edu/tag/00ZU",
+   "toc": [
+    "12.5 Abelian categories",
+    "12.6 Extensions",
+    "12.7 Additive functors",
+    "12.12 Cohomological delta-functors",
+    "12.13 Complexes",
+    "12.14 Homotopy and the shift functor",
+    "12.18 Double complexes and associated total complexes",
+    "12.20-12.26 Spectral sequences",
+    "12.27 Injectives",
+    "12.28 Projectives",
+    "12.29 Injectives and adjoint functors",
+    "12.31 Inverse systems",
+    "13.27 Ext groups (Def 13.27.1 Ext^i = Hom_D(X,Y[i]); Def 13.27.4 Yoneda extensions; Lemma 13.27.5-6)"
+   ]
+  },
+  {
+   "ref": "W. Crawley-Boevey, Homological algebra, lecture notes, Bielefeld WS 2024/25",
+   "url": "https://www.math.uni-bielefeld.de/~wcrawley/2425HA/Homological-algebra-WS2425.pdf",
+   "toc": [
+    "1 Abelian categories: 1.5 Abelian categories; 1.6 Exact sequences; 1.7 Exact functors; 1.8 Filtered colimits",
+    "2 Projective, injective and flat modules: 2.1 Projective; 2.2 Tensor products; 2.4 Injective; 2.5 Flat; 2.6 Envelopes and covers",
+    "3 Complexes: 3.1 Chain and cochain complexes; 3.3 Category of complexes; 3.4 Mapping cones; 3.5 Homotopy category",
+    "4 Resolutions, Ext and Tor: 4.1 Projective and injective resolutions; 4.2 Derived functors; 4.3 Ext; 4.4 Description of Ext^1 using short exact sequences; 4.5 Projective, injective and global dimensions; 4.6 Tor; 4.7 Universal coefficient theorem",
+    "5 Applications: 5.2 Regular sequences; 5.3 Regular local rings; 5.5 Group homology and cohomology; 5.6 Second cohomology classifies group extensions; 5.9 Galois descent",
+    "6 Triangulated and derived categories"
+   ]
+  },
+  {
+   "ref": "J. Rotman, An Introduction to Homological Algebra, 2nd ed. (Springer Universitext 2009), chapter list only",
+   "url": "https://link.springer.com/book/10.1007/b98977",
+   "toc": [
+    "1 Introduction",
+    "2 Hom and Tensor",
+    "3 Special Modules",
+    "4 Specific Rings",
+    "5 Setting the Stage",
+    "6 Homology",
+    "7 Tor and Ext",
+    "8 Homology and Rings",
+    "9 Homology and Groups",
+    "10 Spectral Sequences"
+   ]
+  },
+  {
+   "ref": "A. Hatcher, Algebraic Topology, Ch.3 (Cohomology)",
+   "url": "https://pi.math.cornell.edu/~hatcher/AT/at1-tc.html",
+   "toc": [
+    "2.1 Exact sequences and excision",
+    "2.2 Homology with coefficients",
+    "3.1 Cohomology groups: The universal coefficient theorem; Cohomology of spaces",
+    "3.2 Cup product: A Künneth formula",
+    "3.A The universal coefficient theorem for homology",
+    "3.B The general Künneth formula",
+    "3.E Bockstein homomorphisms",
+    "3.F Limits (lim^1)",
+    "3.F More about Ext"
+   ]
+  },
+  {
+   "ref": "D. Arapura, Algebra notes, Chapter 5 Derived Functors and Tor (Purdue)",
+   "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+   "toc": [
+    "5.1 Abelian categories",
+    "5.13 Derived functors",
+    "5.23 Tor functors",
+    "5.28 Homology of a group"
+   ]
+  }
+ ],
+ "explanations": {
+  "intuition": [
+   {
+    "summary": "Tor measures the failure of tensoring to be exact: tensoring a monomorphism such as multiplication by 2 on Z with Z/2 kills it, and Tor records what is lost (the kernel).",
+    "source": "G. Quick, MA3403 Algebraic Topology, Lecture 17 (NTNU 2018)",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture17.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Ext measures how far Hom(-,M) is from exact; e.g. 2: Z→Z induces a non-surjective map on Hom(-,Z/2), and Ext(A,M) is the cokernel that repairs this.",
+    "source": "G. Quick, MA3403 Lecture 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Tor_1(R/x, M) is the x-torsion of M for a non-zero-divisor x, which is the source of the name; over Z, Tor_1(Z/n,A) is the n-torsion of A and Tor(Q/Z,B) is the torsion subgroup of B.",
+    "source": "Wikipedia, Tor functor; Weibel §3.1 Prop 3.1.3",
+    "url": "https://en.wikipedia.org/wiki/Tor_functor",
+    "verified": true
+   },
+   {
+    "summary": "Ext^1(A,B) as 'ways of gluing': classes of short exact sequences with sub B and quotient A, zero = split; higher Ext^n as n-step exact sequences (Yoneda).",
+    "source": "Wikipedia, Ext functor; Stacks 13.27",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   },
+   {
+    "summary": "A resolution spreads the information of a module over many degrees without changing homology; Ext^n is what H^n(Hom(-,Z)) sees, independent of the resolution. Another answer: via Dold-Kan, Hom into an injective resolution is a space whose homotopy groups are the Ext groups.",
+    "source": "r/math Simple Questions thread (May 2020), answers by DamnShadowbans and Othenor",
+    "url": "https://redlib.hackliberty.org/r/math/comments/gsvrap/simple_questions_may_29_2020/fspx290/?context=3",
+    "verified": true
+   },
+   {
+    "summary": "Geometric picture: Tor computes derived intersections. Serre's formula takes the alternating sum of lengths of Tor_i(A/I,A/J) as intersection multiplicity; higher Tor vanish in the good (e.g. regular-sequence) case, and the naive length of A/I⊗A/J is only the Tor_0 term.",
+    "source": "Wikipedia, Intersection number (Serre's Tor formula)",
+    "url": "https://en.wikipedia.org/wiki/Intersection_number",
+    "verified": true
+   },
+   {
+    "summary": "Ext^n(X,A) = Hom in the derived category from X to the shifted object A[n] (A[n] thought of as the n-fold delooping B^nA): Ext is 'maps up to homotopy into a shifted object'.",
+    "source": "nLab, Ext-functor; Stacks tag 06XP",
+    "url": "https://ncatlab.org/nlab/show/Ext-functor",
+    "verified": true
+   }
+  ],
+  "motivation": [
+   {
+    "summary": "Baer introduced Ext for abelian groups (1934) to classify extensions; Eilenberg-MacLane named it (1942) and used it in the universal coefficient theorem for cohomology; Cartan-Eilenberg (1956) defined it for modules over any ring.",
+    "source": "Wikipedia, Ext functor (history)",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   },
+   {
+    "summary": "Čech introduced Tor for abelian groups (1935); the name was coined by Eilenberg c.1950; first applications were Künneth and universal coefficient theorems in topology; Cartan-Eilenberg generalised to modules.",
+    "source": "Wikipedia, Tor functor (history)",
+    "url": "https://en.wikipedia.org/wiki/Tor_functor",
+    "verified": true
+   },
+   {
+    "summary": "Topological motivation: homology with coefficients H_n(X;M) is homology of S_*(X)⊗M; since ⊗M is not left exact one needs Tor to relate H_n(X;M) to H_n(X)⊗M (universal coefficient theorem).",
+    "source": "G. Quick, Lecture 17",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture17.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Cartan and Eilenberg developed derived functors to unify several separate cohomology theories (group, Lie algebra, associative algebra cohomology) as Ext/Tor over suitable rings.",
+    "source": "D. Arapura, Ch.5 Derived functors and Tor",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "lim^1 entered topology through Milnor's 1960 lim^1 sequence; Weibel treats R^n lim as a model derived functor beside Ext and Tor, with Mittag-Leffler giving vanishing.",
+    "source": "Weibel, Introduction to Homological Algebra §3.5",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Modern research motivation: vanishing of Ext/Tor detects freeness/projectivity (Auslander-Reiten conjecture: Ext^i(M,M⊕R)=0 for i>0 should force M free).",
+    "source": "Holanda & Miranda-Neto, arXiv:2212.05521 §1",
+    "url": "https://ar5iv.labs.arxiv.org/html/2212.05521",
+    "verified": true
+   }
+  ],
+  "definitions": [
+   {
+    "summary": "Ext^n_R(A,B) as right derived functors of Hom(A,-) via an injective resolution of B, or of Hom(-,B) via a projective resolution of A; Cartan-Eilenberg showed both agree and are independent of the resolution.",
+    "source": "Wikipedia, Ext functor",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   },
+   {
+    "summary": "Balance: Weibel §2.7 'Balancing Tor and Ext' proves the two derivations agree via a double complex whose rows/columns are exact; nLab likewise says the 'balanced Ext/Tor' are computed from a double complex and compared by two spectral sequences.",
+    "source": "Weibel TOC §2.7 (nLab); nLab Tor",
+    "url": "https://ncatlab.org/nlab/show/Tor",
+    "verified": true
+   },
+   {
+    "summary": "Symmetry of Tor proved with double complexes: if all rows and columns of a double complex are acyclic, the total complex homology matches both augmentations; apply to P⊗Q.",
+    "source": "Hochster-style notes 'The functor Tor' (UMich Math 615)",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W14/Tor.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Over Z (a PID) a two-term free resolution 0→F1→F0→A→0 suffices: Ext(A,M)=coker(Hom(F0,M)→Hom(F1,M)), Tor(A,M)=ker(F1⊗M→F0⊗M); independence of the resolution via lifting lemma and chain homotopy.",
+    "source": "G. Quick, Lectures 17 and 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Yoneda definition: degree i extensions 0→A→Z_{i-1}→...→Z_0→B→0 give classes in Ext^i(B,A); every class arises and equivalence of extensions matches equality of classes. This works in any abelian category without enough projectives.",
+    "source": "Stacks Project §13.27 (Def 13.27.4, Lemma 13.27.5)",
+    "url": "https://stacks.math.columbia.edu/tag/06XP",
+    "verified": true
+   },
+   {
+    "summary": "Derived-category definition Ext^i(X,Y)=Hom_{D(A)}(X,Y[i]) for complexes; for objects A,B use A[0],B[0]. Stacks Lemma 13.27.6 identifies Ext^1 with the Homology-chapter Ext of extensions (§12.6).",
+    "source": "Stacks Project §13.27",
+    "url": "https://stacks.math.columbia.edu/tag/06XP",
+    "verified": true
+   },
+   {
+    "summary": "Ext^1(A,B) ≅ equivalence classes of extensions of A by B (Weibel Thm 3.4.3), with Ext^1 as the obstruction to splitting (Lemma 3.4.1); group law via Baer sum (Def 3.4.4), built from pullback and pushout; Yoneda Ext^n as Vista 3.4.6.",
+    "source": "Weibel §3.4",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Derived functors characterised as universal δ-functors; Ext^i identified with R^i Hom(M,-) by effaceability arguments.",
+    "source": "D. Arapura Ch.5 Thm 5.21",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Flatness via Tor: M flat iff Tor_1(M,-)=0, iff Tor_1(M,R/I)=0 for all (f.g.) ideals I; Tor may be computed from flat resolutions in either variable (Flat Resolution Lemma 3.2.8).",
+    "source": "Weibel §3.2; Wikipedia Tor",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Projectivity/injectivity via Ext: Ext^i(A,-)=0 for i>0 when A projective; conversely Ext^1(A,-)=0 forces A projective, Ext^1(-,B)=0 forces B injective.",
+    "source": "Wikipedia, Ext functor",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   }
+  ],
+  "viewpoints": [
+   {
+    "summary": "Algebraic/module-theoretic: Ext and Tor as derived functors of Hom and ⊗ on R-modules, computed by resolutions.",
+    "source": "Weibel Ch.2-3",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Categorical/derived: Ext as Hom in D(A) to a shift; Tor as homology of the derived tensor product; abelian categories treated like module categories via Freyd-Mitchell.",
+    "source": "Stacks §13.27; nLab Tor; Arapura Ch.5",
+    "url": "https://stacks.math.columbia.edu/tag/06XP",
+    "verified": true
+   },
+   {
+    "summary": "Homotopical: Dold-Kan turns Hom(P,I) into a simplicial abelian group/space whose homotopy groups are Ext; nLab writes Ext^n as π_0 of maps into B^nA.",
+    "source": "nLab Ext-functor; r/math thread",
+    "url": "https://ncatlab.org/nlab/show/Ext-functor",
+    "verified": true
+   },
+   {
+    "summary": "Topological: Tor and Ext appear as the correction terms in universal coefficient and Künneth theorems (split, non-naturally).",
+    "source": "G. Quick Lectures 17, 19; Hatcher Ch.3",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Geometric: Tor computes intersection multiplicities (Serre), i.e. a derived intersection.",
+    "source": "Wikipedia, Intersection number",
+    "url": "https://en.wikipedia.org/wiki/Intersection_number",
+    "verified": true
+   },
+   {
+    "summary": "Group-theoretic: H^n(G,A)=Ext^n_{ZG}(Z,A), H_n(G,A)=Tor_n^{ZG}(Z,A); H_1(G,Z)=G^{ab}; H^2 classifies group extensions.",
+    "source": "Arapura Ch.5 §5.28; Wikipedia Ext; Crawley-Boevey §5.6 (TOC)",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Representation-theoretic: Ext^1 between modules over finite-dimensional/incidence algebras, global dimension, exact structures (relative Ext) used for persistence-module invariants.",
+    "source": "Blanchette-Brüstle-Hanson arXiv:2308.01790 §1-3",
+    "url": "https://arxiv.org/html/2308.01790v3",
+    "verified": true
+   }
+  ],
+  "conventions": [
+   {
+    "summary": "Order of arguments: Weibel and nLab write Ext^1(A,B) for extensions 0→B→X→A→0 ('extension of A by B', quotient first). Stacks writes 'Yoneda extension of B by A' 0→A→...→B→0 with class in Ext^i(B,A) — same pattern. Group-theory texts often say 'extension of N by Q' the other way round (unverified here).",
+    "source": "Weibel §3.4; Stacks §13.27; nLab Ext-functor",
+    "url": "https://stacks.math.columbia.edu/tag/06XP",
+    "verified": true
+   },
+   {
+    "summary": "Indexing: Ext^i, R^i with upper (cohomological) indices; Tor_i, L_i with lower (homological) indices; long exact sequences move up resp. down in index.",
+    "source": "Arapura Ch.5",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Sidedness: Tor^R_n(A,B) with A a right and B a left R-module (Weibel, Arapura); Tor^R(M,N) ≅ Tor^{R^op}(N,M), symmetric only for commutative R.",
+    "source": "Weibel Ch.3 conventions; Arapura Thm 5.27",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Over Z, many topology sources write Tor(A,B) and Ext(A,B) for Tor_1 and Ext^1 since higher ones vanish.",
+    "source": "G. Quick Lectures 17, 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture17.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Derived-category convention allows Ext^i for all integers i (negative ones vanish for objects); shifts written A[n], nLab identifies A[n] with delooping B^nA.",
+    "source": "Stacks 13.27; nLab Ext-functor",
+    "url": "https://ncatlab.org/nlab/show/Ext-functor",
+    "verified": true
+   },
+   {
+    "summary": "Pontryagin dual A* = Hom(A,Q/Z) (Weibel); commutative-algebra papers use M*=Hom(M,R), Matlis dual M^vee, canonical dual M^dagger.",
+    "source": "Weibel Ch.3; arXiv:2212.05521 §1",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Terminology slip seen in sources: one REU paper calls Ext the 'left-derived' functor of Hom; standard usage is right derived (Hom is left exact).",
+    "source": "Zhukova, 'A Look at the Functors Tor and Ext' (UChicago REU 2018) §6",
+    "url": "https://www.math.uchicago.edu/~may/REU2018/REUPapers/Zhukova.pdf",
+    "verified": true
+   }
+  ],
+  "examples": [
+   {
+    "summary": "Tor(Z/m,Z/n) ≅ Z/gcd(m,n) and Ext(Z/m,Z/n) ≅ Z/gcd(m,n); e.g. Tor(Z/4,Z/6)=Z/2.",
+    "source": "G. Quick Lectures 17 & 19; Zhukova §8",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture17.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Ext(Z/n,Z)=Z/n; for finitely generated A, Ext(A,Z) is the torsion subgroup T(A); Ext(Z/p,M)=M/pM.",
+    "source": "G. Quick Lecture 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Base ring matters: Ext^1_Z(Z/2,Z/2)=Z/2 but Ext^1_{Z/2}(Z/2,Z/2)=0.",
+    "source": "G. Quick Lecture 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Resolution of R/x by 0→R→R→R/x→0 for a non-zero-divisor x: Tor_0=M/xM, Tor_1=Ann_M(x), higher vanish; dually for Ext.",
+    "source": "Hochster-style Tor notes; Wikipedia Tor; Arapura Thm 5.25",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W14/Tor.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Tor_1(R/I,R/J) ≅ (I∩J)/IJ.",
+    "source": "Notes 'The functor Tor' (UMich)",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W14/Tor.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Koszul complex: for a polynomial ring over a field, Tor/Ext of the residue field form exterior algebras (Koszul duality).",
+    "source": "Wikipedia Tor and Ext",
+    "url": "https://en.wikipedia.org/wiki/Tor_functor",
+    "verified": true
+   },
+   {
+    "summary": "Flat but not projective: Q over Z; finitely presented flat modules are projective (Weibel Thm 3.2.7).",
+    "source": "Weibel §3.2",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Extensions of Z/p by Z/p: Weibel Exercise 3.4.1 counts them (p classes in Ext^1, vs only two isomorphism types of middle group Z/p^2 and Z/p⊕Z/p — the latter count from memory).",
+    "source": "Weibel §3.4 Ex.3.4.1",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": false
+   },
+   {
+    "summary": "Ext(A,Z) for torsion A is the Pontryagin dual of A (Weibel Ex. 3.3.3, where p-adic integers appear); lim^1 of a tower of groups is linked to Z_p in Ex. 3.5.5.",
+    "source": "Weibel Example 3.3.3, Example 3.5.5",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Universal coefficient: H^n(C;Z) ≅ (H_n/T_n) ⊕ T_{n-1} for finitely generated homology.",
+    "source": "G. Quick Lecture 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   }
+  ],
+  "computation": [
+   {
+    "summary": "Standard recipe: choose a projective (free) resolution of one variable, apply Hom(-,B) or ⊗B, take (co)homology; over a PID two-term resolutions suffice so only degrees 0,1 occur.",
+    "source": "G. Quick; Weibel §3.1, §3.3",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Use additivity: Ext/Tor commute with finite direct sums (Ext turns sums in first variable into products), reducing finitely generated abelian groups to cyclic pieces.",
+    "source": "Wikipedia Ext; Weibel Prop 3.3.4",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   },
+   {
+    "summary": "Long exact sequences from short exact sequences in either variable, derived from the snake lemma; used for dimension shifting and comparisons.",
+    "source": "Zhukova §6-7; Hochster-style notes",
+    "url": "https://dept.math.lsa.umich.edu/~hochster/615W14/Tor.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Flat resolutions may replace projective ones for Tor; localisation commutes with Tor and (for finitely presented modules over Noetherian rings) with Ext.",
+    "source": "Weibel §3.2-3.3",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Double complex/spectral sequence arguments: combining a free resolution of M and injective resolution of ω_R to get Ext-Tor duality and five-term exact sequences.",
+    "source": "arXiv:2212.05521 §2 Thm 2.1",
+    "url": "https://ar5iv.labs.arxiv.org/html/2212.05521",
+    "verified": true
+   },
+   {
+    "summary": "Explicit cochain complexes for derived functors of lim over posets (Roos complex), and Mittag-Leffler for vanishing of lim^1.",
+    "source": "Weibel §3.5; arXiv:2302.07222 §3.2",
+    "url": "https://math.mit.edu/~hrm/palestine/weibel/03-tor_and_ext.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Koszul complex resolves R/(x_1..x_n) for a regular sequence, giving explicit Tor/Ext.",
+    "source": "Wikipedia Tor; Weibel §4.5 (TOC)",
+    "url": "https://en.wikipedia.org/wiki/Tor_functor",
+    "verified": true
+   }
+  ],
+  "confusions": [
+   {
+    "summary": "'Ext seems like just diagram chasing; what does higher Ext mean?' Answers: n-extensions (Yoneda), homotopy groups of a mapping space via Dold-Kan, and independence of resolution as the conceptual point.",
+    "source": "r/math Simple Questions (May 2020)",
+    "url": "https://redlib.hackliberty.org/r/math/comments/gsvrap/simple_questions_may_29_2020/fspx290/?context=3",
+    "verified": true
+   },
+   {
+    "summary": "Inequivalent extensions can have isomorphic middle terms: Ext^1 counts equivalence classes (commuting with the fixed sub and quotient), not isomorphism classes of the middle module.",
+    "source": "Weibel §3.4 (definition of equivalence); Wikipedia Ext",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": false
+   },
+   {
+    "summary": "Splittings in universal coefficient and Künneth sequences exist but are not natural.",
+    "source": "G. Quick Lectures 17, 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Ext depends on the base ring (Ext over Z vs over Z/2 example).",
+    "source": "G. Quick Lecture 19",
+    "url": "https://gereonq.folk.ntnu.no/MA3403H2018/MA3403_Lecture19.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Projective ⇒ flat holds for modules but can fail in non-classical settings (solid modules); Tor needs both variables resolved there.",
+    "source": "Tang, arXiv:2410.08933 §3.5",
+    "url": "https://arxiv.org/html/2410.08933v2",
+    "verified": true
+   },
+   {
+    "summary": "Yoneda Ext and derived-functor Ext agree when there are enough projectives or injectives; otherwise only Yoneda (or derived-category) Ext is available.",
+    "source": "Wikipedia Ext; arXiv:2410.08933 §1",
+    "url": "https://en.wikipedia.org/wiki/Ext_functor",
+    "verified": true
+   },
+   {
+    "summary": "Left vs right derived: Hom is left exact so Ext is a right derived functor; Tor is left derived since ⊗ is right exact. Some expository texts misstate this.",
+    "source": "Arapura Ch.5; Zhukova §6",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   },
+   {
+    "summary": "Tor symmetry Tor(M,N)≅Tor(N,M) is not formal: it needs balancing; Arapura notes Rotman's proof is incomplete and points to Weibel Thm 2.7.2.",
+    "source": "Arapura Ch.5 Thm 5.27",
+    "url": "https://math.purdue.edu/~arapura/algebra/homological5.pdf",
+    "verified": true
+   }
+  ]
+ },
+ "requirements": [
+  {
+   "item": "exact sequences, short exact sequences, split exact sequences, exact functors; left/right exactness of Hom and ⊗",
+   "priority": "core",
+   "needed_by": [
+    "2308.01790",
+    "2302.07222",
+    "2405.04649",
+    "Weibel ch.1-2",
+    "Crawley-Boevey ch.1",
+    "page: cohomology",
+    "page: sheaf-cohomology"
+   ]
+  },
+  {
+   "item": "snake lemma, five lemma, long exact sequence in (co)homology from a short exact sequence of complexes",
+   "priority": "core",
+   "needed_by": [
+    "2302.07222",
+    "2405.04649",
+    "Weibel 1.3",
+    "Hatcher 2.1",
+    "page: cohomology",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "chain/cochain complexes, homology, chain homotopy, mapping cones",
+   "priority": "core",
+   "needed_by": [
+    "2302.07222",
+    "Weibel ch.1",
+    "Crawley-Boevey ch.3",
+    "page: cohomology"
+   ]
+  },
+  {
+   "item": "abelian categories (and AB axioms), additive functors; Freyd-Mitchell as justification for element-chasing",
+   "priority": "core",
+   "needed_by": [
+    "2410.08933",
+    "2308.01790",
+    "Stacks 12.5",
+    "Arapura 5.1",
+    "page: sheaf-cohomology"
+   ]
+  },
+  {
+   "item": "projective, injective, flat modules/objects; enough projectives/injectives; divisible = injective over Z",
+   "priority": "core",
+   "needed_by": [
+    "2410.08933",
+    "2302.07222",
+    "2308.01790",
+    "Weibel 2.2-2.3, 3.2",
+    "Crawley-Boevey ch.2",
+    "page: sheaf-cohomology",
+    "page: galois-cohomology"
+   ]
+  },
+  {
+   "item": "projective and injective resolutions; comparison theorem (lifts unique up to homotopy) and independence of resolution",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2410.08933",
+    "2308.01790",
+    "Weibel 2.2-2.3",
+    "Quick L17/L19",
+    "page: sheaf-cohomology"
+   ]
+  },
+  {
+   "item": "left/right derived functors; δ-functors, universal δ-functors, effaceability, dimension shifting",
+   "priority": "core",
+   "needed_by": [
+    "2302.07222",
+    "Weibel 2.1-2.5",
+    "Arapura 5.13",
+    "Stacks 12.12",
+    "page: sheaf-cohomology",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "definition of Ext^n via resolutions; long exact Ext sequences in both variables",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2410.08933",
+    "Weibel 3.3",
+    "Crawley-Boevey 4.3",
+    "page: galois-cohomology"
+   ]
+  },
+  {
+   "item": "definition of Tor_n via resolutions; long exact Tor sequences; Tor computed by flat resolutions",
+   "priority": "core",
+   "needed_by": [
+    "2212.05521",
+    "2410.08933",
+    "Weibel 3.1-3.2",
+    "Crawley-Boevey 4.6"
+   ]
+  },
+  {
+   "item": "balancing Tor and Ext (double complex argument); Tor symmetry for commutative rings",
+   "priority": "common",
+   "needed_by": [
+    "Weibel 2.7",
+    "Hochster notes",
+    "Arapura 5.27",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "Ext^1 classifies extensions; Baer sum; Yoneda Ext^n; agreement with derived-functor Ext",
+   "priority": "common",
+   "needed_by": [
+    "2410.08933",
+    "2308.01790",
+    "Weibel 3.4",
+    "Stacks 13.27",
+    "Crawley-Boevey 4.4",
+    "page: galois-cohomology"
+   ]
+  },
+  {
+   "item": "vanishing characterisations: projective iff Ext^1(P,-)=0, injective iff Ext^1(-,I)=0, flat iff Tor_1(-,M)=0 (Baer/ideal criteria)",
+   "priority": "common",
+   "needed_by": [
+    "2212.05521",
+    "2308.01790",
+    "Weibel 3.2",
+    "Wikipedia Ext/Tor"
+   ]
+  },
+  {
+   "item": "standard computations over Z: Tor/Ext of cyclic groups, Tor_1(Z/n,A)=n-torsion, Ext(A,Z) for f.g. A, Ext(Z/n,M)=M/nM",
+   "priority": "core",
+   "needed_by": [
+    "Weibel 3.1, 3.3",
+    "Quick L17/L19",
+    "Hatcher 3.1",
+    "page: cohomology"
+   ]
+  },
+  {
+   "item": "Tor/Ext of R/x for a non-zero-divisor; Tor_1(R/I,R/J)=(I∩J)/IJ; Koszul complex",
+   "priority": "common",
+   "needed_by": [
+    "2212.05521",
+    "Weibel 4.5",
+    "Hochster notes"
+   ]
+  },
+  {
+   "item": "projective/injective/global dimension; hereditary rings (PIDs) and vanishing above degree 1",
+   "priority": "common",
+   "needed_by": [
+    "2212.05521",
+    "2308.01790",
+    "Weibel ch.4",
+    "Crawley-Boevey 4.5"
+   ]
+  },
+  {
+   "item": "universal coefficient theorems and Künneth formula (non-natural splitting)",
+   "priority": "common",
+   "needed_by": [
+    "2405.04649",
+    "Weibel 3.6",
+    "Hatcher 3.1, 3.A, 3.B",
+    "Quick L17/L19",
+    "page: cohomology"
+   ]
+  },
+  {
+   "item": "Hom-tensor adjunction; adjoints and exactness; exact left adjoints preserve injectives",
+   "priority": "common",
+   "needed_by": [
+    "2410.08933",
+    "2302.07222",
+    "2212.05521",
+    "Weibel 2.6",
+    "Stacks 12.29",
+    "page: sheaf-cohomology"
+   ]
+  },
+  {
+   "item": "group (co)homology as Ext/Tor over ZG; H^2 classifies group extensions",
+   "priority": "common",
+   "needed_by": [
+    "2410.08933",
+    "Arapura 5.28",
+    "Weibel ch.6",
+    "Crawley-Boevey 5.5-5.6",
+    "page: galois-cohomology"
+   ]
+  },
+  {
+   "item": "double complexes and total complexes (sign conventions); spectral sequence of a double complex",
+   "priority": "specialised",
+   "needed_by": [
+    "2212.05521",
+    "Stacks 12.18-12.25",
+    "Weibel 5.6",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "derived functors of inverse limit: lim^1, Mittag-Leffler, Milnor sequence, Roos complex",
+   "priority": "specialised",
+   "needed_by": [
+    "2302.07222",
+    "Weibel 3.5",
+    "Hatcher 3.F",
+    "page: galois-cohomology"
+   ]
+  },
+  {
+   "item": "Ext and Tor via derived category: Ext^i = Hom_D(X,Y[i]), derived tensor product",
+   "priority": "specialised",
+   "needed_by": [
+    "2410.08933",
+    "Stacks 13.27",
+    "Weibel ch.10",
+    "nLab Ext"
+   ]
+  },
+  {
+   "item": "duality functors: Pontryagin, Matlis, canonical-module duals; local duality",
+   "priority": "specialised",
+   "needed_by": [
+    "2212.05521",
+    "Weibel 3.2-3.3"
+   ]
+  },
+  {
+   "item": "exact categories and relative homological algebra (relative projectives, relative Ext^1)",
+   "priority": "specialised",
+   "needed_by": [
+    "2308.01790"
+   ]
+  },
+  {
+   "item": "Grothendieck groups, split Grothendieck group, Krull-Schmidt decompositions",
+   "priority": "specialised",
+   "needed_by": [
+    "2308.01790"
+   ]
+  },
+  {
+   "item": "Anderson duality / Ext(-,Z) in stable homotopy (SES with Ext and Hom terms)",
+   "priority": "specialised",
+   "needed_by": [
+    "2405.04649"
+   ]
+  },
+  {
+   "item": "extension problems: recovering a group from a filtration/long exact sequence; non-split examples",
+   "priority": "common",
+   "needed_by": [
+    "2405.04649",
+    "page: spectral-sequences"
+   ]
+  },
+  {
+   "item": "Tor and intersection multiplicity (Serre's formula)",
+   "priority": "specialised",
+   "needed_by": [
+    "Wikipedia Intersection number"
+   ]
+  }
+ ],
+ "notes": [
+  "MathOverflow and Math StackExchange could not be reached: search did not return MO/MSE pages and their search URLs are not on the fetch allowlist. The confusions section uses a Reddit r/math thread, lecture notes, and the paper itself in their place. A later pass should add real MO/MSE question URLs (e.g. intuition for Tor, intuition for Ext, inequivalent extensions with isomorphic middle term).",
+  "Weibel's full TOC comes from the nLab record. Chapter 3 details come from a pdf of Ch.3 hosted on math.mit.edu, and are summarised, not quoted.",
+  "Crawley-Boevey: section numbers in the 2024/25 notes (4.4 Ext^1, 4.6 Tor, 4.7 UCT, 5.6 H^2) differ from the 2026 version of the notes (4.4, 4.7, 4.8, 5.2). Only the TOC was readable; the bodies of chapters 3 to 6 were not visible.",
+  "Rotman: only chapter titles are available from Springer, no section headings.",
+  "Hatcher: we opened only the TOC page, not the chapter text.",
+  "arXiv:2405.04649: the Anderson-duality short exact sequence with an Ext(-,Z) term is the standard form, written from memory. The fetch tool could not reach §8.2.2, so its exact use in the paper is unverified.",
+  "arXiv:2112.07632 (Homological approximations in persistence theory) was opened but not used: its intro and preliminaries do not use Ext/Tor. 2308.01790 replaces it.",
+  "Wikipedia Intersection number: the tangent-line example there gives multiplicity 2, but that example does not itself show the naive tensor length failing. The standard counterexample (two planes in 4-space meeting at a point) is from memory and is not included.",
+  "Group-theory naming of extensions ('extension of N by Q' versus 'of Q by N') is marked unverified. We did not open a source on it.",
+  "The UMich Tor.pdf is attributed to Hochster from the URL only. The page itself carries no author name."
+ ]
+}

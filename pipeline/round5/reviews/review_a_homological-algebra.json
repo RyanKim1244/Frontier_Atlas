@@ -1,0 +1,70 @@
+[
+ {
+  "id": "homological-algebra",
+  "verdict": "fixed",
+  "scope": "Only the blocks and checks added by the sufficiency pass: blocks 92, 94-105, 110-114, 116-121, 132; checks 24-29. Sources opened: Weibel Ch. 3 and Ch. 4 PDFs, Stacks 10.72 (tags 00LE, 00LX) and 10.111.1 (090V), Stojanoska arXiv:1105.3968 Sec. 2, Krulewski's thesis (inspirehep file), Smith fiber sequence paper (arXiv HTML v2, Secs. 1, 2, 5.1), Holanda-Miranda-Neto arXiv:2212.05521 (PDF), Mitchell's Ext note.",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "block 111 (Kunneth proof), last sentence",
+    "problem": "It said the splitting comes from a retraction P_p -> Z_p 'exactly as for the universal coefficient theorem'. That works when Q is concentrated in one degree. For general Q it does not: the resulting map lands in H_q(H_p(P) tensor Q), and H_p(P) tensor H_q(Q) -> H_q(H_p(P) tensor Q) need not be injective. Example: Q = (Z/4 -> Z/2), A = Z/2, where Z/2 maps to 0.",
+    "fix": "Replaced it with a correct outline. When Q is also free, use retractions on both sides, which give a chain map P tensor Q -> H(P) tensor H(Q). In general, replace Q by a free complex Q' with a quasi-isomorphism Q' -> Q, built from free resolutions of each H_q(Q), and use naturality and the five lemma. Added the counterexample and check 30."
+   },
+   {
+    "severity": "error",
+    "where": "block 120 (pitfall, first bullet)",
+    "problem": "It said the C^x-character form and the Ext form differ 'for infinite groups'. That is false as stated: for an infinite elementary abelian 2-group both are a product of copies of Z/2. The case that matters is a finitely generated group with a free part, where Krulewski's term Tors Hom(pi, C^x) contains all roots of unity.",
+    "fix": "Now says the two forms agree for finite pi_{m-1}X and can differ in general, already for finitely generated groups with a free part (example Z). Check 30 covers A = Z + Z/2."
+   },
+   {
+    "severity": "source",
+    "where": "block 120 (pitfall), Krulewski claim",
+    "problem": "Verified in the thesis: Eq. (2.4.19) reads 0 -> Tors(Hom(pi_{n+1}X, C^x)) -> [X, Sigma^{n+2} I_Z] -> Hom(pi_{n+2}X, Z) -> 0. So the page's claim about Krulewski is accurate. The sentence 'This is why the Smith paper dualises the fibre sequence...' was the writer's own causal framing.",
+    "fix": "Kept the Krulewski statement. Rephrased the second bullet to say only what the paper does: (1.6) is obtained by taking Anderson duals of a fibre sequence of spectra."
+   },
+   {
+    "severity": "source",
+    "where": "block 117 item 3; block 116",
+    "problem": "Block 117 called the Ext sequence (with m = n+2) 'the sequence in Krulewski's Equation (2.4.19)', but Krulewski's first term is a C^x-character group, not Ext. Block 116 said the page 'uses it in the form stated by Krulewski', but the page uses Stojanoska's Ext form. The thesis says Sec. 2.4.2 is 'modified from' Sec. 8.2.2 of the Smith paper.",
+    "fix": "Block 117 now records Krulewski's form of the first term and when the two forms agree. Block 116 now says the page compares its sequence with Krulewski's form."
+   },
+   {
+    "severity": "source",
+    "where": "block 119 solution",
+    "problem": "Notation 2.4.22 only introduces the abbreviation mho^n_xi for [MT xi, Sigma^{n+1} I_Z]. It says nothing about 'choosing the degree so that torsion matches the bordism dimension'. Section 2.5.1 calls the torsion subgroup the topological theories (the global anomaly), not a 'bordism-invariant part'.",
+    "fix": "Rewrote both sentences to match the thesis: the mho notation is indexed by the dimension n, and the local and global anomaly are described as Krulewski describes them."
+   },
+   {
+    "severity": "source",
+    "where": "block 102 (Auslander-Buchsbaum proof), first paragraph",
+    "problem": "It misdescribed both sources. The Stacks base case (depth M = 0) splits a minimal resolution and applies the depth lemma (and 10.102.9); it does not use the Ext description. Weibel's proof of 4.4.15 is a double induction on G(R) and G(A), not an induction on depth R alone.",
+    "fix": "Corrected both descriptions. The block now says plainly that its own argument, by induction on pd M, is a different arrangement."
+   },
+   {
+    "severity": "source",
+    "where": "block 94",
+    "problem": "Two imprecise attributions. (1) Weibel lists the 'm is an associated prime' fact among his Standard Facts 4.4.7; the proof of 4.4.8 begins from 'G(A) = 0 implies Hom(k,A) != 0'. (2) HM Theorem 2.1 concludes that Hom(M,N) and M tensor N^dagger are MCM; it does not conclude that modules are 'MCM or free'.",
+    "fix": "Both statements now match the sources."
+   },
+   {
+    "severity": "unclear",
+    "where": "blocks 97-98, 99-100, 101-102 (depth sequence, depth lemma, AB formula)",
+    "problem": "Checked line by line; no mathematical error found. In the AB proof, the cases n = 0 and n = 1, the impossibility of d = n-1, and the index range 0 <= i <= d-n <= d-2 are all correct. The minimality of the induced resolution of K, and pd K = n-1 by the Tor criterion, are justified. The statements and numbering agree with Weibel (4.3.11, 4.4.3, 4.4.8, 4.4.11, 4.4.15, 4.6.3) and Stacks (10.72.5, 10.72.6, 10.111.1).",
+    "fix": "None needed."
+   }
+  ],
+  "verified_ok": [
+   "Block 104: Koszul cochains, the socle and N/mN, the resolution of R/(x^2,xy) and the depth/pd values. Recomputed (checks 27-28 pass; the graded computation is independent of the writer's reasoning).",
+   "Block 112: H(C tensor C) = Z, (Z/2)^2, Z/2, Z/2, 0, the explicit degree-3 cycle and its sign. Recomputed independently by Smith normal form.",
+   "Block 119 and exercise 121.5: spin and oriented bordism groups match Krulewski's Examples 2.2.45 and 2.2.42. The [MTSpin, Sigma^{n+1} I_Z] values were recomputed. Theorem 2.4.21 (Sigma^{n+1}, reflection positive, Freed-Hopkins and Grady) and Smith paper Theorem 2.18 (Pontryagin-Thom) were confirmed.",
+   "Blocks 116-118: Stojanoska Sec. 2 defines I_Z as the fibre of I_Q -> I_{Q/Z} and gives 0 -> Ext(pi_{-t-1}X, Z) -> pi_t I_Z X -> Hom(pi_{-t}X, Z) -> 0, with exactly these indices. The page's translation to [X, Sigma^m I_Z] = pi_{-m} I_Z X is correct. The splitting for finitely generated pi_m X is the page's own (correct) argument; Stojanoska does not state it.",
+   "Block 110: matches Weibel Thm 3.6.3 (P_n and d(P_n) flat; non-canonical splitting for free complexes over Z) and the sign convention.",
+   "Block 132: confirmed that the Smith paper's Sec. 5.1 uses the five lemma and that its footnote 2 refers to Sec. 8.2.2 and [FH21, Sec. 5.3]. The HM description (Ext^q(N, omega_R) = 0 quoted from [15, Prop. 3.3.3]; local duality; spectral sequences) was confirmed.",
+   "Checks 24-29 re-run and pass. Check 30 was added."
+  ],
+  "unresolved": [
+   "Smith paper Example 6.14 and Appendix A (non-split extensions, block 114): the fetched text stops before Section 6.2, so this claim could not be re-verified. It was already present in the reviewed version.",
+   "Mitchell's Ext note (injext) computes only Ext(Z/n, Z) with Z -> Q -> Q/Z. The general statement in block 118 part 1 and Baer's criterion come from other sections of the page, not from this note."
+  ]
+ }
+]

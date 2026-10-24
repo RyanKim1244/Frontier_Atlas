@@ -1,0 +1,182 @@
+[
+ {
+  "id": "homological-algebra",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "block 22 (Complexes), checks",
+    "problem": "Mapping cone written with differential (c,x) -> (-dc, phi(c)+dx), while the block cites Weibel and Boe, who both use (-db, dc - f(b)) (Weibel Def. 1.5.1, Boe Def. 6.2.2). The page's later connecting-map claims follow Weibel's sign.",
+    "fix": "Switched to Weibel's sign, wrote out the d^2 = 0 check, added a conventions row on shifts and cones, and updated the cone check to the new sign."
+   },
+   {
+    "severity": "error",
+    "where": "block 27 exercise 2",
+    "problem": "Connecting map of 0->D->cone->C[-1]->0 given as H_n(phi) 'possibly up to sign'. That is the wrong index: H_n(C[-1]) = H_{n-1}(C).",
+    "fix": "Now states H_{n-1}(phi), exactly (Weibel Lemma 1.5.3)."
+   },
+   {
+    "severity": "error",
+    "where": "block 92 (Minimal resolutions)",
+    "problem": "Claimed Holanda-Miranda-Neto's Burch rings are 'defined by conditions on minimal resolutions' and that their Ext/Tor vanishing theorems 'are statements that certain Betti numbers vanish'. Neither claim is in the paper (its §1 cites [20] for Burch rings and does not define them this way), and the second is false in general.",
+    "fix": "Removed both claims; the block now only says their freeness criteria deduce freeness from Ext/Tor vanishing."
+   },
+   {
+    "severity": "error",
+    "where": "block 12 solution (Z/4)",
+    "problem": "The argument that Z/2 is not a summand of (Z/4)^n did not work as written: an element of order 2 in the summand is twice an element of the free module, not of the summand.",
+    "fix": "Rewrote it with the projection onto the summand: e = 2y gives e = pi(e) = 2 pi(y) = 0. Added a brute-force check."
+   },
+   {
+    "severity": "error",
+    "where": "block 86 (Who is extended by whom)",
+    "problem": "The lead-in said the sequence 'is named in opposite ways', but every row said 'quotient first'. The Quick row also misreported the source: Quick 19 calls 0->A->B->M->0 an extension of M by A, then states the splitting criterion with Ext(A,M), which slips the variance.",
+    "fix": "Rewrote the lead-in. Added an nLab row and a Wikipedia group-extension row (new source w-ge, which notes that the reversed phrasing is also used). The Quick row now describes the slip accurately."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 109 item 3 (writer flag)",
+    "problem": "The informal exact-structure definition omitted closure under isomorphism and the identities axiom, and said 'short exact sequences' for an additive category. It said 'pullback, pushout' without saying which class is stable under which operation. The subgroup claim was the writer's own argument.",
+    "fix": "Restated it following BBH Definition 3.2 (equivalent to Quillen): admissible monos stable under pushout, admissible epis under pullback, kernel-cokernel pairs in the additive case. Cited BBH Remark 3.6 (closed subbifunctor of Ext^1) for the subgroup claim, and described BBH's actual use (relative Betti numbers, rank invariant)."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 1",
+    "problem": "'Free abelian groups do not (the cokernel of 2 is not free)': inside free groups that map does have a categorical cokernel (0). The real failure is that coimage differs from image.",
+    "fix": "Rephrased with both points."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 44 view 'Homotopy groups'",
+    "problem": "Said the cochain complex Hom(P,B) 'is a simplicial abelian group' whose homotopy groups are the Ext groups. Dold-Kan needs a non-negatively graded chain complex.",
+    "fix": "Now shifts by n and truncates, giving pi_i = Ext^{n-i} and pi_0 = Ext^n, which matches nLab and the r/math answer."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 56 solution",
+    "problem": "For the self-intersection of x = 0 the Tor groups have infinite length, so Serre's formula does not apply; the text implied that the higher Tor groups 'record the excess'. The vanishing condition was also stated in a form not in the cited source.",
+    "fix": "Added the infinite-length remark. The vanishing condition now follows Wikipedia: locally cut out by regular sequences and meeting properly."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 90 proof part 2",
+    "problem": "The cosyzygy C^{n-1} was not defined, and the indexing was ambiguous.",
+    "fix": "Defined C^{n-1} as the image of I^{n-1} -> I^n (C^{-1} = N), wrote out the length-n resolution, and cited Weibel 4.1.11."
+   },
+   {
+    "severity": "source",
+    "where": "blocks 17, 19 (proofs of snake and five lemma)",
+    "problem": "Cited cb, but Crawley-Boevey §1.6 states both lemmas without proof (and only the four-isomorphism five lemma).",
+    "fix": "Cited stacks-hom (Lemma 12.5.17 has a proof; 12.5.20 follows from 12.5.19) and Weibel Ch.1 (1.3.2, Ex. 1.3.3). Lemma numbers added to the theorem blocks."
+   },
+   {
+    "severity": "source",
+    "where": "block 11",
+    "problem": "Arapura (Example 5.12) only says that f.g. abelian groups lack enough injectives; the page attributed 'no non-zero injectives at all' to him. Bannister was said to use the adjoint principle 'repeatedly'; it is his Lemma 3.22.",
+    "fix": "The attribution now matches Arapura, and the stronger claim is proved on the page. Cited Weibel Prop. 2.3.10 and Cor. 2.3.11 and Crawley-Boevey §2.4."
+   },
+   {
+    "severity": "source",
+    "where": "block 54 item 3",
+    "problem": "'Weibel Corollary 3.2.10' was given as the localisation statement. It is flat base change for a flat algebra T.",
+    "fix": "Now cites it with T = S^{-1}R."
+   },
+   {
+    "severity": "source",
+    "where": "block 92",
+    "problem": "Said Stacks Lemma 10.109.7 'records' that f.g. projectives over local rings are free. 10.109.7 is about resolutions by finite free modules and uses Lemma 10.78.2. The Betti and pd facts had no source.",
+    "fix": "Cited Weibel Prop. 4.3.11 and 4.4.11 (new source weibel4) and corrected the Stacks description."
+   },
+   {
+    "severity": "source",
+    "where": "block 88",
+    "problem": "Said BBH 'compare the global dimension of incidence algebras with their representation dimension'. BBH need finite global dimension of an exact structure and relate a relative (add X) global dimension of grid incidence algebras to representation dimension.",
+    "fix": "Rephrased to match BBH."
+   },
+   {
+    "severity": "source",
+    "where": "block 89",
+    "problem": "Parts 2-3 (injective dimension via R/J; global dimension as sup of id) were cited only to Stacks §10.109, which has no injective dimension.",
+    "fix": "Added Weibel Lemmas 4.1.6 and 4.1.11 and Theorem 4.1.2, and Wikipedia Global dimension."
+   },
+   {
+    "severity": "source",
+    "where": "block 39",
+    "problem": "Bannister's Lemma 3.27 was described as identifying two definitions of derived limits; it compares lim^s of a sum with the sum of lim^s via the universal property (Fact 3.26 is the uniqueness statement).",
+    "fix": "Rewrote the sentence and added Weibel 2.1.4/2.4.7 for universality."
+   },
+   {
+    "severity": "source",
+    "where": "block 8 view 'Summand of free'",
+    "problem": "'Over a local ring or a PID f.g. projectives are free' was cited to cb and boe, neither of which says it.",
+    "fix": "Cited Weibel Prop. 4.3.11 for the local case and gave the PID reason."
+   },
+   {
+    "severity": "source",
+    "where": "block 101",
+    "problem": "Cited Arapura Lemma 5.29 for both invariants and coinvariants. It covers only coinvariants.",
+    "fix": "Attribution narrowed."
+   },
+   {
+    "severity": "source",
+    "where": "block 29",
+    "problem": "The text says the periodic resolution 'is the one Wikipedia gives', but w-gc was not in src.",
+    "fix": "Added w-gc."
+   },
+   {
+    "severity": "source",
+    "where": "block 58 view 'Lost injectivity'",
+    "problem": "Said Quick's lectures 'start from' the multiplication-by-2 example. In Lecture 17 the example comes after the right-exactness lemma.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "source",
+    "where": "sources: injext",
+    "problem": "The ref named 'Math 506', which appears nowhere on the page, and the note carries no author or course.",
+    "fix": "The ref now describes the note by its host page only."
+   },
+   {
+    "severity": "source",
+    "where": "writer flags: Weibel Ch.1-2 conventions; Boe/Garza numbering",
+    "problem": "The comparison theorem, horseshoe lemma, double-complex signs and balancing proof followed student notes because Weibel Ch.1-2 'could not be fetched'.",
+    "fix": "Opened Weibel Ch.1, 2 and 4 (math.mit.edu mirror). Confirmed Comparison 2.2.6/Porism 2.2.7/2.3.7, Horseshoe 2.2.8, sign convention 1.2.4-1.2.6 and 2.7.1, and the balancing proof via acyclic assembly 2.7.3 plus the cone of the augmentation (2.7.2, 2.7.6). Boe numbers 4.1.2, 4.1.3, 8.1.1, 10.1.1, 10.3.1 confirmed. Added sources weibel1, weibel2, weibel4 and cited them; the balancing lead-in now says correctly who proves what."
+   },
+   {
+    "severity": "source",
+    "where": "writer flags: Weibel Ch.3, Stacks, Crawley-Boevey numbers",
+    "problem": "These lemma numbers were taken from fetch summaries.",
+    "fix": "Weibel 3.1.3, 3.2.2, 3.2.4, 3.2.7, 3.2.8, 3.3.3, 3.3.4, 3.3.10, 3.4.1, 3.4.3, 3.4.5, Ex 3.4.1, 3.5.1-3.5.4, 3.5.7, 3.5.9, Ex 3.5.2 and 3.6.1/3.6.2/3.6.5 all verified (only 3.2.10 needed a fix). Stacks 12.5.17, 12.5.20, 13.27.4-6, 10.109.1/8/12 and §12.32 verified, and 10.109.4 corrected to 10.109.3-4. Crawley-Boevey §1.6, 1.7, 2.1, 2.4 content verified; the §2.4 statements are unnumbered."
+   },
+   {
+    "severity": "source",
+    "where": "block 25 conventions",
+    "problem": "The double-complex row cited only Boe, and the Stacks convention, which differs, was missing.",
+    "fix": "Row now cites Weibel 1.2.4-1.2.6 and 2.7.1. Added a Stacks row (commuting squares, total differential d_1 + (-1)^p d_2, Def. 12.18.3)."
+   },
+   {
+    "severity": "style",
+    "where": "block 114",
+    "problem": "Stray ',.' after a link.",
+    "fix": "Fixed."
+   },
+   {
+    "severity": "style",
+    "where": "requires",
+    "problem": "Several 'where' fields named theorem or definition titles ('Tor', 'Ext', 'Ext over the integers', 'Tor detects flatness', 'Enough projectives...', 'Minimal resolutions...') instead of section titles.",
+    "fix": "All now name sections on the page."
+   },
+   {
+    "severity": "style",
+    "where": "blocks 104, 108, 113",
+    "problem": "'Directed posets' (Bannister uses omega^kappa); 'long exact' for Weibel 3.5.8's short exact sequence; 'only for' overstated localisation of Ext.",
+    "fix": "Reworded, citing Weibel 3.5.4 and 3.3.10."
+   },
+   {
+    "severity": "source",
+    "where": "checks",
+    "problem": "Several claims were unchecked: Z/p by Z/p pushouts and inequivalence of the p-1 non-split classes, Baer's criterion over Z/6 vs Z/4, the Z/4 summand argument, the modules-page relation matrix, and Tor over Z/4. The Tor(k,R/(x)) check was a hard-coded stub.",
+    "fix": "Added 5 checks (24 total, all pass), including a real linear-algebra computation of Tor(k, R/(x)) homology."
+   }
+  ]
+ }
+]
