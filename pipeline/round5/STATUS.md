@@ -47,3 +47,9 @@ Olympiad concepts are thin too. Next session starts from the beginning: school m
   inversion, projective geometry, complex and barycentric coordinates, inequalities beyond AM-GM, functional equations by type).
 - Use the olympiad problems left unattached in round5/attach/ (no tag was central) as evidence of missing concepts.
 - Licensed sources only for text and exercises; topic lists from handouts are reference only.
+
+## Keeping up with the frontier (agreed 2026-10-24)
+Alongside filling concepts, follow recent mathematics: new results, claimed solutions, AI-assisted proofs and formalisations.
+Each check: update the timeline events and research-problem statuses (erdosproblems.com, formal-conjectures, Clay), link each
+item to its concepts, and move concepts needed to understand new results up the writing queue. Sources: arXiv math listings,
+erdosproblems.com, Quanta, mathematicians' blogs (e.g. Tao), formalisation projects (Lean/mathlib). Facts verified at the source.
