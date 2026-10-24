@@ -331,7 +331,7 @@ concepts = sorted(cat.C, key=lambda c: order[c["band"]])
 for c in concepts:
     for k in ("no", "counts"): c.pop(k, None)
     c["np"] = {k: sum(1 for p in ps if c["id"] in p.get("attach", p["concepts"])) for k, ps in ALL.items()}
-    c["nprob"] = sum(c["np"].values())
+    c["nprob"] = sum(v for k, v in c["np"].items() if k != "research")   # exercises; research problems are counted separately
     if c["id"] in LESSONS: c["lesson"] = {"minutes": LESSONS[c["id"]].get("minutes", 15), "checks": len(LESSONS[c["id"]].get("checks", [])), "fixed": REVIEW.get(c["id"], 0)}
     if c["id"] in LESSONS and LESSONS[c["id"]].get("v") == 2:
         L5 = LESSONS[c["id"]]; c["lesson"].update(v=2, nsrc=len(L5.get("sources", [])), npap=sum(1 for x in L5.get("sources", []) if x.get("kind") == "paper"), fixed=L5.get("fixed", 0))

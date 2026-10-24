@@ -606,7 +606,7 @@ function loadSrc(k) { if (PB[k]) return Promise.resolve(PB[k]); if (!PBload[k]) 
 let sbDone; const sbReady = new Promise(r => { sbDone = r; });
 let subsDone; const subsReady = new Promise(r => { subsDone = r; }); setTimeout(() => subsDone(), 4000);
 function loadFor(c) { return Promise.all([...KINDS.filter(k => !c || c.np[k]).map(loadSrc), subsReady]); }
-function allProblems() { return [].concat(PB.textbook || [], PB.olympiad || [], PB.research || [], PB.examples || [], communityProblems()); }
+function allProblems() { return [].concat(PB.textbook || [], PB.olympiad || [], PB.bridge || [], PB.research || [], PB.examples || [], communityProblems()); }
 function solvedInConcept(cid) { let n = 0; S.solved.forEach(pid => { const p = PIDX[pid]; if (p && (p.attach || p.concepts).includes(cid)) n++; }); return n; }
 
 /* ---------- router ---------- */
@@ -902,12 +902,13 @@ function viewConcept(r) {
     !c.lesson && c.why ? h("section", { class: "block" }, h("h2", null, "Why it matters"), h("p", null, c.why)) : null,
     c.lesson ? h("section", { class: "block" }, h("h2", null, "Lesson"), lessonView(c, tocEl)) : null,
     (pre.length || next.length) ? h("section", { class: "block" }, h("h2", null, "Where it sits"), graphSVG(neighbourhood(c.id), c.id), h("p", { class: "caption" }, "Prerequisites on the left, what it leads to on the right. ", h("a", { href: "#map", onclick: () => { S.mapMode = "path"; S.goal = c.id; } }, "Full path from scratch"), " · ", h("a", { href: "#map", onclick: () => { S.mapMode = "field"; S.mapField = c.fields[0]; } }, "See it in the " + FIELD[c.fields[0]].name.toLowerCase() + " map"))) : null,
-    h("section", { class: "block", id: "problems-sec" }, h("h2", null, "Problems"), problemBrowser(c)),
+    h("section", { class: "block", id: "problems-sec" }, h("h2", null, "Exercises"), problemBrowser(c)),
     h("section", { class: "block", id: "discussion-sec" }, h("h2", null, "Discussion"), threadBox("concept:" + c.id, { allowProposal: true })));
   const aside = h("aside", { class: "aside" },
     c.lesson ? tocEl : null,
     h("section", { class: "block" }, h("h2", null, "Your progress"), h("div", { id: "cprogress" })),
     ladderBlock(c),
+    openBlock(c),
     h("section", { class: "block" }, h("h2", null, "Requires"), pre.length ? h("ul", null, pre.map(p => h("li", null, conceptLink(p)))) : h("p", { class: "small muted" }, "A starting point.")),
     next.length ? h("section", { class: "block" }, h("h2", null, "Leads to"), h("ul", null, next.map(p => h("li", null, conceptLink(p))))) : null,
     path.length > 1 ? h("section", { class: "block" }, h("h2", null, "Path from scratch"),
@@ -924,6 +925,20 @@ function viewConcept(r) {
       h("h1", null, c.title), h("p", { class: "sum" }, c.sum),
       h("div", { class: "tags" }, statusTag(c.status), c.msc.map(m => h("span", { class: "tag msc", title: "Mathematics Subject Classification" }, "MSC " + m)), c.links.filter(l => !c.fields.includes(l.field)).map(l => fieldTag(l.field)))),
     h("div", { class: "cgrid" }, main, aside));
+}
+/* Research problems about this concept's own objects (not exercises). */
+function openBlock(c) {
+  if (!c.np.research) return null;
+  const el = h("section", { class: "block" }, h("h2", null, "Open problems"), h("p", { class: "small muted" }, "Loading…"));
+  loadSrc("research").then(R => {
+    const r = R.filter(x => (x.attach || x.concepts).includes(c.id)).sort((a, b) => (a.status === "open" ? 0 : 1) - (b.status === "open" ? 0 : 1) || a.title.localeCompare(b.title, "en", { numeric: true }));
+    if (!r.length) { el.remove(); return; }
+    const top = r.slice(0, 12);
+    el.replaceChildren(h("h2", null, "Open problems"), h("p", { class: "small muted", style: "margin:-4px 0 8px" }, "Research problems about this concept. Not exercises."),
+      h("ul", null, top.map(x => h("li", null, h("a", { href: "#problem-" + x.id }, x.title), x.status ? h("span", { class: "small muted" }, " · " + x.status) : null))),
+      r.length > top.length ? h("p", { class: "small muted" }, "and " + (r.length - top.length) + " more on the Problems page.") : null);
+  }).catch(() => el.remove());
+  return el;
 }
 /* Ladder: ordered steps from olympiad/textbook level to this concept's research problems. */
 function ladderBlock(c) {
@@ -959,7 +974,7 @@ function problemBrowser(c) {
   else { list.append(h("p", { class: "small muted", style: "padding:16px 0" }, "Loading problems…")); loadFor(c).then(draw).catch(() => list.replaceChildren(h("div", { class: "empty" }, h("b", null, "Problems could not be loaded."), "Reload the page to try again."))); }
   if (c) box.append(submitForm(c));
   const kindName = KN;
-  function bank() { return allProblems().filter(p => !c || (p.attach || p.concepts).includes(c.id)); }
+  function bank() { return allProblems().filter(p => !c || (p.kind !== "research" && (p.attach || p.concepts).includes(c.id))); }   /* concept pages: exercises only; research problems are listed separately */
   function draw() {
     const all = bank();
     const kinds = ["textbook", "olympiad", "bridge", "research", "example", "community"].filter(k => all.some(p => p.kind === k));
