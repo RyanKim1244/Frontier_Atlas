@@ -1,0 +1,176 @@
+[
+ {
+  "id": "mertens",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/An elementary lower bound",
+    "problem": "The solution stops at the bound sum_p 1/p^2 < 1/2 without drawing the conclusion it was asked to prove.",
+    "fix": "Added the final line sum_{p<=x}1/p > loglog x - sum_p 1/p^2 > loglog x - 1/2."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Checking the three theorems at one million",
+    "problem": "'the second and third estimates' was ambiguous: the list puts the second and third theorems as items 1 and 2.",
+    "fix": "Named them: the predictions for sum 1/p and for the product."
+   },
+   {
+    "severity": "unclear",
+    "where": "example/Where the sieve heuristic breaks",
+    "problem": "The sieving limit z was used without being introduced.",
+    "fix": "Defined z (here z = 1000) and restated the heuristic N prod_{p<=z}(1-1/p)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The '3% too large' figure, the 4e-5 discrepancy and the explicit formula for M were not checked.",
+    "fix": "Added two checks: an independent numpy sieve for these numbers, and an exact piecewise evaluation of M = 1 - loglog 2 + int R(t)dt/(t log^2 t)."
+   }
+  ]
+ },
+ {
+  "id": "pnt",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "section/From non-vanishing to the asymptotic",
+    "problem": "'The shortest route' is an unverifiable superlative.",
+    "fix": "Changed it to 'A short route'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The figure 1/log 10^9 = 0.048, the 1/log x excess of li(x)/(x/log x), and the threshold x = 8 in 'pi(x) < li(x) from 8' were not checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "nontrivial-zeros",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example/Finding the first zero",
+    "problem": "'Equivalently, N(14)=0' is wrong. N(14)=0 alone does not exclude zeros with 14 < gamma < 14.1347, so it is not equivalent to the first zero being the lowest.",
+    "fix": "Changed it to 'In particular N(14)=0'."
+   },
+   {
+    "severity": "error",
+    "where": "example/How large is the sum of 1/|rho|?",
+    "problem": "It inserted N(t) = main term + O(log t) for all t >= 1. That fails near t = 1, where log t is 0 but the difference is about 0.45.",
+    "fix": "Used O(log(t+2)), valid for t >= 1, in both the expansion and the error integral."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Where the zeros can be",
+    "problem": "'any zero of zeta there must be cancelled by a pole of Gamma(s/2)' gets the logic backwards. Since xi is nonzero there, zeta vanishes exactly at the poles of Gamma(s/2).",
+    "fix": "Rewrote it with zeta = xi / (s(s-1)/2 pi^{-s/2} Gamma(s/2)) and said why xi(1-s) is nonzero."
+   },
+   {
+    "severity": "unclear",
+    "where": "section/Detecting zeros on the critical line",
+    "problem": "Showing F(1/2+it) is real used F(s)=F(1-s) alone. The reflection F(conj s) = conj F(s) is also needed. 'The value of N(T) obtained from the formula' also hid the point that S(T) has to be computed.",
+    "fix": "Added the reflection identity. Explained that N(T) is an integer, so it is found exactly by evaluating S(T) numerically to within 1/2."
+   },
+   {
+    "severity": "style",
+    "where": "intro",
+    "problem": "'Riemann showed' overstates what Riemann proved in 1859.",
+    "fix": "Changed it to 'Riemann explained how'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "N(14)=0, N(40)=6 (used in exercise 3) and S(T) at larger heights were not checked.",
+    "fix": "Added two checks."
+   }
+  ]
+ },
+ {
+  "id": "explicit-formula",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "intro",
+    "problem": "It credited Riemann with writing psi(x) as x minus a sum over zeros. Riemann's formula was for the weighted count J(x), as the lesson's own section 'Riemann's original version' says. The psi form is von Mangoldt's.",
+    "fix": "Rewrote the intro to match, and removed the hype word 'astonishing'."
+   },
+   {
+    "severity": "unclear",
+    "where": "proof/Zeros versus error terms",
+    "problem": "The RH equivalence only gives beta <= 1/2. Getting beta = 1/2 needs the symmetry rho -> 1-rho, which was not mentioned.",
+    "fix": "Added the symmetry step."
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall",
+    "problem": "'you need T larger than sqrt x' understates what the bound x log^2 x / T needs.",
+    "fix": "Changed it to 'T larger than sqrt(x) log^2 x'."
+   },
+   {
+    "severity": "style",
+    "where": "section/Reading the formula",
+    "problem": "'no single zero can be dropped without changing the value' is empty: it is true of any sum of nonzero terms.",
+    "fix": "Replaced it with 'pairing each zero with its conjugate'."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The partial-summation identity in the von Koch example and the positivity of the symmetric sum of 1/rho (exercise 4) were not checked.",
+    "fix": "Added two checks (exact identity at x = 1000.5, and the sum of 1/rho at about 0.0231)."
+   }
+  ]
+ },
+ {
+  "id": "zero-free-region",
+  "verdict": "ok",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "The degree-2 bound a1 <= sqrt2 a0 was checked only at the extremal polynomial.",
+    "fix": "Added a random-search check over nonnegative degree-2 cosine polynomials. No mathematical errors found; the de la Vallee Poussin argument and its constants were re-derived line by line."
+   }
+  ]
+ },
+ {
+  "id": "dirichlet-characters",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "example/The characters modulo 5",
+    "problem": "For n = 3 the terms i^{k(ind(n)-1)} were listed as 1, i, -1, -i. Since ind(3) = 3 the exponent is 2k, so the terms are 1, -1, 1, -1. The sum, 0, was right. The author's check tested only the sum.",
+    "fix": "Corrected the list and added a check of the individual terms."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise data (real characters mod 15 and 16, the mean-square bound in exercise 4) were not sanity-checked.",
+    "fix": "Added a check."
+   }
+  ]
+ },
+ {
+  "id": "gauss-sums",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "example/Characters as combinations of additive waves",
+    "problem": "'The coefficients all have the same size, 1/sqrt q' is false for a with gcd(a,q) > 1, where the coefficient is 0.",
+    "fix": "Restricted the claim to the nonzero coefficients, those with gcd(a,q) = 1."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Exercise 1 (mod 7) and the Jacobi-sum identity in the connection and exercise 4 were not checked.",
+    "fix": "Added a check mod 7 and mod 13. Also verified the anecdote that Gauss took about four years to settle the sign (letter to Olbers, 1805)."
+   }
+  ]
+ }
+]

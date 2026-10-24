@@ -1,0 +1,30 @@
+[
+ {
+  "id": "explicit-formula",
+  "field": "key_statements",
+  "problem": "The identity is false at prime powers, where psi jumps. It holds for the normalised psi_0 (the midpoint), or for x > 1 not a prime power, with the sum over zeros taken symmetrically.",
+  "corrected": [
+   "\\psi_0(x) = x - \\sum_{\\rho} \\frac{x^{\\rho}}{\\rho} - \\log 2\\pi - \\tfrac12 \\log\\bigl(1 - x^{-2}\\bigr)"
+  ]
+ },
+ {
+  "id": "explicit-formula",
+  "field": "summary",
+  "problem": "Riemann's own formula was for a weighted prime count (J(x), hence pi(x)), not psi(x). Von Mangoldt proved it in 1895 and gave the psi version. Also, the term from rho has size x^beta/|rho|, not x^beta.",
+  "corrected": "Riemann's explicit formula, proved by von Mangoldt in 1895, has a cleaner version that writes $\\psi(x)$ exactly as a sum over the zeros $\\rho$. A zero $\\rho = \\beta + i\\gamma$ contributes a term of size $x^{\\beta}/|\\rho|$."
+ },
+ {
+  "id": "dirichlet-characters",
+  "field": "key_statements",
+  "problem": "Orthogonality in this form needs gcd(a,q) = 1. If gcd(a,q) > 1 the left side is 0 even when n ≡ a. The congruence modulus was also missing.",
+  "corrected": [
+   "\\frac{1}{\\varphi(q)}\\sum_{\\chi \\bmod q} \\overline{\\chi}(a)\\,\\chi(n) = \\begin{cases} 1 & n \\equiv a \\pmod q \\\\ 0 & \\text{otherwise}\\end{cases} \\qquad (\\gcd(a,q)=1)"
+  ]
+ },
+ {
+  "id": "gauss-sums",
+  "field": "summary",
+  "problem": "The quadratic character (Legendre symbol) and the identity g^2 = (-1/p) p are for an odd prime p. There is no quadratic character mod 2.",
+  "corrected": "$g(\\chi) = \\sum_{a \\bmod q} \\chi(a) e^{2\\pi i a/q}$. For primitive $\\chi$, $|g(\\chi)| = \\sqrt q$. For the quadratic character modulo an odd prime $p$, $g^2 = \\left(\\frac{-1}{p}\\right) p$, which gives a proof of quadratic reciprocity."
+ }
+]
