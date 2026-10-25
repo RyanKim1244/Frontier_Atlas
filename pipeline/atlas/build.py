@@ -388,6 +388,7 @@ planned = {c[0]: c[1] for c in catalog_r4._m5.C if c[0] not in _pub}
 catalog = {"planned": planned, "bands": cat.BANDS, "fields": cat.FIELDS, "concepts": concepts, "events": cat.EVENTS, "built": "2026-10-23", "stats": stats,
            "credits": ["Textbook exercises: David Austin, Understanding Linear Algebra (CC BY 4.0); Mitchel T. Keller and William T. Trotter, Applied Combinatorics (CC BY-SA 4.0); Jiří Lebl, Basic Analysis I–II and Notes on Diffy Qs (CC BY-SA 4.0). Statements only, reformatted; exercises from CC BY-SA sources are shared under CC BY-SA 4.0.",
                        "Olympiad statements: IMO, USAMO and national olympiads, cross-checked with the compfiles Lean statements (Apache-2.0).",
+                       "Japan Mathematical Olympiad (JMO): Mathematical Olympiad Foundation of Japan (imojp.org). Problem statements republished with permission; English translations and Asymptote diagrams prepared for Frontier Atlas.",
                        "Erdős and Green problems: google-deepmind/formal-conjectures (Apache-2.0); Erdős status from teorth/erdosproblems, mirroring erdosproblems.com.",
                        "Millennium Prize Problems: stated in our own words after the Clay Mathematics Institute descriptions."]}
 js = json.dumps(catalog, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "1",
+    "q": "Let $ABCD$ be a square. Points $P,Q,R,S$ lie on sides $AB,BC,CD,DA$, respectively, and the lines $PR$ and $BC$ are parallel, as are the lines $SQ$ and $AB$. Let $Z$ be the intersection of $PR$ and $SQ$. Given $BP=7$, $BQ=6$, and $DZ=5$, find the side length of square $ABCD$. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(225);\npair A=(0,10),B=(0,0),C=(10,0),D=(10,10),P=(0,7),Q=(6,0),R=(10,7),S=(6,10),Z=(6,7);\ndraw(A--B--C--D--cycle);draw(P--R);draw(Q--S);draw(Z--D);\nlabel(\"A\",A,(-1,1));label(\"B\",B,(-1,-1));label(\"C\",C,(1,-1));label(\"D\",D,(1,1));\nlabel(\"P\",P,(-1,0));label(\"Q\",Q,(0,-1));label(\"R\",R,(1,0));label(\"S\",S,(0,1));label(\"Z\",Z,(-1,-1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "2",
+    "q": "As shown in the figure, $A,B,C,D$ lie on a circle in this order. The angle between the tangent at $B$ and line $AB$ is $30^\\circ$, and the angle between the tangent at $C$ and line $CD$ is $10^\\circ$. Lines $AB$ and $DC$ are parallel and lie on opposite sides of the center of the circle. Find $\\angle BDC$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(250);\npair A=dir(150),B=dir(210),C=dir(-10),D=dir(10);\ndraw(unitcircle);draw(A--B);draw(D--C);\ndraw((B-0.55*dir(120))--(B+0.55*dir(120)));draw((C-0.65*dir(80))--(C+0.65*dir(80)));\ndraw(arc(B,0.26,90,120));draw(arc(C,0.26,80,90));\nlabel(\"30\",B+0.38*dir(98),(1,0));label(\"10\",C+0.38*dir(85),(-1,0));\nlabel(\"A\",A,(-1,1));label(\"B\",B,(-1,-1));label(\"C\",C,(1,-1));label(\"D\",D,(1,1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "3",
+    "q": "Let $a,b,c,d,e,f,g,h,i$ be distinct integers from $1$ to $9$. Let $N$ be the largest of the three numbers $a\\times b\\times c$, $d\\times e\\times f$, and $g\\times h\\times i$. Find the smallest possible value of $N$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "4",
+    "q": "Let $A$ be a positive integer divisible by $3$ but not by $9$. Adding the square of each digit of $A$ to $A$ gives a multiple of $9$. Find the smallest possible value of $A$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "5",
+    "q": "Find all positive integers for which the product of all their positive divisors is $24^{240}$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "6",
+    "q": "Each cell of a $2\\times100$ grid is colored either red or blue. How many colorings satisfy both of the following conditions?\n\n- There is at least one red cell and at least one blue cell.\n- All the red cells form one connected region, and all the blue cells form one connected region. Two distinct cells are considered connected when they share a side.\n\nColorings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "7",
+    "q": "Let $O$ be the circumcenter of triangle $ABC$. Points $D$ and $E$ are chosen on segments $AB$ and $AC$, respectively, so that the midpoint of segment $DE$ coincides with $O$. Given $AD=8$, $BD=3$, and $AO=7$, find $CE$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "8",
+    "q": "How many ways are there to write a sequence of positive integers satisfying the following condition?\n\nWrite $2012$ first and $1$ last. After writing $n$, write a positive integer less than $\\sqrt n$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "9",
+    "q": "A and B each wrote two positive integers on a blackboard. The product of A's numbers is twice the sum of B's numbers, and the product of B's numbers is twice the sum of A's numbers. The sum of A's numbers is at least the sum of B's numbers. Find all possible values of the sum of B's numbers. The four numbers need not be distinct."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "10",
+    "q": "How many positive integers $n$ satisfy\n$$\\left\\lfloor\\frac{1000000}{n}\\right\\rfloor-\\left\\lfloor\\frac{1000000}{n+1}\\right\\rfloor=1?$$\nFor a real number $r$, $\\lfloor r\\rfloor$ denotes the greatest integer not exceeding $r$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "11",
+    "q": "Let $n$ be a positive integer. Exactly $2n^2$ cells of a $2n\\times2n$ grid are colored, subject to the following condition:\n\nIf a cell is colored, then every cell that shares only a vertex with it is uncolored.\n\nHow many such colorings are there? Colorings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2012,
+    "num": "12",
+    "q": "A cube $ABCD$-$EFGH$ of side length $2012$ and a plane are situated in space so that their intersection is a hexagon $IJKLMN$. The points $I,J,K,L,M,N$ lie on edges $AE,EF,FG,GC,CD,DA$, respectively. Given\n$$AI-GL=8,\\qquad CM-EJ=6,\\qquad FK-DN=4,$$\nfind the area of hexagon $IJKLMN$ minus the sum of the areas of triangles $IKM$ and $JLN$. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(325);\npair A=(0,3),B=(3,3),C=(4,4),D=(1,4),E=(0,0),F=(3,0),G=(4,1),H=(1,1);\npair I=(0,1.5),J=(1.4,0),K=(3.5,0.5),L=(4,2.5),M=(2.4,4),N=(0.45,3.45);\ndraw(E--H--G,dotted);draw(H--D,dotted);\ndraw(A--B--C--D--cycle);draw(A--E--F--B);draw(F--G--C);\ndraw(I--J);draw(J--K,dotted);draw(K--L);draw(L--M,dotted);draw(M--N);draw(N--I,dotted);\nlabel(\"A\",A,(-1,1));label(\"B\",B,(-1,1));label(\"C\",C,(1,1));label(\"D\",D,(-1,1));\nlabel(\"E\",E,(-1,-1));label(\"F\",F,(1,-1));label(\"G\",G,(1,-1));label(\"H\",H,(-1,1));\nlabel(\"I\",I,(-1,0));label(\"J\",J,(0,-1));label(\"K\",K,(1,0));label(\"L\",L,(1,0));label(\"M\",M,(0,1));label(\"N\",N,(-1,1));\n[/asy]"
+  },
+  {
+    "contest": "JMO",
+    "year": 2012,
+    "num": "1",
+    "q": "In triangle $ABC$, the tangent at $A$ to its circumcircle meets line $BC$ at $P$. Let $Q$ and $R$ be the reflections of $P$ across lines $AB$ and $AC$, respectively. Prove that lines $BC$ and $QR$ are perpendicular."
+  },
+  {
+    "contest": "JMO",
+    "year": 2012,
+    "num": "2",
+    "q": "Find all real-valued functions $f$ defined on the real numbers such that, for all real numbers $x,y$,\n$$f\\bigl(f(x+y)f(x-y)\\bigr)=x^2-yf(y).$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2012,
+    "num": "3",
+    "q": "Let $p$ be a prime. Find all positive integers $n$ such that the following condition holds for every integer $x$:\n\nIf $x^n-1$ is divisible by $p$, then it is also divisible by $p^2$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2012,
+    "num": "4",
+    "q": "Triangles $PAB$ and $PCD$ lie in a plane. Suppose $PA=PB$ and $PC=PD$, and that $P,A,C$ lie on one line in this order and $P,B,D$ lie on one line in this order. A circle $S_1$ through $A,C$ and a circle $S_2$ through $B,D$ intersect at two distinct points $X,Y$. Prove that the circumcenter of triangle $PXY$ is the midpoint of the centers of $S_1$ and $S_2$. Here $ZW$ denotes the length of segment $ZW$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2012,
+    "num": "5",
+    "q": "Let $k$ be a positive integer. A and B play a game. Initially, one piece is placed at $(0,0)$ in the $xy$-plane. A moves first, and they alternate the following actions.\n\nA's action: Choose a lattice point not occupied by the piece and mark it. A lattice point is a point whose $x$- and $y$-coordinates are both integers.\n\nB's action: Move the piece at $(x,y)$ to either $(x+1,y)$ or $(x,y+1)$, making at least one and at most $k$ such moves in total. On each move, the piece may not be moved to a marked point.\n\nA wins if B can no longer move the piece. Find all $k$ for which A can win in finitely many turns, regardless of B's actions."
+  }
+]

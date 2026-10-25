@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "1",
+    "q": "A quadrilateral $ABCD$ satisfies $\\angle A=\\angle B=\\angle C=30^\\circ$, $AB=4$, and $BC=2\\sqrt3$. Find its area. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "2",
+    "q": "How many pairs of positive integers $(a,b)$ satisfy $a<b$, $ab=29!$, and $\\gcd(a,b)=1$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "3",
+    "q": "As shown in the figure, a rectangle $ABCD$ is divided into nine regions by four lines parallel to its sides, and the regions are colored alternately black and white. Given\n$$AP=269,\\quad PQ=292,\\quad QB=223,\\quad AR=387,\\quad RS=263,\\quad SD=176,$$\nfind the area colored black minus the area colored white. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(275);\nreal[] xx={0,387,650,826},yy={784,515,223,0};\nfor(int i=0;i<3;++i)for(int j=0;j<3;++j){path p=(xx[i],yy[j])--(xx[i+1],yy[j])--(xx[i+1],yy[j+1])--(xx[i],yy[j+1])--cycle;filldraw(p,(i+j)%2==0?black:white,black+linewidth(0.4));}\nlabel(\"A\",(0,784),(-1,1));label(\"B\",(0,0),(-1,-1));label(\"C\",(826,0),(1,-1));label(\"D\",(826,784),(1,1));\nlabel(\"P\",(0,515),(-1,0));label(\"Q\",(0,223),(-1,0));label(\"R\",(387,784),(0,1));label(\"S\",(650,784),(0,1));\nlabel(\"269\",(-70,649.5));label(\"292\",(-70,369));label(\"223\",(-70,111.5));\nlabel(\"387\",(193.5,875));label(\"263\",(518.5,875));label(\"176\",(738,875));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "4",
+    "q": "Three distinct points $D,B,C$ lie on one line in this order, with $DB=BC=2$. A point $A$ satisfies $AB=AC$. There is a circle $\\Gamma$ tangent to lines $AC$ and $DC$ at $A$ and $D$, respectively. Let $E$ be the intersection other than $A$ of $\\Gamma$ with line $AB$, and let $F$ be the intersection other than $E$ of $\\Gamma$ with line $CE$. Find the length of segment $EF$. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nreal cross2(pair u,pair v) {return u.x*v.y-u.y*v.x;}\npair meet(pair p,pair v,pair q,pair w) {return p+cross2(q-p,w)/cross2(v,w)*v;}\nsize(280);\nreal c=sqrt(5/3);\npair D=(0,-1),B=(c/2,-1),C=(c,-1);pair A=(2*c/(1+c*c),(c*c-1)/(1+c*c));\npair v=B-A;real t=-2*(A.x*v.x+A.y*v.y)/(abs(v)^2);pair E=A+t*v;\npair w=E-C;real disc=(C.x*w.x+C.y*w.y)^2-(abs(C)^2-1)*abs(w)^2;\nreal s=(-(C.x*w.x+C.y*w.y)+sqrt(disc))/(abs(w)^2);pair F=C+s*w;\ndraw(unitcircle);draw(D--C--A--B);draw(C--F);\nlabel(\"A\",A,(1,1));label(\"B\",B,(0,-1));label(\"C\",C,(1,-1));label(\"D\",D,(0,-1));label(\"E\",E,(-1,1));label(\"F\",F,(-1,1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "5",
+    "q": "How many tuples of pairwise distinct positive integers $(a,b,c,d,e)$ satisfy $a+b=c+d+e=29$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "6",
+    "q": "An integer sequence $x_1,x_2,\\ldots$ is defined by\n$$x_1=1,\\qquad x_2=x_3=\\cdots=x_{13}=0,$$\n$$x_{n+13}=x_{n+5}+2x_n\\qquad(n=1,2,\\ldots).$$\nFind $x_{144}$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "7",
+    "q": "A permutation $a_1,a_2,\\ldots,a_{1000}$ of $1,2,\\ldots,1000$ is called good if the following holds:\n\nFor all positive integers $m,n\\le1000$, if $n$ is a multiple of $m$, then $a_n$ is a multiple of $a_m$.\n\nFind the smallest positive integer $k$ for which there is a good permutation $b_1,b_2,\\ldots,b_{1000}$ with $b_k\\ne k$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "8",
+    "q": "Points $D,E$ lie on side $BC$ of triangle $ABC$, with $B,D,E,C$ in this order. Suppose $\\angle BAD=\\angle ACE$ and $\\angle ABD=\\angle CAE$. Let $X$ be the intersection other than $A$ of the circumcircles of triangles $ABE$ and $ADC$, and let $F$ be the intersection of $AX$ with $BC$. Given $BF=5$, $CF=6$, and $XD=3$, find the length of segment $XE$. Here $PQ$ denotes the length of segment $PQ$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "9",
+    "q": "For a permutation $\\sigma=(\\sigma(1),\\sigma(2),\\ldots,\\sigma(2017))$ of $1,2,\\ldots,2017$, let $F(\\sigma)$ be the number of integers $i$ with $1\\le i\\le2017$ such that $\\sigma(i)=i$. Find the sum of $F(\\sigma)^4$ over all permutations $\\sigma$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "10",
+    "q": "In triangle $ABC$, $\\angle B=90^\\circ$, $AB=8$, and $BC=3$. Points $P,Q,R$ lie on sides $BC,CA,AB$, respectively, and satisfy $\\angle CRP=\\angle CRQ$ and $\\angle BPR=\\angle CPQ$. The perimeter of triangle $PQR$ is $12$. Find the length of the perpendicular from $Q$ to side $BC$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "11",
+    "q": "A class has $30$ students with attendance numbers $1,2,\\ldots,30$. The class took a test consisting of several questions. When grading it, the teacher noticed that the following two statements were equivalent for every subset $S$ of $\\{1,2,\\ldots,30\\}$:\n\n1. For every question, there is some $k\\in S$ such that the student with attendance number $k$ answered it correctly.\n2. The set $S$ contains all multiples of $2$ from $1$ to $30$, or all multiples of $3$ from $1$ to $30$, or all multiples of $5$ from $1$ to $30$.\n\nFind the smallest possible number of questions on the test."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2017,
+    "num": "12",
+    "q": "A supervisor and a subordinate play the following game. Let $a_n$ be the smallest positive integer $X$ for which the supervisor can win regardless of the subordinate's initial cell and actions.\n\nLet $n$ be a positive integer. The subordinate starts in a cell of an $n\\times n$ grid. The two players repeat the following actions in alternation. The supervisor wins when the subordinate can no longer act within the grid.\n\nSupervisor's action: Observe the subordinate's cell and choose $X$ cells.\n\nSubordinate's action: Make between $0$ and $4$ moves to vertically or horizontally adjacent cells, ending in a cell other than the $X$ cells chosen by the supervisor.\n\nFind the smallest $n$ such that $a_n=a_{2017}$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2017,
+    "num": "1",
+    "q": "Prove that for positive integers $a,b,c$, the least common multiple of $a,b$ is different from the least common multiple of $a+c,b+c$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2017,
+    "num": "2",
+    "q": "Let $N$ be a positive integer. Positive integers $a_1,a_2,\\ldots,a_N$ are given, none divisible by $2^{N+1}$. For integers $n\\ge N+1$, define $a_n$ successively as follows:\n\nChoose $k$ from $1,2,\\ldots,n-1$ so that the remainder when $a_k$ is divided by $2^n$ is as small as possible, and set $a_n=2a_k$. If several $k$ have this property, choose the largest one.\n\nProve that there is a positive integer $M$ such that $a_n=a_M$ for all $n\\ge M$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2017,
+    "num": "3",
+    "q": "Let $O$ be the circumcenter of an acute triangle $ABC$. Let $D,E,F$ be the feet of the perpendiculars from $A,B,C$ to their opposite sides, respectively, and let $M$ be the midpoint of side $BC$. Let $X$ be the intersection of lines $AD$ and $EF$, $Y$ the intersection of lines $AO$ and $BC$, and $Z$ the midpoint of segment $XY$. Prove that $A,Z,M$ are collinear."
+  },
+  {
+    "contest": "JMO",
+    "year": 2017,
+    "num": "4",
+    "q": "Let $n\\ge3$ be an integer. There are $n$ people, and each day a gathering is held with at least three of them participating. At every gathering, each pair of participants shake hands exactly once. After the gathering on day $n$, each pair of the $n$ people have shaken hands exactly once. Prove that all gatherings have the same number of participants."
+  },
+  {
+    "contest": "JMO",
+    "year": 2017,
+    "num": "5",
+    "q": "Integers $x_1,x_2,\\ldots,x_{1000}$ satisfy that $\\sum_{i=1}^{1000}x_i^k$ is divisible by $2017$ for every positive integer $k\\le672$. Prove that all of $x_1,x_2,\\ldots,x_{1000}$ are divisible by $2017$. You may use the fact that $2017$ is prime."
+  }
+]

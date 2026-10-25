@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "1",
+    "q": "How many tuples $(a,b,c,d)$ of integers between $1$ and $9$, inclusive, satisfy $0<b-a<c-b<d-c$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "2",
+    "q": "Let $A$ be the sum of the positive integers at most $2011$ that leave remainder $1$ when divided by $3$, and let $B$ be the sum of those that leave remainder $2$ when divided by $3$. Find $A-B$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "3",
+    "q": "Find all primes that can be expressed as $a\\times b\\times c\\times d+e\\times f\\times g$, where $a,b,c,d,e,f,g$ are distinct positive integers at most $7$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "4",
+    "q": "In the figure, $O$ is the center of sector $OAB$. If $AQ=5$, $BQ=6$, and $OQ=PQ$, find the radius of the sector.\n\nHere $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nreal cross2(pair u,pair v) {return u.x*v.y-u.y*v.x;}\npair meet(pair p,pair v,pair q,pair w) {return p+cross2(q-p,w)/cross2(v,w)*v;}\nsize(250);\npair O=(0,0),A=dir(120),B=(1,0),P=dir(66);\npair Q=meet(O,P,A,B-A);\ndraw(O--A);draw(O--B);draw(arc(O,1,0,120));draw(A--B);draw(O--P);\nlabel(\"O\",O,(-1,-1));label(\"A\",A,(-1,0));label(\"B\",B,(1,-1));label(\"P\",P,(1,1));label(\"Q\",Q,(1,1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "5",
+    "q": "Let $X$ be the product of all the positive integers at most $2011$ whose units digit is $3$ or $7$. Find the tens digit of $X$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "6",
+    "q": "Points $P,Q,R$ lie on sides $BC,CA,AB$, respectively, of a triangle $ABC$ with $\\angle ABC=90^\\circ$. They satisfy $AQ:QC=2:1$, $AR=AQ$, $QP=QR$, and $\\angle PQR=90^\\circ$. If $CP=1$, find $AR$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "7",
+    "q": "Fill the cells of a $3\\times3$ grid with one integer each so that every integer from $1$ to $9$, inclusive, occurs exactly once. In each column, mark the second largest of its three numbers. The second largest of the three marked numbers is $5$. How many arrangements of the nine integers are possible?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "8",
+    "q": "Two two-digit positive integers $x,y$ have the property that the tens digit of $x$ is the units digit of $y$, and the tens digit of $y$ is the units digit of $x$. Let $P$ be their product. The number $P$ has four digits, and the two-digit integer formed by its last two digits is $23$ greater than the two-digit integer formed by its first two digits. Find $P$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "9",
+    "q": "How many ways are there to arrange $12$ balls, each red, blue, or yellow, in a horizontal row so that the following condition holds?\n\nEvery ball has an adjacent ball of the same color.\n\nArrangements using at most two of the colors are also included."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "10",
+    "q": "A function $f$ defined on the positive integers and taking positive integer values satisfies $$(x+y)f(x)\\le x^2+f(xy)+110$$ for all positive integers $x,y$. Find the smallest and greatest possible values of $f(23)+f(2011)$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "11",
+    "q": "A quadrilateral $ABCD$ is circumscribed about a circle with center $O$, and $OA=5$, $OB=6$, $OC=7$, $OD=8$. Let $M$ be the midpoint of segment $AC$ and $N$ the midpoint of segment $BD$. Find $OM:ON$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2011,
+    "num": "12",
+    "q": "Let $n$ be an integer greater than or equal to $2$. Nonnegative real numbers $a_1,\\ldots,a_n$ satisfy $a_1+\\cdots+a_n=1$. Find the greatest possible value of $$\\left(\\sum_{i=1}^n ia_i\\right)\\left(\\sum_{i=1}^n\\frac{a_i}{i}\\right)^2.$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2011,
+    "num": "1",
+    "q": "Let $H$ be the orthocenter of an acute triangle $ABC$, and let $M$ be the midpoint of segment $BC$. The line through $H$ perpendicular to the line $AM$ meets the line $AM$ at $P$. Prove that $AM\\cdot PM=BM^2$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2011,
+    "num": "2",
+    "q": "Find all tuples $(a,n,p,q,r)$ of positive integers satisfying $$a^n-1=(a^p-1)(a^q-1)(a^r-1).$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2011,
+    "num": "3",
+    "q": "Let $N$ be a positive integer. Players $A$ and $B$ play the following game on $N$ cells arranged in a horizontal row:\n\n(1) Initially, $A$ writes one nonnegative integer in each of the $N$ cells.\n\n(2) If, for every integer $i$ with $1\\le i\\le N-1$, the integer in the $i$th cell from the left is at most the integer in the $(i+1)$st cell, the game ends. Otherwise, repeat the following:\n\n(a) $A$ specifies one nonnegative integer.\n\n(b) $B$ chooses one of the $N$ cells and replaces its integer by the integer specified in (a).\n\nCan $B$ always ensure that the game ends, regardless of $A$'s actions?"
+  },
+  {
+    "contest": "JMO",
+    "year": 2011,
+    "num": "4",
+    "q": "Find all real-valued functions $f$ defined on the real numbers satisfying $$f(f(x)-f(y))=f(f(x))-2x^2f(y)+f(y^2)$$ for all real numbers $x,y$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2011,
+    "num": "5",
+    "q": "There are four distinct points in the plane, no three of which are collinear. Prove that, if the four triangles formed by choosing three of these points have incircles of equal radii, then all four triangles are congruent."
+  }
+]

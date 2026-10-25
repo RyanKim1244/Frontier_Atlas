@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "1",
+    "q": "J chose five numbers from the entries in the multiplication table, that is, numbers expressible as the product of two integers from $1$ to $9$. All five are two-digit numbers, and J noticed that each of the digits $0,1,2,3,4,5,6,7,8,9$ appears exactly once among their tens and units digits. Which of J's chosen numbers has a $5$ in its tens or units place? A number whose tens digit is $0$ is not regarded as a two-digit number."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "2",
+    "q": "There are nine cards, one bearing each integer from $1$ to $9$. How many ways can they be placed three per box into three indistinguishable boxes so that, in each box, the three integers form an arithmetic progression when arranged in increasing order? Three numbers $a,b,c$ form an arithmetic progression when $b-a=c-b$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "3",
+    "q": "A quadrilateral $ABCD$ satisfies $\\angle A=\\angle B=90^\\circ$, $\\angle C=45^\\circ$, $AC=19$, and $BD=15$. Find its area. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(310);\npair A=(0,1),B=(0,0),C=(3.2,0),D=(2.2,1);\ndraw(A--B--C--D--cycle);draw(A--C);draw(B--D);\nlabel(\"A\",A,(-1,1));label(\"B\",B,(-1,-1));label(\"C\",C,(1,-1));label(\"D\",D,(1,1));\nlabel(\"15\",(0.65,0.43),(0,1));label(\"19\",(2,0.45),(0,1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "4",
+    "q": "Find the remainder when $1111^{2018}$ is divided by $11111$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "5",
+    "q": "Eleven Othello pieces are arranged in a row as in (a). Repeat the following flipping operation:\n\nChoose two nonadjacent pieces whose face-up colors are the same and such that all pieces between them have the other color. Flip all the pieces between them simultaneously.\n\nHow many sequences of flips lead to the arrangement in (b)? Each piece has one black face and one white face.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(640);\nfor(int p=0;p<2;++p){real shift=p*14.5;label(p==0?\"(a)\":\"(b)\",(shift-0.9,0));for(int k=0;k<11;++k)filldraw(circle((shift+k,0),0.38),p==1||k%2==0?black:white,black+linewidth(0.65));}\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "6",
+    "q": "Triangle $ABC$ is right isosceles with $\\angle A=90^\\circ$. Points $X,Y,Z$ lie inside it so that triangle $XYZ$ is also right isosceles with $\\angle X=90^\\circ$. Moreover, $A,Y,X$ are collinear in this order, as are $B,Z,Y$ and $C,X,Z$. If $AB=1$ and $XY=\\dfrac14$, find the length of segment $AX$. Here $ST$ denotes the length of segment $ST$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "7",
+    "q": "Divide the integers from $1$ to $12$ into six pairs, two integers per pair. When $i$ and $j$ are paired, the score of that pair is $|i-j|$. How many partitions into six pairs have total score $30$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "8",
+    "q": "Each of $a_1,a_2,\\ldots,a_6$, $b_1,b_2,\\ldots,b_6$, and $c_1,c_2,\\ldots,c_6$ is a permutation of $1,2,3,4,5,6$. Find the smallest possible value of\n$$a_1b_1+a_2b_2+\\cdots+a_6b_6+b_1c_1+b_2c_2+\\cdots+b_6c_6+c_1a_1+c_2a_2+\\cdots+c_6a_6.$$"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "9",
+    "q": "The incircle of triangle $ABC$ touches sides $BC,CA,AB$ at $P,Q,R$, respectively. The $A$-excircle touches side $BC$ and lines $CA,AB$ at $S,T,U$, respectively. Let $I$ be the incenter of triangle $ABC$. Let $D$ be the intersection of lines $PQ$ and $ST$, and $E$ the intersection of lines $PR$ and $SU$. Given $AI=3$, $IP=1$, and $PS=2$, find the length of segment $DE$. Here $XY$ denotes the length of segment $XY$. The $A$-excircle is the circle tangent to side $BC$, the extension of side $AB$ beyond $B$, and the extension of side $AC$ beyond $C$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "10",
+    "q": "Eight players take part in a knockout chess tournament. The winner is determined as follows:\n\n- First arrange all players in a row.\n- Repeat the following operation three times: pair consecutive players starting from an end of the row, and have each pair play a game. The winner remains in the row and the loser is eliminated. There are no draws.\n- The last remaining player is the champion.\n\nBefore the tournament, a round-robin practice competition was held, with no draws: every pair of players played one practice game and a winner was determined. Suppose that every tournament game has the same result as the corresponding practice game, and that exactly two players could become champion, depending on the initial ordering. How many possible patterns of practice-game results are there?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "11",
+    "q": "How many positive integers $n$ satisfy the following condition?\n\nThe base-$7$ representation of $n$, with no leading zero, has $k\\ge2$ digits. For each $i=1,2,\\ldots,k-1$, let $n_i$ be the $(k-1)$-digit base-$7$ number obtained by deleting the $i$th digit from the right of this representation. Then\n$$\\sum_{i=1}^{k-1}n_i=n.$$"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2018,
+    "num": "12",
+    "q": "An integer sequence $a_1,a_2,\\ldots$ satisfies the following for all integers $m,n$:\n\nIf $m,n\\ge30$ and $|m-n|\\ge2018$, then $a_{m+n}$ equals either $a_m+n$ or $a_n+m$.\n\nFind the greatest possible positive integer $N$ for which $a_{N+1}-a_N\\ne1$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2018,
+    "num": "1",
+    "q": "Each integer from $1$ to $100$ is written on a blackboard exactly once. Repeatedly choose two numbers $a,b$ on the board, erase them, and write the greatest common divisor of $a^2b^2+3$ and $a^2+b^2+2$. Prove that when only one number remains, it is not a perfect square."
+  },
+  {
+    "contest": "JMO",
+    "year": 2018,
+    "num": "2",
+    "q": "In triangle $ABC$ with $AB<AC$, points $D,E$ lie on sides $AB,AC$, respectively, including the endpoints, and satisfy $CA=CD$ and $BA=BE$. Let $\\omega$ be the circumcircle of triangle $ADE$, and let $P$ be the reflection of $A$ across line $BC$. Let $X$ be the intersection other than $D$ of line $PD$ with $\\omega$, and let $Y$ be the intersection other than $E$ of line $PE$ with $\\omega$. Prove that lines $BX$ and $CY$ meet on $\\omega$. Here $ST$ denotes the length of segment $ST$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2018,
+    "num": "3",
+    "q": "Let $S=\\{1,2,\\ldots,999\\}$. A function $f:S\\to S$ satisfies, for every $n\\in S$,\n$$f^{\\,n+f(n)+1}(n)=f^{\\,nf(n)}(n)=n.$$\nProve that there is an element $a\\in S$ such that $f(a)=a$. Here $f^k(n)$ denotes the $k$-fold iterate $f(f(\\cdots f(n)\\cdots))$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2018,
+    "num": "4",
+    "q": "Let $n$ be a positive odd integer. Prove that it is impossible to put exactly one of $1,2,3$ in every cell of an infinite square grid so that all three conditions hold:\n\n(a) Cells sharing a side have different numbers.\n\n(b) In no three consecutive cells in a row or column do the numbers read $1,2,3$ in order, whether read from top to bottom, bottom to top, left to right, or right to left.\n\n(c) The sum of the numbers in an $n\\times n$ subgrid is the same regardless of its position."
+  },
+  {
+    "contest": "JMO",
+    "year": 2018,
+    "num": "5",
+    "q": "Let $T$ be a positive integer. Find all positive-integer-valued functions $f$ defined on pairs of positive integers and all integers $C_0,C_1,\\ldots,C_T$ satisfying the following:\n\n- For every positive integer $n$, there is exactly one pair of positive integers $(k,l)$ with $f(k,l)=n$.\n- For every $t=0,1,\\ldots,T$ and every pair of positive integers $(k,l)$,\n$$f(k+t,l+T-t)-f(k,l)=C_t.$$"
+  }
+]

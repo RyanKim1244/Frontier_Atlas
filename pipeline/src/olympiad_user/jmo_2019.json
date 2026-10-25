@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "1",
+    "q": "Find all triples of positive integers $(x,y,z)$ satisfying\n$$x+xy+xyz=31,\\qquad x<y<z.$$"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "2",
+    "q": "A positive integer is called good if each of its digits is a prime number. Find all three-digit good numbers whose squares are five-digit good numbers."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "3",
+    "q": "The integers from $1$ to $9$ are written without repetition, one per cell, in a $3\\times3$ grid. How many fillings have the property that the numbers in any two cells sharing a side differ by at most $3$? Fillings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "4",
+    "q": "Let $ABCDE$ be a regular pentagon, and let $F$ be the intersection of segments $BE$ and $AC$. A line through $F$ meets sides $AB$ and $CD$ at $G$ and $H$, respectively, with $BG=4$ and $CH=5$. Find the length of segment $AG$. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nreal cross2(pair u,pair v) {return u.x*v.y-u.y*v.x;}\npair meet(pair p,pair v,pair q,pair w) {return p+cross2(q-p,w)/cross2(v,w)*v;}\nsize(270);\npair[] V;for(int k=0;k<5;++k)V.push(dir(90+72*k));\npair A=V[0],B=V[1],C=V[2],D=V[3],E=V[4];\npair F=meet(B,E-B,A,C-A),G=A+0.4*(B-A),H=meet(G,F-G,C,D-C);\ndraw(A--B--C--D--E--cycle);draw(A--C);draw(B--E);draw(G--H);\nlabel(\"A\",A,(0,1));label(\"B\",B,(-1,0));label(\"C\",C,(-1,-1));label(\"D\",D,(1,-1));label(\"E\",E,(1,0));\nlabel(\"F\",F,(1,-1));label(\"G\",G,(-1,1));label(\"H\",H,(0,-1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "5",
+    "q": "Find the smallest positive integer whose remainders upon division by $97$, $100$, and $103$ are $32$, $33$, and $34$, respectively."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "6",
+    "q": "Some vertices of a regular $120$-gon are marked. No three marked vertices form an isosceles triangle with vertex angle $18^\\circ$. Find the largest possible number of marked vertices."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "7",
+    "q": "Quadratic polynomials $P,Q,R$ with integer coefficients satisfy all the following conditions. Find all possible polynomials $R(x)$.\n\n- $P(1)=Q(2)=Q(3)=0$.\n- $P(x)^2+Q(x)^2=R(x)^2$ for every real number $x$.\n- There is no integer at least $2$ dividing every coefficient of $P,Q,R$.\n- The coefficients of $x^2$ in $P,Q$ are nonzero, and that in $R$ is positive."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "8",
+    "q": "Let $I$ be the incenter of triangle $ABC$, where $AB>AC$. Let $D,E$ divide sides $AB,AC$, respectively, internally in the ratio $1:8$. If triangle $DIE$ is equilateral with side length $1$, find the length of segment $AB$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "9",
+    "q": "Each cell of a $4\\times4$ grid is colored red, blue, yellow, or green. How many colorings have the property that every row satisfies exactly one of the following three conditions?\n\n- All four cells have the same color.\n- Two colors are used, each in two cells.\n- Four colors are used, each in one cell.\n\nColorings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "10",
+    "q": "In triangle $ABC$, points $D,E$ lie on sides $AB,AC$, respectively, and $AB=6$, $AC=9$, $AD=4$, $AE=6$. The circumcircle of triangle $ADE$ meets side $BC$ at two points $F,G$, with $B,F,G,C$ in this order. When lines $DF$ and $EG$ meet on the circumcircle of triangle $ABC$, find $FG/BC$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "11",
+    "q": "For each $k=1,2,\\ldots,2019^3$, let $f(k)$ be the number of positive integers $m$ for which the remainder when $km$ is divided by $2019^3$ is greater than $m$. How many distinct values occur among $f(1),f(2),\\ldots,f(2019^3)$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2019,
+    "num": "12",
+    "q": "Let $S=\\{1,2,\\ldots,6\\}$. How many rules $F$, assigning a subset $F(X)$ of $S$ to every subset $X$ of $S$, satisfy\n$$F\\bigl(F(A)\\cup B\\bigr)=A\\cap F(B)$$\nfor all subsets $A,B$ of $S$?"
+  },
+  {
+    "contest": "JMO",
+    "year": 2019,
+    "num": "1",
+    "q": "Find all triples of positive integers $(a,b,c)$ satisfying $a^2+b+3=(b^2-c^2)^2$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2019,
+    "num": "2",
+    "q": "Let $n\\ge3$ be an odd integer. A game is played on an $n\\times n$ grid over $n^2$ turns. Each turn consists of the following operations, in order:\n\n- Choose a cell with no integer yet written in it, and write an integer from $1$ to $n^2$ in it. No integer may be written more than once during the game.\n- For the row and the column containing that cell, score $1$ point each if the sum of the integers currently written in it is a multiple of $n$. If both sums are multiples of $n$, score $2$ points.\n\nFind the largest possible total score by the end of the game."
+  },
+  {
+    "contest": "JMO",
+    "year": 2019,
+    "num": "3",
+    "q": "Find all positive-real-valued functions $f$ defined on the positive real numbers such that, for all positive real numbers $x,y$,\n$$f\\left(\\frac{f(y)}{f(x)}+1\\right)=f\\left(x+\\frac yx+1\\right)-f(x).$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2019,
+    "num": "4",
+    "q": "Let $I$ be the incenter and $\\omega$ the incircle of triangle $ABC$, and let $M$ be the midpoint of side $BC$. Let $K$ be the intersection of the line through $A$ perpendicular to $BC$ and the line through $M$ perpendicular to $AI$. Prove that the circle with diameter $AK$ is tangent to $\\omega$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2019,
+    "num": "5",
+    "q": "A set $S$ of positive integers is called beautiful if, for any three distinct elements $x,y,z$ of $S$, at least one of them divides $x+y+z$. Prove that there exists an integer $N$ with the following property, and find the smallest such $N$:\n\nFor every beautiful set $S$, there is an integer $n_S\\ge2$ such that at most $N$ elements of $S$ are not multiples of $n_S$."
+  }
+]

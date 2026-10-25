@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "1",
+    "q": "Three positive integers $x,y,z$ have least common multiple $2100$. Find the smallest possible value of $x+y+z$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "2",
+    "q": "There are two rectangular grids, each with $20$ rows and $13$ columns. The integers $1,2,\\ldots,260$ are written in the cells of each grid as follows.\n\n- In one grid, write $1,2,\\ldots,13$ from left to right in the top row, $14,15,\\ldots,26$ from left to right in the second row, and so on, ending with $248,249,\\ldots,260$ from left to right in the bottom row.\n- In the other grid, write $1,2,\\ldots,20$ from top to bottom in the rightmost column, $21,22,\\ldots,40$ from top to bottom in the second column from the right, and so on, ending with $241,242,\\ldots,260$ from top to bottom in the leftmost column.\n\nFind all integers that occupy the same cell in both grids."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "3",
+    "q": "Points $A_1,A_2,A_3,A_4,A_5$ lie on a circle of radius $1$ in this order and satisfy\n$$\\angle A_5A_2A_4=\\angle A_1A_3A_5=\\angle A_2A_4A_1=\\angle A_3A_5A_2=30^\\circ.$$\nLet $B_1,B_2,B_3,B_4,B_5$ be the intersections of $A_2A_4$ with $A_3A_5$, $A_3A_5$ with $A_4A_1$, $A_4A_1$ with $A_5A_2$, $A_5A_2$ with $A_1A_3$, and $A_1A_3$ with $A_2A_4$, respectively. Find the area of pentagon $B_1B_2B_3B_4B_5$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nreal cross2(pair u,pair v) {return u.x*v.y-u.y*v.x;}\npair meet(pair p,pair v,pair q,pair w) {return p+cross2(q-p,w)/cross2(v,w)*v;}\nsize(270);\npair[] A={dir(90),dir(150),dir(210),dir(330),dir(30)};\npair[] B;\nfor(int k=0;k<5;++k) B.push(meet(A[(k+1)%5],A[(k+3)%5]-A[(k+1)%5],A[(k+2)%5],A[(k+4)%5]-A[(k+2)%5]));\npath pent=B[0];for(int k=1;k<5;++k) pent=pent--B[k];pent=pent--cycle;\nfill(pent,gray(0.85));\nfor(real x=-1;x<1;x+=0.075){path h=(x,-1)--(x+1,1);picture pic;draw(pic,h,linewidth(0.35));clip(pic,pent);add(pic);}\ndraw(unitcircle);for(int k=0;k<5;++k)draw(A[k]--A[(k+2)%5]);\nstring[] an={\"A1\",\"A2\",\"A3\",\"A4\",\"A5\"},bn={\"B1\",\"B2\",\"B3\",\"B4\",\"B5\"};\npair[] ba={S,E,NE,NW,W};\nfor(int k=0;k<5;++k){label(an[k],A[k],unit(A[k]));label(bn[k],B[k],ba[k]);}\nlabel(\"30\",A[1]+(0.27,-0.05),(0,-1));label(\"30\",A[2]+(0.16,0.24),(1,0));\nlabel(\"30\",A[3]+(-0.15,0.24),(-1,0));label(\"30\",A[4]+(-0.27,-0.05),(0,-1));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "4",
+    "q": "Let $a_k$ be the coefficient of $x^k$ in the polynomial $(x+1)^3(x+2)^3(x+3)^3$. Find $a_0+a_2+a_4+a_6+a_8$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "5",
+    "q": "Two circles $O_1,O_2$ intersect at two distinct points $P,Q$. The tangent to $O_1$ at $P$ meets $O_2$ again at $R$, and the tangent to $O_2$ at $Q$ meets $O_1$ again at $S$. Lines $PR$ and $QS$ intersect at $X$. Given $XR=9$ and $XS=2$, how many times the radius of $O_2$ is the radius of $O_1$? Here $YZ$ denotes the length of segment $YZ$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "6",
+    "q": "There are $24$ sweets of type A and $24$ sweets of type B. All of them are to be distributed among three people X, Y, and Z. A person may receive no sweets of one of the types. How many distributions are there in which no two of X, Y, and Z satisfy the following condition?\n\nIf one of the two receives $a$ sweets of type A and $b$ of type B, and the other receives $a'$ of type A and $b'$ of type B, then $a\\le a'$, $b\\le b'$, and $a+b<a'+b'$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "7",
+    "q": "How many tuples of nonnegative integers $(x_1,\\ldots,x_{25})$ satisfy\n$$x_1^2+\\cdots+x_{25}^2=2+x_1x_2+x_2x_3+\\cdots+x_{24}x_{25}?$$"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "8",
+    "q": "In a convex quadrilateral $ABCD$, diagonals $AC$ and $BD$ intersect perpendicularly at $X$, and $AX=5$, $BX=6$, $CX=20$. Let $C_1,C_2,C_3,C_4$ be the circles with centers $A,B,C,D$ and radii $AX,BX,CX,DX$, respectively. If there is a circle tangent to all four circles $C_1,C_2,C_3,C_4$, find $DX$. Here $YZ$ denotes the length of segment $YZ$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "9",
+    "q": "Find all divisors of $10^{2013}-1$ that are at least $1$ and at most $100$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "10",
+    "q": "There are $2013$ cards numbered $0,1,\\ldots,2012$. Initially all cards are face down. For $i=1,2,\\ldots,2013$, carry out the following operation in this order.\n\nOperation $i$: Turn over every card whose number is $\\left\\lfloor2013j/i\\right\\rfloor$ for some integer $j$ with $0\\le j\\le i-1$. A face-up card becomes face down, and a face-down card becomes face up.\n\nHow many cards are face up after all the operations? For a real number $r$, $\\lfloor r\\rfloor$ denotes the greatest integer not exceeding $r$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "11",
+    "q": "Let $n$ be a positive integer. In the region $0\\le x,y,z\\le n$ of $xyz$-coordinate space, call a segment of length $1$ joining two lattice points a lattice segment. Every lattice segment is given a direction: a lattice segment $AB$ is directed either from $A$ to $B$ or from $B$ to $A$. A square whose four sides are lattice segments is called a lattice square. Two lattice squares are congruent if a rotation and a translation can make them coincide with all arrow directions matching. How many assignments of directions to all lattice segments make all lattice squares mutually congruent?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2013,
+    "num": "12",
+    "q": "Let $a_1,a_2,\\ldots$ be an infinite sequence of pairwise distinct nonzero real numbers such that\n$$\\frac{a_{i+1}}{a_i}+\\frac{a_{i+1}}{a_{i+2}}$$\nhas a constant value greater than $0$ and less than $2$ for every positive integer $i$. Express in terms of $a_1,a_2,a_3$ the smallest real number $c$ such that, for all positive integers $x<y$,\n$$\\frac{a_xa_{x+1}+a_{x+1}a_{x+2}+\\cdots+a_{y-1}a_y}{a_xa_y}\\le c.$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2013,
+    "num": "1",
+    "q": "Let $n,k$ be positive integers with $n\\ge k$. There are $n$ people, each belonging to exactly one of groups $1,\\ldots,k$, and every group contains at least one person. Prove that $n^2$ sweets can be distributed among the $n$ people so that all of the following hold:\n\n- Every person receives at least one sweet.\n- Each person in group $i$ receives $a_i$ sweets, for $1\\le i\\le k$.\n- If $1\\le i<j\\le k$, then $a_i>a_j$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2013,
+    "num": "2",
+    "q": "Find all real-valued functions $f$ defined on the integers such that, for all integers $m,n$,\n$$f(m)+f(n)=f(mn)+f(m+n+mn).$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2013,
+    "num": "3",
+    "q": "Let $n\\ge2$ be an integer. Find the smallest positive integer $m$ for which there exist positive integers $a_1,\\ldots,a_n$ satisfying both conditions:\n\n- $a_1<\\cdots<a_n=m$.\n- All $n-1$ numbers $\\dfrac{a_1^2+a_2^2}{2},\\ldots,\\dfrac{a_{n-1}^2+a_n^2}{2}$ are perfect squares."
+  },
+  {
+    "contest": "JMO",
+    "year": 2013,
+    "num": "4",
+    "q": "Let $H$ be the centroid of an acute triangle $ABC$. A circle through $B,C$ and the circle with diameter $AH$ intersect at two distinct points $X,Y$. Let $D$ be the foot of the perpendicular from $A$ to line $BC$, and let $K$ be the foot of the perpendicular from $D$ to line $XY$. Prove that $\\angle BKD=\\angle CKD$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2013,
+    "num": "5",
+    "q": "Let $n$ be a positive integer. Points $P_1,P_2,\\ldots,P_{4n}$ lie in a plane with no three collinear. For $i=1,2,\\ldots,4n$, rotating ray $P_iP_{i-1}$ clockwise by $90^\\circ$ about $P_i$ gives ray $P_iP_{i+1}$. Find the largest possible number of pairs $(i,j)$ such that segments $P_iP_{i+1}$ and $P_jP_{j+1}$ intersect at a point other than their endpoints. Here $P_0=P_{4n}$, $P_{4n+1}=P_1$, and $1\\le i<j\\le4n$."
+  }
+]

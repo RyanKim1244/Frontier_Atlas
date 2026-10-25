@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "1",
+    "q": "How many four-digit positive integers with both thousands digit and tens digit equal to $2$ are multiples of $7$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "2",
+    "q": "Let $ABCDEF$ be a regular hexagon of side length $1$, and let $G$ be the midpoint of segment $AB$. A point $H$ is chosen inside the hexagon so that triangle $CGH$ is equilateral. Find the area of triangle $EFH$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(270);\npair[] V;for(int k=0;k<6;++k)V.push(dir(120+60*k));\npair A=V[0],B=V[1],C=V[2],D=V[3],E=V[4],F=V[5],G=(A+B)/2,H=G+rotate(60)*(C-G);\ndraw(A--B--C--D--E--F--cycle);draw(C--G--H--cycle);\nlabel(\"A\",A,(-1,1));label(\"B\",B,(-1,0));label(\"C\",C,(-1,-1));label(\"D\",D,(1,-1));label(\"E\",E,(1,0));label(\"F\",F,(1,1));label(\"G\",G,(-1,1));label(\"H\",H,(1,0));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "3",
+    "q": "The integers from $1$ to $6$ are written without repetition, one per cell, in a $2\\times3$ grid. How many fillings have relatively prime numbers in every pair of cells sharing a side? Fillings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "4",
+    "q": "Find all positive integers $n$ such that $n^2$ and $n^3$ have a total of eight digits, with each of the integers from $1$ to $8$ appearing exactly once among all their digits."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "5",
+    "q": "A positive integer $n$ can be written as\n$$(x_1^2-1)(x_2^2-2)\\cdots(x_{10}^2-10)$$\nusing ten integers $x_1,x_2,\\ldots,x_{10}$. Find the smallest possible value of $n$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "6",
+    "q": "Three squares lie in a plane as in the figure, each sharing two of its four vertices with the other squares. The line extending a diagonal of the smallest square passes through the bottom-left vertex of the largest square. If the side lengths of the smallest and largest squares are $1$ and $3$, respectively, find the area of the shaded region.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(310);\nreal co=(sqrt(17)+1)/6,si=(sqrt(17)-1)/6;\npair O=(0,0),A=(0,3),B=(3,0),T=A+(co,si),V=A+(si,-co),U=T+V-A;\npair mid=(U+B)/2,W=mid-rotate(90)*((B-U)/2),R=mid+rotate(90)*((B-U)/2);\npath shade=V--U--W--cycle;fill(shade,gray(0.85));\nfor(real y=-4;y<5;y+=0.1){picture p;draw(p,(-1,y)--(5,y-3),linewidth(0.4));clip(p,shade);add(p);}\ndraw(O--(3,0)--(3,3)--A--cycle);draw(A--T--U--V--cycle);draw(U--R--B--W--cycle);\ndraw(O--T,dashed);draw(V--W);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "7",
+    "q": "An integer from $1$ to $5$ is written in each cell of a $2\\times1010$ grid. How many fillings have the property that the numbers in any two cells sharing a side differ by $2$ or $3$? Fillings that can be obtained from one another by rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "8",
+    "q": "A sequence of $100$ positive integers $a_1,a_2,\\ldots,a_{100}$ satisfies:\n\n(i) $a_{k-1}<a_k$ for every integer $k$ with $2\\le k\\le100$.\n\n(ii) For every integer $k$ with $6\\le k\\le100$, $a_k$ is one of $2a_1,2a_2,\\ldots,2a_{k-1}$.\n\nFind the smallest possible value of $a_{100}$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "9",
+    "q": "A function $f$, defined on the integers at least $2$ and taking integer values at least $2$, satisfies\n$$f\\bigl(m^{f(n)}\\bigr)=f(m)^{f(n)}$$\nfor all integers $m,n\\ge2$. Find the smallest possible value of $f(6^6)$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "10",
+    "q": "An $8\\times8$ grid is colored white and black as in the figure. Four black pieces and four white pieces are placed in cells of the grid. How many placements satisfy the following condition?\n\nEvery row and every column contains exactly one piece. Each black piece is in a black cell, and each white piece is in a white cell.\n\nPieces of the same color are indistinguishable. Placements that can be obtained from one another by rotation or reflection are counted as different.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(285);\nfor(int i=0;i<8;++i)for(int j=0;j<8;++j){path cell=(i,j)--(i+1,j)--(i+1,j+1)--(i,j+1)--cycle;fill(cell,(i+j)%2==1?black:white);}\ndraw((0,0)--(8,0)--(8,8)--(0,8)--cycle);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "11",
+    "q": "Five points $A,B,C,D,P$ lie on a circle $\\Omega$ in this order. A circle through $P$ tangent to line $AB$ at $A$ and a circle through $P$ tangent to line $CD$ at $D$ intersect at a point $K$ inside $\\Omega$. Let $M,N$ be the midpoints of segments $AB,CD$, respectively. Points $A,K,N$ are collinear, as are $D,K,M$. Given $AK=5$, $DK=3$, and $KM=7$, let $Q$ be the intersection other than $P$ of line $PK$ with $\\Omega$. Find the length of segment $CQ$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2020,
+    "num": "12",
+    "q": "For a positive integer $k$, a sequence of positive integers $a_1,a_2,\\ldots,a_k$ is called a good sequence of length $k$ if:\n\n- Its terms are pairwise distinct and all at most $30$.\n- For $i=1,2,\\ldots,k-1$, if $i$ is odd, then $a_{i+1}$ is a multiple of $a_i$; if $i$ is even, then $a_{i+1}$ is a divisor of $a_i$.\n\nFind the greatest possible length of a good sequence."
+  },
+  {
+    "contest": "JMO",
+    "year": 2020,
+    "num": "1",
+    "q": "Find all pairs of positive integers $(m,n)$ for which both $\\dfrac{n^2+1}{2m}$ and $\\sqrt{2^{n-1}+m+4}$ are integers."
+  },
+  {
+    "contest": "JMO",
+    "year": 2020,
+    "num": "2",
+    "q": "In triangle $ABC$, $BC<AB$ and $BC<AC$. Points $D,E$ lie on sides $AB,AC$, respectively, and satisfy $BD=CE=BC$. Let $P$ be the intersection of lines $BE$ and $CD$, and let $Q$ be the intersection other than $A$ of the circumcircles of triangles $ABE$ and $ACD$. Prove that lines $PQ$ and $BC$ are perpendicular. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2020,
+    "num": "3",
+    "q": "Find all positive-integer-valued functions $f$ defined on the positive integers such that, for all positive integers $m,n$,\n$$m^2+f(n)^2+\\bigl(m-f(n)\\bigr)^2\\ge f(m)^2+n^2.$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2020,
+    "num": "4",
+    "q": "Let $n\\ge2$ be an integer. There are $3n$ distinct points on a circle, called special points. A and B repeat the following operation $n$ times:\n\nFirst A chooses two special points not already directly joined by a segment and joins them by a segment. Next B chooses an unoccupied special point and places a piece on it.\n\nProve that, regardless of how B places the pieces, A can ensure that after the $n$ operations, at least $\\dfrac{n+1}{6}$ of the drawn segments join an occupied special point to an unoccupied special point."
+  },
+  {
+    "contest": "JMO",
+    "year": 2020,
+    "num": "5",
+    "q": "Find all sequences of positive integers $a_1,a_2,\\ldots$ for which there is a positive real number $c$ such that, for all positive integers $m,n$,\n$$\\gcd(a_m+n,a_n+m)>c(m+n).$$\nFor positive integers $x,y$, $\\gcd(x,y)$ denotes their greatest common divisor."
+  }
+]

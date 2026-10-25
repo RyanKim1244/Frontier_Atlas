@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "1",
+    "q": "Circle $C_1$ is internally tangent to circle $C_2$ at $A$. Let $O$ be the center of $C_2$. A point $P$ lies on $C_1$, and the tangent to $C_1$ at $P$ passes through $O$. Let $Q$ be the intersection of ray $OP$ with $C_2$, and let $R$ be the intersection of line $OP$ with the tangent to $C_1$ at $A$. If the radius of $C_2$ is $9$ and $PQ=QR$, find the length of segment $OP$. Here $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(300);\npair O=(0,0),A=(0,1),U=(0,0.53);\nreal r=0.47,t=acos(r/abs(U));\npair P=abs(U)*sin(t)*dir(t*180/pi),Q=dir(t*180/pi),R=(1/tan(t),1);\ndraw(unitcircle);draw(circle(U,r));draw((-1.2,1)--R);draw((-0.9,-0.9*tan(t))--R);dot(O);\nlabel(\"A\",A,(0,1));label(\"O\",O,(0,-1));label(\"P\",P,(1,-1));label(\"Q\",Q,(1,-1));label(\"R\",R,(1,1));\nlabel(\"C1\",(-0.34,0.68));label(\"C2\",(-0.77,0.57));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "2",
+    "q": "One integer from $1$ to $8$ is written at each vertex of a regular octagon. How many ways of doing this satisfy both conditions below? Arrangements that can be obtained from one another by rotation or reflection are counted as different.\n\n- All eight numbers are distinct.\n- The numbers at any two adjacent vertices are relatively prime."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "3",
+    "q": "Compute the sum of $\\dfrac1{d+\\sqrt{10!}}$ over all positive divisors $d$ of $10!$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "4",
+    "q": "Six points $A,B,C,D,E,F$ lie on a circle in this order, and segments $AD,BE,CF$ are concurrent. Given $AB=1$, $BC=2$, $CD=3$, $DE=4$, and $EF=5$, find the length of segment $FA$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "5",
+    "q": "Compute the sum of\n$$\\binom{17}{a}\\binom{17}{b}\\binom{17}{c}$$\nover all triples of nonnegative integers $(a,b,c)$ satisfying $a+b+c=5$. Give a numerical answer without arithmetic operations."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "6",
+    "q": "Some distinct integers from $2$ to $20$ are written on each of two blackboards $A$ and $B$. Whenever one number from $A$ and one number from $B$ are chosen, the two numbers are relatively prime. Find the largest possible product of the number of integers on $A$ and the number of integers on $B$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "7",
+    "q": "A school has a committee of four members. There are four duties, with a different duty assigned to each member. Each member has two preferred duties, and there are exactly two ways to assign every member a preferred duty. How many possible combinations of preferences of the four members are there?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "8",
+    "q": "Let $m$ be a $1000$-digit positive integer with no digit equal to $0$, and let $n$ be a positive integer not exceeding $m$. Find the largest possible number of zero digits in $\\left\\lfloor m/n\\right\\rfloor$. For a real number $r$, $\\lfloor r\\rfloor$ denotes the greatest integer not exceeding $r$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "9",
+    "q": "Let $O$ be the intersection of the diagonals of a square $ABCD$. Points $P,Q,R,S$ lie on segments $OA,OB,OC,OD$, respectively, with $OP=3$, $OQ=5$, and $OR=4$. If the intersection of lines $AB$ and $PQ$, the intersection of lines $BC$ and $QR$, and the intersection of lines $CD$ and $RS$ are collinear, find the length of segment $OS$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "10",
+    "q": "Consider the following operation on a $55\\times55$ grid:\n\nChoose a rectangular region made up of cells, and color the whole region either white or black.\n\nStarting with every cell white, find the smallest number of operations needed to obtain a coloring satisfying all three conditions:\n\n- The top-left cell is black.\n- Every cell sharing a side with a black cell is white.\n- Every cell sharing a side with a white cell is black."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "11",
+    "q": "An integer from $1$ to $6$ is written in each cell of a $6\\times6$ grid. If the integer in row $i$, column $j$ is denoted by $i\\diamond j$, how many ways of filling the grid satisfy both conditions below?\n\n- $i\\diamond i=i$ for every integer $i$ from $1$ to $6$.\n- $(i\\diamond j)\\diamond(k\\diamond l)=i\\diamond l$ for all integers $i,j,k,l$ from $1$ to $6$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2014,
+    "num": "12",
+    "q": "Find the greatest positive integer $m$ with the following property:\n\nThere exist $2m$ integers $i_1,\\ldots,i_m,j_1,\\ldots,j_m$ from $1$ to $1000$, not necessarily distinct, such that for all nonnegative real numbers $a_1,\\ldots,a_{1000}$ satisfying $a_1+\\cdots+a_{1000}=1$,\n$$a_{i_1}a_{j_1}+\\cdots+a_{i_m}a_{j_m}\\le\\frac1{2.014}.$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2014,
+    "num": "1",
+    "q": "Let $O$ be the circumcenter of triangle $ABC$. Let $l$ be the line through the midpoint of side $BC$ perpendicular to the bisector of $\\angle BAC$. If $l$ passes through the midpoint of segment $AO$, find $\\angle BAC$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2014,
+    "num": "2",
+    "q": "Find all triples of positive integers $(a,b,c)$ satisfying $2^a+3^b+1=6^c$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2014,
+    "num": "3",
+    "q": "Let $n$ be a positive integer. In a school, every pair of students are either friends with each other or not friends with each other. Let $N$ be the smallest possible sum of positive integers $a,b$ for which both conditions hold:\n\n1. The students can be partitioned into $a$ teams so that any two students in the same team are friends.\n2. The students can be partitioned into $b$ teams so that any two students in the same team are not friends.\n\nFind the smallest possible value of $N$ among schools with $n$ students. In each partition, every student belongs to exactly one team."
+  },
+  {
+    "contest": "JMO",
+    "year": 2014,
+    "num": "4",
+    "q": "Let $\\Gamma$ be the circumcircle of triangle $ABC$, and let $l$ be its tangent at $A$. Points $D,E$ lie on sides $AB,AC$, respectively, excluding the endpoints, and satisfy $BD:DA=AE:EC$. Let $F,G$ be the two intersections of line $DE$ with $\\Gamma$. The line through $D$ parallel to $AC$ meets $l$ at $H$, and the line through $E$ parallel to $AB$ meets $l$ at $I$. Prove that $F,G,H,I$ lie on a circle tangent to line $BC$. Here $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2014,
+    "num": "5",
+    "q": "Find the greatest real number $k$ such that\n$$\\frac{a}{1+9bc+k(b-c)^2}+\\frac{b}{1+9ca+k(c-a)^2}+\\frac{c}{1+9ab+k(a-b)^2}\\ge\\frac12$$\nholds for all nonnegative real numbers $a,b,c$ satisfying $a+b+c=1$."
+  }
+]
