@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "1",
+    "q": "Find the smallest positive integer that becomes a perfect square both when $10$ is added to it and when it is multiplied by $10$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "2",
+    "q": "Call a positive integer good if its decimal representation contains more occurrences of the digit $2$ than of the digit $3$, and call it bad if it contains more occurrences of $3$ than of $2$. For example, $2023$ contains two occurrences of $2$ and one of $3$, so $2023$ is good; $123$ contains one occurrence of each, so $123$ is neither good nor bad. Find the difference between the number of good positive integers at most $2023$ and the number of bad positive integers at most $2023$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "3",
+    "q": "Points $D,E,F$ lie on sides $BC,CA,AB$, respectively, of an equilateral triangle $ABC$ of side length $3$. They satisfy $BD=1$ and $\\angle ADE=\\angle DEF=60^\\circ$. Find the length of segment $AF$.\n\nHere $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nreal cross2(pair u,pair v) { return u.x*v.y-u.y*v.x; }\npair meet(pair p,pair v,pair q,pair w) { return p+cross2(q-p,w)/cross2(v,w)*v; }\nsize(245);\npair B=(0,0),C=(3,0),A=(1.5,1.5*sqrt(3)),D=(1,0);\npair E=meet(D,rotate(-60)*(A-D),A,C-A);\npair F=meet(E,rotate(-60)*(D-E),A,B-A);\ndraw(A--B--C--cycle);draw(A--D--E--F);\nlabel(\"A\",A,N);label(\"B\",B,SW);label(\"C\",C,SE);\nlabel(\"D\",D,S);label(\"E\",E,(1,0));label(\"F\",F,W);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "4",
+    "q": "For positive real numbers $x,y$, define a positive real number $x\\star y$ by $x\\star y=x/(xy+1)$. Evaluate\n$$\\bigl(\\bigl(\\bigl(\\cdots(((100\\star99)\\star98)\\star97)\\star\\cdots\\bigr)\\star3\\bigr)\\star2\\bigr)\\star1.$$\nGive a numerical answer without using $\\star$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "5",
+    "q": "Let $a_1,a_2,a_3,a_4,a_5,a_6,a_7$ be pairwise distinct positive integers. If the sequence $a_1,2a_2,3a_3,4a_4,5a_5,6a_6,7a_7$ is an arithmetic progression, find the smallest possible value of $|a_7-a_1|$.\n\nA sequence $x_1,x_2,\\ldots,x_7$ is an arithmetic progression if $x_2-x_1=x_3-x_2=\\cdots=x_7-x_6$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "6",
+    "q": "A regular hexagon is inscribed in a rectangle as shown in the figure. If the areas of the shaded triangle and shaded quadrilateral are $20$ and $23$, respectively, find the area of the regular hexagon.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(235);\npair[] V;\nfor(int i=0;i<6;++i) V.push(dir(100-60*i));\nreal xmin=V[5].x,xmax=V[2].x,ymin=V[3].y,ymax=V[0].y;\npair NW=(xmin,ymax),SW=(xmin,ymin),NE=(xmax,ymax),SE=(xmax,ymin);\nfill(NW--V[0]--V[5]--cycle,gray(0.84));\nfill(V[5]--V[4]--V[3]--SW--cycle,gray(0.84));\ndraw(NW--NE--SE--SW--cycle);\npath p=V[0];for(int i=1;i<6;++i) p=p--V[i];draw(p--cycle);\nlabel(\"20\",(NW+V[0]+V[5])/3);\nlabel(\"23\",(xmin+0.16,ymin+0.15));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "7",
+    "q": "Positive integers $a,b,c$ satisfy $$\\frac{(ab-1)(ac-1)}{bc}=2023,\\qquad b\\le c.$$ Find all possible values of $c$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "8",
+    "q": "There is a figure consisting of $15$ circles and $20$ line segments as shown. Write one of $0,1,2$ in each circle. Define the beauty of a filling to be the number of the $20$ line segments whose two endpoint circles contain numbers differing by $1$. Let $M$ be the greatest possible beauty. How many fillings have beauty $M$?\n\nFillings that coincide after rotation or reflection are counted as different.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(255);\npair[] O,M,I;\nfor(int k=0;k<5;++k) O.push(3*dir(90+72*k));\nfor(int k=0;k<5;++k) { M.push((O[k]+O[(k+1)%5])/2);I.push(1.15*dir(126+72*k)); }\nfor(int k=0;k<5;++k) {\n  draw(O[k]--M[k]--O[(k+1)%5]);\n  draw(M[k]--I[k]);draw(I[k]--I[(k+1)%5]);\n}\nfor(int k=0;k<5;++k) for(pair p:new pair[]{O[k],M[k],I[k]}) filldraw(circle(p,0.28),white,black+linewidth(0.5));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "9",
+    "q": "How many permutations $p_1,p_2,\\ldots,p_{2023}$ of $1,2,\\ldots,2023$ satisfy $$p_1+|p_2-p_1|+|p_3-p_2|+\\cdots+|p_{2023}-p_{2022}|+p_{2023}=4048?$$\nA permutation of $1,2,\\ldots,2023$ is a sequence of length $2023$ in which each integer from $1$ to $2023$, inclusive, occurs exactly once."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "10",
+    "q": "Let $ABC$ be an acute triangle. Let $D$ be the foot of the perpendicular from $A$ to side $BC$, and let $M$ be the midpoint of side $AC$. Choose a point $P$ on segment $BM$ such that $\\angle PAM=\\angle MBA$. If $\\angle BAP=41^\\circ$ and $\\angle PDB=115^\\circ$, find the measure of $\\angle BAC$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "11",
+    "q": "Players $A$ and $B$ play a game using a blackboard. Initially, each integer from $2$ to $50$, inclusive, is written once on the board, and a nonempty subset $S$ of these integers is specified. On the first turn, $A$ erases all the elements of $S$ from the board. Afterwards, starting with $B$, the two players alternate choosing and erasing one or more integers from the board. However, an integer that is relatively prime to every integer erased on the opponent's immediately preceding turn may not be erased. If a player has no integer that can be erased at the start of their turn, the game ends and that player loses, while the other player wins.\n\nHow many choices of $S$ allow $A$ to force a win regardless of $B$'s actions?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2023,
+    "num": "12",
+    "q": "A set $A$ consists of functions defined on the integers from $1$ to $2023$, inclusive, and taking values among these same integers. It satisfies the following two conditions:\n\n(i) For every $f\\in A$ and all integers $x,y$ with $1\\le x<y\\le2023$, we have $f(x)\\ge f(y)$.\n\n(ii) For every $f,g\\in A$ and every integer $x$ with $1\\le x\\le2023$, we have $f(g(x))=g(f(g(x)))$.\n\nFind the greatest possible number of elements of $A$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2023,
+    "num": "1",
+    "q": "Place some tiles consisting of four cells as shown in the figure on a $5\\times5$ grid, along the grid lines. Tiles may overlap, but no tile may protrude beyond the grid. If each cell is covered by at least $0$ and at most $2$ tiles, find the greatest possible number of cells covered by at least one tile.\n\nThe tiles may be rotated or reflected.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(175);\ndraw((0,0)--(2,0)--(2,1)--(3,1)--(3,2)--(1,2)--(1,1)--(0,1)--cycle,black+linewidth(1.4));\ndraw((1,0)--(1,1),dotted);draw((1,1)--(2,1),dotted);draw((2,1)--(2,2),dotted);\n[/asy]"
+  },
+  {
+    "contest": "JMO",
+    "year": 2023,
+    "num": "2",
+    "q": "Let $ABC$ be an acute triangle. Let $D,E,F$ be the midpoints of sides $BC,CA,AB$, respectively, and let $X,Y$ be the feet of the perpendiculars from $D$ to sides $AB,AC$, respectively. The line through $F$ parallel to $XY$ meets the line $DY$ at a point $P$ distinct from $E$. Prove that the lines $AD$ and $EP$ are perpendicular."
+  },
+  {
+    "contest": "JMO",
+    "year": 2023,
+    "num": "3",
+    "q": "Let $c$ be a nonnegative integer. Find all sequences $a_1,a_2,\\ldots$ of positive integers satisfying the following condition for every positive integer $n$:\n\nThere are exactly $a_n$ positive integers $i$ such that $a_i\\le a_{n+1}+c$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2023,
+    "num": "4",
+    "q": "Find all positive integers $n$ for which $(\\phi(n)^{d(n)}+1)/n$ is an integer and $(n^{\\phi(n)}-1)/d(n)^5$ is not an integer.\n\nHere $\\phi(n)$ denotes the number of integers between $1$ and $n$, inclusive, that are coprime to $n$, and $d(n)$ denotes the number of positive divisors of $n$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2023,
+    "num": "5",
+    "q": "Let $S=\\{1,2,\\ldots,3000\\}$. Find the greatest integer $X$ satisfying the following condition:\n\nFor every bijective function $f:S\\to S$, one can choose a bijective function $g:S\\to S$ such that\n$$\\sum_{k=1}^{3000}\\Bigl(\\max\\{f(f(k)),f(g(k)),g(f(k)),g(g(k))\\}-\\min\\{f(f(k)),f(g(k)),g(f(k)),g(g(k))\\}\\Bigr)\\ge X.$$\nA function $f:S\\to S$ is bijective if, for every $y\\in S$, there is exactly one $x\\in S$ such that $f(x)=y$. For positive integers $x_1,x_2,x_3,x_4$, their greatest and least values are denoted by $\\max\\{x_1,x_2,x_3,x_4\\}$ and $\\min\\{x_1,x_2,x_3,x_4\\}$, respectively."
+  }
+]

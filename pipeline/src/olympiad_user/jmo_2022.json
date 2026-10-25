@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "1",
+    "q": "Find the smallest four-digit multiple of $3$ greater than $2022$ whose thousands, hundreds, tens, and units digits consist of exactly two distinct digits."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "2",
+    "q": "A circle of radius $3$ is inscribed in a trapezoid $ABCD$ with $AD\\parallel BC$ and with angles $B$ and $C$ acute. If $AB=7$ and $CD=8$, find the area of trapezoid $ABCD$.\n\nHere $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(245);\nreal left=sqrt(13),right=sqrt(28),bottom=(15+left+right)/2;\npair B=(0,0),C=(bottom,0),A=(left,6),D=(bottom-right,6);\npair I=((7+left)/2,3),T=I+3*dir(-30);\ndraw(A--B--C--D--cycle);draw(circle(I,3));dot(I);\ndraw(I--T);label(\"3\",(I+T)/2,NE);\nlabel(\"A\",A,NW);label(\"B\",B,SW);label(\"C\",C,SE);label(\"D\",D,NE);\nlabel(\"7\",(A+B)/2,W);label(\"8\",(C+D)/2,E);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "3",
+    "q": "There are cells $A,B,C,D,E,F$ at the vertices of a regular hexagon. From each cell, a move may be made to either of the cells at adjacent vertices or to the cell at the opposite vertex. How many routes start at cell $A$, visit every other cell exactly once without visiting $A$ along the way, and return to $A$?\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(215);\npair[] V;\nstring[] names={\"A\",\"B\",\"C\",\"D\",\"E\",\"F\"};\nfor(int i=0;i<6;++i) V.push(2*dir(90+60*i));\nfor(int i=0;i<6;++i) draw(V[i]--V[(i+1)%6]);\nfor(int i=0;i<3;++i) draw(V[i]--V[i+3]);\nfor(int i=0;i<6;++i) { filldraw(circle(V[i],0.32),white,black);label(names[i],V[i]); }\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "4",
+    "q": "Let $ABCD$ be a convex quadrilateral and $P$ a point inside it. The lines $AP$ and $AD$ are perpendicular, and the lines $BP$ and $CD$ are perpendicular. If $AB=7$, $AP=3$, $BP=6$, $AD=5$, and $CD=10$, find the area of triangle $ABC$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "5",
+    "q": "How many pairs $(m,n)$ of integers between $1$ and $2022$, inclusive, satisfy the following condition?\n\nFor every positive integer $N$, there exist a nonnegative integer $k$ and an integer $d>N$ such that both $(m-k^2)/d$ and $(n+2k)/d$ are integers."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "6",
+    "q": "There are $36$ equilateral triangular tiles of side length $1$, assembled to form the board shown in the figure. Call the $30$ points marked by black dots good points.\n\nHow many ways are there to color each tile on this board either red or blue so that the following condition holds?\n\nAt every good point, among the tiles having that point as a vertex, the number colored red equals the number colored blue.\n\nColorings that coincide after rotating or reflecting the board are counted as different.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(265);\npair[] nodes,edgeA,edgeB;\nint[] counts;\nvoid addNode(pair p) {\n  for(pair q:nodes) if(abs(p-q)<0.00001) return;\n  nodes.push(p);\n}\nvoid addEdge(pair a,pair b) {\n  for(int i=0;i<edgeA.length;++i)\n    if((abs(a-edgeA[i])<0.00001 && abs(b-edgeB[i])<0.00001) ||\n       (abs(a-edgeB[i])<0.00001 && abs(b-edgeA[i])<0.00001)) { ++counts[i];return; }\n  edgeA.push(a);edgeB.push(b);counts.push(1);\n}\nfor(int k=0;k<6;++k) {\n  pair c=sqrt(3)*dir(30+60*k);addNode(c);\n  pair[] vertices;\n  for(int j=0;j<6;++j) { pair p=c+dir(60*j);vertices.push(p);addNode(p);draw(c--p,gray(0.45)+dashed+linewidth(0.45)); }\n  for(int j=0;j<6;++j) addEdge(vertices[j],vertices[(j+1)%6]);\n}\nfor(int i=0;i<edgeA.length;++i) {\n  pen p=counts[i]==1 ? black+linewidth(0.8) : gray(0.45)+dashed+linewidth(0.45);\n  draw(edgeA[i]--edgeB[i],p);\n}\nfor(pair p:nodes) fill(circle(p,0.075),black);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "7",
+    "q": "Let $ABC$ be a right isosceles triangle with $\\angle BAC=90^\\circ$ and $AB=AC=7$. Points $D,E,F$ lie on sides $BC,CA,AB$, respectively, and satisfy $\\angle EDF=90^\\circ$, $DE=5$, and $DF=3$. Find the length of segment $BD$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "8",
+    "q": "How many tuples $(a_1,a_2,\\ldots,a_{2022})$ of positive integers with $a_1<a_2<\\cdots<a_{2022}$ satisfy $$a_1^2-6^2\\ge a_2^2-7^2\\ge\\cdots\\ge a_{2022}^2-2027^2?$$"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "9",
+    "q": "How many permutations $(p_1,p_2,\\ldots,p_{1000})$ of $1,2,\\ldots,1000$ have the property that $p_i$ is a multiple of $i$ for every integer $i$ with $1\\le i\\le999$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "10",
+    "q": "How many ways are there to choose $25$ distinct integers from $1$ to $50$, inclusive, such that, for any two distinct chosen integers, neither is a divisor of the other?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "11",
+    "q": "For a positive integer $n$, define\n$$f(n)=\\begin{cases}n^{100},&\\text{if the sum of the decimal digits of }n\\text{ is even},\\\\-n^{100},&\\text{if the sum of the decimal digits of }n\\text{ is odd}.\\end{cases}$$\nLet $S=f(1)+f(2)+\\cdots+f(10^{100}-1)$. Find the greatest nonnegative integer $m$ such that $S$ is divisible by $5^m$. The number $S$ is nonzero."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2022,
+    "num": "12",
+    "q": "Let $ABC$ be an acute triangle with $AB=11$ and $AC=10$. Let $H$ be its orthocenter, and let $M$ be the midpoint of side $BC$. A point $P$ inside triangle $ABC$ lies on the circumcircle of triangle $BHC$ and satisfies $\\angle ABP=\\angle CPM$ and $PM=3$. Find the length of segment $BC$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2022,
+    "num": "1",
+    "q": "Players $A$ and $B$ play a game on $2022$ cells arranged in a horizontal row. Initially, the cells in odd positions from the left contain $A$'s name and those in even positions contain $B$'s name. Starting with $A$, they take turns performing the following operation:\n\nChoose two nonadjacent cells containing your own name such that every cell between them contains your opponent's name. Replace your opponent's name in every cell between the two chosen cells by your own name.\n\nThe game ends when either player can no longer perform an operation. Find the greatest positive integer $m$ satisfying the following condition:\n\nRegardless of how $B$ plays, $A$ can ensure that, when the game ends, at least $m$ cells contain $A$'s name."
+  },
+  {
+    "contest": "JMO",
+    "year": 2022,
+    "num": "2",
+    "q": "Find all functions $f$ defined on the positive integers and taking positive integer values such that $$f^{f(n)}(m)+mn=f(m)f(n)$$ for all positive integers $m,n$.\n\nHere $f^k(n)$ denotes $f(f(\\cdots f(n)\\cdots))$, with $k$ occurrences of $f$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2022,
+    "num": "3",
+    "q": "Let $ABC$ be an isosceles triangle with $AB=AC$. A circle $\\omega$ centered at a point $O$ strictly inside triangle $ABC$ passes through $C$ and meets sides $BC$ and $AC$, excluding their endpoints, at $D$ and $E$, respectively. Let $\\Gamma$ be the circumcircle of triangle $AEO$, and let $F$ be the intersection of $\\Gamma$ and $\\omega$ other than $E$. Prove that the circumcenter of triangle $BDF$ lies on $\\Gamma$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2022,
+    "num": "4",
+    "q": "Find all pairs $(x,y)$ of positive integers satisfying $$3^x-8^y=2xy+1.$$"
+  },
+  {
+    "contest": "JMO",
+    "year": 2022,
+    "num": "5",
+    "q": "Find the smallest positive integer $m$ for which the following statement holds:\n\nThere are $999$ cells arranged around a circle, with one real number written in each cell. For every cell $A$ and every positive integer $k\\le m$, at least one of the following holds:\n\n(i) The number in the cell $k$ steps clockwise from $A$, minus the number in $A$, is $k$.\n\n(ii) The number in the cell $k$ steps counterclockwise from $A$, minus the number in $A$, is $k$.\n\nThen there exists a cell $S$ such that, writing $x$ for the real number in $S$, at least one of the following holds:\n\n(a) For every positive integer $k<999$, the number in the cell $k$ steps clockwise from $S$ is $x+k$.\n\n(b) For every positive integer $k<999$, the number in the cell $k$ steps counterclockwise from $S$ is $x+k$."
+  }
+]

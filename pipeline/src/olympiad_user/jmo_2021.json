@@ -1,0 +1,104 @@
+[
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "1",
+    "q": "Coprime positive integers $m,n$ satisfy $m+n=90$. Find the greatest possible value of the product $mn$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "2",
+    "q": "A regular decagon is shown in the figure. If its total area is $1$, find the area of the shaded region.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(215);\npair[] V;\nfor(int i=0;i<10;++i) V.push(dir(108-36*i));\nfill(V[0]--V[1]--V[2]--V[7]--cycle,gray(0.83));\nfill(V[2]--V[3]--V[4]--cycle,gray(0.83));\npath border=V[0];\nfor(int i=1;i<10;++i) border=border--V[i];\ndraw(border--cycle);\ndraw(V[7]--V[0]); draw(V[7]--V[2]); draw(V[2]--V[4]);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "3",
+    "q": "Let $P$ be a point inside an isosceles triangle $ABC$ with $AB=AC$. Let $D,E,F$ be the feet of the perpendiculars from $P$ to sides $BC,CA,AB$, respectively. If $BD=9$, $CD=5$, $PE=2$, and $PF=5$, find the length of side $AB$.\n\nHere $XY$ denotes the length of segment $XY$.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\npair foot(pair P,pair U,pair V) {\n  pair d=V-U;\n  return U+((P-U).x*d.x+(P-U).y*d.y)/(abs(d)^2)*d;\n}\nsize(240);\npair A=(7,14),B=(0,0),C=(14,0),P=(9,6),D=(9,0);\npair E=foot(P,C,A),F=foot(P,A,B);\ndraw(A--B--C--cycle);\ndraw(P--D,dotted);draw(P--E,dotted);draw(P--F,dotted);\nvoid rightMark(pair X,pair U,pair Y) {\n  pair u=0.3*unit(U-X),v=0.3*unit(Y-X);\n  draw((X+u)--(X+u+v)--(X+v));\n}\nrightMark(D,B,P);rightMark(E,A,P);rightMark(F,B,P);\nlabel(\"A\",A,N);label(\"B\",B,SW);label(\"C\",C,SE);\nlabel(\"D\",D,S);label(\"E\",E,NE);label(\"F\",F,NW);label(\"P\",P,NE);\nlabel(\"9\",(B+D)/2,N);label(\"5\",(D+C)/2,N);\nlabel(\"5\",(P+F)/2,S);label(\"2\",(P+E)/2,SE);\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "4",
+    "q": "Three distinct positive integers are written on a blackboard. Consider the operation that, when the numbers on the board are real numbers $a,b,c$, simultaneously replaces them by $(b+c)/2$, $(c+a)/2$, and $(a+b)/2$, respectively. After this operation has been performed $2021$ times, all three numbers on the board are positive integers. Find the smallest possible sum of the three positive integers originally written on the board."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "5",
+    "q": "There are four types of blocks as shown in the figure, each consisting of four cubes of side length $1$. How many ways are there to put four such blocks inside a rectangular box of dimensions $2\\times2\\times4$ without any part protruding outside the box?\n\nMore than one block of the same type may be used, and the blocks may be rotated. Arrangements that coincide after rotating the box are counted as different.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(610);\nfilldraw((1.5,1.45)--(2.5,1.45)--(3,1.9)--(2,1.9)--cycle,white,black+linewidth(0.65));\nfilldraw((2.5,0.45)--(3,0.9)--(3,1.9)--(2.5,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((0,1)--(1,1)--(1.5,1.45)--(0.5,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((0,0)--(1,0)--(1,1)--(0,1)--cycle,white,black+linewidth(0.65));\nfilldraw((2,0)--(2.5,0.45)--(2.5,1.45)--(2,1)--cycle,white,black+linewidth(0.65));\nfilldraw((1,0)--(2,0)--(2,1)--(1,1)--cycle,white,black+linewidth(0.65));\nfilldraw((1,2)--(2,2)--(2.5,2.45)--(1.5,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((2,1)--(2.5,1.45)--(2.5,2.45)--(2,2)--cycle,white,black+linewidth(0.65));\nfilldraw((1,1)--(2,1)--(2,2)--(1,2)--cycle,white,black+linewidth(0.65));\nfilldraw((5.6,1.45)--(6.6,1.45)--(7.1,1.9)--(6.1,1.9)--cycle,white,black+linewidth(0.65));\nfilldraw((6.6,0.45)--(7.1,0.9)--(7.1,1.9)--(6.6,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((4.1,0)--(5.1,0)--(5.1,1)--(4.1,1)--cycle,white,black+linewidth(0.65));\nfilldraw((4.1,2)--(5.1,2)--(5.6,2.45)--(4.6,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((5.1,1)--(5.6,1.45)--(5.6,2.45)--(5.1,2)--cycle,white,black+linewidth(0.65));\nfilldraw((5.1,1)--(6.1,1)--(6.6,1.45)--(5.6,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((6.1,0)--(6.6,0.45)--(6.6,1.45)--(6.1,1)--cycle,white,black+linewidth(0.65));\nfilldraw((4.1,1)--(5.1,1)--(5.1,2)--(4.1,2)--cycle,white,black+linewidth(0.65));\nfilldraw((5.1,0)--(6.1,0)--(6.1,1)--(5.1,1)--cycle,white,black+linewidth(0.65));\nfilldraw((8.7,0.45)--(9.7,0.45)--(9.7,1.45)--(8.7,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((8.7,2.45)--(9.7,2.45)--(10.2,2.9)--(9.2,2.9)--cycle,white,black+linewidth(0.65));\nfilldraw((9.7,1.45)--(10.2,1.9)--(10.2,2.9)--(9.7,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((9.7,1.45)--(10.7,1.45)--(11.2,1.9)--(10.2,1.9)--cycle,white,black+linewidth(0.65));\nfilldraw((10.7,0.45)--(11.2,0.9)--(11.2,1.9)--(10.7,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((8.7,1.45)--(9.7,1.45)--(9.7,2.45)--(8.7,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((9.2,1)--(10.2,1)--(10.7,1.45)--(9.7,1.45)--cycle,white,black+linewidth(0.65));\nfilldraw((10.2,0)--(10.7,0.45)--(10.7,1.45)--(10.2,1)--cycle,white,black+linewidth(0.65));\nfilldraw((9.2,0)--(10.2,0)--(10.2,1)--(9.2,1)--cycle,white,black+linewidth(0.65));\nfilldraw((12.3,0)--(13.3,0)--(13.3,1)--(12.3,1)--cycle,white,black+linewidth(0.65));\nfilldraw((12.3,2)--(13.3,2)--(13.8,2.45)--(12.8,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((14.3,0)--(14.8,0.45)--(14.8,1.45)--(14.3,1)--cycle,white,black+linewidth(0.65));\nfilldraw((12.3,1)--(13.3,1)--(13.3,2)--(12.3,2)--cycle,white,black+linewidth(0.65));\nfilldraw((13.3,0)--(14.3,0)--(14.3,1)--(13.3,1)--cycle,white,black+linewidth(0.65));\nfilldraw((13.3,2)--(14.3,2)--(14.8,2.45)--(13.8,2.45)--cycle,white,black+linewidth(0.65));\nfilldraw((14.3,1)--(14.8,1.45)--(14.8,2.45)--(14.3,2)--cycle,white,black+linewidth(0.65));\nfilldraw((13.3,1)--(14.3,1)--(14.3,2)--(13.3,2)--cycle,white,black+linewidth(0.65));\n[/asy]"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "6",
+    "q": "For a positive integer $n$, let $f(n)$ be the smallest positive integer $m$ such that $m$ and $n$ are coprime and $m+1$ and $n+1$ are also coprime. How many distinct positive integers occur among $f(1),f(2),\\ldots,f(10^{10})$?"
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "7",
+    "q": "Points $P,Q$ lie on side $BC$ of a triangle $ABC$, and the centroids of triangles $ACP$ and $ABQ$ coincide. If $AB=10$, $AC=11$, $BP=5$, and $CQ=6$, find the length of side $BC$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "8",
+    "q": "Find the number of tuples $(a_1,a_2,\\ldots,a_{17})$ of integers between $2$ and $20$, inclusive, such that\n$$a_1^{a_2^{\\cdot^{\\cdot^{a_{17}}}}}\\equiv a_2^{a_3^{\\cdot^{\\cdot^{a_{17}}}}}\\equiv1\\pmod{17}.$$\nThe exponentiation is evaluated starting with the two numbers at the upper right and proceeding downwards."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "9",
+    "q": "Let $A$ be the total number of ways to put one of the numbers $1,2,3$ in each cell of a $2021\\times2021$ grid such that the sum of the four numbers in every $2\\times2$ subgrid is $8$. Find the remainder when $A$ is divided by $100$.\n\nFillings that coincide after rotation or reflection are counted as different."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "10",
+    "q": "Points $D,E$ lie on sides $AB,AC$ of a triangle $ABC$, respectively, and the four points $D,B,C,E$ lie on a circle. A point $P$ lies inside quadrilateral $DBCE$ and satisfies $\\angle BDP=\\angle BPC=\\angle PEC$. If $AB=9$, $AC=11$, $DP=1$, and $EP=3$, find the value of $BP/CP$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "11",
+    "q": "For each tuple $(x,y,z,w)$ of integers between $1$ and $1000$, inclusive, take the greatest of $xy+zw$, $xz+yw$, and $xw+yz$, and let $M$ be the sum of these greatest values over all the tuples. Similarly, for each tuple $(x,y,z,w)$ of integers between $1$ and $1000$, inclusive, take the least of $xy+zw$, $xz+yw$, and $xw+yz$, and let $m$ be the sum of these least values over all the tuples. Find the number of positive divisors of $M-m$."
+  },
+  {
+    "contest": "JMO Preliminary",
+    "year": 2021,
+    "num": "12",
+    "q": "There is a $7\\times7$ grid, with one coin in the cell in the first row from the top and the fourth column from the left. A cell $Y$ is said to be diagonally below and to the left of a cell $X$ if, for some positive integer $k$, it is $k$ cells to the left and $k$ cells below $X$. Similarly, $Y$ is diagonally below and to the right of $X$ if, for some positive integer $k$, it is $k$ cells to the right and $k$ cells below $X$. For a cell $X$ not in the bottom row that contains a coin, any one of the following four operations may be performed:\n\n(a) Remove the coin from $X$ and put one coin in the cell immediately below $X$.\n\n(b) Remove the coin from $X$ and put one coin in each cell diagonally below and to the left of $X$.\n\n(c) Remove the coin from $X$ and put one coin in each cell diagonally below and to the right of $X$.\n\n(d) Remove the coin from $X$ and put one coin in the cell one place to the left and one place below $X$, and one coin in the cell one place to the right and one place below $X$. If only one of these cells exists, put a coin only in that cell.\n\nIf a cell in which a coin is to be placed already contains a coin, no coin is placed in that cell. Find the greatest possible number of coins on the grid after performing these operations some number of times.\n\n[asy]\nimport geometry;\nsettings.tex=\"none\";\ndefaultpen(black+linewidth(0.65));\nsize(650);\nfor(int panel=0;panel<4;++panel) {\n  pair offset=(8.5*panel,0);\n  for(int j=0;j<=7;++j) {\n    draw(offset+(j,0)--offset+(j,7),gray(0.55)+linewidth(0.3));\n    draw(offset+(0,j)--offset+(7,j),gray(0.55)+linewidth(0.3));\n  }\n  pair s=offset+(3.5,6.5);\n  draw(circle(s,0.20),dotted);\n  pair[] destinations;\n  if(panel==0) destinations.push(offset+(3.5,5.5));\n  if(panel==1) for(int k=1;k<=3;++k) destinations.push(s+(-k,-k));\n  if(panel==2) for(int k=1;k<=3;++k) destinations.push(s+(k,-k));\n  if(panel==3) { destinations.push(s+(-1,-1));destinations.push(s+(1,-1)); }\n  for(pair d:destinations) {\n    pair shift=panel==1 ? (-0.25,0.3) : (panel==2 ? (0.25,0.3) : (0,0));\n    draw((s+(0,-0.20))..((s+d)/2+shift)..(d+(0,0.20)),Arrow(4));\n    fill(circle(d,0.20),black);\n  }\n  string[] names={\"(a)\",\"(b)\",\"(c)\",\"(d)\"};\n  label(names[panel],offset+(3.5,-0.7));\n}\n[/asy]"
+  },
+  {
+    "contest": "JMO",
+    "year": 2021,
+    "num": "1",
+    "q": "Find all functions $f$ defined on the positive integers and taking positive integer values such that, for all positive integers $m,n$, the following two statements are equivalent:\n\n(i) $n$ divides $m$.\n\n(ii) $f(n)$ divides $f(m)-n$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2021,
+    "num": "2",
+    "q": "Let $n$ be an integer greater than or equal to $2$. Taro and Jiro play the following game on a grid with $n$ rows and $2021$ columns. First, Taro colors every cell either white or black. Next, Jiro places a token in one cell of the top row and designates one cell of the bottom row as the goal. Taro then repeats the following operation once per turn:\n\nIf the cell containing the token is black, move the token one cell down. If the cell containing the token is white, first move it to an adjacent cell to the left or right, and then move it one cell down.\n\nFind the smallest possible value of $n$ for which Taro can always move the token to the goal, regardless of Jiro's choices."
+  },
+  {
+    "contest": "JMO",
+    "year": 2021,
+    "num": "3",
+    "q": "Points $D,E$ lie on sides $AB,AC$ of an acute triangle $ABC$, respectively, and satisfy $BD=CE$. A point $P$ lies on segment $DE$, and a point $Q$ lies on the arc $BC$ not containing $A$ of the circumcircle of triangle $ABC$, with $BP:PC=EQ:QD$. The points $A,B,C,D,E,P,Q$ are mutually distinct. Prove that $\\angle BPC=\\angle BAC+\\angle EQD$.\n\nHere $XY$ denotes the length of segment $XY$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2021,
+    "num": "4",
+    "q": "Integers $a_1,a_2,\\ldots,a_{2021}$ satisfy $$a_{n+5}+a_n>a_{n+2}+a_{n+3}$$ for every integer $n$ with $1\\le n\\le2016$. Find the smallest possible difference between the greatest and least of $a_1,a_2,\\ldots,a_{2021}$."
+  },
+  {
+    "contest": "JMO",
+    "year": 2021,
+    "num": "5",
+    "q": "Let $n$ be a positive integer. Find all integers $k$ between $1$ and $2n^2$, inclusive, satisfying the following condition:\n\nIn a $2n\\times2n$ grid, choose $k$ distinct cells and color the chosen cells black and all other cells white. The smallest possible number of $2\\times2$ subgrids containing both white and black cells is $2n-1$."
+  }
+]
