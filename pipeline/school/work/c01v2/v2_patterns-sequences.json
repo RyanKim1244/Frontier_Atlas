@@ -1,0 +1,559 @@
+[
+ {
+  "id": "patterns-sequences",
+  "entry": {
+   "sum": "A sequence is a list of numbers or objects in positions $1, 2, 3, \\dots$, and a pattern is a rule that says what stands in every position. In a repeating pattern of period $p$ the term in position $n$ depends only on the remainder of $n$ on division by $p$; counting in equal steps of $d$ from $a_1$ gives an arithmetic sequence, whose term in position $n$ is $a_1 + (n - 1)d$.",
+   "key": [
+    "a_{n+1} = a_n + d \\;\\Longrightarrow\\; a_n = a_1 + (n-1)d",
+    "5,\\ 8,\\ 11,\\ 14,\\ \\dots:\\ a_n = 3n + 2",
+    "a_{n+p} = a_n \\text{ (period } p)"
+   ],
+   "why": "Sequences are where a rule first describes infinitely many cases at once: counting in steps becomes the multiplication tables, a term-to-term rule is the first recursion and a position-to-term rule the first function, and both lead to the sequences, series and limits of later mathematics.",
+   "msc": [],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "Writing the term in position $n$ with a letter, such as $3n + 2$, is one of the first uses of algebra in school."
+    },
+    {
+     "field": "computer-science",
+     "note": "A term-to-term rule is a loop or a recursive definition: start somewhere and repeat one step."
+    },
+    {
+     "field": "real-analysis",
+     "note": "Sequences are the starting point for limits and convergence."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 2.NBT.A.2, 2.OA.C.3, 3.OA.D.9, 4.OA.C.5, 5.OA.B.3 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, key stages 1-3 (2013)",
+    "DfE GCSE mathematics subject content A23-A25, as in AQA GCSE Mathematics 8300",
+    "Illustrative Mathematics K-5 Math, Grade 4 Unit 6 Section A (Features of Patterns); Grade 5 Unit 7 Section C (Numerical Patterns)",
+    "AAMT Top Drawer Teachers: Patterns, Number sequences",
+    "OpenStax, Algebra and Trigonometry, Section 13.2 Arithmetic Sequences"
+   ],
+   "aliases": [
+    "number patterns",
+    "number sequences",
+    "repeating and growing patterns",
+    "skip counting",
+    "counting in steps",
+    "linear sequences",
+    "arithmetic sequences",
+    "arithmetic progressions"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 22,
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study, key stages 1 and 2 (2013)",
+     "where": "Years 1-4 Number and place value (counting in steps); Year 2 Geometry: position and direction; Year 5 notes and guidance; Year 6 Algebra",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "engKS3",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study, key stage 3 section (2013)",
+     "where": "Key stage 3, Subject content, Algebra (sequences)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "gcse",
+     "ref": "AQA, GCSE Mathematics (8300) specification, following the DfE GCSE mathematics subject content (2013)",
+     "where": "3.2 Algebra, A23-A25 (sequences; note to A24 on recursive sequences)",
+     "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/subject-content/3.2-algebra",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.A.2",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc3OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.D.9",
+     "url": "https://thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc4OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.C.5",
+     "url": "https://thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc5OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 5, Operations and Algebraic Thinking (2010)",
+     "where": "5.OA.B.3",
+     "url": "https://thecorestandards.org/Math/Content/5/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im4U6L1",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 4 Unit 6, Section A Features of Patterns, Lesson 1: Patterns that Grow",
+     "where": "Grade 4, Unit 6, Lesson 1",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-6/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im5U7L11",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 5 Unit 7, Section C Numerical Patterns, Lesson 11: Patterns and Ordered Pairs",
+     "where": "Grade 5, Unit 7, Lesson 11",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-5/unit-7/lesson-11/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "topdrawer",
+     "ref": "Australian Association of Mathematics Teachers, Top Drawer Teachers: Patterns, Misunderstandings, Number sequences",
+     "where": "Patterns > Misunderstandings > Number sequences",
+     "url": "https://topdrawer.aamt.edu.au/Patterns/Misunderstandings/Number-sequences",
+     "kind": "notes"
+    },
+    {
+     "k": "osAT",
+     "ref": "OpenStax, Algebra and Trigonometry 1e, Ch. 13 Sequences, Probability and Counting Theory (CC BY 4.0), as hosted on LibreTexts",
+     "where": "13.2 Arithmetic Sequences",
+     "url": "https://math.libretexts.org/Bookshelves/Algebra/Algebra_and_Trigonometry_1e_(OpenStax)/13%3A_Sequences_Probability_and_Counting_Theory/13.02%3A_Arithmetic_Sequences",
+     "kind": "textbook"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Recognise, continue and create repeating patterns and find the unit of repeat (England Years 1-2; AAMT)",
+     "priority": "core",
+     "where": "Repeating patterns"
+    },
+    {
+     "item": "Count in steps of 2, 3, 5 and 10, then 4, 8, 50, 100, 6, 7, 9, 25 and 1000, from 0 or any number, forwards and backwards (England Years 1-4); skip-count by 5s, 10s and 100s (CC 2.NBT.A.2)",
+     "priority": "core",
+     "where": "Counting in equal steps; [[counting-number-names]]"
+    },
+    {
+     "item": "Generate a number or shape pattern from a given rule and explain features the rule does not state, such as odd and even terms alternating (CC 4.OA.C.5)",
+     "priority": "core",
+     "where": "Features the rule does not state"
+    },
+    {
+     "item": "Describe a growing shape pattern, record it in a table and predict a far step without drawing it (IM Grade 4 Unit 6 Section A)",
+     "priority": "core",
+     "where": "Counting in equal steps"
+    },
+    {
+     "item": "Identify arithmetic patterns in the addition and multiplication tables and explain them using properties of operations (CC 3.OA.D.9)",
+     "priority": "common",
+     "where": "Features the rule does not state"
+    },
+    {
+     "item": "Tell whether a number is odd or even by counting in twos (CC 2.OA.C.3)",
+     "priority": "common",
+     "where": "[[odd-even-numbers]]"
+    },
+    {
+     "item": "Find the term-to-term rule of a linear number sequence (England Year 5 guidance); generate and describe linear number sequences (England Year 6 Algebra)",
+     "priority": "common",
+     "where": "Sequences and their rules; Counting in equal steps"
+    },
+    {
+     "item": "Generate two numerical patterns from two rules, relate corresponding terms, form ordered pairs and graph them (CC 5.OA.B.3; IM Grade 5 Unit 7 Section C)",
+     "priority": "common",
+     "where": "Two sequences side by side"
+    },
+    {
+     "item": "Generate terms from a term-to-term or a position-to-term rule; recognise arithmetic sequences and find the nth term (England KS3; GCSE A23, A25)",
+     "priority": "common",
+     "where": "Sequences and their rules; Counting in equal steps"
+    },
+    {
+     "item": "Recognise triangular, square and cube numbers, geometric, Fibonacci-type and quadratic sequences (England KS3; GCSE A24-A25)",
+     "priority": "specialised",
+     "where": "Counting in equal steps (exercises); [[ap-gp]]; [[sequences]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A sequence is a list in order: a first term, a second, a third, and so on, usually without end. Counting in fives, $0, 5, 10, 15, \\dots$, is a sequence of numbers; red, blue, blue, red, blue, blue, $\\dots$ is a sequence of colours. A pattern is what makes a sequence predictable: a rule that fixes what stands in every position, including the positions nobody has written down. Sequences are the first examples of recursion and of functions."
+    },
+    {
+     "type": "section",
+     "title": "Sequences and their rules",
+     "src": [
+      "topdrawer",
+      "eng",
+      "engKS3",
+      "osAT"
+     ],
+     "body": "The positions are numbered $1, 2, 3, \\dots$. The term in position $n$ is called the $n$th term and written $a_n$ (read 'a sub n'); the small $n$ is a label for the position, not a multiplication. For $0, 5, 10, 15, \\dots$ this gives $a_1 = 0$, $a_2 = 5$ and $a_4 = 15$. The three dots mean that the sequence goes on by the same rule."
+    },
+    {
+     "type": "definition",
+     "title": "Term-to-term and position-to-term rules",
+     "src": [
+      "engKS3",
+      "topdrawer",
+      "osAT"
+     ],
+     "body": "A term-to-term rule gives the first term and says how each term is made from the one before, for example 'start at 5 and add 3', or in symbols $$a_1 = 5, \\qquad a_{n+1} = a_n + 3.$$ It produces $5, 8, 11, 14, \\dots$. A rule of this kind is also called recursive.\n\nA position-to-term rule gives each term directly from its position, for example $a_n = 3n + 2$, where $3n$ means $3 \\times n$. Putting $n = 1, 2, 3, 4$ gives $5, 8, 11, 14$ again (the section Counting in equal steps proves that the two rules agree for every $n$). The first kind continues a sequence; the second jumps ahead: $a_{100} = 3 \\cdot 100 + 2 = 302$."
+    },
+    {
+     "type": "pitfall",
+     "title": "A few terms do not fix the rule",
+     "src": [
+      "im4U6L1"
+     ],
+     "body": "The terms $5, 10$ fit 'add 5' (next 15), 'double' (next 20) and 'add 5, then 6, then 7' (next 16). In fact any finitely many terms can be continued by any chosen next value, even with a polynomial formula in $n$. For instance $a_n = 5n + c(n - 1)(n - 2)$ begins $5, 10$ for every number $c$, and its third term $15 + 2c$ is whatever we like: $c = \\tfrac12$ gives $5, 10, 16, 23, \\dots$, the 'add 5, then 6, then 7' sequence.\n\nSo 'what comes next?' has a definite answer only when the rule is given. For the same reason a feature seen in the first terms, such as odd and even alternating, is only a guess until it is proved from the rule."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "A sequence has $a_n = 4n + 1$. Write $a_1, a_2, a_3, a_4$ and give a term-to-term rule.",
+       "hint": "Compare $a_{n+1} = 4(n + 1) + 1$ with $a_n$.",
+       "solution": "$a_1 = 5$, $a_2 = 9$, $a_3 = 13$, $a_4 = 17$. Since $a_{n+1} = 4n + 4 + 1 = a_n + 4$, the rule is: start at 5 and add 4."
+      },
+      {
+       "q": "Start at 2 and double each time. Write the rule in symbols, the first five terms, and a position-to-term rule.",
+       "hint": "How many factors of 2 does $a_n$ have?",
+       "solution": "$a_1 = 2$, $a_{n+1} = 2a_n$, giving $2, 4, 8, 16, 32$. Each step multiplies by 2 and $a_1 = 2$ is one factor of 2, so $a_n$ is a product of $n$ twos: $a_n = 2^n$. This is not an equal-steps sequence: the differences $2, 4, 8, 16$ grow."
+      },
+      {
+       "q": "Why does a term-to-term rule need a first term, while a position-to-term rule does not?",
+       "hint": "Apply 'add 3' to two different starting numbers.",
+       "solution": "'Add 3' only says how neighbours are related: from 1 it gives $1, 4, 7, \\dots$ and from 5 it gives $5, 8, 11, \\dots$. Every term depends on the one before, so the chain must start somewhere. A position-to-term rule such as $a_n = 3n + 2$ fixes each term by itself, including $a_1 = 5$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Repeating patterns",
+     "src": [
+      "topdrawer",
+      "eng"
+     ],
+     "body": "In a repeating pattern one block, the unit of repeat, occurs again and again: $A, B, B, A, B, B, \\dots$. Letters record the structure without the objects: red, blue, blue, $\\dots$ and circle, square, square, $\\dots$ are both $ABB$, and red, blue, red, blue, $\\dots$ is $AB$. The unit is taken as short as possible: in $AB$ the block $ABAB$ also repeats, but the unit is $AB$."
+    },
+    {
+     "type": "definition",
+     "title": "Period and unit of repeat",
+     "src": [
+      "topdrawer"
+     ],
+     "body": "A sequence repeats with period $p$, a whole number $p \\ge 1$, if $$a_{n+p} = a_n \\quad \\text{for every } n \\ge 1.$$ The smallest such $p$ is the length of the unit of repeat, and the unit is $a_1, a_2, \\dots, a_p$. For $A, B, B, \\dots$ the period is 3."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.3)\nax = fig.add_axes([0, 0, 1, 1])\nax.text(-1.0, 1.95, 'n', ha='center', va='center', fontsize=12, style='italic')\nax.text(-1.0, 0.6, 'r', ha='center', va='center', fontsize=12, style='italic')\nfor i in range(10):\n    n = i + 1; x = i * 1.0; r = (n - 1) % 3 + 1\n    if n <= 9:\n        fc = (0.75, 0.85, 1.0) if r == 1 else (1.0, 0.85, 0.6)\n        ax.add_patch(Rectangle((x - 0.4, 0.9), 0.8, 0.8, fc=fc, ec='blue' if r == 1 else 'orange', lw=1.6))\n        ax.text(x, 1.3, 'A' if r == 1 else 'B', ha='center', va='center', fontsize=14)\n    else:\n        ax.add_patch(Rectangle((x - 0.4, 0.9), 0.8, 0.8, fill=False, ec='black', ls='--', lw=1.0))\n        ax.text(x, 1.3, '?', ha='center', va='center', fontsize=14)\n    ax.text(x, 1.95, str(n), ha='center', va='center', fontsize=11)\n    ax.text(x, 0.6, str(r), ha='center', va='center', fontsize=11)\nfor u in range(4):\n    x0 = u * 3 - 0.45; x1 = min(u * 3 + 2.45, 9.45)\n    ax.plot([x0, x0, x1, x1], [0.38, 0.22, 0.22, 0.38], color='black', lw=1.2, ls='--' if u == 3 else '-')\n    ax.text((x0 + x1) / 2, -0.05, 'q = ' + str(u), ha='center', va='center', fontsize=11)\nax.set_xlim(-1.4, 9.8); ax.set_ylim(-0.3, 2.25); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "topdrawer"
+     ],
+     "caption": "Positions $n = 1$ to $9$ of $A, B, B, \\dots$, with $n = 3q + r$ and $1 \\le r \\le 3$: each unit is one value of $q$, and $r$ is the place within it. Position $10 = 3 \\cdot 3 + 1$ has $r = 1$, so it holds $A$; positions $3, 6, 9$ have $r = 3$ and end their units.",
+     "alt": "A row of nine boxes reading A, B, B, A, B, B, A, B, B, with A boxes blue and B boxes orange, and a dashed empty box with a question mark in tenth place. Above the boxes are the positions 1 to 10; below them the values of r: 1, 2, 3, 1, 2, 3, 1, 2, 3, 1. Brackets under each group of three are labelled q = 0, q = 1, q = 2, and a dashed bracket under the tenth box is labelled q = 3."
+    },
+    {
+     "type": "theorem",
+     "title": "The remainder decides",
+     "body": "Let a sequence repeat with period $p$. Write $n = qp + r$ with whole numbers $q \\ge 0$ and $1 \\le r \\le p$. Then $$a_n = a_r.$$ So the term in any position is found from the unit alone."
+    },
+    {
+     "type": "proof",
+     "body": "Applying $a_{m+p} = a_m$ with $m = r, r + p, r + 2p, \\dots$ gives $$a_r = a_{r+p} = a_{r+2p} = \\dots = a_{r+qp} = a_n.$$ Such $q$ and $r$ always exist: subtract $p$ from $n$ as long as the result stays at least 1; what is left is $r$, and the number of subtractions is $q$. Here $r$ is the remainder on division by $p$ (see [[division]]), except that a remainder of 0 becomes $r = p$: position $n = qp$ is the last place of a unit, not a 'position 0'."
+    },
+    {
+     "type": "example",
+     "body": "In $A, B, B, A, B, B, \\dots$, what is the 100th term, and how many of the first 100 terms are $A$?",
+     "solution": "The period is 3 and $100 = 33 \\cdot 3 + 1$, so $r = 1$ and $a_{100} = a_1 = A$. The $A$s are exactly the positions with $r = 1$, that is $n = 3q + 1$ for $q = 0, 1, \\dots, 33$: positions $1, 4, 7, \\dots, 100$. That is 34 $A$s, and $100 - 34 = 66$ $B$s."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "In the same pattern, what is the 99th term?",
+       "a": "$99 = 32 \\cdot 3 + 3$, so $r = 3$: the last term of a unit, $B$. The remainder of 99 on division by 3 is 0, which means the end of a unit."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "The sequence $1, 2, 2, 1, 2, 2, \\dots$ repeats with period 3. Find the sum of its first 30 terms, and of its first 31.",
+       "hint": "How many whole units are there?",
+       "solution": "Each unit sums to $1 + 2 + 2 = 5$ and 30 terms are 10 units, so the sum is $10 \\cdot 5 = 50$. Term 31 has $31 = 10 \\cdot 3 + 1$, so it equals $a_1 = 1$, and the sum of 31 terms is 51."
+      },
+      {
+       "q": "Today is a Monday. Which day of the week is it 100 days from today?",
+       "hint": "Days repeat with period 7.",
+       "solution": "Adding 7 days returns to the same weekday, and $100 = 14 \\cdot 7 + 2$. So 100 days on is the same weekday as 2 days on: Wednesday."
+      },
+      {
+       "q": "A sequence satisfies both $a_{n+4} = a_n$ and $a_{n+6} = a_n$ for every $n$. Show that $a_{n+2} = a_n$ for every $n$.",
+       "hint": "Apply the first rule at position $n + 2$.",
+       "solution": "With $m = n + 2$ the first rule gives $a_{m+4} = a_m$, that is $a_{n+6} = a_{n+2}$. The second rule gives $a_{n+6} = a_n$. So $a_{n+2} = a_n$: 2 is also a length that repeats, and the period is at most 2."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Counting in equal steps",
+     "src": [
+      "eng",
+      "cc2NBT",
+      "im4U6L1",
+      "engKS3",
+      "gcse",
+      "osAT"
+     ],
+     "body": "Counting in fives from 0, in tens from 7, or back in fifteens from 100 are sequences of one kind: each term is the previous one plus a fixed number $d$, the common difference, which is negative when counting back. Growing shape patterns often give such a sequence when the parts of each step are counted, as in the figure below."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.4)\nax = fig.add_axes([0, 0, 1, 1])\nx0 = 0.0\nfor s in range(1, 4):\n    for c in range(s + 2):\n        for r in range(2):\n            new = c >= 2\n            ax.add_patch(Rectangle((x0 + c, 1.0 + r), 1, 1, fc=(0.78, 0.86, 1.0) if new else 'white', ec='blue' if new else 'black', lw=1.3, hatch='//' if new else None))\n    w = s + 2\n    ax.text(x0 + w / 2, 0.6, 'Step ' + str(s), ha='center', va='center', fontsize=12)\n    ax.text(x0 + w / 2, 0.1, str(2 * s + 4) + ' squares', ha='center', va='center', fontsize=11)\n    x0 += w + 1.3\nax.set_xlim(-0.3, x0 - 1.0); ax.set_ylim(-0.25, 3.2); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "im4U6L1"
+     ],
+     "caption": "A growing pattern: Step $n$ is two rows of $n + 2$ squares. The 4 white squares are in every step; each step adds one column of 2 hatched blue squares. Steps 1, 2 and 3 have 6, 8 and 10 squares.",
+     "alt": "Three rectangles of squares labelled Step 1, Step 2, Step 3. Each is two rows high. Step 1 has 3 columns, Step 2 has 4, Step 3 has 5. In each, the two left-hand columns are white and the remaining columns are light blue with hatching: 1, 2 and 3 blue columns. Below them: 6 squares, 8 squares, 10 squares."
+    },
+    {
+     "type": "definition",
+     "title": "Arithmetic sequence",
+     "src": [
+      "osAT",
+      "engKS3"
+     ],
+     "body": "An arithmetic sequence (also called a linear sequence) with first term $a_1$ and common difference $d$ is given by $$a_{n+1} = a_n + d,$$ that is $a_1, a_1 + d, a_1 + 2d, \\dots$. A sequence is arithmetic exactly when the difference $a_{n+1} - a_n$ of every pair of neighbours is the same number $d$."
+    },
+    {
+     "type": "theorem",
+     "title": "The nth term of an arithmetic sequence",
+     "body": "$$a_n = a_1 + (n - 1)d.$$ Multiplied out, $a_n = dn + (a_1 - d)$: the common difference times the position, plus a constant. Conversely, every sequence $a_n = dn + c$ with fixed numbers $d$ and $c$ is arithmetic with difference $d$. So a sequence is arithmetic exactly when its $n$th term is linear in $n$, and the coefficient of $n$ is then the common difference."
+    },
+    {
+     "type": "proof",
+     "body": "From position 1 to position $n$ there are $n - 1$ steps, each adding $d$, so $a_n = a_1 + (n - 1)d$. To make 'and so on' precise, use [[induction]]: the formula holds for $n = 1$, since $a_1 + 0 \\cdot d = a_1$; and if $a_n = a_1 + (n - 1)d$, then $$a_{n+1} = a_1 + (n - 1)d + d = a_1 + nd,$$ which is the formula for position $n + 1$. The multiplied-out form follows from the [[distributive-property]]: $(n - 1)d = nd - d$.\n\nFor the converse, if $a_n = dn + c$ then $a_{n+1} - a_n = d(n + 1) + c - (dn + c) = d$ for every $n$."
+    },
+    {
+     "type": "example",
+     "src": [
+      "im4U6L1"
+     ],
+     "body": "In the growing pattern of the figure, how many squares has Step 10, and which step has 60 squares?",
+     "solution": "Counted as two rows of $n + 2$, Step $n$ has $2(n + 2)$ squares; counted as the 4 white squares of every step plus $n$ hatched columns of 2, it has $4 + 2n$. The [[distributive-property]] says these agree, and so does the $n$th-term formula: $6 + (n - 1) \\cdot 2 = 2n + 4$. So Step 10 has 24 squares, and $2n + 4 = 60$ gives $n = 28$.\n\nThe list $6, 8, 10, \\dots$ shows only the step of 2; the picture also explains the constant 4, the part that does not grow."
+    },
+    {
+     "type": "example",
+     "body": "Find the $n$th term of $100, 85, 70, 55, \\dots$, and the first negative term.",
+     "solution": "The differences are all $-15$, so $a_1 = 100$, $d = -15$ and $$a_n = 100 - 15(n - 1) = 115 - 15n.$$ Check: $a_4 = 115 - 60 = 55$. The term is negative when $15n > 115$, that is $n \\ge 8$ (since $15 \\cdot 7 = 105$ and $15 \\cdot 8 = 120$). So $a_7 = 10$ and the first negative term is $a_8 = -5$."
+    },
+    {
+     "type": "pitfall",
+     "title": "Mixing up the step and the position rule",
+     "src": [
+      "topdrawer"
+     ],
+     "body": "For $5, 8, 11, 14, \\dots$ the step is 3, and it is tempting to write the $n$th term as $n + 3$. But $n + 3$ gives $4, 5, 6, 7$: it adds 1 each time. The step belongs in front of $n$: $3n$ gives $3, 6, 9, 12$, which has the right steps, and each wanted term is 2 more, so $a_n = 3n + 2$.\n\nA second slip is $a_1 + nd$ instead of $a_1 + (n - 1)d$. It is one step too many: the first term has had no steps added."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "An arithmetic sequence has $a_3 = 11$ and $a_7 = 27$. Find $a_1$, $d$ and $a_n$.",
+       "hint": "How many steps lead from position 3 to position 7?",
+       "solution": "Four steps add $27 - 11 = 16$, so $d = 4$. Going back two steps from $a_3$, $a_1 = 11 - 8 = 3$. So $a_n = 3 + 4(n - 1) = 4n - 1$; check $a_7 = 27$."
+      },
+      {
+       "q": "Show that in every arithmetic sequence each term is the average of its two neighbours: $a_{n-1} + a_{n+1} = 2a_n$ for $n \\ge 2$.",
+       "hint": "Write both neighbours using $a_n$ and $d$.",
+       "solution": "$a_{n-1} = a_n - d$ and $a_{n+1} = a_n + d$, so their sum is $2a_n$. For example $8 + 14 = 22 = 2 \\cdot 11$ in $5, 8, 11, 14$."
+      },
+      {
+       "q": "The triangular numbers $1, 3, 6, 10, 15, \\dots$ count dots in triangles with rows of $1, 2, \\dots, n$ dots, so $T_n = 1 + 2 + \\dots + n$. Show that they are not an arithmetic sequence, and that $T_n = n(n + 1)/2$. Find $T_{10}$.",
+       "hint": "Fit two copies of the triangle together, one turned upside down.",
+       "solution": "The differences are $2, 3, 4, 5$, not constant, so the sequence is not arithmetic (each step adds one more than the last). Two copies of the triangle, one turned round, fit together into a rectangle of $n$ rows with $n + 1$ dots each: in every row, $k$ dots from one copy and $n + 1 - k$ from the other. So $2T_n = n(n + 1)$ and $T_n = n(n + 1)/2$. Then $T_{10} = 55$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Features the rule does not state",
+     "src": [
+      "cc4OA",
+      "cc3OA",
+      "im4U6L1"
+     ],
+     "body": "The rule 'start at 1 and add 3' says nothing about odd and even, yet $1, 4, 7, 10, 13, \\dots$ goes odd, even, odd, even. Nor does it say that 49 is in the list (as the 17th term) while 50 is not. Each feature becomes a fact only with a reason that covers every term, and the reason usually comes from the $n$th term."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "import numpy as np\nfrom matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.0)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-0.3, 20.5], [0, 0], color='black', lw=1.2)\nfor n in range(0, 21):\n    ax.plot([n, n], [-0.15, 0.15], color='black', lw=1.0)\n    ax.text(n, -0.45, str(n), ha='center', va='center', fontsize=10)\nterms = list(range(1, 20, 3))\nt = np.linspace(0, np.pi, 40)\nfor a, b in zip(terms, terms[1:]):\n    ax.plot((a + b) / 2 + 1.5 * np.cos(np.pi - t), 0.25 + 1.0 * np.sin(t), color='black', lw=1.0)\n    ax.text((a + b) / 2, 1.45, '+3', ha='center', va='center', fontsize=10)\nfor n in terms:\n    if n % 2:\n        ax.add_patch(Rectangle((n - 0.22, -0.22), 0.44, 0.44, fc='orange', ec='black', lw=0.8, zorder=3))\n        ax.text(n, -0.95, 'odd', ha='center', va='center', fontsize=10)\n    else:\n        ax.add_patch(Circle((n, 0), 0.24, fc='blue', ec='black', lw=0.8, zorder=3))\n        ax.text(n, -0.95, 'even', ha='center', va='center', fontsize=10)\nax.text(10, 2.1, '$a_n = 3n - 2$', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.6, 20.8); ax.set_ylim(-1.25, 2.45); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "cc4OA"
+     ],
+     "caption": "The terms of $a_n = 3n - 2$, one hop of 3 apart: odd terms (orange squares) and even terms (blue circles) alternate.",
+     "alt": "A number line from 0 to 20 with ticks at every whole number, headed a sub n = 3n - 2. Six arcs labelled +3 hop from 1 to 4, 4 to 7, and so on up to 19. At 1, 7, 13 and 19 there are orange squares labelled odd; at 4, 10 and 16 there are blue circles labelled even."
+    },
+    {
+     "type": "theorem",
+     "title": "Parity along an arithmetic sequence",
+     "body": "In an arithmetic sequence of whole numbers with common difference $d$: if $d$ is odd, the terms alternate between odd and even; if $d$ is even, every term has the parity of the first term."
+    },
+    {
+     "type": "proof",
+     "body": "Each term is $a_{n+1} = a_n + d$, and adding an even number keeps parity while adding an odd number changes it ([[odd-even-numbers]]). If $d = 2k$ is even, $a_{n+1} = a_n + 2k$ has the parity of $a_n$, so by [[induction]] every term has the parity of $a_1$. If $d = 2k + 1$ is odd, $a_{n+1} = (a_n + 2k) + 1$: adding $2k$ keeps the parity and adding 1 changes it. So each term has the opposite parity to the one before, and odd and even alternate."
+    },
+    {
+     "type": "theorem",
+     "title": "Which numbers are terms",
+     "body": "Let $a_n = a_1 + (n - 1)d$ with whole numbers $a_1$ and $d \\ge 1$. A whole number $N$ is a term exactly when $N \\ge a_1$ and $N - a_1$ is a multiple of $d$. It is then the term in position $$n = \\frac{N - a_1}{d} + 1.$$"
+    },
+    {
+     "type": "proof",
+     "body": "$N = a_1 + (n - 1)d$ for some position $n \\ge 1$ says exactly that $N - a_1 = kd$ with $k = n - 1 \\ge 0$: that $N - a_1$ is a multiple of $d$ and not negative. Then $n = k + 1$."
+    },
+    {
+     "type": "example",
+     "body": "Is 50 a term of $2, 6, 10, 14, \\dots$? Is 51?",
+     "solution": "Here $a_1 = 2$ and $d = 4$. $50 - 2 = 48 = 12 \\cdot 4$, so 50 is a term, in position 13; check $2 + 12 \\cdot 4 = 50$. $51 - 2 = 49$ is not a multiple of 4, so 51 is not. Parity answers the second question faster: $d$ is even, so every term is even like 2, and 51 is odd."
+    },
+    {
+     "type": "example",
+     "body": "Explain why every entry in the 4 row of the multiplication table is even, while the 5 row alternates odd and even.",
+     "solution": "The $m$ row is $m, 2m, 3m, \\dots$, the arithmetic sequence $a_n = mn$ with first term and difference $m$. For $m = 4$ the difference and the first term are even, so every entry is even; directly, $4n = 2(2n)$. For $m = 5$ the difference is odd, so the entries alternate: $5, 10, 15, 20, \\dots$."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "In $1, 4, 7, 10, \\dots$ (start at 1, add 3), is 100 a term? Is 200? Give positions.",
+       "hint": "Subtract the first term and divide by 3.",
+       "solution": "$100 - 1 = 99 = 33 \\cdot 3$, so 100 is the term in position 34. $200 - 1 = 199$ is not a multiple of 3 ($199 = 66 \\cdot 3 + 1$), so 200 is not a term."
+      },
+      {
+       "q": "Without computing it, decide whether the 100th term of $3, 10, 17, 24, \\dots$ is odd or even. Then check.",
+       "hint": "The difference is odd.",
+       "solution": "$d = 7$ is odd, so the terms alternate, and the first term 3 is odd: odd positions hold odd terms and even positions even terms. Position 100 is even, so $a_{100}$ is even. Check: $3 + 99 \\cdot 7 = 696$."
+      },
+      {
+       "q": "Show that if the common difference $d$ is not a multiple of 3, then among any three consecutive terms of an arithmetic sequence of whole numbers exactly one is a multiple of 3. Give an example with $d = 3$ that contains no multiple of 3 at all.",
+       "hint": "Track the remainder on division by 3; $d$ leaves remainder 1 or 2.",
+       "solution": "Adding $d$ adds the remainder of $d$ to the remainder on division by 3, reducing by 3 whenever the total reaches 3. Let the first of the three terms leave remainder $s$.\n\nIf $d = 3k + 1$, the three remainders are $s, s + 1, s + 2$, reduced; for example $2, 6, 10$ ($d = 4$) leave $2, 0, 1$.\n\nIf $d = 3k + 2$, they are $s, s + 2, s + 4$, which reduce to $s, s + 2, s + 1$; for example $1, 3, 5$ ($d = 2$) leave $1, 0, 2$.\n\nEither way the remainders are $0, 1, 2$ in some order (try $s = 0, 1, 2$), so exactly one term is a multiple of 3. With $d = 3$ every term has the remainder of the first: $1, 4, 7, 10, \\dots$ all leave remainder 1 and none is a multiple of 3."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Two sequences side by side",
+     "src": [
+      "cc5OA",
+      "im5U7L11"
+     ],
+     "body": "Two rules followed side by side give two sequences, and terms in the same position are corresponding terms. Start both at 0; let the first add 3 and the second add 6: $$\\begin{array}{c|cccccc} n & 1 & 2 & 3 & 4 & 5 & 6 \\\\ \\hline a_n & 0 & 3 & 6 & 9 & 12 & 15 \\\\ b_n & 0 & 6 & 12 & 18 & 24 & 30 \\end{array}$$ Here $b_n = 2a_n$. Each column is an ordered pair $(a_n, b_n)$, a point on a grid."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "ax = plt.gca(); fig = plt.gcf(); fig.set_size_inches(5.0, 4.6)\nxs = [0, 3, 6, 9, 12, 15]; ys = [2 * x for x in xs]\nax.set_xlim(-0.8, 17); ax.set_ylim(-1.6, 34)\nax.set_xticks(range(0, 17, 3)); ax.set_yticks(range(0, 33, 6))\nax.grid(True, color='0.8', lw=0.6)\nax.plot([0, 16.5], [0, 33], color='blue', lw=1.0, ls='--', zorder=2)\nax.text(13.6, 31.5, '$b = 2a$', color='blue', fontsize=12)\nax.plot(xs, ys, 'o', color='blue', ms=8, mec='black', mew=0.8, zorder=3)\nfor x, y in zip(xs, ys):\n    off = (8, 6) if x == 0 else (8, -12)\n    ax.annotate('(' + str(x) + ', ' + str(y) + ')', (x, y), textcoords='offset points', xytext=off, fontsize=11)\nax.set_xlabel('$a_n$: start 0, add 3', fontsize=12); ax.set_ylabel('$b_n$: start 0, add 6', fontsize=12)\nax.tick_params(labelsize=11)\nfor s in ('top', 'right'):\n    ax.spines[s].set_visible(False)\nplt.tight_layout()\n",
+     "src": [
+      "cc5OA",
+      "im5U7L11"
+     ],
+     "caption": "The pairs $(0, 0), (3, 6), \\dots, (15, 30)$ as points: each step in position moves 3 across and 6 up, so the points are evenly spaced on the line $b = 2a$.",
+     "alt": "A coordinate grid with the horizontal axis labelled a sub n, start 0, add 3, with ticks from 0 to 15 in threes, and the vertical axis labelled b sub n, start 0, add 6, with ticks from 0 to 30 in sixes. Six blue dots at (0, 0), (3, 6), (6, 12), (9, 18), (12, 24) and (15, 30), each labelled with its pair, lie evenly spaced on a dashed blue line labelled b = 2a."
+    },
+    {
+     "type": "pitfall",
+     "title": "Pair terms in the same position",
+     "src": [
+      "im5U7L11"
+     ],
+     "body": "With 'start at 0, add 2' ($0, 2, 4, 6, 8, 10$) and 'start at 0, add 5' ($0, 5, 10, 15, 20, 25$), the numbers 10 and 20 both appear, and it is tempting to plot $(10, 20)$. But 10 is the 6th term of the first sequence and 20 the 5th term of the second, so they do not correspond. The 6th terms are 10 and 25, which gives the point $(10, 25)$."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Now start both at 1: 'start at 1, add 3' and 'start at 1, add 6'. Is $b_n = 2a_n$ still true? Find the relation.",
+       "hint": "Compare $a_2$ and $b_2$.",
+       "solution": "No: $a_2 = 4$ but $b_2 = 7$. The terms are $a_n = 3n - 2$ ($1, 4, 7, 10$) and $b_n = 6n - 5$ ($1, 7, 13, 19$), and $2a_n = 6n - 4$, so $b_n = 2a_n - 1$. Doubling worked in the table only because both sequences started at 0."
+      },
+      {
+       "q": "Show that the points of corresponding terms of two arithmetic sequences lie on one straight line. What happens when both differences are 0?",
+       "hint": "What does one step in position do to each coordinate?",
+       "solution": "With differences $d$ and $e$, going from position $n$ to $n + 1$ adds $d$ to the first coordinate and $e$ to the second, the same for every $n$. So the points are $(a_1, b_1) + k(d, e)$ for $k = 0, 1, 2, \\dots$: equal moves in one fixed direction, which stay on the line through $(a_1, b_1)$ in that direction (see [[analytic-geometry]]). For example $(1, 1), (4, 7), (7, 13)$ each move by $(3, 6)$. If $d = e = 0$ both sequences are constant and every 'point' is the same point $(a_1, b_1)$: it lies on a line, but no single line is picked out."
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Words and notation you will meet",
+     "rows": [
+      {
+       "who": "Counting in steps",
+       "text": "Counting in steps of 2, 5 or 10 in British usage is skip-counting in American usage.",
+       "src": [
+        "eng",
+        "cc2NBT"
+       ]
+      },
+      {
+       "who": "Arithmetic sequence",
+       "text": "Also called a linear sequence or an arithmetic progression (AP).",
+       "src": [
+        "gcse",
+        "osAT"
+       ]
+      },
+      {
+       "who": "Starting position",
+       "text": "School books number positions from 1, as this page does. Many university texts and programming languages start at position 0, with first term $a_0$; then the $n$th-term formula becomes $a_n = a_0 + nd$.",
+       "src": [
+        "osAT"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "gcse",
+      "osAT"
+     ],
+     "body": "Recursion. A term-to-term rule is a recursion, and it need not add a constant. Multiplying by a fixed ratio $r$ gives the geometric sequences $a_1, a_1 r, a_1 r^2, \\dots$ of [[ap-gp]], and adding the two terms before gives the Fibonacci numbers $1, 1, 2, 3, 5, 8, \\dots$. Proving that a recursion and a formula describe the same sequence, as this page did for $a_1 + (n - 1)d$, is the standard use of [[induction]]. Further on, [[sequences]] asks what the terms do far out, and [[series]] adds them up.\n\nFunctions. A position-to-term rule is a function of $n$ ([[functions]]), and arithmetic sequences are exactly the linear ones, which is why their points lie on a line. The triangular numbers, whose differences grow by 1 each step, have $T_n = n(n + 1)/2$, with an $n^2$ in it: the first of the [[quadratics]].\n\nRemainders. A repeating pattern of period $p$ depends only on the remainder of $n$ on division by $p$, and the parity and multiple-of-3 facts above are also statements about remainders. Arithmetic with remainders is [[congruences]]."
+    },
+    {
+     "type": "summary",
+     "body": "- A sequence has a term $a_n$ in each position $n = 1, 2, 3, \\dots$; finitely many terms never fix the rule, so the rule must be given.\n- A repeating pattern of period $p$ has $a_{n+p} = a_n$; if $n = qp + r$ with $1 \\le r \\le p$, then $a_n = a_r$.\n- An arithmetic sequence adds $d$ each time: $a_n = a_1 + (n - 1)d$, linear in $n$ with coefficient $d$; for example $3n + 2$ for $5, 8, 11, \\dots$.\n- An odd difference makes odd and even alternate, an even one keeps the parity of $a_1$; $N$ is a term exactly when $N \\ge a_1$ and $d$ divides $N - a_1$.\n- Corresponding terms of two arithmetic sequences give points on one line."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# section 1\nseq = [3*n + 2 for n in range(1, 5)]\nassert seq == [5, 8, 11, 14] and 3*100 + 2 == 302\na = [5]\nfor _ in range(3): a.append(a[-1] + 3)\nassert a == seq\n# pitfall: 5, 10 continued by 15, 20, 16; polynomial 5n + c(n-1)(n-2)\nassert 5 + 5 == 10 and [10 + 5, 10*2, 10 + 6] == [15, 20, 16]\nfrom fractions import Fraction as F\nfor c in [F(-3), F(0), F(1, 2), F(5, 2), F(7)]:\n    f = lambda n: 5*n + c*(n - 1)*(n - 2)\n    assert f(1) == 5 and f(2) == 10 and f(3) == 15 + 2*c\nh = lambda n: 5*n + F(1, 2)*(n - 1)*(n - 2)\nassert [h(n) for n in range(1, 5)] == [5, 10, 16, 23] and [10 - 5, 16 - 10, 23 - 16] == [5, 6, 7]\n# exercises\nassert [4*n + 1 for n in range(1, 5)] == [5, 9, 13, 17] and all(4*(n+1) + 1 == 4*n + 1 + 4 for n in range(100))\ng = [2]\nfor _ in range(4): g.append(2*g[-1])\nassert g == [2, 4, 8, 16, 32] == [2**n for n in range(1, 6)] and [g[i+1]-g[i] for i in range(4)] == [2, 4, 8, 16]\nassert [1 + 3*k for k in range(3)] == [1, 4, 7] and [5 + 3*k for k in range(3)] == [5, 8, 11] and 3*1 + 2 == 5\nassert [0 + 5*k for k in range(4)] == [0, 5, 10, 15]\n"
+    },
+    {
+     "python": "# section 2: repeating patterns\npat = ['A', 'B', 'B'] * 40\ndef r(n, p):\n    q, rr = divmod(n - 1, p); return rr + 1, q\nassert r(100, 3) == (1, 33) and 100 == 33*3 + 1 and pat[99] == 'A'\nassert sum(1 for x in pat[:100] if x == 'A') == 34 and 100 - 34 == 66\nassert [n for n in range(1, 101) if n % 3 == 1][-1] == 100 and len([3*q + 1 for q in range(34)]) == 34\nassert 99 == 32*3 + 3 and pat[98] == 'B' and 99 % 3 == 0 and r(99, 3) == (3, 32)\n# figure: positions 1-10, r and q labels, 10 = 3*3 + 1, units end at 3, 6, 9\nassert [r(n, 3)[0] for n in range(1, 11)] == [1, 2, 3, 1, 2, 3, 1, 2, 3, 1]\nassert [r(n, 3)[1] for n in range(1, 11)] == [0, 0, 0, 1, 1, 1, 2, 2, 2, 3]\nassert 10 == 3*3 + 1 and pat[9] == 'A' and [n for n in range(1, 10) if r(n, 3)[0] == 3] == [3, 6, 9]\nassert pat[:9] == list('ABBABBABB')\n# exercises\ns = [1, 2, 2] * 20\nassert sum(s[:30]) == 50 == 10*5 and 1 + 2 + 2 == 5 and 31 == 10*3 + 1 and sum(s[:31]) == 51\ndays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']\nassert 100 == 14*7 + 2 and days[100 % 7] == 'Wed'\nfor u in ([0, 1], [5, 7], [3, 3]):\n    seq = (u * 20)\n    assert all(seq[i + 4] == seq[i] and seq[i + 6] == seq[i] for i in range(20)) and all(seq[i + 2] == seq[i] for i in range(20))\n# any sequence with repeat lengths 4 and 6 has repeat length 2 (brute force over short alphabets)\nimport itertools\nfor unit in itertools.product(range(3), repeat=12):\n    seq = list(unit) * 4\n    if all(seq[i + 4] == seq[i] for i in range(40)) and all(seq[i + 6] == seq[i] for i in range(40)):\n        assert all(seq[i + 2] == seq[i] for i in range(40))\n"
+    },
+    {
+     "python": "# section 3: arithmetic sequences\nsq = [2*n + 4 for n in range(1, 11)]\nassert sq[:5] == [6, 8, 10, 12, 14] and sq[9] == 24 and 2*10 + 4 == 24\nassert all(4 + 2*n == 2*(n + 2) == 6 + (n - 1)*2 for n in range(1, 100))\nassert (60 - 4) // 2 == 28 and 2*28 + 4 == 60\n# figure: steps 1-3 are 2 rows of n+2: 6, 8, 10; 4 fixed white, n blue columns of 2\nassert [2*(n + 2) for n in (1, 2, 3)] == [6, 8, 10] and all(4 + 2*n == 2*(n+2) for n in (1, 2, 3))\nassert all(a + (n - 1)*d == d*n + (a - d) for a in range(-5, 6) for d in range(-5, 6) for n in range(1, 20))\n# converse: dn + c has constant difference d\nassert all((d*(n + 1) + c) - (d*n + c) == d for d in range(-5, 6) for c in range(-5, 6) for n in range(1, 30))\nx = [100 - 15*(n - 1) for n in range(1, 10)]\nassert x[:4] == [100, 85, 70, 55] and all(x[n-1] == 115 - 15*n for n in range(1, 10)) and 115 - 60 == 55\nassert 15*7 == 105 and 15*8 == 120 and x[6] == 10 and x[7] == -5 and all(v >= 0 for v in x[:7])\n# pitfall\nassert [n + 3 for n in range(1, 5)] == [4, 5, 6, 7] and [3*n for n in range(1, 5)] == [3, 6, 9, 12]\nassert all(3*n + 2 == 5 + 3*(n - 1) for n in range(1, 50))\n# exercises\nassert 27 - 11 == 16 and 16 // 4 == 4 and 11 - 8 == 3 and all(3 + 4*(n - 1) == 4*n - 1 for n in range(1, 50)) and 4*3 - 1 == 11 and 4*7 - 1 == 27\nassert 8 + 14 == 22 == 2*11\nT = [n*(n + 1)//2 for n in range(1, 11)]\nassert T[:5] == [1, 3, 6, 10, 15] and [T[i+1] - T[i] for i in range(4)] == [2, 3, 4, 5] and T[9] == 55 == sum(range(1, 11))\nassert all(2*sum(range(1, n + 1)) == n*(n + 1) for n in range(1, 100))\n"
+    },
+    {
+     "python": "# section 4\nt = [1 + 3*k for k in range(7)]\nassert t == [1, 4, 7, 10, 13, 16, 19] == [3*n - 2 for n in range(1, 8)] and len(t) - 1 == 6\nassert [v for v in t if v % 2] == [1, 7, 13, 19] and [v for v in t if v % 2 == 0] == [4, 10, 16]\nassert all((t[i] + t[i+1]) % 2 == 1 for i in range(6))\nbig = [1 + 3*k for k in range(100)]\nassert big.index(49) + 1 == 17 and 50 not in big and (50 - 1) % 3 != 0\n# parity theorem, both cases\nfor a1 in range(0, 12):\n    for d in range(0, 12):\n        s = [a1 + (n - 1)*d for n in range(1, 40)]\n        if d % 2 == 0: assert all(v % 2 == a1 % 2 for v in s)\n        else: assert all(s[i] % 2 != s[i+1] % 2 for i in range(38))\nfor a in range(0, 10):\n    for d in range(1, 8):\n        terms = {a + (n - 1)*d for n in range(1, 400)}\n        for N in range(0, 300):\n            assert (N in terms) == (N >= a and (N - a) % d == 0)\n            if N in terms: assert a + ((N - a)//d)*d == N\nassert 50 - 2 == 48 == 12*4 and 2 + 12*4 == 50 and (48//4) + 1 == 13 and (51 - 2) % 4 != 0 and 49 == 51 - 2\nassert all((5*n) % 2 == n % 2 for n in range(1, 100)) and [5, 10, 15, 20] == [5*n for n in range(1, 5)]\nassert all((4*n) % 2 == 0 and 4*n == 2*(2*n) for n in range(1, 100))\nassert 100 - 1 == 99 == 33*3 and 99//3 + 1 == 34 and 199 == 66*3 + 1 and 200 - 1 == 199\nassert 3 + 99*7 == 696 and 696 % 2 == 0 and [3 + 7*k for k in range(4)] == [3, 10, 17, 24]\n# mod 3\nfor a in range(0, 30):\n    for d in range(1, 30):\n        if d % 3 == 0: continue\n        for n in range(0, 10):\n            trio = [a + (n + i)*d for i in range(3)]\n            assert sum(1 for v in trio if v % 3 == 0) == 1 and sorted(v % 3 for v in trio) == [0, 1, 2]\nassert [[(s + i) % 3 for i in range(3)] for s in range(3)] == [[0, 1, 2], [1, 2, 0], [2, 0, 1]]\nassert [[(s + 2*i) % 3 for i in range(3)] for s in range(3)] == [[0, 2, 1], [1, 0, 2], [2, 1, 0]] and all((s + 4) % 3 == (s + 1) % 3 for s in range(3))\nassert (2 + 2) - 3 == 1 and [v % 3 for v in (2, 6, 10)] == [2, 0, 1] and 6 - 2 == 4 == 3*1 + 1\nassert [v % 3 for v in (1, 3, 5)] == [1, 0, 2] and 3 - 1 == 2 == 3*0 + 2\nassert all((1 + 3*k) % 3 == 1 for k in range(100)) and [1 + 3*k for k in range(4)] == [1, 4, 7, 10]\n"
+    },
+    {
+     "python": "# section 5\na = [3*(n - 1) for n in range(1, 7)]; b = [6*(n - 1) for n in range(1, 7)]\nassert a == [0, 3, 6, 9, 12, 15] and b == [0, 6, 12, 18, 24, 30] and all(y == 2*x for x, y in zip(a, b))\nassert all((a[i+1] - a[i], b[i+1] - b[i]) == (3, 6) for i in range(5))\np = [2*k for k in range(6)]; q = [5*k for k in range(6)]\nassert p == [0, 2, 4, 6, 8, 10] and q == [0, 5, 10, 15, 20, 25]\nassert p.index(10) + 1 == 6 and q.index(20) + 1 == 5 and q[5] == 25\nA = [3*n - 2 for n in range(1, 5)]; Bq = [6*n - 5 for n in range(1, 5)]\nassert A == [1, 4, 7, 10] and Bq == [1, 7, 13, 19] and all(y == 2*x - 1 for x, y in zip(A, Bq)) and A[1] == 4 and Bq[1] == 7\nassert all(2*(3*n - 2) == 6*n - 4 for n in range(50))\nassert [(1 + 3*k, 1 + 6*k) for k in range(3)] == [(1, 1), (4, 7), (7, 13)]\n# collinearity: cross product of successive moves is 0\nfor a1, b1, d, e in [(1, 1, 3, 6), (0, 0, 2, 5), (4, -1, -2, 7), (3, 3, 0, 0)]:\n    pts = [(a1 + k*d, b1 + k*e) for k in range(6)]\n    assert all((pts[i][0] - pts[0][0])*e - (pts[i][1] - pts[0][1])*d == 0 for i in range(6))\nassert len({(3 + 0*k, 3 + 0*k) for k in range(6)}) == 1\n# figure: line b = 2a passes through (16.5, 33)\nassert 2*16.5 == 33\n# looking ahead\nf = [1, 1]\nfor _ in range(4): f.append(f[-1] + f[-2])\nassert f == [1, 1, 2, 3, 5, 8]\nassert all(n*(n + 1)//2 * 2 == n*n + n for n in range(50))\n"
+    }
+   ]
+  }
+ }
+]

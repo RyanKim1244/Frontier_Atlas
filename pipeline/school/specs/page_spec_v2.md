@@ -36,6 +36,18 @@ Not written for a young child and not for teachers: no classroom activities, no 
   layouts of the written method). English only; no non-English words or sources.
 - One concept per page, decided by classification, never by length (as before).
 
+## Lessons from cluster 1 (judges' most common complaints; avoid them from the start)
+- Length: aim for 2,500-3,500 words of text (excluding figure code); never over 4,500. Economy was the lowest score on every page.
+- Say each idea once. One fact gets one home (definition, theorem, figure or pitfall), never four. Exercises must not repeat
+  worked examples.
+- No curriculum or source talk anywhere in the text: no "Common Core", "Year 4", "England asks", "Illustrative Mathematics
+  uses", "a study of children found". A conventions row is a notation or name the reader will meet (÷ vs /, "carry" vs
+  "regroup"), never a syllabus expectation. If there is no such difference, no conventions block.
+- Contexts for an adult reader (money, measurement, time, data), not stickers, sweets or birds on a roof.
+- Rigour: state hypotheses (a ≤ n for whole-number subtraction, b ≥ 1 for division), prove uniqueness when "the" is used,
+  argue general claims generally (not only for 47). Do not label trivial facts as theorems.
+- Views blocks only for a genuinely different picture; a view that restates the definition is padding.
+
 ## Checks (unchanged)
 Every number on the page is asserted in `checks`. Before finishing:
 python3 -I /home/claude/frontier_atlas/pipeline/school/specs/validate2.py <file.json>   (OK)

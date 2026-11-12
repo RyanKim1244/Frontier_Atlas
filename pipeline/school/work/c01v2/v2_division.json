@@ -1,0 +1,681 @@
+[
+ {
+  "id": "division",
+  "entry": {
+   "sum": "For whole numbers, $a \\div b = c$ means $c \\times b = a$: the answer to both 'how many in each of $b$ equal parts?' and 'how many groups of $b$?'. Division by zero is undefined, division is neither commutative nor associative, and every $a$ and $b \\ge 1$, exact or not, give a unique quotient and remainder, $a = qb + r$ with $0 \\le r < b$.",
+   "key": [
+    "a \\div b = c \\iff c \\times b = a \\quad (b \\neq 0)",
+    "a = q b + r, \\quad 0 \\le r < b",
+    "(p + q) \\div b = p \\div b + q \\div b \\quad (p, q \\text{ multiples of } b)"
+   ],
+   "why": "Division with remainder is the basic tool of whole-number arithmetic: it underlies the written division methods, divisibility and the Euclidean algorithm, modular arithmetic, and the step from whole numbers to fractions.",
+   "msc": [],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "In algebra, division by b becomes multiplication by the inverse 1/b, and fields are the number systems where every nonzero number can be divided by."
+    },
+    {
+     "field": "computer-science",
+     "note": "Integer division and the remainder (mod, %) are basic machine operations, the quotient and remainder of this page."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 3.OA.A.2-4, 3.OA.B.5-6, 3.OA.C.7, 4.OA.A.3, 4.NBT.B.6 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-6, multiplication and division (2013)",
+    "Illustrative Mathematics K-5, Grade 3 Unit 4, Relating Multiplication to Division",
+    "OpenStax, Prealgebra 2e, Divide Whole Numbers (2020)",
+    "NCETM, Primary Mastery Professional Development, Multiplication and Division, segments 2.6, 2.10, 2.12, 2.15"
+   ],
+   "aliases": [
+    "dividing",
+    "sharing and grouping",
+    "partitive and quotitive division",
+    "division with remainder",
+    "Euclidean division",
+    "dividing whole numbers"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 22,
+   "sources": [
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.A.2-4, 3.OA.B.5-6, 3.OA.C.7",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.A.3",
+     "url": "https://www.thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Number and Operations in Base Ten (2010)",
+     "where": "4.NBT.B.6",
+     "url": "https://www.thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-6: Number - multiplication and division (statutory requirements and notes and guidance)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g3",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 4 Relating Multiplication to Division, Sections A, B and D (course guide, scope and sequence)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l19",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 4 Lesson 19, Ways to Divide Larger Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-4/lesson-19/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-div",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Ch. 1, Divide Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81256/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-quot",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.6",
+     "where": "Structures: quotitive and partitive division",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-206-structures-quotitive-and-partitive-division",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-dist",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.10",
+     "where": "Connecting multiplication and division, and the distributive law",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-210-connecting-multiplication-and-division-and-the-distributive-law",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-rem",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.12",
+     "where": "Division with remainders",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-212-division-with-remainders/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-part",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.15",
+     "where": "Division: partitioning leading to short division",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-215-division-partitioning-leading-to-short-division/",
+     "kind": "notes"
+    },
+    {
+     "k": "wiki-euc",
+     "ref": "Wikipedia, Euclidean division",
+     "where": "division theorem; proof of existence and uniqueness; examples with negative numbers",
+     "url": "https://en.wikipedia.org/wiki/Euclidean_division",
+     "kind": "reference"
+    },
+    {
+     "k": "wiki-dz",
+     "ref": "Wikipedia, Division by zero",
+     "where": "division as the inverse of multiplication; 0/0",
+     "url": "https://en.wikipedia.org/wiki/Division_by_zero",
+     "kind": "reference"
+    },
+    {
+     "k": "wiki-sign",
+     "ref": "Wikipedia, Division sign",
+     "where": "usage; ISO 80000-2",
+     "url": "https://en.wikipedia.org/wiki/Division_sign",
+     "kind": "reference"
+    },
+    {
+     "k": "lim",
+     "ref": "Kien Lim, Addressing the multiplication makes bigger and division makes smaller misconceptions via prediction and clickers (2011)",
+     "where": "abstract",
+     "url": "https://scholarworks.utep.edu/math_papers/251",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Interpret a quotient as the number in each share or as the number of shares (CC 3.OA.A.2); sharing and grouping with objects, pictures and arrays (England Y1-Y2)",
+     "priority": "core",
+     "where": "Two questions, one operation"
+    },
+    {
+     "item": "Write division statements with the sign ÷ and =; dividend, divisor, quotient; other notations (England Y2, OpenStax)",
+     "priority": "core",
+     "where": "Two questions, one operation; Conventions you will meet"
+    },
+    {
+     "item": "Understand division as an unknown-factor problem (CC 3.OA.B.6); multiplication and division as inverses (England Y2-Y5)",
+     "priority": "core",
+     "where": "Two questions, one operation"
+    },
+    {
+     "item": "Find the unknown number in a division equation (CC 3.OA.A.4)",
+     "priority": "core",
+     "where": "Two questions, one operation"
+    },
+    {
+     "item": "Divide fluently within 100 using the multiplication tables (CC 3.OA.C.7, England Y2-Y4)",
+     "priority": "core",
+     "where": "Two questions, one operation; tables on [[multiplication]]"
+    },
+    {
+     "item": "Solve division word problems with equal groups, arrays and measurement (CC 3.OA.A.3)",
+     "priority": "core",
+     "where": "Two questions, one operation; Division with remainder"
+    },
+    {
+     "item": "Show that division cannot be done in any order (England Y2)",
+     "priority": "core",
+     "where": "Rules: zero, one, order and brackets"
+    },
+    {
+     "item": "Division with 0 and 1; division by zero is undefined (OpenStax)",
+     "priority": "common",
+     "where": "Rules: zero, one, order and brackets"
+    },
+    {
+     "item": "Use properties of operations to divide, such as $(p + q) \\div b = p \\div b + q \\div b$ (CC 3.OA.B.5, 4.NBT.B.6)",
+     "priority": "common",
+     "where": "Rules: zero, one, order and brackets; Dividing larger numbers"
+    },
+    {
+     "item": "Division with remainders; the remainder is less than the divisor; check by multiplying and adding (CC 4.NBT.B.6, OpenStax)",
+     "priority": "core",
+     "where": "Division with remainder"
+    },
+    {
+     "item": "Interpret remainders in context (CC 4.OA.A.3, England Y5-Y6)",
+     "priority": "core",
+     "where": "Division with remainder"
+    },
+    {
+     "item": "Divide up to four-digit numbers by one-digit numbers using place value and properties (CC 4.NBT.B.6); derived facts such as $600 \\div 3 = 200$ (England Y4)",
+     "priority": "core",
+     "where": "Dividing larger numbers"
+    },
+    {
+     "item": "Formal written method of short division (England Y5)",
+     "priority": "core",
+     "where": "separate page: Long division (short division is introduced in Dividing larger numbers)"
+    },
+    {
+     "item": "Long division by a two-digit number (England Y6; OpenStax)",
+     "priority": "common",
+     "where": "separate page: Long division"
+    },
+    {
+     "item": "Remainders written as fractions or decimals (England Y5-Y6)",
+     "priority": "common",
+     "where": "separate page: Fractions as division"
+    },
+    {
+     "item": "Factors and multiples (England Y5)",
+     "priority": "common",
+     "where": "[[divisibility]]; separate page: Factors and multiples"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Division answers two questions that look different: if $a$ things are shared equally among $b$ parts, how many are in each part, and if $a$ things are put in groups of $b$, how many groups are there? Both answers are the number $c$ with $c \\times b = a$, so division is multiplication run backwards.\n\nWhen no such whole number exists, as for 28 shared among 8, division of whole numbers still makes sense: $28 = 3 \\times 8 + 4$, a quotient 3 and a remainder 4. A remainder is what is left when no further whole group fits. This quotient-and-remainder form is the version of division that whole-number arithmetic, divisibility, the written methods and modular arithmetic are built on."
+    },
+    {
+     "type": "section",
+     "title": "Two questions, one operation",
+     "src": [
+      "ccss-3oa",
+      "ncetm-quot",
+      "im-g3",
+      "os-div"
+     ],
+     "body": "Here $a$, $b$, $c$ are whole numbers $0, 1, 2, \\dots$, and multiplication is assumed ([[multiplication]]): $c \\times b$ is the total of $c$ groups of $b$."
+    },
+    {
+     "type": "definition",
+     "title": "Division, dividend, divisor, quotient",
+     "src": [
+      "os-div",
+      "ccss-3oa"
+     ],
+     "body": "For whole numbers $a$ and $b \\neq 0$, $$a \\div b = c \\quad\\text{means}\\quad c \\times b = a,$$ for a whole number $c$. Read $a \\div b$ as 'a divided by b'. The number $a$ being divided is the dividend, $b$ is the divisor and the result $c$ is the quotient. In $12 \\div 3 = 4$, the dividend is 12, the divisor 3 and the quotient 4, because $4 \\times 3 = 12$.\n\nThere is at most one such $c$, so 'the quotient' makes sense. If $c < c'$ and $b \\ge 1$, then $c' \\times b = c \\times b + (c' - c) \\times b$ is strictly larger than $c \\times b$. So $c \\neq c'$ gives $c \\times b \\neq c' \\times b$; equivalently, $c \\times b = c' \\times b$ forces $c = c'$ (cancellation). This is also the $r = 0$ case of the division theorem in the third section.\n\nThere are two everyday readings of $12 \\div 3$:\n\n- Sharing (partitive division): 12 shared equally into 3 parts. The number of parts is known; the answer is the size of each part.\n\n- Grouping (quotitive division): 12 put into groups of 3. The size of each group is known; the answer is the number of groups.\n\nWhen $c \\times b = a$ has no whole-number solution (try $13 \\div 3$), $a \\div b$ is not a whole number. That case is handled by remainders in the third section."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ncetm-quot",
+      "os-div"
+     ],
+     "caption": "Two readings of $12 \\div 3$. Left, sharing: 12 counters dealt into 3 parts give 4 in each part. Right, grouping: 12 counters put in groups of 3 make 4 groups. Both answers are 4 because $4 \\times 3 = 3 \\times 4 = 12$.",
+     "alt": "Left panel titled sharing: three large blue circles, each holding four black counters, labelled 3 parts, 4 in each. Right panel titled grouping: four orange rounded boxes in a row, each holding three black counters, labelled groups of 3, 4 groups.",
+     "code": "from matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(7.2, 2.7)\nax = fig.add_axes([0, 0, 1, 1])\nfor cx in (1.2, 3.3, 5.4):\n    ax.add_patch(Circle((cx, 1.3), 0.95, fc='white', ec='blue', lw=1.5))\n    for dx, dy in ((-0.33, 0.33), (0.33, 0.33), (-0.33, -0.33), (0.33, -0.33)):\n        ax.add_patch(Circle((cx + dx, 1.3 + dy), 0.24, fc='black'))\nax.text(3.3, 2.65, 'sharing: 3 parts', ha='center', fontsize=12)\nax.text(3.3, -0.05, '4 in each part', ha='center', fontsize=12, color='blue')\nax.plot([6.95, 6.95], [-0.2, 2.9], color='black', lw=0.8, ls=':')\nfor g in range(4):\n    x0 = 7.5 + g * 1.65\n    ax.add_patch(FancyBboxPatch((x0, 0.95), 1.35, 0.7, boxstyle='round,pad=0.08', fc='white', ec='orange', lw=1.6))\n    for i in range(3):\n        ax.add_patch(Circle((x0 + 0.25 + i * 0.43, 1.3), 0.19, fc='black'))\nax.text(10.6, 2.65, 'grouping: groups of 3', ha='center', fontsize=12)\nax.text(10.6, -0.05, '4 groups', ha='center', fontsize=12, color='orange')\nax.set_xlim(0, 14.2); ax.set_ylim(-0.4, 3.0); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "The two readings give the same number",
+     "body": "Sharing $a$ into $b$ equal parts gives $c$ in each part exactly when grouping $a$ into groups of $b$ gives $c$ groups. The first uses $b \\times c$ objects and the second $c \\times b$, and since $b \\times c = c \\times b$, one equals $a$ exactly when the other does."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im-g3",
+      "eng-pos"
+     ],
+     "caption": "One array, four statements. Read by rows, 3 rows of 4 give $3 \\times 4 = 12$ and $12 \\div 3 = 4$ (12 shared into 3 rows); read by columns, 4 columns of 3 give $4 \\times 3 = 12$ and $12 \\div 4 = 3$ (4 groups of 3).",
+     "alt": "Twelve black dots in 3 rows of 4, with labels 3 rows on the left and 4 in each row above. To the right, the equations 3 times 4 equals 12, 4 times 3 equals 12, 12 divided by 3 equals 4, and 12 divided by 4 equals 3.",
+     "code": "from matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.7)\nax = fig.add_axes([0, 0, 1, 1])\nfor r in range(3):\n    for c in range(4):\n        ax.add_patch(Circle((0.8 + c * 0.9, 2.2 - r * 0.9), 0.3, fc='black'))\nax.text(2.15, 2.95, '4 in each row', ha='center', va='center', fontsize=12)\nax.text(-0.05, 1.3, '3 rows', ha='center', va='center', fontsize=12, rotation=90)\neqs = [r'$3 \\times 4 = 12$', r'$4 \\times 3 = 12$', r'$12 \\div 3 = 4$', r'$12 \\div 4 = 3$']\nfor i, e in enumerate(eqs):\n    ax.text(5.0, 2.55 - i * 0.68, e, ha='left', va='center', fontsize=14)\nax.set_xlim(-0.4, 8.2); ax.set_ylim(-0.05, 3.25); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "Division is repeated subtraction",
+     "body": "If $a \\div b = c$, then subtracting $b$ from $a$ again and again reaches 0 after exactly $c$ subtractions. For example $12 - 4 - 4 - 4 = 0$ takes three subtractions, so $12 \\div 4 = 3$."
+    },
+    {
+     "type": "proof",
+     "body": "Each subtraction removes one of the $c$ groups of $b$ in $a = c \\times b$, so after $k$ subtractions $(c - k) \\times b$ is left, which is 0 exactly when $k = c$."
+    },
+    {
+     "type": "example",
+     "body": "A ribbon 96 cm long is (a) cut into 8 equal pieces, (b) cut into pieces 8 cm long. Find the answer in each case and say what it measures.",
+     "solution": "Both are $96 \\div 8$, and $12 \\times 8 = 96$, so both answers are 12. But they are different quantities. In (a) the number of pieces is known, so 12 is a length: each piece is 12 cm. In (b) the length of a piece is known, so 12 is a count: there are 12 pieces.\n\nIn sharing, the quotient has the same unit as the dividend (cm); in grouping, the dividend and divisor have the same unit and the quotient is a plain number. Checking the unit tells you which question you answered."
+    },
+    {
+     "type": "example",
+     "body": "Find the unknown numbers: (a) $56 \\div \\square = 7$; (b) $\\square \\div 6 = 9$.",
+     "solution": "Rewrite each with the definition. (a) $56 \\div \\square = 7$ means $7 \\times \\square = 56$, so $\\square = 8$. (b) $\\square \\div 6 = 9$ means $9 \\times 6 = \\square$, so $\\square = 54$.\n\nIn (a) the unknown is the divisor and finding it is again a division, $56 \\div 7 = 8$; in (b) the unknown is the dividend and finding it is a multiplication. A division fact and its multiplication facts are one statement written three ways."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Which of $91 \\div 7$, $91 \\div 13$ and $92 \\div 7$ are whole numbers? Give the quotient where there is one.",
+       "hint": "Look for a whole number $c$ with $c \\times 7 = 91$, and so on.",
+       "solution": "$13 \\times 7 = 91$, so $91 \\div 7 = 13$ and $91 \\div 13 = 7$. But $13 \\times 7 = 91 < 92 < 98 = 14 \\times 7$, and a larger $c$ gives a larger $c \\times 7$, so $92 \\div 7$ is not a whole number."
+      },
+      {
+       "q": "Prove that if $a \\div b = c$ and $c \\neq 0$, then $a \\div c = b$. What does this say about the array picture?",
+       "hint": "Write the definition of $a \\div b = c$, then use $c \\times b = b \\times c$.",
+       "solution": "$a \\div b = c$ means $c \\times b = a$. Then $b \\times c = a$, which by the definition (with divisor $c$) says $a \\div c = b$. In the array, $b$ rows of $c$ are also $c$ columns of $b$: from $12 \\div 3 = 4$ follows $12 \\div 4 = 3$."
+      },
+      {
+       "q": "Show that if $a \\div b = c$ and $a' \\div b = c'$ are exact and $a < a'$, then $c < c'$.",
+       "hint": "What would $c \\ge c'$ say about $c \\times b$ and $c' \\times b$?",
+       "solution": "If $c = c'$ then $a = c \\times b = c' \\times b = a'$; if $c > c'$ then $a = c \\times b > c' \\times b = a'$, as in the uniqueness argument after the definition. Both contradict $a < a'$, so $c < c'$. A larger dividend with the same divisor has a larger exact quotient."
+      },
+      {
+       "q": "Show that for whole numbers with $b \\ge 1$, an exact quotient $a \\div b = c$ is never larger than $a$, and say exactly when it equals $a$.",
+       "hint": "Compare $c \\times b$ with $c \\times 1$.",
+       "solution": "Since $b \\ge 1$, $a = c \\times b \\ge c \\times 1 = c$. Equality $c \\times b = c$ means $c(b - 1) = 0$, so $c = 0$ (that is, $a = 0$) or $b = 1$. So dividing a whole number by a whole number never makes it bigger. The only step that used anything is $c \\times b \\ge c \\times 1$, which needs $b \\ge 1$. A divisor less than 1 breaks it: $6 \\div \\tfrac12 = 12$, because $12 \\times \\tfrac12 = 6$ (fractions, see Looking ahead). 'Division makes smaller' is a fact about divisors $\\ge 1$, not about division."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Rules: zero, one, order and brackets",
+     "src": [
+      "os-div",
+      "eng-pos",
+      "ncetm-dist",
+      "wiki-dz"
+     ],
+     "body": "Because division is defined through multiplication, every rule for division is a rule for multiplication read backwards. This section collects the ones you need, and the ones that fail."
+    },
+    {
+     "type": "theorem",
+     "title": "Dividing with 0 and 1",
+     "body": "For every whole number $a$ (with $a \\neq 0$ in the last two): $$a \\div 1 = a, \\qquad a \\div a = 1, \\qquad 0 \\div a = 0.$$\n\nDivision by zero is not defined: $a \\div 0$ has no value, whether $a$ is zero or not."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "os-div",
+      "wiki-dz"
+     ],
+     "body": "Each value is checked against the definition: $a \\times 1 = a$, $1 \\times a = a$ and $0 \\times a = 0$.\n\nFor $a \\div 0$ we would need $c \\times 0 = a$. Every number times 0 is 0, so if $a \\neq 0$ no $c$ works: $5 \\div 0$ would be a number $c$ with $c \\times 0 = 5$, and there is none. If $a = 0$, every $c$ works, since $c \\times 0 = 0$ for all $c$. Then there is no single answer for $0 \\div 0$, so no value is assigned to it either. In the grouping reading: no number of groups of size 0 ever makes 5."
+    },
+    {
+     "type": "pitfall",
+     "title": "0 divided by a number is not a number divided by 0",
+     "src": [
+      "os-div"
+     ],
+     "body": "$0 \\div 5 = 0$ is perfectly good: 0 shared among 5 gives 0 each, and $0 \\times 5 = 0$. But $5 \\div 0$ has no answer, and neither is it 0 or 5: $0 \\times 0 = 0 \\neq 5$ and $5 \\times 0 = 0 \\neq 5$. Which number is the divisor decides everything."
+    },
+    {
+     "type": "theorem",
+     "title": "Order and brackets",
+     "body": "Division is not commutative and not associative: in general $a \\div b \\neq b \\div a$ and $(a \\div b) \\div c \\neq a \\div (b \\div c)$. What is true, whenever all the quotients involved are exact (whole numbers), is:\n\n1. $(a \\div b) \\div c = a \\div (b \\times c)$;\n\n2. $(a \\times k) \\div (b \\times k) = a \\div b$ for $k \\neq 0$, used when $a \\div b$ is known to be exact (then so is the left side, and conversely);\n\n3. $(p + q) \\div b = p \\div b + q \\div b$ when $p$ and $q$ are multiples of $b$, and $(p - q) \\div b = p \\div b - q \\div b$ when moreover $p \\ge q$."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "eng-pos",
+      "ncetm-dist"
+     ],
+     "body": "Failures. $12 \\div 3 = 4$, but $3 \\div 12$ is not even a whole number, since $c \\times 12 = 3$ has no whole-number solution. So 'divide the larger by the smaller' is wrong: 12 shared among 3 and 3 shared among 12 are different questions, and the dividend comes first. And $(24 \\div 4) \\div 2 = 6 \\div 2 = 3$, while $24 \\div (4 \\div 2) = 24 \\div 2 = 12$.\n\nRule 1. Let $(a \\div b) = d$ and $d \\div c = e$. Then $a = d \\times b$ and $d = e \\times c$, so $a = e \\times c \\times b = e \\times (b \\times c)$, which says $a \\div (b \\times c) = e$.\n\nRule 2. If $a \\div b = c$ then $a = c \\times b$, so $a \\times k = c \\times (b \\times k)$, which says $(a \\times k) \\div (b \\times k) = c$. Conversely, $a \\times k = c \\times (b \\times k) = (c \\times b) \\times k$ gives $a = c \\times b$ by cancelling $k$.\n\nRule 3. If $p = s \\times b$ and $q = t \\times b$, then by the [[distributive-property]] $p + q = (s + t) \\times b$, so $(p + q) \\div b = s + t$. The same works with $p - q = (s - t) \\times b$ when $p \\ge q$."
+    },
+    {
+     "type": "example",
+     "body": "Find $720 \\div 16$ without a written method.",
+     "solution": "Since $16 = 2 \\times 8$, rule 1 gives $$720 \\div 16 = (720 \\div 2) \\div 8 = 360 \\div 8 = 45.$$ Alternatively, by rule 2 with $k = 4$ read backwards, $720 \\div 16 = 180 \\div 4 = 45$. Check: $45 \\times 16 = 720$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Is $12 \\div (2 + 4)$ equal to $12 \\div 2 + 12 \\div 4$?",
+       "a": "No: $12 \\div 6 = 2$, but $6 + 3 = 9$. Rule 3 splits the dividend, never the divisor."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $0 \\div 9$, $9 \\div 9$ and $9 \\div 1$, and explain in one sentence why $9 \\div 0$ has no value.",
+       "hint": "Check each against multiplication.",
+       "solution": "$0 \\div 9 = 0$ ($0 \\times 9 = 0$), $9 \\div 9 = 1$, $9 \\div 1 = 9$. A value $c$ for $9 \\div 0$ would need $c \\times 0 = 9$, but $c \\times 0 = 0$ for every $c$."
+      },
+      {
+       "q": "Compute $(48 \\div 4) \\div 2$ and $48 \\div (4 \\div 2)$. Which of them equals $48 \\div 8$?",
+       "hint": "Work out the brackets first.",
+       "solution": "$(48 \\div 4) \\div 2 = 12 \\div 2 = 6$ and $48 \\div (4 \\div 2) = 48 \\div 2 = 24$. The first equals $48 \\div 8 = 6$, as rule 1 says ($4 \\times 2 = 8$)."
+      },
+      {
+       "q": "Use rule 2 to find $360 \\div 40$ and $630 \\div 70$.",
+       "hint": "Divide both numbers by 10.",
+       "solution": "$360 \\div 40 = 36 \\div 4 = 9$ and $630 \\div 70 = 63 \\div 7 = 9$. Check: $9 \\times 40 = 360$ and $9 \\times 70 = 630$."
+      },
+      {
+       "q": "Find $98 \\div 7$ by writing $98 = 105 - 7$.",
+       "hint": "Use rule 3 for a difference; $105 = 15 \\times 7$.",
+       "solution": "$98 \\div 7 = 105 \\div 7 - 7 \\div 7 = 15 - 1 = 14$. Check: $14 \\times 7 = 98$."
+      },
+      {
+       "q": "Find whole numbers $a, b \\neq 0$ with $a \\div b = b \\div a$. Prove there are no others.",
+       "hint": "If both quotients are whole numbers, $b$ divides $a$ and $a$ divides $b$.",
+       "solution": "Any $a = b$ works: $a \\div a = 1$. Conversely, if $a \\div b = c$ and $b \\div a = d$ are both whole numbers, then $a = cb$ and $b = da$, so $a = cda$ and $cd = 1$, which forces $c = d = 1$ and $a = b$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Division with remainder",
+     "src": [
+      "os-div",
+      "ncetm-rem",
+      "ccss-4nbt",
+      "wiki-euc"
+     ],
+     "body": "Most divisions of whole numbers are not exact: no whole number times 8 is 28. Instead of giving up, take as many whole groups as possible and record what is left."
+    },
+    {
+     "type": "definition",
+     "title": "Quotient and remainder",
+     "src": [
+      "os-div",
+      "wiki-euc"
+     ],
+     "body": "For whole numbers $a$ and $b \\neq 0$, the quotient $q$ and remainder $r$ of $a$ on division by $b$ are the whole numbers with $$a = q \\times b + r, \\qquad 0 \\le r < b.$$ So $q$ is the number of whole groups of $b$ in $a$, and $r$ is what is left over. Schools write $28 \\div 8 = 3$ R 4, meaning $28 = 3 \\times 8 + 4$.\n\nThe division is exact precisely when $r = 0$; then $q = a \\div b$ as before, and $b$ is said to divide $a$. The condition $r < b$ is what makes $q$ the largest possible number of groups."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "os-div"
+     ],
+     "caption": "$28 \\div 8$ on a number line. Three hops of 8 from 0 reach 24; a fourth hop would pass 28 and end at 32. The 4 left over, from 24 to 28 (red), is the remainder: $28 = 3 \\times 8 + 4$.",
+     "alt": "A number line from 0 to 32 with ticks at every whole number and labels at 0, 8, 16, 24, 28 and 32. Three blue arcs labelled plus 8 hop from 0 to 8, 8 to 16 and 16 to 24. A red bracket below the line from 24 to 28 is labelled r = 4. A dashed grey arc from 24 to 32 is labelled too far.",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.3)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-0.5, 33], [0, 0], color='black', lw=1.2)\nfor n in range(0, 33):\n    h = 0.18 if n % 8 == 0 or n == 28 else 0.08\n    ax.plot([n, n], [-h, h], color='black', lw=0.9)\nfor n in (0, 8, 16, 24, 28, 32):\n    ax.text(n, -0.55, str(n), ha='center', va='center', fontsize=12)\nt = np.linspace(0, np.pi, 50)\nfor a in (0, 8, 16):\n    ax.plot(a + 4 - 4 * np.cos(t), 0.2 + 1.3 * np.sin(t), color='blue', lw=1.6)\n    ax.text(a + 4, 1.75, '+8', ha='center', fontsize=12, color='blue')\nax.plot(28 - 4 * np.cos(t), 0.2 + 1.3 * np.sin(t), color='gray', lw=1.2, ls='--')\nax.text(28, 1.75, 'too far', ha='center', fontsize=11, color='gray')\nax.plot([24, 24, 28, 28], [-0.95, -1.1, -1.1, -0.95], color='red', lw=2.0)\nax.text(26, -1.45, '$r = 4$', ha='center', va='center', fontsize=12, color='red')\nax.set_xlim(-1, 33.5); ax.set_ylim(-1.8, 2.1); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "The division theorem",
+     "src": [
+      "wiki-euc"
+     ],
+     "body": "For all whole numbers $a$ and $b \\ge 1$ there is exactly one pair of whole numbers $q, r$ with $a = q \\times b + r$ and $0 \\le r < b$."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "wiki-euc"
+     ],
+     "body": "Existence. Subtract $b$ from $a$ repeatedly for as long as the result stays at least 0: $a, a - b, a - 2b, \\dots$. The numbers decrease, so this stops, at some $r = a - qb \\ge 0$ for which one more subtraction would go below 0, that is, $r - b < 0$. Then $a = qb + r$ and $0 \\le r < b$.\n\nUniqueness. Suppose also $a = q'b + r'$ with $0 \\le r' < b$, and say $r' \\ge r$. Subtracting, $$r' - r = (q - q') \\times b,$$ a multiple of $b$. But $0 \\le r' - r < b$, and the only multiple of $b$ in that range is 0. So $r' = r$, and then $q'b = qb$ gives $q' = q$.\n\nThe existence argument is the number line picture: hop by $b$ until the next hop would pass $a$."
+    },
+    {
+     "type": "pitfall",
+     "title": "A remainder that is too big",
+     "src": [
+      "ncetm-rem"
+     ],
+     "body": "Writing $29 \\div 4 = 6$ R 5 gets the check right ($6 \\times 4 + 5 = 29$) but the division wrong: a remainder of 5 still contains another group of 4. The remainder must be less than the divisor, and here $29 = 7 \\times 4 + 1$, so $29 \\div 4 = 7$ R 1. Always test both parts: $q \\times b + r = a$ and $r < b$."
+    },
+    {
+     "type": "example",
+     "src": [
+      "ccss-4oa",
+      "eng-pos"
+     ],
+     "body": "In each case $30 \\div 4 = 7$ R 2, since $30 = 7 \\times 4 + 2$. Give the answer to the question asked. (a) 30 people travel in cars that take 4 each: how many cars are needed? (b) Ribbon 30 cm long is cut into 4 cm pieces: how many pieces? (c) 30 sweets are shared equally among 4 children and the rest kept back: how many are kept back?",
+     "solution": "(a) 7 cars carry 28 people and 2 are left, so 8 cars: the quotient is rounded up, because everyone must travel.\n\n(b) 7 pieces, with 2 cm wasted: the quotient is rounded down, because only whole pieces count.\n\n(c) 2 sweets: here the remainder itself is the answer.\n\nThe arithmetic is the same each time; the context decides which part of $a = qb + r$ answers the question."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$13 \\div 4 = 3$ R 1 and $7 \\div 2 = 3$ R 1. Does it follow that $13 \\div 4$ and $7 \\div 2$ are equal?",
+       "a": "No. '3 R 1' names the quotient-and-remainder pair (3, 1), and that pair is relative to its divisor. $13 = 3 \\times 4 + 1$ and $7 = 3 \\times 2 + 1$ describe different numbers, so the '=' in '3 R 1' is not an ordinary equation and the two cannot be chained."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find the quotient and remainder of $50 \\div 7$, $7 \\div 50$ and $63 \\div 9$, and check each.",
+       "hint": "For $7 \\div 50$, how many whole 50s fit in 7?",
+       "solution": "$50 = 7 \\times 7 + 1$: 7 R 1. $7 = 0 \\times 50 + 7$: 0 R 7 (the remainder may be the whole dividend when $a < b$). $63 = 7 \\times 9 + 0$: 7 R 0, exact. In general $q \\ge 1$ exactly when $a \\ge b$: if $q = 0$ then $a = r < b$, and if $q \\ge 1$ then $a \\ge b$."
+      },
+      {
+       "q": "What remainders are possible on division by 6? List the numbers below 40 that leave remainder 5.",
+       "hint": "They are $6q + 5$.",
+       "solution": "0, 1, 2, 3, 4, 5. The numbers $6q + 5$ below 40 are 5, 11, 17, 23, 29, 35: six of them ($q = 0, \\dots, 5$)."
+      },
+      {
+       "q": "A minibus has 12 seats. (a) How many minibuses are needed for 100 people? (b) Books 12 cm thick go on a shelf 100 cm long: how many fit?",
+       "hint": "$100 = 8 \\times 12 + 4$.",
+       "solution": "$100 \\div 12 = 8$ R 4. (a) 8 buses carry 96, leaving 4, so 9 buses (round up). (b) 8 books, with 4 cm spare (round down)."
+      },
+      {
+       "q": "Find the quotient and remainder of $1000 \\div 7$.",
+       "hint": "$7 \\times 140 = 980$.",
+       "solution": "$1000 - 980 = 20 = 2 \\times 7 + 6$, so $1000 = 142 \\times 7 + 6$: 142 R 6. Check: $994 + 6 = 1000$ and $6 < 7$."
+      },
+      {
+       "q": "Prove that if $a$ has quotient $q$ and remainder $r$ on division by $b$, then $a + b$ has quotient $q + 1$ and the same remainder.",
+       "hint": "Write $a + b$ in the form of the definition, then use uniqueness.",
+       "solution": "$a + b = qb + r + b = (q + 1)b + r$, and still $0 \\le r < b$. By the uniqueness part of the division theorem, these are the quotient and remainder of $a + b$. So numbers $b$ apart leave the same remainder, as the list in the second exercise shows."
+      },
+      {
+       "q": "For a two-digit number $10t + u$, show that its remainder on division by 9 is the remainder of $t + u$. Use this for 47, and deduce a test for divisibility by 9 and by 3.",
+       "hint": "$10t = 9t + t$.",
+       "solution": "$10t + u = 9t + (t + u)$. If $t + u = 9s + r$ with $0 \\le r < 9$, then $10t + u = 9(t + s) + r$, so the remainder is $r$. For 47: $4 + 7 = 11 = 9 + 2$, remainder 2; indeed $47 = 5 \\times 9 + 2$. In particular $10t + u$ is divisible by 9 exactly when $t + u$ is. Since $9t$ is also a multiple of 3, the same argument gives: $10t + u$ is divisible by 3 exactly when $t + u$ is; for 57, $5 + 7 = 12$ and $57 = 19 \\times 3$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Dividing larger numbers",
+     "src": [
+      "ccss-4nbt",
+      "im-g3l19",
+      "ncetm-part",
+      "eng-pos"
+     ],
+     "body": "Division facts within 100 come from the multiplication tables. For larger dividends, the idea is to split the dividend into parts that are easy to divide, usually by place value (see [[place-value]]), and add the results. The simplest case is a single place: $600 \\div 3$ is 6 hundreds shared among 3, which is 2 hundreds, so $600 \\div 3 = 200$, and indeed $200 \\times 3 = 600$. Every written method of division is an organised form of this."
+    },
+    {
+     "type": "theorem",
+     "title": "Splitting the dividend",
+     "body": "Let $a = p + s$, where $p$ is a multiple of $b$. If $s$ has quotient $q_s$ and remainder $r$ on division by $b$, then $a$ has quotient $p \\div b + q_s$ and the same remainder $r$. The dividend may be split into several multiples of $b$ and a last part in the same way."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "ncetm-part"
+     ],
+     "body": "Write $p = q_p b$ and $s = q_s b + r$ with $0 \\le r < b$. Then $$a = q_p b + q_s b + r = (q_p + q_s) b + r,$$ by the [[distributive-property]], and $0 \\le r < b$ still holds. By uniqueness these are the quotient and remainder of $a$. When $r = 0$ this is rule 3 of the second section."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ccss-4nbt",
+      "im-g3"
+     ],
+     "caption": "An area model for $78 \\div 3$. A rectangle with area 78 and one side 3 is split into a part of area 60 (side 20) and a part of area 18 (side 6). The other side is $20 + 6 = 26$, so $78 \\div 3 = 26$.",
+     "alt": "A long rectangle with height labelled 3, split into a wide left part labelled 20 across the top with 3 times 20 equals 60 inside, and a narrow orange right part labelled 6 with 18 inside. Below: 60 plus 18 equals 78, so 78 divided by 3 equals 20 plus 6 equals 26.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.4)\nax = fig.add_axes([0, 0, 1, 1])\nax.add_patch(Rectangle((0, 0), 6.0, 1.6, fc=(0.85, 0.9, 1.0), ec='black', lw=1.5))\nax.add_patch(Rectangle((6.0, 0), 1.8, 1.6, fc=(1.0, 0.9, 0.8), ec='black', lw=1.5))\nax.text(3.0, 0.8, r'$3 \\times 20 = 60$', ha='center', va='center', fontsize=14)\nax.text(6.9, 0.8, '18', ha='center', va='center', fontsize=14)\nax.text(3.0, 1.9, '20', ha='center', va='center', fontsize=13)\nax.text(6.9, 1.9, '6', ha='center', va='center', fontsize=13)\nax.text(-0.3, 0.8, '3', ha='center', va='center', fontsize=13)\nax.text(3.9, -0.4, r'$60 + 18 = 78$, so $78 \\div 3 = 20 + 6 = 26$', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.7, 8.2); ax.set_ylim(-0.8, 2.2); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "views",
+     "title": "Two ways to find 96 ÷ 4",
+     "body": "Both split 96 into multiples of 4; they differ in how the parts are chosen.",
+     "items": [
+      {
+       "label": "Place value, exchanging",
+       "src": [
+        "im-g3l19",
+        "ncetm-part"
+       ],
+       "body": "96 is 9 tens and 6 ones. Sharing 9 tens among 4 gives 2 tens each, with 1 ten left. Exchange that ten for 10 ones: $10 + 6 = 16$ ones, which give 4 ones each. Each share is 2 tens and 4 ones, so 24. Recorded in a compact layout, this is short division."
+      },
+      {
+       "label": "Subtracting chunks",
+       "src": [
+        "os-div"
+       ],
+       "body": "Subtract large known multiples of 4 instead of one 4 at a time: $96 - 40 = 56$ (10 fours), $56 - 40 = 16$ (10 fours), $16 - 16 = 0$ (4 fours). In all $10 + 10 + 4 = 24$ fours. This is the repeated subtraction of the first section with many 4s removed at once."
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-div",
+      "ccss-4nbt"
+     ],
+     "body": "Find the quotient and remainder of $1439 \\div 4$.",
+     "solution": "Split 1439 digit by digit, as short division does. 14 hundreds is 12 hundreds (a multiple of 4) and 2 hundreds left; those 2 hundreds with 3 tens make 23 tens, of which 20 tens is a multiple of 4 and 3 tens are left; those with 9 ones make 39 ones $= 36 + 3$. So $$1439 = 1200 + 200 + 36 + 3,$$ with $1200 \\div 4 = 300$, $200 \\div 4 = 50$, $36 \\div 4 = 9$, and $3 < 4$ the remainder: $1439 \\div 4 = 359$ R 3.\n\nCheck: $359 \\times 4 = 1436$ and $1436 + 3 = 1439$, with $3 < 4$. Any split into multiples of 4 gives the same result, by uniqueness: $1439 = 1400 + 36 + 3$ with $1400 = 350 \\times 4$ gives $350 + 9 = 359$ R 3 again."
+    },
+    {
+     "type": "connection",
+     "title": "Short division and long division",
+     "src": [
+      "eng-pos",
+      "os-div"
+     ],
+     "body": "Recorded compactly, the digit-by-digit chain of the last example is the written method called short division. Long division writes out each multiply-and-subtract step, which helps when the divisor has two or more digits, as in $74521 \\div 241 = 309$ R 52. These written methods have their own page."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $2596 \\div 4$ by splitting the dividend, and check.",
+       "hint": "Start with $2400 = 600 \\times 4$.",
+       "solution": "$2596 = 2400 + 160 + 36$, so the quotient is $600 + 40 + 9 = 649$, remainder 0. Check: $649 \\times 4 = 2596$."
+      },
+      {
+       "q": "Find the quotient and remainder of $517 \\div 5$.",
+       "hint": "$517 = 500 + 15 + 2$.",
+       "solution": "$100 + 3 = 103$ with remainder 2: $517 = 103 \\times 5 + 2$."
+      },
+      {
+       "q": "To find $97 \\div 4$, someone splits $97 = 50 + 47$, divides each part ($50 = 12 \\times 4 + 2$, $47 = 11 \\times 4 + 3$) and adds: 23 R 5. What has gone wrong, and how is it repaired?",
+       "hint": "Is 5 a possible remainder on division by 4?",
+       "solution": "Neither part is a multiple of 4, so the theorem does not apply and the remainders add up to $2 + 3 = 5 \\ge 4$. The sum $23 \\times 4 + 5 = 97$ is correct, but 5 contains one more 4: $97 = 24 \\times 4 + 1$, so 24 R 1. Splitting into a multiple of 4 first, $97 = 80 + 17$, gives $20 + 4 = 24$ R 1 directly."
+      },
+      {
+       "q": "Suppose $a$ has $m$ digits and $b$ has $n$ digits, with $m > n$. Show that the quotient $q$ of $a$ on division by $b$ has $m - n$ or $m - n + 1$ digits, and give an example of each.",
+       "hint": "Use $10^{m-1} \\le a < 10^m$ and $10^{n-1} \\le b < 10^n$, together with $qb \\le a < (q + 1)b$.",
+       "solution": "Upper bound: $q \\times 10^{n-1} \\le q \\times b \\le a < 10^m$, so $q < 10^{m-n+1}$, at most $m - n + 1$ digits. Lower bound: $10^{m-1} \\le a < (q + 1) \\times b < (q + 1) \\times 10^n$, so $q + 1 > 10^{m-n-1}$, that is $q \\ge 10^{m-n-1}$, at least $m - n$ digits. Examples: $1439 \\div 4 = 359$ R 3 has $4 - 1 = 3$ digits; $9999 \\div 2 = 4999$ R 1 has $4 - 1 + 1 = 4$ digits."
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Conventions you will meet",
+     "rows": [
+      {
+       "who": "Signs",
+       "text": "$12 \\div 3$, $12/3$ and $\\frac{12}{3}$ all mean the same division; the long-division bracket is a fourth layout. English-speaking schools use $\\div$; the international standard ISO 80000-2 recommends the slash or fraction bar and advises against $\\div$, and $\\div$ is rarely used beyond school arithmetic.",
+       "src": [
+        "os-div",
+        "wiki-sign"
+       ]
+      },
+      {
+       "who": "Remainders",
+       "text": "Schools write 3 R 4 (or 'remainder 4'); higher mathematics writes $28 = 3 \\cdot 8 + 4$, and programming languages give the remainder as 28 mod 8 or 28 % 8.",
+       "src": [
+        "os-div",
+        "wiki-euc"
+       ]
+      },
+      {
+       "who": "Names",
+       "text": "Sharing and grouping are also called partitive and quotitive division.",
+       "src": [
+        "ncetm-quot"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "wiki-euc",
+      "lim",
+      "os-div"
+     ],
+     "body": "Remainders lead to number theory. Repeating the division theorem, $a = qb + r$, then $b = q'r + r'$, and so on, gives the Euclidean algorithm, the fast way to find the greatest common divisor of $a$ and $b$ ([[divisibility]]). Treating numbers with the same remainder on division by $b$ as equal gives arithmetic modulo $b$ ([[congruences]]); the exercise on $a + b$ is its first fact. Repeated division by 10, or by 2, reads off the digits of a number in that base, because each remainder is a digit ([[digits-bases]]).\n\nThe theorem extends to negative dividends with the remainder kept in $0 \\le r < b$: $-7 = (-3) \\times 3 + 2$.\n\nFractions make every division by a nonzero number exact: $13 \\div 4 = \\frac{13}{4} = 3\\frac14$, the remainder 1 becoming the fraction $\\frac14$. Division by $b$ becomes multiplication by its reciprocal $\\frac1b$, which is why $6 \\div \\frac12 = 12$. A field is a number system with $+$ and $\\times$ obeying the usual laws in which every nonzero element $b$ has a reciprocal, a number $\\frac1b$ with $b \\times \\frac1b = 1$; the rationals and the [[real-numbers]] are fields. Division by 0 stays undefined in all of them, for the reason given in the second section."
+    },
+    {
+     "type": "summary",
+     "body": "- $a \\div b = c$ means $c \\times b = a$: one operation answering 'how many in each part?' (sharing) and 'how many groups?' (grouping).\n\n- $a \\div 1 = a$, $a \\div a = 1$, $0 \\div a = 0$; $a \\div 0$ is undefined, since no $c$ (or every $c$) satisfies $c \\times 0 = a$.\n\n- Division is neither commutative nor associative; $(p + q) \\div b = p \\div b + q \\div b$ splits the dividend, never the divisor.\n\n- Every $a$ and $b \\ge 1$ give exactly one $q, r$ with $a = qb + r$ and $0 \\le r < b$; the context decides whether to round up, round down or use $r$.\n\n- Large divisions split the dividend by place value into multiples of the divisor; written methods organise this splitting."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro, section 1\nassert 28 == 3*8 + 4 and 4 < 8\nassert 4*3 == 3*4 == 12 and 12 // 3 == 4 and 12 % 3 == 0 and 12 // 4 == 3\nassert 13 % 3 != 0\n# figure 1: 3 parts of 4, 4 groups of 3\nassert 3*4 == 12 and 4*3 == 12\n# figure 2 array\nassert len([(r, c) for r in range(3) for c in range(4)]) == 12\n# repeated subtraction\nassert 12 - 4 - 4 - 4 == 0\nfor b in range(1, 13):\n    for c in range(0, 13):\n        a = c*b; n = 0; x = a\n        while x: x -= b; n += 1\n        assert n == c\n# examples\nassert 12*8 == 96 and 96 // 8 == 12\nassert 7*8 == 56 and 56 // 7 == 8 and 9*6 == 54\n# exercises\n# uniqueness / cancellation\nfor b in range(1, 15):\n    for c in range(0, 40):\n        for c2 in range(0, 40):\n            if c != c2: assert c*b != c2*b\n            if c < c2: assert c2*b == c*b + (c2 - c)*b > c*b\nassert 13*7 == 91 and 91 // 7 == 13 and 91 // 13 == 7 and 92 % 7 != 0 and 13*7 < 92 < 98 == 14*7\nfor b in range(1, 12):\n    for c in range(0, 30):\n        for c2 in range(0, 30):\n            if c*b < c2*b: assert c < c2\nfrom fractions import Fraction as F\nassert 6 / F(1, 2) == 12 and 12*F(1, 2) == 6 and F(1, 2) < 1\nfor a in range(0, 200):\n    for b in range(1, 20):\n        if a % b == 0:\n            c = a // b\n            assert c <= a and ((c == a) == (a == 0 or b == 1))\n            if c: assert a // c == b and a % c == 0\n"
+    },
+    {
+     "python": "# section 2\nfrom fractions import Fraction as F\nfor a in range(1, 100):\n    assert a // 1 == a and a // a == 1 and 0 // a == 0\nassert all(c*0 == 0 for c in range(-1000, 1000))\nassert 0*5 == 0 and 0*0 == 0 != 5 and 5*0 == 0 != 5\nassert F(3, 12) < 1 and 3 % 12 != 0\nassert (24 // 4) // 2 == 3 and 24 // (4 // 2) == 12 and 6 // 2 == 3 and 24 // 2 == 12\nfor a in range(0, 300):\n    for b in range(1, 13):\n        for c in range(1, 13):\n            if a % (b*c) == 0:\n                assert (a // b) // c == a // (b*c)\n            if a % b == 0:\n                for k in range(1, 6): assert (a*k) // (b*k) == a // b\nfor p in range(0, 100):\n    for q in range(0, 100):\n        for b in range(1, 10):\n            if p % b == 0 and q % b == 0:\n                assert (p + q) // b == p // b + q // b\n                if p >= q: assert (p - q) // b == p // b - q // b\nassert 16 == 2*8 and 720 // 2 == 360 and 360 // 8 == 45 and 720 // 16 == 45 and 720 // 4 == 180 and 16 // 4 == 4 and 180 // 4 == 45 and 45*16 == 720\nfor a in range(0, 60):\n    for b in range(1, 15):\n        for k in range(1, 6):\n            assert ((a*k) % (b*k) == 0) == (a % b == 0)\nassert 12 // (2 + 4) == 2 and 12 // 2 + 12 // 4 == 9 and 12 // 2 == 6 and 12 // 4 == 3\nassert 7*0 == 0 and 5*0 == 0\n# exercises\nassert 0 // 9 == 0 and 9 // 9 == 1 and 9 // 1 == 9\nassert (48 // 4) // 2 == 6 and 48 // 4 == 12 and 48 // (4 // 2) == 24 and 48 // 2 == 24 and 48 // 8 == 6 and 4*2 == 8\nassert 360 // 40 == 36 // 4 == 9 and 630 // 70 == 63 // 7 == 9 and 9*40 == 360 and 9*70 == 630\nassert 98 == 105 - 7 and 105 == 15*7 and 105 // 7 - 7 // 7 == 15 - 1 == 14 and 14*7 == 98\nfor a in range(1, 60):\n    for b in range(1, 60):\n        if a % b == 0 and b % a == 0: assert a == b\nassert 600 // 3 == 200 and (6*100) // 3 == (6 // 3)*100\nfor a in range(1, 50): assert a // a == 1 and 0 // a == 0\n"
+    },
+    {
+     "python": "# section 3\nassert 28 == 3*8 + 4 and 3*8 == 24 and 4*8 == 32 > 28 and 28 - 24 == 4\nassert divmod(28, 8) == (3, 4)\nfor a in range(0, 300):\n    for b in range(1, 20):\n        sols = [(q, r) for q in range(0, a + 1) for r in range(0, b) if q*b + r == a]\n        assert sols == [divmod(a, b)]\nassert 6*4 + 5 == 29 and 5 >= 4 and divmod(29, 4) == (7, 1) and 7*4 + 1 == 29\nassert divmod(30, 4) == (7, 2) and 7*4 == 28 and 30 - 28 == 2 and 7 + 1 == 8\nfrom fractions import Fraction as F\nassert divmod(13, 4) == (3, 1) and divmod(7, 2) == (3, 1) and F(13, 4) == 3 + F(1, 4) and F(7, 2) == 3 + F(1, 2) and F(13, 4) != F(7, 2)\nassert 13 == 3*4 + 1 and 7 == 3*2 + 1 and 13 != 7\n# exercises\nfor a in range(0, 200):\n    for b in range(1, 20):\n        assert (a // b >= 1) == (a >= b)\nfor n in range(10, 100):\n    assert (n % 9 == 0) == ((n // 10 + n % 10) % 9 == 0) and (n % 3 == 0) == ((n // 10 + n % 10) % 3 == 0)\nassert 5 + 7 == 12 and 57 == 19*3 and 12 % 3 == 0\nassert divmod(50, 7) == (7, 1) and 50 == 7*7 + 1\nassert divmod(7, 50) == (0, 7) and divmod(63, 9) == (7, 0)\nassert [n for n in range(40) if n % 6 == 5] == [5, 11, 17, 23, 29, 35] and len([6*q + 5 for q in range(6)]) == 6\nassert divmod(100, 12) == (8, 4) and 8*12 == 96 and 100 - 96 == 4\nassert 7*140 == 980 and 1000 - 980 == 20 == 2*7 + 6 and divmod(1000, 7) == (142, 6) and 142*7 == 994 and 994 + 6 == 1000\nfor a in range(0, 200):\n    for b in range(1, 15):\n        q, r = divmod(a, b); assert divmod(a + b, b) == (q + 1, r)\nfor t in range(1, 10):\n    for u in range(10):\n        assert (10*t + u) % 9 == (t + u) % 9\nassert 4 + 7 == 11 == 9 + 2 and 47 == 5*9 + 2\n"
+    },
+    {
+     "python": "# section 4\nassert 200*3 == 600 and 600 // 3 == 200 and 6 // 3 == 2\nfor a in range(0, 500):\n    for b in range(1, 10):\n        for p in range(0, a + 1, b):\n            s = a - p\n            assert divmod(a, b) == (p // b + s // b, s % b)\nassert 3*20 == 60 and 3*6 == 18 and 60 + 18 == 78 and 78 // 3 == 26 == 20 + 6\n# views 96 / 4\nassert 96 // 4 == 24\nassert 9 // 4 == 2 and 9 % 4 == 1 and 10 + 6 == 16 and 16 // 4 == 4\nassert 96 - 40 == 56 and 56 - 40 == 16 and 16 - 16 == 0 and 10 + 10 + 4 == 24 and 4*4 == 16\n# example 1439 / 4\nassert 1200 + 200 + 36 + 3 == 1439 and 1200 // 4 == 300 and 200 // 4 == 50 and 36 // 4 == 9 and 300 + 50 + 9 == 359\nassert divmod(1439, 4) == (359, 3) and 359*4 == 1436 and 1436 + 3 == 1439\nassert 1200 % 4 == 0 and 1400 - 1200 == 200 and 200 + 30 == 230 and 200 % 4 == 0 and 230 - 200 == 30 and 30 + 9 == 39 == 36 + 3\nassert divmod(74521, 241) == (309, 52)\n# exercises\nassert 2400 + 160 + 36 == 2596 and 2400 // 4 == 600 and 160 // 4 == 40 and 36 // 4 == 9 and 600 + 40 + 9 == 649 and 649*4 == 2596\nassert 500 + 15 + 2 == 517 and divmod(517, 5) == (103, 2) and 100 + 3 == 103\nassert 50 + 47 == 97 and 50 == 12*4 + 2 and 47 == 11*4 + 3 and 12 + 11 == 23 and 2 + 3 == 5 and 23*4 + 5 == 97 and divmod(97, 4) == (24, 1)\nassert 80 + 17 == 97 and 80 // 4 == 20 and divmod(17, 4) == (4, 1) and 20 + 4 == 24\nassert 1400 == 350*4 and 1400 + 36 + 3 == 1439 and 350 + 9 == 359 and 36 // 4 == 9\nimport random\nrandom.seed(1)\npairs = [(a, b) for a in range(1, 3000) for b in range(1, 120)] + [(random.randrange(1, 10**9), random.randrange(1, 10**5)) for _ in range(20000)]\nfor a, b in pairs:\n    m, n = len(str(a)), len(str(b))\n    if m > n:\n        q = a // b; k = len(str(q))\n        assert q >= 1 and k in (m - n, m - n + 1)\n        assert (k == m - n + 1) == (a >= b*10**(m - n))\nassert divmod(1439, 4) == (359, 3) and len(str(359)) == 3 == 4 - 1 and divmod(9999, 2) == (4999, 1) and len(str(4999)) == 4\nassert divmod(74521, 241) == (309, 52) and len(str(309)) == 5 - 3 + 1\n# looking ahead\nfrom fractions import Fraction as F\nassert -7 == (-3)*3 + 2 and divmod(-7, 3) == (-3, 2)\nassert F(13, 4) == 3 + F(1, 4) and 6 / F(1, 2) == 12 and 12*F(1, 2) == 6\nassert 28 % 8 == 4\n"
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,449 @@
+[
+ {
+  "id": "number-line",
+  "entry": {
+   "sum": "A number line is a straight line with an origin 0, a direction in which numbers increase and a unit length; the whole number $n$ is the point $n$ units to the right of 0. On it, further right means greater, the distance between the points $a$ and $b$ is $b - a$, the halfway point is $\\frac{a+b}{2}$, and adding $n$ is a jump of $n$ units to the right.",
+   "key": [
+    "a < b \\iff a \\text{ is left of } b",
+    "\\text{distance from } a \\text{ to } b = b - a",
+    "\\text{halfway} = \\tfrac{a+b}{2}"
+   ],
+   "why": "The number line turns numbers into positions and lengths, a picture that later carries negative numbers, fractions, the real numbers, coordinates and the idea of distance.",
+   "msc": [],
+   "links": [
+    {
+     "field": "real-analysis",
+     "note": "The real numbers are the number line with every gap filled; distance $|b - a|$ starts the theory of limits."
+    },
+    {
+     "field": "geometry",
+     "note": "Two number lines at right angles give coordinates in the plane."
+    },
+    {
+     "field": "statistics",
+     "note": "Line plots and dot plots are drawn on a number line."
+    },
+    {
+     "field": "linear-algebra",
+     "note": "A jump along the line is a vector in one dimension: adding $c$ moves every point by $c$ and keeps all distances."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, Grade 2, 2.MD.B.5-6 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1, 2 and 4 (2013)",
+    "Illustrative Mathematics K-5 Math, Grade 2 Unit 4: Addition and Subtraction on the Number Line",
+    "OpenStax, Prealgebra 2e, Section 1.1 (2020)"
+   ],
+   "aliases": [
+    "number line diagram",
+    "numberline"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 16,
+   "sources": [
+    {
+     "k": "cc2MD",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Measurement and Data (2010)",
+     "where": "2.MD.B.5, 2.MD.B.6",
+     "url": "https://thecorestandards.org/Math/Content/2/MD/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1, 2 and 4, Number and place value",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im2U4",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 2 Unit 4: Addition and Subtraction on the Number Line",
+     "where": "Sections A and B",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-4/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imL9",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 2 Unit 4, Lesson 9: The Difference Between Numbers",
+     "where": "Grade 2, Unit 4, Lesson 9",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-4/lesson-9/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os11",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Section 1.1 Introduction to Whole Numbers (numbered 1.2 on the LibreTexts mirror)",
+     "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/01%3A_Whole_Numbers/1.02%3A_Introduction_to_Whole_Numbers",
+     "kind": "textbook"
+    },
+    {
+     "k": "hilton",
+     "ref": "A. Hilton and G. Hilton, A string number line lesson sequence to promote students' relative thinking and understanding of scale, key elements of proportional reasoning, Australian Primary Mathematics Classroom 23(1) (2018)",
+     "where": "student errors with scale and with halfway points",
+     "url": "https://archive.aamt.edu.au/content/download/41365/596342/file/apmc23_1_hilton.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "gervasoni",
+     "ref": "A. Gervasoni et al., Insights about children's understanding of 2-digit and 3-digit numbers (MERGA 2011)",
+     "where": "number line tasks and findings",
+     "url": "https://acuresearchbank.acu.edu.au/download/0b0aebf791b23f20597f09b18384d181bc88f9f939946014781ed0c997f1d9a6/1147317/Gervasoni_2011_Insights_about_childrens_understanding.pdf",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Represent whole numbers as lengths from 0 on a number line with equally spaced points labelled 0, 1, 2, ... (CC 2.MD.B.6)",
+     "priority": "core",
+     "where": "Points, lengths and order"
+    },
+    {
+     "item": "Identify and represent numbers using the number line (England Year 1)",
+     "priority": "core",
+     "where": "Points, lengths and order; Reading and estimating on a scale"
+    },
+    {
+     "item": "Use the number line with the words more than and less than (England Year 1)",
+     "priority": "core",
+     "where": "Points, lengths and order"
+    },
+    {
+     "item": "Represent sums and differences within 100 on a number line (CC 2.MD.B.6)",
+     "priority": "core",
+     "where": "Adding and subtracting as moves"
+    },
+    {
+     "item": "Locate numbers on lines where only some marks are labelled, counting in steps of 2, 5 and 10",
+     "priority": "common",
+     "where": "Reading and estimating on a scale"
+    },
+    {
+     "item": "Estimate where a number goes on a number line (England Year 2)",
+     "priority": "common",
+     "where": "Reading and estimating on a scale"
+    },
+    {
+     "item": "Find a difference as a distance, and find unknown numbers in addition and subtraction equations",
+     "priority": "common",
+     "where": "Adding and subtracting as moves"
+    },
+    {
+     "item": "Use ruler-like diagrams for length problems (CC 2.MD.B.5)",
+     "priority": "common",
+     "where": "Points, lengths and order; separate page: Measuring length"
+    },
+    {
+     "item": "Compare and order numbers using the symbols < and >",
+     "priority": "core",
+     "where": "[[comparing-ordering-numbers]]"
+    },
+    {
+     "item": "Tens and ones, used to split jumps",
+     "priority": "common",
+     "where": "[[place-value]]"
+    },
+    {
+     "item": "Meaning of addition and subtraction",
+     "priority": "common",
+     "where": "[[addition-subtraction]]"
+    },
+    {
+     "item": "Count backwards through zero to include negative numbers (England Year 4)",
+     "priority": "specialised",
+     "where": "Looking ahead; separate page: Integers"
+    },
+    {
+     "item": "Fractions on a number line",
+     "priority": "specialised",
+     "where": "Looking ahead; separate page: Fractions"
+    },
+    {
+     "item": "Round to the nearest ten using a number line",
+     "priority": "specialised",
+     "where": "separate page: Rounding"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "A number line is a straight line on which every whole number has its own point: 0 at a chosen starting point, and each number $n$ at the end of $n$ equal steps to the right. It turns numbers into positions and lengths. Order becomes left and right, the difference of two numbers becomes the distance between their points, and adding becomes moving along the line.\n\nThe picture is worth learning carefully because it does not stay with whole numbers. The same line later carries negative numbers, fractions and decimals, and at university the real numbers; the facts proved here for whole numbers (distance is difference, the halfway point is $\\frac{a+b}{2}$, adding is a shift) will be extended to that larger line and remain true there."
+    },
+    {
+     "type": "section",
+     "title": "Points, lengths and order",
+     "src": [
+      "cc2MD",
+      "os11",
+      "eng"
+     ],
+     "body": "To build a number line, draw a straight line and choose three things: a point called the origin, labelled 0; a direction in which the numbers increase, by convention to the right; and a length called the unit. Lay the unit down again and again from 0 and label the ends of the copies 1, 2, 3, and so on. A ruler is a number line built in exactly this way, with the centimetre or the inch as the unit."
+    },
+    {
+     "type": "definition",
+     "title": "Number line, coordinate",
+     "body": "On a number line with unit $u$, the point for the whole number $n$ is the point at distance $n \\times u$ to the right of 0. The number $n$ is called the coordinate of that point. The marks drawn at whole numbers are tick marks; neighbouring tick marks are one unit apart.\n\nSo each whole number appears on the line in two ways at once: as a point, and as the length of the segment from 0 to that point, made of $n$ copies of the unit. The point 0 is the origin itself, the end of a segment of no units."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\ndef nline(y, a, b, step, labels, sx=1.0, ox=0.0):\n    X = lambda v: ox + (v - a) * sx\n    ax.plot([X(a) - 0.25 * sx * step, X(b) + 0.25 * sx * step], [y, y], color='black', lw=1.2)\n    v = a\n    while v <= b + 1e-9:\n        big = v in labels\n        h = 0.14 if big else 0.09\n        ax.plot([X(v), X(v)], [y - h, y + h], color='black', lw=1.0)\n        if big:\n            ax.text(X(v), y - 0.22, str(v), ha='center', va='top', fontsize=11)\n        v += step\n    return X\ndef jump(X, y, s, e, txt, col, rad=0.5, below=False):\n    sg = -1 if below else 1\n    r = (-rad if e > s else rad) * sg\n    yy = y + sg * 0.12\n    ax.annotate('', xy=(X(e), yy), xytext=(X(s), yy),\n                arrowprops=dict(arrowstyle='-|>', color=col, lw=1.4, connectionstyle='arc3,rad=%s' % r, shrinkA=0, shrinkB=0))\n    hgt = abs(X(e) - X(s)) * rad / 2\n    ax.text((X(s) + X(e)) / 2, yy + sg * (hgt + 0.05), txt, color=col, ha='center', va='top' if below else 'bottom', fontsize=11)\ndef dot(X, y, v, col, ms=7):\n    ax.plot([X(v)], [y], 'o', color=col, ms=ms, zorder=5)\ndef bracket(X, y, s, e, txt, col='black'):\n    ax.plot([X(s), X(e)], [y, y], color=col, lw=1.2)\n    for v in (s, e):\n        ax.plot([X(v), X(v)], [y - 0.08, y + 0.08], color=col, lw=1.2)\n    ax.text((X(s) + X(e)) / 2, y - 0.12, txt, ha='center', va='top', color=col, fontsize=11)\n\nfig.set_size_inches(6.4, 2.0)\nX = nline(0, 0, 10, 1, labels=list(range(11)), sx=0.55)\nfor k in range(4):\n    ax.add_patch(plt.Rectangle((X(k), 0.26), 0.55, 0.2, fc='none', ec='blue', lw=1.2))\nax.text(X(4) + 0.1, 0.36, '4 copies of the unit', ha='left', va='center', color='blue', fontsize=11)\nax.plot([X(0), X(1)], [0.56, 0.56], color='black', lw=1.2)\nfor v in (0, 1):\n    ax.plot([X(v), X(v)], [0.5, 0.62], color='black', lw=1.2)\nax.text(X(0.5), 0.66, '1 unit', ha='center', va='bottom', fontsize=11)\ndot(X, 0, 4, 'blue')\nax.text(X(0) - 0.22, 0, 'origin', ha='right', va='center', fontsize=11)\nax.text(X(4), -0.6, 'point 4', ha='center', va='top', color='blue', fontsize=11)\nax.set_xlim(-0.85, 5.95); ax.set_ylim(-0.95, 1.0); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "A number line from 0 to 10. The blue point has coordinate 4: it is the end of 4 copies of the unit laid end to end from the origin.",
+     "alt": "A horizontal line with tick marks labelled 0 to 10; the word origin stands beside the 0 tick. Above the line, four outlined unit bars run from 0 to 4, the first marked 1 unit; a blue dot marks 4."
+    },
+    {
+     "type": "theorem",
+     "title": "Order and distance",
+     "body": "For whole numbers $a$ and $b$ with $a < b$:\n\n1. the point for $a$ lies to the left of the point for $b$;\n2. the segment from the point for $a$ to the point for $b$ is $b - a$ units long.\n\nConversely, if the point for $a$ lies to the left of the point for $b$, then $a < b$. In short: further right means greater, and distance is difference."
+    },
+    {
+     "type": "proof",
+     "body": "Since $a < b$, we can write $b = a + (b - a)$ with $b - a$ a whole number of at least 1. The segment from 0 to $b$ is $b$ units long, and laying the units down from 0, the first $a$ of them end at the point for $a$; the remaining $b - a$ units go further right and end at $b$. So $a$ is to the left of $b$, and the part of the segment between them is the $b - a$ units left over.\n\nFor the converse, if $a$ is left of $b$ then $a \\ne b$, and $b < a$ is impossible because it would put $b$ to the left of $a$. Of two different whole numbers one is smaller (see [[comparing-ordering-numbers]]), so $a < b$.\n\nThe distance does not depend on the unit: on a line with unit $u$ the segment is $(b - a) \\times u$ long, and a longer unit only stretches the whole picture."
+    },
+    {
+     "type": "example",
+     "body": "Compare 38 and 52 on a number line, and find how far apart they are without subtracting in columns.",
+     "solution": "52 is further right, so $52 > 38$. To measure the gap, walk from 38 to 52 in convenient pieces: 2 units to 40, then 10 units to 50, then 2 units to 52. The gap is $2 + 10 + 2 = 14$ units, so $52 - 38 = 14$. Breaking the walk at the tens, 40 and 50, is what makes this quick; it is the number-line form of [[place-value]]."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Which pair is further apart: 12 and 19, or 61 and 66?",
+       "hint": "Find each distance as a difference.",
+       "solution": "$19 - 12 = 7$ and $66 - 61 = 5$, so 12 and 19 are further apart. The size of the numbers says where the pair sits on the line, not how far apart its points are."
+      },
+      {
+       "q": "A pencil lies along a ruler from the 3 cm mark to the 11 cm mark. How long is it, and why is the answer not 11 cm?",
+       "hint": "The ruler is a number line in centimetres; where does the pencil start?",
+       "solution": "Its length is the distance between the points 3 and 11, which is $11 - 3 = 8$ cm. The reading 11 is the distance from 0, and the pencil does not start at 0."
+      },
+      {
+       "q": "Someone draws marks labelled 0, 1, 2, 3, putting 1 cm between 0 and 1 and between 1 and 2, but 3 cm between 2 and 3. Which part of the theorem fails on this drawing, and why does the definition rule such a drawing out?",
+       "hint": "Compare the segments from 0 to 1 and from 2 to 3.",
+       "solution": "Distance is no longer difference: $1 - 0 = 3 - 2 = 1$, but the segments are 1 cm and 3 cm long. The definition puts $n$ at distance $n \\times u$, so every pair of neighbouring marks is exactly one unit apart; unequal gaps break the link between lengths and numbers on which the whole picture rests."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Reading and estimating on a scale",
+     "src": [
+      "hilton",
+      "gervasoni",
+      "eng"
+     ],
+     "body": "Real number lines rarely label every mark. A line from 0 to 100 may label only every tenth mark, or only its two ends, and a line may start at a number other than 0, in which case it is a piece of a longer line whose origin is off the page. Reading such a line means working out what each interval (the space between neighbouring marks) is worth, and estimating means placing a number where no mark is drawn.\n\nThe marks on such a scale need not stand for whole numbers one apart, so the theorem on order and distance does not apply as it stands. What every scale on this page has instead is the defining property of a linear scale: equal lengths correspond to equal differences, so that two segments of the same length always join points whose labels differ by the same amount. On the whole-number line this is the theorem just proved; from now on it is assumed for every scale. The same goes for points between the marks of the number line itself: a point such as halfway between 4 and 5 has a coordinate (here 4.5), and distances between such points are again differences of coordinates. This is taken on trust here and made precise with fractions ([[unit-fractions]])."
+    },
+    {
+     "type": "theorem",
+     "title": "Reading a scale",
+     "body": "Suppose a linear scale has equally spaced marks, a mark is labelled $a$, a mark further right is labelled $b$, and there are $m$ intervals between them. Then each interval is worth $$d = \\frac{b - a}{m},$$ and the mark $k$ intervals to the right of $a$ stands for $a + kd$."
+    },
+    {
+     "type": "proof",
+     "body": "The $m$ intervals have equal length, so on a linear scale they stand for equal differences; call this common difference $d$. Walking from $a$ to $b$ crosses the $m$ intervals one after another, and the label grows by $d$ at each, so $a + md = b$, that is $d = \\frac{b - a}{m}$. After the first $k$ intervals the label has grown by $kd$, giving $a + kd$.\n\nThe value $d$ need not be a whole number: 5 marks from 0 to 10 make 4 intervals, each worth $\\frac{10}{4} = 2.5$. Note also that $m$ counts spaces, not marks: from the mark for $a$ to the mark for $b$ inclusive there are $m + 1$ marks."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\ndef nline(y, a, b, step, labels, sx=1.0, ox=0.0):\n    X = lambda v: ox + (v - a) * sx\n    ax.plot([X(a) - 0.25 * sx * step, X(b) + 0.25 * sx * step], [y, y], color='black', lw=1.2)\n    v = a\n    while v <= b + 1e-9:\n        big = v in labels\n        h = 0.14 if big else 0.09\n        ax.plot([X(v), X(v)], [y - h, y + h], color='black', lw=1.0)\n        if big:\n            ax.text(X(v), y - 0.22, str(v), ha='center', va='top', fontsize=11)\n        v += step\n    return X\ndef jump(X, y, s, e, txt, col, rad=0.5, below=False):\n    sg = -1 if below else 1\n    r = (-rad if e > s else rad) * sg\n    yy = y + sg * 0.12\n    ax.annotate('', xy=(X(e), yy), xytext=(X(s), yy),\n                arrowprops=dict(arrowstyle='-|>', color=col, lw=1.4, connectionstyle='arc3,rad=%s' % r, shrinkA=0, shrinkB=0))\n    hgt = abs(X(e) - X(s)) * rad / 2\n    ax.text((X(s) + X(e)) / 2, yy + sg * (hgt + 0.05), txt, color=col, ha='center', va='top' if below else 'bottom', fontsize=11)\ndef dot(X, y, v, col, ms=7):\n    ax.plot([X(v)], [y], 'o', color=col, ms=ms, zorder=5)\ndef bracket(X, y, s, e, txt, col='black'):\n    ax.plot([X(s), X(e)], [y, y], color=col, lw=1.2)\n    for v in (s, e):\n        ax.plot([X(v), X(v)], [y - 0.08, y + 0.08], color=col, lw=1.2)\n    ax.text((X(s) + X(e)) / 2, y - 0.12, txt, ha='center', va='top', color=col, fontsize=11)\n\nfig.set_size_inches(6.4, 1.9)\nX = nline(0, 0, 20, 2, labels=[0, 20], sx=0.28)\nfor v in range(2, 20, 2):\n    ax.text(X(v), -0.22, str(v), ha='center', va='top', color='blue', fontsize=11)\ndot(X, 0, 14, 'red')\nax.text(X(14), 0.22, '14', ha='center', va='bottom', color='red', fontsize=11)\nbracket(X, -0.85, 0, 20, '10 intervals, each worth 2')\nax.set_xlim(-0.4, 6.0); ax.set_ylim(-1.35, 0.6); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Eleven equally spaced marks from 0 to 20 make 10 intervals, so each interval is worth $20/10 = 2$; the deduced labels are in blue. The red point, 7 intervals from 0, stands for $7 \\times 2 = 14$.",
+     "alt": "A number line with eleven tick marks; only the end marks are labelled 0 and 20 in black, the others 2, 4, ..., 18 in blue. A red dot at the eighth mark is labelled 14. A bracket below reads 10 intervals, each worth 2."
+    },
+    {
+     "type": "pitfall",
+     "title": "Not every interval is worth 1",
+     "body": "A common error is to count marks one by one as if each interval were 1, ignoring the numbers at the ends. On the line above this reads the red point as 7 instead of 14, and on a line from 0 to 100 with a mark every 10 it reads the fifth mark as 5 instead of 50. The cure is the theorem: the end labels fix the scale, and $d$ comes from $b - a$, not from the count of marks alone."
+    },
+    {
+     "type": "example",
+     "body": "A line has 5 equally spaced marks; the first is labelled 35 and the last 55. Label the other marks, and say where 43 goes.",
+     "solution": "5 marks make $m = 4$ intervals, and $d = (55 - 35)/4 = 20/4 = 5$. The labels are 35, 40, 45, 50, 55. The number 43 lies between the marks for 40 and 45: it is $43 - 40 = 3$ fifths of the way across that interval, a little nearer 45, since $45 - 43 = 2 < 3$."
+    },
+    {
+     "type": "theorem",
+     "title": "The halfway point",
+     "body": "Let $a < b$. The point halfway between $a$ and $b$ has coordinate $$\\frac{a + b}{2} = a + \\frac{b - a}{2}.$$ More generally, a number $n$ between $a$ and $b$ lies the fraction $\\frac{n - a}{b - a}$ of the way from $a$ to $b$."
+    },
+    {
+     "type": "proof",
+     "body": "Let $h$ be the halfway point. It is the same distance from both ends, and distances are differences, so $h - a = b - h$. Adding $h + a$ to both sides gives $2h = a + b$, so $h = \\frac{a+b}{2}$; and $a + \\frac{b - a}{2} = \\frac{2a + b - a}{2}$ is the same number.\n\nFor the general statement, cut the segment from $a$ to $b$ into its $b - a$ unit intervals (for whole $a$ and $b$). They have equal length, so each is the fraction $\\frac{1}{b - a}$ of the whole segment. The point $n$ is reached after $n - a$ of them, so its distance from $a$ is $n - a$ of these equal parts: the fraction $\\frac{n - a}{b - a}$ of the way. In other words, on a linear scale position along a segment is proportional to the difference from its left end.\n\nIf $b - a$ is odd, $h$ is not a whole number: halfway between 2 and 7 is $4.5$, a point between the marks 4 and 5."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\ndef nline(y, a, b, step, labels, sx=1.0, ox=0.0):\n    X = lambda v: ox + (v - a) * sx\n    ax.plot([X(a) - 0.25 * sx * step, X(b) + 0.25 * sx * step], [y, y], color='black', lw=1.2)\n    v = a\n    while v <= b + 1e-9:\n        big = v in labels\n        h = 0.14 if big else 0.09\n        ax.plot([X(v), X(v)], [y - h, y + h], color='black', lw=1.0)\n        if big:\n            ax.text(X(v), y - 0.22, str(v), ha='center', va='top', fontsize=11)\n        v += step\n    return X\ndef jump(X, y, s, e, txt, col, rad=0.5, below=False):\n    sg = -1 if below else 1\n    r = (-rad if e > s else rad) * sg\n    yy = y + sg * 0.12\n    ax.annotate('', xy=(X(e), yy), xytext=(X(s), yy),\n                arrowprops=dict(arrowstyle='-|>', color=col, lw=1.4, connectionstyle='arc3,rad=%s' % r, shrinkA=0, shrinkB=0))\n    hgt = abs(X(e) - X(s)) * rad / 2\n    ax.text((X(s) + X(e)) / 2, yy + sg * (hgt + 0.05), txt, color=col, ha='center', va='top' if below else 'bottom', fontsize=11)\ndef dot(X, y, v, col, ms=7):\n    ax.plot([X(v)], [y], 'o', color=col, ms=ms, zorder=5)\ndef bracket(X, y, s, e, txt, col='black'):\n    ax.plot([X(s), X(e)], [y, y], color=col, lw=1.2)\n    for v in (s, e):\n        ax.plot([X(v), X(v)], [y - 0.08, y + 0.08], color=col, lw=1.2)\n    ax.text((X(s) + X(e)) / 2, y - 0.12, txt, ha='center', va='top', color=col, fontsize=11)\n\nfig.set_size_inches(6.4, 2.1)\nX = nline(0, 0, 10, 1, labels=list(range(11)), sx=0.55)\ndot(X, 0, 2, 'black'); dot(X, 0, 8, 'black')\njump(X, 0, 2, 5, '+3', 'blue', rad=0.5)\njump(X, 0, 8, 5, '$-3$', 'blue', rad=0.5)\ndot(X, 0, 5, 'green', ms=9)\nax.text(X(5), -0.62, 'halfway: 5', color='green', ha='center', va='top', fontsize=11)\nax.plot([X(3)], [0], 'x', color='red', ms=10, mew=2, zorder=6)\nax.text(X(3), -0.62, 'not 3', color='red', ha='center', va='top', fontsize=11)\nax.set_xlim(-0.5, 6.0); ax.set_ylim(-1.0, 1.05); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Halfway between 2 and 8. The gap is $8 - 2 = 6$; a jump of 3 to the right from 2 and a jump of 3 to the left from 8 meet at 5 (green). The red cross marks a common mistake: halving the gap gives 3, the length of each jump, not the halfway point. Halving alone works only for a line that starts at 0, where $a + \\frac{b - a}{2} = \\frac{b}{2}$; in general the half-gap is added to the starting number, $2 + 3 = 5$.",
+     "alt": "A number line from 0 to 10 with black dots at 2 and 8, blue arrows of length 3 from each meeting at a green dot at 5, and a red cross at 3 labelled not 3."
+    },
+    {
+     "type": "example",
+     "body": "Estimate where 63 goes on an empty line labelled only 0 and 100, and where 150 goes on a line labelled only 0 and 200.",
+     "solution": "By the theorem, 63 sits $\\frac{63}{100}$ of the way along. Find the landmarks first: halfway is $\\frac{0 + 100}{2} = 50$, and halfway between 50 and 100 is 75. Since $50 < 63 < 75$, the point goes in the third quarter of the line, a little past the middle: $63 - 50 = 13$ beyond it, about half of the 25 units from 50 to 75.\n\nFor 150 on 0 to 200: halfway is 100, and halfway between 100 and 200 is 150. So 150 is exactly three quarters of the way along, as $\\frac{150}{200} = \\frac{3}{4}$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "A line from 0 to 10 has 6 equally spaced marks. What is each interval worth?",
+       "a": "2: six marks make 5 intervals, and $10/5 = 2$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "A line has 6 equally spaced marks, the first labelled 0 and the last 50. Label all the marks. Then do the same for a line with 5 marks from 1 to 3.",
+       "hint": "Count the intervals first.",
+       "solution": "Six marks make 5 intervals, $d = 50/5 = 10$: 0, 10, 20, 30, 40, 50. Five marks make 4 intervals, $d = (3 - 1)/4 = 0.5$: 1, 1.5, 2, 2.5, 3."
+      },
+      {
+       "q": "Find the point one third of the way from 7 to 19. Then prove that in general the point one third of the way from $a$ to $b$ is $\\frac{2a + b}{3}$, and check this formula on 7 and 19.",
+       "hint": "A third of the way means a third of the distance $b - a$, added to $a$.",
+       "solution": "The distance is $19 - 7 = 12$, a third of it is 4, and the point is $7 + 4 = 11$; check: $11 - 7 = 4$ and $19 - 11 = 8 = 2 \\times 4$. In general the point is $a + \\frac{b - a}{3} = \\frac{3a + b - a}{3} = \\frac{2a + b}{3}$. For 7 and 19 this is $\\frac{14 + 19}{3} = \\frac{33}{3} = 11$. The weights show which end is nearer: $a$ counts twice, so the point is nearer $a$."
+      },
+      {
+       "q": "On a line labelled 40 at the left end and 60 at the right end, what fraction of the way along does 45 go? And what number is halfway between 37 and 64?",
+       "hint": "Use $\\frac{n - a}{b - a}$, and $\\frac{a+b}{2}$.",
+       "solution": "$\\frac{45 - 40}{60 - 40} = \\frac{5}{20} = \\frac{1}{4}$: a quarter of the way along; the line starts at 40, so $\\frac{45}{60}$ would be wrong. Halfway between 37 and 64 is $\\frac{37 + 64}{2} = \\frac{101}{2} = 50.5$, between the marks 50 and 51, because the gap 27 is odd."
+      },
+      {
+       "q": "Prove that the halfway point between two whole numbers $a$ and $b$ is a whole number exactly when $a$ and $b$ are both even or both odd.",
+       "hint": "The halfway point is $\\frac{a+b}{2}$; when is $a + b$ even? See [[odd-even-numbers]].",
+       "solution": "$\\frac{a + b}{2}$ is a whole number exactly when $a + b$ is even. By the parity rules, even + even and odd + odd are even, while even + odd is odd. So the halfway point is a whole number exactly when $a$ and $b$ have the same parity. For example 2 and 8 give 5, while 2 and 7 give 4.5."
+      },
+      {
+       "q": "Let $h$ be the halfway point of $a$ and $b$. Prove that the halfway point of $a$ and $h$ is $a + \\frac{b - a}{4}$, a quarter of the way from $a$ to $b$, and that the halfway point of $h$ and $b$ is three quarters of the way. Why does this justify using 25, 50 and 75 as landmarks on a line from 0 to 100?",
+       "hint": "Apply $\\frac{a + b}{2}$ twice.",
+       "solution": "The halfway point of $a$ and $h = \\frac{a+b}{2}$ is $\\frac{1}{2}\\left(a + \\frac{a + b}{2}\\right) = \\frac{3a + b}{4} = a + \\frac{b - a}{4}$. Likewise the halfway point of $h$ and $b$ is $\\frac{1}{2}\\left(\\frac{a + b}{2} + b\\right) = \\frac{a + 3b}{4} = a + \\frac{3(b - a)}{4}$. So halving twice cuts the segment into four equal parts. For 0 to 100 the halfway point is 50, and halving again gives $\\frac{0 + 50}{2} = 25$ and $\\frac{50 + 100}{2} = 75$: these are exactly the quarter points, found without dividing by 4."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Adding and subtracting as moves",
+     "src": [
+      "cc2MD",
+      "im2U4",
+      "imL9"
+     ],
+     "body": "Adding $n$ to a number means moving its point $n$ units to the right, and subtracting $n$ means moving $n$ units to the left. Such a move is drawn as a curved arrow called a jump, and a jump has three parts: a start, a direction and a length. An equation such as $8 + 4 = 12$ is then a picture: start at 8, jump 4 to the right, land on 12."
+    },
+    {
+     "type": "theorem",
+     "title": "Jumps add and subtract",
+     "body": "Starting at $a$, a jump of $n$ units to the right lands on $a + n$, and a jump of $n$ units to the left lands on $a - n$ (for $n \\le a$, because this page's line holds only the whole numbers; a jump left past 0 needs the negative numbers of Looking ahead). A jump of $p + q$ units is the same as a jump of $p$ followed by a jump of $q$."
+    },
+    {
+     "type": "proof",
+     "body": "The point $a + n$ is to the right of $a$, at distance $(a + n) - a = n$, by the theorem on order and distance; so it is where an $n$-unit jump to the right ends. Likewise $a - n$ is $a - (a - n) = n$ units to the left of $a$.\n\nFor the second statement, follow the lengths. A jump of $p$ to the right lays $p$ unit copies from $a$, ending at $a + p$ by the first part; a jump of $q$ then lays $q$ further copies, starting where the first ones stopped, and ends at $(a + p) + q$. Together the two jumps lay one unbroken row of $p + q$ unit copies starting at $a$, which is exactly what a single jump of $p + q$ does, ending at $a + (p + q)$. Both descriptions name the end of the same row, so the landing points agree. This is why a jump may be split into convenient pieces, such as tens and ones, and it proves $a + (p + q) = (a + p) + q$ rather than assuming it."
+    },
+    {
+     "type": "example",
+     "body": "Show $58 - 24$ on a number line by splitting the jump.",
+     "solution": "Split 24 into 2 tens and 4 ones. From 58 jump 20 to the left, to 38, then 4 to the left, to 34. So $58 - 24 = 34$. By the theorem, any other split of 24, such as 4 then 20 (to 54, then 34), lands in the same place."
+    },
+    {
+     "type": "views",
+     "title": "Three ways to see 75 - 68",
+     "src": [
+      "imL9"
+     ],
+     "body": "Subtraction has three readings on the number line, and they always give the same number. Count on and distance both find the number $d$ with $68 + d = 75$, the length of the segment from 68 to 75. Take away jumps 68 to the left from 75 and lands on some point $x$; jumping 68 to the right from $x$ undoes this and returns to 75, so $x + 68 = 75$ and $x$ is that same $d$. Which reading is quickest depends on the numbers.",
+     "items": [
+      {
+       "label": "Take away",
+       "src": [
+        "imL9"
+       ],
+       "body": "Start at 75 and jump 68 to the left, for example 60 and then 8: the jumps reach 15 and then 7. This fits a story in which 68 of 75 things are removed, but the jumps are long."
+      },
+      {
+       "label": "Count on",
+       "src": [
+        "imL9"
+       ],
+       "body": "Start at 68 and ask how far to the right 75 is: 2 to reach 70, then 5. The answer is the total length of the jumps, $2 + 5 = 7$. This reads $75 - 68$ as the missing addend in $68 + {?} = 75$, and it is quick when the numbers are close."
+      },
+      {
+       "label": "Distance",
+       "src": [
+        "imL9"
+       ],
+       "body": "Mark both points and measure the segment between them: 7 units. This is the theorem on order and distance itself."
+      }
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\ndef nline(y, a, b, step, labels, sx=1.0, ox=0.0):\n    X = lambda v: ox + (v - a) * sx\n    ax.plot([X(a) - 0.25 * sx * step, X(b) + 0.25 * sx * step], [y, y], color='black', lw=1.2)\n    v = a\n    while v <= b + 1e-9:\n        big = v in labels\n        h = 0.14 if big else 0.09\n        ax.plot([X(v), X(v)], [y - h, y + h], color='black', lw=1.0)\n        if big:\n            ax.text(X(v), y - 0.22, str(v), ha='center', va='top', fontsize=11)\n        v += step\n    return X\ndef jump(X, y, s, e, txt, col, rad=0.5, below=False):\n    sg = -1 if below else 1\n    r = (-rad if e > s else rad) * sg\n    yy = y + sg * 0.12\n    ax.annotate('', xy=(X(e), yy), xytext=(X(s), yy),\n                arrowprops=dict(arrowstyle='-|>', color=col, lw=1.4, connectionstyle='arc3,rad=%s' % r, shrinkA=0, shrinkB=0))\n    hgt = abs(X(e) - X(s)) * rad / 2\n    ax.text((X(s) + X(e)) / 2, yy + sg * (hgt + 0.05), txt, color=col, ha='center', va='top' if below else 'bottom', fontsize=11)\ndef dot(X, y, v, col, ms=7):\n    ax.plot([X(v)], [y], 'o', color=col, ms=ms, zorder=5)\ndef bracket(X, y, s, e, txt, col='black'):\n    ax.plot([X(s), X(e)], [y, y], color=col, lw=1.2)\n    for v in (s, e):\n        ax.plot([X(v), X(v)], [y - 0.08, y + 0.08], color=col, lw=1.2)\n    ax.text((X(s) + X(e)) / 2, y - 0.12, txt, ha='center', va='top', color=col, fontsize=11)\n\nfig.set_size_inches(6.4, 3.3)\nX = nline(2.3, 0, 80, 5, labels=[0, 40], sx=0.075)\ndot(X, 2.3, 75, 'black'); dot(X, 2.3, 7, 'red')\njump(X, 2.3, 75, 15, '$-60$', 'red', rad=0.25)\njump(X, 2.3, 15, 7, '$-8$', 'red', rad=0.9)\nax.text(X(75), 2.08, '75', ha='center', va='top', fontsize=11)\nax.text(X(15), 2.08, '15', ha='center', va='top', fontsize=11)\nax.text(X(7), 2.08, '7', ha='center', va='top', color='red', fontsize=11)\nax.text(-0.3, 3.05, 'take away', ha='left', va='bottom', fontsize=11)\nX = nline(0, 65, 80, 1, labels=[65, 68, 70, 75, 80], sx=0.37)\ndot(X, 0, 68, 'black'); dot(X, 0, 75, 'black')\njump(X, 0, 68, 70, '+2', 'blue', rad=0.8)\njump(X, 0, 70, 75, '+5', 'blue', rad=0.45)\nbracket(X, -0.65, 68, 75, 'distance 7')\nax.text(-0.3, 0.75, 'count on', ha='left', va='bottom', fontsize=11)\nax.set_xlim(-0.4, 6.4); ax.set_ylim(-1.1, 3.4); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "$75 - 68$ two ways. Top: take away, jumping left from 75 by 60 to 15 and then by 8 to 7. Bottom: count on, jumping right from 68 by 2 to 70 and then by 5 to 75; the jumps make up the distance 7.",
+     "alt": "Two number lines. The top one, captioned take away, runs from 0 to 80; red arcs go from 75 to 15 (minus 60) and from 15 to 7 (minus 8), landing on a red dot at 7. The bottom one, captioned count on, runs from 65 to 80; blue arcs go from 68 to 70 (+2) and 70 to 75 (+5), with a bracket from 68 to 75 labelled distance 7."
+    },
+    {
+     "type": "example",
+     "body": "Find the unknown numbers: ${?} - 20 = 33$ and $46 + {?} = 71$.",
+     "solution": "In ${?} - 20 = 33$ the unknown is the start of a jump of 20 to the left that lands on 33. Undo the jump: from 33 jump 20 to the right, landing on 53. Check: $53 - 20 = 33$.\n\nIn $46 + {?} = 71$ the unknown is the length of a jump from 46 to 71, which is the distance between them. Count on: 4 to 50, 20 to 70, 1 to 71, so the unknown is $4 + 20 + 1 = 25$. Check: $46 + 25 = 71$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "An arrow starts at 13 and points left, ending at 5. Which equation does it show?",
+       "a": "$13 - 8 = 5$: it points left, so it is a subtraction, and its length is $13 - 5 = 8$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Without working out $403 - 198$ in columns, explain with distances on the line why it is a little more than 200, and then find it exactly.",
+       "hint": "Compare the segment from 198 to 403 with the segment from 200 to 400.",
+       "solution": "Since $198 < 200$ and $400 < 403$, the segment from 198 to 403 contains the segment from 200 to 400, which is $400 - 200 = 200$ units long, so $403 - 198$ is more than 200. The extra pieces are $200 - 198 = 2$ on the left and $403 - 400 = 3$ on the right, so $403 - 198 = 2 + 200 + 3 = 205$."
+      },
+      {
+       "q": "Find the unknowns: ${?} + 19 = 67$ and $92 - {?} = 33$.",
+       "hint": "In the first, undo a jump; in the second, the unknown is a distance.",
+       "solution": "The jump of 19 to the right ended at 67, so undo it by jumping 19 to the left: 10 to 57, then 9 to 48. Check $48 + 19 = 67$. In $92 - {?} = 33$ the unknown is the distance from 33 to 92: 7 to 40, 50 to 90, 2 to 92, total $7 + 50 + 2 = 59$. Check $92 - 59 = 33$."
+      },
+      {
+       "q": "Explain with the number line why $(b + c) - (a + c) = b - a$, and use it to compute $92 - 59$ by changing it into an easier subtraction.",
+       "hint": "Adding $c$ to both numbers moves both points by the same jump.",
+       "solution": "$(b + c) - (a + c)$ is the distance between the points $a + c$ and $b + c$. These are the points $a$ and $b$ both moved $c$ units to the right, so the segment between them is moved, not stretched, and its length $b - a$ is unchanged. With $c = 1$: $92 - 59 = 93 - 60 = 33$."
+      },
+      {
+       "q": "Use the number line to explain why $a + n = n + a$ for whole numbers, even though the two jumps are different.",
+       "hint": "Turn the segment from 0 to $a + n$ end for end.",
+       "solution": "Lay $a$ units and then $n$ units from 0: this is a segment from 0 to the point $a + n$, whose first piece is $a$ units long and second piece $n$ units long. Turn this segment end for end (a half-turn about its midpoint) and slide it back so that it starts at 0. Turning and sliding do not change its length, but now the $n$-unit piece comes first and the $a$-unit piece second, so it is the segment laid for $n + a$. The two segments have the same length and both start at 0, so they end at the same point: $a + n = n + a$. What the argument uses is that a segment keeps its length when it is turned around and moved; it does not assume that the count $a + n$ equals $n + a$."
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "body": "The line extends to the left. Continuing the equal steps to the left of 0 gives the negative integers $-1, -2, -3, \\dots$, and a jump to the left can then go past 0, so the restriction $n \\le a$ disappears. Further right is still greater, so $-5 < -2$, and distance is still difference: from $-3$ to 4 is $4 - (-3) = 7$ units. Distance in either order is written $|b - a|$, the larger number minus the smaller.\n\nThe line fills in. Dividing the unit into equal parts gives points for fractions, which makes precise the points between marks, such as 4.5, that this page took on trust. Fractions still leave gaps: the diagonal of a unit square has length $\\sqrt 2$, which is not a fraction (proved on [[odd-even-numbers]]). The line with every gap filled is the real line of [[real-numbers]]. On it the distance $|b - a|$ is zero only when $a = b$, is the same in both orders, and satisfies $|c - a| \\le |b - a| + |c - b|$ (a detour through $b$ is never shorter); these three properties are what define distance in [[metric-spaces]].\n\nTwo number lines crossing at right angles at their origins give coordinates in the plane ([[analytic-geometry]]): each point is named by a pair of numbers, one read on each line, and for two points on the same horizontal line the distance between them is still the difference of their first coordinates."
+    },
+    {
+     "type": "summary",
+     "body": "- A number line has an origin 0, a direction (right) and a unit; the point $n$ is $n$ units from 0, and $n$ is its coordinate.\n- Further right means greater, and the distance between the points $a < b$ is $b - a$.\n- On a linear scale equal lengths stand for equal differences; with $m$ intervals between marks $a$ and $b$, each interval is worth $\\frac{b - a}{m}$. Count intervals, not marks.\n- The halfway point of $a$ and $b$ is $\\frac{a+b}{2}$, and $n$ lies the fraction $\\frac{n - a}{b - a}$ of the way from $a$ to $b$.\n- Adding $n$ is a jump of $n$ to the right, subtracting is a jump to the left; a jump can be split into pieces.\n- $b - a$ can be read as take away, count on, or distance; all three find the number $d$ with $a + d = b$."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# section 1\nassert 2 + 10 + 2 == 14 == 52 - 38 and 52 > 38 and 38 + 2 == 40 and 50 + 2 == 52\nassert len(range(0, 11)) == 11 and 4 * 1 == 4\nassert 19 - 12 == 7 and 66 - 61 == 5 and 7 > 5\nassert 11 - 3 == 8\nassert 1 - 0 == 3 - 2 == 1\nfor a in range(0, 30):\n    for b in range(a + 1, 30):\n        assert a + (b - a) == b and b - a >= 1\n# figure 1: 4 unit bars from 0 to 4, ticks 0..10, first bar is 1 unit\nassert len(range(4)) == 4 and len(range(0, 11)) == 11 and 1 - 0 == 1\n"
+    },
+    {
+     "python": "# section 2\nfrom fractions import Fraction as F\ndef d(a, b, marks): return F(b - a, marks - 1)\nassert d(0, 20, 11) == 2 and 0 + 7 * 2 == 14 and F(20, 10) == 2\nassert list(range(0, 21, 2)) == [0,2,4,6,8,10,12,14,16,18,20] and len(range(2, 20, 2)) == 9\n# linear scale: a + m d == b; 5 marks from 0 to 10 -> 2.5\nassert d(0, 10, 5) == F(10, 4) == 2.5\nfor a in range(-10, 10):\n    for b in range(a + 1, 20):\n        for m in range(1, 8):\n            dd = F(b - a, m); assert a + m * dd == b\n# pitfall: marks every 10 on 0..100, 50 at fifth mark; counting in ones puts 50 at mark for 10\nassert 5 * 10 == 50 and 5 * 1 == 5 and 7 * 1 == 7 and 7 * 2 == 14\nassert d(35, 55, 5) == 5 and F(20, 4) == 5 and list(range(35, 56, 5)) == [35, 40, 45, 50, 55]\nassert 43 - 40 == 3 and 45 - 43 == 2 and 2 < 3\nassert F(2 + 7, 2) == F(9, 2) == 4.5 and (8 - 2) == 6 and 6 / 2 == 3 and 2 + 3 == 5 == (2 + 8) / 2 and F(0 + 8 - 0, 2) == 4\nfor a in range(-20, 20):\n    for b in range(a + 1, 25):\n        h = F(a + b, 2); assert h - a == b - h and h == a + F(b - a, 2) and F(2 * a + b - a, 2) == h\n        assert (h.denominator == 1) == ((a - b) % 2 == 0)\n        for n in range(a, b + 1):\n            assert F(n - a, b - a) * (b - a) == n - a\nassert F(63, 100) > F(1, 2) and 50 < 63 < 75 and 63 - 50 == 13 and 75 - 50 == 25 and (0 + 100) / 2 == 50 and (50 + 100) / 2 == 75\nassert (0 + 200) / 2 == 100 and (100 + 200) / 2 == 150 and F(150, 200) == F(3, 4)\nassert abs(13 - 25 / 2) < 1\n# check block\nassert d(0, 10, 6) == 2 and 10 / 5 == 2\n# exercises\nassert d(0, 50, 6) == 10 and list(range(0, 51, 10)) == [0, 10, 20, 30, 40, 50]\nassert d(1, 3, 5) == F(1, 2) and [1 + k * F(1, 2) for k in range(5)] == [1, F(3, 2), 2, F(5, 2), 3] and F(3 - 1, 4) == 0.5\nassert 19 - 7 == 12 and 12 / 3 == 4 and 7 + 4 == 11 and 11 - 7 == 4 and 19 - 11 == 8 == 2 * 4 and 14 + 19 == 33 and 33 / 3 == 11 and F(2 * 7 + 19, 3) == 11\nfor a in range(-10, 10):\n    for b in range(a + 1, 20):\n        assert a + F(b - a, 3) == F(3 * a + b - a, 3) == F(2 * a + b, 3)\n        h = F(a + b, 2)\n        assert (a + h) / 2 == F(3 * a + b, 4) == a + F(b - a, 4)\n        assert (h + b) / 2 == F(a + 3 * b, 4) == a + F(3 * (b - a), 4)\nassert (0 + 50) / 2 == 25 and (50 + 100) / 2 == 75 and (0 + 100) / 2 == 50\nassert F(45 - 40, 60 - 40) == F(5, 20) == F(1, 4) and 37 + 64 == 101 and 101 / 2 == 50.5 and 64 - 37 == 27 and 27 % 2 == 1\nassert (2 + 8) / 2 == 5 and (2 + 7) / 2 == 4.5\n# figure 3: jumps of 3 meet at 5; wrong answer 3\nassert 2 + 3 == 8 - 3 == 5\n"
+    },
+    {
+     "python": "# section 3\nassert 8 + 4 == 12\nassert 58 - 20 == 38 and 38 - 4 == 34 == 58 - 24 and 58 - 4 == 54 and 54 - 20 == 34 and 24 == 2 * 10 + 4\nassert 75 - 60 == 15 and 15 - 8 == 7 and 60 + 8 == 68 and 70 - 68 == 2 and 75 - 70 == 5 and 2 + 5 == 7 == 75 - 68 and 7 + 68 == 75\nassert 33 + 20 == 53 and 53 - 20 == 33\nassert 50 - 46 == 4 and 70 - 50 == 20 and 71 - 70 == 1 and 4 + 20 + 1 == 25 and 46 + 25 == 71\nfor a in range(0, 40):\n    for p in range(0, 15):\n        for q in range(0, 15):\n            assert a + (p + q) == (a + p) + q and (a + p) - a == p\n    for n in range(0, a + 1):\n        assert a - (a - n) == n\n# checks\nassert 13 - 5 == 8 and 13 - 8 == 5\n# exercises\nassert 198 < 200 and 400 < 403 and 400 - 200 == 200 and 200 - 198 == 2 and 403 - 400 == 3 and 2 + 200 + 3 == 205 == 403 - 198\nassert 67 - 10 == 57 and 57 - 9 == 48 and 48 + 19 == 67 and 10 + 9 == 19\nassert 40 - 33 == 7 and 90 - 40 == 50 and 92 - 90 == 2 and 7 + 50 + 2 == 59 and 92 - 59 == 33\nassert 93 - 60 == 33 == 92 - 59\nfor a in range(30):\n    for b in range(30):\n        for c in range(10):\n            assert (b + c) - (a + c) == b - a and a + c == c + a\n# looking ahead\nassert -5 < -2 and 4 - (-3) == 7 and abs(-3 - 4) == 7 and abs(4 - (-3)) == 7\nfor a in range(-8, 8):\n    for b in range(-8, 8):\n        assert (abs(b - a) == 0) == (a == b) and abs(b - a) == abs(a - b)\n        for c in range(-8, 8):\n            assert abs(c - a) <= abs(b - a) + abs(c - b)\n"
+    }
+   ]
+  }
+ }
+]
