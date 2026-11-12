@@ -2,18 +2,18 @@
  {
   "id": "odd-even-numbers",
   "entry": {
-   "sum": "A whole number is even if that many things can be put into pairs (or into two equal groups) with none left over, and odd if one is left over: $12 = 6 + 6$ is even, $17 = 8 + 8 + 1$ is odd. Odd and even numbers take turns, the last digit decides (0, 2, 4, 6, 8 for even), and 0 is even. Sums follow simple rules: odd + odd and even + even are even, odd + even is odd.",
+   "sum": "An integer $n$ is even if $n = 2k$ and odd if $n = 2k + 1$, for some integer $k$. Every integer is exactly one of the two (0 is even), parity alternates along the numbers, the last digit decides it, and it is respected by addition and multiplication, so that rules such as odd + odd = even and odd $\\times$ odd = odd are the arithmetic of remainders on division by 2, where $1 + 1 = 0$ and $1 \\times 1 = 1$.",
    "key": [
-    "12 = 6 + 6",
-    "17 = 8 + 8 + 1",
-    "\\text{odd} + \\text{odd} = \\text{even}"
+    "n = 2k \\text{ or } n = 2k + 1",
+    "(2a+1) + (2b+1) = 2(a+b+1)",
+    "0 = 2 \\cdot 0"
    ],
-   "why": "Odd and even is one of the first properties of whole numbers that children learn to explain with reasons, and it grows into divisibility by 2, remainders and modular arithmetic, and parity arguments throughout mathematics.",
+   "why": "Parity is the simplest property of numbers about which general statements can be proved outright, and it leads straight to divisibility, arithmetic modulo 2 and congruences, and the invariant arguments that prove a tiling or a sequence of moves impossible.",
    "msc": [],
    "links": [
     {
      "field": "combinatorics",
-     "note": "Parity arguments (odd and even counts) are a basic tool for proving that a tiling or a move sequence is impossible."
+     "note": "Parity arguments (odd and even counts) are a basic tool for proving that a tiling or a sequence of moves is impossible."
     },
     {
      "field": "computer-science",
@@ -24,7 +24,8 @@
     "Common Core State Standards for Mathematics, Grade 2, 2.OA.C.3; Grade 3, 3.OA.D.9 (2010)",
     "Department for Education, National curriculum in England: mathematics programmes of study, Year 2 Multiplication and division (2013)",
     "Illustrative Mathematics K-5 Math, Grade 2 Unit 8 Equal Groups, Section A Odd and Even",
-    "NRICH, Two Numbers Under the Microscope (problem 8059)"
+    "NRICH, Two Numbers Under the Microscope (problem 8059)",
+    "Ted Sundstrom, Mathematical Reasoning: Writing and Proof, Section 1.2"
    ],
    "aliases": [
     "even and odd numbers",
@@ -34,7 +35,7 @@
   },
   "lesson": {
    "v": 2,
-   "minutes": 45,
+   "minutes": 18,
    "sources": [
     {
      "k": "cc2OA",
@@ -72,13 +73,6 @@
      "kind": "textbook"
     },
     {
-     "k": "im2U8L3",
-     "ref": "Illustrative Mathematics K-5 Math, Grade 2 Unit 8 (Equal Groups), Lesson 3: Is it Odd or Even?",
-     "where": "Grade 2, Unit 8, Section A, Lesson 3",
-     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-3/lesson.html",
-     "kind": "textbook"
-    },
-    {
      "k": "nrich",
      "ref": "NRICH (University of Cambridge), Two Numbers Under the Microscope",
      "where": "problem 8059, ages 5-7",
@@ -88,66 +82,87 @@
     {
      "k": "wikiZero",
      "ref": "Wikipedia, Parity of zero",
-     "where": "sections on why zero is even and on students and teachers",
+     "where": "section on why zero is even",
      "url": "https://en.wikipedia.org/wiki/Parity_of_zero",
      "kind": "reference"
     },
     {
      "k": "wikiPar",
      "ref": "Wikipedia, Parity (mathematics)",
-     "where": "definition, arithmetic, higher mathematics",
+     "where": "definition, arithmetic, positional representation, higher mathematics",
      "url": "https://en.wikipedia.org/wiki/Parity_(mathematics)",
+     "kind": "reference"
+    },
+    {
+     "k": "sund",
+     "ref": "Ted Sundstrom, Mathematical Reasoning: Writing and Proof (Grand Valley State University, open textbook)",
+     "where": "Section 1.2 Constructing Direct Proofs (definitions of even and odd integers; Theorem 1.8; Progress Check 1.9)",
+     "url": "https://math.libretexts.org/Bookshelves/Mathematical_Logic_and_Proof/Book%3A_Mathematical_Reasoning__Writing_and_Proof_(Sundstrom)/01%3A_Introduction_to_Writing_Proofs_in_Mathematics/1.02%3A_Constructing_Direct_Proofs",
+     "kind": "textbook"
+    },
+    {
+     "k": "wikiMut",
+     "ref": "Wikipedia, Mutilated chessboard problem",
+     "where": "colouring argument",
+     "url": "https://en.wikipedia.org/wiki/Mutilated_chessboard_problem",
+     "kind": "reference"
+    },
+    {
+     "k": "wikiSqrt2",
+     "ref": "Wikipedia, Square root of 2",
+     "where": "Proofs of irrationality (proof by infinite descent)",
+     "url": "https://en.wikipedia.org/wiki/Square_root_of_2",
      "kind": "reference"
     }
    ],
    "requires": [
     {
-     "item": "Decide whether a group of up to 20 objects has an odd or even number of members, by pairing the objects or by counting them in twos (CC 2.OA.C.3)",
+     "item": "Decide whether a group of up to 20 objects has an odd or even number of members, by pairing or by counting in twos (CC 2.OA.C.3)",
      "priority": "core",
-     "where": "Pairs and leftovers; Counting in twos and the odd-even pattern"
+     "where": "What odd and even mean; Alternation and the last digit"
     },
     {
      "item": "Write an even number as a sum of two equal addends, such as 12 = 6 + 6 (CC 2.OA.C.3)",
      "priority": "core",
-     "where": "Two equal groups"
+     "where": "What odd and even mean"
     },
     {
      "item": "Recognise odd and even numbers (England Year 2, within the 2, 5 and 10 multiplication tables)",
      "priority": "core",
-     "where": "Pairs and leftovers; Counting in twos and the odd-even pattern"
+     "where": "What odd and even mean; Alternation and the last digit"
     },
     {
-     "item": "Count in steps of 2 from 0, forwards and backwards (England Year 1 multiples of 2; Year 2 steps of 2 from 0)",
+     "item": "Count in steps of 2 from 0 (England Years 1 and 2)",
      "priority": "common",
-     "where": "Counting in twos and the odd-even pattern"
+     "where": "Alternation and the last digit"
     },
     {
      "item": "Show an odd number as two equal groups and one more, such as 17 = 8 + 8 + 1 (IM Grade 2 Unit 8)",
      "priority": "common",
-     "where": "Two equal groups"
+     "where": "What odd and even mean"
     },
     {
-     "item": "Use the ones digit (0, 2, 4, 6, 8 or 1, 3, 5, 7, 9) to tell whether a larger number is even or odd",
+     "item": "Use the ones digit to tell whether a larger number is even or odd",
      "priority": "common",
-     "where": "Counting in twos and the odd-even pattern"
+     "where": "Alternation and the last digit"
     },
     {
      "item": "Know that 0 is even and say why",
      "priority": "common",
-     "where": "Is zero even?"
+     "where": "What odd and even mean"
     },
     {
-     "item": "Predict and explain whether a sum of odd and even numbers is odd or even (NRICH)",
+     "item": "Predict and explain whether a sum of odd and even numbers is odd or even",
      "priority": "specialised",
-     "where": "Adding odd and even numbers"
+     "where": "Odd and even in sums and products"
     },
     {
-     "item": "Explain why 4 times a number is always even, by splitting it into two equal addends (CC 3.OA.D.9)",
+     "item": "Explain why 4 times a number is always even (CC 3.OA.D.9)",
      "priority": "specialised",
-     "where": "Adding odd and even numbers"
+     "where": "Odd and even in sums and products"
     },
     {
-     "item": "Use rectangular arrays and repeated addition (CC 2.OA.C.4; IM Grade 2 Unit 8 Section B)",
+     "item": "Use rectangular arrays and repeated addition (CC 2.OA.C.4)",
      "priority": "specialised",
      "where": "[[multiplication]]"
     }
@@ -155,569 +170,170 @@
    "blocks": [
     {
      "type": "intro",
-     "src": [
-      "cc2OA",
-      "eng",
-      "im2U8L1"
-     ],
-     "body": "Some numbers of things can be put into pairs with nothing left over: 6 socks make 3 pairs. Other numbers always leave one thing on its own: 7 socks make 3 pairs and one sock without a partner. Numbers of the first kind are called even; numbers of the second kind are called odd.\n\nOn this page you will learn to tell whether a number is odd or even in several ways: by making pairs, by sharing into two equal groups, by counting in twos, and by looking at the last digit. You will also see why 0 is even, and what happens when you add odd and even numbers. You only need to be able to count (see [[counting-number-names]]). Have some small objects ready: counters, cubes, buttons, socks or shoes."
+     "body": "A whole number $n$ is even when $n = 2k$ for some whole number $k$, and odd when $n = 2k + 1$. In a picture: $n$ objects split into $k$ pairs with nothing left over, or with exactly one left over. This split of the numbers into two classes is called parity. It is one of the first properties about which you can prove statements that hold for all numbers at once, and it is the starting point for divisibility, for arithmetic with remainders (modular arithmetic) and for proofs that a puzzle has no solution."
     },
     {
      "type": "section",
-     "title": "Pairs and leftovers",
+     "title": "What odd and even mean",
      "src": [
+      "cc2OA",
       "im2U8L1",
-      "cc2OA"
+      "sund",
+      "wikiZero"
      ],
-     "body": "After this section you will be able to tell whether a group of up to 20 things is odd or even by putting the things in pairs.\n\nTry this first. Take a handful of counters (or socks, shoes, or blocks). Line them up in two rows, one counter in the top row and one in the bottom row, then the next two, and so on. When you have finished, is every counter matched with a partner, or is one counter on its own?\n\nA pair is two things that go together. To put things in pairs, keep taking two at a time until you cannot take two any more. Then look at what is left.\n\n- 6 counters make 3 pairs, and nothing is left over.\n- 7 counters make 3 pairs, and 1 counter is left over.\n- 10 children can all hold hands with a partner: 5 pairs, nobody on their own.\n- 5 shoes make 2 pairs and one shoe on its own.\n\nA few signs will help us write this down. The sign $+$ is read \"plus\" and means put together. The sign $=$ is read \"equals\" and means \"is the same number as\". So $2 + 2 + 2 + 2 = 8$ says: four 2s put together make 8."
-    },
-    {
-     "type": "figure",
-     "engine": "plot",
-     "src": [
-      "im2U8L1"
-     ],
-     "caption": "Left: 6 counters in two rows make 3 pairs with none left over, so 6 is even. Right: 7 counters make 3 pairs and 1 counter (orange) is left over, so 7 is odd.",
-     "alt": "Two drawings. On the left, six black circles stand in two rows of three; each top circle and the circle below it are boxed together as a pair, giving three boxes. On the right, seven circles: three boxed pairs as before and one orange circle to the right in the top row, labelled left over.",
-     "code": "from matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\ndef pairs(x0, n):\n    for i in range(n):\n        x = x0 + i * 1.0\n        ax.add_patch(FancyBboxPatch((x - 0.38, 0.55), 0.76, 1.9, boxstyle='round,pad=0.02,rounding_size=0.3', fill=False, ec='blue', lw=1.2))\n        for y in (1.0, 2.0):\n            ax.add_patch(Circle((x, y), 0.3, fc='white', ec='black', lw=1.3))\npairs(0.5, 3)\nax.text(1.5, 0.05, '6: 3 pairs, none left over', ha='center', va='center', fontsize=12)\nax.text(1.5, -0.5, 'even', ha='center', va='center', fontsize=12)\npairs(5.5, 3)\nax.add_patch(Circle((8.5, 2.0), 0.3, fc=(1.0, 0.8, 0.55), ec='orange', lw=1.6))\nax.text(8.5, 1.15, 'left\\nover', ha='center', va='center', fontsize=11, color='black')\nax.text(7.0, 0.05, '7: 3 pairs and 1 left over', ha='center', va='center', fontsize=12)\nax.text(7.0, -0.5, 'odd', ha='center', va='center', fontsize=12)\nax.set_xlim(-0.2, 9.4); ax.set_ylim(-0.9, 2.7); ax.set_aspect('equal'); ax.axis('off')\n"
+     "body": "The whole numbers are $0, 1, 2, 3, \\dots$ (see [[counting-number-names]]). Parity sorts them into two classes by what is left when you take away twos. The definition is stated for whole numbers first; for negative integers it is the same, with $k$ allowed to be any integer, and the first proof below shows why the results carry over."
     },
     {
      "type": "definition",
-     "title": "Even and odd numbers",
+     "title": "Even and odd",
      "src": [
-      "cc2OA",
-      "im2U8L1"
-     ],
-     "body": "A whole number is even if that many things can be put into pairs with none left over.\n\nA whole number is odd if, when that many things are put into pairs, one thing is left over.\n\nUp to 20 the even numbers are 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 and the odd numbers are 1, 3, 5, 7, 9, 11, 13, 15, 17, 19. (The number 0 is even too; see the section on zero.)\n\nExamples: 8 is even (4 pairs). 14 is even (7 pairs). Non-examples: 9 is not even, because 4 pairs use 8 things and 1 is left over; 3 is not even (1 pair and 1 left over). Every whole number is either even or odd, never both."
-    },
-    {
-     "type": "conventions",
-     "title": "Words for odd and even",
-     "body": "The idea is the same everywhere, but the words and the first explanation differ.",
-     "rows": [
-      {
-       "who": "English",
-       "text": "even and odd. Illustrative Mathematics speaks of sharing into two equal groups with \"no leftovers\" or \"some leftovers\"; Common Core speaks of pairing objects or counting them by 2s.",
-       "src": [
-        "im2U8L1",
-        "cc2OA"
-       ]
-      },
-      {
-       "who": "England (National Curriculum)",
-       "text": "Odd and even numbers appear in Year 1 guidance as a pattern in the number system, and in Year 2 as part of recalling the 2, 5 and 10 multiplication tables.",
-       "src": [
-        "eng"
-       ]
-      }
-     ]
-    },
-    {
-     "type": "theorem",
-     "title": "At most one is left over",
-     "src": [
-      "im2U8L1"
-     ],
-     "body": "When you put things into pairs, the number left over is always 0 or 1, never 2 or more."
-    },
-    {
-     "type": "proof",
-     "src": [
-      "im2U8L1"
-     ],
-     "body": "Suppose 2 or more things were left over. Then two of them could still be taken together as one more pair, so we had not finished making pairs. We keep making pairs until fewer than 2 things are left, and fewer than 2 means 0 or 1. So there are only two kinds of whole numbers: those with 0 left over (even) and those with 1 left over (odd)."
-    },
-    {
-     "type": "pitfall",
-     "title": "For adults: let children show it their own way",
-     "src": [
-      "im2U8L3"
-     ],
-     "body": "In Illustrative Mathematics, children may show odd or even in any way that makes sense to them: pairs, two equal groups, or counting by 2s."
-    },
-    {
-     "type": "example",
-     "body": "Is 9 odd or even?",
-     "solution": "1. Put out 9 counters.\n2. Take two at a time: first pair, second pair, third pair, fourth pair. That uses $2 + 2 + 2 + 2 = 8$ counters.\n3. One counter is left, and one counter cannot make a pair.\n4. 1 is left over, so 9 is odd."
-    },
-    {
-     "type": "example",
-     "body": "A shoe rack holds 14 shoes. Can they all be put together in pairs?",
-     "solution": "1. Line the shoes up in two rows, one top and one bottom each time.\n2. Count the top row: 7 shoes. Count the bottom row: 7 shoes.\n3. Every top shoe has a bottom shoe below it, so there are 7 pairs and no shoe is on its own.\n4. 14 is even."
-    },
-    {
-     "type": "check",
-     "items": [
-      {
-       "q": "You put 5 cubes into pairs. How many are left over? Is 5 odd or even?",
-       "a": "1 is left over (2 pairs use 4 cubes). 5 is odd."
-      },
-      {
-       "q": "8 socks make how many pairs? Is 8 odd or even?",
-       "a": "4 pairs, none left over. 8 is even."
-      },
-      {
-       "q": "Can 3 things be left over when you make pairs?",
-       "a": "No. Two of the 3 would make another pair, leaving just 1."
-      }
-     ]
-    },
-    {
-     "type": "exercise",
-     "items": [
-      {
-       "q": "Put 4 counters into pairs. Is 4 odd or even?",
-       "hint": "Take two at a time.",
-       "solution": "2 pairs, none left over, so 4 is even."
-      },
-      {
-       "q": "Put 11 counters into pairs. How many pairs, and how many left over?",
-       "hint": "Use two rows and count the matched counters.",
-       "solution": "5 pairs use 10 counters and 1 is left over. 11 is odd."
-      },
-      {
-       "q": "16 children go on a walk holding hands with a partner. Is anyone without a partner?",
-       "hint": "Make pairs: 2, 4, 6, ...",
-       "solution": "No. 16 children make 8 pairs with nobody left over, so 16 is even."
-      },
-      {
-       "q": "A class has 19 children. The teacher asks them to work in pairs. How many pairs are there, and is anyone left on their own?",
-       "hint": "18 children make how many pairs?",
-       "solution": "18 children make 9 pairs and 1 child is left on their own. So 19 is odd."
-      },
-      {
-       "q": "Sort the numbers 1 to 10 into two lists: odd and even.",
-       "hint": "Try pairing each number of counters, or start with 1 is odd, 2 is even.",
-       "solution": "Odd: 1, 3, 5, 7, 9. Even: 2, 4, 6, 8, 10."
-      },
-      {
-       "q": "Ana pairs up 13 buttons and gets 6 pairs and 1 button left over. She says, \"There are pairs, so 13 is even.\" What went wrong?",
-       "hint": "What does even mean about the leftover?",
-       "solution": "Almost every number of buttons makes some pairs, so having pairs does not make a number even. Even means that nothing is left over. Ana has 1 button left over ($13 = 12 + 1$: 12 buttons in 6 pairs, and 1 more), so 13 is odd."
-      }
-     ]
-    },
-    {
-     "type": "summary",
-     "body": "- To test a number, put that many things into pairs.\n- None left over: the number is even. One left over: the number is odd.\n- There is never more than one left over.\n- Even numbers up to 20: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20. Odd: 1, 3, 5, ..., 19."
-    },
-    {
-     "type": "section",
-     "title": "Two equal groups",
-     "src": [
-      "im2U8L1",
-      "im2U8L3",
+      "sund",
       "cc2OA"
      ],
-     "body": "After this section you will be able to tell odd from even by sharing between two people, and write an even number as two equal numbers added, such as $12 = 6 + 6$.\n\nTry this first (for two people). Take some counters and share them so that each person gets the same number and you use as many as you can. Write down the total, how many each person got, and how many were left over. Do it again with a different number of counters.\n\nShare one at a time: one for you, one for me, one for you, one for me. Each round hands out two counters, one to each person. So sharing between two uses the counters up in twos, exactly like making pairs.\n\n- 12 counters shared: 6 each, none left over. 12 is even.\n- 7 counters shared: 3 each, and 1 left over. 7 is odd.\n- 6 and 7 can both be shown as two groups of 3; the difference is that 7 has one more, left over.\n\nRecall that $+$ means put together and $=$ means \"is the same number as\". So $12 = 6 + 6$ says: 12 is the same as 6 and 6 put together."
+     "body": "A whole number $n$ is even if $$n = 2k$$ for some whole number $k$, and odd if $$n = 2k + 1$$ for some whole number $k$. Here $2k$ means $2 \\times k$, which is the same as $k + k$. The number $k$ must be a whole number: $7 = 2 \\cdot 3.5$ does not make 7 even, and in fact $7 = 2 \\cdot 3 + 1$ is odd.\n\nIn the picture, $k$ is the number of pairs and the $+1$ is a single leftover object. Because $2k = k + k$, being even also means splitting into two equal parts with nothing left over (two equal addends). For example, $12 = 2 \\cdot 6 = 6 + 6$ is even and $17 = 2 \\cdot 8 + 1 = 8 + 8 + 1$ is odd. The even numbers are $0, 2, 4, 6, \\dots$ and the odd numbers are $1, 3, 5, 7, \\dots$.\n\nFor negative integers, with $k$ any integer: $-4 = 2 \\cdot (-2)$ is even and $-3 = 2 \\cdot (-2) + 1$ is odd."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im2U8L1"
+     ],
+     "caption": "Left: 6 counters make 3 pairs with none left over, so $6 = 2 \\cdot 3$ is even. Right: 7 counters make 3 pairs and 1 counter (orange) is left over, so $7 = 2 \\cdot 3 + 1$ is odd. In both, $k = 3$ is the number of pairs.",
+     "alt": "Two drawings. On the left, six circles stand in two rows of three; each top circle and the circle below it are boxed together as a pair, giving three boxes, labelled k = 3 pairs above and 6 = 2 times 3 below. On the right, seven circles: three boxed pairs as before and one orange circle in the top row to the right, labelled left over; the label reads 7 = 2 times 3 plus 1.",
+     "code": "from matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.8)\nax = fig.add_axes([0, 0, 1, 1])\ndef pairs(x0, n):\n    for i in range(n):\n        x = x0 + i * 1.0\n        ax.add_patch(FancyBboxPatch((x - 0.38, 0.55), 0.76, 1.9, boxstyle='round,pad=0.02,rounding_size=0.3', fill=False, ec='blue', lw=1.2))\n        for y in (1.0, 2.0):\n            ax.add_patch(Circle((x, y), 0.3, fc='white', ec='black', lw=1.3))\npairs(0.5, 3)\nax.text(1.5, 2.75, '$k = 3$ pairs', ha='center', va='center', fontsize=11, color='blue')\nax.text(1.5, 0.05, '$6 = 2\\\\cdot 3$', ha='center', va='center', fontsize=13)\nax.text(1.5, -0.5, 'even: none left over', ha='center', va='center', fontsize=11)\npairs(5.5, 3)\nax.add_patch(Circle((8.5, 2.0), 0.3, fc=(1.0, 0.8, 0.55), ec='orange', lw=1.6))\nax.text(8.5, 1.15, 'left\\nover', ha='center', va='center', fontsize=11, color='black')\nax.text(7.0, 2.75, '$k = 3$ pairs', ha='center', va='center', fontsize=11, color='blue')\nax.text(7.0, 0.05, '$7 = 2\\\\cdot 3 + 1$', ha='center', va='center', fontsize=13)\nax.text(7.0, -0.5, 'odd: one left over', ha='center', va='center', fontsize=11)\nax.set_xlim(-0.2, 9.4); ax.set_ylim(-0.9, 3.0); ax.set_aspect('equal'); ax.axis('off')\n"
     },
     {
      "type": "theorem",
-     "title": "Even means two equal parts; odd means two equal parts and one more",
-     "src": [
-      "cc2OA",
-      "im2U8L1"
-     ],
-     "body": "An even number can be written as a number added to itself: $$12 = 6 + 6, \\quad 18 = 9 + 9.$$ An odd number is a number added to itself, and 1 more: $$17 = 8 + 8 + 1.$$"
+     "title": "Every whole number is even or odd, and never both",
+     "body": "For every whole number $n$ there is a whole number $k$ with $n = 2k$ or $n = 2k + 1$, and the two cases cannot both happen."
     },
     {
      "type": "proof",
-     "src": [
-      "im2U8L1"
-     ],
-     "body": "Share the things between two people, one at a time. Each round gives one to each person, so each round is a pair. If the number is even, the pairs use everything, and the two people end with the same amount: the number is that amount plus the same amount again. If the number is odd, the pairs use everything except one thing, so the two people have the same amount and one thing is left over."
-    },
-    {
-     "type": "views",
-     "title": "Ways to show that 12 is even",
-     "body": "Illustrative Mathematics shows 12 dots arranged three ways and asks which arrangements show that 12 can be split into two equal groups. Here are the ways the sources use; the picture below is drawn for this page in the same spirit.",
-     "items": [
-      {
-       "label": "Pairs",
-       "body": "Line 12 things up in two rows, one top and one bottom each time: 6 matched pairs and nobody on their own.",
-       "src": [
-        "cc2OA"
-       ]
-      },
-      {
-       "label": "Two equal groups",
-       "body": "Share 12 between two people: 6 each and none left over. A table with the total, my share, my partner's share and the leftovers records it.",
-       "src": [
-        "im2U8L1"
-       ]
-      },
-      {
-       "label": "Counting by 2s",
-       "body": "Count the 12 things two at a time: 2, 4, 6, 8, 10, 12. The count lands exactly on the last thing.",
-       "src": [
-        "im2U8L3"
-       ]
-      },
-      {
-       "label": "An equation",
-       "body": "Write 12 as a sum of two equal addends (two equal numbers added): $12 = 6 + 6$.",
-       "src": [
-        "cc2OA"
-       ]
-      }
-     ]
-    },
-    {
-     "type": "figure",
-     "engine": "plot",
-     "src": [
-      "im2U8L1"
-     ],
-     "caption": "12 dots three ways (drawn for this page). A: two rows of 6, each dot matched with the one below. B: 12 scattered dots; this picture does not show whether 12 is even. C: two groups of 6. A and C show that 12 is even.",
-     "alt": "Three panels of 12 black dots. Panel A: two rows of six dots, one above the other. Panel B: twelve dots placed irregularly. Panel C: two boxes, each holding six dots in two rows of three.",
-     "code": "from matplotlib.patches import Circle, Rectangle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.5)\nax = fig.add_axes([0, 0, 1, 1])\nr = 0.22\nfor i in range(6):\n    for y in (1.0, 1.8):\n        ax.add_patch(Circle((0.3 + i * 0.6, y), r, fc='black', ec='black'))\nax.text(1.8, 0.2, 'A: in pairs', ha='center', fontsize=12)\npts = [(4.6, 2.1), (5.3, 1.6), (6.1, 2.2), (6.8, 1.4), (4.9, 0.9), (5.8, 1.1), (6.5, 0.7), (7.2, 2.0), (4.4, 1.5), (5.5, 2.4), (6.3, 1.7), (7.4, 1.0)]\nfor p in pts:\n    ax.add_patch(Circle(p, r, fc='black', ec='black'))\nax.text(5.9, 0.2, 'B: scattered', ha='center', fontsize=12)\nfor g, x0 in enumerate((8.6, 10.6)):\n    ax.add_patch(Rectangle((x0 - 0.4, 0.6), 1.9, 1.7, fill=False, ec='blue', lw=1.2))\n    for i in range(3):\n        for y in (1.05, 1.85):\n            ax.add_patch(Circle((x0 + 0.1 + i * 0.5, y), r, fc='black', ec='black'))\nax.text(10.15, 0.2, 'C: 6 and 6', ha='center', fontsize=12)\nax.set_xlim(-0.2, 12.6); ax.set_ylim(-0.1, 2.7); ax.set_aspect('equal'); ax.axis('off')\n"
-    },
-    {
-     "type": "figure",
-     "engine": "plot",
-     "src": [
-      "im2U8L1"
-     ],
-     "caption": "Andre's 17 marbles: 8 for Andre, 8 for his sister, and 1 marble (orange) left out. So $17 = 8 + 8 + 1$ and 17 is odd.",
-     "alt": "Two boxes, labelled Andre and sister, each with eight circles in two rows of four. To the right, outside the boxes, one orange circle labelled left out. Below: 17 = 8 + 8 + 1.",
-     "code": "from matplotlib.patches import Circle, Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.0, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nr = 0.24\nfor x0, name in ((0.0, 'Andre: 8'), (3.0, 'sister: 8')):\n    ax.add_patch(Rectangle((x0, 0.8), 2.6, 1.5, fill=False, ec='blue', lw=1.2))\n    for i in range(4):\n        for y in (1.2, 1.9):\n            ax.add_patch(Circle((x0 + 0.4 + i * 0.6, y), r, fc='white', ec='black', lw=1.3))\n    ax.text(x0 + 1.3, 2.55, name, ha='center', fontsize=12)\nax.add_patch(Circle((6.6, 1.55), r, fc=(1.0, 0.8, 0.55), ec='orange', lw=1.6))\nax.text(6.6, 2.55, 'left out: 1', ha='center', fontsize=12)\nax.text(3.3, 0.25, '$17 = 8 + 8 + 1$', ha='center', fontsize=13)\nax.set_xlim(-0.2, 7.5); ax.set_ylim(-0.1, 2.9); ax.set_aspect('equal'); ax.axis('off')\n"
-    },
-    {
-     "type": "example",
-     "body": "Andre has 17 marbles. He wants to play a game with his sister, and they must each have the same number of marbles, using as many as they can. How many does each get? Is any marble left out? What if Andre had 18 marbles, or 20?",
-     "solution": "1. Share the 17 marbles one at a time between Andre and his sister.\n2. After 8 rounds each has 8 marbles, and $8 + 8 = 16$ marbles have been used.\n3. One marble is left, and it cannot be shared fairly, so it is left out: $17 = 8 + 8 + 1$. 17 is odd.\n4. With 18 marbles there is one more marble. It makes a pair with the marble that was left out, so each person gets 1 more: 9 each, none left out. $18 = 9 + 9$, so 18 is even.\n5. 20 is 2 more than 18. The 2 extra marbles give each person 1 more: 10 each, none left out. $20 = 10 + 10$, so 20 is even."
-    },
-    {
-     "type": "example",
-     "body": "Write 14 as the sum of two equal numbers.",
-     "solution": "1. Share 14 counters between two people, one at a time.\n2. Count each share: 7 and 7.\n3. Nothing is left over, so 14 is even.\n4. Write it: $14 = 7 + 7$."
+     "body": "Some case happens, by [[induction]] on $n$. For $n = 0$: $0 = 2 \\cdot 0$. Suppose $n = 2k$ or $n = 2k + 1$. If $n = 2k$, then $n + 1 = 2k + 1$. If $n = 2k + 1$, then $n + 1 = 2k + 2 = 2(k + 1)$. Either way $n + 1$ has one of the two forms, so every whole number does. In the language of [[division]]: dividing by 2 leaves remainder 0 or 1.\n\nNot both. Suppose $2k = 2m + 1$ for whole numbers $k$ and $m$. Then $2k > 2m$, so $k > m$, so $k \\ge m + 1$. But then $2k \\ge 2m + 2$, which is larger than $2m + 1$. This contradiction shows no number is both even and odd.\n\nNegative integers. A negative integer is $-n$ with $n$ a whole number. If $n = 2k$, then $-n = 2(-k)$; if $n = 2k + 1$, then $-n = -2k - 1 = 2(-k - 1) + 1$. So $-n$ also has one of the two forms, with an integer $k$. The 'not both' argument uses only that $k$ and $m$ are integers, so it works verbatim: no integer is both even and odd. For example $-7 = 2 \\cdot (-4) + 1$."
     },
     {
      "type": "pitfall",
-     "title": "For adults: why only one leftover?",
-     "src": [
-      "im2U8L1"
-     ],
-     "body": "In the Illustrative Mathematics lesson the class records its results in a chart with two columns, \"no leftovers\" and \"some leftovers\", and the children can notice that the leftover is never more than one. The numbers 6 and 7 both show two groups of 3 (7 has one extra), which gives a way to ask why. The lesson's conclusion is that splitting into two equal groups leaves either nothing or exactly one thing."
-    },
-    {
-     "type": "check",
-     "items": [
-      {
-       "q": "Fill the gap: $10 = ? + ?$ with two equal numbers.",
-       "a": "$10 = 5 + 5$."
-      },
-      {
-       "q": "Share 9 counters between two people. How many each, and how many left over?",
-       "a": "4 each and 1 left over: $9 = 4 + 4 + 1$. 9 is odd."
-      },
-      {
-       "q": "$16 = 8 + 8$. Is 16 odd or even?",
-       "a": "Even: it is two equal groups of 8 with none left over."
-      }
-     ]
-    },
-    {
-     "type": "exercise",
-     "items": [
-      {
-       "q": "Share 8 grapes fairly between two friends. How many does each get? Is 8 odd or even?",
-       "hint": "Hand them out one at a time.",
-       "solution": "4 each, none left over. $8 = 4 + 4$, so 8 is even."
-      },
-      {
-       "q": "Write 18 as the sum of two equal numbers.",
-       "hint": "Share 18 between two people.",
-       "solution": "$18 = 9 + 9$."
-      },
-      {
-       "q": "Share 15 between two people. Write an equation like $17 = 8 + 8 + 1$ for it.",
-       "hint": "How many each, and what is left?",
-       "solution": "7 each and 1 left over: $15 = 7 + 7 + 1$. 15 is odd."
-      },
-      {
-       "q": "Han wants a design with the same number of yellow circles as blue circles. Design A has 10 circles and design B has 9 circles. Which one can Han colour?",
-       "hint": "Can the circles be split into two equal groups?",
-       "solution": "Design A: 5 yellow and 5 blue, since $10 = 5 + 5$. Design B cannot work: 9 makes 4 and 4 and 1 more, so one colour would always have one more circle."
-      },
-      {
-       "q": "Priya's design has 6 circles, 3 triangles and 3 squares. Can Han colour it with as many yellow shapes as blue shapes?",
-       "hint": "Count all the shapes first.",
-       "solution": "There are $6 + 3 + 3 = 12$ shapes, and $12 = 6 + 6$. So yes: 6 yellow and 6 blue."
-      },
-      {
-       "q": "Ben says, \"$13 = 6 + 7$, so 13 is made of two groups, so it is even.\" Is he right?",
-       "hint": "Are his two groups equal?",
-       "solution": "No. The two groups must be equal. 6 and 7 are not equal; 13 shared fairly gives 6 each and 1 left over, $13 = 6 + 6 + 1$. 13 is odd."
-      },
-      {
-       "q": "Without counting objects, say whether $9 + 9$ is odd or even, and whether $9 + 9 + 1$ is odd or even.",
-       "hint": "One is two equal groups. The other is two equal groups and one more.",
-       "solution": "$9 + 9 = 18$ is two equal groups, so it is even. $9 + 9 + 1 = 19$ is two equal groups and one more, so it is odd."
-      }
-     ]
-    },
-    {
-     "type": "summary",
-     "body": "- Sharing between two, one at a time, uses things up in pairs.\n- Even: two equal groups, none left over, for example $12 = 6 + 6$.\n- Odd: two equal groups and 1 left over, for example $17 = 8 + 8 + 1$.\n- The two groups must be equal: $13 = 6 + 7$ does not show that 13 is even.\n- Pairs, equal groups, counting by 2s and an equation are different ways to show the same thing."
-    },
-    {
-     "type": "section",
-     "title": "Counting in twos and the odd-even pattern",
-     "src": [
-      "im2U8L3",
-      "eng",
-      "wikiPar",
-      "cc4OA"
-     ],
-     "body": "After this section you will be able to count in twos, use the odd, even, odd, even pattern, and tell whether any whole number, even a big one, is odd or even by looking at its last digit.\n\nTry this first. Count out loud in twos from 2 to 40, and write the numbers down as you say them: 2, 4, 6, 8, ... What do you notice about the last digit of each number you say?\n\nCounting in twos (also called counting in steps of 2, or skip-counting by 2s) means saying every second number. Starting at 0 you say 0, 2, 4, 6, 8, 10, 12, ... and these are exactly the even numbers. (That 0 itself is even is checked in the next section; for now, take it as given.) Starting at 1 you say 1, 3, 5, 7, 9, 11, ... and these are the odd numbers.\n\nCounting in ones, the numbers take turns: 1 is odd, 2 is even, 3 is odd, 4 is even, and so on. On a number line the even and odd numbers alternate (take turns)."
-    },
-    {
-     "type": "figure",
-     "engine": "plot",
-     "src": [
-      "im2U8L3",
-      "cc2OA",
-      "eng"
-     ],
-     "caption": "The number line from 0 to 20. Hops of 2 from 0 land on the even numbers 0, 2, 4, ..., 20 (11 numbers, blue filled dots). The odd numbers 1, 3, ..., 19 (10 numbers, open dots) are the ones skipped.",
-     "alt": "A horizontal number line with ticks from 0 to 20. Above it, ten blue arcs jump from 0 to 2, 2 to 4, and so on up to 20. Even numbers have filled blue dots and labels in blue; odd numbers have open black dots.",
-     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(7.0, 1.9)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-0.5, 20.5], [0, 0], color='black', lw=1.2)\nfor n in range(21):\n    ax.plot([n, n], [-0.12, 0.12], color='black', lw=1.0)\n    if n % 2 == 0:\n        ax.plot(n, 0, 'o', ms=7, mfc='blue', mec='blue')\n        ax.text(n, -0.45, str(n), ha='center', va='center', fontsize=11, color='blue')\n    else:\n        ax.plot(n, 0, 'o', ms=7, mfc='white', mec='black')\n        ax.text(n, -0.45, str(n), ha='center', va='center', fontsize=11, color='black')\nt = np.linspace(0, np.pi, 40)\nfor a in range(0, 20, 2):\n    ax.plot(a + 1 - np.cos(t), 0.9 * np.sin(t) + 0.08, color='blue', lw=1.0)\nax.text(10, 1.35, 'hops of 2 from 0', ha='center', fontsize=11, color='blue')\nax.text(10, -0.95, 'filled: even    open: odd', ha='center', fontsize=11)\nax.set_xlim(-0.8, 20.8); ax.set_ylim(-1.2, 1.6); ax.axis('off')\n"
-    },
-    {
-     "type": "theorem",
-     "title": "Odd and even take turns",
-     "src": [
-      "wikiPar",
-      "cc4OA"
-     ],
-     "body": "The number just after an even number is odd, and the number just after an odd number is even. So counting 0, 1, 2, 3, 4, ... the numbers go even, odd, even, odd, even, ...\n\nAdding 2 never changes whether a number is odd or even, which is why counting in twos from 0 gives only even numbers and counting in twos from 1 gives only odd numbers."
-    },
-    {
-     "type": "proof",
-     "src": [
-      "wikiPar"
-     ],
-     "body": "Going to the next number adds one more thing. If the things were all in pairs (even), the new thing has no partner, so now one is left over (odd). If one was left over (odd), the new thing becomes its partner, so now none is left over (even).\n\nAdding 2 adds one whole new pair. The pairs already there stay as they are, and so does the leftover, if there was one."
-    },
-    {
-     "type": "figure",
-     "engine": "plot",
-     "caption": "The numbers 1 to 40 in rows of ten. The 20 even numbers are shaded blue with stripes. They fill the columns whose numbers end in 2, 4, 6, 8 and 0.",
-     "alt": "A grid of four rows and ten columns holding the numbers 1 to 40. Columns 2, 4, 6, 8 and 10 of every row (numbers ending in 2, 4, 6, 8, 0) are shaded light blue with diagonal stripes; the other columns are white.",
-     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.2, 2.7)\nax = fig.add_axes([0, 0, 1, 1])\nfor i in range(40):\n    n = i + 1\n    r, c = divmod(i, 10)\n    if n % 2 == 0:\n        ax.add_patch(Rectangle((c, -r), 1, 1, fc=(0.78, 0.86, 1.0), ec='black', lw=1.0, hatch='//'))\n    else:\n        ax.add_patch(Rectangle((c, -r), 1, 1, fill=False, ec='black', lw=1.0))\n    ax.text(c + 0.5, -r + 0.5, str(n), ha='center', va='center', fontsize=12, bbox=dict(fc='white', ec='none', pad=0.5) if n % 2 == 0 else None)\nax.set_xlim(-0.1, 10.1); ax.set_ylim(-3.1, 1.1); ax.set_aspect('equal'); ax.axis('off')\n"
-    },
-    {
-     "type": "theorem",
-     "title": "The last digit decides",
-     "src": [
-      "wikiPar",
-      "wikiZero"
-     ],
-     "body": "A whole number is even if its last digit (its ones digit) is 0, 2, 4, 6 or 8. It is odd if its last digit is 1, 3, 5, 7 or 9. This works for numbers of any size: 57 is odd because it ends in 7, and 1234 is even because it ends in 4."
-    },
-    {
-     "type": "proof",
-     "src": [
-      "wikiPar",
-      "wikiZero"
-     ],
-     "body": "Think of 34 as 3 tens and 4 ones (see [[place-value]]). A ten is even, because $10 = 5 + 5$: ten things make 5 pairs. So every ten can be put into pairs with nothing left over, however many tens there are. Only the ones can leave something over, and the 4 ones make 2 pairs. So 34 is even. In the same way, in any number only the ones digit decides: the tens, hundreds and thousands all pair up exactly."
-    },
-    {
-     "type": "example",
-     "body": "Is 57 odd or even? Is 1234 odd or even?",
-     "solution": "1. Look at the last digit of 57. It is 7.\n2. 7 is odd (3 pairs and 1 left over), so 57 is odd.\n3. Check by sharing: $57 = 28 + 28 + 1$.\n4. The last digit of 1234 is 4, which is even, so 1234 is even.\n5. Check: $1234 = 617 + 617$."
-    },
-    {
-     "type": "example",
-     "body": "Count in twos backwards from 20 to 0. Then say whether 38 is in the count if you carry on forwards from 20.",
-     "solution": "1. Backwards from 20: 20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 0.\n2. Forwards from 20: 22, 24, 26, 28, 30, 32, 34, 36, 38, ...\n3. Yes, 38 is said. That fits the last digit rule: 38 ends in 8, so 38 is even, and counting in twos from 0 says every even number."
-    },
-    {
-     "type": "check",
-     "items": [
-      {
-       "q": "What comes next: 12, 14, 16, ...?",
-       "a": "18 (and then 20)."
-      },
-      {
-       "q": "The number 25 is odd. Is 26 odd or even?",
-       "a": "Even: the number after an odd number is even."
-      },
-      {
-       "q": "Is 70 odd or even?",
-       "a": "Even: its last digit is 0."
-      },
-      {
-       "q": "Is 45 odd or even?",
-       "a": "Odd: its last digit is 5."
-      }
-     ]
-    },
-    {
-     "type": "exercise",
-     "items": [
-      {
-       "q": "Count in twos from 20 to 30.",
-       "hint": "Add 2 each time.",
-       "solution": "20, 22, 24, 26, 28, 30."
-      },
-      {
-       "q": "Count in twos from 1 to 15. Are these numbers odd or even?",
-       "hint": "Start at 1 and add 2.",
-       "solution": "1, 3, 5, 7, 9, 11, 13, 15. They are all odd."
-      },
-      {
-       "q": "Write odd or even for each: 23, 36, 50, 89, 104.",
-       "hint": "Look only at the last digit.",
-       "solution": "23 odd (ends in 3); 36 even (ends in 6); 50 even (ends in 0); 89 odd (ends in 9); 104 even (ends in 4)."
-      },
-      {
-       "q": "Mia says 52 is odd because 5 is odd. Is she right?",
-       "hint": "Which digit decides?",
-       "solution": "No. The 5 means 5 tens, and every ten pairs up exactly. Only the ones digit decides: 52 ends in 2, so 52 is even ($52 = 26 + 26$)."
-      },
-      {
-       "q": "What is the largest odd number less than 100? What is the smallest even number greater than 100?",
-       "hint": "Think about the numbers just before and just after 100.",
-       "solution": "99 is odd (ends in 9) and 100 is even, so 99 is the largest odd number below 100. 101 is odd, so the smallest even number above 100 is 102."
-      },
-      {
-       "q": "Start at 1 and keep adding 3: 1, 4, 7, 10, 13, ... Write the next three numbers. What do you notice about odd and even? Can you say why?",
-       "hint": "Adding 3 is adding a pair and one more.",
-       "solution": "16, 19, 22. The numbers go odd, even, odd, even, ... Adding 3 is adding 2 (a new pair, which does not change odd or even) and then 1 more (which switches odd to even or even to odd). So each step switches."
-      }
-     ]
-    },
-    {
-     "type": "summary",
-     "body": "- Counting in twos from 0 says the even numbers; from 1, the odd numbers.\n- Counting in ones, odd and even take turns.\n- Adding 2 does not change odd or even; adding 1 switches it.\n- Only the last digit decides: 0, 2, 4, 6, 8 means even; 1, 3, 5, 7, 9 means odd.\n- This is because every ten is even: $10 = 5 + 5$."
-    },
-    {
-     "type": "section",
-     "title": "Is zero even?",
-     "src": [
-      "wikiZero"
-     ],
-     "body": "After this section you will be able to say whether 0 is odd or even and give a reason.\n\nTry this first. Put no counters at all on the table. How many pairs can you make? Is any counter left over without a partner?\n\nMany people, children and adults, are unsure about 0. But each way of testing a number on this page gives the same answer: 0 is even."
-    },
-    {
-     "type": "theorem",
      "title": "Zero is even",
      "src": [
       "wikiZero"
      ],
-     "body": "The number 0 is even. It is the even number just before the odd number 1."
-    },
-    {
-     "type": "views",
-     "title": "Why 0 is even",
-     "body": "Each test from this page, tried on 0.",
-     "items": [
-      {
-       "label": "Pairs",
-       "body": "No things make 0 pairs, and nothing is left over. Nothing left over means even.",
-       "src": [
-        "wikiZero"
-       ]
-      },
-      {
-       "label": "Two equal groups",
-       "body": "Sharing nothing between two people gives each person nothing, with none left over: $0 = 0 + 0$, two equal numbers.",
-       "src": [
-        "wikiZero"
-       ]
-      },
-      {
-       "label": "The pattern",
-       "body": "1 is odd and 2 is even. Odd and even take turns, so the number before 1 must be even. Counting back in twos, 6, 4, 2 is followed by 0.",
-       "src": [
-        "wikiZero"
-       ]
-      },
-      {
-       "label": "Last digit",
-       "body": "10, 20 and 30 all end in 0 and are even. The digit 0 counts as even in the last digit rule.",
-       "src": [
-        "wikiZero"
-       ]
-      }
-     ]
+     "body": "Many people hesitate over 0. With no objects there is nothing to pair, so 'nothing' can feel like a number with no parity at all.\n\nBut the definition asks only for a whole number $k$ with $0 = 2k$, and $k = 0$ works: $0 = 2 \\cdot 0$, zero pairs and nothing left over."
     },
     {
      "type": "example",
-     "body": "Is 0 odd or even? Use three tests from this page.",
-     "solution": "1. Pairs: put 0 counters on the table. You can make 0 pairs, and no counter is left over. None left over means even.\n2. Two equal groups: share 0 counters between two people. Each gets 0 and nothing is left: $0 = 0 + 0$, two equal numbers.\n3. The pattern: 1 is odd and 2 is even, and odd and even take turns. So the number just before 1 is even. That number is 0.\n4. All three tests agree: 0 is even."
-    },
-    {
-     "type": "pitfall",
-     "title": "For adults: zero confuses many people",
-     "src": [
-      "wikiZero"
-     ],
-     "body": "In a survey in England of nearly 400 seven-year-olds, fewer than half (45 in 100) said that 0 is even, and in the later school years about half did. In an old study, about two thirds of prospective elementary teachers answered \"false\" to the statement \"zero is an even number\", and in one school all the teachers thought 0 neither odd nor even. This page lets the reader test 0 with each method used for other numbers."
-    },
-    {
-     "type": "check",
-     "items": [
-      {
-       "q": "Is $0 = 0 + 0$ a sum of two equal numbers?",
-       "a": "Yes, 0 and 0 are equal. So 0 is even."
-      },
-      {
-       "q": "Count back in twos from 8. Where do you stop if you cannot go below zero?",
-       "a": "8, 6, 4, 2, 0. You stop at 0, an even number."
-      }
-     ]
+     "body": "Show that the sum of two consecutive odd numbers is always a multiple of 4.",
+     "solution": "Write the smaller one as $2k + 1$. The next number, $2k + 2 = 2(k + 1)$, is even, so the next odd number is $2k + 3$. Then $$(2k + 1) + (2k + 3) = 4k + 4 = 4(k + 1).$$ For example $7 + 9 = 16 = 4 \\cdot 4$ and $1 + 3 = 4 = 4 \\cdot 1$. The forms give more than parity: odd + odd is even, and for consecutive odd numbers it is even a multiple of 4."
     },
     {
      "type": "exercise",
      "items": [
       {
-       "q": "Ali says, \"0 is not even, because there is nothing to put in pairs.\" What would you tell Ali?",
-       "hint": "Is anything left over?",
-       "solution": "With nothing, you make 0 pairs and nothing is left over. Even means none left over, so 0 is even. Also, 0 comes just before 1, which is odd, and odd and even take turns."
+       "q": "Write each of 38, 0 and $-7$ in the form $2k$ or $2k + 1$ with $k$ an integer, and say which are even. Why is $-7 = 2 \\cdot (-3) - 1$ not enough to show that $-7$ is odd?",
+       "hint": "For $-7$, find the integer $k$ with $2k$ just below $-7$.",
+       "solution": "$38 = 2 \\cdot 19$ (even), $0 = 2 \\cdot 0$ (even), $-7 = 2 \\cdot (-4) + 1$ (odd, with $k = -4$). The form $2 \\cdot (-3) - 1$ subtracts 1 instead of adding it, so it is not of the form $2k + 1$; rewriting $-1 = -2 + 1$ gives $2 \\cdot (-3) - 2 + 1 = 2 \\cdot (-4) + 1$."
       },
       {
-       "q": "Is 100 odd or even? Use the last digit.",
-       "hint": "What is the last digit of 100?",
-       "solution": "The last digit is 0, so 100 is even ($100 = 50 + 50$)."
+       "q": "How many of the numbers 1, 2, 3, ..., 50 are even?",
+       "hint": "Each even number among them is $2k$; which values of $k$ occur?",
+       "solution": "The even numbers are $2 \\cdot 1, 2 \\cdot 2, \\dots, 2 \\cdot 25$, since $2k$ lies between 1 and 50 exactly when $k$ is one of $1, 2, \\dots, 25$. So there are 25 of them (and the other 25 are odd)."
       },
       {
-       "q": "Is 0 + 2 odd or even? Is 0 + 1 odd or even?",
-       "hint": "Adding 2 keeps odd or even the same; adding 1 switches it.",
-       "solution": "$0 + 2 = 2$ is even, as it must be if 0 is even. $0 + 1 = 1$ is odd, again as it must be."
+       "q": "Someone says 15 is even because $15 = 5 + 5 + 5$, three equal groups. What is wrong?",
+       "hint": "Count the groups that the definition asks for.",
+       "solution": "Even means two equal parts with nothing left over, $n = 2k$. Three equal groups shows that 15 is a multiple of 3, a different property. In fact $15 = 2 \\cdot 7 + 1$ is odd."
+      },
+      {
+       "q": "If $n = 2k$ is even, must $k$ be even? Give an example of each possibility.",
+       "hint": "Try halving 12 and halving 6.",
+       "solution": "No. $12 = 2 \\cdot 6$ with $k = 6$ even, but $6 = 2 \\cdot 3$ with $k = 3$ odd. The definition of even says nothing about the parity of $k$; when $k$ is itself even, $n = 2k = 4j$ is a multiple of 4."
+      },
+      {
+       "q": "Prove that the square of an odd number is 1 more than a multiple of 4.",
+       "hint": "Write the odd number as $2k + 1$ and expand $(2k + 1)(2k + 1)$.",
+       "solution": "By the [[distributive-property]], $$(2k + 1)^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1.$$ For example $7^2 = 49 = 4 \\cdot 12 + 1$ and $9^2 = 81 = 4 \\cdot 20 + 1$. So an odd square is never of the form $4j + 3$: for instance 99, which is $4 \\cdot 24 + 3$, is not a square."
       }
      ]
     },
     {
-     "type": "summary",
-     "body": "- 0 is even.\n- 0 things make 0 pairs with none left over, and $0 = 0 + 0$.\n- 0 comes just before 1, which is odd, so it fits the pattern even, odd, even, odd.\n- Many children and adults are unsure about 0; test it with the same methods as other numbers."
-    },
-    {
      "type": "section",
-     "title": "Adding odd and even numbers",
+     "title": "Alternation and the last digit",
      "src": [
-      "nrich",
+      "cc2OA",
+      "eng",
+      "cc4OA",
       "wikiPar"
      ],
-     "body": "After this section you will be able to say whether a sum will be odd or even without working it out, and explain why it is true for all numbers, not just one example.\n\nTry this first. Choose two odd numbers, for example 5 and 9. Add them. Is the answer odd or even? Try two more odd numbers. What do you notice about the answer?\n\nSome examples from the sources:\n\n- even plus even: $2 + 6 = 8$, even.\n- odd plus odd: $3 + 5 = 8$, even; $5 + 9 = 14$, even.\n- even plus odd: $4 + 3 = 7$, odd.\n\nA few examples are a good start, but they do not show that it always happens. For that we need a reason that works for every number."
+     "body": "Counting in twos from 0 gives $0, 2, 4, 6, \\dots$ and counting in twos from 1 gives $1, 3, 5, 7, \\dots$. These two lists never meet, and together they contain every whole number. Both facts come from what adding 1 or adding 2 does to parity."
     },
     {
      "type": "theorem",
-     "title": "Odd and even sums",
-     "src": [
-      "wikiPar"
-     ],
-     "body": "For any whole numbers:\n\n- even + even = even\n- odd + odd = even\n- even + odd = odd, and odd + even = odd"
+     "title": "Adding 1 changes parity; adding 2 keeps it",
+     "body": "For every whole number $n$, the numbers $n$ and $n + 1$ have opposite parity, and $n$ and $n + 2$ have the same parity. So along $0, 1, 2, 3, \\dots$ the numbers alternate: even, odd, even, odd, and so on."
     },
     {
      "type": "proof",
+     "body": "If $n = 2k$, then $n + 1 = 2k + 1$ is odd, and if $n = 2k + 1$, then $$n + 1 = 2k + 2 = 2(k + 1)$$ is even. Applying this twice, $n + 2$ has the opposite parity to $n + 1$, which is opposite to $n$, so $n + 2$ has the same parity as $n$. The same computation works for negative $n$, so the alternation continues to the left of 0."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
      "src": [
-      "nrich"
+      "cc2OA",
+      "wikiPar"
      ],
-     "body": "Build each number from cubes in two rows, as pairs, with any leftover cube on its own. An even number is all pairs. An odd number is pairs and one leftover.\n\nPut two numbers together. All the pairs stay pairs. Only the leftovers matter.\n\n- even + even: there are no leftovers, so the sum is all pairs: even.\n- odd + odd: there are two leftovers, one from each number. Together they make a new pair, so nothing is left over: even.\n- even + odd: there is just one leftover, and nothing to pair it with: odd.\n\nThis reason did not use which numbers we chose, only that each was odd or even, so it works for every pair of numbers."
+     "caption": "The integers from $-4$ to 6, even ones as filled blue dots and odd ones as open dots: each hop of $+2$ from an even number (blue, above) lands on an even number, and each hop from an odd number (orange, below) lands on an odd number.",
+     "alt": "A horizontal number line with ticks from -4 to 6, labelled just below the line. Even numbers have filled blue dots, odd numbers open black dots, so the two kinds alternate. Above the line, five blue arcs hop from each even number -4, -2, 0, 2, 4 to the even number two further on, labelled +2 from even. Below the labels, four orange arcs hop from each odd number -3, -1, 1, 3 to the odd number two further on, labelled +2 from odd.",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-4.6, 6.6], [0, 0], color='black', lw=1.2)\nt = np.linspace(0, np.pi, 40)\nfor n in range(-4, 7):\n    ax.plot([n, n], [-0.1, 0.1], color='black', lw=1.0)\n    ev = n % 2 == 0\n    ax.plot(n, 0, 'o', ms=8, mfc='blue' if ev else 'white', mec='blue' if ev else 'black', zorder=3)\n    ax.text(n, -0.32, str(n), ha='center', va='center', fontsize=11, color='blue' if ev else 'black')\nfor a in range(-4, 5, 2):\n    ax.plot(a + 1 - np.cos(t), 0.15 + 0.6 * np.sin(t), color='blue', lw=1.3)\nfor a in range(-3, 4, 2):\n    ax.plot(a + 1 - np.cos(t), -0.55 - 0.5 * np.sin(t), color='orange', lw=1.6)\nax.text(1, 0.95, '+2 from even: lands on even', ha='center', fontsize=11, color='blue')\nax.text(1, -1.38, '+2 from odd: lands on odd', ha='center', fontsize=11, color='black')\nax.set_xlim(-4.9, 6.9); ax.set_ylim(-1.6, 1.25); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "The last digit decides",
+     "body": "A whole number is even exactly when its ones digit is 0, 2, 4, 6 or 8, and odd exactly when its ones digit is 1, 3, 5, 7 or 9."
+    },
+    {
+     "type": "proof",
+     "body": "Write the number as $n = 10t + d$, where $d$ is the ones digit and $t$ is the number formed by the other digits (see [[place-value]]); for $3457$, $t = 345$ and $d = 7$, and for a one-digit number $t = 0$. Since $10 = 2 \\cdot 5$, $$n = 2(5t) + d.$$ If $d = 2j$ is even, then $n = 2(5t + j)$ is even. If $d = 2j + 1$ is odd, then $n = 2(5t + j) + 1$ is odd. This proves 'if'. For 'exactly when': every digit is even or odd, and by the theorem of the first section no number is both, so an even $n$ cannot have an odd last digit, and an odd $n$ cannot have an even one."
+    },
+    {
+     "type": "example",
+     "body": "Use the proof to write 3457 in the form $2k + 1$.",
+     "solution": "Here $t = 345$ and $d = 7 = 2 \\cdot 3 + 1$, so $j = 3$. Then $k = 5t + j = 1725 + 3 = 1728$, and indeed $2 \\cdot 1728 + 1 = 3457$."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Without dividing, decide whether 7308, 90001 and 1000000 are odd or even.",
+       "hint": "Look only at the ones digit.",
+       "solution": "7308 ends in 8: even. 90001 ends in 1: odd. 1000000 ends in 0: even."
+      },
+      {
+       "q": "Show that among any three consecutive whole numbers $n, n + 1, n + 2$ at least one is even, and say exactly when two of them are.",
+       "hint": "Compare $n$ with $n + 2$.",
+       "solution": "If $n$ is even, then $n + 2$ is even too and $n + 1$ is odd: two even numbers. If $n$ is odd, then $n + 1$ is even and $n + 2$ is odd: one even number. So there is always at least one, and there are two exactly when $n$ is even. For example 4, 5, 6 has two and 5, 6, 7 has one."
+      },
+      {
+       "q": "The last digit decides divisibility by 2. Does it decide divisibility by 3? Compare 12 and 22.",
+       "hint": "Where did the proof use $10 = 2 \\cdot 5$?",
+       "solution": "No. Both end in 2, but $12 = 3 \\cdot 4$ is a multiple of 3 and $22 = 3 \\cdot 7 + 1$ is not. The proof worked because 2 divides 10, so the tens never matter; 3 does not divide 10. The same argument works for 5 and 10, which do divide 10."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Odd and even in sums and products",
+     "src": [
+      "sund",
+      "nrich",
+      "cc3OA",
+      "wikiPar"
+     ],
+     "body": "Whether a sum or a product is odd or even depends only on whether the numbers going in are odd or even, not on which numbers they are. So the rules below are an arithmetic of their own, done on the two classes even and odd."
+    },
+    {
+     "type": "theorem",
+     "title": "Parity of sums and products",
+     "body": "For all integers:\n\n- even + even = even, odd + odd = even, even + odd = odd;\n- even $\\times$ even = even, even $\\times$ odd = even, odd $\\times$ odd = odd.\n\nThe order does not matter, since $m + n = n + m$ and $mn = nm$."
     },
     {
      "type": "figure",
@@ -725,50 +341,73 @@
      "src": [
       "nrich"
      ],
-     "caption": "5 + 9 with cubes in two rows. 5 is 2 pairs and 1 leftover; 9 is 4 pairs and 1 leftover. The two leftovers (orange) make a new pair, so $5 + 9 = 14$ is 7 pairs with none left over.",
+     "caption": "$5 + 9$ with cubes in two rows. $5 = 2 \\cdot 2 + 1$ and $9 = 2 \\cdot 4 + 1$ each have one leftover cube (orange, dotted). Putting them together, the pairs stay pairs and the two leftovers form one new pair, so $14 = 2 \\cdot 7$: 7 pairs, none left over. Nothing in the picture depends on which odd numbers were used, which is why the algebra below covers every case.",
      "alt": "Three groups of square cubes. The first, labelled 5, has two columns of two cubes and one orange cube on top at the right. The second, labelled 9, has four columns of two cubes and one orange cube on top at the right. After an equals sign, the third, labelled 14, has seven columns of two cubes; the last column is made of the two orange cubes.",
      "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.2)\nax = fig.add_axes([0, 0, 1, 1])\nblue = (0.8, 0.88, 1.0); orange = (1.0, 0.8, 0.55)\ndef tower(x0, npairs, extra, extra_as_pair=False):\n    for i in range(npairs):\n        for y in (0.0, 0.9):\n            ax.add_patch(Rectangle((x0 + i * 0.9, y), 0.8, 0.8, fc=blue, ec='black', lw=1.0))\n    if extra:\n        ax.add_patch(Rectangle((x0 + npairs * 0.9, 0.9), 0.8, 0.8, fc=orange, ec='orange', lw=1.4, hatch='..'))\n    if extra_as_pair:\n        for y in (0.0, 0.9):\n            ax.add_patch(Rectangle((x0 + npairs * 0.9, y), 0.8, 0.8, fc=orange, ec='orange', lw=1.4, hatch='..'))\ntower(0.0, 2, True); ax.text(1.3, -0.5, '5', ha='center', fontsize=13)\nax.text(3.2, 0.8, '+', ha='center', va='center', fontsize=16)\ntower(3.8, 4, True); ax.text(6.0, -0.5, '9', ha='center', fontsize=13)\nax.text(8.7, 0.8, '=', ha='center', va='center', fontsize=16)\ntower(9.3, 6, False, True); ax.text(12.4, -0.5, '14: 7 pairs', ha='center', fontsize=13)\nax.set_xlim(-0.2, 15.8); ax.set_ylim(-0.8, 2.0); ax.set_aspect('equal'); ax.axis('off')\n"
     },
     {
-     "type": "example",
-     "body": "Without adding, say whether $7 + 8$ is odd or even. Then check.",
-     "solution": "1. 7 is odd (it ends in 7). 8 is even.\n2. odd + even = odd, so $7 + 8$ is odd.\n3. Check: $7 + 8 = 15$, which ends in 5, so it is odd."
+     "type": "proof",
+     "src": [
+      "sund"
+     ],
+     "body": "Write the odd numbers as $2a + 1$ and $2b + 1$, with different letters because they may be different numbers. Then $$(2a + 1) + (2b + 1) = 2(a + b + 1).$$ The other sums go the same way: $2a + 2b = 2(a + b)$ and $2a + (2b + 1) = 2(a + b) + 1$. For products, if one factor is $2a$, then $2a \\cdot m = 2(am)$ is even whatever $m$ is; this covers even $\\times$ even and even $\\times$ odd. For two odd factors, using the [[distributive-property]], $$\\begin{aligned}(2a + 1)(2b + 1) &= 4ab + 2a + 2b + 1 \\\\ &= 2(2ab + a + b) + 1,\\end{aligned}$$ which is odd."
+    },
+    {
+     "type": "views",
+     "title": "The rules as arithmetic on two classes",
+     "body": "Write E for even and O for odd. Replace each number by its remainder on division by 2 (0 for even, 1 for odd). The rules then read as the tables below, which are identical to the E/O tables under E $\\to$ 0 and O $\\to$ 1; the one thing to notice is $1 + 1 = 0$, which is just the rule O + O = E.",
+     "items": [
+      {
+       "label": "Even and odd",
+       "src": [
+        "sund"
+       ],
+       "body": "$$\\begin{array}{c|cc} + & E & O \\\\ \\hline E & E & O \\\\ O & O & E \\end{array} \\quad \\begin{array}{c|cc} \\times & E & O \\\\ \\hline E & E & E \\\\ O & E & O \\end{array}$$\n\nSo the parity of any expression built with $+$ and $\\times$ can be found by putting E or O in place of each number. For $n(n + 1)$: the factors $n$ and $n + 1$ have opposite parity, so if $n$ is E the product is E $\\times$ O = E, and if $n$ is O it is O $\\times$ E = E. Either way $n(n + 1)$ is even; for instance $7 \\cdot 8 = 56$ and $12 \\cdot 13 = 156$."
+      },
+      {
+       "label": "Remainders mod 2",
+       "src": [
+        "wikiPar"
+       ],
+       "body": "$$\\begin{array}{c|cc} + & 0 & 1 \\\\ \\hline 0 & 0 & 1 \\\\ 1 & 1 & 0 \\end{array} \\quad \\begin{array}{c|cc} \\times & 0 & 1 \\\\ \\hline 0 & 0 & 0 \\\\ 1 & 0 & 1 \\end{array}$$\n\nSo parity is a map from the integers to the remainders $\\{0, 1\\}$ that respects $+$ and $\\times$: the remainder of $m + n$ is the sum of the remainders of $m$ and $n$, and the remainder of $mn$ is their product, computed with $1 + 1 = 0$. This is arithmetic modulo 2."
+      }
+     ]
     },
     {
      "type": "example",
-     "body": "Is $3 + 5 + 7$ odd or even? Explain with pairs.",
-     "solution": "1. Each of 3, 5 and 7 is odd, so each has one leftover.\n2. The first two leftovers make a new pair.\n3. The third leftover has no partner.\n4. So $3 + 5 + 7$ is odd. Check: $3 + 5 + 7 = 15$, odd."
+     "body": "Show that if $n^2$ is even then $n$ is even, and use this to show that $\\sqrt 2$ is not a fraction: there are no whole numbers $p$ and $q \\ge 1$ with $p^2 = 2q^2$.",
+     "solution": "First the lemma. If $n$ were odd, then $n^2 = n \\cdot n$ would be odd $\\times$ odd, which is odd. So if $n^2$ is even, $n$ is not odd, and since every integer is even or odd, $n$ is even. (This is proof by contraposition; see [[proof-methods]].)\n\nNow suppose $p^2 = 2q^2$ with $q \\ge 1$, and choose such a pair with $q$ as small as possible. Then $p^2$ is even, so by the lemma $p = 2r$. Substituting, $4r^2 = 2q^2$, so $q^2 = 2r^2$ is even, and by the lemma again $q = 2s$. Then $4s^2 = q^2 = 2r^2$ gives $r^2 = 2s^2$ with $1 \\le s < q$, a smaller pair. This contradicts the choice of $q$, so no such pair exists, and $\\sqrt 2$, the number whose square is 2, is not a fraction $p/q$ (see [[real-numbers]]).",
+     "src": [
+      "wikiSqrt2"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Counting odd terms",
+     "body": "A sum of any number of whole numbers is odd exactly when an odd number of its terms are odd."
+    },
+    {
+     "type": "proof",
+     "body": "Suppose the sum has $c$ odd terms. Write each even term as $2a_i$ and each odd term as $2b_j + 1$. Collecting the twos, $$\\text{sum} = 2\\Big(\\sum a_i + \\sum b_j\\Big) + c,$$ so the sum differs from $c$ by an even number and has the same parity as $c$ (adding an even number keeps parity). Equivalently, by induction on the number of terms: adding an even term changes neither the parity of the sum nor $c$, and adding an odd term flips both."
     },
     {
      "type": "pitfall",
-     "title": "For adults: one example is not a reason",
+     "title": "Checking examples is not a proof",
      "src": [
       "nrich"
      ],
-     "body": "The NRICH task asks children to look closely at their models of 5 + 9 for something that would hold for any two odd numbers, to explain it to someone else, and to check whether that person is convinced."
-    },
-    {
-     "type": "connection",
-     "title": "Four groups of a number are always even",
-     "src": [
-      "cc3OA"
-     ],
-     "body": "Four equal groups of a number can be split into two groups of two groups, and the two halves are equal. For example, 4 groups of 3 is 12, and $12 = 6 + 6$ (each half is 2 groups of 3). So 4 times any number is even. Grouping in this way is the start of [[multiplication]]."
+     "body": "Checking $3 + 5 = 8$, $7 + 9 = 16$ and a hundred more cases makes 'odd + odd = even' believable, but proves nothing about the cases nobody tried; the proof above uses only what all odd numbers share. One counterexample, by contrast, is enough to refute a claim: 'odd + odd + odd = even' is false because $1 + 1 + 1 = 3$."
     },
     {
      "type": "check",
      "items": [
       {
-       "q": "Is $6 + 8$ odd or even?",
-       "a": "Even: even + even. ($6 + 8 = 14$.)"
+       "q": "Since a sum of three odd numbers is odd, is every sum of three numbers odd?",
+       "a": "No. What counts is the number of odd terms, not the number of terms: $2 + 2 + 2 = 6$ has three terms and none of them odd."
       },
       {
-       "q": "Is $9 + 11$ odd or even?",
-       "a": "Even: odd + odd. ($9 + 11 = 20$.)"
-      },
-      {
-       "q": "Is $13 + 4$ odd or even?",
-       "a": "Odd: odd + even. ($13 + 4 = 17$.)"
+       "q": "Even $\\times$ any number is even. Is even + any number even?",
+       "a": "No: $2 + 1 = 3$. The 'any number' rule holds for products only; in sums an odd term changes the parity."
       }
      ]
     },
@@ -776,74 +415,73 @@
      "type": "exercise",
      "items": [
       {
-       "q": "Say whether each sum is odd or even, then check by adding: $4 + 10$, $5 + 6$, $7 + 9$.",
-       "hint": "Decide whether each number is odd or even first.",
-       "solution": "$4 + 10$: even + even, even ($14$). $5 + 6$: odd + even, odd ($11$). $7 + 9$: odd + odd, even ($16$)."
+       "q": "Decide the parity of $2023 + 4568$, of $135 \\cdot 246$ and of $99 \\cdot 77$.",
+       "hint": "Use only the last digits and the rules.",
+       "solution": "$2023 + 4568$: odd + even = odd (it is 6591). $135 \\cdot 246$: one factor is even, so even (it is 33210). $99 \\cdot 77$: odd $\\times$ odd = odd (it is 7623)."
       },
       {
-       "q": "Choose any number and add it to itself, for example $7 + 7$. Is the answer always odd, always even, or does it depend?",
-       "hint": "Two equal groups.",
-       "solution": "Always even: a number added to itself is two equal groups with none left over ($7 + 7 = 14$). If the number is odd, the two leftovers make a pair."
+       "q": "Explain why 4 times any whole number is even.",
+       "hint": "Write 4 as $2 \\cdot 2$.",
+       "solution": "$4m = 2(2m)$, which is $2k$ with $k = 2m$: four equal groups of $m$ split into two equal halves of $2m$. For example $4 \\cdot 3 = 12 = 6 + 6$."
       },
       {
-       "q": "Is $25 + 36$ odd or even? Do not add.",
-       "hint": "Look at the last digits.",
-       "solution": "25 is odd and 36 is even, so the sum is odd. (Indeed $25 + 36 = 61$.)"
+       "q": "Can five odd numbers add up to 20?",
+       "hint": "Count the odd terms.",
+       "solution": "No. Five is an odd number of odd terms, so the sum is odd, and 20 is even."
       },
       {
-       "q": "Lee adds 5 and 9, gets 14, and says, \"So odd + odd is always even.\" Is one example enough? Give a reason that works for all odd numbers.",
-       "hint": "Think about the leftovers.",
-       "solution": "One example is not enough: it shows only that it happens for 5 and 9. A reason for all: every odd number is pairs and one leftover. Adding two odd numbers puts the two leftovers together, and they make a new pair, so nothing is left over and the sum is even."
+       "q": "Is $1 + 2 + 3 + \\dots + 100$ odd or even?",
+       "hint": "How many of the terms are odd?",
+       "solution": "The odd terms are $1, 3, \\dots, 99$, which is 50 terms (the numbers $2k + 1$ for $k = 0, 1, \\dots, 49$). Fifty is even, so the sum is even. (It is 5050.)"
       },
       {
-       "q": "Is the sum of three odd numbers odd or even? What about four odd numbers?",
-       "hint": "Pair up the leftovers.",
-       "solution": "Three odd numbers have three leftovers: two make a pair and one is left, so the sum is odd (for example $1 + 3 + 5 = 9$). Four odd numbers have four leftovers, which make two pairs, so the sum is even (for example $1 + 3 + 5 + 7 = 16$)."
+       "q": "Adapt the worked example to show that there are no whole numbers $p$ and $q \\ge 1$ with $p^2 = 6q^2$, so $\\sqrt 6$ is not a fraction.",
+       "hint": "After writing $p = 2r$ you reach $2r^2 = 3q^2$. Why must $q$ be even? Use odd $\\times$ odd = odd.",
+       "solution": "Choose such a pair with $q$ as small as possible. $p^2 = 6q^2 = 2(3q^2)$ is even, so $p$ is even by the lemma: $p = 2r$. Then $4r^2 = 6q^2$, so $2r^2 = 3q^2$, and $3q^2$ is even. If $q$ were odd, $3q^2 = 3 \\cdot q \\cdot q$ would be odd $\\times$ odd $\\times$ odd, which is odd; so $q$ is even, $q = 2s$ with $1 \\le s < q$. Then $2r^2 = 12s^2$, so $r^2 = 6s^2$: a smaller pair, a contradiction. So no such pair exists."
       },
       {
-       "q": "4 groups of 5 is 20. Show that 20 is even by splitting the 4 groups into two equal halves.",
-       "hint": "Put 2 groups in each half.",
-       "solution": "Each half is 2 groups of 5, which is 10. So $20 = 10 + 10$, two equal numbers: 20 is even."
-      },
-      {
-       "q": "Mo says he added two numbers and got 15, and both numbers were even. Can that be true?",
-       "hint": "What is even + even?",
-       "solution": "No. even + even is always even, and 15 is odd. At least one of his numbers must be odd (for example $7 + 8 = 15$)."
+       "q": "The sum of the first $n$ odd numbers is $1 + 3 + \\dots + (2n - 1) = n^2$. Without using this formula, show that both sides have the parity of $n$.",
+       "hint": "Count the odd terms on the left; use the multiplication table on the right.",
+       "solution": "The left side has $n$ terms, all odd, so by counting odd terms it is odd exactly when $n$ is odd. On the right, $n^2 = n \\cdot n$: odd $\\times$ odd = odd and even $\\times$ even = even, so $n^2$ also has the parity of $n$. For example $1 + 3 + 5 = 9 = 3^2$ (odd) and $1 + 3 + 5 + 7 = 16 = 4^2$ (even)."
       }
      ]
-    },
-    {
-     "type": "summary",
-     "body": "- even + even = even; odd + odd = even; even + odd = odd.\n- Reason: pairs stay pairs, and only the leftovers matter; two leftovers make a new pair.\n- A number added to itself is always even.\n- Four groups of any number are always even.\n- One example shows what happens once; a reason with pairs shows it happens every time."
     },
     {
      "type": "connection",
      "title": "Looking ahead",
      "src": [
       "wikiPar",
-      "wikiZero"
+      "wikiMut"
      ],
-     "body": "For older readers: being even means being divisible by 2, the first case of [[divisibility]]. Every whole number can be written as $2k$ (even) or $2k + 1$ (odd) for some whole number $k$, and the pair argument for odd + odd becomes $$(2a+1) + (2b+1) = 2(a+b+1),$$ a first algebraic proof (see [[proof-methods]]). The rules for adding and multiplying odd and even numbers are arithmetic with remainders on division by 2, that is, arithmetic modulo 2 in [[congruences]]; odd and even form the smallest field, with two elements (see [[rings]]).\n\nParity, as odd-even is called, is a powerful tool for showing that something is impossible: it is the classic [[invariants]] argument, as in the puzzle of covering a chessboard with two opposite corners removed by dominoes. The last digit rule changes in other bases (see [[digits-bases]]): in base two the last digit is 0 for even and 1 for odd. And every prime number except 2 is odd (see [[fta]])."
+     "body": "Parity grows in several directions. First, it is the first case of [[divisibility]]: an integer is even exactly when dividing it by 2 leaves remainder 0, and the alternation continues to the left of 0 on the [[number-line]].\n\nSecond, the tables of the last section are arithmetic modulo 2, where $1 + 1 = 0$. Replacing 2 by any whole number $m$ gives arithmetic of remainders modulo $m$, the subject of [[congruences]]. The exercise on odd squares is already a fact modulo 4: an odd square always leaves remainder 1. The two classes with these tables form the smallest example of a ring with more than one element, written $\\mathbb{Z}/2$ (see [[rings]]),; taking the parity of an integer is a map onto $\\mathbb{Z}/2$ that respects $+$ and $\\times$.\n\nThird, the last-digit rule depends on the base. It works because the base 10 is even, so the tens, hundreds and so on never matter. In binary the last bit is the parity. In an odd base it fails: in base 3, the number 4 is written 11 and ends in 1, yet it is even; in an odd base, a number is even exactly when the sum of its digits is even (see [[digits-bases]]). The argument of the irrationality example, which keeps halving $p$ and $q$, is the model for many later proofs about square roots and [[real-numbers]].\n\nFourth, parity proves impossibility, the idea behind [[invariants]]; colouring arguments are the most common form. Remove two opposite corners from a chessboard; can 31 dominoes cover the remaining 62 squares? Colour square $(r, c)$ dark when $r + c$ is even. Neighbouring squares differ by 1 in $r + c$, so by alternation every domino covers one dark and one light square, and 31 dominoes would cover 31 of each. But both removed corners, $(1, 1)$ and $(8, 8)$, are dark, so only 30 dark squares remain beside 32 light ones: no covering exists (see [[grids-tilings]])."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "wikiMut"
+     ],
+     "caption": "The chessboard with corners $(1, 1)$ and $(8, 8)$ removed (crossed): squares with $r + c$ even are shaded dark, and one domino is outlined in blue.",
+     "alt": "An 8 by 8 grid of squares, alternately shaded grey (dark) and white (light). The bottom-left and top-right corner squares are blank and crossed out in red, labelled removed. A blue rounded outline surrounds two neighbouring squares, one grey and one white, labelled domino. Below: 30 dark + 32 light.",
+     "code": "from matplotlib.patches import Rectangle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(4.2, 4.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor r in range(1, 9):\n    for c in range(1, 9):\n        x, y = c - 1, r - 1\n        if (r, c) in ((1, 1), (8, 8)):\n            ax.add_patch(Rectangle((x, y), 1, 1, fc='white', ec='black', lw=0.8))\n            ax.plot([x + 0.15, x + 0.85], [y + 0.15, y + 0.85], color='red', lw=1.6)\n            ax.plot([x + 0.15, x + 0.85], [y + 0.85, y + 0.15], color='red', lw=1.6)\n        else:\n            ax.add_patch(Rectangle((x, y), 1, 1, fc=(0.62, 0.62, 0.62) if (r + c) % 2 == 0 else 'white', ec='black', lw=0.8))\nax.add_patch(FancyBboxPatch((2.08, 3.08), 1.84, 0.84, boxstyle='round,pad=0.0,rounding_size=0.2', fill=False, ec='blue', lw=2.6))\nax.text(3.0, 4.25, 'domino', ha='center', va='bottom', fontsize=11, color='blue', bbox=dict(fc='white', ec='none', pad=1))\nax.text(0.5, -0.35, 'removed', ha='center', va='top', fontsize=10, color='black')\nax.text(7.5, 8.12, 'removed', ha='center', va='bottom', fontsize=10, color='black')\nax.text(4.0, -0.9, '30 dark + 32 light = 62 squares', ha='center', va='top', fontsize=11)\nax.set_xlim(-0.3, 8.3); ax.set_ylim(-1.5, 8.6); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "summary",
+     "body": "- $n$ is even if $n = 2k$ and odd if $n = 2k + 1$; every integer is exactly one of the two.\n- 0 is even, since $0 = 2 \\cdot 0$.\n- Adding 1 changes parity, adding 2 keeps it, so even and odd alternate.\n- The ones digit decides parity, because $10 = 2 \\cdot 5$ is even.\n- odd + odd = even, odd + even = odd; even $\\times$ even = even $\\times$ odd = even, odd $\\times$ odd = odd: arithmetic of remainders modulo 2, with $1 + 1 = 0$.\n- A sum is odd exactly when it has an odd number of odd terms.\n- If $n^2$ is even, so is $n$; this is why $\\sqrt 2$ is not a fraction."
     }
    ],
    "checks": [
     {
-     "python": "# section 1\nev = lambda n: n % 2 == 0\nassert 6 // 2 == 3 and 6 % 2 == 0 and 7 // 2 == 3 and 7 % 2 == 1\nassert 10 // 2 == 5 and 10 % 2 == 0 and 5 // 2 == 2 and 5 % 2 == 1\nassert [n for n in range(1, 21) if ev(n)] == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\nassert [n for n in range(1, 21) if not ev(n)] == [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]\nassert 8 // 2 == 4 and 14 // 2 == 7 and 9 % 2 == 1 and 9 // 2 == 4 and 3 % 2 == 1\nassert all(n % 2 in (0, 1) for n in range(1000))\nassert 2 + 2 + 2 + 2 == 8 and 9 - 8 == 1 and 14 == 7 + 7\nassert 5 % 2 == 1 and 8 // 2 == 4 and 3 - 2 == 1\nassert 4 // 2 == 2 and 11 // 2 == 5 and 11 % 2 == 1 and 16 // 2 == 8 and 16 % 2 == 0\nassert 18 // 2 == 9 and 19 % 2 == 1\nassert [n for n in range(1, 11) if n % 2] == [1, 3, 5, 7, 9] and [n for n in range(1, 11) if not n % 2] == [2, 4, 6, 8, 10]\nassert 13 // 2 == 6 and 13 % 2 == 1 and 12 + 1 == 13\n# figure 1: 3 pairs = 6 circles; 3 pairs + 1 = 7\nassert 3 * 2 == 6 and 3 * 2 + 1 == 7\n"
+     "python": "# section 1\nassert 12 == 2*6 == 6+6 and 17 == 2*8+1 == 8+8+1\nassert [n for n in range(0, 7) if n % 2 == 0] == [0, 2, 4, 6] and [n for n in range(0, 8) if n % 2] == [1, 3, 5, 7]\nassert -4 == 2*(-2) and -3 == 2*(-2)+1 and -6 == 2*(-3)\n# counters figure: 3 pairs, 3 pairs + 1\nassert 6 == 2*3 and 7 == 2*3+1\nassert all(n % 2 in (0, 1) for n in range(-10000, 10000))\nassert not any(2*k == 2*m+1 for k in range(200) for m in range(200))\nassert 0 == 2*0\n# consecutive odd numbers example\nassert all((2*k+1) + (2*k+3) == 4*k+4 == 4*(k+1) and 2*k+2 == 2*(k+1) for k in range(-500, 500))\nassert 7+9 == 16 == 4*4 and 1+3 == 4 == 4*1\n# negatives extension\nassert all(-(2*k) == 2*(-k) and -(2*k+1) == -2*k-1 == 2*(-k-1)+1 for k in range(500))\nassert -7 == 2*(-4)+1 and -7 == 2*(-3)-1 and 2*(-3)-2+1 == 2*(-4)+1 and not any(2*k == 2*m+1 for k in range(-200, 200) for m in range(-200, 200))\nassert 38 == 2*19\nassert 7 == 2*3+1 and 2*3.5 == 7\nassert 18 == 2*9 and 25 == 2*12+1 and 0 == 2*0\nev = [n for n in range(1, 51) if n % 2 == 0]\nassert ev == [2*k for k in range(1, 26)] and len(ev) == 25 and 50 - len(ev) == 25\nassert 15 == 5+5+5 == 3*5 and 15 == 2*7+1\nassert 12 == 2*6 and 6 % 2 == 0 and 6 == 2*3 and 3 % 2 == 1 and all((2*(2*j)) % 4 == 0 for j in range(100))\nassert all((2*k+1)**2 == 4*k*k+4*k+1 == 4*(k*k+k)+1 for k in range(-500, 500))\nassert 7**2 == 49 == 4*12+1 and 9**2 == 81 == 4*20+1 and 99 == 4*24+3 and all(s*s != 99 for s in range(100))\n"
     },
     {
-     "python": "# section 2\nassert 12 == 6 + 6 and 7 == 3 + 3 + 1 and 6 == 3 + 3\nassert 18 == 9 + 9 and 17 == 8 + 8 + 1 and 8 + 8 == 16\nassert 18 - 17 == 1 and 20 - 18 == 2 and 20 == 10 + 10\nassert 14 == 7 + 7 and 10 == 5 + 5 and 9 == 4 + 4 + 1 and 16 == 8 + 8\nassert 8 == 4 + 4 and 15 == 7 + 7 + 1 and 10 == 5 + 5 and 9 % 2 == 1\nassert 6 + 3 + 3 == 12 == 6 + 6\nassert 13 == 6 + 7 and 13 == 6 + 6 + 1\nassert 9 + 9 == 18 and 9 + 9 + 1 == 19 and 19 % 2 == 1\n# figures: A 2 rows of 6, B 12 scattered, C 2 groups of 2x3; Andre 2 boxes of 2x4 plus 1\nassert 2 * 6 == 12 and 2 * (2 * 3) == 12 and 2 * (2 * 4) + 1 == 17\npts = [(4.6, 2.1), (5.3, 1.6), (6.1, 2.2), (6.8, 1.4), (4.9, 0.9), (5.8, 1.1), (6.5, 0.7), (7.2, 2.0), (4.4, 1.5), (5.5, 2.4), (6.3, 1.7), (7.4, 1.0)]\nassert len(pts) == 12 and len(set(pts)) == 12\n"
+     "python": "# section 2\nassert list(range(0, 7, 2)) == [0, 2, 4, 6] and list(range(1, 8, 2)) == [1, 3, 5, 7]\nassert set(range(0, 1000, 2)).isdisjoint(range(1, 1000, 2)) and set(range(0, 1000, 2)) | set(range(1, 1000, 2)) == set(range(1000))\nassert all(n % 2 != (n+1) % 2 and n % 2 == (n+2) % 2 for n in range(-10000, 10000))\n# number line figure: -4..6, 5 blue hops from -4,-2,0,2,4 and 4 orange hops from -3,-1,1,3, each +2 keeps parity\nassert list(range(-4, 5, 2)) == [-4, -2, 0, 2, 4] and list(range(-3, 4, 2)) == [-3, -1, 1, 3]\nassert all(a % 2 == 0 and (a+2) % 2 == 0 and a+2 <= 6 for a in range(-4, 5, 2)) and all(a % 2 == 1 and (a+2) % 2 == 1 and a+2 <= 6 for a in range(-3, 4, 2))\nassert all((n % 2 == 0) == (n % 10 in (0, 2, 4, 6, 8)) for n in range(100000))\nassert all(d == 10*0 + d for d in range(10))\nassert 3457 == 10*345 + 7 and 10 == 2*5 and 7 == 2*3+1 and 5*345 == 1725 and 1725+3 == 1728 and 2*1728+1 == 3457\nassert 7308 % 2 == 0 and 90001 % 2 == 1 and 1000000 % 2 == 0\nfor n in range(1000):\n    c = sum(1 for m in (n, n+1, n+2) if m % 2 == 0)\n    assert c >= 1 and (c == 2) == (n % 2 == 0)\nassert [m % 2 for m in (4, 5, 6)] == [0, 1, 0] and [m % 2 for m in (5, 6, 7)] == [1, 0, 1]\nassert 12 == 3*4 and 22 == 3*7+1 and 12 % 10 == 22 % 10 == 2 and 10 % 3 != 0 and 10 % 5 == 0 and 10 % 10 == 0\n"
     },
     {
-     "python": "# section 3\nassert list(range(0, 13, 2)) == [0, 2, 4, 6, 8, 10, 12] and all(n % 2 == 0 for n in range(0, 100, 2))\nassert list(range(1, 12, 2)) == [1, 3, 5, 7, 9, 11] and all(n % 2 == 1 for n in range(1, 100, 2))\nassert all((n % 2) != ((n + 1) % 2) for n in range(1000)) and all(n % 2 == (n + 2) % 2 for n in range(1000))\nassert len(range(0, 21, 2)) == 11 and len(range(1, 20, 2)) == 10 and len(range(0, 20, 2)) == 10\nassert len([n for n in range(1, 41) if n % 2 == 0]) == 20 and {n % 10 for n in range(1, 41) if n % 2 == 0} == {0, 2, 4, 6, 8}\nassert all((n % 2 == 0) == (n % 10 in (0, 2, 4, 6, 8)) for n in range(100000))\nassert 57 % 2 == 1 and 1234 % 2 == 0 and 10 == 5 + 5 and 34 == 3 * 10 + 4 and 4 == 2 + 2\nassert 57 == 28 + 28 + 1 and 1234 == 617 + 617\nassert list(range(20, -1, -2)) == [20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 0] and 38 in range(20, 40, 2) and list(range(22, 39, 2)) == [22, 24, 26, 28, 30, 32, 34, 36, 38]\nassert 16 + 2 == 18 and 25 % 2 == 1 and 26 % 2 == 0 and 70 % 2 == 0 and 45 % 2 == 1\nassert list(range(20, 31, 2)) == [20, 22, 24, 26, 28, 30] and list(range(1, 16, 2)) == [1, 3, 5, 7, 9, 11, 13, 15]\nassert [n % 2 for n in (23, 36, 50, 89, 104)] == [1, 0, 0, 1, 0]\nassert 52 == 26 + 26 and max(n for n in range(100) if n % 2) == 99 and min(n for n in range(101, 200) if n % 2 == 0) == 102 and 101 % 2 == 1\nseq = [1 + 3 * i for i in range(8)]\nassert seq == [1, 4, 7, 10, 13, 16, 19, 22] and all(seq[i] % 2 != seq[i + 1] % 2 for i in range(7))\n"
+     "python": "# section 3\nimport itertools\nfor a, b in itertools.product(range(60), repeat=2):\n    assert (2*a+1)+(2*b+1) == 2*(a+b+1) and 2*a+2*b == 2*(a+b) and 2*a+(2*b+1) == 2*(a+b)+1\n    assert (2*a+1)*(2*b+1) == 4*a*b+2*a+2*b+1 == 2*(2*a*b+a+b)+1 and (2*a*b) % 2 == 0\n# cube figure: 2 pairs+1, 4 pairs+1, 7 pairs\nassert 5 == 2*2+1 and 9 == 2*4+1 and 5+9 == 14 == 2*7\n# tables: E=0, O=1\nadd = {(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 0}; mul = {(0, 0): 0, (0, 1): 0, (1, 0): 0, (1, 1): 1}\nfor m, n in itertools.product(range(-50, 50), repeat=2):\n    assert (m+n) % 2 == add[(m % 2, n % 2)] and (m*n) % 2 == mul[(m % 2, n % 2)]\nassert 0*1 == 1*0 == 0 and (1+1) % 2 == 0 and all((m*n) % 2 == 0 for m in range(0, 50, 2) for n in range(50))\n# sqrt 2 / sqrt 6 example and exercise\nassert all((n*n) % 2 == 0 for n in range(0, 2000, 2)) and all((n*n) % 2 == 1 for n in range(1, 2000, 2))\nassert not any(p*p == 2*q*q for p in range(0, 3000) for q in range(1, 2000) if p <= 2*q)\nassert not any(p*p == 6*q*q for p in range(0, 3000) for q in range(1, 1200) if p <= 3*q)\nassert all((3*q*q) % 2 == 1 for q in range(1, 999, 2)) and all((6*q*q) % 2 == 0 for q in range(999))\nassert all(r*r == 6*s*s if 2*r*r == 12*s*s else True for r in range(200) for s in range(200)) and all(r*r == 2*s*s if 4*s*s == 2*r*r else True for r in range(200) for s in range(200))\nassert all(1 <= q//2 < q for q in range(2, 1000, 2))\nassert 7*8 == 56 and 12*13 == 156 and all(n*(n+1) % 2 == 0 for n in range(10000))\nfor terms in itertools.product(range(7), repeat=4):\n    c = sum(t % 2 for t in terms)\n    assert sum(terms) % 2 == c % 2 and sum(terms) - c == 2*sum(t // 2 for t in terms)\nassert 3+5 == 8 and 7+9 == 16 and 1+1+1 == 3 and 2+2+2 == 6 and 2+1 == 3\nassert 2023+4568 == 6591 and 135*246 == 33210 and 99*77 == 7623 and 6591 % 2 == 1 and 33210 % 2 == 0 and 7623 % 2 == 1\nassert 4*3 == 12 == 6+6 and all(4*m == 2*(2*m) for m in range(100))\nassert all(sum(c) != 20 for c in itertools.combinations_with_replacement(range(1, 20, 2), 5))\nodds = [t for t in range(1, 101) if t % 2]\nassert len(odds) == 50 and odds == [2*k+1 for k in range(50)] and odds[-1] == 99 and sum(range(1, 101)) == 5050\nassert all((n*n) % 2 == 0 for n in range(0, 1000, 2)) and all((n*n) % 2 == 1 for n in range(1, 1000, 2))\nfor n in range(1, 300):\n    s = sum(2*i - 1 for i in range(1, n+1))\n    assert s == n*n and s % 2 == n % 2 == (n*n) % 2\nassert 1+3+5 == 9 == 3**2 and 1+3+5+7 == 16 == 4**2\n"
     },
     {
-     "python": "# section 4\nassert 0 % 2 == 0 and 0 // 2 == 0 and 0 == 0 + 0 and 1 % 2 == 1 and 2 % 2 == 0\nassert all(n % 2 == 0 for n in (10, 20, 30)) and list(range(8, -1, -2)) == [8, 6, 4, 2, 0]\nassert 100 == 50 + 50 and 100 % 10 == 0 and 0 + 2 == 2 and 0 + 1 == 1\n"
-    },
-    {
-     "python": "# section 5\nassert 2 + 6 == 8 and 3 + 5 == 8 and 5 + 9 == 14 and 4 + 3 == 7 and 7 % 2 == 1\nfor a in range(60):\n    for b in range(60):\n        assert (a + b) % 2 == (a % 2 + b % 2) % 2\n        if a % 2 == 1 and b % 2 == 1: assert (a + b) % 2 == 0\n        if a % 2 == 0 and b % 2 == 0: assert (a + b) % 2 == 0\n        if a % 2 != b % 2: assert (a + b) % 2 == 1\n        assert (2 * a + 1) + (2 * b + 1) == 2 * (a + b + 1)\nassert 7 + 8 == 15 and 3 + 5 + 7 == 15 and 15 % 2 == 1\nassert 4 * 3 == 12 == 6 + 6 and 2 * 3 == 6 and all((4 * n) % 2 == 0 and 4 * n == 2 * n + 2 * n for n in range(1000))\nassert 6 + 8 == 14 and 9 + 11 == 20 and 13 + 4 == 17\nassert 4 + 10 == 14 and 5 + 6 == 11 and 7 + 9 == 16 and 7 + 7 == 14 and all((n + n) % 2 == 0 for n in range(1000))\nassert 25 + 36 == 61 and 1 + 3 + 5 == 9 and 1 + 3 + 5 + 7 == 16 and 4 * 5 == 20 == 10 + 10 and 2 * 5 == 10\n# figure: 5 = 2 pairs + 1, 9 = 4 pairs + 1, 14 = 7 pairs (6 + 1 new)\nassert 2 * 2 + 1 == 5 and 4 * 2 + 1 == 9 and (2 + 4 + 1) * 2 == 14 == 7 * 2\nassert all(p % 2 == 1 for p in (3, 5, 7, 11, 13, 17, 19, 23, 29, 31))\n"
-    },
-    {
-     "python": "# review additions\nassert 13 == 6 * 2 + 1 and 13 % 2 == 1 and 6 * 2 + 1 == 13\nassert 2 + 2 + 2 + 2 == 8\nassert 0 // 2 == 0 and 0 % 2 == 0 and 0 == 0 + 0 and 1 % 2 == 1\nassert round(45) == 45 and 45 < 50\nassert 3 + 5 + 7 == 15"
+     "python": "# looking ahead and chessboard figure\nassert -3 == 2*(-2)+1 and -4 == 2*(-2) and (1+1) % 2 == 0 and -4 % 2 == 0\nassert all((2*k+1)**2 % 4 == 1 for k in range(-1000, 1000))\nsq = [(r, c) for r in range(1, 9) for c in range(1, 9) if (r, c) not in ((1, 1), (8, 8))]\ndark = [s for s in sq if sum(s) % 2 == 0]\nassert len(sq) == 62 == 8*8 - 2 and len(dark) == 30 and len(sq) - len(dark) == 32 and 62 == 2*31\nassert (1+1) % 2 == 0 and (8+8) % 2 == 0 and 2 == 1+1 and 16 == 8+8\nassert all((r+c) % 2 != (r+c+1) % 2 for r in range(1, 9) for c in range(1, 9))\n# figure domino at rows 4, columns 3 and 4: one dark, one light\nassert {(4+3) % 2, (4+4) % 2} == {0, 1}\nassert 31 > 30\n# bases: 4 in base 3 is 11; binary last bit; odd base fails\nassert 4 == 1*3 + 1 and 4 % 2 == 0 and all(n % 2 == int(bin(n)[-1]) for n in range(10000)) and 10 % 2 == 0\n# Z/2 ring: two elements\nassert len({n % 2 for n in range(-100, 100)}) == 2\ndef ds3(n):\n    t = 0\n    while n:\n        t += n % 3; n //= 3\n    return t\nassert all(n % 2 == ds3(n) % 2 for n in range(10000)) and 4 % 3 == 1\n"
     }
    ]
   }

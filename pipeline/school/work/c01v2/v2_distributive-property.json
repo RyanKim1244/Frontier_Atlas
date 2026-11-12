@@ -1,0 +1,522 @@
+[
+ {
+  "id": "distributive-property",
+  "entry": {
+   "sum": "The distributive property says that multiplying a sum is the same as multiplying each term and adding: $a(b + c) = ab + ac$. A rectangle cut in two shows why; the same rule handles differences, many terms and negative factors, and applied twice it multiplies two sums.",
+   "key": [
+    "a(b + c) = ab + ac",
+    "a(b - c) = ab - ac",
+    "(a + b)(c + d) = ac + ad + bc + bd"
+   ],
+   "why": "It is the one basic law linking multiplication with addition, so it underlies mental and written multiplication, expanding and factoring in algebra, and the sign rules for negative numbers.",
+   "msc": [],
+   "links": [
+    {
+     "field": "geometry",
+     "note": "area models: a rectangle cut into pieces shows the rule"
+    },
+    {
+     "field": "linear-algebra",
+     "note": "the map x to ax preserves sums, the model of a linear map"
+    }
+   ],
+   "refs": [
+    "OpenStax, Prealgebra 2e, §7.3 Distributive Property",
+    "OpenStax, Elementary Algebra 2e, §1.9 Properties of Real Numbers",
+    "Common Core State Standards for Mathematics, 3.OA.B.5, 3.MD.C.7, 6.EE.A.3",
+    "National curriculum in England: mathematics programmes of study, Years 4-5",
+    "Illustrative Mathematics K-5, Grade 3 Unit 4"
+   ],
+   "aliases": [
+    "distributive law",
+    "distributivity",
+    "distributive property of multiplication over addition",
+    "expanding brackets",
+    "multiplying out brackets",
+    "factoring",
+    "FOIL"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 18,
+   "sources": [
+    {
+     "k": "os-dist",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "7.3 Distributive Property",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81317/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-ea",
+     "ref": "OpenStax, Elementary Algebra 2e (2020), as mirrored on LibreTexts",
+     "where": "1.9 Properties of Real Numbers (LibreTexts 1.10): Use the Distributive Property",
+     "url": "https://math.libretexts.org/Bookshelves/Algebra/Book%3A_Elementary_Algebra_(OpenStax)/01%3A_Foundations/1.10%3A_Properties_of_Real_Numbers",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-ea-roots",
+     "ref": "OpenStax, Elementary Algebra 2e (2020), as mirrored on LibreTexts",
+     "where": "Multiply Square Roots (LibreTexts 9.4): FOIL and the distributive property",
+     "url": "https://math.libretexts.org/Bookshelves/Algebra/Elementary_Algebra_1e_(OpenStax)/09%3A_Roots_and_Radicals/9.04%3A_Multiply_Square_Roots",
+     "kind": "textbook"
+    },
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.B.5 (with footnote), 3.OA.C.7",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3md",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Measurement and Data (2010)",
+     "where": "3.MD.C.7a-d",
+     "url": "https://www.thecorestandards.org/Math/Content/3/MD/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Number and Operations in Base Ten (2010)",
+     "where": "4.NBT.B.5-6",
+     "url": "https://www.thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-6ee",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 6, Expressions and Equations (2010)",
+     "where": "6.EE.A.3-4",
+     "url": "https://www.thecorestandards.org/Math/Content/6/EE/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 3-6, Number: multiplication and division (statutory requirements and notes); Year 6 notes on brackets",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ncetm-tg",
+     "ref": "NCETM, Primary Mastery Professional Development, Spine 2 segment 2.10 teacher guide (Year 4)",
+     "where": "worked examples for 7 x 9 and 9 x 7",
+     "url": "https://ncetm.org.uk/media/qdif4n2k/ncetm_spine2_segment10_y4.pdf",
+     "kind": "notes"
+    },
+    {
+     "k": "dawkins",
+     "ref": "Paul Dawkins, Common Math Errors: Algebra Errors, Paul's Online Notes (Lamar University)",
+     "where": "Algebra errors: improper distribution; additive assumptions; lost parentheses",
+     "url": "https://tutorial.math.lamar.edu/Extras/CommonErrors/AlgebraErrors.aspx",
+     "kind": "notes"
+    },
+    {
+     "k": "dummit-foote",
+     "ref": "David S. Dummit and Richard M. Foote, Abstract Algebra, 3rd edition (2004)",
+     "where": "Section 7.1, definition of a ring and Proposition 1 (0a = 0, (-a)(-b) = ab)",
+     "kind": "textbook"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Apply the distributive property as a strategy to multiply, e.g. $8 \\times 7 = 8 \\times 5 + 8 \\times 2$ (CC 3.OA.B.5)",
+     "priority": "core",
+     "where": "The rule and why it holds"
+    },
+    {
+     "item": "Tiling and area models: a rectangle with sides $a$ and $b + c$ has area $ab + ac$ (CC 3.MD.C.7c)",
+     "priority": "core",
+     "where": "The rule and why it holds"
+    },
+    {
+     "item": "Area is additive over non-overlapping pieces (CC 3.MD.C.7d)",
+     "priority": "common",
+     "where": "The rule and why it holds; [[area-volume]]"
+    },
+    {
+     "item": "Brackets show what is done first",
+     "priority": "core",
+     "where": "The rule and why it holds"
+    },
+    {
+     "item": "Distributivity written as $a(b + c) = ab + ac$ (England Y5 notes)",
+     "priority": "common",
+     "where": "The rule and why it holds"
+    },
+    {
+     "item": "Generate equivalent expressions, e.g. $3(2 + x) = 6 + 3x$ and $24x + 18y = 6(4x + 3y)$ (CC 6.EE.A.3)",
+     "priority": "core",
+     "where": "The rule and why it holds"
+    },
+    {
+     "item": "Use the distributive law to multiply two-digit numbers by one digit (England Y4)",
+     "priority": "core",
+     "where": "Multiplying two sums"
+    },
+    {
+     "item": "Multiply using place value and properties of operations, with area models (CC 4.NBT.B.5)",
+     "priority": "common",
+     "where": "Multiplying two sums"
+    },
+    {
+     "item": "Derive facts from known facts, including from tens, e.g. $7 \\times 9 = 70 - 7$ (NCETM 2.10 teacher guide)",
+     "priority": "common",
+     "where": "Subtraction, several terms and negative factors"
+    },
+    {
+     "item": "Add or subtract products with a common factor (NCETM 2.10 teacher guide)",
+     "priority": "common",
+     "where": "The rule and why it holds; Subtraction, several terms and negative factors"
+    },
+    {
+     "item": "Forms $a(b - c) = ab - ac$ and $(b + c)a = ba + ca$; check by evaluating both forms (OpenStax Prealgebra 7.3)",
+     "priority": "specialised",
+     "where": "The rule and why it holds; Subtraction, several terms and negative factors"
+    },
+    {
+     "item": "Distributing a negative factor, e.g. $-(y + 5) = -y - 5$ (OpenStax Prealgebra 7.3; Elementary Algebra 1.9)",
+     "priority": "specialised",
+     "where": "Subtraction, several terms and negative factors"
+    },
+    {
+     "item": "Meaning of multiplication as equal groups and arrays; multiplying by tens",
+     "priority": "core",
+     "where": "[[multiplication]]"
+    },
+    {
+     "item": "Commutative and associative properties of multiplication",
+     "priority": "core",
+     "where": "[[properties-of-operations]]"
+    },
+    {
+     "item": "The order of operations (England Y6)",
+     "priority": "common",
+     "where": "separate page: Order of operations"
+    },
+    {
+     "item": "Formal written methods: short and long multiplication (England Y4-Y6; CC 4.NBT.B.5)",
+     "priority": "common",
+     "where": "separate page: Long multiplication"
+    },
+    {
+     "item": "Equivalent expressions in general (CC 6.EE.A.4)",
+     "priority": "specialised",
+     "where": "separate page: Equivalent expressions"
+    },
+    {
+     "item": "Division strategies using properties of operations (CC 4.NBT.B.6)",
+     "priority": "specialised",
+     "where": "[[division]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Multiplication and addition are tied together by one rule: to multiply a sum, multiply each part and add the results. For example $3 \\times (4 + 5) = 3 \\times 4 + 3 \\times 5$, and both sides are 27.\n\nThis rule, the distributive property, is why $7 \\times 9$ can be found as $70 - 7$, why multi-digit multiplication can be done digit by digit, and why algebra can expand $3(x + 4)$ into $3x + 12$. It is the only basic law of arithmetic that involves both operations at once, so it is the one that carries most of the work whenever products and sums meet."
+    },
+    {
+     "type": "section",
+     "title": "The rule and why it holds",
+     "src": [
+      "os-dist",
+      "ccss-3oa",
+      "ccss-3md"
+     ],
+     "body": "Brackets mark a part of an expression to work out first: $3 \\times (4 + 5)$ means $3 \\times 9 = 27$. Without brackets, multiplication is done before addition, so $3 \\times 4 + 5 = 12 + 5 = 17$. In algebra the multiplication sign is usually left out: $ab$ means $a \\times b$, and $3(x + 4)$ means $3 \\times (x + 4)$."
+    },
+    {
+     "type": "theorem",
+     "title": "The distributive property",
+     "src": [
+      "os-dist",
+      "os-ea"
+     ],
+     "body": "For all numbers $a$, $b$ and $c$ (whole numbers to begin with, and in the end all real numbers, negatives included),\n\n$$a(b + c) = ab + ac.$$\n\nOne says that multiplication distributes over addition. Since multiplication is commutative ([[properties-of-operations]]), the factor may also stand on the right: $(b + c)a = ba + ca$, the mirror form.\n\nRead from left to right, the rule turns a product into a sum; this is expanding, or multiplying out, the brackets. Read from right to left, it pulls a common factor $a$ out of $ab + ac$; this is factoring. Factoring is not a second rule but the same one read backwards."
+    },
+    {
+     "type": "proof",
+     "body": "For whole numbers, count an array. Arrange $a(b + c)$ objects in $a$ rows of $b + c$. A vertical cut after the first $b$ columns splits it into $a$ rows of $b$ and $a$ rows of $c$, that is $ab$ objects and $ac$ objects. Nothing is added or lost by the cut, and each object lies on exactly one side, so $a(b + c) = ab + ac$.\n\nThe same picture with lengths instead of counters proves the rule for any positive lengths, fractions and decimals included: a rectangle with sides $a$ and $b + c$ is cut into rectangles $a$ by $b$ and $a$ by $c$, and area is additive. Negative numbers have no such picture. For them, and for all real numbers, the distributive property is taken as one of the basic laws from which the rest of arithmetic is derived; the rules for signs come out of it, as the next section shows."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(5.6, 3.4); ax = plt.gca()\nfor r in range(4):\n    for c in range(8):\n        if c < 3:\n            ax.add_patch(Rectangle((c, r), 1, 1, fc='#cfe0ff', ec='blue', lw=0.8, hatch='//'))\n        else:\n            ax.add_patch(Rectangle((c, r), 1, 1, fc='#ffe0b8', ec='orange', lw=0.8))\nax.add_patch(Rectangle((0, 0), 8, 4, fill=False, ec='black', lw=1.6))\nax.plot([3, 3], [-0.3, 4.3], color='black', lw=2.2)\nax.text(1.5, 4.35, '3', ha='center', va='bottom', fontsize=13)\nax.text(5.5, 4.35, '5', ha='center', va='bottom', fontsize=13)\nax.text(-0.3, 2, '4', ha='right', va='center', fontsize=13)\nax.text(1.5, -0.35, r'$4 \\times 3 = 12$', ha='center', va='top', fontsize=12, color='blue')\nax.text(5.5, -0.35, r'$4 \\times 5 = 20$', ha='center', va='top', fontsize=12, color='orange')\nax.set_xlim(-1, 8.6); ax.set_ylim(-1.3, 5.1); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "ccss-3md"
+     ],
+     "caption": "A rectangle 4 by $3 + 5$, tiled with 32 unit squares and cut after 3 columns: $4 \\times 8 = 4 \\times 3 + 4 \\times 5 = 12 + 20$.",
+     "alt": "A grid of 4 rows and 8 columns of unit squares. The first 3 columns are hatched blue and labelled 4 times 3 = 12; the other 5 columns are orange and labelled 4 times 5 = 20. A thick line separates the two parts. The side lengths are labelled 4, 3 and 5."
+    },
+    {
+     "type": "example",
+     "body": "Expand $3(x + 4)$, and check the answer by substituting a number for $x$.",
+     "solution": "Multiply each term inside by 3: $3(x + 4) = 3x + 3 \\times 4 = 3x + 12$.\n\nCheck with $x = 5$: the left side is $3 \\times 9 = 27$ and the right side is $15 + 12 = 27$. A check at one value can catch a mistake but cannot prove the identity: the wrong answer $x + 22$ also gives $27$ at $x = 5$, yet at $x = 0$ it gives $22$ where $3(0 + 4) = 12$. The distributive property is what guarantees that the two sides agree for every $x$."
+    },
+    {
+     "type": "example",
+     "body": "Use the rule backwards: (a) compute $46 \\times 5 + 54 \\times 5$; (b) factor $24x + 18y$.",
+     "solution": "(a) Both products have the factor 5, so $46 \\times 5 + 54 \\times 5 = (46 + 54) \\times 5 = 100 \\times 5 = 500$.\n\n(b) The largest number dividing both 24 and 18 is 6, and $24 = 6 \\times 4$, $18 = 6 \\times 3$. So $24x + 18y = 6 \\times 4x + 6 \\times 3y = 6(4x + 3y)$. Expanding gives back the original, which is the check."
+    },
+    {
+     "type": "pitfall",
+     "title": "Multiply every term inside the bracket",
+     "src": [
+      "dawkins"
+     ],
+     "body": "The commonest slip is to multiply only the first term: $4(2x^2 - 10)$ written as $8x^2 - 10$. The factor 4 multiplies the whole bracket, so the answer is $8x^2 - 40$. At $x = 3$ the original is $4 \\times 8 = 32$, which agrees with $8 \\times 9 - 40 = 32$ and not with $8 \\times 9 - 10 = 62$.\n\nWith numbers the same slip turns $39 \\times 7$ into $30 \\times 7 + 9 = 219$ instead of $210 + 63 = 273$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Compute $5(2 + 9)$ and $5 \\times 2 + 9$. Why do they differ?",
+       "a": "$5(2 + 9) = 5 \\times 11 = 55$, while $5 \\times 2 + 9 = 10 + 9 = 19$. Without brackets only the 2 is multiplied by 5; the bracket makes 5 multiply the whole sum, $5 \\times 2 + 5 \\times 9 = 55$."
+      },
+      {
+       "q": "Is $2(3 \\times 4) = (2 \\times 3)(2 \\times 4)$?",
+       "a": "No: the left side is $2 \\times 12 = 24$ and the right side is $6 \\times 8 = 48$. A factor distributes over a sum, not over a product: $2(3 \\times 4) = (2 \\times 3) \\times 4$, with the 2 used once."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Compute $6 \\times 48$ mentally by splitting 48.",
+       "hint": "$48 = 40 + 8$.",
+       "solution": "$6 \\times 48 = 6 \\times 40 + 6 \\times 8 = 240 + 48 = 288$."
+      },
+      {
+       "q": "A student writes $12x + 18y = 6(2x + 18y)$. Find the error, say why it is an error, and factor correctly.",
+       "hint": "Expand the student's answer.",
+       "solution": "Expanding gives $6(2x + 18y) = 12x + 108y$, not $12x + 18y$. The student divided the first term by 6 but not the second; taking out a common factor divides every term by it, and $18y = 6 \\times 3y$. Correct: $12x + 18y = 6(2x + 3y)$, and expanding gives back $12x + 18y$."
+      },
+      {
+       "q": "For which numbers $a$, $b$, $c$ is $a(b + c) = ab + c$ true?",
+       "hint": "Compare with $a(b + c) = ab + ac$. When is $ac = c$?",
+       "solution": "Since $a(b + c) = ab + ac$, the equation holds exactly when $ac = c$, that is $(a - 1)c = 0$. So it is true when $a = 1$ or $c = 0$ (with $b$ anything), and false in every other case. Forgetting to multiply $c$ is harmless only when multiplying by $a$ changes nothing."
+      },
+      {
+       "q": "In the array proof, what happens when $c = 0$, or when $a = 0$? Does the argument still prove the rule?",
+       "hint": "An array with no columns, or no rows, holds no objects.",
+       "solution": "With $c = 0$ the cut falls on the right-hand edge: the left part is the whole array, $ab$ objects, and the right part is empty, $a \\times 0 = 0$ objects, so the rule reads $ab = ab + 0$. With $a = 0$ there are no rows, and both sides are 0: $0 \\times (b + c) = 0 = 0 + 0$. The argument still works, since an empty array is an array of 0 objects; the rule has no exceptions among whole numbers."
+      },
+      {
+       "q": "Using an array and without appealing to commutativity, explain why $(b + c)a = ba + ca$ for whole numbers.",
+       "hint": "Make $b + c$ rows of $a$ and cut between rows.",
+       "solution": "Arrange $(b + c)a$ objects as $b + c$ rows of $a$. A horizontal cut after the first $b$ rows leaves $b$ rows of $a$ above, $ba$ objects, and $c$ rows of $a$ below, $ca$ objects. Every object is on exactly one side, so $(b + c)a = ba + ca$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Subtraction, several terms and negative factors",
+     "src": [
+      "os-dist",
+      "os-ea",
+      "ncetm-tg"
+     ],
+     "body": "The rule as stated has two terms and a plus sign. It extends to a difference, to any number of terms and to a negative factor. Here $-x$ is the opposite of $x$, the number with $x + (-x) = 0$, and subtraction means adding the opposite: $b - c = b + (-c)$. The distributive property speaks only of sums, so it can reach a difference only once the difference is written as a sum in this way. Two small facts, about $0$ and $-1$, come first."
+    },
+    {
+     "type": "theorem",
+     "title": "Zero, minus one and other forms of the rule",
+     "body": "For all numbers $a$, $b$, $c$, $d$ and $x$:\n\n$$\\begin{aligned} x \\times 0 &= 0, \\\\ (-1)x &= -x, \\\\ a(b - c) &= ab - ac, \\\\ a(b + c + d) &= ab + ac + ad. \\end{aligned}$$\n\nWith $a = -1$ the two-term rule becomes the rule for a negative factor: $(-1)(b + c) = -b - c$, that is, $-(b + c) = -b - c$."
+    },
+    {
+     "type": "proof",
+     "body": "Zero: $x \\times 0 = x(0 + 0) = x \\times 0 + x \\times 0$. Subtracting $x \\times 0$ from both sides gives $0 = x \\times 0$.\n\nMinus one: using $1x = x$, the mirror form, and the line above with $0x = x \\times 0$, $x + (-1)x = 1x + (-1)x = \\big(1 + (-1)\\big)x = 0x = 0$. So $(-1)x$ is the number that added to $x$ gives 0, which is $-x$.\n\nDifference: $a(b - c) = a\\big(b + (-c)\\big) = ab + a(-c)$, and $a(-c) = a\\big((-1)c\\big) = (-1)(ac) = -ac$. So $a(b - c) = ab - ac$.\n\nThree terms: group them as $(b + c) + d$ and apply the rule twice, $a\\big((b + c) + d\\big) = a(b + c) + ad = ab + ac + ad$. The same step handles any number of terms.\n\nNegative factor: $-(b + c) = (-1)(b + c) = (-1)b + (-1)c = -b - c$, using the minus-one fact three times. A negative factor changes the sign of every term inside the bracket."
+    },
+    {
+     "type": "example",
+     "body": "Show that $(-1)(-1) = 1$.",
+     "solution": "Work out $(-1)\\big(1 + (-1)\\big)$ in two ways. Since $1 + (-1) = 0$, it is $(-1) \\times 0 = 0$. Distributing instead gives $(-1)(1) + (-1)(-1) = -1 + (-1)(-1)$. So $-1 + (-1)(-1) = 0$, and adding 1 to both sides gives $(-1)(-1) = 1$.\n\nSo \"a negative times a negative is positive\" is not a separate convention: it is forced if the distributive property is to hold for negative numbers."
+    },
+    {
+     "type": "example",
+     "body": "Compute $7 \\times 9$ and $99 \\times 6$ by rounding up and taking off.",
+     "solution": "$9 = 10 - 1$, so $7 \\times 9 = 7 \\times 10 - 7 \\times 1 = 70 - 7 = 63$. In the picture of the rectangle above, this is a 7 by 10 rectangle of 70 squares with its last column of 7 squares removed, which leaves 7 by 9.\n\n$99 = 100 - 1$, so $99 \\times 6 = 600 - 6 = 594$. One easy product and one small subtraction replace a harder multiplication."
+    },
+    {
+     "type": "example",
+     "body": "Simplify $8 - 2(x + 3)$.",
+     "solution": "The bracket is multiplied by $-2$, so both terms change sign: $-2(x + 3) = -2x - 6$. Then\n\n$$8 - 2(x + 3) = 8 - 2x - 6 = 2 - 2x.$$\n\nCheck at $x = 1$: $8 - 2 \\times 4 = 0$ and $2 - 2 = 0$."
+    },
+    {
+     "type": "pitfall",
+     "title": "A minus sign in front of a bracket",
+     "src": [
+      "dawkins",
+      "os-dist"
+     ],
+     "body": "A minus in front of a bracket multiplies every term by $-1$. So $-(y + 5) = -y - 5$, not $-y + 5$. The slip is easy when a bracket is dropped: subtracting $4x - 5$ from $x^2 + 3x - 5$ is\n\n$$x^2 + 3x - 5 - (4x - 5) = x^2 - x,$$\n\nwhereas writing $x^2 + 3x - 5 - 4x - 5$ subtracts only the $4x$ and gives the wrong $x^2 - x - 10$. Keep the bracket until the sign has been distributed."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Compute $9 \\times 8$ and $49 \\times 3$ by rounding up.",
+       "hint": "$9 = 10 - 1$ and $49 = 50 - 1$.",
+       "solution": "$9 \\times 8 = 80 - 8 = 72$ and $49 \\times 3 = 150 - 3 = 147$."
+      },
+      {
+       "q": "Simplify $5(2x - 3) - 2(x - 4)$.",
+       "hint": "The second bracket is multiplied by $-2$, so $-2 \\times (-4) = +8$.",
+       "solution": "$5(2x - 3) = 10x - 15$ and $-2(x - 4) = -2x + 8$. Together $10x - 15 - 2x + 8 = 8x - 7$. Check at $x = 1$: $5 \\times (-1) - 2 \\times (-3) = 1$ and $8 - 7 = 1$."
+      },
+      {
+       "q": "In $99 \\times 6 = 600 - 6$, why is 6 subtracted and not 1?",
+       "hint": "Write $99 \\times 6$ as $(100 - 1) \\times 6$.",
+       "solution": "$(100 - 1) \\times 6 = 100 \\times 6 - 1 \\times 6 = 600 - 6$. The factor 6 multiplies both terms of the difference, the 1 included, so what is taken off is $1 \\times 6$, one row of six. Taking off 1 would give $599 = 100 \\times 6 - 1$, not $99 \\times 6 = 594$."
+      },
+      {
+       "q": "Prove that $(-a)(-b) = ab$ for all numbers $a$ and $b$.",
+       "hint": "Write $-a = (-1)a$ and $-b = (-1)b$, then use the worked example.",
+       "solution": "By the minus-one fact, $(-a)(-b) = \\big((-1)a\\big)\\big((-1)b\\big)$. Rearranging the factors (commutative and associative laws) gives $(-1)(-1) \\times ab = 1 \\times ab = ab$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Multiplying two sums",
+     "src": [
+      "eng-pos",
+      "ccss-4nbt",
+      "os-ea-roots"
+     ],
+     "body": "Place value turns every multiplication into a use of the rule. Writing $39 = 30 + 9$ gives $39 \\times 7 = 30 \\times 7 + 9 \\times 7 = 210 + 63 = 273$, a product of a two-digit number by a one-digit number done as two easy ones ([[place-value]]). When both factors are sums, the rule is used twice."
+    },
+    {
+     "type": "theorem",
+     "title": "Product of two sums",
+     "body": "$$(a + b)(c + d) = ac + ad + bc + bd.$$\n\nEvery term of the first bracket is multiplied by every term of the second. More generally, a bracket of $m$ terms times a bracket of $n$ terms gives $mn$ products before like terms are collected."
+    },
+    {
+     "type": "proof",
+     "body": "Treat $a + b$ as a single number and distribute it over $c + d$: $(a + b)(c + d) = (a + b)c + (a + b)d$. Each of these two products has its sum on the left, so it is the mirror form $(b + c)a = ba + ca$ of the first theorem: $(a + b)c = ac + bc$ and $(a + b)d = ad + bd$. Adding gives the four products.\n\nWith $m$ terms times $n$ terms the same two steps work. The first gives $n$ products, the whole first bracket times each term of the second; the second step splits each of these into $m$ products, one for each term of the first bracket. That is $n$ groups of $m$, so $mn$ products, one for each pair of a term from the first bracket and a term from the second."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.0, 3.6); ax = plt.gca()\ncells = [(0, 4, 20, 10, '#cfe0ff', 'blue', r'$20 \\times 10 = 200$'),\n         (20, 4, 3, 10, '#ffe0b8', 'orange', '30'),\n         (0, 0, 20, 4, '#d8f0d8', 'green', r'$20 \\times 4 = 80$'),\n         (20, 0, 3, 4, '#ead8f5', 'purple', '12')]\nfor x, y, w, h, fc, ec, lab in cells:\n    ax.add_patch(Rectangle((x, y), w, h, fc=fc, ec=ec, lw=1.0))\n    ax.text(x + w / 2, y + h / 2, lab, ha='center', va='center', fontsize=12)\nax.add_patch(Rectangle((0, 0), 23, 14, fill=False, ec='black', lw=1.6))\nax.text(10, 14.4, '20', ha='center', va='bottom', fontsize=13)\nax.text(21.5, 14.4, '3', ha='center', va='bottom', fontsize=13)\nax.text(-0.6, 9, '10', ha='right', va='center', fontsize=13)\nax.text(-0.6, 2, '4', ha='right', va='center', fontsize=13)\nax.text(24.2, 9, r'$3 \\times 10$', ha='left', va='center', fontsize=11, color='orange')\nax.text(24.2, 2, r'$3 \\times 4$', ha='left', va='center', fontsize=11, color='purple')\nax.set_xlim(-3.5, 30); ax.set_ylim(-1, 17); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "ccss-4nbt"
+     ],
+     "caption": "An area model of $23 \\times 14 = (20 + 3)(10 + 4)$, drawn to scale. The four pieces have areas 200, 30, 80 and 12, so $23 \\times 14 = 322$. They are the products long multiplication forms: its rows are the bottom strip, $23 \\times 4 = 80 + 12 = 92$, and the top strip, $23 \\times 10 = 200 + 30 = 230$.",
+     "alt": "A rectangle 23 wide and 14 tall split by one vertical line into widths 20 and 3 and by one horizontal line into heights 10 and 4. The four pieces are labelled 20 times 10 = 200, 30 (3 times 10), 20 times 4 = 80 and 12 (3 times 4)."
+    },
+    {
+     "type": "example",
+     "body": "Compute $23 \\times 14$ by splitting both factors.",
+     "solution": "$$\\begin{aligned} 23 \\times 14 &= (20 + 3)(10 + 4) \\\\ &= 200 + 80 + 30 + 12 \\\\ &= 322. \\end{aligned}$$\n\nEach product is one piece of the figure."
+    },
+    {
+     "type": "example",
+     "body": "Expand $(a + b)^2$, and use the result to compute $103^2$.",
+     "solution": "$(a + b)^2 = (a + b)(a + b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$, since $ab = ba$.\n\nWith $a = 100$ and $b = 3$: $103^2 = 10{,}000 + 600 + 9 = 10{,}609$. The middle term $2ab$ is the two $a$ by $b$ rectangles in the square below; forgetting it is the first error in the pitfall that follows."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(4.6, 4.2); ax = plt.gca()\nA, Bs = 3.0, 1.3\ncells = [(0, Bs, A, A, '#cfe0ff', 'blue', r'$a^2$'),\n         (A, Bs, Bs, A, '#ffe0b8', 'orange', r'$ab$'),\n         (0, 0, A, Bs, '#ffe0b8', 'orange', r'$ab$'),\n         (A, 0, Bs, Bs, '#d8f0d8', 'green', r'$b^2$')]\nfor x0, y0, w, h, fc, ec, lab in cells:\n    ax.add_patch(Rectangle((x0, y0), w, h, fc=fc, ec=ec, lw=1.2))\n    ax.text(x0 + w / 2, y0 + h / 2, lab, ha='center', va='center', fontsize=15)\nax.add_patch(Rectangle((0, 0), A + Bs, A + Bs, fill=False, ec='black', lw=1.6))\nax.text(A / 2, A + Bs + 0.12, r'$a$', ha='center', va='bottom', fontsize=15)\nax.text(A + Bs / 2, A + Bs + 0.12, r'$b$', ha='center', va='bottom', fontsize=15)\nax.text(-0.15, Bs + A / 2, r'$a$', ha='right', va='center', fontsize=15)\nax.text(-0.15, Bs / 2, r'$b$', ha='right', va='center', fontsize=15)\nax.set_xlim(-0.8, A + Bs + 0.4); ax.set_ylim(-0.4, A + Bs + 0.8); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "A square of side $a + b$, cut into a square $a^2$, a square $b^2$ and two rectangles $a$ by $b$: $(a + b)^2 = a^2 + 2ab + b^2$.",
+     "alt": "A large square whose top and left sides are each split into a long part a and a short part b. Inside, a blue square labelled a squared, a small green square labelled b squared in the opposite corner, and two orange rectangles each labelled ab."
+    },
+    {
+     "type": "example",
+     "body": "Factor $x^2 + 9x + 14$ by reading the product of two sums from right to left.",
+     "solution": "Expanding $(x + p)(x + q)$ gives $x^2 + qx + px + pq = x^2 + (p + q)x + pq$. So we need two numbers with product $pq = 14$ and sum $p + q = 9$. The positive factor pairs of 14 are $1 \\times 14$, with sum 15, and $2 \\times 7$, with sum 9 (negative pairs have negative sums). Hence\n\n$$x^2 + 9x + 14 = (x + 2)(x + 7),$$\n\nand expanding, $x^2 + 7x + 2x + 14$, checks it. Factoring is the distributive property run backwards, here twice."
+    },
+    {
+     "type": "pitfall",
+     "title": "Not everything distributes",
+     "src": [
+      "dawkins"
+     ],
+     "body": "The rule is about multiplication over addition. Two look-alikes fail.\n\nSquaring a sum: $(x + y)^2 \\ne x^2 + y^2$ in general. For example $(2 + 5)^2 = 49$, but $2^2 + 5^2 = 29$; the missing $20 = 2 \\times 2 \\times 5$ is the middle term $2xy$.\n\nDividing by a sum: $\\frac{12}{2 + 4} = 12 \\times \\frac{1}{2 + 4}$, and $\\frac{1}{2 + 4} = \\frac{1}{6}$ is a single number, not a sum, so there is nothing to distribute over. Indeed $\\frac{12}{2 + 4} = 2$, while $\\frac{12}{2} + \\frac{12}{4} = 9$. Dividing a sum is fine: $\\frac{a + b}{c} = (a + b) \\times \\frac{1}{c} = \\frac{a}{c} + \\frac{b}{c}$.\n\nThe rule also runs one way only. Multiplication distributes over addition, but addition does not distribute over multiplication: $2 + 3 \\times 4 = 14$, whereas $(2 + 3)(2 + 4) = 30$."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Compute $34 \\times 12$ with an area model.",
+       "hint": "Split by place value: $34 = 30 + 4$ and $12 = 10 + 2$.",
+       "solution": "$(30 + 4)(10 + 2) = 300 + 60 + 40 + 8 = 408$."
+      },
+      {
+       "q": "Expand $(2x + 1)(x - 3)$.",
+       "hint": "Multiply every term of the first bracket by every term of the second; watch the sign of $1 \\times (-3)$.",
+       "solution": "$2x^2 - 6x + x - 3 = 2x^2 - 5x - 3$."
+      },
+      {
+       "q": "Prove that $(a + b)(a - b) = a^2 - b^2$, and use it to compute $51 \\times 49$.",
+       "hint": "The two middle products cancel. Then $51 = 50 + 1$ and $49 = 50 - 1$.",
+       "solution": "$(a + b)(a - b) = a^2 - ab + ba - b^2 = a^2 - b^2$, since $ab = ba$. So $51 \\times 49 = 50^2 - 1^2 = 2500 - 1 = 2499$."
+      },
+      {
+       "q": "Expand $(x^2 + x + 1)(x - 1)$. How many products are there before collecting, and how many terms after?",
+       "hint": "Three terms times two terms.",
+       "solution": "$3 \\times 2 = 6$ products: $x^3 - x^2 + x^2 - x + x - 1$. The pairs $-x^2 + x^2$ and $-x + x$ cancel, leaving $x^3 - 1$, two terms. The $mn$ count is the number of products; collecting like terms can leave far fewer terms."
+      },
+      {
+       "q": "Which of these hold for all positive $x$ and $y$? (a) $\\frac{x + y}{2} = \\frac{x}{2} + \\frac{y}{2}$; (b) $\\sqrt{x + y} = \\sqrt{x} + \\sqrt{y}$; (c) $\\frac{1}{x + y} = \\frac{1}{x} + \\frac{1}{y}$. Prove the true ones and disprove the false ones.",
+       "hint": "Only one of them multiplies a sum by a fixed number.",
+       "solution": "(a) is true: dividing by 2 is multiplying by $\\frac{1}{2}$, and $\\frac{1}{2}(x + y) = \\frac{x}{2} + \\frac{y}{2}$ by the distributive property. (b) is false: $\\sqrt{9 + 16} = 5$, but $\\sqrt{9} + \\sqrt{16} = 7$. (c) is false: $\\frac{1}{1 + 1} = \\frac{1}{2}$, but $\\frac{1}{1} + \\frac{1}{1} = 2$. Taking a square root or a reciprocal is not multiplying by a fixed number, so the rule says nothing about them."
+      },
+      {
+       "q": "Sketch an area model for $(a + b + c)^2$, a square of side $a + b + c$. How many pieces does it have, and what expansion does it show?",
+       "hint": "Split each side into lengths $a$, $b$ and $c$.",
+       "solution": "Cutting each side into $a$, $b$, $c$ gives $3 \\times 3 = 9$ rectangles. The three on the diagonal are the squares $a^2$, $b^2$, $c^2$; the other six come in matching pairs, $ab$ twice, $ac$ twice and $bc$ twice. So $(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$."
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Differences you will meet",
+     "rows": [
+      {
+       "who": "Brackets",
+       "text": "British English calls ( ) brackets; American English calls them parentheses.",
+       "src": [
+        "os-dist",
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "FOIL",
+       "text": "American books often expand two two-term brackets with FOIL: First, Outer, Inner, Last, giving $ac$, $ad$, $bc$, $bd$ for $(a + b)(c + d)$. It is the product of two sums under another name and applies only to two terms times two terms.",
+       "src": [
+        "os-ea-roots"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "dummit-foote",
+      "ccss-6ee"
+     ],
+     "body": "Expanding and factoring are the main tools for rewriting expressions as equivalent ones. Factoring, as in $x^2 + 9x + 14 = (x + 2)(x + 7)$ above, is how [[quadratics]] are solved and how the roots of [[polynomials-roots|polynomials]] are found, and expanding $(a + b)^n$ in general gives the binomial theorem with the coefficients of [[binomial-factorial]]. Multiplying out brackets containing square roots is the basis of working with surds.\n\nMultiplying whole numbers digit by digit is polynomial multiplication evaluated at $x = 10$. With $x = 10$, $23 = 2x + 3$ and $14 = x + 4$, and $(2x + 3)(x + 4) = 2x^2 + 11x + 12$ gives $200 + 110 + 12 = 322 = 23 \\times 14$. So the rule for two sums and long multiplication are one idea; the arithmetic version only adds carrying, when a coefficient such as 11 or 12 exceeds 9. The $mn$ count tells how many products a polynomial product needs: $m$ terms times $n$ terms give $mn$ products and so at most $mn$ terms, fewer once like terms are collected.\n\nIn higher algebra, a [[rings|ring]] is any system with an addition and a multiplication that obey the familiar laws of arithmetic, and distributivity is the axiom that links the two operations. Integers, polynomials, residues modulo $n$ ([[congruences]]) and square [[matrices]] are all rings; matrix multiplication is not even commutative, so both forms $a(b + c)$ and $(b + c)a$ must be required. From the axioms alone follow $0 \\times a = 0$ and $(-a)(-b) = ab$, by exactly the arguments of the second section. Finally, a linear map is a function that sends sums to sums and multiples to multiples. The distributive property says that $x \\mapsto ax$ sends sums to sums, and maps with this property are the [[linear-maps]] of linear algebra."
+    },
+    {
+     "type": "summary",
+     "body": "- To multiply a sum, multiply every term and add; read backwards, the rule takes out a common factor.\n- For counts and lengths it is a rectangle cut in two; for all real numbers it is a basic law, and $x \\times 0 = 0$, $(-1)x = -x$ and $(-1)(-1) = 1$ follow from it.\n- A difference is a sum, $b - c = b + (-c)$, so the rule covers differences and negative factors too.\n- Two sums: every term meets every term; the area model and long multiplication form the same products.\n- Only multiplication distributes over addition: not squaring, not dividing by a sum, and not addition over multiplication."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro, section 1\nassert 3*(4 + 5) == 3*4 + 3*5 == 27\nassert 3*4 + 5 == 12 + 5 == 17 and 3*9 == 27\nassert 7*9 == 70 - 7\nimport itertools\nfor a, b, c in itertools.product(range(-6, 7), repeat=3):\n    assert a*(b + c) == a*b + a*c and (b + c)*a == b*a + c*a\n# figure 1\nassert 4*8 == 32 == 4*3 + 4*5 and 4*3 == 12 and 4*5 == 20 and 3 + 5 == 8 and 12 + 20 == 32\nassert len([(r, c) for r in range(4) for c in range(8)]) == 32\n# examples\nimport sympy as sp\nx, y, a, b, c = sp.symbols('x y a b c')\nE = sp.expand\nassert E(3*(x + 4)) == 3*x + 12 and 3*4 == 12 and 3*(5 + 4) == 27 == 3*9 and 3*5 + 12 == 15 + 12 == 27\nassert 5 + 22 == 27 and 0 + 22 == 22 and 3*(0 + 4) == 12 and E(x + 22 - (3*x + 12)) != 0\nassert 46*5 + 54*5 == (46 + 54)*5 == 100*5 == 500\nassert sp.gcd(24, 18) == 6 and 24 == 6*4 and 18 == 6*3 and E(6*(4*x + 3*y)) == 24*x + 18*y\n# pitfall\nassert E(4*(2*x**2 - 10)) == 8*x**2 - 40\nassert 4*(2*3**2 - 10) == 4*8 == 32 == 8*9 - 40 and 8*9 - 10 == 62 and 3**2 == 9\nassert 30*7 + 9 == 219 and 210 + 63 == 273 == 39*7\n# check\nassert 5*(2 + 9) == 5*11 == 55 and 5*2 + 9 == 10 + 9 == 19 and 5*2 + 5*9 == 55\nassert 2*(3*4) == 2*12 == 24 and (2*3)*(2*4) == 6*8 == 48 and 2*(3*4) == (2*3)*4\n# exercise 1\nassert 6*48 == 6*40 + 6*8 == 240 + 48 == 288 and 48 == 40 + 8\nassert E(6*(2*x + 18*y)) == 12*x + 108*y and 18 == 6*3 and E(6*(2*x + 3*y)) == 12*x + 18*y\n# a(b+c) = ab + c  iff  (a-1)c = 0\nassert E(a*(b + c) - (a*b + c)) == E((a - 1)*c)\nassert sp.solve(sp.Eq((a - 1)*c, 0), [a, c], dict=True) and set(sp.factor_list((a - 1)*c)[1][i][0] for i in range(2)) == {a - 1, c}\nfor aa, bb, cc in itertools.product(range(-4, 5), repeat=3):\n    assert (aa*(bb + cc) == aa*bb + cc) == (aa == 1 or cc == 0)\n# edge cases\nfor aa in range(6):\n    for bb in range(6):\n        assert len([(r, k) for r in range(aa) for k in range(bb + 0)]) == aa*bb + aa*0 and aa*0 == 0\n        assert 0*(aa + bb) == 0 == 0 + 0\nfor bb in range(6):\n    for cc in range(6):\n        for aa in range(6):\n            assert len([(r, k) for r in range(bb + cc) for k in range(aa)]) == bb*aa + cc*aa\n"
+    },
+    {
+     "python": "# section 2\nimport sympy as sp, itertools\nfrom fractions import Fraction as F\nx, y, a, b, c, d = sp.symbols('x y a b c d')\nE = sp.expand\nassert E(a*(b - c)) == a*b - a*c and E(a*(b + c + d)) == a*b + a*c + a*d and E(-(b + c)) == -b - c\nassert E((-1)*(b + c)) == -b - c and E(x*0) == 0 and E((-1)*x) == -x\nassert E(x + (-1)*x) == 0 and 1 + (-1) == 0\nassert E(a*(b + (-c))) == E(a*b - a*c) and E(a*((-1)*c)) == E((-1)*(a*c))\nfor v in itertools.product([F(-3), F(-1, 2), F(0), F(2, 3), F(5)], repeat=3):\n    p, q, r = v\n    assert p*0 == 0 and (-1)*p == -p and p*(q - r) == p*q - p*r and -(q + r) == -q - r\n# (-1)(-1) example\nassert (-1)*(1 + (-1)) == (-1)*0 == 0 and (-1)*1 + (-1)*(-1) == 0 and -1 + 1 == 0 and (-1)*(-1) == 1\n# examples\nassert 9 == 10 - 1 and 7*9 == 7*10 - 7*1 == 70 - 7 == 63 and 7*10 == 70\nassert len([(r, k) for r in range(7) for k in range(10)]) - 7 == 63 == len([(r, k) for r in range(7) for k in range(9)])\nassert 99 == 100 - 1 and 99*6 == 600 - 6 == 594\nassert E(8 - 2*(x + 3)) == 2 - 2*x and E(-2*(x + 3)) == -2*x - 6 and 8 - 6 == 2\nassert 8 - 2*(1 + 3) == 8 - 2*4 == 0 == 2 - 2*1\n# pitfall\nassert E(-(y + 5)) == -y - 5\nassert E(x**2 + 3*x - 5 - (4*x - 5)) == x**2 - x\nassert E(x**2 + 3*x - 5 - 4*x - 5) == x**2 - x - 10\n# exercise 2\nassert 9*8 == 80 - 8 == 72 and 49*3 == 150 - 3 == 147 and 49 == 50 - 1\nassert E(5*(2*x - 3) - 2*(x - 4)) == 8*x - 7 and E(-2*(x - 4)) == -2*x + 8 and E(5*(2*x - 3)) == 10*x - 15 and (-2)*(-4) == 8\nassert 5*(2 - 3) - 2*(1 - 4) == 5*(-1) - 2*(-3) == 1 == 8 - 7\nassert (100 - 1)*6 == 100*6 - 1*6 == 600 - 6 == 594 and 600 - 1 == 599 == 100*6 - 1 and 1*6 == 6\nassert E(((-1)*a)*((-1)*b)) == a*b and (-1)*(-1) == 1\nfor p, q in itertools.product(range(-5, 6), repeat=2):\n    assert (-p)*(-q) == p*q\n"
+    },
+    {
+     "python": "# section 3\nimport sympy as sp, itertools\nx, y, a, b, c, d, e = sp.symbols('x y a b c d e')\nE = sp.expand\nassert 39 == 30 + 9 and 39*7 == 30*7 + 9*7 == 210 + 63 == 273\nassert E((a + b)*(c + d)) == a*c + a*d + b*c + b*d\nassert E((a + b)*c) == a*c + b*c and E((a + b)*d) == a*d + b*d\nfor m in range(1, 6):\n    for n_ in range(1, 6):\n        xs = sp.symbols('p0:%d' % m); ys = sp.symbols('q0:%d' % n_)\n        assert len(sp.Add.make_args(E(sum(xs)*sum(ys)))) == m*n_\n# figure 3, example\nassert 20*10 == 200 and 3*10 == 30 and 20*4 == 80 and 3*4 == 12\nassert 200 + 30 + 80 + 12 == 322 == 23*14 and 20 + 3 == 23 and 10 + 4 == 14\nassert 23*4 == 92 == 80 + 12 and 23*10 == 230 == 200 + 30 and 92 + 230 == 322\nassert (20 + 3)*(10 + 4) == 200 + 80 + 30 + 12\n# (a+b)^2\nassert E((a + b)**2) == a**2 + 2*a*b + b**2\nassert 103**2 == 10000 + 600 + 9 == 10609 and 2*100*3 == 600 and 3**2 == 9 and 100**2 == 10000\n# square figure: pieces tile the square (A=3, B=1.3)\nA, B = sp.Rational(3), sp.Rational(13, 10)\nassert A*A + A*B + B*A + B*B == (A + B)**2\n# factoring example\nassert E((x + a)*(x + b)) == E(x**2 + (a + b)*x + a*b)\nassert [(p, 14 // p) for p in range(1, 15) if 14 % p == 0 and p <= 14 // p] == [(1, 14), (2, 7)]\nassert 1 + 14 == 15 and 2 + 7 == 9 and 2*7 == 14\nassert sp.factor(x**2 + 9*x + 14) == (x + 2)*(x + 7) and E((x + 2)*(x + 7)) == x**2 + 7*x + 2*x + 14\n# pitfall\nassert (2 + 5)**2 == 49 and 2**2 + 5**2 == 29 and 2*2*5 == 20 and 29 + 20 == 49\nassert sp.Rational(12, 2 + 4) == 12*sp.Rational(1, 6) == 2 and sp.Rational(12, 2) + sp.Rational(12, 4) == 9 and 2 + 4 == 6\nassert E((a + b)/c) == a/c + b/c\nassert 2 + 3*4 == 14 and (2 + 3)*(2 + 4) == 30\n# exercise 3\nassert (30 + 4)*(10 + 2) == 300 + 60 + 40 + 8 == 408 == 34*12\nassert E((2*x + 1)*(x - 3)) == 2*x**2 - 5*x - 3 and 1*(-3) == -3 and E(2*x**2 - 6*x + x - 3) == 2*x**2 - 5*x - 3\nassert E((a + b)*(a - b)) == a**2 - b**2 and 51*49 == 50**2 - 1**2 == 2500 - 1 == 2499 and 50**2 == 2500\nassert len(sp.Add.make_args(E((x**2 + x + 1)*(x - 1)))) == 2\nassert E((x**2 + x + 1)*(x - 1)) == x**3 - 1 and 3*2 == 6\npp = [t1*t2 for t1 in (x**2, x, 1) for t2 in (x, -1)]\nassert len(pp) == 6 and sum(pp) == x**3 - 1 and pp == [x**3, -x**2, x**2, -x, x, -1]\nassert E((x + y)/2) == x/2 + y/2\nassert sp.sqrt(9 + 16) == 5 and sp.sqrt(9) + sp.sqrt(16) == 7\nassert sp.Rational(1, 1 + 1) == sp.Rational(1, 2) and sp.Rational(1, 1) + sp.Rational(1, 1) == 2\nassert E((a + b + c)**2) == a**2 + b**2 + c**2 + 2*a*b + 2*a*c + 2*b*c and 3*3 == 9\n# looking ahead\nassert E((2*x + 3)*(x + 4)) == 2*x**2 + 11*x + 12 and (2*x**2 + 11*x + 12).subs(x, 10) == 200 + 110 + 12 == 322 == 23*14\nassert (2*x + 3).subs(x, 10) == 23 and (x + 4).subs(x, 10) == 14\nA = sp.Matrix([[1, 2], [3, 4]]); B = sp.Matrix([[0, 1], [1, 0]]); C = sp.Matrix([[2, 0], [1, 1]])\nassert A*(B + C) == A*B + A*C and (B + C)*A == B*A + C*A and A*B != B*A\nfor m in range(1, 5):\n    for n_ in range(1, 5):\n        xs = sp.symbols('u0:%d' % m); ys = sp.symbols('v0:%d' % n_)\n        assert len(sp.Add.make_args(E(sum(xs)*sum(ys)))) == m*n_\n"
+    }
+   ]
+  }
+ }
+]
