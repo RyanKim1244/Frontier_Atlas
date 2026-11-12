@@ -65,7 +65,7 @@ Types: intro, section (title), definition (title), theorem (title; for a rule or
   Different representations or explanations of ONE idea (objects, ten frame, number line, words, symbols, a country's method),
   2-5 items, each from a different source or tradition. At least one views block per page; one for every central idea.
 - conventions: {"type": "conventions", "title", "body": "optional", "rows": [{"who", "text", "src": ["k"]}]}
-  Where countries or books differ: number words (e.g. Korean and English counting words), names of methods
+  Where English-language countries or books differ: number words (British and American), names of methods
   ("borrowing", "exchanging", "regrouping"), notation (division signs, decimal separator, thousands separator), layout of written methods.
 - figure: {"type": "figure", "engine": "asy" | "plot", "code", "caption", "alt": "text description", "src": ["k"]}
   asy: Asymptote source (`import geometry;` allowed, never `olympiad`; size(8cm) or so). plot: matplotlib drawing on the
@@ -86,7 +86,8 @@ Types: intro, section (title), definition (title), theorem (title; for a rule or
 5. Text: paragraphs separated by \n\n; inline $..$, display $$..$$; lists "1. " / "- "; no markdown headings, bold, HTML or
    backticks; [[id]] or [[id|text]] links only to ids in all_concepts.json; no literal dollar signs (write "dollars").
 6. Phone width: every formula must fit a 390px screen; keep displays short, break long chains with aligned.
-7. Language: English (British and American variants both named where they differ).
+7. Language: English only (British and American variants both named where they differ). No Korean or other non-English words,
+   number names or examples, and no non-English sources (this includes the Korean curriculum and Korean-language papers or wikis).
 
 ## Before you finish
 python3 -I /home/claude/frontier_atlas/pipeline/school/specs/validate.py <file.json>   (must print OK)
