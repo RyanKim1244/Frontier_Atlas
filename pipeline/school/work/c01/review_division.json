@@ -1,0 +1,104 @@
+[
+ {
+  "id": "division",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "Fact families definition (block 34)",
+    "problem": "Claimed England's notes give 30 x 2 = 60 with 60 / 2 = 30 and 60 / 30 = 2. The programme of study (Year 3 notes) says only 'derive related facts (30 x 2 = 60, 60 / 3 = 20 ...)'; the 60 / 30 = 2 example is not there. The Year 2 example 4 x 5 = 20 and 20 / 5 = 4 is correct.",
+    "fix": "Removed the unsupported example; kept the Year 2 notes example and named the notes' wording (commutativity and inverse relations). Removed the matching assertion from the checks."
+   },
+   {
+    "severity": "error",
+    "where": "Pitfall 'move from counting to known facts' (block 36)",
+    "problem": "Literal backslash in the text: England\\'s notes.",
+    "fix": "Replaced with a plain apostrophe and 'England's Year 2 notes'."
+   },
+   {
+    "severity": "source",
+    "where": "Pitfall 'Swapping the numbers' (block 46)",
+    "problem": "Presented 'writing 4 / 20 for 20 sweets' and the adult advice 'ask which number is the total' as sourced misconception/advice. NCETM segment 2.10 (Year 4) only says multiplication is commutative and division is not; it does not discuss children writing the numbers the wrong way round.",
+    "fix": "Rewrote to cite only the NCETM teaching point and used the sweets case as an illustration; removed the invented adult advice."
+   },
+   {
+    "severity": "source",
+    "where": "Pitfall 'A remainder that is too big' (block 64)",
+    "problem": "Adult advice 'ask the child to compare the remainder with the divisor every time' is in no source (NCETM 2.12 states only that the remainder is less than the divisor and occurs when the dividend is not a multiple).",
+    "fix": "Reworded to the NCETM teaching points; the comparison is stated as a quick check, not as sourced advice."
+   },
+   {
+    "severity": "source",
+    "where": "Pitfall 'one sign, two situations' (block 17)",
+    "problem": "Attributed to IM 'draw ... expressions' and '96 / 8 both allowed'. IM's scope and sequence (Unit 4 Section D) says students treat the divisor as the number of groups (57 / 3) or the group size (90 / 15), whichever is more efficient; lesson 19 synthesis uses 96 / 8; Section A has children represent and solve and interpret expressions without context.",
+    "fix": "Rewrote to match what IM says (57 / 3, 90 / 15, lesson 19 with 96 / 8); added im-g3 and im-g3l19 as src."
+   },
+   {
+    "severity": "source",
+    "where": "Section 'What does the remainder mean?' (block 68) and theorem 'Three ways' (block 69)",
+    "problem": "Said NCETM stresses the answer 'must be thought about, not just copied'; NCETM 2.12 says it 'must be interpreted carefully' and does not mention rounding up or down. The round-up / round-down / remainder-is-answer classification had no source.",
+    "fix": "Quoted NCETM faithfully; added England Y6 (whole number remainders, fractions or rounding) and the NYSED 4.OA.3 unpacking document (drop = round down, or round up), opened and added as source ny-unpack."
+   },
+   {
+    "severity": "source",
+    "where": "Conventions 'International standard'",
+    "problem": "Wording 'says the sign should not be used' and 'used as a minus sign' stronger than Wikipedia (deprecated; used as a negation sign in Scandinavian countries 'was and sometimes still is').",
+    "fix": "Reworded to 'discourages' and 'was, and sometimes still is, used as a minus sign'."
+   },
+   {
+    "severity": "unclear",
+    "where": "Conventions block",
+    "problem": "Korea is in the brief's curriculum_refs but the page had no Korean convention row.",
+    "fix": "Added a Korea row (term words 나누어지는 수, 나누는 수, 몫, 나머지 and the sign) from Korean Wikipedia, opened and added as source ko-div. Remainder layout not stated because it was not verified."
+   },
+   {
+    "severity": "error",
+    "where": "Theorem 'inverse of multiplication' (block 32); entry key",
+    "problem": "a / b = c means c x b = a is only true when the division is exact; the theorem and key did not say so, and key 3 'a / 1 = a, 0 / a = 0' lacked a not equal 0 condition and the a / a rule; the division-with-remainder fact was only a numeric instance.",
+    "fix": "Added 'when the division comes out exactly' in the theorem; replaced key lines by the general a = q x b + r, 0 <= r < b, and a / 1 = a, a / a = 1, 0 / a = 0 for a not 0."
+   },
+   {
+    "severity": "unclear",
+    "where": "Theorem 'Finding a share by counting' (block 4)",
+    "problem": "Stated only for 3 groups and for exact sharing without saying so.",
+    "fix": "Generalised to any number of groups and noted it works when the number shares out exactly."
+   },
+   {
+    "severity": "error",
+    "where": "Exercise 'Order matters', item 3 (block 48)",
+    "problem": "'Any equal pair works' is false for a = b = 0 (0 / 0 undefined).",
+    "fix": "Hint and solution now say equal numbers other than 0."
+   },
+   {
+    "severity": "unclear",
+    "where": "Exercise 'What does the remainder mean?', item 1 (block 73)",
+    "problem": "A boat that crosses a river needs return trips, so '5 trips' is ambiguous.",
+    "fix": "Changed to a minibus with 23 people needing a lift (5 journeys)."
+   },
+   {
+    "severity": "unclear",
+    "where": "Theorem 'Splitting the dividend' (block 77) and examples 456 / 3, 2596 / 4 (blocks 83, 85)",
+    "problem": "The theorem needs both parts exact but example 97 / 4 uses a second part with a remainder; the split 300 + 150 + 6 and 2400 + 160 + 36 appeared without any rule for choosing the parts (a jump for a learner).",
+    "fix": "Added the remainder case to the theorem and wrote out how to pick the parts digit by digit, with the arithmetic (456 - 300 = 156, 156 - 150 = 6; 2596 - 2400 = 196, 196 - 160 = 36) added to the checks."
+   },
+   {
+    "severity": "source",
+    "where": "Connection 'Short division and long division' (block 86) and requires",
+    "problem": "Said England pupils learn short division in Years 4 and 5. PoS: required in Year 5; the Year 3 and Year 4 notes lead up to formal methods.",
+    "fix": "Reworded the connection and the requires item."
+   },
+   {
+    "severity": "style",
+    "where": "Views 'Ways ... 32 / 8' (block 35)",
+    "problem": "'Unknown factor' (Common Core) and 'Missing factor' (IM) were the same route listed twice.",
+    "fix": "Merged into one item citing both sources."
+   },
+   {
+    "severity": "unclear",
+    "where": "Looking ahead",
+    "problem": "Later pages (long division, fractions, mean, factors) have no ids in all_concepts.json, so they cannot be linked; divisibility, congruences, rings and distributive-property are linked correctly.",
+    "fix": "No change; left as plain text."
+   }
+  ]
+ }
+]

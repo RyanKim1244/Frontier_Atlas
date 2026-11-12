@@ -1,0 +1,1561 @@
+[
+ {
+  "id": "multiplication",
+  "entry": {
+   "sum": "Multiplication finds the total of equal groups: $3 \\times 4$ is the total of 3 groups of 4, which is $4 + 4 + 4 = 12$. An array of 3 rows of 4, turned a quarter turn, shows that $3 \\times 4 = 4 \\times 3$. Learners build the times tables from counting in steps, facts with 0 and 1, doubling and known facts, and use them for equal-group, array, measurement and times-as-many problems.",
+   "key": [
+    "3 \\times 4 = 4 + 4 + 4 = 12",
+    "a \\times b = b \\times a",
+    "n \\times 1 = n, \\quad n \\times 0 = 0"
+   ],
+   "why": "Multiplication is the second basic operation of arithmetic; division, fractions, area, ratio, factors and primes, and algebra are all built on it.",
+   "msc": [
+    "97F30"
+   ],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "The rules a × b = b × a, (a × b) × c = a × (b × c) and a × 1 = a become axioms of rings and fields."
+    },
+    {
+     "field": "combinatorics",
+     "note": "Pairing each of m things with each of n others gives m × n pairs: the product rule of counting."
+    },
+    {
+     "field": "geometry",
+     "note": "An array of unit squares is a rectangle whose area is the product of its sides."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 2.OA.C.4, 3.OA.A.1-4, 3.OA.B.5, 3.OA.C.7, 3.OA.D.9, 3.NBT.A.3, 4.OA.A.1-2, Table 2 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-4 Multiplication and division (2013)",
+    "Korean Ministry of Education, 2022 revised mathematics curriculum, grades 1-2 and 3-4 number and operations ([2수01-08..09], [4수01-03])",
+    "Illustrative Mathematics K-5, Grade 2 Unit 8 and Grade 3 Unit 1 Introducing Multiplication",
+    "OpenStax, Prealgebra 2e, section 1.5 Multiply Whole Numbers (2020)",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)",
+    "NCETM, Primary Mastery Professional Development, Spine 2: Multiplication and Division"
+   ],
+   "aliases": [
+    "times",
+    "times tables",
+    "multiplication tables",
+    "multiplication facts",
+    "multiplication table",
+    "repeated addition",
+    "equal groups",
+    "product",
+    "곱셈 (Korean)",
+    "곱셈구구 (Korean times tables)"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 75,
+   "sources": [
+    {
+     "k": "ccss-2oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Operations and Algebraic Thinking (2010)",
+     "where": "2.OA.C.4",
+     "url": "https://www.thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.A.1, A.3, A.4, B.5 (with footnote), C.7, D.9",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.A.1-2, 4.OA.B.4",
+     "url": "https://www.thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Number and Operations in Base Ten (2010)",
+     "where": "3.NBT.A.3",
+     "url": "https://www.thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-t2",
+     "ref": "Common Core State Standards Initiative, Mathematics glossary, Table 2: Common multiplication and division situations (2010)",
+     "where": "Table 2 and its footnotes",
+     "url": "https://www.thecorestandards.org/Math/Content/mathematics-glossary/Table-2/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "prog-oa",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K, Counting and Cardinality; K-5, Operations and Algebraic Thinking (2011)",
+     "where": "Grade 3 section, pp. 22-28 (levels of methods, order of factors, patterns, 0 and 1)",
+     "url": "https://www.isbe.net/Documents/counting-cardinality-k-5.pdf",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-4, Number: multiplication and division (statutory requirements and notes and guidance)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g3u1",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Introducing Multiplication: sections B and C, lesson list",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l11",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Lesson 11, Multiplication Expressions",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/lesson-11/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l20",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Lesson 20, The Commutative Property",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/lesson-20/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3u1gl",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 glossary: array, factor, product, multiplication, expression, equation",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/glossary.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g2u8",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 2 (Kendall Hunt edition)",
+     "where": "Unit 8 Equal Groups, section B Rectangular Arrays",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-mul",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.5 Multiply Whole Numbers (module m81255)",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81255/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-md",
+     "ref": "NCETM, Primary Mastery Professional Development: Multiplication and Division (Spine 2)",
+     "where": "index of segments 2.1-2.30",
+     "url": "https://ncetm.org.uk/teaching-for-mastery/mastery-materials/primary-mastery-professional-development/multiplication-and-division/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-202",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.2: Structures: multiplication representing equal groups",
+     "where": "teaching points 1-5",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-202-structures-multiplication-representing-equal-groups/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-203",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.3: Times tables: groups of 2 and commutativity (part 1)",
+     "where": "teaching points 1-3",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-203-times-tables-groups-of-2-and-commutativity-part-1/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-204",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.4: Times tables: groups of 10 and of 5, and factors of 0 and 1",
+     "where": "teaching points 1-4",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-204-times-tables-groups-of-10-and-of-5-and-factors-of-0-and-1/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-205",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.5: Commutativity (part 2), doubling and halving",
+     "where": "segment overview",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-205-commutativity-part-2-doubling-and-halving/",
+     "kind": "notes"
+    },
+    {
+     "k": "lee19",
+     "ref": "Lee Ji-young, An exploration of an integrated approach to multiplication in elementary school mathematics (in Korean), Journal of the Korean School Mathematics Society 22(3), 303-327 (2019)",
+     "where": "Korean grade 2 textbook sequence; order of factors; comparison with US and Singapore textbooks",
+     "url": "https://koreascience.or.kr/article/JAKO201911464521719.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "yuga-gs",
+     "ref": "Yugacrew Yugawiki, 곱셈표 (multiplication table), in Korean",
+     "where": "article",
+     "url": "https://www.yugacrew.com/yugawiki/%EA%B3%B1%EC%85%88%ED%91%9C",
+     "kind": "reference"
+    },
+    {
+     "k": "wiki-mt",
+     "ref": "Wikipedia, Multiplication table",
+     "where": "sizes taught; Chinese nine-nine table; symmetry",
+     "url": "https://en.wikipedia.org/wiki/Multiplication_table",
+     "kind": "reference"
+    },
+    {
+     "k": "lim",
+     "ref": "Kien Lim, Addressing the multiplication makes bigger and division makes smaller misconceptions via prediction and clickers, International Journal of Mathematical Education in Science and Technology 42(8) (2011)",
+     "where": "abstract",
+     "url": "https://scholarworks.utep.edu/math_papers/251",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Interpret a product such as $5 \\times 7$ as the total of 5 groups of 7 (CC 3.OA.A.1); equal and unequal groups; number of groups and group size (NCETM 2.2)",
+     "priority": "core",
+     "where": "Equal groups"
+    },
+    {
+     "item": "Solve one-step problems with objects, pictures and arrays (England Y1); use materials, arrays and repeated addition and write them with $\\times $ and $=$ (England Y2)",
+     "priority": "core",
+     "where": "Equal groups; Arrays: rows and columns"
+    },
+    {
+     "item": "Korea: the meaning of multiplication through repeated addition and 몇의 몇 배 (times), after counting in groups (2015 curriculum as quoted by Lee 2019; 2022 [2수01-08..09])",
+     "priority": "core",
+     "where": "Equal groups; Times as many"
+    },
+    {
+     "item": "Find the total of an array with up to 5 rows and 5 columns by adding; write it as a sum of equal addends (CC 2.OA.C.4)",
+     "priority": "core",
+     "where": "Arrays: rows and columns"
+    },
+    {
+     "item": "Show that multiplication of two numbers can be done in any order (England Y2; CC 3.OA.B.5 commutative property as a strategy)",
+     "priority": "core",
+     "where": "Arrays: rows and columns; [[properties-of-operations]]"
+    },
+    {
+     "item": "Count in steps of 2, 3, 5 and 10; recall the 2, 5 and 10 tables (England Y1-Y2), the 3, 4 and 8 tables (Y3), all tables to $12 \\times 12$ (Y4); know all products of two one-digit numbers from memory (CC 3.OA.C.7); 곱셈구구 in Korean Grade 2",
+     "priority": "core",
+     "where": "The times tables"
+    },
+    {
+     "item": "Multiplying by 0 and 1 (England Y4; NCETM 2.4; OpenStax 1.5)",
+     "priority": "core",
+     "where": "The times tables"
+    },
+    {
+     "item": "Use known facts and properties as strategies (doubling, building on fives, nines from tens) (CC 3.OA.B.5; England Y3 notes)",
+     "priority": "common",
+     "where": "The times tables; [[distributive-property]]"
+    },
+    {
+     "item": "Identify and explain patterns in the multiplication table (CC 3.OA.D.9)",
+     "priority": "common",
+     "where": "The times tables"
+    },
+    {
+     "item": "Multiply by 10 and 100; multiply one-digit numbers by multiples of 10 (CC 3.NBT.A.3; NCETM 2.13; OpenStax 1.5)",
+     "priority": "common",
+     "where": "Multiplying by 10 and by tens"
+    },
+    {
+     "item": "Multiply three numbers together (England Y4; CC 3.OA.B.5 associative example)",
+     "priority": "common",
+     "where": "Multiplying by 10 and by tens; [[properties-of-operations]]"
+    },
+    {
+     "item": "Word problems within 100 about equal groups, arrays and measurement, with drawings and equations with a symbol for the unknown (CC 3.OA.A.3)",
+     "priority": "core",
+     "where": "Story problems and missing factors"
+    },
+    {
+     "item": "Find the unknown whole number in a multiplication equation, such as $8 \\times ? = 48$ (CC 3.OA.A.4)",
+     "priority": "core",
+     "where": "Story problems and missing factors"
+    },
+    {
+     "item": "Interpret a multiplication equation as a comparison and solve times-as-many problems, telling them apart from additive comparison (CC 4.OA.A.1-2); integer scaling problems (England Y3-Y4)",
+     "priority": "core",
+     "where": "Times as many"
+    },
+    {
+     "item": "Correspondence problems in which $n$ objects are connected to $m$ objects (England Y3-Y4)",
+     "priority": "common",
+     "where": "Times as many"
+    },
+    {
+     "item": "Language: factor, product, times, twice; the signs $\\times $, $\\cdot $ and brackets (OpenStax 1.5; IM Grade 3 Unit 1)",
+     "priority": "common",
+     "where": "Equal groups; Times as many"
+    },
+    {
+     "item": "Division as an unknown-factor problem; relating multiplication and division facts (CC 3.OA.B.6, 3.OA.C.7; England Y2)",
+     "priority": "core",
+     "where": "[[division]]"
+    },
+    {
+     "item": "Multi-digit multiplication: two-digit by one-digit, short and long multiplication (England Y3-Y6; CC 4.NBT.B.5)",
+     "priority": "core",
+     "where": "separate page: Long multiplication"
+    },
+    {
+     "item": "Factor pairs, multiples, primes (England Y4-Y5; CC 4.OA.B.4)",
+     "priority": "common",
+     "where": "separate page: Factors and multiples"
+    },
+    {
+     "item": "Area of a rectangle by tiling with unit squares (CC 3.MD.C.7)",
+     "priority": "common",
+     "where": "separate page: Area"
+    },
+    {
+     "item": "Scaled picture graphs and bar graphs as a lead-in to multiplication (IM Grade 3 Unit 1 section A)",
+     "priority": "specialised",
+     "where": "separate page: Picture graphs and bar graphs"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "src": [
+      "im-g3l11",
+      "os-mul",
+      "ccss-3oa"
+     ],
+     "body": "A packet holds 4 stickers. You buy 3 packets. How many stickers do you have? You could count every sticker, or add $4 + 4 + 4$. Multiplication is a short way to find the total when every group has the same number in it.\n\nOn this page you will learn what multiplication means (equal groups), how to write it with the sign $\\times $, how arrays (rows and columns) show it, why the order of the two numbers does not change the answer, how to build and remember the times tables, how to multiply by 10 and by tens, how to solve story problems (including ones with a missing number), and what \"times as many\" means.\n\nYou need to be able to add ([[addition-subtraction]]) and to count in steps such as 2, 4, 6, 8 ([[patterns-sequences]])."
+    },
+    {
+     "type": "section",
+     "title": "Equal groups",
+     "src": [
+      "im-g3l11",
+      "im-g3u1gl",
+      "ncetm-202",
+      "ccss-3oa",
+      "os-mul",
+      "eng-pos"
+     ],
+     "body": "After this section you will be able to say how many groups there are and how many are in each group, and write the total as an addition and as a multiplication.\n\nTry this. Take 12 counters (buttons, coins or pasta will do) and 3 cups. Put the counters in the cups so that every cup has the same number. How many are in each cup? Now tip them out and put 5 in one cup, 4 in another and 3 in the last. Is that still \"the same number in each cup\"?\n\nThe first way makes equal groups: 3 groups with 4 in each. The second way makes unequal groups. To describe equal groups you need two numbers: how many groups there are, and how many are in each group."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im-g3l11",
+      "ncetm-202"
+     ],
+     "code": "\nfrom matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor g in range(3):\n    x0 = g * 2.6\n    ax.add_patch(FancyBboxPatch((x0 + 0.15, 0.75), 1.9, 1.9, boxstyle='round,pad=0.05,rounding_size=0.3', fc='none', ec='black', lw=1.4))\n    for r in range(2):\n        for c in range(2):\n            ax.add_patch(Circle((x0 + 0.65 + 0.9 * c, 1.25 + 0.9 * r), 0.3, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.4))\n    ax.text(x0 + 1.1, 0.35, '4', ha='center', va='center', fontsize=13)\nax.text(3.9, -0.25, '4 + 4 + 4 = 12        3 $\\\\times$ 4 = 12', ha='center', va='center', fontsize=13)\nax.set_xlim(0, 7.8); ax.set_ylim(-0.6, 2.85); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "3 equal groups with 4 counters in each group: 12 counters in all. As an addition, 4 + 4 + 4 = 12; as a multiplication, 3 × 4 = 12.",
+     "alt": "Three rounded boxes side by side, each holding four blue counters in two rows of two, with the number 4 under each box. Below: 4 + 4 + 4 = 12 and 3 × 4 = 12."
+    },
+    {
+     "type": "definition",
+     "title": "Multiplication, factor and product",
+     "src": [
+      "im-g3u1gl",
+      "im-g3l11",
+      "ccss-3oa",
+      "os-mul"
+     ],
+     "body": "Multiplication is the operation that gives the total number of objects in a number of equal groups.\n\nThe sign $\\times $ is read \"times\". In Illustrative Mathematics and the Common Core, $3 \\times 4$ means the total in 3 groups of 4: the first number is the number of groups and the second is how many are in each group. So $3 \\times 4 = 12$. (Other countries read it the other way round; see the table of conventions below.)\n\nThe numbers that are multiplied, 3 and 4, are called factors. The answer, 12, is called the product. $3 \\times 4$ on its own is an expression; $3 \\times 4 = 12$, with an equal sign, is an equation."
+    },
+    {
+     "type": "definition",
+     "title": "Repeated addition",
+     "src": [
+      "os-mul",
+      "ccss-2oa",
+      "eng-pos",
+      "lee19"
+     ],
+     "body": "Adding the same number again and again is called repeated addition. Three groups of 4 is $4 + 4 + 4$, and this is exactly what $3 \\times 4$ means.\n\nOpenStax shows 3 rows of 8 pennies: $8 + 8 + 8 = 24$, written $3 \\times 8 = 24$. England asks Year 2 pupils to solve problems with repeated addition and to write them with the $\\times $ and $=$ signs, and the Korean curriculum introduces the meaning of multiplication through repeated addition too."
+    },
+    {
+     "type": "theorem",
+     "title": "Counting in steps finds the product",
+     "src": [
+      "prog-oa",
+      "ncetm-203",
+      "eng-pos"
+     ],
+     "body": "To find the total of equal groups, count in steps of the group size, one step for each group. For 3 groups of 4: 4, 8, 12. Three steps, so $3 \\times 4 = 12$."
+    },
+    {
+     "type": "proof",
+     "body": "Each step adds one more group. After the first step you have counted one group of 4; after the second, two groups; after the third, all three groups. The number you say last is the total. The Common Core progressions call this a level 2 method: it is quicker than counting every object one by one (level 1).",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Five ways to show 3 × 4",
+     "body": "The same multiplication can be shown with objects, pictures, words and symbols.",
+     "items": [
+      {
+       "label": "Equal groups",
+       "body": "Draw 3 circles and put 4 dots in each. Count the dots: 12.",
+       "src": [
+        "im-g3l11",
+        "ncetm-202"
+       ]
+      },
+      {
+       "label": "Repeated addition",
+       "body": "$4 + 4 + 4 = 12$, which is written $3 \\times 4 = 12$.",
+       "src": [
+        "os-mul",
+        "ccss-2oa"
+       ]
+      },
+      {
+       "label": "Counting in steps",
+       "body": "Count in fours, one count for each group: 4, 8, 12.",
+       "src": [
+        "prog-oa",
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Tape diagram",
+       "body": "A strip cut into 3 equal parts, each labelled 4; the whole strip is 12 (see the picture below).",
+       "src": [
+        "im-g3l11"
+       ]
+      },
+      {
+       "label": "Array",
+       "body": "3 rows of counters with 4 in each row: 12 counters (see the next section).",
+       "src": [
+        "os-mul",
+        "im-g2u8"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im-g3l11"
+     ],
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.0, 1.9)\nax = fig.add_axes([0, 0, 1, 1])\nfor i in range(3):\n    ax.add_patch(Rectangle((i * 2.0, 0), 2.0, 0.8, fc='none', ec='black', lw=1.5))\n    ax.text(i * 2.0 + 1.0, 0.4, '4', ha='center', va='center', fontsize=14)\nax.plot([0, 0, 6, 6], [1.0, 1.2, 1.2, 1.0], color='black', lw=1.2)\nax.text(3.0, 1.5, 'total: 12', ha='center', va='center', fontsize=13)\nax.text(3.0, -0.4, '3 equal parts', ha='center', va='center', fontsize=12)\nax.set_xlim(-0.2, 6.2); ax.set_ylim(-0.7, 1.8); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "A tape diagram for 3 × 4: a strip cut into 3 equal parts, each worth 4. The whole strip is worth 12.",
+     "alt": "A long rectangle divided into three equal boxes, each with the number 4 in it. A bracket above the whole rectangle is labelled total: 12, and the words 3 equal parts are written below."
+    },
+    {
+     "type": "conventions",
+     "title": "Which number counts the groups?",
+     "body": "Everyone agrees that 3 groups of 6 and 6 groups of 3 both make 18. Countries differ in which of these $3 \\times 6$ names first.",
+     "rows": [
+      {
+       "who": "United States (Common Core, Illustrative Mathematics)",
+       "text": "$3 \\times 6$ is 3 groups of 6 (\"three sixes\"): number of groups first, then the size of each group.",
+       "src": [
+        "ccss-3oa",
+        "im-g3l11",
+        "prog-oa"
+       ]
+      },
+      {
+       "who": "Many other countries",
+       "text": "$3 \\times 6$ is read as 6 groups of 3 (\"six threes\"). The Common Core progressions note that some children bring this reading from home.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "who": "Korea",
+       "text": "Grade 2 textbooks go from counting in groups to 3씩 6묶음 (3 in each of 6 bundles) and 3의 6배 (6 times 3), written $3 \\times 6$ and read 3 곱하기 6: the size of each group comes first.",
+       "src": [
+        "lee19"
+       ]
+      },
+      {
+       "who": "England (NCETM)",
+       "text": "The number of groups and the group size are both called factors, and the factors may be written in either order.",
+       "src": [
+        "ncetm-203"
+       ]
+      },
+      {
+       "who": "Signs",
+       "text": "Besides $\\times $, books for older pupils write a raised dot, $3 \\cdot 8$, or brackets, $3(8)$. All three mean 3 times 8.",
+       "src": [
+        "os-mul"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: let both readings in",
+     "src": [
+      "prog-oa",
+      "lee19"
+     ],
+     "body": "Children who learnt at home that $3 \\times 6$ means six threes are not wrong. The Common Core progressions suggest talking about both readings and letting each child use the one from home. What matters is that the child can say which number is the number of groups and which is the size of a group in the story. A Korean study also notes that children tend to write first the number they noticed first, so vary the order in which story problems give the two numbers."
+    },
+    {
+     "type": "pitfall",
+     "title": "Unequal groups are not multiplication",
+     "src": [
+      "ncetm-202",
+      "im-g3u1gl"
+     ],
+     "body": "Cups holding 5, 4 and 3 counters also hold 12 counters, but this is not $3 \\times 4$: the groups are not equal. Multiplication is only for groups that are all the same size. Ask: is every group the same?"
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul",
+      "prog-oa"
+     ],
+     "body": "There are 5 plates with 2 biscuits on each plate. How many biscuits are there? Write an addition and a multiplication.",
+     "solution": "1. Count the groups: 5 plates, so 5 groups.\n2. Count one group: 2 biscuits on each plate.\n3. Repeated addition: $2 + 2 + 2 + 2 + 2$.\n4. Count in twos, once for each plate: 2, 4, 6, 8, 10.\n5. So $5 \\times 2 = 10$. There are 10 biscuits."
+    },
+    {
+     "type": "example",
+     "src": [
+      "im-g3l11"
+     ],
+     "body": "Write a story for $2 \\times 6$ and find the product.",
+     "solution": "1. $2 \\times 6$ means 2 groups of 6.\n2. A story: there are 2 packs of water with 6 bottles in each pack. How many bottles are there?\n3. $6 + 6 = 12$.\n4. So $2 \\times 6 = 12$: there are 12 bottles."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "In $4 \\times 5 = 20$ (4 groups of 5), which numbers are the factors and which is the product?",
+       "a": "4 and 5 are the factors; 20 is the product."
+      },
+      {
+       "q": "Write $6 + 6 + 6$ as a multiplication.",
+       "a": "$3 \\times 6$ (3 groups of 6), which is 18."
+      },
+      {
+       "q": "Bags hold 3, 3 and 4 apples. Is this $3 \\times 3$?",
+       "a": "No. The groups are not equal (there are 10 apples, not 9)."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Draw 4 circles with 3 dots in each. Write the addition and the multiplication.",
+       "hint": "Each circle is one group of 3.",
+       "solution": "$3 + 3 + 3 + 3 = 12$, so $4 \\times 3 = 12$."
+      },
+      {
+       "q": "Write $5 + 5 + 5 + 5 + 5 + 5$ as a multiplication and find the product.",
+       "hint": "How many fives are added?",
+       "solution": "Six fives: $6 \\times 5 = 30$ (count 5, 10, 15, 20, 25, 30)."
+      },
+      {
+       "q": "Find $7 \\times 2$ by counting in twos.",
+       "hint": "Say one number for each of the 7 groups.",
+       "solution": "2, 4, 6, 8, 10, 12, 14. So $7 \\times 2 = 14$."
+      },
+      {
+       "q": "A spider has 8 legs. How many legs do 3 spiders have?",
+       "hint": "3 groups of 8.",
+       "solution": "$8 + 8 + 8 = 24$, so $3 \\times 8 = 24$ legs."
+      },
+      {
+       "q": "Sam says there are 4 groups of 2 in this picture: groups of 2, 2, 3 and 1 stars. Is he right? How many stars are there?",
+       "hint": "Are the groups equal?",
+       "solution": "No: the groups are not all the same size, so it is not $4 \\times 2$. There are $2 + 2 + 3 + 1 = 8$ stars. (Moving one star from the group of 3 to the group of 1 would make 4 equal groups of 2.)"
+      },
+      {
+       "q": "Write a story for $4 \\times 10$ and find the product.",
+       "hint": "4 groups of 10.",
+       "solution": "For example: 4 boxes with 10 pencils in each. Count in tens: 10, 20, 30, 40. $4 \\times 10 = 40$ pencils."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Multiplication gives the total of equal groups.\n- $3 \\times 4$ (read three times four) is the total of 3 groups of 4 in US books; some countries read it as 4 groups of 3. Both give 12.\n- The numbers multiplied are factors; the answer is the product.\n- Equal groups can be found by repeated addition ($4 + 4 + 4$) or by counting in steps (4, 8, 12).\n- Groups that are not all the same size are not a multiplication."
+    },
+    {
+     "type": "section",
+     "title": "Arrays: rows and columns",
+     "src": [
+      "im-g2u8",
+      "im-g3u1gl",
+      "im-g3l20",
+      "os-mul",
+      "ccss-2oa",
+      "prog-oa",
+      "eng-pos"
+     ],
+     "body": "After this section you will be able to find the total of an array by adding its rows or its columns, write a multiplication for it, and explain why $3 \\times 5$ and $5 \\times 3$ have the same product.\n\nTry this. Put 15 counters in 3 straight rows with the same number in each row. How many are in each row? Now walk round to the side of the table and look again. How many rows do you see now, and how many in each?"
+    },
+    {
+     "type": "definition",
+     "title": "Array",
+     "src": [
+      "im-g3u1gl",
+      "im-g2u8",
+      "prog-oa"
+     ],
+     "body": "An array is an arrangement of objects in rows and columns. A row goes across; a column goes up and down. In an array every row has the same number of objects, so each row is one equal group.\n\nEggs in a box, chairs in a hall and the windows on a block of flats are often arrays. A pile of buttons is not an array, and nor are rows of different lengths."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "os-mul",
+      "im-g3l20"
+     ],
+     "code": "\nfrom matplotlib.patches import Circle, FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.6, 2.9)\nax = fig.add_axes([0, 0, 1, 1])\nfor r in range(3):\n    for c in range(5):\n        ax.add_patch(Circle((0.5 + c * 0.8, 3.3 - r * 0.8), 0.28, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.4))\nax.text(2.1, -0.45, '3 rows of 5', ha='center', fontsize=12)\nax.text(2.1, -1.0, '3 $\\\\times$ 5 = 15', ha='center', fontsize=12)\nax.add_patch(FancyArrowPatch((4.6, 2.5), (6.0, 2.5), arrowstyle='-|>', mutation_scale=16, lw=1.4, color='black'))\nax.text(5.3, 2.85, 'turn', ha='center', fontsize=11)\nfor r in range(5):\n    for c in range(3):\n        ax.add_patch(Circle((6.7 + c * 0.8, 3.7 - r * 0.8), 0.28, fc=(1.0, 0.85, 0.6), ec='orange', lw=1.4))\nax.text(7.5, -0.45, '5 rows of 3', ha='center', fontsize=12)\nax.text(7.5, -1.0, '5 $\\\\times$ 3 = 15', ha='center', fontsize=12)\nax.set_xlim(0, 9.0); ax.set_ylim(-1.2, 4.1); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Left: an array of 3 rows with 5 counters in each row, 15 counters, so 3 × 5 = 15. Right: the same 15 counters after a quarter turn: now 5 rows of 3, so 5 × 3 = 15.",
+     "alt": "On the left, fifteen blue counters in three rows of five, labelled 3 rows of 5 and 3 × 5 = 15. An arrow labelled turn points right. On the right, fifteen orange counters in five rows of three, labelled 5 rows of 3 and 5 × 3 = 15."
+    },
+    {
+     "type": "theorem",
+     "title": "Adding the rows or the columns of an array",
+     "src": [
+      "ccss-2oa",
+      "im-g2u8",
+      "os-mul"
+     ],
+     "body": "The total of an array can be found by adding the rows or by adding the columns. For 3 rows of 5: $$5 + 5 + 5 = 15,$$ $$3 + 3 + 3 + 3 + 3 = 15.$$"
+    },
+    {
+     "type": "proof",
+     "body": "Every counter is in exactly one row and in exactly one column. Adding the rows counts each counter once; adding the columns also counts each counter once. So both sums give the same total, 15."
+    },
+    {
+     "type": "theorem",
+     "title": "The order of the factors does not change the product",
+     "src": [
+      "im-g3l20",
+      "os-mul",
+      "eng-pos",
+      "ccss-3oa",
+      "prog-oa"
+     ],
+     "body": "For any two whole numbers, swapping them does not change the product: $$3 \\times 5 = 5 \\times 3.$$ This is called the commutative property of multiplication. England asks Year 2 pupils to show that multiplication of two numbers can be done in any order; the Common Core uses it as a strategy and does not ask children to know its name. So if you know $6 \\times 4 = 24$, you also know $4 \\times 6 = 24$."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "prog-oa",
+      "os-mul",
+      "im-g3l20"
+     ],
+     "body": "Make the array for $3 \\times 5$: 3 rows of 5. Turn it a quarter turn (or walk round to its side). The rows become columns and the columns become rows, so it is now 5 rows of 3, the array for $5 \\times 3$. Turning does not add or remove a single counter, so the two totals are the same. The same works for any array, whatever its numbers. (More on this and the other properties of operations is on [[properties-of-operations]].)"
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: same total, different groups",
+     "src": [
+      "ncetm-205",
+      "im-g3l20",
+      "prog-oa",
+      "eng-pos"
+     ],
+     "body": "2 groups of 5 and 5 groups of 2 look different (two big groups or five small ones) but have the same total. Illustrative Mathematics puts two such arrays side by side and asks children what changed and what stayed the same; NCETM spends a whole segment (2.5) on this. Point out too that only the total is the same: in a story, 2 bags of 5 sweets is not the same thing as 5 bags of 2. And the swap does not work for subtraction or division, which England asks Year 2 pupils to notice."
+    },
+    {
+     "type": "pitfall",
+     "title": "Rows and how many in a row",
+     "src": [
+      "prog-oa"
+     ],
+     "body": "In an array with 3 rows and 6 columns, there are 6 objects in each row, not 3. Children often mix up the number of rows with the number in a row. Point to one row and count along it, then count down the rows."
+    },
+    {
+     "type": "connection",
+     "title": "Arrays of squares",
+     "src": [
+      "ccss-t2",
+      "prog-oa"
+     ],
+     "body": "If the objects in an array are squares placed edge to edge with no gaps, the array fills a rectangle, and its number of squares is the rectangle's area: 3 rows of 6 squares is an area of 18 squares. Area is a separate page (Area), and later [[area-volume]]."
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul",
+      "im-g3l20"
+     ],
+     "body": "An egg box has 2 rows of 6 eggs. Write two multiplications for the eggs and find the total.",
+     "solution": "1. Looking at the rows: 2 rows of 6, so $2 \\times 6$.\n2. Looking at the columns: 6 columns of 2, so $6 \\times 2$.\n3. Adding the rows: $6 + 6 = 12$.\n4. Check with the columns: $2 + 2 + 2 + 2 + 2 + 2 = 12$.\n5. So $2 \\times 6 = 6 \\times 2 = 12$ eggs."
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul",
+      "ccss-3oa"
+     ],
+     "body": "You know that $4 \\times 7 = 28$. What is $7 \\times 4$? Explain.",
+     "solution": "1. $7 \\times 4$ has the same factors as $4 \\times 7$, in the other order.\n2. An array of 4 rows of 7, turned a quarter turn, is 7 rows of 4: the same counters.\n3. So $7 \\times 4 = 28$ too."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "An array has 4 rows with 3 in each row. Write the multiplication and the total.",
+       "a": "$4 \\times 3 = 12$ (or $3 \\times 4 = 12$)."
+      },
+      {
+       "q": "Write the array of 2 rows of 5 as an addition of its columns.",
+       "a": "$2 + 2 + 2 + 2 + 2 = 10$."
+      },
+      {
+       "q": "If $9 \\times 6 = 54$, what is $6 \\times 9$?",
+       "a": "54."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Draw an array of 3 rows of 4 dots. Write an addition of the rows and a multiplication.",
+       "hint": "Each row has 4 dots.",
+       "solution": "$4 + 4 + 4 = 12$, so $3 \\times 4 = 12$."
+      },
+      {
+       "q": "A garden has 5 rows of 5 cabbages. How many cabbages? Add the rows.",
+       "hint": "Five fives.",
+       "solution": "$5 + 5 + 5 + 5 + 5 = 25$, so $5 \\times 5 = 25$ cabbages."
+      },
+      {
+       "q": "A hall has 4 rows of chairs with 2 chairs in each row. Write two multiplications for the chairs.",
+       "hint": "Count by rows, then by columns.",
+       "solution": "$4 \\times 2 = 8$ and $2 \\times 4 = 8$: 8 chairs."
+      },
+      {
+       "q": "You know $8 \\times 9 = 72$. Write another multiplication fact you now know.",
+       "hint": "Swap the factors.",
+       "solution": "$9 \\times 8 = 72$."
+      },
+      {
+       "q": "Arrange 12 counters as an array in as many ways as you can (count 3 rows of 4 and 4 rows of 3 as different).",
+       "hint": "Try 1, 2, 3, ... rows, and see when the rows come out equal.",
+       "solution": "1 row of 12, 2 rows of 6, 3 rows of 4, 4 rows of 3, 6 rows of 2, 12 rows of 1: six arrays, because $1 \\times 12 = 2 \\times 6 = 3 \\times 4 = 12$."
+      },
+      {
+       "q": "Leo says: 3 rows of 7 is the same as 7 rows of 3, so 3 bags of 7 sweets is the same as 7 bags of 3 sweets. Is he right?",
+       "hint": "Is the total the same? Is everything else the same?",
+       "solution": "The totals are the same: both are 21 sweets. But the bags are not the same: 3 bags hold 7 each and 7 bags hold 3 each. The commutative property is about the total only."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- An array has equal rows; a row goes across and a column goes up and down.\n- Its total is the sum of its rows or the sum of its columns.\n- Turning an array shows that $a \\times b = b \\times a$ (the commutative property).\n- So each fact gives a second one for free: $6 \\times 4 = 24$ tells you $4 \\times 6 = 24$.\n- The number of rows is not the number in each row."
+    },
+    {
+     "type": "section",
+     "title": "The times tables",
+     "src": [
+      "eng-pos",
+      "ccss-3oa",
+      "prog-oa",
+      "ncetm-203",
+      "ncetm-204",
+      "ncetm-md",
+      "os-mul",
+      "wiki-mt"
+     ],
+     "body": "After this section you will be able to build the times tables from 0 to 10, use 0 and 1 as factors, and find a fact you do not remember from facts you do.\n\nTry this. Count in fives from 5 and hold up a finger for each count: 5, 10, 15, ... Stop at 35. How many fingers are up? That number of fives makes 35."
+    },
+    {
+     "type": "definition",
+     "title": "Times table and multiplication table",
+     "src": [
+      "os-mul",
+      "ncetm-203",
+      "eng-pos",
+      "ccss-3oa"
+     ],
+     "body": "The 5 times table is the list of products of 5: $$1 \\times 5 = 5,\\ 2 \\times 5 = 10,\\ \\ldots,\\ 10 \\times 5 = 50.$$ Its products 5, 10, 15, ... are the multiples of 5, the numbers you say when you count in fives.\n\nA multiplication table is a grid with numbers along the top and down the side; each square holds the product of its row number and its column number."
+    },
+    {
+     "type": "theorem",
+     "title": "Next-door facts differ by the number",
+     "src": [
+      "ncetm-204",
+      "ncetm-203",
+      "prog-oa"
+     ],
+     "body": "In the 5 times table, each product is 5 more than the one before; in the 2 times table, each is 2 more. For example, $$7 \\times 5 = 6 \\times 5 + 5 = 30 + 5 = 35.$$"
+    },
+    {
+     "type": "proof",
+     "body": "7 groups of 5 is 6 groups of 5 with one more group of 5. So the product is 5 more than $6 \\times 5$. The same holds in every table: one more group adds one more of the group size."
+    },
+    {
+     "type": "theorem",
+     "title": "The 2, 5 and 10 times tables",
+     "src": [
+      "eng-pos",
+      "ncetm-203",
+      "ncetm-204",
+      "ncetm-205"
+     ],
+     "body": "These are the first tables (England, Year 2). Products of 2 are the even numbers. Products of 10 end in 0: $4 \\times 10 = 40$ is 4 tens. Products of 5 end in 5 or 0, and each product of 10 is double the product of 5 next to it: $4 \\times 10 = 40$ is double $4 \\times 5 = 20$."
+    },
+    {
+     "type": "proof",
+     "body": "Count in tens: 10, 20, 30, ... Each count adds one more ten, so 4 counts make 4 tens, written 40, with 0 in the ones place. Counting in fives, the ones digit goes 5, 0, 5, 0 because two fives make a ten. And 10 is two fives, so 4 tens are twice 4 fives.",
+     "src": [
+      "ncetm-204",
+      "ncetm-205"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 1 and by 0",
+     "src": [
+      "os-mul",
+      "ncetm-204",
+      "ncetm-202",
+      "eng-pos"
+     ],
+     "body": "Multiplying a number by 1 leaves it the same, and multiplying by 0 gives 0, in either order: $$7 \\times 1 = 7,\\quad 1 \\times 7 = 7,$$ $$7 \\times 0 = 0,\\quad 0 \\times 7 = 0.$$"
+    },
+    {
+     "type": "proof",
+     "src": [
+      "ncetm-202"
+     ],
+     "body": "7 plates with 1 biscuit on each hold 7 biscuits; 1 plate with 7 biscuits holds 7. 7 plates with no biscuits on them hold no biscuits, and no plates of 7 biscuits is no biscuits at all. NCETM uses stories like these, with groups of 0 and groups of 1, before stating the rules."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: 0 and 1 are easy to mix up",
+     "src": [
+      "prog-oa",
+      "ncetm-204"
+     ],
+     "body": "Three rules look alike: $n + 0 = n$, $n \\times 0 = 0$ and $n \\times 1 = n$. The Common Core progressions report that children often confuse them, for example writing $6 \\times 0 = 6$. Ask for the story: 6 plates with nothing on them."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "os-mul",
+      "wiki-mt"
+     ],
+     "code": "\nfrom matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(6.2, 6.2)\nax = fig.add_axes([0, 0, 1, 1])\nn = 10\nfor i in range(n + 1):\n    for j in range(n + 1):\n        x, y = j, n - i\n        if i == 0 and j == 0:\n            ax.text(x + 0.5, y + 0.5, '$\\\\times$', ha='center', va='center', fontsize=13)\n        elif i == 0 or j == 0:\n            ax.add_patch(Rectangle((x, y), 1, 1, fc=(0.88, 0.88, 0.88), ec='black', lw=0.8))\n            ax.text(x + 0.5, y + 0.5, str(i + j), ha='center', va='center', fontsize=12, weight='bold')\n        else:\n            fc = (0.75, 0.85, 1.0) if i == j else 'none'\n            ax.add_patch(Rectangle((x, y), 1, 1, fc=fc, ec='black', lw=0.6))\n            ax.text(x + 0.5, y + 0.5, str(i * j), ha='center', va='center', fontsize=11)\nfor (i, j) in [(3, 7), (7, 3)]:\n    ax.add_patch(Circle((j + 0.5, n - i + 0.5), 0.45, fc='none', ec='red', lw=2.0))\nax.set_xlim(-0.05, n + 1.05); ax.set_ylim(-0.05, n + 1.05); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "The multiplication table from 1 × 1 to 10 × 10. Each square holds the product of its row number (left) and column number (top). The 10 shaded squares on the diagonal are the square products 1, 4, 9, ..., 100. The two circled squares, 3 × 7 and 7 × 3, both hold 21: the table is the same on both sides of the diagonal.",
+     "alt": "A 10 by 10 grid with a grey header row and header column numbered 1 to 10 and a times sign in the corner. Each cell holds the product of its row and column. The diagonal cells 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 are shaded light blue. The cells in row 3 column 7 and row 7 column 3, both 21, are circled in red."
+    },
+    {
+     "type": "theorem",
+     "title": "The table is the same on both sides of the diagonal",
+     "src": [
+      "wiki-mt",
+      "ccss-3oa",
+      "os-mul"
+     ],
+     "body": "The product in row 3, column 7 is the same as in row 7, column 3, and so on for every pair. So the 81 facts from $1 \\times 1$ to $9 \\times 9$ shrink to 45 different ones to learn."
+    },
+    {
+     "type": "proof",
+     "body": "The square in row $a$, column $b$ holds $a \\times b$, and the square in row $b$, column $a$ holds $b \\times a$. These are equal because the order of the factors does not matter. Of the 81 squares, 9 lie on the diagonal; the other 72 come in 36 matching pairs. So there are $9 + 36 = 45$ different facts."
+    },
+    {
+     "type": "theorem",
+     "title": "Doubling links the 2, 4 and 8 tables",
+     "src": [
+      "eng-pos",
+      "ncetm-md",
+      "prog-oa"
+     ],
+     "body": "A product of 4 is double the product of 2, and a product of 8 is double the product of 4: $$\\begin{aligned} 2 \\times 7 &= 14,\\\\ 4 \\times 7 &= 28,\\\\ 8 \\times 7 &= 56. \\end{aligned}$$"
+    },
+    {
+     "type": "proof",
+     "body": "4 groups of 7 are 2 groups of 7 and another 2 groups of 7, so twice $2 \\times 7$. In the same way 8 groups are twice 4 groups. (The Common Core progressions describe this as writing 4 as $2 \\times 2$.)",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Building on the fives",
+     "src": [
+      "prog-oa",
+      "ccss-3oa"
+     ],
+     "body": "6, 7, 8 or 9 groups are 5 groups and 1, 2, 3 or 4 more groups. For example, $$7 \\times 4 = 5 \\times 4 + 2 \\times 4 = 20 + 8 = 28.$$"
+    },
+    {
+     "type": "proof",
+     "body": "Split the 7 groups of 4 into 5 groups and 2 groups. Together they hold all 7 groups, so add the two products. Splitting a factor like this is the distributive property; see [[distributive-property]].",
+     "src": [
+      "prog-oa",
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "The nines: one less than ten",
+     "src": [
+      "prog-oa"
+     ],
+     "body": "Nine groups are ten groups take away one group: $$9 \\times 3 = 30 - 3 = 27.$$ In $9 \\times 1$ to $9 \\times 10$ the tens digit is one less than the number of nines, the ones digit is 10 minus it, and the two digits add up to 9: 9, 18, 27, 36, 45, 54, 63, 72, 81, 90."
+    },
+    {
+     "type": "proof",
+     "body": "9 is one less than 10, so 9 groups of 3 are 10 groups of 3 with one group of 3 taken away: $30 - 3$. In general $n$ nines are $n$ tens take away $n$. Taking a number from 1 to 10 away from $n$ tens leaves $n - 1$ tens and $10 - n$ ones, and $(n - 1) + (10 - n) = 9$."
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 6 × 8",
+     "body": "A fact you have not yet memorised can be reached in several ways. The progressions call these levels: count everything, count in steps, or use a known fact.",
+     "items": [
+      {
+       "label": "Count in steps",
+       "body": "Count in eights, six counts: 8, 16, 24, 32, 40, 48.",
+       "src": [
+        "prog-oa",
+        "ncetm-203"
+       ]
+      },
+      {
+       "label": "Swap the factors",
+       "body": "$6 \\times 8 = 8 \\times 6$: count in sixes, eight counts: 6, 12, 18, 24, 30, 36, 42, 48.",
+       "src": [
+        "ccss-3oa",
+        "im-g3l20"
+       ]
+      },
+      {
+       "label": "Build on fives",
+       "body": "$5 \\times 8 = 40$, and one more 8 makes $40 + 8 = 48$.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Double",
+       "body": "$3 \\times 8 = 24$, and 6 groups are twice 3 groups: $24 + 24 = 48$.",
+       "src": [
+        "prog-oa",
+        "ncetm-205"
+       ]
+      },
+      {
+       "label": "Known fact",
+       "body": "By the end of Grade 3 (Common Core) or Year 4 (England) the fact $6 \\times 8 = 48$ is known by heart.",
+       "src": [
+        "ccss-3oa",
+        "eng-pos"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Times tables in different places",
+     "rows": [
+      {
+       "who": "England",
+       "text": "Called multiplication tables, or times tables. Year 2: the 2, 5 and 10 tables; Year 3: the 3, 4 and 8 tables; Year 4: all tables up to $12 \\times 12$, with multiplying by 0 and 1.",
+       "src": [
+        "eng-pos",
+        "ncetm-md"
+       ]
+      },
+      {
+       "who": "United States (Common Core)",
+       "text": "By the end of Grade 3, know from memory all products of two one-digit numbers, and explain patterns in the multiplication table.",
+       "src": [
+        "ccss-3oa"
+       ]
+      },
+      {
+       "who": "Korea",
+       "text": "Times tables are called 곱셈구구 and are learnt in Grade 2 (second semester), including making a 곱셈표 (multiplication table) and finding patterns in it.",
+       "src": [
+        "yuga-gs"
+       ]
+      },
+      {
+       "who": "China (history)",
+       "text": "The table was called the nine-nine table because it was recited starting from $9 \\times 9$; it has 81 lines (or 45 when each pair is said once) and pupils still learn it by heart.",
+       "src": [
+        "wiki-mt"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: meaning first, then memory",
+     "src": [
+      "ccss-3oa",
+      "prog-oa"
+     ],
+     "body": "The Common Core asks for both: children should explain a product as equal groups and also know the facts from memory. The progressions suggest getting fluent with one table (such as the 2s or 5s) before mixing it with others, and building harder facts from easy ones. Counting in sevens is hard because it is far from tens; for $7 \\times n$ build on fives instead."
+    },
+    {
+     "type": "example",
+     "src": [
+      "prog-oa"
+     ],
+     "body": "Find $9 \\times 6$ without counting in nines.",
+     "solution": "1. 9 groups of 6 are 10 groups of 6 take away one group of 6.\n2. $10 \\times 6 = 60$.\n3. $60 - 6 = 54$.\n4. So $9 \\times 6 = 54$. Check the digit pattern: $5 + 4 = 9$."
+    },
+    {
+     "type": "example",
+     "src": [
+      "prog-oa",
+      "eng-pos"
+     ],
+     "body": "Find $8 \\times 3$ by doubling.",
+     "solution": "1. $2 \\times 3 = 6$.\n2. Double it: $4 \\times 3 = 12$.\n3. Double again: $8 \\times 3 = 24$.\n4. So $8 \\times 3 = 24$."
+    },
+    {
+     "type": "example",
+     "src": [
+      "prog-oa"
+     ],
+     "body": "Find $7 \\times 6$ by building on fives.",
+     "solution": "1. 7 groups of 6 are 5 groups of 6 and 2 groups of 6.\n2. $5 \\times 6 = 30$ and $2 \\times 6 = 12$.\n3. $30 + 12 = 42$.\n4. So $7 \\times 6 = 42$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is $8 \\times 0$? What is $8 \\times 1$?",
+       "a": "$8 \\times 0 = 0$ and $8 \\times 1 = 8$."
+      },
+      {
+       "q": "You know $6 \\times 5 = 30$. What is $7 \\times 5$?",
+       "a": "$30 + 5 = 35$."
+      },
+      {
+       "q": "Use $10 \\times 7 = 70$ to find $9 \\times 7$.",
+       "a": "$70 - 7 = 63$."
+      },
+      {
+       "q": "Use $2 \\times 9 = 18$ to find $4 \\times 9$.",
+       "a": "Double 18: $4 \\times 9 = 36$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write the 10 times table from $1 \\times 10$ to $10 \\times 10$.",
+       "hint": "Count in tens.",
+       "solution": "10, 20, 30, 40, 50, 60, 70, 80, 90, 100."
+      },
+      {
+       "q": "Find $0 \\times 9$, $1 \\times 9$ and $9 + 0$.",
+       "hint": "Tell a story for each one.",
+       "solution": "$0 \\times 9 = 0$ (no groups), $1 \\times 9 = 9$ (one group of 9), $9 + 0 = 9$."
+      },
+      {
+       "q": "Find $4 \\times 6$ by doubling $2 \\times 6$, then find $8 \\times 6$.",
+       "hint": "Double, then double again.",
+       "solution": "$2 \\times 6 = 12$, so $4 \\times 6 = 24$ and $8 \\times 6 = 48$."
+      },
+      {
+       "q": "Find $8 \\times 7$ by building on fives.",
+       "hint": "8 groups are 5 groups and 3 groups.",
+       "solution": "$5 \\times 7 = 35$ and $3 \\times 7 = 21$; $35 + 21 = 56$."
+      },
+      {
+       "q": "Find $9 \\times 8$ using ten eights.",
+       "hint": "Take one 8 away from $10 \\times 8$.",
+       "solution": "$10 \\times 8 = 80$ and $80 - 8 = 72$."
+      },
+      {
+       "q": "Look at the 4 times table: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40. Are all of them even? Explain why.",
+       "hint": "4 groups can be split into 2 groups of 2 groups.",
+       "solution": "Yes. Four groups of any number split into two equal halves (2 groups and 2 groups), and a number that splits into two equal halves is even."
+      },
+      {
+       "q": "How many of the 100 squares in the 1 to 10 multiplication table hold an odd number?",
+       "hint": "A product is odd only when both factors are odd.",
+       "solution": "Odd times odd is odd; if either factor is even, the product is even. There are 5 odd numbers from 1 to 10, so $5 \\times 5 = 25$ squares hold odd numbers."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A times table lists the multiples of a number: count in that number.\n- Next-door facts differ by the number: $7 \\times 5 = 6 \\times 5 + 5$.\n- $n \\times 1 = n$ and $n \\times 0 = 0$; do not mix them up with $n + 0 = n$.\n- Doubling links 2, 4 and 8; build 6 to 9 groups on 5 groups; nines are tens minus one group.\n- The table is the same on both sides of its diagonal, so 45 facts cover $1 \\times 1$ to $9 \\times 9$."
+    },
+    {
+     "type": "section",
+     "title": "Multiplying by 10 and by tens",
+     "src": [
+      "eng-pos",
+      "os-mul",
+      "ccss-3nbt",
+      "ncetm-md",
+      "ccss-3oa"
+     ],
+     "body": "After this section you will be able to multiply a number by 10 and by 100, multiply a one-digit number by a multiple of ten such as 30, and multiply three numbers together.\n\nTry this. Make 4 bundles of 10 straws (or 4 towers of 10 cubes). How many straws are there? Now make 4 rows with 3 bundles in each row. How many bundles? How many straws?"
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 10 and by 100",
+     "src": [
+      "os-mul",
+      "eng-pos",
+      "ncetm-md"
+     ],
+     "body": "To multiply a whole number by 10, write a 0 on its right; to multiply by 100, write two 0s: $$47 \\times 10 = 470,\\quad 47 \\times 100 = 4700.$$"
+    },
+    {
+     "type": "proof",
+     "body": "$47 \\times 10$ is 10 groups of 47, the same as 47 groups of 10, which is 47 tens. 47 tens is 470: the 4 tens become 4 hundreds and the 7 ones become 7 tens, so every digit moves one place to the left and the empty ones place gets a 0. In the same way 47 hundreds is 4700. (See [[place-value]].)",
+     "src": [
+      "eng-pos",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by a multiple of ten",
+     "src": [
+      "ccss-3nbt"
+     ],
+     "body": "To multiply a one-digit number by a multiple of ten, multiply by the number of tens: $$4 \\times 30 = 4 \\times 3 \\text{ tens} = 12 \\text{ tens} = 120.$$"
+    },
+    {
+     "type": "proof",
+     "body": "30 is 3 tens, so 4 groups of 30 are 4 groups of 3 tens, which is 12 tens in all. 12 tens is 120. The picture below shows the 12 tens.",
+     "src": [
+      "ccss-3nbt"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ccss-3nbt"
+     ],
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.4)\nax = fig.add_axes([0, 0, 1, 1])\nfor g in range(4):\n    x0 = g * 2.2\n    for k in range(3):\n        x = x0 + k * 0.55\n        for c in range(10):\n            ax.add_patch(Rectangle((x, 0.8 + c * 0.25), 0.4, 0.25, fc=(0.75, 0.85, 1.0), ec='blue', lw=0.6))\n        ax.add_patch(Rectangle((x, 0.8), 0.4, 2.5, fc='none', ec='black', lw=1.2))\n    ax.text(x0 + 0.75, 0.4, '30', ha='center', va='center', fontsize=13)\nax.text(4.2, -0.2, '4 $\\\\times$ 30 = 12 tens = 120', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.2, 8.6); ax.set_ylim(-0.5, 3.5); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "4 groups of 30. Each group is 3 rods of ten, so there are 12 rods of ten in all: 4 × 30 = 12 tens = 120.",
+     "alt": "Four groups of three tall blue rods, each rod divided into ten small squares. Under each group is the number 30. Below everything: 4 × 30 = 12 tens = 120."
+    },
+    {
+     "type": "theorem",
+     "title": "Three factors",
+     "src": [
+      "ccss-3oa",
+      "os-mul",
+      "eng-pos"
+     ],
+     "body": "To multiply three numbers, multiply two of them, then multiply the answer by the third. Any two may go first, so choose the pair that is easiest: $$3 \\times 5 \\times 2 = 15 \\times 2 = 30$$ or $$3 \\times 5 \\times 2 = 3 \\times 10 = 30.$$"
+    },
+    {
+     "type": "proof",
+     "body": "Think of 3 trays, each with 5 rows of 2 cakes. Counting tray by tray: each tray has $5 \\times 2 = 10$ cakes, so 3 trays have $3 \\times 10 = 30$. Counting row by row: there are $3 \\times 5 = 15$ rows of 2, so $15 \\times 2 = 30$. The cakes are the same, so the answers agree. Changing which pair goes first is the associative property; see [[properties-of-operations]].",
+     "src": [
+      "ccss-3oa",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul"
+     ],
+     "body": "Humberto bought 4 sheets of stamps. Each sheet has 20 stamps. How many stamps did he buy?",
+     "solution": "1. Equal groups: 4 sheets of 20 stamps, so $4 \\times 20$.\n2. 20 is 2 tens, so $4 \\times 20 = 4 \\times 2$ tens $= 8$ tens.\n3. 8 tens is 80.\n4. Humberto bought 80 stamps."
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul",
+      "ccss-3oa"
+     ],
+     "body": "Find $8 \\times 3 \\times 2$ in two ways.",
+     "solution": "1. First pair: $8 \\times 3 = 24$, then $24 \\times 2 = 48$.\n2. Other pair: $3 \\times 2 = 6$, then $8 \\times 6 = 48$.\n3. Both ways give 48."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is $36 \\times 10$?",
+       "a": "360."
+      },
+      {
+       "q": "What is $5 \\times 60$?",
+       "a": "5 times 6 tens is 30 tens, so 300."
+      },
+      {
+       "q": "Find $2 \\times 7 \\times 5$ the easy way.",
+       "a": "$2 \\times 5 = 10$, then $10 \\times 7 = 70$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $54 \\times 10$ and $54 \\times 100$.",
+       "hint": "One zero, then two zeros.",
+       "solution": "$54 \\times 10 = 540$ and $54 \\times 100 = 5400$."
+      },
+      {
+       "q": "Find $3 \\times 40$.",
+       "hint": "40 is 4 tens.",
+       "solution": "3 times 4 tens is 12 tens, so $3 \\times 40 = 120$."
+      },
+      {
+       "q": "Find $9 \\times 80$.",
+       "hint": "80 is 8 tens.",
+       "solution": "$9 \\times 8 = 72$, so 72 tens: $9 \\times 80 = 720$."
+      },
+      {
+       "q": "Vanessa buys 8 packs of hot dogs with 10 in each pack. How many hot dogs?",
+       "hint": "8 groups of 10.",
+       "solution": "$8 \\times 10 = 80$ hot dogs."
+      },
+      {
+       "q": "Find $5 \\times 9 \\times 2$. Which pair is easiest to do first?",
+       "hint": "Look for a pair that makes 10.",
+       "solution": "$5 \\times 2 = 10$, then $10 \\times 9 = 90$."
+      },
+      {
+       "q": "A box holds 2 layers of chocolates, and each layer is 3 rows of 4. How many chocolates are in 5 boxes?",
+       "hint": "First find one box.",
+       "solution": "One layer: $3 \\times 4 = 12$. One box: $2 \\times 12 = 24$. Five boxes: $5 \\times 24 = 120$ (for example $5 \\times 24 = 5 \\times 2 \\times 12 = 10 \\times 12 = 120$)."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Multiplying a whole number by 10 moves every digit one place left: $47 \\times 10 = 470$.\n- By 100 it moves two places: $47 \\times 100 = 4700$.\n- $4 \\times 30$ is $4 \\times 3$ tens, which is 12 tens, 120.\n- With three factors, multiply any pair first, then the third; pick the easiest pair."
+    },
+    {
+     "type": "section",
+     "title": "Story problems and missing factors",
+     "src": [
+      "ccss-3oa",
+      "ccss-t2",
+      "prog-oa",
+      "os-mul",
+      "im-g3u1"
+     ],
+     "body": "After this section you will be able to tell when a story is about multiplication, write an equation for it, and find a missing factor.\n\nTry this. You have 18 grapes and you put 6 on each plate. How many plates do you need? Act it out, or draw it."
+    },
+    {
+     "type": "definition",
+     "title": "Kinds of multiplication story",
+     "src": [
+      "ccss-t2",
+      "ccss-3oa",
+      "prog-oa"
+     ],
+     "body": "The Common Core lists three kinds of situation for multiplication within 100, plus comparing (next section):\n\n1. Equal groups: 3 bags with 6 plums in each bag.\n2. Arrays: 3 rows of 6 apples.\n3. Measurement: 3 pieces of string, each 6 inches long, laid end to end.\n\nAll three give $3 \\times 6 = 18$ (18 plums, 18 apples, 18 inches). Stories about things you can count are easier than measurement stories and come first."
+    },
+    {
+     "type": "definition",
+     "title": "A missing factor",
+     "src": [
+      "ccss-t2",
+      "ccss-3oa",
+      "prog-oa",
+      "im-g3u1"
+     ],
+     "body": "A multiplication equation has two factors and a product, and a story can hide any one of them:\n\n- product unknown: $3 \\times 6 = ?$ (3 bags of 6 plums: how many plums?)\n- group size unknown: $3 \\times ? = 18$ (18 plums shared equally into 3 bags: how many in each bag?)\n- number of groups unknown: $? \\times 6 = 18$ (18 plums packed 6 to a bag: how many bags?)\n\nThe box or question mark stands for the unknown number. Finding a missing factor is the start of [[division]]."
+    },
+    {
+     "type": "theorem",
+     "title": "Finding a missing factor",
+     "src": [
+      "prog-oa",
+      "ccss-3oa"
+     ],
+     "body": "To find the missing factor in $8 \\times ? = 48$, count in eights until you reach 48 and count the steps, or ask which fact from the 8 times table has product 48. Then check by multiplying."
+    },
+    {
+     "type": "proof",
+     "body": "$8 \\times ? = 48$ asks how many groups of 8 make 48 (in the US reading, 8 groups of how many; either way the factor is the same, because the order does not change the product). Counting 8, 16, 24, 32, 40, 48 takes 6 steps, so 6 groups of 8 make 48, and $8 \\times 6 = 48$.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: the equation should match the story",
+     "src": [
+      "ccss-3oa",
+      "ccss-t2",
+      "os-mul"
+     ],
+     "body": "The Common Core asks children to show a story with a drawing and an equation using a symbol for the unknown. OpenStax suggests a routine for word problems: find what is asked, write it in words, turn the words into a number sentence, work it out, and answer in a full sentence. A drawing of the groups often shows straight away which number is unknown."
+    },
+    {
+     "type": "example",
+     "src": [
+      "ccss-t2",
+      "prog-oa"
+     ],
+     "body": "18 plums are packed 6 to a bag. How many bags are there?",
+     "solution": "1. The size of each group is known (6) and the total is known (18). The number of groups is unknown.\n2. Equation: $? \\times 6 = 18$.\n3. Count in sixes: 6, 12, 18. That is 3 steps.\n4. Check: $3 \\times 6 = 18$.\n5. There are 3 bags."
+    },
+    {
+     "type": "example",
+     "src": [
+      "ccss-t2"
+     ],
+     "body": "A rectangle of squares has 18 squares in 3 equal rows. How many squares are in each row?",
+     "solution": "1. Array: 3 rows, the number in each row unknown, 18 in all.\n2. Equation: $3 \\times ? = 18$.\n3. From the 3 times table: $3 \\times 6 = 18$.\n4. There are 6 squares in each row."
+    },
+    {
+     "type": "example",
+     "src": [
+      "os-mul"
+     ],
+     "body": "Valia buys 6 packs of bottled water. Each pack holds 4 bottles. How many bottles does she buy?",
+     "solution": "1. What is asked: the total number of bottles.\n2. In words: 6 packs of 4 bottles.\n3. Number sentence: $6 \\times 4 = ?$\n4. Work it out: $5 \\times 4 = 20$, and one more 4 makes 24.\n5. Answer: Valia buys 24 bottles."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find the missing number: $5 \\times ? = 35$.",
+       "a": "7, because $5 \\times 7 = 35$."
+      },
+      {
+       "q": "Find the missing number: $? \\times 4 = 32$.",
+       "a": "8, because $8 \\times 4 = 32$."
+      },
+      {
+       "q": "Three ribbons are each 9 cm long. How long are they end to end?",
+       "a": "$3 \\times 9 = 27$ cm."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "There are 4 tables with 6 children at each table. How many children? Write an equation.",
+       "hint": "4 equal groups of 6.",
+       "solution": "$4 \\times 6 = 24$ children."
+      },
+      {
+       "q": "Find the missing factor: $8 \\times ? = 48$.",
+       "hint": "Count in eights.",
+       "solution": "8, 16, 24, 32, 40, 48: 6 steps, so 6. Check: $8 \\times 6 = 48$."
+      },
+      {
+       "q": "20 pencils are put in boxes of 5. How many boxes? Write an equation with a question mark.",
+       "hint": "The group size is 5.",
+       "solution": "$? \\times 5 = 20$. Count in fives: 5, 10, 15, 20, so 4 boxes."
+      },
+      {
+       "q": "A window has 24 panes in 4 equal rows. How many panes in each row?",
+       "hint": "$4 \\times ? = 24$.",
+       "solution": "$4 \\times 6 = 24$, so 6 panes in each row."
+      },
+      {
+       "q": "Erin plants 7 rows of 7 tulips. Then she plants one more row of 7. How many tulips now?",
+       "hint": "Find $7 \\times 7$, then add one more group, or find $8 \\times 7$.",
+       "solution": "$7 \\times 7 = 49$ and $49 + 7 = 56$, which is $8 \\times 7$."
+      },
+      {
+       "q": "Write a story for $? \\times 3 = 15$ and solve it.",
+       "hint": "The group size is 3; the number of groups is missing.",
+       "solution": "For example: 15 wheels are on tricycles, 3 wheels on each tricycle. How many tricycles? $5 \\times 3 = 15$, so 5 tricycles."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Multiplication stories are about equal groups, arrays or measurements (and comparing).\n- Any of the three numbers can be unknown: $3 \\times 6 = ?$, $3 \\times ? = 18$, $? \\times 6 = 18$.\n- Find a missing factor by counting in steps or by a known fact, then check by multiplying.\n- Draw the story and write an equation with a symbol for the unknown."
+    },
+    {
+     "type": "section",
+     "title": "Times as many",
+     "src": [
+      "ccss-4oa",
+      "ccss-t2",
+      "eng-pos",
+      "prog-oa",
+      "os-mul"
+     ],
+     "body": "After this section you will be able to use multiplication to compare two amounts (\"3 times as many\"), tell it apart from \"3 more than\", and count the ways of pairing things.\n\nTry this. Build a tower of 2 cubes. Now build a tower 4 times as tall. How many cubes does it need? Then build a tower that is 4 cubes more than the first one. Which tower is taller?"
+    },
+    {
+     "type": "definition",
+     "title": "Times as many",
+     "src": [
+      "ccss-4oa",
+      "ccss-t2",
+      "os-mul",
+      "eng-pos"
+     ],
+     "body": "\"3 times as many as 6\" means 3 groups of 6: $3 \\times 6 = 18$. A red hat that costs 3 times as much as a 6-dollar blue hat costs 18 dollars. \"Twice\" means 2 times: twice 4 cups is $2 \\times 4 = 8$ cups.\n\nAn equation such as $35 = 5 \\times 7$ can be read as a comparison in two ways: 35 is 5 times as many as 7, and 35 is 7 times as many as 5. England calls these scaling problems (for example, 4 times as high)."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ccss-t2",
+      "ccss-4oa"
+     ],
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nax.text(-0.2, 2.3, 'blue hat', ha='right', va='center', fontsize=12)\nax.add_patch(Rectangle((0, 2.0), 2.0, 0.6, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.5))\nax.text(1.0, 2.3, '6', ha='center', va='center', fontsize=13)\nax.text(-0.2, 1.0, 'red hat', ha='right', va='center', fontsize=12)\nfor i in range(3):\n    ax.add_patch(Rectangle((i * 2.0, 0.7), 2.0, 0.6, fc=(1.0, 0.8, 0.8), ec='red', lw=1.5, hatch='//'))\n    ax.text(i * 2.0 + 1.0, 1.0, '6', ha='center', va='center', fontsize=13, bbox=dict(fc='white', ec='none', pad=1))\nax.plot([0, 0, 6, 6], [0.5, 0.3, 0.3, 0.5], color='black', lw=1.2)\nax.text(3.0, 0.0, '3 $\\\\times$ 6 = 18', ha='center', va='center', fontsize=13)\nax.set_xlim(-1.9, 6.3); ax.set_ylim(-0.3, 2.8); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "A bar model for \"the red hat costs 3 times as much as the blue hat\". The blue bar is 6 dollars; the red bar is 3 copies of it: 3 × 6 = 18 dollars.",
+     "alt": "Two bars. The top bar, labelled blue hat, is one light blue box with 6 in it. The bottom bar, labelled red hat, is three red striped boxes each with 6 in it, three times as long as the blue bar. A bracket under the red bar is labelled 3 × 6 = 18."
+    },
+    {
+     "type": "pitfall",
+     "title": "Times as many is not the same as more than",
+     "src": [
+      "ccss-4oa",
+      "prog-oa"
+     ],
+     "body": "\"3 times as many as 6\" is $3 \\times 6 = 18$, but \"3 more than 6\" is $6 + 3 = 9$. The Common Core asks pupils to tell multiplicative comparison from additive comparison. Draw both: times as many repeats the whole bar; more than adds a short piece on the end."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: multiplying does not always make bigger",
+     "src": [
+      "lim",
+      "os-mul"
+     ],
+     "body": "Many children (and adults) believe that multiplying always gives a bigger number. With whole numbers it already fails for 1 and 0: $7 \\times 1 = 7$ and $7 \\times 0 = 0$. With fractions it fails more often (half of 8 is 4). Kien Lim reports that asking learners to predict the answer first, then confronting the prediction, helped prospective teachers drop this belief."
+    },
+    {
+     "type": "definition",
+     "title": "Ways of pairing (correspondence problems)",
+     "src": [
+      "eng-pos"
+     ],
+     "body": "England asks Year 3 and Year 4 pupils to solve correspondence problems, in which each of $n$ objects is joined to each of $m$ others. For example, with 3 hats and 4 scarves, each hat can go with each scarf. Lay the outfits out as an array: one row for each hat and one column for each scarf. There are $3 \\times 4 = 12$ outfits."
+    },
+    {
+     "type": "example",
+     "src": [
+      "ccss-t2"
+     ],
+     "body": "A rubber band is 6 cm long. Stretched, it is 3 times as long. How long is the stretched band? How much longer is it than before?",
+     "solution": "1. 3 times as long as 6 cm: $3 \\times 6 = 18$ cm.\n2. How much longer: $18 - 6 = 12$ cm.\n3. So the stretched band is 18 cm, which is 12 cm longer (and 3 times as long)."
+    },
+    {
+     "type": "example",
+     "src": [
+      "ccss-t2"
+     ],
+     "body": "A red hat costs 18 dollars and a blue hat costs 6 dollars. How many times as much does the red hat cost?",
+     "solution": "1. The question is: how many sixes make 18? So $? \\times 6 = 18$.\n2. Count in sixes: 6, 12, 18. Three steps.\n3. The red hat costs 3 times as much as the blue hat."
+    },
+    {
+     "type": "example",
+     "src": [
+      "eng-pos"
+     ],
+     "body": "A cafe offers 4 sandwiches and 3 drinks. A meal is one sandwich and one drink. How many different meals are there?",
+     "solution": "1. Each sandwich can go with each of the 3 drinks.\n2. Make an array: 4 rows (sandwiches), 3 columns (drinks).\n3. $4 \\times 3 = 12$.\n4. There are 12 different meals."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is 4 times as many as 5? What is 4 more than 5?",
+       "a": "$4 \\times 5 = 20$; $5 + 4 = 9$."
+      },
+      {
+       "q": "Read $24 = 6 \\times 4$ as two comparisons.",
+       "a": "24 is 6 times as many as 4, and 24 is 4 times as many as 6."
+      },
+      {
+       "q": "What is twice 9?",
+       "a": "$2 \\times 9 = 18$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Mia has 7 marbles. Tom has 3 times as many. How many does Tom have?",
+       "hint": "3 groups of 7.",
+       "solution": "$3 \\times 7 = 21$ marbles."
+      },
+      {
+       "q": "Ali is 8 years old. His grandmother is 8 times as old. How old is she?",
+       "hint": "$8 \\times 8$.",
+       "solution": "$8 \\times 8 = 64$ years old."
+      },
+      {
+       "q": "A tree is 5 m tall. A tower is 10 times as tall. How tall is the tower?",
+       "hint": "Multiply by 10.",
+       "solution": "$10 \\times 5 = 50$ m."
+      },
+      {
+       "q": "A choir has 18 men and twice as many women. How many women?",
+       "hint": "Twice means 2 times.",
+       "solution": "$2 \\times 18 = 36$ women."
+      },
+      {
+       "q": "Which is more: 5 times as many as 3, or 5 more than 3? By how much?",
+       "hint": "Work out both.",
+       "solution": "$5 \\times 3 = 15$ and $3 + 5 = 8$; 15 is more, by $15 - 8 = 7$."
+      },
+      {
+       "q": "A green ribbon is 40 cm and a blue ribbon is 8 cm. How many times as long is the green ribbon?",
+       "hint": "$? \\times 8 = 40$.",
+       "solution": "Count in eights: 8, 16, 24, 32, 40, five steps. The green ribbon is 5 times as long."
+      },
+      {
+       "q": "Ava has 3 T-shirts and 5 pairs of shorts. How many different outfits of one T-shirt and one pair of shorts can she make?",
+       "hint": "Make an array of T-shirts and shorts.",
+       "solution": "$3 \\times 5 = 15$ outfits."
+      },
+      {
+       "q": "Is it true that multiplying a whole number by another whole number always gives a bigger number? Give an example.",
+       "hint": "Try the factors 1 and 0.",
+       "solution": "No. $6 \\times 1 = 6$ is not bigger than 6, and $6 \\times 0 = 0$ is smaller."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- \"3 times as many as 6\" is $3 \\times 6 = 18$; \"twice\" means 2 times.\n- $35 = 5 \\times 7$ says 35 is 5 times as many as 7 and 7 times as many as 5.\n- Times as many is not more than: 3 times 6 is 18, but 3 more than 6 is 9.\n- Pairing each of 3 things with each of 4 others gives $3 \\times 4 = 12$ pairs.\n- Multiplying by 1 or by 0 does not make a number bigger."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "src": [
+      "ccss-3oa",
+      "ccss-4oa",
+      "eng-pos",
+      "prog-oa",
+      "ncetm-md"
+     ],
+     "body": "Every multiplication fact is also a division fact: $8 \\times 6 = 48$ tells you that 48 shared into 8 equal groups gives 6. This is the next page, [[division]]. Splitting a factor, as in $7 \\times 4 = 5 \\times 4 + 2 \\times 4$, is the [[distributive-property]], and it is what makes written methods for bigger numbers (short and long multiplication) work. The commutative and associative properties, met here with arrays and three factors, are collected on [[properties-of-operations]].\n\nThe arrays of $12$ (1 by 12, 2 by 6, 3 by 4) show the factor pairs of 12; numbers that make only one row are the primes, the start of [[divisibility]] and [[fta]]. An array of unit squares is an area ([[area-volume]]); pairing each hat with each scarf is the product rule of [[counting]]; and multiplying by the same number again and again (2, 4, 8, 16, ...) gives geometric sequences ([[ap-gp]]).\n\nFor older readers: the rules met on this page, $a \\times b = b \\times a$, $(a \\times b) \\times c = a \\times (b \\times c)$, $a \\times 1 = a$ and $a \\times 0 = 0$, are part of the axioms of a ring ([[rings]]). Not every multiplication in mathematics obeys all of them: multiplying matrices, for example, depends on the order ([[matrices]])."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro, section 1, figure 1 and 2\nassert 4 + 4 + 4 == 12 == 3 * 4\nassert 8 + 8 + 8 == 24 == 3 * 8\nassert [4, 8, 12] == [4 * k for k in range(1, 4)]\nassert 5 + 4 + 3 == 12  # unequal cups\ngroups = [[1] * 4 for _ in range(3)]; assert sum(map(len, groups)) == 12\nassert sum([4, 4, 4]) == 12  # tape diagram\nassert 3 * 6 == 6 * 3 == 18\nassert 2 + 2 + 2 + 2 + 2 == 10 == 5 * 2 and list(range(2, 11, 2)) == [2, 4, 6, 8, 10]\nassert 6 + 6 == 12 == 2 * 6\nassert 4 * 5 == 20 and 3 * 6 == 18 and 3 + 3 + 4 == 10 and 3 * 3 == 9\nassert 3 * 4 == 12 and 6 * 5 == 30 and [5 * k for k in range(1, 7)][-1] == 30\nassert [2 * k for k in range(1, 8)] == [2, 4, 6, 8, 10, 12, 14]\nassert 3 * 8 == 24 and 2 + 2 + 3 + 1 == 8 and 4 * 2 == 8\nassert [10 * k for k in range(1, 5)] == [10, 20, 30, 40] and 4 * 10 == 40\n"
+    },
+    {
+     "python": "# section 2 and figure 3\nassert 3 * 5 == 15 == 5 * 3 and 5 + 5 + 5 == 15 == 3 + 3 + 3 + 3 + 3\nrows = [[1] * 5 for _ in range(3)]; cols = list(zip(*rows)); assert len(cols) == 5 and all(len(c) == 3 for c in cols)\nassert 6 * 4 == 24 == 4 * 6\nassert 3 * 6 == 18\nassert 2 * 6 == 6 * 2 == 12 and 6 + 6 == 12 and 2 * 6 == sum([2] * 6)\nassert 4 * 7 == 7 * 4 == 28\nassert 4 * 3 == 12 and 2 * 5 == sum([2] * 5) == 10 and 9 * 6 == 6 * 9 == 54\nassert 4 + 4 + 4 == 12 and 5 * 5 == 25 == sum([5] * 5) and 4 * 2 == 2 * 4 == 8 and 8 * 9 == 9 * 8 == 72\narr = [(r, 12 // r) for r in range(1, 13) if 12 % r == 0]\nassert arr == [(1, 12), (2, 6), (3, 4), (4, 3), (6, 2), (12, 1)] and len(arr) == 6\nassert 3 * 7 == 7 * 3 == 21\n"
+    },
+    {
+     "python": "# section 3 and figure 4\nassert [k * 5 for k in range(1, 11)][0] == 5 and 2 * 5 == 10 and 10 * 5 == 50\nassert 7 * 5 == 6 * 5 + 5 == 35 and 6 * 5 == 30\nassert all((2 * k) % 2 == 0 for k in range(11)) and 4 * 10 == 40 and 4 * 5 == 20 and 40 == 2 * 20\nassert all(str(5 * k)[-1] in '05' for k in range(1, 11)) and all(str(10 * k)[-1] == '0' for k in range(1, 11))\nassert 7 * 1 == 1 * 7 == 7 and 7 * 0 == 0 * 7 == 0 and 6 * 0 == 0\ndiag = [k * k for k in range(1, 11)]; assert diag[:3] == [1, 4, 9] and diag[-1] == 100 and len(diag) == 10\nassert 3 * 7 == 7 * 3 == 21\nT = {(a, b): a * b for a in range(1, 10) for b in range(1, 10)}\nassert len(T) == 81 and len({frozenset((a, b)) for (a, b) in T}) == 45 and 9 + 36 == 45 and (81 - 9) // 2 == 36\nassert 2 * 7 == 14 and 4 * 7 == 28 and 8 * 7 == 56\nassert 7 * 4 == 5 * 4 + 2 * 4 == 20 + 8 == 28\nassert 9 * 3 == 30 - 3 == 27\nnines = [9 * n for n in range(1, 11)]\nassert nines == [9, 18, 27, 36, 45, 54, 63, 72, 81, 90]\nassert all(9 * n // 10 == n - 1 and 9 * n % 10 == (10 - n) % 10 for n in range(1, 11))\nassert all(sum(map(int, str(x))) == 9 for x in nines)\nassert [8 * k for k in range(1, 7)] == [8, 16, 24, 32, 40, 48] and [6 * k for k in range(1, 9)] == [6, 12, 18, 24, 30, 36, 42, 48]\nassert 5 * 8 + 8 == 48 and 3 * 8 == 24 and 24 + 24 == 48 and 6 * 8 == 48\nassert 9 * 6 == 60 - 6 == 54 and 5 + 4 == 9\nassert 2 * 3 == 6 and 4 * 3 == 12 and 8 * 3 == 24\nassert 5 * 6 == 30 and 2 * 6 == 12 and 7 * 6 == 42\nassert 8 * 0 == 0 and 8 * 1 == 8 and 7 * 5 == 35 and 9 * 7 == 70 - 7 == 63 and 4 * 9 == 2 * 18 == 36\nassert [10 * k for k in range(1, 11)] == [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]\nassert 0 * 9 == 0 and 1 * 9 == 9 and 9 + 0 == 9\nassert 2 * 6 == 12 and 4 * 6 == 24 and 8 * 6 == 48\nassert 5 * 7 == 35 and 3 * 7 == 21 and 35 + 21 == 56 == 8 * 7\nassert 10 * 8 == 80 and 80 - 8 == 72 == 9 * 8\nassert [4 * k for k in range(1, 11)] == [4, 8, 12, 16, 20, 24, 28, 32, 36, 40] and all(x % 2 == 0 for x in [4 * k for k in range(1, 11)])\nassert sum(1 for a in range(1, 11) for b in range(1, 11) if (a * b) % 2) == 25 == 5 * 5\n"
+    },
+    {
+     "python": "# section 4 and figure 5\nassert 47 * 10 == 470 and 47 * 100 == 4700\nassert 4 * 30 == 120 and 4 * 3 == 12 and 12 * 10 == 120\nrods = 4 * 3; assert rods == 12 and rods * 10 == 120\nassert 3 * 5 * 2 == 15 * 2 == 3 * 10 == 30 and 5 * 2 == 10 and 3 * 5 == 15\nassert 4 * 20 == 80 and 4 * 2 == 8\nassert 8 * 3 == 24 and 24 * 2 == 48 and 3 * 2 == 6 and 8 * 6 == 48 and 8 * 3 * 2 == 48\nassert 36 * 10 == 360 and 5 * 60 == 300 and 5 * 6 == 30 and 2 * 7 * 5 == 70 and 2 * 5 == 10\nassert 54 * 10 == 540 and 54 * 100 == 5400 and 3 * 40 == 120 and 3 * 4 == 12\nassert 9 * 80 == 720 and 9 * 8 == 72 and 8 * 10 == 80\nassert 5 * 9 * 2 == 90 and 5 * 2 == 10\nassert 3 * 4 == 12 and 2 * 12 == 24 and 5 * 24 == 120 and 5 * 2 * 12 == 10 * 12 == 120\n"
+    },
+    {
+     "python": "# section 5\nassert 3 * 6 == 18\nassert [8 * k for k in range(1, 7)] == [8, 16, 24, 32, 40, 48] and 8 * 6 == 48\nassert [6 * k for k in range(1, 4)] == [6, 12, 18] and 3 * 6 == 18\nassert 6 * 4 == 24 and 5 * 4 == 20 and 20 + 4 == 24\nassert 5 * 7 == 35 and 8 * 4 == 32 and 3 * 9 == 27\nassert 4 * 6 == 24\nassert [5 * k for k in range(1, 5)] == [5, 10, 15, 20]\nassert 7 * 7 == 49 and 49 + 7 == 56 == 8 * 7\nassert 5 * 3 == 15\n"
+    },
+    {
+     "python": "# section 6 and figure 6\nassert 3 * 6 == 18 and 2 * 4 == 8 and 35 == 5 * 7\nassert 6 + 3 == 9\nassert 7 * 1 == 7 and 7 * 0 == 0 and 8 // 2 == 4\nassert 3 * 4 == 12 and 18 - 6 == 12\nassert [6 * k for k in range(1, 4)] == [6, 12, 18]\nassert 4 * 3 == 12\nimport itertools\nassert len(list(itertools.product(range(3), range(4)))) == 12\nassert 4 * 5 == 20 and 5 + 4 == 9 and 24 == 6 * 4 and 2 * 9 == 18\nassert 3 * 7 == 21 and 8 * 8 == 64 and 10 * 5 == 50 and 2 * 18 == 36\nassert 5 * 3 == 15 and 3 + 5 == 8 and 15 - 8 == 7\nassert [8 * k for k in range(1, 6)] == [8, 16, 24, 32, 40] and 5 * 8 == 40\nassert 3 * 5 == 15 and 6 * 1 == 6 and 6 * 0 == 0\n# looking ahead\nassert 8 * 6 == 48 and 48 // 8 == 6 and 7 * 4 == 5 * 4 + 2 * 4\nassert [(a, 12 // a) for a in range(1, 4) if 12 % a == 0] == [(1, 12), (2, 6), (3, 4)]\nassert [2 ** k for k in range(1, 5)] == [2, 4, 8, 16]\n# other books' numbers quoted: humberto, valia, vanessa, choir, erin\nassert 4 * 20 == 80 and 6 * 4 == 24 and 8 * 10 == 80 and 2 * 18 == 36\n"
+    }
+   ]
+  }
+ }
+]

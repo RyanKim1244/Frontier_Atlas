@@ -1,0 +1,140 @@
+[
+ {
+  "id": "place-value",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "style",
+    "where": "entry.key[2]",
+    "problem": "Third key statement was one instance (2,000 = 10 x 200), not the central fact; key[1] stopped at hundreds although the page goes on to thousands",
+    "fix": "Key now states the ten-times rule in general and the bundling chain up to a thousand"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 9 (check 3)",
+    "problem": "The symbol square (empty box) is used before it is explained",
+    "fix": "Added a short explanation that the box stands for the missing number"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 17 views (Expanded form)",
+    "problem": "47 = 30 + 17 appears before regrouping is taught, with no pointer",
+    "fix": "Added a forward pointer to the regrouping section"
+   },
+   {
+    "severity": "source",
+    "where": "block 17 views (Counting on a number path)",
+    "problem": "Text described counting 'ten, twenty, thirty, forty' along a path, which is not what IM Grade 1 Unit 4 Lesson 10 does (its number path game writes 1 to 99 in order and looks at how the ones and tens digits change)",
+    "fix": "Rewritten to describe the 1-99 number path and the digit pattern, as the lesson and figure do"
+   },
+   {
+    "severity": "source",
+    "where": "block 18 pitfall 'Seventy-two is 72, not 702'",
+    "problem": "Last sentences were close to the lesson's own wording (\"no 0 in 72, even if it sounds like there should be\")",
+    "fix": "Reworded in new words; the 702 example itself is in IM G1 U4 L10 (lesson synthesis)"
+   },
+   {
+    "severity": "source",
+    "where": "block 25 pitfall 'For adults: thirteen and thirty...'",
+    "problem": "(1) Said 'the words sound alike' (NCETM says only that -teen numbers are hard to learn). (2) Claimed Gervasoni found 'others find ten less harder than ten more': the paper does not compare ten less with ten more, it only reports the 10-less task (from 408) among the hardest. (3) The single-digit-as-ones conception was presented as a finding; the paper cites it from Fuson et al. and does not report how many children held it. (4) Advice 'build with towers, find ten more/less without counting' is not in Gervasoni, whose recommendation is to focus on interpreting quantity",
+    "fix": "Rewrote all four points to match what the sources say; attributed the towers-and-cubes advice to IM Grade 1 (added im1U4L10 to src)"
+   },
+   {
+    "severity": "source",
+    "where": "block 30 section 'Hundreds' (Try this first answer)",
+    "problem": "Said Korea's curriculum asks for four-digit numbers 'in Year 2'; the standard [2수01-02] belongs to the grades 1-2 band, not to one year",
+    "fix": "Changed to 'in the grades 1-2 band'"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 34 proof (three-digit numbers)",
+    "problem": "Did not say why the hundreds count is a single digit (only loose ones and tens were discussed)",
+    "fix": "Added the group-below-1,000 assumption and the reason there are fewer than ten hundreds"
+   },
+   {
+    "severity": "source",
+    "where": "block 35 definition 'Three ways to write a number'",
+    "problem": "Attributed to OpenStax a rule for number words ('hundreds first, then tens and ones') that OpenStax 1.1 does not state (it gives a period-by-period rule, which is used later on this page); OpenStax also does not use the term expanded form (it says place value notation)",
+    "fix": "Replaced with the page's own plain statement, no OpenStax claim; os11 stays in src only for the place-value notation 100 + 30 + 8"
+   },
+   {
+    "severity": "source",
+    "where": "block 37 conventions row 'American English'",
+    "problem": "Said OpenStax 'names whole numbers this way' as if it states a rule; OpenStax 1.1 never mentions 'and', its examples simply omit it",
+    "fix": "Reworded to say the examples leave it out; the teaching habit is attributed to the English numerals article"
+   },
+   {
+    "severity": "source",
+    "where": "block 37 conventions row 'Korean'",
+    "problem": "Said the place names follow every digit, which would make 100 일백; in Korean the 1 before 십, 백 or 천 is normally dropped (100 is 백; the Wikipedia table gives 십, 백, 천)",
+    "fix": "Added the dropped-1 rule with examples"
+   },
+   {
+    "severity": "source",
+    "where": "block 38 pitfall 'The zero that holds a place'",
+    "problem": "'Illustrative Mathematics suggests saying a written number aloud to check it matches' is from Grade 4 Lesson 7 (children who write extra digits), not a general suggestion for zeros; 'England introduces 0 as place holder in Year 2' overstated the notes ('begin to understand')",
+    "fix": "Reworded to match the sources"
+   },
+   {
+    "severity": "source",
+    "where": "block 39 pitfall 'For adults: a hundred is one thing'",
+    "problem": "Claimed IM suggests asking 'whether the same amount can be shown without any ones'; the lesson only has children match three descriptions of 100 to diagrams, monitors whether a child uses one hundred block, and asks for the fewest blocks",
+    "fix": "Rewritten to the three-way matching, the monitoring note and the fewest-blocks question"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 40 theorem and example 41",
+    "problem": "Example 41 trades a hundred for ten tens before trading is defined (next section) with only 'as in the next section' as warning",
+    "fix": "Theorem now says in one sentence what a trade is and points to the example"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 50 proof (why only one way)",
+    "problem": "The uniqueness argument ('the ones left loose are the ones that do not fit into full tens') was a restatement, not a reason",
+    "fix": "Replaced by a short argument: ones counts differ by a multiple of ten, hence are equal; repeat for tens and hundreds"
+   },
+   {
+    "severity": "source",
+    "where": "block 53 pitfall 'For adults: ask for fewer blocks'",
+    "problem": "Said IM 'notes which children count by ones and which by tens' as a teaching point; the lesson only says to monitor for both methods, without advice",
+    "fix": "Reworded as a thing the teacher watches for; the England 23 = 10 + 13 statement checked against the Year 2 notes"
+   },
+   {
+    "severity": "source",
+    "where": "block 52 conventions row 'NCETM (England)'",
+    "problem": "Said NCETM uses 'exchanging rather than the older borrowing'; the NCETM page uses 'exchanging' but never mentions borrowing",
+    "fix": "Removed the claim about older usage; kept what the page says"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 60 definition / example 67",
+    "problem": "Example 67 uses the places ten millions without them being named in the lesson",
+    "fix": "Named the millions period places in the definition"
+   },
+   {
+    "severity": "source",
+    "where": "block 71 conventions row 'Thousands separator'",
+    "problem": "Said a thin space 'is used' where the comma is the decimal point; the source only recommends thin spaces to avoid the confusion",
+    "fix": "Reworded as a recommendation"
+   },
+   {
+    "severity": "source",
+    "where": "block 70 pitfall 'For adults: big numbers, read aloud'",
+    "problem": "Advice 'use blocks, such as 2 hundred flats beside 2 thousand cubes' is not in the lessons (the terms hundred flat and thousand cube do not appear)",
+    "fix": "Removed; kept the three checked points: 27,000, 90,500 (Lesson 7) and counting zeros (Lesson 9)"
+   },
+   {
+    "severity": "unclear",
+    "where": "requires / coverage",
+    "problem": "Brief lists Korea [4수01-01..02] (large numbers) but requires had no item; the page only mentions Korean grouping in a convention row",
+    "fix": "Added a common requires item pointing to the thousands section (Korean grouping row and the Korean view); the standard text could not be opened (PDFs are binary), so no claim about its wording"
+   },
+   {
+    "severity": "style",
+    "where": "verification summary",
+    "problem": "None (record of what was checked without finding a fault)",
+    "fix": "All arithmetic (every example, exercise solution, hint and self-check) recomputed and found correct; all 8 figures opened and counts confirmed (35 cubes; ten frame 10+4; A/B/C/D = 7/70/17/71; path 37-51 = 15 boxes with 40 and 50 marked; 138 flat+3 rods+8; 8 tens 16 ones to 9 tens 6 ones; ten 100-grids; chart for 5,278,194). Sources opened and confirmed: IM G1 U4 L5, L10; IM G2 U5 L1; IM G4 U4 L6, L7, L9; OpenStax Prealgebra 1.1 (LibreTexts) and 1.2 (GitHub); NCETM Y3 U7 and subject audit; Gervasoni 2011; England PoS (Y2 place holder, 23 = 10 + 13, Y3 146 partitions, Y4 Roman numerals, Y5-Y6 numbers); CC K.NBT.A.1, 2.NBT; Wikipedia Korean and English numerals; kor15 quote of [2수01-01..02]. Korean [4수01-01..02] text could not be opened (binary PDFs)."
+   }
+  ]
+ }
+]

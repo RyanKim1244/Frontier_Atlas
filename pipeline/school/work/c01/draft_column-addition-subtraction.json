@@ -1,0 +1,1338 @@
+[
+ {
+  "id": "column-addition-subtraction",
+  "entry": {
+   "sum": "Column addition and subtraction write the numbers one under the other, ones under ones and tens under tens, and work one column at a time from the right. When a column adds to ten or more, ten of that unit are regrouped (carried) as one of the next unit; when a top digit is too small, one of the next unit is exchanged (borrowed) for ten. Because every step only regroups place-value units, the method works for whole numbers of any size, for example $47 + 38 = 85$ and $52 - 27 = 25$.",
+   "key": [
+    "15\\text{ ones} = 1\\text{ ten} + 5\\text{ ones}",
+    "52 = 40 + 12",
+    "a - b = c \\iff c + b = a"
+   ],
+   "why": "The column methods turn any addition or subtraction of whole numbers into a few one-digit facts, and the same lining up of place values is used later in long multiplication and with decimals.",
+   "msc": [
+    "97F30"
+   ],
+   "links": [
+    {
+     "field": "computer-science",
+     "note": "Computers add and subtract binary numbers digit by digit with carries and borrows, the same algorithm in base two."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 2.NBT.B.5-9, 3.NBT.A.2, 4.NBT.B.4 (2010)",
+    "Common Core Standards Writing Team, Progressions: K-5 Number and Operations in Base Ten (2015)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 2-5 Addition and subtraction (2013)",
+    "Department for Education, Mathematics guidance: key stages 1 and 2, Year 3, 3AS-2 (2020)",
+    "Korean achievement standards [2수01-06], [2수01-07] (grades 1-2 number and operations)",
+    "Illustrative Mathematics K-5, Grade 2 Unit 7; Grade 3 Unit 3",
+    "OpenStax, Prealgebra 2e, sections 1.3 and 1.4 (2020)",
+    "NCETM, Primary Mastery Professional Development, segments 1.20 and 1.21",
+    "J. S. Brown and K. VanLehn, Repair theory: a generative theory of bugs in procedural skills, Cognitive Science 4 (1980)"
+   ],
+   "aliases": [
+    "column method",
+    "column addition",
+    "column subtraction",
+    "columnar addition",
+    "columnar subtraction",
+    "formal written method",
+    "standard algorithm for addition and subtraction",
+    "vertical addition",
+    "carrying",
+    "borrowing",
+    "regrouping",
+    "exchanging",
+    "trading",
+    "받아올림",
+    "받아내림"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 75,
+   "sources": [
+    {
+     "k": "ccss-2nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.B.5-9",
+     "url": "https://www.thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Number and Operations in Base Ten (2010)",
+     "where": "3.NBT.A.2 and footnote",
+     "url": "https://www.thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Number and Operations in Base Ten (2010)",
+     "where": "4.NBT.B.4",
+     "url": "https://www.thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "prog-nbt",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K-5, Number and Operations in Base Ten (2015)",
+     "where": "Grade 2 (pp. 8-10), Grade 3 (p. 11), Grade 4 (p. 13)",
+     "url": "https://www.isbe.net/Documents/number-base-ten-k-5.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 2-5, Number: addition and subtraction (statutory requirements and notes)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "dfe-y3",
+     "ref": "Department for Education (England), Mathematics guidance: key stages 1 and 2, Year 3 (2020)",
+     "where": "3AS-2 Add and subtract up to three-digit numbers using columnar methods (pp. 36-39, 68)",
+     "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1017431/Maths_guidance_year_3.pdf",
+     "kind": "curriculum"
+    },
+    {
+     "k": "kr-guide",
+     "ref": "Visang Education, Elementary mathematics 2-1 teacher's guide, unit 3 Addition and subtraction (quoting the Korean achievement standards [2수01-05] to [2수01-08])",
+     "where": "pp. 216-221",
+     "url": "https://dn.vivasam.com/VS/DVD/Vivasam_math/data/2-1-3/(2-1-3)지도서_216~221.PDF",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g2u7",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 2 (Kendall Hunt edition)",
+     "where": "Unit 7, Adding and Subtracting within 1,000",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-7/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 3, Wrapping Up Addition and Subtraction within 1,000: lesson list",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-3/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l5",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3, Unit 3 Lesson 5: Another Addition Algorithm",
+     "url": "https://accessim.org/k-5/grade-3/unit-3/section-a/lesson-5?a=teacher",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l8",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3, Unit 3 Lesson 8: Subtraction Algorithms (Part 1)",
+     "url": "https://im.kendallhunt.com/K5/teachers/grade-3/unit-3/lesson-8/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l10",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3, Unit 3 Lesson 10: Subtraction Algorithms (Part 3)",
+     "url": "https://accessim.org/k-5/grade-3/unit-3/section-b/lesson-10?a=teacher",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-fam",
+     "ref": "Illustrative Mathematics, Grade 3 Unit 3 family support materials",
+     "url": "https://www.imaginelearning.com/media/pdf/SPD/Grade 3/Grade3-3-Unit-family-support-materials.pdf",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-add",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.3 Add Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81244/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-sub",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.4 Subtract Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81245/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-cadd",
+     "ref": "NCETM, Primary Mastery Professional Development, Spine 1 segment 1.20: Algorithms: column addition",
+     "where": "teaching points",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-120-algorithms-column-addition/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-csub",
+     "ref": "NCETM, Primary Mastery Professional Development, Spine 1 segment 1.21: Algorithms: column subtraction",
+     "where": "teaching points",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-121-algorithms-column-subtraction",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-y3u7",
+     "ref": "NCETM, Curriculum prioritisation in primary maths: Year 3 Unit 7, Column subtraction",
+     "where": "learning outcomes",
+     "url": "https://ncetm.org.uk/classroom-resources/cp-year-3-unit-7-column-subtraction/",
+     "kind": "notes"
+    },
+    {
+     "k": "bv-repair",
+     "ref": "John Seely Brown and Kurt VanLehn, Repair theory: a generative theory of bugs in procedural skills, Cognitive Science 4 (1980)",
+     "where": "subtraction bugs: Smaller-From-Larger, Borrow-No-Decrement, Diff-0-N=N, Don't-Decrement-Zero",
+     "url": "https://www.lri.fr/~mbl/Stanford/CS477/papers/RepairTheory-SeelyBrown.pdf",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Add and subtract multi-digit whole numbers fluently using the standard algorithm (CC 4.NBT.B.4)",
+     "priority": "core",
+     "where": "Regrouping: when a column makes ten or more; Column subtraction and exchanging; Exchanging across zeros"
+    },
+    {
+     "item": "Add and subtract numbers with up to three digits using formal written columnar methods (England Y3; DfE 3AS-2)",
+     "priority": "core",
+     "where": "Lining up the columns; Regrouping: when a column makes ten or more; Column subtraction and exchanging"
+    },
+    {
+     "item": "Columnar methods with up to four digits, where appropriate (England Y4), and with more than four digits (England Y5)",
+     "priority": "core",
+     "where": "Regrouping: when a column makes ten or more; Column subtraction and exchanging; Exchanging across zeros"
+    },
+    {
+     "item": "Korea [2수01-06]: understand the calculation principles of addition and subtraction within two-digit numbers and calculate them",
+     "priority": "core",
+     "where": "Regrouping: when a column makes ten or more; Column subtraction and exchanging"
+    },
+    {
+     "item": "Korea [2수01-07]: understand the relationship between addition and subtraction",
+     "priority": "core",
+     "where": "Estimate, check and choose a method; [[addition-subtraction]]"
+    },
+    {
+     "item": "Line up digits by place value and work from the ones (right to left) (NCETM 1.20, 1.21)",
+     "priority": "core",
+     "where": "Lining up the columns"
+    },
+    {
+     "item": "Regroup (carry) ten ones as a ten and ten tens as a hundred; exchange a ten for ten ones and a hundred for ten tens (CC 2.NBT.B.7; NCETM Y3 Unit 7)",
+     "priority": "core",
+     "where": "Regrouping: when a column makes ten or more; Column subtraction and exchanging"
+    },
+    {
+     "item": "Exchange through zero (DfE 3AS-2)",
+     "priority": "core",
+     "where": "Exchanging across zeros"
+    },
+    {
+     "item": "Add three or more numbers in columns (OpenStax 1.3; DfE 3AS-2)",
+     "priority": "common",
+     "where": "Regrouping: when a column makes ten or more"
+    },
+    {
+     "item": "Relate written methods to place-value strategies, drawings and expanded form; explain why they work (CC 2.NBT.B.7, 2.NBT.B.9; IM Grade 3 Unit 3)",
+     "priority": "common",
+     "where": "Lining up the columns; Column subtraction and exchanging"
+    },
+    {
+     "item": "Estimate the answer and use inverse operations to check (England Y3-Y4); use rounding to check answers (England Y5)",
+     "priority": "core",
+     "where": "Estimate, check and choose a method"
+    },
+    {
+     "item": "Decide when a column method is appropriate and when a mental method is more efficient (England Y4; DfE 3AS-2; IM Grade 3 Unit 3)",
+     "priority": "common",
+     "where": "Estimate, check and choose a method"
+    },
+    {
+     "item": "Two-step and multi-step addition and subtraction problems in context (England Y4-Y5)",
+     "priority": "common",
+     "where": "Estimate, check and choose a method"
+    },
+    {
+     "item": "Names of the parts: addend, sum, minuend, subtrahend, difference (OpenStax; NCETM)",
+     "priority": "specialised",
+     "where": "Lining up the columns; Column subtraction and exchanging"
+    },
+    {
+     "item": "Facts within 20; adding and subtracting with tens and hundreds by place-value strategies",
+     "priority": "core",
+     "where": "[[addition-subtraction]]"
+    },
+    {
+     "item": "Value of each digit; ten of one unit make one of the next",
+     "priority": "core",
+     "where": "[[place-value]]"
+    },
+    {
+     "item": "Rounding to the nearest 10, 100 or 1,000",
+     "priority": "core",
+     "where": "separate page: Rounding and estimation"
+    },
+    {
+     "item": "Adding and subtracting decimals in columns",
+     "priority": "specialised",
+     "where": "separate page: Decimal operations"
+    },
+    {
+     "item": "Adding and subtracting amounts of money",
+     "priority": "specialised",
+     "where": "separate page: Money"
+    },
+    {
+     "item": "Long multiplication (adds partial products in columns)",
+     "priority": "specialised",
+     "where": "separate page: Long multiplication"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "How much is $3{,}476 + 2{,}858$? Counting on, or drawing every block, would take a very long time. The column methods give a way to add and subtract whole numbers of any size: write the numbers one under the other, with the same places lined up, and work one column at a time, starting from the ones on the right. Each column only needs a fact you already know, such as $7 + 8 = 15$.\n\nThis page assumes you can add and subtract within 20 and with tens and hundreds ([[addition-subtraction]]), and that you know what each digit of a number is worth ([[place-value]]).",
+     "src": [
+      "os-add",
+      "ncetm-cadd",
+      "eng-pos",
+      "ccss-4nbt"
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Lining up the columns",
+     "body": "After this section you will be able to write two or more numbers in columns, ones under ones and tens under tens, and add them when no column reaches ten.\n\nTry this. Write 352 and 41 one under the other on squared paper, one digit in each square. Which digit of 41 should go under the 5 of 352? Why?",
+     "src": [
+      "os-add",
+      "ncetm-cadd",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Column addition",
+     "body": "To add in columns:\n\n1. Write the numbers one under the other so that each place lines up: ones under ones, tens under tens, hundreds under hundreds. Put the $+$ sign on the left and draw a line underneath.\n2. Start with the ones column on the right. Add the digits in that column and write the answer under the line.\n3. Move one column to the left and do the same, until every column is done.\n\nThe numbers you add are the addends; the answer is the sum. A fixed list of steps like this, which works every time as long as the steps are done correctly, is called an algorithm. In the United States this one is the standard algorithm for addition; in England it is the formal written columnar method.",
+     "src": [
+      "os-add",
+      "ncetm-cadd",
+      "im-g3l5",
+      "ccss-4nbt",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $28 + 61$ in columns.",
+     "solution": "1. Write 61 under 28: the 1 under the 8 (ones) and the 6 under the 2 (tens).\n2. Ones: $8 + 1 = 9$. Write 9 under the ones.\n3. Tens: $2 + 6 = 8$. Write 8 under the tens.\n4. The sum is 89.\n\n$$\\begin{array}{r} 28 \\\\ +\\,61 \\\\ \\hline 89 \\end{array}$$",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Why adding by columns works",
+     "body": "Adding by columns gives the right answer because each column adds units of one kind: ones with ones, tens with tens, hundreds with hundreds. For $352 + 41$: $$352 + 41 = 300 + (50 + 40) + (2 + 1)$$ $$= 300 + 90 + 3 = 393.$$",
+     "src": [
+      "im-g3",
+      "prog-nbt",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "352 is 3 hundreds, 5 tens and 2 ones; 41 is 4 tens and 1 one. Putting all of these together, we may count them in any order, so we count each kind on its own: 3 hundreds; 5 tens and 4 tens make 9 tens; 2 ones and 1 one make 3 ones. That is 393. Each column is just a small fact said with a unit after it, such as \"5 tens plus 4 tens is equal to 9 tens\". This is why the digits must be lined up: a column only makes sense if every digit in it is the same kind of unit.",
+     "src": [
+      "dfe-y3",
+      "prog-nbt",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.4, 3.0)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\n\ncw = 0.6\ndef row(x0, y, digits, offset=0):\n    for i, ch in enumerate(digits):\n        d(x0 + (i + offset) * cw, y, ch)\n# left panel: lined up\nx0 = 1.0\nfor i, h in enumerate('HTO'):\n    d(x0 + i * cw, 3.2, h, size=13, color='blue')\nrow(x0, 2.5, '352')\nd(x0 - cw, 1.8, '$+$')\nrow(x0, 1.8, '41', offset=1)\nbar(x0 - 1.2 * cw, x0 + 2.4 * cw, 1.35)\nrow(x0, 0.9, '393')\nd(x0 + cw, 0.1, 'ones under ones', size=12)\n# right panel: not lined up\nx1 = 6.0\nrow(x1, 2.5, '352')\nd(x1 - cw, 1.8, '$+$')\nrow(x1, 1.8, '41')\nbar(x1 - 1.2 * cw, x1 + 2.4 * cw, 1.35)\nrow(x1, 0.9, '762', )\nax.plot([x1 - 0.5, x1 + 1.7], [0.6, 1.2], color='red', lw=2)\nd(x1 + cw, 0.1, 'not lined up: wrong', size=12, color='red')\nax.set_xlim(0, 8.6); ax.set_ylim(-0.3, 3.6)\n",
+     "caption": "352 + 41. Left: lined up by place value, ones under ones (H = hundreds, T = tens, O = ones); the sum is 393. Right: 41 pushed to the left, under the 3 and the 5. Now the 4 sits in the hundreds column and the 1 in the tens column, so this adds 410 instead of 41 and gives 762, which is wrong.",
+     "alt": "Two column additions. Left: headings H, T, O in blue; 352 above 41, with the 4 under the 5 and the 1 under the 2; a line; answer 393; label: ones under ones. Right: 352 above 41 with the 4 under the 3 and the 1 under the 5; a line; answer 762 struck through in red; red label: not lined up: wrong.",
+     "src": [
+      "ncetm-cadd",
+      "os-add"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to see 352 + 41",
+     "body": "The sources build up to the column method from different starting points. All of them show the same sum.",
+     "items": [
+      {
+       "label": "Base-ten blocks",
+       "body": "Build 352 with 3 hundred flats, 5 ten rods and 2 single cubes, and 41 with 4 rods and 1 cube. Put flats with flats, rods with rods and cubes with cubes: 3 flats, 9 rods, 3 cubes, which is 393.",
+       "src": [
+        "os-add",
+        "dfe-y3"
+       ]
+      },
+      {
+       "label": "Expanded form",
+       "body": "Write each number as a sum of its places and add the matching parts: $(300 + 50 + 2) + (40 + 1) = 300 + 90 + 3$.",
+       "src": [
+        "im-g3",
+        "im-fam"
+       ]
+      },
+      {
+       "label": "Unit words",
+       "body": "Say each column with its unit: 2 ones plus 1 one is equal to 3 ones; 5 tens plus 4 tens is equal to 9 tens; 3 hundreds plus no hundreds is 3 hundreds.",
+       "src": [
+        "dfe-y3"
+       ]
+      },
+      {
+       "label": "Columns",
+       "body": "Write 41 under 352 with the ones lined up, and add each column from the right: 3, then 9, then 3. The answer is read off as 393.",
+       "src": [
+        "os-add",
+        "ncetm-cadd"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Line up the ones, not the left edges",
+     "body": "When the numbers have different numbers of digits, it is easy to start both of them at the left, as in the right half of the picture above. Always put the last digits (the ones) under each other. OpenStax gives this warning for sums such as $1{,}683 + 479$, and the NCETM makes lining up the digits one of its first teaching points.",
+     "src": [
+      "os-add",
+      "ncetm-cadd"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $2{,}415 + 364$ in columns. (The comma in 2,415 only groups the digits; it is the number two thousand four hundred fifteen.)",
+     "solution": "1. Line up the ones: the 4 of 364 goes under the 5, the 6 under the 1, the 3 under the 4. There is nothing under the 2 thousands.\n2. Ones: $5 + 4 = 9$.\n3. Tens: $1 + 6 = 7$.\n4. Hundreds: $4 + 3 = 7$.\n5. Thousands: just the 2.\n6. The sum is 2,779.",
+     "src": [
+      "os-add",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find $43 + 25$ in columns.",
+       "a": "Ones $3 + 5 = 8$, tens $4 + 2 = 6$: 68."
+      },
+      {
+       "q": "Write $341 + 52$ in columns. Which digit of 52 goes under the 4?",
+       "a": "The 5, because both are tens. The sum is 393."
+      },
+      {
+       "q": "Find $504 + 293$.",
+       "a": "Ones $4 + 3 = 7$, tens $0 + 9 = 9$, hundreds $5 + 2 = 7$: 797."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $32 + 45$.",
+       "hint": "Ones first, then tens.",
+       "solution": "Ones $2 + 5 = 7$, tens $3 + 4 = 7$. The sum is 77."
+      },
+      {
+       "q": "Find $213 + 574$.",
+       "hint": "Three columns: ones, tens, hundreds.",
+       "solution": "Ones $3 + 4 = 7$, tens $1 + 7 = 8$, hundreds $2 + 5 = 7$. The sum is 787."
+      },
+      {
+       "q": "Find $6{,}021 + 3{,}705$.",
+       "hint": "Four columns; a 0 adds nothing.",
+       "solution": "Ones $1 + 5 = 6$, tens $2 + 0 = 2$, hundreds $0 + 7 = 7$, thousands $6 + 3 = 9$. The sum is 9,726."
+      },
+      {
+       "q": "Find $405 + 71 + 12$.",
+       "hint": "Write all three numbers in columns, ones under ones, and add each column.",
+       "solution": "Ones $5 + 1 + 2 = 8$, tens $0 + 7 + 1 = 8$, hundreds 4. The sum is 488."
+      },
+      {
+       "q": "Mo wrote 46 under 523 with the 4 under the 5, and got 983. What went wrong? What is the right answer?",
+       "hint": "Which column is the 6 of 46 in?",
+       "solution": "Mo lined up the left edges, so he added 460 instead of 46: $523 + 460 = 983$. With ones under ones: ones $3 + 6 = 9$, tens $2 + 4 = 6$, hundreds 5, so $523 + 46 = 569$."
+      },
+      {
+       "q": "Find the missing digits: $3\\square4 + 25\\square = 597$.",
+       "hint": "Look at one column at a time. Which digit added to 4 gives 7?",
+       "solution": "Ones: $4 + \\square = 7$, so the second box is 3. Tens: $\\square + 5 = 9$, so the first box is 4. Hundreds: $3 + 2 = 5$. So $344 + 253 = 597$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Write the numbers with ones under ones, tens under tens, hundreds under hundreds.\n- Add one column at a time, starting with the ones on the right.\n- Each column adds units of one kind, which is why the method works.\n- When the numbers have different lengths, line up the right-hand ends."
+    },
+    {
+     "type": "section",
+     "title": "Regrouping: when a column makes ten or more",
+     "body": "After this section you will be able to add numbers in columns when a column adds up to ten or more, by regrouping (carrying) ten of a unit into the next column, and to add three or more numbers at once.\n\nTry this. Build 47 and 38 with ten rods and single cubes, and push them together. How many rods and how many single cubes do you have? Can you make a new rod?",
+     "src": [
+      "os-add",
+      "ncetm-cadd",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Regrouping (carrying)",
+     "body": "If a column adds up to 10 or more, write only the ones digit of that total in the answer, and carry the ten to the next column on the left, where it is added in with the other digits. For $47 + 38$: ones $7 + 8 = 15$, write 5 and carry 1; tens $1 + 4 + 3 = 8$. So $$47 + 38 = 85.$$",
+     "src": [
+      "os-add",
+      "ncetm-cadd"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "The ones column holds $7 + 8 = 15$ ones. Fifteen ones are 1 ten and 5 ones, so we can swap 10 of the single cubes for one rod. Only 5 ones stay in the ones column; the new ten joins the tens. The carried 1 is written in the tens column because it is worth one ten, not one. Then there are $1 + 4 + 3 = 8$ tens. Nothing was added or lost; ten ones were only regrouped as one ten. OpenStax calls carrying the same thing as regrouping by exchanging.",
+     "src": [
+      "os-add",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.8, 3.4)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\nfrom matplotlib.patches import Rectangle\nS = 0.28\ndef rod(x, y, fc='white', hatch=None, crossed=False):\n    for k in range(10):\n        ax.add_patch(Rectangle((x, y + k * S), S, S, fc=fc, ec='black', lw=0.8, hatch=hatch))\n    if crossed:\n        ax.plot([x - 0.1, x + S + 0.1], [y - 0.05, y + 10 * S + 0.05], color='red', lw=2)\ndef one(x, y, fc='white', hatch=None, crossed=False):\n    ax.add_patch(Rectangle((x, y), S, S, fc=fc, ec='black', lw=0.8, hatch=hatch))\n    if crossed:\n        ax.plot([x + 0.04, x + S - 0.04], [y + 0.04, y + S - 0.04], color='red', lw=1.6)\n        ax.plot([x + 0.04, x + S - 0.04], [y + S - 0.04, y + 0.04], color='red', lw=1.6)\nblue = (0.75, 0.85, 1.0)\n\n# 7 rods: 4 plain, 3 striped\nfor i in range(7):\n    if i < 4: rod(0.2 + i * 0.4, 0.5)\n    else: rod(0.2 + i * 0.4, 0.5, blue, '////')\n# 15 ones in 3 columns of 5: first 7 plain, next 8 striped\nfor j in range(15):\n    c, r = divmod(j, 5)\n    if j < 7: one(3.2 + c * 0.4, 0.5 + r * 0.4)\n    else: one(3.2 + c * 0.4, 0.5 + r * 0.4, blue, '////')\nax.add_patch(Rectangle((3.12, 0.42), 0.84, 2.04, fill=False, ec='red', lw=1.8, ls='--'))\nd(3.55, 3.05, '10 ones', size=11, color='red')\nd(3.55, 2.75, '= 1 new ten', size=11, color='red')\nd(1.4, 0.1, '7 tens', size=12)\nd(3.75, 0.1, '15 ones', size=12)\n# column working\ncw = 0.55; x0 = 6.4\nd(x0, 2.75, '1', size=13, color='red')\nd(x0, 2.2, '4'); d(x0 + cw, 2.2, '7')\nd(x0 - cw, 1.5, '$+$'); d(x0, 1.5, '3'); d(x0 + cw, 1.5, '8')\nbar(x0 - 1.2 * cw, x0 + 1.5 * cw, 1.05)\nd(x0, 0.6, '8'); d(x0 + cw, 0.6, '5')\nax.set_xlim(0, 7.6); ax.set_ylim(-0.2, 3.3); ax.set_aspect('equal')\n",
+     "caption": "47 + 38. Left: all the blocks together: 7 tens (4 plain rods from 47, 3 striped rods from 38) and 15 ones (7 plain, 8 striped). Ten of the ones (dashed box) make one new ten. Right: the same work in columns: 7 + 8 = 15, write 5 and carry the new ten as a small 1 above the tens; then 1 + 4 + 3 = 8 tens. The sum is 85.",
+     "alt": "Seven rods of ten squares, four plain and three blue striped, labelled 7 tens. Fifteen single squares in three columns of five, seven plain and eight blue striped, labelled 15 ones; the first ten squares are inside a red dashed box labelled 10 ones = 1 new ten. On the right a column addition: 47 above 38 with a plus sign, a small red 1 above the 4, a line, and 85 below.",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $43 + 69$.",
+     "solution": "1. Ones: $3 + 9 = 12$. Write 2 in the ones and carry 1 ten.\n2. Tens: $1 + 4 + 6 = 11$ tens. 11 tens are 1 hundred and 1 ten, so write 1 in the tens and 1 in the hundreds.\n3. The sum is 112.",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $324 + 586$.",
+     "solution": "1. Ones: $4 + 6 = 10$. Write 0 and carry 1.\n2. Tens: $1 + 2 + 8 = 11$. Write 1 and carry 1.\n3. Hundreds: $1 + 3 + 5 = 9$. Write 9.\n4. The sum is 910. A column can give 0 in the answer; the 0 still has to be written to hold the place.",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $1{,}683 + 479$.",
+     "solution": "1. Line up the ones: 479 goes under the 683 part; nothing is under the 1 thousand.\n2. Ones: $3 + 9 = 12$. Write 2, carry 1.\n3. Tens: $1 + 8 + 7 = 16$. Write 6, carry 1.\n4. Hundreds: $1 + 6 + 4 = 11$. Write 1, carry 1.\n5. Thousands: $1 + 1 = 2$.\n6. The sum is 2,162.",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.8, 3.6)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\n\ncw = 0.5\ndef num(x0, y, s, size=20, color='black'):\n    for i, ch in enumerate(s):\n        if ch != ' ': d(x0 + i * cw, y, ch, size=size, color=color)\n# A: carries above\nxa = 0.9\nd(xa + cw, 4.1, 'A', size=13)\nnum(xa, 3.45, '11 ', size=13, color='red')\nnum(xa, 2.9, '456'); d(xa - cw, 2.2, '$+$'); num(xa, 2.2, '167')\nbar(xa - 1.2 * cw, xa + 2.5 * cw, 1.75)\nnum(xa, 1.3, '623')\n# B: new units written below the addends\nxb = 3.9\nd(xb + cw, 4.1, 'B', size=13)\nnum(xb, 2.9, '456'); d(xb - cw, 2.2, '$+$'); num(xb, 2.2, '167')\nnum(xb, 1.85, '11 ', size=13, color='red')\nbar(xb - 1.2 * cw, xb + 2.5 * cw, 1.6)\nnum(xb, 1.15, '623')\n# C: partial sums on separate lines\nxc = 6.9\nd(xc + cw, 4.1, 'C', size=13)\nnum(xc, 2.9, '456'); d(xc - cw, 2.2, '$+$'); num(xc, 2.2, '167')\nbar(xc - 1.2 * cw, xc + 2.5 * cw, 1.75)\nnum(xc, 1.3, ' 13', color='blue'); num(xc, 0.65, '110', color='blue'); num(xc, 0.0, '500', color='blue')\nd(xc + 3.4 * cw, 1.3, '6 + 7', size=11, color='blue')\nd(xc + 3.6 * cw, 0.65, '50 + 60', size=11, color='blue')\nd(xc + 3.8 * cw, 0.0, '400 + 100', size=11, color='blue')\nbar(xc - 1.2 * cw, xc + 2.5 * cw, -0.45)\nnum(xc, -0.9, '623')\nax.set_xlim(0, 9.6); ax.set_ylim(-1.3, 4.4)\n",
+     "caption": "Three ways to write 456 + 167 = 623. A: the carried 1s are written small above the tens and hundreds columns. B: the new ten and new hundred are written small below the addends, just above the line. C: each place is added on its own line (6 + 7 = 13, 50 + 60 = 110, 400 + 100 = 500) and the three lines are added: 13 + 110 + 500 = 623.",
+     "alt": "Three column additions of 456 and 167, each giving 623. Panel A has two small red 1s above the 4 and the 5. Panel B has two small red 1s under the 6 and the 1 of 167, above the line. Panel C has the partial sums 13, 110 and 500 in blue on three lines, labelled 6 + 7, 50 + 60 and 400 + 100, then a second line and 623.",
+     "src": [
+      "os-add",
+      "prog-nbt",
+      "im-g3l5",
+      "im-fam"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to record 456 + 167",
+     "body": "Every source adds ones with ones, tens with tens and hundreds with hundreds; they differ in where the regrouped units are written down.",
+     "items": [
+      {
+       "label": "Carry above",
+       "body": "OpenStax writes the carried 1 as a small digit above the next column to the left (picture A).",
+       "src": [
+        "os-add"
+       ]
+      },
+      {
+       "label": "New units below",
+       "body": "The Common Core progressions document writes the new ten or hundred below the addends, just above the answer line (picture B). It points out that the original numbers stay untouched, and that 13 can then be written in the usual order, 1 then 3, instead of 'write 3, carry 1'.",
+       "src": [
+        "prog-nbt"
+       ]
+      },
+      {
+       "label": "Partial sums",
+       "body": "Add each place on its own line, $6 + 7 = 13$, $50 + 60 = 110$, $400 + 100 = 500$, then add the lines (picture C). Illustrative Mathematics uses this first in Grade 3, and the progressions show the same idea.",
+       "src": [
+        "im-g3l5",
+        "im-fam",
+        "prog-nbt"
+       ]
+      },
+      {
+       "label": "Write 10 or 100",
+       "body": "Illustrative Mathematics also shows a method that writes the new unit as 10 or 100 above the addends, so that its value can be seen.",
+       "src": [
+        "im-g3l5"
+       ]
+      },
+      {
+       "label": "Blocks first",
+       "body": "Base-ten blocks or Dienes apparatus are used at the start to show what each step means. The Year 3 guidance for England says they show the structure but should not become the tool for finding the answer.",
+       "src": [
+        "dfe-y3",
+        "os-add"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: what is the little 1 worth?",
+     "body": "In $365 + 182$ the tens column gives $6 + 8 = 14$ tens. Illustrative Mathematics notes that children may not see that the carried digit stands for 10 of those 14 tens, which is 100. Ask what the small 1 is worth, and record new units in the order they appear, from right to left.",
+     "src": [
+      "im-g3l5"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Adding three or more numbers",
+     "body": "The column method works for any number of addends, as long as the places are lined up. A column of three or more digits can add up to 20 or more; then 2 (or more) tens are carried. For example, a ones column of $7 + 1 + 6 = 14$ carries 1, and a tens column of $5 + 6 + 9 + 1 = 21$ tens carries 2 hundreds.",
+     "src": [
+      "os-add",
+      "ncetm-cadd"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Adding several numbers is still putting together ones with ones, tens with tens and so on. If a column holds 21 tens, that is 2 hundreds and 1 ten, so 1 is written and 2 hundreds go to the next column. Inside a column the digits can be added in any order, so the NCETM and the England Year 3 guidance suggest looking for pairs that make 10 first.",
+     "src": [
+      "ncetm-cadd",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $21{,}357 + 861 + 8{,}596$.",
+     "solution": "1. Write the three numbers with their ones lined up.\n2. Ones: $7 + 1 + 6 = 14$. Write 4, carry 1.\n3. Tens: $5 + 6 + 9 + 1 = 21$. Write 1, carry 2.\n4. Hundreds: $3 + 8 + 5 + 2 = 18$. Write 8, carry 1.\n5. Thousands: $1 + 8 + 1 = 10$ (861 has no thousands). Write 0, carry 1.\n6. Ten thousands: $2 + 1 = 3$.\n7. The sum is 30,814.",
+     "src": [
+      "os-add"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names for carrying",
+     "body": "The step where ten of one unit become one of the next unit has many names.",
+     "rows": [
+      {
+       "who": "OpenStax (US)",
+       "text": "Carry; carrying is described as regrouping by exchanging, such as 10 ones for 1 ten.",
+       "src": [
+        "os-add"
+       ]
+      },
+      {
+       "who": "NCETM and DfE (England)",
+       "text": "Regroup, in column addition.",
+       "src": [
+        "ncetm-cadd",
+        "dfe-y3"
+       ]
+      },
+      {
+       "who": "Illustrative Mathematics (US)",
+       "text": "Compose a new ten or a new hundred.",
+       "src": [
+        "im-g2u7",
+        "im-g3l5"
+       ]
+      },
+      {
+       "who": "Korea",
+       "text": "받아올림, the carry in written addition; teacher's guides tell teachers to go back to base-ten blocks when a child does not know what to do with it.",
+       "src": [
+        "kr-guide"
+       ]
+      },
+      {
+       "who": "Name of the method",
+       "text": "US: the standard algorithm (Common Core, Grade 4). England: formal written columnar method, or column addition.",
+       "src": [
+        "ccss-4nbt",
+        "eng-pos",
+        "ncetm-cadd"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find $36 + 57$.",
+       "a": "Ones $6 + 7 = 13$: write 3, carry 1. Tens $1 + 3 + 5 = 9$. The sum is 93."
+      },
+      {
+       "q": "Find $258 + 167$.",
+       "a": "Ones 15 (write 5, carry 1), tens $1 + 5 + 6 = 12$ (write 2, carry 1), hundreds $1 + 2 + 1 = 4$: 425."
+      },
+      {
+       "q": "A ones column holds 9, 8 and 7. What do you write and what do you carry?",
+       "a": "$9 + 8 + 7 = 24$: write 4 and carry 2 tens."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $58 + 34$.",
+       "hint": "The ones make more than 10.",
+       "solution": "Ones $8 + 4 = 12$: write 2, carry 1. Tens $1 + 5 + 3 = 9$. The sum is 92."
+      },
+      {
+       "q": "Find $275 + 148$.",
+       "hint": "You will carry twice.",
+       "solution": "Ones $5 + 8 = 13$: write 3, carry 1. Tens $1 + 7 + 4 = 12$: write 2, carry 1. Hundreds $1 + 2 + 1 = 4$. The sum is 423."
+      },
+      {
+       "q": "Find $699 + 204$.",
+       "hint": "Watch for a column that makes exactly 10.",
+       "solution": "Ones $9 + 4 = 13$: write 3, carry 1. Tens $1 + 9 + 0 = 10$: write 0, carry 1. Hundreds $1 + 6 + 2 = 9$. The sum is 903."
+      },
+      {
+       "q": "Find $127 + 43 + 49$.",
+       "hint": "In the ones column, $7 + 3$ makes 10 first.",
+       "solution": "Ones $7 + 3 + 9 = 19$: write 9, carry 1. Tens $1 + 2 + 4 + 4 = 11$: write 1, carry 1. Hundreds $1 + 1 = 2$. The sum is 219."
+      },
+      {
+       "q": "Find $3{,}476 + 2{,}858$.",
+       "hint": "Four columns, and every column carries.",
+       "solution": "Ones $6 + 8 = 14$: write 4, carry 1. Tens $1 + 7 + 5 = 13$: write 3, carry 1. Hundreds $1 + 4 + 8 = 13$: write 3, carry 1. Thousands $1 + 3 + 2 = 6$. The sum is 6,334."
+      },
+      {
+       "q": "Find $45{,}708 + 6{,}395$.",
+       "hint": "Line up the ones; 6,395 has no ten thousands.",
+       "solution": "Ones $8 + 5 = 13$: write 3, carry 1. Tens $1 + 0 + 9 = 10$: write 0, carry 1. Hundreds $1 + 7 + 3 = 11$: write 1, carry 1. Thousands $1 + 5 + 6 = 12$: write 2, carry 1. Ten thousands $1 + 4 = 5$. The sum is 52,103."
+      },
+      {
+       "q": "When you add just two numbers, can you ever have to carry 2? Explain.",
+       "hint": "What is the biggest a column can be?",
+       "solution": "No. The biggest digits are 9 and 9, and at most 1 has been carried in, so a column is at most $9 + 9 + 1 = 19$. That is less than 20, so at most 1 ten is carried. With three or more numbers a carry of 2 or more can happen."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- If a column adds to 10 or more, write its ones digit and carry the ten to the next column.\n- The carried 1 is worth one of the next unit: a ten, a hundred, and so on.\n- Carrying is regrouping: ten of one unit become one of the next.\n- Books write the carried digit above, below, or use partial sums; the steps are the same.\n- Any number of addends can be added in columns; a column may then carry 2 or more."
+    },
+    {
+     "type": "section",
+     "title": "Column subtraction and exchanging",
+     "body": "After this section you will be able to subtract in columns, and to exchange one ten for ten ones (or one hundred for ten tens) when a top digit is too small.\n\nTry this. Build 52 with 5 ten rods and 2 single cubes. Take away 27. What do you have to do before you can take away 7 single cubes?",
+     "src": [
+      "os-sub",
+      "ncetm-csub",
+      "ncetm-y3u7"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Column subtraction",
+     "body": "To subtract in columns:\n\n1. Write the number you start with on top and the number you take away under it, with ones under ones and tens under tens. Put the $-$ sign on the left and draw a line.\n2. Start with the ones column on the right: take the bottom digit from the top digit and write the answer under the line.\n3. Move one column to the left and do the same, until every column is done.\n4. Check by adding (see the last section).\n\nThe top number is the minuend, the number taken away is the subtrahend, and the answer is the difference. In every column the bottom digit is taken from the top digit, never the other way round.",
+     "src": [
+      "os-sub",
+      "ncetm-csub",
+      "ncetm-y3u7"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $768 - 325$.",
+     "solution": "1. Ones: $8 - 5 = 3$.\n2. Tens: $6 - 2 = 4$.\n3. Hundreds: $7 - 3 = 4$.\n4. The difference is 443. Check: $443 + 325 = 768$.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Exchanging",
+     "body": "If a top digit is smaller than the digit under it, exchange one unit from the column to its left: that digit goes down by 1, and the column you are working on gets 10 more. For $52 - 27$: $$52 = 40 + 12,$$ so ones $12 - 7 = 5$, tens $4 - 2 = 2$, and $52 - 27 = 25$.",
+     "src": [
+      "ncetm-csub",
+      "os-sub",
+      "im-g3l8"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "52 is 5 tens and 2 ones. We cannot take 7 ones from 2 ones, so we change one of the tens into 10 ones. Now there are 4 tens and 12 ones. That is still 52, because $40 + 12 = 52$; only the way it is made up has changed. Now take ones from ones, $12 - 7 = 5$, and tens from tens, $4 - 2 = 2$. Two tens and 5 ones is 25. Check: $25 + 27 = 52$.",
+     "src": [
+      "os-sub",
+      "im-g3l8"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.8, 3.2)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\nfrom matplotlib.patches import Rectangle\nS = 0.28\ndef rod(x, y, fc='white', hatch=None, crossed=False):\n    for k in range(10):\n        ax.add_patch(Rectangle((x, y + k * S), S, S, fc=fc, ec='black', lw=0.8, hatch=hatch))\n    if crossed:\n        ax.plot([x - 0.1, x + S + 0.1], [y - 0.05, y + 10 * S + 0.05], color='red', lw=2)\ndef one(x, y, fc='white', hatch=None, crossed=False):\n    ax.add_patch(Rectangle((x, y), S, S, fc=fc, ec='black', lw=0.8, hatch=hatch))\n    if crossed:\n        ax.plot([x + 0.04, x + S - 0.04], [y + 0.04, y + S - 0.04], color='red', lw=1.6)\n        ax.plot([x + 0.04, x + S - 0.04], [y + S - 0.04, y + 0.04], color='red', lw=1.6)\nblue = (0.75, 0.85, 1.0)\n\n# left: 52 as 5 tens 2 ones\nfor i in range(5): rod(0.2 + i * 0.4, 0.5)\nfor j in range(2): one(2.3, 0.5 + j * 0.4)\nd(1.2, 0.1, '52', size=13)\nax.annotate('', xy=(3.3, 1.9), xytext=(2.8, 1.9), arrowprops=dict(arrowstyle='->', lw=1.5))\n# right: 4 tens and 12 ones; cross out 2 tens and 7 ones\nfor i in range(4): rod(3.5 + i * 0.4, 0.5, crossed=(i >= 2))\nfor j in range(12):\n    c, r = divmod(j, 4)\n    new = j >= 2\n    one(5.2 + c * 0.4, 0.5 + r * 0.4, blue if new else 'white', '////' if new else None, crossed=(j >= 5))\nd(4.6, 0.1, '4 tens, 12 ones', size=12)\n# column working\ncw = 0.55; x0 = 7.6\nd(x0, 2.75, '4', size=13, color='red'); d(x0 + cw + 0.05, 2.75, '12', size=13, color='red')\nd(x0, 2.2, '5'); strike(x0, 2.2); d(x0 + cw, 2.2, '2'); strike(x0 + cw, 2.2)\nd(x0 - cw, 1.5, '$-$'); d(x0, 1.5, '2'); d(x0 + cw, 1.5, '7')\nbar(x0 - 1.2 * cw, x0 + 1.5 * cw, 1.05)\nd(x0, 0.6, '2'); d(x0 + cw, 0.6, '5')\nax.set_xlim(0, 8.8); ax.set_ylim(-0.2, 3.5); ax.set_aspect('equal')\n",
+     "caption": "52 - 27. Left: 52 as 5 tens and 2 ones. Middle: one ten has been changed into 10 ones (striped), so there are 4 tens and 12 ones. 2 tens and 7 ones are crossed out; 2 tens and 5 ones are left. Right: the same work in columns: the 5 tens become 4 and the 2 ones become 12; 12 - 7 = 5 and 4 - 2 = 2, so the difference is 25.",
+     "alt": "Left: five rods of ten squares and two single squares, labelled 52. An arrow. Middle: four rods, two of them struck through in red, and twelve single squares in three columns of four: two plain and ten blue striped; seven of the squares have red crosses; label 4 tens, 12 ones. Right: a column subtraction: 52 with both digits struck through, a small red 4 above the 5 and 12 above the 2, minus 27, a line, and 25.",
+     "src": [
+      "os-sub",
+      "im-g3l8"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.8, 3.2)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\n\n# left: expanded form (Kiran's method)\nX = [1.0, 2.4, 3.6]; P = [1.7, 3.0]\nd(X[0], 3.0, '300', size=15, color='blue'); d(X[1], 3.0, '80', size=15, color='blue'); d(X[2], 3.0, '11', size=15, color='blue')\nfor p in P: d(p, 3.0, '+', size=15, color='blue')\nd(X[0], 2.3, '300', size=18); d(X[1], 2.3, '90', size=18); d(X[2], 2.3, '1', size=18)\nstrike(X[1], 2.3, 0.3); strike(X[2], 2.3)\nfor p in P: d(p, 2.3, '+', size=18)\nd(0.15, 1.6, '$-$', size=18)\nd(X[0], 1.6, '200', size=18); d(X[1], 1.6, '10', size=18); d(X[2], 1.6, '5', size=18)\nfor p in P: d(p, 1.6, '+', size=18)\nbar(0.0, 4.0, 1.15)\nd(X[0], 0.7, '100', size=18); d(X[1], 0.7, '70', size=18); d(X[2], 0.7, '6', size=18)\nfor p in P: d(p, 0.7, '+', size=18)\nd(2.0, 0.05, '= 176', size=16)\n# right: compact form\ncw = 0.6; x0 = 6.3\nd(x0 + cw, 3.0, '8', size=14, color='red'); d(x0 + 2 * cw + 0.1, 3.0, '11', size=14, color='red')\nd(x0, 2.3, '3'); d(x0 + cw, 2.3, '9'); strike(x0 + cw, 2.3); d(x0 + 2 * cw, 2.3, '1'); strike(x0 + 2 * cw, 2.3)\nd(x0 - cw, 1.6, '$-$'); d(x0, 1.6, '2'); d(x0 + cw, 1.6, '1'); d(x0 + 2 * cw, 1.6, '5')\nbar(x0 - 1.2 * cw, x0 + 2.5 * cw, 1.15)\nd(x0, 0.7, '1'); d(x0 + cw, 0.7, '7'); d(x0 + 2 * cw, 0.7, '6')\nax.plot([4.6, 4.6], [0.0, 3.3], color='black', lw=0.6, ls=':')\nax.set_xlim(-0.2, 8.4); ax.set_ylim(-0.3, 3.4)\n",
+     "caption": "391 - 215 written two ways. Left, in expanded form: 391 is 300 + 90 + 1; one ten is exchanged, so it is rewritten as 300 + 80 + 11. Then 11 - 5 = 6, 80 - 10 = 70 and 300 - 200 = 100, and 100 + 70 + 6 = 176. Right, the shorter way: the 9 tens are crossed out and become 8, the 1 one is crossed out and becomes 11; the difference is 176.",
+     "alt": "Left panel: three rows in columns: 300 + 80 + 11 in small blue at the top; 300 + 90 + 1 with the 90 and the 1 struck through in red; minus 200 + 10 + 5; a line; 100 + 70 + 6; then = 176. A dotted divider. Right panel: 391 with the 9 and the 1 struck through, small red 8 and 11 above them; minus 215; a line; 176.",
+     "src": [
+      "im-g3l8",
+      "im-g3l10"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 391 - 215",
+     "body": "Each source subtracts like units and exchanges when a place is short; they write it down differently.",
+     "items": [
+      {
+       "label": "Base-ten drawing",
+       "body": "Draw 3 hundreds, 9 tens and 1 one. There are not enough ones to take 5, so change a ten into 10 ones: 3 hundreds, 8 tens, 11 ones. Cross out 2 hundreds, 1 ten and 5 ones; 1 hundred, 7 tens and 6 ones are left.",
+       "src": [
+        "im-g3l8"
+       ]
+      },
+      {
+       "label": "Expanded form",
+       "body": "Write $300 + 90 + 1$ as $300 + 80 + 11$, then subtract place by place: $11 - 5 = 6$, $80 - 10 = 70$, $300 - 200 = 100$, and $100 + 70 + 6 = 176$ (picture, left).",
+       "src": [
+        "im-g3l8"
+       ]
+      },
+      {
+       "label": "Short column form",
+       "body": "Cross out the 9 and write 8 above it; cross out the 1 and write 11 above it. Then $11 - 5 = 6$, $8 - 1 = 7$, $3 - 2 = 1$: 176 (picture, right). Illustrative Mathematics compares this with the expanded form and notes that it needs fewer digits; OpenStax writes subtraction the same way.",
+       "src": [
+        "im-g3l10",
+        "os-sub"
+       ]
+      },
+      {
+       "label": "Exchange first",
+       "body": "Look at every column before subtracting anything and do all the exchanges first; then do all the subtractions. The progressions document says this separates the two main steps and helps avoid taking the smaller digit from the larger one.",
+       "src": [
+        "prog-nbt"
+       ]
+      },
+      {
+       "label": "Add on",
+       "body": "Think of it as $215 + ? = 391$: from 215 add 5 to get 220, then 80 to get 300, then 91 to get 391. The jumps make $5 + 80 + 91 = 176$.",
+       "src": [
+        "prog-nbt"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "More than one exchange",
+     "body": "Each column is looked at in turn, from right to left, and an exchange is made whenever the top digit is too small. The exchange may come from the tens, the hundreds or the thousands: $$2{,}162 - 479 = 1{,}683.$$",
+     "src": [
+      "os-sub",
+      "ncetm-csub"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "An exchange never changes the top number: one hundred is ten tens and one thousand is ten hundreds, just as one ten is ten ones ([[place-value]]). So after all the exchanges the top number is still the same amount, only split differently, and taking away like units from like units gives the right difference. For $2{,}162 - 479$ the top number becomes 1 thousand, 10 hundreds, 15 tens and 12 ones, which is still $1{,}000 + 1{,}000 + 150 + 12 = 2{,}162$.",
+     "src": [
+      "os-sub",
+      "prog-nbt"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $2{,}162 - 479$.",
+     "solution": "1. Ones: $2 < 9$, so exchange 1 ten: the tens digit 6 becomes 5 and the ones become 12. $12 - 9 = 3$.\n2. Tens: $5 < 7$, so exchange 1 hundred: the hundreds digit 1 becomes 0 and the tens become 15. $15 - 7 = 8$.\n3. Hundreds: $0 < 4$, so exchange 1 thousand: the thousands digit 2 becomes 1 and the hundreds become 10. $10 - 4 = 6$.\n4. Thousands: $1 - 0 = 1$.\n5. The difference is 1,683. Check: $1{,}683 + 479 = 2{,}162$.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $425 - 278$ by doing all the exchanges first.",
+     "solution": "1. Look at the ones: $5 < 8$, so exchange a ten: 4 hundreds, 1 ten, 15 ones.\n2. Look at the tens: now $1 < 7$, so exchange a hundred: 3 hundreds, 11 tens, 15 ones. (Check: $300 + 110 + 15 = 425$.)\n3. Now subtract: ones $15 - 8 = 7$, tens $11 - 7 = 4$, hundreds $3 - 2 = 1$.\n4. The difference is 147. Check: $147 + 278 = 425$.",
+     "src": [
+      "prog-nbt"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Taking the smaller digit from the larger",
+     "body": "A very common mistake is to take the smaller digit from the larger one in every column, whichever is on top. For $74 - 38$ this gives $8 - 4 = 4$ ones and $7 - 3 = 4$ tens, so 44, but the right answer is 36. Brown and VanLehn, who studied the written mistakes of thousands of pupils, list this as the bug Smaller-From-Larger, and the Common Core progressions name it as the common error that exchanging first helps to avoid. Remember: in each column it is always top take away bottom; if the top is too small, exchange.",
+     "src": [
+      "bv-repair",
+      "prog-nbt"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Exchanging without taking one away",
+     "body": "Another mistake is to give the ones column its extra 10 but forget to make the next digit one smaller. For $74 - 38$ this gives $14 - 8 = 6$ and $7 - 3 = 4$, so 46 instead of 36. Brown and VanLehn call this Borrow-No-Decrement. An exchange is a swap: one ten goes out of the tens column and ten ones come into the ones column.",
+     "src": [
+      "bv-repair"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: ask how they know",
+     "body": "Illustrative Mathematics notes that children may not notice when an exchange is needed; ask how they know there are, or are not, enough ones. Ask them to explain each written step, not only to repeat it; the Common Core asks pupils to explain why their methods work. If a child does not know what to do with the exchanged digit, the Korean teacher's guide advises going back to base-ten blocks.",
+     "src": [
+      "im-g3l8",
+      "ccss-2nbt",
+      "kr-guide"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names for exchanging",
+     "body": "The step where one ten becomes ten ones, so that you can subtract, has many names too.",
+     "rows": [
+      {
+       "who": "OpenStax (US)",
+       "text": "Borrow; also described as exchanging a ten for ten ones.",
+       "src": [
+        "os-sub"
+       ]
+      },
+      {
+       "who": "NCETM and DfE (England)",
+       "text": "Exchange. The NCETM Year 3 materials use exchange and do not use borrow, and name the two numbers the minuend and the subtrahend.",
+       "src": [
+        "ncetm-y3u7",
+        "ncetm-csub",
+        "dfe-y3"
+       ]
+      },
+      {
+       "who": "Illustrative Mathematics (US)",
+       "text": "Decompose a ten or a hundred.",
+       "src": [
+        "im-g2u7",
+        "im-g3l8"
+       ]
+      },
+      {
+       "who": "Korea",
+       "text": "받아내림, the exchange in written subtraction.",
+       "src": [
+        "kr-guide"
+       ]
+      },
+      {
+       "who": "Layout",
+       "text": "OpenStax and Illustrative Mathematics cross out the digits that change and write the new ones above. The progressions document allows small differences in how the steps are recorded, as long as the steps are those of the standard algorithm.",
+       "src": [
+        "os-sub",
+        "im-g3l10",
+        "prog-nbt"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find $85 - 42$.",
+       "a": "Ones $5 - 2 = 3$, tens $8 - 4 = 4$: 43."
+      },
+      {
+       "q": "Find $63 - 27$.",
+       "a": "$3 < 7$, so exchange: 5 tens and 13 ones. $13 - 7 = 6$, $5 - 2 = 3$: 36."
+      },
+      {
+       "q": "In $541 - 326$, which column needs an exchange? What is the difference?",
+       "a": "Only the ones ($1 < 6$). 541 becomes 5 hundreds, 3 tens, 11 ones; $11 - 6 = 5$, $3 - 2 = 1$, $5 - 3 = 2$: 215."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $96 - 53$.",
+       "hint": "No exchange is needed.",
+       "solution": "Ones $6 - 3 = 3$, tens $9 - 5 = 4$. The difference is 43."
+      },
+      {
+       "q": "Find $72 - 45$.",
+       "hint": "Is 2 big enough to take 5 from?",
+       "solution": "No, so exchange: 6 tens and 12 ones. $12 - 5 = 7$, $6 - 4 = 2$. The difference is 27. Check: $27 + 45 = 72$."
+      },
+      {
+       "q": "Find $653 - 281$.",
+       "hint": "This time it is the tens that are short.",
+       "solution": "Ones $3 - 1 = 2$. Tens: $5 < 8$, so exchange a hundred: 5 hundreds and 15 tens. $15 - 8 = 7$. Hundreds $5 - 2 = 3$. The difference is 372."
+      },
+      {
+       "q": "Find $832 - 467$.",
+       "hint": "Two exchanges.",
+       "solution": "Ones: $2 < 7$, exchange: 2 tens, 12 ones; $12 - 7 = 5$. Tens: $2 < 6$, exchange: 7 hundreds, 12 tens; $12 - 6 = 6$. Hundreds $7 - 4 = 3$. The difference is 365. Check: $365 + 467 = 832$."
+      },
+      {
+       "q": "Sam wrote $74 - 38 = 44$. What did Sam do, and what is the right answer?",
+       "hint": "Look at the ones column: what is 8 - 4?",
+       "solution": "Sam took the smaller digit from the larger in each column: $8 - 4$ and $7 - 3$. The ones need an exchange: 6 tens and 14 ones, $14 - 8 = 6$, $6 - 3 = 3$. The right answer is 36."
+      },
+      {
+       "q": "Find $5{,}243 - 1{,}678$.",
+       "hint": "Work from the ones; three columns need an exchange.",
+       "solution": "Ones: $3 < 8$, exchange: 3 tens, 13 ones; $13 - 8 = 5$. Tens: $3 < 7$, exchange: 1 hundred, 13 tens; $13 - 7 = 6$. Hundreds: $1 < 6$, exchange: 4 thousands, 11 hundreds; $11 - 6 = 5$. Thousands $4 - 1 = 3$. The difference is 3,565."
+      },
+      {
+       "q": "Find $63{,}512 - 8{,}745$.",
+       "hint": "Line up the ones; 8,745 has no ten thousands.",
+       "solution": "Ones: $2 < 5$, exchange: 0 tens, 12 ones; $12 - 5 = 7$. Tens: $0 < 4$, exchange: 4 hundreds, 10 tens; $10 - 4 = 6$. Hundreds: $4 < 7$, exchange: 2 thousands, 14 hundreds; $14 - 7 = 7$. Thousands: $2 < 8$, exchange: 5 ten thousands, 12 thousands; $12 - 8 = 4$. Ten thousands: 5. The difference is 54,767."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Line up the places and subtract one column at a time, from the right.\n- In every column it is top take away bottom.\n- If the top digit is too small, exchange one from the next column: that digit goes down by 1 and this column gets 10 more.\n- An exchange does not change the number, only how it is split.\n- Doing all the exchanges first, or adding on, are other ways to write the same steps."
+    },
+    {
+     "type": "section",
+     "title": "Exchanging across zeros",
+     "body": "After this section you will be able to subtract from numbers such as 304, 2,000 or 50,020, where the column you want to exchange from holds a zero.\n\nTry this. In $304 - 128$ you need more ones, so you want to exchange a ten. How many tens does 304 have?",
+     "src": [
+      "os-sub",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Exchanging across a zero",
+     "body": "If the next column to the left holds 0, go further left: exchange one of the larger unit into 10 of the next one down, then exchange one of those into 10 for the column you need. For $304 - 128$: $$304 = 200 + 90 + 14,$$ so $14 - 8 = 6$, $90 - 20 = 70$, $200 - 100 = 100$, and $304 - 128 = 176$.",
+     "src": [
+      "os-sub",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "304 has 3 hundreds, no tens and 4 ones. First change 1 hundred into 10 tens: 2 hundreds, 10 tens, 4 ones. Then change 1 of those tens into 10 ones: 2 hundreds, 9 tens, 14 ones. Each swap keeps the amount the same: $200 + 90 + 14 = 304$. That is why the 0 ends up as a 9: it first becomes 10, and then gives one ten away. The England Year 3 guidance says pupils must be able to exchange through 0 like this.",
+     "src": [
+      "os-sub",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "fig = plt.gcf(); fig.set_size_inches(6.6, 3.4)\nax = fig.add_axes([0, 0, 1, 1]); ax.axis('off')\ndef d(x, y, s, size=20, color='black', **k):\n    ax.text(x, y, s, ha='center', va='center', fontsize=size, color=color, **k)\ndef bar(x1, x2, y):\n    ax.plot([x1, x2], [y, y], color='black', lw=1.5)\ndef strike(x, y, w=0.2):\n    ax.plot([x - w, x + w], [y - 0.28, y + 0.28], color='red', lw=1.8)\n\ncw = 0.65\ndef panel(x0, step):\n    d(x0 + cw, 4.0, 'Step %d' % step, size=13)\n    d(x0, 2.3, '3'); d(x0 + cw, 2.3, '0'); d(x0 + 2 * cw, 2.3, '4')\n    strike(x0, 2.3); strike(x0 + cw, 2.3)\n    d(x0, 3.0, '2', size=14, color='red'); d(x0 + cw, 3.0, '10', size=14, color='red')\n    if step == 2:\n        ax.plot([x0 + cw - 0.25, x0 + cw + 0.25], [2.8, 3.2], color='blue', lw=1.8)\n        d(x0 + cw, 3.5, '9', size=14, color='blue')\n        ax.plot([x0 + 2 * cw - 0.2, x0 + 2 * cw + 0.2], [2.02, 2.58], color='blue', lw=1.8)\n        d(x0 + 2 * cw + 0.1, 3.0, '14', size=14, color='blue')\n    d(x0 - cw, 1.6, '$-$'); d(x0, 1.6, '1'); d(x0 + cw, 1.6, '2'); d(x0 + 2 * cw, 1.6, '8')\n    bar(x0 - 1.2 * cw, x0 + 2.5 * cw, 1.15)\n    if step == 2:\n        d(x0, 0.7, '1'); d(x0 + cw, 0.7, '7'); d(x0 + 2 * cw, 0.7, '6')\npanel(1.2, 1); panel(5.4, 2)\nd(1.85, 0.0, '1 hundred = 10 tens', size=12, color='red')\nd(6.05, 0.0, '1 ten = 10 ones', size=12, color='blue')\nax.set_xlim(0, 8.4); ax.set_ylim(-0.4, 4.3)\n",
+     "caption": "304 - 128 in two steps. Step 1: one hundred is exchanged for ten tens, so the 3 hundreds become 2 and the 0 tens become 10. Step 2: one of those tens is exchanged for ten ones, so the 10 tens become 9 and the 4 ones become 14. Then 14 - 8 = 6, 9 - 2 = 7 and 2 - 1 = 1: the difference is 176.",
+     "alt": "Two column subtractions of 304 minus 128. Step 1: the 3 and the 0 are struck through in red, with a small red 2 and 10 above them; label 1 hundred = 10 tens. Step 2: as step 1, but the 10 is also struck through in blue with a 9 above it, and the 4 is struck through in blue with 14 above it; the answer line shows 176; label 1 ten = 10 ones.",
+     "src": [
+      "os-sub",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $207 - 64$.",
+     "solution": "1. Ones: $7 - 4 = 3$. No exchange needed.\n2. Tens: $0 < 6$, so exchange 1 hundred: the 2 hundreds become 1 and the 0 tens become 10. $10 - 6 = 4$.\n3. Hundreds: $1 - 0 = 1$.\n4. The difference is 143. Check: $143 + 64 = 207$.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $2{,}000 - 357$.",
+     "solution": "1. The ones need an exchange, but there are no tens and no hundreds. Go to the thousands.\n2. 1 thousand into 10 hundreds: 1 thousand, 10 hundreds, 0 tens, 0 ones.\n3. 1 hundred into 10 tens: 1 thousand, 9 hundreds, 10 tens, 0 ones.\n4. 1 ten into 10 ones: 1 thousand, 9 hundreds, 9 tens, 10 ones. (Check: $1{,}000 + 900 + 90 + 10 = 2{,}000$.)\n5. Subtract: ones $10 - 7 = 3$, tens $9 - 5 = 4$, hundreds $9 - 3 = 6$, thousands $1 - 0 = 1$.\n6. The difference is 1,643. Check: $1{,}643 + 357 = 2{,}000$.",
+     "src": [
+      "os-sub",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Zeros on top",
+     "body": "Brown and VanLehn found several mistakes that happen only when the top number has a zero. Some pupils write the bottom digit when the top digit is 0, as if $0 - 6$ were 6: for $207 - 64$ they get 263 instead of 143 (the bug Diff-0-N=N). Others, in a sum such as $504 - 108$, change the 0 into 10 and forget that it must then give one ten to the ones, so it should end as 9 (Don't-Decrement-Zero). The right answer is $504 - 108 = 396$. Saying the units aloud helps: 5 hundreds, 0 tens, 4 ones becomes 4 hundreds, 9 tens, 14 ones.",
+     "src": [
+      "bv-repair",
+      "dfe-y3"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find $400 - 163$.",
+       "a": "400 becomes 3 hundreds, 9 tens, 10 ones. $10 - 3 = 7$, $9 - 6 = 3$, $3 - 1 = 2$: 237."
+      },
+      {
+       "q": "Find $503 - 247$.",
+       "a": "503 becomes 4 hundreds, 9 tens, 13 ones. $13 - 7 = 6$, $9 - 4 = 5$, $4 - 2 = 2$: 256."
+      },
+      {
+       "q": "Find $1{,}005 - 8$.",
+       "a": "1,005 becomes 9 hundreds, 9 tens, 15 ones. $15 - 8 = 7$: 997."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $300 - 124$.",
+       "hint": "Exchange a hundred into tens, then a ten into ones.",
+       "solution": "300 becomes 2 hundreds, 9 tens, 10 ones. $10 - 4 = 6$, $9 - 2 = 7$, $2 - 1 = 1$. The difference is 176."
+      },
+      {
+       "q": "Find $605 - 238$.",
+       "hint": "The 0 will end up as a 9.",
+       "solution": "605 becomes 5 hundreds, 9 tens, 15 ones. $15 - 8 = 7$, $9 - 3 = 6$, $5 - 2 = 3$. The difference is 367. Check: $367 + 238 = 605$."
+      },
+      {
+       "q": "Find $1{,}000 - 456$.",
+       "hint": "1,000 is 9 hundreds, 9 tens and 10 ones.",
+       "solution": "$10 - 6 = 4$, $9 - 5 = 4$, $9 - 4 = 5$. The difference is 544."
+      },
+      {
+       "q": "Find $4{,}006 - 1{,}239$.",
+       "hint": "You must go to the thousands for the first exchange.",
+       "solution": "4,006 becomes 3 thousands, 9 hundreds, 9 tens, 16 ones. $16 - 9 = 7$, $9 - 3 = 6$, $9 - 2 = 7$, $3 - 1 = 2$. The difference is 2,767."
+      },
+      {
+       "q": "Find $50{,}020 - 3{,}457$.",
+       "hint": "Exchange a ten for the ones; later you will need to go to the ten thousands.",
+       "solution": "Ones: $0 < 7$, exchange a ten: 1 ten, 10 ones; $10 - 7 = 3$. Tens: $1 < 5$, but there are no hundreds or thousands, so exchange a ten thousand: 4 ten thousands, 9 thousands, 9 hundreds, 11 tens. $11 - 5 = 6$, $9 - 4 = 5$, $9 - 3 = 6$, and 4 ten thousands are left. The difference is 46,563."
+      },
+      {
+       "q": "Kim wrote $207 - 64 = 263$. Which mistake did Kim make?",
+       "hint": "Look at the tens: what is on top?",
+       "solution": "In the tens Kim wrote 6 for $0 - 6$ instead of exchanging, and kept the 2 hundreds. Exchanging a hundred gives 1 hundred, 10 tens, 7 ones, so $207 - 64 = 143$."
+      },
+      {
+       "q": "Why does $1{,}000 - 1$ need exchanges in three columns? What is the answer?",
+       "hint": "Where is the first non-zero digit of 1,000?",
+       "solution": "The ones, tens and hundreds of 1,000 are all 0, so the thousand must be broken into 10 hundreds, one hundred into 10 tens, and one ten into 10 ones: 9 hundreds, 9 tens, 10 ones. Then $10 - 1 = 9$, and the answer is 999."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- If the next column holds 0, exchange from further left, one step at a time.\n- A 0 that is exchanged through ends as 9: it gets 10, then gives 1 away.\n- $304 = 200 + 90 + 14$ and $2{,}000 = 1{,}000 + 900 + 90 + 10$.\n- Never write $0 - 6$ as 6: exchange instead."
+    },
+    {
+     "type": "section",
+     "title": "Estimate, check and choose a method",
+     "body": "After this section you will be able to estimate an answer before you calculate, check a column calculation with the inverse operation, and decide when a column method is a good choice and when a mental method is quicker.\n\nTry this. Ana says $456 + 376 = 732$. Without working it out exactly, can you tell whether she is right?",
+     "src": [
+      "eng-pos",
+      "dfe-y3",
+      "im-fam"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Check with the inverse",
+     "body": "Subtraction undoes addition. So a subtraction is checked by adding, and an addition by subtracting: $$a - b = c \\ \\text{ means } \\ c + b = a,$$ $$a + b = c \\ \\text{ means } \\ c - b = a.$$ Here $a$, $b$ and $c$ stand for any whole numbers.",
+     "src": [
+      "eng-pos",
+      "os-sub",
+      "dfe-y3",
+      "kr-guide"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "If you take $b$ away from $a$ and $c$ is left, then putting the $b$ back with the $c$ gives all of $a$ again. The same holds the other way round. This is the link between adding and subtracting from [[addition-subtraction]]; the Korean standard [2수01-07] and the England programme of study both ask pupils to understand it, and England asks them to use it to check answers.",
+     "src": [
+      "eng-pos",
+      "kr-guide",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Estimate first",
+     "body": "Before calculating, round the numbers to make an easy sum, such as the nearest ten or hundred. If the exact answer is far from the estimate, look for a mistake. For $456 + 376$: about $500 + 400 = 900$, or more closely $460 + 380 = 840$; the exact sum is 832, not 732.",
+     "src": [
+      "eng-pos",
+      "im-fam"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Rounding changes each number only a little, so the estimate is only a little away from the true answer. A mistake in a hundreds or thousands column changes the answer by a lot, so it shows up as a big gap from the estimate. England asks for estimating from Year 3 and for rounding to check answers in Year 5; Illustrative Mathematics suggests asking children to round to the nearest 10 or 100 to see whether an answer makes sense. How to round is taught on its own page (separate page: Rounding and estimation).",
+     "src": [
+      "eng-pos",
+      "im-fam"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to check 832 - 376 = 456",
+     "items": [
+      {
+       "label": "Add back",
+       "body": "Add the answer to the number taken away: $456 + 376 = 832$, the number you started with.",
+       "src": [
+        "os-sub",
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Estimate",
+       "body": "$830 - 380 = 450$, which is close to 456, so the answer is reasonable.",
+       "src": [
+        "eng-pos",
+        "im-fam"
+       ]
+      },
+      {
+       "label": "Other method",
+       "body": "Work it out another way, such as adding on from 376: 4 makes 380, 20 makes 400, 432 makes 832, and $4 + 20 + 432 = 456$.",
+       "src": [
+        "prog-nbt"
+       ]
+      },
+      {
+       "label": "Write a subtraction",
+       "body": "The England Year 3 guidance also checks a column addition such as $456 + 376 = 832$ by a column subtraction: $832 - 376 = 456$.",
+       "src": [
+        "dfe-y3"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Choose the method",
+     "body": "Column methods work for every addition and subtraction of whole numbers, but they are not always the best choice. When the numbers are close together, or one of them is a round number, a mental method is often quicker: $$164 + 36 = 200,$$ $$402 - 398 = 4.$$",
+     "src": [
+      "dfe-y3",
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$164 + 36$: 64 and 36 make 100, so the sum is $100 + 100 = 200$. $402 - 398$: count on from 398 to 400 (2) and on to 402 (2 more), so the difference is 4. In columns, $402 - 398$ would need an exchange through a zero. The England Year 3 guidance gives these same examples and says a column method is not always the most appropriate; the Year 4 programme asks for column methods \"where appropriate\", and Illustrative Mathematics ends its Grade 3 subtraction lessons with choosing a strategy.",
+     "src": [
+      "dfe-y3",
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: does it make sense?",
+     "body": "The Illustrative Mathematics family materials suggest asking a child to choose a method and explain its steps, and to say whether the answer makes sense and how they know. The Common Core asks pupils to explain why their methods work using place value.",
+     "src": [
+      "im-fam",
+      "ccss-2nbt"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A school library has 1,250 books. It buys 375 more and then gives away 418 old ones. How many books does it have now? Estimate first, then check.",
+     "solution": "1. Estimate: $1{,}300 + 400 - 400 = 1{,}300$, so about 1,300.\n2. Add: $1{,}250 + 375$. Ones $0 + 5 = 5$; tens $5 + 7 = 12$, write 2, carry 1; hundreds $1 + 2 + 3 = 6$; thousands 1. That is 1,625.\n3. Subtract: $1{,}625 - 418$. Ones: $5 < 8$, exchange: 1 ten, 15 ones; $15 - 8 = 7$. Tens $1 - 1 = 0$. Hundreds $6 - 4 = 2$. Thousands 1. That is 1,207.\n4. 1,207 is close to the estimate of 1,300.\n5. Check: $1{,}207 + 418 = 1{,}625$ and $1{,}625 - 375 = 1{,}250$.\n6. The library has 1,207 books.",
+     "src": [
+      "eng-pos",
+      "os-add",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Check $613 - 287 = 326$ by adding.",
+       "a": "$326 + 287 = 613$, so it is right."
+      },
+      {
+       "q": "Estimate $689 + 212$ to the nearest hundred.",
+       "a": "$700 + 200 = 900$ (the exact sum is 901)."
+      },
+      {
+       "q": "Would you use columns for $500 - 499$? Why?",
+       "a": "No: the numbers are 1 apart, so the difference is 1."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Check $745 - 368 = 377$ by adding.",
+       "hint": "Add 377 and 368.",
+       "solution": "$377 + 368$: ones $7 + 8 = 15$, write 5 carry 1; tens $1 + 7 + 6 = 14$, write 4 carry 1; hundreds $1 + 3 + 3 = 7$. That is 745, so the subtraction is right."
+      },
+      {
+       "q": "Leo says $583 + 249 = 722$. Estimate to show he is wrong, then find the right sum.",
+       "hint": "Round to the nearest hundred.",
+       "solution": "About $600 + 200 = 800$, which is far from 722. In columns: ones $3 + 9 = 12$, write 2 carry 1; tens $1 + 8 + 4 = 13$, write 3 carry 1; hundreds $1 + 5 + 2 = 8$. The sum is 832; Leo left out both carries."
+      },
+      {
+       "q": "Find $120 + 130$ without columns.",
+       "hint": "Count in tens.",
+       "solution": "12 tens and 13 tens are 25 tens, so $120 + 130 = 250$."
+      },
+      {
+       "q": "Find $1{,}003 - 997$ in the quickest way you can.",
+       "hint": "How far apart are the numbers?",
+       "solution": "Count on: 3 from 997 to 1,000, then 3 more to 1,003. The difference is 6."
+      },
+      {
+       "q": "A farmer had 2,340 kg of potatoes. She sold 1,265 kg and then dug up 870 kg more. How much does she have now? Check your answer.",
+       "hint": "Subtract first, then add.",
+       "solution": "$2{,}340 - 1{,}265$: ones $0 < 5$, exchange: 3 tens, 10 ones, $10 - 5 = 5$; tens $3 < 6$, exchange: 2 hundreds, 13 tens, $13 - 6 = 7$; hundreds $2 - 2 = 0$; thousands $2 - 1 = 1$: 1,075. Then $1{,}075 + 870$: ones 5; tens $7 + 7 = 14$, write 4 carry 1; hundreds $1 + 0 + 8 = 9$; thousands 1: 1,945 kg. Check: $1{,}945 - 870 = 1{,}075$ and $1{,}075 + 1{,}265 = 2{,}340$."
+      },
+      {
+       "q": "Find two different three-digit numbers whose difference is 1 but whose column subtraction needs two exchanges.",
+       "hint": "Try a top number that ends in 00.",
+       "solution": "For example $300 - 299 = 1$: the 3 hundreds become 2 hundreds, 9 tens and 10 ones, so both the tens and the ones need an exchange. Counting on is much quicker here."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Estimate first by rounding; a big gap from the estimate means a mistake.\n- Check a subtraction by adding the answer to the number taken away, and an addition by subtracting.\n- Column methods always work, but for close or round numbers a mental method is often quicker.\n- In two-step problems, do one operation at a time and check each."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "body": "The column methods are used again and again. Long multiplication (a separate page) adds rows of partial products in columns, and adding or subtracting decimals (a separate page) lines up tenths under tenths and hundredths under hundredths in the same way ([[multiplication]], [[place-value]]).\n\nThe method works because every column holds one kind of unit and ten of a unit make one of the next. In base two or base eight the rule is the same with \"ten\" replaced by the base: you carry when a column reaches the base ([[digits-bases]]). The last digit of a sum or difference depends only on the last digits of the numbers, which is the first glimpse of arithmetic with remainders ([[congruences]]).\n\nA column method is an example of an algorithm: a fixed list of steps that always finishes with the right answer, and whose length grows with the number of digits ([[algorithms]]).",
+     "src": [
+      "os-add",
+      "im-g3l5",
+      "prog-nbt"
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "python": "# helpers: column algorithms\ndef col_add(*nums):\n    s = 0; carries = []\n    width = max(len(str(n)) for n in nums)\n    c = 0; digits = []\n    for p in range(width + 2):\n        t = sum((n // 10**p) % 10 for n in nums) + c\n        digits.append(t % 10); carries.append(t // 10); c = t // 10\n    return sum(d * 10**p for p, d in enumerate(digits)), carries\ndef col_sub(a, b):\n    # returns difference and list of columns that needed an exchange (standard algorithm)\n    da = [int(x) for x in str(a)[::-1]]; db = [int(x) for x in str(b)[::-1]] + [0] * 10\n    ex = []\n    for p in range(len(da)):\n        if da[p] < db[p]:\n            ex.append(p)\n            q = p + 1\n            while da[q] == 0: da[q] = 9; q += 1\n            da[q] -= 1; da[p] += 10\n        da[p] -= db[p]\n    return sum(d * 10**p for p, d in enumerate(da)), ex\nassert col_add(47, 38)[0] == 85\nassert col_sub(52, 27) == (25, [0])\n# intro\nassert 7 + 8 == 15\n# section 1\nassert 28 + 61 == 89 and 8 + 1 == 9 and 2 + 6 == 8 and col_add(28, 61)[1][:2] == [0, 0]\nassert 352 + 41 == 393 == 300 + 90 + 3 and 50 + 40 == 90 and 2 + 1 == 3\nassert 352 + 410 == 762\nassert 2415 + 364 == 2779 and col_add(2415, 364)[1][:4] == [0, 0, 0, 0]\nassert 43 + 25 == 68 and 341 + 52 == 393 and 504 + 293 == 797\nassert 32 + 45 == 77 and 213 + 574 == 787 and 6021 + 3705 == 9726 and 405 + 71 + 12 == 488\nassert 523 + 460 == 983 and 523 + 46 == 569\nsols = [(a, b) for a in range(10) for b in range(10) if 304 + 10 * a + 250 + b == 597]\nassert sols == [(4, 3)] and 344 + 253 == 597\n"
+    },
+    {
+     "python": "# section 2\ndef col_add(*nums):\n    width = max(len(str(n)) for n in nums); c = 0; digits = []; carries = []\n    for p in range(width + 2):\n        t = sum((n // 10**p) % 10 for n in nums) + c\n        digits.append(t % 10); carries.append(t // 10); c = t // 10\n    return sum(d * 10**p for p, d in enumerate(digits)), carries\nassert 47 + 38 == 85 and 7 + 8 == 15 and 1 + 4 + 3 == 8\n# figure: 4 + 3 rods, 7 + 8 ones\nassert 4 + 3 == 7 and 7 + 8 == 15 and 15 - 10 == 5 and 7 + 1 == 8\nassert 43 + 69 == 112 and 3 + 9 == 12 and 1 + 4 + 6 == 11\nassert 324 + 586 == 910 and 4 + 6 == 10 and 1 + 2 + 8 == 11 and 1 + 3 + 5 == 9\nassert 1683 + 479 == 2162 and col_add(1683, 479)[1][:3] == [1, 1, 1] and 1 + 6 + 4 == 11\n# layouts figure\nassert 456 + 167 == 623 and 6 + 7 == 13 and 50 + 60 == 110 and 400 + 100 == 500 and 13 + 110 + 500 == 623\nassert col_add(456, 167)[1][:3] == [1, 1, 0]\nassert 365 + 182 == 547 and 6 + 8 == 14\nassert 7 + 1 + 6 == 14 and 5 + 6 + 9 + 1 == 21\nr, c = col_add(21357, 861, 8596)\nassert r == 30814 and c[:5] == [1, 2, 1, 1, 0]\nassert 3 + 8 + 5 + 2 == 18 and 1 + 8 + 1 == 10 and 2 + 1 == 3\n# checks\nassert 36 + 57 == 93 and 258 + 167 == 425 and 9 + 8 + 7 == 24\n# exercises\nassert 58 + 34 == 92 and 275 + 148 == 423 and 699 + 204 == 903 and 1 + 9 + 0 == 10\nassert 127 + 43 + 49 == 219 and 7 + 3 + 9 == 19 and 1 + 2 + 4 + 4 == 11\nassert 3476 + 2858 == 6334 and col_add(3476, 2858)[1][:4] == [1, 1, 1, 0]\nassert 45708 + 6395 == 52103 and col_add(45708, 6395)[1][:5] == [1, 1, 1, 1, 0]\n# max column with two addends\nassert max(a + b + c for a in range(10) for b in range(10) for c in (0, 1)) == 19\n"
+    },
+    {
+     "python": "# section 3\ndef col_sub(a, b):\n    da = [int(x) for x in str(a)[::-1]] + [0]; db = [int(x) for x in str(b)[::-1]] + [0] * 10\n    ex = []\n    for p in range(len(da) - 1):\n        if da[p] < db[p]:\n            ex.append(p); q = p + 1\n            while da[q] == 0: da[q] = 9; q += 1\n            da[q] -= 1; da[p] += 10\n        da[p] -= db[p]\n    return sum(d * 10**p for p, d in enumerate(da)), ex\nassert 768 - 325 == 443 and col_sub(768, 325) == (443, []) and 443 + 325 == 768\nassert 52 == 40 + 12 and 12 - 7 == 5 and 4 - 2 == 2 and 52 - 27 == 25 and 25 + 27 == 52\n# blocks figure: 4 rods 12 ones, cross 2 rods 7 ones\nassert 12 - 7 == 5 and 2 + 3 == 5 and 10 + 2 == 12\n# 391 - 215\nassert 300 + 80 + 11 == 391 and 11 - 5 == 6 and 80 - 10 == 70 and 300 - 200 == 100 and 391 - 215 == 176\nassert col_sub(391, 215) == (176, [0]) and 8 - 1 == 7 and 3 - 2 == 1\nassert 215 + 5 == 220 and 220 + 80 == 300 and 300 + 91 == 391 and 5 + 80 + 91 == 176\nassert 2162 - 479 == 1683 and col_sub(2162, 479) == (1683, [0, 1, 2]) and 1683 + 479 == 2162\nassert 1000 + 1000 + 150 + 12 == 2162 and 12 - 9 == 3 and 15 - 7 == 8 and 10 - 4 == 6\nassert 425 - 278 == 147 and 300 + 110 + 15 == 425 and 15 - 8 == 7 and 11 - 7 == 4 and 147 + 278 == 425\n# pitfalls 74 - 38\nassert 74 - 38 == 36\nsmaller_from_larger = abs(4 - 8) + 10 * abs(7 - 3); assert smaller_from_larger == 44\nno_decrement = (14 - 8) + 10 * (7 - 3); assert no_decrement == 46\n# checks\nassert 85 - 42 == 43 and 63 - 27 == 36 and 13 - 7 == 6 and 541 - 326 == 215 and col_sub(541, 326) == (215, [0])\n# exercises\nassert 96 - 53 == 43 and 72 - 45 == 27 and 27 + 45 == 72\nassert 653 - 281 == 372 and col_sub(653, 281) == (372, [1])\nassert 832 - 467 == 365 and col_sub(832, 467) == (365, [0, 1]) and 365 + 467 == 832\nassert abs(8 - 4) == 4 and abs(7 - 3) == 4 and 14 - 8 == 6 and 6 - 3 == 3\nassert 5243 - 1678 == 3565 and col_sub(5243, 1678) == (3565, [0, 1, 2])\nassert 63512 - 8745 == 54767 and col_sub(63512, 8745) == (54767, [0, 1, 2, 3])\n"
+    },
+    {
+     "python": "# section 4\ndef col_sub(a, b):\n    da = [int(x) for x in str(a)[::-1]] + [0]; db = [int(x) for x in str(b)[::-1]] + [0] * 10\n    for p in range(len(da) - 1):\n        if da[p] < db[p]:\n            q = p + 1\n            while da[q] == 0: da[q] = 9; q += 1\n            da[q] -= 1; da[p] += 10\n        da[p] -= db[p]\n    return sum(d * 10**p for p, d in enumerate(da))\nassert 304 == 200 + 90 + 14 and 14 - 8 == 6 and 90 - 20 == 70 and 200 - 100 == 100 and 304 - 128 == 176\nassert col_sub(304, 128) == 176 and 9 - 2 == 7 and 2 - 1 == 1\nassert 207 - 64 == 143 and 10 - 6 == 4 and 143 + 64 == 207\nassert 2000 - 357 == 1643 and 1000 + 900 + 90 + 10 == 2000 and 1643 + 357 == 2000\n# bugs\ndiff_0_n = 2 * 100 + 6 * 10 + (7 - 4); assert diff_0_n == 263\nassert 504 - 108 == 396\n# checks\nassert 400 - 163 == 237 and 300 + 90 + 10 == 400\nassert 503 - 247 == 256 and 400 + 90 + 13 == 503\nassert 1005 - 8 == 997 and 900 + 90 + 15 == 1005\n# exercises\nassert 300 - 124 == 176 and 605 - 238 == 367 and 367 + 238 == 605 and 500 + 90 + 15 == 605\nassert 1000 - 456 == 544 and 4006 - 1239 == 2767 and 3000 + 900 + 90 + 16 == 4006\nassert 50020 - 3457 == 46563 and 40000 + 9000 + 900 + 110 + 10 == 50020\nassert col_sub(50020, 3457) == 46563 and 11 - 5 == 6\nassert 1000 - 1 == 999 and 900 + 90 + 10 == 1000\n"
+    },
+    {
+     "python": "# section 5\nassert 832 - 376 == 456 and 456 + 376 == 832\nassert 500 + 400 == 900 and 460 + 380 == 840 and round(456, -1) == 460 and round(376, -1) == 380\nassert 830 - 380 == 450 and 376 + 4 == 380 and 380 + 20 == 400 and 400 + 432 == 832 and 4 + 20 + 432 == 456\nassert 164 + 36 == 200 and 64 + 36 == 100 and 402 - 398 == 4\n# library\nassert 1250 + 375 == 1625 and 1625 - 418 == 1207 and 1207 + 418 == 1625 and 1625 - 375 == 1250\nassert 1300 + 400 - 400 == 1300 and 5 + 7 == 12 and 1 + 2 + 3 == 6\n# checks\nassert 613 - 287 == 326 and 326 + 287 == 613\nassert 689 + 212 == 901 and round(689, -2) + round(212, -2) == 900\nassert 500 - 499 == 1\n# exercises\nassert 745 - 368 == 377 and 377 + 368 == 745\nassert 583 + 249 == 832 and round(583, -2) + round(249, -2) == 800\nassert 120 + 130 == 250 and 12 + 13 == 25\nassert 1003 - 997 == 6\nassert 2340 - 1265 == 1075 and 1075 + 870 == 1945 and 1945 - 870 == 1075 and 1075 + 1265 == 2340\nassert 300 - 299 == 1\n# entry key facts\nassert 52 == 40 + 12 and 47 + 38 == 85\n"
+    }
+   ]
+  }
+ }
+]

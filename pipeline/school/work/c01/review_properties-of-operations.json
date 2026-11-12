@@ -1,0 +1,116 @@
+[
+ {
+  "id": "properties-of-operations",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "Intro says red and white cubes; section and figure use striped and plain cubes.",
+    "fix": "Intro now says striped and plain."
+   },
+   {
+    "severity": "unclear",
+    "where": "section Adding in any order, definition and first exercises",
+    "problem": "The box symbol used in fill-in questions was never explained.",
+    "fix": "Added a sentence saying a box stands for a number to find."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem Addition can be done in any order",
+    "problem": "'Whole numbers' used without saying what they are.",
+    "fix": "Added '(the whole numbers are 0, 1, 2, 3 and so on)'."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition The commutative property of multiplication",
+    "problem": "The division sign was used before it was explained, with no link to the division page.",
+    "fix": "Explained the sign and added [[division]] link."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall For adults: some children accept only one order (choi-bang)",
+    "problem": "Said 'many' pupils accepted one order; the paper reports 13% (Grade 2) and 6% (Grade 4).",
+    "fix": "Rewrote with the paper's figures (13 and 6 in 100; swapping 66 in 100 in Grade 2, 92 in Grade 6)."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall For adults: left to right is not the only way",
+    "problem": "Textbook claim ('stress working from the front') is in the paper, but it also says textbooks do not stress grouping; the Grade 6 figure was missing.",
+    "fix": "Reworded to match the paper; figures 43 and 52 in 100 confirmed."
+   },
+   {
+    "severity": "error",
+    "where": "pitfall For adults: grouping is the harder idea (choi-bang)",
+    "problem": "Claim that 'only about half of the answers were right on the items with actual numbers' is not supported by the paper (concrete items overall 63.8%; grouping 44/36% in Grade 2 and 79/82% in Grade 6).",
+    "fix": "Replaced with the verified Grade 2 and Grade 6 figures for grouping and swapping."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall For adults: let the child find the rule first (im-g3l20)",
+    "problem": "Lesson 20 first compares 2 groups of 5 with 5 groups of 2 (Activity 1); two equations for one array come in Activity 2; the name is given in the synthesis. 'Many younger pupils believed a x b and b x a could differ' was overstated.",
+    "fix": "Described the lesson sequence correctly; used the paper's figures (12 in 100 in Grade 2, 2 in 100 in Grade 6)."
+   },
+   {
+    "severity": "source",
+    "where": "conventions row Illustrative Mathematics",
+    "problem": "Said children say the rule in their own words first; the lesson plan only shows the teacher stating the name in the synthesis (student responses not shown).",
+    "fix": "Reworded to what the lesson plan shows."
+   },
+   {
+    "severity": "source",
+    "where": "views item Multiples of ten, example 6 x 50, section src",
+    "problem": "Cited im-g3 (Unit 1 Section C) but multiples of 10 with the associative property are in Grade 3 Unit 4 Lesson 12, which was not a source.",
+    "fix": "Added source im-g3u4 (opened; lesson mentions the associative property for 8 x 30 = 8 x 3 x 10) and re-cited."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall Division cannot be turned around (ncetm-dist)",
+    "problem": "NCETM 2.10 says it aims to 'explore why' multiplication is commutative and division not; page said 'explain why'.",
+    "fix": "Reworded to 'aims to explore why'."
+   },
+   {
+    "severity": "source",
+    "where": "definition Fact families",
+    "problem": "Said the England programme of study gives these exact examples and that the progressions say related equations 'build swapping and the link'; the PoS examples are 9+7=16 etc. (Y1) and 3x2=6 etc. (Y3), and the progressions only list related equations.",
+    "fix": "Quoted the actual examples and softened the progressions claim."
+   },
+   {
+    "severity": "source",
+    "where": "conventions row England; Korean",
+    "problem": "'Calculations are grouped with brackets' was vague; Korean row cited the identity term for a school context.",
+    "fix": "Tied brackets to Year 6 notes; stated that 항등원 is from the survey paper's background."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition For older readers: inverse numbers",
+    "problem": "'5 steps below 0' suggests a vertical line.",
+    "fix": "Changed to 'to the left of 0'."
+   },
+   {
+    "severity": "error",
+    "where": "requires item factor pairs (England Y4, common)",
+    "problem": "Listed as taught in 'Multiplying in any order' and 'Multiplying three numbers' but factor pairs were never defined or used.",
+    "fix": "Added definition Factor pairs, worked example 14 x 5, two exercise items, a self-check question, a summary line and fixed the where field (src eng-pos)."
+   },
+   {
+    "severity": "style",
+    "where": "checks",
+    "problem": "Two checks were vacuous (assert 43 < 52; assert 80 <= 100).",
+    "fix": "Replaced by checks on the survey figures; added a check block for factor pairs, survey rounding and the England examples."
+   },
+   {
+    "severity": "source",
+    "where": "entry refs",
+    "problem": "Choi and Bang reference title did not match the source (Korean title, 'An analysis of ...', pages 239-259).",
+    "fix": "Full reference given; Korean parentheses removed from aliases."
+   },
+   {
+    "severity": "style",
+    "where": "verified without change",
+    "problem": "Mathematics of every example, exercise, check and figure caption recomputed; the five figures were opened and the counts match captions (3+5 cubes, 7+8+2 counters, 3x4 and 4x3 arrays, two 3x4 arrays with a row of 8, inverse arrows). England PoS quotes (Y1 zero, Y2 commutativity and checking, Y3 4x12x5, Y4 factor pairs, associative law, 0 and 1), CCSS 1.OA.B.3-4, 2.NBT.B.5-9, 3.OA.B.5-6, 3.OA.D.9, progressions, OpenStax 7.2 and 7.4, NCETM 2.5 and 2.10, and Choi and Bang figures were opened and confirmed.",
+    "fix": "none needed"
+   }
+  ]
+ }
+]

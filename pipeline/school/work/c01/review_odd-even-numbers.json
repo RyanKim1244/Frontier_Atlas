@@ -1,0 +1,104 @@
+[
+ {
+  "id": "odd-even-numbers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "section Pairs and leftovers, example 'Is 9 odd or even?'",
+    "problem": "Signs + and = were used in the first example but only explained in the next section",
+    "fix": "Explained + and = at first use in section 1; section 2 now only recalls them"
+   },
+   {
+    "severity": "unclear",
+    "where": "section Counting in twos, body",
+    "problem": "Treats 0 as even before the zero section establishes it",
+    "fix": "Added a forward reference to the next section"
+   },
+   {
+    "severity": "error",
+    "where": "section 1 exercise, Ana and 13 buttons",
+    "problem": "'6 pairs and 2 left over' contradicts 13 and the claim '13 is a bit even' is an invented, confusing misconception",
+    "fix": "Replaced with the real pitfall 'there are pairs so it is even' (even means none left over); solution uses 13 = 12 + 1, no multiplication sign"
+   },
+   {
+    "severity": "source",
+    "where": "For adults: let children pair real things first",
+    "problem": "Attributed socks, shoes and blocks to the Korean 2022 curriculum; the paper only says grouping objects in twos in real-life situations (socks/shoes/blocks come from the parent letter); remainder claim over-stated",
+    "fix": "Reworded to what the curriculum note, the parent letter and the Korean review each say"
+   },
+   {
+    "severity": "source",
+    "where": "For adults: zero confuses many people",
+    "problem": "Said studies found 'many' teachers thought 0 neither odd nor even (Wikipedia: about two thirds of prospective teachers answered false to 'zero is even'; one school where all teachers thought neither); said Korean study children disagreed because pattern and equal groups gave different answers (the paper reports two different reasons for 0 being even)",
+    "fix": "Rewrote with the figures actually reported (45 in 100 seven-year-olds, ~50 percent later) and the two reasons the second-graders gave"
+   },
+   {
+    "severity": "source",
+    "where": "For adults: one example is not a reason",
+    "problem": "Said 5 percent explained 'using pairs' (the paper: a general explanation that two odds make an even and a third odd makes odd); attributed 'the two leftovers making a pair' to NRICH, which does not mention leftovers or pairing; quoted NRICH's questions verbatim",
+    "fix": "Reworded to the reported general explanation, to what NRICH actually asks, and paraphrased"
+   },
+   {
+    "severity": "source",
+    "where": "For adults: why only one leftover? (IM L1)",
+    "problem": "Teacher's summary sentence was nearly verbatim from the lesson",
+    "fix": "Paraphrased"
+   },
+   {
+    "severity": "source",
+    "where": "figure of 12 dots three ways and its views lead-in",
+    "problem": "Arrangement A as 'two matched rows' is not stated in the IM lesson (alt text only says Dots); picture presented as IM's",
+    "fix": "Stated that the picture is drawn for this page in the spirit of the IM activity; caption updated"
+   },
+   {
+    "severity": "source",
+    "where": "figure number line 0-20 (src) and theorem 'Odd and even take turns' (src)",
+    "problem": "korYuga has no skip-counting or number line; IM Lesson 3 does not state the alternation rule (only a student wondering)",
+    "fix": "Figure src now im2U8L3, cc2OA, eng; theorem src korYuga, wikiPar, cc4OA (4.OA.C.5 asks to explain the odd-even alternation when adding 3)"
+   },
+   {
+    "severity": "source",
+    "where": "proof 'The last digit decides'",
+    "problem": "korYuga also gives the ten/hundred argument but was not cited",
+    "fix": "Added korYuga"
+   },
+   {
+    "severity": "source",
+    "where": "conventions row on ancient Greeks",
+    "problem": "Wikipedia says 'neither fully odd nor fully even', not 'neither'",
+    "fix": "Reworded accordingly"
+   },
+   {
+    "severity": "unclear",
+    "where": "views 'Why 0 is even', item Dividing by 2",
+    "problem": "Uses division and remainder, which the page itself says early learners lack",
+    "fix": "Marked as for readers who know division with remainders"
+   },
+   {
+    "severity": "unclear",
+    "where": "section Is zero even?",
+    "problem": "No worked example (spec requires worked examples as the main teaching tool)",
+    "fix": "Added a step-by-step example testing 0 with pairs, equal groups and the pattern"
+   },
+   {
+    "severity": "source",
+    "where": "entry.why",
+    "problem": "'first property children reason about and prove' is an unsourced superlative",
+    "fix": "Softened to 'one of the first properties ... learn to explain with reasons'"
+   },
+   {
+    "severity": "style",
+    "where": "entry.msc",
+    "problem": "97F60 not certain",
+    "fix": "Set msc to []"
+   },
+   {
+    "severity": "style",
+    "where": "requires",
+    "problem": "England Year 1 counting in multiples of 2 not mentioned (statutory Y1 'count in multiples of 2s, 5s and 10s'; Y1 note names odd and even)",
+    "fix": "Added to the count-in-twos item"
+   }
+  ]
+ }
+]

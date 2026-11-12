@@ -1,0 +1,98 @@
+[
+ {
+  "id": "column-addition-subtraction",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 21 (views 'Ways to record 456 + 167')",
+    "problem": "Views item 'New units below' said the original numbers stay untouched without the page making clear the source says it of the addition layout (progressions p. 9: the original numbers are not changed by adding numbers to the first addend); wording tightened to say it is about this layout.",
+    "fix": "Reworded to match the progressions: 'this keeps the original numbers unchanged', limited to the addition layout."
+   },
+   {
+    "severity": "source",
+    "where": "block 22 (pitfall 'For adults: what is the little 1 worth?')",
+    "problem": "Pitfall said IM 'notes that children may not see' the value of the carried digit; the IM guide only tells the teacher to bring it to attention if no student mentions it.",
+    "fix": "Reworded to what the guide says."
+   },
+   {
+    "severity": "source",
+    "where": "block 24 (proof '')",
+    "problem": "Block credited NCETM and DfE Year 3 guidance with 'looking for pairs that make 10 first'; NCETM 1.20 only says add in the most efficient order, and DfE (p. 68) only mentions making 10 in the ones column.",
+    "fix": "Reworded to what each source says."
+   },
+   {
+    "severity": "error",
+    "where": "block 28 (exercise '')",
+    "problem": "Exercise 3,476 + 2,858 hint said every column carries; the thousands column (1+3+2=6) does not carry.",
+    "fix": "Hint now says the first three columns carry."
+   },
+   {
+    "severity": "source",
+    "where": "block 44 (pitfall 'For adults: ask how they know')",
+    "problem": "Claimed Illustrative Mathematics notes that children may not notice when an exchange is needed; IM Grade 3 Unit 3 Lesson 8 does not warn of this (it only says a student would notice there are not enough ones).",
+    "fix": "Rewritten to what the lesson says (the noticing is the cue to decompose); advice to ask 'how do you know' kept as an adult prompt."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 60 (theorem 'Check with the inverse')",
+    "problem": "Letters a, b, c used without the condition that a - b must be a whole number.",
+    "fix": "Added the condition b not bigger than a."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 64 (views 'Ways to check 832 - 376 = 456'), item 4",
+    "problem": "Label 'Write a subtraction' did not say what is being checked, and the item checks an addition inside a views block about a subtraction.",
+    "fix": "Relabelled 'Check an addition'; lead-in added."
+   },
+   {
+    "severity": "source",
+    "where": "block 66 (proof '')",
+    "problem": "Said IM ends its Grade 3 subtraction lessons with 'choosing a strategy'; the unit's lesson list only shows a lesson titled 'Subtract Strategically' (Lesson 12).",
+    "fix": "Reworded to the lesson title."
+   },
+   {
+    "severity": "error",
+    "where": "block 68 (example '')",
+    "problem": "Library example estimated to the nearest hundred (1,300) and then called 1,207 close, but the gap is 93, nearly 100, so a slip in the hundreds column would not have been noticed.",
+    "fix": "Estimate to the nearest ten (1,210), which is within 3 of the exact answer."
+   },
+   {
+    "severity": "error",
+    "where": "block 70 (exercise), item 2 (Leo: 583 + 249 = 722)",
+    "problem": "Hint and solution rounded to the nearest hundred (600 + 200 = 800) and called 722 far from it; the gap is 78, and rounding to hundreds can be off by up to 100, so this estimate cannot show Leo is wrong.",
+    "fix": "Round to the nearest ten: 580 + 250 = 830, which is 108 above 722 and close to the true 832."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 70 (exercise), last item",
+    "problem": "Solution said 'both the tens and the ones need an exchange', but in 300 - 299 the tens column (9 - 9) needs no exchange; the two exchanges are hundred-to-tens and ten-to-ones.",
+    "fix": "Reworded to name the two exchanges."
+   },
+   {
+    "severity": "style",
+    "where": "block 57 (exercise), last item",
+    "problem": "Question said exchanges 'in three columns'; the exchanges are thousand to hundreds, hundred to tens, ten to ones.",
+    "fix": "Question now says three exchanges."
+   },
+   {
+    "severity": "source",
+    "where": "block 26 (conventions 'Names for carrying'), last row; sources",
+    "problem": "Source ccss-3nbt was listed but never cited; the Grade 3 note that a range of algorithms may be used (3.NBT footnote, in the dossier) was missing, which matters for the US name of the method.",
+    "fix": "Added the note and cited ccss-3nbt."
+   },
+   {
+    "severity": "source",
+    "where": "sources / block 22, 44, 24, 66 (audit)",
+    "problem": "Audit: 15 of 19 sources opened (os-add, os-sub, prog-nbt, dfe-y3, ncetm-cadd, ncetm-csub, ncetm-y3u7, im-g3l5, im-g3l8, im-g3l10, im-g3, im-fam, bv-repair, kr-guide, ccss-3nbt). All other views, conventions and pitfall claims confirmed (OpenStax carry = regroup by exchanging and borrow wording, NCETM exchange and no borrow, DfE regroup/exchange and 164+36, 402-398, Brown and VanLehn bug names and 'thousands of students', Korean guide base-ten blocks advice, progressions exchange-first and recording variations).",
+    "fix": "Four unsupported attributions corrected (see other entries). Korean standards [2수01-06] and [2수01-07] confirmed against the Korean guide wording; MSC 97F30 (Natural numbers) confirmed."
+   },
+   {
+    "severity": "style",
+    "where": "block 52 (figure, step 2)",
+    "problem": "The blue strike through the red 10 overlaps the digits slightly; still legible and matches caption and alt.",
+    "fix": "None needed."
+   }
+  ]
+ }
+]

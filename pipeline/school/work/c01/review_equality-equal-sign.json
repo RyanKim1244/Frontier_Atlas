@@ -1,0 +1,158 @@
+[
+ {
+  "id": "equality-equal-sign",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "conventions row Korea",
+    "problem": "Said the sign is first met in 'the first unit on adding and subtracting'; lee24 and lee23 say Grade 1 semester 1, Unit 3 (addition and subtraction) under the 2015 curriculum",
+    "fix": "Reworded to the Grade 1 unit on adding and subtracting, 2015 curriculum, with the same-quantity meaning; src lee24, lee23"
+   },
+   {
+    "severity": "source",
+    "where": "views item Balance",
+    "problem": "Cited nrich-bal, but the NRICH article does not mention a pan balance (it only links the Number Balance task)",
+    "fix": "src reduced to leavy, who uses pan balances"
+   },
+   {
+    "severity": "source",
+    "where": "views item Hidden cubes (now Bag of cubes)",
+    "problem": "Cited leavy for cubes under a cup; Leavy uses a drawstring bag for the unknown",
+    "fix": "Rewritten as a drawstring bag on a pan balance, matching Leavy and the figure with the bag"
+   },
+   {
+    "severity": "source",
+    "where": "views item People",
+    "problem": "Leavy's human equation has one child holding the equal sign; the draft omitted it",
+    "fix": "Added the child holding the sign"
+   },
+   {
+    "severity": "source",
+    "where": "conventions row Reading",
+    "problem": "Said OpenStax reads = as 'equals'; OpenStax says 'is equal to'. Cambridge Mathematics also says 'equals', 'gives', 'makes' suit the operational view",
+    "fix": "Rewritten to match both sources"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: say is the same as'",
+    "problem": "'Most of the time' / 'American textbooks' blurred Crooks and Alibali, who cite up to about 70 percent and contrast countries with more varied layouts",
+    "fix": "Rewritten with the figure and the cross-country point as the source states them"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: the answers 12 and 17'",
+    "problem": "Claimed that asking the same question across year groups 'shows which stage children are at'; NRICH says it brings common misconceptions to light. Stages credited to NRICH only (they are Molina and Ambrose via NRICH)",
+    "fix": "Reworded both"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: let children judge and explain'",
+    "problem": "Credited NRICH with 'repeated practice with many kinds of equation'; NRICH says more situations with numbers on both sides and regular practice. True/false cards as a test come from Leavy",
+    "fix": "Reworded and credited Leavy"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'Every equal sign must be true'",
+    "problem": "Warning against run-on equal signs was attributed to Leavy and 'as IM shows'; neither source warns about it. IM shows series of separate equations; Progressions use a valid chain and ask for consistent use of =",
+    "fix": "Removed leavy; claims limited to what IM and Progressions do"
+   },
+   {
+    "severity": "source",
+    "where": "sources ccss-3oa",
+    "problem": "where listed 3.OA.A.4, which the page does not teach",
+    "fix": "where now 3.OA.D.8"
+   },
+   {
+    "severity": "source",
+    "where": "sources lee24 where",
+    "problem": "Vague 'introduction' only",
+    "fix": "Now names the introduction and section II, 2015 and 2022 curricula"
+   },
+   {
+    "severity": "source",
+    "where": "requires / brief curriculum_refs",
+    "problem": "Korean codes [2수02-03] and [4수02-xx] could not be opened or verified (the Korean papers do not give codes); page cites only what lee24 quotes (2022 curriculum, grades 3-4: equal sign and equivalence)",
+    "fix": "No codes claimed on the page; noted here"
+   },
+   {
+    "severity": "error",
+    "where": "theorem 'Moving one from one part to the other' and its summary line",
+    "problem": "Stated only for moving 1, but an exercise moves 2 (38+17=40+15) and the check covers it, so the exercise went beyond the stated rule",
+    "fix": "Generalised to moving any amount, proof and summary updated, added an all-amounts check"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Finding an unknown in a three-number equation'",
+    "problem": "Never said which number is the whole in a subtraction equation, yet examples (c)(d) and exercises use it",
+    "fix": "Added: in a+b=c the whole is c; in a-b=c the whole is a"
+   },
+   {
+    "severity": "unclear",
+    "where": "example 'Find the unknown in each equation' and exercise 4 (8 = 15 - ?)",
+    "problem": "No worked example of an unknown subtrahend (a - box = c) before the exercise and self-check use it",
+    "fix": "Added part (e): 12 - box = 9, with check"
+   },
+   {
+    "severity": "unclear",
+    "where": "proof of unknown theorem",
+    "problem": "Inverse of adding and taking away asserted without a fact family",
+    "fix": "Added 8+3=11, 11-8=3, 11-3=8"
+   },
+   {
+    "severity": "unclear",
+    "where": "section True and false equations",
+    "problem": "No worked views of testing an equation; central idea had only one presentation",
+    "fix": "Added a views block (balance, work out both sides, compare the parts)"
+   },
+   {
+    "severity": "unclear",
+    "where": "section What the equal sign means, definition",
+    "problem": "Balance outcome never stated in the text",
+    "fix": "Added a sentence that both balances are level, so the amounts are the same"
+   },
+   {
+    "severity": "unclear",
+    "where": "requires: comparing with <, > (core)",
+    "problem": "Page never pointed to it in the text",
+    "fix": "Added a one-line recall with [[comparing-ordering-numbers]] in the true/false definition"
+   },
+   {
+    "severity": "unclear",
+    "where": "unknowns exercise",
+    "problem": "Story problem with the start unknown (2.OA.A.1 types) missing",
+    "fix": "Added exercise: 4 get off a bus, 9 left (box minus 4 = 9)"
+   },
+   {
+    "severity": "style",
+    "where": "entry.key[2]",
+    "problem": "8 + box = 11 iff box = 3 skipped the working",
+    "fix": "Now box = 11 - 8 = 3"
+   },
+   {
+    "severity": "style",
+    "where": "figure 1",
+    "problem": "Balance bar clipped at left edge",
+    "fix": "x range widened"
+   },
+   {
+    "severity": "style",
+    "where": "figure 21",
+    "problem": "'move 1' label small",
+    "fix": "Font enlarged"
+   },
+   {
+    "severity": "style",
+    "where": "figure 38",
+    "problem": "Right pan bar clipped at the edge",
+    "fix": "x range widened"
+   },
+   {
+    "severity": "style",
+    "where": "figure 50",
+    "problem": "Letters x set in plain text while page uses math italic",
+    "fix": "Labels set as math text"
+   }
+  ]
+ }
+]

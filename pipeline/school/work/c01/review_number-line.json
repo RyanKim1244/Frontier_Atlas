@@ -1,0 +1,146 @@
+[
+ {
+  "id": "number-line",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "views 'A class string line'",
+    "problem": "Said cards are pegged onto the string and gave '7 and 8 close, 2 and 20 far' as if from a source; Illustrative Mathematics Lesson 2 uses cards hung on yarn for 0 to 30 (no pegs), pegs belong to Hilton and Hilton",
+    "fix": "Rewritten from the two sources, invented example removed"
+   },
+   {
+    "severity": "source",
+    "where": "views 'Number path' and conventions row 1",
+    "problem": "Claimed children first meet numbers as a board-game track and that IES separates number path from number line; IES glossary only defines number path (a row of numbered cells for the count sequence) and never mentions number line",
+    "fix": "Rewritten to state what IES says and contrast with IM's lengths from 0"
+   },
+   {
+    "severity": "source",
+    "where": "section 'Comparing numbers' body, requires item, conventions row 4",
+    "problem": "Said England Year 1 asks children to use the number line to show more than and less than; statutory text asks children to represent numbers using the number line, and separately to use the language more than/less than",
+    "fix": "Wording corrected in all three places"
+   },
+   {
+    "severity": "source",
+    "where": "example 'estimate 63' and its figure",
+    "problem": "Attributed the 0-100 line with 63 to IM Lesson 5 and Gervasoni; neither uses 63 (IM uses a 0-100 line labelled by 50s; Gervasoni places 50 and 150)",
+    "fix": "Removed Gervasoni from the figure, cited IM L5 only for the halfway-landmark method, stated that 63 is our own choice"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: act it out'",
+    "problem": "Floor number line and toy frog attributed to IM L7 and L10; L7 only suggests asking how to act the equation out, L12 suggests a toy or cut-out animal",
+    "fix": "Rewritten; sources now imL7 and imL12"
+   },
+   {
+    "severity": "source",
+    "where": "views 'Ways to show 58 - 24', item 'An equation'",
+    "problem": "Cited cc2MD, which does not contain the jump-chain notation or checking by adding back",
+    "fix": "Source changed to imL10 and os-sub (checking subtraction by adding)"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'counting every mark' (Hilton)",
+    "problem": "Described absolute thinking as assuming every interval is 1; Hilton and Hilton define it as counting on from the first number and ignoring the last. Also missed that they list additive trial and error as an error",
+    "fix": "Rewritten to match; trial-and-error noted"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'the middle of 0 to 100'",
+    "problem": "'Children often give the half-gap' (source says some); Gervasoni statistic about three-digit readers described too generally",
+    "fix": "Reworded to what the sources report"
+   },
+   {
+    "severity": "source",
+    "where": "intro",
+    "problem": "Sentence followed the IM scope-and-sequence wording closely",
+    "fix": "Reworded in new words"
+   },
+   {
+    "severity": "source",
+    "where": "conventions row 'Direction'",
+    "problem": "Claimed every source used shows the line left to right; only OpenStax and IM were opened for this",
+    "fix": "Narrowed to those two"
+   },
+   {
+    "severity": "error",
+    "where": "example 'interval value' (11 marks, 0 to 20)",
+    "problem": "Solved by guess and check, the additive trial-and-error strategy that Hilton and Hilton list as a weak strategy, and the learner is not shown why 2",
+    "fix": "Replaced by a doubling argument (10 steps of 1 reach 10, 20 is double 10) with a check by counting in twos"
+   },
+   {
+    "severity": "unclear",
+    "where": "section order",
+    "problem": "Estimating section used 'gap', 'halfway' and 8 - 2 as a distance before the gap was introduced; IM order is compare (L4) then estimate (L5)",
+    "fix": "Swapped: comparing and finding the gap now comes before estimating"
+   },
+   {
+    "severity": "unclear",
+    "where": "blocks with ?",
+    "problem": "The ? in an equation was used in an example and check before being explained, and only the unknown-start subtraction case was taught although checks and exercises use ? + a = b and a + ? = b",
+    "fix": "Added a definition block for ? and two worked examples (? + 25 = 60 and 46 + ? = 71); summary updated"
+   },
+   {
+    "severity": "unclear",
+    "where": "example 'Jada' and exercise 1",
+    "problem": "The blank _ and the answer wording 'the gaps are 3, 7 and 8' were unexplained or confusing",
+    "fix": "Explained _ ; solution reworded"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorems 'any unit' and 'count on or back'",
+    "problem": "Letters n, a, k used without saying they stand for numbers",
+    "fix": "Added short explanations"
+   },
+   {
+    "severity": "unclear",
+    "where": "example 'put a point at 48'",
+    "problem": "< symbol used before the comparison section",
+    "fix": "Added the words more than 40 and less than 50"
+   },
+   {
+    "severity": "unclear",
+    "where": "section 'Reading marks that have no label'",
+    "problem": "Lines that do not start at 0 conflicted with the definition (a mark labelled 0)",
+    "fix": "Added that such a line is a piece of a longer line with 0 further left"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'halfway number'",
+    "problem": "Did not say the halfway number is whole only when the gap is even",
+    "fix": "Added the odd-gap remark"
+   },
+   {
+    "severity": "unclear",
+    "where": "example 63",
+    "problem": "'About a quarter of the way' used a fraction idea that has its own page",
+    "fix": "Rewritten as much less than half of the way to 100"
+   },
+   {
+    "severity": "unclear",
+    "where": "check 3 in section 1",
+    "problem": "Ambiguous wording of Tom's marks",
+    "fix": "Reworded"
+   },
+   {
+    "severity": "style",
+    "where": "entry.sum and aliases",
+    "problem": "Sum said the line 'starts at 0' although lines may show only a part; aliases 'empty/open number line' name a different tool",
+    "fix": "Sum reworded; aliases reduced to number line diagram, numberline"
+   },
+   {
+    "severity": "style",
+    "where": "lesson.minutes",
+    "problem": "45 minutes too low for about 11,000 words with exercises",
+    "fix": "Set to 50"
+   },
+   {
+    "severity": "unclear",
+    "where": "coverage",
+    "problem": "IM Unit 4 story-problem use of the line absent",
+    "fix": "Added ribbon take-away story exercise (IM L9)"
+   }
+  ]
+ }
+]
