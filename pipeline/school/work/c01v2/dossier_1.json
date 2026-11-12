@@ -1,0 +1,1052 @@
+{
+ "concepts": [
+  {
+   "id": "counting-number-names",
+   "curriculum": [
+    "CC K.CC.A.1 count to 100 by ones and tens; K.CC.A.2 count on from any number; K.CC.A.3 write numerals 0-20 and match to sets, 0 for empty set; K.CC.B.4 (a) one word per object and one object per word, (b) last word gives total, total is independent of arrangement or order, (c) each next number is one more; K.CC.B.5 count up to 20 in line/array/circle and 10 scattered, count out a given number [ccKCC, opened]. Brief codes K.CC.A.1-3 and B.4-5 are correct.",
+    "CC 1.NBT.A.1 count to 120 from any start below 120, read/write numerals; 2.NBT.A.2 count to 1000, skip-count by 5s, 10s, 100s [cc1NBT, cc2NBT, opened]. Add to brief.",
+    "England PoS Y1: count forwards/backwards to and across 100 from 0, 1 or any number; count, read, write numerals to 100; count in 2s, 5s, 10s; one more/one less; read/write 1-20 as numerals and words. Y2: count in 2s, 3s, 5s from 0, in 10s from any number, forwards and backwards; read/write to at least 100 in numerals and words [eng, opened]. Brief 'KS1 Y1-Y2 number and place value' is correct but Y3 (4, 8, 50, 100) and Y4 (6, 7, 9, 25, 1000, negatives) also count in steps.",
+    "Korean 2022 curriculum text NOT opened: the vivasam/koreascience PDFs returned binary data. Korean codes in brief.json are unverified and may be 2015 or 2022 codes; two 2015-curriculum codes were seen quoted in a paper: [2수01-01] understand numbers 0-100, count/read/write them; [2수01-02] understand 일/십/백/천 place values and positional notation, read/write up to four-digit numbers (source kor15)."
+   ],
+   "textbooks": [
+    "IM K Unit 1 (A tools, B Recognize Quantities up to 4 without counting, C Are There Enough?, D Counting Collections up to 10); Unit 2 A-C count objects and images, rearranging does not change count, 5-frames, circles, numerals; Unit 6 A Count 11-20 objects, C Count 11-20 images in lines, arrays, circles [imK, opened].",
+    "IM K U2 L1 'Fingers as a Math Tool': choral count to 10 with a finger per number, Math Fingers cards, show a numeral on fingers; teacher notes name verbal count sequence, one-to-one, subitizing, counting on from 5 [imK2L1, opened].",
+    "IM G1 U8 C Numbers to 120; G2 U5 A (three-digit numbers, counting 90-120 choral count in G2U5L1) [im1, im2U5L1, opened]. Brief 'IM G1 U4' is place value (two-digit numbers to 99), counting to 99 appears in G1U4L10 [im1U4L10, opened]."
+   ],
+   "explanations": [
+    "Fingers, one finger per word (IM K U2 L1).",
+    "Objects touched, pointed at, or moved from 'not counted' to 'counted' pile; lines, circles, scattered collections (Thompson on one-one principle; NCETM audit; CC K.CC.B.5).",
+    "Counting images on 5-frames, in circles, lines, arrays (IM K U2 B, U6 C).",
+    "Numeral cards matched to quantities; tower of cubes of n cubes (IM K2 L17).",
+    "Number path/track of numerals (IES toolkit calls it a 'number path').",
+    "Choral count: class chants a sequence and records it to see patterns, e.g. 90 to 120 (IM G2 U5 L1)."
+   ],
+   "conventions": [
+    "English counts 1-12 then teens 13-19 end in -teen (reversed order of ones and tens: 'fourteen' = four + ten); twenty-one reads tens-first. Teen/ty confusion (13 vs 30) is a known error [ncetmAudit]. (Statement about English forms is general knowledge, not from an opened page: unverified.)",
+    "Korean has two number-word sets: native (하나 둘 셋 ... 열, 스물) used for counting objects, people, ages with 살, and hours; Sino-Korean (일 이 삼 ... 십, 백) for dates, money, minutes, phone numbers and numbers above 99. Sino-Korean 11 = 십일 (ten-one), 21 = 이십일 (two-ten-one), so tens-ones order is regular. Native 11 = 열하나 [korNum, opened].",
+    "Korean groups big numbers by 10^4 (만, 억, 조); English by 10^3 (thousand, million) [korNum].",
+    "Common Core writes standards 'K.CC.A.1' etc.; England says 'Number - number and place value' [eng, ccKCC]. IM uses 'choral count' and 'counting collections' as routines [imK2L1]."
+   ],
+   "misconceptions": [
+    "Gelman & Gallistel (1978) five principles as summarised by Thompson: one-one, stable order, cardinal (how to count); abstraction, order-irrelevance (what can be counted). Errors: skipping/double-counting; a child who says 1,2,3 then 2,1,3 lacks stable order; recounting when asked 'how many' shows cardinality not secure; repeating the last word is not reliable evidence (Bermejo et al. 2004: many children who counted five objects starting from 'three' answered 'seven') [thompson, opened].",
+    "Staves: last-number-word error (treating 'five' as the name of the last object; asked to 'show me five' points to one object); reciting list with no link to quantity; counting on too early; cardinality matures last; hierarchical inclusion as a later big idea [staves, opened].",
+    "IES toolkit lists counting errors: coordination (words and objects mismatched), keeping-track, skimming (sweeping a finger without tagging each) [ies, opened].",
+    "NCETM audit: recounting a rearranged group instead of seeing the amount unchanged (conservation); grabbing too many when asked to 'get five'; counting back is harder; 13 vs 30 [ncetmAudit, opened]. Advice: line, circle, scattered arrangements; puppet that makes mistakes; count sounds/actions/unmovable things.",
+    "IM K U2 L1 note: mirrored hands can confuse a child copying a partner's fingers; students may think five is the most a hand can show [imK2L1]."
+   ],
+   "tasks": [
+    "Count a collection of up to 10 then 20 objects in different arrangements; say 'how many'; count out n objects from a pile (CC K.CC.B.5, IM K U1 D).",
+    "Count on from a given number; count back; count across decades (England Y1; CC K.CC.A.2).",
+    "Write the numeral for a set; draw a set for a numeral; 0 for none.",
+    "Choral counts by 1s, then 2s, 5s, 10s with pattern-spotting.",
+    "Facts later concepts need: counting gives 'one more' successor (K.CC.B.4c); last word = total; total independent of order (feeds comparing, composing, odd/even, sequences, measurement)."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "ccKCC",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "K.CC",
+     "url": "https://thecorestandards.org/Math/Content/K/CC/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "1.NBT",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.NBT",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK",
+     "ref": "Illustrative Mathematics K-5, Kindergarten scope and sequence",
+     "where": "Units 1,2,4,5,6,8 and sections",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified (IM K-5 is CC BY 4.0 per publisher; not seen on page)"
+    },
+    {
+     "k": "im1",
+     "ref": "Illustrative Mathematics K-5, Grade 1 scope and sequence",
+     "where": "Units 3,4,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2",
+     "ref": "Illustrative Mathematics K-5, Grade 2 scope and sequence",
+     "where": "Units 4,5,7,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK2L1",
+     "ref": "Illustrative Mathematics Kindergarten",
+     "where": "Unit 2 Lesson 1 Fingers as a Math Tool",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-2/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 10 Write Two-Digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U5L1",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 5 Lesson 1 How Do We Compose a Hundred?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "thompson",
+     "ref": "Ian Thompson, 'The principal counting principles' (analyses Gelman & Gallistel 1978, The Child's Understanding of Number)",
+     "where": "whole article",
+     "url": "https://prek-math-te.stanford.edu/system/files/media/document/2017/The%20Principal%20Counting%20Principles.pdf",
+     "kind": "research-summary",
+     "licence": "unverified"
+    },
+    {
+     "k": "staves",
+     "ref": "Les Staves, 'Counting - a deceptively simple skill' (published on NCETM)",
+     "where": "whole article",
+     "url": "https://blogs.glowscotland.org.uk/gc/public/gccleadersofearlylearning/uploads/sites/7271/2018/11/counting_a_deceptively_simple_skill.pdf",
+     "kind": "research-summary",
+     "licence": "unverified"
+    },
+    {
+     "k": "ncetmAudit",
+     "ref": "NCETM Primary subject knowledge audit, Number (Summer 2022)",
+     "where": "Counting principles, cardinality, subitising, conservation",
+     "url": "https://www.ncetm.org.uk/media/4zwl1w5l/pska-num-q1.pdf",
+     "kind": "teacher-guide",
+     "licence": "unverified"
+    },
+    {
+     "k": "ies",
+     "ref": "IES/REL Teaching Math to Young Children toolkit (WWC practice guide based)",
+     "where": "modules: subitizing, meaningful counting, comparing, basic problems",
+     "url": "https://ies.ed.gov/ncee/rel/math-young-children",
+     "kind": "research-summary",
+     "licence": "US federal publication; licence not stated on page (unverified)"
+    },
+    {
+     "k": "korNum",
+     "ref": "Wikipedia, Korean numerals",
+     "where": "native vs Sino-Korean table, usage, myriad grouping",
+     "url": "https://en.wikipedia.org/wiki/Korean_numerals",
+     "kind": "reference",
+     "licence": "CC BY-SA (Wikipedia; not seen on page)"
+    },
+    {
+     "k": "kor15",
+     "ref": "Korean paper citing 2015 revised math curriculum (koreascience.kr JAKO202213341977585)",
+     "where": "quoted standards [2수01-01],[2수01-02] of the 2015 curriculum",
+     "url": "https://koreascience.kr/article/JAKO202213341977585.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    }
+   ]
+  },
+  {
+   "id": "comparing-ordering-numbers",
+   "curriculum": [
+    "CC K.CC.C.6 tell whether a group has more, fewer or the same as another (match or count, up to 10); K.CC.C.7 compare two numerals 1-10; 1.NBT.B.3 compare two two-digit numbers by tens and ones with >, =, <; 2.NBT.A.4 compare two three-digit numbers by hundreds, tens, ones with >, =, < ; 4.NBT.A.2 compare multi-digit whole numbers using place value and record with >, =, < [ccKCC, cc1NBT, cc2NBT, cc4NBT, opened]. Brief codes correct.",
+    "England PoS Y1: use objects, pictures and a number line to show numbers with 'equal to, more than, less than (fewer), most, least'; Y2: compare and order numbers 0-100 using <, > and =; Y3: compare and order up to 1000; Y4: order and compare beyond 1000 [eng, opened]. KS3 and GCSE N1 not opened.",
+    "Korean 2022 curriculum text NOT opened: the vivasam/koreascience PDFs returned binary data. Korean codes in brief.json are unverified and may be 2015 or 2022 codes; two 2015-curriculum codes were seen quoted in a paper: [2수01-01] understand numbers 0-100, count/read/write them; [2수01-02] understand 일/십/백/천 place values and positional notation, read/write up to four-digit numbers (source kor15)."
+   ],
+   "textbooks": [
+    "IM K Unit 2 D 'Compare Numbers' (compare written numbers 1-10, one more/one less); NOT Unit 1 C as brief.json says (U1 C is 'Are There Enough?', matching one-to-one) [imK, opened]. Correct brief: 'IM K U2 D'.",
+    "IM K U2 L17 Order Towers and Numbers: build cube towers for a number, order towers or numerals, check by counting, notice each is one more than before; standards K.CC.B.4.c, K.CC.C.6, building to C.7 [imK2L17, opened].",
+    "IM G1 U4 C Compare Numbers to 99; L16 'Write Comparisons with Symbols': reading 49 > 45 and 45 < 49 as the same fact; game 'Greatest of Them All' placing digit cards in tens or ones; 'make the statement true' with a blank (e.g. blank < 35 has greatest value 34) [im1, im1U4L16, opened].",
+    "IM G2 U5 B Compare and Order Numbers within 1,000 using place value and number lines; G4 U4 C Compare, Order, Round within 1,000,000 [im2, im4, opened].",
+    "OpenStax Prealgebra 1.1: CORRECTION - the LibreTexts mirror says the section does not use <, > or = and conveys order only via the number line (larger to the right); the openstax.org summary mentions no comparison symbols either. Do not cite OS 1.1 for symbols [os11, osLT, opened]."
+   ],
+   "explanations": [
+    "Match one-to-one (lines between objects, pairing) and see which group has leftovers (CC K.CC.C.6; IM K U1 C).",
+    "Connecting-cube towers side by side, ordered smallest to largest (IM K2 L17).",
+    "Base-ten cubes: towers of ten and singles; compare tens first then ones (IM G1 U4 L16).",
+    "Number line: larger numbers further right (England Y1; OpenStax 1.1).",
+    "Place value digits left to right: compare the highest place first (CC 2.NBT.A.4, 4.NBT.A.2).",
+    "Words and symbols: 'greater than', 'less than', read statement aloud; symbol reversal 49 > 45 same as 45 < 49 (IM G1 L16)."
+   ],
+   "conventions": [
+    "Symbols < > = : England introduces words in Y1 and symbols in Y2; CC and IM introduce symbols in Grade 1 (two-digit) [eng, cc1NBT, im1U4L16]. England says 'fewer' is permitted alongside 'less' (hint of wording 'most, least') [eng]. Korean symbol/word conventions: unverified (not opened). Common US mnemonic of the 'alligator' is NOT from an opened source."
+   ],
+   "misconceptions": [
+    "IM G1 L16 teacher note: if a child writes a false statement, ask them to read it aloud and then name other numbers that make it true [im1U4L16].",
+    "IM G1 U4 L10: digits keep own value by place (17 vs 71 vs 7 vs 70); attending to units not left-to-right [im1U4L10].",
+    "IM K2 L17: check by counting rather than by looking; a tower of 10 vs 6 [imK2L17].",
+    "Gervasoni 2011: many children can read, write and order 2/3-digit numbers but cannot interpret quantity; ordering success may overstate place-value understanding [gervasoni, opened].",
+    "IES toolkit: comparing and labeling magnitudes depends on increasing magnitude and successor principles; teach more/fewer/same with matching before numerals [ies, opened]."
+   ],
+   "tasks": [
+    "Which is more, fewer, same (two groups up to 10); compare numerals 1-10.",
+    "Order towers/numeral cards 1-10; one more, one less.",
+    "Compare two-digit numbers with symbols; fill blanks to make true; digit-card games.",
+    "Order three-digit numbers; place on a number line.",
+    "Facts later concepts need: ordering of whole numbers is total and leaves a successor chain; rightwards = greater on number line; compare high place first."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "ccKCC",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "K.CC",
+     "url": "https://thecorestandards.org/Math/Content/K/CC/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "1.NBT",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.NBT",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc4NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "4.NBT.A.1-3",
+     "url": "https://thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK",
+     "ref": "Illustrative Mathematics K-5, Kindergarten scope and sequence",
+     "where": "Units 1,2,4,5,6,8 and sections",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified (IM K-5 is CC BY 4.0 per publisher; not seen on page)"
+    },
+    {
+     "k": "im1",
+     "ref": "Illustrative Mathematics K-5, Grade 1 scope and sequence",
+     "where": "Units 3,4,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2",
+     "ref": "Illustrative Mathematics K-5, Grade 2 scope and sequence",
+     "where": "Units 4,5,7,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im4",
+     "ref": "Illustrative Mathematics K-5, Grade 4 scope and sequence",
+     "where": "Units 4,6 (Unit 1 B)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK2L17",
+     "ref": "Illustrative Mathematics Kindergarten",
+     "where": "Unit 2 Lesson 17 Order Towers and Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-2/lesson-17/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L16",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 16 Write Comparisons with Symbols",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-16/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 10 Write Two-Digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "os11",
+     "ref": "OpenStax Prealgebra (2e), via openstax.org page",
+     "where": "Section 1.1 Introduction to Whole Numbers",
+     "url": "https://openstax.org/books/prealgebra/pages/1-1-introduction-to-whole-numbers",
+     "kind": "textbook",
+     "licence": "CC BY (stated on LibreTexts mirror; not seen on openstax page by fetch)"
+    },
+    {
+     "k": "osLT",
+     "ref": "OpenStax Prealgebra 2e, LibreTexts mirror",
+     "where": "1.2 (numbered 1.1 in book) Introduction to Whole Numbers",
+     "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/01%3A_Whole_Numbers/1.02%3A_Introduction_to_Whole_Numbers",
+     "kind": "textbook",
+     "licence": "CC BY (page license tag)"
+    },
+    {
+     "k": "gervasoni",
+     "ref": "Gervasoni et al. 2011, Insights about children's understanding of 2-digit and 3-digit numbers (AAMT/MERGA)",
+     "where": "findings and implications",
+     "url": "https://acuresearchbank.acu.edu.au/download/0b0aebf791b23f20597f09b18384d181bc88f9f939946014781ed0c997f1d9a6/1147317/Gervasoni_2011_Insights_about_childrens_understanding.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    },
+    {
+     "k": "ies",
+     "ref": "IES/REL Teaching Math to Young Children toolkit (WWC practice guide based)",
+     "where": "modules: subitizing, meaningful counting, comparing, basic problems",
+     "url": "https://ies.ed.gov/ncee/rel/math-young-children",
+     "kind": "research-summary",
+     "licence": "US federal publication; licence not stated on page (unverified)"
+    }
+   ]
+  },
+  {
+   "id": "composing-decomposing-numbers",
+   "curriculum": [
+    "CC K.OA.A.3 decompose numbers up to 10 into pairs in more than one way with objects/drawings and record with drawing or equation (5 = 2+3 = 4+1); K.OA.A.4 find the partner to make 10 for 1-9; K.OA.A.1 many representations (objects, fingers, drawings, claps, role play, expressions, equations); K.NBT.A.1 teen numbers are ten ones and some ones, recorded 18 = 10 + 8; 1.OA.C.6 add/subtract within 20 using counting on, making ten, decomposing to reach ten, inverse relation [ccKOA, ccKNBT, cc1OA, opened]. Brief codes correct (K.OA.A.3-4, K.NBT.A.1, 1.OA.C.6).",
+    "England PoS Y1 'addition and subtraction': represent and use number bonds and related subtraction facts within 20 [eng, opened]. Brief says 'Y1-Y2' - only the Y1 statement was seen.",
+    "NCETM Spine 1: 1.2 part-part-whole, 1.3 composition of numbers 0-5, 1.4 composition 6-10, 1.10 composition 11-19, 1.8 multiples of ten, 1.9 20-100 [ncetmSpine, opened; titles only].",
+    "Korean 2022 curriculum text NOT opened: the vivasam/koreascience PDFs returned binary data. Korean codes in brief.json are unverified and may be 2015 or 2022 codes; two 2015-curriculum codes were seen quoted in a paper: [2수01-01] understand numbers 0-100, count/read/write them; [2수01-02] understand 일/십/백/천 place values and positional notation, read/write up to four-digit numbers (source kor15)."
+   ],
+   "textbooks": [
+    "IM K Unit 5 'Composing and Decomposing Numbers to 10': A Make and Break Apart Numbers to 9, B Put Together/Take Apart story problems, C Make and Break Apart 10 (missing partner); Unit 6 B '10 Ones and Some More' teen numbers with 10-frames and equations; Unit 8 D 'All About 10' [imK, opened].",
+    "IM K U5 L1 'Make 2 Parts': compare one group of five squares with two groups; hold some of 6 cubes in hand, rest on desk, report parts and total; Diego's 4 cubes as 3+1, Lin's as 2+2; game Check It Off; 5-frames as support; total stays the same [imK5L1, opened].",
+    "IM G1 U3 B 'Add and Subtract using Ten as a Unit' (teen numbers = ten plus ones), U3 C make-ten addition [im1, opened]."
+   ],
+   "explanations": [
+    "Cubes/objects split into two groups (hand and desk) (IM K U5 L1).",
+    "5-frames and 10-frames for parts of 5 and 10, teen numbers as full ten-frame plus ones (IM K U5, U6 B).",
+    "Pictures of groups and equations 5 = 2 + 3, 18 = 10 + 8 (CC K.OA.A.3, K.NBT.A.1).",
+    "Fingers, claps, role-play, spoken explanation (CC K.OA.A.1).",
+    "Part-part-whole model (NCETM spine 1.2); number bonds named in England Y1 (the picture of the bond is not shown on opened pages: unverified)."
+   ],
+   "conventions": [
+    "English: 'number bonds' (England Y1) vs US Common Core 'compose/decompose' and 'partners of 10' (K.OA.A.4 'make 10') [eng, ccKOA]. IM wording: 'make and break apart', 'put together/take apart' [imK]. NCETM: 'composition of numbers', 'part-part-whole' [ncetmSpine]. Korean 가르기와 모으기 term: NOT from an opened page (unverified)."
+   ],
+   "misconceptions": [
+    "IM K U5 L1: the total stays the same however it is split; same number split different ways [imK5L1].",
+    "IES toolkit: comparing/combining small sets uses 5- and 10-frames and fingers; number combinations [ies, opened].",
+    "Staves: hierarchical inclusion (a number contains smaller ones) and compensation as later big ideas [staves, opened].",
+    "Specific misconception list for number bonds: not found on opened pages; unverified."
+   ],
+   "tasks": [
+    "Split a number to 10 two ways with cubes and record as expression; find partner of 10 given one part; teen numbers as 10 + n; write 18 = 10 + 8.",
+    "Number bond/part-part-whole diagram completing missing part.",
+    "Facts later concepts need: a + b = whole, whole - part = other part (inverse), making ten for bridging 10, ten ones = one ten (feeds place value, addition-subtraction)."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "ccKOA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "K.OA",
+     "url": "https://thecorestandards.org/Math/Content/K/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "ccKNBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "K.NBT.A.1 (page text summarised by fetch tool; code label not shown)",
+     "url": "https://thecorestandards.org/Math/Content/K/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc1OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "1.OA.C.5-6",
+     "url": "https://thecorestandards.org/Math/Content/1/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK",
+     "ref": "Illustrative Mathematics K-5, Kindergarten scope and sequence",
+     "where": "Units 1,2,4,5,6,8 and sections",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified (IM K-5 is CC BY 4.0 per publisher; not seen on page)"
+    },
+    {
+     "k": "im1",
+     "ref": "Illustrative Mathematics K-5, Grade 1 scope and sequence",
+     "where": "Units 3,4,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "imK5L1",
+     "ref": "Illustrative Mathematics Kindergarten",
+     "where": "Unit 5 Lesson 1 Make 2 Parts",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-5/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "ncetmSpine",
+     "ref": "NCETM Primary Mastery PD, Spine 1 Number, Addition and Subtraction",
+     "where": "segment list 1.1-1.31",
+     "url": "https://ncetm.org.uk/teaching-for-mastery/mastery-materials/primary-mastery-professional-development/number-addition-and-subtraction",
+     "kind": "teacher-guide",
+     "licence": "unverified"
+    },
+    {
+     "k": "ies",
+     "ref": "IES/REL Teaching Math to Young Children toolkit (WWC practice guide based)",
+     "where": "modules: subitizing, meaningful counting, comparing, basic problems",
+     "url": "https://ies.ed.gov/ncee/rel/math-young-children",
+     "kind": "research-summary",
+     "licence": "US federal publication; licence not stated on page (unverified)"
+    },
+    {
+     "k": "staves",
+     "ref": "Les Staves, 'Counting - a deceptively simple skill' (published on NCETM)",
+     "where": "whole article",
+     "url": "https://blogs.glowscotland.org.uk/gc/public/gccleadersofearlylearning/uploads/sites/7271/2018/11/counting_a_deceptively_simple_skill.pdf",
+     "kind": "research-summary",
+     "licence": "unverified"
+    },
+    {
+     "k": "kor15",
+     "ref": "Korean paper citing 2015 revised math curriculum (koreascience.kr JAKO202213341977585)",
+     "where": "quoted standards [2수01-01],[2수01-02] of the 2015 curriculum",
+     "url": "https://koreascience.kr/article/JAKO202213341977585.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    }
+   ]
+  },
+  {
+   "id": "place-value",
+   "curriculum": [
+    "CC 1.NBT.B.2 two digits mean tens and ones: ten ones = one ten, 11-19 = ten + ones, 10-90 = whole tens; 2.NBT.A.1 hundreds, tens, ones; ten tens = 100; 2.NBT.A.3 read and write to 1000 in numerals, words, expanded form; 4.NBT.A.1 a digit is ten times the same digit one place right; 4.NBT.A.2 read/write multi-digit numbers in digits, words, expanded form; 4.NBT.A.3 round [cc1NBT, cc2NBT, cc4NBT, opened]. CORRECTION: brief lists 3.NBT.A.1 under place value, but 3.NBT.A.1 is rounding to nearest 10/100 (place-value reasoning); 3.NBT.A.2 add/subtract within 1000; 3.NBT.A.3 multiply by multiples of ten [cc3NBT, opened]. K.NBT.A.1 (teens) is the entry point and is missing from brief.",
+    "England PoS Y2: recognise tens and ones value of each digit in a two-digit number; identify/represent/estimate numbers with different representations including number line; Y3 hundreds, tens, ones in three-digit numbers; Y4 place value in four-digit numbers, round to 10/100/1000, Roman numerals to C (Y4) [eng, opened]. NCETM spine: 1.8-1.10, 1.17-1.18, 1.22, 1.26, 1.30 progression of composition [ncetmSpine].",
+    "Korean 2022 curriculum text NOT opened: the vivasam/koreascience PDFs returned binary data. Korean codes in brief.json are unverified and may be 2015 or 2022 codes; two 2015-curriculum codes were seen quoted in a paper: [2수01-01] understand numbers 0-100, count/read/write them; [2수01-02] understand 일/십/백/천 place values and positional notation, read/write up to four-digit numbers (source kor15)."
+   ],
+   "textbooks": [
+    "IM G1 U4 'Numbers to 99': A Units of Ten (towers, drawings, number words), B Tens and Ones, C Compare, D Different Ways to Make a Number; L10 'Write Two-Digit Numbers' (cubes images 7, 70, 17, 71; '2 ones 8 tens'; 1-99 number path game; class judges '702 for seventy-two'); L5 Center Day 1 (groups of ten, base-ten diagram of 3 tens 5 ones, number 30) [im1, im1U4L10, im1U4L5, opened].",
+    "IM G2 U5 'Numbers to 1,000': A value of three digits; L1 'How Do We Compose a Hundred?': 8 tens 16 ones = 96; add ones to make 100; 100 ones = 10 tens = 1 hundred; fewest blocks; choral count 90-120 [im2, im2U5L1, opened].",
+    "IM G4 U4 B Place-value Relationships through 1,000,000: each place ten times the place to its right; G5 U5 A decimals to thousandths [im4, im5, opened].",
+    "OpenStax Prealgebra 1.1: counting vs whole numbers, number line, money model ($100/$10/$1 bills), base-10 blocks (cube, rod, flat), place-value chart in periods of three with commas, expanded form 100+30+8, naming rules (omit 'and', no 's' on period names), rounding by looking at digit to the right; Elementary Algebra 1.1 same text per search result only (not opened separately) [os11, osLT, opened]."
+   ],
+   "explanations": [
+    "Base-ten blocks/cubes: ones cube, ten rod/tower, hundred flat (IM G1-G2, OpenStax).",
+    "Base-ten diagrams drawn from blocks (IM G1 U4 L5, G2 U5 L1).",
+    "Ten-frames and connecting-cube towers of ten plus singles (IM G1).",
+    "Money $1 $10 $100 bills (OpenStax 1.1).",
+    "Place-value chart with periods (OpenStax 1.1); number path 1-99 showing ones digit cycling 0-9 while tens digit steps up (IM G1 L10).",
+    "Expanded form 100 + 30 + 8; word form with place names; '8 tens 16 ones' unit form (IM G2 U5 L1).",
+    "Number line for rounding and estimating (OpenStax; England Y2)."
+   ],
+   "conventions": [
+    "English periods of three digits separated by commas (5,278,194) and names thousand, million, billion [os11]. Korean (and Sino-Korean) groups by 10^4: 만, 억, 조 and reads 12,345,678 as 1234만 5678 [korNum]. Korean place names 일 십 백 천 for ones to thousands [kor15, 2015 curriculum quote]. Sino-Korean number words show place value transparently (이십일 = 2-ten-1) unlike English twenty-one/eleven/twelve [korNum; comparison is inference].",
+    "'Do not use and' when naming whole numbers in OpenStax; British usage often says 'one hundred and five' - not from an opened source (unverified).",
+    "Expanded form, 'standard form' (CC says standard digits) vs UK 'standard form' meaning scientific notation: unverified.",
+    "OpenStax and CC use 'ten times the place to its right' [os11, cc4NBT]. IM G2 uses 'compose a hundred'."
+   ],
+   "misconceptions": [
+    "IM G1 L10 synthesis: a student wrote 702 for seventy-two; advise that a two-digit number has two digits, no placeholder zero [im1U4L10].",
+    "IM G1 L10: students must attend to the unit in each picture rather than read left to right (tens may be drawn on left or right) [im1U4L10].",
+    "Gervasoni et al. 2011: many students read, write and order numbers but cannot interpret quantity; Fuson et al. (1997) conceptions of two-digit numbers incl. incorrect single-digits conception (each digit as ones); Cobb & Wheatley (1988) ten as an indivisible single unit; common midpoint-of-0-100 error 10; difficulty with ten less [gervasoni, opened].",
+    "NCETM audit: confusing teen numbers such as 13 and 30 [ncetmAudit].",
+    "IM G2 U5 L1 notes: watch whether students see 100 as a single unit and can show 100 without ones [im2U5L1]."
+   ],
+   "tasks": [
+    "Write the number for 3 tens 5 ones; draw 47; 8 tens 16 ones is 96; make the same number with fewer blocks (regrouping); 10 tens = 100.",
+    "Name digit values (value of 7 in 573); expanded form; read/write numbers in words.",
+    "10 more/10 less; compare using place value; round to nearest 10/100 using number line.",
+    "Facts later concepts need: ten of a unit make one of the next unit (base 10), digit value = digit x place value, regrouping for addition/subtraction algorithms, decimals extend to the right; links to [[digits-bases]] (existing page)."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "1.NBT",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.NBT",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc3NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "3.NBT.A.1-3",
+     "url": "https://thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc4NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "4.NBT.A.1-3",
+     "url": "https://thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1",
+     "ref": "Illustrative Mathematics K-5, Grade 1 scope and sequence",
+     "where": "Units 3,4,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2",
+     "ref": "Illustrative Mathematics K-5, Grade 2 scope and sequence",
+     "where": "Units 4,5,7,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im4",
+     "ref": "Illustrative Mathematics K-5, Grade 4 scope and sequence",
+     "where": "Units 4,6 (Unit 1 B)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im5",
+     "ref": "Illustrative Mathematics K-5, Grade 5 scope and sequence",
+     "where": "Units 5,7",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-5/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L5",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 5 Center Day 1 (tens)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-5/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 10 Write Two-Digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U5L1",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 5 Lesson 1 How Do We Compose a Hundred?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "os11",
+     "ref": "OpenStax Prealgebra (2e), via openstax.org page",
+     "where": "Section 1.1 Introduction to Whole Numbers",
+     "url": "https://openstax.org/books/prealgebra/pages/1-1-introduction-to-whole-numbers",
+     "kind": "textbook",
+     "licence": "CC BY (stated on LibreTexts mirror; not seen on openstax page by fetch)"
+    },
+    {
+     "k": "osLT",
+     "ref": "OpenStax Prealgebra 2e, LibreTexts mirror",
+     "where": "1.2 (numbered 1.1 in book) Introduction to Whole Numbers",
+     "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/01%3A_Whole_Numbers/1.02%3A_Introduction_to_Whole_Numbers",
+     "kind": "textbook",
+     "licence": "CC BY (page license tag)"
+    },
+    {
+     "k": "ncetmSpine",
+     "ref": "NCETM Primary Mastery PD, Spine 1 Number, Addition and Subtraction",
+     "where": "segment list 1.1-1.31",
+     "url": "https://ncetm.org.uk/teaching-for-mastery/mastery-materials/primary-mastery-professional-development/number-addition-and-subtraction",
+     "kind": "teacher-guide",
+     "licence": "unverified"
+    },
+    {
+     "k": "ncetmAudit",
+     "ref": "NCETM Primary subject knowledge audit, Number (Summer 2022)",
+     "where": "Counting principles, cardinality, subitising, conservation",
+     "url": "https://www.ncetm.org.uk/media/4zwl1w5l/pska-num-q1.pdf",
+     "kind": "teacher-guide",
+     "licence": "unverified"
+    },
+    {
+     "k": "gervasoni",
+     "ref": "Gervasoni et al. 2011, Insights about children's understanding of 2-digit and 3-digit numbers (AAMT/MERGA)",
+     "where": "findings and implications",
+     "url": "https://acuresearchbank.acu.edu.au/download/0b0aebf791b23f20597f09b18384d181bc88f9f939946014781ed0c997f1d9a6/1147317/Gervasoni_2011_Insights_about_childrens_understanding.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    },
+    {
+     "k": "korNum",
+     "ref": "Wikipedia, Korean numerals",
+     "where": "native vs Sino-Korean table, usage, myriad grouping",
+     "url": "https://en.wikipedia.org/wiki/Korean_numerals",
+     "kind": "reference",
+     "licence": "CC BY-SA (Wikipedia; not seen on page)"
+    },
+    {
+     "k": "kor15",
+     "ref": "Korean paper citing 2015 revised math curriculum (koreascience.kr JAKO202213341977585)",
+     "where": "quoted standards [2수01-01],[2수01-02] of the 2015 curriculum",
+     "url": "https://koreascience.kr/article/JAKO202213341977585.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    }
+   ]
+  },
+  {
+   "id": "number-line",
+   "curriculum": [
+    "CC 2.MD.B.6 represent whole numbers as lengths from 0 on a number line diagram with equally spaced points labeled 0, 1, 2, ...; represent sums and differences within 100 on a number line; 2.MD.B.5 ruler-like sketches for length stories [cc2MD, opened]. Brief 2.MD.B.6 correct.",
+    "England PoS Y1: use number lines to show numbers and 'more than, less than'; Y2: represent and estimate numbers using different representations including the number line; Y4: count backwards through zero to negatives [eng, opened]. Brief 'Y1-Y6 used throughout' is roughly right but explicit mentions seen only Y1, Y2.",
+    "Korean: NOT opened; brief gives no Korean ref for number line (unverified)."
+   ],
+   "textbooks": [
+    "IM G2 U4 'Addition and Subtraction on the Number Line': A Structure of the Number Line (distances from 0, locate, compare, estimate within 100), B Add and Subtract on a Number Line (arrows and jumps) [im2, opened].",
+    "IM G2 U4 L1 'Whole Numbers on the Number Line': compare number line with ruler; fill missing labels on 0-10 line; build own 0-20 line from a strip using a chosen unit (paper clips, base-ten blocks); mark 3 and 13; numbers are distances from 0, evenly spaced; different unit sizes valid; teacher note: check spacing with the unit object [im2U4L1, opened].",
+    "IM G2 U5 B and U7 A use number lines to compare and add [im2, opened].",
+    "OpenStax Prealgebra 1.1: number line with zero as origin, equally spaced labelled points, numbers increase to the right, a number paired with a point is its coordinate; used for ordering and rounding [os11, osLT, opened]."
+   ],
+   "explanations": [
+    "Number line as ruler/length from zero (IM G2 U4 L1).",
+    "Number path (numerals in boxes) vs number line (points on a line): IES toolkit uses 'number path' for the sequence of numerals [ies].",
+    "Paper strip with unit objects laid end to end (IM G2 U4 L1).",
+    "String/rope number line, distances proportional to values (Hilton & Hilton 2018).",
+    "Arrows and jumps for adding and subtracting (IM G2 U4 B).",
+    "Rounding on a number line (OpenStax 1.1).",
+    "Mental number line: adjacent numbers differ by one (Griffin et al. 1994, quoted by Gervasoni)."
+   ],
+   "conventions": [
+    "Number line vs ruler: IM links them (ruler starts at 0, tick marks are at whole numbers) [im2U4L1]. Number lines are drawn left to right in all opened sources [os11, im2U4L1]; direction conventions elsewhere unverified. 'coordinate' used for the number matched with a point [os11]. UK 'number line' is the same term; 'number track' for squares labeled 1,2,3 is UK early-years usage - not from an opened source (unverified)."
+   ],
+   "misconceptions": [
+    "Hilton & Hilton 2018: absolute thinking (counting on from the first number ignoring scale), additive trial-and-error strategies, halving errors when start is not zero (midpoint of 2 and 8 taken as 3); advice: string number line, vary start, ask how and why, use interval vocabulary [hilton, opened]. Note: that article does not mention counting marks vs spaces; that misconception is NOT sourced.",
+    "Gervasoni 2011: most common error placing midpoint of 0-100 as 10 (counting by ones); mental number line supports early arithmetic [gervasoni].",
+    "IM G2 U4 L1: students who space ticks unevenly should check with a unit object; use a ruler to check points [im2U4L1]."
+   ],
+   "tasks": [
+    "Fill in missing labels on 0-10 line; place a point at 7; build a 0-20 line with paper-clip units; mark 3 and 13.",
+    "Compare two numbers by position; estimate where 63 goes on 0-100.",
+    "Show 5+3 as jumps; 8-3 as a jump back (IM G2 U4 B).",
+    "Facts later concepts need: equal spacing, zero origin, order left to right, distance between points = difference; extends to fractions, negatives, coordinate plane."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "cc2MD",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.MD.B.5-6",
+     "url": "https://thecorestandards.org/Math/Content/2/MD/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2",
+     "ref": "Illustrative Mathematics K-5, Grade 2 scope and sequence",
+     "where": "Units 4,5,7,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U4L1",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 4 Lesson 1 Whole Numbers on the Number Line",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-4/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "os11",
+     "ref": "OpenStax Prealgebra (2e), via openstax.org page",
+     "where": "Section 1.1 Introduction to Whole Numbers",
+     "url": "https://openstax.org/books/prealgebra/pages/1-1-introduction-to-whole-numbers",
+     "kind": "textbook",
+     "licence": "CC BY (stated on LibreTexts mirror; not seen on openstax page by fetch)"
+    },
+    {
+     "k": "osLT",
+     "ref": "OpenStax Prealgebra 2e, LibreTexts mirror",
+     "where": "1.2 (numbered 1.1 in book) Introduction to Whole Numbers",
+     "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/01%3A_Whole_Numbers/1.02%3A_Introduction_to_Whole_Numbers",
+     "kind": "textbook",
+     "licence": "CC BY (page license tag)"
+    },
+    {
+     "k": "ies",
+     "ref": "IES/REL Teaching Math to Young Children toolkit (WWC practice guide based)",
+     "where": "modules: subitizing, meaningful counting, comparing, basic problems",
+     "url": "https://ies.ed.gov/ncee/rel/math-young-children",
+     "kind": "research-summary",
+     "licence": "US federal publication; licence not stated on page (unverified)"
+    },
+    {
+     "k": "hilton",
+     "ref": "Hilton & Hilton 2018, string number-line lesson sequence, Australian Primary Mathematics Classroom 23(1)",
+     "where": "misconceptions and advice",
+     "url": "https://archive.aamt.edu.au/content/download/41365/596342/file/apmc23_1_hilton.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    },
+    {
+     "k": "gervasoni",
+     "ref": "Gervasoni et al. 2011, Insights about children's understanding of 2-digit and 3-digit numbers (AAMT/MERGA)",
+     "where": "findings and implications",
+     "url": "https://acuresearchbank.acu.edu.au/download/0b0aebf791b23f20597f09b18384d181bc88f9f939946014781ed0c997f1d9a6/1147317/Gervasoni_2011_Insights_about_childrens_understanding.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    }
+   ]
+  },
+  {
+   "id": "odd-even-numbers",
+   "curriculum": [
+    "CC 2.OA.C.3 tell whether a group of up to 20 objects is odd or even (pair objects or count by 2s); write an equation expressing an even number as a sum of two equal addends; 2.OA.C.4 arrays up to 5x5 as repeated addition [cc2OA, opened]. Brief 2.OA.C.3 correct. Also 3.OA.D.9: justify that a multiple of 4 is even by splitting into two equal groups [cc3OA, opened].",
+    "England PoS Y2: only mention found is 'recognise odd and even numbers' within Y2 multiplication and division (2, 5, 10 tables). Y1 has no such statement [eng, opened].",
+    "Korean: per a paper on textbooks, no Korean curriculum lists odd/even as an achievement standard; the 2022 revision adds a note in number and operations (grade 1-2) to treat odd/even within 20 intuitively by pairing objects in real-life contexts; textbook placement moved from Grade 2 (3rd curriculum) to Grade 5 to Grade 1 (2009 and 2015 curricula) [korOE, opened (secondary source)]. 2022 text itself NOT opened."
+   ],
+   "textbooks": [
+    "IM G2 U8 'Equal Groups' A Odd and Even (L1 Can You Share?, ..., L3 Is it Odd or Even?), B Rectangular Arrays [im2, opened].",
+    "L1: share counters between two so each gets same; table of total/each/leftover; t-chart 'Two Equal Groups' with 'no leftovers' / 'some leftovers'; leftover never more than one; Andre's 17 marbles = 8+8+1 [im2U8L1, opened].",
+    "L3: choral count by 2s to 40; color designs with equal yellow and blue; card sort even/odd; find three cards with same number showing even/odd in different ways; accepts pairs, equal groups, counting by 2 [im2U8L3, opened].",
+    "NRICH 'add two odd numbers' (ages 5-7) task: dominoes, Multilink cubes in two rows, coloured squares; conjecturing about the sum and explaining why it works for any two odd numbers [nrich8059, opened]."
+   ],
+   "explanations": [
+    "Pairs / one-to-one matching of objects; a leftover means odd (IM G2 U8, Korean 2009/2015 textbooks).",
+    "Two equal groups with or without a leftover (IM G2 U8 L1).",
+    "Skip-counting by 2s lands on even numbers (IM L3; CC 2.OA.C.3).",
+    "Equation as sum of two equal addends: 12 = 6 + 6 (CC 2.OA.C.3).",
+    "Two-row cube/ten-frame arrangement (IM L1 supports); dot patterns with or without a middle dot (IM L3).",
+    "Number chart with multiples of 2 marked and ones-digit rule 0,2,4,6,8 (older Korean textbooks; Yuga Crew letter) [korOE, korYuga].",
+    "Number line alternation: odd, even, odd, even (korYuga; 4.OA.C.5 notes alternation when adding 3)."
+   ],
+   "conventions": [
+    "Korean terms 홀수 (odd), 짝수 (even); Korean definitions: 'can be paired in twos' / 'cannot be paired' (2009/2015 textbooks) or multiples of 2; dictionary definition via remainder after dividing by 2 [korOE, korYuga]. English: 'even'/'odd'; IM calls the leftover 'leftovers', CC speaks of 'pairing' [im2U8L1, cc2OA]. Whether 0 is even is treated explicitly only in Korean sources [korOE, korYuga]; English opened pages do not discuss 0 (unverified).",
+    "The 짝 (pair/partner) in 짝수 matches the pairing explanation; 홀 (single/lone) - etymology is NOT from an opened source (unverified)."
+   ],
+   "misconceptions": [
+    "Zero: some students disagree whether 0 is even (alternating pattern vs split into two equal groups) [korOE, opened]. Parent guide: 0 is even because 0 divided by 2 leaves 0 [korYuga].",
+    "Justifying sums: in one study of 170 third graders only ~5% justified odd+odd+odd=odd by pairs; ~21% relied on one example [korOE, secondary report].",
+    "Korean paper argues first/second graders lack division and remainder language, so 'cannot be paired in twos' as a definition of odd can be unclear [korOE].",
+    "IM G2 U8 L1 note: 6 and 7 can both be shown as 2 groups of 3; use to discuss why only one leftover is possible [im2U8L1]. L3: accept any valid method [im2U8L3].",
+    "NRICH: use questions 'what do you notice about the answer' and 'can you use your one example to prove it will happen every time' [nrich8059]."
+   ],
+   "tasks": [
+    "Pair counters/cubes and state odd or even for up to 20; sort cards; count by 2s.",
+    "Write an even number as a sum of two equal addends; show odd as double plus 1 (8+8+1=17).",
+    "Is a number with ones digit 3 odd? Check numbers beyond 20.",
+    "Sum facts: even+even=even, odd+odd=even, even+odd=odd [korYuga; NRICH conjecture task]; 3.OA.D.9 multiples of 4 are even.",
+    "Facts later concepts need: 2 divides evenly; parity alternates on number line and in skip-count by 1; link to multiplication by 2 and multiples (2.OA.C.3 -> 3.OA.D.9)."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "cc2OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.OA.C.3-4",
+     "url": "https://thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc3OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "3.OA.D.9",
+     "url": "https://thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc4OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "4.OA.C.5",
+     "url": "https://thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2",
+     "ref": "Illustrative Mathematics K-5, Grade 2 scope and sequence",
+     "where": "Units 4,5,7,8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U8L1",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 8 Lesson 1 Can You Share?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U8L3",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 8 Lesson 3 Is it Odd or Even?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-3/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "nrich8059",
+     "ref": "NRICH, 'Sum of two odd numbers' style task (nrich.maths.org/8059), ages 5-7",
+     "where": "problem page",
+     "url": "https://nrich.maths.org/8059/note?nomenu=1",
+     "kind": "teacher-guide",
+     "licence": "unverified (title not seen)"
+    },
+    {
+     "k": "korOE",
+     "ref": "Korean paper on odd and even numbers in elementary textbooks (koreascience.kr JAKO202304743237834; title seen in search: 초등학교 수학 교과서에 제시된 짝수와 홀수의 지도 내용에 대한 고찰)",
+     "where": "whole paper",
+     "url": "https://koreascience.kr/article/JAKO202304743237834.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    },
+    {
+     "k": "korYuga",
+     "ref": "Yuga Crew parent letter on odd/even (Korean parenting app)",
+     "where": "page",
+     "url": "https://www.yugacrew.com/crewletter/odd-even-numbers",
+     "kind": "parent-guide",
+     "licence": "unverified"
+    }
+   ]
+  },
+  {
+   "id": "patterns-sequences",
+   "curriculum": [
+    "CC 2.NBT.A.2 skip-count by 5s, 10s, 100s within 1000; 2.OA.C.3 odd/even via counting by 2s; 3.OA.D.9 identify arithmetic patterns (addition and multiplication tables) and explain using properties; 4.OA.C.5 generate a number or shape pattern from a rule and spot features the rule does not state (start 1 add 3 alternates odd/even); 5.OA.B.3 two patterns from two rules, compare terms, plot as ordered pairs [cc2NBT, cc2OA, cc3OA, cc4OA, cc5OA, opened]. Brief codes correct.",
+    "England PoS: Y1 count in 2s, 5s, 10s; Y2 count in 2s, 3s, 5s and tens, and 'order and arrange combinations of mathematical objects in patterns and sequences' (listed under Geometry - position and direction); Y3 count in multiples of 4, 8, 50, 100; Y4 multiples of 6, 7, 9, 25, 1000 [eng, opened]. Y6 and KS3 linear sequences, GCSE A23-A25 NOT opened.",
+    "Korean 2022 curriculum text NOT opened: the vivasam/koreascience PDFs returned binary data. Korean codes in brief.json are unverified and may be 2015 or 2022 codes; two 2015-curriculum codes were seen quoted in a paper: [2수01-01] understand numbers 0-100, count/read/write them; [2수01-02] understand 일/십/백/천 place values and positional notation, read/write up to four-digit numbers (source kor15). Brief's [2수02-01..02] for patterns cannot be confirmed."
+   ],
+   "textbooks": [
+    "IM G4 U6 A Features of Patterns: L1 'Patterns that Grow' - dot arrays with rows added each step, Han's bottle-cap pattern (several valid rules from two terms), Jada's giraffe pattern (2 squares added per step, predict step 10, can 25 appear?), Andre's house pattern cool-down; representations: diagrams, tables, words, skip-counting, expressions [im4, im4U6L1, opened].",
+    "IM G5 U7 C Numerical Patterns: two rules, ordered pairs on a coordinate grid [im5, opened].",
+    "IM G2 U8 L3 choral count by 2 to 40 and look for patterns; G2 U5 L1 choral count 90-120; G1 U4 L10 number path 1-99 pattern of ones and tens digits [im2U8L3, im2U5L1, im1U4L10, opened]. IM G4 U1 B patterns in factors and multiples [im4]."
+   ],
+   "explanations": [
+    "Repeating patterns of objects first, then growing patterns (AAMT Top Drawer).",
+    "Skip counting with number line or hundred chart; choral count recorded on chart (IM).",
+    "Shape/dot growth patterns by step number; tables of step vs total (IM G4 U6 L1).",
+    "Rule in words, as repeated addition, as multiplication expression (IM G4 U6 L1).",
+    "Position-to-term rule vs term-to-term rule (AAMT: successive-term rules or linking position to value).",
+    "Two sequences plotted on coordinate plane (IM G5 U7 C; CC 5.OA.B.3)."
+   ],
+   "conventions": [
+    "Terminology: 'pattern' (CC, IM) vs 'sequence' (England Y2 'patterns and sequences', AAMT 'number sequences'); 'rule' (CC 4.OA.C.5, IM); England 'counting in steps/multiples of' vs US 'skip counting' [eng, cc2NBT, cc4OA, topdrawer]. Both repeating (fixed unit of repeat) and growing patterns [topdrawer]. Korean 규칙 (rule/pattern) term: unverified, not from an opened page."
+   ],
+   "misconceptions": [
+    "AAMT Top Drawer: repeating patterns have a fixed unit of repeat but growing patterns do not; students often find rules hard to identify; rules can be term-to-term or position-to-value; start with repeating patterns, concrete then pictures then abstract [topdrawer, opened].",
+    "IM G4 U6 L1: with only two steps shown, several rules fit (add 5, double, increase the increase); constant change vs constant multiplier vs changing change; students notice alternating odd/even, multiples of 5/10; checking whether a number (25, 72) can appear reinforces the rule [im4U6L1].",
+    "CC 4.OA.C.5: sequence from 1 adding 3 alternates odd and even and students should explain why [cc4OA].",
+    "No research citation on skip-counting errors was found in opened pages (unverified)."
+   ],
+   "tasks": [
+    "Continue a repeating pattern (AB, ABB); continue skip counts by 2, 5, 10; find the missing number in a sequence.",
+    "Describe the rule; state the next three terms; will 25 appear? (IM G4).",
+    "Growing dot patterns: count for steps 1-6 in a table; predict step 10.",
+    "Sequence from rule 'start 1, add 3' and its odd/even alternation; two sequences with rules add 3 and add 6 from 0 (second is double the first, CC 5.OA.B.3).",
+    "Facts later concepts need: skip counts give multiplication tables (2.NBT.A.2 -> multiplication), term-to-term rule is recursion, position-to-value rule is a function/linear relation."
+   ],
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "DfE, National curriculum in England: mathematics programmes of study",
+     "where": "Year 1-4 'Number - number and place value'; Y1 'addition and subtraction'; Y2 'multiplication and division'; Y2 'Geometry - position and direction'",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum",
+     "licence": "Open Government Licence v3.0 (per page footer)"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.NBT",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc2OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "2.OA.C.3-4",
+     "url": "https://thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc3OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "3.OA.D.9",
+     "url": "https://thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc4OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "4.OA.C.5",
+     "url": "https://thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "cc5OA",
+     "ref": "Common Core State Standards, Mathematics",
+     "where": "5.OA.B.3",
+     "url": "https://thecorestandards.org/Math/Content/5/OA/",
+     "kind": "curriculum",
+     "licence": "unverified"
+    },
+    {
+     "k": "im4",
+     "ref": "Illustrative Mathematics K-5, Grade 4 scope and sequence",
+     "where": "Units 4,6 (Unit 1 B)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im5",
+     "ref": "Illustrative Mathematics K-5, Grade 5 scope and sequence",
+     "where": "Units 5,7",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-5/course-guide/scope-and-sequence.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im4U6L1",
+     "ref": "Illustrative Mathematics Grade 4",
+     "where": "Unit 6 Lesson 1 Patterns that Grow",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-6/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U8L3",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 8 Lesson 3 Is it Odd or Even?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-3/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im2U5L1",
+     "ref": "Illustrative Mathematics Grade 2",
+     "where": "Unit 5 Lesson 1 How Do We Compose a Hundred?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics Grade 1",
+     "where": "Unit 4 Lesson 10 Write Two-Digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook",
+     "licence": "unverified"
+    },
+    {
+     "k": "topdrawer",
+     "ref": "AAMT Top Drawer Teachers, Patterns > Misunderstandings > Number sequences",
+     "where": "page",
+     "url": "https://topdrawer.aamt.edu.au/Patterns/Misunderstandings/Number-sequences",
+     "kind": "teacher-guide",
+     "licence": "unverified"
+    },
+    {
+     "k": "kor15",
+     "ref": "Korean paper citing 2015 revised math curriculum (koreascience.kr JAKO202213341977585)",
+     "where": "quoted standards [2수01-01],[2수01-02] of the 2015 curriculum",
+     "url": "https://koreascience.kr/article/JAKO202213341977585.pdf",
+     "kind": "research",
+     "licence": "unverified"
+    }
+   ]
+  }
+ ]
+}

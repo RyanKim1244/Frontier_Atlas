@@ -1,0 +1,509 @@
+[
+ {
+  "id": "place-value",
+  "entry": {
+   "sum": "Our numerals write every whole number with the ten digits 0 to 9, because a digit's value depends on its place: the digit in place $i$ (counting from 0 at the right) is worth that digit times $10^i$. Each place is worth ten times the place to its right, zero holds empty places, and every whole number has exactly one such numeral.",
+   "key": [
+    "d_k \\dots d_1 d_0 = d_k 10^k + \\dots + d_1 10 + d_0",
+    "4027 = 4 \\cdot 1000 + 0 \\cdot 100 + 2 \\cdot 10 + 7",
+    "10 \\times 10^i = 10^{i+1}"
+   ],
+   "why": "Place value lets ten symbols name every whole number, and it is what makes column arithmetic, decimals and other number bases work.",
+   "msc": [
+    "11A63"
+   ],
+   "links": [
+    {
+     "field": "computer-science",
+     "note": "binary and other bases for storing numbers"
+    },
+    {
+     "field": "algebra",
+     "note": "a numeral as a polynomial evaluated at 10"
+    }
+   ],
+   "refs": [
+    "OpenStax, Prealgebra 2e (2020), section 1.1",
+    "Common Core State Standards for Mathematics, 1.NBT, 2.NBT.A, 3.NBT.A.3, 4.NBT.A.1-2",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 2-6 Number and place value",
+    "Illustrative Mathematics K-5 (Grade 1 Unit 4; Grade 2 Unit 5; Grade 4 Unit 4)"
+   ],
+   "aliases": [
+    "place value",
+    "positional notation",
+    "base ten",
+    "decimal numeral system",
+    "Hindu-Arabic numerals",
+    "expanded form",
+    "regrouping",
+    "exchanging",
+    "trading"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 24,
+   "sources": [
+    {
+     "k": "os11",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Section 1.1 Introduction to Whole Numbers",
+     "url": "https://math.libretexts.org/Bookshelves/PreAlgebra/Prealgebra_2e_(OpenStax)/01%3A_Whole_Numbers/1.02%3A_Introduction_to_Whole_Numbers",
+     "kind": "textbook"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards for Mathematics (2010)",
+     "where": "1.NBT.B.2, 1.NBT.C.5",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards for Mathematics (2010)",
+     "where": "2.NBT.A.1, 2.NBT.A.3",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc3NBT",
+     "ref": "Common Core State Standards for Mathematics (2010)",
+     "where": "3.NBT.A.3",
+     "url": "https://thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc4NBT",
+     "ref": "Common Core State Standards for Mathematics (2010)",
+     "where": "4.NBT.A.1-2",
+     "url": "https://thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 2-6 Number and place value; Key Stage 3 Number",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics K-5, Grade 1",
+     "where": "Unit 4 Lesson 10 Write Two-digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im2U5L1",
+     "ref": "Illustrative Mathematics K-5, Grade 2",
+     "where": "Unit 5 Lesson 1 How Do We Compose a Hundred?",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im4L9",
+     "ref": "Illustrative Mathematics K-5, Grade 4",
+     "where": "Unit 4 Lesson 9 Same Digit, Different Value",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-4/lesson-9/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "gervasoni",
+     "ref": "A. Gervasoni et al., Insights about children's understanding of 2-digit and 3-digit numbers, AAMT-MERGA conference (2011)",
+     "where": "findings and implications",
+     "url": "https://acuresearchbank.acu.edu.au/download/0b0aebf791b23f20597f09b18384d181bc88f9f939946014781ed0c997f1d9a6/1147317/Gervasoni_2011_Insights_about_childrens_understanding.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "ncetmAudit",
+     "ref": "NCETM, Primary subject knowledge audit: Number (2022)",
+     "where": "number and place value",
+     "url": "https://www.ncetm.org.uk/media/4zwl1w5l/pska-num-q1.pdf",
+     "kind": "notes"
+    },
+    {
+     "k": "engNum",
+     "ref": "Wikipedia, English numerals",
+     "where": "cardinal numbers; use of and; separators; short and long scales",
+     "url": "https://en.wikipedia.org/wiki/English_numerals",
+     "kind": "reference"
+    },
+    {
+     "k": "wikiPos",
+     "ref": "Wikipedia, Positional notation",
+     "where": "mathematics; base and digits as polynomial coefficients; non-unique representations",
+     "url": "https://en.wikipedia.org/wiki/Positional_notation",
+     "kind": "reference"
+    },
+    {
+     "k": "wikiHorner",
+     "ref": "Wikipedia, Horner's method",
+     "where": "nested form; conversion between positional numeral systems",
+     "url": "https://en.wikipedia.org/wiki/Horner%27s_method",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Value of each digit in two-, three- and multi-digit numbers (tens, ones; hundreds; thousands and beyond)",
+     "priority": "core",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "Ten ones make a ten, ten tens a hundred; teen numbers as a ten and some ones",
+     "priority": "core",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "Zero as a place holder",
+     "priority": "core",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "Expanded form",
+     "priority": "core",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "A digit in one place is worth ten times what it is worth in the place to its right (4.NBT.A.1)",
+     "priority": "core",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "Multiply a whole number by 10 and 100 (shift of digits; England Y5)",
+     "priority": "common",
+     "where": "Digits, places and values"
+    },
+    {
+     "item": "Partition and regroup numbers in different ways",
+     "priority": "common",
+     "where": "Regrouping, and why the numeral is unique"
+    },
+    {
+     "item": "Find 10, 100 or 1,000 more or less than a number",
+     "priority": "core",
+     "where": "Regrouping, and why the numeral is unique"
+    },
+    {
+     "item": "Read and write numbers to 1,000 and then to 10,000,000 in numerals and words",
+     "priority": "core",
+     "where": "Large numbers: periods, names and separators"
+    },
+    {
+     "item": "Counting and number names",
+     "priority": "core",
+     "where": "[[counting-number-names]]"
+    },
+    {
+     "item": "Splitting a number into parts",
+     "priority": "core",
+     "where": "[[composing-decomposing-numbers]]"
+    },
+    {
+     "item": "Compare and order numbers using place value",
+     "priority": "core",
+     "where": "[[comparing-ordering-numbers]]"
+    },
+    {
+     "item": "Represent and estimate numbers on a number line",
+     "priority": "common",
+     "where": "[[number-line]]"
+    },
+    {
+     "item": "Round to the nearest 10, 100, 1,000 (3.NBT.A.1, 4.NBT.A.3)",
+     "priority": "core",
+     "where": "separate page: Rounding and estimation"
+    },
+    {
+     "item": "Roman numerals (England Y4-Y5)",
+     "priority": "common",
+     "where": "separate page: Roman numerals"
+    },
+    {
+     "item": "Decimal place value: tenths, hundredths, thousandths",
+     "priority": "specialised",
+     "where": "separate page: Decimals"
+    },
+    {
+     "item": "Number bases other than ten",
+     "priority": "specialised",
+     "where": "[[digits-bases]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Our numerals name every whole number with ten digits, 0 to 9, because a digit's worth depends on where it stands: in 707 the first 7 is seven hundreds and the last is seven ones. This is place value, the idea behind column arithmetic and behind writing numbers in any other base."
+    },
+    {
+     "type": "section",
+     "title": "Digits, places and values",
+     "src": [
+      "os11",
+      "cc2NBT",
+      "cc4NBT",
+      "im1U4L10",
+      "gervasoni"
+     ],
+     "body": "To count a large collection, bundle it in tens: ten ones make a ten, ten tens a hundred, ten hundreds a thousand, and so on, until fewer than ten of each unit are left. The counts that remain, each between 0 and 9, are the digits. A collection that ends as 4 thousands, 0 hundreds, 2 tens and 7 ones is written 4,027.\n\nThe units $1, 10, 100, 1000, \\dots$ are the powers of ten. For $k \\ge 1$, $10^k$ is the product of $k$ tens, so $10^1 = 10$, $10^2 = 100$, $10^3 = 1000$, and each power is ten times the one before: $10^{i+1} = 10 \\times 10^i$. Run that pattern backwards: each step one place to the right divides the worth by ten, $10^2 = 1000 / 10$ and $10^1 = 100 / 10$. The ones place is one more step to the right of the tens, so if the same rule is to hold at every step, its worth must be $10^0 = 10 / 10 = 1$. That is why the ones place is place 0."
+    },
+    {
+     "type": "definition",
+     "title": "Place value",
+     "body": "A whole number is written as a string of digits $d_k d_{k-1} \\dots d_1 d_0$, each $d_i$ one of $0, 1, \\dots, 9$. The string means the digits written side by side, not their product: 27 is two tens and seven ones, not $2 \\times 7$. The places are numbered from the right, starting at 0: place 0 is the ones place, place 1 the tens, place 2 the hundreds, place 3 the thousands. Place $i$ has value $10^i$, and the digit $d_i$ standing there is worth $d_i \\times 10^i$. The number is the sum of what its digits are worth:\n\n$$d_k \\dots d_1 d_0 = d_k 10^k + \\dots + d_1 10 + d_0.$$\n\nWriting the sum out is called expanded form. For example\n\n$$4{,}027 = 4 \\times 1000 + 0 \\times 100 + 2 \\times 10 + 7.$$\n\nThe leftmost digit is not 0 (we write 27, not 027); the number zero itself is written 0. Because $10^{i+1} = 10 \\times 10^i$, a digit $d$ in place $i+1$ is worth $d \\times 10^{i+1} = 10 \\times (d \\times 10^i)$: each place is worth ten times the place to its right."
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 10 shifts the digits",
+     "body": "If $n \\ge 1$ has numeral $d_k \\dots d_1 d_0$, then the string $d_k \\dots d_1 d_0 0$ is a numeral for $10n$: every digit moves one place left and a 0 fills the ones place. The number 0 is the exception: $10 \\times 0 = 0$, still written 0, not 00."
+    },
+    {
+     "type": "proof",
+     "body": "Multiply the expanded form by 10 term by term:\n\n$$10 \\times \\sum_{i=0}^{k} d_i 10^i = \\sum_{i=0}^{k} d_i 10^{i+1}.$$\n\nHere $\\sum_{i=0}^{k}$ means the sum of the terms for $i = 0, 1, \\dots, k$. On the right each digit $d_i$ stands in place $i+1$ and nothing stands in place 0, so the right side is the expanded form of the string $d_k \\dots d_0 0$. Its digits are all between 0 and 9 and its leftmost digit $d_k$ is not 0, so the string is a numeral for $10n$. (That it is the only one is the uniqueness theorem of the next section; this proof does not need it.) For $n = 0$ the shifted string would be 00, which has a leading zero, so 0 stays 0."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.0, 3.2); ax = plt.gca()\nheads = ['thousands', 'hundreds', 'tens', 'ones']\nw = 1.6; h = 0.8; gap = 0.5\nfor c, hd in enumerate(heads):\n    ax.text(c * w + w / 2, 3 * (h + gap) + 0.05, hd, ha='center', va='bottom', fontsize=10)\nrows = [('', '', '3', '7'), ('', '3', '7', '0'), ('3', '7', '0', '0')]\nlabels = ['37', r'$10 \\times 37 = 370$', r'$10 \\times 370 = 3{,}700$']\nys = [2 * (h + gap), h + gap, 0]\nfor r, (digs, lab) in enumerate(zip(rows, labels)):\n    y = ys[r]\n    for c, d in enumerate(digs):\n        ax.add_patch(Rectangle((c * w, y), w, h, fill=False, ec='black', lw=1.0))\n        if d:\n            col = 'blue' if d == '3' else ('orange' if d == '7' else 'black')\n            ax.text(c * w + w / 2, y + h / 2, d, ha='center', va='center', fontsize=16, color=col)\n    ax.text(4 * w + 0.2, y + h / 2, lab, ha='left', va='center', fontsize=11)\nfor r in range(2):\n    ytop = ys[r]; ybot = ys[r + 1] + h\n    for c in range(4):\n        d = rows[r][c]\n        if d in ('3', '7'):\n            col = 'blue' if d == '3' else 'orange'\n            ax.add_patch(FancyArrowPatch((c * w + w / 2, ytop - 0.03), ((c - 1) * w + w / 2, ybot + 0.03), arrowstyle='-|>', mutation_scale=11, color=col, lw=1.0, shrinkA=0, shrinkB=0))\nax.set_xlim(-0.1, 10.2); ax.set_ylim(-0.1, 4.3); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Multiplying by 10 shifts every digit one place left: $37 \\to 370 \\to 3{,}700$. The 3 is worth 30, then 300, then 3,000.",
+     "alt": "A place-value chart with columns thousands, hundreds, tens, ones and three rows separated by small gaps. Row one: 3 in tens, 7 in ones, labelled 37. Row two: 3 in hundreds, 7 in tens, 0 in ones, labelled 10 times 37 = 370. Row three: 3 in thousands, 7 in hundreds, 0 in tens and ones, labelled 10 times 370 = 3,700. In each gap, a blue arrow runs from the bottom edge of the 3's cell to the top edge of the cell one column left in the next row, and an orange arrow does the same for the 7."
+    },
+    {
+     "type": "example",
+     "src": [
+      "eng"
+     ],
+     "body": "Compare 70,707 with 7,707 and 777. What is each 7 worth, and what do the zeros do?",
+     "solution": "Number the places from the right. In 70,707 the 7s stand in places 4, 2 and 0; in 7,707 in places 3, 2 and 0; in 777 in places 2, 1 and 0. So\n\n$$\\begin{aligned} 70{,}707 &= 70{,}000 + 700 + 7,\\\\ 7{,}707 &= 7{,}000 + 700 + 7,\\\\ 777 &= 700 + 70 + 7. \\end{aligned}$$\n\nThe same three 7s appear each time; only the zeros differ. The 0 in place 3 of 70,707 records that there are no thousands and pushes the leading 7 one place further left, where it is worth ten times as much as in 7,707. An empty place must still be written, and that is the job of 0. Roman numerals have neither a zero nor place value: each symbol has a fixed worth wherever it stands (C is always a hundred), so 707 is DCCVII, and larger numbers need new symbols or long runs of old ones."
+    },
+    {
+     "type": "pitfall",
+     "title": "Reading a digit by its face instead of its place",
+     "src": [
+      "gervasoni"
+     ],
+     "body": "The underlying error is to read a digit at face value, as a count of ones, instead of by its place. Two familiar symptoms:\n\n- Writing seventy-two as 702, by writing 70 and then 2. The 2 belongs in the ones place, where 70 has its 0: seventy-two is 7 tens and 2 ones, 72, while 702 is 7 hundreds and 2 ones.\n- Mixing up 13 and 30, which sound alike and both contain a 3. In 13 the 3 is in the ones place and is worth 3; in 30 it is in the tens place and is worth 30."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write 6,048 in expanded form and give the value of each digit. Then write 3 thousands, 9 tens and 4 ones as a numeral.",
+       "hint": "Number the places from the right, starting at 0. An empty place still needs a digit.",
+       "solution": "$6{,}048 = 6 \\times 1000 + 0 \\times 100 + 4 \\times 10 + 8$. The 6 is worth 6,000, the 0 is worth 0 (no hundreds), the 4 is worth 40 and the 8 is worth 8. Three thousands, 9 tens and 4 ones is 3,094: the hundreds place is empty, so it holds 0."
+      },
+      {
+       "q": "Find $10 \\times 4{,}070$ and $100 \\times 4{,}070$ using the shift. Why is $10 \\times 0$ written 0 and not 00?",
+       "hint": "Multiplying by 100 is multiplying by 10 twice.",
+       "solution": "Shift the digits of 4,070 one place left and write 0 in the ones place: $10 \\times 4{,}070 = 40{,}700$. Shift again: $100 \\times 4{,}070 = 407{,}000$. The zeros inside 4,070 move with the other digits and still hold empty places. For 0 the shift would give 00, whose leading digit is 0, which a numeral may not have; so $10 \\times 0 = 0$ is written 0."
+      },
+      {
+       "q": "For $n \\ge 1$, how many digits does $10^n$ have, and how many does $10^n - 1$ have? Prove that $10^n - 1$ is written with $n$ nines.",
+       "hint": "Let $S = 1 + 10 + \\dots + 10^{n-1}$ and compare $10S$ with $S$.",
+       "solution": "$10^n$ is the digit 1 in place $n$ and 0 in places 0 to $n-1$, so its numeral is 1 followed by $n$ zeros: $n + 1$ digits. The string of $n$ nines has value $9S$ with $S = 1 + 10 + \\dots + 10^{n-1}$. Now $10S = 10 + 100 + \\dots + 10^n$, so $10S - S = 10^n - 1$ (everything else cancels), that is $9S = 10^n - 1$. So $10^n - 1$ is $n$ nines and has $n$ digits; for example $10^3 - 1 = 999$ and $10^6 - 1 = 999{,}999$."
+      },
+      {
+       "q": "Prove that a whole number is divisible by 3 exactly when the sum of its digits is.",
+       "hint": "Write $10^i = (10^i - 1) + 1$ and use exercise 3.",
+       "solution": "By exercise 3 $10^i - 1$ is written with $i$ nines, so it is $9 \\times 11 \\dots 1$, a multiple of 9 (for $i = 0$ it is 0). Hence $d_i 10^i = d_i + d_i (10^i - 1)$ is $d_i$ plus a multiple of 9, and adding over all places,\n\n$$n = (d_k + \\dots + d_0) + 9m$$\n\nfor a whole number $m$. Since $9m$ is a multiple of 3, $n$ and its digit sum differ by a multiple of 3, so one is divisible by 3 exactly when the other is. For example 4,027 has digit sum 13, not a multiple of 3, and $4{,}027 = 3 \\times 1{,}342 + 1$. The same argument proves the test for 9."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Regrouping, and why the numeral is unique",
+     "src": [
+      "im2U5L1",
+      "cc2NBT",
+      "cc1NBT",
+      "eng"
+     ],
+     "body": "The same number can be built from units in many ways. Ninety-six is 9 tens and 6 ones, but it is also 8 tens and 16 ones, or 96 ones. Changing ten of one unit into one of the next unit, or one unit back into ten of the unit below, is called regrouping (also exchanging or trading). Regrouping never changes the number, because both sides of the trade are equal: $10 \\times 10^i = 10^{i+1}$."
+    },
+    {
+     "type": "theorem",
+     "title": "Lemma: division with remainder by 10",
+     "body": "For every whole number $n$ there is exactly one pair of whole numbers $q$ and $r$ with\n\n$$n = 10q + r, \\qquad 0 \\le r \\le 9.$$\n\nHere $q$ is the quotient and $r$ the remainder."
+    },
+    {
+     "type": "proof",
+     "body": "Existence. Subtract 10 from $n$ again and again, as long as what is left is at least 10. What is left gets smaller each time, so this stops, after $q$ subtractions say, at some $r$ with $0 \\le r \\le 9$, and then $n = 10q + r$.\n\nUniqueness. If $10q + r = 10q' + r'$ with $r$ and $r'$ in $0, \\dots, 9$, then $r - r' = 10(q' - q)$ is a multiple of 10 lying between $-9$ and 9, so it is 0. Hence $r = r'$, and then $q = q'$."
+    },
+    {
+     "type": "theorem",
+     "title": "Each whole number has exactly one numeral",
+     "body": "Every whole number $n \\ge 1$ can be written in exactly one way as\n\n$$n = d_k 10^k + \\dots + d_1 10 + d_0$$\n\nwith every $d_i$ in $\\{0, 1, \\dots, 9\\}$ and $d_k \\ne 0$. In particular, the ones digit $d_0$ is the remainder when $n$ is divided by 10, and $d_k \\dots d_1$ is the quotient."
+    },
+    {
+     "type": "proof",
+     "body": "There are two steps: trading produces a numeral (existence), and the lemma, applied once per digit, rules out any other (uniqueness).\n\nExistence. Call each one, each ten, each hundred and so on a piece. Start with $n$ pieces, all ones. While some unit has ten or more pieces, trade ten of them for one piece of the next unit up. Each trade keeps the number the same and lowers the total number of pieces by 9. That total is a positive whole number, so it cannot fall for ever: the trading stops after finitely many trades, and it stops only when every count is between 0 and 9. Finitely many trades use only finitely many units, so there is a largest unit $10^k$ whose count is not 0. The counts $d_k, \\dots, d_0$ are then digits with $d_k \\ne 0$: a numeral for $n$. In plain words, bundle until no bundle of ten is left, and the counts that remain are the digits.\n\nUniqueness, by induction on the number of digits. A numeral $e_m \\dots e_0$ with $e_m \\ne 0$ has value at least $10^m$. Claim: if $n$ has a numeral with $k+1$ digits, then every numeral of $n$ is that same string.\n\nBase case $k = 0$: $n = d_0 \\le 9$, while a numeral with two or more digits is at least 10, so the only numeral of $n$ is $d_0$.\n\nInductive step: let $k \\ge 1$, assume the claim for numerals with $k$ digits, and let $n = d_k \\dots d_0 = e_m \\dots e_0$. Since $n \\ge 10^k \\ge 10$, also $m \\ge 1$. Both expanded forms have the shape $10q + r$ with $0 \\le r \\le 9$: $n = 10q + d_0$ with $q = d_k \\dots d_1$, and $n = 10q' + e_0$ with $q' = e_m \\dots e_1$. By the lemma, $d_0 = e_0$ and $q = q'$. Now $q$ has the $k$-digit numeral $d_k \\dots d_1$, whose leading digit $d_k$ is not 0, so by the assumption $e_m \\dots e_1$ is the same string. Hence $m = k$ and $e_i = d_i$ for every $i$. In plain words, the last digit is forced because it is the remainder on division by 10, and the digits before it are forced because they are the numeral of the quotient, which has fewer digits."
+    },
+    {
+     "type": "theorem",
+     "title": "Why base ten needs exactly ten digits",
+     "src": [
+      "wikiPos"
+     ],
+     "body": "With places worth $1, 10, 100, \\dots$, the digits 0 to 9 are exactly enough: with fewer symbols some numbers have no numeral, and with more some numbers have two."
+    },
+    {
+     "type": "proof",
+     "body": "Fix a length $k+1$ and allow leading zeros. There are $10^{k+1}$ strings of $k+1$ digits, ten choices in each place, and their values run from 0 to $k+1$ nines, which is $10^{k+1} - 1$ (exercise 3 of the first set). That range holds exactly $10^{k+1}$ numbers, and by the theorem each of them has exactly one such string: its numeral, padded on the left with zeros. Strings and numbers match one to one. With only the nine symbols 0 to 8, a string's last digit would be its remainder on division by 10 (the lemma), so 9, 19, 29 and every other number ending in 9 would have no numeral at all. With an eleventh symbol T for ten, the strings 1T and 20 would both mean $10 + 10 = 20$. The same count shows that base $b$ needs exactly $b$ digits."
+    },
+    {
+     "type": "example",
+     "body": "How many tens are there in 4,027? How many hundreds?",
+     "solution": "The tens digit is 2, but it counts only the tens left over after bundling into hundreds and thousands. To count all the tens, regroup the thousands and hundreds into tens: $4{,}027 = 402 \\times 10 + 7$, so there are 402 tens (and 7 ones left over). In the same way $4{,}027 = 40 \\times 100 + 27$, so there are 40 hundreds. In general, deleting the last digit of a numeral counts its tens, and deleting the last two counts its hundreds."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "In 5,380, what is the tens digit, and how many tens are there in all?",
+       "a": "The tens digit is 8, but $5{,}380 = 538 \\times 10$, so there are 538 tens."
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "src": [
+      "wikiHorner"
+     ],
+     "body": "The uniqueness proof is an algorithm. Use it to read off the digits of 4,027 from the right, then run it backwards to rebuild the number from its digits, from the left.",
+     "solution": "Divide by 10 with remainder, again and again:\n\n$$\\begin{aligned} 4{,}027 &= 402 \\times 10 + 7,\\\\ 402 &= 40 \\times 10 + 2,\\\\ 40 &= 4 \\times 10 + 0,\\\\ 4 &= 0 \\times 10 + 4. \\end{aligned}$$\n\nThe remainders 7, 2, 0, 4 are the digits from the right, and the process stops when the quotient is 0. Backwards: start from 0 and, for each digit from the left, multiply by 10 and add the digit. This gives 4, 40, 402, 4,027, that is\n\n$$4{,}027 = ((4 \\times 10 + 0) \\times 10 + 2) \\times 10 + 7,$$\n\ncalled Horner's form. The same two procedures, with 2 in place of 10 in one direction, are how a computer turns a number stored in binary into decimal digits and back."
+    },
+    {
+     "type": "example",
+     "body": "Find $3{,}995 + 10$ using place value.",
+     "solution": "Adding 10 adds one ten. 3,995 has 9 tens; one more makes 10 tens, which regroup as 1 hundred and 0 tens. Now there are 9 + 1 = 10 hundreds, which regroup as 1 thousand and 0 hundreds. So\n\n$$3{,}995 + 10 = 4{,}005.$$\n\nThe ones digit never changed, but one added ten rippled through two places, exactly as carrying does in the written column method. Adding 10 to 58 gives 68 with no ripple: only a 9 going up, or a 0 going down when subtracting, passes the change on to the next place."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.8); ax = plt.gca()\nheads = ['thousands', 'hundreds', 'tens', 'ones']\nw = 1.5; x0 = 0.6\nfor c, hd in enumerate(heads):\n    ax.text(x0 + c * w + w / 2, 4.25, hd, ha='center', va='center', fontsize=10)\nrows = [(3.0, ['3', '9', '9', '5'], ''), (2.0, ['', '', '1', '0'], '+'), (0.6, ['4', '0', '0', '5'], '')]\nfor y, digs, sign in rows:\n    for c, d in enumerate(digs):\n        ax.add_patch(Rectangle((x0 + c * w, y), w, 0.9, fill=False, ec='black', lw=1.0))\n        if d:\n            ax.text(x0 + c * w + w / 2, y + 0.45, d, ha='center', va='center', fontsize=17, color='blue' if (y < 1 and c < 3) else 'black')\n    if sign:\n        ax.text(x0 - 0.3, y + 0.45, sign, ha='center', va='center', fontsize=17)\nax.plot([x0, x0 + 4 * w], [1.8, 1.8], color='black', lw=1.6)\nnotes = ['3+1 = 4', '9+1 = 10', '9+1 = 10', '5+0 = 5']\nfor c, t in enumerate(notes):\n    ax.text(x0 + c * w + w / 2, 0.35, t, ha='center', va='center', fontsize=10, color='red' if c < 3 else 'black')\nfor c in (2, 1):\n    ax.add_patch(FancyArrowPatch((x0 + c * w + w / 2, 0.12), (x0 + (c - 1) * w + w / 2, 0.12), connectionstyle='arc3,rad=-0.45', arrowstyle='-|>', mutation_scale=12, color='red', lw=1.1))\n    ax.text(x0 + c * w, -0.45, 'carry 1', ha='center', va='center', fontsize=9, color='red')\nax.text(x0 + 4 * w + 0.2, 0.75, '3,995 + 10\\n= 4,005', ha='left', va='center', fontsize=11)\nax.set_xlim(-0.1, 9.6); ax.set_ylim(-0.8, 4.5); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "$3{,}995 + 10$ in columns. The tens make $9 + 1 = 10$: write 0 and carry 1 to the hundreds. The hundreds then make $9 + 1 = 10$: write 0 and carry 1 to the thousands, which make $3 + 1 = 4$. The ones digit never changes.",
+     "alt": "Column addition with headers thousands, hundreds, tens, ones. Top row 3, 9, 9, 5; second row, marked plus, has 1 in tens and 0 in ones; a rule; result row 4, 0, 0, 5 with the first three digits in blue. Under the result, notes read 3+1 = 4, 9+1 = 10, 9+1 = 10, 5+0 = 5. Red curved arrows labelled carry 1 run from the tens column to the hundreds column and from the hundreds column to the thousands column. Beside it: 3,995 + 10 = 4,005."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write 5 tens and 37 ones as a numeral. Give one more way to build the same number from tens and ones.",
+       "hint": "Trade ten of the ones for a ten as often as you can.",
+       "solution": "The 37 ones are 3 tens and 7 ones, so the total is 8 tens and 7 ones: 87. Another build is 7 tens and 17 ones, since $70 + 17 = 87$ (or simply 87 ones)."
+      },
+      {
+       "q": "Find $3{,}999 + 1$ and $70{,}000 - 100$ by regrouping, and say which places change.",
+       "hint": "Only a 9 going up, or a 0 going down, passes the change on.",
+       "solution": "$3{,}999 + 1$: 10 ones become 1 ten, making 10 tens, which become 1 hundred, making 10 hundreds, which become 1 thousand. So $3{,}999 + 1 = 4{,}000$, and every place changes. $70{,}000 - 100$: there are no hundreds or thousands, so regroup 1 ten-thousand as 10 thousands and 1 of those as 10 hundreds, giving 6 ten-thousands, 9 thousands and 10 hundreds. Removing one hundred leaves $69{,}900$; the tens and ones do not change."
+      },
+      {
+       "q": "Starting from 96 single ones, how many trades does the existence proof make? Explain why every order of trades ends with 9 tens and 6 ones.",
+       "hint": "Each trade lowers the total number of pieces by 9. For the second part, use the theorem.",
+       "solution": "The trading ends at 9 tens and 6 ones, $9 + 6 = 15$ pieces. The total falls by $96 - 15 = 81$, and each trade lowers it by 9, so there are $81 / 9 = 9$ trades. In any order the trades keep the number 96 and stop only when every count is at most 9, so the final counts form a numeral for 96, and by uniqueness that numeral is 9 tens and 6 ones."
+      },
+      {
+       "q": "Prove that the remainder when a whole number is divided by 100 is the number formed by its last two digits.",
+       "hint": "Split the expanded form into the terms from place 2 upwards and the last two terms. Treat numbers below 100 separately.",
+       "solution": "If $n < 100$, then $n = 0 \\times 100 + n$ with $0 \\le n \\le 99$, so the remainder is $n$, its own last two digits. Otherwise $k \\ge 2$ and\n\n$$n = (d_k 10^{k-2} + \\dots + d_2) \\times 100 + (10 d_1 + d_0).$$\n\nThe first part is a multiple of 100, and $r = 10 d_1 + d_0$ lies between 0 and 99 because $d_1, d_0 \\le 9$. So $n = 100q + r$ with $0 \\le r < 100$, which is what it means for $r$ to be the remainder. For example $58{,}316 = 583 \\times 100 + 16$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Large numbers: periods, names and separators",
+     "src": [
+      "os11",
+      "cc4NBT",
+      "eng"
+     ],
+     "body": "Past the thousands, English does not invent a new word for every place. The digits are grouped in threes from the right, called periods: ones, thousands, millions, billions. Inside each period the places are again hundreds, tens and ones, and a comma marks each period boundary, so 5278194 is written 5,278,194 and read five million, two hundred seventy-eight thousand, one hundred ninety-four. Each period is worth $1000 = 10^3$ times the one to its right: a thousand is $10^3$, a million $10^6$, a billion $10^9$. To read a number, read each period as a number from 1 to 999 followed by its period name, skipping a period of zeros. To write one, give every period except the leftmost exactly three digits.\n\nHow long is a numeral? A numeral with $k+1$ digits has a nonzero digit in place $k$, so $n \\ge 10^k$, and it is at most $k+1$ nines, which is $10^{k+1} - 1$ (exercise 3 of the first set). So\n\n$$10^k \\le n < 10^{k+1} \\quad \\text{when } n \\text{ has } k+1 \\text{ digits},$$\n\nand the number of digits goes up by one exactly when $n$ reaches a power of ten."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6); ax = plt.gca()\nperiods = ['millions', 'thousands', 'ones']\ncols = ['H', 'T', 'O']\ndigits = ['', '1', '2', '0', '4', '0', '0', '0', '6']\nfor p in range(3):\n    ax.add_patch(Rectangle((p * 3, 2), 3, 1, fill=False, ec='black', lw=1.4))\n    ax.text(p * 3 + 1.5, 2.5, periods[p], ha='center', va='center', fontsize=12)\n    for c in range(3):\n        x = p * 3 + c\n        ax.add_patch(Rectangle((x, 1), 1, 1, fill=False, ec='black', lw=1.0))\n        ax.text(x + 0.5, 1.5, cols[c], ha='center', va='center', fontsize=12)\n        ax.add_patch(Rectangle((x, 0), 1, 1, fill=False, ec='black', lw=1.0))\n        d = digits[x]\n        if d:\n            ax.text(x + 0.5, 0.5, d, ha='center', va='center', fontsize=15, color='orange' if d == '0' else 'black', fontweight='bold' if d == '0' else 'normal')\nfor p in (1, 2):\n    ax.plot([p * 3, p * 3], [0, 3], color='black', lw=2.6)\nax.text(1.5, -0.15, '12', ha='center', va='top', fontsize=12)\nax.text(4.5, -0.15, 'forty thousand: 040', ha='center', va='top', fontsize=12)\nax.text(7.5, -0.15, 'six: 006', ha='center', va='top', fontsize=12)\nax.set_xlim(-0.1, 9.1); ax.set_ylim(-0.9, 3.1); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "12,040,006 in three periods (H, T, O are the hundreds, tens and ones of each period). Every period after the first is written with exactly three digits; the orange zeros hold the empty places. Without them the digits would close up into 12406, twelve thousand, four hundred six.",
+     "alt": "A chart with three blocks labelled millions, thousands and ones, each split into columns H, T, O. Millions: blank, 1, 2. Thousands: 0, 4, 0. Ones: 0, 0, 6. The zeros are orange and bold. Labels underneath: 12; forty thousand: 040; six: 006."
+    },
+    {
+     "type": "example",
+     "body": "Write twelve million, forty thousand, six in digits.",
+     "solution": "The millions period is 12. The thousands period is forty, written with three digits as 040, and the ones period is six, written 006. So the number is 12,040,006, as in the figure. British English reads it twelve million, forty thousand and six, with and before the last part, and says two hundred and six where many American readers say two hundred six."
+    },
+    {
+     "type": "conventions",
+     "title": "Differences you will meet",
+     "rows": [
+      {
+       "who": "Separators and grouping",
+       "text": "English uses a comma between periods and a point as the decimal separator: 5,278,194.5. Because many other languages use the comma as the decimal point, large numbers are also written with thin spaces: 5 278 194. Indian English groups the last three digits and then pairs, with the names lakh ($10^5$) and crore ($10^7$): 4,50,300 is four lakh fifty thousand three hundred, that is 450,300.",
+       "src": [
+        "engNum"
+       ]
+      },
+      {
+       "who": "Billion",
+       "text": "Today a billion is $10^9$, a thousand million, in both British and American English (the short scale). Older British texts may use the long scale, where a billion meant a million million, $10^{12}$.",
+       "src": [
+        "engNum"
+       ]
+      },
+      {
+       "who": "Standard form",
+       "text": "In American school books standard form means the usual numeral, 59,361, beside expanded form and word form. In England standard form means writing a number as $A \\times 10^n$ with $1 \\le A < 10$, as in $3 \\times 10^4$ for 30,000.",
+       "src": [
+        "im4L9",
+        "eng"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write nine billion, nine in digits. How many zeros does it contain?",
+       "hint": "Billions, millions, thousands and ones periods; the middle periods are empty.",
+       "solution": "9,000,000,009. The millions and thousands periods are 000 and the ones period is 009, so there are $3 + 3 + 2 = 8$ zeros."
+      },
+      {
+       "q": "Without multiplying, how many digits can the product of a 4-digit number and a 3-digit number have? Give an example of each possibility.",
+       "hint": "Use $10^k \\le n < 10^{k+1}$ for each factor.",
+       "solution": "If $10^3 \\le a < 10^4$ and $10^2 \\le b < 10^3$, then $10^5 \\le ab < 10^7$, so $ab$ has 6 or 7 digits. Both happen: $1{,}000 \\times 100 = 100{,}000$ has 6 digits and $9{,}999 \\times 999 = 9{,}989{,}001$ has 7."
+      },
+      {
+       "q": "How many digits does $2^{30}$ have? Use $2^{10} = 1{,}024$ and the bounds $10^k \\le n < 10^{k+1}$, without working out $2^{30}$ in full.",
+       "hint": "$2^{30} = (2^{10})^3$, and $1{,}000 < 1{,}024 < 1{,}100$.",
+       "solution": "$2^{30} = (2^{10})^3 = 1{,}024^3$. Since $1{,}000 < 1{,}024 < 1{,}100$, cubing gives $10^9 < 2^{30} < 1{,}100^3 = 1{,}331{,}000{,}000 < 10^{10}$. So $10^9 \\le 2^{30} < 10^{10}$ and $2^{30}$ has 10 digits; in fact $2^{30} = 1{,}073{,}741{,}824$."
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "wikiPos",
+      "wikiHorner"
+     ],
+     "body": "Regrouping ten of one unit into one of the next is the carrying and borrowing of [[column-addition-subtraction]], and the shift is the first step of written [[multiplication]]. Continued to the right of the ones place (tenths, hundredths), the same pattern gives decimals, and infinite decimals give the [[real-numbers]], where uniqueness fails slightly: $0.999\\dots = 1$.\n\nNothing is special about ten except the number of digits it needs. In base $b \\ge 2$ the same lemma, with division by $b$, gives every whole number exactly one representation $\\sum a_i b^i$ with digits $0 \\le a_i < b$, and the counting argument shows that $b$ digits are exactly enough. Base 2 is the language of computers; see [[digits-bases]].\n\nA numeral is a polynomial evaluated at 10, with the digits as coefficients: 4,027 is $p(10)$ for $p(x) = 4x^3 + 2x + 7$. Adding numerals is adding polynomials and then carrying, and the left-to-right rebuild in the example above is Horner's rule, the standard way to evaluate any polynomial ([[integer-polynomials]]).\n\nThe bound $10^k \\le n < 10^{k+1}$ says that $n$ has $\\lfloor \\log_{10} n \\rfloor + 1$ digits, and writing $n = A \\times 10^k$ with $1 \\le A < 10$ is scientific notation (standard form in England); see [[exp-log]]. Finally, because $10^i - 1$ is a multiple of 9, a number and its digit sum leave the same remainder on division by 9, by the argument of exercise 4 of the first set; in [[congruences]] this is $10 \\equiv 1 \\pmod 9$."
+    },
+    {
+     "type": "summary",
+     "body": "- Regrouping changes the pieces, never the number; multiplying by 10 shifts every digit one place left.\n- Division with remainder by 10 makes the numeral unique: the last digit is the remainder, the rest is the numeral of the quotient.\n- Places worth powers of ten need exactly the ten digits 0 to 9, and zero holds empty places.\n- A number with $k+1$ digits satisfies $10^k \\le n < 10^{k+1}$; large numbers are written in periods of three digits."
+    }
+   ],
+   "checks": [
+    {
+     "python": "\n# intro, section 1, definition\nassert 707 == 7*100 + 0*10 + 7\nassert 4027 == 4*1000 + 0*100 + 2*10 + 7\nassert [10**i for i in range(4)] == [1, 10, 100, 1000] and 10**0 == 1\nassert 10**2 == 1000 // 10 and 10**1 == 100 // 10 and 10**0 == 10 // 10 == 1\nimport math\nassert math.prod([]) == 1\nassert all(10**(i+1) == 10*10**i for i in range(20))\nassert 27 == 2*10 + 7 and 2*7 == 14 and 27 != 14\ndef digits(n): return [int(c) for c in str(n)[::-1]]\n# shift theorem and figure\nfor n in [1, 37, 370, 4027, 4070, 70707, 999999]:\n    assert sum(d*10**i for i, d in enumerate(digits(n))) == n\n    assert digits(10*n) == [0] + digits(n)\nassert 10*0 == 0 and str(10*0) == \"0\"\nassert 10*37 == 370 and 10*370 == 3700 and [3*10, 3*100, 3*1000] == [30, 300, 3000]\n# example 70,707 / 7,707 / 777\nassert [i for i, d in enumerate(digits(70707)) if d == 7] == [0, 2, 4]\nassert [i for i, d in enumerate(digits(7707)) if d == 7] == [0, 2, 3]\nassert [i for i, d in enumerate(digits(777)) if d == 7] == [0, 1, 2]\nassert 70707 == 70000 + 700 + 7 and 7707 == 7000 + 700 + 7 and 777 == 700 + 70 + 7\nassert digits(70707)[3] == 0 and digits(70707)[1] == 0 and 70000 == 10*7000\nR = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}\nassert sum(R[c] for c in 'DCCVII') == 707 and R['C'] == 100\n# pitfall\nassert 72 == 7*10 + 2 and 702 == 7*100 + 2 and 702 == 700 + 2 and 70 + 2 == 72\nassert 13 == 1*10 + 3 and 30 == 3*10 + 0 and digits(13)[0] == 3 and digits(30)[1] == 3\n# exercises\nassert 6048 == 6*1000 + 0*100 + 4*10 + 8\nassert 3*1000 + 9*10 + 4 == 3094\nassert 10*4070 == 40700 and 100*4070 == 407000 and digits(40700) == [0] + digits(4070)\nassert [i for i, d in enumerate(digits(52525)) if d == 5] == [0, 2, 4] and 5*10**4 == 50000 == 10**4 * 5 and 10**4 == 10000\nfor n in range(1, 15):\n    S = sum(10**i for i in range(n))\n    assert 10*S - S == 10**n - 1 and 9*S == 10**n - 1 == int('9'*n)\n    assert len(str(10**n)) == n + 1 and str(10**n) == '1' + '0'*n and len(str(10**n - 1)) == n\nassert 10**3 - 1 == 999 and 10**6 - 1 == 999999\nfor i in range(0, 12):\n    assert 10**i - 1 == 9*(int('1'*i) if i else 0)\nassert all((n % 3 == 0) == (sum(map(int, str(n))) % 3 == 0) for n in range(1, 5000))\nassert all((n % 9 == 0) == (sum(map(int, str(n))) % 9 == 0) for n in range(1, 5000))\nassert all((n - sum(map(int, str(n)))) % 9 == 0 for n in range(1, 5000))\nassert 4+0+2+7 == 13 and 13 % 3 != 0 and 4027 == 3*1342 + 1\n"
+    },
+    {
+     "python": "\n# section 2\nassert 9*10 + 6 == 96 and 8*10 + 16 == 96\nimport itertools\n# lemma: repeated subtraction and unique pair\nfor n in range(0, 500):\n    m, q = n, 0\n    while m >= 10: m -= 10; q += 1\n    assert 0 <= m <= 9 and n == 10*q + m and (q, m) == divmod(n, 10)\n    pairs = [(a, r) for a in range(n + 1) for r in range(10) if 10*a + r == n]\n    assert pairs == [(n // 10, n % 10)]\nassert all(r - s in range(-9, 10) for r in range(10) for s in range(10))\ndef regroup(counts):\n    c = list(counts) + [0]*10; t = 0\n    for i in range(len(c) - 1):\n        while c[i] >= 10:\n            c[i] -= 10; c[i+1] += 1; t += 1\n    while c and c[-1] == 0: c.pop()\n    return c, t\nfor n in range(1, 3000):\n    d, t = regroup([n])\n    assert int(''.join(map(str, d[::-1]))) == n and n - 9*t == sum(d) and d[-1] != 0\n    assert d[0] == n % 10 and int(''.join(map(str, d[::-1]))[:-1] or 0) == n // 10\n# uniqueness: brute force over all digit strings with nonzero lead up to 4 digits\nseen = {}\nfor k in range(1, 5):\n    for s in itertools.product(range(10), repeat=k):\n        if s[0] == 0: continue\n        v = sum(dd*10**(k-1-i) for i, dd in enumerate(s))\n        assert v not in seen; seen[v] = s\n        assert v >= 10**(k-1)\nassert sorted(seen) == list(range(1, 10**4))\n# ten digits exactly\nfor k in range(0, 5):\n    vals = sorted(sum(dd*10**i for i, dd in enumerate(s)) for s in itertools.product(range(10), repeat=k+1))\n    assert vals == list(range(10**(k+1))) and len(vals) == 10**(k+1)\n    assert int('9'*(k+1)) == 10**(k+1) - 1\n    nine = {sum(dd*10**i for i, dd in enumerate(s)) for s in itertools.product(range(9), repeat=k+1)}\n    assert all(v % 10 != 9 for v in nine) and 9 not in nine and 19 not in nine and 29 not in nine\nassert 1*10 + 10 == 20 == 2*10 + 0\n# example tens\nassert 4027 == 402*10 + 7 and 4027 == 40*100 + 27 and (4027 // 10) % 10 == 2 and 4027 // 10 == 402 and 4027 // 100 == 40\n# check\nassert (5380 // 10) % 10 == 8 and 5380 == 538*10 and 5380 // 10 == 538\n# Horner example\nassert 4027 == 402*10 + 7 and 402 == 40*10 + 2 and 40 == 4*10 + 0 and 4 == 0*10 + 4\nrem = []; n = 4027\nwhile n: rem.append(n % 10); n //= 10\nassert rem == [7, 2, 0, 4]\nacc = []; v = 0\nfor dd in [4, 0, 2, 7]:\n    v = 10*v + dd; acc.append(v)\nassert acc == [4, 40, 402, 4027] and ((4*10 + 0)*10 + 2)*10 + 7 == 4027\nassert int(bin(4027)[2:], 2) == 4027\n# 3,995 example and figure\nassert 3995 + 10 == 4005 and 4005 - 10 == 3995 and 9 + 1 == 10 and 3 + 1 == 4 and 5 + 0 == 5\nassert 3*1000 + 9*100 + 10*10 + 5 == 4005 and 3*1000 + 9*100 + 9*10 + 5 == 3995\nassert 58 + 10 == 68\nfor n in range(0, 2000):\n    t = (n // 10) % 10\n    changed_up = [i for i in range(6) if (n // 10**i) % 10 != ((n + 10) // 10**i) % 10]\n    assert (changed_up == [1]) == (t != 9)\n    if n >= 10:\n        changed_dn = [i for i in range(6) if (n // 10**i) % 10 != ((n - 10) // 10**i) % 10]\n        assert (changed_dn == [1]) == (t != 0)\n# exercises\nassert 5*10 + 37 == 87 and 37 == 3*10 + 7 and 8*10 + 7 == 87 and 7*10 + 17 == 87 == 70 + 17\nassert 3999 + 1 == 4000 and all(a != b for a, b in zip(str(3999), str(4000)))\nassert 70000 - 100 == 69900 and 6*10000 + 9*1000 + 10*100 == 70000 and 6*10000 + 9*1000 + 9*100 == 69900\nassert str(70000)[-2:] == str(69900)[-2:]\nd, t = regroup([96]); assert d == [6, 9] and t == 9 and sum(d) == 15 == 9 + 6 and 96 - 15 == 81 and 81 // 9 == 9\nassert 58316 == 583*100 + 16 and 58316 % 100 == 16\nassert all(n % 100 == int(str(n)[-2:]) for n in range(0, 5000))\nassert all(n == 0*100 + n and n % 100 == n for n in range(100))\nassert 10*9 + 9 == 99\n"
+    },
+    {
+     "python": "\n# section 3\nimport math\nassert f\"{5278194:,}\" == \"5,278,194\"\nassert 10**3 == 1000 and 10**6 == 1000000 and 10**9 == 1000000000\nassert 5278194 == 5*10**6 + 278*10**3 + 194\nassert 12*10**6 + 40*10**3 + 6 == 12040006 and f\"{12040006:,}\" == \"12,040,006\"\nassert int(\"12\" + \"40\" + \"6\") == 12406 == 12*1000 + 406\nassert 206 == 200 + 6\nassert 3*10**4 == 30000 and 10**12 == 10**6 * 10**6\nassert 450300 == 4*10**5 + 50*1000 + 300 and 10**5 == 100000 and 10**7 == 10000000\nfor n in range(1, 20000):\n    k = len(str(n)) - 1\n    assert 10**k <= n < 10**(k+1) and int('9'*(k+1)) == 10**(k+1) - 1\n    assert len(str(n)) == math.floor(math.log10(n) + 1e-12) + 1\n# exercises\nn = 9*10**9 + 9\nassert f\"{n:,}\" == \"9,000,000,009\" and str(n).count('0') == 8 == 3 + 3 + 2\nassert 10**3*10**2 == 10**5 and 10**4*10**3 == 10**7\nassert 1000*100 == 100000 and len(str(100000)) == 6\nassert 9999*999 == 9989001 and len(str(9989001)) == 7\nassert all(len(str(a*b)) in (6, 7) for a in range(1000, 10000, 37) for b in range(100, 1000, 13))\nassert 2**10 == 1024 and 2**30 == 1024**3 and 1000 < 1024 < 1100 and 1100**3 == 1331000000\nassert 10**9 < 2**30 < 1100**3 < 10**10 and 2**30 == 1073741824 and len(str(2**30)) == 10\n# looking ahead\nfrom fractions import Fraction\nassert Fraction(9, 10) / (1 - Fraction(1, 10)) == 1\nx = 10\nassert 4*x**3 + 2*x + 7 == 4027\nassert all(n % 9 == sum(map(int, str(n))) % 9 for n in range(1, 5000))\nassert all((10**i - 1) % 9 == 0 and 10**i % 9 == 1 for i in range(1, 15)) and 10 % 9 == 1\ndef rep(n, b):\n    d = []\n    while n: d.append(n % b); n //= b\n    return d\nassert all(sum(a*b**i for i, a in enumerate(rep(n, b))) == n and all(0 <= a < b for a in rep(n, b)) for b in range(2, 12) for n in range(1, 500))\nfor b in range(2, 7):\n    for k in range(0, 3):\n        vals = sorted(sum(dd*b**i for i, dd in enumerate(s)) for s in __import__('itertools').product(range(b), repeat=k+1))\n        assert vals == list(range(b**(k+1)))\nfor n in [1, 9, 10, 4027, 30000, 999999]:\n    k = len(str(n)) - 1; A = Fraction(n, 10**k)\n    assert 1 <= A < 10\n"
+    }
+   ]
+  }
+ }
+]
