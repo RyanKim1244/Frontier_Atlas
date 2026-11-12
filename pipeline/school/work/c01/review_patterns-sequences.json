@@ -1,0 +1,134 @@
+[
+ {
+  "id": "patterns-sequences",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem 'Counting in tens keeps the ones digit'",
+    "problem": "Said the tens digit goes up by one each time. False past 99 (96 to 106: tens digit goes 9 to 0). Exercise 'count in tens from 46 to 106' crosses this.",
+    "fix": "Reworded to 'the number of tens goes up by one'; added that past 99 the tens digit starts again at 0 (96, 106, 116); added check; theorem now cites eng only (IM Grade 1 number path does not mention counting in tens)."
+   },
+   {
+    "severity": "error",
+    "where": "section 'Two kinds of rule', paragraph on linear/arithmetic sequences",
+    "problem": "Claimed England KS3 uses both 'linear' and 'arithmetic' sequence. KS3 algebra says only 'arithmetic sequences'; 'linear' is used in primary (Y5, Y6) and GCSE A25.",
+    "fix": "Rewrote the sentence and the conventions row 'England, KS3 and GCSE' to match the programmes of study and GCSE A23-A25 (incl. note on recursive sequences)."
+   },
+   {
+    "severity": "source",
+    "where": "section 'Two kinds of rule' and definition",
+    "problem": "Attributed the term 'position-to-term rule' to AAMT. The Top Drawer page speaks of rules that explain each term on its own (triangle dot counts) and does not use 'position-to-term'.",
+    "fix": "Described AAMT's second kind accurately (with its triangle example) and credited the name position-to-term to KS3/GCSE."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: start with repeating patterns'",
+    "problem": "Misread Pang and Kim: the item '23 star 3' showed children taking 23 as the unit and giving only one answer for the star (open item with several valid answers), not 'taking too short a piece'. Also overstated 'repeating patterns were the easiest items' (growing items scored as high; the study says growing patterns were harder for middle gaps and two terms in a row).",
+    "fix": "Rewrote both claims to what the paper reports."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'Watch every part that changes'",
+    "problem": "'Many children' was vague.",
+    "fix": "Added the study's range (roughly one in five to one in three on some items); 216 and 223 participants confirmed."
+   },
+   {
+    "severity": "source",
+    "where": "views 'Ways ... Saying it together' and pitfall 'For adults: count together'",
+    "problem": "Said IM's choral count is by fives and that the teacher writes numbers 'in rows'. IM Grade 2 Unit 8 Lesson 3 counts by 2 from 2 to 40, records the numbers (no layout given) and has quiet think time.",
+    "fix": "Reworded to match the lesson."
+   },
+   {
+    "severity": "source",
+    "where": "views 'Number path', figure 'number table', section src",
+    "problem": "Said IM Grade 1 number path involves jumping 5 squares and counting in tens; the lesson is a number path 1-99 by ones where ones digit rises to 9 and then the tens digit changes. Figure of a 1-50 table cited im1U4L10 although it follows the Korean table.",
+    "fix": "Described what IM does; framed the jump-by-5 as the reader's own activity; removed im1U4L10 from the figure."
+   },
+   {
+    "severity": "source",
+    "where": "section 'Growing patterns of shapes'",
+    "problem": "'IM notices the step number matches number of rows' was the writer's inference; IM only asks what Step 5 looks like (5 rows of 3).",
+    "fix": "Reworded to the IM question and marked the observation as ours."
+   },
+   {
+    "severity": "unclear",
+    "where": "views 'Three ways to find Step 10 of the giraffe'",
+    "problem": "Title said three ways but had four items, all-three-give-24 lead-in; one item (Pang and Kim list notation) was about a different task; 'The table shows 14 squares' referred to a table not yet shown.",
+    "fix": "Retitled 'Ways to find Step 10'; items are now the IM strategies (legs, from Step 1, from Step 5 with the values listed, counting in twos); the Pang and Kim notations moved to the adult pitfall."
+   },
+   {
+    "severity": "unclear",
+    "where": "exercise (repeating patterns) item 'Make your own', solution",
+    "problem": "Used the multiplication sign before the reader meets it.",
+    "fix": "Replaced with 4 + 4 + 4 = 12."
+   },
+   {
+    "severity": "unclear",
+    "where": "exercise 'Count in fifties' solution",
+    "problem": "Listed last two digits as 50, 00, 50, 00 though the count starts at 0 (00, 50, ...).",
+    "fix": "Corrected the order."
+   },
+   {
+    "severity": "unclear",
+    "where": "intro",
+    "problem": "Three dots used before they are explained.",
+    "fix": "One sentence added to the intro."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition 'Repeating pattern and unit of repeat'",
+    "problem": "Unit not pinned down: red, blue, red, blue also repeats, so 'a piece that could be the unit' is ambiguous.",
+    "fix": "Added: choose the shortest piece that works."
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'nth term of a linear sequence' proof",
+    "problem": "Jump from 5 + (n-1) x 3 to 3n + 2 with no step.",
+    "fix": "Added the expansion (n-1) x 3 = 3n - 3 and 5 + 3n - 3 = 3n + 2."
+   },
+   {
+    "severity": "unclear",
+    "where": "figure 'giraffe'",
+    "problem": "Body label tiny (9pt), neck unlabelled, caption silent about the uncounted body.",
+    "fix": "Labels 11pt, neck labelled, caption and alt mention body not counted."
+   },
+   {
+    "severity": "style",
+    "where": "figure 'two patterns' (0, 0) label",
+    "problem": "Label (0, 0) overlapped the bottom axis.",
+    "fix": "Moved above-right of the point."
+   },
+   {
+    "severity": "error",
+    "where": "requires / coverage",
+    "problem": "CC 2.OA.C.3 (odd/even by pairing or counting by 2s), listed in the brief and dossier, was not in requires and not mentioned. CC 3.OA.D.9 'patterns in the addition table' was claimed in requires but never taught (only the 4 times row).",
+    "fix": "Added requires item for 2.OA.C.3 (links to [[odd-even-numbers]], a sentence in section 2, source cc2OA). Added to section 3: theorem, figure (addition table 0-5, 6 shaded squares counted), proof with link to [[properties-of-operations]], example, check, exercise and summary line; checks added."
+   },
+   {
+    "severity": "source",
+    "where": "requires / conventions Korea",
+    "problem": "Korean codes [2수02-01..02] were marked unverified; Korean row said units for grades 1 and 2 without source for the standards.",
+    "fix": "Verified the two 2022 standards in a public compilation of the curriculum (source kor22: find a rule in arrangements of objects, patterns, numbers and express it several ways; arrange by one's own rule); requires and Korea convention row rewritten in paraphrase, grade 1 unit and grade 2 unit supported by yuga and Pang and Kim."
+   },
+   {
+    "severity": "source",
+    "where": "sources engKS3 and Looking ahead",
+    "problem": "KS3 source URL was a third-party copy; 'GCSE names recursive definition directly' was loose (A24 note: 'other recursive sequences will be defined in the question'). 'Common difference' and the nth term formula had no source.",
+    "fix": "engKS3 now points to the gov.uk page (which includes KS3); Looking ahead says GCSE content mentions recursive sequences; added OpenStax Algebra and Trigonometry 13.2 (osAT) for common difference and a + (n-1)d."
+   },
+   {
+    "severity": "unclear",
+    "where": "entry key",
+    "problem": "Keys '3n + 2' and 'a + (n-1) x d' were not statements. msc 97I30 not verifiable.",
+    "fix": "Keys now full statements (a_n = a + (n-1)d; a_n = 3n + 2 gives 5, 8, 11, 14); msc set to []; refs updated (2.OA.C.3, Korean 2022, Pang and Kim authors verified: Pang JeongSuk, Kim Leena)."
+   },
+   {
+    "severity": "style",
+    "where": "verified, no change",
+    "problem": "Checked line by line and recomputed in fresh Python: all repeating-pattern, skip-count, parity, giraffe (6, 8, 10, ..., 24), triangle, nth-term, two-pattern and ordered-pair statements and all exercise solutions; IM L1, L11, Grade 2 and Grade 1 facts (Step 3 blank, Han rows of 5, Jada 4 legs plus 2 neck, (10, 20) not on graph, 72 not a multiple of 5, table/graph strengths), England wording, CC 2.OA.C.3, 3.OA.D.9, Pang and Kim counts (216/223, 77% vs 91%, 97% on item 9).",
+    "fix": "None needed."
+   }
+  ]
+ }
+]

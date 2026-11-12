@@ -1,0 +1,1471 @@
+[
+ {
+  "id": "division",
+  "entry": {
+   "sum": "Division splits a number into equal parts. $12 \\div 3 = 4$ can mean sharing 12 into 3 equal groups (4 in each) or making groups of 3 from 12 (4 groups). Division undoes multiplication, and when the groups do not come out exactly the leftover is a remainder, as in $28 \\div 8 = 3$ R $4$.",
+   "key": [
+    "a \\div b = c \\iff c \\times b = a \\quad (b \\neq 0)",
+    "28 = 3 \\times 8 + 4,\\quad 4 < 8",
+    "a \\div 1 = a,\\quad 0 \\div a = 0"
+   ],
+   "why": "Division answers every fair-sharing and equal-grouping question, and the quotient-and-remainder idea grows into fractions, divisibility and modular arithmetic.",
+   "msc": [],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "In algebra division becomes multiplication by an inverse, and fields are number systems where every nonzero number can be divided by."
+    },
+    {
+     "field": "computer-science",
+     "note": "Programming languages provide integer division and a separate remainder (modulo) operation, the quotient and remainder of this page."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 3.OA.A.2-4, 3.OA.B.6, 3.OA.C.7, 4.OA.A.3, 4.NBT.B.6 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-6, multiplication and division (2013)",
+    "Illustrative Mathematics K-5, Grade 3 Unit 4, Relating Multiplication to Division",
+    "OpenStax, Prealgebra 2e, Divide Whole Numbers (2020)",
+    "NCETM, Primary Mastery Professional Development, Multiplication and Division, segments 2.6, 2.12, 2.15"
+   ],
+   "aliases": [
+    "dividing",
+    "sharing and grouping",
+    "partitive and quotitive division",
+    "division with remainder",
+    "dividing whole numbers"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 70,
+   "sources": [
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.A.2-4, 3.OA.B.5-6, 3.OA.C.7",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.A.3",
+     "url": "https://www.thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Number and Operations in Base Ten (2010)",
+     "where": "4.NBT.B.6",
+     "url": "https://www.thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-6: Number - multiplication and division (statutory requirements and notes and guidance)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g3",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 4 Relating Multiplication to Division, Sections A, B and D (course guide, scope and sequence)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l19",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 4 Lesson 19, Ways to Divide Larger Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-4/lesson-19/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-div",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Ch. 1, Divide Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81256/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-quot",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.6",
+     "where": "Structures: quotitive and partitive division (Year 2)",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-206-structures-quotitive-and-partitive-division",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-dist",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.10",
+     "where": "Connecting multiplication and division, and the distributive law",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-210-connecting-multiplication-and-division-and-the-distributive-law",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-rem",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.12",
+     "where": "Division with remainders (Year 4)",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-212-division-with-remainders/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-part",
+     "ref": "NCETM, Primary Mastery Professional Development, Multiplication and division, segment 2.15",
+     "where": "Division: partitioning leading to short division (Year 4)",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-215-division-partitioning-leading-to-short-division/",
+     "kind": "notes"
+    },
+    {
+     "k": "lim",
+     "ref": "Kien Lim, Addressing the multiplication makes bigger and division makes smaller misconceptions via prediction and clickers (2011)",
+     "where": "abstract",
+     "url": "https://scholarworks.utep.edu/math_papers/251",
+     "kind": "research"
+    },
+    {
+     "k": "wiki-sign",
+     "ref": "Wikipedia, Division sign",
+     "where": "usage; ISO 80000-2",
+     "url": "https://en.wikipedia.org/wiki/Division_sign",
+     "kind": "reference"
+    },
+    {
+     "k": "de-div",
+     "ref": "Wikipedia (German), Division (Mathematik)",
+     "where": "Schreibweisen und Bezeichnungen",
+     "url": "https://de.wikipedia.org/wiki/Division_(Mathematik)",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Interpret a quotient as the number in each share or as the number of shares (CC 3.OA.A.2); grouping and sharing with objects, pictures and arrays (England Y1-Y2)",
+     "priority": "core",
+     "where": "Sharing equally; Making equal groups"
+    },
+    {
+     "item": "Write division statements with the signs $\\div$ and $=$ (England Y2); dividend, divisor, quotient; other notations",
+     "priority": "core",
+     "where": "Words and signs for division"
+    },
+    {
+     "item": "Understand division as an unknown-factor problem (CC 3.OA.B.6); use multiplication and division as inverses (England Y2-Y5)",
+     "priority": "core",
+     "where": "Division undoes multiplication"
+    },
+    {
+     "item": "Find the unknown number in a division equation (CC 3.OA.A.4); missing number problems (England Y3)",
+     "priority": "core",
+     "where": "Division undoes multiplication"
+    },
+    {
+     "item": "Divide fluently within 100; know division facts for tables up to $12 \\times 12$ (CC 3.OA.C.7, England Y2-Y4)",
+     "priority": "core",
+     "where": "Division undoes multiplication; tables are on [[multiplication]]"
+    },
+    {
+     "item": "Solve division word problems with equal groups, arrays and measurement within 100 (CC 3.OA.A.3, England Y2-Y3)",
+     "priority": "core",
+     "where": "Making equal groups; Division undoes multiplication; What does the remainder mean?"
+    },
+    {
+     "item": "Show that division cannot be done in any order (England Y2)",
+     "priority": "core",
+     "where": "Order matters in division"
+    },
+    {
+     "item": "Division with 0 and 1; division by zero is undefined",
+     "priority": "common",
+     "where": "Dividing with 0 and 1"
+    },
+    {
+     "item": "Halving as division by 2",
+     "priority": "common",
+     "where": "Sharing equally"
+    },
+    {
+     "item": "Division with remainders; the remainder is less than the divisor; checking (CC 4.NBT.B.6, NCETM 2.12)",
+     "priority": "core",
+     "where": "Remainders"
+    },
+    {
+     "item": "Interpret remainders in context (England Y5-Y6, CC 4.OA.A.3)",
+     "priority": "core",
+     "where": "What does the remainder mean?"
+    },
+    {
+     "item": "Divide up to four-digit numbers by one-digit numbers using place value and properties (CC 4.NBT.B.6); derived facts such as $600 \\div 3 = 200$ (England Y4)",
+     "priority": "core",
+     "where": "Dividing bigger numbers with place value"
+    },
+    {
+     "item": "Formal written method of short division (England Y4-Y5)",
+     "priority": "core",
+     "where": "separate page: Long division"
+    },
+    {
+     "item": "Long division by a two-digit number (England Y6; OpenStax)",
+     "priority": "common",
+     "where": "separate page: Long division"
+    },
+    {
+     "item": "Remainders as fractions or decimals (England Y5-Y6)",
+     "priority": "common",
+     "where": "separate page: Fractions as division"
+    },
+    {
+     "item": "Multiplicative comparison word problems (CC 4.OA.A.2) and multistep problems with all four operations",
+     "priority": "common",
+     "where": "separate page: Word problems with the four operations"
+    },
+    {
+     "item": "Factors and multiples (England Y5)",
+     "priority": "common",
+     "where": "separate page: Factors and multiples"
+    },
+    {
+     "item": "Dividing by 10, 100 and 1000 including decimals (England Y5)",
+     "priority": "specialised",
+     "where": "separate page: Decimals"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Twelve strawberries and three friends. How can the friends share the strawberries so that it is fair? Now pack 12 cookies into bags of 4. How many bags do you fill?\n\nBoth questions are answered by division. Division splits a number into equal parts. It answers two kinds of question: how many are in each group, and how many groups there are. On this page you will learn both meanings, the words and signs we use, how division undoes multiplication, what happens with 0 and 1, what to do when there is something left over (a remainder), and how to divide bigger numbers using tens and ones.\n\nYou should already know what multiplication means and some times tables ([[multiplication]]), and how to subtract ([[addition-subtraction]]).",
+     "src": [
+      "im-g3",
+      "os-div",
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Sharing equally",
+     "body": "After this section you will be able to share a number of things equally into a given number of groups and write what you did with the sign $\\div$.\n\nTry this. Take 12 counters (buttons or beans are fine) and 3 plates. Put one counter on each plate, then another on each plate, and keep going until the counters are used up. How many are on each plate?",
+     "src": [
+      "ncetm-quot",
+      "ccss-3oa",
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\ncols = ['red', 'blue', 'green', 'purple']\nfor p, cx in enumerate([1.6, 4.6, 7.6]):\n    ax.add_patch(Circle((cx, 1.3), 1.15, fc='white', ec='black', lw=1.5))\n    for r, (dx, dy) in enumerate([(-0.42, 0.38), (0.42, 0.38), (-0.42, -0.42), (0.42, -0.42)]):\n        ax.add_patch(Circle((cx + dx, 1.3 + dy), 0.3, fc='white', ec=cols[r], lw=1.6))\n        ax.text(cx + dx, 1.3 + dy, str(r + 1), ha='center', va='center', fontsize=12, color=cols[r])\n    ax.text(cx, -0.1, 'plate ' + 'ABC'[p] + ': 4', ha='center', va='center', fontsize=12)\nax.set_xlim(0.2, 9.0); ax.set_ylim(-0.45, 2.6); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "12 counters dealt onto 3 plates, one to each plate per round. The number on a counter is its round. There are 4 rounds, so each plate gets 4 counters: $12 \\div 3 = 4$.",
+     "alt": "Three large circles labelled plate A, plate B and plate C. Each holds four small counters numbered 1, 2, 3 and 4, one for each dealing round. Below each plate is the number 4.",
+     "src": [
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Division as sharing",
+     "body": "When we share a number of things equally into a given number of groups and ask how many are in each group, we are dividing. Sharing 12 counters equally onto 3 plates puts 4 on each plate. We write this as\n\n$$12 \\div 3 = 4$$\n\nand read it as twelve divided by three equals four. The sign $\\div$ means divided by. The Common Core describes this meaning as finding the number of objects in each share when a number of objects is split into equal shares; IM calls it a how many in each group question.\n\nExample: 10 pencils shared equally between 2 children gives 5 each, so $10 \\div 2 = 5$.\n\nNon-example: 12 counters put on 3 plates as 5, 4 and 3 is not division, because the shares are not equal. Division always means equal shares.",
+     "src": [
+      "ccss-3oa",
+      "im-g3",
+      "eng-pos",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Finding a share by counting in the divisor",
+     "body": "To share a number equally into $3$ groups, count in threes until you reach the number. The number of counts is the size of each share.\n\nFor 12 shared into 3 groups: 3, 6, 9, 12. That is 4 counts, so each share is 4.",
+     "src": [
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "When you deal, each round puts one counter on every plate. With 3 plates, each round uses 3 counters. So after 1 round you have used 3 counters, after 2 rounds 6, after 3 rounds 9 and after 4 rounds 12. Counting in threes is counting the rounds. Every plate gets one counter in each round, so the number of rounds is the number of counters on each plate.",
+     "src": [
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "15 stickers are shared equally among 5 children. How many stickers does each child get?",
+     "solution": "There are 5 children, so each round of dealing uses 5 stickers.\n\nCount in fives until you reach 15: 5, 10, 15. That is 3 counts.\n\nSo each child gets 3 stickers, and $15 \\div 5 = 3$.",
+     "src": [
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Halve 40. In other words, share 40 equally into 2 groups.",
+     "solution": "Dividing by 2 is the same as finding half.\n\nHalf of 4 tens is 2 tens, so half of 40 is 20.\n\nSo $40 \\div 2 = 20$: 20 is a half of 40. Check: $20 + 20 = 40$.",
+     "src": [
+      "eng-pos",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "8 apples are shared equally between 2 bowls. How many in each bowl?",
+       "a": "4, so $8 \\div 2 = 4$."
+      },
+      {
+       "q": "How do you read $18 \\div 3 = 6$?",
+       "a": "Eighteen divided by three equals six."
+      },
+      {
+       "q": "9 sweets go to 3 children as 4, 4 and 1. Is that sharing equally?",
+       "a": "No. The shares must be equal: 3 each."
+      },
+      {
+       "q": "To share 20 into 5 groups, which numbers do you count in?",
+       "a": "Fives: 5, 10, 15, 20. Four counts, so 4 in each group."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "6 biscuits are shared equally between 2 friends. How many does each friend get? Write the division.",
+       "hint": "Deal them out one each at a time, or count in twos.",
+       "solution": "Count in twos: 2, 4, 6. That is 3 counts, so each friend gets 3. $6 \\div 2 = 3$."
+      },
+      {
+       "q": "Share 20 marbles equally into 4 bags. How many in each bag?",
+       "hint": "Count in fours until you reach 20.",
+       "solution": "4, 8, 12, 16, 20 is 5 counts. Each bag has 5 marbles: $20 \\div 4 = 5$."
+      },
+      {
+       "q": "Find half of 60. Write it as a division.",
+       "hint": "Half of 6 tens.",
+       "solution": "Half of 6 tens is 3 tens, so $60 \\div 2 = 30$. Check: $30 + 30 = 60$."
+      },
+      {
+       "q": "35 children are split equally into 5 teams. How many children are in each team?",
+       "hint": "Count in fives and count how many fives you say.",
+       "solution": "5, 10, 15, 20, 25, 30, 35 is 7 counts. Each team has 7 children: $35 \\div 5 = 7$."
+      },
+      {
+       "q": "Sam puts 24 cards into 3 equal piles. Then he moves 2 cards from the first pile to the second. Are the piles still equal? How many are in each pile now?",
+       "hint": "First find the equal share. Then change two of the piles.",
+       "solution": "Equal piles: count in threes, 3, 6, 9, 12, 15, 18, 21, 24 is 8 counts, so 8 in each pile ($24 \\div 3 = 8$). After the move the piles hold 6, 10 and 8. They are no longer equal, so this is no longer an equal share; there are still 24 cards in all."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Sharing equally into a given number of groups is division.\n\n- $12 \\div 3 = 4$ is read twelve divided by three equals four: 3 equal groups of 4.\n\n- The shares must be equal.\n\n- To find a share, count in the number of groups until you reach the total.\n\n- Dividing by 2 is halving."
+    },
+    {
+     "type": "section",
+     "title": "Making equal groups",
+     "body": "After this section you will be able to find how many equal groups a number makes, by repeated subtraction or by counting in the group size, and tell this meaning apart from sharing.\n\nTry this. Put 12 counters in a pile. Take away 4 and put them in a bag. Keep taking away 4 until the pile is empty. How many bags did you fill?",
+     "src": [
+      "os-div",
+      "ncetm-quot",
+      "im-g3",
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 1.9)\nax = fig.add_axes([0, 0, 1, 1])\nfor g in range(3):\n    x0 = 0.5 + g * 3.4\n    ax.add_patch(FancyBboxPatch((x0 - 0.15, 0.55), 2.9, 0.9, boxstyle='round,pad=0.1', fc='white', ec='blue', lw=1.5))\n    for i in range(4):\n        ax.add_patch(Circle((x0 + 0.3 + i * 0.7, 1.0), 0.28, fc='black', ec='black'))\n    ax.text(x0 + 1.3, 0.1, 'bag ' + str(g + 1), ha='center', va='center', fontsize=12, color='blue')\nax.set_xlim(0, 10.6); ax.set_ylim(-0.25, 1.8); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "12 cookies packed in bags of 4. Each bag holds 4 cookies and 3 bags are filled: $12 \\div 4 = 3$.",
+     "alt": "Twelve black dots in three rounded boxes of four dots each, labelled bag 1, bag 2 and bag 3.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Division as grouping",
+     "body": "When we know the size of each group and ask how many groups we can make, we are also dividing. Packing 12 cookies into bags of 4 fills 3 bags, so\n\n$$12 \\div 4 = 3.$$\n\nOpenStax starts division with exactly this: filling bags of 4 cookies from 12. The Common Core describes this meaning as finding the number of shares when objects are split into equal shares of a given size; IM calls it a how many groups question.\n\nExample: 20 children make teams of 5. There are 4 teams, so $20 \\div 5 = 4$.\n\nNon-example: 20 children in teams of 5, 5, 6 and 4 are not equal groups of 5, so this is not $20 \\div 5$.",
+     "src": [
+      "os-div",
+      "ccss-3oa",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Division is repeated subtraction",
+     "body": "To find how many groups of 4 are in 12, subtract 4 again and again until nothing is left. The number of subtractions is the answer:\n\n$$12 - 4 = 8,\\quad 8 - 4 = 4,\\quad 4 - 4 = 0.$$\n\nWe subtracted 3 times, so $12 \\div 4 = 3$. You can also count in the group size: 4, 8, 12 is 3 counts.",
+     "src": [
+      "os-div",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Each subtraction takes away exactly one bag of 4 cookies. When the pile reaches 0, every cookie is in a bag and every bag is full. So the number of subtractions is the number of full bags. Counting 4, 8, 12 counts the cookies bag by bag, so it gives the same number. OpenStax puts it this way: multiplication is repeated addition, and division is repeated subtraction.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Two questions, one division",
+     "body": "The same division $12 \\div 4 = 3$ can be seen and described in several ways.",
+     "items": [
+      {
+       "label": "Grouping (quotitive)",
+       "body": "The total and the size of each group are known; the quotient is the number of groups. 12 cookies in bags of 4 make 3 bags. NCETM calls this the quotitive structure.",
+       "src": [
+        "ncetm-quot"
+       ]
+      },
+      {
+       "label": "Sharing (partitive)",
+       "body": "The total and the number of groups are known; the quotient is the size of each share. 12 cookies shared among 4 friends gives 3 each. NCETM calls this the partitive structure.",
+       "src": [
+        "ncetm-quot"
+       ]
+      },
+      {
+       "label": "How many?",
+       "body": "IM asks two questions: how many groups? and how many in each group? The same expression, such as $6 \\div 2$, can answer either: 6 blocks in stacks of 2, or 6 blocks in 2 equal stacks.",
+       "src": [
+        "im-g3"
+       ]
+      },
+      {
+       "label": "Take away again",
+       "body": "Subtract 4 from 12 until nothing is left: three subtractions, so 3 bags.",
+       "src": [
+        "os-div"
+       ]
+      },
+      {
+       "label": "Counters",
+       "body": "Lay out the dividend as counters and make groups the size of the divisor. 24 counters in groups of 8 make 3 groups, so $24 \\div 8 = 3$.",
+       "src": [
+        "os-div"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: one sign, two situations",
+     "body": "Sharing and grouping look the same when written, $12 \\div 4$, but they are different situations: in one, 4 is the number of groups; in the other, 4 is the size of each group. NCETM introduces both structures in Year 2 and teaches children to solve both by counting in the divisor or by using known facts. IM asks children to decide which is easier for a given problem: for $96 \\div 8$, making 8 groups and making groups of 8 are both allowed.\n\nIM has children draw division situations and write division expressions to match stories of both kinds, and later interpret an expression with no story at all.",
+     "src": [
+      "ncetm-quot",
+      "im-g3l19"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A gardener has 18 seeds and puts 3 seeds in each pot. How many pots does she need? Is this sharing or grouping?",
+     "solution": "The size of each group (3 seeds) is known, and we want the number of groups. This is grouping.\n\nRepeated subtraction: $18 - 3 = 15$, $15 - 3 = 12$, $12 - 3 = 9$, $9 - 3 = 6$, $6 - 3 = 3$, $3 - 3 = 0$. That is 6 subtractions.\n\nOr count in threes: 3, 6, 9, 12, 15, 18 is 6 counts.\n\nShe needs 6 pots: $18 \\div 3 = 6$.",
+     "src": [
+      "os-div",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Tell two different stories for $6 \\div 2$, one of each kind.",
+     "solution": "Grouping: 6 blocks are stacked in stacks of 2. How many stacks? Answer 3, because 2, 4, 6 is 3 counts.\n\nSharing: 6 blocks are put into 2 equal stacks. How many in each stack? Answer 3, because dealing 6 blocks into 2 stacks takes 3 rounds.\n\nBoth stories give $6 \\div 2 = 3$.",
+     "src": [
+      "im-g3"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "30 eggs go into boxes of 6. Is the question how many boxes a sharing or a grouping question?",
+       "a": "Grouping: the group size (6) is known."
+      },
+      {
+       "q": "Find $15 \\div 5$ by repeated subtraction.",
+       "a": "$15 - 5 = 10$, $10 - 5 = 5$, $5 - 5 = 0$: 3 subtractions, so 3."
+      },
+      {
+       "q": "How many groups of 2 are in 10?",
+       "a": "5, because 2, 4, 6, 8, 10 is 5 counts."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "16 socks are put into pairs (groups of 2). How many pairs?",
+       "hint": "Count in twos.",
+       "solution": "2, 4, 6, 8, 10, 12, 14, 16 is 8 counts, so 8 pairs: $16 \\div 2 = 8$."
+      },
+      {
+       "q": "Find $20 \\div 4$ by repeated subtraction. Show each step.",
+       "hint": "Start at 20 and take away 4 each time until you reach 0.",
+       "solution": "$20 - 4 = 16$, $16 - 4 = 12$, $12 - 4 = 8$, $8 - 4 = 4$, $4 - 4 = 0$. Five subtractions, so $20 \\div 4 = 5$."
+      },
+      {
+       "q": "Say whether each is sharing or grouping. (a) 24 chairs are put in rows of 6; how many rows? (b) 24 chairs are put in 6 equal rows; how many in each row?",
+       "hint": "Ask: is the group size known, or the number of groups?",
+       "solution": "(a) Grouping: the row size 6 is known; $24 \\div 6 = 4$ rows. (b) Sharing: the number of rows 6 is known; $24 \\div 6 = 4$ chairs in each row."
+      },
+      {
+       "q": "Write a grouping story and a sharing story for $14 \\div 7$, and find the answer.",
+       "hint": "In one story 7 is the size of a group; in the other, 7 is the number of groups.",
+       "solution": "Grouping: 14 flowers in bunches of 7; there are 2 bunches. Sharing: 14 flowers shared among 7 vases; each vase gets 2. In both, $14 \\div 7 = 2$ (7, 14 is 2 counts)."
+      },
+      {
+       "q": "A rope 21 metres long is cut into pieces 3 metres long. How many pieces?",
+       "hint": "This is grouping with lengths: how many 3s in 21?",
+       "solution": "Count in threes: 3, 6, 9, 12, 15, 18, 21 is 7 counts. There are 7 pieces: $21 \\div 3 = 7$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Division also answers how many equal groups: 12 cookies in bags of 4 make 3 bags.\n\n- Division is repeated subtraction: take away the group size until nothing is left.\n\n- Sharing (partitive) finds the size of each group; grouping (quotitive) finds the number of groups.\n\n- Both are written the same way, $12 \\div 4 = 3$."
+    },
+    {
+     "type": "section",
+     "title": "Words and signs for division",
+     "body": "After this section you will be able to name the parts of a division, write a division in four ways and read it aloud.\n\nTry this. Look at $12 \\div 4 = 3$. Which number was split up? Which number did the splitting? Which number is the answer?",
+     "src": [
+      "os-div",
+      "eng-pos",
+      "wiki-sign",
+      "de-div"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Dividend, divisor and quotient",
+     "body": "In $12 \\div 4 = 3$:\n\n- 12 is the dividend, the number being divided;\n\n- 4 is the divisor, the number we divide by;\n\n- 3 is the quotient, the answer.\n\nExample: in $56 \\div 8 = 7$ the dividend is 56, the divisor is 8 and the quotient is 7.\n\nNon-example: in $56 \\div 8 = 7$, 8 is not the quotient. The quotient is always the result of the division.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Four ways to write a division",
+     "body": "OpenStax lists four ways to write 12 divided by 4:\n\n$$12 \\div 4, \\qquad 12/4, \\qquad \\frac{12}{4}, \\qquad 4\\,\\overline{)\\,12}$$\n\nThe third uses a fraction bar: the dividend goes on top. The fourth is the long-division layout: the dividend sits under the bracket and the divisor stands to its left. All four mean the same.\n\nWe can read $64 \\div 8$ as sixty-four divided by eight, or as the quotient of sixty-four and eight.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Signs and names for division",
+     "body": "Countries and books write and name division differently.",
+     "rows": [
+      {
+       "who": "England (primary school)",
+       "text": "Pupils write division statements with the $\\div$ sign and $=$ from Year 2. The written methods are called short division and long division.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "OpenStax (United States)",
+       "text": "Uses $\\div$, the slash $/$, the fraction bar and the long-division bracket; writes a remainder with R, as in $28 \\div 8 = 3$ R $4$.",
+       "src": [
+        "os-div"
+       ]
+      },
+      {
+       "who": "German-speaking countries",
+       "text": "A colon is used for dividing numbers: $12 : 4 = 3$. The words Dividend, Divisor and Quotient are the same as in English; a remainder is called Rest.",
+       "src": [
+        "de-div"
+       ]
+      },
+      {
+       "who": "International standard",
+       "text": "The sign $\\div$ is used mainly in English-speaking countries. The standard ISO 80000-2 recommends the slash or the fraction bar for division and says $\\div$ should not be used. In some Scandinavian countries $\\div$ has been used as a minus sign.",
+       "src": [
+        "wiki-sign"
+       ]
+      },
+      {
+       "who": "Names of the two meanings",
+       "text": "NCETM (England): partitive (sharing) and quotitive (grouping). IM: how many in each group? and how many groups? Common Core: the number in each share, or the number of shares.",
+       "src": [
+        "ncetm-quot",
+        "im-g3",
+        "ccss-3oa"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Write 35 divided by 7 in four ways and name the dividend, divisor and quotient.",
+     "solution": "The four ways: $35 \\div 7$, $35/7$, $\\frac{35}{7}$ and $7\\,\\overline{)\\,35}$.\n\nThe dividend is 35 (the number divided) and the divisor is 7 (the number we divide by).\n\nCount in sevens: 7, 14, 21, 28, 35 is 5 counts, so the quotient is 5.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "In $42 \\div 7 = 6$, which number is the divisor?",
+       "a": "7."
+      },
+      {
+       "q": "Write $\\frac{18}{6}$ with the $\\div$ sign.",
+       "a": "$18 \\div 6$."
+      },
+      {
+       "q": "In $5\\,\\overline{)\\,45}$, which number is the dividend?",
+       "a": "45, the number under the bracket."
+      },
+      {
+       "q": "Read $72 \\div 9$ aloud in two ways.",
+       "a": "Seventy-two divided by nine; the quotient of seventy-two and nine."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Name the dividend, divisor and quotient in $30 \\div 5 = 6$.",
+       "hint": "The dividend is split up; the divisor does the splitting.",
+       "solution": "Dividend 30, divisor 5, quotient 6."
+      },
+      {
+       "q": "Write $84 \\div 7$ with a slash and with a fraction bar.",
+       "hint": "The dividend comes first, or on top.",
+       "solution": "$84/7$ and $\\frac{84}{7}$."
+      },
+      {
+       "q": "Write $6\\,\\overline{)\\,54}$ in words, and find the quotient.",
+       "hint": "The number under the bracket is the dividend.",
+       "solution": "Fifty-four divided by six. Count in sixes: 6, 12, 18, 24, 30, 36, 42, 48, 54 is 9 counts, so the quotient is 9."
+      },
+      {
+       "q": "A German book writes $21 : 3 = 7$. Write it the English way and say what it means.",
+       "hint": "The colon is a division sign there.",
+       "solution": "$21 \\div 3 = 7$: 21 divided by 3 is 7, because 3, 6, 9, 12, 15, 18, 21 is 7 counts."
+      },
+      {
+       "q": "The quotient is 4 and the divisor is 9. What is the dividend?",
+       "hint": "4 groups of 9.",
+       "solution": "$4 \\times 9 = 36$, so the dividend is 36: $36 \\div 9 = 4$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Division undoes multiplication",
+     "body": "After this section you will be able to use a multiplication fact to find a division, find a missing number in a division, and check a division by multiplying.\n\nTry this. Make an array of counters: 3 rows with 4 in each row. How many counters? Now read the same array as a division in two ways.",
+     "src": [
+      "os-div",
+      "ccss-3oa",
+      "im-g3",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.7)\nax = fig.add_axes([0, 0, 1, 1])\nfor r in range(3):\n    for c in range(4):\n        ax.add_patch(Circle((0.8 + c * 0.9, 2.2 - r * 0.9), 0.3, fc='black'))\nax.text(2.15, 2.95, '4 in each row', ha='center', va='center', fontsize=12)\nax.text(-0.05, 1.3, '3 rows', ha='center', va='center', fontsize=12, rotation=90)\neqs = [r'$3 \\times 4 = 12$', r'$4 \\times 3 = 12$', r'$12 \\div 3 = 4$', r'$12 \\div 4 = 3$']\nfor i, e in enumerate(eqs):\n    ax.text(5.0, 2.55 - i * 0.68, e, ha='left', va='center', fontsize=14)\nax.set_xlim(-0.4, 8.2); ax.set_ylim(-0.05, 3.25); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "An array of 12 dots: 3 rows with 4 in each row. It shows four facts: $3 \\times 4 = 12$, $4 \\times 3 = 12$, $12 \\div 3 = 4$ and $12 \\div 4 = 3$.",
+     "alt": "Twelve black dots in 3 rows of 4, with labels 3 rows and 4 in each row. To the right, the equations 3 times 4 equals 12, 4 times 3 equals 12, 12 divided by 3 equals 4, and 12 divided by 4 equals 3.",
+     "src": [
+      "im-g3",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Division is the inverse of multiplication",
+     "body": "For whole numbers, with $b$ not 0,\n\n$$a \\div b = c \\quad\\text{means}\\quad c \\times b = a.$$\n\nThe letters stand for any numbers. For example, $12 \\div 4 = 3$ because $3 \\times 4 = 12$. So a division asks a multiplication question with a missing factor: $32 \\div 8$ asks which number times 8 makes 32.",
+     "src": [
+      "os-div",
+      "ccss-3oa",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Think of grouping. Saying $a \\div b = c$ means that $a$ things make exactly $c$ groups of $b$, with nothing left over. Putting the $c$ groups of $b$ back together gives $c \\times b$ things, which is all $a$ of them. So $c \\times b = a$.\n\nGoing the other way, if $c \\times b = a$, then $c$ groups of $b$ use up all $a$ things, so $a$ makes $c$ groups of $b$, and $a \\div b = c$.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Fact families",
+     "body": "One array gives two multiplications and two divisions. The facts $3 \\times 4 = 12$, $4 \\times 3 = 12$, $12 \\div 3 = 4$ and $12 \\div 4 = 3$ belong together. England's notes use the same idea: $4 \\times 5 = 20$ and $20 \\div 5 = 4$; and $30 \\times 2 = 60$ gives $60 \\div 2 = 30$ and $60 \\div 30 = 2$.\n\nExample: $6 \\times 7 = 42$ gives $7 \\times 6 = 42$, $42 \\div 6 = 7$ and $42 \\div 7 = 6$.\n\nNon-example: $6 \\times 7 = 42$ does not give $7 \\div 42 = 6$. The product, 42, is always the number being divided.",
+     "src": [
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 32 ÷ 8",
+     "body": "Sources give different routes to the same quotient.",
+     "items": [
+      {
+       "label": "Unknown factor",
+       "body": "Find the number that makes 32 when multiplied by 8: $4 \\times 8 = 32$, so $32 \\div 8 = 4$.",
+       "src": [
+        "ccss-3oa"
+       ]
+      },
+      {
+       "label": "Skip count",
+       "body": "Count in eights: 8, 16, 24, 32. Four counts, so 4.",
+       "src": [
+        "ncetm-quot"
+       ]
+      },
+      {
+       "label": "Missing factor",
+       "body": "Write $32 \\div 8 = ?$ as $? \\times 8 = 32$ and use a multiplication fact you know.",
+       "src": [
+        "im-g3"
+       ]
+      },
+      {
+       "label": "Check by multiplying",
+       "body": "Multiply the quotient by the divisor to get back the dividend: $4 \\times 8 = 32$, so the answer 4 is right.",
+       "src": [
+        "os-div"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: move from counting to known facts",
+     "body": "Counting in eights works, but it is slow and easy to slip on. NCETM suggests moving on from skip counting to known multiplication facts (and halving facts when dividing by 2). The Common Core asks Grade 3 pupils to divide fluently within 100 using the link between multiplication and division, and England expects pupils to know the related division facts for the tables up to $12 \\times 12$ by Year 4.\n\nEngland\\'s notes link commutativity and inverse relations: from $4 \\times 5 = 20$ a child also gets $20 \\div 5 = 4$.",
+     "src": [
+      "ncetm-quot",
+      "ccss-3oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $54 \\div 6$ using a multiplication fact, and check.",
+     "solution": "Ask: which number times 6 makes 54? Write it as $? \\times 6 = 54$.\n\nFrom the six times table: $9 \\times 6 = 54$.\n\nSo $54 \\div 6 = 9$.\n\nCheck by multiplying the quotient by the divisor: $9 \\times 6 = 54$, the dividend.",
+     "src": [
+      "ccss-3oa",
+      "os-div"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find the missing number: $48 \\div \\square = 6$.",
+     "solution": "The dividend is 48 and the quotient is 6. By the inverse rule, $6 \\times \\square = 48$.\n\nFrom the six times table: $6 \\times 8 = 48$.\n\nSo the missing number is 8. Check: $48 \\div 8 = 6$, because $6 \\times 8 = 48$.",
+     "src": [
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Write the fact family for $7 \\times 8 = 56$.",
+     "solution": "Swap the factors: $8 \\times 7 = 56$.\n\nDivide the product by each factor: $56 \\div 7 = 8$ and $56 \\div 8 = 7$.\n\nThe family is $7 \\times 8 = 56$, $8 \\times 7 = 56$, $56 \\div 7 = 8$, $56 \\div 8 = 7$.",
+     "src": [
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Use $5 \\times 9 = 45$ to find $45 \\div 9$.",
+       "a": "5."
+      },
+      {
+       "q": "Write $27 \\div 3 = ?$ as a multiplication with a missing factor.",
+       "a": "$? \\times 3 = 27$; the answer is 9."
+      },
+      {
+       "q": "Is $63 \\div 7 = 8$ right? Check by multiplying.",
+       "a": "No: $8 \\times 7 = 56$, not 63. The answer is 9, since $9 \\times 7 = 63$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Use $4 \\times 6 = 24$ to write two division facts.",
+       "hint": "Divide the product by each factor.",
+       "solution": "$24 \\div 4 = 6$ and $24 \\div 6 = 4$."
+      },
+      {
+       "q": "Find $72 \\div 8$.",
+       "hint": "Which number times 8 is 72?",
+       "solution": "$9 \\times 8 = 72$, so $72 \\div 8 = 9$."
+      },
+      {
+       "q": "Find the missing numbers: (a) $\\square \\div 3 = 5$; (b) $36 \\div \\square = 4$.",
+       "hint": "(a) The dividend is $5 \\times 3$. (b) Which number times 4 is 36?",
+       "solution": "(a) $5 \\times 3 = 15$, so $15 \\div 3 = 5$; the missing number is 15. (b) $4 \\times 9 = 36$, so $36 \\div 9 = 4$; the missing number is 9."
+      },
+      {
+       "q": "Write the whole fact family for $9 \\times 7 = 63$.",
+       "hint": "Two multiplications and two divisions.",
+       "solution": "$9 \\times 7 = 63$, $7 \\times 9 = 63$, $63 \\div 9 = 7$, $63 \\div 7 = 9$."
+      },
+      {
+       "q": "Find $96 \\div 12$ using the twelve times table.",
+       "hint": "$8 \\times 12$?",
+       "solution": "$8 \\times 12 = 96$, so $96 \\div 12 = 8$. Check: $8 \\times 12 = 80 + 16 = 96$."
+      },
+      {
+       "q": "A class of 28 sits at tables of 4. How many tables? Write the division and the multiplication that checks it.",
+       "hint": "Grouping: how many 4s in 28?",
+       "solution": "$7 \\times 4 = 28$, so $28 \\div 4 = 7$ tables. Check: $7 \\times 4 = 28$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Division undoes multiplication: $a \\div b = c$ means $c \\times b = a$.\n\n- So $32 \\div 8$ asks which number times 8 makes 32.\n\n- One array gives a fact family of two multiplications and two divisions.\n\n- Check a division by multiplying the quotient by the divisor.\n\n- Use times-table facts rather than long counting."
+    },
+    {
+     "type": "section",
+     "title": "Order matters in division",
+     "body": "After this section you will be able to explain why the dividend and divisor cannot be swapped.\n\nTry this. You know $3 \\times 4 = 4 \\times 3$. Is $12 \\div 3$ the same as $3 \\div 12$? Think of 12 cakes for 3 children, and 3 cakes for 12 children.",
+     "src": [
+      "eng-pos",
+      "ncetm-dist"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Division is not commutative",
+     "body": "Multiplication can be done in any order, but division cannot. In general $a \\div b$ and $b \\div a$ are different:\n\n$$12 \\div 3 = 4, \\quad\\text{but}\\quad 3 \\div 12 \\neq 4.$$\n\n(The sign $\\neq$ means is not equal to.) England asks Year 2 pupils to show that multiplication of two numbers can be done in any order and division of one number by another cannot. One case where the order does not matter is when the two numbers are the same, as in $5 \\div 5$.",
+     "src": [
+      "eng-pos",
+      "ncetm-dist"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "One example where the swap fails is enough to show the rule is not always true. Sharing 12 cakes among 3 children gives each child 4 whole cakes. Sharing 3 cakes among 12 children cannot give anyone even 1 whole cake: there are fewer cakes than children. So $3 \\div 12$ is less than 1, not 4. England's Year 4 notes use a problem of this kind: 3 cakes shared equally between 10 children.",
+     "src": [
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Swapping the numbers",
+     "body": "Writing $4 \\div 20$ for 20 sweets shared between 4 children swaps the numbers and asks a different question. The number being shared (the total) always comes first: $20 \\div 4 = 5$.\n\nFor adults: ask which number is the total. It is the dividend and goes before the sign.",
+     "src": [
+      "eng-pos",
+      "ncetm-dist"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Is $20 \\div 5$ equal to $5 \\div 20$?",
+       "a": "No. $20 \\div 5 = 4$, but $5 \\div 20$ is less than 1."
+      },
+      {
+       "q": "18 pencils are shared between 3 children. Which division: $18 \\div 3$ or $3 \\div 18$?",
+       "a": "$18 \\div 3 = 6$; the total, 18, comes first."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write the division for 40 stickers shared equally among 8 children, and solve it.",
+       "hint": "The total comes first.",
+       "solution": "$40 \\div 8 = 5$, because $5 \\times 8 = 40$."
+      },
+      {
+       "q": "Is $6 \\times 2 = 2 \\times 6$ true? Is $6 \\div 2 = 2 \\div 6$ true?",
+       "hint": "Work out each side.",
+       "solution": "$6 \\times 2 = 12 = 2 \\times 6$, true. $6 \\div 2 = 3$, but $2 \\div 6$ is less than 1 (2 cakes for 6 children is less than a cake each), so the second is false."
+      },
+      {
+       "q": "Find a pair of numbers $a$ and $b$ with $a \\div b = b \\div a$.",
+       "hint": "Try two equal numbers.",
+       "solution": "Any equal pair works, for example $a = b = 7$: $7 \\div 7 = 1$ both ways."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Dividing with 0 and 1",
+     "body": "After this section you will be able to divide by 1, divide a number by itself, divide 0, and explain why we never divide by 0.\n\nTry this. Share 7 counters onto 1 plate. Share 7 counters onto 7 plates. Share 0 counters onto 7 plates. What is on each plate each time?",
+     "src": [
+      "os-div",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Rules for 0 and 1",
+     "body": "For any whole number $a$:\n\n1. $a \\div 1 = a$.\n\n2. $a \\div a = 1$, when $a$ is not 0.\n\n3. $0 \\div a = 0$, when $a$ is not 0.\n\n4. $a \\div 0$ has no answer. We say division by zero is undefined.\n\nFor example $19 \\div 1 = 19$, $11 \\div 11 = 1$, $0 \\div 3 = 0$, and $10 \\div 0$ is undefined.",
+     "src": [
+      "os-div",
+      "ncetm-quot"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Each rule follows from the inverse rule: $a \\div b = c$ means $c \\times b = a$.\n\n1. $a \\times 1 = a$, so $a \\div 1 = a$. Sharing onto one plate puts everything on it.\n\n2. $1 \\times a = a$, so $a \\div a = 1$. Sharing 7 counters onto 7 plates puts 1 on each.\n\n3. $0 \\times a = 0$, so $0 \\div a = 0$. Sharing nothing gives nothing to each plate.\n\n4. Try $10 \\div 0 = c$. That would need $c \\times 0 = 10$. But any number times 0 is 0, never 10, so no $c$ works. In repeated subtraction, taking away 0 again and again never makes 10 smaller, so we never finish. For $0 \\div 0$, every number $c$ gives $c \\times 0 = 0$, so there is no single answer either. Either way, we do not divide by 0.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "0 divided by a number, and a number divided by 0",
+     "body": "$0 \\div 5$ and $5 \\div 0$ are very different. $0 \\div 5 = 0$: no sweets shared among 5 children gives each child none. $5 \\div 0$ is undefined: there is no way to share 5 sweets among no children.\n\nFor adults: check the answer by multiplying. $0 \\div 5 = 0$ passes, because $0 \\times 5 = 0$. No answer passes for $5 \\div 0$.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find each, or say it is undefined: $14 \\div 14$, $27 \\div 1$, $0 \\div 6$, $17 \\div 0$.",
+     "solution": "$14 \\div 14 = 1$, because $1 \\times 14 = 14$.\n\n$27 \\div 1 = 27$, because $27 \\times 1 = 27$.\n\n$0 \\div 6 = 0$, because $0 \\times 6 = 0$.\n\n$17 \\div 0$ is undefined, because no number times 0 is 17.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$25 \\div 1 = ?$",
+       "a": "25."
+      },
+      {
+       "q": "$9 \\div 9 = ?$",
+       "a": "1."
+      },
+      {
+       "q": "$0 \\div 4 = ?$",
+       "a": "0."
+      },
+      {
+       "q": "$4 \\div 0 = ?$",
+       "a": "Undefined: no number times 0 gives 4."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $100 \\div 1$ and $100 \\div 100$.",
+       "hint": "Dividing by 1 changes nothing; a number divided by itself is 1.",
+       "solution": "$100 \\div 1 = 100$ and $100 \\div 100 = 1$."
+      },
+      {
+       "q": "Find $0 \\div 12$. Check by multiplying.",
+       "hint": "Share nothing among 12.",
+       "solution": "$0 \\div 12 = 0$. Check: $0 \\times 12 = 0$."
+      },
+      {
+       "q": "Which of these are undefined: $0 \\div 8$, $8 \\div 0$, $8 \\div 8$?",
+       "hint": "Look for division by 0.",
+       "solution": "Only $8 \\div 0$. The others are $0 \\div 8 = 0$ and $8 \\div 8 = 1$."
+      },
+      {
+       "q": "Find the missing number: $\\square \\div 1 = 13$.",
+       "hint": "Dividing by 1 gives the same number back.",
+       "solution": "13, since $13 \\div 1 = 13$."
+      },
+      {
+       "q": "Explain with a multiplication why $6 \\div 0$ has no answer.",
+       "hint": "If $6 \\div 0 = c$, what would $c \\times 0$ be?",
+       "solution": "If $6 \\div 0 = c$, then $c \\times 0 = 6$. But any number times 0 is 0, not 6. So there is no $c$, and $6 \\div 0$ is undefined."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Order matters: $12 \\div 3 = 4$, but $3 \\div 12$ is less than 1.\n\n- $a \\div 1 = a$ and $a \\div a = 1$ (for $a$ not 0).\n\n- $0 \\div a = 0$ (for $a$ not 0).\n\n- Division by 0 is undefined: no number times 0 gives a number other than 0."
+    },
+    {
+     "type": "section",
+     "title": "Remainders",
+     "body": "After this section you will be able to divide when the numbers do not go exactly, write the remainder, and check the answer.\n\nTry this. Pack 28 cookies into bags of 8. How many bags can you fill? How many cookies are left?",
+     "src": [
+      "os-div",
+      "ncetm-rem",
+      "ccss-4nbt",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.9)\nax = fig.add_axes([0, 0, 1, 1])\nfor g in range(3):\n    y = 2.6 - g * 0.95\n    ax.add_patch(FancyBboxPatch((0.25, y - 0.38), 6.1, 0.76, boxstyle='round,pad=0.06', fc='white', ec='blue', lw=1.5))\n    for i in range(8):\n        ax.add_patch(Circle((0.6 + i * 0.77, y), 0.27, fc='black'))\n    ax.text(6.75, y, 'bag ' + str(g + 1), ha='left', va='center', fontsize=12, color='blue')\nfor i in range(4):\n    ax.add_patch(Circle((0.6 + i * 0.77, -0.25), 0.27, fc='white', ec='red', lw=2.0, hatch='////'))\nax.text(3.75, -0.25, '4 left over', ha='left', va='center', fontsize=12, color='red')\nax.set_xlim(0, 8.3); ax.set_ylim(-0.7, 3.1); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "28 cookies in bags of 8: 3 full bags hold 24 cookies, and 4 cookies are left over (striped). So $28 \\div 8 = 3$ R $4$.",
+     "alt": "Three rounded boxes labelled bag 1, bag 2 and bag 3, each holding a row of 8 black dots. Below them, 4 striped red circles labelled 4 left over.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Quotient and remainder",
+     "body": "When the dividend does not make exact groups, the amount left over is the remainder. OpenStax writes it with R:\n\n$$28 \\div 8 = 3 \\text{ R } 4.$$\n\nWe read this as twenty-eight divided by eight is three remainder four. The same facts can be written with multiplication and addition:\n\n$$28 = 3 \\times 8 + 4.$$\n\nThere is no remainder when the dividend is a multiple of the divisor (a number in its times table), as $24 = 3 \\times 8$. There is a remainder when it is not.\n\nExample: $13 \\div 4 = 3$ R $1$, because three groups of 4 use 12 and 1 is left.\n\nNon-example: $28 \\div 8 = 2$ R $12$ is not the answer. With 12 left you can still fill another bag of 8.",
+     "src": [
+      "os-div",
+      "ncetm-rem"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "The remainder is less than the divisor",
+     "body": "When we divide by $b$ and make as many groups of $b$ as we can, the remainder is always less than $b$. It may be 0.\n\nTo check a division with a remainder, multiply the quotient by the divisor and add the remainder. You must get the dividend:\n\n$$\\begin{aligned} &\\text{quotient} \\times \\text{divisor} \\\\ &\\quad + \\text{remainder} = \\text{dividend}. \\end{aligned}$$",
+     "src": [
+      "ncetm-rem",
+      "os-div"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "If $b$ or more things were left, we could make one more group of $b$. So when no more groups can be made, fewer than $b$ things are left.\n\nThe check works because the full groups hold quotient times divisor things, and the leftovers are the remainder. Together they are all the things we started with, the dividend.",
+     "src": [
+      "ncetm-rem",
+      "os-div"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $23 \\div 5$ and check.",
+     "solution": "Count in fives as far as you can without passing 23: 5, 10, 15, 20. That is 4 groups, using 20.\n\nThe next count, 25, is more than 23, so stop.\n\nLeft over: $23 - 20 = 3$. Since 3 is less than 5, no more groups can be made.\n\nSo $23 \\div 5 = 4$ R $3$.\n\nCheck: $4 \\times 5 + 3 = 20 + 3 = 23$.",
+     "src": [
+      "os-div",
+      "ncetm-rem"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "OpenStax gives $1439 \\div 4 = 359$ R $3$. Check it.",
+     "solution": "Multiply the quotient by the divisor: $359 \\times 4 = 1436$ (that is $300 \\times 4 = 1200$, $50 \\times 4 = 200$, $9 \\times 4 = 36$, and $1200 + 200 + 36 = 1436$).\n\nAdd the remainder: $1436 + 3 = 1439$, the dividend.\n\nThe remainder 3 is less than the divisor 4. So the answer is right.",
+     "src": [
+      "os-div"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "A remainder that is too big",
+     "body": "A slip to watch for is stopping too early, as in $38 \\div 6 = 5$ R $8$. The remainder 8 is bigger than the divisor 6, so another group of 6 fits: the answer is $38 \\div 6 = 6$ R $2$.\n\nFor adults: NCETM stresses that the remainder is always less than the divisor. Ask the child to compare the remainder with the divisor every time.",
+     "src": [
+      "ncetm-rem"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$17 \\div 5 = ?$",
+       "a": "3 R 2, because $3 \\times 5 + 2 = 17$."
+      },
+      {
+       "q": "Can the remainder be 7 when you divide by 7?",
+       "a": "No. It must be less than 7; with 7 left you can make another group."
+      },
+      {
+       "q": "Does $30 \\div 6$ have a remainder?",
+       "a": "No: $30 = 5 \\times 6$, so $30 \\div 6 = 5$ exactly."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $14 \\div 3$.",
+       "hint": "Count in threes without passing 14.",
+       "solution": "3, 6, 9, 12 is 4 groups, using 12. $14 - 12 = 2$ is left. So $14 \\div 3 = 4$ R $2$. Check: $4 \\times 3 + 2 = 14$."
+      },
+      {
+       "q": "Find $50 \\div 7$ and check.",
+       "hint": "$7 \\times 7 = 49$.",
+       "solution": "$7 \\times 7 = 49$ and $8 \\times 7 = 56$ is too big. $50 - 49 = 1$. So $50 \\div 7 = 7$ R $1$. Check: $7 \\times 7 + 1 = 50$."
+      },
+      {
+       "q": "Which of these divisions have no remainder: $35 \\div 5$, $36 \\div 5$, $40 \\div 8$, $41 \\div 8$?",
+       "hint": "Is the dividend in the divisor's times table?",
+       "solution": "$35 \\div 5 = 7$ and $40 \\div 8 = 5$ have no remainder. $36 \\div 5 = 7$ R $1$ and $41 \\div 8 = 5$ R $1$."
+      },
+      {
+       "q": "Mia says $45 \\div 6 = 6$ R $9$. What is wrong? Find the right answer.",
+       "hint": "Compare the remainder with the divisor.",
+       "solution": "The remainder 9 is bigger than 6, so another group fits. $7 \\times 6 = 42$ and $45 - 42 = 3$: $45 \\div 6 = 7$ R $3$. Check: $42 + 3 = 45$."
+      },
+      {
+       "q": "When you divide a number by 4, which remainders are possible?",
+       "hint": "The remainder is less than the divisor.",
+       "solution": "0, 1, 2 or 3. For example $8 \\div 4 = 2$ R $0$, $9 \\div 4 = 2$ R $1$, $10 \\div 4 = 2$ R $2$, $11 \\div 4 = 2$ R $3$."
+      },
+      {
+       "q": "A number divided by 6 gives 5 R 4. What is the number?",
+       "hint": "Use quotient times divisor plus remainder.",
+       "solution": "$5 \\times 6 + 4 = 30 + 4 = 34$. Check: $34 \\div 6 = 5$ R $4$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- When the groups do not come out exactly, the leftover is the remainder: $28 \\div 8 = 3$ R $4$.\n\n- The remainder is always less than the divisor; it is 0 when the dividend is a multiple of the divisor.\n\n- Check: quotient times divisor plus remainder equals the dividend, $3 \\times 8 + 4 = 28$."
+    },
+    {
+     "type": "section",
+     "title": "What does the remainder mean?",
+     "body": "After this section you will be able to decide what to do with a remainder in a word problem.\n\nTry this. 30 children go on a trip in cars that take 4 children each. $30 \\div 4 = 7$ R $2$. Is the answer 7 cars? What happens to the 2 children who are left?\n\nEngland asks pupils in Year 5 to interpret remainders appropriately for the context, and the Common Core asks Grade 4 pupils to solve problems in which remainders must be interpreted. The same division can need a different answer in different stories. NCETM stresses that the answer to a division in a story must be thought about, not just copied.",
+     "src": [
+      "eng-pos",
+      "ccss-4oa",
+      "ncetm-rem"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Three ways a remainder is used",
+     "body": "After dividing, read the question again and decide:\n\n1. Round up, when everything must be included. 30 children, cars of 4: $30 \\div 4 = 7$ R $2$, so 8 cars are needed.\n\n2. Round down, when only full groups count. 30 centimetres of ribbon cut into pieces 4 centimetres long: $30 \\div 4 = 7$ R $2$, so 7 pieces can be cut and 2 centimetres are wasted.\n\n3. The remainder is the answer. 30 sweets shared equally among 4 children, and the rest go to the teacher: $30 \\div 4 = 7$ R $2$, so the teacher gets 2.\n\nEngland's notes show that a remainder can later also be written as a fraction or a decimal: $98 \\div 4$ is 24 R 2, or $24\\tfrac12$, or 24.5, or about 25. Those forms belong to the pages on fractions and decimals.",
+     "src": [
+      "eng-pos",
+      "ccss-4oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A school has 50 pupils going on a trip. Each minibus holds 12 pupils. How many minibuses are needed?",
+     "solution": "Divide: $4 \\times 12 = 48$ and $5 \\times 12 = 60$, which is too many. So $50 \\div 12 = 4$ R $2$.\n\nRead the question again: every pupil must travel. Four minibuses take 48 pupils and leave 2 behind.\n\nRound up: 5 minibuses are needed.",
+     "src": [
+      "eng-pos",
+      "ccss-4oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Eggs are sold in boxes of 6. A farmer has 40 eggs. How many full boxes can she fill?",
+     "solution": "Divide: $6 \\times 6 = 36$ and $7 \\times 6 = 42$, too many. So $40 \\div 6 = 6$ R $4$.\n\nOnly full boxes count, so round down.\n\nShe can fill 6 full boxes, and 4 eggs are left over.",
+     "src": [
+      "eng-pos",
+      "ccss-4oa"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "25 people, tables for 6. $25 \\div 6 = 4$ R $1$. How many tables are needed?",
+       "a": "5, because everyone needs a seat."
+      },
+      {
+       "q": "You have 25 dollars and books cost 6 dollars each. How many books can you buy?",
+       "a": "4 (you cannot buy part of a book), with 1 dollar left."
+      },
+      {
+       "q": "25 stickers are shared among 6 children, and the rest are kept. How many are kept?",
+       "a": "1."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "A boat holds 5 people. 23 people want to cross the river. How many trips must the boat make?",
+       "hint": "Everyone must cross.",
+       "solution": "$23 \\div 5 = 4$ R $3$ (since $4 \\times 5 = 20$). Four trips leave 3 people, so 5 trips are needed."
+      },
+      {
+       "q": "A baker has 50 buns and packs them in bags of 8. How many full bags, and how many buns are left?",
+       "hint": "$6 \\times 8 = 48$.",
+       "solution": "$50 \\div 8 = 6$ R $2$: 6 full bags and 2 buns left."
+      },
+      {
+       "q": "A tin holds 9 pencils. How many tins are needed for 75 pencils?",
+       "hint": "Every pencil goes in a tin.",
+       "solution": "$8 \\times 9 = 72$ and $75 - 72 = 3$, so $75 \\div 9 = 8$ R $3$. Round up: 9 tins."
+      },
+      {
+       "q": "A 70 centimetre strip of wood is cut into pieces 8 centimetres long. How many pieces, and how much is left?",
+       "hint": "Only whole pieces count.",
+       "solution": "$8 \\times 8 = 64$ and $9 \\times 8 = 72$ is too much. $70 \\div 8 = 8$ R $6$: 8 pieces and 6 centimetres left."
+      },
+      {
+       "q": "Write one story for $38 \\div 4$ where the answer is 10, one where it is 9, and one where it is 2.",
+       "hint": "First find $38 \\div 4$.",
+       "solution": "$38 \\div 4 = 9$ R $2$, since $9 \\times 4 = 36$. Answer 10: 38 children, cars of 4; how many cars are needed? Answer 9: 38 tennis balls in tubes of 4; how many full tubes? Answer 2: 38 cards dealt equally to 4 players; how many are left over?"
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- In a story, decide what the remainder means.\n\n- Round up when everything must be included; round down when only full groups count.\n\n- Sometimes the remainder itself is the answer.\n\n- Later, remainders are also written as fractions or decimals."
+    },
+    {
+     "type": "section",
+     "title": "Dividing bigger numbers with place value",
+     "body": "After this section you will be able to divide a two-, three- or four-digit number by a one-digit number by splitting it into tens and ones (or hundreds, tens and ones).\n\nTry this. Show 69 with base-ten blocks: 6 tens and 9 ones. Share them equally into 3 groups. Share the tens first, then the ones. What is in each group?",
+     "src": [
+      "im-g3",
+      "im-g3l19",
+      "ccss-4nbt",
+      "ncetm-part",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Dividing by parts",
+     "body": "To divide a big number, split it into parts that are easy to divide, divide each part, and add the answers. For $69 \\div 3$:\n\n$$\\begin{aligned} 69 \\div 3 &= 60 \\div 3 + 9 \\div 3 \\\\ &= 20 + 3 = 23. \\end{aligned}$$\n\nHere $60 \\div 3 = 20$ comes from the fact $6 \\div 3 = 2$: 6 tens shared into 3 groups is 2 tens each. In the same way England's notes derive $600 \\div 3 = 200$ from $2 \\times 3 = 6$. The Common Core asks Grade 4 pupils to divide numbers up to four digits by a one-digit number with strategies based on place value and the link to multiplication, shown with equations, arrays or area models. NCETM calls this partitioning.\n\nExample: $84 \\div 4 = 80 \\div 4 + 4 \\div 4 = 20 + 1 = 21$.\n\nNon-example: $84 \\div 4$ is not $84 \\div 2 + 84 \\div 2$. We split the dividend into parts, never the divisor.",
+     "src": [
+      "ccss-4nbt",
+      "eng-pos",
+      "ncetm-part",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Splitting the dividend",
+     "body": "If a number is split into two parts that both divide exactly by $b$, then the number divided by $b$ is the sum of the parts divided by $b$:\n\n$$(p + q) \\div b = p \\div b + q \\div b.$$\n\nThis is the distributive property ([[distributive-property]]) used for division.",
+     "src": [
+      "ccss-4nbt",
+      "ncetm-part"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Share the first part, $p$, equally into $b$ groups: each group gets $p \\div b$. Then share the second part, $q$, into the same $b$ groups: each group gets $q \\div b$ more. Now all $p + q$ things are shared equally, and each group holds $p \\div b + q \\div b$. That is $(p + q) \\div b$.\n\nCheck with multiplication for $69 \\div 3$: $23 \\times 3 = 20 \\times 3 + 3 \\times 3 = 60 + 9 = 69$.",
+     "src": [
+      "ncetm-part",
+      "os-div"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\ns = 0.22\ndef rod(x, y):\n    for k in range(10):\n        ax.add_patch(Rectangle((x, y + k * s), s, s, fc='white', ec='black', lw=0.9))\ndef unit(x, y, ec='black'):\n    ax.add_patch(Rectangle((x, y), s, s, fc='white', ec=ec, lw=1.2))\nfor i in range(4):\n    rod(0.2 + i * 0.4, 0.6)\nfor j in range(5):\n    unit(1.9, 0.6 + j * 0.35)\nax.text(1.05, 0.15, '4 tens, 5 ones', ha='center', va='center', fontsize=12)\nax.annotate('', xy=(3.15, 1.7), xytext=(2.45, 1.7), arrowprops=dict(arrowstyle='->', lw=1.5))\nfor g in range(3):\n    x0 = 3.45 + g * 1.55\n    ax.add_patch(FancyBboxPatch((x0 - 0.12, 0.5), 1.25, 2.45, boxstyle='round,pad=0.05', fc='white', ec='blue', lw=1.4))\n    rod(x0, 0.6)\n    for j in range(5):\n        unit(x0 + 0.55 + (j % 2) * 0.32, 0.6 + (j // 2) * 0.35)\n    ax.text(x0 + 0.5, 0.15, '1 ten, 5 ones', ha='center', va='center', fontsize=10, color='blue')\nax.set_xlim(0, 8.2); ax.set_ylim(-0.1, 3.1); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "$45 \\div 3$ with base-ten blocks. Left: 45 as 4 tens and 5 ones. Right: 3 equal groups, each with 1 ten and 5 ones, so $45 \\div 3 = 15$. After 1 ten went to each group, 1 ten was left; it was exchanged for 10 ones, making 15 ones, 5 for each group.",
+     "alt": "On the left, four vertical rods of ten squares and five single squares, labelled 4 tens, 5 ones. An arrow points right to three blue rounded boxes, each holding one rod of ten and five single squares, labelled 1 ten, 5 ones.",
+     "src": [
+      "im-g3l19",
+      "ncetm-part"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $45 \\div 3$ by sharing tens and ones.",
+     "solution": "45 is 4 tens and 5 ones.\n\nShare the 4 tens into 3 groups: 1 ten in each group uses 3 tens, and 1 ten is left.\n\nExchange the leftover ten for 10 ones. Now there are $10 + 5 = 15$ ones.\n\nShare the 15 ones into 3 groups: $15 \\div 3 = 5$ in each.\n\nEach group has 1 ten and 5 ones, which is 15. So $45 \\div 3 = 15$.\n\nCheck: $15 \\times 3 = 30 + 15 = 45$.",
+     "src": [
+      "im-g3l19",
+      "ncetm-part"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.4)\nax = fig.add_axes([0, 0, 1, 1])\nax.add_patch(Rectangle((0, 0), 6.0, 1.6, fc=(0.85, 0.9, 1.0), ec='black', lw=1.5))\nax.add_patch(Rectangle((6.0, 0), 1.8, 1.6, fc=(1.0, 0.9, 0.8), ec='black', lw=1.5, hatch='//'))\nax.text(3.0, 0.8, r'$3 \\times 20 = 60$', ha='center', va='center', fontsize=14)\nax.text(6.9, 0.8, '18', ha='center', va='center', fontsize=14, bbox=dict(fc='white', ec='none', pad=1))\nax.text(3.0, 1.9, '20', ha='center', va='center', fontsize=13)\nax.text(6.9, 1.9, '6', ha='center', va='center', fontsize=13)\nax.text(-0.3, 0.8, '3', ha='center', va='center', fontsize=13)\nax.text(3.9, -0.4, r'$60 + 18 = 78$, so $78 \\div 3 = 20 + 6 = 26$', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.7, 8.2); ax.set_ylim(-0.8, 2.2); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "An area model for $78 \\div 3$. A rectangle with area 78 and one side 3 is split into a part of area 60 (side 20) and a part of area 18 (side 6). The other side is $20 + 6 = 26$, so $78 \\div 3 = 26$.",
+     "alt": "A long rectangle with height labelled 3, split into a wide left part labelled 20 across the top with 3 times 20 equals 60 inside, and a narrow hatched right part labelled 6 with 18 inside. Below: 60 plus 18 equals 78, so 78 divided by 3 equals 20 plus 6 equals 26.",
+     "src": [
+      "ccss-4nbt",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 78 ÷ 3",
+     "body": "IM, the Common Core and NCETM show different routes to the same quotient.",
+     "items": [
+      {
+       "label": "Tens twice",
+       "body": "$3 \\times 10 = 30$, and again $3 \\times 10 = 30$, which uses 60; then $3 \\times 6 = 18$ uses the rest. So the quotient is $10 + 10 + 6 = 26$.",
+       "src": [
+        "im-g3"
+       ]
+      },
+      {
+       "label": "Twenty and six",
+       "body": "$3 \\times 20 = 60$ and $3 \\times 6 = 18$, and $60 + 18 = 78$, so the quotient is $20 + 6 = 26$.",
+       "src": [
+        "im-g3"
+       ]
+      },
+      {
+       "label": "Area model",
+       "body": "Draw a rectangle of area 78 with one side 3; split it into areas 60 and 18. The other side is $20 + 6 = 26$.",
+       "src": [
+        "ccss-4nbt"
+       ]
+      },
+      {
+       "label": "Tens, exchange, ones",
+       "body": "7 tens shared into 3 groups is 2 tens each with 1 ten left; exchange it for 10 ones, making 18 ones, which is 6 each. Each group has 26.",
+       "src": [
+        "ncetm-part",
+        "im-g3l19"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $456 \\div 3$.",
+     "solution": "Split 456 into parts that 3 divides exactly: $456 = 300 + 150 + 6$.\n\nDivide each part: $300 \\div 3 = 100$, $150 \\div 3 = 50$ (since $15 \\div 3 = 5$), $6 \\div 3 = 2$.\n\nAdd: $100 + 50 + 2 = 152$. So $456 \\div 3 = 152$.\n\nCheck: $152 \\times 3 = 300 + 150 + 6 = 456$.",
+     "src": [
+      "ccss-4nbt",
+      "ncetm-part"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $97 \\div 4$.",
+     "solution": "Split off a part that 4 divides exactly: $97 = 80 + 17$.\n\n$80 \\div 4 = 20$ (since $8 \\div 4 = 2$).\n\n$17 \\div 4 = 4$ R $1$ (since $4 \\times 4 = 16$).\n\nAdd the quotients: $20 + 4 = 24$, and keep the remainder 1. So $97 \\div 4 = 24$ R $1$.\n\nCheck: $24 \\times 4 + 1 = 96 + 1 = 97$.",
+     "src": [
+      "ccss-4nbt",
+      "ncetm-part"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $2596 \\div 4$ (an example from OpenStax, which finds 649).",
+     "solution": "Split 2596 into parts that 4 divides exactly: $2596 = 2400 + 160 + 36$.\n\n$2400 \\div 4 = 600$ (since $24 \\div 4 = 6$).\n\n$160 \\div 4 = 40$ (since $16 \\div 4 = 4$).\n\n$36 \\div 4 = 9$.\n\nAdd: $600 + 40 + 9 = 649$. So $2596 \\div 4 = 649$.\n\nCheck: $649 \\times 4 = 2400 + 160 + 36 = 2596$.",
+     "src": [
+      "os-div",
+      "ccss-4nbt"
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Short division and long division",
+     "body": "England's Year 4 and Year 5 pupils learn a compact written layout for this same idea, called short division: the digits are divided from left to right, and a leftover is exchanged into the next column. NCETM builds it straight from partitioning. Long division, used in Year 6 and by OpenStax for bigger divisors, writes out each multiply and subtract step. These written methods have their own page (Long division).",
+     "src": [
+      "eng-pos",
+      "ncetm-part",
+      "os-div"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find $66 \\div 3$ by splitting into tens and ones.",
+       "a": "$60 \\div 3 + 6 \\div 3 = 20 + 2 = 22$."
+      },
+      {
+       "q": "Use $8 \\div 4 = 2$ to find $800 \\div 4$.",
+       "a": "200."
+      },
+      {
+       "q": "For $52 \\div 4$, you share 5 tens into 4 groups. How many tens are left to exchange?",
+       "a": "1 ten (each group gets 1 ten, using 4). Then 12 ones give 3 each: $52 \\div 4 = 13$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $88 \\div 4$.",
+       "hint": "Split into 80 and 8.",
+       "solution": "$80 \\div 4 + 8 \\div 4 = 20 + 2 = 22$. Check: $22 \\times 4 = 88$."
+      },
+      {
+       "q": "Find $900 \\div 3$ and $350 \\div 5$.",
+       "hint": "Use $9 \\div 3$ and $35 \\div 5$.",
+       "solution": "$9 \\div 3 = 3$, so $900 \\div 3 = 300$. $35 \\div 5 = 7$, so 35 tens divided by 5 is 7 tens: $350 \\div 5 = 70$."
+      },
+      {
+       "q": "Find $72 \\div 3$ by exchanging.",
+       "hint": "Share 7 tens into 3 groups first.",
+       "solution": "7 tens into 3 groups: 2 tens each, using 6 tens, 1 ten left. Exchange it: $10 + 2 = 12$ ones, so 4 ones each. Each group has 24: $72 \\div 3 = 24$. Check: $24 \\times 3 = 72$."
+      },
+      {
+       "q": "Find $84 \\div 7$.",
+       "hint": "Split 84 into 70 and 14.",
+       "solution": "$70 \\div 7 + 14 \\div 7 = 10 + 2 = 12$. Check: $12 \\times 7 = 84$."
+      },
+      {
+       "q": "Find $635 \\div 5$.",
+       "hint": "Split into 500, 100 and 35.",
+       "solution": "$500 \\div 5 = 100$, $100 \\div 5 = 20$, $35 \\div 5 = 7$. Total $100 + 20 + 7 = 127$. Check: $127 \\times 5 = 635$."
+      },
+      {
+       "q": "Find $79 \\div 6$ and check.",
+       "hint": "Split into 60 and 19.",
+       "solution": "$60 \\div 6 = 10$; $19 \\div 6 = 3$ R $1$. So $79 \\div 6 = 13$ R $1$. Check: $13 \\times 6 + 1 = 78 + 1 = 79$."
+      },
+      {
+       "q": "A school buys 1248 pencils and shares them equally among 8 classes. How many pencils does each class get?",
+       "hint": "Split 1248 into 800, 400 and 48.",
+       "solution": "$800 \\div 8 = 100$, $400 \\div 8 = 50$, $48 \\div 8 = 6$. Each class gets $100 + 50 + 6 = 156$. Check: $156 \\times 8 = 800 + 400 + 48 = 1248$."
+      },
+      {
+       "q": "Find $2635 \\div 7$ and check.",
+       "hint": "Split into 2100, 490 and 45.",
+       "solution": "$2100 \\div 7 = 300$, $490 \\div 7 = 70$, $45 \\div 7 = 6$ R $3$. So $2635 \\div 7 = 376$ R $3$. Check: $376 \\times 7 = 2632$ and $2632 + 3 = 2635$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Split the dividend into parts that divide exactly, divide each part, and add: $69 \\div 3 = 20 + 3 = 23$.\n\n- Use place value: $6 \\div 3 = 2$ gives $60 \\div 3 = 20$ and $600 \\div 3 = 200$.\n\n- A leftover ten is exchanged for 10 ones; a leftover hundred for 10 tens.\n\n- An area model shows the parts as pieces of a rectangle.\n\n- Check by multiplying, adding any remainder."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "body": "The written methods of short and long division do the place-value splitting digit by digit, and with them you can divide by numbers with two or more digits. The fraction bar in $\\frac{12}{4}$ is a sign that division and fractions are the same idea: later, $3 \\div 4$ (3 cakes shared among 4 people) becomes the fraction three quarters, and remainders can be written as fractions or decimals. Sharing a total equally is also the idea behind the mean (average) of some numbers.\n\nThe fact that the remainder is less than the divisor is the start of number theory. For whole numbers $a$ and $b$ with $b$ not 0, there is exactly one quotient $q$ and remainder $r$ with $a = q \\times b + r$ and $r$ less than $b$. This is the division algorithm on the page [[divisibility]], where it leads to the Euclidean algorithm. Working only with remainders gives modular arithmetic ([[congruences]]), the arithmetic of clocks.\n\nIn algebra, division is defined as multiplying by an inverse: dividing by 4 is multiplying by one quarter. A field is a number system where every number except 0 can be divided by; a ring ([[rings]]) need not allow this, which is why whole numbers need remainders. Division by 0 stays undefined everywhere.",
+     "src": [
+      "os-div",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For older readers: division does not always make smaller",
+     "body": "For whole numbers, dividing by a number bigger than 1 gives a smaller answer. Many learners turn this into a rule, division makes smaller, which breaks when they meet fractions and decimals: dividing by a number less than 1 gives a bigger answer. Lim (2011) reports that prospective teachers held this belief too, and that asking them to predict answers before calculating helped them see that the rule does not always hold.",
+     "src": [
+      "lim"
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "python": "\n# intro, S1\nassert 12 // 3 == 4 and 12 % 3 == 0 and 12 // 4 == 3\nassert 4 * 3 == 12 and len([1,2,3,4]) * 3 == 12\nassert 10 // 2 == 5 and 5 + 4 + 3 == 12\nassert [3, 6, 9, 12] == list(range(3, 13, 3))\nassert list(range(5, 16, 5)) == [5, 10, 15] and 15 // 5 == 3\nassert 40 // 2 == 20 and 20 + 20 == 40\nassert 8 // 2 == 4 and 18 // 3 == 6 and 9 // 3 == 3 and 4 + 4 + 1 == 9\nassert list(range(5, 21, 5)) == [5, 10, 15, 20] and 20 // 5 == 4\nassert list(range(2, 7, 2)) == [2, 4, 6] and 6 // 2 == 3\nassert len(range(4, 21, 4)) == 5 and 20 // 4 == 5\nassert 60 // 2 == 30 and 30 + 30 == 60\nassert len(range(5, 36, 5)) == 7 and 35 // 5 == 7\nassert len(range(3, 25, 3)) == 8 and 24 // 3 == 8 and (8 - 2, 8 + 2, 8) == (6, 10, 8) and 6 + 10 + 8 == 24\n"
+    },
+    {
+     "python": "\n# S2\nassert 12 - 4 == 8 and 8 - 4 == 4 and 4 - 4 == 0 and 12 // 4 == 3\nassert 20 // 5 == 4 and 5 + 5 + 6 + 4 == 20\nassert 24 // 8 == 3 and 12 // 4 == 3\nassert 96 % 8 == 0\nx = 18; n = 0\nwhile x: x -= 3; n += 1\nassert n == 6 and list(range(3, 19, 3)) == [3, 6, 9, 12, 15, 18]\nassert 6 // 2 == 3 and list(range(2, 7, 2)) == [2, 4, 6]\nassert 30 % 6 == 0\nassert 15 - 5 == 10 and 10 - 5 == 5 and 5 - 5 == 0\nassert len(range(2, 11, 2)) == 5\nassert len(range(2, 17, 2)) == 8\nassert [20 - 4 * k for k in range(6)] == [20, 16, 12, 8, 4, 0]\nassert 24 // 6 == 4 and 24 % 6 == 0\nassert 14 // 7 == 2 and list(range(7, 15, 7)) == [7, 14]\nassert len(range(3, 22, 3)) == 7 and 21 // 3 == 7\n"
+    },
+    {
+     "python": "\n# S3\nassert 12 // 4 == 3 and 56 // 8 == 7 and 64 // 8 == 8\nassert 35 // 7 == 5 and list(range(7, 36, 7)) == [7, 14, 21, 28, 35]\nassert 42 // 7 == 6 and 18 // 6 == 3 and 45 // 5 == 9 and 72 // 9 == 8\nassert 30 // 5 == 6 and 84 % 7 == 0\nassert len(range(6, 55, 6)) == 9 and 54 // 6 == 9\nassert len(range(3, 22, 3)) == 7 and 21 // 3 == 7\nassert 4 * 9 == 36 and 36 // 9 == 4\nassert 28 // 8 == 3 and 28 % 8 == 4\n"
+    },
+    {
+     "python": "\n# S4\nassert 3 * 4 == 4 * 3 == 12 and 12 // 3 == 4 and 12 // 4 == 3\nassert 4 * 5 == 20 and 20 // 5 == 4 and 30 * 2 == 60 and 60 // 2 == 30 and 60 // 30 == 2\nassert 6 * 7 == 7 * 6 == 42 and 42 // 6 == 7 and 42 // 7 == 6\nassert 4 * 8 == 32 and 32 // 8 == 4 and list(range(8, 33, 8)) == [8, 16, 24, 32]\nassert 9 * 6 == 54 and 54 // 6 == 9\nassert 6 * 8 == 48 and 48 // 8 == 6\nassert 7 * 8 == 8 * 7 == 56 and 56 // 7 == 8 and 56 // 8 == 7\nassert 5 * 9 == 45 and 45 // 9 == 5 and 27 // 3 == 9 and 8 * 7 == 56 and 9 * 7 == 63\nassert 4 * 6 == 24 and 24 // 4 == 6 and 24 // 6 == 4\nassert 9 * 8 == 72 and 5 * 3 == 15 and 4 * 9 == 36\nassert 9 * 7 == 7 * 9 == 63 and 63 // 9 == 7 and 63 // 7 == 9\nassert 8 * 12 == 96 == 80 + 16 and 96 // 12 == 8\nassert 7 * 4 == 28 and 28 // 4 == 7\nassert 12 * 12 == 144\n"
+    },
+    {
+     "python": "\n# S5, S6\nfrom fractions import Fraction as F\nassert 12 // 3 == 4 and F(3, 12) < 1 and F(3, 12) != 4\nassert 20 // 4 == 5 and 20 // 5 == 4 and F(5, 20) < 1\nassert 18 // 3 == 6 and 40 // 8 == 5 and 5 * 8 == 40\nassert 6 * 2 == 2 * 6 == 12 and 6 // 2 == 3 and F(2, 6) < 1\nassert 7 // 7 == 1 and 5 // 5 == 1\nassert 19 // 1 == 19 and 11 // 11 == 1 and 0 // 3 == 0\nfor c in range(-1000, 1000): assert c * 0 != 10 and c * 0 != 6 and c * 0 != 17 and c * 0 != 4 and c * 0 != 5\nassert 0 // 5 == 0 and 0 * 5 == 0\nassert 14 // 14 == 1 and 27 // 1 == 27 and 0 // 6 == 0\nassert 25 // 1 == 25 and 9 // 9 == 1 and 0 // 4 == 0\nassert 100 // 1 == 100 and 100 // 100 == 1 and 0 // 12 == 0 and 0 // 8 == 0 and 8 // 8 == 1 and 13 // 1 == 13\n"
+    },
+    {
+     "python": "\n# S7\nassert divmod(28, 8) == (3, 4) and 3 * 8 + 4 == 28 and 3 * 8 == 24\nassert divmod(13, 4) == (3, 1) and 2 * 8 + 12 == 28 and 12 >= 8\nassert divmod(23, 5) == (4, 3) and list(range(5, 21, 5)) == [5, 10, 15, 20] and 25 > 23 and 4 * 5 + 3 == 23\nassert divmod(1439, 4) == (359, 3) and 359 * 4 == 1436 == 1200 + 200 + 36 and 1436 + 3 == 1439\nassert divmod(38, 6) == (6, 2) and 5 * 6 + 8 == 38\nassert divmod(17, 5) == (3, 2) and 30 % 6 == 0 and 30 // 6 == 5\nassert divmod(14, 3) == (4, 2) and divmod(50, 7) == (7, 1) and 7 * 7 == 49 and 8 * 7 == 56\nassert 35 // 5 == 7 and 40 // 8 == 5 and divmod(36, 5) == (7, 1) and divmod(41, 8) == (5, 1)\nassert divmod(45, 6) == (7, 3) and 6 * 6 + 9 == 45 and 7 * 6 == 42\nassert [divmod(n, 4) for n in (8, 9, 10, 11)] == [(2, 0), (2, 1), (2, 2), (2, 3)]\nassert {n % 4 for n in range(100)} == {0, 1, 2, 3}\nassert 5 * 6 + 4 == 34 and divmod(34, 6) == (5, 4)\n"
+    },
+    {
+     "python": "\n# S8\nfrom fractions import Fraction as F\nassert divmod(30, 4) == (7, 2)\nassert divmod(98, 4) == (24, 2) and F(98, 4) == F(49, 2) == 24 + F(1, 2) and 98 / 4 == 24.5 and round(98/4 + 0.01) == 25\nassert divmod(50, 12) == (4, 2) and 4 * 12 == 48 and 5 * 12 == 60\nassert divmod(40, 6) == (6, 4) and 6 * 6 == 36 and 7 * 6 == 42\nassert divmod(25, 6) == (4, 1)\nassert divmod(23, 5) == (4, 3) and divmod(50, 8) == (6, 2) and 6 * 8 == 48\nassert divmod(75, 9) == (8, 3) and 8 * 9 == 72\nassert divmod(70, 8) == (8, 6) and 8 * 8 == 64 and 9 * 8 == 72\nassert divmod(38, 4) == (9, 2) and 9 * 4 == 36\n"
+    },
+    {
+     "python": "\n# S9\nassert 69 // 3 == 60 // 3 + 9 // 3 == 23 and 6 // 3 == 2 and 600 // 3 == 200 and 2 * 3 == 6\nassert 84 // 4 == 80 // 4 + 4 // 4 == 21 and 84 // 2 + 84 // 2 != 21\nassert 23 * 3 == 20 * 3 + 3 * 3 == 69\nassert 45 // 3 == 15 and 4 - 3 == 1 and 10 + 5 == 15 and 15 // 3 == 5 and 15 * 3 == 30 + 15 == 45\nassert 78 // 3 == 26 and 3 * 20 == 60 and 3 * 6 == 18 and 60 + 18 == 78 and 3 * 10 * 2 == 60\nassert 7 // 3 == 2 and 7 - 6 == 1 and 10 + 8 == 18 and 18 // 3 == 6\nassert 456 == 300 + 150 + 6 and 456 // 3 == 100 + 50 + 2 == 152 and 15 // 3 == 5 and 152 * 3 == 456\nassert 97 == 80 + 17 and divmod(17, 4) == (4, 1) and divmod(97, 4) == (24, 1) and 24 * 4 + 1 == 97 == 96 + 1\nassert 2596 == 2400 + 160 + 36 and 2596 // 4 == 649 == 600 + 40 + 9 and 2596 % 4 == 0 and 24 // 4 == 6 and 16 // 4 == 4\nassert 66 // 3 == 22 and 800 // 4 == 200 and 52 // 4 == 13 and 5 - 4 == 1 and 12 // 4 == 3\nassert 88 // 4 == 22 and 900 // 3 == 300 and 350 // 5 == 70 and 35 // 5 == 7\nassert 72 // 3 == 24 and 12 // 3 == 4 and 84 // 7 == 12 == 10 + 2 and 14 // 7 == 2\nassert 635 // 5 == 127 and 635 % 5 == 0 and 500 + 100 + 35 == 635\nassert divmod(79, 6) == (13, 1) and divmod(19, 6) == (3, 1) and 13 * 6 == 78\nassert 1248 == 800 + 400 + 48 and 1248 // 8 == 156 and 1248 % 8 == 0\nassert 2635 == 2100 + 490 + 45 and divmod(45, 7) == (6, 3) and divmod(2635, 7) == (376, 3) and 376 * 7 == 2632\n"
+    },
+    {
+     "python": "\n# figures\nplates = [[1, 2, 3, 4]] * 3\nassert sum(len(p) for p in plates) == 12 and all(len(p) == 4 for p in plates)\nbags = [4, 4, 4]; assert sum(bags) == 12 and len(bags) == 3\nassert 3 * 4 == 12\nassert 3 * 8 + 4 == 28 and 3 * 8 == 24\nassert 4 * 10 + 5 == 45 and 3 * (10 + 5) == 45\nassert 3 * 20 == 60 and 3 * 6 == 18 and 60 + 18 == 78 and 20 + 6 == 26\n"
+    }
+   ]
+  }
+ }
+]

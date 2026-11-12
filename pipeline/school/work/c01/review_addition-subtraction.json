@@ -1,0 +1,194 @@
+[
+ {
+  "id": "addition-subtraction",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem 'Choosing the operation' and summary of Story problems",
+    "problem": "Said whole-and-part or compare means subtract, which contradicts the page's own examples (start unknown take from, 'fewer' compare) where the answer is an addition",
+    "fix": "Rewritten by what is unknown (whole: add; part: subtract; compare: longer = shorter + difference); proof and summary updated; 'last section' made specific"
+   },
+   {
+    "severity": "error",
+    "where": "theorem 'Making a ten'",
+    "problem": "Said 'to add to 8 or 9' while the worked example uses 7 + 5",
+    "fix": "Now 'close to 10, such as 7, 8 or 9'"
+   },
+   {
+    "severity": "error",
+    "where": "theorem 'Adding and subtracting tens'",
+    "problem": "'Adding 10 makes the tens digit one larger' is false at 90 or more (94 + 10)",
+    "fix": "Qualified, with 94 + 10 = 104; added 345 + 100 and 34 - 10"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Addition and subtraction are inverse operations'",
+    "problem": "Question mark used before it is explained",
+    "fix": "Added a sentence saying ? stands for an unknown number"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Check a subtraction by adding'",
+    "problem": "Letters a, b, c used without explanation for an early-primary reader",
+    "fix": "Added 'Letters can stand for numbers' and the example 9 - 2 = 7, 7 + 2 = 9"
+   },
+   {
+    "severity": "unclear",
+    "where": "example 'Find 16 - 9 by using an addition fact'",
+    "problem": "Derivation of 9 + 7 = 16 was compressed and hard to follow",
+    "fix": "Spelled out in words (9 and 1 make 10, 10 and 6 make 16, so 9 and 1 + 6 make 16)"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Doubles and near doubles'",
+    "problem": "'next to each other' is ambiguous",
+    "fix": "Now 'differ by 1'"
+   },
+   {
+    "severity": "unclear",
+    "where": "theorem 'Three numbers: look for a ten'",
+    "problem": "No guidance when no two numbers make 10",
+    "fix": "Added the case 3 + 4 + 5 = 7 + 5 = 12"
+   },
+   {
+    "severity": "unclear",
+    "where": "definition 'Where the unknown can be'",
+    "problem": "Claimed take from stories have the same three unknowns but gave no examples",
+    "fix": "Added three take-from examples (result, change, start unknown)"
+   },
+   {
+    "severity": "unclear",
+    "where": "views 'Three ways to add 37 + 25'",
+    "problem": "Title said three but there were four items; lead-in promised a compensation method that is not shown; item 2 said 'take 3 from the 25'",
+    "fix": "Retitled 'Ways to add 37 + 25', lead-in matches the items, item reworded to '3 from the 5 ones of 25'"
+   },
+   {
+    "severity": "unclear",
+    "where": "pitfall 'For adults: estimate and check'",
+    "problem": "Estimate 'about 450 and about 400' used inconsistent rounding and was not a source's advice",
+    "fix": "Retitled 'Estimate first, then check'; estimate 460 + 380 = 840; only the England requirement is attributed"
+   },
+   {
+    "severity": "source",
+    "where": "block 'Four kinds' / conventions row Common Core progressions",
+    "problem": "Progressions (opened): sum 'sounds the same as some' (the page's wording ok); minuend/subtrahend not needed K-2. NCETM Year 3 outcomes (opened) do use minuend and subtrahend, which the page implied were never needed",
+    "fix": "Row now says both, adds ncetm-y3u7; duplicate row in 'Word phrases' removed"
+   },
+   {
+    "severity": "source",
+    "where": "conventions 'Names for making and breaking a ten' row OpenStax",
+    "problem": "Said subtraction is 'also called regrouping'; in the OpenStax 1.4 body text 'regroup' does not occur (only in image alt text); it says borrow and exchange",
+    "fix": "Row now matches: carrying is the same as regrouping by exchanging (1.3); borrow / exchange (1.4)"
+   },
+   {
+    "severity": "source",
+    "where": "conventions row NCETM (England)",
+    "problem": "'exchange, not borrow': the opened NCETM Year 3 page uses 'exchanging' but never says 'not borrow'",
+    "fix": "Reworded to what the pages say (regroup for column addition, exchange for column subtraction)"
+   },
+   {
+    "severity": "source",
+    "where": "conventions row NCETM (Word phrases)",
+    "problem": "Claimed NCETM 'names five structures'; the opened spine page only has those words in segment titles (aggregation and partitioning, augmentation and reduction, comparison, subtraction as difference)",
+    "fix": "Reworded to describe the segment titles; ncetm-as 'where' updated to 1.1, 1.5, 1.6, 1.12, 1.29"
+   },
+   {
+    "severity": "source",
+    "where": "theorem 'Counting on / proof' (block 21)",
+    "problem": "Progressions say 'counting on for subtraction is easier than counting down'; page said 'counting back many steps'",
+    "fix": "Reworded to the source claim"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: read = as is the same as'",
+    "problem": "Attributed answer-first/middle equations such as 7 = 4 + 3 to IM Grade 1; not found in the opened IM page (it says children must understand the equal sign, especially for missing-addend problems)",
+    "fix": "Replaced by the progressions' 'is the same number as' and the IM statement actually found"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'For adults: methods grow in stages'",
+    "problem": "IM claim 'double ten frames help children see whether a ten is full' not in IM (it says they show the structure of teen numbers with the ten visible); England 'number bonds to 20 by heart' is stronger than 'recall facts to 20 fluently'",
+    "fix": "Both reworded to the sources"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'more does not always mean add'",
+    "problem": "Claimed IM suggests acting out start unknown stories (not found); 'need lots of practice' not in progressions",
+    "fix": "Replaced by the progressions' Table 2 note: four harder subtypes, to work with in Grade 1 and master in Grade 2"
+   },
+   {
+    "severity": "source",
+    "where": "pitfall 'the equation should match the story'",
+    "problem": "Example '9 counters with 4 showing' attributed to IM but not in the opened page",
+    "fix": "Replaced by the page's own 11 children / 7 girls example; IM point kept (many equations per story, explain the match)"
+   },
+   {
+    "severity": "source",
+    "where": "theorem 'Compensation' and its proof; views and figure on open number line",
+    "problem": "NRICH article (opened) gives 28 + 16 = 30 + 14 and lists 74 - 38 only as practice; it does not show 76 - 40, and its number line is for compensation, not for jumps of 20, 3, 2; 'suggests showing this on a number line before doing it in your head' overstated",
+    "fix": "Subtraction form now explained only by the page's own proof; NRICH claim reworded ('a number line can give visual support'); nrich-bal removed from the jump view and figure; ncetm-as (segment 1.29) added"
+   },
+   {
+    "severity": "source",
+    "where": "requires: fluency item",
+    "problem": "CC 2.OA.B.2 asks for all sums of two one-digit numbers from memory; England Y2 says 'recall ... fluently' to 20; item merged them as 'facts to 20 by heart'",
+    "fix": "Item split into the two accurate statements"
+   },
+   {
+    "severity": "error",
+    "where": "coverage: CC 1.OA.A.2",
+    "problem": "Adding three numbers was taught but no word problem with three addends",
+    "fix": "Added a three-addend word problem (4 + 5 + 6 marbles) to the Story problems exercise"
+   },
+   {
+    "severity": "error",
+    "where": "coverage: CC 2.NBT.B.6",
+    "problem": "Adding up to four two-digit numbers missing",
+    "fix": "Added worked example 23 + 14 + 36 + 21, exercise item and summary line; requires item added"
+   },
+   {
+    "severity": "error",
+    "where": "coverage: England Y2 / CC 1.NBT.C.4",
+    "problem": "Two-digit number plus ones or tens missing",
+    "fix": "Added worked example (38 + 20, 38 + 5), check item (58 + 5), exercise item; requires item added"
+   },
+   {
+    "severity": "error",
+    "where": "coverage: England Y3, CC 2.NBT.B.8",
+    "problem": "Mental add/subtract of ones, tens, hundreds to a three-digit number and 10 or 100 more/less only partly shown",
+    "fix": "Theorem extended (345 + 100, 34 - 10); example 345 - 200; exercise items 345 + 100 and 456 - 200"
+   },
+   {
+    "severity": "error",
+    "where": "coverage: CC 2.MD.B.6",
+    "problem": "Differences on a number line were shown only within 12",
+    "fix": "Added open number line figure and views 'Two ways to subtract 43 - 26' (break a ten / count on 4 + 10 + 3), cited ccss-2md and prog-oa"
+   },
+   {
+    "severity": "style",
+    "where": "entry.key",
+    "problem": "Key lines were three instances, not the central facts",
+    "fix": "Now the general inverse relation with letters, the make-a-ten chain, and the tens-and-ones chain; aliases extended"
+   },
+   {
+    "severity": "style",
+    "where": "exercise 'Bigger numbers'",
+    "problem": "Exercise was at the 8-item limit; new items needed room",
+    "fix": "Merged routine items (63 + 25 and 48 + 36; 85 - 30, 85 - 3, 456 - 200) so that it stays at 8 items ordered routine to harder"
+   },
+   {
+    "severity": "style",
+    "where": "figures 1-7 (all)",
+    "problem": "Checked every PNG: object counts (3+2, 5 with 2 crossed; 3 hops each way on 0-12; 8 black + 6 striped over two ten frames, 8+2 and 4; bars 8, 5 and ?=3; 37 = 3 rods + 7 ones, 25 = 2 + 5, 62 = 6 rods + 2 ones; 43 = 4 tens 3 ones, 3 tens 13 ones with 2 tens and 6 ones crossed, 7 left) all match captions and text, labels readable, nothing clipped",
+    "fix": "No change; new figure (26, 30, 40, 43 with hops 4, 10, 3) also checked"
+   },
+   {
+    "severity": "style",
+    "where": "sources / Korean",
+    "problem": "Korean curriculum codes [2수01-05..07] could not be opened (dossier note); the page does not cite the Korean curriculum in the body, only the Wiktionary entries for 더하기 and 빼기, which were opened and say 3 더하기 6은 9 and 5 빼기 3 (minus)",
+    "fix": "Left as is; entry refs keep the Korean curriculum only as a general reference"
+   }
+  ]
+ }
+]

@@ -1,0 +1,140 @@
+[
+ {
+  "id": "multiplication",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "entry.links[0] and Looking ahead (ring axioms)",
+    "problem": "Said a x b = b x a and a x 0 = 0 are 'axioms of a ring'. Commutativity is not a ring axiom (only commutative rings), and a x 0 = 0 is a theorem, not an axiom.",
+    "fix": "Now says commutative rings with identity and fields; a x 0 = 0 follows from the distributive law."
+   },
+   {
+    "severity": "source",
+    "where": "block 45 (proof, doubling)",
+    "problem": "Claimed the Common Core progressions describe doubling as 'writing 4 as 2 x 2'. The progression says nothing of the kind; its example is 4 x 6 = 4 x (2 x 3) = 8 x 3.",
+    "fix": "Replaced by the progression's actual example."
+   },
+   {
+    "severity": "source",
+    "where": "block 88 (pitfall, Lim 2011)",
+    "problem": "Said predicting then confronting 'helped prospective teachers drop this belief'. The abstract reports raised awareness and surfaced misconceptions; written responses to the misconception items differed little between the two classes.",
+    "fix": "Reworded to what the abstract reports."
+   },
+   {
+    "severity": "source",
+    "where": "block 52 (pitfall, meaning first then memory)",
+    "problem": "Said 'counting in sevens is hard because it is far from tens' and advised building 7 x n on fives; the progression only says the count-by sequence for 7 is difficult, and it describes fluency as one number's table at a time, then several, then mixed.",
+    "fix": "Rewritten to the progression's statements; 4 x 7 = 4 x 5 + 4 x 2 is its own example."
+   },
+   {
+    "severity": "source",
+    "where": "block 51 (conventions, China row)",
+    "problem": "Said 45 lines arise 'when each pair is said once'; Wikipedia only says a shorter version has 45 sentences (and separately that symmetry reduces the table to 45 entries).",
+    "fix": "Now states: full table 81 terms, shorter version 45 sentences; reason for the name kept."
+   },
+   {
+    "severity": "source",
+    "where": "block 51 (conventions, Korea row)",
+    "problem": "Stated Grade 2 second semester, making a multiplication table and finding patterns as the curriculum; the yugawiki page reports this from regional support material for the 2022 curriculum, and the patterns lesson sits in the pattern unit.",
+    "fix": "Attributed to 2022 support material and described both lessons accurately."
+   },
+   {
+    "severity": "source",
+    "where": "block 39 (proof, 0 and 1)",
+    "problem": "Said NCETM uses stories with groups of 0 and groups of 1; NCETM 2.2 covers groups with 0 items and with 1 item, and does not address zero groups ('no plates').",
+    "fix": "Reworded; zero plates is explained by commutativity; src now ncetm-202 and ncetm-204."
+   },
+   {
+    "severity": "source",
+    "where": "block 24 (pitfall)",
+    "problem": "Said NCETM spends 'a whole segment' on commutativity; segment 2.5 is commutativity part 2 together with doubling and halving.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "source",
+    "where": "block 36 (theorem 2, 5, 10)",
+    "problem": "Claims that products of 2 are even and that products of 5 end in 5 or 0 were not in the cited sources (England Y2, NCETM 2.3-2.5).",
+    "fix": "Added ccss-3oa (3.OA.D.9) and im-g3l11 (choral counting by 5 and 2, ones digits) to src."
+   },
+   {
+    "severity": "source",
+    "where": "block 87 (pitfall)",
+    "problem": "Drawing advice ('Draw both') is in no source.",
+    "fix": "Turned into a plain description of what the two bar pictures look like."
+   },
+   {
+    "severity": "source",
+    "where": "block 3 (definition)",
+    "problem": "First sentence followed the IM glossary wording closely.",
+    "fix": "Rewritten in new words."
+   },
+   {
+    "severity": "source",
+    "where": "sources: prog-oa",
+    "problem": "'pp. 22-28' could not be confirmed in the combined progressions PDF.",
+    "fix": "Replaced by a description of the topics used."
+   },
+   {
+    "severity": "source",
+    "where": "block 50 (views)",
+    "problem": "'Levels' described as count everything, count in steps, use a known fact; the progression's level 3 is composing and decomposing with the associative or distributive property.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "source",
+    "where": "block 9 row 4 (signs)",
+    "problem": "Wrote brackets as 3(8); OpenStax shows (3)(8).",
+    "fix": "Changed to (3)(8)."
+   },
+   {
+    "severity": "error",
+    "where": "block 15 item 4 (exercise)",
+    "problem": "Refers to 'this picture' of stars but no picture exists, so the exercise cannot be done.",
+    "fix": "Question now states the four groups (2, 2, 3 and 1 stars) in words."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 14 check 1, block 15 item 1",
+    "problem": "Answers 3 x 6 and 6 x 5 are only correct in the groups-first reading; a Korean or other learner reading the other way would be marked wrong.",
+    "fix": "Added the group-size-first form (6 x 3, 5 x 6) to the answer."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 36",
+    "problem": "'even numbers' used without saying what they are.",
+    "fix": "Added '2, 4, 6, 8, and so on'; clarified 'next to it' as 'with the same number'."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 57 item 6 (4 times table is even)",
+    "problem": "Hint ('4 groups can be split into 2 groups of 2 groups') was garbled and the argument leaned on 'two equal halves' without saying why that gives an even number.",
+    "fix": "Hint and solution rewritten: two groups plus two groups, so a number added to itself, which is even."
+   },
+   {
+    "severity": "unclear",
+    "where": "blocks 75-76 (missing factor)",
+    "problem": "Proof muddled the groups-first reading of 8 x ? = 48 (group size unknown) with counting in eights (number of groups).",
+    "fix": "Rewritten: the stories differ (sharing versus packing) but the order of factors does not change the product, so the number is 6 either way; src adds ccss-t2."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 96 (Looking ahead)",
+    "problem": "'Numbers that make only one row are the primes' is wrong as stated: every number makes a one-row array.",
+    "fix": "Now: numbers whose only arrays are one long row or one long column (like 7)."
+   },
+   {
+    "severity": "unclear",
+    "where": "block 32 and requires",
+    "problem": "Section promised tables 'from 0 to 10' only, and England Y4 tables to 12 x 12 (core item) was listed under this section but not taught.",
+    "fix": "Added theorem, proof, worked example 12 x 8, check question and exercise for the 11 and 12 tables (NCETM 2.11, England Y4); opener and summary updated; new source ncetm-211; checks added."
+   },
+   {
+    "severity": "style",
+    "where": "lesson.minutes",
+    "problem": "Added material.",
+    "fix": "75 to 80."
+   }
+  ]
+ }
+]

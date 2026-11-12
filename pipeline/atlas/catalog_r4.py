@@ -48,6 +48,24 @@ for (cid, title, short, area, fields, stage, pre) in _m5.C:
                   msc=list(e.get("msc", [])), links=[l for l in e.get("links", []) if l.get("field") and l["field"] not in fields], refs=list(e.get("refs", [])),
                   status=None, aliases=list(e.get("aliases", [])), fields=list(fields), stage=stage))
     LESSONS_R4[cid] = dict(id=cid, **x["lesson"])
+# School mathematics (pipeline/school): same publish rule; reviewed pages in school/concepts/final_*.json.
+SCH = os.path.join(HERE, "..", "school")
+_ss = _u.spec_from_file_location("curriculum_school", os.path.join(SCH, "curriculum.py")); _ms = _u.module_from_spec(_ss); _ss.loader.exec_module(_ms)
+FINALS = {}
+for f in sorted(glob.glob(os.path.join(SCH, "concepts", "final_*.json"))):
+    for x in json.load(open(f)): FINALS[x["id"]] = x
+for f in filter(None, os.environ.get("ATLAS_SCHOOL_EXTRA", "").split(":")):   # preview drafts without publishing them
+    for x in json.load(open(f)): FINALS[x["id"]] = x
+for (cid, title, short, area, fields, stage, pre) in _ms.C:
+    x = FINALS.get(cid)
+    if not x: continue
+    assert not any(c["id"] == cid for c in C), cid
+    if not any(a["id"] == area for a in AREAS): AREAS.extend(dict(a) for a in _ms.NEW_AREAS if a["id"] == area)
+    e = x["entry"]
+    C.append(dict(id=cid, band=area, title=title, short=short, pre=list(pre), sum=e["sum"], key=list(e.get("key", [])), why=e.get("why", ""),
+                  msc=list(e.get("msc", [])), links=[l for l in e.get("links", []) if l.get("field") and l["field"] not in fields], refs=list(e.get("refs", [])),
+                  status=None, aliases=list(e.get("aliases", [])), fields=list(fields), stage=stage))
+    LESSONS_R4[cid] = dict(id=cid, **x["lesson"])
 present = {c["id"] for c in C}
 for c in C:
     c["pre"] = [p for p in c["pre"] if p in present]
@@ -63,7 +81,7 @@ for b in BANDS:
 used = {c["band"] for c in C}
 for a in AREAS:
     if not any(b["id"] == a["id"] for b in BANDS): BANDS.append(dict(a))
-ORDER = ["logic", "functions", "precalc", "calculus", "realanalysis", "complex", "harmonic", "odes", "dynamics", "pde", "functional", "linalg", "abstract", "lie",
+ORDER = ["arithmetic", "logic", "functions", "precalc", "calculus", "realanalysis", "complex", "harmonic", "odes", "dynamics", "pde", "functional", "linalg", "abstract", "lie",
          "topology", "diffgeo", "alggeo", "foundations", "analytic", "algebraic", "combinatorial", "discrete", "olyalg", "geometry", "probability", "statistics", "numerics", "computation"]
 BANDS[:] = sorted([b for b in BANDS if b["id"] not in DROP_AREAS and b["id"] in used], key=lambda b: ORDER.index(b["id"]) if b["id"] in ORDER else 99)
 assert all(c["band"] in {b["id"] for b in BANDS} for c in C), [c["id"] for c in C if c["band"] not in {b["id"] for b in BANDS}]

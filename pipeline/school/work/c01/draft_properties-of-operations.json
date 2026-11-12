@@ -1,0 +1,1592 @@
+[
+ {
+  "id": "properties-of-operations",
+  "entry": {
+   "sum": "The properties of operations are rules that hold for every number. We can add or multiply in any order ($3 + 5 = 5 + 3$) and in any grouping ($(7 + 8) + 2 = 7 + (8 + 2)$); adding 0 and multiplying by 1 change nothing; subtraction undoes addition and division undoes multiplication. Subtraction and division cannot be reordered or regrouped.",
+   "key": [
+    "a + b = b + a,\\quad a \\times b = b \\times a",
+    "(a + b) + c = a + (b + c)",
+    "a + 0 = a,\\quad a \\times 1 = a"
+   ],
+   "why": "These rules turn hard calculations into easy ones and explain why mental and written methods work; later they become the axioms of algebra, groups and rings.",
+   "msc": [],
+   "links": [
+    {
+     "field": "number-theory",
+     "note": "The properties of whole-number arithmetic are the starting point of number theory, from even numbers to divisibility."
+    },
+    {
+     "field": "linear-algebra",
+     "note": "Matrix multiplication is associative but not commutative, so the order of factors matters there."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 1.OA.B.3-4, 2.NBT.B.9, 3.OA.B.5-6, 3.OA.D.9 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-4 (2013)",
+    "Illustrative Mathematics K-5, Grade 3 Unit 1 Section C (arrays and the commutative property)",
+    "OpenStax, Prealgebra 2e, sections 7.2 and 7.4 (2020)",
+    "OpenStax, Elementary Algebra 2e, section 1.9 Properties of Real Numbers",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)",
+    "Choi and Bang, Elementary school students' understanding of the properties of whole-number operations, Journal of Educational Research in Mathematics 21(3) (2011)"
+   ],
+   "aliases": [
+    "commutative property",
+    "associative property",
+    "identity property",
+    "inverse operations",
+    "commutative law",
+    "associative law",
+    "commutativity",
+    "associativity",
+    "rules of arithmetic",
+    "laws of arithmetic",
+    "additive identity",
+    "multiplicative identity",
+    "fact families",
+    "교환법칙 (Korean: commutative law)",
+    "결합법칙 (Korean: associative law)"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 70,
+   "sources": [
+    {
+     "k": "ccss-1oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Operations and Algebraic Thinking (2010)",
+     "where": "1.OA.B.3 (with footnote), 1.OA.B.4",
+     "url": "https://www.thecorestandards.org/Math/Content/1/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-2nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.B.5-6, 2.NBT.B.9",
+     "url": "https://www.thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.B.5 (with footnote), 3.OA.B.6, 3.OA.D.9",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-4 (and Year 6 note on brackets): addition and subtraction; multiplication and division; statutory requirements and notes",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "prog-oa",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K, Counting and Cardinality; K-5, Operations and Algebraic Thinking (draft, 2011)",
+     "where": "Overview; Grade 1 (1.OA.3) and Grade 2; appendix on solution methods",
+     "url": "https://www.rcsdk12.org/cms/lib/NY01001156/Centricity/Domain/61/ccss_progression_cc_oa_k2_2001_05_08.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "im-g3",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Section C, Represent Multiplication with Arrays and the Commutative Property",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3l20",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Lesson 20, The Commutative Property",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/lesson-20/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-add",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.2 Add Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81244/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-mul",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.4 Multiply Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81255/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-div",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.5 Divide Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81256/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-comm",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "7.2 Commutative and Associative Properties",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81316/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-ident",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "7.4 Properties of Identity, Inverse and Zero",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81318/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-comm",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.5: Commutativity (part 2), doubling and halving",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-205-commutativity-part-2-doubling-and-halving/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-dist",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.10: Connecting multiplication and division, and the distributive law",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-210-connecting-multiplication-and-division-and-the-distributive-law",
+     "kind": "notes"
+    },
+    {
+     "k": "choi-bang",
+     "ref": "Choi Ji-young and Bang Jeong-suk, An analysis of elementary school students' understanding of the properties of whole-number operations (in Korean), Journal of Educational Research in Mathematics 21(3), 239-259 (2011)",
+     "where": "survey of 2,087 pupils in Grades 2, 4 and 6; textbook analysis; implications",
+     "url": "https://koreascience.or.kr/article/JAKO201129362562468.pdf",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Apply the commutative and associative properties of addition as strategies, e.g. $8 + 3 = 11$ so $3 + 8 = 11$; $2 + 6 + 4 = 2 + 10$ (CC 1.OA.B.3)",
+     "priority": "core",
+     "where": "Adding in any order; Adding three numbers: grouping"
+    },
+    {
+     "item": "Show that addition of two numbers can be done in any order and subtraction cannot (England Y2)",
+     "priority": "core",
+     "where": "Adding in any order"
+    },
+    {
+     "item": "Show that multiplication of two numbers can be done in any order and division cannot (England Y2)",
+     "priority": "core",
+     "where": "Multiplying in any order"
+    },
+    {
+     "item": "Apply the commutative and associative properties of multiplication as strategies (CC 3.OA.B.5); commutativity with arrays (IM Grade 3 Unit 1 Section C)",
+     "priority": "core",
+     "where": "Multiplying in any order; Multiplying three numbers: grouping"
+    },
+    {
+     "item": "Efficient mental methods using commutativity and associativity, e.g. $4 \\times 12 \\times 5$ (England Y3); associative law $(2 \\times 3) \\times 4 = 2 \\times (3 \\times 4)$ (England Y4 notes)",
+     "priority": "core",
+     "where": "Multiplying three numbers: grouping"
+    },
+    {
+     "item": "Recognise and use factor pairs and commutativity in mental calculations (England Y4)",
+     "priority": "common",
+     "where": "Multiplying in any order; Multiplying three numbers: grouping"
+    },
+    {
+     "item": "The effect of adding or subtracting 0 (England Y1)",
+     "priority": "core",
+     "where": "Zero and one: numbers that change nothing"
+    },
+    {
+     "item": "Multiplying by 0 and 1; dividing by 1 (England Y4)",
+     "priority": "core",
+     "where": "Zero and one: numbers that change nothing"
+    },
+    {
+     "item": "Inverse relationship between addition and subtraction; use it to check calculations and find missing numbers (England Y2-Y4; CC 1.OA.B.4)",
+     "priority": "core",
+     "where": "Inverse operations: undoing; [[addition-subtraction]]"
+    },
+    {
+     "item": "Division as an unknown-factor problem (CC 3.OA.B.6); inverse relations in multiplication and division (England Y2-Y3)",
+     "priority": "core",
+     "where": "Inverse operations: undoing; [[division]]"
+    },
+    {
+     "item": "Doubling and halving as inverses (NCETM 2.5)",
+     "priority": "common",
+     "where": "Inverse operations: undoing"
+    },
+    {
+     "item": "Explain why methods work and explain table patterns using properties of operations (CC 2.NBT.B.9, 3.OA.D.9)",
+     "priority": "common",
+     "where": "Using the properties to explain"
+    },
+    {
+     "item": "Names of the properties and their statements with letters; identity, inverse and zero properties (OpenStax Prealgebra 7.2, 7.4)",
+     "priority": "specialised",
+     "where": "Using the properties to explain; Zero and one: numbers that change nothing"
+    },
+    {
+     "item": "Additive inverse (opposite) and multiplicative inverse (reciprocal) (OpenStax Prealgebra 7.4)",
+     "priority": "specialised",
+     "where": "Inverse operations: undoing"
+    },
+    {
+     "item": "Zero divided by a nonzero number is 0; division by 0 is undefined (OpenStax Prealgebra 7.4)",
+     "priority": "specialised",
+     "where": "Zero and one: numbers that change nothing; [[division]]"
+    },
+    {
+     "item": "Meaning of multiplication as equal groups and arrays",
+     "priority": "core",
+     "where": "[[multiplication]]"
+    },
+    {
+     "item": "The distributive property, e.g. $8 \\times 7 = 8 \\times 5 + 8 \\times 2$ (CC 3.OA.B.5; England Y4)",
+     "priority": "core",
+     "where": "[[distributive-property]]"
+    },
+    {
+     "item": "Brackets and the order of operations (England Y6)",
+     "priority": "specialised",
+     "where": "separate page: Order of operations"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Make a train of 3 red cubes and 5 white cubes, then turn it around. Is it still 8 cubes? Now add $7 + 8 + 2$ two ways: $7 + 8$ first, or $8 + 2$ first. Do you get the same answer?\n\nThis page is about rules like these. They tell us what stays the same when we change the order of the numbers, change which numbers we work out first, add 0 or multiply by 1, or undo a step. The rules have names: commutative (order), associative (grouping), identity (the number that changes nothing) and inverse (undoing). They are true for every number, so they help us find answers quickly and check them.\n\nYou should already know how to add and subtract small numbers ([[addition-subtraction]]). Multiplying is met in its own page ([[multiplication]]); here we only need that $3 \\times 4$ means 3 groups of 4, or 3 rows of 4.",
+     "src": [
+      "eng-pos",
+      "ccss-1oa",
+      "os-comm",
+      "os-ident"
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Adding in any order",
+     "body": "After this section you will be able to use one addition fact to get its turned-around partner, and explain why a subtraction cannot be turned around.\n\nTry this. Make a train of 3 striped cubes and 5 plain cubes. Count the cubes. Now turn the train around so the plain cubes come first, and count again.",
+     "src": [
+      "eng-pos",
+      "ccss-1oa",
+      "prog-oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.5)\nax = fig.add_axes([0, 0, 1, 1])\ndef train(y, order):\n    x = 0.3\n    for c in order:\n        if c == 'r':\n            ax.add_patch(Rectangle((x, y), 0.8, 0.8, fc=(1.0, 0.85, 0.85), ec='red', lw=1.4, hatch='///'))\n        else:\n            ax.add_patch(Rectangle((x, y), 0.8, 0.8, fc='white', ec='black', lw=1.4))\n        x += 0.8\ntrain(1.7, 'rrrwwwww')\nax.text(7.1, 2.1, r'$3 + 5 = 8$', ha='left', va='center', fontsize=14)\ntrain(0.2, 'wwwwwrrr')\nax.text(7.1, 0.6, r'$5 + 3 = 8$', ha='left', va='center', fontsize=14)\nax.text(1.5, 2.75, '3 striped', ha='center', va='center', fontsize=11, color='red')\nax.text(4.7, 2.75, '5 plain', ha='center', va='center', fontsize=11)\nax.text(2.3, -0.25, '5 plain', ha='center', va='center', fontsize=11)\nax.text(5.5, -0.25, '3 striped', ha='center', va='center', fontsize=11, color='red')\nax.set_xlim(0, 9.4); ax.set_ylim(-0.55, 3.0); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "The same train of 8 cubes read two ways. Top: 3 striped cubes then 5 plain cubes, $3 + 5 = 8$. Bottom: the train turned around, 5 plain cubes then 3 striped cubes, $5 + 3 = 8$.",
+     "alt": "Two rows of eight square cubes. The top row has three red hatched cubes followed by five white cubes, labelled 3 + 5 = 8. The bottom row has five white cubes followed by three red hatched cubes, labelled 5 + 3 = 8.",
+     "src": [
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "The commutative property of addition",
+     "body": "When we add two numbers, we can add them in either order. The total is the same:\n\n$$3 + 5 = 5 + 3.$$\n\nBoth sides are 8. This rule is called the commutative property of addition. The England programme of study says that addition of two numbers can be done in any order. The Common Core gives this use of it: if you know $8 + 3 = 11$, then you also know $3 + 8 = 11$.\n\nExamples: $2 + 7 = 7 + 2$ (both are 9), and $10 + 6 = 6 + 10$ (both are 16).\n\nNon-example: $5 - 3 = 2$, but you cannot take 5 away from 3 and stay with whole numbers. So $5 - 3$ and $3 - 5$ are not the same. We write $5 - 3 \\neq 3 - 5$; the sign $\\neq$ means \"is not equal to\".",
+     "src": [
+      "eng-pos",
+      "ccss-1oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Addition can be done in any order",
+     "body": "For any two whole numbers $a$ and $b$:\n\n$$a + b = b + a.$$\n\nThe letters $a$ and $b$ stand for any numbers you like. Putting in $a = 3$ and $b = 5$ gives $3 + 5 = 5 + 3$.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Put $a$ cubes and then $b$ cubes in one train. Counting from the left end you count the $a$ cubes first: that is $a + b$. Turning the train around, you count the $b$ cubes first: that is $b + a$. It is the same train. No cube was added and none was taken away; only the order of counting changed. So the two totals are equal, whatever the numbers are.",
+     "src": [
+      "eng-pos",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to see that order does not matter in adding",
+     "body": "Sources show the same rule in different ways.",
+     "items": [
+      {
+       "label": "Turn it around",
+       "body": "A train of cubes, or a row of counters, has the same number of things read from either end. Pupils in England are asked to show that adding two numbers can be done in any order.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Known fact",
+       "body": "Knowing $8 + 3 = 11$ means you also know $3 + 8 = 11$. You learn one fact and get its partner free.",
+       "src": [
+        "ccss-1oa"
+       ]
+      },
+      {
+       "label": "Count on from larger",
+       "body": "For $4 + 9$, children may start at nine and count on four: ten, eleven, twelve, thirteen. This uses the rule without saying it.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Check by reordering",
+       "body": "Add the numbers again in a different order to check an addition. The England notes say this builds the idea of commutativity.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Letters",
+       "body": "$a + b = b + a$ for every pair of numbers. OpenStax calls this the commutative property of addition.",
+       "src": [
+        "os-comm"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Subtraction cannot be turned around",
+     "body": "$7 - 3 = 4$, but $3 - 7$ is not 4. With whole numbers you cannot take 7 away from 3 at all; later you will meet numbers below zero, and $3 - 7$ is one of them, not 4. Both the England programme of study (Year 2) and OpenStax say it plainly: addition is commutative, subtraction is not.",
+     "src": [
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: the name can wait",
+     "body": "The Common Core asks Grade 1 children to use these properties as strategies, and adds in a footnote that they need not use the formal names. The Common Core progressions suggest that children first recognise a property in action and talk about it after solving. The England programme of study does use the word commutative in its Year 2 requirements. A child who says \"you can swap them round and it is the same\" has the idea.",
+     "src": [
+      "ccss-1oa",
+      "prog-oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: some children accept only one order",
+     "body": "In a survey of 2,087 Korean pupils in Grades 2, 4 and 6, many judged only one of two equal expressions to be right, for example only $a + b$ and not $b + a$. Swapping was still the easiest property for them. The authors suggest teaching the properties openly in addition lessons and letting children test and explain them.",
+     "src": [
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $2 + 9$ the quick way.",
+     "solution": "Swap the numbers: $2 + 9 = 9 + 2$.\n\nStart at nine and count on two: ten, eleven.\n\nSo $2 + 9 = 11$.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "You know $6 + 8 = 14$. Write another addition fact that you now know, and check it.",
+     "solution": "Swap the numbers: $8 + 6 = 14$.\n\nCheck by counting on from 8: nine, ten, eleven, twelve, thirteen, fourteen. That is 6 counts and we reach 14, so $8 + 6 = 14$ is right.",
+     "src": [
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$7 + 5 = 12$. What is $5 + 7$?",
+       "a": "12, because the order does not change the total."
+      },
+      {
+       "q": "Fill in the box: $3 + 6 = 6 + \\square$.",
+       "a": "3."
+      },
+      {
+       "q": "Is $9 - 4$ the same as $4 - 9$?",
+       "a": "No. $9 - 4 = 5$, but 9 cannot be taken from 4 with whole numbers."
+      },
+      {
+       "q": "Which is quicker to count: $1 + 8$ or $8 + 1$? Are the answers the same?",
+       "a": "$8 + 1$ (start at eight, count one). Both are 9."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "You know $4 + 9 = 13$. Write the turned-around fact.",
+       "hint": "Swap the two numbers you add.",
+       "solution": "$9 + 4 = 13$."
+      },
+      {
+       "q": "Fill in the box: $15 + 8 = \\square + 15$.",
+       "hint": "The same two numbers must appear on both sides.",
+       "solution": "8, because $15 + 8 = 8 + 15$ (both are 23)."
+      },
+      {
+       "q": "Find $3 + 17$ by swapping the numbers.",
+       "hint": "Start at the larger number.",
+       "solution": "$3 + 17 = 17 + 3$. Count on three from 17: eighteen, nineteen, twenty. So $3 + 17 = 20$."
+      },
+      {
+       "q": "Is $10 - 2 = 2 - 10$ true or false? Explain.",
+       "hint": "Work out the left side. Can you do the right side with whole numbers?",
+       "solution": "False. $10 - 2 = 8$, but you cannot take 10 away from 2 with whole numbers. Subtraction cannot be done in any order."
+      },
+      {
+       "q": "Check $26 + 9 = 35$ by adding in the other order.",
+       "hint": "Find $9 + 26$: add the 20 first, then the 6.",
+       "solution": "$9 + 20 = 29$ and $29 + 6 = 35$. We get 35 again, so the addition is right."
+      },
+      {
+       "q": "Mia has 5 red beads and 12 blue beads. Leo has 12 red beads and 5 blue beads. Who has more beads? Answer without adding.",
+       "hint": "Compare $5 + 12$ and $12 + 5$.",
+       "solution": "They have the same number, because $5 + 12 = 12 + 5$. (Each has 17 beads.)"
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- We can add two numbers in either order: $a + b = b + a$. This is the commutative property of addition.\n- It holds because the same objects are counted, only in a different order.\n- Use it to count on from the larger number and to check an addition.\n- Subtraction cannot be turned around: $5 - 3 \\neq 3 - 5$."
+    },
+    {
+     "type": "section",
+     "title": "Adding three numbers: grouping",
+     "body": "After this section you will be able to add three or more numbers by choosing which two to add first, and show your choice with brackets.\n\nTry this. Find $7 + 8 + 2$ by adding $7 + 8$ first. Then find it again by adding $8 + 2$ first. Which way was easier?",
+     "src": [
+      "os-comm",
+      "ccss-1oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Brackets show what to do first",
+     "body": "Brackets (in the United States, parentheses) show which part of a calculation is worked out first.\n\n$(7 + 8) + 2$ means: first $7 + 8 = 15$, then $15 + 2 = 17$.\n\n$7 + (8 + 2)$ means: first $8 + 2 = 10$, then $7 + 10 = 17$.",
+     "src": [
+      "os-comm",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Circle, FancyBboxPatch\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\nr = 0.24; s = 0.6\ndef row(y):\n    xs = []\n    x = 0.4\n    for i in range(7):\n        ax.add_patch(Circle((x, y), r, fc='white', ec='black', lw=1.3)); xs.append(x); x += s\n    x += 0.45\n    for i in range(8):\n        ax.add_patch(Circle((x, y), r, fc=(0.8, 0.88, 1.0), ec='blue', lw=1.3, hatch='////')); xs.append(x); x += s\n    x += 0.45\n    for i in range(2):\n        ax.add_patch(Circle((x, y), r, fc=(0.8, 1.0, 0.8), ec='green', lw=1.3, hatch='....')); xs.append(x); x += s\n    return xs\na = row(2.6)\nax.add_patch(FancyBboxPatch((a[0] - 0.36, 2.6 - 0.36), a[14] - a[0] + 0.72, 0.72, boxstyle='round,pad=0.02', fc='none', ec='orange', lw=2.0))\nax.text((a[0] + a[14]) / 2, 3.25, r'$7 + 8 = 15$', ha='center', va='center', fontsize=12, color='orange')\nax.text(a[16] + 0.8, 2.6, r'$15 + 2 = 17$', ha='left', va='center', fontsize=12)\nb = row(0.8)\nax.add_patch(FancyBboxPatch((b[7] - 0.36, 0.8 - 0.36), b[16] - b[7] + 0.72, 0.72, boxstyle='round,pad=0.02', fc='none', ec='purple', lw=2.0, ls='--'))\nax.text((b[7] + b[16]) / 2, 0.05, r'$8 + 2 = 10$', ha='center', va='center', fontsize=12, color='purple')\nax.text(b[16] + 0.8, 0.8, r'$7 + 10 = 17$', ha='left', va='center', fontsize=12)\nax.set_xlim(0, 15.2); ax.set_ylim(-0.3, 3.6); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Both rows have the same 17 counters: 7 plain, 8 striped and 2 dotted. Top: the 7 and the 8 are grouped first, $7 + 8 = 15$, then $15 + 2 = 17$. Bottom: the 8 and the 2 are grouped first, $8 + 2 = 10$, then $7 + 10 = 17$.",
+     "alt": "Two identical rows of counters: seven white circles, eight blue hatched circles and two green dotted circles. In the top row a solid orange box surrounds the seven and the eight, labelled 7 + 8 = 15, with 15 + 2 = 17 at the right. In the bottom row a dashed purple box surrounds the eight and the two, labelled 8 + 2 = 10, with 7 + 10 = 17 at the right.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "The associative property of addition",
+     "body": "When we add three numbers, we can choose which two to add first. The total is the same:\n\n$$(7 + 8) + 2 = 7 + (8 + 2).$$\n\nBoth sides are 17. This rule is called the associative property of addition. The order of the numbers stays the same; only the grouping changes.\n\nThe Common Core gives this example: to add $2 + 6 + 4$, add the last two first to make a ten, so $2 + 6 + 4 = 2 + 10 = 12$. In England, pupils check additions by adding the numbers in a different order, which the programme of study says builds both commutativity and associativity.\n\nNon-example: grouping does change a subtraction. $(10 - 4) - 2 = 6 - 2 = 4$, but $10 - (4 - 2) = 10 - 2 = 8$.",
+     "src": [
+      "os-comm",
+      "ccss-1oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Grouping does not change a sum",
+     "body": "For any whole numbers $a$, $b$ and $c$:\n\n$$(a + b) + c = a + (b + c).$$\n\nSo we can write $a + b + c$ without brackets: either grouping gives the same total.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Lay out $a$ counters, then $b$ counters, then $c$ counters in one row, as in the picture. Grouping the first two means counting the $a$ and $b$ counters together first and then the $c$ counters. Grouping the last two means counting $b$ and $c$ together first and then adding the $a$ counters. Either way every counter in the row is counted once, so the totals are equal.",
+     "src": [
+      "os-comm",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Any order and any grouping",
+     "body": "Using both rules together, we can add three or more numbers in any order and any grouping. So look for two numbers that make 10:\n\n$$4 + 7 + 6 = (4 + 6) + 7$$\n$$= 10 + 7 = 17.$$",
+     "src": [
+      "ccss-1oa",
+      "prog-oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$4 + 7 + 6$ is $4 + (7 + 6)$. Swap the last two: $7 + 6 = 6 + 7$, so it is $4 + (6 + 7)$. Regroup: $4 + (6 + 7) = (4 + 6) + 7$. Each step uses one of the two rules, so the total never changes.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Making a ten uses grouping",
+     "body": "The make-a-ten method from [[addition-subtraction]] is the associative property at work. To find $8 + 6$, split 6 into 2 and 4, then group the 2 with the 8:\n\n$$8 + 6 = 8 + (2 + 4)$$\n$$= (8 + 2) + 4 = 10 + 4 = 14.$$\n\nThe Common Core progressions say such methods use the associative property without naming it.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 2 + 6 + 4",
+     "body": "The same sum, worked in ways that different sources describe.",
+     "items": [
+      {
+       "label": "Left to right",
+       "body": "$2 + 6 = 8$, then $8 + 4 = 12$. This always works, but it is not the only way.",
+       "src": [
+        "choi-bang"
+       ]
+      },
+      {
+       "label": "Make a ten",
+       "body": "Add $6 + 4 = 10$ first, then $2 + 10 = 12$. This is the Common Core example.",
+       "src": [
+        "ccss-1oa"
+       ]
+      },
+      {
+       "label": "Check another way",
+       "body": "Add in a different order, such as $4 + 2 + 6$: $4 + 2 = 6$ and $6 + 6 = 12$. The same answer is a check.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Brackets",
+       "body": "$(2 + 6) + 4 = 2 + (6 + 4)$, an instance of $(a + b) + c = a + (b + c)$.",
+       "src": [
+        "os-comm"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Order and grouping are different rules",
+     "body": "OpenStax keeps the two rules apart. Changing the order is the commutative property: $7 + 8 = 8 + 7$. Changing the grouping, while the numbers stay in the same order, is the associative property: $(7 + 8) + 2 = 7 + (8 + 2)$. To say which rule a step uses, look at whether the numbers moved or only the brackets moved.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: left to right is not the only way",
+     "body": "In the Korean survey, many pupils accepted only the left-to-right way of adding three numbers: about 43 in 100 in Grade 2 and about 52 in 100 in Grade 4. The authors note that textbooks often stress working from the front in order, and that grouping was much harder for pupils than swapping. They suggest teaching grouping openly across several grades.",
+     "src": [
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $6 + 9 + 4$.",
+     "solution": "Look for two numbers that make 10: $6 + 4 = 10$.\n\nSwap so that they stand together: $6 + 9 + 4 = 6 + 4 + 9$.\n\nGroup them: $(6 + 4) + 9 = 10 + 9 = 19$.\n\nSo $6 + 9 + 4 = 19$.",
+     "src": [
+      "ccss-1oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $25 + 18 + 75$.",
+     "solution": "$25 + 75 = 100$, so put those together first.\n\n$25 + 18 + 75 = (25 + 75) + 18$\n\n$= 100 + 18 = 118$.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Work out $(3 + 7) + 5$ and $3 + (7 + 5)$.",
+       "a": "$10 + 5 = 15$ and $3 + 12 = 15$. Both are 15."
+      },
+      {
+       "q": "Find $5 + 8 + 5$ by making a ten.",
+       "a": "$5 + 5 = 10$, then $10 + 8 = 18$."
+      },
+      {
+       "q": "Which rule is used: $(1 + 9) + 4 = 1 + (9 + 4)$?",
+       "a": "The associative property (grouping); the numbers stay in the same order."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $(6 + 7) + 3$ and $6 + (7 + 3)$. Which was easier?",
+       "hint": "Work out the brackets first each time.",
+       "solution": "$(6 + 7) + 3 = 13 + 3 = 16$ and $6 + (7 + 3) = 6 + 10 = 16$. The second is easier because $7 + 3$ makes 10."
+      },
+      {
+       "q": "Fill in the box: $(4 + 5) + 2 = 4 + (\\square + 2)$.",
+       "hint": "Grouping keeps the same numbers in the same order.",
+       "solution": "5. Both sides are 11."
+      },
+      {
+       "q": "Find $3 + 9 + 7$.",
+       "hint": "Which two make 10?",
+       "solution": "$3 + 7 = 10$, so $3 + 9 + 7 = (3 + 7) + 9 = 10 + 9 = 19$."
+      },
+      {
+       "q": "Find $19 + 6 + 1$.",
+       "hint": "$19 + 1$ is a round number.",
+       "solution": "$(19 + 1) + 6 = 20 + 6 = 26$."
+      },
+      {
+       "q": "Find $8 + 3 + 2 + 7$.",
+       "hint": "Make two tens.",
+       "solution": "$(8 + 2) + (3 + 7) = 10 + 10 = 20$."
+      },
+      {
+       "q": "Is $(10 - 4) - 2$ the same as $10 - (4 - 2)$? What does this tell you?",
+       "hint": "Work out each side, brackets first.",
+       "solution": "$(10 - 4) - 2 = 6 - 2 = 4$, but $10 - (4 - 2) = 10 - 2 = 8$. They are different, so we cannot regroup a subtraction the way we regroup a sum."
+      },
+      {
+       "q": "Find $36 + 47 + 14$ in your head.",
+       "hint": "Which two numbers have ones that make 10?",
+       "solution": "$36 + 14 = 50$. Then $50 + 47 = 97$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Brackets show what to work out first.\n- When adding, we may group in any way: $(a + b) + c = a + (b + c)$. This is the associative property of addition.\n- Together with swapping, we can add any list of numbers in any order and grouping.\n- Look for pairs that make 10 or 100.\n- Subtraction cannot be regrouped: $(10 - 4) - 2 \\neq 10 - (4 - 2)$."
+    },
+    {
+     "type": "section",
+     "title": "Multiplying in any order",
+     "body": "After this section you will be able to use one multiplication fact to get its turned-around partner, and explain why with an array.\n\nTry this. Lay out 3 rows of 4 counters on a sheet of paper. How many counters are there? Now turn the paper a quarter turn. How many rows are there now, and how many counters in each row?",
+     "src": [
+      "im-g3",
+      "im-g3l20",
+      "os-mul",
+      "eng-pos",
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Array",
+     "body": "An array is a set of objects in rows and columns, with the same number in every row. 3 rows of 4 counters is an array; it shows $3 \\times 4 = 12$. (On [[multiplication]] you can learn more about what $\\times$ means.)",
+     "src": [
+      "im-g3",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Circle, FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.2, 2.9)\nax = fig.add_axes([0, 0, 1, 1])\ndef arr(x0, y0, rows, cols):\n    for i in range(rows):\n        for j in range(cols):\n            ax.add_patch(Circle((x0 + j * 0.6, y0 - i * 0.6), 0.2, fc='black', ec='black', lw=1))\narr(0.5, 2.6, 3, 4)\nax.text(1.4, 0.55, '3 rows of 4', ha='center', va='center', fontsize=12)\nax.text(1.4, 0.0, r'$3 \\times 4 = 12$', ha='center', va='center', fontsize=13)\nax.add_patch(FancyArrowPatch((3.1, 1.95), (4.6, 1.95), connectionstyle='arc3,rad=-0.4', arrowstyle='-|>', mutation_scale=16, color='blue', lw=1.6))\nax.text(3.85, 2.75, 'turn', ha='center', va='center', fontsize=11, color='blue')\narr(5.2, 2.9, 4, 3)\nax.text(5.8, 0.55, '4 rows of 3', ha='center', va='center', fontsize=12)\nax.text(5.8, 0.0, r'$4 \\times 3 = 12$', ha='center', va='center', fontsize=13)\nax.set_xlim(0, 7.2); ax.set_ylim(-0.35, 3.3); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Left: 3 rows of 4 dots, $3 \\times 4 = 12$. Right: the same array turned a quarter turn, 4 rows of 3 dots, $4 \\times 3 = 12$.",
+     "alt": "On the left, an array of black dots in 3 rows with 4 dots in each row, labelled 3 rows of 4, 3 times 4 equals 12. A blue curved arrow marked turn points to the right, where an array of black dots has 4 rows with 3 dots in each row, labelled 4 rows of 3, 4 times 3 equals 12.",
+     "src": [
+      "im-g3l20",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "The commutative property of multiplication",
+     "body": "When we multiply two numbers, we can multiply them in either order. The product (the answer) is the same:\n\n$$3 \\times 4 = 4 \\times 3.$$\n\nBoth sides are 12. This rule is called the commutative property of multiplication. Illustrative Mathematics puts it as: we can multiply two numbers in any order and get the same product. The Common Core example is: if you know $6 \\times 4 = 24$, then you also know $4 \\times 6 = 24$.\n\nExamples: $2 \\times 5 = 5 \\times 2$ (both are 10), $7 \\times 3 = 3 \\times 7$ (both are 21).\n\nNon-example: $12 \\div 4 = 3$, but $4 \\div 12$ is not 3. Division cannot be done in any order.",
+     "src": [
+      "im-g3l20",
+      "ccss-3oa",
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplication can be done in any order",
+     "body": "For any two whole numbers $a$ and $b$:\n\n$$a \\times b = b \\times a.$$",
+     "src": [
+      "os-comm",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Make an array with $a$ rows and $b$ dots in each row: it has $a \\times b$ dots. Turn it a quarter turn. Now the old columns are rows: there are $b$ rows with $a$ dots in each, which is $b \\times a$ dots. Turning the array does not add or remove a single dot, so $a \\times b = b \\times a$.",
+     "src": [
+      "im-g3l20",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to see that 2 times 5 is 5 times 2",
+     "body": "Sources show this one fact in different ways.",
+     "items": [
+      {
+       "label": "Two kinds of groups",
+       "body": "One equation can be read two ways: 2 groups of 5 or 5 groups of 2. NCETM uses this to connect the 2 times table with doubling.",
+       "src": [
+        "ncetm-comm"
+       ]
+      },
+      {
+       "label": "Two arrays",
+       "body": "Illustrative Mathematics shows 10 dots as 2 groups of 5 and as 5 groups of 2, and children write $2 \\times 5 = 10$ and $5 \\times 2 = 10$.",
+       "src": [
+        "im-g3l20"
+       ]
+      },
+      {
+       "label": "Rows and columns",
+       "body": "Count an array by rows or by columns: the number of dots is the same either way.",
+       "src": [
+        "os-mul"
+       ]
+      },
+      {
+       "label": "Known fact",
+       "body": "Knowing one fact gives its partner, as in the Common Core example $6 \\times 4 = 24$ so $4 \\times 6 = 24$.",
+       "src": [
+        "ccss-3oa"
+       ]
+      },
+      {
+       "label": "Letters",
+       "body": "$a \\cdot b = b \\cdot a$ for every pair of numbers. OpenStax writes the times sign as a raised dot.",
+       "src": [
+        "os-comm"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Division cannot be turned around",
+     "body": "$12 \\div 4 = 3$, but $4 \\div 12$ is not 3: sharing 4 among 12 gives each less than one whole (it is one third, a fraction). The England programme of study asks Year 2 pupils to show that multiplication can be done in any order and division cannot, and NCETM sets out to explain why multiplication can be done in either order but division cannot.",
+     "src": [
+      "os-comm",
+      "eng-pos",
+      "ncetm-dist"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: let the child find the rule first",
+     "body": "In Illustrative Mathematics, children first write two equations for one array and explain why both fit; only then does the teacher give the name commutative property. If a child sees only one equation, prompt them to group the dots another way (circle the rows, then the columns). The Korean survey found that many younger pupils believed $a \\times b$ and $b \\times a$ could give different answers.",
+     "src": [
+      "im-g3l20",
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $9 \\times 2$ by using the other order.",
+     "solution": "$9 \\times 2 = 2 \\times 9$.\n\n$2 \\times 9$ is 2 groups of 9, which is double 9: $9 + 9 = 18$.\n\nSo $9 \\times 2 = 18$.",
+     "src": [
+      "ncetm-comm",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Draw an array for $2 \\times 6$ and write two multiplication equations for it.",
+     "solution": "Draw 2 rows with 6 dots in each row. Count: 12 dots.\n\nRead by rows: 2 rows of 6, so $2 \\times 6 = 12$.\n\nRead by columns: 6 columns of 2, so $6 \\times 2 = 12$.\n\nSo $2 \\times 6 = 6 \\times 2 = 12$.",
+     "src": [
+      "im-g3l20"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$3 \\times 8 = 24$. What is $8 \\times 3$?",
+       "a": "24."
+      },
+      {
+       "q": "Fill in the box: $5 \\times 7 = 7 \\times \\square$.",
+       "a": "5."
+      },
+      {
+       "q": "Is $10 \\div 2$ the same as $2 \\div 10$?",
+       "a": "No. $10 \\div 2 = 5$, but $2 \\div 10$ is less than 1."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "You know $4 \\times 5 = 20$. Write the turned-around fact.",
+       "hint": "Swap the two numbers you multiply.",
+       "solution": "$5 \\times 4 = 20$."
+      },
+      {
+       "q": "Draw an array for $3 \\times 5$. Write two equations for it.",
+       "hint": "Read your array by rows and then by columns.",
+       "solution": "3 rows of 5 dots, 15 dots. $3 \\times 5 = 15$ and $5 \\times 3 = 15$."
+      },
+      {
+       "q": "Find $10 \\times 6$ by using the other order.",
+       "hint": "$6 \\times 10$ is 6 tens.",
+       "solution": "$10 \\times 6 = 6 \\times 10 = 60$."
+      },
+      {
+       "q": "A box has 7 rows of 4 eggs. Another box has 4 rows of 7 eggs. Which has more eggs?",
+       "hint": "Compare $7 \\times 4$ and $4 \\times 7$.",
+       "solution": "They have the same: $7 \\times 4 = 4 \\times 7 = 28$ eggs."
+      },
+      {
+       "q": "In a multiplication table, the number in row 3, column 7 is 21. What number is in row 7, column 3? Why?",
+       "hint": "Row 3, column 7 means $3 \\times 7$.",
+       "solution": "21, because row 7, column 3 is $7 \\times 3$, and $7 \\times 3 = 3 \\times 7$. So the table is the same on both sides of its diagonal."
+      },
+      {
+       "q": "Is $8 \\div 2 = 2 \\div 8$ true or false? Explain.",
+       "hint": "Work out $8 \\div 2$. Is $2 \\div 8$ a whole number?",
+       "solution": "False. $8 \\div 2 = 4$, but sharing 2 among 8 gives each less than 1. Division cannot be turned around."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- We can multiply two numbers in either order: $a \\times b = b \\times a$. This is the commutative property of multiplication.\n- An array turned a quarter turn shows why: the rows become columns and no dot is lost.\n- Knowing one fact gives its partner, so there are fewer facts to learn.\n- Division cannot be turned around: $12 \\div 4 \\neq 4 \\div 12$."
+    },
+    {
+     "type": "section",
+     "title": "Multiplying three numbers: grouping",
+     "body": "After this section you will be able to multiply three numbers by choosing which two to multiply first, and use this to work out products in your head.\n\nTry this. Find $3 \\times 5 \\times 2$ by working out $3 \\times 5$ first. Then find it by working out $5 \\times 2$ first.",
+     "src": [
+      "ccss-3oa",
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "The associative property of multiplication",
+     "body": "When we multiply three numbers, we can choose which two to multiply first. The product is the same:\n\n$$(3 \\times 5) \\times 2 = 3 \\times (5 \\times 2).$$\n\nThe Common Core example: $3 \\times 5 = 15$, then $15 \\times 2 = 30$; or $5 \\times 2 = 10$, then $3 \\times 10 = 30$. This rule is called the associative property of multiplication. The England notes for Year 4 call it the associative law and give $(2 \\times 3) \\times 4 = 2 \\times (3 \\times 4)$.\n\nNon-example: grouping changes a division. $(16 \\div 4) \\div 2 = 4 \\div 2 = 2$, but $16 \\div (4 \\div 2) = 16 \\div 2 = 8$.",
+     "src": [
+      "ccss-3oa",
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Circle, Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.2, 2.8)\nax = fig.add_axes([0, 0, 1, 1])\ndef arr(x0, y0, rows, cols):\n    for i in range(rows):\n        for j in range(cols):\n            ax.add_patch(Circle((x0 + j * 0.6, y0 - i * 0.6), 0.2, fc='black', ec='black', lw=1))\narr(0.6, 2.4, 3, 4)\narr(3.6, 2.4, 3, 4)\nax.text(1.5, 3.05, r'$3 \\times 4 = 12$', ha='center', va='center', fontsize=12)\nax.text(4.5, 3.05, r'$3 \\times 4 = 12$', ha='center', va='center', fontsize=12)\nax.add_patch(Rectangle((0.25, 2.4 - 0.3), 5.5, 0.6, fc='none', ec='red', lw=1.8, ls='--'))\nax.text(6.0, 2.4, 'one row:\\n' + r'$4 \\times 2 = 8$', ha='left', va='center', fontsize=11, color='red')\nax.text(3.0, 0.55, r'$(3 \\times 4) \\times 2 = 12 \\times 2 = 24$', ha='center', va='center', fontsize=12)\nax.text(3.0, 0.0, r'$3 \\times (4 \\times 2) = 3 \\times 8 = 24$', ha='center', va='center', fontsize=12, color='red')\nax.set_xlim(0, 7.6); ax.set_ylim(-0.35, 3.35); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Two arrays of 3 rows of 4 dots, 24 dots in all. Counted as two arrays of 12: $(3 \\times 4) \\times 2 = 12 \\times 2 = 24$. Counted as 3 long rows across both arrays, each row with $4 \\times 2 = 8$ dots: $3 \\times (4 \\times 2) = 3 \\times 8 = 24$.",
+     "alt": "Two arrays of black dots side by side, each with 3 rows of 4 dots and labelled 3 times 4 equals 12. A dashed red box surrounds the top row of both arrays together, labelled one row: 4 times 2 equals 8. Below, two equations: (3 times 4) times 2 equals 12 times 2 equals 24, and in red, 3 times (4 times 2) equals 3 times 8 equals 24.",
+     "src": [
+      "ccss-3oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Grouping does not change a product",
+     "body": "For any whole numbers $a$, $b$ and $c$:\n\n$$(a \\times b) \\times c = a \\times (b \\times c).$$\n\nSo we can write $a \\times b \\times c$ without brackets.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Make $c$ copies of an array with $a$ rows of $b$ dots, and put them side by side, as in the picture. Counting array by array, there are $c$ arrays of $a \\times b$ dots: $(a \\times b) \\times c$. Counting row by row across all the copies, there are still $a$ long rows, and each long row has $b$ dots from each of the $c$ copies, which is $b \\times c$ dots: $a \\times (b \\times c)$. These are the same dots, so the two products are equal.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Any order and any grouping for products",
+     "body": "Using both rules together, we can multiply three or more numbers in any order and any grouping. The England programme of study gives this Year 3 example:\n\n$$4 \\times 12 \\times 5 = 4 \\times 5 \\times 12$$\n$$= 20 \\times 12 = 240.$$",
+     "src": [
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$4 \\times 12 \\times 5$ is $4 \\times (12 \\times 5)$. Swap inside the brackets: $12 \\times 5 = 5 \\times 12$, so it is $4 \\times (5 \\times 12)$. Regroup: $(4 \\times 5) \\times 12$. Each step uses one rule, so the product does not change.",
+     "src": [
+      "os-comm"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to multiply three numbers",
+     "body": "Different sources use the grouping rule for different jobs.",
+     "items": [
+      {
+       "label": "Make a ten",
+       "body": "$3 \\times 5 \\times 2$: multiply $5 \\times 2 = 10$ first, then $3 \\times 10 = 30$.",
+       "src": [
+        "ccss-3oa"
+       ]
+      },
+      {
+       "label": "Reorder, then group",
+       "body": "$4 \\times 12 \\times 5 = 4 \\times 5 \\times 12 = 20 \\times 12 = 240$, a Year 3 mental method in England.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Multiples of ten",
+       "body": "Illustrative Mathematics uses grouping when multiplying by multiples of 10: $3 \\times 40 = 3 \\times (4 \\times 10) = (3 \\times 4) \\times 10 = 120$.",
+       "src": [
+        "im-g3"
+       ]
+      },
+      {
+       "label": "Letters",
+       "body": "$(a \\cdot b) \\cdot c = a \\cdot (b \\cdot c)$. OpenStax uses this to plan ahead, grouping the numbers whose product is easy.",
+       "src": [
+        "os-comm"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: grouping is the harder idea",
+     "body": "In the Korean survey, items on grouping (for addition and for multiplication) were much harder than items on swapping; even in Grade 6 success on them was about 80 in 100 or below, and only about half of the answers were right on the items with actual numbers. The authors recommend teaching grouping openly over several years, and giving children the chance to guess, test and explain a rule.",
+     "src": [
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $5 \\times 9 \\times 2$.",
+     "solution": "$5 \\times 2 = 10$ is easy, so put those together.\n\n$5 \\times 9 \\times 2 = (5 \\times 2) \\times 9$\n\n$= 10 \\times 9 = 90$.",
+     "src": [
+      "ccss-3oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $4 \\times 7 \\times 25$.",
+     "solution": "$4 \\times 25 = 100$, so reorder and group those two.\n\n$4 \\times 7 \\times 25 = (4 \\times 25) \\times 7$\n\n$= 100 \\times 7 = 700$.",
+     "src": [
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $6 \\times 50$ by grouping.",
+     "solution": "$50 = 5 \\times 10$.\n\n$6 \\times 50 = 6 \\times (5 \\times 10) = (6 \\times 5) \\times 10$\n\n$= 30 \\times 10 = 300$.",
+     "src": [
+      "im-g3"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Work out $(2 \\times 3) \\times 4$ and $2 \\times (3 \\times 4)$.",
+       "a": "$6 \\times 4 = 24$ and $2 \\times 12 = 24$."
+      },
+      {
+       "q": "Find $2 \\times 8 \\times 5$ the easy way.",
+       "a": "$2 \\times 5 = 10$, then $10 \\times 8 = 80$."
+      },
+      {
+       "q": "Find $3 \\times 20$.",
+       "a": "$3 \\times 2 = 6$, then $6 \\times 10 = 60$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $(4 \\times 2) \\times 5$ and $4 \\times (2 \\times 5)$.",
+       "hint": "Brackets first.",
+       "solution": "$8 \\times 5 = 40$ and $4 \\times 10 = 40$."
+      },
+      {
+       "q": "Fill in the box: $(7 \\times 2) \\times 5 = 7 \\times (\\square \\times 5)$.",
+       "hint": "Grouping keeps the numbers in order.",
+       "solution": "2. Both sides are 70."
+      },
+      {
+       "q": "Find $2 \\times 9 \\times 5$.",
+       "hint": "Which two make 10?",
+       "solution": "$(2 \\times 5) \\times 9 = 10 \\times 9 = 90$."
+      },
+      {
+       "q": "Find $4 \\times 30$.",
+       "hint": "$30 = 3 \\times 10$.",
+       "solution": "$4 \\times (3 \\times 10) = (4 \\times 3) \\times 10 = 12 \\times 10 = 120$."
+      },
+      {
+       "q": "Find $25 \\times 6 \\times 4$.",
+       "hint": "$25 \\times 4$ is a round number.",
+       "solution": "$(25 \\times 4) \\times 6 = 100 \\times 6 = 600$."
+      },
+      {
+       "q": "12 is $6 \\times 2$. Use this to find $12 \\times 5$.",
+       "hint": "Write $12 \\times 5 = 6 \\times 2 \\times 5$.",
+       "solution": "$6 \\times (2 \\times 5) = 6 \\times 10 = 60$."
+      },
+      {
+       "q": "Is $(16 \\div 4) \\div 2$ the same as $16 \\div (4 \\div 2)$?",
+       "hint": "Work out each side, brackets first.",
+       "solution": "$(16 \\div 4) \\div 2 = 4 \\div 2 = 2$, but $16 \\div (4 \\div 2) = 16 \\div 2 = 8$. No: division cannot be regrouped."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- When multiplying, we may group in any way: $(a \\times b) \\times c = a \\times (b \\times c)$. This is the associative property of multiplication.\n- Several copies of an array, counted by arrays or by long rows, show why.\n- With swapping as well, we can multiply any list of numbers in any order.\n- Look for pairs that make 10 or 100, such as $2 \\times 5$ and $4 \\times 25$.\n- Division cannot be regrouped."
+    },
+    {
+     "type": "section",
+     "title": "Zero and one: numbers that change nothing",
+     "body": "After this section you will be able to say at once what happens when you add or take away 0, multiply or divide by 1, or multiply by 0.\n\nTry this. Put 4 biscuits on a plate and add no more biscuits. How many are there? Now take 3 empty plates. How many biscuits are on them altogether?",
+     "src": [
+      "eng-pos",
+      "os-ident",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Identity",
+     "body": "A number that leaves every number unchanged under an operation is called the identity for that operation.\n\n0 is the identity for addition (the additive identity): $13 + 0 = 13$, and $0 + 13 = 13$.\n\n1 is the identity for multiplication (the multiplicative identity): $43 \\times 1 = 43$, and $1 \\times 43 = 43$.\n\nNon-examples: $5 + 1 = 6$, so 1 is not the identity for addition. $5 \\times 0 = 0$, so 0 is not the identity for multiplication.",
+     "src": [
+      "os-ident"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Adding 0, taking away 0, multiplying and dividing by 1",
+     "body": "For any whole number $a$:\n\n$$a + 0 = a, \\quad a - 0 = a,$$\n$$a \\times 1 = a, \\quad a \\div 1 = a.$$",
+     "src": [
+      "os-ident",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Adding 0 puts nothing more with the $a$ things, and taking away 0 removes nothing, so $a$ things are left. $a \\times 1$ is $a$ groups of 1 thing, which is $a$ things; $1 \\times a$ is 1 group of $a$ things. Dividing $a$ things among 1 person gives that person all $a$ of them.",
+     "src": [
+      "os-ident",
+      "os-mul"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 0 gives 0",
+     "body": "For any whole number $a$:\n\n$$a \\times 0 = 0 \\quad \\text{and} \\quad 0 \\times a = 0.$$",
+     "src": [
+      "os-ident",
+      "os-mul",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$3 \\times 0$ is 3 groups with nothing in each group: 3 empty plates hold 0 biscuits. $0 \\times 3$ is no groups of 3: nothing at all. The same holds for any number in place of 3. (The two also agree because multiplication can be done in any order.)",
+     "src": [
+      "os-mul",
+      "os-ident"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways sources describe the numbers that change nothing",
+     "items": [
+      {
+       "label": "England, Year 1",
+       "body": "Pupils should see the effect of adding or subtracting 0. In Year 4 they multiply by 0 and 1 and divide by 1 mentally.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Patterns",
+       "body": "The Common Core progressions list adding 0 as a pattern that gives an answer at once: it gives the same number.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Named properties",
+       "body": "OpenStax calls these the identity property of addition and of multiplication, and puts multiplication by 0 under the properties of zero.",
+       "src": [
+        "os-ident"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Dividing with zero",
+     "body": "$0 \\div 5 = 0$, because $0 \\times 5 = 0$. But we cannot divide by 0: $4 \\div 0$ would need a number that gives 4 when multiplied by 0, and there is none. More is on [[division]].",
+     "src": [
+      "os-ident"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $0 + 27$, $27 - 0$ and $27 \\times 1$.",
+     "solution": "Adding 0 changes nothing: $0 + 27 = 27$.\n\nTaking away 0 changes nothing: $27 - 0 = 27$.\n\nMultiplying by 1 changes nothing: $27 \\times 1 = 27$.",
+     "src": [
+      "os-ident"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $9 \\times 0$ and $9 + 0$. Why are the answers different?",
+     "solution": "$9 \\times 0 = 0$: 9 groups of nothing is nothing.\n\n$9 + 0 = 9$: 9 things with nothing more is still 9.\n\nThey differ because 0 is the identity for adding, not for multiplying.",
+     "src": [
+      "os-ident"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is $56 + 0$?",
+       "a": "56."
+      },
+      {
+       "q": "What is $1 \\times 8$?",
+       "a": "8."
+      },
+      {
+       "q": "What is $8 \\times 0$?",
+       "a": "0."
+      },
+      {
+       "q": "What is $15 \\div 1$?",
+       "a": "15."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $0 + 4$ and $4 - 0$.",
+       "hint": "Adding or taking away nothing.",
+       "solution": "$0 + 4 = 4$ and $4 - 0 = 4$."
+      },
+      {
+       "q": "Find $1 \\times 12$ and $12 \\div 1$.",
+       "hint": "1 group of 12; 12 shared by 1.",
+       "solution": "Both are 12."
+      },
+      {
+       "q": "Find $0 \\times 7$ and $7 \\times 1$.",
+       "hint": "One is a multiplication by 0, the other by 1.",
+       "solution": "$0 \\times 7 = 0$ and $7 \\times 1 = 7$."
+      },
+      {
+       "q": "Fill in the box: $34 + \\square = 34$.",
+       "hint": "Which number changes nothing when added?",
+       "solution": "0."
+      },
+      {
+       "q": "Fill in the box: $\\square \\times 6 = 6$.",
+       "hint": "Which number changes nothing when multiplying?",
+       "solution": "1."
+      },
+      {
+       "q": "Find $6 \\times 3 \\times 0$ without working out $6 \\times 3$.",
+       "hint": "Regroup so the 0 is used first.",
+       "solution": "$6 \\times (3 \\times 0) = 6 \\times 0 = 0$."
+      },
+      {
+       "q": "Sam says $5 \\times 0 = 5$ because multiplying by 0 changes nothing. What would you tell him?",
+       "hint": "Think of 5 empty plates.",
+       "solution": "Multiplying by 0 gives 0: 5 groups of nothing is nothing, so $5 \\times 0 = 0$. It is adding 0 that changes nothing: $5 + 0 = 5$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- 0 is the identity for addition: $a + 0 = a$. Also $a - 0 = a$.\n- 1 is the identity for multiplication: $a \\times 1 = a$. Also $a \\div 1 = a$.\n- Multiplying by 0 always gives 0: $a \\times 0 = 0$.\n- We cannot divide by 0."
+    },
+    {
+     "type": "section",
+     "title": "Inverse operations: undoing",
+     "body": "After this section you will be able to undo an addition with a subtraction and a multiplication with a division, write the fact family of a fact, and check a calculation with the inverse.\n\nTry this. Think of a number. Add 4. Now take away 4. What do you get? Try again: multiply your number by 3, then divide by 3.",
+     "src": [
+      "eng-pos",
+      "ccss-1oa",
+      "ccss-3oa",
+      "os-div"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Inverse operations",
+     "body": "Two operations are inverse operations when one undoes the other.\n\nSubtraction undoes addition: $7 + 2 = 9$, and $9 - 2 = 7$ takes us back to 7.\n\nDivision undoes multiplication: $4 \\times 3 = 12$, and $12 \\div 3 = 4$ takes us back to 4.\n\nThe England programme of study asks Year 2 pupils to use the inverse relationship between addition and subtraction to check calculations, and to use commutativity and inverse relations in multiplying. Undoing addition is also on [[addition-subtraction]].",
+     "src": [
+      "os-div",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.2, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\ndef pair(y, a, b, fwd, back):\n    ax.text(1.0, y, a, ha='center', va='center', fontsize=16)\n    ax.text(5.0, y, b, ha='center', va='center', fontsize=16)\n    ax.add_patch(FancyArrowPatch((1.45, y + 0.2), (4.55, y + 0.2), connectionstyle='arc3,rad=-0.35', arrowstyle='-|>', mutation_scale=16, color='blue', lw=1.6))\n    ax.text(3.0, y + 0.95, fwd, ha='center', va='center', fontsize=13, color='blue')\n    ax.add_patch(FancyArrowPatch((4.55, y - 0.2), (1.45, y - 0.2), connectionstyle='arc3,rad=-0.35', arrowstyle='-|>', mutation_scale=16, color='green', lw=1.6, ls='--'))\n    ax.text(3.0, y - 0.95, back, ha='center', va='center', fontsize=13, color='green')\npair(3.4, '7', '9', r'add 2: $+\\,2$', r'take away 2: $-\\,2$')\npair(0.7, '4', '12', r'multiply by 3: $\\times\\,3$', r'divide by 3: $\\div\\,3$')\nax.set_xlim(0, 6.0); ax.set_ylim(-0.45, 4.55); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Top: adding 2 takes 7 to 9, and taking away 2 brings 9 back to 7. Bottom: multiplying by 3 takes 4 to 12, and dividing by 3 brings 12 back to 4.",
+     "alt": "Two pairs of numbers joined by curved arrows. Top: a solid blue arrow from 7 to 9 labelled add 2, and a dashed green arrow from 9 back to 7 labelled take away 2. Bottom: a solid blue arrow from 4 to 12 labelled multiply by 3, and a dashed green arrow from 12 back to 4 labelled divide by 3.",
+     "src": [
+      "os-div",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Undoing",
+     "body": "For whole numbers:\n\n1. If $a + b = c$, then $c - b = a$ and $c - a = b$.\n2. If $a \\times b = c$ and $b$ is not 0, then $c \\div b = a$.\n\nSo a subtraction can be found from an addition, and a division from a multiplication. The Common Core puts it this way: find $10 - 8$ by finding the number that makes 10 when added to 8, and find $32 \\div 8$ by finding the number that makes 32 when multiplied by 8.",
+     "src": [
+      "ccss-1oa",
+      "ccss-3oa",
+      "os-div"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "1. $c$ is made of a part $a$ and a part $b$. Taking the $b$ part away leaves the $a$ part; taking the $a$ part away leaves the $b$ part.\n\n2. $c$ things are $a$ groups of $b$. Dividing by $b$ asks how many groups of $b$ there are in $c$, and the answer is $a$.\n\nWhy must $b$ not be 0? $5 \\times 0 = 0$ and $7 \\times 0 = 0$, so knowing the answer 0 does not tell us which number we started with. Multiplying by 0 cannot be undone.",
+     "src": [
+      "os-div",
+      "os-ident"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Fact families",
+     "body": "One fact gives several related facts, using swapping and undoing together. From $3 + 7 = 10$:\n\n$$7 + 3 = 10, \\quad 10 - 7 = 3, \\quad 10 - 3 = 7.$$\n\nThe facts can also be written the other way round, such as $3 = 10 - 7$. From $3 \\times 2 = 6$ we get $2 \\times 3 = 6$, $6 \\div 3 = 2$ and $6 \\div 2 = 3$. The England programme of study gives these examples; the Common Core progressions say that writing related equations, such as $87 - 38 = 49$ and $49 + 38 = 87$, builds both swapping and the link between adding and subtracting.",
+     "src": [
+      "eng-pos",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to use undoing",
+     "body": "Sources use the inverse in different ways.",
+     "items": [
+      {
+       "label": "Missing number",
+       "body": "Find $32 \\div 8$ as $8 \\times \\square = 32$; the missing number is 4.",
+       "src": [
+        "ccss-3oa"
+       ]
+      },
+      {
+       "label": "Check a calculation",
+       "body": "In England, pupils from Year 2 check a subtraction by adding and, from Year 3, use inverse operations to check answers.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "label": "Doubling and halving",
+       "body": "Halving undoes doubling: double 6 is 12, and half of 12 is 6. NCETM links this to the 2 times table.",
+       "src": [
+        "ncetm-comm"
+       ]
+      },
+      {
+       "label": "Related equations",
+       "body": "Write all the equations that go with one fact, such as $87 - 38 = 49$ and $49 + 38 = 87$.",
+       "src": [
+        "prog-oa"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Check $56 - 19 = 37$ by adding.",
+     "solution": "If $56 - 19 = 37$, then $37 + 19$ should be 56.\n\n$37 + 19$: $37 + 20 = 57$, then take away the extra 1: $57 - 1 = 56$.\n\nWe get 56, so $56 - 19 = 37$ is right.",
+     "src": [
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $24 \\div 6$ by using a multiplication fact.",
+     "solution": "Ask: $6 \\times \\square = 24$?\n\n$6 \\times 4 = 24$.\n\nSo $24 \\div 6 = 4$.",
+     "src": [
+      "ccss-3oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Half of 18 is what number? Use doubling.",
+     "solution": "Which number doubled makes 18? Double 9 is $9 + 9 = 18$.\n\nHalving undoes doubling, so half of 18 is 9.",
+     "src": [
+      "ncetm-comm"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "For older readers: inverse numbers",
+     "body": "Later, the word inverse is also used for numbers. OpenStax says that a number and its opposite add to 0: $5 + (-5) = 0$. Here $-5$ is the number 5 steps below 0 on the [[number-line]]; it is called the additive inverse of 5. A number other than 0 and its reciprocal multiply to 1: $2 \\times \\frac{1}{2} = 1$, where $\\frac{1}{2}$ is one half; it is called the multiplicative inverse of 2. Adding $-5$ undoes adding 5, and multiplying by $\\frac{1}{2}$ undoes multiplying by 2. The number 0 has no reciprocal.",
+     "src": [
+      "os-ident"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Use $5 \\times 6 = 30$ to find $30 \\div 6$.",
+       "a": "5."
+      },
+      {
+       "q": "Which operation undoes taking away 8?",
+       "a": "Adding 8."
+      },
+      {
+       "q": "Write the fact family of $4 + 5 = 9$.",
+       "a": "$4 + 5 = 9$, $5 + 4 = 9$, $9 - 5 = 4$, $9 - 4 = 5$."
+      },
+      {
+       "q": "What is half of 14?",
+       "a": "7, because double 7 is 14."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write two division facts that come from $7 \\times 8 = 56$.",
+       "hint": "Divide the product by one of the numbers.",
+       "solution": "$56 \\div 8 = 7$ and $56 \\div 7 = 8$."
+      },
+      {
+       "q": "Find $40 \\div 5$ by using a multiplication fact.",
+       "hint": "$5 \\times \\square = 40$?",
+       "solution": "$5 \\times 8 = 40$, so $40 \\div 5 = 8$."
+      },
+      {
+       "q": "Find the missing number: $\\square - 6 = 9$.",
+       "hint": "Undo taking away 6 by adding 6.",
+       "solution": "$9 + 6 = 15$. Check: $15 - 6 = 9$."
+      },
+      {
+       "q": "Check $45 + 28 = 73$ with a subtraction.",
+       "hint": "$73 - 28$ should be 45.",
+       "solution": "$73 - 20 = 53$ and $53 - 8 = 45$. We get 45, so the addition is right."
+      },
+      {
+       "q": "Ben says $63 \\div 9 = 8$. Check with a multiplication.",
+       "hint": "Is $8 \\times 9 = 63$?",
+       "solution": "$8 \\times 9 = 72$, not 63, so Ben is wrong. $7 \\times 9 = 63$, so $63 \\div 9 = 7$."
+      },
+      {
+       "q": "Double 15, then halve the answer. What do you get, and why?",
+       "hint": "Halving undoes doubling.",
+       "solution": "Double 15 is 30, and half of 30 is 15. We are back at 15 because halving undoes doubling."
+      },
+      {
+       "q": "Ana multiplied a number by 0 and got 0. Can you tell what her number was?",
+       "hint": "Try $3 \\times 0$ and $8 \\times 0$.",
+       "solution": "No. Every number times 0 is 0 (for example $3 \\times 0 = 0$ and $8 \\times 0 = 0$), so any number could have been hers. Multiplying by 0 cannot be undone."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Subtraction undoes addition; division undoes multiplication; halving undoes doubling.\n- If $a + b = c$ then $c - b = a$. If $a \\times b = c$ and $b$ is not 0, then $c \\div b = a$.\n- One fact gives a whole fact family.\n- Use the inverse to find missing numbers and to check answers.\n- Multiplying by 0 cannot be undone."
+    },
+    {
+     "type": "section",
+     "title": "Using the properties to explain",
+     "body": "After this section you will be able to say which property each step of a calculation uses, and explain why a method or a pattern works for every number, not just one.\n\nTry this. Find $4 \\times 12 \\times 5$ in your head. Then say what you did at each step.",
+     "src": [
+      "ccss-2nbt",
+      "ccss-3oa",
+      "os-comm",
+      "os-ident",
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "The properties at a glance",
+     "body": "With letters standing for any whole numbers, the rules on this page are:\n\n1. Order (commutative): $a + b = b + a$ and $a \\times b = b \\times a$.\n2. Grouping (associative): $(a + b) + c = a + (b + c)$ and $(a \\times b) \\times c = a \\times (b \\times c)$.\n3. Identity: $a + 0 = a$ and $a \\times 1 = a$.\n4. Zero: $a \\times 0 = 0$.\n5. Inverse: if $a + b = c$ then $c - b = a$; if $a \\times b = c$ and $b$ is not 0, then $c \\div b = a$.\n\nOpenStax gathers the same properties in a table, with one more, the distributive property, which has its own page: [[distributive-property]].",
+     "src": [
+      "os-comm",
+      "os-ident"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "One example is not a reason",
+     "body": "Checking that $3 + 5 = 5 + 3$ does not show that every sum can be turned around. A reason must work for all numbers, like the cube train, which works for a train of any length. The Common Core asks children to explain why their methods work using place value and the properties of operations, and to explain patterns in the addition and multiplication tables using the properties. The Korean study recommends giving children the chance to test and justify a rule with any numbers, not only with given ones.",
+     "src": [
+      "ccss-2nbt",
+      "ccss-3oa",
+      "choi-bang"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names and signs for the properties",
+     "body": "Books and countries name and write these rules differently.",
+     "rows": [
+      {
+       "who": "Common Core (United States)",
+       "text": "Children use the properties as strategies; a footnote says they need not use the formal names.",
+       "src": [
+        "ccss-1oa",
+        "ccss-3oa"
+       ]
+      },
+      {
+       "who": "Illustrative Mathematics",
+       "text": "Children say it in their own words, such as \"we can multiply in any order\"; the teacher then gives the name commutative property.",
+       "src": [
+        "im-g3l20"
+       ]
+      },
+      {
+       "who": "England",
+       "text": "The Year 2 requirements use the word commutative; the notes speak of commutativity and associativity, the associative law and the distributive law. Calculations are grouped with brackets.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "OpenStax",
+       "text": "Commutative, associative, identity and inverse properties; 0 is the additive identity and 1 the multiplicative identity. Groups with parentheses and often writes times as a raised dot, $a \\cdot b$.",
+       "src": [
+        "os-comm",
+        "os-ident"
+       ]
+      },
+      {
+       "who": "Korean",
+       "text": "교환법칙 (commutative law), 결합법칙 (associative law), 분배법칙 (distributive law); 0 is 덧셈의 항등원 (the identity for addition).",
+       "src": [
+        "choi-bang"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Say which property each step uses: $4 \\times 12 \\times 5 = 4 \\times 5 \\times 12 = 20 \\times 12 = 240$.",
+     "solution": "Step 1: $4 \\times 12 \\times 5 = 4 \\times 5 \\times 12$. The 12 and the 5 swap places: the commutative property of multiplication.\n\nStep 2: $4 \\times 5 \\times 12 = 20 \\times 12$. We multiply $4 \\times 5 = 20$ first, choosing the grouping $(4 \\times 5) \\times 12$: the associative property of multiplication.\n\nStep 3: $20 \\times 12 = 240$, because 2 tens times 12 is 24 tens.",
+     "src": [
+      "eng-pos",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "The Common Core notes that 4 times a number is always even. Explain why, using grouping.",
+     "solution": "$4 = 2 \\times 2$, so for any whole number $n$:\n\n$4 \\times n = (2 \\times 2) \\times n$\n\n$= 2 \\times (2 \\times n)$.\n\nSo $4 \\times n$ is 2 times a whole number: it can be split into two equal parts, and that makes it even (see [[odd-even-numbers]]). For example, $4 \\times 7 = 28 = 14 + 14$.",
+     "src": [
+      "ccss-3oa",
+      "os-comm"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Which property: $9 + 6 = 6 + 9$?",
+       "a": "Commutative property of addition (order)."
+      },
+      {
+       "q": "Which property: $(2 \\times 5) \\times 7 = 2 \\times (5 \\times 7)$?",
+       "a": "Associative property of multiplication (grouping)."
+      },
+      {
+       "q": "Which property: $38 \\times 1 = 38$?",
+       "a": "Identity property of multiplication."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Name the property: $0 + 11 = 11$.",
+       "hint": "Which number changes nothing when added?",
+       "solution": "The identity property of addition (0 is the additive identity)."
+      },
+      {
+       "q": "Name the property in each step: $7 + 9 + 3 = 7 + 3 + 9 = 10 + 9 = 19$.",
+       "hint": "First the numbers move; then two of them are added first.",
+       "solution": "Swapping 9 and 3 is the commutative property of addition. Adding $7 + 3$ first, as $(7 + 3) + 9$, is the associative property of addition. Then $10 + 9 = 19$."
+      },
+      {
+       "q": "Show the steps for $5 \\times 13 \\times 2$ and name the properties.",
+       "hint": "Bring the 5 and the 2 together.",
+       "solution": "$5 \\times 13 \\times 2 = 5 \\times 2 \\times 13$ (commutative) $= (5 \\times 2) \\times 13$ (associative) $= 10 \\times 13 = 130$."
+      },
+      {
+       "q": "Kim says: \"$2 + 3 = 3 + 2$, so subtraction works in any order too.\" Find an example that shows she is wrong.",
+       "hint": "Try $5 - 2$ and $2 - 5$.",
+       "solution": "$5 - 2 = 3$, but 5 cannot be taken from 2 with whole numbers. One example where it fails is enough to show a rule is not always true."
+      },
+      {
+       "q": "In the addition table, the number in row 4, column 6 equals the number in row 6, column 4. Which property explains this?",
+       "hint": "Row 4, column 6 is $4 + 6$.",
+       "solution": "The commutative property of addition: $4 + 6 = 6 + 4$ (both are 10). The same is true for every row and column."
+      },
+      {
+       "q": "Explain why $8 \\times n$ is always even for any whole number $n$.",
+       "hint": "Write $8 = 2 \\times 4$.",
+       "solution": "$8 \\times n = (2 \\times 4) \\times n = 2 \\times (4 \\times n)$, which is 2 times a whole number, so it splits into two equal parts and is even. For example $8 \\times 3 = 24 = 12 + 12$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- The properties are order, grouping, identity, zero and inverse.\n- Name a step by asking: did the numbers move (order), did only the brackets move (grouping), or was 0 or 1 used?\n- A reason must work for every number; one example is not enough, but one counterexample shows a rule fails.\n- The properties explain why mental methods and table patterns work."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "body": "The next rule joins multiplication and addition: $3 \\times (4 + 2) = 3 \\times 4 + 3 \\times 2$. This is the distributive property ([[distributive-property]]), and with the rules on this page it explains the written methods for multiplying.\n\nThe same properties stay true for fractions, decimals and negative numbers, and in algebra they let us rewrite expressions with letters: OpenStax uses grouping to write $6 \\times (3x)$ as $(6 \\times 3)x = 18x$. The Common Core progressions describe the properties as starting as intuition and becoming explicit later.\n\nIn higher mathematics these rules become definitions. A group ([[groups]]) is a set with one operation that is associative, has an identity and has inverses; a ring ([[rings]]) has an addition and a multiplication that obey rules like the ones on this page. Not every operation is commutative: multiplying matrices ([[matrices]]) can give different answers in different orders.",
+     "src": [
+      "os-comm",
+      "prog-oa",
+      "os-ident"
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro and section 1\nassert 3 + 5 == 5 + 3 == 8\nassert 7 + 8 + 2 == 17 and (7 + 8) + 2 == 7 + (8 + 2)\nassert 3 * 4 == 12\nassert len('rrrwwwww') == 8 and 'rrrwwwww'.count('r') == 3 and 'wwwwwrrr'.count('w') == 5\nassert 8 + 3 == 3 + 8 == 11\nassert 2 + 7 == 7 + 2 == 9 and 10 + 6 == 6 + 10 == 16\nassert 5 - 3 == 2\nassert 4 + 9 == 13 and list(range(10, 14)) == [10, 11, 12, 13]\nassert 7 - 3 == 4 and 3 - 7 != 4\nassert 2 + 9 == 9 + 2 == 11 and list(range(10, 12)) == [10, 11]\nassert 6 + 8 == 8 + 6 == 14 and len(range(9, 15)) == 6\nassert 7 + 5 == 5 + 7 == 12 and 3 + 6 == 6 + 3 and 9 - 4 == 5\nassert 1 + 8 == 8 + 1 == 9\nassert 9 + 4 == 13 and 15 + 8 == 8 + 15 == 23\nassert 3 + 17 == 17 + 3 == 20 and list(range(18, 21)) == [18, 19, 20]\nassert 10 - 2 == 8\nassert 26 + 9 == 35 and 9 + 20 == 29 and 29 + 6 == 35\nassert 5 + 12 == 12 + 5 == 17\n"
+    },
+    {
+     "python": "# section 2\nassert (7 + 8) + 2 == 15 + 2 == 17 and 7 + (8 + 2) == 7 + 10 == 17\nassert 7 + 8 + 2 == 17 and 7 + 8 == 15 and 8 + 2 == 10\nassert 2 + 6 + 4 == 2 + 10 == 12\nassert (10 - 4) - 2 == 6 - 2 == 4 and 10 - (4 - 2) == 10 - 2 == 8\nassert 4 + 7 + 6 == (4 + 6) + 7 == 10 + 7 == 17\nassert 8 + 6 == 8 + (2 + 4) == (8 + 2) + 4 == 10 + 4 == 14\nassert 2 + 6 == 8 and 8 + 4 == 12 and 6 + 4 == 10 and 4 + 2 == 6 and 6 + 6 == 12\nassert 43 < 52  # survey rates quoted\nassert 6 + 9 + 4 == (6 + 4) + 9 == 19\nassert 25 + 18 + 75 == 100 + 18 == 118\nassert (3 + 7) + 5 == 15 == 3 + (7 + 5) and 3 + 12 == 15\nassert 5 + 8 + 5 == 18\nassert (1 + 9) + 4 == 1 + (9 + 4)\nassert (6 + 7) + 3 == 13 + 3 == 16 and 6 + (7 + 3) == 16\nassert (4 + 5) + 2 == 4 + (5 + 2) == 11\nassert 3 + 9 + 7 == 19 and (19 + 1) + 6 == 26 and 19 + 6 + 1 == 26\nassert 8 + 3 + 2 + 7 == (8 + 2) + (3 + 7) == 20\nassert 36 + 14 == 50 and 50 + 47 == 97 and 36 + 47 + 14 == 97\n# figure: 7 + 8 + 2 counters\nassert 7 + 8 + 2 == 17 and 15 + 2 == 17 and 7 + 10 == 17\n"
+    },
+    {
+     "python": "# section 3\nassert 3 * 4 == 4 * 3 == 12\nassert 6 * 4 == 4 * 6 == 24\nassert 2 * 5 == 5 * 2 == 10 and 7 * 3 == 3 * 7 == 21\nassert 12 // 4 == 3 and 12 % 4 == 0 and 4 / 12 != 3\nassert abs(4 / 12 - 1 / 3) < 1e-12\nassert 9 * 2 == 2 * 9 == 9 + 9 == 18\nassert 2 * 6 == 6 * 2 == 12\nassert 3 * 8 == 8 * 3 == 24 and 5 * 7 == 7 * 5\nassert 10 / 2 == 5 and 2 / 10 < 1\nassert 4 * 5 == 5 * 4 == 20 and 3 * 5 == 5 * 3 == 15\nassert 10 * 6 == 6 * 10 == 60 and 7 * 4 == 4 * 7 == 28\nassert 3 * 7 == 7 * 3 == 21\nassert 8 / 2 == 4 and 2 / 8 < 1\n# figure: arrays\nassert len([(i, j) for i in range(3) for j in range(4)]) == 12 == len([(i, j) for i in range(4) for j in range(3)])\n"
+    },
+    {
+     "python": "# section 4\nassert (3 * 5) * 2 == 15 * 2 == 30 and 3 * (5 * 2) == 3 * 10 == 30\nassert (2 * 3) * 4 == 2 * (3 * 4) == 24\nassert (16 // 4) // 2 == 4 // 2 == 2 and 16 // (4 // 2) == 16 // 2 == 8\nassert (3 * 4) * 2 == 12 * 2 == 24 and 3 * (4 * 2) == 3 * 8 == 24 and 4 * 2 == 8\nassert 2 * 12 == 24\nassert 4 * 12 * 5 == 4 * 5 * 12 == 20 * 12 == 240\nassert 3 * 40 == 3 * (4 * 10) == (3 * 4) * 10 == 120\nassert 80 <= 100\nassert 5 * 9 * 2 == (5 * 2) * 9 == 90\nassert 4 * 7 * 25 == (4 * 25) * 7 == 700\nassert 6 * 50 == (6 * 5) * 10 == 30 * 10 == 300\nassert 6 * 4 == 24 and 2 * 12 == 24\nassert 2 * 8 * 5 == 80 and 3 * 20 == 60 and 3 * 2 == 6\nassert (4 * 2) * 5 == 8 * 5 == 40 == 4 * (2 * 5) == 4 * 10\nassert (7 * 2) * 5 == 7 * (2 * 5) == 70\nassert 2 * 9 * 5 == 90\nassert 4 * 30 == (4 * 3) * 10 == 12 * 10 == 120\nassert 25 * 6 * 4 == (25 * 4) * 6 == 600\nassert 12 == 6 * 2 and 12 * 5 == 6 * (2 * 5) == 60\n# figure: two 3x4 arrays\nassert 2 * len([(i, j) for i in range(3) for j in range(4)]) == 24\n"
+    },
+    {
+     "python": "# section 5\nassert 13 + 0 == 0 + 13 == 13 and 43 * 1 == 1 * 43 == 43\nassert 5 + 1 == 6 and 5 * 0 == 0\nfor a in range(0, 50):\n    assert a + 0 == a and a - 0 == a and a * 1 == a and a // 1 == a and a * 0 == 0 == 0 * a\nassert 3 * 0 == 0 == 0 * 3\nassert 0 // 5 == 0 and 0 * 5 == 0\nassert not any(n * 0 == 4 for n in range(1000))\nassert 0 + 27 == 27 and 27 - 0 == 27 and 27 * 1 == 27\nassert 9 * 0 == 0 and 9 + 0 == 9\nassert 56 + 0 == 56 and 1 * 8 == 8 and 8 * 0 == 0 and 15 // 1 == 15\nassert 0 + 4 == 4 and 4 - 0 == 4 and 1 * 12 == 12 and 12 // 1 == 12\nassert 0 * 7 == 0 and 7 * 1 == 7 and 34 + 0 == 34 and 1 * 6 == 6\nassert 6 * (3 * 0) == 6 * 0 == 0 and 6 * 3 * 0 == 0\nassert 5 * 0 == 0 and 5 + 0 == 5\n"
+    },
+    {
+     "python": "# section 6\nassert 7 + 2 == 9 and 9 - 2 == 7 and 4 * 3 == 12 and 12 // 3 == 4\nassert 10 - 8 == 2 and 8 + 2 == 10 and 32 // 8 == 4 and 4 * 8 == 32\nassert 5 * 0 == 0 == 7 * 0\nassert 3 + 7 == 7 + 3 == 10 and 10 - 7 == 3 and 10 - 3 == 7\nassert 3 * 2 == 2 * 3 == 6 and 6 // 3 == 2 and 6 // 2 == 3\nassert 87 - 38 == 49 and 49 + 38 == 87\nassert 6 * 2 == 12 and 12 // 2 == 6\nassert 56 - 19 == 37 and 37 + 20 == 57 and 57 - 1 == 56\nassert 24 // 6 == 4 and 6 * 4 == 24\nassert 9 + 9 == 18 and 18 // 2 == 9\nassert 5 + (-5) == 0\nfrom fractions import Fraction as F\nassert 2 * F(1, 2) == 1\nassert 5 * 6 == 30 and 30 // 6 == 5\nassert 4 + 5 == 5 + 4 == 9 and 9 - 5 == 4 and 9 - 4 == 5 and 14 // 2 == 7 and 7 + 7 == 14\nassert 56 // 8 == 7 and 56 // 7 == 8 and 7 * 8 == 56\nassert 40 // 5 == 8 and 5 * 8 == 40\nassert 9 + 6 == 15 and 15 - 6 == 9\nassert 45 + 28 == 73 and 73 - 20 == 53 and 53 - 8 == 45\nassert 8 * 9 == 72 and 7 * 9 == 63 and 63 // 9 == 7\nassert 15 * 2 == 30 and 30 // 2 == 15\nassert 3 * 0 == 0 and 8 * 0 == 0\n# figure\nassert 7 + 2 == 9 and 9 - 2 == 7 and 4 * 3 == 12 and 12 // 3 == 4\n"
+    },
+    {
+     "python": "# section 7 and looking ahead\nassert 4 * 12 * 5 == 4 * 5 * 12 == 20 * 12 == 240 and 4 * 5 == 20\nfor n in range(0, 200):\n    assert (4 * n) % 2 == 0 and 4 * n == (2 * 2) * n == 2 * (2 * n)\n    assert (8 * n) % 2 == 0 and 8 * n == 2 * (4 * n)\nassert 4 * 7 == 28 == 14 + 14\nassert 9 + 6 == 6 + 9 and (2 * 5) * 7 == 2 * (5 * 7) and 38 * 1 == 38 and 0 + 11 == 11\nassert 7 + 9 + 3 == 7 + 3 + 9 == 10 + 9 == 19\nassert 5 * 13 * 2 == 5 * 2 * 13 == 10 * 13 == 130\nassert 5 - 2 == 3 and 2 + 3 == 3 + 2\nassert 4 + 6 == 6 + 4 == 10\nassert 8 * 3 == 24 == 12 + 12\nassert 3 * (4 + 2) == 3 * 4 + 3 * 2 == 18\nassert 6 * 3 == 18\nassert 8 * 7 == 8 * 5 + 8 * 2 == 56\nimport numpy as np\nA = np.array([[0, 1], [0, 0]]); Bm = np.array([[0, 0], [1, 0]])\nassert not (A @ Bm == Bm @ A).all()\n"
+    }
+   ]
+  }
+ }
+]

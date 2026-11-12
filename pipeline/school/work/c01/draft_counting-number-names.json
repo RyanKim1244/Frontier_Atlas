@@ -1,0 +1,1437 @@
+[
+ {
+  "id": "counting-number-names",
+  "entry": {
+   "sum": "Counting finds how many things are in a group: we say the number words in a fixed order, give exactly one word to each thing, and the last word said is the number of things. The number does not depend on the order of counting or on how the things are arranged, and each next number in the count is one more. Children learn to count to 100 and beyond, read and write numerals and number words, use 0 for none, count on and back, and count in twos, fives and tens.",
+   "key": [
+    "\\text{last word said} = \\text{how many}",
+    "\\text{next number} = \\text{one more}",
+    "0 = \\text{none}"
+   ],
+   "why": "Every later idea about whole numbers, from comparing and adding to place value and multiplication, rests on counting and on the fact that each next number is one more.",
+   "msc": [
+    "97F30"
+   ],
+   "links": [
+    {
+     "field": "combinatorics",
+     "note": "One-to-one counting is a matching (bijection) between objects and the words one to n, the basic idea of combinatorial counting."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, Kindergarten Counting and Cardinality (K.CC) (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-2 (2013)",
+    "Illustrative Mathematics K-5, Kindergarten Units 1, 2 and 6",
+    "R. Gelman and C. R. Gallistel, The Child's Understanding of Number (1978)"
+   ],
+   "aliases": [
+    "counting",
+    "number names",
+    "number words",
+    "counting and cardinality",
+    "cardinality",
+    "rote counting",
+    "skip-counting (US)",
+    "counting in multiples (UK)",
+    "subitising / subitizing"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 50,
+   "sources": [
+    {
+     "k": "ccKCC",
+     "ref": "Common Core State Standards Initiative, Mathematics: Kindergarten, Counting and Cardinality (2010)",
+     "where": "K.CC.A.1-3, K.CC.B.4-5",
+     "url": "https://thecorestandards.org/Math/Content/K/CC/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Number and Operations in Base Ten (2010)",
+     "where": "1.NBT.A.1",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.A.2",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Year 1 and Year 2, Number - number and place value",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "kor15",
+     "ref": "Korean Ministry of Education, 2015 revised mathematics curriculum, as quoted in a koreascience.kr paper (JAKO202213341977585)",
+     "where": "[2수01-01], [2수01-02]",
+     "url": "https://koreascience.kr/article/JAKO202213341977585.pdf",
+     "kind": "curriculum"
+    },
+    {
+     "k": "imK",
+     "ref": "Illustrative Mathematics K-5, Kindergarten scope and sequence",
+     "where": "Unit 1 sections B and D; Unit 2; Unit 6",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK2L1",
+     "ref": "Illustrative Mathematics, Kindergarten",
+     "where": "Unit 2 Lesson 1, Fingers as a Math Tool",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-2/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK2L17",
+     "ref": "Illustrative Mathematics, Kindergarten",
+     "where": "Unit 2 Lesson 17, Order Towers and Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-2/lesson-17/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1",
+     "ref": "Illustrative Mathematics K-5, Grade 1 scope and sequence",
+     "where": "Unit 8 section C, Numbers to 120",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics, Grade 1",
+     "where": "Unit 4 Lesson 10, Write Two-Digit Numbers",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im2U5L1",
+     "ref": "Illustrative Mathematics, Grade 2",
+     "where": "Unit 5 Lesson 1, How Do We Compose a Hundred? (choral count)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "thompson",
+     "ref": "Ian Thompson, The principal counting principles (on R. Gelman and C. R. Gallistel, The Child's Understanding of Number, 1978)",
+     "where": "whole article",
+     "url": "https://prek-math-te.stanford.edu/system/files/media/document/2017/The%20Principal%20Counting%20Principles.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "staves",
+     "ref": "Les Staves, Counting: a deceptively simple skill (NCETM)",
+     "where": "whole article",
+     "url": "https://blogs.glowscotland.org.uk/gc/public/gccleadersofearlylearning/uploads/sites/7271/2018/11/counting_a_deceptively_simple_skill.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "ncetm",
+     "ref": "NCETM, Primary subject knowledge audit: Number (2022)",
+     "where": "counting principles, cardinality, subitising, conservation",
+     "url": "https://www.ncetm.org.uk/media/4zwl1w5l/pska-num-q1.pdf",
+     "kind": "notes"
+    },
+    {
+     "k": "ies",
+     "ref": "Institute of Education Sciences (REL), Teaching Math to Young Children toolkit",
+     "where": "modules on subitizing and meaningful counting",
+     "url": "https://ies.ed.gov/ncee/rel/math-young-children",
+     "kind": "research"
+    },
+    {
+     "k": "engNum",
+     "ref": "Wikipedia, English numerals",
+     "where": "cardinal numbers",
+     "url": "https://en.wikipedia.org/wiki/English_numerals",
+     "kind": "reference"
+    },
+    {
+     "k": "korNum",
+     "ref": "Wikipedia, Korean numerals",
+     "where": "native and Sino-Korean numerals; usage",
+     "url": "https://en.wikipedia.org/wiki/Korean_numerals",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Say the number words in order to 20, then to 100 by ones and by tens (CC K.CC.A.1; England Y1)",
+     "priority": "core",
+     "where": "Saying the number words in order; Counting past 20 to 100 and beyond"
+    },
+    {
+     "item": "Count on from any given number, not only from 1 (CC K.CC.A.2; England Y1)",
+     "priority": "core",
+     "where": "Counting on and counting back"
+    },
+    {
+     "item": "Count backwards from any number (England Y1)",
+     "priority": "core",
+     "where": "Counting on and counting back"
+    },
+    {
+     "item": "One number word for each object, each object counted once (CC K.CC.B.4a)",
+     "priority": "core",
+     "where": "Counting a group of objects"
+    },
+    {
+     "item": "The last number word said tells how many (CC K.CC.B.4b)",
+     "priority": "core",
+     "where": "Counting a group of objects"
+    },
+    {
+     "item": "The number of objects does not depend on their arrangement or on the order of counting (CC K.CC.B.4b, K.CC.B.5)",
+     "priority": "core",
+     "where": "Moving things around does not change how many"
+    },
+    {
+     "item": "Count up to 20 objects in a line, array or circle, and up to 10 scattered; count out a given number of objects (CC K.CC.B.5)",
+     "priority": "core",
+     "where": "Counting a group of objects; Moving things around does not change how many"
+    },
+    {
+     "item": "Read and write numerals 0 to 20; use 0 for a group with no objects (CC K.CC.A.3)",
+     "priority": "core",
+     "where": "Writing numbers: numerals, words and zero"
+    },
+    {
+     "item": "Read and write numbers 1 to 20 in numerals and in words (England Y1); to at least 100 in words (England Y2)",
+     "priority": "core",
+     "where": "Writing numbers: numerals, words and zero; Counting past 20 to 100 and beyond"
+    },
+    {
+     "item": "Each next number in the count is one more; given a number, find one more and one less (CC K.CC.B.4c; England Y1)",
+     "priority": "core",
+     "where": "One more and one less"
+    },
+    {
+     "item": "Count, read and write numbers to 100 (England Y1) and to 120 from any starting number (CC 1.NBT.A.1); count, read and write numbers 0 to 100 (Korea, 2015 curriculum [2수01-01])",
+     "priority": "core",
+     "where": "Counting past 20 to 100 and beyond"
+    },
+    {
+     "item": "Count in multiples of 2, 5 and 10 (England Y1); skip-count by 5s and 10s (CC 2.NBT.A.2); count in tens from any number (England Y2)",
+     "priority": "common",
+     "where": "Counting in twos, fives and tens"
+    },
+    {
+     "item": "Recognise small groups (up to 4) without counting (IM Kindergarten Unit 1 section B)",
+     "priority": "common",
+     "where": "Seeing small numbers at a glance"
+    },
+    {
+     "item": "Counting words in two languages or two word sets (e.g. Korean native and Sino-Korean numbers)",
+     "priority": "common",
+     "where": "Saying the number words in order"
+    },
+    {
+     "item": "Count in steps of 3 (England Y2), 4, 8, 50 and 100 (England Y3) and other steps",
+     "priority": "specialised",
+     "where": "[[patterns-sequences]]"
+    },
+    {
+     "item": "What the digits of a two-digit number mean (tens and ones)",
+     "priority": "specialised",
+     "where": "[[place-value]]"
+    },
+    {
+     "item": "Comparing groups and numbers: more, fewer, the same",
+     "priority": "specialised",
+     "where": "[[comparing-ordering-numbers]]"
+    },
+    {
+     "item": "Splitting a number into parts (number bonds)",
+     "priority": "specialised",
+     "where": "[[composing-decomposing-numbers]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Counting answers the question \"how many?\". To count, we say the number words in a fixed order, one, two, three, and so on, and we give one word to each thing we count. The last word we say tells us how many things there are.\n\nThis page goes step by step: first the number words, then counting real objects, then why moving things around does not change the count, then seeing small groups at a glance, writing numbers (numerals, words and zero), one more and one less, counting on and back, counting to 100 and beyond, and counting in twos, fives and tens. It follows the Common Core standards for Kindergarten to Grade 2, the National Curriculum in England for Years 1 and 2, the Korean primary curriculum, the Illustrative Mathematics lessons, and research on how children learn to count.\n\nEach section starts with something to try, ends with exercises, and has notes for the adult helping.",
+     "src": [
+      "ccKCC",
+      "eng",
+      "kor15",
+      "imK",
+      "thompson"
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Saying the number words in order",
+     "src": [
+      "ccKCC",
+      "eng",
+      "imK2L1",
+      "thompson"
+     ],
+     "body": "After this section you will be able to say the number words from one to twenty in the right order, every time.\n\nTry this first. Hold up one finger and say \"one\". Hold up another finger and say \"two\". Keep going until all ten fingers are up. What was the last word you said?\n\nThe number words are a list that we learn by heart, like the words of a song: one, two, three, four, five, six, seven, eight, nine, ten. Before we can count anything we need this list, and we need to say it in the same order every time."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ies"
+     ],
+     "caption": "A number path from 1 to 20: twenty boxes in two rows of ten, with the numbers in counting order.",
+     "alt": "Twenty square boxes in two rows. The top row holds 1 to 10, the bottom row holds 11 to 20, left to right.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6, 1.5)\nax = fig.add_axes([0, 0, 1, 1])\nfor i in range(20):\n    r, c = divmod(i, 10)\n    ax.add_patch(Rectangle((c, -r), 1, 1, fill=False, ec='black', lw=1.0))\n    ax.text(c + 0.5, -r + 0.5, str(i + 1), ha='center', va='center', fontsize=12)\nax.set_xlim(-0.1, 10.1); ax.set_ylim(-1.1, 1.1); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Number words",
+     "src": [
+      "ccKCC",
+      "eng",
+      "engNum"
+     ],
+     "body": "The number words are the names of the numbers. In English the first twenty are:\n\none, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty.\n\nEach number also has a short written sign called a numeral: 1, 2, 3, and so on. The word \"seven\" and the numeral 7 name the same number."
+    },
+    {
+     "type": "theorem",
+     "title": "The order never changes",
+     "src": [
+      "thompson"
+     ],
+     "body": "The number words must always be said in the same order. Researchers call this the stable-order principle. If the order changed from one count to the next, two people counting the same toys could get different answers."
+    },
+    {
+     "type": "views",
+     "title": "Ways to practise the number words",
+     "body": "Different books practise the same list of words in different ways.",
+     "items": [
+      {
+       "label": "Fingers",
+       "body": "Say one word for each finger you raise, from one to ten. Then show a number on your fingers when someone says it.",
+       "src": [
+        "imK2L1"
+       ]
+      },
+      {
+       "label": "Number path",
+       "body": "Point to the boxes of a number path in order while saying the words. The boxes show the order and the numerals together.",
+       "src": [
+        "ies"
+       ]
+      },
+      {
+       "label": "Choral count",
+       "body": "A group says the count together while an adult writes each number down, so everyone can look back at the list and spot patterns.",
+       "src": [
+        "im2U5L1"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Number words in different languages",
+     "body": "The idea of counting is the same everywhere, but the words differ.",
+     "rows": [
+      {
+       "who": "English, 1 to 12",
+       "text": "One to ten, then eleven and twelve, which have their own names and do not sound like \"one-ten\" or \"two-ten\".",
+       "src": [
+        "engNum"
+       ]
+      },
+      {
+       "who": "English, 13 to 19",
+       "text": "These end in -teen, which marks the numbers 13 to 19: thirteen, fourteen, ..., nineteen. The ones part is said first: fourteen is four and ten.",
+       "src": [
+        "engNum"
+       ]
+      },
+      {
+       "who": "Korean, native words",
+       "text": "하나 (hana) 1, 둘 (dul) 2, 셋 (set) 3, 넷 (net) 4, 다섯 (daseot) 5, 여섯 (yeoseot) 6, 일곱 (ilgop) 7, 여덟 (yeodeol) 8, 아홉 (ahop) 9, 열 (yeol) 10; then 열하나 (ten-one) for 11 and 스물 (seumul) for 20. Used to count objects and people, for age with 살, and for hours.",
+       "src": [
+        "korNum"
+       ]
+      },
+      {
+       "who": "Korean, Sino-Korean words",
+       "text": "일 (il) 1, 이 (i) 2, 삼 (sam) 3, 사 (sa) 4, 오 (o) 5, 육 (yuk) 6, 칠 (chil) 7, 팔 (pal) 8, 구 (gu) 9, 십 (sip) 10; 11 is 십일 (ten-one) and 21 is 이십일 (two-ten-one). Used for dates, money, minutes, phone numbers and large numbers.",
+       "src": [
+        "korNum"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: reciting is not yet counting",
+     "src": [
+      "staves",
+      "thompson"
+     ],
+     "body": "A child may say the words to ten or twenty perfectly, like a rhyme, without linking them to things. That is a good start, but it is not counting yet. Watch whether the child can use the words to find how many, which is the next section. A child who says the words in an unusual but fixed order (for example one, two, four, every time) has understood that the order must stay the same, and only needs to learn the usual list."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: fingers and mirrors",
+     "src": [
+      "imK2L1"
+     ],
+     "body": "When a child copies a partner's fingers face to face, the hands are mirrored, which can confuse. Some children also think five is the largest number a hand can show; show that two hands together can show numbers up to ten."
+    },
+    {
+     "type": "example",
+     "body": "Say the number words from six to twelve.",
+     "solution": "Start at six and say each next word in the list:\n\n1. six\n2. seven\n3. eight\n4. nine\n5. ten\n6. eleven\n7. twelve\n\nThat is seven words in all."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Which word comes just after nine?",
+       "a": "Ten."
+      },
+      {
+       "q": "Which word comes just before fifteen?",
+       "a": "Fourteen."
+      },
+      {
+       "q": "What is the numeral for the word eighteen?",
+       "a": "18."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Say the number words from one to ten while raising a finger for each. How many fingers are up at the end?",
+       "hint": "One finger goes up for each word.",
+       "solution": "All ten fingers are up. The last word, ten, matches the ten fingers."
+      },
+      {
+       "q": "Fill the gaps: eleven, twelve, ___, fourteen, ___, sixteen.",
+       "hint": "Look at the number path: the second row starts at 11.",
+       "solution": "Thirteen and fifteen: eleven, twelve, thirteen, fourteen, fifteen, sixteen."
+      },
+      {
+       "q": "Which number word is missing: sixteen, seventeen, nineteen, twenty?",
+       "hint": "Say the list aloud and listen for the jump.",
+       "solution": "Eighteen is missing. It comes between seventeen and nineteen."
+      },
+      {
+       "q": "Ana counts: one, two, three, five, six. What went wrong?",
+       "hint": "Compare with the list on the number path.",
+       "solution": "She left out four. The list is one, two, three, four, five, six."
+      },
+      {
+       "q": "Write the numerals for the words twelve, fourteen and twenty.",
+       "hint": "Find each word on the number path.",
+       "solution": "12, 14 and 20."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- The number words are a list said in the same order every time.\n- One to twelve have their own names; 13 to 19 end in -teen.\n- Each number has a word (seven) and a numeral (7).\n- Other languages have other words; Korean has two sets."
+    },
+    {
+     "type": "section",
+     "title": "Counting a group of objects",
+     "src": [
+      "ccKCC",
+      "thompson",
+      "ies",
+      "imK"
+     ],
+     "body": "After this section you will be able to count a group of up to twenty things and say how many there are.\n\nTry this first. Put five spoons on a table. Touch each spoon and say a number word as you touch it. Move each spoon to one side once you have counted it. What word did you say last? How many spoons are there?\n\nTo count a group we join two things: the list of number words, and the objects. Each object gets exactly one word. Moving or touching each object as we count helps us keep track of which ones are counted and which are not counted yet."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "thompson",
+      "ccKCC"
+     ],
+     "caption": "Counting five balls: each ball gets one number word, in order. The last word, five, tells how many: there are 5 balls.",
+     "alt": "Five circles in a row. Under them the words one, two, three, four, five. To the right: how many? five.",
+     "code": "from matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6, 1.6)\nax = fig.add_axes([0, 0, 1, 1])\nwords = ['one', 'two', 'three', 'four', 'five']\nfor i, w in enumerate(words):\n    ax.add_patch(Circle((i * 1.3, 1), 0.42, fill=False, ec='black', lw=1.2))\n    ax.text(i * 1.3, 0.2, w, ha='center', va='center', fontsize=12)\nax.text(6.9, 0.6, 'how many?\\nfive', ha='center', va='center', fontsize=12, color='blue')\nax.set_xlim(-0.6, 7.8); ax.set_ylim(-0.2, 1.6); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "One-to-one counting",
+     "src": [
+      "ccKCC",
+      "thompson"
+     ],
+     "body": "When we count, we say the number words in order and give one word to each object, and one object to each word. No object is left out and no object is counted twice. This is called one-to-one counting (the one-one principle)."
+    },
+    {
+     "type": "theorem",
+     "title": "The last word tells how many",
+     "src": [
+      "ccKCC",
+      "thompson"
+     ],
+     "body": "When you have counted every object once, the last number word you said is the number of objects in the group. This is the cardinal principle: the last word is not just the name of the last object, it is the answer to \"how many?\"."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "thompson"
+     ],
+     "body": "Each object got one word, and each word went to one object. So there are just as many objects as words used. The words used were one, two, three, and so on up to the last word, so the last word says how many words were used, and that is how many objects there are."
+    },
+    {
+     "type": "views",
+     "title": "Ways to count a group",
+     "body": "The same rule, one word per thing, is practised with different materials.",
+     "items": [
+      {
+       "label": "Move them",
+       "body": "Move each counted object from a 'not counted' pile to a 'counted' pile. Movable things make it easy to see what is left to count.",
+       "src": [
+        "thompson"
+       ]
+      },
+      {
+       "label": "Touch or point",
+       "body": "Touch or point to each object in turn as you say each word, making sure the finger stops on every object.",
+       "src": [
+        "ies",
+        "ncetm"
+       ]
+      },
+      {
+       "label": "Pictures in frames",
+       "body": "Count pictures arranged in 5-frames, lines, circles and arrays; pictures cannot be moved, so you must remember where you started.",
+       "src": [
+        "imK"
+       ]
+      },
+      {
+       "label": "Counting collections",
+       "body": "Count a real collection (buttons, cubes, shells) and tell a partner how many, first up to 10, later up to 20.",
+       "src": [
+        "imK",
+        "ccKCC"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "There are some cups on a shelf: a red cup, a blue cup, a green cup, a yellow cup, a white cup and a black cup. How many cups are there?",
+     "solution": "1. Touch the red cup: one.\n2. Touch the blue cup: two.\n3. Touch the green cup: three.\n4. Touch the yellow cup: four.\n5. Touch the white cup: five.\n6. Touch the black cup: six.\n\nEvery cup has been touched once. The last word was six, so there are 6 cups."
+    },
+    {
+     "type": "example",
+     "body": "Get seven buttons from a big pile.",
+     "solution": "1. Take one button and say one.\n2. Take another and say two, then three, four, five, six.\n3. Take one more and say seven.\n4. Stop. The word seven was the number asked for.\n\nYou now have 7 buttons. Counting out a number means stopping when you reach that word."
+    },
+    {
+     "type": "pitfall",
+     "title": "Counting errors to look out for",
+     "src": [
+      "ies",
+      "thompson"
+     ],
+     "body": "- Skipping an object, or counting one object twice.\n- Saying words faster or slower than pointing, so words and objects do not match up.\n- Losing track of where the count started, especially with pictures in a circle or scattered.\n- Sweeping a finger across the group without stopping on each object."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: does the child know the last word is the answer?",
+     "src": [
+      "thompson",
+      "staves"
+     ],
+     "body": "If you ask \"how many?\" after a count and the child counts again, the cardinal principle is not yet secure. Simply repeating the last word is not proof either: in one study many children who counted five objects starting from the word three answered seven. Another sign: asked to show you five, a child points to the fifth object only, as if five were its name. Ask the child to give you five, and see whether they hand over a group."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: a puppet that makes mistakes",
+     "src": [
+      "ncetm"
+     ],
+     "body": "Let a puppet count and make mistakes (skip one, count one twice, get too many when asked for five). Children enjoy catching the puppet, and they have to explain the rule to do it."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "You count some apples: one, two, three, four. How many apples are there?",
+       "a": "4."
+      },
+      {
+       "q": "Sam touched one block twice while counting. Is his answer too big or too small?",
+       "a": "Too big, by one."
+      },
+      {
+       "q": "When you count out 8 crayons, which word tells you to stop?",
+       "a": "Eight."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Count the letters in the word BANANA. How many are there?",
+       "hint": "Point to each letter in turn and say one word for each.",
+       "solution": "B one, A two, N three, A four, N five, A six. There are 6 letters."
+      },
+      {
+       "q": "Count the corners of a square.",
+       "hint": "Touch each corner once as you go round.",
+       "solution": "One, two, three, four: a square has 4 corners."
+      },
+      {
+       "q": "Lee counts nine pencils but forgets one he has put behind his ear. How many pencils does he really have?",
+       "hint": "Every pencil needs one word.",
+       "solution": "Counting the forgotten pencil adds one more word after nine, which is ten. He has 10 pencils."
+      },
+      {
+       "q": "Mia counts a group of shells and her last word is twelve. Then she is asked how many shells there are. What should she answer, without counting again?",
+       "hint": "What does the last word tell you?",
+       "solution": "Twelve. The last word of a correct count is the number of shells."
+      },
+      {
+       "q": "A child counts three toys like this: one, two, three, four, pointing at the middle toy twice. What answer does the child get, and what is right?",
+       "hint": "One object, one word.",
+       "solution": "The child says four, but there are 3 toys. The middle toy was counted twice, which added an extra word."
+      },
+      {
+       "q": "Clap your hands six times and count the claps. Can you count things you cannot touch?",
+       "hint": "Say one number word with each clap.",
+       "solution": "Yes. One clap, one word: one, two, three, four, five, six. Sounds, jumps and claps can be counted just like objects."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Say the number words in the same order every time.\n- Give one word to each object, never skipping or counting twice.\n- Move or touch objects to keep track.\n- The last word said tells how many.\n- To count out a number, stop when you say that number."
+    },
+    {
+     "type": "section",
+     "title": "Moving things around does not change how many",
+     "src": [
+      "ccKCC",
+      "thompson",
+      "ncetm"
+     ],
+     "body": "After this section you will be able to explain why a group has the same number of objects however it is laid out or counted.\n\nTry this first. Count seven counters in a line. Now push them into a circle. How many are there now? Did you need to count again?\n\nObjects can be counted in any order: left to right, right to left, or starting in the middle. As long as each object is counted once and only once, the answer is the same. Moving objects into a line, a circle or a jumble also does not change how many there are."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ccKCC",
+      "ncetm"
+     ],
+     "caption": "Seven counters in a line, seven in a circle and seven scattered. The count is 7 each time.",
+     "alt": "Three groups of seven dots: a straight row of seven, a ring of seven, and seven dots spread at random. Each group is labelled 7.",
+     "code": "import math\nfig = plt.gcf(); fig.set_size_inches(7, 2.4)\nax = fig.add_axes([0, 0, 1, 1])\nline = [(i * 0.45, 1.0) for i in range(7)]\nring = [(5.0 + 0.85 * math.cos(2 * math.pi * k / 7), 1.0 + 0.85 * math.sin(2 * math.pi * k / 7)) for k in range(7)]\nscat = [(7.4, 1.6), (8.2, 1.4), (7.8, 0.9), (8.9, 1.7), (8.6, 0.6), (7.3, 0.4), (9.2, 1.0)]\nfor pts in (line, ring, scat):\n    xs, ys = zip(*pts); ax.plot(xs, ys, 'o', color='black', ms=11)\nfor x, lab in ((1.35, 'in a line: 7'), (5.0, 'in a circle: 7'), (8.25, 'scattered: 7')):\n    ax.text(x, -0.25, lab, ha='center', fontsize=12)\nax.set_xlim(-0.4, 9.7); ax.set_ylim(-0.5, 2.1); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "Order and arrangement do not matter",
+     "src": [
+      "ccKCC",
+      "thompson"
+     ],
+     "body": "The number of objects in a group is the same whatever order they are counted in and however they are arranged. Researchers call the first part the order-irrelevance principle."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "thompson",
+      "ncetm"
+     ],
+     "body": "Moving objects does not add any object or take any away, so there are still just as many. And whatever the order, each object still gets exactly one word, so the same number of words is used, and the last word is the same."
+    },
+    {
+     "type": "theorem",
+     "title": "Anything can be counted",
+     "src": [
+      "thompson"
+     ],
+     "body": "The same rules work for any things at all: toys, pictures, sounds, jumps, or things we only imagine. This is the abstraction principle."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: recounting after moving",
+     "src": [
+      "ncetm"
+     ],
+     "body": "A child who recounts a group after it has been spread out or pushed together has not yet seen that the number stays the same. Ask: did we add any? did we take any away? Practise counting the same group in a line, in a circle and scattered, and count sounds, actions and things that cannot be moved."
+    },
+    {
+     "type": "example",
+     "body": "Jo counts a row of eight cars from left to right and gets eight. Kim counts the same row from right to left. What does Kim get?",
+     "solution": "1. Kim counts the same eight cars.\n2. Each car still gets one word.\n3. So Kim also uses eight words, and her last word is eight.\n\nKim gets 8, the same as Jo."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Ten beads are in a straight line. Someone pushes them into a heap. How many beads are there now?",
+       "a": "10."
+      },
+      {
+       "q": "Can you start counting a circle of objects at any object?",
+       "a": "Yes, as long as you remember where you started and count each object once."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Five ducks swim in a line. Then they swim into a circle. How many ducks are in the circle?",
+       "hint": "Did any duck arrive or leave?",
+       "solution": "5. No duck came or went, so there are still five."
+      },
+      {
+       "q": "Count the dots in each group of the picture above, starting from a different dot each time. Do you always get seven?",
+       "hint": "In the circle, mark where you started.",
+       "solution": "Yes. Each group has 7 dots, whatever dot you start with."
+      },
+      {
+       "q": "Ben counts 9 blocks, then stacks them into a tower. He says, 'Now I must count again.' What would you tell him?",
+       "hint": "Stacking does not add or remove blocks.",
+       "solution": "There is no need to count again: stacking did not add or take away any block, so there are still 9."
+      },
+      {
+       "q": "Twelve children stand in a circle. Ella starts counting at herself and goes round. What is her last word, if she counts everyone once?",
+       "hint": "Each child gets one word.",
+       "solution": "Twelve. Starting point and direction do not change the number of children."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- You may count in any order, if each thing is counted once.\n- Lines, circles and scattered groups can all be counted.\n- Moving things does not change how many there are.\n- Sounds, actions and pictures can be counted too."
+    },
+    {
+     "type": "section",
+     "title": "Seeing small numbers at a glance",
+     "src": [
+      "imK",
+      "ncetm",
+      "ies"
+     ],
+     "body": "After this section you will be able to say how many are in a group of up to four without counting one by one.\n\nTry this first. Ask someone to roll a dice and hide it, then show it to you for just a moment. Can you say how many dots without counting?\n\nWe can see small groups of one, two, three or four things and know at once how many there are. This is called subitising (American spelling: subitizing). It is a valid way to answer a \"how many\" question; there is no need to count a group you can already see."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "imK"
+     ],
+     "caption": "Dot patterns for 1, 2, 3 and 4, laid out as on a dice. These are small enough to recognise without counting.",
+     "alt": "Four squares in a row. The first has 1 dot in the centre, the second 2 dots on a diagonal, the third 3 dots on a diagonal, the fourth 4 dots in the corners. Numerals 1 to 4 are under them.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6, 1.9)\nax = fig.add_axes([0, 0, 1, 1])\npats = {1: [(0.5, 0.5)], 2: [(0.25, 0.75), (0.75, 0.25)], 3: [(0.25, 0.75), (0.5, 0.5), (0.75, 0.25)],\n        4: [(0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75)]}\nfor n, pts in pats.items():\n    x0 = (n - 1) * 1.5\n    ax.add_patch(Rectangle((x0, 0), 1, 1, fill=False, ec='black', lw=1.2))\n    for (x, y) in pts: ax.plot(x0 + x, y, 'o', color='black', ms=10)\n    ax.text(x0 + 0.5, -0.3, str(n), ha='center', va='center', fontsize=13)\nax.set_xlim(-0.2, 5.7); ax.set_ylim(-0.6, 1.2); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Subitising",
+     "src": [
+      "imK",
+      "ncetm"
+     ],
+     "body": "Subitising means recognising how many objects are in a small group, up to about four, straight away, without counting them one at a time."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: do not force a count",
+     "src": [
+      "imK"
+     ],
+     "body": "If a child already knows at a glance that there are three, do not insist that they count the three one by one. Seeing small amounts quickly is a skill to praise; counting is for groups too big to see at once."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "A dice shows four dots in the corners. How many dots?",
+       "a": "4, seen at a glance."
+      },
+      {
+       "q": "Is it wrong to say three without counting when you see three dots?",
+       "a": "No. Subitising is a correct way to say how many."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "An adult flashes two fingers for one second. How many fingers?",
+       "hint": "Do not count, just look.",
+       "solution": "2."
+      },
+      {
+       "q": "Draw three dots in a row and three dots in a triangle. How many dots in each drawing?",
+       "hint": "The shape of the pattern does not change the amount.",
+       "solution": "3 in each. Different layouts of the same small group can all be seen at a glance."
+      },
+      {
+       "q": "Why is it hard to say at a glance how many dots there are in a group of nine scattered dots?",
+       "hint": "Up to about how many can we see at once?",
+       "solution": "Nine is more than the groups of up to four that children learn to recognise at a glance, so we count them."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Groups of up to four can be recognised without counting.\n- This is called subitising (subitizing).\n- Bigger groups are counted."
+    },
+    {
+     "type": "section",
+     "title": "Writing numbers: numerals, words and zero",
+     "src": [
+      "ccKCC",
+      "eng",
+      "imK"
+     ],
+     "body": "After this section you will be able to write the numeral for a group of up to twenty objects, write the number words to twenty, and use 0 for a group with nothing in it.\n\nTry this first. Put three spoons on the table. Write a mark that tells someone else how many spoons there are. Now take all the spoons away. What could you write now?\n\nA numeral is the written sign for a number: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, and then numbers like 10, 15 and 20. We write a numeral to record how many objects are in a group, and we can make a group to match a numeral."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ccKCC",
+      "imK"
+     ],
+     "caption": "Ten frames showing 0, 3, 7 and 10 counters. A ten frame has two rows of five squares; counters fill the top row first.",
+     "alt": "Four ten frames side by side. The first is empty and labelled 0; the second has 3 counters and is labelled 3; the third has 7 counters (a full top row of 5 and 2 below) and is labelled 7; the fourth is full and labelled 10.",
+     "code": "from matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(7, 1.8)\nax = fig.add_axes([0, 0, 1, 1])\nfor k, n in enumerate([0, 3, 7, 10]):\n    x0 = k * 5.8\n    for j in range(10):\n        r, c = divmod(j, 5)\n        ax.add_patch(Rectangle((x0 + c, 1 - r), 1, 1, fill=False, ec='black', lw=1.0))\n        if j < n: ax.add_patch(Circle((x0 + c + 0.5, 1 - r + 0.5), 0.33, color='black'))\n    ax.text(x0 + 2.5, -0.55, str(n), ha='center', va='center', fontsize=14)\nax.set_xlim(-0.2, 22.6); ax.set_ylim(-1.0, 2.2); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Numeral",
+     "src": [
+      "ccKCC",
+      "im1U4L10"
+     ],
+     "body": "A numeral is a written symbol for a number. The numerals 0 to 9 are single digits. From 10 on, numerals use two digits, such as 12 or 20. What the two digits mean is explained on the page [[place-value]]."
+    },
+    {
+     "type": "definition",
+     "title": "Zero",
+     "src": [
+      "ccKCC"
+     ],
+     "body": "Zero, written 0, is the number of objects in a group that has no objects in it. If a plate has no biscuits on it, the number of biscuits is 0."
+    },
+    {
+     "type": "views",
+     "title": "One number, many forms",
+     "body": "The same number can be shown in several ways. Here is seven.",
+     "items": [
+      {
+       "label": "Objects",
+       "body": "Seven real cubes, counted one by one: one, two, ..., seven.",
+       "src": [
+        "ccKCC"
+       ]
+      },
+      {
+       "label": "Ten frame",
+       "body": "Seven counters in a ten frame: a full row of five and two more below, with three empty squares.",
+       "src": [
+        "imK"
+       ]
+      },
+      {
+       "label": "Cube tower",
+       "body": "A tower of seven cubes snapped together, matched to a card showing 7.",
+       "src": [
+        "imK2L17"
+       ]
+      },
+      {
+       "label": "Numeral and word",
+       "body": "The numeral 7 and the word seven, written and read.",
+       "src": [
+        "eng"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Writing number words",
+     "rows": [
+      {
+       "who": "English 1 to 20",
+       "text": "England expects children to read and write the numbers 1 to 20 in words by the end of Year 1, and to at least 100 by the end of Year 2.",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "who": "English 21 to 99",
+       "text": "When a number from 21 to 99 does not end in zero, its word is written as two words joined by a hyphen: twenty-one, forty-six, ninety-nine.",
+       "src": [
+        "engNum"
+       ]
+      },
+      {
+       "who": "British and American English",
+       "text": "British English usually puts and after hundred (one hundred and five); American schools often teach one hundred five, without and, though many Americans also say and.",
+       "src": [
+        "engNum"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: back-to-front digits",
+     "src": [
+      "imK"
+     ],
+     "body": "Young children often write the two digits of a teen number in the wrong order, or write a digit back to front. At this stage the aim is a number others can read; reversed digits are expected and improve with practice."
+    },
+    {
+     "type": "example",
+     "body": "A ten frame has its top row full and two counters in the bottom row. Write the numeral and the word.",
+     "solution": "1. The top row is full: that is 5 counters (one, two, three, four, five).\n2. Count on the bottom row: six, seven.\n3. The last word is seven.\n\nThe numeral is 7 and the word is seven."
+    },
+    {
+     "type": "example",
+     "body": "Draw a group to match the numeral 4, and a group to match 0.",
+     "solution": "1. For 4: draw dots one at a time, saying one, two, three, four, and stop at four.\n2. For 0: draw nothing at all. An empty box shows zero objects.\n\nThe first group has 4 dots; the second has 0."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Write the numeral for the word fifteen.",
+       "a": "15."
+      },
+      {
+       "q": "There are no fish in a tank. How many fish are in the tank, as a numeral?",
+       "a": "0."
+      },
+      {
+       "q": "Write the number 11 in words.",
+       "a": "Eleven."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write the numerals for: nine, twelve, twenty.",
+       "hint": "Use the number path from the first section.",
+       "solution": "9, 12, 20."
+      },
+      {
+       "q": "Write in words: 3, 8, 13, 17.",
+       "hint": "13 to 19 end in -teen.",
+       "solution": "three, eight, thirteen, seventeen."
+      },
+      {
+       "q": "A ten frame is full. How many counters, and how many empty squares?",
+       "hint": "A ten frame has two rows of five.",
+       "solution": "10 counters and 0 empty squares."
+      },
+      {
+       "q": "A ten frame shows 6 counters. How many squares are empty?",
+       "hint": "Count the empty squares: there are ten squares in all.",
+       "solution": "The counters fill squares one to six; the empty squares are the seventh, eighth, ninth and tenth, so 4 are empty."
+      },
+      {
+       "q": "A basket had 3 apples and all were eaten. Write the number of apples left, in a numeral and in a word.",
+       "hint": "What number means none?",
+       "solution": "0, zero."
+      },
+      {
+       "q": "Write the number 46 in words, using a hyphen.",
+       "hint": "Tens word first, then the ones word.",
+       "solution": "forty-six."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A numeral is the written sign for a number.\n- Write a numeral to say how many; make a group to match a numeral.\n- 0 means none.\n- Number words from 13 to 19 end in -teen; from 21 to 99 they are joined with a hyphen when the number does not end in zero."
+    },
+    {
+     "type": "section",
+     "title": "One more and one less",
+     "src": [
+      "ccKCC",
+      "eng",
+      "imK2L17"
+     ],
+     "body": "After this section you will be able to say the number that is one more or one less than any number up to twenty, and explain why.\n\nTry this first. Build a tower of four cubes. Add one cube. How many now? Take one cube off the tower of four. How many now?\n\nEvery time we say the next number word, we have counted one more object. So the next word in the count always names a number that is one more."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "imK2L17"
+     ],
+     "caption": "Cube towers of 1, 2, 3, 4, 5 and 6 cubes. Each tower has one more cube than the tower before it; the new cube is striped.",
+     "alt": "Six towers of square cubes standing side by side, 1 to 6 cubes high, making a staircase. The top cube of each tower from the second on is orange with stripes. Numerals 1 to 6 are under the towers.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(5, 3)\nax = fig.add_axes([0, 0, 1, 1])\nfor n in range(1, 7):\n    x0 = (n - 1) * 1.5\n    for j in range(n):\n        new = (j == n - 1 and n > 1)\n        ax.add_patch(Rectangle((x0, j), 1, 1, fill=new, fc=(1, 0.8, 0.55) if new else 'none', ec='black', lw=1.1, hatch='///' if new else None))\n    ax.text(x0 + 0.5, -0.5, str(n), ha='center', va='center', fontsize=13)\nax.set_xlim(-0.2, 8.7); ax.set_ylim(-1.0, 6.2); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "The next number is one more",
+     "src": [
+      "ccKCC"
+     ],
+     "body": "Each number word in the count names a quantity that is one larger than the word before it. Going back one word names a quantity that is one smaller.\n\nFor example, one more than 7 is 8, and one less than 7 is 6."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "ccKCC",
+      "imK2L17"
+     ],
+     "body": "Suppose a group has been counted and the last word was seven. Put one more object in the group and carry on counting: that new object gets the next word, eight. So the group with one more object has eight objects. Taking that object away again leaves the seven we started with, so one less than eight is seven."
+    },
+    {
+     "type": "example",
+     "body": "What is one more than 19, and one less than 19?",
+     "solution": "1. Say the count around 19: eighteen, nineteen, twenty.\n2. The word after nineteen is twenty, so one more than 19 is 20.\n3. The word before nineteen is eighteen, so one less than 19 is 18."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: give me five",
+     "src": [
+      "ncetm",
+      "staves",
+      "imK2L17"
+     ],
+     "body": "A child asked to get five may grab a handful without counting, or keep going past five. Ask the child to say each word as they take each object and to stop on the word asked for. Build towers or stairs of cubes and ask how many more cubes each step has."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "One more than 9 is?",
+       "a": "10."
+      },
+      {
+       "q": "One less than 13 is?",
+       "a": "12."
+      },
+      {
+       "q": "A tower has 6 cubes. You add 1. How many cubes now?",
+       "a": "7."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write one more than each number: 4, 10, 15.",
+       "hint": "Say the next word in the count.",
+       "solution": "5, 11, 16."
+      },
+      {
+       "q": "Write one less than each number: 6, 11, 20.",
+       "hint": "Say the word just before.",
+       "solution": "5, 10, 19."
+      },
+      {
+       "q": "There are 12 children on a bus. One more gets on. How many children are on the bus now?",
+       "hint": "The next number after twelve.",
+       "solution": "13 children."
+      },
+      {
+       "q": "Which number is one more than 7 and also one less than 9?",
+       "hint": "Look for the number between them.",
+       "solution": "8. One more than 7 is 8, and one less than 9 is 8."
+      },
+      {
+       "q": "Sara says one more than 14 is 41. What would you say to her?",
+       "hint": "Say the count: fourteen, then?",
+       "solution": "The word after fourteen is fifteen, so one more than 14 is 15. 41 is forty-one, a much bigger number; she may have swapped the digits."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- The next number in the count is one more.\n- The number before is one less.\n- Adding an object to a group moves the count on by one word."
+    },
+    {
+     "type": "section",
+     "title": "Counting on and counting back",
+     "src": [
+      "ccKCC",
+      "eng",
+      "thompson"
+     ],
+     "body": "After this section you will be able to start a count from any number and to count backwards.\n\nTry this first. Start at five and count up to ten. Then start at ten and count down to five.\n\nWe do not always have to start at one. Counting on means starting the count from a given number and saying the words that come after it. Counting back means saying the number words in reverse order."
+    },
+    {
+     "type": "example",
+     "body": "Count on from 17 to 23.",
+     "solution": "1. seventeen\n2. eighteen\n3. nineteen\n4. twenty\n5. twenty-one\n6. twenty-two\n7. twenty-three\n\nAfter nineteen comes twenty, and then the twenties start again with one, two, three."
+    },
+    {
+     "type": "example",
+     "body": "Count back from 12 to 5.",
+     "solution": "Say the list backwards, one word less each time:\n\ntwelve, eleven, ten, nine, eight, seven, six, five."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: counting back is harder",
+     "src": [
+      "ncetm",
+      "eng"
+     ],
+     "body": "Counting backwards is harder for children than counting forwards, so expect it to take longer. England asks for both directions from Year 1."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Count on three words from 8. Where do you stop?",
+       "a": "nine, ten, eleven: you stop at 11."
+      },
+      {
+       "q": "Count back from 20 to 16. Which numbers do you say?",
+       "a": "20, 19, 18, 17, 16."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Count on from 6 to 11.",
+       "hint": "Start by saying six.",
+       "solution": "six, seven, eight, nine, ten, eleven."
+      },
+      {
+       "q": "Count back from 10 to 0.",
+       "hint": "The last word is zero.",
+       "solution": "ten, nine, eight, seven, six, five, four, three, two, one, zero."
+      },
+      {
+       "q": "Count on from 27 to 33.",
+       "hint": "After twenty-nine comes a new tens word.",
+       "solution": "27, 28, 29, 30, 31, 32, 33."
+      },
+      {
+       "q": "Count back from 42 to 37.",
+       "hint": "Going below forty, the next word is thirty-nine.",
+       "solution": "42, 41, 40, 39, 38, 37."
+      },
+      {
+       "q": "You have 5 toys in a box and put in 3 more one at a time, counting on. What do you say for each new toy, and how many are in the box?",
+       "hint": "Start from five, which you already know.",
+       "solution": "Six, seven, eight. There are 8 toys in the box."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Counting on: start at any number and keep going.\n- Counting back: say the words in reverse order.\n- Counting on from a known group saves counting it again."
+    },
+    {
+     "type": "section",
+     "title": "Counting past 20 to 100 and beyond",
+     "src": [
+      "ccKCC",
+      "cc1NBT",
+      "eng",
+      "kor15",
+      "im1"
+     ],
+     "body": "After this section you will be able to count to 100 (and on to 120), crossing from one ten to the next, and read and write these numbers.\n\nTry this first. Count from 25 to 35. What happens after 29?\n\nAfter twenty the number words follow a pattern. We say a tens word (twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety) and then the ones words one to nine: twenty-one, twenty-two, ..., twenty-nine. After twenty-nine the next tens word begins: thirty. After ninety-nine comes one hundred, then one hundred and one, and so on. England asks Year 1 children to count to and across 100, forwards and backwards, from any number; Grade 1 in the Common Core counts on to 120."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im1U4L10",
+      "eng"
+     ],
+     "caption": "A hundred square: the numbers 1 to 100 in ten rows of ten. The last number of each row, 10, 20, 30, ..., 100, is shaded and outlined with a thick line; each row starts a new ten.",
+     "alt": "A ten by ten grid holding 1 to 100, ten numbers per row. The right-hand column, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, is shaded light blue and outlined with a thick line.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(5.6, 5.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor n in range(1, 101):\n    r, c = divmod(n - 1, 10)\n    ten = (n % 10 == 0)\n    ax.add_patch(Rectangle((c, -r), 1, 1, fill=ten, fc=(0.75, 0.85, 1.0) if ten else 'none', ec='black', lw=0.8))\n    ax.text(c + 0.5, -r + 0.5, str(n), ha='center', va='center', fontsize=11)\nax.add_patch(Rectangle((9, -9), 1, 10, fill=False, ec='black', lw=2.6))\nax.set_xlim(-0.1, 10.1); ax.set_ylim(-9.1, 1.1); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Tens words",
+     "src": [
+      "engNum",
+      "ccKCC"
+     ],
+     "body": "The tens words are twenty (20), thirty (30), forty (40), fifty (50), sixty (60), seventy (70), eighty (80) and ninety (90); then one hundred (100). Counting by tens means saying ten, twenty, thirty, and so on, up to one hundred."
+    },
+    {
+     "type": "views",
+     "title": "Seeing the pattern to 100",
+     "body": "The sources show the counting pattern after 20 in different ways.",
+     "items": [
+      {
+       "label": "Hundred square",
+       "body": "Numbers 1 to 100 in rows of ten: each row ends with a tens number, and the next row starts the next ten.",
+       "src": [
+        "im1U4L10"
+       ]
+      },
+      {
+       "label": "Choral count",
+       "body": "The group counts aloud across a hundred (for example from 90 to 120) while an adult records the numbers in rows, and the children say what they notice.",
+       "src": [
+        "im2U5L1"
+       ]
+      },
+      {
+       "label": "Korean words",
+       "body": "Sino-Korean words say the tens first, the same way for every ten: 이십일 (two-ten-one) is 21, 삼십일 (three-ten-one) is 31.",
+       "src": [
+        "korNum"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Thirteen or thirty?",
+     "src": [
+      "ncetm",
+      "engNum"
+     ],
+     "body": "In English, thirteen and thirty, fourteen and forty, and so on, sound alike. Children (and adults) mix them up. Remember that the -teen numbers are only 13 to 19, and the -ty words name whole tens: thirteen is 13, thirty is 30."
+    },
+    {
+     "type": "example",
+     "body": "Count on from 96 to 104.",
+     "solution": "1. ninety-six, ninety-seven, ninety-eight, ninety-nine\n2. Next comes one hundred (100).\n3. Then one hundred and one (American: one hundred one), 102, 103, 104.\n\nThe numbers said are 96, 97, 98, 99, 100, 101, 102, 103, 104: nine numbers."
+    },
+    {
+     "type": "example",
+     "body": "Write sixty-three as a numeral, and 58 in words.",
+     "solution": "1. Sixty is 60; with three more ones it is 63.\n2. 58 is fifty (the tens word for 50) and eight: fifty-eight.\n\nWhy the digits sit where they do is explained in [[place-value]]."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What comes after 39?",
+       "a": "40 (forty)."
+      },
+      {
+       "q": "What comes after 99?",
+       "a": "100 (one hundred)."
+      },
+      {
+       "q": "Write seventy-five as a numeral.",
+       "a": "75."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Say the tens words from ten to one hundred.",
+       "hint": "Each is ten more: look down the shaded column of the hundred square.",
+       "solution": "ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred."
+      },
+      {
+       "q": "Fill the gaps: 47, 48, ___, ___, 51.",
+       "hint": "What comes after forty-nine?",
+       "solution": "49 and 50."
+      },
+      {
+       "q": "Write in words: 30, 13, 81.",
+       "hint": "Listen to the ending: -teen or -ty?",
+       "solution": "thirty, thirteen, eighty-one."
+      },
+      {
+       "q": "Count back from 103 to 97.",
+       "hint": "Before one hundred comes ninety-nine.",
+       "solution": "103, 102, 101, 100, 99, 98, 97."
+      },
+      {
+       "q": "Count on from 115 to 120. How many numbers do you say after 115?",
+       "hint": "Count the words you say, not including the start.",
+       "solution": "116, 117, 118, 119, 120: you say 5 numbers after 115."
+      },
+      {
+       "q": "Which number is missing from this part of a hundred square row: 61, 62, 63, 64, 65, 66, 67, 68, ___, 70?",
+       "hint": "Each row of the hundred square has ten numbers.",
+       "solution": "69."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- After twenty: a tens word, then one to nine.\n- After twenty-nine comes thirty, after ninety-nine comes one hundred.\n- Thirteen and thirty are different: -teen means 13 to 19.\n- Counts can go on past 100, to 120 and beyond."
+    },
+    {
+     "type": "section",
+     "title": "Counting in twos, fives and tens",
+     "src": [
+      "eng",
+      "ccKCC",
+      "cc2NBT"
+     ],
+     "body": "After this section you will be able to count in twos, fives and tens, forwards and backwards.\n\nTry this first. Line up pairs of socks. Count the socks by saying every second number: two, four, six, ...\n\nInstead of saying every number word, we can say every second word (twos), every fifth word (fives) or every tenth word (tens). This is quicker when things come in groups, like pairs of shoes, fingers on hands, or ten-pence or ten-cent coins. England calls this counting in multiples of 2, 5 and 10; the Common Core calls it skip-counting."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "eng",
+      "cc2NBT"
+     ],
+     "caption": "A number path from 0 to 20. Red jumps above count in twos: 2, 4, 6, ..., 20 (ten jumps). Blue jumps below count in fives: 5, 10, 15, 20 (four jumps).",
+     "alt": "A row of 21 boxes numbered 0 to 20. Above, ten red arcs each jump two boxes from 0 to 20, labelled counting in 2s. Below, four blue arcs each jump five boxes, labelled counting in 5s.",
+     "code": "from matplotlib.patches import Rectangle, Arc\nfig = plt.gcf(); fig.set_size_inches(7.2, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor n in range(21):\n    ax.add_patch(Rectangle((n, 0), 1, 1, fill=False, ec='black', lw=0.9))\n    ax.text(n + 0.5, 0.5, str(n), ha='center', va='center', fontsize=10)\nfor a in range(0, 20, 2):\n    ax.add_patch(Arc((a + 1.5, 1.0), 2, 1.3, theta1=0, theta2=180, color='red', lw=1.4))\nfor a in range(0, 20, 5):\n    ax.add_patch(Arc((a + 3.0, 0.0), 5, 2.0, theta1=180, theta2=360, color='blue', lw=1.4, ls='--'))\nax.text(10.5, 2.0, 'counting in 2s', color='red', ha='center', fontsize=11)\nax.text(10.5, -1.45, 'counting in 5s (dashed)', color='blue', ha='center', fontsize=11)\nax.set_xlim(-0.2, 21.2); ax.set_ylim(-1.7, 2.4); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Counting in steps",
+     "src": [
+      "eng",
+      "cc2NBT"
+     ],
+     "body": "Counting in twos means saying 2, 4, 6, 8, 10, ... Counting in fives means 5, 10, 15, 20, 25, ... Counting in tens means 10, 20, 30, 40, ... Each word in the count is the same step bigger than the one before it."
+    },
+    {
+     "type": "theorem",
+     "title": "Why counting in twos still counts every object",
+     "src": [
+      "ccKCC",
+      "eng"
+     ],
+     "body": "When we count pairs in twos, each pair adds two to the count, so saying the next word of the twos count is the same as counting the two objects of the pair one by one. For example, three pairs of socks: 2, 4, 6. Counting them one at a time gives one, two, three, four, five, six. Both counts end at 6."
+    },
+    {
+     "type": "conventions",
+     "title": "Names for counting in steps",
+     "rows": [
+      {
+       "who": "England",
+       "text": "Year 1: count in multiples of twos, fives and tens. Year 2: count in steps of 2, 3 and 5 from 0, and in tens from any number, forwards and backwards.",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "who": "Common Core (USA)",
+       "text": "Kindergarten counts to 100 by ones and by tens; Grade 2 skip-counts by 5s, 10s and 100s within 1000.",
+       "src": [
+        "ccKCC",
+        "cc2NBT"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Count the fingers on 4 hands by counting in fives.",
+     "solution": "Each hand has 5 fingers, so say one word of the fives count for each hand:\n\n1. first hand: five\n2. second hand: ten\n3. third hand: fifteen\n4. fourth hand: twenty\n\nThere are 20 fingers."
+    },
+    {
+     "type": "example",
+     "body": "Count in tens from 23 up to 63.",
+     "solution": "Counting in tens from 23 keeps the ones word, three, and changes the tens word each time:\n\n23, 33, 43, 53, 63.\n\nEngland asks for counting in tens from any number in Year 2; the reason the ones stay the same is explained in [[place-value]]."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Count in twos from 10 to 20.",
+       "a": "10, 12, 14, 16, 18, 20."
+      },
+      {
+       "q": "Count in fives from 0 to 30. How many jumps of five?",
+       "a": "5, 10, 15, 20, 25, 30: six jumps."
+      },
+      {
+       "q": "Count back in tens from 90 to 50.",
+       "a": "90, 80, 70, 60, 50."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Count the eyes of 6 children by counting in twos.",
+       "hint": "Each child has two eyes: one twos word per child.",
+       "solution": "2, 4, 6, 8, 10, 12: there are 12 eyes."
+      },
+      {
+       "q": "How many fingers are on 3 hands? Count in fives.",
+       "hint": "One fives word per hand.",
+       "solution": "5, 10, 15: 15 fingers."
+      },
+      {
+       "q": "Count in tens from 0 to 100. How many tens words do you say after 0?",
+       "hint": "Use the shaded column of the hundred square.",
+       "solution": "10, 20, 30, 40, 50, 60, 70, 80, 90, 100: ten words."
+      },
+      {
+       "q": "Count back in twos from 20 to 10.",
+       "hint": "Each step is two less.",
+       "solution": "20, 18, 16, 14, 12, 10."
+      },
+      {
+       "q": "Count in tens from 7: 7, 17, ___, ___, 47.",
+       "hint": "The ones word stays seven.",
+       "solution": "27 and 37."
+      },
+      {
+       "q": "Ten-pence coins (or dimes, which are worth ten cents) are laid in a row: there are 7 of them. Count in tens to find their value.",
+       "hint": "One tens word per coin.",
+       "solution": "10, 20, 30, 40, 50, 60, 70: the coins are worth 70 pence (or 70 cents)."
+      },
+      {
+       "q": "Ali counts in fives: 5, 10, 15, 20, 30. What mistake did he make?",
+       "hint": "Each step should be five.",
+       "solution": "He missed 25. From 20 to 30 is two steps of five, so the count should be 5, 10, 15, 20, 25, 30."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Counting in twos: 2, 4, 6, 8, 10, ...\n- Counting in fives: 5, 10, 15, 20, ...\n- Counting in tens: 10, 20, 30, ..., 100.\n- Counting in steps is quicker for pairs, hands and coins, and gives the same total as counting in ones.\n- Steps of 3, 4 and more come later: see [[patterns-sequences]]."
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "thompson",
+      "ccKCC"
+     ],
+     "body": "Counting is the start of almost everything else in number. Knowing that each next number is one more leads straight to [[comparing-ordering-numbers]] and the [[number-line]]; splitting a counted group into parts is [[composing-decomposing-numbers]]; counting on becomes [[addition-subtraction]], and counting in equal steps becomes [[multiplication]] and the [[patterns-sequences]] of later years. The way we write numbers past 9 is the subject of [[place-value]], and in other bases in [[digits-bases]].\n\nFor older readers: one-to-one counting is a matching (a bijection) between the objects and the words one, two, ..., n, and \"order does not matter\" says that every such matching uses the same n. This is the idea behind [[counting]] and [[pigeonhole]] arguments in combinatorics, and the step from n to n + 1 is the heart of [[induction]]. Comparing sizes by matching, even for infinite collections, is the subject of [[ordinals-cardinals]]."
+    }
+   ],
+   "checks": [
+    {
+     "python": "W = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']\nT = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']\ndef word(n):\n    if n < 20: return W[n]\n    if n < 100: return T[n // 10] + ('' if n % 10 == 0 else '-' + W[n % 10])\n    if n == 100: return 'one hundred'\n    raise ValueError\nnum = {word(n): n for n in range(101)}\nassert [word(n) for n in range(6, 13)] == ['six','seven','eight','nine','ten','eleven','twelve'] and len(range(6, 13)) == 7\nassert word(10) == 'ten' and word(14) == 'fourteen' and num['eighteen'] == 18\nassert [word(n) for n in (13, 15)] == ['thirteen', 'fifteen']\nassert word(18) == 'eighteen' and word(4) == 'four'\nassert [num[w] for w in ('twelve', 'fourteen', 'twenty')] == [12, 14, 20]\nassert all(word(n).endswith('teen') for n in range(13, 20)) and not word(11).endswith('teen') and not word(12).endswith('teen')\nassert num['fifteen'] == 15 and word(11) == 'eleven'\nassert [num[w] for w in ('nine', 'twelve', 'twenty')] == [9, 12, 20]\nassert [word(n) for n in (3, 8, 13, 17)] == ['three', 'eight', 'thirteen', 'seventeen']\nassert word(46) == 'forty-six' and word(21) == 'twenty-one' and word(99) == 'ninety-nine'\nassert num['sixty-three'] == 63 and word(58) == 'fifty-eight' and num['seventy-five'] == 75\nassert [word(n) for n in (30, 13, 81)] == ['thirty', 'thirteen', 'eighty-one']\nassert [word(n) for n in range(10, 101, 10)] == ['ten','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','one hundred']\nassert [word(n) for n in range(17, 24)] == ['seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three']\nassert [word(n) for n in range(12, 4, -1)] == ['twelve','eleven','ten','nine','eight','seven','six','five']\nassert [word(n) for n in range(6, 12)] == ['six','seven','eight','nine','ten','eleven']\nassert [word(n) for n in range(10, -1, -1)][-1] == 'zero' and len(range(10, -1, -1)) == 11\n"
+    },
+    {
+     "python": "# counting groups\nassert len(['red','blue','green','yellow','white','black']) == 6\nassert len('BANANA') == 6 and len(['one','two','three','four','five']) == 5\nassert 9 + 1 == 10\ntoys = 3; said = ['one','two','three','four']; assert len(said) == toys + 1\nassert len(list(range(1, 8))) == 7  # counting out seven buttons\nassert len(list(range(1, 5))) == 4  # apples check; square corners\n# one more / one less\nassert (19 + 1, 19 - 1) == (20, 18) and 9 + 1 == 10 and 13 - 1 == 12 and 6 + 1 == 7 and (7 + 1, 7 - 1) == (8, 6)\nassert [n + 1 for n in (4, 10, 15)] == [5, 11, 16] and [n - 1 for n in (6, 11, 20)] == [5, 10, 19]\nassert 12 + 1 == 13 and 7 + 1 == 9 - 1 == 8 and 14 + 1 == 15\n# counting on / back\nassert list(range(9, 12)) == [9, 10, 11] and list(range(20, 15, -1)) == [20, 19, 18, 17, 16]\nassert list(range(27, 34)) == [27, 28, 29, 30, 31, 32, 33] and list(range(42, 36, -1)) == [42, 41, 40, 39, 38, 37]\nassert list(range(6, 9)) == [6, 7, 8] and 5 + 3 == 8\nassert list(range(96, 105)) == [96, 97, 98, 99, 100, 101, 102, 103, 104] and len(range(96, 105)) == 9\nassert list(range(103, 96, -1)) == [103, 102, 101, 100, 99, 98, 97]\nassert list(range(116, 121)) == [116, 117, 118, 119, 120] and len(range(116, 121)) == 5\nassert list(range(61, 71))[8] == 69 and list(range(47, 52)) == [47, 48, 49, 50, 51]\n# ten frames\nassert 5 + 2 == 7 and 10 - 10 == 0 and 10 - 6 == 4 and list(range(7, 11)) == [7, 8, 9, 10]\n"
+    },
+    {
+     "python": "# counting in steps\nassert list(range(2, 21, 2)) == [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] and len(range(2, 21, 2)) == 10\nassert list(range(5, 21, 5)) == [5, 10, 15, 20] and len(range(5, 21, 5)) == 4\nassert list(range(2, 7, 2))[-1] == 6 == len(range(1, 7))  # three pairs of socks\nassert [5 * k for k in range(1, 5)] == [5, 10, 15, 20]\nassert list(range(23, 64, 10)) == [23, 33, 43, 53, 63]\nassert list(range(10, 21, 2)) == [10, 12, 14, 16, 18, 20]\nassert list(range(5, 31, 5)) == [5, 10, 15, 20, 25, 30] and len(range(5, 31, 5)) == 6\nassert list(range(90, 49, -10)) == [90, 80, 70, 60, 50]\nassert [2 * k for k in range(1, 7)] == [2, 4, 6, 8, 10, 12]\nassert [5 * k for k in range(1, 4)] == [5, 10, 15]\nassert len(range(10, 101, 10)) == 10\nassert list(range(20, 9, -2)) == [20, 18, 16, 14, 12, 10]\nassert list(range(7, 48, 10)) == [7, 17, 27, 37, 47]\nassert [10 * k for k in range(1, 8)][-1] == 70\nassert 25 in range(5, 31, 5) and 25 not in [5, 10, 15, 20, 30]\n"
+    },
+    {
+     "python": "# figure counts\nimport math\nassert len(range(1, 21)) == 20 and 20 // 10 == 2\nassert len(['one','two','three','four','five']) == 5\nline = [(i * 0.45, 1.0) for i in range(7)]\nring = [(5.0 + 0.85 * math.cos(2 * math.pi * k / 7), 1.0 + 0.85 * math.sin(2 * math.pi * k / 7)) for k in range(7)]\nscat = [(7.4, 1.6), (8.2, 1.4), (7.8, 0.9), (8.9, 1.7), (8.6, 0.6), (7.3, 0.4), (9.2, 1.0)]\nassert len(set(line)) == len(set(ring)) == len(set(scat)) == 7\npats = {1: [(0.5, 0.5)], 2: [(0.25, 0.75), (0.75, 0.25)], 3: [(0.25, 0.75), (0.5, 0.5), (0.75, 0.25)], 4: [(0.25, 0.25), (0.25, 0.75), (0.75, 0.25), (0.75, 0.75)]}\nassert all(len(v) == k for k, v in pats.items())\nframes = [0, 3, 7, 10]; assert all(0 <= n <= 10 for n in frames) and 7 - 5 == 2\ntowers = list(range(1, 7)); assert all(b - a == 1 for a, b in zip(towers, towers[1:]))\nassert [n for n in range(1, 101) if n % 10 == 0] == [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]\nassert len(range(0, 20, 2)) == 10 and len(range(0, 20, 5)) == 4\n"
+    }
+   ]
+  }
+ }
+]

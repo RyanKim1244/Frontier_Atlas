@@ -1,0 +1,98 @@
+[
+ {
+  "id": "counting-number-names",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "source",
+    "where": "block 7 (For adults: reciting is not yet counting)",
+    "problem": "Example \"one, two, four\" is not in Thompson, who uses 2, 1, 3; the contrast case was missing",
+    "fix": "Used Thompson's 2,1,3 example and added the contrast"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 22 (cardinal pitfall)",
+    "problem": "Study claim was cryptic: it did not say why answering seven is wrong",
+    "fix": "Explained that the last word is seven but there are five objects"
+   },
+   {
+    "severity": "source",
+    "where": "block 23 (puppet pitfall)",
+    "problem": "Said the puppet should skip objects and count wrongly; the NCETM audit uses a puppet that wrongly says an amount changed after rearranging (conservation), not a puppet that miscounts",
+    "fix": "Deleted the block and moved the puppet advice, as the source gives it, into the recounting pitfall"
+   },
+   {
+    "severity": "unclear",
+    "where": "Counting a group of objects",
+    "problem": "Requires says counting in a line, array or circle (and scattered up to 10) but the section showed no array and never said why scattered is harder; no worked example of keeping track in rows",
+    "fix": "Added a worked example counting a 3 by 4 array, and the 20 / 10 limits with src ccKCC"
+   },
+   {
+    "severity": "unclear",
+    "where": "Writing numbers: numerals, words and zero",
+    "problem": "Ten frame used in figure, example, views and exercises but never introduced in the text",
+    "fix": "Added a short explanation of a ten frame to the section body"
+   },
+   {
+    "severity": "source",
+    "where": "block 40 (For adults: do not force a count)",
+    "problem": "Advice to praise and not insist on counting is in no opened source (imK is only the scope and sequence page); NCETM says children subitise up to four, then five, in varied forms",
+    "fix": "Replaced with the NCETM advice about varied forms and corrected \"about four\" to four then five in the definition"
+   },
+   {
+    "severity": "source",
+    "where": "block 50 (back-to-front digits)",
+    "problem": "Claim that reversed digits are expected and fine is in no opened source (IM Kindergarten scope page does not say it; IM G1 U4 L10 does not mention reversals)",
+    "fix": "Replaced with the digit-order point that IM G1 U4 L10 does make (7, 17, 70, 71)"
+   },
+   {
+    "severity": "source",
+    "where": "block 6, row English 1 to 12 / 13 to 19",
+    "problem": "Wikipedia English numerals lists the words and the -teen range but does not call eleven and twelve special or say the ones come first; this is general knowledge",
+    "fix": "Kept the facts (they are correct) and added ncetm to the teen row; wording kept to plain description"
+   },
+   {
+    "severity": "style",
+    "where": "Moving things around: exercise 2",
+    "problem": "\"picture above\" ambiguous",
+    "fix": "Pointed to the figure of this section"
+   },
+   {
+    "severity": "unclear",
+    "where": "Counting on example 17 to 23",
+    "problem": "Last sentence \"the twenties start again\" confusing",
+    "fix": "Reworded"
+   },
+   {
+    "severity": "source",
+    "where": "block For adults: counting back is harder",
+    "problem": "Gave no reason or activity, though NCETM does",
+    "fix": "Added the working-memory reason and suggested practice"
+   },
+   {
+    "severity": "error",
+    "where": "figure Counting past 20 (hundred square)",
+    "problem": "Caption said \"each row starts a new ten\", which is false: row 11 to 20 starts at 11, and the twenties begin at 20 in the middle of two rows. The cited source (IM G1 U4 L10) shows a number path, not a hundred square",
+    "fix": "Rewrote the caption (the shaded column is the tens numbers) and re-attributed rows of ten to the IM Grade 2 choral count, which records ten numbers per row"
+   },
+   {
+    "severity": "source",
+    "where": "views Seeing the pattern to 100, item Hundred square",
+    "problem": "Attributed a hundred square to IM G1 U4 L10, which uses a number path",
+    "fix": "Replaced by Rows of ten (im2U5L1) and Number path to 99 (im1U4L10, which describes the digit pattern)"
+   },
+   {
+    "severity": "unclear",
+    "where": "Tens words",
+    "problem": "Common spelling trap forty/fourty not mentioned although the section asks learners to write words",
+    "fix": "Added a spelling note (forty is listed in the cardinal table of the English numerals source)"
+   },
+   {
+    "severity": "unclear",
+    "where": "checks",
+    "problem": "Only figure-count and a few snippets existed; many examples, exercise solutions and self-check answers (count on/back ranges, one more/less, steps, array) had no assertion",
+    "fix": "Added one more check snippet asserting them"
+   }
+  ]
+ }
+]

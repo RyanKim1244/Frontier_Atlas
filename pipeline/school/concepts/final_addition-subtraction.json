@@ -1,0 +1,1693 @@
+[
+ {
+  "id": "addition-subtraction",
+  "entry": {
+   "sum": "Adding puts amounts together and subtracting takes an amount away, finds a missing part or compares two amounts: $3 + 2 = 5$ and $5 - 2 = 3$. Subtraction undoes addition, so every subtraction is a missing-number addition. Small sums are found by counting on, making a ten and doubles; bigger ones by adding tens to tens and ones to ones, making or breaking a ten when needed.",
+   "key": [
+    "a + b = c \\iff c - b = a \\iff c - a = b",
+    "8 + 6 = 8 + 2 + 4 = 10 + 4 = 14",
+    "37 + 25 = (30 + 20) + (7 + 5) = 50 + 12 = 62"
+   ],
+   "why": "Addition and subtraction are the first operations of arithmetic; column methods, multiplication, equations and algebra are all built on them.",
+   "msc": [
+    "97F30"
+   ],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "The rules a + b = b + a, a + 0 = a and subtraction as undoing addition become the axioms of groups and rings."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, K.OA.A.1-5, 1.OA, 1.NBT.C.4-6, 2.OA.A-B, 2.NBT.B.5-9, 2.MD.B.6, 3.NBT.A.2 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-5 Addition and subtraction (2013)",
+    "Korean Ministry of Education, 2022 revised mathematics curriculum, grades 1-2 number and operations",
+    "Illustrative Mathematics K-5, Grade 1 Units 1-3 and 5; Grade 2 Unit 7; Grade 3 Unit 3",
+    "OpenStax, Prealgebra 2e, sections 1.3 and 1.4 (2020)",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)",
+    "NCETM, Primary Mastery Professional Development, Spine 1: Number, Addition and Subtraction"
+   ],
+   "aliases": [
+    "addition",
+    "subtraction",
+    "adding and taking away",
+    "sum and difference",
+    "plus and minus",
+    "number facts",
+    "addition facts",
+    "mental addition and subtraction",
+    "more and less",
+    "더하기와 빼기 (Korean)",
+    "take away",
+    "addition and subtraction within 20",
+    "number bonds to 20"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 75,
+   "sources": [
+    {
+     "k": "ccss-koa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Kindergarten, Operations and Algebraic Thinking (2010)",
+     "where": "K.OA.A.1-5",
+     "url": "https://www.thecorestandards.org/Math/Content/K/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-1oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Operations and Algebraic Thinking (2010)",
+     "where": "1.OA.A.1-2, 1.OA.B.4, 1.OA.C.5-6, 1.OA.D.8",
+     "url": "https://www.thecorestandards.org/Math/Content/1/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-1nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Number and Operations in Base Ten (2010)",
+     "where": "1.NBT.C.4-6",
+     "url": "https://www.thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-2oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Operations and Algebraic Thinking (2010)",
+     "where": "2.OA.A.1, 2.OA.B.2",
+     "url": "https://www.thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-2nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.B.5-9",
+     "url": "https://www.thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Number and Operations in Base Ten (2010)",
+     "where": "3.NBT.A.2",
+     "url": "https://www.thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-2md",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Measurement and Data (2010)",
+     "where": "2.MD.B.5-6",
+     "url": "https://www.thecorestandards.org/Math/Content/2/MD/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-5, Number: addition and subtraction (statutory requirements and notes)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g1",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 1 (Kendall Hunt edition)",
+     "where": "Course guide, scope and sequence: Units 1, 2, 3, 5",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g2u7",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 2 (Kendall Hunt edition)",
+     "where": "Unit 7, Adding and Subtracting within 1,000",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-7/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Course guide, scope and sequence: Unit 3",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-add",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.3 Add Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81244/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-sub",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.4 Subtract Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81245/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "prog-oa",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K, Counting and Cardinality; K-5, Operations and Algebraic Thinking (2011)",
+     "where": "Table 1 (problem types); levels of solution methods; Grade 1 and Grade 2",
+     "url": "https://www.isbe.net/Documents/counting-cardinality-k-5.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "ncetm-as",
+     "ref": "NCETM, Primary Mastery Professional Development: Number, Addition and Subtraction (Spine 1)",
+     "where": "titles of segments 1.1, 1.5, 1.6, 1.12 and 1.29",
+     "url": "https://ncetm.org.uk/teaching-for-mastery/mastery-materials/primary-mastery-professional-development/number-addition-and-subtraction",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-cadd",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 1.20: Algorithms: column addition",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-120-algorithms-column-addition/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm-y3u7",
+     "ref": "NCETM, Curriculum prioritisation in primary maths: Year 3 Unit 7, Column subtraction",
+     "where": "learning outcomes",
+     "url": "https://ncetm.org.uk/classroom-resources/cp-year-3-unit-7-column-subtraction/",
+     "kind": "notes"
+    },
+    {
+     "k": "nrich-bal",
+     "ref": "Ems Lord, Getting the Balance Right, NRICH (2020)",
+     "where": "compensation; equals sign",
+     "url": "https://nrich.maths.org/14814",
+     "kind": "notes"
+    },
+    {
+     "k": "wikt-minus",
+     "ref": "Wiktionary, entry 빼기 (Korean: subtraction, minus)",
+     "url": "https://kiwix.lema.org/wiktionary_en_all_maxi_2024-01/A/%EB%B9%BC%EA%B8%B0",
+     "kind": "reference"
+    },
+    {
+     "k": "wikt-plus",
+     "ref": "Wiktionary, entry 더하기 (Korean: addition, plus)",
+     "url": "https://en.wiktionary.com/wiki/%EB%8D%94%ED%95%98%EA%B8%B0",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Represent addition and subtraction with objects, fingers, drawings, sounds, acting out, words, expressions or equations (CC K.OA.A.1)",
+     "priority": "core",
+     "where": "What adding and subtracting mean"
+    },
+    {
+     "item": "Read, write and interpret statements with $+$, $-$ and $=$ (England Y1)",
+     "priority": "core",
+     "where": "What adding and subtracting mean"
+    },
+    {
+     "item": "Solve add to, take from, put together/take apart and compare word problems within 10, then 20, with the unknown in all positions (CC K.OA.A.2, 1.OA.A.1)",
+     "priority": "core",
+     "where": "What adding and subtracting mean; Story problems"
+    },
+    {
+     "item": "Add and subtract within 20 by counting on and counting back (CC 1.OA.C.5)",
+     "priority": "core",
+     "where": "Counting on and counting back"
+    },
+    {
+     "item": "Understand subtraction as an unknown-addend problem (CC 1.OA.B.4); inverse relation of addition and subtraction to check and find missing numbers (England Y2, Y3)",
+     "priority": "core",
+     "where": "Subtraction undoes addition"
+    },
+    {
+     "item": "Find the unknown number in an addition or subtraction equation, such as $8 + ? = 11$ (CC 1.OA.D.8; England Y1 missing-number problems)",
+     "priority": "core",
+     "where": "Subtraction undoes addition"
+    },
+    {
+     "item": "Strategies within 20: making ten, decomposing to ten, using the inverse, easier known sums such as doubles (CC 1.OA.C.6)",
+     "priority": "core",
+     "where": "Adding and subtracting within 20"
+    },
+    {
+     "item": "Fluency: add and subtract within 5, 10 and 20 (CC K.OA.A.5, 1.OA.C.6); know from memory all sums of two one-digit numbers by the end of Grade 2 (CC 2.OA.B.2); recall addition and subtraction facts to 20 fluently (England Y2)",
+     "priority": "core",
+     "where": "Adding and subtracting within 20"
+    },
+    {
+     "item": "Add three one-digit numbers, also in word problems with a total up to 20 (CC 1.OA.A.2; England Y2)",
+     "priority": "core",
+     "where": "Adding and subtracting within 20; Story problems"
+    },
+    {
+     "item": "One- and two-step word problems within 100, using drawings and equations with a symbol for the unknown (CC 2.OA.A.1)",
+     "priority": "core",
+     "where": "Story problems"
+    },
+    {
+     "item": "Add within 100 using tens and ones, composing a ten when needed; 10 more and 10 less; subtract multiples of ten (CC 1.NBT.C.4-6)",
+     "priority": "core",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Add and subtract a two-digit number and ones, tens, or another two-digit number (England Y2; CC 1.NBT.C.4)",
+     "priority": "core",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Add up to four two-digit numbers using place value (CC 2.NBT.B.6)",
+     "priority": "core",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Add and subtract within 100 and 1000 using place value, composing and decomposing tens and hundreds; explain why the strategies work (CC 2.NBT.B.5-9, 3.NBT.A.2)",
+     "priority": "core",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Derive facts to 100 from facts to 10, such as $30 + 40 = 70$ (England Y2); mentally add and subtract ones, tens and hundreds to a three-digit number (England Y3); add or subtract 10 or 100 in the head (CC 2.NBT.B.8)",
+     "priority": "core",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Estimate the answer and use the inverse to check (England Y3)",
+     "priority": "common",
+     "where": "Bigger numbers: tens and hundreds; Subtraction undoes addition"
+    },
+    {
+     "item": "Sums and differences on a number line diagram (CC 2.MD.B.6)",
+     "priority": "common",
+     "where": "Counting on and counting back; Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Bar models (tape diagrams) for word problems (NCETM; IM Grade 3)",
+     "priority": "common",
+     "where": "Story problems"
+    },
+    {
+     "item": "Word phrases such as more than, less than, subtracted from, and their order (OpenStax 1.3-1.4)",
+     "priority": "common",
+     "where": "Story problems"
+    },
+    {
+     "item": "Compensation, such as $28 + 16 = 30 + 14$ (NCETM 1.29; NRICH)",
+     "priority": "specialised",
+     "where": "Bigger numbers: tens and hundreds"
+    },
+    {
+     "item": "Addition can be done in any order and subtraction cannot; adding 0 (England Y1-Y2)",
+     "priority": "common",
+     "where": "What adding and subtracting mean; Subtraction undoes addition; [[properties-of-operations]]"
+    },
+    {
+     "item": "Number bonds and splitting a number into parts",
+     "priority": "core",
+     "where": "[[composing-decomposing-numbers]]"
+    },
+    {
+     "item": "Tens, ones and hundreds; ten more and ten less",
+     "priority": "core",
+     "where": "[[place-value]]"
+    },
+    {
+     "item": "Meaning of the equal sign; true and false equations (CC 1.OA.D.7)",
+     "priority": "core",
+     "where": "[[equality-equal-sign]]"
+    },
+    {
+     "item": "Commutative and associative properties as strategies (CC 1.OA.B.3)",
+     "priority": "core",
+     "where": "[[properties-of-operations]]"
+    },
+    {
+     "item": "Formal written column methods for addition and subtraction; numbers with four or more digits (England Y3-Y5; CC 4.NBT.B.4)",
+     "priority": "core",
+     "where": "[[column-addition-subtraction]]"
+    },
+    {
+     "item": "Adding and subtracting amounts of money",
+     "priority": "specialised",
+     "where": "separate page: Money"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Three birds sit on a fence and two more fly down to join them. How many birds are there now? Then two birds fly away. How many are left? Questions like these are about adding and subtracting.\n\nAdding puts amounts together. Subtracting takes an amount away, or finds how much is left, or how many more one amount has than another. On this page you will learn what the signs $+$, $-$ and $=$ mean, how to add and subtract by counting on and counting back, why subtraction undoes addition, how to use a ten to add and subtract within 20, how to solve story problems, and how tens and hundreds let you add and subtract bigger numbers.\n\nYou need to know how to split a number into parts ([[composing-decomposing-numbers]]) and what tens and ones are ([[place-value]]).",
+     "src": [
+      "prog-oa",
+      "os-add",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "section",
+     "title": "What adding and subtracting mean",
+     "body": "After this section you will be able to act out an adding or subtracting story with objects, and write it with the signs $+$, $-$ and $=$.\n\nTry this. Put 3 cups on the table. Put 2 more cups next to them. Count all the cups. Now take 2 cups away. Count the cups that are left.\n\nWhen you put the cups together you were adding. When you took cups away you were subtracting. Children first add and subtract like this, with real things, with fingers, or with drawings, and only later with written signs.",
+     "src": [
+      "ccss-koa",
+      "prog-oa",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\n# top row: 3 plain + 2 striped = 5\nfor i in range(3):\n    ax.add_patch(Circle((0.6 + i * 1.0, 2.6), 0.36, fc='white', ec='black', lw=1.4))\nax.text(3.35, 2.6, '+', ha='center', va='center', fontsize=18)\nfor i in range(2):\n    ax.add_patch(Circle((4.1 + i * 1.0, 2.6), 0.36, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.4, hatch='////'))\nax.text(6.3, 2.6, '3 + 2 = 5', ha='left', va='center', fontsize=14)\n# bottom row: 5, two crossed out\nfor i in range(5):\n    x = 0.6 + i * 1.0\n    ax.add_patch(Circle((x, 0.9), 0.36, fc='white', ec='black', lw=1.4))\n    if i >= 3:\n        ax.plot([x - 0.42, x + 0.42], [0.48, 1.32], color='red', lw=2)\n        ax.plot([x - 0.42, x + 0.42], [1.32, 0.48], color='red', lw=2)\nax.text(4.1, 0.05, 'take away 2', ha='center', va='center', fontsize=11, color='red')\nax.text(6.3, 0.9, '5 - 2 = 3', ha='left', va='center', fontsize=14)\nax.set_xlim(0, 9.4); ax.set_ylim(-0.35, 3.3); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Top: 3 plain counters and 2 striped counters put together make 5 counters, so 3 + 2 = 5. Bottom: from 5 counters, 2 are crossed out (taken away) and 3 are left, so 5 - 2 = 3.",
+     "alt": "Top row: three white circles, a plus sign, two blue striped circles, then the equation 3 + 2 = 5. Bottom row: five white circles with the last two crossed out in red, labelled take away 2, then the equation 5 - 2 = 3.",
+     "src": [
+      "os-add",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Plus, minus and equals",
+     "body": "The sign $+$ is read \"plus\". $3 + 2$ means 3 and 2 put together. The numbers we add are called addends, and the answer is the sum or total: the sum of 3 and 2 is 5.\n\nThe sign $-$ is read \"minus\" (or \"take away\"). $5 - 2$ means 2 taken away from 5. The answer is called the difference: the difference of 5 and 2 is 3.\n\nThe sign $=$ is read \"equals\" or \"is the same as\". $3 + 2 = 5$ says that 3 + 2 is the same number as 5. A number sentence with an equals sign, such as $3 + 2 = 5$, is called an equation.",
+     "src": [
+      "os-add",
+      "os-sub",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Four kinds of adding and subtracting stories",
+     "body": "Most adding and subtracting stories are of four kinds.\n\n1. Add to: something is added. 3 birds sit on a fence and 2 more come. Now there are $3 + 2 = 5$.\n2. Take from: something is taken away. 5 birds sit on a fence and 2 fly off. Now there are $5 - 2 = 3$.\n3. Put together or take apart: two parts make a whole, and nothing moves. 3 red cups and 2 blue cups make $3 + 2 = 5$ cups.\n4. Compare: two amounts are set side by side. Ana has 5 cups and Ben has 3. Ana has $5 - 3 = 2$ more.\n\nSo subtracting is not only taking away. It also finds a missing part, and how many more or how many fewer.",
+     "src": [
+      "prog-oa",
+      "ncetm-as",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "One story, many ways: 5 take away 2",
+     "items": [
+      {
+       "label": "Objects",
+       "body": "Put out 5 counters, move 2 away, and count the 3 that stay.",
+       "src": [
+        "ccss-koa",
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Fingers",
+       "body": "Hold up 5 fingers, fold down 2, and look at the 3 still up.",
+       "src": [
+        "ccss-koa"
+       ]
+      },
+      {
+       "label": "Drawing",
+       "body": "Draw 5 circles and cross out 2. Count the 3 that are not crossed out.",
+       "src": [
+        "os-sub"
+       ]
+      },
+      {
+       "label": "Words",
+       "body": "Five take away two is three. In Korean: 5 빼기 2는 3.",
+       "src": [
+        "os-sub",
+        "wikt-minus"
+       ]
+      },
+      {
+       "label": "Symbols",
+       "body": "$5 - 2 = 3$.",
+       "src": [
+        "os-sub"
+       ]
+      }
+     ],
+     "body": "Five birds sit on a fence and two fly away. The same subtraction can be shown in many ways."
+    },
+    {
+     "type": "conventions",
+     "title": "Words for the signs",
+     "rows": [
+      {
+       "who": "England",
+       "text": "The England programme of study speaks of the equals sign (the sign $=$).",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "United States",
+       "text": "The sign $=$ is called the equal sign; a number sentence with it is an equation.",
+       "src": [
+        "ccss-1oa",
+        "os-add"
+       ]
+      },
+      {
+       "who": "Korean",
+       "text": "더하기 is read for $+$ and 빼기 for $-$: 3 더하기 6은 9 is three plus six is nine, and 5 빼기 3은 2 is five minus three is two.",
+       "src": [
+        "wikt-plus",
+        "wikt-minus"
+       ]
+      },
+      {
+       "who": "Common Core progressions and NCETM",
+       "text": "The progressions prefer total to sum with young children, because sum sounds like some, and say the names minuend and subtrahend (the first and second numbers of a subtraction) are not needed from Kindergarten to Grade 2. NCETM's Year 3 outcomes for column subtraction do use both names.",
+       "src": [
+        "prog-oa",
+        "ncetm-y3u7"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Adding and taking away zero",
+     "body": "Adding 0 does not change a number, and taking away 0 does not change it either: $$7 + 0 = 7, \\quad 7 - 0 = 7.$$ Taking away all of a number leaves 0: $7 - 7 = 0$.",
+     "src": [
+      "os-add",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "If you have 7 cups and no more cups come, you still have 7 cups. If you have 7 cups and you take none away, 7 are still there. If you take all 7 away, none are left. (This is one of the properties of addition, studied on [[properties-of-operations]].)"
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: read = as \"is the same as\"",
+     "body": "If children only ever see the answer straight after the equals sign, many come to read $=$ as \"makes\" or \"now write the answer\". The Common Core progressions say that $=$ does not always mean \"makes\" or \"results in\": it means \"is the same number as\". Illustrative Mathematics Grade 1 also asks children to understand the equal sign, especially in missing-number problems. More on this is on [[equality-equal-sign]].",
+     "src": [
+      "prog-oa",
+      "im-g1",
+      "nrich-bal"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Write the story with numbers and signs, and find the answer: There are 4 apples in a bowl. Dad puts in 3 more. How many apples are in the bowl now?",
+     "solution": "1. This is an add to story: apples are added.\n2. Start with 4 apples, then 3 more are put in: $4 + 3$.\n3. Count: 4 apples, then five, six, seven. So $4 + 3 = 7$.\n4. Answer: there are 7 apples in the bowl.",
+     "src": [
+      "os-add",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Write the story with numbers and signs: There are 6 children on the slide. 4 of them go home. How many are still on the slide?",
+     "solution": "1. This is a take from story: children leave.\n2. Start with 6, take away 4: $6 - 4$.\n3. Draw 6 circles and cross out 4. 2 circles are not crossed out. So $6 - 4 = 2$.\n4. Answer: 2 children are still on the slide.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Read $8 - 3 = 5$ aloud.",
+       "a": "Eight minus three equals five (or: eight take away three is five)."
+      },
+      {
+       "q": "What is the sum of 2 and 6?",
+       "a": "8, because $2 + 6 = 8$."
+      },
+      {
+       "q": "What is the difference of 9 and 4?",
+       "a": "5, because $9 - 4 = 5$."
+      },
+      {
+       "q": "What is $5 + 0$?",
+       "a": "5."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Draw 4 circles and 1 more circle. Write the addition and the answer.",
+       "hint": "Count all the circles you drew.",
+       "solution": "There are 5 circles: $4 + 1 = 5$."
+      },
+      {
+       "q": "Draw 7 circles and cross out 3. Write the subtraction and the answer.",
+       "hint": "Count only the circles that are not crossed out.",
+       "solution": "4 circles are left: $7 - 3 = 4$."
+      },
+      {
+       "q": "Which kind of story is it (add to, take from, put together, compare)? 5 red balloons and 4 yellow balloons. How many balloons?",
+       "hint": "Does anything move, or are there just two parts?",
+       "solution": "Put together: nothing is added or taken away; two parts make a whole. $5 + 4 = 9$ balloons."
+      },
+      {
+       "q": "Which kind of story is it? Mia has 8 stickers and Leo has 5. How many more stickers does Mia have?",
+       "hint": "Two amounts are set side by side.",
+       "solution": "Compare. Match 5 of Mia's stickers with Leo's 5; 3 of hers are not matched. $8 - 5 = 3$ more."
+      },
+      {
+       "q": "What is $9 - 0$? What is $9 - 9$?",
+       "hint": "Take away nothing; take away everything.",
+       "solution": "$9 - 0 = 9$ and $9 - 9 = 0$."
+      },
+      {
+       "q": "Is $6 = 4 + 2$ true? Explain.",
+       "hint": "Read the equals sign as \"is the same as\".",
+       "solution": "Yes. 4 + 2 is 6, so \"6 is the same as 4 + 2\" is true."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Adding puts amounts together; the answer is the sum or total.\n- Subtracting takes away, finds a missing part, or compares; the answer is the difference.\n- $+$ is plus, $-$ is minus, $=$ means is the same as.\n- Stories can be add to, take from, put together or take apart, and compare.\n- Adding or taking away 0 leaves a number the same."
+    },
+    {
+     "type": "section",
+     "title": "Counting on and counting back",
+     "body": "After this section you will be able to add by counting on from a number and subtract by counting back or by counting on, and show this with hops on a number line.\n\nTry this. Put 8 counters in a cup and tell a friend there are 8 inside. Put 3 more on the table. How many are there in all? Do you need to tip out the cup and count from one?",
+     "src": [
+      "prog-oa",
+      "im-g1",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Counting all and counting on",
+     "body": "To find $8 + 3$ a young child may count all: one, two, three, ... up to eight for the first group, and then nine, ten, eleven for the second.\n\nCounting on is quicker. Say the first number, eight, and then count the second group: nine, ten, eleven. Keep track of the three counts on fingers. The last number said, eleven, is the sum.\n\nCounting back is the same idea for taking away. To find $11 - 3$, start at eleven and count back three: ten, nine, eight. So $11 - 3 = 8$.",
+     "src": [
+      "prog-oa",
+      "im-g1",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Why counting on works",
+     "body": "When you count a group from one, the last number you say tells how many there are. So saying \"eight\" for the first group already counts it, and you only need to count the second group from nine onwards.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Counting all 8 + 3 counters from one would say one, two, ..., eight for the first 8 counters, and nine, ten, eleven for the other 3. The first eight words are the same every time and end at eight. Counting on simply skips them and starts at eight. The words said for the other 3 counters, nine, ten, eleven, are exactly the same as before, so the answer is the same.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\ndef line(y):\n    ax.plot([-0.4, 12.4], [y, y], color='black', lw=1.2)\n    for n in range(13):\n        ax.plot([n, n], [y - 0.12, y + 0.12], color='black', lw=1.0)\n        ax.text(n, y - 0.42, str(n), ha='center', va='center', fontsize=11)\ndef hop(a, b, y, col, ls, lab):\n    t = np.linspace(0, np.pi, 40)\n    xs = a + (b - a) * (1 - np.cos(t)) / 2\n    ax.plot(xs, y + 0.55 * np.sin(t), color=col, lw=1.8, ls=ls)\n    ax.plot([b], [y + 0.02], marker='v', color=col, ms=7)\n    ax.text((a + b) / 2, y + 0.85, lab, ha='center', va='center', fontsize=11, color=col)\nline(2.4)\nfor a in (8, 9, 10):\n    hop(a, a + 1, 2.4, 'blue', '-', '+1')\nax.plot(8, 2.4, 'o', color='black', ms=7)\nax.text(3.5, 3.0, '8 + 3 = 11', ha='center', va='center', fontsize=13)\nline(0.6)\nfor a in (11, 10, 9):\n    hop(a, a - 1, 0.6, (0.8, 0.35, 0), '--', '-1')\nax.plot(11, 0.6, 'o', color='black', ms=7)\nax.text(3.5, 1.2, '11 - 3 = 8', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.6, 12.6); ax.set_ylim(-0.1, 3.5); ax.axis('off')\n",
+     "caption": "Top: start at 8 and make 3 hops of one to the right (solid), landing on 11, so 8 + 3 = 11. Bottom: start at 11 and make 3 hops of one to the left (dashed), landing on 8, so 11 - 3 = 8.",
+     "alt": "Two number lines from 0 to 12. On the top line a dot at 8 and three solid blue hops to 9, 10 and 11, labelled +1 +1 +1 and 8 + 3 = 11. On the bottom line a dot at 11 and three dashed orange hops back to 10, 9 and 8, labelled -1 -1 -1 and 11 - 3 = 8.",
+     "src": [
+      "ccss-2md",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Subtracting by counting on",
+     "body": "To subtract, you can also count on from the smaller number to the larger one. The number of counts is the difference. For $13 - 9$: start at nine and count ten, eleven, twelve, thirteen. That is 4 counts, so $13 - 9 = 4$.",
+     "src": [
+      "prog-oa",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$13 - 9$ asks: 9 and how many more make 13? Counting on from 9 to 13 counts exactly the numbers that are in 13 but not in the first 9. The Common Core progressions say that counting on for subtraction is easier than counting down.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 8 + 3",
+     "items": [
+      {
+       "label": "Count all",
+       "body": "Put out 8 counters and 3 counters, then count every counter from one to eleven.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Count on",
+       "body": "Say eight, then count three more on fingers: nine, ten, eleven.",
+       "src": [
+        "prog-oa",
+        "im-g1"
+       ]
+      },
+      {
+       "label": "Number line",
+       "body": "Start at 8 on a number line and make 3 hops of one: 9, 10, 11.",
+       "src": [
+        "ccss-2md"
+       ]
+      },
+      {
+       "label": "Ten frame",
+       "body": "8 counters fill most of a ten frame; 2 more fill it to make 10 and 1 is left over, so 11.",
+       "src": [
+        "im-g1"
+       ]
+      }
+     ],
+     "body": "Different sources start from different pictures of the same sum."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: start from the larger number",
+     "body": "To count on for $2 + 7$ it is easier to start at seven and count two more than to start at two and count seven more. Children can do this once they see that the order of adding does not change the total, which the England programme of study expects in Year 2 (see [[properties-of-operations]]).",
+     "src": [
+      "prog-oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $6 + 3$ by counting on.",
+     "solution": "1. Say the first number: six.\n2. Count three more, raising a finger each time: seven (1), eight (2), nine (3).\n3. Three fingers are up, so stop. The last number said is nine.\n4. So $6 + 3 = 9$.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $12 - 8$ by counting on.",
+     "solution": "1. $12 - 8$ asks: 8 and how many more make 12?\n2. Start at eight and count on to twelve: nine (1), ten (2), eleven (3), twelve (4).\n3. That is 4 counts.\n4. So $12 - 8 = 4$. Check: $8 + 4 = 12$.",
+     "src": [
+      "prog-oa",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Count on to find $9 + 2$.",
+       "a": "Nine, ten, eleven: $9 + 2 = 11$."
+      },
+      {
+       "q": "Count back to find $7 - 2$.",
+       "a": "Six, five: $7 - 2 = 5$."
+      },
+      {
+       "q": "Count on from 7 to find $10 - 7$.",
+       "a": "Eight, nine, ten is 3 counts: $10 - 7 = 3$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Count on to find $5 + 3$.",
+       "hint": "Say five, then count three more.",
+       "solution": "Six, seven, eight: $5 + 3 = 8$."
+      },
+      {
+       "q": "Count back to find $9 - 3$.",
+       "hint": "Start at nine and count back three.",
+       "solution": "Eight, seven, six: $9 - 3 = 6$."
+      },
+      {
+       "q": "Draw a number line from 0 to 10 and show $4 + 5$ with hops of one.",
+       "hint": "Start at 4 and make 5 hops to the right.",
+       "solution": "From 4 the hops land on 5, 6, 7, 8, 9. So $4 + 5 = 9$."
+      },
+      {
+       "q": "Find $2 + 8$ the easy way.",
+       "hint": "Start from the larger number.",
+       "solution": "Start at eight and count two more: nine, ten. $2 + 8 = 10$."
+      },
+      {
+       "q": "Find $15 - 12$ by counting on.",
+       "hint": "12 and how many more make 15?",
+       "solution": "Thirteen, fourteen, fifteen is 3 counts: $15 - 12 = 3$."
+      },
+      {
+       "q": "Sam says that to find $14 - 11$ he will count back 11 steps from 14. Suggest a quicker way, and give the answer.",
+       "hint": "Counting on from 11 is only a few steps.",
+       "solution": "Count on from 11 to 14: twelve, thirteen, fourteen, which is 3 counts. So $14 - 11 = 3$; this needs 3 counts instead of 11."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- To count on, say the first number and count on the second.\n- To count back, start at the first number and count back.\n- To subtract, you can count on from the smaller number to the larger one; the number of counts is the difference.\n- On a number line, adding hops right and subtracting hops left."
+    },
+    {
+     "type": "section",
+     "title": "Subtraction undoes addition",
+     "body": "After this section you will be able to use an addition fact to find a subtraction, find a missing number in an equation, and check a subtraction by adding.\n\nTry this. Put 7 cups on the table and add 2. Now take the 2 away again. How many cups are there?",
+     "src": [
+      "os-sub",
+      "ccss-1oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Addition and subtraction are inverse operations",
+     "body": "Taking away what was added brings you back to where you started, and adding back what was taken away does the same: $$7 + 2 = 9 \\text{ and } 9 - 2 = 7.$$ So every subtraction is a missing-number addition. Here a question mark stands for a number we do not know yet: $9 - 2$ asks $2 + ? = 9$.",
+     "src": [
+      "os-sub",
+      "ccss-1oa",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Start with 7 cups and put 2 more down: now there are 9. If you then pick up those same 2 cups, the cups that stay are the 7 you started with. So $9 - 2 = 7$. In the other direction, the difference $9 - 2$ is the number of cups that, together with the 2, make 9, which is the missing number in $2 + ? = 9$. (This is the link between parts and wholes on [[composing-decomposing-numbers]]: one whole and two parts give two additions and two subtractions.)",
+     "src": [
+      "os-sub",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "A missing number",
+     "body": "A box or a question mark can stand for a number we do not know yet: $6 + \\square = 8$ asks what number goes with 6 to make 8. The missing number can be in any place: $\\square + 5 = 9$, $8 - \\square = 3$, $7 = \\square - 2$.",
+     "src": [
+      "im-g1",
+      "eng-pos",
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find the missing number: $6 + \\square = 8$.",
+     "solution": "1. The question asks: 6 and how many more make 8?\n2. Count on from 6: seven (1), eight (2).\n3. That is 2 counts, so the missing number is 2.\n4. Check: $6 + 2 = 8$. The same fact gives $8 - 6 = 2$.",
+     "src": [
+      "im-g1"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $16 - 9$ by using an addition fact.",
+     "solution": "1. $16 - 9$ asks: 9 and how many make 16?\n2. Think of an addition fact with 9 that makes 16. 9 and 1 make 10, and 10 and 6 make 16, so 9 and $1 + 6 = 7$ make 16: $9 + 7 = 16$.\n3. So $16 - 9 = 7$.\n4. Check by adding: $7 + 9 = 16$.",
+     "src": [
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Check a subtraction by adding",
+     "body": "Letters can stand for numbers. If $a - b = c$ then $c + b = a$. For example, $9 - 2 = 7$ and $7 + 2 = 9$. So to check a subtraction, add the answer to the number you took away. You should get the number you started with.",
+     "src": [
+      "os-sub",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "$c$ is what is left when $b$ is taken from $a$. Putting the $b$ back with what is left gives all of $a$ again.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Order matters in subtraction",
+     "body": "$3 + 5$ and $5 + 3$ are both 8, but $5 - 3$ and $3 - 5$ are not the same. $5 - 3 = 2$: from 5 take away 3. With whole numbers you cannot take 5 away from 3. The England programme of study asks Year 2 pupils to show that addition can be done in any order and subtraction cannot.",
+     "src": [
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Is $43 - 26 = 17$ right? Check by adding.",
+     "solution": "1. Add the answer to the number taken away: $17 + 26$.\n2. Tens: $10 + 20 = 30$. Ones: $7 + 6 = 13$.\n3. $30 + 13 = 43$.\n4. We got back 43, the number we started with, so $43 - 26 = 17$ is right.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Use $5 + 4 = 9$ to find $9 - 4$ and $9 - 5$.",
+       "a": "$9 - 4 = 5$ and $9 - 5 = 4$."
+      },
+      {
+       "q": "Find the missing number: $\\square + 3 = 10$.",
+       "a": "7, because $7 + 3 = 10$."
+      },
+      {
+       "q": "Check $15 - 6 = 9$ by adding.",
+       "a": "$9 + 6 = 15$, so it is right."
+      },
+      {
+       "q": "Is $2 - 6$ the same as $6 - 2$?",
+       "a": "No. $6 - 2 = 4$, but 6 cannot be taken from 2 with whole numbers."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write two subtraction facts that come from $3 + 6 = 9$.",
+       "hint": "Take away one part from the whole.",
+       "solution": "$9 - 6 = 3$ and $9 - 3 = 6$."
+      },
+      {
+       "q": "Find the missing number: $4 + \\square = 11$.",
+       "hint": "Count on from 4 to 11.",
+       "solution": "Five, six, seven, eight, nine, ten, eleven is 7 counts. $4 + 7 = 11$, so the missing number is 7."
+      },
+      {
+       "q": "Find the missing number: $10 - \\square = 4$.",
+       "hint": "What do you take from 10 to leave 4? Or: 4 and how many make 10?",
+       "solution": "$4 + 6 = 10$, so $10 - 6 = 4$. The missing number is 6."
+      },
+      {
+       "q": "Find the missing number: $\\square - 5 = 8$.",
+       "hint": "Add back the 5 that was taken away.",
+       "solution": "The start number is $8 + 5 = 13$. Check: $13 - 5 = 8$."
+      },
+      {
+       "q": "Use an addition fact to find $14 - 8$.",
+       "hint": "8 and how many make 14?",
+       "solution": "$8 + 6 = 14$ (8 and 2 make 10, then 4 more). So $14 - 8 = 6$."
+      },
+      {
+       "q": "Jo says $52 - 17 = 45$. Check by adding and say whether she is right.",
+       "hint": "Add 45 and 17.",
+       "solution": "$45 + 17 = 62$, not 52, so Jo is wrong. In fact $35 + 17 = 52$, so $52 - 17 = 35$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Subtraction undoes addition: $7 + 2 = 9$ and $9 - 2 = 7$.\n- A subtraction can be found as a missing addend: $9 - 2$ asks $2 + ? = 9$.\n- A missing number can be in any place in an equation.\n- Check a subtraction by adding the answer to the number taken away.\n- Addition can be done in any order; subtraction cannot."
+    },
+    {
+     "type": "section",
+     "title": "Adding and subtracting within 20",
+     "body": "After this section you will be able to add and subtract numbers up to 20 by making a ten, by using doubles, and by going through ten.\n\nTry this. Fill a ten frame with 9 counters, so 1 square is empty. Now you need to add 5 more counters. Where does the first one go? How many are then left over?",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Making a ten",
+     "body": "To add to a number close to 10, such as 7, 8 or 9, split the other number so that one part fills up a ten: $$8 + 6 = 8 + 2 + 4$$ $$= 10 + 4 = 14.$$",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Put the 8 counters and the 6 counters on two ten frames, filling the first frame first. 8 counters leave 2 empty squares, so 2 of the 6 counters fill the first frame, making 10. The other $6 - 2 = 4$ counters go into the second frame. A full ten and 4 more is 14 ([[place-value]]).",
+     "src": [
+      "im-g1",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(5.6, 2.1)\nax = fig.add_axes([0, 0, 1, 1])\nfor k in range(2):\n    x0 = k * 6.2\n    for j in range(10):\n        r, c = divmod(j, 5)\n        ax.add_patch(Rectangle((x0 + c, 1 - r), 1, 1, fill=False, ec='black', lw=1.0))\n        idx = k * 10 + j\n        if idx < 8:\n            ax.add_patch(Circle((x0 + c + 0.5, 1 - r + 0.5), 0.33, color='black'))\n        elif idx < 14:\n            ax.add_patch(Circle((x0 + c + 0.5, 1 - r + 0.5), 0.33, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.2, hatch='////'))\nax.text(2.5, -0.55, '8 + 2 = 10', ha='center', va='center', fontsize=12)\nax.text(8.7, -0.55, '4 more', ha='center', va='center', fontsize=12, color='blue')\nax.set_xlim(-0.2, 11.4); ax.set_ylim(-1.0, 2.2); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "8 + 6 by making a ten. The 8 black counters and 2 of the 6 striped counters fill the first ten frame (8 + 2 = 10); the other 4 striped counters go in the second frame. So 8 + 6 = 10 + 4 = 14.",
+     "alt": "Two ten frames. The first has 8 black counters and 2 blue striped counters, so it is full, labelled 8 + 2 = 10. The second has 4 blue striped counters in its top row, labelled 4 more.",
+     "src": [
+      "im-g1",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Doubles and near doubles",
+     "body": "A double adds a number to itself, such as $6 + 6 = 12$ or $7 + 7 = 14$. A sum of two numbers that differ by 1 is a near double: $$6 + 7 = 6 + 6 + 1 = 13.$$",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "7 is 6 and 1 more. So 6 + 7 is 6 + 6 with 1 more on top: $12 + 1 = 13$. In the same way $7 + 8 = 7 + 7 + 1 = 14 + 1 = 15$.",
+     "src": [
+      "prog-oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Subtracting through ten",
+     "body": "To take away from a teen number, first take away down to 10, then take away the rest: $$13 - 4 = 13 - 3 - 1$$ $$= 10 - 1 = 9.$$ Or count on to 10 and then past it: for $15 - 8$, from 8 to 10 is 2 and from 10 to 15 is 5, so $15 - 8 = 2 + 5 = 7$.",
+     "src": [
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "13 is a ten and 3 ones. Taking away 4 means taking away the 3 ones first, which leaves the ten, and then 1 more from the ten, which leaves 9. Taking away 4 in two steps, 3 and then 1, takes away 4 altogether, because $3 + 1 = 4$.",
+     "src": [
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Three numbers: look for a ten",
+     "body": "When adding three numbers you may add them in any order, so look for two that make 10: $$4 + 7 + 6 = 4 + 6 + 7$$ $$= 10 + 7 = 17.$$ If no two of them make 10, add two of them and then the third: $3 + 4 + 5 = 7 + 5 = 12$.",
+     "src": [
+      "im-g1",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "All the counters are the same whichever group we count first, so the total does not change when we put the 4 and the 6 together first. 4 and 6 make 10, and 10 and 7 make 17. (Why the order and grouping can change is studied on [[properties-of-operations]].)",
+     "src": [
+      "im-g1"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to find 9 + 5",
+     "items": [
+      {
+       "label": "Count on",
+       "body": "Say nine, then count five more: ten, eleven, twelve, thirteen, fourteen.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Make a ten",
+       "body": "Take 1 from the 5 to fill up the 9: $9 + 1 = 10$, and 4 are left, so $10 + 4 = 14$.",
+       "src": [
+        "im-g1",
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Use a ten frame",
+       "body": "9 counters leave one empty square. One of the 5 fills it; the other 4 start a second frame. One full frame and 4 is 14.",
+       "src": [
+        "im-g1"
+       ]
+      },
+      {
+       "label": "Use a known fact",
+       "body": "$10 + 5 = 15$, and 9 is one less than 10, so $9 + 5$ is one less than 15, which is 14.",
+       "src": [
+        "ccss-1oa"
+       ]
+      }
+     ],
+     "body": "Sources describe several ways to get the same sum; the Common Core progressions call the later ones converting to an easier problem."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: methods grow in stages",
+     "body": "The Common Core progressions describe three levels: first children count all the objects (or take away objects and count what is left), then they count on, then they turn a problem into an easier one by making a ten or using a double. Children move between levels and may go back to counting with harder numbers. Illustrative Mathematics Grade 1 builds towards fluency within 10 in its first unit and again at the start of its unit on adding and subtracting within 20, where double ten frames show the structure of teen numbers with the ten clearly visible. The England programme of study asks Year 2 pupils to recall addition and subtraction facts to 20 fluently.",
+     "src": [
+      "prog-oa",
+      "im-g1",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $7 + 5$ by making a ten.",
+     "solution": "1. 7 needs 3 more to make 10.\n2. Split 5 into 3 and 2.\n3. $7 + 3 = 10$.\n4. Add the 2 that are left: $10 + 2 = 12$.\n5. So $7 + 5 = 12$.",
+     "src": [
+      "prog-oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $14 - 6$ by going through ten.",
+     "solution": "1. 14 is a ten and 4 ones.\n2. Split 6 into 4 and 2.\n3. Take away 4: $14 - 4 = 10$.\n4. Take away the other 2: $10 - 2 = 8$.\n5. So $14 - 6 = 8$. Check: $8 + 6 = 14$.",
+     "src": [
+      "ccss-1oa"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Make a ten to find $9 + 4$.",
+       "a": "$9 + 1 = 10$, then 3 more: 13."
+      },
+      {
+       "q": "Use a double to find $8 + 9$.",
+       "a": "$8 + 8 = 16$, and one more is 17."
+      },
+      {
+       "q": "Go through ten to find $12 - 5$.",
+       "a": "$12 - 2 = 10$, then $10 - 3 = 7$."
+      },
+      {
+       "q": "Find $3 + 8 + 7$ by looking for a ten.",
+       "a": "$3 + 7 = 10$, then $10 + 8 = 18$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $8 + 3$ by making a ten.",
+       "hint": "8 needs 2 more to make 10.",
+       "solution": "Split 3 into 2 and 1: $8 + 2 = 10$, $10 + 1 = 11$. So $8 + 3 = 11$."
+      },
+      {
+       "q": "Find $5 + 6$ using a double.",
+       "hint": "Which double is close?",
+       "solution": "$5 + 5 = 10$, and 6 is 1 more than 5, so $5 + 6 = 11$ (or $6 + 6 = 12$, one less is 11)."
+      },
+      {
+       "q": "Find $16 - 7$ by going through ten.",
+       "hint": "First take away 6 to get to 10.",
+       "solution": "Split 7 into 6 and 1: $16 - 6 = 10$, $10 - 1 = 9$. So $16 - 7 = 9$."
+      },
+      {
+       "q": "Find $13 - 9$ by counting on through ten.",
+       "hint": "From 9 to 10, then from 10 to 13.",
+       "solution": "From 9 to 10 is 1; from 10 to 13 is 3. $1 + 3 = 4$, so $13 - 9 = 4$."
+      },
+      {
+       "q": "Find $2 + 9 + 8$.",
+       "hint": "Look for two numbers that make 10.",
+       "solution": "$2 + 8 = 10$, then $10 + 9 = 19$."
+      },
+      {
+       "q": "Draw two ten frames to show $6 + 7$. Say how you make a ten.",
+       "hint": "Fill the first frame first.",
+       "solution": "6 counters leave 4 empty squares. 4 of the 7 fill the first frame, making 10; the other 3 go into the second frame. $6 + 7 = 10 + 3 = 13$."
+      },
+      {
+       "q": "Lena knows $7 + 7 = 14$. How can she use it to find $14 - 8$?",
+       "hint": "8 is one more than 7.",
+       "solution": "$14 - 7 = 7$, and taking away 1 more gives $7 - 1 = 6$. So $14 - 8 = 6$. Check: $6 + 8 = 14$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Make a ten: split one number to fill up the other to 10, as in $8 + 6 = 8 + 2 + 4 = 14$.\n- Use doubles and near doubles: $6 + 7 = 6 + 6 + 1 = 13$.\n- Go through ten to subtract: $13 - 4 = 13 - 3 - 1 = 9$.\n- With three numbers, add two that make 10 first if you can.\n- Aim to know all sums and differences within 20."
+    },
+    {
+     "type": "section",
+     "title": "Story problems",
+     "body": "After this section you will be able to draw a bar model for an adding or subtracting story, write an equation for it, and answer the question, even when the unknown number is not at the end.\n\nTry this. Read: \"Some ducks were on a pond. 3 more ducks came. Now there are 8 ducks.\" What do you not know? Act it out with counters before you calculate.",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Where the unknown can be",
+     "body": "In each kind of story any one of the three numbers can be the unknown. The Common Core sorts the stories like this (examples in the style of its table):\n\n- Add to, result unknown: 5 ducks, 3 more come. How many now? $5 + 3 = \\square$.\n- Add to, change unknown: 5 ducks, some more come, now 8. How many came? $5 + \\square = 8$.\n- Add to, start unknown: some ducks, 3 more come, now 8. How many were there at first? $\\square + 3 = 8$.\n- Put together, addend unknown: 8 ducks, 5 are white and the rest are brown. How many are brown? $5 + \\square = 8$.\n- Compare, difference unknown: Ana has 8 shells, Ben has 5. How many more does Ana have? $5 + \\square = 8$ or $8 - 5 = \\square$.\n- Compare, bigger or smaller unknown: Ben has 5 shells; Ana has 3 more than Ben. How many does Ana have? $5 + 3 = \\square$.\n\nTake from stories have the same three unknowns: result, change and start.\n\n- Take from, result unknown: 8 ducks, 3 swim away. How many now? $8 - 3 = \\square$.\n- Take from, change unknown: 8 ducks, some swim away, 5 are left. How many swam away? $8 - \\square = 5$.\n- Take from, start unknown: some ducks, 3 swim away, 5 are left. How many were there at first? $\\square - 3 = 5$.",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "ccss-2oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.0, 2.4)\nax = fig.add_axes([0, 0, 1, 1])\nu = 0.75\nax.text(-0.2, 2.1, 'Ana', ha='right', va='center', fontsize=13)\nax.add_patch(Rectangle((0, 1.75), 8 * u, 0.7, fill=False, ec='black', lw=1.4))\nax.text(4 * u, 2.1, '8', ha='center', va='center', fontsize=14)\nax.text(-0.2, 0.95, 'Ben', ha='right', va='center', fontsize=13)\nax.add_patch(Rectangle((0, 0.6), 5 * u, 0.7, fc=(0.75, 0.85, 1.0), ec='black', lw=1.4))\nax.text(2.5 * u, 0.95, '5', ha='center', va='center', fontsize=14, color='blue')\nax.add_patch(Rectangle((5 * u, 0.6), 3 * u, 0.7, fill=False, ec=(0.8, 0.35, 0), lw=1.4, ls='--', hatch='..'))\nax.text(6.5 * u, 0.95, '?', ha='center', va='center', fontsize=16, color=(0.8, 0.35, 0), bbox=dict(fc='white', ec=(0.8, 0.35, 0), pad=3))\nax.annotate('', xy=(5 * u, 0.25), xytext=(8 * u, 0.25), arrowprops=dict(arrowstyle='<->', color=(0.8, 0.35, 0), lw=1.4))\nax.text(6.5 * u, -0.05, 'difference', ha='center', va='center', fontsize=11, color=(0.8, 0.35, 0))\nax.set_xlim(-1.4, 6.6); ax.set_ylim(-0.4, 2.7); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "A bar model for a compare story. Ana's bar is 8 long; Ben's bar is 5 long. The dashed, dotted piece marked ? is the difference, the part of Ana's bar that Ben's bar does not reach: 8 - 5 = 3.",
+     "alt": "Two bars, one above the other, starting at the same left edge. The top bar, labelled Ana, is marked 8. The lower bar, labelled Ben, is a blue bar marked 5, followed by a dashed orange dotted piece marked with a question mark that reaches the end of Ana's bar. A double arrow under that piece is labelled difference.",
+     "src": [
+      "ncetm-as",
+      "im-g3",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Bar model",
+     "body": "A bar model (also called a tape diagram) draws each amount as a bar. In a put together story the bars of the parts are laid end to end under the bar of the whole. In a compare story the two bars start at the same place, and the difference is the piece by which the longer bar sticks out. The bars do not need to be measured; they only show which amount is bigger.",
+     "src": [
+      "ncetm-as",
+      "im-g3",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Choosing the operation",
+     "body": "Once the story is drawn, look at what is unknown. If the unknown is a whole, the long bar made of the parts, add the parts. If the unknown is one part, subtract the known part from the whole (or count on from the known part up to the whole). In a compare story the longer bar is the shorter bar and the difference together: if the longer amount is unknown, add; if the shorter amount or the difference is unknown, subtract.",
+     "src": [
+      "prog-oa",
+      "ncetm-as"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "In a bar model the whole bar is exactly as long as the parts laid end to end. Putting parts together is addition. When one part is missing, it is what is left of the whole after the known part, which is a subtraction, and by the section 'Subtraction undoes addition' also the missing addend. A compare story is the same picture: the longer bar is the shorter bar with the difference added on.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: \"more\" does not always mean add",
+     "body": "Compare stories are among the hardest kinds. In \"Lucy has 3 fewer apples than Julie. Lucy has 5. How many does Julie have?\" the word fewer suggests subtracting, but the answer is $5 + 3 = 8$. The Common Core progressions list four harder subtypes: add to and take from with the start unknown (such as $\\square + 3 = 8$), and compare stories with the bigger amount unknown in \"fewer\" wording or the smaller amount unknown in \"more\" wording. Children should work with them in Grade 1 but need not master them until Grade 2.",
+     "src": [
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: the equation should match the story",
+     "body": "Illustrative Mathematics notes that many equations can often be written for one story, and that children should focus on explaining how their equation matches the story. For 11 children of whom 7 are girls, both $7 + \\square = 11$ and $11 - 7 = \\square$ match. Explaining the match matters more than using one particular equation or method.",
+     "src": [
+      "im-g1"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Word phrases for adding and subtracting",
+     "rows": [
+      {
+       "who": "OpenStax, adding",
+       "text": "plus, sum, increased by, more than, total of, added to. \"8 more than 7\" is $7 + 8$.",
+       "src": [
+        "os-add"
+       ]
+      },
+      {
+       "who": "OpenStax, subtracting",
+       "text": "minus, difference, decreased by, less than, subtracted from. \"5 less than 8\" is $8 - 5$, and \"1 subtracted from 6\" is $6 - 1$: here the order is reversed from the words.",
+       "src": [
+        "os-sub"
+       ]
+      },
+      {
+       "who": "NCETM (England)",
+       "text": "The titles of its Number, Addition and Subtraction segments speak of aggregation and partitioning, augmentation and reduction, comparison of quantities, and subtraction as difference.",
+       "src": [
+        "ncetm-as"
+       ]
+      }
+     ],
+     "body": "Books list phrases that tell you which operation to use. Be careful with the order of the numbers."
+    },
+    {
+     "type": "example",
+     "body": "Some children were in the park. 4 children went home. Now there are 9 children in the park. How many children were there at first?",
+     "solution": "1. This is a take from story with the start unknown: $\\square - 4 = 9$.\n2. Draw a bar for the children at first. It is made of the 9 who stayed and the 4 who went home.\n3. So the whole is $9 + 4$.\n4. $9 + 4 = 13$ (make a ten: $9 + 1 = 10$, then 3 more).\n5. Answer: 13 children were in the park at first. Check: $13 - 4 = 9$.",
+     "src": [
+      "prog-oa",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Mo has 12 marbles. Pia has 7 marbles. How many fewer marbles does Pia have than Mo?",
+     "solution": "1. This is a compare story with the difference unknown.\n2. Draw Mo's bar 12 long and Pia's bar 7 long, starting at the same place. The difference is the piece of Mo's bar that Pia's does not reach.\n3. $12 - 7$: count on from 7 to 10 (3), then to 12 (2 more). $3 + 2 = 5$.\n4. Answer: Pia has 5 fewer marbles. Check: $7 + 5 = 12$.",
+     "src": [
+      "prog-oa",
+      "ncetm-as"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A bus has 23 people. At the first stop 8 people get off. At the second stop 5 people get on. How many people are on the bus now?",
+     "solution": "1. This is a two-step problem: first a take from, then an add to.\n2. Step 1: $23 - 8$. Go through 20: $23 - 3 = 20$, then $20 - 5 = 15$.\n3. Step 2: $15 + 5 = 20$.\n4. Answer: 20 people are on the bus. The Common Core asks for two-step problems like this in Grade 2.",
+     "src": [
+      "ccss-2oa",
+      "os-sub"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Write an equation with a box: 6 birds, some more come, now 10 birds.",
+       "a": "$6 + \\square = 10$; the box is 4."
+      },
+      {
+       "q": "Translate \"3 less than 11\" into symbols.",
+       "a": "$11 - 3$, which is 8."
+      },
+      {
+       "q": "Tom has 9 cards and Jen has 4 more than Tom. How many does Jen have?",
+       "a": "$9 + 4 = 13$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "There are 7 red fish and 6 blue fish in a tank. How many fish are there?",
+       "hint": "Put together, total unknown.",
+       "solution": "$7 + 6$: $7 + 3 = 10$, then 3 more is 13. There are 13 fish."
+      },
+      {
+       "q": "Ben has 4 red, 5 blue and 6 green marbles. How many marbles does he have?",
+       "hint": "Three numbers: look for two that make 10.",
+       "solution": "$4 + 6 = 10$, then $10 + 5 = 15$. Ben has 15 marbles."
+      },
+      {
+       "q": "Kai had 15 grapes. He ate some. Now he has 9. How many did he eat?",
+       "hint": "Take from, change unknown: $15 - \\square = 9$.",
+       "solution": "9 and how many make 15? $9 + 6 = 15$. Kai ate 6 grapes."
+      },
+      {
+       "q": "Translate and work out: \"the difference of 14 and 6\" and \"6 subtracted from 14\".",
+       "hint": "One keeps the order of the words, the other reverses it.",
+       "solution": "Both are $14 - 6 = 8$."
+      },
+      {
+       "q": "Ella has 5 fewer beads than Ravi. Ella has 8 beads. How many beads does Ravi have?",
+       "hint": "Who has more? Draw the two bars.",
+       "solution": "Ravi has more: his bar is Ella's 8 and 5 more. $8 + 5 = 13$ beads."
+      },
+      {
+       "q": "Some books were on a shelf. Mum put 6 more on it. Now there are 14. How many books were there at first?",
+       "hint": "Start unknown: $\\square + 6 = 14$.",
+       "solution": "$14 - 6 = 8$ (check: $8 + 6 = 14$). There were 8 books at first."
+      },
+      {
+       "q": "Write two different equations for this story and solve it: 11 children, 7 of them are girls. How many are boys?",
+       "hint": "One equation with $+$ and a box, one with $-$.",
+       "solution": "$7 + \\square = 11$ and $11 - 7 = \\square$. The box is 4: there are 4 boys."
+      },
+      {
+       "q": "A shop has 30 apples. It sells 12 in the morning and 9 in the afternoon. How many apples are left?",
+       "hint": "Two steps: two take-aways, or add what was sold first.",
+       "solution": "Sold altogether: $12 + 9 = 21$. Left: $30 - 21 = 9$ apples. (Or $30 - 12 = 18$, then $18 - 9 = 9$.)"
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Every adding or subtracting story has three numbers; any one can be unknown.\n- Draw the story as a bar model, then look at what is unknown: a whole means add the parts, a missing part means subtract it from the whole.\n- Words like fewer or more than can point the wrong way; check with the bar model.\n- Several equations can fit one story, such as $7 + \\square = 11$ and $11 - 7 = \\square$.\n- Two-step problems are solved one step at a time."
+    },
+    {
+     "type": "section",
+     "title": "Bigger numbers: tens and hundreds",
+     "body": "After this section you will be able to add and subtract two-digit and three-digit numbers in your head or with a drawing, by working with tens and ones (and hundreds), including when you need to make or break a ten.\n\nTry this. Build 37 and 25 with towers of ten cubes and single cubes. Put them together. How many towers and how many single cubes do you have? Can you make another tower?",
+     "src": [
+      "im-g1",
+      "ccss-1nbt",
+      "ccss-2nbt",
+      "os-add"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Adding and subtracting tens",
+     "body": "Tens add and subtract like ones: 3 tens and 4 tens are 7 tens, so $$30 + 40 = 70, \\quad 70 - 40 = 30.$$ In the same way 3 hundreds and 4 hundreds are 7 hundreds: $300 + 400 = 700$. Adding 10 to a number makes its tens digit one larger, and adding 100 makes its hundreds digit one larger: $34 + 10 = 44$ and $345 + 100 = 445$. Taking away 10 makes the tens digit one smaller: $34 - 10 = 24$. (When the digit is 9 a new place is needed: $94 + 10 = 104$.)",
+     "src": [
+      "ccss-1nbt",
+      "eng-pos",
+      "ccss-2nbt"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "30 is 3 towers of ten and 40 is 4 towers of ten. Putting them together gives 7 towers, which is 70. This is the fact $3 + 4 = 7$ with every object being a ten instead of a one ([[place-value]]).",
+     "src": [
+      "eng-pos",
+      "ccss-1nbt"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $38 + 20$, $38 + 5$ and $345 - 200$.",
+     "solution": "1. $38 + 20$: 3 tens and 2 tens are 5 tens, and the 8 ones stay. So $38 + 20 = 58$.\n2. $38 + 5$: 38 needs 2 more to make 40. Split 5 into 2 and 3: $38 + 2 = 40$, $40 + 3 = 43$. So $38 + 5 = 43$.\n3. $345 - 200$: 3 hundreds take away 2 hundreds leaves 1 hundred, and the 4 tens and 5 ones stay. So $345 - 200 = 145$.",
+     "src": [
+      "ccss-1nbt",
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Add like units",
+     "body": "To add two-digit numbers, add tens to tens and ones to ones. If the ones make 10 or more, make a new ten from 10 of them: $$37 + 25 = 50 + 12$$ $$= 60 + 2 = 62.$$",
+     "src": [
+      "im-g1",
+      "os-add",
+      "ccss-1nbt",
+      "ccss-2nbt"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "Every number is its tens and its ones: 37 is 3 tens and 7 ones, 25 is 2 tens and 5 ones. Putting them together, there are $3 + 2 = 5$ tens and $7 + 5 = 12$ ones. Twelve ones are one ten and 2 ones, so we can bundle 10 of the ones into a new ten: 6 tens and 2 ones, which is 62. Nothing was added or lost; the cubes were only regrouped.",
+     "src": [
+      "os-add",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.2)\nax = fig.add_axes([0, 0, 1, 1])\ndef rod(x, y, fc='white', hatch=None):\n    for k in range(10):\n        ax.add_patch(Rectangle((x, y + k * 0.3), 0.3, 0.3, fc=fc, ec='black', lw=0.8, hatch=hatch))\ndef one(x, y, fc='white', hatch=None):\n    ax.add_patch(Rectangle((x, y), 0.3, 0.3, fc=fc, ec='black', lw=0.8, hatch=hatch))\nblue = (0.75, 0.85, 1.0)\n# 37: 3 rods, 7 ones (plain)\nfor i in range(3): rod(0.2 + i * 0.45, 0.6)\nfor j in range(7): one(1.7 + (j % 2) * 0.4, 0.6 + (j // 2) * 0.4)\nax.text(1.3, 0.15, '37', ha='center', va='center', fontsize=13)\nax.text(2.85, 2.1, '+', ha='center', va='center', fontsize=18)\n# 25: 2 rods, 5 ones (striped)\nfor i in range(2): rod(3.3 + i * 0.45, 0.6, blue, '////')\nfor j in range(5): one(4.4 + (j % 2) * 0.4, 0.6 + (j // 2) * 0.4, blue, '////')\nax.text(4.2, 0.15, '25', ha='center', va='center', fontsize=13)\nax.text(5.6, 2.1, '=', ha='center', va='center', fontsize=18)\n# 62: 6 rods (last one framed as new ten), 2 ones\nfor i in range(6): rod(6.0 + i * 0.45, 0.6)\nax.add_patch(Rectangle((6.0 + 5 * 0.45 - 0.08, 0.52), 0.46, 3.16, fill=False, ec='red', lw=1.8, ls='--'))\nax.text(6.0 + 5 * 0.45 + 0.15, 3.95, 'new ten', ha='center', va='center', fontsize=11, color='red')\nfor j in range(2): one(8.9 + j * 0.4, 0.6)\nax.text(7.4, 0.15, '62', ha='center', va='center', fontsize=13)\nax.set_xlim(0, 9.8); ax.set_ylim(-0.2, 4.3); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "37 + 25 with base-ten blocks. 37 is 3 tens and 7 ones (plain); 25 is 2 tens and 5 ones (striped). Together they make 5 tens and 12 ones; 10 of the ones are bundled into a new ten (dashed outline), giving 6 tens and 2 ones, which is 62.",
+     "alt": "Left: three plain rods of ten squares and seven plain single squares, labelled 37. A plus sign. Two blue striped rods and five blue striped single squares, labelled 25. An equals sign. Right: six rods, the last one outlined with a red dashed box labelled new ten, and two single squares, labelled 62.",
+     "src": [
+      "os-add",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Ways to add 37 + 25",
+     "items": [
+      {
+       "label": "Tens, then ones",
+       "body": "Add the tens, $30 + 20 = 50$; add the ones, $7 + 5 = 12$; then $50 + 12 = 62$.",
+       "src": [
+        "im-g1"
+       ]
+      },
+      {
+       "label": "Make a ten first",
+       "body": "Take 3 from the 5 ones of 25 to make 37 up to 40: $37 + 3 = 40$. Add the other 2: 42. Then add the 20: $42 + 20 = 62$.",
+       "src": [
+        "im-g1"
+       ]
+      },
+      {
+       "label": "Add on by place",
+       "body": "Keep 37 whole and add the tens of 25: $37 + 20 = 57$. Then add the 5 ones, as 3 and 2: $57 + 3 = 60$, $60 + 2 = 62$.",
+       "src": [
+        "im-g1"
+       ]
+      },
+      {
+       "label": "Number line jumps",
+       "body": "On a number line, jump from 37 by 20 to 57, then by 3 to 60, then by 2 to 62.",
+       "src": [
+        "ccss-2md"
+       ]
+      }
+     ],
+     "body": "Illustrative Mathematics Grade 1 shows children who add like units, make a ten first, and add on by place; an open number line gives a fourth picture of the same sum."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(6.6, 2.1)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([33, 66], [0, 0], color='black', lw=1.2)\nfor n in (37, 57, 60, 62):\n    ax.plot([n, n], [-0.12, 0.12], color='black', lw=1.0)\n    ax.text(n, -0.42, str(n), ha='center', va='center', fontsize=11)\ndef hop(a, b, h, col, ls, lab):\n    t = np.linspace(0, np.pi, 50)\n    xs = a + (b - a) * (1 - np.cos(t)) / 2\n    ax.plot(xs, h * np.sin(t), color=col, lw=1.8, ls=ls)\n    ax.text((a + b) / 2, h + 0.2, lab, ha='center', va='center', fontsize=11, color=col)\nhop(37, 57, 1.1, 'blue', '-', '+20')\nhop(57, 60, 0.6, (0.8, 0.35, 0), '--', '+3')\nhop(60, 62, 0.6, 'green', ':', '+2')\nax.set_xlim(33, 66); ax.set_ylim(-0.7, 1.6); ax.axis('off')\n",
+     "caption": "37 + 25 on an open number line: a jump of 20 from 37 to 57 (solid), a jump of 3 from 57 to 60 (dashed) and a jump of 2 from 60 to 62 (dotted). The jumps add up to 20 + 3 + 2 = 25.",
+     "alt": "A horizontal line with marks at 37, 57, 60 and 62. A big solid blue arc from 37 to 57 labelled +20, a small dashed orange arc from 57 to 60 labelled +3, and a small dotted green arc from 60 to 62 labelled +2.",
+     "src": [
+      "ccss-2md"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Subtract like units, breaking a ten when needed",
+     "body": "To subtract, take tens from tens and ones from ones. If there are not enough ones, break one ten into 10 ones first: $$43 - 26: \\ 43 = 30 + 13,$$ $$13 - 6 = 7, \\ 30 - 20 = 10,$$ so $43 - 26 = 17$.",
+     "src": [
+      "os-sub",
+      "im-g2u7",
+      "ccss-2nbt"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "43 is 4 tens and 3 ones. We cannot take 6 ones from 3 ones, so we change one of the tens into 10 ones: now there are 3 tens and 13 ones, still 43. From 13 ones take 6, leaving 7. From 3 tens take 2, leaving 1. One ten and 7 ones is 17. Check: $17 + 26 = 43$.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\ndef rod(x, y, crossed=False):\n    for k in range(10):\n        ax.add_patch(Rectangle((x, y + k * 0.3), 0.3, 0.3, fill=False, ec='black', lw=0.8))\n    if crossed:\n        ax.plot([x - 0.1, x + 0.4], [y - 0.05, y + 3.05], color='red', lw=2)\ndef one(x, y, crossed=False, new=False):\n    ax.add_patch(Rectangle((x, y), 0.3, 0.3, fc=(0.75, 0.85, 1.0) if new else 'white', ec='black', lw=0.8, hatch='////' if new else None))\n    if crossed:\n        ax.plot([x + 0.04, x + 0.26], [y + 0.04, y + 0.26], color='red', lw=1.6)\n        ax.plot([x + 0.04, x + 0.26], [y + 0.26, y + 0.04], color='red', lw=1.6)\n# left: 43 = 4 tens 3 ones\nfor i in range(4): rod(0.2 + i * 0.45, 0.6)\nfor j in range(3): one(2.2, 0.6 + j * 0.4)\nax.text(1.2, 0.15, '43: 4 tens, 3 ones', ha='center', va='center', fontsize=11)\nax.annotate('', xy=(3.6, 2.1), xytext=(2.8, 2.1), arrowprops=dict(arrowstyle='->', lw=1.5))\n# right: 3 tens, 13 ones; cross 2 tens and 6 ones\nfor i in range(3): rod(4.0 + i * 0.45, 0.6, crossed=(i >= 1))\nfor j in range(13):\n    c, r = divmod(j, 5)\n    one(5.6 + c * 0.4, 0.6 + r * 0.4, crossed=(j >= 7), new=(j >= 3))\nax.text(5.6, 0.15, '3 tens, 13 ones', ha='center', va='center', fontsize=11)\nax.text(8.3, 2.3, 'take away', ha='center', va='center', fontsize=11, color='red')\nax.text(8.3, 1.9, '2 tens, 6 ones', ha='center', va='center', fontsize=11, color='red')\nax.text(8.3, 1.2, 'left: 1 ten,', ha='center', va='center', fontsize=11)\nax.text(8.3, 0.8, '7 ones = 17', ha='center', va='center', fontsize=11)\nax.set_xlim(0, 9.6); ax.set_ylim(-0.2, 3.8); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "43 - 26 with base-ten blocks. Left: 43 as 4 tens and 3 ones. Right: one ten has been changed into 10 ones (striped), so there are 3 tens and 13 ones. 2 tens and 6 ones are crossed out; 1 ten and 7 ones are left, which is 17.",
+     "alt": "Left: four rods of ten and three single squares, labelled 43: 4 tens, 3 ones. An arrow to the right. Right: three rods, two of them struck through in red, and thirteen single squares in columns of five, three plain and ten blue striped; the last six squares are crossed out in red. Labels: 3 tens, 13 ones; take away 2 tens, 6 ones; left: 1 ten, 7 ones = 17.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(6.6, 2.1)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([22, 48], [0, 0], color='black', lw=1.2)\nfor n in (26, 30, 40, 43):\n    ax.plot([n, n], [-0.12, 0.12], color='black', lw=1.0)\n    ax.text(n, -0.42, str(n), ha='center', va='center', fontsize=11)\nax.plot([26], [0], 'o', color='black', ms=7)\ndef hop(a, b, h, col, ls, lab):\n    t = np.linspace(0, np.pi, 50)\n    xs = a + (b - a) * (1 - np.cos(t)) / 2\n    ax.plot(xs, h * np.sin(t), color=col, lw=1.8, ls=ls)\n    ax.text((a + b) / 2, h + 0.2, lab, ha='center', va='center', fontsize=11, color=col)\nhop(26, 30, 0.6, 'blue', '-', '+4')\nhop(30, 40, 1.0, (0.8, 0.35, 0), '--', '+10')\nhop(40, 43, 0.6, 'green', ':', '+3')\nax.set_xlim(22, 48); ax.set_ylim(-0.7, 1.6); ax.axis('off')\n",
+     "caption": "43 - 26 on an open number line, counting on from 26 to 43: a jump of 4 from 26 to 30 (solid), a jump of 10 from 30 to 40 (dashed) and a jump of 3 from 40 to 43 (dotted). The jumps add up to 4 + 10 + 3 = 17, so 43 - 26 = 17.",
+     "alt": "A horizontal line with marks at 26, 30, 40 and 43 and a dot at 26. A small solid blue arc from 26 to 30 labelled +4, a large dashed orange arc from 30 to 40 labelled +10 and a small dotted green arc from 40 to 43 labelled +3.",
+     "src": [
+      "ccss-2md",
+      "prog-oa"
+     ]
+    },
+    {
+     "type": "views",
+     "title": "Two ways to subtract 43 - 26",
+     "body": "The same difference can be found by breaking a ten or by counting on from the smaller number.",
+     "items": [
+      {
+       "label": "Break a ten",
+       "body": "Change 1 ten of 43 into 10 ones: 3 tens and 13 ones. Take 2 tens and 6 ones. 1 ten and 7 ones are left, which is 17.",
+       "src": [
+        "os-sub",
+        "im-g2u7"
+       ]
+      },
+      {
+       "label": "Count on",
+       "body": "Start at 26 and count on to 43 in jumps: 4 to reach 30, 10 to reach 40, 3 to reach 43. The jumps are $4 + 10 + 3 = 17$, so the difference is 17.",
+       "src": [
+        "ccss-2md",
+        "prog-oa"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Compensation",
+     "body": "Moving some from one number to the other does not change a sum: $$28 + 16 = 30 + 14 = 44.$$ For a difference, add the same amount to both numbers (or take the same amount from both): $74 - 38 = 76 - 40 = 36$.",
+     "src": [
+      "nrich-bal",
+      "ncetm-as"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "In $28 + 16$, move 2 from the 16 to the 28. The total number of things is the same; only the parts change, to 30 and 14. For $74 - 38$ think of the difference between two towers, 74 and 38 cubes tall. Adding 2 cubes to each tower makes them 76 and 40 cubes tall, but one is still sticking out above the other by the same amount, so the difference does not change. NRICH says a number line can give visual support when the compensation method is first introduced.",
+     "src": [
+      "nrich-bal"
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Three-digit numbers",
+     "body": "The same ideas work with hundreds. Add or subtract hundreds to hundreds, tens to tens and ones to ones, and make or break a ten or a hundred when needed: $$245 + 300 = 545,$$ $$456 + 376 = 700 + 120 + 12$$ $$= 832.$$",
+     "src": [
+      "ccss-2nbt",
+      "im-g2u7",
+      "eng-pos",
+      "im-g3"
+     ]
+    },
+    {
+     "type": "proof",
+     "body": "456 is 4 hundreds, 5 tens and 6 ones; 376 is 3 hundreds, 7 tens and 6 ones. Together: 7 hundreds, 12 tens and 12 ones. 12 ones are 1 ten and 2 ones, and 12 tens are 1 hundred and 2 tens. That gives 8 hundreds, 3 tens and 2 ones, so 832. Ten tens make a hundred just as ten ones make a ten ([[place-value]]).",
+     "src": [
+      "os-add",
+      "im-g2u7"
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Written column methods",
+     "body": "Writing the numbers one above the other, with ones under ones and tens under tens, gives the column methods (formal written methods in England, the standard algorithm in the United States). They use exactly the regrouping of this section and are taught on [[column-addition-subtraction]].",
+     "src": [
+      "eng-pos",
+      "os-add"
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names for making and breaking a ten",
+     "rows": [
+      {
+       "who": "OpenStax (US college text)",
+       "text": "Adding: it says carrying is the same as regrouping by exchanging ten ones for a ten. Subtracting: it says to borrow from the tens place, and also describes this as exchanging a ten for ten ones.",
+       "src": [
+        "os-add",
+        "os-sub"
+       ]
+      },
+      {
+       "who": "Illustrative Mathematics (US)",
+       "text": "Compose a ten (or a hundred) when adding; decompose a ten (or a hundred) when subtracting.",
+       "src": [
+        "im-g2u7"
+       ]
+      },
+      {
+       "who": "NCETM (England)",
+       "text": "Its column addition page says regroup when a column reaches ten; its Year 3 column subtraction page says exchange (from tens to ones).",
+       "src": [
+        "ncetm-cadd",
+        "ncetm-y3u7"
+       ]
+      },
+      {
+       "who": "Layout",
+       "text": "Illustrative Mathematics Grade 1 writes equations across the page on purpose, so children keep thinking about the numbers; OpenStax writes the numbers in columns with the carried digit above the next column.",
+       "src": [
+        "im-g1",
+        "os-add"
+       ]
+      }
+     ],
+     "body": "The step where 10 ones become a ten, or a ten becomes 10 ones, has many names."
+    },
+    {
+     "type": "pitfall",
+     "title": "Estimate first, then check",
+     "body": "The England programme of study asks Year 3 pupils to estimate the answer to a calculation and to use inverse operations to check answers. For $456 + 376$: 456 is close to 460 and 376 is close to 380, so the sum should be close to $460 + 380 = 840$. Afterwards, check with the inverse: $832 - 376 = 456$, the number we started with.",
+     "src": [
+      "eng-pos"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $52 + 46$ by working with tens and ones.",
+     "solution": "1. Split both numbers: 52 is $50 + 2$, 46 is $40 + 6$.\n2. Tens: $50 + 40 = 90$.\n3. Ones: $2 + 6 = 8$. That is less than 10, so no new ten.\n4. $90 + 8 = 98$.\n5. So $52 + 46 = 98$.",
+     "src": [
+      "im-g1"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $23 + 14 + 36 + 21$ by working with tens and ones.",
+     "solution": "1. Tens: $20 + 10 + 30 + 20 = 80$.\n2. Ones: $3 + 4 + 6 + 1$. Make a ten: $4 + 6 = 10$ and $3 + 1 = 4$, so the ones make 14.\n3. $80 + 14 = 94$.\n4. So $23 + 14 + 36 + 21 = 94$.",
+     "src": [
+      "ccss-2nbt",
+      "im-g1"
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find $910 - 586$.",
+     "solution": "1. 910 is 9 hundreds, 1 ten and 0 ones; 586 is 5 hundreds, 8 tens and 6 ones.\n2. Ones: we cannot take 6 from 0, so break the ten: 9 hundreds, 0 tens, 10 ones. $10 - 6 = 4$.\n3. Tens: we cannot take 8 from 0, so break a hundred: 8 hundreds, 10 tens. $10 - 8 = 2$.\n4. Hundreds: $8 - 5 = 3$.\n5. The answer is 3 hundreds, 2 tens and 4 ones: $910 - 586 = 324$.\n6. Check: $324 + 586 = 910$.",
+     "src": [
+      "os-sub"
+     ]
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "$60 + 30 = ?$ and $90 - 50 = ?$",
+       "a": "90 and 40."
+      },
+      {
+       "q": "Find $34 + 10$, $34 - 10$ and $58 + 5$.",
+       "a": "44, 24 and 63 (for $58 + 5$: $58 + 2 = 60$, then 3 more)."
+      },
+      {
+       "q": "$45 + 38$: how many tens and how many ones before you make a new ten?",
+       "a": "7 tens and 13 ones, which is 8 tens and 3 ones: 83."
+      },
+      {
+       "q": "Use compensation: $39 + 25 = 40 + ?$",
+       "a": "24, so the sum is 64."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $40 + 50$, $500 + 400$ and $345 + 100$.",
+       "hint": "Use $4 + 5 = 9$; for $345 + 100$ only the hundreds digit changes.",
+       "solution": "$40 + 50 = 90$, $500 + 400 = 900$ and $345 + 100 = 445$."
+      },
+      {
+       "q": "Find $63 + 25$ and $48 + 36$. In which sum do you make a new ten?",
+       "hint": "Add the ones first and see whether they reach 10.",
+       "solution": "$63 + 25$: $60 + 20 = 80$, $3 + 5 = 8$, so 88, and no new ten. $48 + 36$: $40 + 30 = 70$, $8 + 6 = 14$ (a ten and 4), so $70 + 14 = 84$, and there is one new ten."
+      },
+      {
+       "q": "Find $85 - 30$, $85 - 3$ and $456 - 200$.",
+       "hint": "Only one digit changes each time.",
+       "solution": "$85 - 30 = 55$ (8 tens take 3 tens leaves 5 tens). $85 - 3 = 82$. $456 - 200 = 256$ (4 hundreds take 2 hundreds leaves 2 hundreds)."
+      },
+      {
+       "q": "Find $62 - 27$ by breaking a ten.",
+       "hint": "62 is 5 tens and 12 ones.",
+       "solution": "$12 - 7 = 5$ ones and $50 - 20 = 30$, so $62 - 27 = 35$. Check: $35 + 27 = 62$."
+      },
+      {
+       "q": "Use compensation to find $59 + 34$.",
+       "hint": "Move 1 from 34 to 59.",
+       "solution": "$59 + 34 = 60 + 33 = 93$."
+      },
+      {
+       "q": "Find $24 + 13 + 36 + 11$ using tens and ones.",
+       "hint": "Add all the tens, then all the ones, then put them together.",
+       "solution": "Tens: $20 + 10 + 30 + 10 = 70$. Ones: $4 + 3 + 6 + 1 = 14$. $70 + 14 = 84$."
+      },
+      {
+       "q": "Find $269 + 578$.",
+       "hint": "Hundreds, tens and ones; watch for new tens and hundreds.",
+       "solution": "Hundreds $200 + 500 = 700$, tens $60 + 70 = 130$, ones $9 + 8 = 17$. $700 + 130 + 17 = 847$."
+      },
+      {
+       "q": "A school has 207 pupils. 64 of them go on a trip. How many stay at school? Check your answer.",
+       "hint": "207 has 0 tens; break a hundred into tens.",
+       "solution": "207 is 1 hundred, 10 tens and 7 ones. Take 6 tens and 4 ones: 1 hundred, 4 tens, 3 ones, so $207 - 64 = 143$. Check: $143 + 64 = 207$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Tens and hundreds add and subtract like ones: $30 + 40 = 70$.\n- Add tens to tens and ones to ones; 10 ones make a new ten.\n- To subtract when there are too few ones, break a ten into 10 ones.\n- Several methods work for the same sum; a number line can show the jumps.\n- Compensation: $28 + 16 = 30 + 14$.\n- Estimate first and check with the inverse.\n- Several two-digit numbers, even four of them, are added by tens and ones."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "body": "Everything on this page grows into later mathematics. Written column methods ([[column-addition-subtraction]]) are the make-a-ten and break-a-ten steps done digit by digit, and they work for numbers of any size. Reading $=$ as \"is the same as\" and finding missing numbers lead to equations and algebra ([[equality-equal-sign]]).\n\nThe facts that the order of adding does not matter, that adding 0 changes nothing, and that subtraction undoes addition are the properties of operations ([[properties-of-operations]]). In higher mathematics these same rules, written with letters as $a + b = b + a$ and $a + 0 = a$, are the axioms of a group under addition, and they are taken as the starting point of [[groups]] and of [[rings]]. Allowing subtraction always, even $3 - 5$, needs negative numbers. Adding the same number again and again is the start of [[multiplication]].",
+     "src": [
+      "eng-pos",
+      "ccss-2nbt",
+      "os-add"
+     ]
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro and section 1\nassert 3 + 2 == 5 and 5 - 2 == 3\nassert 3 + 2 == 5 and 5 - 3 == 2 and 6 - 4 == 2\nassert 4 + 3 == 7 and 6 - 4 == 2\nassert 7 + 0 == 7 and 7 - 0 == 7 and 7 - 7 == 0 and 5 + 0 == 5\nassert 8 - 3 == 5 and 2 + 6 == 8 and 9 - 4 == 5\nassert 4 + 1 == 5 and 7 - 3 == 4 and 5 + 4 == 9 and 8 - 5 == 3\nassert 9 - 0 == 9 and 9 - 9 == 0 and 4 + 2 == 6\n# figure 1: 3 plain + 2 striped; 5 with 2 crossed out\nassert len([0]*3 + [1]*2) == 5 and 5 - 2 == 3\n"
+    },
+    {
+     "python": "# section 2\nassert 8 + 3 == 11 and 11 - 3 == 8\nassert list(range(9, 12)) == [9, 10, 11]\nassert list(range(10, 7, -1)) == [10, 9, 8]\nassert len(range(10, 14)) == 4 and 13 - 9 == 4\nassert 6 + 3 == 9 and list(range(7, 10)) == [7, 8, 9]\nassert 12 - 8 == 4 and len(range(9, 13)) == 4 and 8 + 4 == 12\nassert 9 + 2 == 11 and 7 - 2 == 5 and 10 - 7 == 3 and len(range(8, 11)) == 3\nassert 5 + 3 == 8 and 9 - 3 == 6 and 4 + 5 == 9 and list(range(5, 10)) == [5, 6, 7, 8, 9]\nassert 2 + 8 == 10 and 15 - 12 == 3 and 14 - 11 == 3 and len(range(12, 15)) == 3\n# ten frame view: 8 + 2 = 10, 1 left over\nassert 8 + 2 == 10 and 3 - 2 == 1 and 10 + 1 == 11\n# figure 2 hops\nhops = [8 + k for k in range(1, 4)]; assert hops == [9, 10, 11]\nback = [11 - k for k in range(1, 4)]; assert back == [10, 9, 8]\n"
+    },
+    {
+     "python": "# section 3\nassert 7 + 2 == 9 and 9 - 2 == 7 and 2 + 7 == 9\nassert 6 + 2 == 8 and 8 - 6 == 2\nassert 9 + 1 == 10 and 10 + 6 == 16 and 1 + 6 == 7 and 9 + 7 == 16 and 16 - 9 == 7\nassert 17 + 26 == 43 and 10 + 20 == 30 and 7 + 6 == 13 and 30 + 13 == 43 and 43 - 26 == 17\nassert 3 + 5 == 5 + 3 == 8 and 5 - 3 == 2\nassert 5 + 4 == 9 and 9 - 4 == 5 and 9 - 5 == 4 and 7 + 3 == 10 and 9 + 6 == 15 and 15 - 6 == 9 and 6 - 2 == 4\nassert 9 - 6 == 3 and 9 - 3 == 6\nassert 4 + 7 == 11 and len(range(5, 12)) == 7\nassert 4 + 6 == 10 and 10 - 6 == 4\nassert 8 + 5 == 13 and 13 - 5 == 8\nassert 8 + 6 == 14 and 14 - 8 == 6\nassert 45 + 17 == 62 and 35 + 17 == 52 and 52 - 17 == 35\n"
+    },
+    {
+     "python": "# section 4\nassert 8 + 6 == 8 + 2 + 4 == 10 + 4 == 14 and 6 - 2 == 4\nassert 6 + 6 == 12 and 7 + 7 == 14 and 6 + 7 == 13 and 7 + 8 == 15\nassert 13 - 4 == 13 - 3 - 1 == 10 - 1 == 9 and 3 + 1 == 4\nassert 15 - 8 == 7 and 10 - 8 == 2 and 15 - 10 == 5\nassert 4 + 7 + 6 == 4 + 6 + 7 == 17\nassert 9 + 5 == 14 and 9 + 1 == 10 and 10 + 4 == 14 and 10 + 5 == 15 and 15 - 1 == 14\nassert 7 + 5 == 12 and 7 + 3 == 10 and 5 - 3 == 2\nassert 14 - 6 == 8 and 14 - 4 == 10 and 10 - 2 == 8 and 8 + 6 == 14\nassert 9 + 4 == 13 and 8 + 9 == 17 and 8 + 8 == 16 and 12 - 5 == 7 and 12 - 2 == 10 and 10 - 3 == 7\nassert 3 + 8 + 7 == 18\nassert 8 + 3 == 11 and 5 + 6 == 11 and 16 - 7 == 9 and 16 - 6 == 10 and 13 - 9 == 4\nassert 2 + 9 + 8 == 19 and 6 + 7 == 13 and 10 - 6 == 4 and 7 - 4 == 3\nassert 14 - 8 == 6 and 14 - 7 == 7\n# figure 3: 8 black, 6 striped, 2 in first frame, 4 in second\ncells = ['b'] * 8 + ['s'] * 6\nassert cells[:10].count('s') == 2 and cells[10:].count('s') == 4 and len(cells) == 14\n"
+    },
+    {
+     "python": "# section 5\nassert 5 + 3 == 8 and 8 - 5 == 3 and 8 - 3 == 5\nassert 5 + 3 == 8  # fewer pitfall\nassert 9 - 4 == 5 and 4 + 5 == 9\nassert 9 + 4 == 13 and 13 - 4 == 9\nassert 12 - 7 == 5 and 10 - 7 == 3 and 12 - 10 == 2 and 7 + 5 == 12\nassert 23 - 8 == 15 and 23 - 3 == 20 and 20 - 5 == 15 and 15 + 5 == 20\nassert 6 + 4 == 10 and 11 - 3 == 8 and 9 + 4 == 13\nassert 7 + 6 == 13 and 15 - 9 == 6 and 9 + 6 == 15 and 14 - 6 == 8 and 8 + 5 == 13 and 8 + 6 == 14\nassert 7 + 4 == 11 and 11 - 7 == 4\nassert 12 + 9 == 21 and 30 - 21 == 9 and 30 - 12 == 18 and 18 - 9 == 9\n# figure 4: Ana 8, Ben 5, difference 3\nassert 8 - 5 == 3\nassert 8 + 7 == 7 + 8 and 8 - 5 == 3 and 6 - 1 == 5\n"
+    },
+    {
+     "python": "# section 6\nassert 30 + 40 == 70 and 70 - 40 == 30 and 300 + 400 == 700 and 34 + 10 == 44 and 3 + 4 == 7\nassert 37 + 25 == 62 and 30 + 20 == 50 and 7 + 5 == 12 and 50 + 12 == 62 and 60 + 2 == 62\nassert 37 + 3 == 40 and 40 + 2 == 42 and 42 + 20 == 62 and 37 + 20 == 57 and 57 + 3 == 60 and 60 + 2 == 62 and 20 + 3 + 2 == 25\nassert 43 - 26 == 17 and 30 + 13 == 43 and 13 - 6 == 7 and 30 - 20 == 10 and 17 + 26 == 43\nassert 28 + 16 == 30 + 14 == 44 and 74 - 38 == 76 - 40 == 36\nassert 245 + 300 == 545 and 456 + 376 == 832 == 700 + 120 + 12\nassert 52 + 46 == 98 and 50 + 40 == 90 and 2 + 6 == 8\nassert 910 - 586 == 324 and 324 + 586 == 910 and 10 - 6 == 4 and 10 - 8 == 2 and 8 - 5 == 3\nassert 60 + 30 == 90 and 90 - 50 == 40 and 34 - 10 == 24 and 45 + 38 == 83 and 40 + 30 == 70 and 5 + 8 == 13\nassert 39 + 25 == 40 + 24 == 64\nassert 40 + 50 == 90 and 500 + 400 == 900 and 63 + 25 == 88 and 48 + 36 == 84 and 8 + 6 == 14 and 70 + 14 == 84\nassert 85 - 30 == 55 and 85 - 3 == 82 and 62 - 27 == 35 and 12 - 7 == 5 and 50 - 20 == 30 and 35 + 27 == 62\nassert 59 + 34 == 60 + 33 == 93\nassert 269 + 578 == 847 and 200 + 500 == 700 and 60 + 70 == 130 and 9 + 8 == 17 and 700 + 130 + 17 == 847\nassert 207 - 64 == 143 and 143 + 64 == 207 and 100 + 40 + 3 == 143\nassert 832 - 376 == 456 and abs((450 + 400) - 832) < 50\n# figure 5: 3+2 rods, 7+5 ones -> 6 rods 2 ones\nassert 3 + 2 == 5 and 7 + 5 == 12 and (5 + 1) * 10 + (12 - 10) == 62\n# figure 7: 3 tens 13 ones, cross 2 tens 6 ones, 13 cells with 3 plain 10 striped\nassert 3 * 10 + 13 == 43 and 13 - 6 == 7 and 3 - 2 == 1 and 10 + 7 == 17\nassert len(range(13)) - len(range(7)) == 6\n"
+    },
+    {
+     "python": "# review additions\nassert 9 + 1 == 10 and 10 + 6 == 16 and 1 + 6 == 7 and 9 + 7 == 16\nassert 9 - 2 == 7 and 7 + 2 == 9\nassert 3 + 4 + 5 == 7 + 5 == 12\nassert 8 - 3 == 5 and 8 - 5 == 3 and 8 - 3 == 5 and 8 + 3 == 11\n# take from unknowns\nassert 8 - 3 == 5 and 8 - 5 == 3 and 5 + 3 == 8\n# 94 + 10, 345 + 100, 34 - 10\nassert 94 + 10 == 104 and 345 + 100 == 445 and 34 - 10 == 24\n# 43 - 26 by counting on (figure): jumps 4, 10, 3\njumps = [30 - 26, 40 - 30, 43 - 40]\nassert jumps == [4, 10, 3] and sum(jumps) == 17 and 43 - 26 == 17 and 26 + 17 == 43\n# example tens\nassert 38 + 20 == 58 and 38 + 2 == 40 and 40 + 3 == 43 and 38 + 5 == 43 and 345 - 200 == 145\n# four two-digit numbers\nassert 23 + 14 + 36 + 21 == 94 and 20 + 10 + 30 + 20 == 80 and 4 + 6 == 10 and 3 + 1 == 4 and 3 + 4 + 6 + 1 == 14 and 80 + 14 == 94\nassert 24 + 13 + 36 + 11 == 84 and 20 + 10 + 30 + 10 == 70 and 4 + 3 + 6 + 1 == 14 and 70 + 14 == 84\n# check item and exercises\nassert 58 + 5 == 63 and 58 + 2 == 60\nassert 40 + 50 == 90 and 500 + 400 == 900 and 63 + 25 == 88 and 48 + 36 == 84\nassert 85 - 30 == 55 and 85 - 3 == 82 and 456 - 200 == 256\n# marbles\nassert 4 + 6 == 10 and 10 + 5 == 15 and 4 + 5 + 6 == 15\n# estimate\nassert 460 + 380 == 840 and 832 - 376 == 456 and 456 + 376 == 832\n# 11 children, 7 girls\nassert 7 + 4 == 11 and 11 - 7 == 4\n# near double\nassert 6 + 7 == 6 + 6 + 1 == 13\n"
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,110 @@
+[
+ {
+  "id": "distributive-property",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "error",
+    "where": "theorem The distributive property / proof (section 1) and theorem A rectangle cut in two",
+    "problem": "Stated for 'any numbers' but the array and rectangle proofs work only for whole numbers.",
+    "fix": "Statements now say whole numbers; the proof notes that the picture shows the rule for whole numbers."
+   },
+   {
+    "severity": "error",
+    "where": "proof (section The rule with letters)",
+    "problem": "Claimed the array picture proves the rule 'whatever number the letter stands for' (fractions, negatives not covered).",
+    "fix": "Rewritten: array is a proof for whole numbers; other number systems are stated as true (citing the Common Core progressions) with reasons deferred to Looking ahead; a single check is called a check, not a proof."
+   },
+   {
+    "severity": "source",
+    "where": "views item Building on fives",
+    "problem": "Attributed to the progressions 'sixes, sevens, eights and nines as 5 of something and a few more' and the example 7x6; the source states the 5 x n pattern extended to 6, 7, 8, 9 times a number (its example is 7 x 5).",
+    "fix": "Reworded to follow the 5 x n pattern statement; 7 x 6 is given as our own application."
+   },
+   {
+    "severity": "source",
+    "where": "views item Array and pitfall For adults: match every number to the picture",
+    "problem": "Said IM asks children to say where each number of 5x6+2x6 is in the picture and that a teacher asks where 5, 2 and 3 are; the lesson has pupils match expressions to rectangles and shade the parts.",
+    "fix": "Reworded to what IM Lesson 10 does (matching and shading); the advice to point to each number is now marked as a suggestion."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall For adults: when a child counts one by one",
+    "problem": "Presented as an IM note about children who count every square; the lesson says only that teachers ask how a known product could be used if a child counts single squares.",
+    "fix": "Reworded to the source's actual advice."
+   },
+   {
+    "severity": "source",
+    "where": "views item Money (Multiplying bigger numbers)",
+    "problem": "Said OpenStax has friends paying 9 dollars and 25 cents counting cents; OpenStax uses 9 dollars and 1 quarter (3 quarters = 75 cents).",
+    "fix": "Now says OpenStax counts dollars and quarters; the cents version is presented as the same idea."
+   },
+   {
+    "severity": "source",
+    "where": "views item Area model and sources entry im-g3u4",
+    "problem": "Claimed IM Grade 3 Unit 4 uses unlabeled tens-and-ones diagrams without a lesson; 'where' named Sections B and C wrongly as one block.",
+    "fix": "Cited Lesson 16 (4 x 23 cut as 12+11, 15+8, 10+13, 20+3; tens and ones most practical) and Lessons 11, 12; source where/ref updated."
+   },
+   {
+    "severity": "source",
+    "where": "connection Written methods",
+    "problem": "Said the progressions call the property 'central to multi-digit multiplication'; source says it is at the heart of Grades 3 to 5 (multi-digit and decimal multiplication and division, fractions).",
+    "fix": "Reworded to the source."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall Only a common factor can be pulled out",
+    "problem": "Claimed NCETM uses joining 'only' for products sharing a factor; source only says such problems suit the law.",
+    "fix": "Removed 'only'; now says NCETM presents joining for problems with a common factor."
+   },
+   {
+    "severity": "source",
+    "where": "pitfall Multiply every term inside the bracket",
+    "problem": "Said Dawkins lists this as one of the most common algebra errors; he says one of two main errors he meets regularly.",
+    "fix": "Reworded."
+   },
+   {
+    "severity": "source",
+    "where": "example Simplify 8 - 2(x+3)",
+    "problem": "Cited os-dist only, but the 'take away the whole bracket' point comes from Dawkins.",
+    "fix": "Added dawkins to src."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition Brackets",
+    "problem": "British 'brackets' used; US 'parentheses' not named at first use.",
+    "fix": "Added the US term."
+   },
+   {
+    "severity": "unclear",
+    "where": "definition For older readers: a negative factor",
+    "problem": "'The sign of every term changes' is imprecise (terms are also multiplied by the number).",
+    "fix": "Reworded: every term is multiplied by the negative number, so every sign changes."
+   },
+   {
+    "severity": "error",
+    "where": "requires: area is additive (CC 3.MD.C.7d), section Rectangles split in two",
+    "problem": "Claimed taught, but the page only cut rectangles into two rectangles; no non-rectangular shape, example or exercise.",
+    "fix": "Added an L-shaped figure with worked example (two different cuts, 18 square units), a check question, an exercise and a summary line; all numbers added to checks."
+   },
+   {
+    "severity": "style",
+    "where": "figure 64 / all other figures",
+    "problem": "Checked all six original figures against captions and text: counts correct (42 dots 30+12; 4x8 grid 12+20; 7x10 with 7 crossed; 10x8 boxes 3+7); labels readable.",
+    "fix": "No change needed."
+   },
+   {
+    "severity": "style",
+    "where": "mathematics, all blocks",
+    "problem": "Recomputed every example, exercise solution, hint and check answer (regex scan plus sympy checks); no arithmetic errors found.",
+    "fix": "No change needed."
+   },
+   {
+    "severity": "style",
+    "where": "entry",
+    "problem": "Entry (sum, key, why, links, refs, aliases) agrees with the lesson.",
+    "fix": "No change needed."
+   }
+  ]
+ }
+]

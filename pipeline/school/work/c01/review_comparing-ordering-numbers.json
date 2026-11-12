@@ -1,0 +1,110 @@
+[
+ {
+  "id": "comparing-ordering-numbers",
+  "verdict": "fixed",
+  "issues": [
+   {
+    "severity": "unclear",
+    "where": "block 11 (More/fewer exercises, item 5)",
+    "problem": "'12 children and one empty chair' is ambiguous: it does not say every child has a chair, so the count of chairs is not determined",
+    "fix": "Reworded: 12 children each sit on a chair and one chair is empty; solution states 13 chairs"
+   },
+   {
+    "severity": "style",
+    "where": "block 14 figure caption",
+    "problem": "Caption said '55 cubes in all', a total never explained or needed",
+    "fix": "Removed the total from the caption"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 16 (theorem Later in the count means more)",
+    "problem": "Introduces 'greater' and 'less' with no link to the 'more'/'fewer' words taught just before",
+    "fix": "Added '(it is more)' and '(it is fewer)'"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 18 (views, Number line) and section 3",
+    "problem": "The number line is used as a view and in the symbol section but never explained or drawn before section 6; the number-line page comes after this page",
+    "fix": "Explained what a number line is in the view and added a figure of a 0-10 number line with 4 and 7 marked (compiled and viewed)"
+   },
+   {
+    "severity": "error",
+    "where": "section 3 exercises 1, 2, 3, 6 (symbols section)",
+    "problem": "Exercises used 56 vs 26, 72 vs 78, 6 vs 55, 92 vs 29 and solutions used tens and ones before the tens-first rule is taught in the next section: wrong difficulty order",
+    "fix": "Replaced with small numbers (7/4, 3/9, 8/8, 12/9, 15/18) solved by the counting list; solutions for 95>78 and 81>18 now use counting; the two-digit cases stay in the next section"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 29 example and section 3 exercise 5",
+    "problem": "'greatest number' / 'least number that makes the statement true' does not say whole numbers; 34.5 or 60.5 would also fit",
+    "fix": "Said 'whole number' in both"
+   },
+   {
+    "severity": "unclear",
+    "where": "section 4 check 3",
+    "problem": "'In the game, your number is 5 tens and 6 ones' contradicts the game in the text (the 6 goes in the tens place)",
+    "fix": "Reworded as 'Suppose your number ends up as 5 tens and 6 ones'"
+   },
+   {
+    "severity": "source",
+    "where": "block 31 conventions row 'Fewer and less'",
+    "problem": "Claimed Illustrative Mathematics says fewer for groups and less for numbers; the opened lesson (K U2 L21) asks 'fewer' and answers with 'less' and gives no rule",
+    "fix": "Rewrote to say what the lesson does and that it does not distinguish the words"
+   },
+   {
+    "severity": "source",
+    "where": "block 31 conventions row England",
+    "problem": "'Year 1 uses words only' is stronger than the programme of study (it states the language for Year 1 and the symbols for Year 2)",
+    "fix": "Reworded: Year 1 asks for the words; the symbols are first required in Year 2"
+   },
+   {
+    "severity": "source",
+    "where": "block 42 (For adults: ordering is not the same as understanding)",
+    "problem": "Advice to ask the child to show numbers with objects or say how many tens is not in Gervasoni et al.; the paper recommends teaching interpreting quantities and a mental number line; sample is Grades 2-4",
+    "fix": "Rewrote the advice as the authors give it and named the grade range"
+   },
+   {
+    "severity": "error",
+    "where": "section 5 opening question and proof (Tyler and Mai)",
+    "problem": "The example 261 and 313 does not refute Tyler's ones-first idea: ones-first gives the right answer (3 ones > 1 one) by luck, and the proof wrongly said ones-first still needs the hundreds",
+    "fix": "Added test pair 261 and 175 (ones-first gives the wrong answer); proof now says ones-first can be right by luck but fails on 261 vs 175"
+   },
+   {
+    "severity": "unclear",
+    "where": "block 55 hidden-digit example",
+    "problem": "Did not say the hidden digit cannot be 0 (then the numbers would not have three digits)",
+    "fix": "Added 'so the hidden digit is not 0'"
+   },
+   {
+    "severity": "style",
+    "where": "block 63 example, last paragraph",
+    "problem": "'A player in second place would need a score' was unclear",
+    "fix": "Reworded as a new score that puts a player in second place"
+   },
+   {
+    "severity": "error",
+    "where": "block 66 summary (Putting several numbers in order)",
+    "problem": "'digits first' is ambiguous (reads as comparing the digits themselves)",
+    "fix": "Changed to 'number of digits first'"
+   },
+   {
+    "severity": "unclear",
+    "where": "requires: language equal to, more than, less than (fewer), most, least",
+    "problem": "Pointed only to section 1, but most/least is first used in the 1 to 10 section",
+    "fix": "where now names both sections"
+   },
+   {
+    "severity": "source",
+    "where": "sources checked (no defect found)",
+    "problem": "Opened and compared: imK10 (4 erasers vs 3 pencils, adapted), imK21 (9 milk 5 water, circle-the-smaller prompts), imK17, imK2P (6 apples 5 plates), im1L16 (game, blank<35, false statements), im1L10 (pictures can show ones first), im2L10 (224 regrouping), im2P, im4L12 (hidden digits, just know), im4L13 (scores, 58,978 vs 547,612), os21, os31, ncetmEY, ies, aqaN1, eng, ccKCC (K.CC.C.6-7 wording); blocks follow them apart from the fixes above",
+    "fix": "No change needed beyond those listed"
+   },
+   {
+    "severity": "unclear",
+    "where": "brief curriculum_refs: korea [2수01-03]",
+    "problem": "Korean curriculum text could not be opened (dossier: PDFs return binary); the page makes no Korean claim",
+    "fix": "Left as a gap: no Korean row added because it cannot be verified"
+   }
+  ]
+ }
+]

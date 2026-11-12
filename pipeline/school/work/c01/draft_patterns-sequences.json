@@ -1,0 +1,1282 @@
+[
+ {
+  "id": "patterns-sequences",
+  "entry": {
+   "sum": "A pattern is something regular that lets you say what comes next and why. In a repeating pattern a unit such as circle, square, square comes again and again; in a growing pattern each step changes regularly, and counting gives a number sequence such as 6, 8, 10, 12 with a rule like add 2. A position-to-term rule such as $2n + 4$ finds any term directly.",
+   "key": [
+    "6,\\ 8,\\ 10,\\ 12,\\ \\dots \\;(+2)",
+    "a + (n-1)\\times d",
+    "3n + 2"
+   ],
+   "why": "Patterns are where children first reason about rules and generality; counting in steps leads to multiplication tables, term-to-term rules to recursion, and position-to-term rules to functions and algebra.",
+   "msc": [
+    "97I30"
+   ],
+   "links": [
+    {
+     "field": "algebra",
+     "note": "Writing the nth term of a sequence with a letter, such as $3n + 2$, is one of the first uses of algebra in school."
+    },
+    {
+     "field": "real-analysis",
+     "note": "Sequences are the starting point for limits and convergence."
+    },
+    {
+     "field": "computer-science",
+     "note": "A term-to-term rule is a loop or a recursive definition: start somewhere and repeat one step."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 2.NBT.A.2, 3.OA.D.9, 4.OA.C.5, 5.OA.B.3 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, key stages 1-3 (2013)",
+    "DfE GCSE mathematics subject content A23-A25, as in AQA GCSE Mathematics 8300",
+    "Illustrative Mathematics K-5 Math, Grade 4 Unit 6 Section A (Features of Patterns); Grade 5 Unit 7 Section C (Numerical Patterns)",
+    "AAMT Top Drawer Teachers: Patterns",
+    "Pang, J. S. and Kim, L., Communications of Mathematical Education 37(4) (2023)"
+   ],
+   "aliases": [
+    "number patterns",
+    "number sequences",
+    "repeating and growing patterns",
+    "skip counting",
+    "counting in steps",
+    "linear sequences",
+    "arithmetic sequences",
+    "규칙 찾기 (Korean)",
+    "규칙 (Korean)"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 55,
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study, key stages 1 and 2 (2013)",
+     "where": "Year 1-5 Number and place value (statutory and notes); Year 2 Geometry: position and direction; Year 6 Algebra",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "engKS3",
+     "ref": "Department for Education, Mathematics programmes of study: key stage 3, National curriculum in England (2013, DFE-00179-2013)",
+     "where": "Subject content, Algebra (sequences)",
+     "url": "https://podcast.mrbartonmaths.com/wp-content/uploads/2014/06/Key-Stage-3-Programme-of-Study-Sept-2013.pdf",
+     "kind": "curriculum"
+    },
+    {
+     "k": "gcse",
+     "ref": "AQA, GCSE Mathematics (8300) specification, following the DfE GCSE mathematics subject content (2013)",
+     "where": "3.2 Algebra, A23-A25 (sequences)",
+     "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/subject-content/3.2-algebra",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.A.2",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc3OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.D.9",
+     "url": "https://thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc4OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.C.5",
+     "url": "https://thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc5OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 5, Operations and Algebraic Thinking (2010)",
+     "where": "5.OA.B.3",
+     "url": "https://thecorestandards.org/Math/Content/5/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im4U6L1",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 4 Unit 6, Section A Features of Patterns, Lesson 1: Patterns that Grow",
+     "where": "Grade 4, Unit 6, Lesson 1",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-6/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im5U7L11",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 5 Unit 7, Section C Numerical Patterns, Lesson 11: Patterns and Ordered Pairs",
+     "where": "Grade 5, Unit 7, Lesson 11",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-5/unit-7/lesson-11/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im2U8L3",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 2 Unit 8, Lesson 3: Is it Odd or Even?",
+     "where": "Grade 2, Unit 8, Lesson 3 (choral count by 2)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lesson-3/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1U4L10",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 1 Unit 4, Lesson 10: Write Two-Digit Numbers",
+     "where": "Grade 1, Unit 4, Lesson 10 (number path 1-99)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "topdrawer",
+     "ref": "Australian Association of Mathematics Teachers, Top Drawer Teachers: Patterns, Misunderstandings, Number sequences",
+     "where": "Patterns > Misunderstandings > Number sequences",
+     "url": "https://topdrawer.aamt.edu.au/Patterns/Misunderstandings/Number-sequences",
+     "kind": "notes"
+    },
+    {
+     "k": "pangkim",
+     "ref": "Pang, J. S. and Kim, L., An analysis of second and third graders' understanding of patterns, Communications of Mathematical Education 37(4), 697-715 (2023)",
+     "where": "test items 1-14 and conclusions",
+     "url": "https://koreascience.kr/article/JAKO202306685249157.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "yuga",
+     "ref": "Yugacrew Yugawiki, 수 배열표 (number arrangement table)",
+     "where": "article",
+     "url": "https://www.yugacrew.com/yugawiki/%EC%88%98_%EB%B0%B0%EC%97%B4%ED%91%9C",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Recognise, continue and create repeating patterns with objects and shapes, and find the unit of repeat (England Year 1 guidance; AAMT)",
+     "priority": "core",
+     "where": "Repeating patterns"
+    },
+    {
+     "item": "Order and arrange combinations of mathematical objects in patterns and sequences (England Year 2, Geometry: position and direction)",
+     "priority": "core",
+     "where": "Repeating patterns; Growing patterns of shapes"
+    },
+    {
+     "item": "Count in steps of 2, 3, 5 and 10, then 4, 8, 50, 100, 6, 7, 9, 25 and 1000, from 0 or any number, forwards and backwards (England Years 1-4); skip-count by 5s, 10s and 100s (CC 2.NBT.A.2)",
+     "priority": "core",
+     "where": "Number sequences and counting in steps; [[counting-number-names]]"
+    },
+    {
+     "item": "Find rules in arrangements of objects, shapes and numbers, including number tables, and fill in missing terms (Korea grades 1-2 finding rules, as reported in the sources; the brief's codes [2수02-01..02] are not verified)",
+     "priority": "core",
+     "where": "Repeating patterns; Number sequences and counting in steps"
+    },
+    {
+     "item": "Generate a number or shape pattern from a given rule; identify features not stated in the rule, such as odd and even taking turns, and explain them informally (CC 4.OA.C.5)",
+     "priority": "core",
+     "where": "From a rule to a pattern, and what the rule does not say"
+    },
+    {
+     "item": "Describe a growing shape pattern, record it in a table and predict a later step without drawing it (IM Grade 4 Unit 6 Section A)",
+     "priority": "core",
+     "where": "Growing patterns of shapes"
+    },
+    {
+     "item": "Identify arithmetic patterns in the addition and multiplication tables and explain them, for example 4 times a number is always even (CC 3.OA.D.9)",
+     "priority": "common",
+     "where": "From a rule to a pattern, and what the rule does not say"
+    },
+    {
+     "item": "Recognise and describe linear number sequences and find the term-to-term rule in words (England Year 5 guidance); generate and describe linear number sequences (England Year 6 Algebra)",
+     "priority": "common",
+     "where": "Number sequences and counting in steps; Two kinds of rule: term-to-term and position-to-term"
+    },
+    {
+     "item": "Generate two numerical patterns from two rules, relate corresponding terms, form ordered pairs and graph them (CC 5.OA.B.3; IM Grade 5 Unit 7 Section C)",
+     "priority": "common",
+     "where": "Two patterns side by side"
+    },
+    {
+     "item": "Generate terms of a sequence from a term-to-term or a position-to-term rule, including from patterns and diagrams (England KS3; GCSE A23)",
+     "priority": "common",
+     "where": "Two kinds of rule: term-to-term and position-to-term"
+    },
+    {
+     "item": "Recognise arithmetic sequences and find the nth term; deduce expressions for the nth term of linear sequences (England KS3; GCSE A25)",
+     "priority": "common",
+     "where": "Two kinds of rule: term-to-term and position-to-term"
+    },
+    {
+     "item": "Recognise geometric sequences, triangular, square and cube numbers, Fibonacci-type and quadratic sequences (England KS3; GCSE A24-A25)",
+     "priority": "specialised",
+     "where": "[[sequences]]"
+    },
+    {
+     "item": "Count in fractions, tenths, hundredths and through 0 into negative numbers (England Years 2-5)",
+     "priority": "specialised",
+     "where": "separate page: Fractions, decimals and negative numbers"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "src": [
+      "topdrawer",
+      "eng",
+      "pangkim",
+      "cc4OA"
+     ],
+     "body": "Red, blue, red, blue, red, ... What comes next? 2, 4, 6, 8, ... What comes next? Both are patterns: something regular that lets you say what comes next, and why.\n\nOn this page you will meet two kinds of pattern. In a repeating pattern the same part comes again and again. In a growing pattern each step changes in a regular way; a list of numbers that grows like this is called a number sequence. You will learn to continue patterns, find missing pieces, say the rule in words, use a rule to make a pattern, find a far-away step without drawing every step, and line up two patterns side by side.\n\nYou need to be able to count, forwards and backwards (see [[counting-number-names]]). Small objects such as cubes, beads or counters, and squared paper, help a lot."
+    },
+    {
+     "type": "section",
+     "title": "Repeating patterns",
+     "src": [
+      "topdrawer",
+      "eng",
+      "pangkim"
+     ],
+     "body": "After this section you will be able to find the part that repeats in a repeating pattern, continue the pattern, fill a gap in it, and make your own.\n\nTry this first. Take some cubes of two colours. Make a line: red, blue, blue, red, blue, blue, red, ... Now say it out loud, and clap it: clap, stamp, stamp, clap, stamp, stamp. Where does it start again?\n\nIn a repeating pattern a short piece comes again and again, always the same and always in the same order. That piece is called the unit of repeat (some books say the core or the repeating part). In red, blue, blue, red, blue, blue, ... the unit of repeat is red, blue, blue: three things long.\n\nWe often name a unit with letters: a different letter for each different thing. Red, blue, red, blue is an AB pattern. Red, blue, blue is ABB. Circle, circle, square, square is AABB. Heart, square, triangle is ABC.\n\nExamples: clap, clap, stamp, clap, clap, stamp is repeating (unit clap, clap, stamp, an AAB pattern). The numbers 1, 2, 2, 1, 2, 2, 1, 2, 2 are repeating (unit 1, 2, 2).\n\nNon-examples: red, blue, red, blue, blue, red, blue, blue, blue is not repeating, because the number of blues keeps changing; it grows. The numbers 1, 2, 3, 4, 5 are not repeating either: no piece comes back."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "topdrawer",
+      "pangkim"
+     ],
+     "caption": "Nine beads in an ABB pattern: circle, square, square, three times. Each bracket marks one unit of repeat (3 beads). The tenth bead would be a circle.",
+     "alt": "A row of nine beads on a string: a blue circle, two orange squares, a blue circle, two orange squares, a blue circle, two orange squares. Under each group of three is a bracket labelled unit. At the right end is a dashed empty space with a question mark labelled 10th.",
+     "code": "from matplotlib.patches import Circle, Rectangle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.0)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-0.3, 9.6], [1.2, 1.2], color='black', lw=1.0)\nfor i in range(9):\n    x = i * 1.0\n    if i % 3 == 0:\n        ax.add_patch(Circle((x, 1.2), 0.35, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.6))\n    else:\n        ax.add_patch(Rectangle((x - 0.32, 0.88), 0.64, 0.64, fc=(1.0, 0.85, 0.6), ec='orange', lw=1.6))\nfor u in range(3):\n    x0 = u * 3 - 0.4; x1 = u * 3 + 2.4\n    ax.plot([x0, x0, x1, x1], [0.62, 0.45, 0.45, 0.62], color='black', lw=1.2)\n    ax.text((x0 + x1) / 2, 0.15, 'unit ' + str(u + 1), ha='center', va='center', fontsize=12)\nax.add_patch(Rectangle((9.0 - 0.36, 0.84), 0.72, 0.72, fill=False, ec='black', ls='--', lw=1.0))\nax.text(9.0, 1.2, '?', ha='center', va='center', fontsize=14)\nax.text(9.0, 0.35, '10th', ha='center', va='center', fontsize=11)\nax.set_xlim(-0.7, 9.8); ax.set_ylim(-0.1, 1.8); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "definition",
+     "title": "Repeating pattern and unit of repeat",
+     "src": [
+      "topdrawer",
+      "pangkim"
+     ],
+     "body": "A repeating pattern is a line of things (objects, pictures, sounds, actions, letters or numbers) in which one piece, the unit of repeat, comes again and again in the same order.\n\nTo check that a pattern is repeating, find a piece that could be the unit, then see whether the whole line is that piece, again and again, with nothing changed."
+    },
+    {
+     "type": "theorem",
+     "title": "The unit tells you everything",
+     "src": [
+      "topdrawer",
+      "pangkim"
+     ],
+     "body": "Once you know the unit of repeat, you can say any thing in the pattern: the next one, a missing one, or one far along. After every complete unit the pattern starts the unit again."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "topdrawer"
+     ],
+     "body": "The pattern is made of nothing but copies of the unit, one after another. So the thing in any place is the thing in the matching place of its unit. If the unit has 3 things, places 1, 4, 7, 10, ... are each the first thing of a unit, places 2, 5, 8, ... the second, and places 3, 6, 9, ... the third, because each new unit begins 3 places after the last one began."
+    },
+    {
+     "type": "views",
+     "title": "One pattern, many ways",
+     "body": "The same repeating pattern can be made with things, with your body, with letters or with numbers. Spotting that two of these are the same pattern is part of understanding patterns.",
+     "items": [
+      {
+       "label": "Objects and shapes",
+       "body": "Make it with cubes, beads or shapes: red cube, blue cube, blue cube, and again. The England curriculum asks Year 1 children to recognise and create repeating patterns with objects and with shapes.",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "label": "Pictures",
+       "body": "Draw it: circle, square, square, circle, square, square. AAMT advises moving from real materials to pictures and drawings before patterns made only of symbols.",
+       "src": [
+        "topdrawer"
+       ]
+      },
+      {
+       "label": "Letters",
+       "body": "Name each different thing with a letter: circle is A and square is B, so the pattern is ABB ABB ABB. Two patterns with the same letters have the same structure even if they look different.",
+       "src": [
+        "pangkim"
+       ]
+      },
+      {
+       "label": "Numbers",
+       "body": "Turn the picture into numbers, for example 1 for a circle and 2 for a square: 1, 2, 2, 1, 2, 2, ... In Pang and Kim's study almost all Korean second graders could turn a repeating shape pattern into a number pattern like this.",
+       "src": [
+        "pangkim"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Heart, square, triangle, heart, square, triangle, heart, ... What comes next?",
+     "solution": "1. Find the unit: heart, square, triangle. After it, heart comes again, so the unit is three things long (an ABC pattern).\n2. The pattern so far is one unit, a second unit, and then heart.\n3. Heart starts a new unit, and in the unit heart is followed by square.\n4. The next thing is a square."
+    },
+    {
+     "type": "example",
+     "body": "Clap, clap, stamp, clap, clap, stamp, clap, ___, stamp. What is missing?",
+     "solution": "1. The unit is clap, clap, stamp (an AAB pattern).\n2. Count along: places 1 to 3 are the first unit, places 4 to 6 are the second unit.\n3. Place 7 starts the third unit: clap. The gap is place 8, the second thing of the unit.\n4. The second thing of the unit is clap, so the missing action is clap. Place 9, stamp, fits."
+    },
+    {
+     "type": "example",
+     "body": "Beads go circle, square, square, circle, square, square, ... (the picture above). What is the 10th bead?",
+     "solution": "1. The unit is circle, square, square: 3 beads.\n2. Three whole units use $3 + 3 + 3 = 9$ beads, so beads 1 to 9 are three complete units.\n3. Bead 10 starts the fourth unit.\n4. Every unit starts with a circle, so the 10th bead is a circle."
+    },
+    {
+     "type": "pitfall",
+     "title": "Watch every part that changes",
+     "src": [
+      "pangkim"
+     ],
+     "body": "In some patterns two things change at once, such as the shape and the colour. Pang and Kim tested 216 second graders and 223 third graders in Korea and found that many children followed only one of the changes, for example only the shapes, and missed the colours. Before you continue a pattern, ask: what changes? Is there anything else that changes?"
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: start with repeating patterns and real objects",
+     "src": [
+      "topdrawer",
+      "eng",
+      "pangkim"
+     ],
+     "body": "AAMT advises introducing patterns through repeating patterns, and working with real materials, then pictures, before number patterns. The England curriculum has Year 1 children create repeating patterns with objects and shapes, and Year 2 children order and arrange objects in patterns and sequences. Pang and Kim report that repeating patterns were the easiest items for Korean second and third graders; one error they saw was taking too short a piece as the unit (for a pattern like 2, 3, star, 3, many children took 2, 3 as the unit). Ask the child to show where the unit starts again, and to check it against the whole line."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is the unit of repeat in 5, 7, 5, 7, 5, 7?",
+       "a": "5, 7 (an AB pattern)."
+      },
+      {
+       "q": "Is red, red, blue, red, red, blue, red, red, blue a repeating pattern? What is its unit?",
+       "a": "Yes. The unit is red, red, blue (AAB)."
+      },
+      {
+       "q": "Is 1, 2, 3, 4, 5, 6 a repeating pattern?",
+       "a": "No. No piece comes back; the numbers grow."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Continue with the next three: A, B, A, B, A, ...",
+       "hint": "The unit is two letters long.",
+       "solution": "B, A, B. The pattern is A, B, A, B, A, B, A, B."
+      },
+      {
+       "q": "Continue with the next three: circle, circle, square, square, circle, circle, ...",
+       "hint": "Find where the pattern starts again.",
+       "solution": "The unit is circle, circle, square, square (AABB). After circle, circle comes square, square, then circle: so the next three are square, square, circle."
+      },
+      {
+       "q": "Fill the gap: 3, 1, 1, 3, 1, ___, 3, 1, 1.",
+       "hint": "The unit is 3, 1, 1.",
+       "solution": "The gap is 1: the second unit is 3, 1, 1, the same as the first."
+      },
+      {
+       "q": "Turn the pattern up, down, down, up, down, down into letters and into numbers.",
+       "hint": "Use A for up and B for down.",
+       "solution": "Letters: ABB ABB. Numbers, with 1 for up and 2 for down: 1, 2, 2, 1, 2, 2. It has the same structure as circle, square, square."
+      },
+      {
+       "q": "Heart, square, triangle, heart, square, triangle, ... What is the 12th thing? What is the 13th?",
+       "hint": "Each unit is 3 things. How many whole units make 12 things?",
+       "solution": "$3 + 3 + 3 + 3 = 12$, so things 1 to 12 are four complete units and the 12th thing is the last thing of a unit: triangle. The 13th starts a new unit: heart."
+      },
+      {
+       "q": "Make your own repeating pattern with a unit of 4 things. Write it three units long and name it with letters.",
+       "hint": "For example, choose two shapes and arrange them in 4 places.",
+       "solution": "Many answers. For example circle, circle, circle, square repeated: circle, circle, circle, square, circle, circle, circle, square, circle, circle, circle, square. Letters: AAAB AAAB AAAB. It has $3 \\times 4 = 12$ things."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A repeating pattern is one piece, the unit of repeat, again and again.\n- Find the unit by finding where the pattern starts again; check it against the whole line.\n- Letters name the structure: AB, ABB, AABB, ABC.\n- The same pattern can be made with objects, pictures, sounds, letters or numbers.\n- Look at every part that changes, such as shape and colour."
+    },
+    {
+     "type": "section",
+     "title": "Number sequences and counting in steps",
+     "src": [
+      "eng",
+      "cc2NBT",
+      "topdrawer",
+      "yuga",
+      "im1U4L10",
+      "im2U8L3"
+     ],
+     "body": "After this section you will be able to continue a number sequence that goes up or down in equal steps, find missing numbers in it, and say its rule in words, such as add 5 or take away 10.\n\nTry this first. Count in fives out loud from 0 and write the numbers down as you go: 0, 5, 10, 15, ... Stop at 50. Now look at the last digit of each number. What do you notice?\n\nCounting in steps (also called skip counting) is the first growing pattern most children meet: start at a number, and add the same step again and again. The basic counts in twos, fives and tens are taught on [[counting-number-names]]; here we look at them as patterns.\n\nA list of numbers in order that follows a rule is called a number sequence. Each number in it is called a term: the first term, the second term, and so on. The rule that takes you from one term to the next, such as add 5, is called a term-to-term rule.\n\nExamples: 0, 5, 10, 15, 20 (start at 0, add 5). 7, 17, 27, 37 (start at 7, add 10). 100, 90, 80, 70 (start at 100, take away 10). 0, 100, 200, 300 (add 100).\n\nNon-examples of counting in equal steps: 1, 2, 4, 5, 7, 8 (the steps are 1, 2, 1, 2, 1: not all the same) and 3, 6, 10, 13 (steps 3, 4, 3)."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "yuga",
+      "im1U4L10",
+      "eng"
+     ],
+     "caption": "A number table from 1 to 50 in rows of ten. Counting in fives from 5 lands on the 10 shaded numbers 5, 10, 15, ..., 50; they fill two columns, the numbers ending in 5 and the numbers ending in 0.",
+     "alt": "A grid of five rows and ten columns holding the numbers 1 to 50. The fifth and tenth columns (5, 15, 25, 35, 45 and 10, 20, 30, 40, 50) are shaded light blue with diagonal stripes; all other squares are white.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.2, 3.3)\nax = fig.add_axes([0, 0, 1, 1])\nfor n in range(1, 51):\n    r = (n - 1) // 10; c = (n - 1) % 10\n    x = c; y = 4 - r\n    if n % 5 == 0:\n        ax.add_patch(Rectangle((x, y), 1, 1, fc=(0.8, 0.88, 1.0), ec='black', lw=1.0, hatch='//'))\n        ax.text(x + 0.5, y + 0.5, str(n), ha='center', va='center', fontsize=12, color='blue', fontweight='bold', bbox=dict(fc='white', ec='none', pad=0.5))\n    else:\n        ax.add_patch(Rectangle((x, y), 1, 1, fc='white', ec='black', lw=1.0))\n        ax.text(x + 0.5, y + 0.5, str(n), ha='center', va='center', fontsize=12)\nax.set_xlim(-0.1, 10.1); ax.set_ylim(-0.1, 5.1); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "views",
+     "title": "Ways to count in steps",
+     "body": "Counting in fives from 0 to 50, shown the ways the sources use.",
+     "items": [
+      {
+       "label": "Saying it together",
+       "body": "Count aloud in fives as a group while an adult writes each number down, in rows. Then everyone says what they notice in the written numbers, as in the Illustrative Mathematics choral count.",
+       "src": [
+        "im2U8L3"
+       ]
+      },
+      {
+       "label": "Number table",
+       "body": "On a table of 1 to 50 in rows of ten, colour each number you say. The coloured numbers fill two columns, the ones ending in 5 and in 0 (the picture above). Korean classes use this table, 수 배열표, to find rules.",
+       "src": [
+        "yuga"
+       ]
+      },
+      {
+       "label": "Number path",
+       "body": "Walk along a number path, a line of numbered squares, jumping 5 squares at a time. Illustrative Mathematics uses a number path from 1 to 99 to look at how the ones and tens digits change.",
+       "src": [
+        "im1U4L10"
+       ]
+      },
+      {
+       "label": "Adding",
+       "body": "Write the rule and use it: start at 0, add 5. Each term is the one before plus 5: $0 + 5 = 5$, $5 + 5 = 10$, $10 + 5 = 15$. This is the term-to-term rule in words that England's Year 5 guidance asks for.",
+       "src": [
+        "eng"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "definition",
+     "title": "Number sequence, term and term-to-term rule",
+     "src": [
+      "topdrawer",
+      "eng"
+     ],
+     "body": "A number sequence is a list of numbers in order that follows a rule. The numbers in it are its terms.\n\nA term-to-term rule says how to get each term from the term before it, for example: start at 3 and add 4 each time. That rule gives 3, 7, 11, 15, 19, ...\n\nThe three dots ... mean the sequence goes on in the same way."
+    },
+    {
+     "type": "theorem",
+     "title": "Counting in tens keeps the ones digit",
+     "src": [
+      "im1U4L10",
+      "eng"
+     ],
+     "body": "Counting in tens from any number, forwards or backwards, the ones digit (the last digit) stays the same and the tens digit goes up (or down) by one each time. For example 7, 17, 27, 37, 47 all end in 7.\n\nCounting in fives from 0, the last digit takes turns: 0, 5, 0, 5, ..."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "im1U4L10"
+     ],
+     "body": "Think of a number as tens and ones (see [[place-value]]): 27 is 2 tens and 7 ones. Adding 10 adds one more ten and no ones, so 27 becomes 3 tens and 7 ones, which is 37. The ones are not touched, so the last digit does not change.\n\nFor fives: two fives make a ten. Starting at 0, one step of 5 gives a number ending in 5; the next step of 5 makes a whole new ten, so the number ends in 0 again. Then 5, then 0, and so on."
+    },
+    {
+     "type": "conventions",
+     "title": "Words for patterns and counting in steps",
+     "body": "The ideas are the same; the words differ between countries and books.",
+     "rows": [
+      {
+       "who": "England (National Curriculum)",
+       "text": "count in multiples of 2, 5 and 10 (Year 1); count in steps of 2, 3 and 5 from 0, and in tens from any number (Year 2); patterns and sequences; term-to-term rule (Year 5 guidance); linear number sequences (Year 5 guidance, Year 6).",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "who": "United States (Common Core, Illustrative Mathematics)",
+       "text": "skip-count by 5s, 10s and 100s (Grade 2); pattern, rule (a pattern follows a given rule), step (Step 1, Step 2 of a shape pattern).",
+       "src": [
+        "cc2NBT",
+        "cc4OA",
+        "im4U6L1"
+       ]
+      },
+      {
+       "who": "Korea",
+       "text": "규칙 (rule, regularity): first and second graders have units called 규칙 찾기, finding rules; 수 배열표, a number table with the numbers in rows and columns, is used to find patterns such as counting in 2s, 5s and 10s. Repeating patterns are 반복 패턴 and growing patterns 증가 패턴.",
+       "src": [
+        "yuga",
+        "pangkim"
+       ]
+      },
+      {
+       "who": "Australia (AAMT)",
+       "text": "repeating patterns (with a unit of repeat), growing patterns, number sequences; rules are term-to-term or for each term on its own.",
+       "src": [
+        "topdrawer"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Continue the sequence 25, 50, 75, ... for three more terms.",
+     "solution": "1. Find the step: $50 - 25 = 25$ and $75 - 50 = 25$. The rule is add 25.\n2. $75 + 25 = 100$.\n3. $100 + 25 = 125$.\n4. $125 + 25 = 150$.\n5. The next three terms are 100, 125, 150."
+    },
+    {
+     "type": "example",
+     "body": "Find the missing number: 34, 44, ___, 64, 74.",
+     "solution": "1. Find the step from two terms that sit next to each other: $44 - 34 = 10$. Check with another pair: $74 - 64 = 10$. The rule is add 10.\n2. The missing term comes after 44: $44 + 10 = 54$.\n3. Check that the next step works: $54 + 10 = 64$. Yes.\n4. The missing number is 54. The ones digit stays 4, as the rule about tens says."
+    },
+    {
+     "type": "example",
+     "body": "Continue 100, 85, 70, 55, ... and say the rule.",
+     "solution": "1. The numbers get smaller, so the step is a take away.\n2. $100 - 85 = 15$, $85 - 70 = 15$, $70 - 55 = 15$. The rule is take away 15 (subtract 15).\n3. $55 - 15 = 40$ and $40 - 15 = 25$.\n4. The sequence goes 100, 85, 70, 55, 40, 25, ..."
+    },
+    {
+     "type": "pitfall",
+     "title": "Work out the step; do not guess it",
+     "src": [
+      "pangkim"
+     ],
+     "body": "In Pang and Kim's study, the sequence 100, 85, 70, 55, 40 was harder for second graders than for third graders, and many second graders wrote that it goes down by 25 instead of 15. Find the step by working out the difference of two neighbouring terms, then check it on another pair. The same study found that filling a gap in the middle of a sequence, or giving two terms after the end, was harder than giving just the next term, even with the same rule, so check every gap against both of its neighbours."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: count together and look at a number table",
+     "src": [
+      "im2U8L3",
+      "yuga",
+      "eng"
+     ],
+     "body": "Illustrative Mathematics uses a choral count: the class counts aloud in twos, the teacher writes the numbers in rows, and the children say what patterns they notice. A Korean resource describes how a number table of 1 to 50 helps children learn the order of numbers and count in 2s, 5s and 10s, for example by seeing that the numbers go up by 10 down each column. The England curriculum asks for counting in steps from different starting numbers and backwards as well as forwards, to build recognition of patterns in the number system."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "What is the rule for 6, 9, 12, 15?",
+       "a": "Add 3."
+      },
+      {
+       "q": "Next term: 300, 400, 500, ...",
+       "a": "600 (add 100)."
+      },
+      {
+       "q": "Missing term: 50, 45, ___, 35.",
+       "a": "40 (take away 5)."
+      },
+      {
+       "q": "Is 2, 4, 7, 9, 12 counting in equal steps?",
+       "a": "No. The steps are 2, 3, 2, 3, not all the same."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Count in threes from 0 to 30.",
+       "hint": "Add 3 each time.",
+       "solution": "0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30."
+      },
+      {
+       "q": "Count in tens from 46 up to 106, then back down to 6.",
+       "hint": "The ones digit stays 6.",
+       "solution": "Up: 46, 56, 66, 76, 86, 96, 106. Down: 106, 96, 86, 76, 66, 56, 46, 36, 26, 16, 6."
+      },
+      {
+       "q": "Find the missing numbers: 8, 16, ___, 32, ___.",
+       "hint": "What is $16 - 8$?",
+       "solution": "The rule is add 8. $16 + 8 = 24$ and $32 + 8 = 40$. The sequence is 8, 16, 24, 32, 40."
+      },
+      {
+       "q": "Count in fifties from 0 to 400. What do you notice about the last two digits?",
+       "hint": "Add 50 each time.",
+       "solution": "0, 50, 100, 150, 200, 250, 300, 350, 400. The last two digits take turns: 50, 00, 50, 00, because two fifties make a hundred."
+      },
+      {
+       "q": "Write the next three terms and the rule: 1000, 900, 800, ...",
+       "hint": "The numbers get smaller.",
+       "solution": "Take away 100: 700, 600, 500."
+      },
+      {
+       "q": "Sam says the rule for 4, 11, 18, 25 is add 6. Is Sam right? What is the next term?",
+       "hint": "Work out $11 - 4$ and check another pair.",
+       "solution": "No. $11 - 4 = 7$, $18 - 11 = 7$, $25 - 18 = 7$, so the rule is add 7. The next term is $25 + 7 = 32$."
+      },
+      {
+       "q": "Count in 25s from 0 to 200. Which of these numbers are also in the count in fifties from 0?",
+       "hint": "Every second number in the count in 25s.",
+       "solution": "0, 25, 50, 75, 100, 125, 150, 175, 200. The numbers 0, 50, 100, 150, 200 are in both counts, because two 25s make 50."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A number sequence is a list of numbers that follows a rule; each number is a term.\n- Counting in steps means adding (or taking away) the same number each time.\n- Find the step by working out the difference of two neighbouring terms, and check it on another pair.\n- Counting in tens keeps the ones digit; counting in fives from 0 ends in 0, 5, 0, 5, ...\n- England says counting in steps or multiples; the US says skip counting."
+    },
+    {
+     "type": "section",
+     "title": "From a rule to a pattern, and what the rule does not say",
+     "src": [
+      "cc4OA",
+      "im4U6L1",
+      "cc3OA",
+      "eng"
+     ],
+     "body": "After this section you will be able to make a sequence from a rule, notice things about it that the rule does not say (such as odd and even taking turns), explain why they happen, and decide whether a number can be in the sequence.\n\nTry this first. Start at 1 and add 3, again and again, until you pass 20. Write the numbers in a row. Now write o (odd) or e (even) under each one. What do you notice? Will it keep happening?\n\nA rule tells you how to build a sequence, but once it is built the sequence often shows more than the rule said. The rule start at 1, add 3 says nothing about odd and even numbers, yet the terms 1, 4, 7, 10, 13, 16, 19 go odd, even, odd, even, ... Common Core asks children to notice features like this and explain informally why they carry on.\n\nAnother example from Illustrative Mathematics: Han's pattern 5, 10, 15, 20, 25, 30 (add 5) has every term a multiple of 5, ending in 5 or 0, and its terms also take turns odd, even, odd, even.\n\nA non-example of a hidden feature: in 2, 4, 6, 8 (add 2) the terms do not take turns between odd and even; they are all even."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "cc4OA"
+     ],
+     "caption": "Start at 1 and add 3: six hops of 3 land on 1, 4, 7, 10, 13, 16, 19. The 4 odd terms (1, 7, 13, 19) are orange squares labelled o; the 3 even terms (4, 10, 16) are blue circles labelled e. Odd and even take turns.",
+     "alt": "A number line from 0 to 20 with ticks at every whole number. Six arcs hop from 1 to 4, 4 to 7, and so on to 19. At 1, 7, 13 and 19 there are orange squares with the letter o below; at 4, 10 and 16 there are blue circles with the letter e below.",
+     "code": "import numpy as np\nfrom matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.0)\nax = fig.add_axes([0, 0, 1, 1])\nax.plot([-0.3, 20.5], [0, 0], color='black', lw=1.2)\nfor n in range(0, 21):\n    ax.plot([n, n], [-0.15, 0.15], color='black', lw=1.0)\n    ax.text(n, -0.45, str(n), ha='center', va='center', fontsize=10)\nterms = list(range(1, 20, 3))\nfor a, b in zip(terms, terms[1:]):\n    t = np.linspace(0, np.pi, 40)\n    ax.plot((a + b) / 2 + 1.5 * np.cos(np.pi - t), 0.25 + 1.0 * np.sin(t), color='black', lw=1.0)\n    ax.text((a + b) / 2, 1.45, '+3', ha='center', va='center', fontsize=10)\nfor n in terms:\n    if n % 2:\n        ax.add_patch(Rectangle((n - 0.22, -0.22), 0.44, 0.44, fc='orange', ec='black', lw=0.8, zorder=3))\n        ax.text(n, -0.95, 'o', ha='center', va='center', fontsize=12, color='black')\n    else:\n        ax.add_patch(Circle((n, 0), 0.24, fc='blue', ec='black', lw=0.8, zorder=3))\n        ax.text(n, -0.95, 'e', ha='center', va='center', fontsize=12, color='black')\nax.set_xlim(-0.6, 20.8); ax.set_ylim(-1.25, 1.7); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "theorem",
+     "title": "Odd and even when you add the same step",
+     "src": [
+      "cc4OA",
+      "im4U6L1"
+     ],
+     "body": "If the step is odd (such as 3 or 5), the terms take turns: odd, even, odd, even, ... or even, odd, even, odd, ...\n\nIf the step is even (such as 2, 4 or 10), the terms are all odd or all even, the same as the first term."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "cc4OA"
+     ],
+     "body": "Adding 2 adds one whole pair, so it does not change whether a number is odd or even (see [[odd-even-numbers]]). Adding 1 makes a pair out of a leftover, or makes a new leftover, so it always switches odd to even or even to odd.\n\nAn odd step such as 3 is some pairs and one more: $3 = 2 + 1$. The pairs change nothing and the 1 switches, so every step of 3 switches odd and even. That is why 1, 4, 7, 10, ... take turns, and they will go on taking turns for ever, since every new step is another switch.\n\nAn even step such as 4 is only pairs, $4 = 2 + 2$, so it never switches: every term is odd if the first term is odd, and even if the first term is even."
+    },
+    {
+     "type": "theorem",
+     "title": "Four times a number is always even",
+     "src": [
+      "cc3OA"
+     ],
+     "body": "In the multiplication table, every number in the 4 times row is even: 4, 8, 12, 16, 20, ... Here $\\times$ means times, so $4 \\times 3$ means four threes."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "cc3OA"
+     ],
+     "body": "Four groups of a number can be split into two equal halves, two groups and two groups. For example $$4 \\times 7 = 14 + 14,$$ two equal numbers added. A number that is two equal numbers added is even. The same split works for any number, not just 7."
+    },
+    {
+     "type": "example",
+     "body": "Han's bottle caps go 5, 10, 15, 20, 25, 30 (add 5). Can any step have 72 caps?",
+     "solution": "1. Every term is reached from 5 by adding fives, so every term is a multiple of 5.\n2. Multiples of 5 end in 5 or 0 (the count in fives goes ..., 65, 70, 75, ...).\n3. 72 ends in 2, and it lies between 70 and 75, which are neighbouring terms.\n4. So 72 is never a term: no step has 72 caps."
+    },
+    {
+     "type": "example",
+     "body": "Start at 2 and add 4. Will 50 be a term? Will 51?",
+     "solution": "1. The terms are 2, 6, 10, 14, 18, ...: the step 4 is even and the first term 2 is even, so every term is even.\n2. 51 is odd, so 51 is never a term.\n3. For 50: going from 2 to 50 is a jump of $50 - 2 = 48$.\n4. $48 = 12 \\times 4$, so 50 is reached after 12 steps of 4 exactly. 50 is a term (the 13th term, because the first term had no step)."
+    },
+    {
+     "type": "pitfall",
+     "title": "A feature you notice is not yet a reason",
+     "src": [
+      "cc4OA",
+      "im4U6L1"
+     ],
+     "body": "Seeing odd, even, odd, even in the first five terms does not prove that it goes on. Common Core asks children to explain informally why the alternation continues, and Illustrative Mathematics asks whether a number such as 25 or 72 can ever appear. A reason, like an odd step always switches odd and even, covers every term, not only the ones you wrote down."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Start at 4 and add 5. Write five terms and mark each odd or even.",
+       "a": "4, 9, 14, 19, 24: even, odd, even, odd, even."
+      },
+      {
+       "q": "Start at 3 and add 10. Are the terms odd or even?",
+       "a": "All odd: 3, 13, 23, 33, ... (the step 10 is even and 3 is odd)."
+      },
+      {
+       "q": "Is $4 \\times 9$ odd or even?",
+       "a": "Even: $4 \\times 9 = 36 = 18 + 18$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Start at 0 and add 4. Write the first six terms.",
+       "hint": "0, 4, ...",
+       "solution": "0, 4, 8, 12, 16, 20."
+      },
+      {
+       "q": "Start at 1 and add 2. Write the first six terms. What do they have in common?",
+       "hint": "Odd step or even step?",
+       "solution": "1, 3, 5, 7, 9, 11. They are all odd: the step 2 is even, so it keeps the first term's kind, and 1 is odd."
+      },
+      {
+       "q": "Start at 10 and add 5. Write six terms. Which is the first term over 30?",
+       "hint": "Keep adding 5.",
+       "solution": "10, 15, 20, 25, 30, 35. The first term over 30 is 35. They also take turns even, odd, even, odd."
+      },
+      {
+       "q": "Jada's square blocks go 6, 8, 10, 12, 14 (add 2). Can a step have 25 square blocks?",
+       "hint": "Is the step odd or even? Is the first term odd or even?",
+       "solution": "No. The first term 6 is even and the step 2 is even, so every term is even. 25 is odd, so it never appears."
+      },
+      {
+       "q": "Start at 7 and add 3. Is 40 a term? Is 43?",
+       "hint": "Use odd and even first, then work out how far it is from 7.",
+       "solution": "The terms take turns odd, even: 7, 10, 13, 16, ... For 40: $40 - 7 = 33 = 11 \\times 3$, so 40 is a term (after 11 steps). For 43: $43 - 7 = 36 = 12 \\times 3$, so 43 is a term too (after 12 steps). Being odd or even alone does not decide it here, because both kinds appear."
+      },
+      {
+       "q": "Explain why every number in the 6 times row (6, 12, 18, ...) is even.",
+       "hint": "Can six groups be split into two equal halves?",
+       "solution": "Six groups of a number split into three groups and three groups, two equal halves. For example $6 \\times 5 = 15 + 15 = 30$. Two equal numbers added make an even number."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A rule builds a sequence; the sequence can show features the rule does not say.\n- An odd step makes odd and even take turns; an even step keeps them all the same kind.\n- To decide whether a number is a term, look for a reason: odd or even, multiples, or how many steps it is from the start.\n- Four times any number is even, because it splits into two equal halves.\n- A pattern seen in a few terms needs a reason before you trust it for ever."
+    },
+    {
+     "type": "section",
+     "title": "Growing patterns of shapes",
+     "src": [
+      "im4U6L1",
+      "topdrawer",
+      "pangkim"
+     ],
+     "body": "After this section you will be able to describe how a shape pattern grows, record it in a table, and work out a far-away step, such as Step 10, without drawing all the steps.\n\nTry this first. In the dot picture below, cover Step 3 with your hand and look only at Steps 1, 2 and 4 (Illustrative Mathematics leaves Step 3 blank). Draw Step 3 yourself, then uncover it to check. How many dots does Step 3 have? How many would Step 5 have?\n\nIn a growing pattern there is no unit that repeats. Instead the pattern is built in steps (some books say stages or terms), and each step changes from the one before in a regular way. In the dot pattern, each step has one more row of 3 dots, so the number of dots goes 3, 6, 9, 12: a number sequence with the rule add 3.\n\nIllustrative Mathematics notices that in this pattern the step number matches the number of rows: Step 5 has 5 rows of 3.\n\nNot every growing pattern adds the same amount each time. The triangle pattern of dots further down grows by 2, then 3, then 4: the amount added itself grows."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im4U6L1"
+     ],
+     "caption": "A growing dot pattern: Step 1 has 1 row of 3 dots (3 dots), Step 2 has 2 rows (6 dots), Step 3 has 3 rows (9 dots), Step 4 has 4 rows (12 dots). Each step adds one row of 3 (the new row is blue).",
+     "alt": "Four groups of black dots labelled Step 1 to Step 4. Step 1 is one row of three dots, Step 2 two rows, Step 3 three rows, Step 4 four rows of three. In each step after the first, the top row is blue to show the row that was added.",
+     "code": "from matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor s in range(1, 5):\n    x0 = (s - 1) * 4.0\n    for r in range(s):\n        for c in range(3):\n            new = (r == s - 1 and s > 1)\n            ax.add_patch(Circle((x0 + c * 0.8, 1.0 + r * 0.8), 0.28, fc='blue' if new else 'black', ec='black', lw=0.8))\n    ax.text(x0 + 0.8, 0.2, 'Step ' + str(s), ha='center', va='center', fontsize=12)\n    ax.text(x0 + 0.8, -0.35, str(3 * s) + ' dots', ha='center', va='center', fontsize=11)\nax.set_xlim(-0.6, 14.4); ax.set_ylim(-0.7, 4.2); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "definition",
+     "title": "Growing pattern",
+     "src": [
+      "topdrawer",
+      "im4U6L1"
+     ],
+     "body": "A growing pattern is a pattern made of steps, with no unit of repeat, in which each step changes from the step before in a regular way. Counting something in each step (dots, squares, blocks) turns a growing pattern into a number sequence."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im4U6L1"
+     ],
+     "caption": "Square blocks in a giraffe pattern like Jada's: 4 squares for the legs stay the same, and the neck has 2 squares in Step 1, 4 in Step 2 and 6 in Step 3 (blue). So there are 6, 8 and 10 squares.",
+     "alt": "Three simple giraffes made of squares, labelled Step 1, Step 2 and Step 3. Each has two legs of two white squares under a long body shape that is not counted, and a neck of blue squares rising from the right end of the body: 2 squares, then 4, then 6. Below each: 6 squares, 8 squares, 10 squares.",
+     "code": "from matplotlib.patches import Rectangle, Polygon\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.4)\nax = fig.add_axes([0, 0, 1, 1])\nfor s in range(1, 4):\n    x0 = (s - 1) * 4.2\n    for lx in (x0, x0 + 2.0):\n        for r in range(2):\n            ax.add_patch(Rectangle((lx, 1.0 + r), 1, 1, fc='white', ec='black', lw=1.2))\n    ax.add_patch(Polygon([(x0 - 0.3, 3.0), (x0 + 3.3, 3.0), (x0 + 3.0, 3.8), (x0, 3.8)], closed=True, fc='none', ec='black', lw=1.0, ls='--'))\n    for r in range(2 * s):\n        ax.add_patch(Rectangle((x0 + 2.0, 3.8 + r), 1, 1, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.4))\n    ax.text(x0 + 1.5, 0.55, 'Step ' + str(s), ha='center', va='center', fontsize=12)\n    ax.text(x0 + 1.5, 0.0, str(4 + 2 * s) + ' squares', ha='center', va='center', fontsize=11)\nax.text(0.4, 3.4, 'body', ha='left', va='center', fontsize=9)\nax.set_xlim(-0.6, 12.4); ax.set_ylim(-0.4, 10.0); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "theorem",
+     "title": "Moving several steps along",
+     "src": [
+      "im4U6L1"
+     ],
+     "body": "If a pattern adds the same number every step, then to get from one step to a later step you add that number once for every step you move. For example, in a pattern that adds 2 each step, going from Step 5 to Step 10 is 5 steps, so you add $5 \\times 2 = 10$."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "im4U6L1"
+     ],
+     "body": "Each move from one step to the next adds the same amount. Moving from Step 5 to Step 10 means the moves 5 to 6, 6 to 7, 7 to 8, 8 to 9 and 9 to 10: five moves, each adding 2. Five lots of 2 is $5 \\times 2$."
+    },
+    {
+     "type": "views",
+     "title": "Three ways to find Step 10 of the giraffe",
+     "body": "Illustrative Mathematics collects children's ways of finding how many square blocks Step 10 needs, without drawing it. All three give 24.",
+     "items": [
+      {
+       "label": "From the legs",
+       "body": "The legs always have 4 squares, and the neck has 2 squares for every step, so Step 10 has $4 + 10 \\times 2 = 24$.",
+       "src": [
+        "im4U6L1"
+       ]
+      },
+      {
+       "label": "From Step 1",
+       "body": "Step 1 has 6 squares. Step 10 is 9 steps later, and each step adds 2: $6 + 9 \\times 2 = 24$.",
+       "src": [
+        "im4U6L1"
+       ]
+      },
+      {
+       "label": "From Step 5",
+       "body": "The table shows 14 squares in Step 5. Step 10 is 5 steps later: $14 + 5 \\times 2 = 24$.",
+       "src": [
+        "im4U6L1"
+       ]
+      },
+      {
+       "label": "Written as a list",
+       "body": "Pang and Kim saw children write a pattern growing by 2 as 1, 3, 5, 7, ..., or as 1, 1 + 2, 3 + 2, 5 + 2 (each from the one before), or as 1, 1 + 2, 1 + 4, 1 + 6 (each from the first). The last way is the one that jumps straight to a far step.",
+       "src": [
+        "pangkim"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "topdrawer"
+     ],
+     "caption": "The triangle pattern of dots: 1, 3, 6, 10 and 15 dots. Each new triangle adds a new bottom row (blue) that is one dot longer than the last: add 2, then 3, then 4, then 5.",
+     "alt": "Five triangles of black dots in a row: 1 dot; 3 dots in rows of 1 and 2; 6 dots in rows of 1, 2, 3; 10 dots in rows up to 4; 15 dots in rows up to 5. The bottom row of each triangle after the first is blue. The counts 1, 3, 6, 10, 15 are written below.",
+     "code": "from matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(7.0, 2.5)\nax = fig.add_axes([0, 0, 1, 1])\nx0 = 0.0\nfor s in range(1, 6):\n    for r in range(s):\n        n = r + 1\n        y = 0.8 + (s - 1 - r) * 0.55\n        for c in range(n):\n            x = x0 + (s - 1) * 0.3 + (c - (n - 1) / 2) * 0.6\n            ax.add_patch(Circle((x, y), 0.2, fc='blue' if (r == s - 1 and s > 1) else 'black', ec='black', lw=0.8))\n    ax.text(x0 + (s - 1) * 0.3, 0.15, str(s * (s + 1) // 2), ha='center', va='center', fontsize=12)\n    x0 += (s - 1) * 0.6 + 2.0\nax.set_xlim(-0.6, x0 - 0.6); ax.set_ylim(-0.2, 3.3); ax.set_aspect('equal'); ax.axis('off')"
+    },
+    {
+     "type": "example",
+     "body": "The giraffe pattern has 6, 8, 10 square blocks in Steps 1, 2, 3. Make a table for Steps 1 to 5 and find Step 10.",
+     "solution": "1. The rule is add 2 (the neck gets 2 more squares each step).\n2. Table: Step 1: 6. Step 2: 8. Step 3: 10. Step 4: 12. Step 5: 14.\n3. Step 10 is 5 steps after Step 5. Five steps add $5 \\times 2 = 10$.\n4. Step 10 has $14 + 10 = 24$ square blocks.\n5. Check another way: legs 4 and neck $10 \\times 2 = 20$, and $4 + 20 = 24$."
+    },
+    {
+     "type": "example",
+     "body": "Han shows Step 1 with 5 bottle caps (one row of 5) and Step 2 with 10 caps (two rows of 5). What might Steps 3 to 6 be?",
+     "solution": "1. Two steps are not enough to be sure of the rule. Find several rules that fit 5 then 10.\n2. Rule add 5: 5, 10, 15, 20, 25, 30.\n3. Rule double (times 2): 5, 10, 20, 40, 80, 160.\n4. Rule add 5, then add 6, then add 7, and so on: 5, 10, 16, 23, 31, 40.\n5. All three rules fit the first two steps. Han must say which rule she means, or show more steps."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: two steps do not fix a rule",
+     "src": [
+      "im4U6L1",
+      "pangkim"
+     ],
+     "body": "Illustrative Mathematics expects children to find different rules from the same first steps, and advises accepting them and testing each one against the numbers; if a child finds only one rule, ask what else is true about 5 and 10. Pang and Kim likewise recommend open patterns with more than one possible rule, asking children to justify their guess, and valuing the different ways children write the growth. They found that continuing a growing pattern for several terms, or filling a gap in the middle, was harder than giving the next term."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "In the dot pattern with rows of 3, how many dots has Step 6?",
+       "a": "18: six rows of 3, or $12 + 3 + 3$."
+      },
+      {
+       "q": "In the giraffe pattern, how many square blocks has Step 6?",
+       "a": "16: Step 5 has 14, add 2."
+      },
+      {
+       "q": "What is the next number in the triangle pattern 1, 3, 6, 10, 15?",
+       "a": "21: the next bottom row has 6 dots, and $15 + 6 = 21$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "A pattern of squares has 4 squares in Step 1, 8 in Step 2 and 12 in Step 3, adding 4 each time. How many in Step 4 and Step 5?",
+       "hint": "Add 4.",
+       "solution": "Step 4: $12 + 4 = 16$. Step 5: $16 + 4 = 20$."
+      },
+      {
+       "q": "In the dot pattern with rows of 3, which step has 30 dots?",
+       "hint": "Each step is that many rows of 3.",
+       "solution": "Step 10, because 10 rows of 3 make 30."
+      },
+      {
+       "q": "A pattern starts with 5 tiles in Step 1 and adds 3 tiles each step. Make a table for Steps 1 to 4.",
+       "hint": "5, 8, ...",
+       "solution": "Step 1: 5. Step 2: 8. Step 3: 11. Step 4: 14."
+      },
+      {
+       "q": "For the pattern in the last question, find Step 10 without listing every step.",
+       "hint": "Step 10 is 9 steps after Step 1.",
+       "solution": "From Step 1, 9 steps add $9 \\times 3 = 27$, so Step 10 has $5 + 27 = 32$ tiles. Check from Step 4: 6 more steps add 18, and $14 + 18 = 32$."
+      },
+      {
+       "q": "Han's caps go 5, 10, 15, 20, 25, 30 (add 5). Find Step 8 in two ways.",
+       "hint": "Keep adding from Step 6, or use times.",
+       "solution": "Adding: Step 7 is 35 and Step 8 is 40. Times: 8 rows of 5 caps make $8 \\times 5 = 40$."
+      },
+      {
+       "q": "A pattern goes 2, 4, ... Give two different rules and the next two terms for each.",
+       "hint": "Add the same number, or multiply.",
+       "solution": "Add 2: 2, 4, 6, 8. Double: 2, 4, 8, 16. (Add 2, then 3, then 4 also fits: 2, 4, 7, 11.)"
+      },
+      {
+       "q": "The triangle pattern goes 1, 3, 6, 10, 15, 21. Is it a pattern that adds the same number each step?",
+       "hint": "Work out the differences.",
+       "solution": "No. The differences are 2, 3, 4, 5, 6: each step adds one more than the step before. It is a growing pattern, but not one with a constant step."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A growing pattern has steps that change in a regular way, with no unit of repeat.\n- Counting the parts of each step turns it into a number sequence; a table of step and count keeps track.\n- If each step adds the same number, a far step is the start plus that number once for every step moved, such as $6 + 9 \\times 2$ for Step 10.\n- A few steps can fit several rules; say which rule you mean, and test it.\n- Some growing patterns add a different amount each time, like 1, 3, 6, 10, 15."
+    },
+    {
+     "type": "section",
+     "title": "Two kinds of rule: term-to-term and position-to-term",
+     "src": [
+      "topdrawer",
+      "eng",
+      "engKS3",
+      "gcse",
+      "im4U6L1"
+     ],
+     "body": "After this section you will be able to tell a term-to-term rule from a position-to-term rule, use each to find terms, and (for older readers) write the rule for the term in any position of a sequence that adds the same number each time.\n\nTry this first. Look at 3, 6, 9, 12, 15. Say a rule that gets each number from the one before. Now say a rule that gets each number from where it is in the list: the 1st number, the 2nd number, the 3rd number, ...\n\nAAMT describes two kinds of rule for a sequence. A term-to-term rule gets each term from the term before: for 3, 6, 9, 12, 15 it is add 3. A position-to-term rule gets each term straight from its position (its place in the list): the term in position 1 is $1 \\times 3$, in position 2 is $2 \\times 3$, in position 5 is $5 \\times 3 = 15$. The second kind is what lets you jump to a far-away term, as in the giraffe pattern.\n\nA sequence that adds (or takes away) the same number every time is called a linear sequence in England and an arithmetic sequence (or arithmetic progression) in many books; the England Key Stage 3 curriculum uses both words. The number added each time is called the common difference.\n\nExamples of linear sequences: 3, 6, 9, 12 (add 3); 5, 8, 11, 14 (add 3); 100, 85, 70, 55 (take away 15). Non-examples: 5, 10, 20, 40 (double each time; England calls a sequence that multiplies by the same number each time a geometric sequence) and 1, 3, 6, 10 (the step keeps changing)."
+    },
+    {
+     "type": "definition",
+     "title": "Term-to-term rule and position-to-term rule",
+     "src": [
+      "topdrawer",
+      "engKS3",
+      "gcse"
+     ],
+     "body": "The position of a term is its place in the sequence: 1 for the first term, 2 for the second, and so on.\n\nA term-to-term rule tells you how to get a term from the term before it (and it needs a first term to start from).\n\nA position-to-term rule tells you how to get a term from its position, without knowing the term before.\n\nOlder readers write the position as the letter $n$ and the term in position $n$ as the nth term. For 3, 6, 9, 12 the nth term is $3n$, which means $3 \\times n$: a number next to a letter means multiply."
+    },
+    {
+     "type": "theorem",
+     "title": "The nth term of a linear sequence",
+     "src": [
+      "engKS3",
+      "gcse",
+      "im4U6L1"
+     ],
+     "body": "If a sequence starts at $a$ and adds $d$ each time, the term in position $n$ is $$a + (n - 1) \\times d.$$ For 5, 8, 11, 14, ... ($a = 5$, $d = 3$) this is $5 + (n - 1) \\times 3$, which is the same as $$3n + 2.$$"
+    },
+    {
+     "type": "proof",
+     "src": [
+      "im4U6L1"
+     ],
+     "body": "To get from position 1 to position $n$ you move $n - 1$ steps, and each step adds $d$. So you add $(n - 1) \\times d$ to the first term $a$. This is exactly how the Step 10 giraffe was found from Step 1: $6 + 9 \\times 2$.\n\nFor 5, 8, 11, 14: the sequence adds 3, just like the 3 times table 3, 6, 9, 12. Each term is 2 more than the matching number in the 3 times table ($5 = 3 + 2$, $8 = 6 + 2$, $11 = 9 + 2$), so the term in position $n$ is $3 \\times n + 2$."
+    },
+    {
+     "type": "views",
+     "title": "One sequence, four descriptions",
+     "body": "The giraffe square blocks 6, 8, 10, 12, 14, ... described in the ways the sources use.",
+     "items": [
+      {
+       "label": "Picture",
+       "body": "Four leg squares that never change, and a neck that gets 2 more squares each step.",
+       "src": [
+        "im4U6L1"
+       ]
+      },
+      {
+       "label": "Table",
+       "body": "Step 1: 6, Step 2: 8, Step 3: 10, Step 4: 12, Step 5: 14. Illustrative Mathematics records growing patterns in tables of step and number.",
+       "src": [
+        "im4U6L1"
+       ]
+      },
+      {
+       "label": "Term-to-term rule",
+       "body": "Start at 6 and add 2. England's Year 5 guidance asks children to find the term-to-term rule in words.",
+       "src": [
+        "eng",
+        "topdrawer"
+       ]
+      },
+      {
+       "label": "Position-to-term rule",
+       "body": "Number of squares $= 2 \\times \\text{step} + 4$, or in letters $2n + 4$. Key Stage 3 and GCSE ask for terms from a position-to-term rule and for the nth term of a linear sequence.",
+       "src": [
+        "engKS3",
+        "gcse"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names for these sequences",
+     "rows": [
+      {
+       "who": "England, primary",
+       "text": "linear number sequence; term-to-term rule; generalisations of number patterns (Year 6 guidance).",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "who": "England, Key Stage 3 and GCSE",
+       "text": "term-to-term rule and position-to-term rule; arithmetic sequence and nth term; geometric sequence; also triangular, square and cube numbers and Fibonacci-type sequences.",
+       "src": [
+        "engKS3",
+        "gcse"
+       ]
+      },
+      {
+       "who": "United States (Common Core, IM)",
+       "text": "a pattern that follows a rule such as add 3; Step 1, Step 2, ... for shape patterns; the relationship between corresponding terms (Grade 5).",
+       "src": [
+        "cc4OA",
+        "cc5OA",
+        "im4U6L1"
+       ]
+      },
+      {
+       "who": "Australia (AAMT)",
+       "text": "rules that work from term to term, or that explain each term on its own.",
+       "src": [
+        "topdrawer"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A sequence has position-to-term rule term $= 4 \\times \\text{position} + 1$. Write the first four terms and the term-to-term rule.",
+     "solution": "1. Position 1: $4 \\times 1 + 1 = 5$.\n2. Position 2: $4 \\times 2 + 1 = 9$.\n3. Position 3: $4 \\times 3 + 1 = 13$. Position 4: $4 \\times 4 + 1 = 17$.\n4. The terms are 5, 9, 13, 17. Each is 4 more than the one before, so the term-to-term rule is start at 5, add 4."
+    },
+    {
+     "type": "example",
+     "body": "Find the nth term of 5, 8, 11, 14, ... and use it to find the 20th term.",
+     "solution": "1. The common difference is $8 - 5 = 3$ (check: $11 - 8 = 3$, $14 - 11 = 3$).\n2. Compare with the 3 times table, $3n$: 3, 6, 9, 12.\n3. Each term is 2 more: $5 - 3 = 2$, $8 - 6 = 2$. So the nth term is $3n + 2$.\n4. Check position 4: $3 \\times 4 + 2 = 14$. Correct.\n5. The 20th term is $3 \\times 20 + 2 = 62$."
+    },
+    {
+     "type": "example",
+     "body": "Find the nth term of 100, 85, 70, 55, ...",
+     "solution": "1. The sequence takes away 15 each time, so the common difference is $-15$ (minus 15).\n2. Use $a + (n - 1) \\times d$ with $a = 100$ and $d = -15$: the term is $100 - (n - 1) \\times 15$.\n3. This is the same as $115 - 15n$, because $100 + 15 = 115$.\n4. Check position 1: $115 - 15 = 100$. Position 4: $115 - 60 = 55$. Correct."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Term-to-term or position-to-term: start at 2 and add 7?",
+       "a": "Term-to-term: it uses the term before."
+      },
+      {
+       "q": "Term-to-term or position-to-term: term $= 10 \\times$ position?",
+       "a": "Position-to-term. It gives 10, 20, 30, 40, ..."
+      },
+      {
+       "q": "What is the 6th term of the sequence with nth term $2n + 4$?",
+       "a": "$2 \\times 6 + 4 = 16$ (the giraffe's Step 6)."
+      },
+      {
+       "q": "Is 5, 10, 20, 40 a linear sequence?",
+       "a": "No. It doubles each time; the differences 5, 10, 20 are not all the same."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write the first five terms: start at 9 and add 6.",
+       "hint": "Term-to-term: keep adding 6.",
+       "solution": "9, 15, 21, 27, 33."
+      },
+      {
+       "q": "Write the first five terms of the sequence with position-to-term rule term $= 5 \\times$ position.",
+       "hint": "Positions 1 to 5.",
+       "solution": "5, 10, 15, 20, 25 (Han's caps)."
+      },
+      {
+       "q": "Write the first four terms of the sequence with nth term $2n + 1$.",
+       "hint": "Put $n = 1, 2, 3, 4$.",
+       "solution": "3, 5, 7, 9."
+      },
+      {
+       "q": "Find the nth term of 4, 7, 10, 13, ...",
+       "hint": "The difference is 3; compare with $3n$.",
+       "solution": "The 3 times table is 3, 6, 9, 12 and each term is 1 more, so the nth term is $3n + 1$. Check: $3 \\times 4 + 1 = 13$."
+      },
+      {
+       "q": "Find the nth term of 6, 11, 16, 21, ... and the 10th term.",
+       "hint": "Compare with the 5 times table.",
+       "solution": "Difference 5. The 5 times table is 5, 10, 15, 20 and each term is 1 more: nth term $5n + 1$. 10th term: $5 \\times 10 + 1 = 51$."
+      },
+      {
+       "q": "Is 40 a term of the sequence with nth term $3n + 2$?",
+       "hint": "Solve $3n + 2 = 40$, or look at $40 - 2$.",
+       "solution": "$40 - 2 = 38$, and 38 is not in the 3 times table ($3 \\times 12 = 36$, $3 \\times 13 = 39$). So no whole-number position gives 40, and 40 is not a term."
+      },
+      {
+       "q": "Find the nth term of 50, 46, 42, 38, ...",
+       "hint": "The common difference is $-4$.",
+       "solution": "$a = 50$, $d = -4$: term $= 50 - (n - 1) \\times 4 = 54 - 4n$. Check: $54 - 4 = 50$ and $54 - 16 = 38$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- A term-to-term rule uses the term before; a position-to-term rule uses the position.\n- A linear (arithmetic) sequence adds the same number each time, the common difference.\n- Its term in position $n$ is $a + (n - 1) \\times d$; for 5, 8, 11, 14 that is $3n + 2$.\n- To find the nth term, compare with the times table of the common difference.\n- Sequences that multiply each time (geometric) or have changing steps are not linear."
+    },
+    {
+     "type": "section",
+     "title": "Two patterns side by side",
+     "src": [
+      "cc5OA",
+      "im5U7L11"
+     ],
+     "body": "After this section you will be able to make two patterns from two rules, line up their terms in a table, describe how matching terms are related, and draw the pairs of terms as points on a grid.\n\nTry this first. Start two counts at 0. In the first, add 3 each time; in the second, add 6 each time. Write five more terms of each, one count above the other. Compare the numbers that stand one above the other. What do you notice?\n\nCommon Core uses exactly this example. Rule 1, start at 0 and add 3, gives 0, 3, 6, 9, 12, 15. Rule 2, start at 0 and add 6, gives 0, 6, 12, 18, 24, 30. Terms that stand in the same place are called corresponding terms: 3 and 6, 6 and 12, 9 and 18. Each term of the second pattern is twice the corresponding term of the first.\n\nA pair of corresponding terms can be written as an ordered pair, such as $(3, 6)$: the first number comes from rule 1 and the second from rule 2. On a grid with two number lines at right angles (a coordinate grid), the ordered pair $(3, 6)$ is the point you reach by going 3 across and then 6 up.\n\nNon-example: $(6, 6)$ is not one of the pairs. 6 is in both patterns, but not in the same place: 6 is the third term of rule 1 and the second term of rule 2."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "cc5OA",
+      "im5U7L11"
+     ],
+     "caption": "Rule 1 (add 3 from 0) across and rule 2 (add 6 from 0) up. The 6 points (0, 0), (3, 6), (6, 12), (9, 18), (12, 24), (15, 30) lie on a straight line, evenly spaced.",
+     "alt": "A coordinate grid with horizontal axis labelled rule 1, from 0 to 16, and vertical axis labelled rule 2, from 0 to 32. Six blue dots at (0, 0), (3, 6), (6, 12), (9, 18), (12, 24) and (15, 30), each labelled with its ordered pair, rising evenly to the right in a straight line.",
+     "code": "ax = plt.gca(); fig = plt.gcf(); fig.set_size_inches(5.0, 4.6)\nxs = [0, 3, 6, 9, 12, 15]; ys = [2 * x for x in xs]\nax.set_xlim(-0.8, 17); ax.set_ylim(-1.6, 34)\nax.set_xticks(range(0, 17, 3)); ax.set_yticks(range(0, 33, 6))\nax.grid(True, color='0.8', lw=0.6)\nax.plot(xs, ys, 'o', color='blue', ms=8, mec='black', mew=0.8, zorder=3)\nfor x, y in zip(xs, ys):\n    ax.annotate('(' + str(x) + ', ' + str(y) + ')', (x, y), textcoords='offset points', xytext=(8, -12), fontsize=11)\nax.set_xlabel('rule 1: add 3', fontsize=12); ax.set_ylabel('rule 2: add 6', fontsize=12)\nax.tick_params(labelsize=11)\nfor s in ('top', 'right'):\n    ax.spines[s].set_visible(False)\nplt.tight_layout()"
+    },
+    {
+     "type": "theorem",
+     "title": "Why the second pattern is twice the first",
+     "src": [
+      "cc5OA"
+     ],
+     "body": "If two patterns both start at 0, and the second adds a step twice as big as the first, then every term of the second pattern is twice the corresponding term of the first."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "cc5OA"
+     ],
+     "body": "After the same number of steps, say 4 steps, the first pattern has added 3 four times, $4 \\times 3 = 12$, and the second has added 6 four times, $4 \\times 6 = 24$. Each 6 is two 3s, so four 6s are two lots of four 3s: $24 = 2 \\times 12$. The same is true after any number of steps."
+    },
+    {
+     "type": "views",
+     "title": "Seeing two patterns together",
+     "body": "Illustrative Mathematics compares two ways of showing a pair of patterns.",
+     "items": [
+      {
+       "label": "Table",
+       "body": "Write rule 1 in one row and rule 2 in the row below. Reading along a row shows each rule; reading down a column shows how corresponding terms are related.",
+       "src": [
+        "im5U7L11"
+       ]
+      },
+      {
+       "label": "Graph",
+       "body": "Plot each column as a point. The points rise evenly to the right; the graph shows how the two patterns change compared with each other, though each rule on its own is easier to see in the table.",
+       "src": [
+        "im5U7L11"
+       ]
+      },
+      {
+       "label": "Words",
+       "body": "Say the relationship: each term of the add 6 pattern is twice the matching term of the add 3 pattern, and explain why.",
+       "src": [
+        "cc5OA"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Rule 1: start at 0, add 2. Rule 2: start at 0, add 5. Make a table with six columns and describe the corresponding terms.",
+     "solution": "1. Rule 1: 0, 2, 4, 6, 8, 10.\n2. Rule 2: 0, 5, 10, 15, 20, 25.\n3. Ordered pairs: $(0, 0)$, $(2, 5)$, $(4, 10)$, $(6, 15)$, $(8, 20)$, $(10, 25)$.\n4. Compare: 5 is 2 and a half times 2; 10 is 2 and a half times 4; 15 is 2 and a half times 6. Each rule 2 term is $2\\frac{1}{2}$ times the rule 1 term (double it, then add half of it again).\n5. The reason: each step adds 5 to rule 2 and 2 to rule 1, and 5 is $2\\frac{1}{2}$ times 2."
+    },
+    {
+     "type": "pitfall",
+     "title": "Pair terms in the same position",
+     "src": [
+      "im5U7L11"
+     ],
+     "body": "In the add 2 and add 5 patterns, 10 appears in both and 20 appears in rule 2, so a child may plot $(10, 20)$. Illustrative Mathematics uses exactly this point to show that it is not on the graph: 10 is the sixth term of rule 1 but 20 is the fifth term of rule 2, so they do not correspond. A point must pair terms from the same column of the table."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Rule 1: add 4 from 0. Rule 2: add 8 from 0. What is the fourth term of each?",
+       "a": "Rule 1: 0, 4, 8, 12, so 12. Rule 2: 0, 8, 16, 24, so 24."
+      },
+      {
+       "q": "In those patterns, how is each rule 2 term related to the rule 1 term?",
+       "a": "It is twice as big, because 8 is twice 4."
+      },
+      {
+       "q": "In the add 3 and add 6 patterns, is $(9, 18)$ one of the ordered pairs? Is $(12, 12)$?",
+       "a": "$(9, 18)$ yes (both fourth terms). $(12, 12)$ no: 12 is the fifth term of rule 1 but the third term of rule 2."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Rule 1: start at 0, add 1. Rule 2: start at 0, add 3. Write the first five terms of each.",
+       "hint": "Both start at 0.",
+       "solution": "Rule 1: 0, 1, 2, 3, 4. Rule 2: 0, 3, 6, 9, 12."
+      },
+      {
+       "q": "For the patterns in the last question, write the ordered pairs and describe the relationship.",
+       "hint": "Compare numbers in the same column.",
+       "solution": "$(0, 0)$, $(1, 3)$, $(2, 6)$, $(3, 9)$, $(4, 12)$. Each rule 2 term is 3 times the rule 1 term, because each step adds 3 instead of 1."
+      },
+      {
+       "q": "Rule 1: add 8 from 0. Rule 2: add 2 from 0. Which column has the pair $(16, 4)$?",
+       "hint": "Count the steps.",
+       "solution": "Rule 1 goes 0, 8, 16 and rule 2 goes 0, 2, 4, so $(16, 4)$ is the third column (after 2 steps). Each rule 2 term is a quarter of the rule 1 term."
+      },
+      {
+       "q": "Rule 1: add 10 from 0. Rule 2: add 40 from 0. Write the first six terms of each, and say which pattern grows faster.",
+       "hint": "Six terms including 0.",
+       "solution": "Rule 1: 0, 10, 20, 30, 40, 50. Rule 2: 0, 40, 80, 120, 160, 200. Rule 2 grows faster: each term is 4 times the rule 1 term."
+      },
+      {
+       "q": "Rule 1: start at 0, add 3. Rule 2: start at 0, add 6. Without listing, what is the rule 2 term that corresponds to the rule 1 term 30?",
+       "hint": "Use the relationship.",
+       "solution": "Each rule 2 term is twice the rule 1 term, so it is $2 \\times 30 = 60$. Check: 30 is reached after 10 steps of 3, and 10 steps of 6 make 60."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Two rules make two patterns; terms in the same place are corresponding terms.\n- A table shows each rule along a row and the relationship down each column.\n- Corresponding terms make ordered pairs, such as $(3, 6)$, which can be plotted on a grid.\n- From 0, add 3 and add 6: each second term is twice the first, because 6 is twice 3.\n- Only pair terms from the same position."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "src": [
+      "gcse",
+      "engKS3",
+      "cc5OA",
+      "im5U7L11",
+      "topdrawer"
+     ],
+     "body": "Counting in steps of 3 from 0 gives 3, 6, 9, 12, ...: the 3 times table, and a position-to-term rule such as term $= 3 \\times$ position is a multiplication. This is where [[multiplication]] picks up the thread, with equal groups and arrays.\n\nA term-to-term rule (start somewhere, then do the same thing again and again) is the first example of a recursive definition, which GCSE names directly; such definitions, and the step-by-step proofs that a pattern goes on for ever, are the subject of [[induction]] and of [[sequences]], where sequences such as triangular numbers, Fibonacci-type and geometric sequences also live. A position-to-term rule turns each position into one term, which is the idea of a function: the plotted pairs $(0, 0)$, $(3, 6)$, $(6, 12)$, ... lie on a straight line, the first picture of a linear relationship studied in [[functions]]."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# section 1: repeating patterns\nunit = ['heart', 'square', 'triangle']\npat = lambda u, n: [u[i % len(u)] for i in range(n)]\np = pat(unit, 7)\nassert p[-1] == 'heart' and pat(unit, 8)[-1] == 'square'\ncl = pat(['clap', 'clap', 'stamp'], 9)\nassert cl[7] == 'clap' and cl[8] == 'stamp' and cl[6] == 'clap'\nbeads = pat(['circle', 'square', 'square'], 10)\nassert beads[9] == 'circle' and 3 + 3 + 3 == 9\n# figure: 9 beads = 3 units, 3 circles and 6 squares, 10th is circle\nassert beads[:9].count('circle') == 3 and beads[:9].count('square') == 6\nassert pat([5, 7], 6) == [5, 7, 5, 7, 5, 7]\nassert pat(['r', 'r', 'b'], 9) == ['r', 'r', 'b'] * 3\nassert pat(['A', 'B'], 8)[5:] == ['B', 'A', 'B']\nassert pat(['c', 'c', 's', 's'], 9)[6:] == ['s', 's', 'c']\nassert pat([3, 1, 1], 9) == [3, 1, 1, 3, 1, 1, 3, 1, 1]\nassert pat(unit, 12)[11] == 'triangle' and pat(unit, 13)[12] == 'heart' and 3 * 4 == 12\nassert len(pat(['c', 'c', 'c', 's'], 12)) == 3 * 4\n"
+    },
+    {
+     "python": "# section 2\nassert list(range(0, 51, 5)) == [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]\nassert [n % 10 for n in range(0, 51, 5)] == [0, 5] * 5 + [0]\nassert list(range(7, 48, 10)) == [7, 17, 27, 37, 47] and all(n % 10 == 7 for n in range(7, 48, 10))\nassert list(range(100, 69, -10)) == [100, 90, 80, 70] and list(range(0, 301, 100)) == [0, 100, 200, 300]\nd = lambda s: [b - a for a, b in zip(s, s[1:])]\nassert d([1, 2, 4, 5, 7, 8]) == [1, 2, 1, 2, 1] and d([3, 6, 10, 13]) == [3, 4, 3]\nassert list(range(3, 20, 4)) == [3, 7, 11, 15, 19]\nassert 27 == 2 * 10 + 7 and 27 + 10 == 37\n# figure: 10 shaded numbers in 1..50, in two columns ending 5 and 0\nsh = [n for n in range(1, 51) if n % 5 == 0]\nassert len(sh) == 10 and {n % 10 for n in sh} == {0, 5} and {(n - 1) % 10 for n in sh} == {4, 9}\n# views\nassert 0 + 5 == 5 and 5 + 5 == 10 and 10 + 5 == 15\n# examples\nassert 50 - 25 == 25 and 75 - 50 == 25 and [75 + 25 * k for k in (1, 2, 3)] == [100, 125, 150]\nassert 44 - 34 == 10 and 74 - 64 == 10 and 44 + 10 == 54 and 54 + 10 == 64\nassert 100 - 85 == 85 - 70 == 70 - 55 == 15 and 55 - 15 == 40 and 40 - 15 == 25\n# check\nassert d([6, 9, 12, 15]) == [3, 3, 3] and 500 + 100 == 600 and 45 - 5 == 40 and 40 - 5 == 35\nassert d([2, 4, 7, 9, 12]) == [2, 3, 2, 3]\n# exercises\nassert list(range(0, 31, 3)) == [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30]\nassert list(range(46, 107, 10)) == [46, 56, 66, 76, 86, 96, 106] and list(range(106, 5, -10)) == [106, 96, 86, 76, 66, 56, 46, 36, 26, 16, 6]\nassert list(range(8, 41, 8)) == [8, 16, 24, 32, 40]\nf = list(range(0, 401, 50)); assert f == [0, 50, 100, 150, 200, 250, 300, 350, 400] and [n % 100 for n in f] == [0, 50] * 4 + [0]\nassert list(range(1000, 499, -100))[3:] == [700, 600, 500]\nassert d([4, 11, 18, 25]) == [7, 7, 7] and 25 + 7 == 32\nt = list(range(0, 201, 25)); assert t == [0, 25, 50, 75, 100, 125, 150, 175, 200]\nassert [n for n in t if n % 50 == 0] == [0, 50, 100, 150, 200]\n"
+    },
+    {
+     "python": "# section 3\ns = list(range(1, 20, 3)); assert s == [1, 4, 7, 10, 13, 16, 19]\nassert all(s[i] % 2 != s[i + 1] % 2 for i in range(len(s) - 1))\nassert all(((1 + 3 * k) % 2) != ((1 + 3 * (k + 1)) % 2) for k in range(10000))\nassert [n for n in s if n % 2] == [1, 7, 13, 19] and [n for n in s if n % 2 == 0] == [4, 10, 16] and len(s) - 1 == 6\nh = list(range(5, 31, 5)); assert h == [5, 10, 15, 20, 25, 30] and all(n % 5 == 0 for n in h) and all(h[i] % 2 != h[i + 1] % 2 for i in range(5))\nassert all(n % 2 == 0 for n in [2, 4, 6, 8])\nassert 3 == 2 + 1 and 4 == 2 + 2\nassert [4 * k for k in range(1, 6)] == [4, 8, 12, 16, 20] and all((4 * k) % 2 == 0 for k in range(1000))\nassert 4 * 7 == 14 + 14 and 4 * 3 == 3 + 3 + 3 + 3\nassert 72 % 5 != 0 and 70 % 5 == 0 and 75 - 70 == 5\nt = [2 + 4 * k for k in range(20)]; assert t[:5] == [2, 6, 10, 14, 18] and all(x % 2 == 0 for x in t)\nassert 50 - 2 == 48 and 48 == 12 * 4 and t[12] == 50 and 51 not in t\nassert [4 + 5 * k for k in range(5)] == [4, 9, 14, 19, 24] and [x % 2 for x in [4, 9, 14, 19, 24]] == [0, 1, 0, 1, 0]\nassert [3 + 10 * k for k in range(4)] == [3, 13, 23, 33] and all((3 + 10 * k) % 2 == 1 for k in range(100))\nassert 4 * 9 == 36 == 18 + 18\nassert [4 * k for k in range(6)] == [0, 4, 8, 12, 16, 20]\nassert [1 + 2 * k for k in range(6)] == [1, 3, 5, 7, 9, 11]\nu = [10 + 5 * k for k in range(6)]; assert u == [10, 15, 20, 25, 30, 35] and min(x for x in u if x > 30) == 35\nj = [6 + 2 * k for k in range(100)]; assert j[:5] == [6, 8, 10, 12, 14] and 25 not in j\nv = [7 + 3 * k for k in range(100)]; assert v[:4] == [7, 10, 13, 16] and 40 - 7 == 33 == 11 * 3 and 43 - 7 == 36 == 12 * 3 and 40 in v and 43 in v\nassert 6 * 5 == 15 + 15 == 30 and all((6 * k) % 2 == 0 for k in range(1000))\n"
+    },
+    {
+     "python": "# section 4\ndots = [3 * s for s in range(1, 5)]; assert dots == [3, 6, 9, 12] and 5 * 3 == 15\n# giraffe figure: legs 4, neck 2s; totals 6, 8, 10\ng = [4 + 2 * s for s in range(1, 11)]\nassert g[:3] == [6, 8, 10] and g[:5] == [6, 8, 10, 12, 14] and g[9] == 24\nassert [2 * s for s in (1, 2, 3)] == [2, 4, 6]\nassert 5 * 2 == 10 and 4 + 10 * 2 == 24 and 6 + 9 * 2 == 24 and 14 + 5 * 2 == 24 and 14 + 10 == 24 and 4 + 20 == 24\nlst = [1 + 2 * k for k in range(4)]; assert lst == [1, 3, 5, 7] and [1, 1 + 2, 3 + 2, 5 + 2] == lst and [1, 1 + 2, 1 + 4, 1 + 6] == lst\ntri = [s * (s + 1) // 2 for s in range(1, 7)]; assert tri[:5] == [1, 3, 6, 10, 15] and tri[5] == 21 and 15 + 6 == 21\nassert [b - a for a, b in zip(tri, tri[1:])] == [2, 3, 4, 5, 6]\nassert sum(range(1, 6)) == 15\ncaps_add = [5 * k for k in range(1, 7)]; assert caps_add == [5, 10, 15, 20, 25, 30]\ncaps_dbl = [5 * 2 ** k for k in range(6)]; assert caps_dbl == [5, 10, 20, 40, 80, 160]\nc = [5]; inc = 5\nwhile len(c) < 6:\n    c.append(c[-1] + inc); inc += 1\nassert c == [5, 10, 16, 23, 31, 40]\nassert 3 * 6 == 18 == 12 + 3 + 3 and g[5] == 16\nassert 12 + 4 == 16 and 16 + 4 == 20 and 10 * 3 == 30\nt = [5 + 3 * (s - 1) for s in range(1, 11)]; assert t[:4] == [5, 8, 11, 14] and t[9] == 32 == 5 + 27 == 14 + 18 and 9 * 3 == 27 and 6 * 3 == 18\nassert 30 + 5 == 35 and 35 + 5 == 40 == 8 * 5\nassert [2, 4, 6, 8] == [2 + 2 * k for k in range(4)] and [2 * 2 ** k for k in range(4)] == [2, 4, 8, 16] and [2, 4, 7, 11] == [2, 2 + 2, 4 + 3, 7 + 4]\n"
+    },
+    {
+     "python": "# section 5\nassert [3 * n for n in range(1, 6)] == [3, 6, 9, 12, 15] and 5 * 3 == 15\nassert [5 * 2 ** k for k in range(4)] == [5, 10, 20, 40]\nnth = lambda a, d, n: a + (n - 1) * d\nassert all(nth(5, 3, n) == 3 * n + 2 for n in range(1, 200)) and [nth(5, 3, n) for n in range(1, 5)] == [5, 8, 11, 14]\nassert 5 == 3 + 2 and 8 == 6 + 2 and 11 == 9 + 2 and 6 + 9 * 2 == 24\nassert [2 * n + 4 for n in range(1, 6)] == [6, 8, 10, 12, 14]\nassert [4 * p + 1 for p in range(1, 5)] == [5, 9, 13, 17]\nassert 8 - 5 == 11 - 8 == 14 - 11 == 3 and 5 - 3 == 2 and 8 - 6 == 2 and 3 * 4 + 2 == 14 and 3 * 20 + 2 == 62\nassert all(nth(100, -15, n) == 115 - 15 * n for n in range(1, 100)) and 100 + 15 == 115 and 115 - 15 == 100 and 115 - 60 == 55\nassert [nth(100, -15, n) for n in range(1, 5)] == [100, 85, 70, 55]\nassert [10 * p for p in range(1, 5)] == [10, 20, 30, 40] and 2 * 6 + 4 == 16\nassert [b - a for a, b in zip([5, 10, 20, 40], [10, 20, 40])] == [5, 10, 20]\nassert [nth(9, 6, n) for n in range(1, 6)] == [9, 15, 21, 27, 33]\nassert [5 * p for p in range(1, 6)] == [5, 10, 15, 20, 25]\nassert [2 * n + 1 for n in range(1, 5)] == [3, 5, 7, 9]\nassert [3 * n + 1 for n in range(1, 5)] == [4, 7, 10, 13] and 3 * 4 + 1 == 13\nassert [5 * n + 1 for n in range(1, 5)] == [6, 11, 16, 21] and 5 * 10 + 1 == 51\nassert 40 - 2 == 38 and 38 % 3 != 0 and 3 * 12 == 36 and 3 * 13 == 39 and 40 not in [3 * n + 2 for n in range(1, 100)]\nassert all(nth(50, -4, n) == 54 - 4 * n for n in range(1, 100)) and [54 - 4 * n for n in range(1, 5)] == [50, 46, 42, 38] and 54 - 16 == 38\n"
+    },
+    {
+     "python": "# section 6\nr1 = [3 * k for k in range(6)]; r2 = [6 * k for k in range(6)]\nassert r1 == [0, 3, 6, 9, 12, 15] and r2 == [0, 6, 12, 18, 24, 30] and all(b == 2 * a for a, b in zip(r1, r2))\nassert r1.index(6) == 2 and r2.index(6) == 1\n# figure: 6 points on y = 2x\npts = list(zip(r1, r2)); assert len(pts) == 6 and pts[-1] == (15, 30) and max(r1) <= 17 and max(r2) <= 34\nassert 4 * 3 == 12 and 4 * 6 == 24 and 24 == 2 * 12\na = [2 * k for k in range(6)]; b = [5 * k for k in range(6)]\nassert a == [0, 2, 4, 6, 8, 10] and b == [0, 5, 10, 15, 20, 25]\nfrom fractions import Fraction as F\nassert all(F(y) == F(5, 2) * x for x, y in zip(a, b)) and F(5) / 2 == F(5, 2)\nassert a.index(10) == 5 and b.index(20) == 4\nassert [4 * k for k in range(4)][3] == 12 and [8 * k for k in range(4)][3] == 24\nassert r1.index(9) == r2.index(18) == 3 and r1.index(12) == 4 and r2.index(12) == 2\nassert list(range(5)) == [0, 1, 2, 3, 4] and [3 * k for k in range(5)] == [0, 3, 6, 9, 12]\np = [8 * k for k in range(3)]; q = [2 * k for k in range(3)]; assert p == [0, 8, 16] and q == [0, 2, 4] and F(4, 16) == F(1, 4)\nassert [10 * k for k in range(6)] == [0, 10, 20, 30, 40, 50] and [40 * k for k in range(6)] == [0, 40, 80, 120, 160, 200]\nassert 30 == 10 * 3 and 10 * 6 == 60 == 2 * 30\n"
+    }
+   ]
+  }
+ }
+]
