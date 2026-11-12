@@ -1,0 +1,619 @@
+[
+ {
+  "id": "multiplication",
+  "entry": {
+   "sum": "Multiplication counts equal groups in one step: $3 \\times 4$ is the number of objects in 3 groups of 4, that is $4 + 4 + 4 = 12$. Arrays show why the order of the factors does not matter, boxes of cubes why the grouping does not matter, and these laws, with the rules for 0 and 1, turn the times table into a small set of facts that can be rebuilt from one another.",
+   "key": [
+    "a \\times b = \\underbrace{b + b + \\cdots + b}_{a}",
+    "a \\times b = b \\times a,\\quad (a \\times b) \\times c = a \\times (b \\times c)",
+    "a \\times 1 = a,\\quad a \\times 0 = 0"
+   ],
+   "why": "Multiplication is the second operation of arithmetic: division undoes it, and area, counting pairs, ratio, factors and primes, and powers are all built on it.",
+   "msc": [],
+   "links": [
+    {
+     "field": "combinatorics",
+     "note": "choosing one of m things and one of n things can be done in m times n ways: the product rule of counting"
+    },
+    {
+     "field": "geometry",
+     "note": "a rectangle a by b holds a times b unit squares: area"
+    },
+    {
+     "field": "algebra",
+     "note": "commutativity, associativity and the identity 1 are among the axioms of a commutative ring"
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 2.OA.C.4, 3.OA.A.1-4, 3.OA.B.5, 3.OA.C.7, 3.OA.D.9, 3.NBT.A.3, 4.OA.A.1-2 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-5 Multiplication and division (2013)",
+    "OpenStax, Prealgebra 2e, 1.4 Multiply Whole Numbers (2020)",
+    "Illustrative Mathematics K-5, Grade 2 Unit 8 and Grade 3 Unit 1 Introducing Multiplication",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)"
+   ],
+   "aliases": [
+    "times",
+    "product",
+    "times tables",
+    "multiplication table",
+    "multiplication facts",
+    "repeated addition",
+    "equal groups",
+    "times as many"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 17,
+   "sources": [
+    {
+     "k": "os-mul",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.4 Multiply Whole Numbers (module m81255)",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81255/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ccss-2oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Operations and Algebraic Thinking (2010)",
+     "where": "2.OA.C.4",
+     "url": "https://www.thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.A.1, A.3, A.4, B.5, C.7, D.9",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3nbt",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Number and Operations in Base Ten (2010)",
+     "where": "3.NBT.A.3",
+     "url": "https://www.thecorestandards.org/Math/Content/3/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3md",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Measurement and Data (2010)",
+     "where": "3.MD.C.7a-b",
+     "url": "https://www.thecorestandards.org/Math/Content/3/MD/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-4oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Operations and Algebraic Thinking (2010)",
+     "where": "4.OA.A.1-2",
+     "url": "https://www.thecorestandards.org/Math/Content/4/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-t2",
+     "ref": "Common Core State Standards Initiative, Mathematics glossary, Table 2: Common multiplication and division situations (2010)",
+     "where": "Table 2",
+     "url": "https://www.thecorestandards.org/Math/Content/mathematics-glossary/Table-2/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "prog-oa",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K-5, Operations and Algebraic Thinking (2011)",
+     "where": "Grade 3: order of factors, 0 and 1, strategies from known facts",
+     "url": "https://www.isbe.net/Documents/counting-cardinality-k-5.pdf",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-5, Number: multiplication and division (statutory requirements and notes)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g3u1gl",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 Introducing Multiplication: glossary (array, factor, product)",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/glossary.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g2u8",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 2 (Kendall Hunt edition)",
+     "where": "Unit 8 Equal Groups, section B Rectangular Arrays",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-8/lessons.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm-comm",
+     "ref": "NCETM, Primary Mastery Professional Development, segment 2.5: Commutativity (part 2), doubling and halving",
+     "where": "segment overview",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-205-commutativity-part-2-doubling-and-halving/",
+     "kind": "notes"
+    },
+    {
+     "k": "lim",
+     "ref": "Kien Lim, Addressing the multiplication makes bigger and division makes smaller misconceptions via prediction and clickers, International Journal of Mathematical Education in Science and Technology 42(8) (2011)",
+     "where": "abstract",
+     "url": "https://scholarworks.utep.edu/math_papers/251",
+     "kind": "research"
+    },
+    {
+     "k": "wiki-mult",
+     "ref": "Wikipedia, Multiplication",
+     "where": "multiplier and multiplicand; notation; Peano arithmetic",
+     "url": "https://en.wikipedia.org/wiki/Multiplication",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Interpret $5 \\times 7$ as the total of 5 groups of 7 (CC 3.OA.A.1); equal groups only",
+     "priority": "core",
+     "where": "Equal groups and arrays"
+    },
+    {
+     "item": "Total of an array as a sum of equal addends (CC 2.OA.C.4); arrays and repeated addition written with $\\times$ and $=$ (England Y1-Y2)",
+     "priority": "core",
+     "where": "Equal groups and arrays"
+    },
+    {
+     "item": "Multiplication of two numbers can be done in any order (England Y2; CC 3.OA.B.5)",
+     "priority": "core",
+     "where": "Equal groups and arrays"
+    },
+    {
+     "item": "Multiplying by 0 and 1 (England Y4; OpenStax 1.4)",
+     "priority": "core",
+     "where": "Equal groups and arrays"
+    },
+    {
+     "item": "Words and signs: factor, product, times; $\\times$, $\\cdot$ and brackets (OpenStax 1.4; IM Grade 3 Unit 1)",
+     "priority": "common",
+     "where": "Equal groups and arrays; Differences you will meet"
+    },
+    {
+     "item": "Correspondence problems: $n$ objects paired with $m$ objects (England Y3-Y4)",
+     "priority": "common",
+     "where": "Equal groups and arrays"
+    },
+    {
+     "item": "Area of a rectangle by tiling with unit squares (CC 3.MD.C.7)",
+     "priority": "common",
+     "where": "Equal groups and arrays (views); [[area-volume]]"
+    },
+    {
+     "item": "Multiply three numbers (England Y4; CC 3.OA.B.5 associative property)",
+     "priority": "common",
+     "where": "Three factors, tens and the times table"
+    },
+    {
+     "item": "Multiply by 10 and 100; one-digit numbers by multiples of 10 (CC 3.NBT.A.3)",
+     "priority": "common",
+     "where": "Three factors, tens and the times table"
+    },
+    {
+     "item": "Times tables: 2, 5, 10 (Y2), 3, 4, 8 (Y3), all to $12 \\times 12$ (England Y4); all products of two one-digit numbers from memory (CC 3.OA.C.7)",
+     "priority": "core",
+     "where": "Three factors, tens and the times table"
+    },
+    {
+     "item": "Properties as strategies: doubling, splitting a factor, nines from tens (CC 3.OA.B.5)",
+     "priority": "common",
+     "where": "Three factors, tens and the times table; [[distributive-property]]"
+    },
+    {
+     "item": "Patterns in the multiplication table (CC 3.OA.D.9)",
+     "priority": "common",
+     "where": "Three factors, tens and the times table"
+    },
+    {
+     "item": "Word problems with equal groups, arrays and measurement quantities (CC 3.OA.A.3; Table 2)",
+     "priority": "core",
+     "where": "Unknown factors and comparison"
+    },
+    {
+     "item": "Unknown factor in an equation such as $8 \\times ? = 48$ (CC 3.OA.A.4)",
+     "priority": "core",
+     "where": "Unknown factors and comparison"
+    },
+    {
+     "item": "Multiplicative comparison, distinguished from additive comparison (CC 4.OA.A.1-2); scaling problems (England Y3-Y4)",
+     "priority": "core",
+     "where": "Unknown factors and comparison"
+    },
+    {
+     "item": "Division as an unknown-factor problem (CC 3.OA.B.6)",
+     "priority": "core",
+     "where": "[[division]]"
+    },
+    {
+     "item": "Distributive property and partitioning a factor (CC 3.OA.B.5; England Y4)",
+     "priority": "common",
+     "where": "[[distributive-property]]"
+    },
+    {
+     "item": "Written methods: short and long multiplication (England Y3-Y6; CC 4.NBT.B.5)",
+     "priority": "common",
+     "where": "separate page: Long multiplication"
+    },
+    {
+     "item": "Factor pairs, multiples and primes (England Y4-Y5)",
+     "priority": "common",
+     "where": "[[divisibility]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "Multiplication answers the question: how many objects are there in a number of equal groups? Three bags of 4 apples hold $4 + 4 + 4 = 12$ apples, and multiplication writes this as $3 \\times 4 = 12$.\n\nRepeated addition is only the starting point. A product can also be read as the number of objects in a rectangular array, as an area, as a number of pairs, or as a comparison (three times as long). Each reading makes a different law obvious: that the order of the factors does not matter, that the grouping of three factors does not matter, that 1 changes nothing and 0 wipes everything out. These laws are what make the hundred facts of the times table manageable, and they are the same laws that algebra later uses for every kind of number."
+    },
+    {
+     "type": "section",
+     "title": "Equal groups and arrays",
+     "src": [
+      "os-mul",
+      "ccss-3oa",
+      "ccss-2oa",
+      "im-g3u1gl"
+     ],
+     "body": "Throughout this page the numbers are whole numbers $0, 1, 2, 3, \\ldots$ A product is first of all a count."
+    },
+    {
+     "type": "definition",
+     "title": "Product and factors",
+     "src": [
+      "os-mul",
+      "im-g3u1gl"
+     ],
+     "body": "For whole numbers $a$ and $b$, the product $a \\times b$ (read \"$a$ times $b$\") is the number of objects in $a$ groups with $b$ objects in each:\n\n$$a \\times b = \\underbrace{b + b + \\cdots + b}_{a \\text{ terms}}.$$\n\nThe numbers $a$ and $b$ are the factors and the result is the product. With no groups the total is 0, so $0 \\times b = 0$; with one group it is $1 \\times b = b$. Every further group adds $b$ more:\n\n$$(a + 1) \\times b = a \\times b + b.$$"
+    },
+    {
+     "type": "definition",
+     "title": "Array",
+     "src": [
+      "os-mul",
+      "im-g2u8",
+      "im-g3u1gl"
+     ],
+     "body": "An array is an arrangement of objects in rows and columns, with the same number of objects in every row. An array of $a$ rows with $b$ in each row is $a$ equal groups of $b$, so it holds $a \\times b$ objects. Its columns are equal groups too: there are $b$ columns, each holding one object from every row, that is $a$ objects."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Circle\nfig = plt.gcf(); fig.set_size_inches(6.0, 3.2); ax = plt.gca()\nfor r in range(3):\n    for c in range(5):\n        ax.add_patch(Circle((c, 2 - r), 0.3, fc='#cfe0ff', ec='blue', lw=1.2))\nfor r in range(3):\n    ax.text(4.75, 2 - r, '5', ha='left', va='center', fontsize=13, color='blue')\n    ax.plot([-0.45, 4.45], [2 - r, 2 - r], color='blue', lw=0.6, ls=':')\nfor c in range(5):\n    ax.text(c, -0.75, '3', ha='center', va='top', fontsize=13, color='orange')\n    ax.plot([c, c], [-0.45, 2.45], color='orange', lw=0.6, ls='--')\nax.text(5.4, 1, 'rows: 5 + 5 + 5 = 15', ha='left', va='center', fontsize=12, color='blue')\nax.text(2, -1.45, 'columns: 3 + 3 + 3 + 3 + 3 = 15', ha='center', va='top', fontsize=12, color='orange')\nax.set_xlim(-0.8, 10.2); ax.set_ylim(-2.0, 2.7); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "ccss-2oa"
+     ],
+     "caption": "An array of 3 rows of 5 counters. Adding the rows gives $5 + 5 + 5 = 15$; adding the 5 columns of 3 gives $3 + 3 + 3 + 3 + 3 = 15$. So $3 \\times 5 = 5 \\times 3 = 15$.",
+     "alt": "Fifteen blue counters in 3 rows of 5. Each row is marked 5 at its right end, with the label rows: 5 + 5 + 5 = 15. Each of the 5 columns is marked 3 at its bottom, with the label columns: 3 + 3 + 3 + 3 + 3 = 15."
+    },
+    {
+     "type": "theorem",
+     "title": "The order of the factors does not matter",
+     "body": "For all whole numbers $a$ and $b$,\n\n$$a \\times b = b \\times a.$$\n\nThis is the commutative property of multiplication."
+    },
+    {
+     "type": "proof",
+     "body": "Lay out $a$ rows of $b$ objects. Counted row by row, the array holds $a \\times b$ objects. Counted column by column, it holds $b$ columns of $a$, which is $b \\times a$ objects. Both counts count the same objects, each exactly once, so they are equal. If $a = 0$ or $b = 0$ the array is empty: with no rows, each of the $b$ columns holds 0 objects, and with rows of 0 there are no columns. Both counts are then 0, so the equality still holds.\n\nCounting one collection in two ways is a basic method of proof, called double counting. Nothing here depends on the particular numbers, so the argument covers every pair at once, which checking examples never could."
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 1 and by 0",
+     "body": "For every whole number $a$,\n\n$$a \\times 1 = 1 \\times a = a, \\qquad a \\times 0 = 0 \\times a = 0.$$"
+    },
+    {
+     "type": "proof",
+     "body": "$a$ groups of one object hold $a$ objects, and one group of $a$ holds $a$. $a$ groups with nothing in them hold nothing, and no groups at all hold nothing. (The second fact in each pair also follows from the first by commutativity.)"
+    },
+    {
+     "type": "pitfall",
+     "title": "Times zero is not plus zero",
+     "src": [
+      "prog-oa"
+     ],
+     "body": "Three rules look alike: $n + 0 = n$, $n \\times 1 = n$ and $n \\times 0 = 0$. A common slip is to write $6 \\times 0 = 6$, borrowing the rule for adding 0. Read it as a count: 6 groups with nothing in each hold nothing, so $6 \\times 0 = 0$. The number that changes nothing is 0 for addition but 1 for multiplication."
+    },
+    {
+     "type": "views",
+     "title": "Two more readings of 3 × 4",
+     "body": "Both give 12, and each shows something that counting groups does not.",
+     "items": [
+      {
+       "label": "Area",
+       "body": "A rectangle 3 cm by 4 cm is tiled by 12 squares of side 1 cm, so its area is $3 \\times 4 = 12$ square centimetres. Unlike counters, lengths need not be whole, and this reading is the one that carries multiplication over to fractions and decimals.",
+       "src": [
+        "ccss-3md"
+       ]
+      },
+      {
+       "label": "Comparison",
+       "body": "A strip 3 times as long as a 4 cm strip is $3 \\times 4 = 12$ cm long. Here 3 is not a number of objects but a scale factor, which later may be any number.",
+       "src": [
+        "ccss-4oa",
+        "ccss-t2"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "A menu has 4 starters and 6 main courses. How many different two-course meals (one starter, one main) are there? How many if a dessert, chosen from 3, is added?",
+     "solution": "Arrange the meals in an array with one row per starter and one column per main course: every meal is exactly one cell, so there are $4 \\times 6 = 24$ meals.\n\nEach of these 24 meals can be finished with any of 3 desserts, giving 24 equal groups of 3: $24 \\times 3 = 72$ meals. This way of counting choices made one after another is the product rule of [[counting]]."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Is $5 + 5 + 4 + 5$ equal to $4 \\times 5$?",
+       "a": "No. The groups are not all equal; the sum is 19, while $4 \\times 5 = 20$."
+      },
+      {
+       "q": "Find $0 \\times 9$, $1 \\times 9$ and $0 + 9$.",
+       "a": "$0 \\times 9 = 0$ (no groups), $1 \\times 9 = 9$ (one group of 9), $0 + 9 = 9$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write $7 + 7 + 7 + 7 + 7$ as a product and find it. Then find $6 \\times 7$ from it without starting again.",
+       "hint": "Five sevens; one more group adds 7.",
+       "solution": "$5 \\times 7 = 35$, and $6 \\times 7 = 5 \\times 7 + 7 = 42$."
+      },
+      {
+       "q": "In how many ways can 12 counters be laid out as an array (3 rows of 4 and 4 rows of 3 count as different)? Why can 7 counters only be laid out as one row or one column?",
+       "hint": "$r$ rows of $s$ counters hold $r \\times s$ counters. For which $r$ is there a whole number $s$ with $r \\times s = 7$?",
+       "solution": "For 12: $1 \\times 12$, $2 \\times 6$, $3 \\times 4$, $4 \\times 3$, $6 \\times 2$, $12 \\times 1$, six arrays.\n\nFor 7: $r$ rows of $s$ counters need $r \\times s = 7$. One row of 7 and 7 rows of 1 work. For $r = 2, 3, 4, 5, 6$, counting in steps of $r$ jumps over 7 (2, 4, 6, 8; 3, 6, 9; 4, 8; 5, 10; 6, 12), so no row length works; and more than 7 rows of at least one counter need more than 7 counters. Numbers above 1 whose only arrays are one row or one column are the primes ([[divisibility]])."
+      },
+      {
+       "q": "Using a picture of an array, explain why $a \\times (b + 1) = a \\times b + a$.",
+       "hint": "Add one column to $a$ rows of $b$.",
+       "solution": "Take $a$ rows of $b$, which is $a \\times b$ objects, and add one column. The new column holds one object for each row, so $a$ objects, and each row now has $b + 1$. So $a \\times (b + 1) = a \\times b + a$. Together with $(a + 1) \\times b = a \\times b + b$, this says that one more of either factor adds one more copy of the other."
+      },
+      {
+       "q": "Using only $0 \\times b = 0$ and $(a + 1) \\times b = a \\times b + b$, show that $a \\times 1 = a$ for $a = 1, 2, 3, 4$. Why does the same reasoning work for every $a$?",
+       "hint": "Start from $0 \\times 1 = 0$ and step up.",
+       "solution": "$1 \\times 1 = 0 \\times 1 + 1 = 1$, $2 \\times 1 = 1 + 1 = 2$, $3 \\times 1 = 2 + 1 = 3$, $4 \\times 1 = 3 + 1 = 4$. Each step adds 1 to both sides of $a \\times 1 = a$, so if it holds for one $a$ it holds for the next; starting from $a = 0$ it reaches every whole number. This is an argument by [[induction]]."
+      },
+      {
+       "q": "3 crates of 7 bottles and 7 crates of 3 bottles: what is the same and what is different?",
+       "hint": "Compare the totals, then the crates.",
+       "solution": "The totals agree, $3 \\times 7 = 7 \\times 3 = 21$ bottles. The situations do not: three large crates against seven small ones. Commutativity is a statement about the number of objects only."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Three factors, tens and the times table",
+     "src": [
+      "prog-oa",
+      "ccss-3oa",
+      "ccss-3nbt",
+      "eng-pos"
+     ],
+     "body": "Products of three numbers need one more law, about grouping. With it, multiplying by 10 and by tens becomes easy, and every fact in the times table can be rebuilt from a few others."
+    },
+    {
+     "type": "theorem",
+     "title": "The grouping of factors does not matter",
+     "body": "For all whole numbers $a$, $b$ and $c$,\n\n$$(a \\times b) \\times c = a \\times (b \\times c).$$\n\nThis is the associative property. With commutativity it means that a product of three numbers can be worked out in any order and grouping, so it is written without brackets, $a \\times b \\times c$. The same holds for four or more factors by using the two laws repeatedly: each use of associativity moves one pair of brackets, each use of commutativity swaps two neighbouring factors, and such steps lead from any order and grouping to any other."
+    },
+    {
+     "type": "proof",
+     "body": "Build a box of cubes in $a$ layers, each layer an array of $b$ rows of $c$. Counted layer by layer, each layer holds $b \\times c$ cubes, so the box holds $a \\times (b \\times c)$. Counted row by row, there are $a \\times b$ rows in all, $b$ in each of the $a$ layers, and each row holds $c$ cubes, so the box holds $(a \\times b) \\times c$. Both count the same cubes."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.0); ax = plt.gca()\nshades = ['#cfe8cf', '#a8d8a8']\nfor L, x0 in enumerate([0.9, 6.5]):\n    for r in range(3):\n        n = 3 * L + r + 1\n        for c in range(4):\n            ax.add_patch(Rectangle((x0 + c, 2 - r), 1, 1, fc=shades[n % 2], ec='green', lw=1.0))\n        ax.text(x0 - 0.2, 2.5 - r, 'row %d' % n, ha='right', va='center', fontsize=10, color='darkgreen')\n    ax.add_patch(Rectangle((x0, 0), 4, 3, fill=False, ec='black', lw=1.6))\n    ax.text(x0 + 2, 3.2, 'layer %d: 3 rows of 4' % (L + 1), ha='center', va='bottom', fontsize=12)\nax.text(5.2, -0.4, r'by layers: $2 \\times (3 \\times 4) = 2 \\times 12 = 24$', ha='center', va='top', fontsize=11)\nax.text(5.2, -1.1, r'by rows: $(2 \\times 3) \\times 4 = 6 \\times 4 = 24$', ha='center', va='top', fontsize=11)\nax.set_xlim(-0.6, 10.7); ax.set_ylim(-1.8, 3.9); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "prog-oa"
+     ],
+     "caption": "A box of 2 layers, each 3 rows of 4 cubes, shown layer by layer with its rows numbered 1 to 6 across both layers. By layers: $2 \\times 12 = 24$. By rows: there are $2 \\times 3 = 6$ rows of 4, so $6 \\times 4 = 24$.",
+     "alt": "Two green grids side by side, each 3 rows of 4 squares, labelled layer 1: 3 rows of 4 and layer 2: 3 rows of 4. The rows carry labels row 1 to row 3 in the first grid and row 4 to row 6 in the second, in alternating shades. Below: by layers 2 times (3 times 4) = 2 times 12 = 24; by rows (2 times 3) times 4 = 6 times 4 = 24."
+    },
+    {
+     "type": "theorem",
+     "title": "Multiplying by 10 and by multiples of 10",
+     "body": "Multiplying a positive whole number by 10 writes a 0 after its digits, and multiplying by 100 writes two:\n\n$$47 \\times 10 = 470, \\qquad 47 \\times 100 = 4700.$$\n\nTo multiply by a multiple of ten, multiply by the number of tens: $4 \\times 30 = (4 \\times 3) \\times 10 = 120$."
+    },
+    {
+     "type": "proof",
+     "body": "For 47: by commutativity $47 \\times 10 = 10 \\times 47$ is 47 tens, that is 4 tens of tens and 7 tens. By associativity 4 tens of tens are $4 \\times (10 \\times 10) = 4 \\times 100$, which is 4 hundreds. So the product is 4 hundreds, 7 tens and no ones: 470.\n\nThe same argument works for every $n$, digit by digit ([[place-value]]). Write $n = d_0 + d_1 \\times 10 + d_2 \\times 100 + \\cdots$ with digits $d_0, d_1, d_2, \\ldots$, as $47 = 7 + 4 \\times 10$. Ten groups of $n$ are ten groups of each part, counted separately, and by commutativity and associativity\n\n$$10 \\times d_0 = d_0 \\times 10, \\quad 10 \\times (d_1 \\times 10) = d_1 \\times 100, \\quad 10 \\times (d_2 \\times 100) = d_2 \\times 1000, \\ \\ldots$$\n\nSo each digit moves to the next place on the left, and the ones place is left empty, which is written 0. Since $100 = 10 \\times 10$, multiplying by 100 does this twice. For a multiple of ten, associativity gives $4 \\times 30 = 4 \\times (3 \\times 10) = (4 \\times 3) \\times 10 = 12 \\times 10$.\n\nThe rule is about digits moving, not about zeros: for a decimal, $2.5 \\times 10 = 25$, not 2.50."
+    },
+    {
+     "type": "example",
+     "body": "Unknown products can be rebuilt from known ones by moving groups around. Find $7 \\times 8$ in three ways, by splitting the groups, from a square and by doubling, and say why each route works.",
+     "solution": "Splitting: 7 groups of 8 are 5 groups and then 2 more, the same objects counted in two parts, so $7 \\times 8 = 5 \\times 8 + 2 \\times 8 = 40 + 16 = 56$. In general $(m + n) \\times b = m \\times b + n \\times b$; this is the [[distributive-property]].\n\nFrom a square: $8 \\times 8 = 64$, and 7 groups of 8 are one group fewer, so $64 - 8 = 56$. The same idea gives the nines: $9 \\times b = 10 \\times b - b$.\n\nDoubling, with the factors swapped: $8 = 2 \\times 2 \\times 2$, so by associativity $8 \\times 7 = 2 \\times (2 \\times (2 \\times 7))$, and doubling 7 three times gives 14, 28, 56. In the same way $4 \\times b = 2 \\times (2 \\times b)$.\n\nThree routes agreeing is a check; the laws guarantee that they must."
+    },
+    {
+     "type": "example",
+     "body": "Find $23 \\times 4$ mentally.",
+     "solution": "Split 23 groups of 4 into 20 groups and 3 groups: $20 \\times 4 = (2 \\times 4) \\times 10 = 80$ and $3 \\times 4 = 12$. So $23 \\times 4 = 80 + 12 = 92$. Written multiplication organises exactly these partial products."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(6.0, 6.0); ax = plt.gca()\nn = 10\nfor i in range(n + 1):\n    for j in range(n + 1):\n        x, y = j, n - i\n        if i == 0 and j == 0:\n            ax.text(x + 0.5, y + 0.5, r'$\\times$', ha='center', va='center', fontsize=13)\n        elif i == 0 or j == 0:\n            ax.add_patch(Rectangle((x, y), 1, 1, fc='#e4e4e4', ec='black', lw=0.8))\n            ax.text(x + 0.5, y + 0.5, str(i + j), ha='center', va='center', fontsize=12, weight='bold')\n        else:\n            fc = '#cfe0ff' if i == j else 'none'\n            ax.add_patch(Rectangle((x, y), 1, 1, fc=fc, ec='black', lw=0.6))\n            ax.text(x + 0.5, y + 0.5, str(i * j), ha='center', va='center', fontsize=11)\nfor (i, j) in [(3, 7), (7, 3)]:\n    ax.add_patch(Circle((j + 0.5, n - i + 0.5), 0.45, fc='none', ec='red', lw=2.0))\nax.set_xlim(-0.05, n + 1.05); ax.set_ylim(-0.05, n + 1.05); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "os-mul",
+      "ccss-3oa"
+     ],
+     "caption": "The multiplication table from $1 \\times 1$ to $10 \\times 10$; the cell in row $a$ and column $b$ holds $a \\times b$. Each row and column counts in equal steps: the 5 column ends alternately in 5 and 0, and the 10 column is the row number with a 0 written after it. The 10 shaded diagonal cells are the squares 1, 4, 9, ..., 100. The circled cells $3 \\times 7$ and $7 \\times 3$ both hold 21: the table is symmetric about its diagonal, so every fact off the diagonal appears twice.",
+     "alt": "A 10 by 10 grid with a grey header row and header column numbered 1 to 10. Each cell holds the product of its row and column number. The diagonal cells 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 are shaded light blue. The cells in row 3 column 7 and row 7 column 3, both 21, are circled in red."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find $9 \\times 80$ and $60 \\times 70$.",
+       "hint": "Count tens; $60 \\times 70 = 6 \\times 7 \\times 10 \\times 10$.",
+       "solution": "$9 \\times 80 = 72$ tens $= 720$. $60 \\times 70 = (6 \\times 7) \\times (10 \\times 10) = 42 \\times 100 = 4200$, by commutativity and associativity."
+      },
+      {
+       "q": "Compute $25 \\times 7 \\times 4$ in the easiest order.",
+       "hint": "Which two factors make a round number?",
+       "solution": "$25 \\times 4 = 100$, so $25 \\times 7 \\times 4 = 7 \\times 100 = 700$."
+      },
+      {
+       "q": "Find $12 \\times 7$ in two different ways.",
+       "hint": "12 groups are 10 groups and 2 more; 12 groups are also twice 6 groups.",
+       "solution": "$10 \\times 7 + 2 \\times 7 = 70 + 14 = 84$. Also $6 \\times 7 = 42$ and $2 \\times 42 = 84$."
+      },
+      {
+       "q": "How many of the 100 cells of the $1$ to $10$ multiplication table hold an odd number? Explain.",
+       "hint": "A group of even size splits into pairs; a group of odd size leaves one over. What happens to the leftovers?",
+       "solution": "A group of even size splits into pairs, so any number of such groups does too: if $b$ is even, $a \\times b$ is even, and by commutativity the same holds if $a$ is even. If $a$ and $b$ are both odd, each of the $a$ groups is pairs plus one leftover; the $a$ leftovers pair up except for one, since $a$ is odd, so $a \\times b$ is odd ([[odd-even-numbers]]). So a cell is odd exactly when its row and its column are odd. There are 5 odd numbers from 1 to 10, giving $5 \\times 5 = 25$ odd cells."
+      },
+      {
+       "q": "Counting $a \\times b$ and $b \\times a$ as one fact, how many different facts does the $n$ by $n$ multiplication table hold? Prove your formula, and use it for the 9 by 9 and the 12 by 12 table.",
+       "hint": "Count the diagonal and the mirror pairs.",
+       "solution": "By commutativity the cell in row $a$, column $b$ equals the cell in row $b$, column $a$, so the table is its own mirror image in the diagonal. Of its $n \\times n$ cells, $n$ lie on the diagonal and the other $n \\times n - n$ form $\\frac{n \\times n - n}{2}$ mirror pairs. So there are\n\n$$n + \\frac{n \\times n - n}{2} = \\frac{n \\times n + n}{2} = \\frac{n(n + 1)}{2}$$\n\nfacts. For $n = 9$ this gives $\\frac{9 \\times 10}{2} = 45$ of the 81 cells, and for $n = 12$ it gives $\\frac{12 \\times 13}{2} = 78$ of the 144 cells."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Unknown factors and comparison",
+     "src": [
+      "ccss-3oa",
+      "ccss-4oa",
+      "ccss-t2"
+     ],
+     "body": "An equation $a \\times b = p$ links three numbers, and a problem may give any two of them and ask for the third. The situations behind such equations are of a few kinds: equal groups, arrays and areas, measurements (3 pieces of ribbon, each 6 cm long), and comparisons."
+    },
+    {
+     "type": "definition",
+     "title": "Unknown factor",
+     "src": [
+      "ccss-3oa"
+     ],
+     "body": "The multiples of a number $a$ are $a, 2 \\times a, 3 \\times a, \\ldots$: the numbers reached by counting in steps of $a$, each $a$ more than the last. In $8 \\times ? = 48$ the product and one factor are known, and the unknown is the number of steps of 8 that reach 48: counting 8, 16, 24, 32, 40, 48 takes 6 steps, so $? = 6$, and the check is $8 \\times 6 = 48$.\n\nFor a factor $a \\ge 1$ there is at most one answer, because the multiples of $a$ strictly increase. There may be none: $8 \\times ? = 50$ has no whole-number solution, since 50 lies between $48$ and $56$. And a factor of 0 breaks everything: $0 \\times ? = 0$ is true for every number and $0 \\times ? = 5$ for none. Solving for an unknown factor is division ([[division]]), and these cases are why division by zero has no meaning."
+    },
+    {
+     "type": "definition",
+     "title": "Times as many",
+     "src": [
+      "ccss-4oa",
+      "ccss-t2"
+     ],
+     "body": "\"$p$ is $a$ times as many as $b$\" means $p = a \\times b$. Read this way, one equation gives two comparisons: $35 = 5 \\times 7$ says that 35 is 5 times as many as 7, and also 7 times as many as 5. \"Twice\" means 2 times."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.0); ax = plt.gca()\nu = 0.33\ndef bar(x, y, n, lab, fc, ec, hatch=None):\n    ax.add_patch(Rectangle((x, y), n * u, 0.6, fc=fc, ec=ec, lw=1.4, hatch=hatch))\n    ax.text(x + n * u / 2, y + 0.3, lab, ha='center', va='center', fontsize=12, bbox=dict(fc='white', ec='none', pad=1))\nax.text(-0.2, 2.9, 'B', ha='right', va='center', fontsize=12)\nbar(0, 2.6, 6, '6', '#cfe0ff', 'blue')\nax.text(-0.2, 1.7, '3 times B', ha='right', va='center', fontsize=12)\nfor k in range(3):\n    bar(k * 6 * u, 1.4, 6, '6', '#ffd6d6', 'red', '//')\nax.text(18 * u + 0.15, 1.7, '18', ha='left', va='center', fontsize=12, color='red')\nax.text(-0.2, 0.5, '3 more than B', ha='right', va='center', fontsize=12)\nbar(0, 0.2, 6, '6', '#cfe0ff', 'blue')\nbar(6 * u, 0.2, 3, '3', '#d8f0d8', 'green')\nax.text(9 * u + 0.15, 0.5, '9', ha='left', va='center', fontsize=12, color='green')\nax.set_xlim(-3.2, 6.9); ax.set_ylim(-0.1, 3.4); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "ccss-4oa"
+     ],
+     "caption": "Bars drawn to scale for $B = 6$. Three times $B$ is three copies of the whole bar, $3 \\times 6 = 18$. Three more than $B$ adds a piece of length 3, $6 + 3 = 9$.",
+     "alt": "Three horizontal bars. Top, labelled B: a blue bar marked 6. Middle, labelled 3 times B: three red striped bars each marked 6, end to end, total 18. Bottom, labelled 3 more than B: a blue bar marked 6 followed by a short green piece marked 3, total 9."
+    },
+    {
+     "type": "pitfall",
+     "title": "Times as many is not more than",
+     "src": [
+      "ccss-4oa",
+      "lim"
+     ],
+     "body": "\"3 times as many as 6\" is $3 \\times 6 = 18$, while \"3 more than 6\" is $6 + 3 = 9$; and 18 is 3 times as many as 6 but $18 - 6 = 12$ more than 6. Before calculating, decide whether the comparison is by a factor or by a difference.\n\nNor does multiplying always give more. With whole numbers it already fails for the factors 1 and 0: $7 \\times 1 = 7$ and $7 \\times 0 = 0$. Read as a scale factor, as in the comparison view, a factor below 1 shrinks: $\\frac{1}{2} \\times 8 = 4$."
+    },
+    {
+     "type": "example",
+     "body": "A rope 28 m long is cut into two pieces, one 3 times as long as the other. How long is each piece?",
+     "solution": "Draw the short piece as one bar and the long piece as 3 copies of that bar. Together they make 4 equal bars, 28 m in all, so one bar is the unknown factor in $4 \\times ? = 28$, which is 7. The pieces are 7 m and $3 \\times 7 = 21$ m. Check: $7 + 21 = 28$, and $21 = 3 \\times 7$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "A green ribbon is 40 cm long and a blue one is 8 cm. How many times as long as the blue ribbon is the green one?",
+       "a": "$? \\times 8 = 40$, and counting 8, 16, 24, 32, 40 takes 5 steps: 5 times as long (and 32 cm longer)."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Solve $6 \\times ? = 54$ and $? \\times 7 = 63$.",
+       "hint": "Count in sixes and in sevens, or use the nines.",
+       "solution": "$6 \\times 9 = 54$, so 9; $9 \\times 7 = 63$, so 9."
+      },
+      {
+       "q": "Show that $7 \\times ? = 30$ has no whole-number solution.",
+       "hint": "Which multiples of 7 lie near 30?",
+       "solution": "$4 \\times 7 = 28$ and $5 \\times 7 = 35$. The multiples of 7 increase by 7 each step, so none lies strictly between 28 and 35, and 30 is not a multiple of 7."
+      },
+      {
+       "q": "Without working out either product, decide which is larger, $16 \\times 25$ or $8 \\times 49$, and by how much.",
+       "hint": "Write 16 as $8 \\times 2$ and regroup; then compare 8 groups of one size with 8 groups of a size one smaller.",
+       "solution": "By associativity $16 \\times 25 = (8 \\times 2) \\times 25 = 8 \\times (2 \\times 25) = 8 \\times 50$. Now 8 groups of 50 are 8 groups of 49 with one more object in each group, so $8 \\times 50 = 8 \\times 49 + 8$. So $16 \\times 25$ is larger, by 8. (Indeed $400 = 392 + 8$.)"
+      },
+      {
+       "q": "For which whole numbers $a$ and $b$ is $a \\times b$ smaller than $b$? Equal to $b$? Prove your answer.",
+       "hint": "Compare $a \\times b$ with $1 \\times b$, using the fact that each extra group adds $b$.",
+       "solution": "If $a = 0$ the product is 0, smaller than $b$ unless $b = 0$. If $a = 1$ it equals $b$. If $a \\ge 2$ then $a \\times b = b + (a - 1) \\times b \\ge b$, with equality only when $b = 0$. So $a \\times b < b$ exactly when $a = 0$ and $b \\ge 1$, and $a \\times b = b$ exactly when $a = 1$ or $b = 0$. For whole numbers multiplying never makes smaller except by 0."
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Differences you will meet",
+     "rows": [
+      {
+       "who": "Order of the factors",
+       "text": "This page reads $3 \\times 4$ as 3 groups of 4. Some other books and countries take the first factor as the group size, 3 taken 4 times. By commutativity the product is the same either way; only the story differs.",
+       "src": [
+        "ccss-3oa",
+        "prog-oa",
+        "wiki-mult"
+       ]
+      },
+      {
+       "who": "Signs",
+       "text": "The cross $3 \\times 4$ in arithmetic; the raised dot $3 \\cdot 4$ and juxtaposition $ab$ (meaning $a \\times b$) in algebra, with brackets $(3)(4)$ when both factors are numerals, since 34 means thirty-four; the asterisk 3*4 in programming languages and spreadsheets.",
+       "src": [
+        "os-mul",
+        "wiki-mult"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "wiki-mult"
+     ],
+     "body": "Undoing multiplication is [[division]]: $48 \\div 8$ is the unknown factor in $8 \\times ? = 48$. Splitting a factor, as in $7 \\times 8 = 5 \\times 8 + 2 \\times 8$, is the [[distributive-property]], which ties multiplication to addition and makes written multiplication work.\n\nThe arrays of a number are its factor pairs, and numbers above 1 whose only arrays are one row or one column are the primes of [[divisibility]]. An array of unit squares is an area ([[area-volume]]), and choosing one item from each of several lists is counted by the product rule of [[counting]].\n\nMultiplying by the same number again and again, 2, 4, 8, 16, ..., gives powers ([[exp-log]]). And not every useful multiplication is commutative: for [[matrices]], $AB$ and $BA$ usually differ, so the array argument has no analogue there."
+    },
+    {
+     "type": "summary",
+     "body": "- $a \\times b$ is the number of objects in $a$ equal groups of $b$: $b + b + \\cdots + b$ with $a$ terms; each further group adds $b$.\n- An array counted by rows and by columns proves $a \\times b = b \\times a$; a box counted by layers and by rows proves $(a \\times b) \\times c = a \\times (b \\times c)$.\n- $a \\times 1 = a$ and $a \\times 0 = 0$; for addition the number that changes nothing is 0, for multiplication it is 1.\n- Multiplying by 10 moves every digit one place left; unknown facts come from known ones by doubling, splitting and the nines.\n- An unknown factor has at most one answer (when the known factor is not 0) and sometimes none; that is division.\n- \"$a$ times as many\" multiplies, \"$a$ more than\" adds."
+    }
+   ],
+   "checks": [
+    {
+     "python": "\n# intro, definition, array\nassert 4 + 4 + 4 == 12 == 3*4\ndef times(a, b):\n    return sum([b]*a)\nfor a in range(0, 13):\n    for b in range(0, 13):\n        assert times(a, b) == a*b and (a + 1)*b == a*b + b and a*(b + 1) == a*b + a\n        assert a*b == b*a and a*1 == 1*a == a and a*0 == 0*a == 0\n        # empty arrays: a rows of b counted by rows and by columns\n        assert sum([b]*a) == sum([a]*b) == len([(r, c) for r in range(a) for c in range(b)])\nassert 5 + 5 + 5 == 15 == 3 + 3 + 3 + 3 + 3 == 3*5 == 5*3\nassert len([(r, c) for r in range(3) for c in range(5)]) == 15\nassert 6 + 0 == 6 and 6*1 == 6 and 6*0 == 0\n"
+    },
+    {
+     "python": "\n# views, example, check, exercise 1\nassert 3*4 == 4*3 == 12\nassert 4*6 == 24 and 24*3 == 72 and len([(s, m, d) for s in range(4) for m in range(6) for d in range(3)]) == 72\nassert 5 + 5 + 4 + 5 == 19 and 4*5 == 20\nassert 0*9 == 0 and 1*9 == 9 and 0 + 9 == 9\nassert 7 + 7 + 7 + 7 + 7 == 5*7 == 35 and 6*7 == 35 + 7 == 42\narr12 = [(r, 12//r) for r in range(1, 13) if 12 % r == 0]\nassert arr12 == [(1, 12), (2, 6), (3, 4), (4, 3), (6, 2), (12, 1)] and len(arr12) == 6\nassert [r for r in range(1, 50) if any(r*s == 7 for s in range(0, 50))] == [1, 7]\nsteps = {r: [r*k for k in range(1, 8) if r*k <= 7 + r][:4] for r in range(2, 7)}\nassert steps == {2: [2, 4, 6, 8], 3: [3, 6, 9], 4: [4, 8], 5: [5, 10], 6: [6, 12]}\nassert all(7 not in v for v in steps.values()) and all(r*1 > 7 for r in range(8, 30))\nx = 0\nfor a in range(1, 5):\n    x = x + 1\n    assert x == a*1\nassert 3*7 == 7*3 == 21\n"
+    },
+    {
+     "python": "\n# section 2\nimport itertools\nfor a in range(0, 8):\n    for b in range(0, 8):\n        for c in range(0, 8):\n            assert (a*b)*c == a*(b*c)\nfor fs in itertools.product(range(0, 5), repeat=4):\n    assert len({p[0]*p[1]*p[2]*p[3] for p in itertools.permutations(fs)}) == 1\nassert 2*(3*4) == 2*12 == 24 and (2*3)*4 == 6*4 == 24 and 3*4 == 12 and 2*3 == 6\nassert len([(l, r, c) for l in range(2) for r in range(3) for c in range(4)]) == 24\nassert [3*l + r + 1 for l in range(2) for r in range(3)] == [1, 2, 3, 4, 5, 6]\nassert 47*10 == 470 and 47*100 == 4700 and 4*30 == (4*3)*10 == 12*10 == 120\nassert 47 == 7 + 4*10 and 4*(10*10) == 4*100 == 400 and 470 == 4*100 + 7*10 + 0\nassert 10*10 == 100 and 10*100 == 1000\nfor dgt in range(10):\n    assert 10*dgt == dgt*10 and 10*(dgt*10) == dgt*100 and 10*(dgt*100) == dgt*1000\nfor n in range(1, 5000):\n    assert str(10*n) == str(n) + '0' and str(100*n) == str(n) + '00'\n    assert n == sum(int(ch)*10**k for k, ch in enumerate(reversed(str(n))))\nassert abs(2.5*10 - 25) < 1e-12\nfor b in range(0, 13):\n    assert 4*b == 2*(2*b) and 8*b == 2*(4*b) and 7*b == 5*b + 2*b and 9*b == 10*b - b\n# 7 x 8\nassert 7*8 == 5*8 + 2*8 == 40 + 16 == 56 and 8*8 == 64 and 64 - 8 == 56\nassert 2*7 == 14 and 2*14 == 28 and 2*28 == 56 and 2*2*2*7 == 56 and 8 == 2*2*2\n# 23 x 4\nassert 20*4 == 80 == 2*4*10 and 3*4 == 12 and 80 + 12 == 92 == 23*4\n"
+    },
+    {
+     "python": "\n# table figure\ndiag = [i*i for i in range(1, 11)]\nassert diag == [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] and len(diag) == 10\nassert [(5*r) % 10 for r in range(1, 11)] == [5, 0]*5\nassert all(str(10*r) == str(r) + '0' for r in range(1, 11))\nassert 3*7 == 7*3 == 21\n# exercise 2\nassert 9*80 == 720 and 9*8 == 72 and 60*70 == 4200 == (6*7)*(10*10) == 42*100\nassert 25*4 == 100 and 25*7*4 == 700 == 7*100\nassert 12*7 == 10*7 + 2*7 == 70 + 14 == 84 and 6*7 == 42 and 2*42 == 84\nodd = [(a, b) for a in range(1, 11) for b in range(1, 11) if (a*b) % 2 == 1]\nassert len(odd) == 25 == 5*5 and len([a for a in range(1, 11) if a % 2]) == 5\nfor a in range(0, 30):\n    for b in range(0, 30):\n        assert ((a*b) % 2 == 1) == (a % 2 == 1 and b % 2 == 1)\nfor n in range(1, 30):\n    assert len({tuple(sorted((a, b))) for a in range(1, n + 1) for b in range(1, n + 1)}) == n*(n + 1)//2 == n + (n*n - n)//2 == (n*n + n)//2\n    assert (n*n - n) % 2 == 0\nassert 9*10//2 == 45 and 9*9 == 81 and 12*13//2 == 78 and 12*12 == 144\n"
+    },
+    {
+     "python": "\n# section 3\nassert [8*k for k in range(1, 7)] == [8, 16, 24, 32, 40, 48] and 8*6 == 48\nassert all(8*k != 50 for k in range(0, 100)) and 8*6 == 48 < 50 < 56 == 8*7\nassert all(0*k == 0 for k in range(100)) and all(0*k != 5 for k in range(100))\nassert 3*6 == 18 and 6 + 3 == 9 and 18 - 6 == 12\nassert 7*1 == 7 and 7*0 == 0 and 8 / 2 == 4\n# rope\nassert [b for b in range(0, 29) if b + 3*b == 28] == [7] and 4*7 == 28 and 3*7 == 21 and 7 + 21 == 28\n# check ribbon\nassert [k for k in range(0, 20) if k*8 == 40] == [5] and [8*k for k in range(1, 6)] == [8, 16, 24, 32, 40] and 40 - 8 == 32\n# exercise 3\nassert [k for k in range(20) if 6*k == 54] == [9] and [k for k in range(20) if k*7 == 63] == [9]\nassert all(7*k != 30 for k in range(100)) and 4*7 == 28 and 5*7 == 35\nassert 16 == 8*2 and 2*25 == 50 and 16*25 == (8*2)*25 == 8*(2*25) == 8*50 == 400\nassert 8*49 == 392 and 8*50 == 8*49 + 8 and 400 == 392 + 8\nfor a in range(0, 15):\n    for b in range(0, 15):\n        assert (a*b < b) == (a == 0 and b >= 1)\n        assert (a*b == b) == (a == 1 or b == 0)\n        if a >= 2:\n            assert a*b == b + (a - 1)*b >= b\n"
+    },
+    {
+     "python": "\n# conventions, looking ahead\nassert 3*4 == 4*3 and 3*4 == 12 and (3)*(4) == 12 and 34 != 3*4\nassert all(a*(k+1) > a*k for a in range(1, 20) for k in range(0, 20))\nassert 8*6 == 48 and 48 // 8 == 6 and 7*8 == 5*8 + 2*8\nassert [2**k for k in range(1, 5)] == [2, 4, 8, 16]\n"
+    }
+   ]
+  }
+ }
+]

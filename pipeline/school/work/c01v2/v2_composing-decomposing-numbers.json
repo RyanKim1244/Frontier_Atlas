@@ -1,0 +1,591 @@
+[
+ {
+  "id": "composing-decomposing-numbers",
+  "entry": {
+   "sum": "To decompose a whole number $n$ is to write it as a sum of parts, $n = a + b$; to compose is to put the parts together again. A whole with its two parts is a number bond. Knowing one part and the whole fixes the other ($a + b = n \\iff n - a = b$), the bonds of 10 and the teen numbers as $10 + d$ make calculation within 20 possible without counting, and counting all the decompositions of $n$ is the start of combinatorics.",
+   "key": [
+    "n = a + b \\iff n - a = b",
+    "8 + 5 = 8 + 2 + 3 = 10 + 3",
+    "14 = 10 + 4"
+   ],
+   "why": "Seeing smaller numbers inside a number is what turns counting into calculation: it underlies making ten, the inverse link between addition and subtraction, and place value.",
+   "msc": [],
+   "links": [
+    {
+     "field": "combinatorics",
+     "note": "Ordered decompositions into positive parts are compositions ($2^{n-1}$ of them); unordered ones are partitions, a central topic of combinatorics."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, Kindergarten K.OA.A.1, K.OA.A.3-4, K.NBT.A.1; Grade 1 1.OA.C.6 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-2 Addition and subtraction (2013)",
+    "Illustrative Mathematics K-5 Math, Kindergarten Units 5 and 6; Grade 1 Unit 3",
+    "NCETM, Primary Mastery Professional Development, Spine 1 segments 1.2-1.4",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)"
+   ],
+   "aliases": [
+    "number bonds",
+    "number pairs",
+    "partners of ten",
+    "part-part-whole",
+    "part-whole model",
+    "cherry diagram",
+    "partitioning (UK)",
+    "making ten",
+    "make and break apart numbers",
+    "fact families"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 18,
+   "sources": [
+    {
+     "k": "ccKOA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Kindergarten, Operations and Algebraic Thinking (2010)",
+     "where": "K.OA.A.1, K.OA.A.3, K.OA.A.4",
+     "url": "https://thecorestandards.org/Math/Content/K/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccKNBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Kindergarten, Number and Operations in Base Ten (2010)",
+     "where": "K.NBT.A.1",
+     "url": "https://thecorestandards.org/Math/Content/K/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc1OA",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Operations and Algebraic Thinking (2010)",
+     "where": "1.OA.C.6",
+     "url": "https://thecorestandards.org/Math/Content/1/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Year 1 and Year 2, Addition and subtraction; Year 2, Number and place value (partitioning)",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "progOA",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K, Counting and Cardinality; K-5, Operations and Algebraic Thinking (2011)",
+     "where": "Kindergarten (K.OA.3-4, K.NBT.1) and Grade 1 (1.OA.6) sections",
+     "url": "https://www.isbe.net/Documents/counting-cardinality-k-5.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "imK5L1",
+     "ref": "Illustrative Mathematics K-5, Kindergarten Unit 5 (Composing and Decomposing Numbers to 10), Lesson 1: Make 2 Parts",
+     "where": "Kindergarten, Unit 5, Lesson 1",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-5/lesson-1/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK5L4",
+     "ref": "Illustrative Mathematics K-5, Kindergarten Unit 5, Lesson 4: Find All the Ways",
+     "where": "Kindergarten, Unit 5, Lesson 4",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-5/lesson-4/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK5L11",
+     "ref": "Illustrative Mathematics K-5, Kindergarten Unit 5, Lesson 11: Equations that Show 10",
+     "where": "Kindergarten, Unit 5, Lesson 11",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-5/lesson-11/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK6L7",
+     "ref": "Illustrative Mathematics K-5, Kindergarten Unit 6 (Numbers 0-20), Lesson 7: Make Numbers with 10 and Some More",
+     "where": "Kindergarten, Unit 6, Section B, Lesson 7",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-6/lesson-7/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1U3L17",
+     "ref": "Illustrative Mathematics K-5, Grade 1 Unit 3 (Adding and Subtracting Within 20), Lesson 17: Make 10 to Add",
+     "where": "Grade 1, Unit 3, Lesson 17",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-3/lesson-17/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetm102",
+     "ref": "NCETM, Primary Mastery Professional Development, Spine 1 segment 1.2: Introducing 'whole' and 'parts': part-part-whole",
+     "where": "teaching points 1-4",
+     "url": "https://ncetm.org.uk/classroom-resources/primm-102-introducing-whole-and-parts-part-part-whole/",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetm104",
+     "ref": "NCETM, Primary Mastery Professional Development, Spine 1 segment 1.4: Composition of numbers 6-10",
+     "where": "teaching points 1-5",
+     "url": "https://www.ncetm.org.uk/classroom-resources/primm-104-composition-of-numbers-6-10",
+     "kind": "notes"
+    },
+    {
+     "k": "ncetmEY",
+     "ref": "NCETM, Early Years typical progression chart: Composition (2018)",
+     "where": "whole chart",
+     "url": "https://www.ncetm.org.uk/media/a5cetjqq/typical-progression-composition.pdf",
+     "kind": "notes"
+    },
+    {
+     "k": "staves",
+     "ref": "Les Staves, Counting: a deceptively simple skill (NCETM)",
+     "where": "big ideas: hierarchical inclusion",
+     "url": "https://blogs.glowscotland.org.uk/gc/public/gccleadersofearlylearning/uploads/sites/7271/2018/11/counting_a_deceptively_simple_skill.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "wikiComp",
+     "ref": "Wikipedia, Composition (combinatorics)",
+     "where": "number of compositions; the plus-sign-or-comma argument",
+     "url": "https://en.wikipedia.org/wiki/Composition_(combinatorics)",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Decompose numbers up to 10 into pairs in more than one way and record each with a drawing or an equation such as 5 = 2 + 3 (CC K.OA.A.3)",
+     "priority": "core",
+     "where": "Wholes and parts; All the ways to split a number"
+    },
+    {
+     "item": "Represent a split with objects, drawings, expressions and equations (CC K.OA.A.1)",
+     "priority": "core",
+     "where": "Wholes and parts"
+    },
+    {
+     "item": "For any number from 1 to 9, find the number that makes 10 with it (CC K.OA.A.4); number bonds to 10 (England Year 1)",
+     "priority": "core",
+     "where": "Five, ten and the teen numbers"
+    },
+    {
+     "item": "Compose and decompose 11 to 19 as ten ones and some further ones, recorded as 18 = 10 + 8 (CC K.NBT.A.1)",
+     "priority": "core",
+     "where": "Five, ten and the teen numbers"
+    },
+    {
+     "item": "Represent and use number bonds and related subtraction facts within 20, such as 9 + 7 = 16, 16 - 7 = 9, 7 = 16 - 9 (England Year 1)",
+     "priority": "core",
+     "where": "Wholes and parts; Five, ten and the teen numbers"
+    },
+    {
+     "item": "The whole stays the same however it is split (IM K Unit 5; NCETM 1.2)",
+     "priority": "core",
+     "where": "Wholes and parts"
+    },
+    {
+     "item": "Find all the ways to split a number, systematically (IM K Unit 5 Lesson 4)",
+     "priority": "common",
+     "where": "All the ways to split a number"
+    },
+    {
+     "item": "Given the whole and one part, find the other part (missing number problems)",
+     "priority": "common",
+     "where": "Wholes and parts"
+    },
+    {
+     "item": "Part-whole (cherry) diagram (NCETM 1.2) and bar model",
+     "priority": "common",
+     "where": "Wholes and parts"
+    },
+    {
+     "item": "Six to nine as five and some more; ten as five and five (NCETM 1.4)",
+     "priority": "common",
+     "where": "Five, ten and the teen numbers"
+    },
+    {
+     "item": "Decompose a number leading to a ten when adding and subtracting within 20, such as 8 + 6 = 8 + 2 + 4 and 13 - 4 = 13 - 3 - 1 (CC 1.OA.C.6)",
+     "priority": "common",
+     "where": "Calculating by decomposing; [[addition-subtraction]]"
+    },
+    {
+     "item": "Split a number into three or more parts",
+     "priority": "specialised",
+     "where": "All the ways to split a number"
+    },
+    {
+     "item": "Derive related facts up to 100, such as 30 + 70 = 100 from 3 + 7 = 10 (England Year 2)",
+     "priority": "specialised",
+     "where": "Calculating by decomposing; [[place-value]]"
+    },
+    {
+     "item": "Addition and subtraction strategies within 20 in general, and story problems",
+     "priority": "specialised",
+     "where": "[[addition-subtraction]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "To decompose a number is to split it into parts that add up to it, as in $7 = 4 + 3$; to compose it is to put the parts back together. A whole with two parts that make it is a number bond. Knowing that 8 and 2 make 10, that 6 is 2 and 4, and that 14 is 10 and 4 is what lets you work out $8 + 6 = 14$ and $14 - 6 = 8$ without counting; the same splitting into tens and hundreds underlies written arithmetic."
+    },
+    {
+     "type": "section",
+     "title": "Wholes and parts",
+     "src": [
+      "ccKOA",
+      "imK5L1",
+      "ncetm102",
+      "progOA",
+      "ncetmEY",
+      "staves"
+     ],
+     "body": "Throughout, numbers are whole numbers $0, 1, 2, 3, \\dots$ (see [[counting-number-names]]). Everything rests on one picture: a collection of objects, the whole, divided into two groups, the parts, with every object in exactly one group."
+    },
+    {
+     "type": "definition",
+     "title": "Decomposition, composition, number bond",
+     "src": [
+      "ccKOA",
+      "ncetm102",
+      "eng"
+     ],
+     "body": "A decomposition of a whole number $n$ into two parts is a pair of whole numbers $a$ and $b$ with $$n = a + b;$$ read from right to left, $a$ and $b$ compose $n$. The whole with its two parts is a number bond: the bonds of 5 are $0 + 5$, $1 + 4$ and $2 + 3$. A part may be 0. When the order of the parts matters we speak of an ordered split: $4 + 3$ and $3 + 4$ are different ordered splits of 7 but the same bond."
+    },
+    {
+     "type": "theorem",
+     "title": "Moving an object does not change the whole",
+     "body": "If a collection of $n$ objects is split into parts of $a$ and $b$ objects, then $a + b = n$. Moving one object from the second part to the first gives a new split of the same collection, so $$(a + 1) + (b - 1) = a + b \\quad (b \\ge 1),$$ and repeating the move $k$ times, $(a + k) + (b - k) = a + b$ for $k \\le b$."
+    },
+    {
+     "type": "proof",
+     "body": "The one assumption, here and throughout the page, is that the count of a collection does not depend on the order in which its objects are counted. Counting the first part, $1, \\dots, a$, and carrying on into the second, $a + 1, \\dots, a + b$, is what adding $b$ to $a$ means, and it counts each object exactly once; so $a + b = n$. A move changes the split but not the collection, so the new parts also add to $n$."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ncetm102"
+     ],
+     "caption": "The bond 7 = 4 + 3 drawn two ways. Left: a part-whole (cherry) diagram, whole 7 above, parts 4 and 3 below. Right: a bar model, in which the bar for 7 is as long as the bars for 4 (plain) and 3 (striped) together.",
+     "alt": "On the left, a circle containing 7 joined by two lines to circles containing 4 and 3 below it, labelled whole and part. On the right, a long bar labelled 7 above two shorter bars of lengths 4 and 3 placed end to end, the 3 bar striped; labels whole and parts; beneath, the equation 7 = 4 + 3.",
+     "code": "from matplotlib.patches import Circle, Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.6, 2.7)\nax = fig.add_axes([0, 0, 1, 1])\nW = (2.0, 2.6); P1 = (0.9, 0.7); P2 = (3.1, 0.7)\nfor p in (P1, P2):\n    ax.plot([W[0], p[0]], [W[1], p[1]], color='black', lw=1.2, zorder=0)\nfor p, t, c in ((W, '7', 'black'), (P1, '4', 'blue'), (P2, '3', (0.8, 0.35, 0))):\n    ax.add_patch(Circle(p, 0.55, fc='white', ec='black', lw=1.3, zorder=1))\n    ax.text(p[0], p[1], t, ha='center', va='center', fontsize=16, color=c, zorder=2)\nax.text(2.0, 3.45, 'whole', ha='center', va='center', fontsize=11)\nax.text(0.9, -0.15, 'part', ha='center', va='center', fontsize=11)\nax.text(3.1, -0.15, 'part', ha='center', va='center', fontsize=11)\nx0, u = 5.2, 0.62\nax.add_patch(Rectangle((x0, 1.9), 7 * u, 0.8, fill=False, ec='black', lw=1.3))\nax.text(x0 + 3.5 * u, 2.3, '7', ha='center', va='center', fontsize=16)\nax.add_patch(Rectangle((x0, 0.9), 4 * u, 0.8, fc=(0.75, 0.85, 1.0), ec='black', lw=1.3))\nax.text(x0 + 2 * u, 1.3, '4', ha='center', va='center', fontsize=16, color='blue')\nax.add_patch(Rectangle((x0 + 4 * u, 0.9), 3 * u, 0.8, fc=(1.0, 0.85, 0.65), ec='black', lw=1.3, hatch='///'))\nax.text(x0 + 5.5 * u, 1.3, '3', ha='center', va='center', fontsize=16, color=(0.8, 0.35, 0), bbox=dict(fc='white', ec='none', pad=1))\nax.text(x0 + 3.5 * u, 3.1, 'whole', ha='center', va='center', fontsize=11)\nax.text(x0 + 3.5 * u, 0.45, 'parts', ha='center', va='center', fontsize=11)\nax.text(6.9, -0.15, '7 = 4 + 3', ha='center', va='center', fontsize=14)\nax.set_xlim(0.0, 10.0); ax.set_ylim(-0.5, 3.8); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "Know the whole and one part, and you know the other",
+     "body": "For whole numbers $a$, $b$ and $n$ with $a \\le n$ and $b \\le n$, $$a + b = n \\iff n - a = b \\iff n - b = a.$$ So one bond with two different parts gives four facts, for example $$6 + 3 = 9, \\; 3 + 6 = 9, \\; 9 - 6 = 3, \\; 9 - 3 = 6,$$ and a bond with equal parts, such as $10 = 5 + 5$, gives two."
+    },
+    {
+     "type": "proof",
+     "body": "For $a \\le n$, $n - a$ is defined as the missing part: the number that must be added to $a$ to make $n$. It exists, since $a$ of the $n$ objects can be set aside and the rest counted. It is unique, since if $b < b'$ then $a + b < a + b'$: by the counting definition of addition, counting on $b'$ from $a$ goes past $a + b$. So $a + b = n$ says exactly that $b = n - a$, and as $a + b = b + a$, also $a = n - b$."
+    },
+    {
+     "type": "pitfall",
+     "title": "Reading = as 'makes'",
+     "body": "Someone used only to $4 + 3 = 7$ reads $=$ as 'and the answer is', rejects $7 = 4 + 3$ as backwards, or writes $4 + 3 = 7 + 2 = 9$ for a running total. The sign says the two sides name the same number, so $7 = 4 + 3$ and $4 + 3 = 7$ say the same thing (see [[equality-equal-sign]])."
+    },
+    {
+     "type": "pitfall",
+     "title": "A part is never larger than the whole",
+     "body": "With whole numbers a part satisfies $a \\le n$ (see the last exercise below), so a guessed missing part larger than the whole, such as '6 hidden' when there are 5 altogether and 2 are visible, can be rejected at once. This is a fact about whole numbers, not about addition: with negative numbers, $7 = 10 + (-3)$ has a part larger than the whole."
+    },
+    {
+     "type": "example",
+     "body": "A rope 16 m long is cut into two pieces, one of them 7 m long. How long is the other? Write the bond and its four facts.",
+     "solution": "The other part is $16 - 7$, the number that completes 7 to 16: 3 more reaches 10 and 6 more reaches 16, so it is $3 + 6 = 9$, and the other piece is 9 m. The four facts are $$7 + 9 = 16, \\; 9 + 7 = 16, \\; 16 - 7 = 9, \\; 16 - 9 = 7.$$"
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write all the addition and subtraction facts given by the bond 13 with parts 8 and 5. How many facts does the bond 8 with parts 4 and 4 give, and why fewer?",
+       "hint": "Swapping equal parts changes nothing.",
+       "solution": "$8 + 5 = 13$, $5 + 8 = 13$, $13 - 8 = 5$, $13 - 5 = 8$. The bond $8 = 4 + 4$ gives only $4 + 4 = 8$ and $8 - 4 = 4$, since swapping equal parts gives the same equations."
+      },
+      {
+       "q": "Explain, by moving objects between the parts, why $5 + 9$, $6 + 8$ and $7 + 7$ are all equal.",
+       "hint": "Get from one split to the next by moving one object.",
+       "solution": "Moving one object from the second part to the first turns $5 + 9$ into $6 + 8$, and another into $7 + 7$. The collection never changes, so all three equal 14."
+      },
+      {
+       "q": "Prove that if $a + b = n$ with whole numbers $a$ and $b$, then $a \\le n$, with equality exactly when $b = 0$.",
+       "hint": "Adding a positive whole number makes a number larger.",
+       "solution": "If $b = 0$ then $n = a + 0 = a$. If $b \\ge 1$ then $n = a + b \\ge a + 1 > a$. So $a \\le n$ always, and $a = n$ exactly when $b = 0$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "All the ways to split a number",
+     "src": [
+      "imK5L4",
+      "ncetmEY",
+      "wikiComp"
+     ],
+     "body": "Finding a few splits of 8 by trial is easy; knowing you have them all needs an order. Let the first part run through $0, 1, 2, \\dots$: at each step one part gains one and the other loses one, as in the figure."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "imK5L4"
+     ],
+     "caption": "All ordered splits of 8, from 0 + 8 to 8 + 0. There are 9 rows; going down, the first part (plain) gains one square and the second part (striped) loses one.",
+     "alt": "Nine rows of eight squares each. In the top row all eight squares are striped, labelled 0 + 8. In each lower row one more square at the left is plain instead of striped, so the labels run 1 + 7, 2 + 6, 3 + 5, 4 + 4, 5 + 3, 6 + 2, 7 + 1, and in the bottom row all eight are plain, 8 + 0.",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(5.2, 5.0)\nax = fig.add_axes([0, 0, 1, 1])\nfor k in range(9):\n    y = 8 - k\n    for j in range(8):\n        blue = j < k\n        ax.add_patch(Rectangle((j, y), 1, 0.8, fill=True, fc=(0.75, 0.85, 1.0) if blue else (1.0, 0.85, 0.65), ec='black', lw=1.0, hatch=None if blue else '///'))\n    ax.text(8.5, y + 0.4, f'{k} + {8 - k}', ha='left', va='center', fontsize=12)\nax.text(0, 9.3, 'plain = first part,  striped = second part', ha='left', va='center', fontsize=10)\nax.set_xlim(-0.2, 11.3); ax.set_ylim(-0.2, 9.7); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "theorem",
+     "title": "Counting the splits into two parts",
+     "body": "A whole number $n$ has\n\n- $n + 1$ ordered splits $n = a + b$ (parts may be 0);\n- $n - 1$ ordered splits with both parts positive (for $n \\ge 1$);\n- $\\lfloor n/2 \\rfloor + 1$ bonds, that is splits with the order ignored, where $\\lfloor n/2 \\rfloor$ is $n/2$ rounded down.\n\nFor $n = 8$ these are 9, 7 and 5."
+    },
+    {
+     "type": "proof",
+     "body": "The first part $a$ can be any of $0, 1, \\dots, n$, and it determines the second, $b = n - a$; that gives $n + 1$ ordered splits. Both parts positive excludes $a = 0$ and $a = n$, leaving $n - 1$. Writing each bond smaller part first means $a \\le n - a$, that is $a \\le n/2$, so $a = 0, 1, \\dots, \\lfloor n/2 \\rfloor$: $\\lfloor n/2 \\rfloor + 1$ bonds."
+    },
+    {
+     "type": "example",
+     "body": "Count the ordered splits of 10 from its bonds.",
+     "solution": "10 has $\\lfloor 10/2 \\rfloor + 1 = 6$ bonds, from $0 + 10$ to $5 + 5$. Each bond except $5 + 5$ can be written in two orders, so there are $2 \\cdot 5 + 1 = 11$ ordered splits, agreeing with $n + 1 = 11$. The $+1$ is the equal bond, which only an even number has."
+    },
+    {
+     "type": "theorem",
+     "title": "Splitting into more than two parts",
+     "body": "A number can also be split into three or more positive parts, such as $10 = 3 + 3 + 4$. An ordered split into positive parts is called a composition of $n$. For $n \\ge 1$ there are $2^{n-1}$ compositions of $n$."
+    },
+    {
+     "type": "proof",
+     "src": [
+      "wikiComp"
+     ],
+     "body": "Lay $n$ dots in a row. There are $n - 1$ gaps between neighbouring dots. Choosing some of the gaps and cutting there splits the row into consecutive runs, read from left to right as a composition; conversely every composition comes from exactly one choice of cuts (cut after the first part, after the first two parts, and so on). Each gap is cut or not, independently, giving $2^{n-1}$ choices."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "wikiComp"
+     ],
+     "caption": "The $2^3 = 8$ compositions of 4. Four dots have three gaps, and each gap is either cut (red bar) or not; the number of cuts is shown on the left.",
+     "alt": "Eight rows of four black dots. Red vertical bars stand in some of the three gaps between the dots, a different choice of gaps in each row. Beside each row is the composition it gives: 4; 3 + 1; 2 + 2; 2 + 1 + 1; 1 + 3; 1 + 2 + 1; 1 + 1 + 2; 1 + 1 + 1 + 1. On the left each row is labelled with its number of cuts: 0, 1, 1, 2, 1, 2, 2, 3.",
+     "code": "from itertools import product\nfig = plt.gcf(); fig.set_size_inches(4.6, 4.4)\nax = fig.add_axes([0, 0, 1, 1])\nrows = list(product((0, 1), repeat=3))\nfor i, cuts in enumerate(rows):\n    y = 7 - i\n    parts, run = [], 1\n    for g in range(4):\n        ax.plot(g * 1.0, y, 'o', ms=11, mfc='black', mec='black')\n        if g < 3:\n            if cuts[g]:\n                ax.plot([g + 0.5, g + 0.5], [y - 0.33, y + 0.33], color='red', lw=2.2)\n                parts.append(run); run = 1\n            else:\n                run += 1\n    parts.append(run)\n    ax.text(4.0, y, ' + '.join(str(p) for p in parts), ha='left', va='center', fontsize=12)\n    ax.text(-0.9, y, f'{sum(cuts)} cut' + ('' if sum(cuts) == 1 else 's'), ha='right', va='center', fontsize=10)\nax.set_xlim(-2.4, 7.6); ax.set_ylim(-0.6, 7.6); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "How many bonds does 7 have, and how many ordered splits?",
+       "a": "Bonds: $0 + 7$, $1 + 6$, $2 + 5$, $3 + 4$, so $\\lfloor 7/2 \\rfloor + 1 = 4$. Ordered splits: $7 + 1 = 8$, exactly twice the bonds, because an odd number has no bond with equal parts."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "List all the bonds of 9, smallest part first. How do you know none is missing?",
+       "hint": "Let the smaller part run upwards from 0.",
+       "solution": "$0 + 9$, $1 + 8$, $2 + 7$, $3 + 6$, $4 + 5$. The smaller part can only be 0, 1, 2, 3 or 4 (it is at most $9/2$), each value appears once, and each determines the other part. That is $\\lfloor 9/2 \\rfloor + 1 = 5$ bonds."
+      },
+      {
+       "q": "Seven apples are put on a shelf and in a basket, at least one in each place. In how many ways can this be done, if only the numbers matter?",
+       "hint": "The shelf and the basket are different places, so the order of the parts matters.",
+       "solution": "These are ordered splits of 7 with both parts positive: $1 + 6, 2 + 5, \\dots, 6 + 1$, so $7 - 1 = 6$ ways."
+      },
+      {
+       "q": "Explain without the cutting argument why $n$ has twice as many compositions as $n - 1$ (for $n \\ge 2$).",
+       "hint": "Look at the last part of a composition of $n$: is it 1 or more than 1?",
+       "solution": "If the last part is 1, removing it leaves a composition of $n - 1$. If the last part is more than 1, reducing it by 1 leaves a composition of $n - 1$. Each composition of $n - 1$ arises exactly once in each way (append $+1$, or add 1 to its last part). So the count doubles; since 1 has one composition, $n$ has $2^{n-1}$, by [[induction]]."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Five, ten and the teen numbers",
+     "src": [
+      "ccKOA",
+      "ccKNBT",
+      "ncetm104",
+      "imK5L11",
+      "imK6L7",
+      "progOA"
+     ],
+     "body": "Among all bonds, those involving 5 and 10 matter most: our numerals are built on tens (see [[place-value]]), and five is half of ten."
+    },
+    {
+     "type": "definition",
+     "title": "Ten-frame; partners of ten",
+     "body": "A ten-frame is a grid of two rows of five boxes; a number up to 10 is shown by filling boxes in order, top row first. The partner of $a$ in 10 is $10 - a$, which on the frame is the number of empty boxes.\n\nThe frame shows 6 to 9 as five and some more, from $6 = 5 + 1$ to $9 = 5 + 4$. The bonds of 10, the case $n = 10$ of the previous section, are $0 + 10$, $1 + 9$, $2 + 8$, $3 + 7$, $4 + 6$ and $5 + 5$. Only 5 is its own partner: $a = 10 - a$ means $2a = 10$, so $a = 5$."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "ncetm104"
+     ],
+     "caption": "7 on a ten-frame. The full top row and 2 boxes of the bottom row show 7 = 5 + 2; the 3 empty boxes show that 3 is the partner of 7 in 10.",
+     "alt": "A grid of two rows of five boxes. All five boxes of the top row and the first two of the bottom row hold black counters; the last three boxes of the bottom row are empty and shaded orange. Labels: 5 beside the top row, 2 beside the bottom row's counters, 3 empty under the empty boxes; below, 7 = 5 + 2 and 7 + 3 = 10.",
+     "code": "from matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(4.6, 2.6)\nax = fig.add_axes([0, 0, 1, 1])\nfor j in range(10):\n    r, c = divmod(j, 5)\n    filled = j < 7\n    ax.add_patch(Rectangle((c, 1 - r), 1, 1, fc='white' if filled else (1.0, 0.85, 0.65), ec='black', lw=1.2))\n    if filled:\n        ax.add_patch(Circle((c + 0.5, 1 - r + 0.5), 0.33, color='black'))\nax.text(5.3, 1.5, '5', ha='left', va='center', fontsize=13)\nax.text(1.0, -0.35, '2', ha='center', va='center', fontsize=13)\nax.text(3.5, -0.35, '3 empty', ha='center', va='center', fontsize=13, color=(0.8, 0.35, 0))\nax.text(2.5, -1.05, '7 = 5 + 2      7 + 3 = 10', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.6, 6.2); ax.set_ylim(-1.5, 2.3); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "definition",
+     "title": "Teen numbers as ten and some more",
+     "src": [
+      "ccKNBT",
+      "imK6L7"
+     ],
+     "body": "Each of 11 to 19 is ten and some ones, from $11 = 10 + 1$ to $19 = 10 + 9$: one full ten-frame and part of a second. In the numeral the 1 records the ten and the second digit the further ones (see [[place-value]])."
+    },
+    {
+     "type": "pitfall",
+     "title": "'Fourteen' says the four first",
+     "body": "English teen words are irregular: 'fourteen' names the four before the ten, while the numeral 14 writes the ten first, and 'eleven' and 'twelve' show no ten at all. The words hide the structure 'ten and four', on which the make-ten methods of the next section depend."
+    },
+    {
+     "type": "example",
+     "body": "Use bonds of 10 to show that $13 + 7 = 20$ and $20 - 7 = 13$, and find the partner of 6 in 20.",
+     "solution": "$13 = 10 + 3$, and 3 and 7 are partners in 10, so $$13 + 7 = 10 + (3 + 7) = 10 + 10 = 20,$$ and $20 - 7 = 13$ is the same bond read as a subtraction. Adding a ten to one part turns a bond of 10 into a bond of 20: the partner of 6 in 10 is 4, so in 20 it is $10 + 4 = 14$."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Give the partner in 10 of each of 3, 8 and 0, and write 17 and 12 as ten and some more.",
+       "hint": "The partner of $a$ is $10 - a$.",
+       "solution": "3 and 7, 8 and 2, 0 and 10. $17 = 10 + 7$, $12 = 10 + 2$."
+      },
+      {
+       "q": "Which bonds of 10 have parts that differ by 4? By an odd number?",
+       "hint": "If the parts are $a$ and $10 - a$, they differ by $|10 - 2a|$.",
+       "solution": "$3$ and $7$ differ by 4 ($10 - 2a = 4$ gives $a = 3$). The difference $10 - 2a$ is always even, so no bond of 10 has parts differing by an odd number (see [[odd-even-numbers]])."
+      },
+      {
+       "q": "Since $6 + 4 = 10$, also $60 + 40 = 100$. Why, then, is the partner of 6 in 100 not 40 but 94?",
+       "hint": "In $60 + 40$ the 6 counts tens; in the partner of 6 it counts ones.",
+       "solution": "$60 + 40 = 100$ says that 6 tens and 4 tens make 10 tens. But the partner of 6 in 100 completes 6 ones: 4 ones make a ten, and 9 more tens make 100, $$6 + 94 = (6 + 4) + 90 = 10 + 90 = 100,$$ just as the partner of 6 in 20 is $10 + 4 = 14$."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Calculating by decomposing",
+     "src": [
+      "cc1OA",
+      "progOA",
+      "im1U3L17",
+      "eng"
+     ],
+     "body": "Addition and subtraction within 20 become easy once a number is split so that ten appears. Three methods do this, each justified by regrouping and reordering, $(x + y) + z = x + (y + z)$ and $x + y = y + x$ (see [[properties-of-operations]])."
+    },
+    {
+     "type": "theorem",
+     "title": "Make ten; go down through ten; compensate",
+     "body": "1. Make ten: $8 + 5 = 8 + (2 + 3) = (8 + 2) + 3 = 10 + 3 = 13$. Split the second number into the partner of the first and the rest; the sum is 10 and the rest. In symbols: if $a + c = 10$ and $b = c + d$, then $a + b = 10 + d$.\n2. Down through ten: $14 - 6 = 14 - 4 - 2 = 10 - 2 = 8$. Split the number taken away into the ones beyond ten and the rest; take the first to land on 10, then the rest from 10. In symbols: if $n = 10 + e$ and $b = e + f$ with $f \\le 10$, then $n - b = 10 - f$.\n3. Compensate: $9 + 7 = 10 + 6 = 16$. Moving an amount from one part to the other leaves the sum unchanged: $a + b = (a + k) + (b - k)$ for $k \\le b$."
+    },
+    {
+     "type": "proof",
+     "body": "Make ten: $a + b = a + (c + d) = (a + c) + d = 10 + d$.\n\nDown through ten: $n - b$ is the number that completes $b$ to $n$, and $10 - f$ does: $$(10 - f) + (e + f) = 10 + e = n.$$\n\nCompensate: this is the first theorem of the page, moving $k$ objects from one part to the other."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "src": [
+      "im1U3L17"
+     ],
+     "caption": "8 + 5 by making a ten on two ten-frames. The 8 black counters and 2 of the 5 striped counters fill the first frame (8 + 2 = 10); the other 3 striped counters go into the second frame. So 8 + 5 = 10 + 3 = 13.",
+     "alt": "Two ten-frames side by side, each two rows of five boxes. The first frame has 8 black counters, filling the top row and three boxes of the bottom row, and 2 striped blue counters in the last two boxes; it is labelled 8 + 2 = 10. The second frame has 3 striped blue counters in its top row, labelled 3 more. Below: 8 + 5 = 10 + 3 = 13.",
+     "code": "from matplotlib.patches import Rectangle, Circle\nfig = plt.gcf(); fig.set_size_inches(5.6, 2.2)\nax = fig.add_axes([0, 0, 1, 1])\nfor k in range(2):\n    x0 = k * 6.2\n    for j in range(10):\n        r, c = divmod(j, 5)\n        ax.add_patch(Rectangle((x0 + c, 1 - r), 1, 1, fill=False, ec='black', lw=1.0))\n        idx = k * 10 + j\n        if idx < 8:\n            ax.add_patch(Circle((x0 + c + 0.5, 1 - r + 0.5), 0.33, color='black'))\n        elif idx < 13:\n            ax.add_patch(Circle((x0 + c + 0.5, 1 - r + 0.5), 0.33, fc=(0.75, 0.85, 1.0), ec='blue', lw=1.2, hatch='////'))\nax.text(2.5, -0.55, '8 + 2 = 10', ha='center', va='center', fontsize=12)\nax.text(8.7, -0.55, '3 more', ha='center', va='center', fontsize=12, color='blue')\nax.text(5.6, -1.35, '8 + 5 = 10 + 3 = 13', ha='center', va='center', fontsize=13)\nax.set_xlim(-0.2, 11.4); ax.set_ylim(-1.8, 2.2); ax.set_aspect('equal'); ax.axis('off')\n"
+    },
+    {
+     "type": "example",
+     "body": "Work out $37 + 63$ and $52 - 7$ by decomposing.",
+     "solution": "Split into tens and ones and regroup: $$37 + 63 = (30 + 60) + (7 + 3) = 90 + 10 = 100,$$ the ones making a ten as in $3 + 7 = 10$ and $30 + 70 = 100$.\n\nFor $52 - 7$, go down through 50: $52 = 50 + 2$ and $7 = 2 + 5$, so $$52 - 7 = 52 - 2 - 5 = 50 - 5 = 45.$$ Check: $45 + 7 = 52$."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Compensation gives $9 + 7 = 10 + 6$. Does the same move give $14 - 6 = 15 - 5$?",
+       "a": "No: $15 - 5 = 10$, not 8. For a difference both numbers must move the same way, which keeps the gap: $14 - 6 = 18 - 10 = 8$. Moving them in opposite directions changes the difference by twice the move."
+      },
+      {
+       "q": "Someone works out $14 - 6$ by saying '6 take away 4 is 2, so the answer is 12'. What went wrong?",
+       "a": "They took the 4 ones of 14 from 6 instead of 6 from 14. Down through ten takes the 4 ones beyond ten, landing on 10, then the remaining $6 - 4 = 2$ from 10: $14 - 6 = 10 - 2 = 8$. Adding back catches the error: $12 + 6 = 18 \\ne 14$, while $8 + 6 = 14$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Work out $9 + 4$ and $8 + 8$ by making ten, and $13 - 5$ and $16 - 9$ by going down through ten, checking each subtraction with an addition.",
+       "hint": "For a sum, split the second number into the partner of the first and the rest; for a difference, first take away the ones beyond ten.",
+       "solution": "$9 + 4 = 9 + 1 + 3 = 13$; $8 + 8 = 8 + 2 + 6 = 16$. $13 - 5 = 13 - 3 - 2 = 10 - 2 = 8$, and $8 + 5 = 13$; $16 - 9 = 16 - 6 - 3 = 10 - 3 = 7$, and $7 + 9 = 16$."
+      },
+      {
+       "q": "Explain why $a - b = (a + k) - (b + k)$, and use it to compute $43 - 18$.",
+       "hint": "If $x$ completes $b$ to $a$, what does $x$ complete $b + k$ to?",
+       "solution": "If $b + x = a$, then $(b + k) + x = a + k$, so the same $x$ is the missing part in both. With $k = 2$: $43 - 18 = 45 - 20 = 25$, and $25 + 18 = 43$."
+      },
+      {
+       "q": "Show that if $10t + u$ and $10t' + u'$, with digits $t, u, t', u'$, add to 100, then $u + u'$ is 0 or 10.",
+       "hint": "Look at the ones digit of the sum.",
+       "solution": "The sum is $10(t + t') + (u + u')$, so $u + u' = 100 - 10(t + t')$ is a multiple of 10; and since $u$ and $u'$ are digits, $u + u'$ lies between 0 and 18. The only multiples of 10 in that range are 0 and 10. So the ones digits are either both 0 (as in $30 + 70$) or partners in 10 (as in $37 + 63$)."
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names you will meet",
+     "rows": [
+      {
+       "who": "England",
+       "text": "Number bonds, as in 'number bonds to 10 and 20'; splitting a number into parts, especially into tens and ones, is called partitioning.",
+       "src": [
+        "eng"
+       ]
+      },
+      {
+       "who": "United States",
+       "text": "Composing and decomposing numbers; 'make a ten' for the method above; also 'break apart'.",
+       "src": [
+        "ccKOA",
+        "cc1OA",
+        "imK5L1"
+       ]
+      },
+      {
+       "who": "Diagrams",
+       "text": "Part-part-whole for the idea; 'cherry diagram' or 'number bond' for the picture of a whole joined to its two parts.",
+       "src": [
+        "ncetm102"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "wikiComp",
+      "eng"
+     ],
+     "body": "Decomposing into tens and ones is [[place-value]]: $324 = 300 + 20 + 4$, and the regrouping $324 = 200 + 110 + 14$ is behind the column methods of [[addition-subtraction]]. That regrouping and reordering never change a sum is [[properties-of-operations]], and missing-part equations such as $9 = 6 + \\square$ are the first equations with an unknown ([[equality-equal-sign]]).\n\nCounting decompositions is combinatorics. A composition of $n$ with $k$ parts uses $k - 1$ of the $n - 1$ cuts, so there are $\\binom{n-1}{k-1}$ of them (see [[counting]]); for 5 into three parts, $\\binom{4}{2} = 6$. Ignoring order gives partitions: $1 + 2 + 2$ and $2 + 1 + 2$ are different compositions of 5 but one partition, and 4 has five partitions, $4$, $3 + 1$, $2 + 2$, $2 + 1 + 1$, $1 + 1 + 1 + 1$. Partitions have no simple closed formula; their study ([[partitions]]) uses [[generating-functions]]. Asking which numbers split into two parts of a special kind leads into number theory: whether every even number from 4 on is a sum of two primes, as $10 = 3 + 7$, is Goldbach's conjecture, still unproved ([[goldbach]])."
+    },
+    {
+     "type": "summary",
+     "body": "- $n = a + b$ decomposes $n$ into parts $a$ and $b$; a whole with its two parts is a number bond.\n- Moving an object between the parts does not change the whole: $(a + 1) + (b - 1) = a + b$.\n- For $a, b \\le n$, $a + b = n \\iff n - a = b$, so a part is at most the whole and one bond gives its addition and subtraction facts.\n- $n$ has $n + 1$ ordered splits, $\\lfloor n/2 \\rfloor + 1$ bonds and $2^{n-1}$ compositions.\n- The partner of $a$ in 10 is $10 - a$; 6 to 9 are five and some more; teen numbers are ten and some more.\n- Make ten, down through ten and compensate are each a decomposition followed by regrouping."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro\nassert 8 + 2 == 10 and 6 == 2 + 4 and 14 == 10 + 4 and 8 + 6 == 14 and 14 - 6 == 8\n# section 1\nassert all((a + k) + (b - k) == a + b for a in range(30) for b in range(30) for k in range(b + 1))\nassert 7 == 4 + 3 and 5 == 0 + 5 == 1 + 4 == 2 + 3\nassert all((a + 1) + (b - 1) == a + b for a in range(50) for b in range(1, 50))\n# figure: 7 = 4 + 3\nassert 4 + 3 == 7\nfor n in range(30):\n    for a in range(n + 1):\n        b = n - a\n        assert a + b == n and n - b == a and [x for x in range(n + 1) if a + x == n] == [b]\nassert 6 + 3 == 9 == 3 + 6 and 9 - 6 == 3 and 9 - 3 == 6 and 10 == 5 + 5 and 10 - 5 == 5\nassert 4 + 3 == 7 and 4 + 3 + 2 == 9 and 7 != 9\nassert 7 == 10 + (-3) and 10 > 7 and 5 - 2 == 3 and 6 > 5\n# rope example\nassert 7 + 3 == 10 and 10 + 6 == 16 and 3 + 6 == 9 and 16 - 7 == 9 and 7 + 9 == 16 == 9 + 7 and 16 - 9 == 7\n# exercises\nassert 9 == 6 + 3 and 12 == 7 + 5 and 10 == 10 + 0\nassert 8 + 5 == 13 == 5 + 8 and 13 - 8 == 5 and 13 - 5 == 8 and 4 + 4 == 8 and 8 - 4 == 4\nassert 5 + 9 == 6 + 8 == 7 + 7 == 14\nassert 6 <= 9 and 3 <= 9 and all(a <= n and b <= n for n in range(30) for a in range(n + 1) for b in [n - a])\n"
+    },
+    {
+     "python": "# section 2\nfrom math import comb\nfrom itertools import product\ndef ordered(n): return [(a, n - a) for a in range(n + 1)]\ndef bonds(n): return sorted({tuple(sorted(p)) for p in ordered(n)})\nfor n in range(1, 60):\n    assert len(ordered(n)) == n + 1 and len([p for p in ordered(n) if min(p) > 0]) == n - 1 and len(bonds(n)) == n // 2 + 1\nassert len(ordered(8)) == 9 and len([p for p in ordered(8) if min(p) > 0]) == 7 and len(bonds(8)) == 5\nassert bonds(8) == [(0, 8), (1, 7), (2, 6), (3, 5), (4, 4)]\n# staircase figure: 9 rows\nassert [k + (8 - k) for k in range(9)] == [8] * 9\nassert bonds(10) == [(0, 10), (1, 9), (2, 8), (3, 7), (4, 6), (5, 5)] and 10 // 2 + 1 == 6 and 2 * 5 + 1 == 11 == len(ordered(10))\ndef comps(n):\n    out = []\n    for cuts in product((0, 1), repeat=n - 1):\n        parts, run = [], 1\n        for c in cuts:\n            if c: parts.append(run); run = 1\n            else: run += 1\n        parts.append(run); out.append(tuple(parts))\n    return out\nfor n in range(1, 13):\n    C = comps(n)\n    assert len(set(C)) == len(C) == 2 ** (n - 1) and all(sum(c) == n for c in C)\n    for k in range(1, n + 1):\n        assert sum(1 for c in C if len(c) == k) == comb(n - 1, k - 1)\nassert 10 == 3 + 3 + 4 and 2 ** 3 == 8\n# cuts figure: compositions of 4\nC4 = comps(4)\nassert len(C4) == 8 == 2 ** 3 and C4 == [(4,), (3, 1), (2, 2), (2, 1, 1), (1, 3), (1, 2, 1), (1, 1, 2), (1, 1, 1, 1)]\nassert [sum(c) for c in product((0, 1), repeat=3)] == [0, 1, 1, 2, 1, 2, 2, 3] and 1 + 3 + 3 + 1 == 8\n# check\nassert bonds(7) == [(0, 7), (1, 6), (2, 5), (3, 4)] and 7 // 2 + 1 == 4 and len(ordered(7)) == 8 == 2 * 4\n# exercises\nassert bonds(9) == [(0, 9), (1, 8), (2, 7), (3, 6), (4, 5)] and 9 // 2 + 1 == 5\nassert [p for p in ordered(7) if min(p) > 0] == [(a, 7 - a) for a in range(1, 7)] and 7 - 1 == 6\nfor n in range(2, 12):\n    C = set(comps(n)); P = comps(n - 1)\n    assert C == {p + (1,) for p in P} | {p[:-1] + (p[-1] + 1,) for p in P} and len(C) == 2 * len(P)\nassert len(comps(1)) == 1\nassert 2 * 5 + 1 == 11 and [a for a in range(11) if a == 10 - a] == [5] and [a for a in range(10) if a == 9 - a] == []\n"
+    },
+    {
+     "python": "# section 3\nassert [5 + k for k in range(1, 6)] == [6, 7, 8, 9, 10]\nassert all(a + (10 - a) == 10 for a in range(11)) and [a for a in range(11) if a == 10 - a] == [5]\nassert [(a, 10 - a) for a in range(1, 6)] == [(1, 9), (2, 8), (3, 7), (4, 6), (5, 5)]\nassert 7 == 5 + 2 and 10 - 7 == 3 and 2 * 5 == 10\nassert [n - 10 for n in range(11, 20)] == list(range(1, 10)) and 11 == 10 + 1 and 19 == 10 + 9\n# ten-frame figure: 7 filled, 3 empty\nassert 2 * 5 == 10 and 7 == 5 + 2 and 7 + 3 == 10 and 6 == 5 + 1 and 9 == 5 + 4 and 10 == 5 + 5\nassert [(a, 10 - a) for a in range(6)] == [(0, 10), (1, 9), (2, 8), (3, 7), (4, 6), (5, 5)]\nassert 14 == 10 + 4 and 41 != 14\n# example\nassert 13 == 10 + 3 and 3 + 7 == 10 and 13 + 7 == 20 and 20 - 7 == 13 and 10 - 6 == 4 and 6 + 14 == 20 and 10 + 4 == 14\n# exercises\nassert 10 - 3 == 7 and 10 - 8 == 2 and 10 - 0 == 10 and 17 == 10 + 7 and 12 == 10 + 2\nassert [a for a in range(6) if abs(10 - 2 * a) == 4] == [3] and 7 - 3 == 4\nassert all((10 - 2 * a) % 2 == 0 for a in range(11))\nassert 6 + 4 == 10 and 60 + 40 == 100 and 100 - 6 == 94 and 6 + 94 == (6 + 4) + 90 == 10 + 90 == 100 and 90 + 4 == 94 and 100 - 40 != 6\n"
+    },
+    {
+     "python": "# section 4\nfor a in range(11):\n    c = 10 - a\n    for d in range(11):\n        b = c + d\n        assert a + b == 10 + d\nfor e in range(10):\n    for f in range(11):\n        n, b = 10 + e, e + f\n        assert n - b == 10 - f\nassert all(a + b == (a + k) + (b - k) for a in range(30) for b in range(30) for k in range(b + 1))\nassert 8 + 5 == 8 + (2 + 3) == 10 + 3 == 13\nassert 14 - 6 == 14 - 4 - 2 == 10 - 2 == 8\nassert 9 + 7 == 10 + 6 == 16\n# figure: 8 black + 2 striped fill frame 1, 3 striped in frame 2\nassert 8 + 2 == 10 and 5 - 2 == 3 and 8 + 5 == 13 == 10 + 3\nassert 8 + (2 + 3) == (8 + 2) + 3\n# example\nassert 37 + 63 == (30 + 60) + (7 + 3) == 90 + 10 == 100 and 30 + 70 == 100\nassert 52 == 50 + 2 and 7 == 2 + 5 and 52 - 7 == 52 - 2 - 5 == 50 - 5 == 45 and 45 + 7 == 45 + 5 + 2 == 50 + 2 == 52\n# check\nassert 14 - 6 == 18 - 10 == 8 and 15 - 5 == 10 != 8 and (15 - 5) - (14 - 6) == 2 * 1\nassert 6 - 4 == 2 and 14 - 4 == 10 and 10 - 2 == 8 and 12 + 6 == 18 != 14 and 8 + 6 == 14\n# exercises\nassert 9 + 4 == 9 + 1 + 3 == 10 + 3 == 13 and 10 - 9 == 1 and 10 - 8 == 2 and 8 + 8 == 8 + 2 + 6 == 16\nassert 13 - 5 == 13 - 3 - 2 == 10 - 2 == 8 and 8 + 5 == 13 and 16 - 9 == 16 - 6 - 3 == 10 - 3 == 7 and 7 + 9 == 16\nassert all(a - b == (a + k) - (b + k) for a in range(40) for b in range(40) for k in range(10))\nassert 43 - 18 == 45 - 20 == 25 and 25 + 18 == 43\nsols = [(t, u, t2, u2) for t in range(10) for u in range(10) for t2 in range(10) for u2 in range(10) if 10 * t + u + 10 * t2 + u2 == 100]\nassert all((u == 0 and u2 == 0) or u + u2 == 10 for (t, u, t2, u2) in sols) and (3, 7, 6, 3) in sols and (3, 0, 7, 0) in sols\nassert all(0 <= u + u2 <= 18 for u in range(10) for u2 in range(10)) and [m for m in range(19) if m % 10 == 0] == [0, 10]\nassert all((100 - 10 * (t + t2)) % 10 == 0 for t in range(10) for t2 in range(10))\n# looking ahead\nassert 324 == 300 + 20 + 4 == 200 + 110 + 14 and 9 == 6 + 3\ndef parts(n, m=None):\n    m = n if m is None else m\n    if n == 0: return [()]\n    return [(k,) + p for k in range(min(n, m), 0, -1) for p in parts(n - k, k)]\nfrom math import comb\nfrom itertools import combinations\nassert all(len(list(combinations(range(n - 1), k - 1))) == comb(n - 1, k - 1) for n in range(1, 10) for k in range(1, n + 1))\nassert comb(4, 2) == 6 and 1 + 2 + 2 == 2 + 1 + 2 == 5 and 10 == 3 + 7 and sorted((1, 2, 2)) == sorted((2, 1, 2))\nassert parts(4) == [(4,), (3, 1), (2, 2), (2, 1, 1), (1, 1, 1, 1)] and len(parts(5)) == 7\n"
+    }
+   ]
+  }
+ }
+]

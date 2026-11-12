@@ -1,0 +1,978 @@
+[
+ {
+  "id": "equality-equal-sign",
+  "entry": {
+   "sum": "The equal sign $=$ says that the two sides of an equation have the same value, so $7 = 5 + 2$ is as good as $5 + 2 = 7$. An equation is true when both sides have the same value and false when they do not. A missing number (a box, question mark or letter) can stand anywhere in an equation; the number that makes it true is the solution.",
+   "key": [
+    "7 = 5 + 2",
+    "8 + 4 = 7 + 5",
+    "8 + \\square = 11 \\iff \\square = 11 - 8 = 3"
+   ],
+   "why": "Reading the equal sign as \"is the same as\" rather than \"write the answer\" is what lets children solve missing-number problems and, later, every equation in algebra.",
+   "msc": [
+    "97H20"
+   ],
+   "links": [
+    {
+     "field": "logic",
+     "note": "Equality with its reflexive, symmetric and transitive laws and the substitution of equals is a basic part of predicate logic."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, 1.OA.D.7-8, 2.OA.A.1, 3.OA.D.8, 6.EE.A.4 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1, 2, 4 and 5 (2013)",
+    "Illustrative Mathematics K-5, Grade 1 Units 2, 3, 5 and 8",
+    "OpenStax, Prealgebra 2e, sections 1.3, 2.1 and 2.3 (2020)",
+    "Common Core Standards Writing Team, Progressions: K-5 Operations and Algebraic Thinking (2011)",
+    "Cambridge Mathematics, Espresso 34: The equal sign (2020)"
+   ],
+   "aliases": [
+    "equal sign",
+    "equals sign",
+    "equality",
+    "equations",
+    "number sentences",
+    "missing number problems",
+    "missing addend",
+    "unknowns",
+    "true and false equations",
+    "relational understanding of the equal sign"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 40,
+   "sources": [
+    {
+     "k": "ccss-1oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Operations and Algebraic Thinking (2010)",
+     "where": "1.OA.B.4, 1.OA.D.7, 1.OA.D.8",
+     "url": "https://www.thecorestandards.org/Math/Content/1/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-2oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Operations and Algebraic Thinking (2010)",
+     "where": "2.OA.A.1",
+     "url": "https://www.thecorestandards.org/Math/Content/2/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-3oa",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 3, Operations and Algebraic Thinking (2010)",
+     "where": "3.OA.D.8",
+     "url": "https://www.thecorestandards.org/Math/Content/3/OA/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccss-6ee",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 6, Expressions and Equations (2010)",
+     "where": "6.EE.A.4",
+     "url": "https://www.thecorestandards.org/Math/Content/6/EE/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "eng-pos",
+     "ref": "Department for Education (England), National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Year 1 and Year 2 addition and subtraction; Year 4 and Year 5 notes and guidance",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "im-g1",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 1 (Kendall Hunt edition)",
+     "where": "Course guide, scope and sequence: Units 2, 3, 5, 8",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/course-guide/scope-and-sequence.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im-g3u1gl",
+     "ref": "Illustrative Mathematics, K-5 Math, Grade 3 (Kendall Hunt edition)",
+     "where": "Unit 1 glossary: equation",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-3/unit-1/glossary.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-add",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "1.3 Add Whole Numbers",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81244/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-lang",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "2.1 Use the Language of Algebra",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81268/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os-solve",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "2.3 Solving Equations Using the Subtraction and Addition Properties of Equality",
+     "url": "https://raw.githubusercontent.com/openstax/osbooks-prealgebra-bundle/main/modules/m81271/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "prog-oa",
+     "ref": "Common Core Standards Writing Team, Progressions for the Common Core State Standards in Mathematics: K, Counting and Cardinality; K-5, Operations and Algebraic Thinking (draft, 2011)",
+     "where": "K-2: the equal sign, situation and solution equations",
+     "url": "https://www.rcsdk12.org/cms/lib/NY01001156/Centricity/Domain/61/ccss_progression_cc_oa_k2_2001_05_08.pdf",
+     "kind": "notes"
+    },
+    {
+     "k": "nrich-bal",
+     "ref": "Ems Lord, Getting the Balance Right, NRICH (2020)",
+     "where": "whole article",
+     "url": "https://nrich.maths.org/14814",
+     "kind": "notes"
+    },
+    {
+     "k": "cm-eq",
+     "ref": "Rycroft-Smith and Gould, Espresso 34: The equal sign, Cambridge Mathematics (2020)",
+     "where": "whole briefing",
+     "url": "https://www.cambridgemaths.org/Images/espresso_34_the_equal_sign.pdf",
+     "kind": "research"
+    },
+    {
+     "k": "ca-eq",
+     "ref": "Crooks and Alibali, Noticing relevant problem features: activating prior knowledge affects problem solving by guiding encoding, Frontiers in Psychology 4:884 (2013)",
+     "where": "introduction: the equal sign and equivalence problems",
+     "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2013.00884/full",
+     "kind": "research"
+    },
+    {
+     "k": "leavy",
+     "ref": "Leavy, Hourigan and McMahon, Early understanding of equality, Teaching Children Mathematics 20(4), 246-252 (2013)",
+     "where": "whole article",
+     "url": "https://www.mic.ul.ie/sites/default/files/uploads/146/2013%20TCM_UnderstandingEquality_LeavyHouriganMcMahon.pdf",
+     "kind": "research"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Understand the meaning of the equal sign (CC 1.OA.D.7; England Year 5 statutory: understanding the meaning of the equals sign)",
+     "priority": "core",
+     "where": "What the equal sign means"
+    },
+    {
+     "item": "Read, write and interpret mathematical statements with $+$, $-$ and $=$ (England Year 1)",
+     "priority": "core",
+     "where": "What the equal sign means"
+    },
+    {
+     "item": "Decide whether addition and subtraction equations are true or false, such as $6 = 6$, $7 = 8 - 1$, $5 + 2 = 2 + 5$, $4 + 1 = 5 + 2$ (CC 1.OA.D.7)",
+     "priority": "core",
+     "where": "True and false equations"
+    },
+    {
+     "item": "Find the unknown whole number in an addition or subtraction equation relating three whole numbers, in any position, such as $8 + ? = 11$, $5 = \\_ - 3$, $6 + 6 = \\_$ (CC 1.OA.D.8); missing-number problems such as $7 = ? - 9$ (England Year 1)",
+     "priority": "core",
+     "where": "Unknowns: the missing number"
+    },
+    {
+     "item": "Use the inverse relation of addition and subtraction to find missing numbers (England Year 2; CC 1.OA.B.4)",
+     "priority": "core",
+     "where": "Unknowns: the missing number; [[addition-subtraction]]"
+    },
+    {
+     "item": "Use equations with a symbol for the unknown to represent story problems (CC 2.OA.A.1)",
+     "priority": "core",
+     "where": "Unknowns: the missing number"
+    },
+    {
+     "item": "Use the equal sign between two expressions to show equivalence, such as $13 + 24 = 12 + 25$ (England Year 4 and Year 5 notes)",
+     "priority": "common",
+     "where": "True and false equations"
+    },
+    {
+     "item": "Find a missing number with sums on both sides, such as $8 + 4 = \\square + 5$ (NRICH; Cambridge Mathematics)",
+     "priority": "common",
+     "where": "Unknowns: the missing number"
+    },
+    {
+     "item": "A letter standing for the unknown quantity (CC 3.OA.D.8)",
+     "priority": "common",
+     "where": "Unknowns: the missing number; Rules of equality"
+    },
+    {
+     "item": "Properties of equality: every number equals itself, an equation can be read both ways, and equal to the same thing means equal to each other; substitution (Cambridge Mathematics)",
+     "priority": "specialised",
+     "where": "Rules of equality"
+    },
+    {
+     "item": "Keep an equation true by doing the same to both sides (OpenStax 2.3)",
+     "priority": "specialised",
+     "where": "Rules of equality"
+    },
+    {
+     "item": "Comparing numbers with $<$, $>$ and $=$ (CC 1.NBT.B.3, 2.NBT.A.4)",
+     "priority": "core",
+     "where": "[[comparing-ordering-numbers]]"
+    },
+    {
+     "item": "Adding in either order, such as $5 + 2 = 2 + 5$ (CC 1.OA.B.3)",
+     "priority": "core",
+     "where": "[[properties-of-operations]]"
+    },
+    {
+     "item": "Equivalent expressions with letters (CC 6.EE.A.4)",
+     "priority": "specialised",
+     "where": "separate page: Algebraic notation"
+    },
+    {
+     "item": "Solving linear equations step by step",
+     "priority": "specialised",
+     "where": "separate page: Linear equations"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "src": [
+      "ccss-1oa",
+      "cm-eq",
+      "os-add"
+     ],
+     "body": "Put 3 cubes and 4 more cubes in one pile. Put 7 cubes in another pile. Which pile has more? Neither: the piles are the same size. The equal sign, $=$, is the sign we write to say that two amounts are the same.\n\nOn this page you will learn what the equal sign means, how to tell whether an equation is true or false, and how to find a missing number in an equation, wherever it is. The last part shows the rules that make the equal sign so useful in algebra.\n\nYou need to know how to add and subtract small numbers ([[addition-subtraction]])."
+    },
+    {
+     "type": "section",
+     "title": "What the equal sign means",
+     "src": [
+      "os-add",
+      "cm-eq",
+      "prog-oa",
+      "im-g1"
+     ],
+     "body": "After this section you will be able to read the equal sign as \"is the same as\" and write equations with the answer on either side.\n\nTry this. Take 3 white cubes and 4 striped cubes and put them on one side of a balance. Put 7 white cubes on the other side. What does the balance do? Now put 7 cubes on the left and 5 white and 2 striped cubes on the right. What does it do this time?"
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, Polygon\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\nS = 0.42\ndef tower(x, y, n, blue=False):\n    for k in range(n):\n        if blue:\n            ax.add_patch(Rectangle((x, y + k * S), S, S, fc=(0.80, 0.88, 1.0), ec='blue', lw=1.2, hatch='///'))\n        else:\n            ax.add_patch(Rectangle((x, y + k * S), S, S, fc='white', ec='black', lw=1.2))\ndef balance(cx, w=2.0):\n    ax.add_patch(Polygon([[cx - 0.45, 0], [cx + 0.45, 0], [cx, 1.0]], closed=True, fc='white', ec='black', lw=1.4))\n    ax.plot([cx - w, cx + w], [1.0, 1.0], color='black', lw=2.5)\n    for s in (-1, 1):\n        ax.plot([cx + s * w - 1.0, cx + s * w + 1.0], [1.12, 1.12], color='black', lw=4)\n    return 1.16\n\nfig.set_size_inches(7.6, 3.4)\n# balance A: 3 + 4 on the left, 7 on the right\ny = balance(2.6)\ntower(0.25, y, 3); tower(0.85, y, 4, blue=True)\ntower(4.4, y, 7)\nax.text(0.46, y + 3 * S + 0.12, '3', ha='center', fontsize=12)\nax.text(1.06, y + 4 * S + 0.12, '4', ha='center', fontsize=12)\nax.text(4.61, y + 7 * S + 0.12, '7', ha='center', fontsize=12)\nax.text(2.6, -0.45, '3 + 4 = 7', ha='center', fontsize=15)\n# balance B: 7 on the left, 5 + 2 on the right\ny = balance(9.0)\ntower(6.85, y, 7)\ntower(10.55, y, 5); tower(11.15, y, 2, blue=True)\nax.text(7.06, y + 7 * S + 0.12, '7', ha='center', fontsize=12)\nax.text(10.76, y + 5 * S + 0.12, '5', ha='center', fontsize=12)\nax.text(11.36, y + 2 * S + 0.12, '2', ha='center', fontsize=12)\nax.text(9.0, -0.45, '7 = 5 + 2', ha='center', fontsize=15)\nax.set_xlim(-0.6, 12.3); ax.set_ylim(-0.8, 4.6); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "leavy",
+      "os-add"
+     ],
+     "caption": "Left: 3 white cubes and 4 striped cubes on one pan balance 7 cubes on the other, so 3 + 4 = 7. Right: 7 cubes balance 5 white cubes and 2 striped cubes, so 7 = 5 + 2.",
+     "alt": "Two level balance scales. On the first, the left pan holds a tower of 3 white cubes and a tower of 4 blue striped cubes, the right pan a tower of 7 white cubes; below it is written 3 + 4 = 7. On the second, the left pan holds a tower of 7 white cubes and the right pan a tower of 5 white cubes and a tower of 2 striped cubes; below it is written 7 = 5 + 2."
+    },
+    {
+     "type": "definition",
+     "title": "Expression and equation",
+     "src": [
+      "os-add",
+      "os-lang",
+      "im-g3u1gl"
+     ],
+     "body": "Something like $3 + 4$ is called an expression: numbers joined by signs such as $+$ and $-$. A single number such as $7$ is an expression too.\n\nAn equation is two expressions with an equal sign between them, such as $3 + 4 = 7$. It says that the expression on the left and the expression on the right have the same value: they are the same number.\n\nIn both balances above the pans are level: the two amounts are the same, and that is what $=$ tells us.\n\nThe sign $=$ is read \"equals\", \"is equal to\" or \"is the same as\". So $3 + 4 = 7$ is read \"three plus four equals seven\" or \"three plus four is the same as seven\"."
+    },
+    {
+     "type": "theorem",
+     "title": "An equation can be written either way round",
+     "src": [
+      "im-g1",
+      "prog-oa",
+      "cm-eq",
+      "ccss-1oa"
+     ],
+     "body": "The answer does not have to come after the equal sign. These two equations say the same thing:\n\n$$5 + 2 = 7 \\qquad 7 = 5 + 2$$\n\nAn equation can also have just one number on each side, such as $6 = 6$, or a calculation on each side, such as $5 + 2 = 2 + 5$."
+    },
+    {
+     "type": "proof",
+     "body": "The equal sign says that the two sides are the same number. If $5 + 2$ is the same as $7$, then $7$ is the same as $5 + 2$: it does not matter which one we say first. On a balance, the pans stay level whichever pan we call the left one."
+    },
+    {
+     "type": "views",
+     "title": "Ways to show 7 = 5 + 2",
+     "src": [
+      "leavy",
+      "cm-eq",
+      "im-g1"
+     ],
+     "body": "Different sources show the same equation in different ways.",
+     "items": [
+      {
+       "label": "Balance",
+       "body": "7 cubes on one pan and 5 cubes with 2 more on the other: the balance stays level.",
+       "src": [
+        "leavy"
+       ]
+      },
+      {
+       "label": "People",
+       "body": "Children make a human equation: 7 children stand on one side of a child who holds the equal sign, and a group of 5 and a group of 2 stand on the other side. Both sides have the same number of children.",
+       "src": [
+        "leavy"
+       ]
+      },
+      {
+       "label": "Words",
+       "body": "Seven is the same as five plus two.",
+       "src": [
+        "cm-eq"
+       ]
+      },
+      {
+       "label": "Symbols",
+       "body": "$7 = 5 + 2$, with the total written before the equal sign.",
+       "src": [
+        "im-g1",
+        "prog-oa"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "conventions",
+     "title": "Names and readings of the sign",
+     "rows": [
+      {
+       "who": "United States",
+       "text": "Called the equal sign. Cambridge Mathematics also prefers this name, as a reminder that the sign means more than \"work it out\".",
+       "src": [
+        "ccss-1oa",
+        "cm-eq"
+       ]
+      },
+      {
+       "who": "England",
+       "text": "Called the equals sign in the national curriculum.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "Reading",
+       "text": "OpenStax reads $a = b$ as \"a is equal to b\". Cambridge Mathematics recommends \"is the same as\", and warns that \"equals\", \"gives\" and \"makes\" suit the \"work it out\" view better.",
+       "src": [
+        "os-lang",
+        "cm-eq"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: say \"is the same as\", not only \"makes\"",
+     "src": [
+      "cm-eq",
+      "ca-eq",
+      "prog-oa",
+      "im-g1"
+     ],
+     "body": "Many children come to think that $=$ means \"now write the answer\". This works for $3 + 4 = 7$ but fails for $7 = 3 + 4$, for $6 = 6$ and for $8 + 4 = 7 + 5$. Research summaries report that some textbooks use the layout \"calculation = answer\" most of the time (up to about 70 percent in one study they cite), that children in countries with more varied layouts do better on equivalence questions, and that children who see the sign only as \"work it out\" do worse in algebra later.\n\nSources advise reading the sign as \"is the same as\" from the very first lessons, showing equations with the total on the left, such as $7 = 4 + 3$, and with one number on each side, such as $8 = 8$."
+    },
+    {
+     "type": "example",
+     "body": "Write an equation for each picture: (a) a balance with 2 cubes and 6 cubes on one pan and 8 cubes on the other; (b) a balance with 9 cubes on the left pan and 4 cubes and 5 cubes on the right pan.",
+     "solution": "(a) The left pan has $2 + 6$ cubes and the right pan has 8 cubes. The pans balance, so the two amounts are the same: $2 + 6 = 8$.\n\n(b) The left pan has 9 cubes and the right pan has $4 + 5$ cubes. Write what is on the left first: $9 = 4 + 5$. Check: $4 + 5$ is 9, so both sides are 9."
+    },
+    {
+     "type": "example",
+     "body": "Which of these are equations? $4 + 1$; $\\;5 = 4 + 1$; $\\;6 = 6$; $\\;2 + 3 = 1 + 4$.",
+     "solution": "An equation needs an equal sign with an expression on each side.\n\n- $4 + 1$ has no equal sign: it is an expression, not an equation.\n- $5 = 4 + 1$ is an equation (the total is on the left).\n- $6 = 6$ is an equation with one number on each side.\n- $2 + 3 = 1 + 4$ is an equation with a sum on each side; both sides are 5."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Read $9 = 6 + 3$ aloud using \"is the same as\".",
+       "a": "Nine is the same as six plus three."
+      },
+      {
+       "q": "Is $8 + 1$ an expression or an equation?",
+       "a": "An expression: it has no equal sign."
+      },
+      {
+       "q": "Write $4 + 4 = 8$ the other way round.",
+       "a": "$8 = 4 + 4$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "A balance has 5 cubes and 1 cube on one pan and 6 cubes on the other. Write an equation.",
+       "hint": "Write what is on one pan, the equal sign, then what is on the other pan.",
+       "solution": "$5 + 1 = 6$ (or $6 = 5 + 1$)."
+      },
+      {
+       "q": "Write $3 + 7 = 10$ with the 10 on the left.",
+       "hint": "The two sides just swap places.",
+       "solution": "$10 = 3 + 7$."
+      },
+      {
+       "q": "Write two different equations that start with $10 =$ and have a sum on the right.",
+       "hint": "Think of two numbers that make 10.",
+       "solution": "For example $10 = 6 + 4$ and $10 = 9 + 1$. Any two numbers that make 10 work."
+      },
+      {
+       "q": "Put 8 cubes on one side. On the other side put 8 cubes too, made of two colours. Write an equation for what you made.",
+       "hint": "Count each colour on the second side.",
+       "solution": "For example with 3 of one colour and 5 of the other: $8 = 3 + 5$. Any split of 8 works."
+      },
+      {
+       "q": "Sam says $7 = 2 + 5$ is wrong \"because the answer must come last\". Is Sam right? Explain.",
+       "hint": "What does the equal sign say about the two sides?",
+       "solution": "No. The sign says that both sides are the same number. $2 + 5$ is 7, so 7 is the same as $2 + 5$, and the equation is right."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- An expression is numbers joined by signs, such as $3 + 4$.\n- An equation joins two expressions with $=$, such as $3 + 4 = 7$.\n- $=$ means the two sides have the same value: read it \"is the same as\".\n- The answer can be on either side: $7 = 5 + 2$ is an equation."
+    },
+    {
+     "type": "section",
+     "title": "True and false equations",
+     "src": [
+      "ccss-1oa",
+      "leavy",
+      "eng-pos"
+     ],
+     "body": "After this section you will be able to decide whether an equation is true or false, and sometimes tell without working out both sides.\n\nTry this. Put 4 cubes and 1 cube on one pan of a balance, and 5 cubes and 2 cubes on the other. Does it balance? Can you change one pan so that it does?"
+    },
+    {
+     "type": "definition",
+     "title": "True and false equations",
+     "src": [
+      "ccss-1oa",
+      "os-lang",
+      "im-g3u1gl"
+     ],
+     "body": "An equation is true when both sides have the same value. It is false when they do not.\n\n$7 = 8 - 1$ is true, because $8 - 1$ is 7.\n\n$4 + 1 = 5 + 2$ is false, because the left side is 5 and the right side is 7. To say that two values are not the same we write $4 + 1 \\neq 5 + 2$.\n\nWhen two values are not the same, one is bigger than the other; the signs $<$ and $>$ for that are on [[comparing-ordering-numbers]]."
+    },
+    {
+     "type": "theorem",
+     "title": "How to test an equation",
+     "src": [
+      "ccss-1oa",
+      "leavy",
+      "cm-eq"
+     ],
+     "body": "1. Find the value of the left side.\n2. Find the value of the right side.\n3. If the two values are the same, the equation is true; if not, it is false."
+    },
+    {
+     "type": "proof",
+     "body": "This is just what the equal sign says: the equation claims that the two sides are the same number. Finding both values shows whether the claim is right, like looking at whether a balance is level."
+    },
+    {
+     "type": "example",
+     "body": "True or false? (a) $6 = 6$ (b) $7 = 8 - 1$ (c) $5 + 2 = 2 + 5$ (d) $4 + 1 = 5 + 2$",
+     "solution": "(a) Both sides are 6. True.\n\n(b) Left: 7. Right: $8 - 1 = 7$. True.\n\n(c) Left: $5 + 2 = 7$. Right: $2 + 5 = 7$. True. (Adding in either order gives the same total; see [[properties-of-operations]].)\n\n(d) Left: $4 + 1 = 5$. Right: $5 + 2 = 7$. 5 and 7 are not the same, so it is false: $4 + 1 \\neq 5 + 2$."
+    },
+    {
+     "type": "theorem",
+     "title": "Moving some from one part to the other",
+     "src": [
+      "eng-pos",
+      "nrich-bal"
+     ],
+     "body": "If one number in a sum goes up by some amount and the other goes down by the same amount, the total stays the same. For example, moving 1:\n\n$$5 + 3 = 4 + 4 \\qquad 13 + 24 = 12 + 25$$\n\nBoth are true, and you can see it without working out either side."
+    },
+    {
+     "type": "proof",
+     "body": "Think of two towers of cubes. Take the top cube off one tower and put it on the other. No cube was added and none was taken away, so the total number of cubes has not changed. Moving two cubes, or any other number, works the same way."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, FancyArrowPatch\nfig = plt.gcf(); fig.set_size_inches(6.4, 3.0)\nax = fig.add_axes([0, 0, 1, 1])\nS = 0.5\ndef tower(x, n, skip_top=False, top_blue=False):\n    for k in range(n):\n        blue = top_blue and k == n - 1\n        if skip_top and k == n - 1:\n            ax.add_patch(Rectangle((x, k * S), S, S, fc='none', ec='black', lw=0.8, ls='--'))\n        elif blue:\n            ax.add_patch(Rectangle((x, k * S), S, S, fc=(0.80, 0.88, 1.0), ec='blue', lw=1.4, hatch='///'))\n        else:\n            ax.add_patch(Rectangle((x, k * S), S, S, fc='white', ec='black', lw=1.2))\n# before: 5 and 3, top cube of the 5 is the one that moves (dashed outline after it leaves)\ntower(0.5, 5, top_blue=True)\ntower(1.4, 3)\nax.text(0.75, -0.4, '5', ha='center', fontsize=13); ax.text(1.65, -0.4, '3', ha='center', fontsize=13)\nax.text(1.2, -1.0, '5 + 3', ha='center', fontsize=15)\nax.add_patch(FancyArrowPatch((1.05, 2.3), (1.65, 1.75), connectionstyle='arc3,rad=-0.5', arrowstyle='->', mutation_scale=16, color='red', lw=1.6))\nax.text(1.75, 2.45, 'move 1', color='red', fontsize=13)\nax.text(3.5, 1.1, '=', ha='center', va='center', fontsize=26)\n# after: 4 and 4, moved cube shown on top of the second tower\ntower(4.6, 4)\ntower(5.5, 4, top_blue=True)\nax.text(4.85, -0.4, '4', ha='center', fontsize=13); ax.text(5.75, -0.4, '4', ha='center', fontsize=13)\nax.text(5.3, -1.0, '4 + 4', ha='center', fontsize=15)\nax.set_xlim(0, 6.6); ax.set_ylim(-1.35, 2.9); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "nrich-bal"
+     ],
+     "caption": "Towers of 5 and 3 cubes: moving the top (striped) cube from the 5 to the 3 gives towers of 4 and 4. There are still 8 cubes, so 5 + 3 = 4 + 4.",
+     "alt": "On the left, a tower of 5 cubes whose top cube is blue and striped, beside a tower of 3 cubes, labelled 5 + 3. A red arrow labelled move 1 goes from the top of the 5 tower to the 3 tower. An equal sign. On the right, two towers of 4 cubes, the second with the striped cube on top, labelled 4 + 4."
+    },
+    {
+     "type": "example",
+     "body": "Is $13 + 24 = 12 + 25$ true? Explain without adding.",
+     "solution": "Compare the numbers: 12 is 1 less than 13, and 25 is 1 more than 24. Going from the left side to the right side, 1 has moved from the first number to the second. The total does not change, so the equation is true.\n\nCheck by adding: $13 + 24 = 37$ and $12 + 25 = 37$."
+    },
+    {
+     "type": "views",
+     "title": "Ways to decide whether an equation is true",
+     "body": "The same question can be answered in different ways.",
+     "items": [
+      {
+       "label": "Balance",
+       "body": "Put 4 cubes and 1 cube on one pan and 5 cubes and 2 cubes on the other. The pans do not balance, so $4 + 1 = 5 + 2$ is false. Taking 2 cubes off the heavier pan makes them level.",
+       "src": [
+        "leavy"
+       ]
+      },
+      {
+       "label": "Work out both sides",
+       "body": "Find the value of each side and compare: $7 = 8 - 1$ has 7 on the left and $8 - 1 = 7$ on the right, so it is true.",
+       "src": [
+        "ccss-1oa"
+       ]
+      },
+      {
+       "label": "Compare the parts",
+       "body": "In $13 + 24 = 12 + 25$ one number is 1 less and the other is 1 more, so the total has not changed and no adding is needed.",
+       "src": [
+        "eng-pos",
+        "nrich-bal"
+       ]
+      }
+     ],
+     "src": [
+      "ccss-1oa",
+      "leavy",
+      "eng-pos",
+      "nrich-bal"
+     ]
+    },
+    {
+     "type": "pitfall",
+     "title": "Every equal sign must be true",
+     "src": [
+      "im-g1",
+      "prog-oa"
+     ],
+     "body": "When working out $8 + 4$ and then adding 5, it is tempting to write $8 + 4 = 12 + 5 = 17$. This is wrong: it says that $8 + 4$ is the same as $12 + 5$, and it is not ($12 \\neq 17$).\n\nWrite each step as its own equation: $8 + 4 = 12$, then $12 + 5 = 17$. Illustrative Mathematics shows children writing a series of equations in this way. A chain is fine only when every part has the same value, as in $8 + 6 = 8 + 2 + 4 = 10 + 4 = 14$, where each part is 14. The Progressions document uses a chain like this and asks for the equal sign to be used consistently."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: let children judge and explain",
+     "src": [
+      "leavy",
+      "nrich-bal"
+     ],
+     "body": "True or false cards are a good test of what a child thinks the sign means, and Leavy and colleagues use them for this; ask the child to explain each answer. NRICH says children need to meet many equations with numbers on both sides, and need regular practice, before the idea is secure."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "True or false: $9 = 4 + 5$?",
+       "a": "True: $4 + 5 = 9$."
+      },
+      {
+       "q": "True or false: $6 + 2 = 9 - 1$?",
+       "a": "True: both sides are 8."
+      },
+      {
+       "q": "True or false: $3 + 3 = 4 + 3$?",
+       "a": "False: 6 and 7, so $3 + 3 \\neq 4 + 3$."
+      },
+      {
+       "q": "Without adding: is $26 + 15 = 25 + 16$ true?",
+       "a": "True: 1 moved from the 26 to the 15."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "True or false: $10 = 10$?",
+       "hint": "Compare the two sides.",
+       "solution": "True: both sides are 10."
+      },
+      {
+       "q": "True or false: $8 = 3 + 4$?",
+       "hint": "Work out $3 + 4$.",
+       "solution": "False: $3 + 4 = 7$ and $7 \\neq 8$."
+      },
+      {
+       "q": "True or false: $9 - 2 = 3 + 4$?",
+       "hint": "Find the value of each side.",
+       "solution": "True: $9 - 2 = 7$ and $3 + 4 = 7$."
+      },
+      {
+       "q": "True or false: $7 + 5 = 6 + 4$?",
+       "hint": "Find the value of each side.",
+       "solution": "False: $7 + 5 = 12$ and $6 + 4 = 10$."
+      },
+      {
+       "q": "Change one number in $4 + 1 = 5 + 2$ to make it true.",
+       "hint": "The left side is 5 and the right side is 7. Make them match.",
+       "solution": "For example change the 1 to a 3: $4 + 3 = 5 + 2$ (both 7). Or change the 2 to a 0: $4 + 1 = 5 + 0$ (both 5)."
+      },
+      {
+       "q": "Without adding: is $38 + 17 = 40 + 15$ true?",
+       "hint": "How did 38 change? How did 17 change?",
+       "solution": "True. 38 went up by 2 to make 40, and 17 went down by 2 to make 15, so 2 moved from one number to the other and the total is the same. Check: both sides are 55."
+      },
+      {
+       "q": "Ben writes $6 + 3 = 9 + 2 = 11$. What is wrong? Write it correctly.",
+       "hint": "Is $6 + 3$ the same as $9 + 2$?",
+       "solution": "$6 + 3$ is 9 but $9 + 2$ is 11, so the first equal sign is false. Write two equations: $6 + 3 = 9$ and $9 + 2 = 11$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- An equation is true when both sides have the same value, false when they do not.\n- To test it, find the value of each side and compare.\n- $\\neq$ means \"is not equal to\".\n- Moving some from one part of a sum to the other keeps the total: $13 + 24 = 12 + 25$.\n- Every equal sign you write must be true."
+    },
+    {
+     "type": "section",
+     "title": "Unknowns: the missing number",
+     "src": [
+      "ccss-1oa",
+      "ccss-2oa",
+      "eng-pos",
+      "im-g1"
+     ],
+     "body": "After this section you will be able to find a missing number in an equation, wherever the missing number is, and check your answer.\n\nTry this. A friend has 11 cubes. They hide some under a cup and leave 8 showing. How many are under the cup? How could you write this with numbers?"
+    },
+    {
+     "type": "definition",
+     "title": "An unknown",
+     "src": [
+      "im-g1",
+      "ccss-1oa",
+      "ccss-3oa",
+      "os-solve"
+     ],
+     "body": "An unknown is a number we do not know yet. In an equation we mark it with a box, a question mark, a blank line, or later a letter:\n\n$$8 + \\square = 11 \\qquad 5 = \\_ - 3$$\n\nThe number that makes the equation true is called the solution. In $8 + \\square = 11$ the solution is 3, because $8 + 3 = 11$ is true."
+    },
+    {
+     "type": "conventions",
+     "title": "Marks for the unknown",
+     "rows": [
+      {
+       "who": "Illustrative Mathematics",
+       "text": "A box: $4 + \\square = 9$.",
+       "src": [
+        "im-g1"
+       ]
+      },
+      {
+       "who": "Common Core Grade 1",
+       "text": "A question mark or a blank line: $8 + ? = 11$, $5 = \\_ - 3$.",
+       "src": [
+        "ccss-1oa"
+       ]
+      },
+      {
+       "who": "England Year 1",
+       "text": "Missing-number problems such as $7 = ? - 9$.",
+       "src": [
+        "eng-pos"
+       ]
+      },
+      {
+       "who": "Common Core Grade 3, OpenStax",
+       "text": "A letter, such as $x$; a letter that stands for a number is called a variable.",
+       "src": [
+        "ccss-3oa",
+        "os-lang"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "theorem",
+     "title": "Finding an unknown in a three-number equation",
+     "src": [
+      "ccss-1oa",
+      "eng-pos",
+      "prog-oa"
+     ],
+     "body": "In an adding or subtracting equation with three numbers, two numbers are parts and one is the whole. In $a + b = c$ the whole is $c$, the number on its own. In $a - b = c$ the whole is $a$, the number you start with, and $b$ and $c$ are the parts.\n\n- If the unknown is the whole, add the parts.\n- If the unknown is a part, take the other part away from the whole (or count on from the part to the whole).\n\nThen check: put the number in the box and see whether the equation is true."
+    },
+    {
+     "type": "proof",
+     "body": "The parts together make the whole. So the whole is found by adding the parts, and a missing part is what is left when the known part is taken from the whole. Taking away undoes adding: from $8 + 3 = 11$ we get both $11 - 8 = 3$ and $11 - 3 = 8$ (see [[addition-subtraction]]). Putting the number back in the equation shows whether the two sides really are the same."
+    },
+    {
+     "type": "views",
+     "title": "Ways to find the unknown in 8 + ? = 11",
+     "src": [
+      "prog-oa",
+      "ccss-1oa",
+      "leavy"
+     ],
+     "items": [
+      {
+       "label": "Count on",
+       "body": "Start at 8 and count on to 11: nine, ten, eleven. That is 3 counts, so $? = 3$.",
+       "src": [
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Think subtraction",
+       "body": "$8 + ? = 11$ asks the same as $11 - 8 = ?$, which is 3.",
+       "src": [
+        "ccss-1oa",
+        "prog-oa"
+       ]
+      },
+      {
+       "label": "Bag of cubes",
+       "body": "A drawstring bag holds the unknown number of cubes. On a pan balance the bag and 8 cubes balance 11 cubes, so the bag holds 3. Looking inside confirms it.",
+       "src": [
+        "leavy"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "example",
+     "body": "Find the unknown in each equation and check.\n\n(a) $6 + 6 = \\_$ (b) $8 + ? = 11$ (c) $5 = \\_ - 3$ (d) $7 = ? - 9$ (e) $12 - \\square = 9$",
+     "solution": "(a) The unknown is the whole: $6 + 6 = 12$. Check: $6 + 6 = 12$ is true.\n\n(b) 11 is the whole and 8 is a part, so the unknown is the other part: $11 - 8 = 3$. Check: $8 + 3 = 11$.\n\n(c) In $\\_ - 3 = 5$ the unknown is the whole: 3 is taken away and 5 is left, so the whole is $5 + 3 = 8$. Check: $8 - 3 = 5$, so $5 = 8 - 3$ is true.\n\n(d) In the same way, 9 is taken away and 7 is left, so the whole is $7 + 9 = 16$. Check: $16 - 9 = 7$.\n\n(e) The whole is 12, the number we start with. 9 is one part, so the unknown is the other part: $12 - 9 = 3$. Check: $12 - 3 = 9$, which is true."
+    },
+    {
+     "type": "pitfall",
+     "title": "For adults: the answers 12 and 17",
+     "src": [
+      "nrich-bal",
+      "cm-eq",
+      "ca-eq"
+     ],
+     "body": "Given $8 + 4 = \\square + 5$, many children write 12 (they work out $8 + 4$ and write it in the box) or 17 (they add up all the numbers they see). Some say it cannot be done, because the box is where they expect the answer. Both wrong answers come from reading $=$ as \"write the answer next\".\n\nNRICH, following Molina and Ambrose, describes three stages: first equations like $8 + 1 = 9$ only; then both directions, like $7 = 5 + 2$; and last sums on both sides, like $8 + 4 = \\square + 5$. NRICH suggests asking the question across year groups to bring common misconceptions to light."
+    },
+    {
+     "type": "theorem",
+     "title": "Unknowns with a sum on both sides",
+     "src": [
+      "nrich-bal",
+      "cm-eq",
+      "leavy"
+     ],
+     "body": "To solve $8 + 4 = \\square + 5$, find the value of the complete side first: $8 + 4 = 12$. Then the other side must also be 12, so $\\square + 5 = 12$ and $\\square = 7$."
+    },
+    {
+     "type": "proof",
+     "body": "The equal sign says both sides are the same number. The left side is 12, so the right side must be 12 too. The box and 5 make 12, so the box is $12 - 5 = 7$."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, Polygon\nfig = plt.gcf()\nax = fig.add_axes([0, 0, 1, 1])\nS = 0.42\ndef tower(x, y, n, blue=False):\n    for k in range(n):\n        if blue:\n            ax.add_patch(Rectangle((x, y + k * S), S, S, fc=(0.80, 0.88, 1.0), ec='blue', lw=1.2, hatch='///'))\n        else:\n            ax.add_patch(Rectangle((x, y + k * S), S, S, fc='white', ec='black', lw=1.2))\ndef balance(cx, w=2.0):\n    ax.add_patch(Polygon([[cx - 0.45, 0], [cx + 0.45, 0], [cx, 1.0]], closed=True, fc='white', ec='black', lw=1.4))\n    ax.plot([cx - w, cx + w], [1.0, 1.0], color='black', lw=2.5)\n    for s in (-1, 1):\n        ax.plot([cx + s * w - 1.0, cx + s * w + 1.0], [1.12, 1.12], color='black', lw=4)\n    return 1.16\n\nfig.set_size_inches(5.6, 4.0)\ny = balance(2.8, w=2.1)\ntower(0.45, y, 8); tower(1.05, y, 4, blue=True)\nax.text(0.66, y + 8 * S + 0.12, '8', ha='center', fontsize=12)\nax.text(1.26, y + 4 * S + 0.12, '4', ha='center', fontsize=12)\n# right pan: a paper bag holding an unknown number of cubes, and 5 cubes\nax.add_patch(Polygon([[3.95, y], [4.75, y], [4.65, y + 1.0], [4.05, y + 1.0]], closed=True, fc=(1.0, 0.92, 0.80), ec='orange', lw=1.6))\nax.text(4.35, y + 0.48, '?', ha='center', va='center', fontsize=18)\ntower(5.05, y, 5)\nax.text(5.26, y + 5 * S + 0.12, '5', ha='center', fontsize=12)\nax.text(2.8, -0.5, '8 + 4 = ? + 5', ha='center', fontsize=15)\nax.set_xlim(-0.45, 6.1); ax.set_ylim(-0.85, 5.0); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "leavy",
+      "nrich-bal"
+     ],
+     "caption": "A level balance: 8 white cubes and 4 striped cubes (12 cubes) on the left; a bag holding an unknown number of cubes and 5 white cubes on the right. The bag must hold 7 cubes, since 7 + 5 = 12.",
+     "alt": "A balance scale, level. The left pan holds a tower of 8 white cubes and a tower of 4 blue striped cubes. The right pan holds an orange paper bag marked with a question mark and a tower of 5 white cubes. Below: 8 + 4 = ? + 5."
+    },
+    {
+     "type": "example",
+     "body": "Solve $8 + 4 = \\square + 5$ in two ways.",
+     "solution": "Way 1. The left side is $8 + 4 = 12$. So $\\square + 5 = 12$. The box is $12 - 5 = 7$.\n\nWay 2. Compare the numbers. 5 is 1 more than 4. For the totals to match, the box must be 1 less than 8, which is 7.\n\nCheck: $8 + 4 = 12$ and $7 + 5 = 12$, so $8 + 4 = 7 + 5$ is true."
+    },
+    {
+     "type": "example",
+     "body": "Ana had 6 books. She was given some more. Now she has 8 books. Write an equation with a box for the unknown, and solve it.",
+     "solution": "She started with 6, got an unknown number more, and ended with 8: $6 + \\square = 8$.\n\n8 is the whole and 6 is a part, so the box is $8 - 6 = 2$. Ana was given 2 books. Check: $6 + 2 = 8$.\n\nOther equations fit the same story, such as $8 - 6 = \\square$ or $8 = 6 + \\square$. Illustrative Mathematics points out that one story can often be written with several equations."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Find the box: $\\square + 4 = 10$.",
+       "a": "6, because $6 + 4 = 10$."
+      },
+      {
+       "q": "Find the box: $9 = 12 - \\square$.",
+       "a": "3, because $12 - 3 = 9$."
+      },
+      {
+       "q": "Find the box: $6 + 5 = \\square + 4$.",
+       "a": "7: the left side is 11, and $7 + 4 = 11$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Find the unknown: $7 + 2 = \\square$.",
+       "hint": "The unknown is the whole.",
+       "solution": "$\\square = 9$. Check: $7 + 2 = 9$."
+      },
+      {
+       "q": "Find the unknown: $5 + ? = 12$.",
+       "hint": "Count on from 5 to 12, or work out $12 - 5$.",
+       "solution": "$? = 7$. Check: $5 + 7 = 12$."
+      },
+      {
+       "q": "Find the unknown: $\\_ - 4 = 6$.",
+       "hint": "4 were taken away and 6 are left. How many were there at the start?",
+       "solution": "The whole is $6 + 4 = 10$. Check: $10 - 4 = 6$."
+      },
+      {
+       "q": "Find the unknown: $8 = 15 - ?$.",
+       "hint": "15 is the whole and 8 is the part that is left.",
+       "solution": "$? = 15 - 8 = 7$. Check: $15 - 7 = 8$."
+      },
+      {
+       "q": "Find the unknown: $3 + 6 = \\square + 4$.",
+       "hint": "Work out the left side first.",
+       "solution": "The left side is 9, so $\\square + 4 = 9$ and $\\square = 5$. Check: $5 + 4 = 9$."
+      },
+      {
+       "q": "Find the unknown: $10 - 3 = \\square - 4$.",
+       "hint": "The left side is 7. What number take away 4 leaves 7?",
+       "solution": "The left side is 7. $\\square - 4 = 7$, so $\\square = 7 + 4 = 11$. Check: $11 - 4 = 7$."
+      },
+      {
+       "q": "There are 13 birds on a roof. Some fly away and 5 are left. Write an equation with a box and solve it.",
+       "hint": "Start with 13, take away the unknown, end with 5.",
+       "solution": "$13 - \\square = 5$. 13 is the whole and 5 is the part left, so $\\square = 13 - 5 = 8$. 8 birds flew away. Check: $13 - 8 = 5$."
+      },
+      {
+       "q": "Some children are on a bus. 4 get off and 9 are left. Write an equation with a box and solve it.",
+       "hint": "You do not know how many were on the bus at the start. Start with the box, take away 4, end with 9.",
+       "solution": "$\\square - 4 = 9$. The start is the whole, so $\\square = 9 + 4 = 13$. There were 13 children on the bus. Check: $13 - 4 = 9$."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- An unknown is a number we do not know yet, marked with a box, a question mark, a blank or a letter.\n- The solution is the number that makes the equation true.\n- If the unknown is the whole, add the parts; if it is a part, take the other part from the whole. In a subtraction the whole is the number you start with.\n- With sums on both sides, find the complete side first.\n- Always check by putting the number back in."
+    },
+    {
+     "type": "section",
+     "title": "Rules of equality",
+     "src": [
+      "cm-eq",
+      "os-solve",
+      "os-lang"
+     ],
+     "body": "After this section you will be able to use the rules that the equal sign follows, and keep an equation true by doing the same thing to both sides. This part is for older readers and leads towards algebra.\n\nTry this. A balance is level. You add 2 cubes to one pan only. What happens? What could you do to the other pan to make it level again?"
+    },
+    {
+     "type": "theorem",
+     "title": "Three rules of the equal sign",
+     "src": [
+      "cm-eq"
+     ],
+     "body": "For any numbers $a$, $b$ and $c$:\n\n1. Every number is equal to itself: $a = a$, for example $8 = 8$.\n2. An equation can be read both ways: if $a = b$ then $b = a$. If $a = 5$, then $5 = a$.\n3. Two things equal to the same thing are equal to each other: if $a = b$ and $b = c$, then $a = c$.\n\nMathematicians call these the reflexive, symmetric and transitive properties of equality."
+    },
+    {
+     "type": "proof",
+     "body": "$a = b$ means that $a$ and $b$ are the same number. A number is always the same as itself (rule 1). If $a$ is the same number as $b$, then $b$ is the same number as $a$ (rule 2). If $a$ is the same number as $b$, and $b$ is the same number as $c$, then all three are one and the same number, so $a = c$ (rule 3)."
+    },
+    {
+     "type": "theorem",
+     "title": "Swapping in an equal value",
+     "src": [
+      "cm-eq"
+     ],
+     "body": "If two things are equal, either one can be put in place of the other. For example, since $4 + 3 = 7$, the expression $4 + 3 + 2$ is the same as $7 + 2$, which is 9."
+    },
+    {
+     "type": "theorem",
+     "title": "Doing the same to both sides",
+     "src": [
+      "os-solve"
+     ],
+     "body": "If $a = b$, then adding the same number to both sides, or taking the same number from both sides, keeps the equation true:\n\n$$a + c = b + c \\qquad a - c = b - c$$"
+    },
+    {
+     "type": "proof",
+     "body": "If two pans balance and you put the same number of cubes on each, they still balance. If you take the same number of cubes off each, they still balance. The two sides were the same number, and they changed in the same way."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "\nfrom matplotlib.patches import Rectangle, Circle, Polygon\nfig = plt.gcf(); fig.set_size_inches(6.6, 3.6)\nax = fig.add_axes([0, 0, 1, 1])\ndef envelope(x, y):\n    ax.add_patch(Rectangle((x, y), 1.0, 0.65, fc=(1.0, 0.92, 0.80), ec='orange', lw=1.5))\n    ax.plot([x, x + 0.5, x + 1.0], [y + 0.65, y + 0.3, y + 0.65], color='orange', lw=1.2)\n    ax.text(x + 0.5, y - 0.28, '$x$', ha='center', fontsize=14)\ndef counter(x, y, cross=False):\n    ax.add_patch(Circle((x, y), 0.2, fc='white', ec='black', lw=1.2))\n    if cross:\n        ax.plot([x - 0.21, x + 0.21], [y - 0.21, y + 0.21], color='red', lw=1.8)\n        ax.plot([x - 0.21, x + 0.21], [y + 0.21, y - 0.21], color='red', lw=1.8)\ndef panel(y0, crossed):\n    ax.plot([0, 7.4], [y0, y0], color='black', lw=0.8)\n    ax.plot([3.4, 3.4], [y0, y0 + 1.5], color='black', lw=2.2)\n    envelope(0.3, y0 + 0.45)\n    for i in range(3):\n        counter(1.8 + i * 0.55, y0 + 0.78, cross=crossed)\n    for i in range(8):\n        r, c = divmod(i, 4)\n        counter(4.0 + c * 0.55, y0 + 1.05 - r * 0.55, cross=crossed and i >= 5)\npanel(2.2, False)\nax.text(7.6, 2.95, '$x + 3 = 8$', fontsize=14, va='center')\npanel(0.0, True)\nax.text(7.6, 0.75, '$x = 5$', fontsize=14, va='center')\nax.text(3.7, -0.35, 'take 3 counters from each side', ha='center', fontsize=11, color='red')\nax.set_xlim(-0.1, 9.6); ax.set_ylim(-0.6, 3.9); ax.set_aspect('equal'); ax.axis('off')\n",
+     "src": [
+      "os-solve"
+     ],
+     "caption": "OpenStax's envelope model of x + 3 = 8. Top: an envelope x and 3 counters on the left of the line, 8 counters on the right. Bottom: 3 counters are crossed out on each side, leaving the envelope on the left and 5 counters on the right, so x = 5.",
+     "alt": "Two rows, each a desk split by a thick vertical line. Top row: an orange envelope labelled x and 3 counters on the left, 8 counters in two rows of 4 on the right, with x + 3 = 8 beside it. Bottom row: the same picture with the 3 left counters and 3 of the 8 right counters crossed out in red, labelled take 3 counters from each side, with x = 5 beside it."
+    },
+    {
+     "type": "example",
+     "body": "Solve $x + 3 = 8$ by doing the same to both sides. ($x$ is a letter that stands for the unknown number.)",
+     "solution": "The left side is $x$ with 3 added. Take 3 away from both sides:\n\n$$x + 3 - 3 = 8 - 3$$\n\nThe left side is now just $x$ and the right side is 5, so $x = 5$.\n\nCheck by putting 5 in place of $x$: $5 + 3 = 8$. True."
+    },
+    {
+     "type": "example",
+     "body": "Solve $x - 5 = 8$.",
+     "solution": "The left side is $x$ with 5 taken away. Add 5 to both sides:\n\n$$x - 5 + 5 = 8 + 5$$\n\nso $x = 13$. Check: $13 - 5 = 8$. True."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "If $a = 9$, what can you write with 9 on the left?",
+       "a": "$9 = a$."
+      },
+      {
+       "q": "If $a = 4 + 2$ and $4 + 2 = 6$, what is $a$?",
+       "a": "$a = 6$ (rule 3)."
+      },
+      {
+       "q": "Solve $x + 4 = 10$.",
+       "a": "$x = 6$: take 4 from both sides; check $6 + 4 = 10$."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Since $5 + 5 = 10$, what is $5 + 5 + 3$? Use swapping in an equal value.",
+       "hint": "Put 10 in place of $5 + 5$.",
+       "solution": "$5 + 5 + 3 = 10 + 3 = 13$."
+      },
+      {
+       "q": "Solve $x + 7 = 12$ and check.",
+       "hint": "Take 7 from both sides.",
+       "solution": "$x = 12 - 7 = 5$. Check: $5 + 7 = 12$."
+      },
+      {
+       "q": "Solve $x - 6 = 9$ and check.",
+       "hint": "Add 6 to both sides.",
+       "solution": "$x = 9 + 6 = 15$. Check: $15 - 6 = 9$."
+      },
+      {
+       "q": "Solve $14 = y + 9$ and check.",
+       "hint": "Take 9 from both sides; then read the equation the other way round.",
+       "solution": "$14 - 9 = y$, so $5 = y$, which is $y = 5$. Check: $5 + 9 = 14$."
+      },
+      {
+       "q": "Kim says: \"$8 + 2 = 10$ and $10 = 7 + 3$, so $8 + 2 = 7 + 3$.\" Which rule is she using? Is she right?",
+       "hint": "Two things equal to the same thing.",
+       "solution": "Rule 3: both $8 + 2$ and $7 + 3$ are equal to 10, so they are equal to each other. She is right; both sides are 10."
+      }
+     ]
+    },
+    {
+     "type": "summary",
+     "body": "- Every number equals itself: $8 = 8$.\n- An equation can be read both ways: if $a = 5$ then $5 = a$.\n- If $a = b$ and $b = c$ then $a = c$.\n- Equal values can be swapped for each other.\n- Adding or taking the same number on both sides keeps an equation true; this is how $x + 3 = 8$ gives $x = 5$."
+    },
+    {
+     "type": "section",
+     "title": "Looking ahead",
+     "src": [
+      "cm-eq",
+      "ca-eq",
+      "os-solve",
+      "ccss-6ee",
+      "os-lang"
+     ],
+     "body": "Reading $=$ as \"the two sides have the same value\" is what algebra needs: research links this relational view to later success with equations. Doing the same to both sides grows into solving equations with letters, and several equations solved together become [[linear-systems]]. The same balance idea, with care about which way it tips, gives [[solving-inequalities]].\n\nThe three rules of equality (every thing equals itself, equality reads both ways, and equal to the same thing means equal to each other) are exactly the rules of an equivalence relation, studied on [[sets-relations]]. Swapping in an equal value is how expressions are rewritten into equivalent expressions, and how proofs move from one line to the next ([[proof-methods]])."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# intro, section 1, figure 1\nassert 3 + 4 == 7 and 7 == 5 + 2 and 5 + 2 == 2 + 5\nleft_A = [0]*3 + [1]*4; right_A = [0]*7; assert len(left_A) == len(right_A) == 7\nleft_B = [0]*7; right_B = [0]*5 + [1]*2; assert len(left_B) == len(right_B) == 7\nassert 7 == 4 + 3 and 8 + 4 == 7 + 5 == 12\nassert 2 + 6 == 8 and 9 == 4 + 5\nassert 4 + 1 == 5 and 2 + 3 == 1 + 4 == 5\nassert 9 == 6 + 3 and 4 + 4 == 8\nassert 5 + 1 == 6 and 10 == 3 + 7 and 10 == 6 + 4 and 10 == 9 + 1 and 8 == 3 + 5 and 7 == 2 + 5\nassert 11 != 15 - 3\n"
+    },
+    {
+     "python": "# section 2\nassert 6 == 6 and 7 == 8 - 1 and 5 + 2 == 2 + 5 == 7\nassert 4 + 1 == 5 and 5 + 2 == 7 and 4 + 1 != 5 + 2\nassert 5 + 3 == 4 + 4 == 8 and 13 + 24 == 12 + 25 == 37\nassert 8 + 4 == 12 and 12 + 5 == 17 and 8 + 4 != 12 + 5\nassert 8 + 6 == 8 + 2 + 4 == 10 + 4 == 14\nassert 9 == 4 + 5 and 6 + 2 == 9 - 1 == 8 and 3 + 3 == 6 and 4 + 3 == 7\nassert 26 + 15 == 25 + 16 == 41\nassert 10 == 10 and 3 + 4 == 7 and 7 != 8\nassert 9 - 2 == 3 + 4 == 7 and 7 + 5 == 12 and 6 + 4 == 10\nassert 4 + 3 == 5 + 2 == 7 and 4 + 1 == 5 + 0 == 5\nassert 38 + 2 == 40 and 17 - 2 == 15 and 38 + 17 == 40 + 15 == 55\nassert 6 + 3 == 9 and 9 + 2 == 11 and 9 != 11\n# figure 2: towers 5,3 -> 4,4\nassert 5 - 1 == 4 and 3 + 1 == 4 and 5 + 3 == 4 + 4 == 8\n"
+    },
+    {
+     "python": "# section 3\nassert 8 + 3 == 11 and 11 - 8 == 3 and list(range(9, 12)) == [9, 10, 11]\nassert 5 == 8 - 3 and 4 + 5 == 9\nassert 6 + 6 == 12 and 5 + 3 == 8 and 7 + 9 == 16 and 16 - 9 == 7\nsol = [b for b in range(30) if 8 + 4 == b + 5]; assert sol == [7]\nassert 12 - 5 == 7 and 8 - 1 == 7 and 5 - 4 == 1\nassert 6 + 2 == 8 and 8 - 6 == 2\nassert 6 + 4 == 10 and 12 - 3 == 9 and 6 + 5 == 11 == 7 + 4\nassert 7 + 2 == 9 and 5 + 7 == 12 and 6 + 4 == 10 and 10 - 4 == 6\nassert 15 - 8 == 7 and 15 - 7 == 8\nassert 3 + 6 == 9 and 9 - 4 == 5 and 5 + 4 == 9\nassert 10 - 3 == 7 and 7 + 4 == 11 and 11 - 4 == 7\nassert 13 - 5 == 8 and 13 - 8 == 5\n# wrong answers 12 and 17\nassert 8 + 4 == 12 and 8 + 4 + 5 == 17\n# figure 3: 8 + 4 cubes left, bag + 5 right\nassert 8 + 4 == 12 and 7 + 5 == 12\n"
+    },
+    {
+     "python": "# section 4\nimport sympy as sp\nx, y = sp.symbols('x y')\nassert sp.solve(sp.Eq(x + 3, 8), x) == [5] and 8 - 3 == 5\nassert sp.solve(sp.Eq(x - 5, 8), x) == [13] and 13 - 5 == 8\nassert 4 + 3 + 2 == 7 + 2 == 9\nassert sp.solve(sp.Eq(x + 4, 10), x) == [6]\nassert 5 + 5 + 3 == 10 + 3 == 13\nassert sp.solve(sp.Eq(x + 7, 12), x) == [5]\nassert sp.solve(sp.Eq(x - 6, 9), x) == [15]\nassert sp.solve(sp.Eq(14, y + 9), y) == [5]\nassert 8 + 2 == 10 == 7 + 3\n# figure 4: envelope + 3 | 8 counters; cross 3 each side -> 5 left (counters 6,7,8 crossed)\nright = list(range(8)); kept = [i for i in right if not i >= 5]; assert len(kept) == 5 and len(right) - len(kept) == 3\n"
+    },
+    {
+     "python": "# review additions\nassert 4 + 1 == 5 and 5 + 2 == 7 and 7 - 2 == 5 and 5 + 0 == 5\nassert 7 == 8 - 1\nassert 13 - 1 == 12 and 24 + 1 == 25 and 13 + 24 == 12 + 25\nassert 5 - 2 == 3 and 3 + 2 == 5 and 8 + 3 == 11 and 11 - 8 == 3 and 11 - 3 == 8\nassert 12 - 9 == 3 and 12 - 3 == 9\nassert 9 + 4 == 13 and 13 - 4 == 9\n# move any amount k between two parts keeps the total\nassert all((a + k) + (b - k) == a + b for a in range(10) for b in range(10) for k in range(b + 1))\nassert 11 - 8 == 3 and 8 + 3 == 11\n"
+    }
+   ]
+  }
+ }
+]

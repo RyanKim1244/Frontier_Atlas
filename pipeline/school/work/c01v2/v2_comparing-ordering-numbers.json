@@ -1,0 +1,514 @@
+[
+ {
+  "id": "comparing-ordering-numbers",
+  "entry": {
+   "sum": "Two finite collections have the same number of things when their things can be paired one to one with none left over; otherwise one has fewer. For whole numbers this becomes the order $a < b$, meaning $b = a + k$ for some whole number $k \\ge 1$: any two numbers are either equal or one is less than the other. Written in base ten, numbers are compared by their number of digits and then by the first place, from the left, where their digits differ, because all the lower places together are worth less than one unit of the place above.",
+   "key": [
+    "a < b \\iff b = a + k \\text{ for some } k \\ge 1",
+    "a < b \\iff b > a",
+    "\\underbrace{99\\ldots9}_{j} = 10^j - 1 < 10^j"
+   ],
+   "why": "Comparison is the first relation between numbers: it gives the number line its direction, makes it possible to sort and rank, and leads to inequalities, to the well-ordering of the whole numbers that underlies induction, and to the comparison of infinite sets by matching.",
+   "msc": [],
+   "links": [
+    {
+     "field": "computer-science",
+     "note": "Sorting a list is ordering numbers (or words) by repeated comparison; numerals sorted as text come out in dictionary order, not numerical order."
+    },
+    {
+     "field": "logic",
+     "note": "Comparing collections by one-to-one matching, with no counting, is how set theory compares the sizes of infinite sets."
+    }
+   ],
+   "refs": [
+    "Common Core State Standards for Mathematics, K.CC.C.6-7, 1.NBT.B.3, 2.NBT.A.4, 4.NBT.A.2 (2010)",
+    "Department for Education, National curriculum in England: mathematics programmes of study, Years 1-5 Number and place value (2013)",
+    "Illustrative Mathematics K-5 Math (Kindergarten Unit 2; Grade 1 Unit 4; Grade 2 Unit 5; Grade 4 Unit 4)",
+    "OpenStax, Prealgebra 2e, sections 2.1 and 3.1 (2020)"
+   ],
+   "aliases": [
+    "comparing numbers",
+    "ordering numbers",
+    "greater than and less than",
+    "more, fewer and the same",
+    "inequality symbols",
+    "order of the whole numbers"
+   ]
+  },
+  "lesson": {
+   "v": 2,
+   "minutes": 24,
+   "sources": [
+    {
+     "k": "eng",
+     "ref": "Department for Education, National curriculum in England: mathematics programmes of study (2013)",
+     "where": "Years 1-5 Number - number and place value",
+     "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+     "kind": "curriculum"
+    },
+    {
+     "k": "ccKCC",
+     "ref": "Common Core State Standards Initiative, Mathematics: Kindergarten, Counting and Cardinality (2010)",
+     "where": "K.CC.B.4.c, K.CC.C.6, K.CC.C.7",
+     "url": "https://thecorestandards.org/Math/Content/K/CC/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc1NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 1, Number and Operations in Base Ten (2010)",
+     "where": "1.NBT.B.3",
+     "url": "https://thecorestandards.org/Math/Content/1/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc2NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 2, Number and Operations in Base Ten (2010)",
+     "where": "2.NBT.A.4",
+     "url": "https://thecorestandards.org/Math/Content/2/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "cc4NBT",
+     "ref": "Common Core State Standards Initiative, Mathematics: Grade 4, Number and Operations in Base Ten (2010)",
+     "where": "4.NBT.A.1, 4.NBT.A.2",
+     "url": "https://thecorestandards.org/Math/Content/4/NBT/",
+     "kind": "curriculum"
+    },
+    {
+     "k": "imK10",
+     "ref": "Illustrative Mathematics K-5 Math, Kindergarten Unit 1 Lesson 10: Are There Enough?",
+     "where": "Kindergarten, Unit 1, Section C",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-1/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "imK17",
+     "ref": "Illustrative Mathematics K-5 Math, Kindergarten Unit 2 Lesson 17: Order Towers and Numbers",
+     "where": "Kindergarten, Unit 2",
+     "url": "https://im.kendallhunt.com/k5/teachers/kindergarten/unit-2/lesson-17/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1L10",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 1 Unit 4 Lesson 10: Write Two-Digit Numbers",
+     "where": "Grade 1, Unit 4",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im1L16",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 1 Unit 4 Lesson 16: Write Comparisons with Symbols",
+     "where": "Grade 1, Unit 4, Section C",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-1/unit-4/lesson-16/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im2L10",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 2 Unit 5 Lesson 10: Place Value Comparisons (Part 1)",
+     "where": "Grade 2, Unit 5, Section B",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-2/unit-5/lesson-10/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im4L12",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 4 Unit 4 Lesson 12: Compare Multi-digit Numbers",
+     "where": "Grade 4, Unit 4, Section C",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-4/lesson-12/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "im4L13",
+     "ref": "Illustrative Mathematics K-5 Math, Grade 4 Unit 4 Lesson 13: Order Multi-digit Numbers",
+     "where": "Grade 4, Unit 4, Section C",
+     "url": "https://im.kendallhunt.com/k5/teachers/grade-4/unit-4/lesson-13/lesson.html",
+     "kind": "textbook"
+    },
+    {
+     "k": "os21",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Section 2.1 Use the Language of Algebra (inequality symbols)",
+     "url": "https://github.com/openstax/osbooks-prealgebra-bundle/blob/efab2179afac4df11c6bbd5a9392391937836d06/modules/m81268/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "os31",
+     "ref": "OpenStax, Prealgebra 2e (2020)",
+     "where": "Section 3.1 Introduction to Integers (order on the number line)",
+     "url": "https://github.com/openstax/osbooks-prealgebra-bundle/blob/efab2179afac4df11c6bbd5a9392391937836d06/modules/m81275/index.cnxml",
+     "kind": "textbook"
+    },
+    {
+     "k": "ncetmEY",
+     "ref": "NCETM, Early Years classroom resources: Comparison",
+     "where": "key ideas",
+     "url": "https://ncetm.org.uk/classroom-resources/ey-comparison/",
+     "kind": "notes"
+    },
+    {
+     "k": "aqaN1",
+     "ref": "AQA, GCSE Mathematics (8300) specification, subject content",
+     "where": "3.1 Number, N1",
+     "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/subject-content/3.1-number",
+     "kind": "curriculum"
+    },
+    {
+     "k": "wikiCard",
+     "ref": "Wikipedia, Cardinality",
+     "where": "equinumerosity by bijection; cardinal inequality by injection; Cantor",
+     "url": "https://en.wikipedia.org/wiki/Cardinality",
+     "kind": "reference"
+    },
+    {
+     "k": "wikiWO",
+     "ref": "Wikipedia, Well-ordering principle",
+     "where": "statement; relation to induction",
+     "url": "https://en.wikipedia.org/wiki/Well-ordering_principle",
+     "kind": "reference"
+    }
+   ],
+   "requires": [
+    {
+     "item": "Tell whether one group has more than, fewer than or the same number as another, by matching or by counting (CC K.CC.C.6)",
+     "priority": "core",
+     "where": "What comparing means"
+    },
+    {
+     "item": "Use the language equal to, more than, less than (fewer), most, least (England Year 1)",
+     "priority": "core",
+     "where": "What comparing means; Putting numbers in order"
+    },
+    {
+     "item": "Compare two numbers between 1 and 10 given as written numerals (CC K.CC.C.7); one more and one less",
+     "priority": "core",
+     "where": "What comparing means"
+    },
+    {
+     "item": "Read and write comparisons with the symbols >, < and = (CC 1.NBT.B.3; England Year 2)",
+     "priority": "core",
+     "where": "What comparing means"
+    },
+    {
+     "item": "Compare two-digit numbers by tens and ones (CC 1.NBT.B.3; England Year 2, 0 to 100)",
+     "priority": "core",
+     "where": "Comparing by place value"
+    },
+    {
+     "item": "Compare three-digit numbers by hundreds, tens and ones (CC 2.NBT.A.4; England Year 3, up to 1000)",
+     "priority": "core",
+     "where": "Comparing by place value"
+    },
+    {
+     "item": "Compare multi-digit whole numbers using place value (CC 4.NBT.A.2; England Years 4 and 5, to at least 1000000)",
+     "priority": "common",
+     "where": "Comparing by place value"
+    },
+    {
+     "item": "Order a list of numbers, least to greatest and greatest to least, and show the order on a number line",
+     "priority": "common",
+     "where": "Putting numbers in order"
+    },
+    {
+     "item": "Counting and the counting sequence",
+     "priority": "core",
+     "where": "[[counting-number-names]]"
+    },
+    {
+     "item": "Meaning of ones, tens, hundreds and higher places",
+     "priority": "core",
+     "where": "[[place-value]]"
+    },
+    {
+     "item": "The number line as a model of the numbers",
+     "priority": "common",
+     "where": "[[number-line]]"
+    },
+    {
+     "item": "Use the symbols not equal to, less than or equal to, greater than or equal to (KS3; GCSE N1)",
+     "priority": "specialised",
+     "where": "Looking ahead"
+    },
+    {
+     "item": "Order positive and negative integers, decimals and fractions (KS3; GCSE N1)",
+     "priority": "specialised",
+     "where": "Looking ahead; [[number-line]]; [[real-numbers]]"
+    }
+   ],
+   "blocks": [
+    {
+     "type": "intro",
+     "body": "To compare two numbers is to decide which is greater, or that they are equal; to order a list is to arrange it so that each number is at most the next. Behind the school rules ('more tens wins', 'start from the left') are three ideas: comparing collections by pairing their things one to one, the order of the counting numbers, and the fact that in base ten all the lower places together are worth less than one unit of the next place up."
+    },
+    {
+     "type": "section",
+     "title": "What comparing means",
+     "src": [
+      "ccKCC",
+      "imK10",
+      "imK17",
+      "im1L16",
+      "ncetmEY",
+      "eng",
+      "os21",
+      "os31"
+     ],
+     "body": "The whole numbers are $0, 1, 2, 3, \\dots$, the numbers used for counting (see [[counting-number-names]]). Before any numbers are named, two collections can already be compared by matching: this is the oldest meaning of more and fewer, and it is the one that survives into the mathematics of infinite sets."
+    },
+    {
+     "type": "definition",
+     "title": "More, fewer, the same",
+     "src": [
+      "ccKCC",
+      "imK10",
+      "eng",
+      "wikiCard"
+     ],
+     "body": "Let $A$ and $B$ be finite collections. Pair things of $A$ with things of $B$ one to one, each thing used at most once, until one collection (or both) has run out.\n\n- If every thing in both collections has a partner, $A$ and $B$ have the same number of things.\n- If the things of $A$ run out while some things of $B$ are left over, $A$ has fewer things than $B$, and $B$ has more than $A$.\n\nFor example, 3 balls and 5 marbles give 3 pairs with 2 marbles left over: there are fewer balls, although each ball is far bigger than a marble.\n\nFor finite collections the verdict does not depend on which pairing is used: two pairings that each use up $A$ leave the same number of things of $B$ over. This is the content of the pigeonhole principle, that a finite collection cannot be paired one to one with part of itself (if one pairing left things of $B$ over and another did not, the two together would pair $B$ with part of itself); it is also why counting a collection in a different order gives the same number. So only how many things there are matters, not their size, shape or arrangement, nor the pairing chosen. For infinite collections 'left over' stops being decisive: pairing each whole number $n$ with $2n$ leaves every odd number over, while pairing $n$ with $n$ leaves nothing over.\n\nEnglish uses fewer for things that are counted and less for amounts; in comparing numbers both become less than."
+    },
+    {
+     "type": "definition",
+     "title": "Less than and greater than for numbers",
+     "src": [
+      "os21",
+      "ccKCC",
+      "imK17"
+     ],
+     "body": "For whole numbers $a$ and $b$, $$a < b \\quad\\text{means}\\quad b = a + k \\text{ for some whole number } k \\ge 1.$$ Read $a < b$ as 'a is less than b'. The statement $b > a$, read 'b is greater than a', means the same thing: $49 > 45$ and $45 < 49$ state one fact, $49 = 45 + 4$. And $a = b$ means that $a$ and $b$ are the same number. The symbols point at the smaller number; the open side faces the greater one.\n\nIn words, $b$ is reached from $a$ by counting on $k$ more steps; with $k = 1$, $a + 1$ is the next number after $a$. On a number line, where the whole numbers are marked at equal steps increasing to the right, this says that $b$ lies to the right of $a$: less is further left, greater further right.\n\nThe two definitions agree: if $A$ has $a$ things and $B$ has $b = a + k$ things, pairing $A$ with $a$ of the things of $B$ leaves $k$ over; conversely, if a pairing uses up $A$ and leaves $k \\ge 1$ things of $B$ over, then $B$ is made of $a$ paired things and $k$ more, so $b = a + k$ and $a < b$."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "import numpy as np\nfig = plt.gcf(); fig.set_size_inches(6.4, 2.0)\nax = fig.add_axes([0, 0, 1, 1])\nax.annotate('', xy=(10.7, 0), xytext=(-0.4, 0), arrowprops=dict(arrowstyle='->', color='black', lw=1.2))\nfor n in range(0, 11):\n    ax.plot([n, n], [-0.1, 0.1], color='black', lw=1.0)\n    ax.text(n, -0.35, str(n), ha='center', va='center', fontsize=11)\nfor n in (4, 7):\n    ax.plot(n, 0, 'o', ms=9, color='blue', zorder=3)\nt = np.linspace(0, np.pi, 40)\nfor a in (4, 5, 6):\n    ax.plot(a + 0.5 - 0.5 * np.cos(t), 0.15 + 0.45 * np.sin(t), color='orange', lw=1.6)\n    ax.text(a + 0.5, 0.8, '+1', ha='center', va='center', fontsize=11)\nax.text(5.5, 1.25, '$7 = 4 + 3$, so $4 < 7$', ha='center', va='center', fontsize=12)\nax.text(1.8, 0.7, 'smaller', ha='center', va='center', fontsize=11)\nax.text(9.2, 0.7, 'greater', ha='center', va='center', fontsize=11)\nax.annotate('', xy=(3.3, 0.45), xytext=(0.6, 0.45), arrowprops=dict(arrowstyle='<-', color='black', lw=1.0))\nax.annotate('', xy=(10.3, 0.45), xytext=(7.9, 0.45), arrowprops=dict(arrowstyle='->', color='black', lw=1.0))\nax.set_xlim(-0.6, 10.9); ax.set_ylim(-0.6, 1.5); ax.axis('off')\n",
+     "caption": "The number line from 0 to 10. Three steps of $+1$ lead from 4 to 7, so $7 = 4 + 3$ and $4 < 7$: the greater number lies to the right.",
+     "alt": "A horizontal number line with ticks labelled 0 to 10 and an arrow at the right. Blue dots mark 4 and 7. Three orange arcs, each labelled +1, hop from 4 to 5, 5 to 6 and 6 to 7. Above: 7 = 4 + 3, so 4 < 7. Arrows show smaller to the left and greater to the right."
+    },
+    {
+     "type": "theorem",
+     "title": "The basic laws of order",
+     "body": "For all whole numbers $a$, $b$, $c$:\n\n1. Trichotomy: exactly one of $a < b$, $a = b$, $a > b$ is true.\n2. Transitivity: if $a < b$ and $b < c$, then $a < c$.\n3. Adding keeps order: if $a < b$, then $a + c < b + c$.\n4. Nothing lies between neighbours: there is no whole number $n$ with $a < n < a + 1$."
+    },
+    {
+     "type": "proof",
+     "body": "Trichotomy, at least one. Fix $a$ and count $b$ up from 0. For $b = 0$: either $a = 0$, or $a = 0 + a$ with $a \\ge 1$, so $a > 0$. If one of the three holds for $b$, one holds for $b + 1$: $a < b$ or $a = b$ gives $a < b + 1$; and $a > b$ means $a = b + k$ with $k \\ge 1$, so either $k = 1$ and $a = b + 1$, or $a = (b + 1) + (k - 1)$ with $k - 1 \\ge 1$ and $a > b + 1$. Counting up from 0 reaches every $b$, so one of the three holds for every $b$.\n\nAt most one. If $a < b$ and $b < a$, then $b = a + k$ and $a = b + j$ with $k, j \\ge 1$, so $a + 0 = a + (k + j)$. Cancelling $a$ (if $a + x = a + y$ then $x = y$) gives $k + j = 0$, impossible. If $a = b$, then $a < b$ would give $a + 0 = a + k$, so $k = 0$ by the same cancellation, again impossible.\n\nTransitivity: from $b = a + k$ and $c = b + j$ we get $c = a + (k + j)$ with $k + j \\ge 1$.\n\nAdding: $b + c = (a + k) + c = (a + c) + k$.\n\nNeighbours: $a < n$ means $n = a + k$ with $k \\ge 1$, so $n = (a + 1) + (k - 1) \\ge a + 1$; and $n < a + 1$ would give $a + 1 = n + j = a + k + j$ with $j, k \\ge 1$, so $1 = k + j \\ge 2$ after cancelling $a$, impossible. Hence, for $a < b$, a whole number $n$ with $a < n < b$ has $n \\ge a + 1$, and by the same argument $n < b$ gives $n + 1 \\le b$, that is $n \\le b - 1$. So the whole numbers strictly between $a$ and $b$ are exactly $a + 1, a + 2, \\dots, b - 1$, and there are $b - a - 1$ of them."
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "What is the greatest whole number $n$ with $n < 35$? The least with $n > 60$? Why is there no greatest whole number with $n > 60$?",
+       "hint": "Use the law that nothing lies between neighbours.",
+       "solution": "$n < 35$ means $35 = n + k$ with $k \\ge 1$, so $n \\le 34$, and 34 works: the greatest is 34. Likewise $n > 60$ means $n \\ge 61$, and the least is 61. There is no greatest: if $n > 60$, then $n + 1 > n > 60$ by transitivity, so $n + 1$ is a larger solution."
+      },
+      {
+       "q": "How many whole numbers $n$ satisfy $47 < n < 52$? How many satisfy $a < n < b$ when $a < b$?",
+       "hint": "List them, then use the last line of the proof.",
+       "solution": "They are 48, 49, 50, 51: four of them, and $52 - 47 - 1 = 4$. In general the numbers are $a + 1, \\dots, b - 1$, which is $b - a - 1$ numbers (none at all when $b = a + 1$)."
+      },
+      {
+       "q": "Without counting either collection, show that a theatre with every seat taken and 3 people standing holds more people than seats.",
+       "hint": "Pair each seat with the person sitting in it.",
+       "solution": "Each seat is paired with its occupant, one to one, and every seat is used. The 3 standing people are left over, so by the definition of more there are more people than seats; if there are $s$ seats there are $s + 3$ people."
+      },
+      {
+       "q": "Adding keeps order. Does multiplying? That is, if $a < b$, must $ac < bc$?",
+       "hint": "Write $b = a + k$ and multiply out; then try $c = 0$.",
+       "solution": "$bc = (a + k)c = ac + kc$. If $c \\ge 1$, then $kc \\ge 1$, so $ac < bc$. If $c = 0$, both sides are 0 and $ac = bc$. So multiplying by a whole number keeps order exactly when that number is not 0; for example $2 < 5$ gives $2 \\cdot 3 = 6 < 15 = 5 \\cdot 3$ but $2 \\cdot 0 = 0 = 5 \\cdot 0$."
+      },
+      {
+       "q": "Prove the converse of 'adding keeps order': if $a + c < b + c$, then $a < b$.",
+       "hint": "By trichotomy one of $a < b$, $a = b$, $a > b$ holds; rule out two of them.",
+       "solution": "Suppose $a + c < b + c$. If $a = b$, then $a + c = b + c$, and two of the three cases would hold for $a + c$ and $b + c$, against trichotomy. If $a > b$, then adding keeps order gives $b + c < a + c$, again two cases at once. So $a < b$. Together with the law itself, $a < b$ exactly when $a + c < b + c$: adding the same number to both sides never changes a comparison."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Comparing by place value",
+     "src": [
+      "cc1NBT",
+      "cc2NBT",
+      "cc4NBT",
+      "im1L10",
+      "im2L10",
+      "im4L12",
+      "im4L13"
+     ],
+     "body": "Counting on from one number to another is not practical for 547,612 and 58,978. Base-ten notation gives a faster test, read off the digits. Recall from [[place-value]] that a digit is worth itself times its place value: in 4062 the 4 stands for $4 \\cdot 1000$, the 0 for no hundreds, the 6 for $6 \\cdot 10$ and the 2 for $2 \\cdot 1$. Each digit is one of $0, 1, \\dots, 9$, and numbers are written without zeros at the front; the number zero itself is written as the single digit 0."
+    },
+    {
+     "type": "theorem",
+     "title": "Comparing by digits",
+     "src": [
+      "cc4NBT",
+      "im4L13"
+     ],
+     "body": "Let $a$ and $b$ be whole numbers written in base ten.\n\n1. If $a$ has more digits than $b$, then $a > b$.\n2. If they have the same number of digits, look at the places from the left. At the first place where the digits differ, the number with the larger digit is the greater. If no place differs, $a = b$."
+    },
+    {
+     "type": "proof",
+     "body": "The key fact is that a run of $j$ nines is one less than the next power of ten: $$\\underbrace{99\\ldots9}_{j} = 10^j - 1,$$ since adding 1 to it carries all the way along ($9 + 1 = 10$, $99 + 1 = 100$, $999 + 1 = 1000$). Each of the lowest $j$ digits is at most 9, so anything written in the lowest $j$ places is at most $9 \\cdot 10^{j-1} + \\dots + 9 \\cdot 10 + 9 = 99\\ldots9 = 10^j - 1$: less than one unit of the next place, $10^j$.\n\nPart 1. By the key fact, every number with at most $m - 1$ digits, 0 included, is at most $10^{m-1} - 1$. If $a$ has $m$ digits, more than $b$, then $m \\ge 2$, so $a$ is not 0 and its leading digit is not 0; hence $a \\ge 10^{m-1}$, and $b \\le 10^{m-1} - 1 < 10^{m-1} \\le a$.\n\nPart 2. Suppose the first difference is in the place worth $10^j$, with digit $d$ in $a$ and $e$ in $b$, and $d > e$. The higher places agree, so they contribute the same amount $H$ to both numbers, and $$a = H + d \\cdot 10^j + r, \\qquad b = H + e \\cdot 10^j + s,$$ where $r$ and $s$ are the numbers in the lower $j$ places, so $r \\ge 0$ and $s \\le 10^j - 1$. Since $d \\ge e + 1$, $$a \\ge H + e \\cdot 10^j + 10^j > H + e \\cdot 10^j + s = b.$$"
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.8, 3.4)\nax = fig.add_axes([0, 0, 1, 1])\nu = 0.2\ndef hundred(x0, y0, fc):\n    ax.add_patch(Rectangle((x0, y0), 10 * u, 10 * u, fc=fc, ec='black', lw=1.0))\n    for i in range(1, 10):\n        ax.plot([x0 + i * u, x0 + i * u], [y0, y0 + 10 * u], color='black', lw=0.6)\n        ax.plot([x0, x0 + 10 * u], [y0 + i * u, y0 + i * u], color='black', lw=0.6)\ndef ten(x0, y0, fc):\n    ax.add_patch(Rectangle((x0, y0), u, 10 * u, fc=fc, ec='black', lw=1.0))\n    for i in range(1, 10):\n        ax.plot([x0, x0 + u], [y0 + i * u, y0 + i * u], color='black', lw=0.6)\ndef one(x0, y0, fc):\n    ax.add_patch(Rectangle((x0, y0), u, u, fc=fc, ec='black', lw=1.0))\nblue = (0.8, 0.88, 1.0); green = (0.8, 0.93, 0.8)\nhundred(0.0, 0.6, blue)\nfor i in range(9):\n    ten(2.3 + i * 0.3, 0.6, blue)\nfor j in range(9):\n    one(5.1, 0.6 + j * u, (1.0, 0.8, 0.55))\nax.add_patch(Rectangle((5.1, 0.6 + 9 * u), u, u, fill=False, ec='red', lw=1.4, ls='--'))\nax.text(5.55, 0.6 + 9.5 * u, 'missing', ha='left', va='center', fontsize=10, color='red')\nax.text(2.7, 0.25, '199 = 1 hundred + 99', ha='center', va='center', fontsize=12)\nax.text(3.95, 2.95, '99: one short of a hundred', ha='center', va='center', fontsize=11)\nhundred(7.2, 0.6, green); hundred(9.5, 0.6, green)\nax.text(9.6, 0.25, '200 = 2 hundreds', ha='center', va='center', fontsize=12)\nax.set_xlim(-0.2, 11.8); ax.set_ylim(0.0, 3.2); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Base-ten blocks for 199 and 200. Under its hundred, 199 has 9 tens and 9 ones, which is 99, one cube short of another hundred; so the greatest number with 1 hundred is still less than the least number with 2 hundreds.",
+     "alt": "Left, in blue: one 10 by 10 square, nine strips of ten, and a column of nine orange single cubes with a dashed red empty square above them labelled missing; labels 99: one short of a hundred, and 199 = 1 hundred + 99. Right, in green: two 10 by 10 squares labelled 200 = 2 hundreds."
+    },
+    {
+     "type": "example",
+     "body": "Compare 92 with 29, 261 with 175, and 58,978 with 547,612. Why is it wrong to start from the ones, or to go by the size of the digits?",
+     "solution": "92 and 29 have two digits each; the tens digits differ, 9 against 2, so $92 > 29$. The ones (2 against 9) point the other way, but they cannot matter: they are worth at most 9, less than one ten.\n\n261 and 175: the hundreds digits differ, 2 against 1, so $261 > 175$, although the ones digits say $1 < 5$ and the tens say $6 < 7$. Starting from the ones gives the wrong answer here. The ones decide only when every higher place agrees, as in $338 > 336$.\n\n58,978 has the larger digits (they add up to 37, against 25 for 547,612), but it has five digits against six, so $58{,}978 < 547{,}612$ by rule 1, which comes before any comparison of digits."
+    },
+    {
+     "type": "figure",
+     "engine": "plot",
+     "code": "from matplotlib.patches import Rectangle\nfig = plt.gcf(); fig.set_size_inches(6.8, 3.9)\nax = fig.add_axes([0, 0, 1, 1])\ngrey = (0.92, 0.92, 0.92); blue = (0.8, 0.88, 1.0); orange = (1.0, 0.85, 0.6); green = (0.8, 0.93, 0.8)\nh = 0.42\ny1, y2, y3 = 3.0, 1.7, 0.4\nfor dd in range(5):\n    fc = blue if dd == 1 else orange if dd == 2 else grey\n    ax.add_patch(Rectangle((2 * dd, y1), 2, h, fc=fc, ec='black', lw=1.0))\n    ax.text(2 * dd + 1, y1 + h / 2, f'{100 * dd} to {100 * dd + 99}', ha='center', va='center', fontsize=9)\nfor n, lab in ((175, '175'), (261, '261')):\n    xx = n / 50\n    ax.plot([xx, xx], [y1 + h, y1 + h + 0.18], color='black', lw=1.0)\n    ax.plot(xx, y1 + h + 0.18, 'o', ms=5, color='black')\n    ax.text(xx, y1 + h + 0.42, lab, ha='center', va='center', fontsize=10)\nax.text(10.15, y1 + h / 2, 'hundreds digit', ha='left', va='center', fontsize=10)\nfor t in range(10):\n    fc = green if t == 6 else orange\n    ax.add_patch(Rectangle((t, y2), 1, h, fc=fc, ec='black', lw=1.0))\n    ax.text(t + 0.5, y2 + h / 2, f'{200 + 10 * t}s', ha='center', va='center', fontsize=9)\nax.text(10.15, y2 + h / 2, 'tens digit', ha='left', va='center', fontsize=10)\nax.plot([4, 0], [y1, y2 + h], color='gray', lw=0.9, ls='--')\nax.plot([6, 10], [y1, y2 + h], color='gray', lw=0.9, ls='--')\nfor o in range(10):\n    ax.add_patch(Rectangle((o, y3), 1, h, fc=(0.55, 0.8, 0.55) if o == 1 else green, ec='black', lw=1.0))\n    ax.text(o + 0.5, y3 + h / 2, str(260 + o), ha='center', va='center', fontsize=9)\nax.text(10.15, y3 + h / 2, 'ones digit', ha='left', va='center', fontsize=10)\nax.plot([6, 0], [y2, y3 + h], color='gray', lw=0.9, ls='--')\nax.plot([7, 10], [y2, y3 + h], color='gray', lw=0.9, ls='--')\nax.text(5, 0.1, 'the lower places move a number only inside its block', ha='center', va='center', fontsize=10)\nax.set_xlim(-0.2, 12.2); ax.set_ylim(-0.1, 4.0); ax.set_aspect('equal'); ax.axis('off')\n",
+     "caption": "Nested blocks. The numbers from 0 to 499 split into blocks by the hundreds digit; every number with hundreds digit 2 lies in the block from 200 to 299, which ends before 300 begins, because the lower two places hold at most 99. Inside that block the tens digit picks a block of ten, and inside that the ones digit picks one number, here 261. Since the lower places cannot carry a number out of its block, 175 (block 1) is less than 261 (block 2), whatever the tens and ones say.",
+     "alt": "Three rows of boxes. Top row: five boxes labelled 0 to 99, 100 to 199, 200 to 299, 300 to 399, 400 to 499, marked hundreds digit; dots above mark 175 in the second box and 261 in the third. Dashed lines zoom from the box 200 to 299 down to a middle row of ten boxes labelled 200s to 290s, marked tens digit. Dashed lines zoom from the box 260s down to a bottom row of ten boxes labelled 260 to 269, with 261 shaded darker, marked ones digit. Below: the lower places move a number only inside its block."
+    },
+    {
+     "type": "example",
+     "body": "The same unknown digit $\\square$, not 0, is the first digit of both $\\square17$ and $\\square62$. Which is greater?",
+     "solution": "Both have three digits and the same hundreds digit, so the first place that differs is the tens: 1 against 6. Hence $\\square62 > \\square17$ whatever the hidden digit is; for instance $462 > 417$ and $962 > 917$. The rule needs only the first differing place, not the whole numbers."
+    },
+    {
+     "type": "pitfall",
+     "title": "The rule needs proper digits",
+     "body": "The proof used that every digit is at most 9. A picture of 1 hundred, 12 tens and 4 ones is not less than one of 2 hundreds, 2 tens and 4 ones: 12 tens is 1 hundred and 2 tens, so both pictures show 224. Before comparing from the left, regroup until no place holds ten or more."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Which place decides between 630,951 and 631,051?",
+       "a": "The thousands: the hundred-thousands and ten-thousands agree (6 and 3), and the thousands digits are 0 and 1, so $630{,}951 < 631{,}051$."
+      },
+      {
+       "q": "Is $1000 > 999$ an instance of rule 1 or rule 2?",
+       "a": "Rule 1: four digits against three. It is the case $j = 3$ of $10^j - 1 < 10^j$."
+      },
+      {
+       "q": "Is 0 a number with a zero at the front?",
+       "a": "No. Zero is written as the single digit 0, a one-digit number like 1 to 9, so $0 < 7$ is rule 2 for one-digit numbers. Every other number starts with a digit from 1 to 9."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Write $<$, $>$ or $=$: $87 \\ \\square\\ 85$; $311 \\ \\square\\ 339$; $6315 \\ \\square\\ 42315$.",
+       "hint": "Count digits first; then find the first place that differs.",
+       "solution": "$87 > 85$ (tens agree, ones 7 against 5). $311 < 339$ (hundreds agree, tens 1 against 3). $6315 < 42315$ (four digits against five)."
+      },
+      {
+       "q": "The same digit goes in both boxes: $4\\square{,}300$ and $3\\square{,}400$. Can the first number ever be the smaller?",
+       "hint": "Which place is the highest, and what is in it?",
+       "solution": "No. Both have five digits and the ten-thousands digits are 4 and 3, so the first is always greater: for every digit $x$, $40300 + 1000x > 30400 + 1000x$. The ones (0 against 0), the hundreds (3 against 4) and the hidden thousands never matter."
+      },
+      {
+       "q": "Give two different pictures of numbers in which 'compare from the left' gives the wrong answer because a place holds more than 9, and say what part of the proof fails.",
+       "hint": "The proof used $s \\le 10^j - 1$ for the lower places.",
+       "solution": "For example 1 hundred and 15 tens ($100 + 150 = 250$) against 2 hundreds and 0 tens (200): the hundreds say the first is smaller, but $250 > 200$. Or 0 tens and 12 ones (12) against 1 ten and 0 ones (10): $12 > 10$. In both, the lower places hold more than $10^j - 1$ (150 is more than 99, 12 is more than 9), so they can outweigh a unit of the place above."
+      },
+      {
+       "q": "If zeros were allowed at the front, rule 1 could fail. Give an example, and say which step of the proof breaks. Does rule 2 still work for two numerals of the same length?",
+       "hint": "Part 1 used a lower bound for the number with more digits; Part 2 used only an upper bound for the lower places.",
+       "solution": "0475 has four digits and 999 has three, but $0475 = 475 < 999$. Part 1 used that the leading digit of $a$ is not 0 to get $a \\ge 10^{m-1}$; with a leading 0 the number can be as small as 0, and the step $10^{m-1} \\le a$ breaks. Part 2 still works, since it used only that every digit is at most 9: for example $0475 < 0999$ is decided in the hundreds, 4 against 9. So leading zeros do no harm when both numerals are padded to the same length."
+      },
+      {
+       "q": "Does the rule work in base 2, where the only digits are 0 and 1 and the places are worth $1, 2, 4, 8, \\dots$? Compare $1011_2$ and $1101_2$ and check by converting to base ten.",
+       "hint": "Replace $10^j$ by $2^j$ in the proof; what is a run of $j$ ones in base 2?",
+       "solution": "Yes. A run of $j$ ones in base 2 is $2^j - 1$ (for example $111_2 = 7 = 8 - 1$), so the lower places are again worth less than one unit of the next place, and the proof goes through with 2 in place of 10. The first difference between $1011_2$ and $1101_2$ is in the place worth 4, with digits 0 and 1, so $1011_2 < 1101_2$. Indeed $1011_2 = 8 + 2 + 1 = 11$ and $1101_2 = 8 + 4 + 1 = 13$. The same works in every base; see [[digits-bases]]."
+      }
+     ]
+    },
+    {
+     "type": "section",
+     "title": "Putting numbers in order",
+     "src": [
+      "eng",
+      "cc2NBT",
+      "im4L13",
+      "os31"
+     ],
+     "body": "To order a list from least to greatest is to arrange it so that each number is less than or equal to the next; greatest to least is the reverse. On a number line the ordered list reads from left to right. The laws of order make this possible: by trichotomy any two numbers can be compared, and by transitivity a chain such as $418 < 429 < 441$ gives $418 < 441$ without a separate comparison. So the least number of a list is the one that is less than or equal to all the others, the greatest is the one at least as large as all the others, and the list can be built up by repeatedly taking the least that remains."
+    },
+    {
+     "type": "example",
+     "body": "Rank six game scores from highest to lowest: 93,005; 101,012; 90,298; 90,056; 98,032; 89,100.",
+     "solution": "Sort first by the number of digits: 101,012 is the only six-digit score, so it is highest. The other five have five digits; group them by the leading digit (ten-thousands). 89,100 has 8 and the rest have 9, so 89,100 is lowest. Among 93,005, 90,298, 90,056 and 98,032 the thousands digits are 3, 0, 0, 8, giving 98,032 first, then 93,005. The pair 90,298 and 90,056 agrees in the thousands and differs in the hundreds, 2 against 0. Ranking: $$\\begin{aligned}&101{,}012 > 98{,}032 > 93{,}005 \\\\ &> 90{,}298 > 90{,}056 > 89{,}100.\\end{aligned}$$ This is the digit rule used on a whole list: split into groups by the first place that can differ, then split each group by the next place."
+    },
+    {
+     "type": "pitfall",
+     "title": "Sorting numerals as words",
+     "body": "Alphabetical (dictionary) order compares two words letter by letter from the left, which is rule 2 of the digit rule; but it ignores rule 1. So a computer that sorts numerals as text puts 10, 100, 25, 9 in that order, because '1' comes before '2' before '9'. Dictionary order is correct only for numerals of the same length; numerical order is: first by the number of digits, then by dictionary order. Here that gives 9, 10, 25, 100."
+    },
+    {
+     "type": "check",
+     "items": [
+      {
+       "q": "Order 5, 50 and 15 from least to greatest.",
+       "a": "5, 15, 50: one digit before two digits, then 1 ten before 5 tens. Sorting the numerals as text would give 15, 5, 50."
+      },
+      {
+       "q": "Which of 63,591, 63,951 and 630,951 is least?",
+       "a": "63,591. The six-digit number is greatest; the five-digit ones first differ in the hundreds, 5 against 9."
+      }
+     ]
+    },
+    {
+     "type": "exercise",
+     "items": [
+      {
+       "q": "Order from greatest to least: 909, 990, 99, 900.",
+       "hint": "One of them has fewer digits.",
+       "solution": "$990 > 909 > 900 > 99$. 99 has two digits, so it is least. Of the rest, 990 has 9 tens against 0; 909 and 900 agree in hundreds and tens, and the ones are 9 against 0."
+      },
+      {
+       "q": "Write all the three-digit numbers that use each of 5, 7 and 3 once, from least to greatest.",
+       "hint": "Group them by hundreds digit.",
+       "solution": "357, 375, 537, 573, 735, 753. There are $3 \\cdot 2 \\cdot 1 = 6$ of them: two with each hundreds digit, ordered within each pair by the tens digit."
+      },
+      {
+       "q": "Make the least five-digit number that uses each of 0, 3, 5, 8, 9 once, and prove that it is the least.",
+       "hint": "The leading digit cannot be 0. What is the best possible leading digit, and then the best second digit?",
+       "solution": "30589. The leading digit is not 0, so it is at least 3; any number with leading digit 5, 8 or 9 is greater. With leading digit 3 the remaining digits are 0, 5, 8, 9, and by the digit rule the rest is least when they appear in increasing order, 0589: at the first place where another arrangement differs it has a larger digit. So $30589$ is the least."
+      },
+      {
+       "q": "Show that a list of different whole numbers has exactly one ordering from least to greatest.",
+       "hint": "Which number must come first?",
+       "solution": "The first number must be less than all the others, since each later number is greater than it by transitivity along the chain. By trichotomy there is at most one such number: if $m$ and $m'$ were both less than all the others, then $m < m'$ and $m' < m$, which cannot both hold. And there is one: compare the numbers in turn, keeping the smaller each time, and by transitivity the survivor is below all the others. So the first place is forced. The rest of the list is shorter, so by induction on the length of the list it has exactly one ordering, and hence so does the whole list."
+      }
+     ]
+    },
+    {
+     "type": "connection",
+     "title": "Looking ahead",
+     "src": [
+      "os31",
+      "aqaN1",
+      "wikiWO",
+      "wikiCard"
+     ],
+     "body": "Order on the [[number-line]] does not stop at 0. To the left of 0 lie the negative integers, and 'further right means greater' still holds: $-1 < 9$, and also $-1 > -4$, since $-1 = -4 + 3$. The same picture orders fractions and decimals, and finally all the [[real-numbers]], where between any two different numbers there is always another one, unlike the whole numbers, where $a$ and $a + 1$ have nothing between them.\n\nSecondary mathematics adds the symbols $a \\ne b$ (not equal), $a \\le b$ (less than or equal to) and $a \\ge b$ (greater than or equal to). A statement with an unknown, such as $x + 2 < 10$, is an inequality, and finding all its solutions is the subject of [[solving-inequalities]]; the law that adding keeps order is the first rule used there. In the language of [[sets-relations]], $\\le$ is a total order: it is reflexive, antisymmetric, transitive, and any two numbers are comparable, which is trichotomy.\n\nThe whole numbers have one more property: every non-empty collection of them has a least member. This well-ordering principle is closely tied to [[induction]]: a proof that takes the least counterexample and finds a smaller one is an induction argument read backwards. Finally, comparing by matching, without counting, is how Cantor compared infinite sets: two sets have the same size when they can be paired one to one, and this leads to the surprising facts about infinite sizes in [[ordinals-cardinals]]."
+    },
+    {
+     "type": "summary",
+     "body": "- Two finite collections have the same number when they can be matched one to one; the one with things left over has more, whichever pairing is used.\n- For whole numbers, $a < b$ means $b = a + k$ with $k \\ge 1$; $a < b$ and $b > a$ are the same statement; on the number line, greater is further right.\n- Exactly one of $a < b$, $a = b$, $a > b$ holds; order is transitive, adding keeps it, and nothing lies between $a$ and $a + 1$.\n- In base ten, more digits means greater; with equal lengths the first differing place from the left decides, because $99\\ldots9 = 10^j - 1 < 10^j$.\n- The rule needs digits 0 to 9 and no zeros at the front: regroup first.\n- To order a list, sort by number of digits, then place by place from the left; the ordering from least to greatest is unique."
+    }
+   ],
+   "checks": [
+    {
+     "python": "# section 1: matching, definition, laws\nballs, marbles = 3, 5\nassert min(balls, marbles) == 3 and marbles - balls == 2 and balls < marbles\n# infinite collections: n -> 2n leaves the odd numbers over; n -> n leaves none\nR = range(0, 1000)\nimg = {2 * n for n in R}\nassert all(m not in img for m in R if m % 2 == 1) and all(m in img for m in range(0, 1000, 2))\nassert {n for n in R} == set(R)\nassert 7 == 4 + 3 and 4 < 7 and [4 + i for i in (1, 2, 3)] == [5, 6, 7]\nassert 49 > 45 and 45 < 49 and 49 == 45 + 4\nN = range(0, 60)\nfor a in N:\n    for b in N:\n        assert [a < b, a == b, a > b].count(True) == 1\n        assert (a < b) == any(b == a + k for k in range(1, 60))\n        for c in range(0, 12):\n            if a < b and b < c: assert a < c\n            assert (a < b) == (a + c < b + c)\n            if a < b: assert (a * c < b * c) == (c >= 1)\n        if a < b: assert [n for n in range(200) if a < n < b] == list(range(a + 1, b)) and len(range(a + 1, b)) == b - a - 1\n    assert not any(a < n < a + 1 for n in range(200))\nassert max(n for n in range(1000) if n < 35) == 34 and min(n for n in range(1000) if n > 60) == 61\nassert [n for n in range(100) if 47 < n < 52] == [48, 49, 50, 51] and 52 - 47 - 1 == 4\nassert 2 * 3 == 6 and 5 * 3 == 15 and 6 < 15 and 2 * 0 == 0 == 5 * 0\ns = 120; assert s + 3 > s\nassert 1 + 1 == 2 and 0 < 1 < 2\n"
+    },
+    {
+     "python": "# section 2: digit rule\ndef rule(a, b):\n    sa, sb = str(a), str(b)\n    if len(sa) != len(sb): return '>' if len(sa) > len(sb) else '<'\n    for x, y in zip(sa, sb):\n        if x != y: return '>' if x > y else '<'\n    return '='\nimport random\nrandom.seed(1)\nfor _ in range(20000):\n    a, b = random.randrange(10 ** random.randint(1, 8)), random.randrange(10 ** random.randint(1, 8))\n    assert rule(a, b) == ('>' if a > b else '<' if a < b else '=')\nfor a in range(0, 1200):\n    for b in range(0, 1200, 7):\n        assert rule(a, b) == ('>' if a > b else '<' if a < b else '=')\nassert all(int('9' * j) == 10 ** j - 1 == sum(9 * 10 ** i for i in range(j)) for j in range(1, 20)) and 9 + 1 == 10 and 99 + 1 == 100 and 999 + 1 == 1000\nassert all(n <= 10 ** m - 1 for n in range(0, 100000) for m in [len(str(n))])\nassert all(10 ** (m - 1) <= n for n in range(10, 100000) for m in [len(str(n))]) and len(str(0)) == 1 and str(0) == '0'\nassert all(n <= 10 ** (m - 1) - 1 for m in range(2, 6) for n in range(0, 10 ** (m - 1)))\nassert 4062 == 4 * 1000 + 0 * 100 + 6 * 10 + 2\n# figure 199 vs 200\nassert 199 == 100 + 9 * 10 + 9 and 9 * 10 + 9 == 99 == 100 - 1 and 200 == 2 * 100 and 199 < 200\n# examples\nassert 92 > 29 and 261 > 175 and 1 < 5 and 6 < 7 and 338 > 336 and 9 < 10\nassert 58978 < 547612 and len(str(58978)) == 5 and len(str(547612)) == 6\nassert sum(map(int, '58978')) == 37 and sum(map(int, '547612')) == 25\nassert all(100 * d + 62 > 100 * d + 17 for d in range(1, 10)) and 462 > 417 and 962 > 917\n# nested-blocks figure\nassert 100 <= 175 <= 199 and 200 <= 261 <= 299 and 260 <= 261 <= 269 and 299 < 300 and 2 * 100 + 99 == 299\nassert all(dd * 100 + 99 < (dd + 1) * 100 for dd in range(5)) and 4 * 100 + 99 == 499\nassert [200 + 10 * t for t in range(10)] == list(range(200, 300, 10)) and 260 + 9 == 269\n# pitfall, check\nassert 100 + 12 * 10 + 4 == 224 == 2 * 100 + 2 * 10 + 4 and 12 * 10 == 100 + 2 * 10\nassert 630951 < 631051 and 1000 > 999 and 10 ** 3 - 1 == 999 and 0 < 7\nassert str(630951)[:2] == str(631051)[:2] == '63' and str(630951)[2] == '0' and str(631051)[2] == '1'\n# exercises\nassert 87 > 85 and 311 < 339 and 6315 < 42315 and str(311)[1] < str(339)[1] and 7 > 5\nassert all(40300 + 1000 * x > 30400 + 1000 * x for x in range(10))\nassert 100 + 15 * 10 == 250 > 200 and 12 > 10 and 150 > 99 and 12 > 9\nassert int('0475') == 475 < 999 and len('0475') == 4 and len('999') == 3 and '0475' < '0999' and int('0999') == 999\nassert int('111', 2) == 7 == 8 - 1 and all(int('1' * j, 2) == 2 ** j - 1 for j in range(1, 20))\nassert int('1011', 2) == 8 + 2 + 1 == 11 and int('1101', 2) == 8 + 4 + 1 == 13 and 11 < 13 and 2 ** 2 == 4\ndef rule2(a, b):\n    sa, sb = bin(a)[2:], bin(b)[2:]\n    if len(sa) != len(sb): return len(sa) > len(sb)\n    return sa > sb\nassert all(rule2(a, b) == (a > b) for a in range(300) for b in range(300))\n"
+    },
+    {
+     "python": "# section 3: ordering\nfrom itertools import permutations\nassert 418 < 429 < 441 and 418 < 441\nscores = [93005, 101012, 90298, 90056, 98032, 89100]\nassert sorted(scores, reverse=True) == [101012, 98032, 93005, 90298, 90056, 89100]\nassert [s for s in scores if len(str(s)) == 6] == [101012]\nassert [str(s)[1] for s in (93005, 90298, 90056, 98032)] == ['3', '0', '0', '8']\nassert str(90298)[2] == '2' and str(90056)[2] == '0' and str(89100)[0] == '8'\nfive = [int(''.join(p)) for p in permutations('03589') if p[0] != '0']\nassert min(five) == 30589\nassert sorted(['10', '100', '25', '9']) == ['10', '100', '25', '9']\nassert sorted([10, 100, 25, 9]) == [9, 10, 25, 100]\nassert sorted(['10', '100', '25', '9'], key=lambda s: (len(s), s)) == ['9', '10', '25', '100']\nassert sorted([5, 50, 15]) == [5, 15, 50] and sorted(['5', '50', '15']) == ['15', '5', '50']\nassert min([63591, 63951, 630951]) == 63591 and str(63591)[2] == '5' and str(63951)[2] == '9'\nassert sorted([909, 990, 99, 900], reverse=True) == [990, 909, 900, 99]\nassert str(990)[1] == '9' and str(909)[1] == str(900)[1] == '0' and str(909)[2] == '9' and str(900)[2] == '0'\np573 = sorted(int(''.join(p)) for p in permutations('573'))\nassert p573 == [357, 375, 537, 573, 735, 753] and len(p573) == 3 * 2 * 1 == 6\n# looking ahead\nassert -1 < 9 and -1 > -4 and -1 == -4 + 3\nfrom fractions import Fraction as F\nassert all(F(a, 1) < (F(a) + F(a + 1)) / 2 < F(a + 1) for a in range(50))\nassert [x for x in range(0, 20) if x + 2 < 10] == list(range(0, 8))\n"
+    }
+   ]
+  }
+ }
+]
